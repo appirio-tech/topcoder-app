@@ -1,0 +1,22 @@
+{
+  "name": "topcoder-account-app",
+  "version": "0.0.0",
+  "homepage": "https://github.com/appirio-tech/topcoder-account-app",
+  "authors": [
+    "Nick Litwin <nlitwin@appirio.com>"
+  ],
+  "description": "Account related pages including login, registration, and password resetting.",
+  "keywords": [
+    "account",
+    "login",
+    "registration",
+    "password"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
