@@ -1,9 +1,10 @@
-var gulp        = require('gulp');
-var args        = require('yargs').argv;
-var config      = require('./gulp.config')();
-var del         = require('del');
-var $           = require('gulp-load-plugins')({lazy: true});
-var browserSync = require('browser-sync');
+var gulp         = require('gulp');
+var args         = require('yargs').argv;
+var config       = require('./gulp.config')();
+var del          = require('del');
+var $            = require('gulp-load-plugins')({lazy: true});
+var browserSync  = require('browser-sync');
+var histFallback = require('connect-history-api-fallback');
 
 gulp.task('vet', function() {
   log('Analyzing source with JSHint and JSCS');
@@ -54,6 +55,19 @@ gulp.task('sass-watcher', function() {
 });
 
 gulp.task('wiredep', function() {
+  log('Injecting bower css and js files into index.jade');
+  var options = config.getWiredepDefaultOptions();
+  var wiredep = require('wiredep').stream;
+
+  return gulp
+    .src(config.index)
+    .pipe(wiredep(options))
+    .pipe($.inject(gulp.src(config.js)))
+    .pipe(gulp.dest(config.app));
+});
+
+gulp.task('inject', ['wiredep', 'styles'], function() {
+  log('Injecting app css into index.jade and calling wiredep when done')
   var options = config.getWiredepDefaultOptions();
   var wiredep = require('wiredep').stream;
 
@@ -67,7 +81,9 @@ gulp.task('wiredep', function() {
 gulp.task('browser-sync', ['jade', 'styles'], function() {
   options = {
     server: {
-      baseDir: [config.temp],
+      baseDir: [config.temp, config.app],
+      // Enables serving index.html for Angular HTML5 mode
+      middleware: [histFallback()],
       routes: {
         '/bower_components': 'bower_components'
       }

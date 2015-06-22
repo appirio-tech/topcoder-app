@@ -5,7 +5,7 @@
 
   routes.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
 
-  function routes($locationProvider, $urlRouterProvider, $stateProvider) {
+  function routes($locationProvider, $stateProvider, $urlRouterProvider) {
     $locationProvider.html5Mode(true);
 
     $stateProvider

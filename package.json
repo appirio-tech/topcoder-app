@@ -17,6 +17,7 @@
   "homepage": "https://github.com/appirio-tech/topcoder-account-app#readme",
   "devDependencies": {
     "browser-sync": "^2.7.12",
+    "connect-history-api-fallback": "^1.1.0",
     "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^2.3.1",

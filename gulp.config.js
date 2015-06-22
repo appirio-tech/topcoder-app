@@ -9,7 +9,8 @@ module.exports = function() {
 
     // WatchFiles
     watchFiles: [
-      temp + '**/*.{js,css,html}'
+      temp + '**/*.{js,css,html}',
+      app + '**/*.{js,css,html}'
     ],
 
     // All JavaScript files to vet
@@ -18,13 +19,14 @@ module.exports = function() {
       './*.js'
     ],
     app: app,
-    index: app + 'index.html',
+    css: temp + '**/*.css',
+    index: app + 'index.jade',
     js: [
       app + '**/*.js',
       '!' + app + '**/*.spec.js'
     ],
 
-    sass: app + 'assets/css/login.scss',
+    sass: app + '**/*.scss',
     jade: app + '**/*.jade',
 
     // Bower and npm locations
