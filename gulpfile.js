@@ -1,37 +1,101 @@
-var gulp      = require('gulp');
-var jshint    = require('gulp-jshint');
-var jscs      = require('gulp-jscs');
-var util      = require('gulp-util');
-var gulpprint = require('gulp-print');
+var gulp        = require('gulp');
+var args        = require('yargs').argv;
+var config      = require('./gulp.config')();
+var del         = require('del');
+var $           = require('gulp-load-plugins')({lazy: true});
+var browserSync = require('browser-sync');
 
 gulp.task('vet', function() {
   log('Analyzing source with JSHint and JSCS');
 
   return gulp
-    .src([
-      './app/**/*.js',
-      './*.js'
-    ])
-    .pipe(gulpif(args.verbose, gulpprint()))
-    .pipe(jscs())
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish', {verbose: true}))
-    .pipe(jshint.reporter('fail'));
+    .src(config.alljs)
+    .pipe($.if(args.verbose, $.print())) // gulp vet --verbose to trigger this line
+    .pipe($.jscs())
+    .pipe($.jshint())
+    .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
+    .pipe($.jshint.reporter('fail'));
+});
+
+gulp.task('jade', ['clean-html'], function() {
+  log('Compiling Jade --> HTML');
+
+  return gulp
+    .src(config.jade)
+    .pipe($.plumber())
+    .pipe($.jade({pretty: false}))
+    .pipe(gulp.dest(config.temp));
+});
+
+gulp.task('styles', ['clean-styles'], function() {
+  log('Compiling Sass --> CSS');
+
+  return gulp
+    .src(config.sass)
+    .pipe($.plumber())
+    .pipe($.sass())
+    .pipe($.autoprefixer({browsers: ['last 2 version']}))
+    .pipe(gulp.dest(config.temp));
+});
+
+gulp.task('clean-styles', function(done) {
+  var files = config.temp + '**/*.css';
+  clean(files, done);
+});
+
+gulp.task('clean-html', function(done) {
+  var files = config.temp + '**/*.html';
+  clean(files, done);
 });
 
 
+gulp.task('sass-watcher', function() {
+  gulp.watch([config.sass], ['styles']);
+});
+
+gulp.task('wiredep', function() {
+  var options = config.getWiredepDefaultOptions();
+  var wiredep = require('wiredep').stream;
+
+  return gulp
+    .src(config.index)
+    .pipe(wiredep(options))
+    .pipe($.inject(gulp.src(config.js)))
+    .pipe(gulp.dest(config.app));
+});
+
+gulp.task('browser-sync', ['jade', 'styles'], function() {
+  options = {
+    server: {
+      baseDir: [config.temp],
+      routes: {
+        '/bower_components': 'bower_components'
+      }
+    }
+  }
+
+  browserSync(options);
+
+  gulp.watch(config.watchFiles).on('change', browserSync.reload);
+
+  gulp.watch(config.sass, ['jade', 'styles']);
+});
+
 //////////////
+
+function clean(path, done) {
+  log('Cleaning: ' + $.util.colors.blue(path));
+  del(path, done);
+}
 
 function log(msg) {
   if (typeof(msg) === 'object') {
     for (var item in msg) {
       if (msg.hasOwnProperty(item)) {
-        util.log(util.colors.blue(msg[item]));
+        $.util.log($.util.colors.blue(msg[item]));
       }
     }
   } else {
-    util.log(util.colors.blue(msg));
+    $.util.log($.util.colors.blue(msg));
   }
 }
-
-
