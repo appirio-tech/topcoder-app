@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    base(href="/")
+
+    meta(http-equiv="X-UA-Compatible", content="IE=edge, chrome=1")
+    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
+
+    link(rel="stylesheet", href="assets/css/login.css", type="text/css")
+  body(ng-app="topcoder-account")
+    div(ui-view, ng-class="$state.current.name")
+
+    script(src="app.js", type="text/javascript")
+    script(src="app.routes.js", type="text/javascript")
+    script(src="login/login.controller.js", type="text/javascript")
