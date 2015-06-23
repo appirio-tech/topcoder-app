@@ -3,29 +3,24 @@ module.exports = function() {
   var temp = './.tmp/';
 
   var config = {
-    temp: temp,
-
     // File Paths
-
-    // WatchFiles
     watchFiles: [
       temp + '**/*.{js,css,html}',
-      app + '**/*.{js,css,html}'
+      app + '**/*.{js}'
     ],
-
     // All JavaScript files to vet
     alljs: [
       app + '**/*.js',
       './*.js'
     ],
     app: app,
+    temp: temp,
     css: temp + '**/*.css',
     index: app + 'index.jade',
     js: [
       app + '**/*.js',
       '!' + app + '**/*.spec.js'
     ],
-
     sass: app + '**/*.scss',
     jade: app + '**/*.jade',
 
