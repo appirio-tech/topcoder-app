@@ -62,23 +62,26 @@ gulp.task('wiredep', function() {
   return gulp
     .src(config.index)
     .pipe(wiredep(options))
-    .pipe($.inject(gulp.src(config.js)))
+    .pipe($.inject(gulp.src(config.js, {read: false}), {relative: true}))
     .pipe(gulp.dest(config.app));
 });
 
 gulp.task('inject', ['wiredep', 'styles'], function() {
-  log('Injecting app css into index.jade and calling wiredep when done')
-  var options = config.getWiredepDefaultOptions();
-  var wiredep = require('wiredep').stream;
+  log('Injecting app css into index.jade')
 
   return gulp
     .src(config.index)
-    .pipe(wiredep(options))
-    .pipe($.inject(gulp.src(config.js)))
+    .pipe($.inject(gulp.src(config.css, {read: false}), {ignorePath: '.tmp', addRootSlash: false}))
     .pipe(gulp.dest(config.app));
 });
 
 gulp.task('browser-sync', ['jade', 'styles'], function() {
+  gulp.watch(config.sass, ['styles'])
+    .on('change', function(event) { changeEvent(event); });
+
+  gulp.watch(config.jade, ['jade'])
+    .on('change', function(event) { changeEvent(event); });
+
   options = {
     server: {
       baseDir: [config.temp, config.app],
@@ -87,17 +90,29 @@ gulp.task('browser-sync', ['jade', 'styles'], function() {
       routes: {
         '/bower_components': 'bower_components'
       }
-    }
+    },
+    files: config.watchFiles,
+    ghostMode: {
+      clicks: true,
+      location: false,
+      forms: true,
+      scroll: true
+    },
+    logPrefix: 'Topcoder-Account',
+    notify: false,
+    reloadDelay: 500
   }
 
   browserSync(options);
 
-  gulp.watch(config.watchFiles).on('change', browserSync.reload);
-
-  gulp.watch(config.sass, ['jade', 'styles']);
 });
 
 //////////////
+
+function changeEvent(event) {
+  var srcPattern = new RegExp('/.*(?=/' + config.source + ')/');
+  log('File ' + event.path.replace(srcPattern, '') + ' ' + event.type);
+}
 
 function clean(path, done) {
   log('Cleaning: ' + $.util.colors.blue(path));
