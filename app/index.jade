@@ -6,25 +6,38 @@ html
     meta(http-equiv="X-UA-Compatible", content="IE=edge, chrome=1")
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
 
+    // build:css styles/vendor.css
     //- bower:css
     //- endbower
+    // endbuild
 
+    // build:css styles/app.css
     //- inject:css
+    link(rel="stylesheet", href="assets/css/app.css")
     link(rel="stylesheet", href="assets/css/login.css")
+    link(rel="stylesheet", href="assets/css/register.css")
     //- endinject
+    // endbuild
 
   body(ng-app="topcoder-account")
     p This is the index page
     div(ui-view, ng-class="$state.current.name")
 
+    // build:js js/vendor.js
     //- bower:js
     script(src='../bower_components/angular/angular.js')
     script(src='../bower_components/angular-ui-router/release/angular-ui-router.js')
     //- endbower
+    // endbuild
 
+    // build:js({app, .tmp}) js/app.js
     //- inject:js
     script(src="app.js")
     script(src="app.routes.js")
     script(src="login/login.controller.js")
+    script(src="register/register.controller.js")
     //- endinject
 
+    // inject:templates.js
+    // endinject
+    // endbuild

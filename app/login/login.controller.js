@@ -5,6 +5,6 @@
 
   Login.$inject = ['$scope'];
   function Login($scope) {
-    $scope.test = 'login';
+    $scope.name = 'login';
   }
 })();

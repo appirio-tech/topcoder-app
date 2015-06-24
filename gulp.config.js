@@ -19,14 +19,28 @@ module.exports = function() {
     temp: temp,
     css: temp + '**/*.css',
     fonts: assets + 'fonts/**/*.*',
+    htmltemplates: [
+      temp + '**/*.html',
+      '!' + temp + 'index.html'
+    ],
     images: assets + 'images/**/*.*',
     index: app + 'index.jade',
+    indexHtml: temp + 'index.html',
     js: [
       app + '**/*.js',
       '!' + app + '**/*.spec.js'
     ],
     sass: app + '**/*.scss',
     jade: app + '**/*.jade',
+
+    // Template Cache
+    templateCache: {
+      file: 'templates.js',
+      options: {
+        module: 'topcoder-account',
+        standAlone: false
+      }
+    },
 
     // Bower and npm locations
     bower: {

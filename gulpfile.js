@@ -27,7 +27,8 @@ gulp.task('jade', ['clean-html'], function() {
   return gulp
     .src(config.jade)
     .pipe($.plumber())
-    .pipe($.jade({pretty: false}))
+    .pipe($.jade({pretty: true}))
+    .pipe($.replace(/-->/g, ' -->'))
     .pipe(gulp.dest(config.temp));
 });
 
@@ -76,14 +77,34 @@ gulp.task('clean-styles', function(done) {
 gulp.task('clean-html', function(done) {
   clean(config.temp + '**/*.html', done);
 });
-
+gulp.task('clean-code', function(done) {
+  var files = [].concat(
+    config.temp + '**/*.js',
+    config.build + '**/*.html',
+    config.build + 'js/**/*.js'
+  );
+  clean(files, done);
+});
 
 gulp.task('sass-watcher', function() {
   gulp.watch([config.sass], ['styles']);
 });
 
+gulp.task('templatecache', ['clean-code', 'jade'], function() {
+  log('Creating AngularJS $templateCache');
+
+  return gulp
+    .src(config.htmltemplates)
+    .pipe($.minifyHtml({empty: true}))
+    .pipe($.angularTemplatecache(
+      config.templateCache.file,
+      config.templateCache.options
+      ))
+    .pipe(gulp.dest(config.temp));
+});
+
 gulp.task('wiredep', function() {
-  log('Injecting bower css and js files into index.jade');
+  log('Injecting bower css/js and app js files into index.jade');
   var options = config.getWiredepDefaultOptions();
   var wiredep = require('wiredep').stream;
 
@@ -94,7 +115,7 @@ gulp.task('wiredep', function() {
     .pipe(gulp.dest(config.app));
 });
 
-gulp.task('inject', ['wiredep', 'styles'], function() {
+gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
   log('Injecting app css into index.jade')
 
   return gulp
@@ -103,7 +124,27 @@ gulp.task('inject', ['wiredep', 'styles'], function() {
     .pipe(gulp.dest(config.app));
 });
 
-gulp.task('browser-sync', ['jade', 'styles'], function() {
+gulp.task('optimize', ['inject'], function() {
+  log('Optimizing the JavaScript, CSS, and HTML');
+
+  var assets = $.useref.assets({search: ['./', '.tmp']});
+  var templateCache = config.temp + config.templateCache.file;
+
+  return gulp
+    .src(config.indexHtml)
+    .pipe($.plumber())
+    .pipe($.inject(gulp.src(templateCache, {read: false}), {
+      starttag: '<!-- inject:templates.js -->',
+      endtag: '<!-- endinject -->',
+      relative: true
+    }))
+    .pipe(assets)
+    .pipe(assets.restore())
+    .pipe($.useref())
+    .pipe(gulp.dest(config.build));
+});
+
+gulp.task('browser-sync', ['inject', 'jade'], function() {
   gulp.watch(config.sass, ['styles'])
     .on('change', function(event) { changeEvent(event); });
 

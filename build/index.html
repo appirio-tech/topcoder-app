@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    
+    <link rel="stylesheet" href="styles/app.css">
+  </head>
+  <body ng-app="topcoder-account">
+    <p>This is the index page</p>
+    <div ui-view ng-class="$state.current.name"></div>
+    <script src="js/vendor.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
