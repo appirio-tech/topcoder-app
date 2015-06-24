@@ -1,6 +1,7 @@
 module.exports = function() {
-  var app = './app/';
-  var temp = './.tmp/';
+  var app    = './app/';
+  var temp   = './.tmp/';
+  var assets = app + 'assets/';
 
   var config = {
     // File Paths
@@ -13,9 +14,12 @@ module.exports = function() {
       app + '**/*.js',
       './*.js'
     ],
+    build: './build/',
     app: app,
     temp: temp,
     css: temp + '**/*.css',
+    fonts: assets + 'fonts/**/*.*',
+    images: assets + 'images/**/*.*',
     index: app + 'index.jade',
     js: [
       app + '**/*.js',

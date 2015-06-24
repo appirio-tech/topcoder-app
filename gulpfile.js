@@ -6,6 +6,9 @@ var $            = require('gulp-load-plugins')({lazy: true});
 var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
 
+gulp.task('help', $.taskListing);
+gulp.task('default', ['help']);
+
 gulp.task('vet', function() {
   log('Analyzing source with JSHint and JSCS');
 
@@ -39,14 +42,39 @@ gulp.task('styles', ['clean-styles'], function() {
     .pipe(gulp.dest(config.temp));
 });
 
-gulp.task('clean-styles', function(done) {
-  var files = config.temp + '**/*.css';
-  clean(files, done);
+gulp.task('fonts', ['clean-fonts'], function() {
+  log('Copying fonts');
+
+  return gulp
+    .src(config.fonts)
+    .pipe(gulp.dest(config.build + 'fonts'));
 });
 
+gulp.task('images', ['clean-images'], function() {
+  log('Copying and compressing the images');
+
+  return gulp
+    .src(config.images)
+    .pipe($.imagemin({optimizationLevel: 4}))
+    .pipe(gulp.dest(config.build + 'images'));
+});
+
+gulp.task('clean', function(done) {
+  var delconfig = [].concat(config.build, config.temp);
+  log('Cleaning: ' + $.util.colors.blue(delconfig));
+  del(delconfig, done);
+});
+gulp.task('clean-fonts', function(done) {
+  clean(config.build + 'fonts/**/*.*', done);
+});
+gulp.task('clean-images', function(done) {
+  clean(config.build + 'images/**/*.*', done);
+});
+gulp.task('clean-styles', function(done) {
+  clean(config.temp + '**/*.css', done);
+});
 gulp.task('clean-html', function(done) {
-  var files = config.temp + '**/*.html';
-  clean(files, done);
+  clean(config.temp + '**/*.html', done);
 });
 
 
