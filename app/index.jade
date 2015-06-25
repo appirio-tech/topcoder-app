@@ -19,10 +19,10 @@ html
     //- endinject
     // endbuild
 
-  body(ng-app="topcoder-account")
+  body(ng-app="topcoder-account", ng-strict-di)
     p This is the index page
     div(ui-view, ng-class="$state.current.name")
-
+    p This is the index page too
     // build:js js/vendor.js
     //- bower:js
     script(src='../bower_components/angular/angular.js')
@@ -30,12 +30,12 @@ html
     //- endbower
     // endbuild
 
-    // build:js({app, .tmp}) js/app.js
+    // build:js js/app.js
     //- inject:js
     script(src="app.js")
     script(src="app.routes.js")
-    script(src="login/login.controller.js")
-    script(src="register/register.controller.js")
+    script(src="login/login.js")
+    script(src="register/register.js")
     //- endinject
 
     // inject:templates.js
