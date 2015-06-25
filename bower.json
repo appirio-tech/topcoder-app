@@ -23,5 +23,7 @@
     "angular": "1.4.x",
     "angular-ui-router": "~0.2.15"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "bardjs": "~0.1.4"
+  }
 }
