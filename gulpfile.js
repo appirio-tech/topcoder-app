@@ -116,7 +116,7 @@ gulp.task('wiredep', function() {
 });
 
 gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
-  log('Injecting app css into index.jade')
+  log('Injecting app css into index.jade');
 
   return gulp
     .src(config.index)
@@ -124,11 +124,48 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
     .pipe(gulp.dest(config.app));
 });
 
-gulp.task('optimize', ['inject'], function() {
+gulp.task('build', ['optimize', 'images', 'fonts'], function() {
+  log('Building everything');
+
+  var msg = {
+    title: 'gulp build',
+    subtitle: 'Deployed to the build folder',
+    message: 'Running `gulp serve-build`'
+  };
+  del(config.temp);
+  log(msg);
+});
+
+gulp.task('build-specs', ['templatecache'], function() {
+  log('Building the spec runner');
+
+  var wiredep = require('wiredep').stream;
+  var options = config.getWiredepDefaultOptions();
+  options.devDependencies = true;
+
+  return gulp
+    .src(config.specRunner)
+    .pipe(wiredep(options))
+    .pipe($.inject(gulp.src(config.testlibraries),
+      {name: 'inject:testlibraries', read: false}))
+    .pipe($.inject(gulp.src(config.js)))
+    .pipe($.inject(gulp.src(config.specHelpers),
+      {name: 'inject:spechelpers', read: false}))
+    .pipe($.inject(gulp.src(config.specs),
+      {name: 'inject:specs', read: false}))
+    .pipe($.inject(gulp.src(config.temp + config.templateCache.file),
+      {name: 'inject:templates', read: false}))
+    .pipe(gulp.dest(config.app));
+});
+
+gulp.task('optimize', ['inject', 'test'], function() {
   log('Optimizing the JavaScript, CSS, and HTML');
 
-  var assets = $.useref.assets({search: ['./', '.tmp']});
+  var assets = $.useref.assets({searchPath: ['.tmp', 'app']});
   var templateCache = config.temp + config.templateCache.file;
+  var cssFilter = $.filter('**/*.css');
+  var jsLibFilter = $.filter('**/' + config.optimized.vendor);
+  var jsAppFilter = $.filter('**/' + config.optimized.app);
 
   return gulp
     .src(config.indexHtml)
@@ -139,19 +176,36 @@ gulp.task('optimize', ['inject'], function() {
       relative: true
     }))
     .pipe(assets)
+    .pipe(cssFilter)
+    .pipe($.csso())
+    .pipe(cssFilter.restore())
+    .pipe(jsLibFilter)
+    .pipe($.uglify())
+    .pipe(jsLibFilter.restore())
+    .pipe(jsAppFilter)
+    .pipe($.ngAnnotate())
+    .pipe($.uglify())
+    .pipe(jsAppFilter.restore())
+    .pipe($.rev())
     .pipe(assets.restore())
     .pipe($.useref())
+    .pipe($.revReplace())
+    // Uncomment if you want to see the JSON file containing
+    // the file mapping (e.g., "{"js/app.js": "js/app-a9bae026bc.js"}")
+    // .pipe(gulp.dest(config.build))
+    // .pipe($.rev.manifest())
     .pipe(gulp.dest(config.build));
 });
 
-gulp.task('browser-sync', ['inject', 'jade'], function() {
+gulp.task('serve', ['inject'], function() {
+
   gulp.watch(config.sass, ['styles'])
     .on('change', function(event) { changeEvent(event); });
 
   gulp.watch(config.jade, ['jade'])
     .on('change', function(event) { changeEvent(event); });
 
-  options = {
+  var options = {
     server: {
       baseDir: [config.temp, config.app],
       // Enables serving index.html for Angular HTML5 mode
@@ -168,12 +222,82 @@ gulp.task('browser-sync', ['inject', 'jade'], function() {
       scroll: true
     },
     logPrefix: 'Topcoder-Account',
-    notify: false,
+    notify: true,
     reloadDelay: 500
-  }
+  };
 
   browserSync(options);
 
+});
+
+gulp.task('serve-specs', ['build-specs'], function() {
+  log('Run the spec runner');
+
+  gulp.watch(config.sass, ['styles'])
+    .on('change', function(event) { changeEvent(event); });
+
+  gulp.watch(config.jade, ['jade'])
+    .on('change', function(event) { changeEvent(event); });
+
+  var options = {
+    server: {
+      baseDir: ['./'],
+      // Enables serving index.html for Angular HTML5 mode
+      middleware: [histFallback()],
+      routes: {
+        '/bower_components': 'bower_components'
+      }
+    },
+    files: config.watchFiles,
+    ghostMode: {
+      clicks: true,
+      location: false,
+      forms: true,
+      scroll: true
+    },
+    logPrefix: 'Topcoder-Account',
+    notify: false,
+    reloadDelay: 500,
+    startPath: config.app + config.specRunnerFile
+  };
+
+  browserSync(options);
+});
+
+gulp.task('serve-build', ['build'], function() {
+  // TODO: Figure out why watch doesn't work. Jade running before wiredep?
+
+  gulp.watch([config.sass, config.js, config.jade], ['optimize', browserSync.reload])
+    .on('change', function(event) { changeEvent(event); });
+
+  var options = {
+    server: {
+      baseDir: config.build,
+      // Enables serving index.html for Angular HTML5 mode
+      middleware: [histFallback()]
+    },
+    files: [],
+    ghostMode: {
+      clicks: true,
+      location: false,
+      forms: true,
+      scroll: true
+    },
+    logPrefix: 'Topcoder-Account',
+    notify: true,
+    reloadDelay: 500
+  };
+
+  browserSync(options);
+
+});
+
+gulp.task('test', ['vet', 'templatecache'], function(done) {
+  startTests(true /* singleRun */, done);
+});
+
+gulp.task('autotest', ['vet', 'templatecache'], function(done) {
+  startTests(false /* singleRun */, done);
 });
 
 //////////////
@@ -197,5 +321,28 @@ function log(msg) {
     }
   } else {
     $.util.log($.util.colors.blue(msg));
+  }
+}
+
+function startTests(singleRun, done) {
+  var karma = require('karma').server;
+  var excludeFiles = [];
+  var serverSpecs = config.serverIntegrationSpecs;
+
+  excludeFiles = serverSpecs;
+
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    exclude: excludeFiles,
+    singleRun: !!singleRun
+  }, karmaCompleted);
+
+  function karmaCompleted(karmaResult) {
+    log('Karma completed!');
+    if (karmaResult === 1) {
+      done('karma: tests failed with code ' + karmaResult);
+    } else {
+      done();
+    }
   }
 }
