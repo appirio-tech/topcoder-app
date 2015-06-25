@@ -3,8 +3,10 @@
 
   angular.module('topcoder-account').controller('Login', Login);
 
-  Login.$inject = ['$scope'];
-  function Login($scope) {
-    $scope.name = 'login';
+  Login.$inject = [];
+
+  function Login() {
+    var vm = this;
+    vm.name = 'login';
   }
 })();

@@ -3,8 +3,10 @@
 
   angular.module('topcoder-account').controller('Register', Register);
 
-  Register.$inject = ['$scope'];
-  function Register($scope) {
-    $scope.name = 'Register';
+  Register.$inject = [];
+
+  function Register() {
+    var vm = this;
+    vm.name = 'register';
   }
 })();
