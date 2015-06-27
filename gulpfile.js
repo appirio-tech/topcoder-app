@@ -1,7 +1,7 @@
 var gulp         = require('gulp');
 var args         = require('yargs').argv;
 var config       = require('./gulp.config')();
-var del          = require('del');
+var del          = require('del'); // rm -rf
 var $            = require('gulp-load-plugins')({lazy: true});
 var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
@@ -41,6 +41,10 @@ gulp.task('styles', ['clean-styles'], function() {
     .pipe($.sass())
     .pipe($.autoprefixer({browsers: ['last 2 version']}))
     .pipe(gulp.dest(config.temp));
+});
+
+gulp.task('sass-watcher', function() {
+  gulp.watch([config.sass], ['styles']);
 });
 
 gulp.task('fonts', ['clean-fonts'], function() {
@@ -86,10 +90,6 @@ gulp.task('clean-code', function(done) {
   clean(files, done);
 });
 
-gulp.task('sass-watcher', function() {
-  gulp.watch([config.sass], ['styles']);
-});
-
 gulp.task('templatecache', ['clean-code', 'jade'], function() {
   log('Creating AngularJS $templateCache');
 
@@ -103,7 +103,7 @@ gulp.task('templatecache', ['clean-code', 'jade'], function() {
     .pipe(gulp.dest(config.temp));
 });
 
-gulp.task('wiredep', function() {
+gulp.task('wiredep', ['jade'], function() {
   log('Injecting bower css/js and app js files into index.jade');
   var options = config.getWiredepDefaultOptions();
   var wiredep = require('wiredep').stream;
@@ -121,40 +121,6 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
   return gulp
     .src(config.index)
     .pipe($.inject(gulp.src(config.css, {read: false}), {ignorePath: '.tmp', addRootSlash: false}))
-    .pipe(gulp.dest(config.app));
-});
-
-gulp.task('build', ['optimize', 'images', 'fonts'], function() {
-  log('Building everything');
-
-  var msg = {
-    title: 'gulp build',
-    subtitle: 'Deployed to the build folder',
-    message: 'Running `gulp serve-build`'
-  };
-  del(config.temp);
-  log(msg);
-});
-
-gulp.task('build-specs', ['templatecache'], function() {
-  log('Building the spec runner');
-
-  var wiredep = require('wiredep').stream;
-  var options = config.getWiredepDefaultOptions();
-  options.devDependencies = true;
-
-  return gulp
-    .src(config.specRunner)
-    .pipe(wiredep(options))
-    .pipe($.inject(gulp.src(config.testlibraries),
-      {name: 'inject:testlibraries', read: false}))
-    .pipe($.inject(gulp.src(config.js)))
-    .pipe($.inject(gulp.src(config.specHelpers),
-      {name: 'inject:spechelpers', read: false}))
-    .pipe($.inject(gulp.src(config.specs),
-      {name: 'inject:specs', read: false}))
-    .pipe($.inject(gulp.src(config.temp + config.templateCache.file),
-      {name: 'inject:templates', read: false}))
     .pipe(gulp.dest(config.app));
 });
 
@@ -195,6 +161,40 @@ gulp.task('optimize', ['inject', 'test'], function() {
     // .pipe(gulp.dest(config.build))
     // .pipe($.rev.manifest())
     .pipe(gulp.dest(config.build));
+});
+
+gulp.task('build', ['optimize', 'images', 'fonts'], function() {
+  log('Building everything');
+
+  var msg = {
+    title: 'gulp build',
+    subtitle: 'Deployed to the build folder',
+    message: 'Running `gulp serve-build`'
+  };
+  del(config.temp);
+  log(msg);
+});
+
+gulp.task('build-specs', ['templatecache'], function() {
+  log('Building the spec runner');
+
+  var wiredep = require('wiredep').stream;
+  var options = config.getWiredepDefaultOptions();
+  options.devDependencies = true;
+
+  return gulp
+    .src(config.specRunner)
+    .pipe(wiredep(options))
+    .pipe($.inject(gulp.src(config.testlibraries),
+      {name: 'inject:testlibraries', read: false}))
+    .pipe($.inject(gulp.src(config.js)))
+    .pipe($.inject(gulp.src(config.specHelpers),
+      {name: 'inject:spechelpers', read: false}))
+    .pipe($.inject(gulp.src(config.specs),
+      {name: 'inject:specs', read: false}))
+    .pipe($.inject(gulp.src(config.temp + config.templateCache.file),
+      {name: 'inject:templates', read: false}))
+    .pipe(gulp.dest(config.app));
 });
 
 gulp.task('serve', ['inject'], function() {
@@ -257,7 +257,7 @@ gulp.task('serve-specs', ['build-specs'], function() {
     },
     logPrefix: 'Topcoder-Account',
     notify: false,
-    reloadDelay: 500,
+    reloadDelay: 1000,
     startPath: config.app + config.specRunnerFile
   };
 
@@ -285,7 +285,7 @@ gulp.task('serve-build', ['build'], function() {
     },
     logPrefix: 'Topcoder-Account',
     notify: true,
-    reloadDelay: 500
+    reloadDelay: 1000
   };
 
   browserSync(options);

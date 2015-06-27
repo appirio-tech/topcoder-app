@@ -2,7 +2,9 @@
 /* jshint -W117, -W030 */
 
 
-/* Example:
+/* Example code:
+
+
 describe('Server: dataservice', function() {
     var dataservice;
 
