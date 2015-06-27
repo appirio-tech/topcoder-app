@@ -1,11 +1,11 @@
 module.exports = function() {
-  var app    = './app/';
-  var assets = app + 'assets/';
-  var report = './report/';
+  var app            = './app/';
+  var assets         = app + 'assets/';
+  var report         = './report/';
   var specRunnerFile = 'specs.html';
-  var temp   = './.tmp/';
-  var wiredep = require('wiredep');
-  var bowerFiles = wiredep({devDependencies: true})['js'];
+  var temp           = './.tmp/';
+  var wiredep        = require('wiredep');
+  var bowerFiles     = wiredep({devDependencies: true})['js'];
 
   var config = {
     // File paths
@@ -13,7 +13,6 @@ module.exports = function() {
       temp + '**/*.{js,css,html}',
       app + '**/*.{js}'
     ],
-    // All JavaScript files to vet
     alljs: [
       app + '**/*.js',
       './*.js'
@@ -60,7 +59,7 @@ module.exports = function() {
       ignorePath: '../..'
     },
 
-    // specs.html, our HTML spec runner
+    // specs.html: our HTML spec runner
     specRunner: app + specRunnerFile,
     specRunnerFile: specRunnerFile,
     testlibraries: [
