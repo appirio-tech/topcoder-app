@@ -5,7 +5,7 @@
 
   authtoken.$inject = ['CONSTANTS', '$window', '$cookies'];
 
-  function authtoken() {
+  function authtoken(CONSTANTS, $window, $cookies) {
     var tokenKey = 'tcjwt';
 
     var service = {
@@ -22,6 +22,7 @@
     }
 
     function getToken() {
+      console.log('here');
       return $cookies.get(tokenKey);
     }
 

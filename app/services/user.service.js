@@ -3,9 +3,9 @@
 
   angular.module('topcoder').factory('user', user);
 
-  user.$inject = ['CONSTANTS', 'ApiService', 'jwtHelper', 'AuthToken'];
+  user.$inject = ['CONSTANTS', 'api'];
 
-  function user() {
+  function user(CONSTANTS, api) {
     var service = {
       getUsername: getUsername
     };
@@ -14,8 +14,8 @@
     ///////////////
 
     function getUsername() {
-      url = CONSTANTS.API_URL_V2 + '/user/identity';
-      ApiService.requestHandler('GET', url);
+      var url = CONSTANTS.API_URL_V2 + '/user/identity';
+      api.requestHandler('GET', url);
     }
   }
 

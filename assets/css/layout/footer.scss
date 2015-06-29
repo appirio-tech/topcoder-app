@@ -1,0 +1,149 @@
+@import '../partials/combined';
+
+footer {
+  @include source-sans;
+  background-color: $light-black;
+  color: $light-gray;
+  min-height: 150px;
+  position: relative;
+
+  .container {
+    padding-top: 26px;
+    width: 1010px;
+    margin: 0 auto;
+    position: relative;
+    @media only screen and (max-width: 1020px) {
+      min-height: 175px;
+      width: auto;
+      margin: 0 10px;
+      padding-top: 0;
+    }
+
+    section.connected {
+      float: right;
+      @media only screen and (max-width: 1020px) {
+        margin-top: 20px;
+        width: 100%;
+        float: right;
+      }
+
+      h4 {
+        display: inline-block;
+        color: $white-gray;
+        font-size: 20px;
+        vertical-align: middle;
+        margin-right: 15px;
+      }
+
+      ul {
+        display: inline-block;
+        vertical-align: middle;
+
+        li {
+          display: inline-block;
+
+          a {
+            display: block;
+            text-align: left;
+            text-indent: -100px;
+            overflow: hidden;
+            height: 27px;
+            width: 24px;
+            background: url('/images/ico-social.png') no-repeat;
+            background-position: 0 0;
+
+            &:hover {
+              background-position: -45px 0;
+            }
+          }
+
+          .tw {
+            background-position: 0 -29px;
+
+            &:hover {
+              background-position: -45px -29px;
+            }
+          }
+
+          .gp {
+            background-position: 0 -57px;
+
+            &:hover {
+              background-position: -45px -57px;
+            }
+          }
+
+          .in {
+            background-position: 0 -86px;
+
+            &:hover {
+              background-position: -45px -86px;
+            }
+          }
+        }
+      }
+
+      .updates {
+        margin-top: 15px;
+        width: 350px;
+        @media only screen and (max-width: 1020px) {
+          width: 300px;
+        }
+
+        form {
+          .email {
+            @include source-sans-light;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            background-color: $input-background;
+            outline: 0;
+            color: $light-gray;
+            float: left;
+            width: 67%;
+            height: 20px;
+            padding: 6px;
+            font-size: 15px;
+          }
+
+          .btnSubmitFooter {
+            @include source-sans-light;
+            float: left;
+            border: 0;
+            border-bottom: 4px solid $tc-btn-dark-orange;
+            border-radius: 0 4px 4px 0;
+            background-color: $tc-btn-light-orange;
+            color: $white;
+            width: 29%;
+            padding-top: 4px;
+            padding-bottom: 5px;
+            font-size: 15px;
+            cursor: pointer;
+
+            &:hover {
+              background-color: $tc-btn-dark-orange;
+            }
+          }
+        }
+      }
+    }
+
+    section.copyright {
+      margin-top: 20px;
+      float: left;
+      font-size: 16px;
+
+      p {
+        margin-bottom: 5px;
+      }
+
+      ul li {
+        display: inline-block;
+        margin-right: 5px;
+
+        a {
+          color: $light-gray;
+        }
+      }
+    }
+  }
+}

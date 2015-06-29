@@ -5,7 +5,7 @@
 
   api.$inject = ['$http'];
 
-  function api() {
+  function api($http) {
     var service = {
       requestHandler: requestHandler
     };

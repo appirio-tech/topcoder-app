@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  app.module('topcoder').constant('CONSTANTS', {
+  angular.module('topcoder').constant('CONSTANTS', {
     name: 'development',
     API_URL: 'https://api.topcoder-dev.com/v3',
     API_URL_V2: 'https://api.topcoder-dev.com/v2',

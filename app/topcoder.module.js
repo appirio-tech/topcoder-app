@@ -2,8 +2,10 @@
   'use strict';
 
   var dependencies = [
+    'tc.layout',
     'tc.account',
-    'ui.router'
+    'ui.router',
+    'ngCookies'
   ];
 
   angular

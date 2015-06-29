@@ -19,6 +19,7 @@ module.exports = function() {
     ],
     build: './build/',
     app: app,
+    assets: assets,
     css: temp + '**/*.css',
     fonts: assets + 'fonts/**/*.*',
     htmltemplates: [

@@ -1,0 +1,87 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@mixin bluelink {
+  color: $light-blue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:visited {
+    text-decoration: none;
+  }
+}
+
+@mixin horizontal-rule {
+  border: 0;
+  border-bottom: 1px solid $horizontal-rule;
+}
+
+@mixin source-sans-light {
+  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+@mixin source-sans {
+  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+@mixin source-sans-italic {
+  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+@mixin source-sans-semi-bold {
+  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+@mixin source-sans-bold {
+  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+@mixin glyphicons-halflings {
+  @font-face {
+    font-family: 'Glyphicons Halflings';
+
+    src: url('../fonts/glyphicons-halflings-regular.eot');
+    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  }
+}
+
+@mixin glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin glyphicon-download-alt {
+  @include glyphicon;
+
+  &:before {
+    content: "\e025";
+  }
+}

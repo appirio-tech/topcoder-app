@@ -1,0 +1,9 @@
+@import '../partials/combined';
+
+.completed {
+  form .scorecard .answer {
+    @include source-sans-italic;
+    margin: 25px 0;
+    padding-left: 30px;
+  }
+}

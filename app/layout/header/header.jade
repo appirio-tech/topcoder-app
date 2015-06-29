@@ -1,11 +1,11 @@
 header(ng-controller="HeaderController", ng-class="{slided: main.sidebarActive}")
   .container
     a(id="topcoder-logo", ng-href="https://www.{{domain}}", title="topcoder")
-      img(src="content/images/logo.png", alt="Topcoder Logo")
+      img(src="/images/logo.png", alt="Topcoder Logo")
 
     nav.top-right
       ul
-        li.login(ng-hide="isAuth()") #[a(href="/login") Log In]
+        li.login(ng-hide="isAuth()") #[a(ui-sref="login") Log In]
 
         li.logout(ng-show="isAuth()") #[a(ng-click="logout()") Log Out]
 
@@ -17,7 +17,7 @@ header(ng-controller="HeaderController", ng-class="{slided: main.sidebarActive}"
 
         li.my-account(ng-show="isAuth()") #[a(ng-click="isActive = !isActive", slide-toggle="#user-widget") My Account]
 
-        li.signup(ng-hide="isAuth()") #[a(href="#") Sign Up]
+        li.signup(ng-hide="isAuth()") #[a(ui-sref="register") Sign Up]
 
     button.bars(type="button", ng-click="main.sidebarActive = !main.sidebarActive")
       span.icon-bar
@@ -34,7 +34,7 @@ header(ng-controller="HeaderController", ng-class="{slided: main.sidebarActive}"
 
         li #[a.blog(ng-href="https://www.{{domain}}/blog/") Blog]
 
-    a#signup(ng-hide="isAuth()", href="#") Sign Up
+    a#signup(ng-hide="isAuth()", ui-sref="register") Sign Up
     a#my-account(ng-show="isAuth()", ng-click="isActive = !isActive", ng-init="isActive = false", slide-toggle="#user-widget") My Account
       i(ng-class="{'active': isActive}")
 

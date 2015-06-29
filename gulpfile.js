@@ -208,7 +208,7 @@ gulp.task('serve', ['inject'], function() {
 
   var options = {
     server: {
-      baseDir: [config.temp, config.app],
+      baseDir: [config.temp, config.app, config.assets],
       // Enables serving index.html for Angular HTML5 mode
       middleware: [histFallback()],
       routes: {

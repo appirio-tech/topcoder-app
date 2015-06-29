@@ -1,0 +1,446 @@
+@import '../partials/combined';
+
+#sidebar-nav {
+  position: fixed;
+  display: none;
+  top: 0px;
+  left: 18%;
+  right: 0px;
+  bottom: 0px;
+  background-color: $dark-orange;
+  color: $white;
+  opacity: 0;
+
+  &.active {
+    @media only screen and (max-width: 1020px) {
+      display: block;
+      opacity: 1;
+    }
+  }
+  ul {
+    margin: 0 10px;
+    height: 100%;
+    padding-bottom: 40px;
+
+    li {
+      min-height: 32px;
+      line-height: 32px;
+
+      > a {
+        display: block;
+        line-height: 32px;
+        border-bottom: 1px solid #FF7A00;
+        color: $white;
+        text-decoration: none;
+      }
+    }
+    .userInfo {
+      display: block;
+      border-bottom: 1px solid #FF7A00;
+      padding-bottom: 7px;
+
+      .userPic {
+        float: left;
+        margin: 10px 0 0 20px;
+
+        img {
+          height: 53px;
+          width: 53px;
+          border: 2px solid #ff7a00;
+          -webkit-border-radius: 28px;
+          border-radius: 28px;
+        }
+      }
+
+      .userDetails {
+        margin-left: 86px;
+        .handle {
+          font-weight: bold;
+          line-height: 18px;
+          font-size: 14px;
+          color: $white;
+          text-decoration: none;
+        }
+        p {
+          line-height: 18px;
+        }
+        .country {
+          font-size: 12px;
+          margin-bottom: 14px;
+        }
+        .link {
+          line-height: 24px;
+          display: block;
+          text-decoration: none;
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+header {
+  height: 94px;
+  background-color: $off-white;
+  box-shadow: 0 2px 3px rgba(0,0,0,.25);
+  @media only screen and (max-width: 1020px) {
+    height: 74px;
+  }
+
+  .container {
+    position: relative;
+    height: 94px;
+    max-width: 1010px;
+    margin: 0 auto;
+    @media only screen and (max-width: 1020px) {
+      height: 74px;
+      width: auto;
+      margin: 0 10px;
+    }
+
+    #topcoder-logo {
+      position: absolute;
+      top: 27px;
+      left: 0;
+      @media only screen and (max-width: 1020px) {
+        top: 29px;
+        left: 10px;
+      }
+
+      img {
+        @media only screen and (max-width: 1020px) {
+          width: 210px;
+        }
+      }
+    }
+
+    nav.top-right {
+      float: right;
+      margin-top: 10px;
+      @include source-sans-bold;
+      font-size: 12px;
+      @media only screen and (max-width: 1020px) {
+        color: $dark-orange;
+      }
+
+      li {
+        display: inline-block;
+        margin-left: 15px;
+        @media only screen and (max-width: 1020px) {
+          font-size: 14px;
+        }
+
+        a {
+          color: $dark-gray;
+          text-decoration: none;
+          @media only screen and (max-width: 1020px) {
+            color: $dark-orange;
+          }
+
+          &:visited {
+            color: $dark-gray;
+            text-decoration: none;
+            @media only screen and (max-width: 1020px) {
+              color: $dark-orange;
+              text-decoration: none;
+            }
+          }
+          &:hover,
+          &:active {
+            @media only screen and (max-width: 1020px) {
+              color: $light-orange;
+              text-decoration: none;
+            }
+          }
+        }
+
+        #search {
+          display: inline-block;
+          background: url('/images/search-icon.png') no-repeat;
+          background-position: 0 0;
+          height: 12px;
+          width: 11px;
+        }
+      }
+      .contact, .help, .search {
+        @media only screen and (max-width: 1020px) {
+          display: none;
+        }
+      }
+
+      .login a, .logout a {
+        color: $light-blue;
+        @media only screen and (max-width: 1020px) {
+          color: $dark-orange;
+        }
+
+        &:visited {
+          color: $light-blue;
+          @media only screen and (max-width: 1020px) {
+            color: $dark-orange;
+          }
+        }
+        &:hover,
+        &:active {
+          @media only screen and (max-width: 1020px) {
+            color: $light-orange;
+            text-decoration: none;
+          }
+        }
+      }
+
+      .my-account, .signup {
+        display: none;
+        @media only screen and (max-width: 1020px) {
+          display: inline-block;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    nav.bottom {
+      position: absolute;
+      top: 56px;
+      right: 190px;
+      font-size: 15px;
+      @include source-sans-bold;
+      @media only screen and (max-width: 1020px) {
+        display: none;
+      }
+
+      li {
+        display: inline-block;
+        margin-left: 35px;
+
+        a {
+          color: $dark-gray;
+          text-decoration: none;
+
+          &:visited {
+            color: $dark-gray;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+
+    button.bars {
+      display: none;
+      @media only screen and (max-width: 1020px) {
+        display: block;
+        border: 0 none;
+        padding: 0;
+        cursor: pointer;
+        position: absolute;
+        background-color: $off-white;
+        right: 10px;
+        top: 38px;
+      }
+
+      span {
+        @media only screen and (max-width: 1020px) {
+          display: block;
+          margin-bottom: 4px;
+          height: 5px;
+          width: 29px;
+          background-color: $dark-orange;
+        }
+      }
+    }
+
+    #signup {
+      @include source-sans;
+      position: absolute;
+      right: 0;
+      top: 49px;
+      height: 30px;
+      width: 130px;
+      border-bottom: 4px solid $tc-btn-dark-orange;
+      border-radius: 6px;
+      line-height: 32px;
+      background-color: $tc-btn-light-orange;
+      color: $white;
+      font-size: 15px;
+      text-align: center;
+      text-decoration: none;
+      @media only screen and (max-width: 1020px) {
+        display: none;
+      }
+
+      &:hover {
+        background-color: $tc-btn-dark-orange;
+        text-decoration: none;
+      }
+    }
+
+    #my-account {
+      @include source-sans;
+      position: absolute;
+      right: 0;
+      top: 49px;
+      height: 30px;
+      width: 130px;
+      border-bottom: 4px solid $dark-blue;
+      border-radius: 6px;
+      line-height: 32px;
+      background-color: $light-blue;
+      color: $white;
+      font-size: 15px;
+      text-align: center;
+      text-decoration: none;
+      @media only screen and (max-width: 1020px) {
+        display: none;
+      }
+
+      &:hover {
+        background-color: $dark-blue;
+        text-decoration: none;
+      }
+
+      i {
+        background: url('/images/ico-arrow.png') no-repeat;
+        background-position: 0 0;
+        display: inline-block;
+        width: 16px;
+        height: 9px;
+        margin-left: 12px;
+        transition-duration: .3s;
+        cursor: pointer;
+
+        &.active {
+          background-position: 0 -12px;
+        }
+      }
+    }
+    #user-widget {
+      width: 332px;
+      height: 0px;
+      background: #f3f3f3;
+      position: absolute;
+      right: 0;
+      top: 79px;
+      z-index: 10;
+      font-family: "Source Sans Pro",Arial,Helvetica,sans-serif;
+      border-radius: 0 0 4px 4px;
+      @media only screen and (max-width: 1020px) {
+        top: 36px;
+      }
+      @media only screen and (max-width: 350px) {
+        width: 300px;
+      }
+
+      #user-widget-content {
+        border-top: 4px solid #0096FF;
+        border-radius: 0 0 4px 4px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.2);
+        font-size: 15px;
+
+        a {
+          text-decoration: none;
+          color: $dark-orange;
+          -moz-transition-duration: .3s;
+          -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
+          outline: 0;
+        }
+
+        .tc_coder {
+          font-weight: bold;
+        }
+
+        .userPic {
+          float: left;
+          margin: 20px 0 0 20px;
+          width: 120px;
+          height: 120px;
+          border-radius: 68px;
+          border: 2px solid #D2D2D2;
+          overflow: hidden;
+          behavior: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
+          text-align: center;
+
+          img {
+            position: inherit;
+            width: 120px;
+            background: #ccc;
+          }
+        }
+        .userDetails {
+          margin-left: 174px;
+          min-height: 154px;
+          padding-top: 14px;
+
+          p {
+            line-height: 24px;
+          }
+
+          a:hover {
+            color: $light-orange;
+            text-decoration: underline;
+          }
+          &:visited {
+            color: $dark-orange;
+            text-decoration: none;
+          }
+        }
+        .coder {
+          font-size: 18px;
+          line-height: 20px;
+        }
+        .country {
+          letter-spacing: 1px;
+        }
+
+        .lbl {
+          color: #999;
+          font-size: 12px;
+          letter-spacing: 1px;
+          padding-top: 6px;
+          line-height: 20px;
+        }
+
+        .memberSince {
+          font-size: 18px;
+          letter-spacing: 1px;
+          line-height: 24px;
+          font-weight: 700;
+        }
+
+        .action {
+          border-top: 1px solid #e7e7e7;
+          padding-top: 13px;
+          overflow: hidden;
+          height: 26px;
+
+          a {
+            display: inline-block;
+            margin-left: 25px;
+            float: left;
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 1px;
+            @media only screen and (max-width: 350px) {
+              margin-left: 15px;
+            }
+
+            &:visited {
+              color: $dark-orange;
+              text-decoration: none;
+            }
+            &:hover {
+              color: $light-orange;
+              text-decoration: none;
+            }
+            &.linkAlt:visited {
+              color: $dark-orange;
+            }
+            &.linkAlt:hover {
+              color: #39c;
+            }
+          }
+        }
+      }
+    }
+  }
+}
