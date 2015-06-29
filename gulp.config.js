@@ -1,6 +1,6 @@
 module.exports = function() {
   var app            = './app/';
-  var assets         = app + 'assets/';
+  var assets         = './assets/';
   var report         = './report/';
   var specRunnerFile = 'specs.html';
   var temp           = './.tmp/';
@@ -30,11 +30,12 @@ module.exports = function() {
     indexHtml: temp + 'index.html',
     jade: app + '**/*.jade',
     js: [
+      app + '**/*.module.js',
       app + '**/*.js',
       '!' + app + '**/*.spec.js'
     ],
     report: report,
-    sass: app + '**/*.scss',
+    sass: assets + 'css/**/*.scss',
     temp: temp,
 
     // Optimized files
@@ -47,7 +48,7 @@ module.exports = function() {
     templateCache: {
       file: 'templates.js',
       options: {
-        module: 'topcoder-account',
+        module: 'topcoder',
         standAlone: false
       }
     },
