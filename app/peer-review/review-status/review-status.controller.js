@@ -12,6 +12,7 @@
     vm.loaded = false;
     vm.challengeId = $stateParams.challengeId;
     vm.challenge = null;
+
     vm.getNextReview = function() {
       if (vm.reviews.length >= 5) {
         alert('You may only complete 5 reviews.');
