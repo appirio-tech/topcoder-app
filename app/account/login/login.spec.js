@@ -3,12 +3,12 @@ describe('Login Controller', function() {
   var controller;
 
   beforeEach(function() {
-    bard.appModule('topcoder-account');
+    bard.appModule('tc.account');
     bard.inject('$controller', '$rootScope');
   });
 
   beforeEach(function() {
-    controller = $controller('Login');
+    controller = $controller('LoginController');
     $rootScope.$apply();
   });
 

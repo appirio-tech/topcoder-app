@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder-account').config(routes);
+  angular.module('tc.account').config(routes);
 
   routes.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
 
@@ -11,11 +11,11 @@
     $stateProvider
       .state('login', {
         url: '/login',
-        templateUrl: 'login/login.html'
+        templateUrl: 'account/login/login.html'
       })
       .state('register', {
         url: '/register',
-        templateUrl: 'register/register.html'
+        templateUrl: 'account/register/register.html'
       });
 
     $urlRouterProvider.otherwise('/login');
