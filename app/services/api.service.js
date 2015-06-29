@@ -3,9 +3,9 @@
 
   angular.module('topcoder').factory('api', api);
 
-  api.$inject = ['$http'];
+  api.$inject = ['$http', 'authtoken'];
 
-  function api($http) {
+  function api($http, authtoken) {
     var service = {
       requestHandler: requestHandler
     };
@@ -13,18 +13,34 @@
 
     ///////////////
 
-    function requestHandler(method, url, data) {
+    function requestHandler(method, url, data, noAuthHeader) {
       var options = {
         method : method,
         url    : url,
         headers: {}
       };
 
-      if(data) {
+      var token = authtoken.getToken();
+
+      if(token && !noAuthHeader) {
+        options.headers = {
+          Authorization: 'Bearer ' + token
+        };
+      }
+
+      if (data && method !== 'GET') {
         options.data = data;
       }
 
-      $http(options);
+      if (data && method === 'GET') {
+        options.params = data;
+      }
+
+      if (method === 'POST') {
+        options.headers['Content-Type'] = 'application/json';
+      }
+
+      return $http(options);
     }
   }
 

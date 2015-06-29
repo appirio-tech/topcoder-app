@@ -1,13 +1,13 @@
-header(ng-controller="HeaderController", ng-class="{slided: main.sidebarActive}")
+header(ng-controller="HeaderController as vm", ng-class="{slided: main.sidebarActive}")
   .container
-    a(id="topcoder-logo", ng-href="https://www.{{domain}}", title="topcoder")
+    a(id="topcoder-logo", ng-href="https://www.{{vm.domain}}", title="topcoder")
       img(src="/images/logo.png", alt="Topcoder Logo")
 
     nav.top-right
       ul
-        li.login(ng-hide="isAuth()") #[a(ui-sref="login") Log In]
+        li.login(ng-hide="vm.isAuth()") #[a(ui-sref="login") Log In]
 
-        li.logout(ng-show="isAuth()") #[a(ng-click="logout()") Log Out]
+        li.logout(ng-show="vm.isAuth()") #[a(ng-click="vm.logout()") Log Out]
 
         li.contact #[a(href="#") Contact]
 
@@ -15,9 +15,9 @@ header(ng-controller="HeaderController", ng-class="{slided: main.sidebarActive}"
 
         li.search #[a(href="#") #[i#search] Search]
 
-        li.my-account(ng-show="isAuth()") #[a(ng-click="isActive = !isActive", slide-toggle="#user-widget") My Account]
+        li.my-account(ng-show="vm.isAuth()") #[a(ng-click="vm.isActive = !vm.isActive", slide-toggle="#user-widget") My Account]
 
-        li.signup(ng-hide="isAuth()") #[a(ui-sref="register") Sign Up]
+        li.signup(ng-hide="vm.isAuth()") #[a(ui-sref="register") Sign Up]
 
     button.bars(type="button", ng-click="main.sidebarActive = !main.sidebarActive")
       span.icon-bar
@@ -26,16 +26,16 @@ header(ng-controller="HeaderController", ng-class="{slided: main.sidebarActive}"
 
     nav.bottom
       ul
-        li #[a(ng-href="https://www.{{domain}}/challenges/") Challenges]
+        li #[a(ng-href="https://www.{{vm.domain}}/challenges/") Challenges]
 
-        li #[a(ng-href="https://www.{{domain}}/community/") Community]
+        li #[a(ng-href="https://www.{{vm.domain}}/community/") Community]
 
-        li #[a(ng-href="https://www.{{domain}}/about/") About]
+        li #[a(ng-href="https://www.{{vm.domain}}/about/") About]
 
-        li #[a.blog(ng-href="https://www.{{domain}}/blog/") Blog]
+        li #[a.blog(ng-href="https://www.{{vm.domain}}/blog/") Blog]
 
-    a#signup(ng-hide="isAuth()", ui-sref="register") Sign Up
-    a#my-account(ng-show="isAuth()", ng-click="isActive = !isActive", ng-init="isActive = false", slide-toggle="#user-widget") My Account
+    a#signup(ng-hide="vm.isAuth()", ui-sref="register") Sign Up
+    a#my-account(ng-show="vm.isAuth()", ng-click="vm.isActive = !vm.isActive", ng-init="vm.isActive = false", slide-toggle="#user-widget") My Account
       i(ng-class="{'active': isActive}")
 
     div#user-widget.slideable

@@ -35,6 +35,7 @@ module.exports = function() {
       app + '**/*.js',
       '!' + app + '**/*.spec.js'
     ],
+    nonBowerScripts: assets + 'scripts/**/*.js',
     report: report,
     sass: assets + 'css/**/*.scss',
     temp: temp,

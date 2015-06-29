@@ -22,7 +22,6 @@
     }
 
     function getToken() {
-      console.log('here');
       return $cookies.get(tokenKey);
     }
 

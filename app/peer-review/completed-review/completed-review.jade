@@ -1,0 +1,33 @@
+.container.completed-review(ng-show="loaded")
+  .back-link
+    .arrow
+
+    p #[a.back(ui-sref="reviewStatus({challengeId: challengeId})") #[i] Back to Reviews]
+
+  .scorecard-container
+    .challenge-info
+      img(src="content/images/swift-logo.png")
+
+      h1(ng-bind="challenge.challengeName")
+
+    table.review-info
+      tr
+        td.info Submission:
+        td
+          a.subLink(ng-href="https://software.{{domain}}{{submissionDownloadPath}}{{stats.uploadId}}") {{stats.submissionId}}
+      tr
+        td.info Last Modified On:
+        td {{stats.updatedAt || stats.createdAt | localTime}}
+      tr
+        td.info Reviewer:
+        td {{stats.username}}
+
+    hr
+
+    form(name="completedForm", role="form")
+      .scorecard(ng-repeat="q in scorecard.questions")
+        h5.description {{q.description}}
+
+        p.guidelines(ng-if="q.questionTypeId === 5", ng-repeat="guideline in q.guidelines track by $index") {{guideline}}
+
+        p.answer(ng-if="q.questionTypeId === 5") Your Response: {{q.answer}}

@@ -1,0 +1,46 @@
+.container.edit-review(ng-show="loaded")
+  .back-link
+    .arrow
+
+    p #[a.back(ui-sref="reviewStatus({challengeId: challengeId})") Back to Reviews]
+
+  .scorecard-container
+    .challenge-info
+      img(src="content/images/swift-logo.png")
+
+      h1(ng-bind="challenge.challengeName")
+
+    table.review-info
+      tr
+        td.info Submission:
+        td
+          a.subLink(ng-href="https://software.{{domain}}{{submissionDownloadPath}}{{stats.uploadId}}") {{stats.submissionId}}
+      tr
+        td.info Last Modified On:
+        td {{stats.updatedAt || stats.createdAt | localTime}}
+      tr
+        td.info Reviewer:
+        td {{stats.username}}
+
+    hr
+
+    form#review-form(name="editForm", ng-submit="editForm.$valid && submitReviewItems()", role="form", novalidate)
+      .scorecard(ng-repeat="q in scorecard.questions")
+        h5.description {{q.description}}
+
+        p.guidelines(ng-if="q.questionTypeId === 5", ng-repeat="guideline in q.guidelines track by $index") {{guideline}}
+
+        .select-options(ng-form="optionForm", ng-if="q.questionTypeId === 5")
+          select(
+            ng-init="q.answer = ''",
+            ng-model="q.answer",
+            ng-options="num for num in ['0','1','2','3']",
+            required,
+            name="select",
+            ng-class="{required: editForm.$submitted && optionForm.select.$error.required}")
+
+          p.required-message(ng-show="editForm.$submitted && optionForm.select.$error.required") Required
+
+      button(type="submit") Save and Mark Complete
+
+      button(type="button", ng-click="saveReviewForLater()") Save For Later

@@ -113,6 +113,11 @@ gulp.task('wiredep', ['jade'], function() {
     .src(config.index)
     .pipe(wiredep(options))
     .pipe($.inject(gulp.src(config.js, {read: false}), {relative: true}))
+    .pipe($.inject(gulp.src(config.nonBowerScripts, {read: false}), {
+      starttag: '//- inject:nonBowerScripts',
+      endtag: '//- endinject',
+      ignorePath: 'assets/'
+    }))
     .pipe(gulp.dest(config.app));
 });
 

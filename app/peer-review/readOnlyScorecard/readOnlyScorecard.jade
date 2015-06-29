@@ -1,0 +1,14 @@
+.container(ng-show="loaded")
+  .scorecard-container
+    .challenge-info
+      img(src="content/images/swift-logo.png")
+
+      h1(ng-bind="scorecard.name")
+
+    hr
+
+    form#read-only(name="scorecard")
+      .scorecard(ng-repeat="q in scorecard.questions")
+        h5.description {{q.description}}
+
+        p.guidelines(ng-if="q.questionTypeId === 5", ng-repeat="guideline in q.guidelines track by $index") {{guideline}}

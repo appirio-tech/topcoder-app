@@ -34,16 +34,13 @@ html
 
     include ./layout/header/header.jade
 
-    p This is the top of the index page
-
     .view-container(ng-class="{slided: main.sidebarActive}")
       div(ui-view, ng-class="$state.current.name")
-
-    p This is the bottom of the index page
 
     include ./layout/footer/footer.jade
 
     script(src="https://cdn.auth0.com/w2/auth0-1.6.4.js", type="text/javascript")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js", type="text/javascript")
 
     // build:js js/vendor.js
     //- bower:js
@@ -53,6 +50,9 @@ html
     script(src='../bower_components/angular-jwt/dist/angular-jwt.js')
     script(src='../bower_components/moment/moment.js')
     //- endbower
+    //- inject:nonBowerScripts
+    script(src="/scripts/moment-timezone-with-data-2010-2020.js")
+    //- endinject
     // endbuild
 
     // build:js js/app.js
@@ -60,18 +60,31 @@ html
     script(src="topcoder.module.js")
     script(src="account/account.module.js")
     script(src="layout/layout.module.js")
+    script(src="peer-review/peer-review.module.js")
     script(src="topcoder.constants.js")
     script(src="topcoder.controller.js")
+    script(src="topcoder.interceptors.js")
     script(src="account/account.routes.js")
+    script(src="filters/local-time.filter.js")
+    script(src="peer-review/peer-review.routes.js")
+    script(src="peer-review/slideable.directive.js")
     script(src="services/api.service.js")
     script(src="services/auth.service.js")
     script(src="services/authtoken.service.js")
+    script(src="services/challenge.service.js")
     script(src="services/helpers.service.js")
     script(src="services/profile.service.js")
+    script(src="services/review.service.js")
+    script(src="services/scorecard.service.js")
     script(src="services/user.service.js")
     script(src="account/login/login.controller.js")
     script(src="account/register/register.controller.js")
     script(src="layout/header/header.controller.js")
+    script(src="peer-review/completed-review/completed-review.controller.js")
+    script(src="peer-review/edit-review/edit-review.controller.js")
+    script(src="peer-review/readOnlyScorecard/readOnlyScorecard.controller.js")
+    script(src="peer-review/review-status/review-status.controller.js")
+    script(src="peer-review/review-status/review-status.filter.js")
     //- endinject
 
     // inject:templates.js

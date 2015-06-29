@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').factory('Helpers', Helpers);
+  angular.module('topcoder').factory('helpers', helpers);
 
-  Helpers.$inject = ['$window', '$location'];
+  helpers.$inject = ['$window', '$location'];
 
-  function Helpers($window, $location) {
+  function helpers($window, $location) {
     // TODO: Separate helpers by submodule
 
     var service = {
