@@ -36,7 +36,7 @@ gulp.task('styles', ['clean-styles'], function() {
   log('Compiling Sass --> CSS');
 
   return gulp
-    .src(config.sass)
+    .src(config.sass, {base: './'})
     .pipe($.plumber())
     .pipe($.sass())
     .pipe($.autoprefixer({browsers: ['last 2 version']}))
@@ -85,7 +85,8 @@ gulp.task('clean-code', function(done) {
   var files = [].concat(
     config.temp + '**/*.js',
     config.build + '**/*.html',
-    config.build + 'js/**/*.js'
+    config.build + 'js/**/*.js',
+    config.build + 'styles/**/*.css'
   );
   clean(files, done);
 });
