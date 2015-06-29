@@ -1,20 +1,23 @@
 {
-  "name": "topcoder-account-app",
+  "name": "topcoder-app",
   "description": "Account related pages including login, registration, and password resetting.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/appirio-tech/topcoder-account-app.git"
+    "url": "git+https://github.com/appirio-tech/topcoder-app.git"
   },
   "keywords": [
+    "topcoder",
     "account",
     "login",
     "registration",
-    "password"
+    "password",
+    "peer",
+    "review"
   ],
   "bugs": {
-    "url": "https://github.com/appirio-tech/topcoder-account-app/issues"
+    "url": "https://github.com/appirio-tech/topcoder-app/issues"
   },
-  "homepage": "https://github.com/appirio-tech/topcoder-account-app#readme",
+  "homepage": "https://github.com/appirio-tech/topcoder-app#readme",
   "devDependencies": {
     "browser-sync": "^2.7.12",
     "chai": "^3.0.0",
