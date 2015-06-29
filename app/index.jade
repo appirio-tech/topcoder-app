@@ -13,16 +13,27 @@ html
 
     // build:css styles/app.css
     //- inject:css
-    link(rel="stylesheet", href="assets/css/app.css")
-    link(rel="stylesheet", href="assets/css/login.css")
-    link(rel="stylesheet", href="assets/css/register.css")
+    link(rel="stylesheet", href="assets/css/account/account.css")
+    link(rel="stylesheet", href="assets/css/account/login.css")
+    link(rel="stylesheet", href="assets/css/account/register.css")
     //- endinject
     // endbuild
 
-  body(ng-app="topcoder-account", ng-strict-di)
-    p This is the index page
-    div(ui-view, ng-class="$state.current.name")
-    p This is the index page too
+  body(ng-app="topcoder", ng-strict-di)
+
+    include ./layout/sidebar.jade
+
+    include ./layout/header.jade
+
+    p This is the top of the index page
+
+    .view-container(ng-class="{slided: main.sidebarActive}")
+      div(ui-view, ng-class="$state.current.name")
+
+    p This is the bottom of the index page
+
+    include ./layout/footer.jade
+
     // build:js js/vendor.js
     //- bower:js
     script(src='../bower_components/angular/angular.js')
@@ -32,10 +43,11 @@ html
 
     // build:js js/app.js
     //- inject:js
-    script(src="app.js")
-    script(src="app.routes.js")
-    script(src="login/login.js")
-    script(src="register/register.js")
+    script(src="topcoder.module.js")
+    script(src="account/account.module.js")
+    script(src="account/account.routes.js")
+    script(src="account/login/login.js")
+    script(src="account/register/register.js")
     //- endinject
 
     // inject:templates.js
