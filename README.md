@@ -49,7 +49,7 @@ SCSS Files
   - Store new variables and mixins in the appropriate file in `assets/css/partials`
 
 JS/ES6
-  - Follow this style guide: [AngularJS style guide](https://github.com/johnpapa/angular-styleguide)
+  - Follow this [AngularJS style guide](https://github.com/johnpapa/angular-styleguide)
 
 Creating New Views/Pages
   - Todo - change the following to be relevant to this particular repo:
