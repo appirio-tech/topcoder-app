@@ -1,0 +1,21 @@
+#sidebar-nav(ng-class="{active: main.sidebarActive}")
+  ul.nav.nav-pills.nav-stacked
+    li #[a(ng-href="https://www.{{main.domain}}/challenges/") Challenges]
+
+    li #[a(ng-href="https://www.{{main.domain}}/community/") Community]
+
+    li #[a(ng-href="https://www.{{main.domain}}/about/") About]
+
+    li #[a.blog(ng-href="https://www.{{main.domain}}/blog/") Blog]
+
+    li
+      .userInfo
+        .userPic
+          img(ng-src="{{main.profile.photoLink}}", alt="Profile Picture")
+        .userDetails
+          a.handle(ng-href='https://www.{{main.domain}}/member-profile/{{main.profile.handle}}', style='{{main.handleColor}}', ng-bind="main.profile.handle")
+          p.country(ng-bind="main.profile.country")
+          a.link.myProfileLink(href="") My Profile
+          a.link(href="https://community.{{main.domain}}/tc?module=MyHome") My TopCoder
+          a.link(href="https://community.{{main.domain}}/tc?module=MyHome") Account Settings
+          a.link(href="javascript:;", ng-click="main.logout()") Log Out

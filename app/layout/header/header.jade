@@ -1,0 +1,63 @@
+header(ng-controller="HeaderController", ng-class="{slided: main.sidebarActive}")
+  .container
+    a(id="topcoder-logo", ng-href="https://www.{{domain}}", title="topcoder")
+      img(src="content/images/logo.png", alt="Topcoder Logo")
+
+    nav.top-right
+      ul
+        li.login(ng-hide="isAuth()") #[a(href="/login") Log In]
+
+        li.logout(ng-show="isAuth()") #[a(ng-click="logout()") Log Out]
+
+        li.contact #[a(href="#") Contact]
+
+        li.help #[a(href="#") Help]
+
+        li.search #[a(href="#") #[i#search] Search]
+
+        li.my-account(ng-show="isAuth()") #[a(ng-click="isActive = !isActive", slide-toggle="#user-widget") My Account]
+
+        li.signup(ng-hide="isAuth()") #[a(href="#") Sign Up]
+
+    button.bars(type="button", ng-click="main.sidebarActive = !main.sidebarActive")
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+
+    nav.bottom
+      ul
+        li #[a(ng-href="https://www.{{domain}}/challenges/") Challenges]
+
+        li #[a(ng-href="https://www.{{domain}}/community/") Community]
+
+        li #[a(ng-href="https://www.{{domain}}/about/") About]
+
+        li #[a.blog(ng-href="https://www.{{domain}}/blog/") Blog]
+
+    a#signup(ng-hide="isAuth()", href="#") Sign Up
+    a#my-account(ng-show="isAuth()", ng-click="isActive = !isActive", ng-init="isActive = false", slide-toggle="#user-widget") My Account
+      i(ng-class="{'active': isActive}")
+
+    div#user-widget.slideable
+      div#user-widget-content(style="visibility: hidden;")
+        .userWidget(style='display: block;')
+          .details
+            .userPic
+              img(ng-src='{{main.profile.photoLink}}')
+
+            .userDetails
+              a.tc_coder.coder(ng-href='https://www.topcoder-dev.com/member-profile/{{main.profile.handle}}', style='{{handleColor}}') {{main.profile.handle}}
+
+              p.country {{main.profile.country}}
+              p.lbl Member Since :
+
+              p.val.memberSince {{main.profile.memberSince | date : 'MMM d, yyyy'}}
+
+              p.lbl(style='display: none;') Total Earnings :
+
+              p.val.memberEarning
+
+        .action
+          a.profileLink(ng-href='https://www.topcoder-dev.com/member-profile/{{main.profile.handle}}') My Profile
+          a(href='/my-dashboard') My TopCoder
+          a.linkAlt(href='//community.topcoder.com/tc?module=MyHome') Account Settings
