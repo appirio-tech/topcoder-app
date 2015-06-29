@@ -5,7 +5,7 @@ The technologies used are Jade, SCSS, ES6, Angular, and Gulp.
 
 ## Installation
 
-If you don't have compass installed run the following:
+If you don't have compass installed, run the following:
  - Windows - gem install compass
  - Linux/OS X - sudo gem install compass
 
@@ -26,7 +26,7 @@ Install dependencies by running the following in the root of the project:
 - To run the test runner and view specs.html
  - `gulp serve-specs`
 
-## Testing
+### Testing
 
 Running `gulp test` will perform a single run of the unit tests with karma.
 Running `gulp autotest` will keep the server running and watching files.
@@ -37,14 +37,7 @@ Running `gulp autotest` will keep the server running and watching files.
 
 To contribute to the repository, please create a feature branch off of the dev branch. Once you're finished working on the feature, make a pull request to merge it into dev. Then, make sure to delete the branch when it's no longer used.
 
-### Quick Description of Key Files and Folders
-
- - app.js - where our Angular app is created
- - app.routes.js - UI-Router states
- - index.jade - contains the header, content (ui-view), and footer
- - Assets folder - contains CSS, Fonts, Images, and Scripts (Non-Bower JavaScript files)
-
-### Adding new content
+### Adding New Content
 
 Jade Files
   - Use index.jade any other module's jade files as a guide for syntax
@@ -56,7 +49,7 @@ SCSS Files
   - Store new variables and mixins in the appropriate file in `assets/css/partials`
 
 JS/ES6
-  - Follow this style guide: 
+  - Follow this style guide: [AngularJS style guide](https://github.com/johnpapa/angular-styleguide)
 
 Creating New Views/Pages
   - Todo - change the following to be relevant to this particular repo:
