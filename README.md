@@ -1,5 +1,5 @@
-# Topcoder-app
-This repository houses any new topcoder.com pages or refactored angular apps/pages from the tc-site repository.
+# Topcoder-App
+This repository houses any new topcoder pages or refactored angular apps/pages from the tc-site repository.
 
 The technologies used are Jade, SCSS, ES6, Angular, and Gulp.
 
