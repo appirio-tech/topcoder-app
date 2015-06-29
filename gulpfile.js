@@ -193,6 +193,8 @@ gulp.task('build-specs', ['templatecache'], function() {
     .pipe(wiredep(options))
     .pipe($.inject(gulp.src(config.testlibraries),
       {name: 'inject:testlibraries', read: false}))
+    .pipe($.inject(gulp.src(config.nonBowerScripts),
+      {name: 'inject:nonBowerScripts', read: false}))
     .pipe($.inject(gulp.src(config.js)))
     .pipe($.inject(gulp.src(config.specHelpers),
       {name: 'inject:spechelpers', read: false}))
@@ -298,7 +300,8 @@ gulp.task('serve-build', ['build'], function() {
 
 });
 
-gulp.task('test', ['vet', 'templatecache'], function(done) {
+// gulp.task('test', ['vet', 'templatecache'], function(done) {
+gulp.task('test', ['templatecache'], function(done) {
   startTests(true /* singleRun */, done);
 });
 

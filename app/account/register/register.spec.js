@@ -3,7 +3,7 @@ describe('Register Controller', function() {
   var controller;
 
   beforeEach(function() {
-    bard.appModule('tc.account');
+    bard.appModule('topcoder');
     bard.inject('$controller', '$rootScope');
   });
 

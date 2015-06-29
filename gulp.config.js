@@ -99,6 +99,7 @@ module.exports = function() {
         bowerFiles,
         config.specHelpers,
         app + '**/*.js',
+        assets + 'scripts/**/*.js',
         temp + config.templateCache.file,
         config.serverIntegrationSpecs
       ),
