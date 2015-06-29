@@ -1,14 +1,14 @@
-.container(ng-show="loaded")
+.container(ng-show="vm.loaded")
   .back-link
     .arrow
-    p #[a.back(href="https://www.{{domain}}/challenge-details/{{challengeId}}/?type=develop") Back to Challenge]
+    p #[a.back(href="https://www.{{vm.domain}}/challenge-details/{{challengeId}}/?type=develop") Back to Challenge]
 
-  h1(ng-bind="challenge.challengeName")
+  h1(ng-bind="vm.challenge.challengeName")
 
   p.help-center Remember to uphold honesty and fair judging principles as described in the&#32; #[a(href="http://help.topcoder.com") help center].
 
   hgroup
-    h2 Your Reviews ({{completed}} of 5 completed)
+    h2 Your Reviews ({{vm.completed}} of 5 completed)
 
     h4 All Reviews Due: {{reviewsDue | localTime}}
 
@@ -20,16 +20,16 @@
         th Submission
 
     tbody
-      tr(ng-repeat="review in reviews | orderBy: 'id'", ng-class-even="'even-rows'")
+      tr(ng-repeat="review in vm.reviews | orderBy: 'id'", ng-class-even="'even-rows'")
         td Review {{$index + 1}}
 
         td(ng-if="review.committed === 1")
-          a.status(ui-sref="completed({challengeId: challengeId, reviewId: review.id})") {{review.committed | reviewStatus}}
+          a.status(ui-sref="completed({challengeId: vm.challengeId, reviewId: review.id})") {{review.committed | reviewStatus}}
         td(ng-if="review.committed === 0")
-          a.status(ui-sref="edit({challengeId: challengeId, reviewId: review.id})") {{review.committed | reviewStatus}}
+          a.status(ui-sref="edit({challengeId: vm.challengeId, reviewId: review.id})") {{review.committed | reviewStatus}}
 
         td
-          a(ng-href="https://software.{{domain}}{{submissionDownloadPath}}{{review.uploadId}}")
+          a(ng-href="https://software.{{vm.domain}}{{vm.submissionDownloadPath}}{{review.uploadId}}")
             span.glyphicon.glyphicon-download-alt
 
-  button.start-review(type="button", ng-click="getNextReview()") Start another review
+  button.start-review(type="button", ng-click="vm.getNextReview()") Start another review

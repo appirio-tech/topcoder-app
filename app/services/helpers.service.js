@@ -12,7 +12,9 @@
       storeById: storeById,
       parseQuestions: parseQuestions,
       parseAnswers: parseAnswers,
-      compileReviewItems: compileReviewItems
+      compileReviewItems: compileReviewItems,
+      countCompleted: countCompleted,
+      getParameterByName: getParameterByName
     };
     return service;
 

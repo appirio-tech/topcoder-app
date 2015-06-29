@@ -14,7 +14,7 @@
       reviewStatus: {
         url: '/challenge/:challengeId',
         templateUrl: 'peer-review/review-status/review-status.html',
-        controller: 'ReviewStatusController',
+        controller: 'ReviewStatusController as vm',
         authenticate: true
       },
       readOnlyScorecard: {

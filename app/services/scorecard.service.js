@@ -3,6 +3,8 @@
 
   angular.module('tc.peer-review').factory('scorecard', scorecard);
 
+  scorecard.$inject = ['CONSTANTS', 'api'];
+
   function scorecard(CONSTANTS, api) {
     return {
       getScorecardById: function(scorecardId) {
