@@ -64,12 +64,12 @@
 
     <!-- inject:js -->
     <script src="/app/topcoder.module.js"></script>
-    <script src="/app/account/account.module.js"></script>
-    <script src="/app/peer-review/peer-review.module.js"></script>
-    <script src="/app/layout/layout.module.js"></script>
     <script src="/app/topcoder.constants.js"></script>
     <script src="/app/topcoder.controller.js"></script>
     <script src="/app/topcoder.interceptors.js"></script>
+    <script src="/app/account/account.module.js"></script>
+    <script src="/app/layout/layout.module.js"></script>
+    <script src="/app/peer-review/peer-review.module.js"></script>
     <script src="/app/account/account.routes.js"></script>
     <script src="/app/filters/local-time.filter.js"></script>
     <script src="/app/peer-review/peer-review.routes.js"></script>
@@ -83,14 +83,14 @@
     <script src="/app/services/review.service.js"></script>
     <script src="/app/services/scorecard.service.js"></script>
     <script src="/app/services/user.service.js"></script>
-    <script src="/app/account/register/register.controller.js"></script>
     <script src="/app/account/login/login.controller.js"></script>
+    <script src="/app/account/register/register.controller.js"></script>
+    <script src="/app/layout/header/header.controller.js"></script>
     <script src="/app/peer-review/completed-review/completed-review.controller.js"></script>
     <script src="/app/peer-review/edit-review/edit-review.controller.js"></script>
     <script src="/app/peer-review/readOnlyScorecard/readOnlyScorecard.controller.js"></script>
     <script src="/app/peer-review/review-status/review-status.controller.js"></script>
     <script src="/app/peer-review/review-status/review-status.filter.js"></script>
-    <script src="/app/layout/header/header.controller.js"></script>
     <!-- endinject -->
 
     <!-- inject:spechelpers:js -->
@@ -98,8 +98,13 @@
     <!-- endinject -->
 
     <!-- inject:specs:js -->
-    <script src="/app/account/register/register.spec.js"></script>
+    <script src="/app/services/challenge.service.spec.js"></script>
     <script src="/app/account/login/login.spec.js"></script>
+    <script src="/app/account/register/register.spec.js"></script>
+    <script src="/app/peer-review/completed-review/completed-review.spec.js"></script>
+    <script src="/app/peer-review/edit-review/edit-review.spec.js"></script>
+    <script src="/app/peer-review/readOnlyScorecard/readOnlyScorecard.spec.js"></script>
+    <script src="/app/peer-review/review-status/review-status.spec.js"></script>
     <!-- endinject -->
 
     <!-- inject:templates:js -->

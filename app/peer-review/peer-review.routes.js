@@ -24,6 +24,7 @@
         url: '/challenge/:challengeId',
         templateUrl: 'peer-review/review-status/review-status.html',
         controller: 'ReviewStatusController',
+        controllerAs: 'vm',
         data: {
           title: 'Peer Review'
         }

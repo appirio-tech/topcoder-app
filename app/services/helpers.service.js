@@ -14,6 +14,7 @@
       parseAnswers: parseAnswers,
       compileReviewItems: compileReviewItems,
       countCompleted: countCompleted,
+      getParameterByName: getParameterByName,
       getPageTitle: getPageTitle
     };
     return service;

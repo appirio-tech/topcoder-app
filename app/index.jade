@@ -47,12 +47,10 @@ html
     // build:js js/vendor.js
     //- bower:js
     script(src='../bower_components/angular/angular.js')
-    script(src="bower_components/lodash/lodash.min.js")
     script(src='../bower_components/angular-ui-router/release/angular-ui-router.js')
     script(src='../bower_components/angular-cookies/angular-cookies.js')
     script(src='../bower_components/angular-jwt/dist/angular-jwt.js')
     script(src='../bower_components/moment/moment.js')
-    script(src="bower_components/restangular/dist/restangular.min.js")
     //- endbower
     //- inject:nonBowerScripts
     script(src="/scripts/auth0-1.6.4.js")
@@ -64,16 +62,16 @@ html
     // build:js js/app.js
     //- inject:js
     script(src="topcoder.module.js")
+    script(src="topcoder.constants.js")
+    script(src="topcoder.controller.js")
+    script(src="topcoder.interceptors.js")
+    script(src="topcoder.routes.js")
     script(src="account/account.module.js")
     script(src="layout/layout.module.js")
     script(src="peer-review/peer-review.module.js")
     script(src="sample/sample.module.js")
     script(src="blocks/exception/exception.module.js")
     script(src="blocks/logger/logger.module.js")
-    script(src="topcoder.constants.js")
-    script(src="topcoder.controller.js")
-    script(src="topcoder.interceptors.js")
-    script(src="topcoder.routes.js")
     script(src="account/account.routes.js")
     script(src="filters/local-time.filter.js")
     script(src="peer-review/peer-review.routes.js")
@@ -93,12 +91,24 @@ html
     script(src="blocks/exception/exception-handler.provider.js")
     script(src="blocks/exception/exception.js")
     script(src="blocks/logger/logger.js")
+    script(src="bower_components/lodash/lodash.js")
+    script(src="bower_components/lodash/lodash.min.js")
+    script(src="bower_components/angular/angular.js")
+    script(src="bower_components/angular/angular.min.js")
+    script(src="bower_components/angular/index.js")
+    script(src="bower_components/restangular/Gruntfile.js")
+    script(src="bower_components/restangular/karma.conf.js")
+    script(src="bower_components/restangular/karma.underscore.conf.js")
     script(src="layout/header/header.controller.js")
     script(src="peer-review/completed-review/completed-review.controller.js")
     script(src="peer-review/edit-review/edit-review.controller.js")
     script(src="peer-review/readOnlyScorecard/readOnlyScorecard.controller.js")
     script(src="peer-review/review-status/review-status.controller.js")
     script(src="peer-review/review-status/review-status.filter.js")
+    script(src="bower_components/restangular/dist/restangular.js")
+    script(src="bower_components/restangular/dist/restangular.min.js")
+    script(src="bower_components/restangular/test/restangularSpec.js")
+    script(src="bower_components/restangular/src/restangular.js")
     //- endinject
 
     // inject:templates.js
