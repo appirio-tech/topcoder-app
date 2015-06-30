@@ -15,14 +15,11 @@ Install dependencies by running the following in the root of the project:
 
 ## Gulpfile Commands
 
+Here is a list of the important gulp commands:
 - Run `gulp` to get a list of commands
-
 - To run locally without minification: `gulp serve`
-
 - To create the build: `gulp build`
-
 - To serve the build: `gulp serve-build`
-
 - To run the test runner and view specs.html: `gulp serve-specs`
 
 ### Testing
