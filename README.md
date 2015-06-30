@@ -13,23 +13,22 @@ Install dependencies by running the following in the root of the project:
  - npm install
  - bower install
 
-## Guide to the Gulpfile
+## Gulpfile Commands
+
+- Run `gulp` to get a list of commands
 
 - To run locally without minification: `gulp serve`
 
-- To build dist folder
- - `gulp build`
+- To create the build: `gulp build`
 
-- To serve the build
- - `gulp serve-build`
+- To serve the build: `gulp serve-build`
 
-- To run the test runner and view specs.html
- - `gulp serve-specs`
+- To run the test runner and view specs.html: `gulp serve-specs`
 
 ### Testing
 
-Running `gulp test` will perform a single run of the unit tests with karma.
-Running `gulp autotest` will keep the server running and watching files.
+Running `gulp test` will perform a single run of the unit tests with karma in the command line.
+Running `gulp autotest` will keep the server running and watching files in the command line.
 
 ## Contributing
 
@@ -47,12 +46,11 @@ SCSS Files
   - Use SCSS syntax (nesting)
   - Use variables and mixins as much as possible
   - Store new variables and mixins in the appropriate file in `assets/css/partials`
+  - Since a class with the current state name is added to the ui-view (see the Creating New Views/Pages section), wrap your .scss file with this class, in order to write specific scss in its own file for that page.
 
 JS/ES6
   - Follow this [AngularJS style guide](https://github.com/johnpapa/angular-styleguide)
 
 Creating New Views/Pages
-  - Todo - change the following to be relevant to this particular repo:
-  - To add a new page, create a folder in the app directory and a new state in app.routes.coffee
-  - Name the new folder the same as the state name
-  - In order to keep the SCSS files modular, a class is automatically added with the name of the state to the ui-view div in index.jade. For example, if you create a new `/feature1` state and navigate there, the div with the content will look like this: `<div class="view-container feature1">`. This allows you to have your own feature1.scss file. Use the landing.scss file as an example, where you can see how all the styles are nested in `.landing`.
+  - To add a new page, create a folder in the app directory and follow the naming conventions found elsewhere, e.g. login.controller.js, login.jade, login.spec.js, etc.  Make sure to add a new state in the module's routes file.
+  - In order to keep the SCSS files modular, a class is automatically added with the name of the state to the ui-view div in index.jade. For example, if you create a new `/feature1` state and navigate there, the div with the content will look like this: `<div class="view-container feature1">`.
