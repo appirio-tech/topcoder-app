@@ -10,12 +10,33 @@
 
     $stateProvider
       .state('login', {
-        url: '/login',
-        templateUrl: 'account/login/login.html'
+        parent: 'root',
+        url: '/login?next',
+        data: {
+          title: 'Login'
+        },
+        views: {
+          'container@': {
+            templateUrl: 'account/login/login.html',
+            controller: 'LoginController'
+          },
+          'footer@': {
+            // no footer
+            template: ''
+          }
+        }
       })
       .state('register', {
-        url: '/register',
-        templateUrl: 'account/register/register.html'
+        url: '/register?next',
+        data: {
+          title: "Join"
+        },
+        views: {
+          'container@': {
+            templateUrl: 'account/register/register.html',
+            controller: 'RegisterController'
+          }
+        }
       });
 
     $urlRouterProvider.otherwise('/login');
