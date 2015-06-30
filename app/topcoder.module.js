@@ -8,8 +8,8 @@
     'tc.sample',
     'ui.router',
     'blocks.logger', 'blocks.exception',
-    'restangular',
-    'ngCookies'
+    'ngCookies',
+    'restangular'
   ];
 
   angular

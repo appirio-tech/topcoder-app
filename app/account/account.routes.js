@@ -13,7 +13,8 @@
         parent: 'root',
         url: '/login?next',
         data: {
-          title: 'Login'
+          title: 'Login',
+          authRequired: false
         },
         views: {
           'container@': {
@@ -29,7 +30,8 @@
       .state('register', {
         url: '/register?next',
         data: {
-          title: "Join"
+          title: "Join",
+          authRequired: false
         },
         views: {
           'container@': {
