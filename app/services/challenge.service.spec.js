@@ -29,7 +29,6 @@ describe('Challenge Service', function() {
       .respond(500, {message: 'there was an error'});
 
     challenge.getChallengeDetails(123456).catch(function(error) {
-      console.log(error);
       expect(error.data.message).to.match(/error/);
     })
     $httpBackend.flush();
