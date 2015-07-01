@@ -1,0 +1,116 @@
+<div>
+  <div class="widget-content">
+    <div class="challenges-header clearfix">
+      <div class="col-xs-12 col-md-7">
+        <strong class="col-xs-12 col-md-3">Challenges and SRM's</strong>
+        <div class="col-xs-12 col-md-2 invisible">
+          <a ng-click="vm.changeView('tiles')">Tile</a>
+          <span> | </span>
+          <a ng-click="vm.changeView('table')">Table</a>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <a ng-click="vm.viewActiveChallenges()">Active</a>
+          <span> | </span>
+          <a ng-click="vm.viewPastChallenges()">Past</a>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-5">
+        <div>
+          <a class="col-xs-6" target="_blank" href="{{vm.upcomingSrmsUrl}}">Find UpComing SRM's</a>
+          <a class="col-xs-6" target="_blank" href="{{vm.newChallengesUrl}}">Find New Challenges</a>
+        </div>
+        <ul class="tc-pager" ng-hide="true">
+          <li ng-show="vm.prevPageLink.val > 0 && vm.prevPageLink.val <= vm.totalPages" ng-click="vm.changePage(vm.prevPageLink)" class="page-link pull-left" ng-class="vm.getCurrentPageClass(vm.prevPageLink)">
+            <a href="#">{{vm.prevPageLink.text}}</a>
+          </li>
+          <li class="page-status pull-left page-link">{{vm.firstRecordIndex}}-{{vm.lastRecordIndex}} of {{vm.totalRecords}}</li>
+          <li ng-show="vm.nextPageLink.val > 0 && vm.nextPageLink.val <= vm.totalPages" ng-click="vm.changePage(vm.nextPageLink)" class="page-link pull-left" ng-class="vm.getCurrentPageClass(vm.nextPageLink)">
+            <a href="#">{{vm.nextPageLink.text}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel panel-default tile-view" ng-show="vm.view == 'tiles'">
+      <div ng-show="vm.visibleChallenges.length > 0" ng-repeat="challenge in vm.visibleChallenges" class="tile">
+        <div class="challenge-summary">
+          <div class="title" ng-bind="challenge.challengeName"></div>
+          <div class="community" ng-bind="challenge.community"></div>
+        </div>
+        <div class="challenge-details">
+          <div class="registration-date">
+            <label ng-show="challenge.registrationClosed">Registration Closed:</label>
+            <label ng-show="!challenge.registrationClosed">Register By:</label>
+            <span ng-bind="challenge.registrationEndDate | date: 'MM/dd/yy HH:mm '"></span>
+            <!-- <div class="time-left" ng-show="challenge.registrationTimeLeft > 0">
+              <span ng-bind="challenge.registrationTimeLeft | number:0"></span> Days left
+            </div> -->
+          </div>
+          <div class="submission-date">
+            <label ng-show="challenge.submissionClosed">Submission Closed:</label>
+            <label ng-show="!challenge.submissionClosed">Submit By:</label>
+            <span ng-bind="challenge.submissionEndDate | date: 'MM/dd/yy HH:mm '"></span>
+            <div class="time-left" ng-show="challenge.submissionTimeLeft > 0">
+              <span ng-bind="challenge.submissionTimeLeft | number:0"></span> Days left
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="widget-loading" ng-show="vm.loading"></div>
+      <div ng-show="vm.totalPages > 1 && !vm.loading" class="tile load-more">
+        <a ng-click="vm.changePage(vm.nextPageLink)">Load More</a>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="panel panel-default" ng-show="vm.view == 'table'">
+      <table width="100%" class="table table-responsive">
+        <thead>
+          <tr class="active">
+            <th class="hidden-xs">
+              <span>Type</span>
+              <div class="sort-icon-place"></div>
+            </th>
+            <th rel="sortable" class="hidden-xs" ng-click="vm.sort('firstPlacePrize')">
+              <span>First Prize</span>
+              <div class="sort-icon-place" ng-class="{sort: vm.sortColumn == 'firstPlacePrize', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} "></div>
+            </th>
+            <th rel="sortable" ng-click="vm.sort('challengeName')">
+              <span>Challenge</span>
+              <div class="sort-icon-place" ng-class="{sort: vm.sortColumn == 'challengeName', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} "></div>
+            </th>
+            <th rel="sortable" class="hidden-sm hidden-md hidden-lg" ng-click="vm.sort('firstPlacePrize')">
+              <span>Ist Prize</span>
+              <div class="sort-icon-place" ng-class="{sort: vm.sortColumn == 'firstPlacePrize', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} "></div>
+            </th>
+            <th class="hidden-xs hidden-sm">
+              <span>Roles</span>
+              <div class="sort-icon-place"></div>
+            </th>
+            <th rel="sortable" class="hidden-xs" ng-click="vm.sort('submissionEndDate')">
+              <span>Submit By</span>
+              <div class="sort-icon-place" ng-class="{sort: vm.sortColumn == 'submissionEndDate', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} "></div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-show="vm.visibleChallenges.length > 0 && !vm.loading" ng-repeat="challenge in vm.visibleChallenges">
+            <td class="{{challenge.challengeCommunity}} hidden-xs">&nbsp;</td>
+            <td class="hidden-xs">{{challenge.firstPlacePrize | currency}}</td>
+            <td rel="challenge-name">
+              <a href="/challenge-details/{{challenge.challengeId}}?type={{challenge.challengeCommunity}}">{{challenge.challengeName}}</a>
+              <div class="hidden-sm hidden-md hidden-lg margin-top-2x"><span class="color-reset">Submit By:</span> {{challenge.submissionEndDate | date: 'MM/dd/yy HH:mm '}}</div>
+            </td>
+            <td class="hidden-sm hidden-md hidden-lg">{{challenge.firstPlacePrize | currency}}</td>
+            <td rel="roles" class="ellipsis hidden-xs hidden-sm" title="{{challenge.roles.join(', ')}}">{{challenge.roles.join(', ')}}</td>
+            <td class="hidden-xs" class="my-challenges-submittion-date ellipsis">{{challenge.submissionEndDate | date: 'MM/dd/yy HH:mm '}}</td>
+          </tr>
+          <tr ng-show="vm.loading">
+            <td colspan="5"><div class="widget-loading"></div></td>
+          </tr>
+          <tr ng-show="vm.visibleChallenges.length === 0">
+            <td colspan="5">You don't have any active challenges</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

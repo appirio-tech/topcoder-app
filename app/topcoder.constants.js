@@ -9,6 +9,16 @@
     domain: 'topcoder-dev.com',
     auth0Domain: 'topcoder-dev.auth0.com',
     auth0Callback: 'https://www.topcoder-dev.com/reg2/callback.action',
-    submissionDownloadPath: '/review/actions/DownloadContestSubmission?uid='
+    submissionDownloadPath: '/review/actions/DownloadContestSubmission?uid=',
+    COMMUNITY_URL: '//community.topcoder-dev.com',
+    PHOTO_LINK_LOCATION: 'https://community.topcoder-dev.com',
+    MAIN_URL: 'https://www.topcoder-dev.com',
+    FORUMS_APP_URL: 'forums.topcoder-dev.com',
+    HELP_APP_URL: 'help.topcoder-dev.com',
+    SWIFT_PROGRAM_ID: 3445,
+    SWIFT_PROGRAM_URL: 'apple.topcoder-dev.com',
+    BLOG_LOCATION: 'https://www.topcoder-dev.com/feed/?post_type=blog',
+    UPCOMING_SRMS_URL: 'https://www.topcoder.com/challenges/data/upcoming/',
+    NEW_CHALLENGES_URL: 'https://www.topcoder.com/challenges/develop/upcoming/'
   });
 })();

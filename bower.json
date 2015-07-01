@@ -27,7 +27,9 @@
     "angular-ui-router": "~0.2.15",
     "angular-cookies": "~1.4.1",
     "angular-jwt": "~0.0.9",
-    "moment": "~2.10.3"
+    "moment": "~2.10.3",
+    "bootstrap": "~3.3.4",
+    "restangular" : "1.4.0"
   },
   "devDependencies": {
     "bardjs": "~0.1.4"

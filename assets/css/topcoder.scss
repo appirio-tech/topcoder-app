@@ -1,6 +1,12 @@
 @import 'partials/combined';
 @include glyphicons-halflings;
 
+body {
+  @include source-sans;
+  font-size: 16px;
+  line-height: 16px;
+}
+
 .view-container {
   max-width: 1010px;
   margin: 25px auto;
@@ -49,4 +55,57 @@ button {
 
 a {
   cursor: pointer;
+}
+
+//colors
+$color_california_approx: #ff9900;
+$white: #fff;
+$color_flush_orange_approx: #ff7a00;
+
+//urls
+$url_0: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
+
+//@extend-elements
+//original selectors
+//.btn, a.btn
+%extend_1 {
+  display: inline-block;
+  background: $color_california_approx;
+  color: $white;
+  box-sizing: content-box;
+  padding: 0px;
+  border: none;
+  border-bottom: 4px solid $color_flush_orange_approx;
+  height: 32px;
+  line-height: 34px;
+  width: 130px;
+  text-align: center;
+  font-size: 15px;
+  //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+  border-radius: 6px;
+  behavior: $url_0;
+  position: relative;
+}
+
+
+.btn {
+  @extend %extend_1;
+  &:hover {
+    background: $color_flush_orange_approx;
+    text-decoration: none;
+    color: $white;
+  }
+}
+a.btn {
+  @extend %extend_1;
+}
+
+.view-container {
+  max-width: 1010px;
+  margin: 25px auto;
+  background-color: $white;
+  @media only screen and (max-width: 1020px) {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }

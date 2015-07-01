@@ -1,0 +1,20 @@
+<div ng-controller="HelpfulLinksCtrl as vm" class="panel panel-default">
+	<div class="panel-heading">
+    <span class="panel-title">{{vm.visibleNode.name}}</span>
+    <a href="#" ng-show="vm.breadcrumb.length > 0" ng-click="vm.showPreviousLinks()" class="pull-right">Back</a>
+  </div>
+  <div class="panel-body padding-vert-reset">
+    <ul class="nav nav-stacked row">
+      <li ng-repeat="link in vm.visibleNode.children" class="dropdown">
+        <a  href="{{link.href}}" title="{{link.description}}" class="dropdown-toggle" data-toggle="dropdown">{{link.name}}
+          <span class="caret" ng-show="vm.hasChildren(link)"></span>
+        </a>
+        <ul class="dropdown-menu" ng-show="link.children && link.children.length > 0" class="row">
+          <li ng-repeat="sublink in link.children">
+            <a ng-show="sublink.href" href="{{sublink.href}}" ng-bind="sublink.name" title="{{sublink.description}}"></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

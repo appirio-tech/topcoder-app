@@ -5,8 +5,10 @@
     'tc.layout',
     'tc.account',
     'tc.peer-review',
+    'tc.myDashboard',
     'ui.router',
-    'ngCookies'
+    'ngCookies',
+    'restangular'
   ];
 
   angular
