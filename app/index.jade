@@ -18,13 +18,13 @@ html
     link(rel="stylesheet", href="assets/css/account/account.css")
     link(rel="stylesheet", href="assets/css/account/login.css")
     link(rel="stylesheet", href="assets/css/account/register.css")
+    link(rel="stylesheet", href="assets/css/layout/footer.css")
+    link(rel="stylesheet", href="assets/css/layout/header.css")
     link(rel="stylesheet", href="assets/css/peer-review/completed.css")
     link(rel="stylesheet", href="assets/css/peer-review/edit.css")
     link(rel="stylesheet", href="assets/css/peer-review/peer-review.css")
     link(rel="stylesheet", href="assets/css/peer-review/readOnlyScorecard.css")
     link(rel="stylesheet", href="assets/css/peer-review/reviewStatus.css")
-    link(rel="stylesheet", href="assets/css/layout/footer.css")
-    link(rel="stylesheet", href="assets/css/layout/header.css")
     //- endinject
     // endbuild
 
@@ -53,6 +53,7 @@ html
     script(src='../bower_components/moment/moment.js')
     script(src='../bower_components/lodash/lodash.js')
     script(src='../bower_components/restangular/dist/restangular.js')
+    script(src='../bower_components/a0-angular-storage/dist/angular-storage.js')
     //- endbower
     //- inject:nonBowerScripts
     script(src="/scripts/auth0-1.6.4.js")
@@ -88,11 +89,11 @@ html
     script(src="services/review.service.js")
     script(src="services/scorecard.service.js")
     script(src="services/user.service.js")
+    script(src="account/login/login.controller.js")
+    script(src="account/register/register.controller.js")
     script(src="blocks/exception/exception-handler.provider.js")
     script(src="blocks/exception/exception.js")
     script(src="blocks/logger/logger.js")
-    script(src="account/register/register.controller.js")
-    script(src="account/login/login.controller.js")
     script(src="layout/header/header.controller.js")
     script(src="peer-review/completed-review/completed-review.controller.js")
     script(src="peer-review/edit-review/edit-review.controller.js")

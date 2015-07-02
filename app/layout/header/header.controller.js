@@ -3,20 +3,37 @@
 
   angular.module('tc.layout').controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$window', '$stateParams', 'auth', 'CONSTANTS'];
+  HeaderController.$inject = ['$window', '$state', '$stateParams', 'auth', 'CONSTANTS', '$log', '$rootScope'];
 
-  function HeaderController($window, $stateParams, auth, CONSTANTS) {
+  function HeaderController($window, $state, $stateParams, auth, CONSTANTS, $log, $rootScope) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
-    vm.login  = auth.login;
-    vm.isAuth = auth.isAuthenticated;
+    vm.login = auth.login;
+
+    function initHeaderProps(event) {
+      $log.debug(event + ' triggered header update.');
+      vm.isAuth = auth.isAuthenticated;
+    }
+    // init props default
+    initHeaderProps('default');
+
     vm.logout = function() {
-      auth.logout(function() {
-        if($stateParams.challengeId) {
-          $window.location.href = 'https://www.' + vm.domain + '/challenge-details/' + $stateParams.challengeId + '/?type=develop';
-        }
-      });
+      auth.logout().then(
+        function() {
+          // success
+          $state.go('home');
+        });
     };
+
+    // List of events that might force header update
+    angular.forEach([
+      CONSTANTS.EVENT_USER_LOGGED_IN,
+      CONSTANTS.EVENT_USER_LOGGED_OUT,
+    ], function(event) {
+      $rootScope.$on(event, function() {
+        initHeaderProps(event);
+      });
+    });
   }
 
 })();

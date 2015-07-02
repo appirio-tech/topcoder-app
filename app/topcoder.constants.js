@@ -9,6 +9,13 @@
     domain: 'topcoder-dev.com',
     auth0Domain: 'topcoder-dev.auth0.com',
     auth0Callback: 'https://www.topcoder-dev.com/reg2/callback.action',
-    submissionDownloadPath: '/review/actions/DownloadContestSubmission?uid='
+    submissionDownloadPath: '/review/actions/DownloadContestSubmission?uid=',
+
+
+
+    // EVENTS
+    EVENT_USER_LOGGED_IN: 'user_logged_in',
+    EVENT_USER_LOGGED_OUT: 'user_logged_out'
+
   });
 })();

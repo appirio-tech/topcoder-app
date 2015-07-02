@@ -31,7 +31,8 @@
         views: {
           'header@': {
             templateUrl: 'layout/header/header.html',
-            controller: 'HeaderController'
+            controller: 'HeaderController',
+            controllerAs: 'vm'
           },
           'sidebar@': {
             // TODO revisit to see how the layout works
@@ -44,6 +45,13 @@
             templateUrl: 'layout/footer/footer.html',
           }
         }
+      },
+      'home': {
+        // TODO - set new home page
+        parent: 'root',
+        url: '/',
+        template: 'This is the home page'
+
       }
     };
     for (name in states) {

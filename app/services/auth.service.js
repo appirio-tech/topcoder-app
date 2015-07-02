@@ -3,9 +3,9 @@
 
   angular.module('topcoder').factory('auth', auth);
 
-  auth.$inject = ['CONSTANTS', '$window', 'authtoken', '$state', '$stateParams','api'];
+  auth.$inject = ['CONSTANTS', '$window', 'authtoken', '$state', '$stateParams', 'api', '$rootScope', '$q', '$log', '$http'];
 
-  function auth(CONSTANTS, $window, authtoken, $state, $stateParams, api) {
+  function auth(CONSTANTS, $window, authtoken, $state, $stateParams, api, $rootScope, $q, $log, $http) {
     var auth0 = new Auth0({
       domain: CONSTANTS.auth0Domain,
       clientID: CONSTANTS.clientId,
@@ -16,43 +16,60 @@
       login: login,
       logout: logout,
       register: register,
-      checkLogin: checkLogin,
       isAuthenticated: isAuthenticated
     };
     return service;
 
     ///////////////
 
-    function login(username, password, successCallback, errorCallback) {
+    function login(username, password) {
       var options = {
         connection: 'LDAP',
         scope: 'openid profile',
         username: username,
         password: password
       };
-
-      auth0.signin(options, function(err, profile, id_token, access_token, state) {
-        if (err) {
-          errorCallback(err)
-        } else {
-          authtoken.setToken(id_token);
-          successCallback(profile, id_token, access_token, state);
-        }
+      return $q(function(resolve, reject) {
+        auth0.signin(options, function(err, profile, v2_id_token, access_token, state) {
+          if (err) {
+            $log.error(err);
+            reject(err);
+          } else {
+            authtoken.setV2Token(v2_id_token);
+            // retrieve V3 Token
+            var req = {
+              method: 'GET',
+              url: CONSTANTS.API_URL + '/authorizations/1',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Bearer " + v2_id_token,
+              }
+            };
+            $http(req)
+              .success(function(resp) {
+                if (resp.result.success) {
+                  authtoken.setV3Token(resp.result.content.token);
+                  $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
+                } else {
+                  $log.error("Failed to exchange token");
+                }
+              })
+              .error(function(err) {
+                // TODO handle error
+                $log.error(err);
+                reject(err);
+              });
+            resolve();
+          }
+        })
       });
     }
 
     function logout(successCallback) {
-      authtoken.removeToken();
-
-      if (typeof(successCallback) === 'function') {
-        successCallback();
-      } else {
-        $state.transitionTo($state.current, $stateParams, {
-          reload: true,
-          inherit: false,
-          notify: true
-        });
-      }
+      return $q(function(resolve, reject) {
+        authtoken.removeTokens();
+        resolve();
+      });
     }
 
     function register(reg) {
@@ -63,14 +80,8 @@
       api.requestHandler('POST', url, JSON.stringify(reg));
     }
 
-    function checkLogin() {
-      if (!this.isAuthenticated) {
-        $window.location = '/login';
-      }
-    }
-
     function isAuthenticated() {
-      return !!authtoken.getToken();
+      return !!authtoken.getV3Token();
     }
   }
 })();

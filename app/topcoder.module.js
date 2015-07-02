@@ -9,6 +9,7 @@
     'ui.router',
     'blocks.logger', 'blocks.exception',
     'ngCookies',
+    'angular-storage',
     'restangular'
   ];
 

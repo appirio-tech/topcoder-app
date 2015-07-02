@@ -1,3 +1,5 @@
-h1(ng-controller="LoginController as vm") This is the {{vm.name}} page content
+h1 This is the {{vm.name}} page content
 
+
+button(type="submit", ng-click="vm.doLogin({username: 'ghostar', password: 'appirio123'})") Login
 a(ui-sref="register") Link to Register

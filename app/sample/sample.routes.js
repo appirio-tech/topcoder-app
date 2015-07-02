@@ -16,7 +16,7 @@
         url: '/sample',
         template: '<div ui-view>Sample test code</div>',
         data: {
-          authRequired: false,
+          authRequired: true,
           title: 'Sample page'
         }
       },

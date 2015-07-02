@@ -19,7 +19,8 @@
         views: {
           'container@': {
             templateUrl: 'account/login/login.html',
-            controller: 'LoginController'
+            controller: 'LoginController',
+            controllerAs: 'vm'
           },
           'footer@': {
             // no footer
