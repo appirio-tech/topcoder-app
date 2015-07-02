@@ -7,7 +7,9 @@
 
   function LoginController($log, $state, $stateParams, auth, $location) {
     var vm = this;
-    vm.name = 'login';
+    vm.passwordReset = true;
+    vm.userDoesntExist = true;
+    vm.wrongPassword = true;
 
     // check if the user is already logged in
     if (auth.isAuthenticated()) {
