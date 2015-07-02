@@ -100,6 +100,9 @@ module.exports = function() {
       files: [].concat(
         bowerFiles,
         config.specHelpers,
+        app + 'topcoder.module.js',
+        app + 'topcoder.**.js',
+        app + '**/*.module.js',
         app + '**/*.js',
         assets + 'scripts/**/*.js',
         temp + config.templateCache.file,
