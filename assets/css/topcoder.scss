@@ -1,6 +1,11 @@
 @import 'partials/combined';
 @include glyphicons-halflings;
 
+#header {
+  display: flex;
+  justify-content: center;
+}
+
 .view-container {
   max-width: 1010px;
   margin: 25px auto;

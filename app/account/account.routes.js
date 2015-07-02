@@ -17,6 +17,9 @@
           authRequired: false
         },
         views: {
+          'header@': {
+            templateUrl: 'layout/header/account-header.html'
+          },
           'container@': {
             templateUrl: 'account/login/login.html',
             controller: 'LoginController',
@@ -35,6 +38,9 @@
           authRequired: false
         },
         views: {
+          'header@': {
+            templateUrl: 'layout/header/account-header.html'
+          },
           'container@': {
             templateUrl: 'account/register/register.html',
             controller: 'RegisterController'

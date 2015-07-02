@@ -1,5 +1,19 @@
-h1 This is the {{vm.name}} page content
+.login-container
+  h1 Login
+
+  p(ng-show="vm.passwordReset", ng-class="{'login-notice': vm.passwordReset}") Your password has been reset. You may now login.
+
+  p(ng-show="vm.userDoesntExist", ng-class="{'login-error': vm.userDoesntExist}") This user does not exist.
+
+  p(ng-show="vm.wrongPassword", ng-class="{'login-error': vm.wrongPassword}") That password doesn't match the one we have on file. Please try again.
+
+  form(name="login-form")
+    input(name="username")
+
+    input(name="password")
+
+    button(type="submit") Login
 
 
-button(type="submit", ng-click="vm.doLogin({username: 'ghostar', password: 'appirio123'})") Login
-a(ui-sref="register") Link to Register
+  p Don't have an account? 
+    a(ui-sref="register") Join Now.
