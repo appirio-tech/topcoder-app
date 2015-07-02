@@ -7,7 +7,8 @@
     'tc.peer-review',
     'tc.sample',
     'ui.router',
-    'blocks.logger', 'blocks.exception',
+    'blocks.logger',
+    'blocks.exception',
     'ngCookies',
     'angular-storage',
     'restangular'
