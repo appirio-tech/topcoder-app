@@ -29,8 +29,4 @@ describe('Login Controller', function() {
   it('should have a wrongPassword property', function() {
     expect(controller.wrongPassword).to.be.defined;
   });
-
-  it('should have login as the name property', function() {
-    expect(controller.name).to.equal('login');
-  });
 });
