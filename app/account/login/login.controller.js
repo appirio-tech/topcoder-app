@@ -30,7 +30,7 @@
 
     vm.doLogin = function(form) {
       // TODO placeholder, validate form etc
-      // if (form.$valid) {
+      if (form.$valid) {
 
         auth.login(form.username, form.password).then(
           function(data) {
@@ -42,9 +42,9 @@
             // handle error
             $log.error("You messed up son! " + err);
           });
-      // } else {
-      //   // do something
-      // }
+      } else {
+        // do something
+      }
     };
 
   }

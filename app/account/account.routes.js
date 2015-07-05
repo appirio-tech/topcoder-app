@@ -45,9 +45,23 @@
             templateUrl: 'account/register/register.html',
             controller: 'RegisterController'
           }
-        }
+        },
+      })
+      .state('resetPassword', {
+        url: '/reset-password',
+        data: {
+          title: "Reset Password",
+          authRequired: false
+        },
+        views: {
+          'header@': {
+            templateUrl: 'layout/header/account-header.html'
+          },
+          'container@': {
+            templateUrl: 'account/reset-password/reset-password.html',
+            controller: 'ResetPasswordController'
+          }
+        },
       });
-
-    $urlRouterProvider.otherwise('/login');
   }
 })();
