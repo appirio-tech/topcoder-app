@@ -8,8 +8,7 @@
   ]);
 
   function routes($stateProvider, $urlRouterProvider) {
-    var name, state, states;
-    states = {
+    var states = {
       '404': {
         parent: 'root',
         url: '/404',
@@ -51,12 +50,11 @@
         parent: 'root',
         url: '/',
         template: 'This is the home page'
-
       }
     };
-    for (name in states) {
-      state = states[name];
+
+    angular.forEach(states, function(state, name) {
       $stateProvider.state(name, state);
-    }
+    });
   };
 })();

@@ -8,8 +8,8 @@
   function routes($locationProvider, $stateProvider, $urlRouterProvider) {
     $locationProvider.html5Mode(true);
 
-    $stateProvider
-      .state('login', {
+    var states = {
+      'login': {
         parent: 'root',
         url: '/login?next',
         data: {
@@ -30,8 +30,8 @@
             template: ''
           }
         }
-      })
-      .state('register', {
+      },
+      'register': {
         url: '/register?next',
         data: {
           title: "Join",
@@ -45,9 +45,9 @@
             templateUrl: 'account/register/register.html',
             controller: 'RegisterController'
           }
-        },
-      })
-      .state('resetPasswordLink', {
+        }
+      }
+      'resetPasswordLink': {
         url: '/initiate-reset-password',
         data: {
           title: "Reset Password",
@@ -62,9 +62,9 @@
             controller: 'ResetPasswordController',
             controllerAs: 'vm'
           }
-        },
-      })
-      .state('resetPasswordLinkConfirmation', {
+        }
+      },
+      'resetPasswordLinkConfirmation': {
         url: '/reset-password-sent',
         data: {
           title: "Reset Password",
@@ -77,9 +77,9 @@
           'container@': {
             templateUrl: 'account/reset-password/reset-password-link-sent.html',
           }
-        },
-      })
-      .state('resetPassword', {
+        }
+      },
+      'resetPassword': {
         url: '/reset-password',
         data: {
           title: "Reset Password",
@@ -92,7 +92,12 @@
           'container@': {
             templateUrl: 'account/reset-password/reset-password.html',
           }
-        },
-      });
+        }
+      }
+    };
+
+    angular.forEach(states, function(state, name) {
+      $stateProvider.state(name, state);
+    });
   }
 })();

@@ -5,50 +5,69 @@
 
   angular.module('tc.peer-review').controller('CompletedReviewController',  CompletedReviewController);
 
-  CompletedReviewController.$inject = ['$scope', '$stateParams', 'scorecard', 'review', 'user', 'challenge', 'helpers', '$q', 'CONSTANTS'];
+  CompletedReviewController.$inject = ['$stateParams', 'scorecard', 'review', 'user', 'challenge', 'helpers', '$q', 'CONSTANTS'];
 
-  function CompletedReviewController($scope, $stateParams, scorecard, review, user, challenge, helpers, $q, CONSTANTS) {
-    var promises;
-    $scope.submissionDownloadPath = CONSTANTS.submissionDownloadPath;
-    $scope.domain = CONSTANTS.domain;
-    $scope.challengeId = $stateParams.challengeId;
-    $scope.loaded = false;
-    $scope.stats = {};
-    $scope.scorecard = {
+  function CompletedReviewController($stateParams, scorecard, review, user, challenge, helpers, $q, CONSTANTS) {
+    var vm = this;
+    vm.submissionDownloadPath = CONSTANTS.submissionDownloadPath;
+    vm.domain = CONSTANTS.domain;
+    vm.challengeId = $stateParams.challengeId;
+    vm.loaded = false;
+    vm.stats = {};
+    vm.scorecard = {
       questions: {}
     };
-    promises = [user.getUsername(), challenge.getChallengeDetails($stateParams.challengeId), review.getReview($stateParams.reviewId), scorecard.getScorecard($scope.challengeId)];
-    $q.all(promises).then(function(response) {
-      var challenge, review, scorecard, scorecardId, user;
-      user = response[0].data;
-      challenge = response[1].data;
-      review = response[2].data.result.content;
-      scorecard = response[3].data.result.content[0];
-      $scope.stats.username = user.handle;
-      $scope.challenge = challenge;
-      $scope.stats.submissionId = review.submissionId;
-      $scope.stats.uploadId = review.uploadId;
-      $scope.stats.createdAt = review.createdAt;
-      $scope.stats.updatedAt = review.updatedAt;
-      $scope.review = review;
-      scorecardId = scorecard.id;
-      return scorecard.getScorecardQuestions(scorecardId).then(function(data) {
-        var questions;
-        questions = data.data.result.content;
-        helpers.storeById($scope.scorecard.questions, questions);
-        helpers.parseQuestions($scope.scorecard.questions);
-        return review.getReviewItems($stateParams.reviewId);
-      }).then(function(data) {
-        var answers;
-        answers = data.data.result.content;
-        helpers.parseAnswers($scope.scorecard.questions, answers);
-        return $scope.loaded = true;
-      });
-    });
-    return $scope.submit = function() {
-      return $state.go('reviewStatus', {
-        challengeId: $scope.challengeId
+    vm.submit = function() {
+      $state.go('review.status', {
+        challengeId: vm.challengeId
       });
     };
+
+    activate();
+
+    function activate() {
+      var promises = [
+        user.getUsername(),
+        challenge.getChallengeDetails($stateParams.challengeId),
+        review.getReview($stateParams.reviewId),
+        scorecard.getScorecard(vm.challengeId)
+      ];
+
+      $q.all(promises)
+      .then(function(response) {
+        var user = response[0].data;
+        vm.stats.username = user.handle;
+
+        var challenge = response[1].data;
+        vm.challenge = challenge;
+
+        var reviewData = response[2].data.result.content;
+        vm.review = reviewData;
+        vm.stats.submissionId = reviewData.submissionId;
+        vm.stats.uploadId = reviewData.uploadId;
+        vm.stats.createdAt = reviewData.createdAt;
+        vm.stats.updatedAt = reviewData.updatedAt;
+
+        var scorecardData = response[3].data.result.content[0];
+        var scorecardId = scorecardData.id;
+
+        scorecard.getScorecardQuestions(scorecardId)
+        .then(function(data) {
+          var questions = data.data.result.content;
+
+          helpers.storeById(vm.scorecard.questions, questions);
+          helpers.parseQuestions(vm.scorecard.questions);
+
+          return review.getReviewItems($stateParams.reviewId);
+
+        }).then(function(data) {
+          var answers = data.data.result.content;
+
+          helpers.parseAnswers(vm.scorecard.questions, answers);
+
+          vm.loaded = true;
+        });
+      });
+    }
   };
 })();

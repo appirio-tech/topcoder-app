@@ -3,25 +3,34 @@
 
   angular.module('tc.peer-review').controller('ReadOnlyScorecardController', ReadOnlyScorecardController);
 
-  ReadOnlyScorecardController.$inject = ['$scope', '$stateParams', 'scorecard', 'helpers'];
+  ReadOnlyScorecardController.$inject = ['$stateParams', 'scorecard', 'helpers'];
 
-  function ReadOnlyScorecardController($scope, $stateParams, scorecard, helpers) {
-    var scorecardId;
-    scorecardId = $stateParams.scorecardId;
-    $scope.loaded = false;
-    $scope.scorecard = {};
-    return scorecard.getScorecardById(scorecardId).then(function(response) {
-      var scorecard;
-      scorecard = response.data.result.content[0];
-      $scope.scorecard.name = scorecard.name;
-      return scorecard.getScorecardQuestions(scorecardId).then(function(data) {
-        var questions;
-        $scope.scorecard.questions = {};
-        questions = data.data.result.content;
-        helpers.storeById($scope.scorecard.questions, questions);
-        helpers.parseQuestions($scope.scorecard.questions);
-        $scope.loaded = true;
+  function ReadOnlyScorecardController($stateParams, scorecard, helpers) {
+    var scorecardId = $stateParams.scorecardId;
+    var vm = this;
+    vm.loaded = false;
+    vm.scorecard = {};
+
+    activate();
+
+    function activate() {
+      scorecard.getScorecardById(scorecardId)
+      .then(function(response) {
+        var scorecardData = response.data.result.content[0];
+        vm.scorecard.name = scorecardData.name;
+
+        scorecard.getScorecardQuestions(scorecardId)
+        .then(function(data) {
+          vm.scorecard.questions = {};
+
+          var questions = data.data.result.content;
+
+          helpers.storeById(vm.scorecard.questions, questions);
+          helpers.parseQuestions(vm.scorecard.questions);
+
+          vm.loaded = true;
+        });
       });
-    });
+    }
   };
 })();

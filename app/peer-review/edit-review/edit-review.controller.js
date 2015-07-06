@@ -3,81 +3,109 @@
   // answers saved but not submitted.
 
   'use strict';
-  var EditReviewController;
 
   angular.module('tc.peer-review').controller('EditReviewController', EditReviewController);
 
-  EditReviewController.$inject = ['$scope', '$state', '$stateParams', 'review', 'scorecard', 'user', 'challenge', 'helpers', '$q', 'CONSTANTS'];
+  EditReviewController.$inject = ['$state', '$stateParams', 'review', 'scorecard', 'user', 'challenge', 'helpers', '$q', 'CONSTANTS'];
 
-  function EditReviewController($scope, $state, $stateParams, review, scorecard, user, challenge, helpers, $q, CONSTANTS) {
-    var promises;
-    $scope.submissionDownloadPath = CONSTANTS.submissionDownloadPath;
-    $scope.domain = CONSTANTS.domain;
-    $scope.challengeId = $stateParams.challengeId;
-    $scope.challenge = null;
-    $scope.loaded = false;
-    $scope.saved = false;
-    $scope.stats = {};
-    $scope.scorecard = {
+  function EditReviewController($state, $stateParams, review, scorecard, user, challenge, helpers, $q, CONSTANTS) {
+    var vm = this;
+    vm.submissionDownloadPath = CONSTANTS.submissionDownloadPath;
+    vm.domain = CONSTANTS.domain;
+    vm.challengeId = $stateParams.challengeId;
+    vm.challenge = null;
+    vm.loaded = false;
+    vm.saved = false;
+    vm.stats = {};
+    vm.scorecard = {
       questions: {}
     };
-    promises = [user.getUsername(), challenge.getChallengeDetails($scope.challengeId), review.getReview($stateParams.reviewId), scorecard.getScorecard($scope.challengeId)];
-    $q.all(promises).then(function(response) {
-      var challenge, review, scorecard, scorecardId, user;
-      user = response[0].data;
-      challenge = response[1].data;
-      review = response[2].data.result.content;
-      scorecard = response[3].data.result.content[0];
-      $scope.stats.username = user.handle;
-      $scope.challenge = challenge;
-      $scope.stats.submissionId = review.submissionId;
-      $scope.stats.uploadId = review.uploadId;
-      $scope.stats.createdAt = review.createdAt;
-      $scope.stats.updatedAt = review.updatedAt;
-      $scope.review = review;
-      scorecardId = scorecard.id;
-      return scorecard.getScorecardQuestions(scorecardId).then(function(data) {
-        var questions;
-        questions = data.data.result.content;
-        helpers.storeById($scope.scorecard.questions, questions);
-        helpers.parseQuestions($scope.scorecard.questions);
-        return review.getReviewItems($stateParams.reviewId);
-      }).then(function(data) {
-        var answers;
-        answers = data.data.result.content;
-        $scope.saved = helpers.parseAnswers($scope.scorecard.questions, answers);
-        return $scope.loaded = true;
-      });
-    });
-    $scope.submitReviewItems = function() {
-      var body;
-      body = helpers.compileReviewItems($scope.scorecard.questions, $scope.review, $scope.saved);
-      return review.saveReviewItems(body, $scope.saved).then(function(response) {
+
+    vm.submitReviewItems = function() {
+      var body = helpers.compileReviewItems(vm.scorecard.questions, vm.review, vm.saved);
+
+      review.saveReviewItems(body, vm.saved)
+      .then(function(response) {
         return review.markAsCompleted($stateParams.reviewId);
-      }).then(function(response) {
-        return $state.go('reviewStatus', {
-          challengeId: $scope.challengeId
+      })
+      .then(function(response) {
+        $state.go('review.status', {
+          challengeId: vm.challengeId
         });
-      })["catch"](function(error) {
-        var message;
-        message = 'An error occurred while trying to submit answers.\n' + error.status + ': ' + error.statusText;
+      })
+      .catch(function(error) {
+        var message = 'An error occurred while trying to submit answers.\n' + error.status + ': ' + error.statusText;
+
         alert(message);
-        return $state.reload();
+
+        $state.reload();
       });
     };
-    return $scope.saveReviewForLater = function() {
-      var body;
-      body = helpers.compileReviewItems($scope.scorecard.questions, $scope.review, $scope.saved);
-      return review.saveReviewItems(body, $scope.saved).then(function(data) {
-        return $state.go('reviewStatus', {
-          challengeId: $scope.challengeId
+
+    vm.saveReviewForLater = function() {
+      var body = helpers.compileReviewItems(vm.scorecard.questions, vm.review, vm.saved);
+
+      review.saveReviewItems(body, vm.saved)
+      .then(function(data) {
+        $state.go('review.status', {
+          challengeId: vm.challengeId
         });
-      })["catch"](function(error) {
-        var message;
-        message = 'An error occurred while trying to update answers.\n' + error.status + ': ' + error.statusText;
+      })
+      .catch(function(error) {
+        var message = 'An error occurred while trying to update answers.\n' + error.status + ': ' + error.statusText;
+
         alert(message);
-        return $state.reload();
+
+        $state.reload();
       });
     };
+
+    activate();
+
+    function activate() {
+      var promises = [
+        user.getUsername(),
+        challenge.getChallengeDetails(vm.challengeId),
+        review.getReview($stateParams.reviewId),
+        scorecard.getScorecard(vm.challengeId)
+      ];
+
+      $q.all(promises)
+      .then(function(response) {
+        var user = response[0].data;
+        vm.stats.username = user.handle;
+
+        var challenge = response[1].data;
+        vm.challenge = challenge;
+
+        var reviewData = response[2].data.result.content;
+        vm.review = reviewData;
+        vm.stats.submissionId = reviewData.submissionId;
+        vm.stats.uploadId = reviewData.uploadId;
+        vm.stats.createdAt = reviewData.createdAt;
+        vm.stats.updatedAt = reviewData.updatedAt;
+
+        var scorecardData = response[3].data.result.content[0];
+        var scorecardId = scorecardData.id;
+
+        scorecard.getScorecardQuestions(scorecardId)
+        .then(function(data) {
+          var questions = data.data.result.content;
+
+          helpers.storeById(vm.scorecard.questions, questions);
+          helpers.parseQuestions(vm.scorecard.questions);
+
+          return review.getReviewItems($stateParams.reviewId);
+
+        })
+        .then(function(data) {
+          var answers = data.data.result.content;
+
+          vm.saved = helpers.parseAnswers(vm.scorecard.questions, answers);
+
+          vm.loaded = true;
+        });
+      });
+    }
   };
 })();

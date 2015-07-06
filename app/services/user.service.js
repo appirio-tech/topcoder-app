@@ -15,7 +15,7 @@
 
     function getUsername() {
       var url = CONSTANTS.API_URL_V2 + '/user/identity';
-      api.requestHandler('GET', url);
+      return api.requestHandler('GET', url);
     }
   }
 
