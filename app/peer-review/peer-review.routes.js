@@ -9,8 +9,7 @@
   ]);
 
   function routes($stateProvider, $urlRouterProvider, $httpProvider) {
-    var name, state, states;
-    states = {
+    var states = {
       review: {
         abstract: true,
         parent: 'root',
@@ -19,7 +18,7 @@
           authRequired: true,
         }
       },
-      'reviewStatus': {
+      'review.status': {
         parent: 'review',
         url: '/challenge/:challengeId',
         templateUrl: 'peer-review/review-status/review-status.html',
@@ -29,27 +28,27 @@
           title: 'Peer Review'
         }
       },
-      'readOnlyScorecard': {
+      'review.readOnlyScorecard': {
         parent: 'review',
         url: '/scorecard/:scorecardId',
         templateUrl: 'peer-review/readOnlyScorecard/readOnlyScorecard.html',
         controller: 'ReadOnlyScorecardController'
       },
-      'completed': {
+      'review.completed': {
         parent: 'review',
         url: '/:challengeId/reviews/:reviewId/completed',
         templateUrl: 'peer-review/completed-review/completed-review.html',
         controller: 'CompletedReviewController',
       },
-      'edit': {
+      'review.edit': {
         parent: 'review',
         url: '/:challengeId/reviews/:reviewId/edit',
         templateUrl: 'peer-review/edit-review/edit-review.html',
         controller: 'EditReviewController',
       }
     };
-    for (name in states) {
-      state = states[name];
+    for (var name in states) {
+      var state = states[name];
       $stateProvider.state(name, state);
     }
   };

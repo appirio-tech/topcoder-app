@@ -1,8 +1,8 @@
-.container.edit-review(ng-show="loaded")
+.edit-review-container(ng-show="loaded")
   .back-link
     .arrow
 
-    p #[a.back(ui-sref="reviewStatus({challengeId: challengeId})") Back to Reviews]
+    p #[a.back(ui-sref="review.status({challengeId: challengeId})") Back to Reviews]
 
   .scorecard-container
     .challenge-info
