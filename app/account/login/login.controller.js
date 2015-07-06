@@ -28,11 +28,11 @@
 
     redirect();
 
-    vm.doLogin = function(form) {
+    vm.doLogin = function() {
       // TODO placeholder, validate form etc
-      if (form.$valid) {
+      if (vm.loginForm.$valid) {
 
-        auth.login(form.username, form.password).then(
+        auth.login(vm.username, vm.password).then(
           function(data) {
             // success
             $log.debug('logged in');

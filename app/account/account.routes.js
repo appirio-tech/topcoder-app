@@ -47,6 +47,38 @@
           }
         },
       })
+      .state('resetPasswordLink', {
+        url: '/initiate-reset-password',
+        data: {
+          title: "Reset Password",
+          authRequired: false
+        },
+        views: {
+          'header@': {
+            templateUrl: 'layout/header/account-header.html'
+          },
+          'container@': {
+            templateUrl: 'account/reset-password/reset-password-link.html',
+            controller: 'ResetPasswordController',
+            controllerAs: 'vm'
+          }
+        },
+      })
+      .state('resetPasswordLinkConfirmation', {
+        url: '/reset-password-sent',
+        data: {
+          title: "Reset Password",
+          authRequired: false
+        },
+        views: {
+          'header@': {
+            templateUrl: 'layout/header/account-header.html'
+          },
+          'container@': {
+            templateUrl: 'account/reset-password/reset-password-link-sent.html',
+          }
+        },
+      })
       .state('resetPassword', {
         url: '/reset-password',
         data: {
@@ -59,7 +91,6 @@
           },
           'container@': {
             templateUrl: 'account/reset-password/reset-password.html',
-            controller: 'ResetPasswordController'
           }
         },
       });

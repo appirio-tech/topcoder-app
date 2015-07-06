@@ -7,13 +7,17 @@
 
   p(ng-show="vm.wrongPassword", ng-class="{'login-error': vm.wrongPassword}") That password doesn't match the one we have on file. Please try again.
 
-  form(name="login-form")
-    input(name="username")
+  form(name="vm.loginForm")
+    input(name="username", ng-model="vm.username", required)
 
-    input(name="password")
+    input(name="password", type="password", ng-model="vm.password", required)
 
-    button(type="submit", ng-click="vm.doLogin(login-form)") Login
+    button(type="submit", ng-click="vm.doLogin()") Login
 
 
   p Don't have an account? 
     a(ui-sref="register") Join Now.
+
+  <br>
+
+  a(ui-sref="resetPasswordLink") Forgot Password?

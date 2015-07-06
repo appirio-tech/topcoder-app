@@ -16,7 +16,8 @@
       login: login,
       logout: logout,
       register: register,
-      isAuthenticated: isAuthenticated
+      isAuthenticated: isAuthenticated,
+      initiateResetPassword: initiateResetPassword
     };
     return service;
 
@@ -81,7 +82,14 @@
     }
 
     function isAuthenticated() {
-      return !!authtoken.getV3Token();
+      return !!authtoken.getV2Token();
     }
+
+    function initiateResetPassword(email) {
+      return $q(function(resolve, reject) {
+        resolve(true);
+      });
+    }
+
   }
 })();
