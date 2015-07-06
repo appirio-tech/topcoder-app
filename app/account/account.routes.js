@@ -46,7 +46,7 @@
             controller: 'RegisterController'
           }
         }
-      }
+      },
       'resetPasswordLink': {
         url: '/initiate-reset-password',
         data: {
