@@ -133,7 +133,7 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
 gulp.task('optimize', ['inject', 'test'], function() {
   log('Optimizing the JavaScript, CSS, and HTML');
 
-  var assets = $.useref.assets({searchPath: ['.tmp', 'app']});
+  var assets = $.useref.assets({searchPath: ['.tmp', 'app', 'assets']});
   var templateCache = config.temp + config.templateCache.file;
   var cssFilter = $.filter('**/*.css');
   var jsLibFilter = $.filter('**/' + config.optimized.vendor);
