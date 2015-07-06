@@ -1,14 +1,14 @@
-.read-only-scorecard-container(ng-show="loaded")
+.read-only-scorecard-container(ng-show="vm.loaded")
   .scorecard-container
     .challenge-info
       img(src="images/swift-logo.png")
 
-      h1(ng-bind="scorecard.name")
+      h1(ng-bind="vm.scorecard.name")
 
     hr
 
     form#read-only(name="scorecard")
-      .scorecard(ng-repeat="q in scorecard.questions")
+      .scorecard(ng-repeat="q in vm.scorecard.questions")
         h5.description {{q.description}}
 
         p.guidelines(ng-if="q.questionTypeId === 5", ng-repeat="guideline in q.guidelines track by $index") {{guideline}}

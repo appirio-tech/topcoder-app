@@ -8,8 +8,8 @@
   function routes($locationProvider, $stateProvider, $urlRouterProvider) {
     $locationProvider.html5Mode(true);
 
-    $stateProvider
-      .state('login', {
+    var states = {
+      'login': {
         parent: 'root',
         url: '/login?next',
         data: {
@@ -30,8 +30,8 @@
             template: ''
           }
         }
-      })
-      .state('register', {
+      },
+      'register': {
         url: '/register?next',
         data: {
           title: "Join",
@@ -46,8 +46,13 @@
             controller: 'RegisterController'
           }
         }
-      });
+      }
+    };
 
     $urlRouterProvider.otherwise('/login');
+
+    angular.forEach(states, function(state, name) {
+      $stateProvider.state(name, state);
+    });
   }
 })();

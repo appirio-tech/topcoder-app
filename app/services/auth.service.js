@@ -81,7 +81,7 @@
     }
 
     function isAuthenticated() {
-      return !!authtoken.getV3Token();
+      return !!authtoken.getV2Token();
     }
   }
 })();

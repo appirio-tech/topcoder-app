@@ -5,64 +5,69 @@
 
   angular.module('tc.peer-review').controller('CompletedReviewController',  CompletedReviewController);
 
-  CompletedReviewController.$inject = ['$scope', '$stateParams', 'scorecard', 'review', 'user', 'challenge', 'helpers', '$q', 'CONSTANTS'];
+  CompletedReviewController.$inject = ['$stateParams', 'scorecard', 'review', 'user', 'challenge', 'helpers', '$q', 'CONSTANTS'];
 
-  function CompletedReviewController($scope, $stateParams, scorecard, review, user, challenge, helpers, $q, CONSTANTS) {
-    $scope.submissionDownloadPath = CONSTANTS.submissionDownloadPath;
-    $scope.domain = CONSTANTS.domain;
-    $scope.challengeId = $stateParams.challengeId;
-    $scope.loaded = false;
-    $scope.stats = {};
-    $scope.scorecard = {
+  function CompletedReviewController($stateParams, scorecard, review, user, challenge, helpers, $q, CONSTANTS) {
+    var vm = this;
+    vm.submissionDownloadPath = CONSTANTS.submissionDownloadPath;
+    vm.domain = CONSTANTS.domain;
+    vm.challengeId = $stateParams.challengeId;
+    vm.loaded = false;
+    vm.stats = {};
+    vm.scorecard = {
       questions: {}
     };
-    $scope.submit = function() {
+    vm.submit = function() {
       $state.go('review.status', {
-        challengeId: $scope.challengeId
+        challengeId: vm.challengeId
       });
     };
 
-    var promises = [
-      user.getUsername(),
-      challenge.getChallengeDetails($stateParams.challengeId),
-      review.getReview($stateParams.reviewId),
-      scorecard.getScorecard($scope.challengeId)
-    ];
+    activate();
 
-    $q.all(promises)
-    .then(function(response) {
-      var user = response[0].data;
-      $scope.stats.username = user.handle;
+    function activate() {
+      var promises = [
+        user.getUsername(),
+        challenge.getChallengeDetails($stateParams.challengeId),
+        review.getReview($stateParams.reviewId),
+        scorecard.getScorecard(vm.challengeId)
+      ];
 
-      var challenge = response[1].data;
-      $scope.challenge = challenge;
+      $q.all(promises)
+      .then(function(response) {
+        var user = response[0].data;
+        vm.stats.username = user.handle;
 
-      var reviewData = response[2].data.result.content;
-      $scope.review = reviewData;
-      $scope.stats.submissionId = reviewData.submissionId;
-      $scope.stats.uploadId = reviewData.uploadId;
-      $scope.stats.createdAt = reviewData.createdAt;
-      $scope.stats.updatedAt = reviewData.updatedAt;
+        var challenge = response[1].data;
+        vm.challenge = challenge;
 
-      var scorecardData = response[3].data.result.content[0];
-      var scorecardId = scorecardData.id;
+        var reviewData = response[2].data.result.content;
+        vm.review = reviewData;
+        vm.stats.submissionId = reviewData.submissionId;
+        vm.stats.uploadId = reviewData.uploadId;
+        vm.stats.createdAt = reviewData.createdAt;
+        vm.stats.updatedAt = reviewData.updatedAt;
 
-      scorecard.getScorecardQuestions(scorecardId)
-      .then(function(data) {
-        var questions = data.data.result.content;
+        var scorecardData = response[3].data.result.content[0];
+        var scorecardId = scorecardData.id;
 
-        helpers.storeById($scope.scorecard.questions, questions);
-        helpers.parseQuestions($scope.scorecard.questions);
+        scorecard.getScorecardQuestions(scorecardId)
+        .then(function(data) {
+          var questions = data.data.result.content;
 
-        return review.getReviewItems($stateParams.reviewId);
+          helpers.storeById(vm.scorecard.questions, questions);
+          helpers.parseQuestions(vm.scorecard.questions);
 
-      }).then(function(data) {
-        var answers = data.data.result.content;
+          return review.getReviewItems($stateParams.reviewId);
 
-        helpers.parseAnswers($scope.scorecard.questions, answers);
+        }).then(function(data) {
+          var answers = data.data.result.content;
 
-        $scope.loaded = true;
+          helpers.parseAnswers(vm.scorecard.questions, answers);
+
+          vm.loaded = true;
+        });
       });
-    });
+    }
   };
 })();
