@@ -3,9 +3,9 @@
 
   angular.module('topcoder').factory('tcAuth', tcAuth);
 
-  tcAuth.$inject = ['CONSTANTS', '$window', 'authtoken', '$state', '$stateParams', 'api', '$rootScope', '$q', '$log', '$http'];
+  tcAuth.$inject = ['CONSTANTS', '$window', 'authtoken', '$state', '$stateParams', 'api', '$rootScope', '$q', '$log', '$http', '$timeout'];
 
-  function tcAuth(CONSTANTS, $window, authtoken, $state, $stateParams, api, $rootScope, $q, $log, $http) {
+  function tcAuth(CONSTANTS, $window, authtoken, $state, $stateParams, api, $rootScope, $q, $log, $http, $timeout) {
     var auth0 = new Auth0({
       domain: CONSTANTS.auth0Domain,
       clientID: CONSTANTS.clientId,
@@ -40,16 +40,17 @@
               $log.error(err);
               reject(err);
             } else {
-              // set token
-              // authtoken.setV2Token(idToken);
               // exchange token
               authtoken.exchangeToken(refreshToken, idToken)
                 .then(function() {
-                  $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
+                  // giving angular sometime to set the cookies
+                  $timeout(function() {
+                    $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
+                    resolve();
+                  }, 200);
                 });
-              resolve();
-          }
-        });
+            }
+          });
       });
     }
 

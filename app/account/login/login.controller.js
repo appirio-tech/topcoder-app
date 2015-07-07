@@ -13,16 +13,17 @@
       authtoken.getTokenFromAuth0Code($stateParams.code);
     }
 
-    var redirect = function() {
+    var redirect = function(force) {
       // check if the user is already logged in
-      if (tcAuth.isAuthenticated()) {
+      if (tcAuth.isAuthenticated() || force) {
         // redirect to next if exists else dashboard
         if ($stateParams.next) {
           $log.debug('Redirecting: ' + $stateParams.next);
           $location.path(decodeURIComponent($stateParams.next));
         } else {
           // FIXME
-          $location.path('www.topcoder-dev.com/my-dashboard');
+          // $location.path('www.topcoder-dev.com/my-dashboard');
+          $state.go('sample.child1');
         }
       }
     };
@@ -35,7 +36,7 @@
         function(data) {
           // success
           $log.debug('logged in');
-          redirect();
+          redirect(true);
         },
         function(err) {
           // handle error
