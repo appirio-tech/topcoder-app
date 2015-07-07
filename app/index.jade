@@ -16,6 +16,9 @@ html
     //- inject:css
     link(rel="stylesheet", href="assets/css/reset.css")
     link(rel="stylesheet", href="assets/css/topcoder.css")
+    link(rel="stylesheet", href="assets/css/account/account.css")
+    link(rel="stylesheet", href="assets/css/account/login.css")
+    link(rel="stylesheet", href="assets/css/account/register.css")
     link(rel="stylesheet", href="assets/css/layout/account-header.css")
     link(rel="stylesheet", href="assets/css/layout/footer.css")
     link(rel="stylesheet", href="assets/css/layout/header.css")
@@ -24,9 +27,6 @@ html
     link(rel="stylesheet", href="assets/css/peer-review/peer-review.css")
     link(rel="stylesheet", href="assets/css/peer-review/readOnlyScorecard.css")
     link(rel="stylesheet", href="assets/css/peer-review/reviewStatus.css")
-    link(rel="stylesheet", href="assets/css/account/account.css")
-    link(rel="stylesheet", href="assets/css/account/login.css")
-    link(rel="stylesheet", href="assets/css/account/register.css")
     //- endinject
     // endbuild
 
@@ -76,6 +76,7 @@ html
     script(src="blocks/logger/logger.module.js")
     script(src="blocks/exception/exception.module.js")
     script(src="account/account.routes.js")
+    script(src="account/validateLogin.directive.js")
     script(src="filters/local-time.filter.js")
     script(src="peer-review/peer-review.routes.js")
     script(src="peer-review/slideable.directive.js")
@@ -89,8 +90,8 @@ html
     script(src="services/review.service.js")
     script(src="services/scorecard.service.js")
     script(src="services/user.service.js")
-    script(src="account/login/login.controller.js")
     script(src="account/register/register.controller.js")
+    script(src="account/login/login.controller.js")
     script(src="account/reset-password/reset-password.controller.js")
     script(src="blocks/logger/logger.js")
     script(src="blocks/exception/exception-handler.provider.js")

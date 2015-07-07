@@ -2,6 +2,7 @@
   'use strict';
 
   var dependencies = [
+    'validateLogin',
     'ui.router'
   ];
 

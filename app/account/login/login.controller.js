@@ -8,9 +8,6 @@
   function LoginController($log, $state, $stateParams, auth, $location) {
     var vm = this;
     vm.passwordReset = false;
-    vm.userDoesntExist = false;
-    vm.wrongPassword = false;
-
 
     var redirect = function() {
       // check if the user is already logged in
@@ -30,21 +27,18 @@
 
     vm.doLogin = function() {
       // TODO placeholder, validate form etc
-      if (vm.loginForm.$valid) {
-
-        auth.login(vm.username, vm.password).then(
-          function(data) {
-            // success
-            $log.debug('logged in');
-            redirect();
-          },
-          function(err) {
-            // handle error
-            $log.error("You messed up son! " + err);
-          });
-      } else {
-        // do something
-      }
+      auth.login(vm.username, vm.password).then(
+        function(data) {
+          // success
+          $log.debug('logged in');
+          redirect();
+        },
+        function(err) {
+          // handle error
+          $log.error("You messed up son! " + err);
+          // Set validity of password to false if authentication failed
+        }
+      );
     };
 
   }
