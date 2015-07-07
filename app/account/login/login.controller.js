@@ -22,7 +22,7 @@
           $location.path(decodeURIComponent($stateParams.next));
         } else {
           // FIXME
-          $state.go('sample.child1');
+          $location.path('www.topcoder-dev.com/my-dashboard');
         }
       }
     };
