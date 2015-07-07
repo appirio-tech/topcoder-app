@@ -5,6 +5,9 @@
     "type": "git",
     "url": "git+https://github.com/appirio-tech/topcoder-app.git"
   },
+  "scripts": {
+    "postinstall": "bower install"
+  },
   "keywords": [
     "topcoder",
     "account",
