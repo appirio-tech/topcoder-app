@@ -9,7 +9,7 @@
       var idToken;
       if (config.url.indexOf('v2/') > -1) {
         idToken = authtoken.getV2Token();
-      } else if(config.url.indexOf('v3/') > -1) {
+      } else if(config.url.indexOf('v3/') > -1 && config.url.indexOf('v3/authorizations') < 0) {
         // FIXME looks like the services still need v2 token
         idToken = authtoken.getV2Token();
       }

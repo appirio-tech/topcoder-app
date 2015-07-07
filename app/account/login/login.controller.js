@@ -3,18 +3,22 @@
 
   angular.module('tc.account').controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$log', '$state', '$stateParams', 'auth', '$location'];
+  LoginController.$inject = ['$log', '$state', '$stateParams', 'tcAuth', '$location', 'authtoken', 'auth'];
 
-  function LoginController($log, $state, $stateParams, auth, $location) {
+  function LoginController($log, $state, $stateParams, tcAuth, $location, authtoken, auth) {
     var vm = this;
     vm.passwordReset = true;
     vm.userDoesntExist = true;
     vm.wrongPassword = true;
 
 
+    if ($stateParams.state && $stateParams.code) {
+      authtoken.getTokenFromAuth0Code($stateParams.code);
+    }
+
     var redirect = function() {
       // check if the user is already logged in
-      if (auth.isAuthenticated()) {
+      if (tcAuth.isAuthenticated()) {
         // redirect to next if exists else dashboard
         if ($stateParams.next) {
           $log.debug('Redirecting: ' + $stateParams.next);
@@ -32,7 +36,7 @@
       // TODO placeholder, validate form etc
       if (vm.loginForm.$valid) {
 
-        auth.login(vm.username, vm.password).then(
+        tcAuth.login(vm.username, vm.password).then(
           function(data) {
             // success
             $log.debug('logged in');
@@ -46,6 +50,10 @@
         // do something
       }
     };
+
+    vm.socialLogin = function(backend) {
+      tcAuth.socialLogin(backend);
+    }
 
   }
 

@@ -1,23 +1,24 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').factory('auth', auth);
+  angular.module('topcoder').factory('tcAuth', tcAuth);
 
-  auth.$inject = ['CONSTANTS', '$window', 'authtoken', '$state', '$stateParams', 'api', '$rootScope', '$q', '$log', '$http'];
+  tcAuth.$inject = ['CONSTANTS', '$window', 'authtoken', '$state', '$stateParams', 'api', '$rootScope', '$q', '$log', '$http'];
 
-  function auth(CONSTANTS, $window, authtoken, $state, $stateParams, api, $rootScope, $q, $log, $http) {
+  function tcAuth(CONSTANTS, $window, authtoken, $state, $stateParams, api, $rootScope, $q, $log, $http) {
     var auth0 = new Auth0({
       domain: CONSTANTS.auth0Domain,
       clientID: CONSTANTS.clientId,
+      // callbackOnLocationHash: true,
       callbackURL: CONSTANTS.auth0Callback
     });
 
     var service = {
       login: login,
+      socialLogin: socialLogin,
       logout: logout,
       register: register,
-      isAuthenticated: isAuthenticated,
-      initiateResetPassword: initiateResetPassword
+      isAuthenticated: isAuthenticated
     };
     return service;
 
@@ -26,44 +27,46 @@
     function login(username, password) {
       var options = {
         connection: 'LDAP',
-        scope: 'openid profile',
+        scope: 'openid profile offline_access',
+        device: "webapp",
         username: username,
         password: password
       };
       return $q(function(resolve, reject) {
-        auth0.signin(options, function(err, profile, v2_id_token, access_token, state) {
-          if (err) {
-            $log.error(err);
-            reject(err);
-          } else {
-            authtoken.setV2Token(v2_id_token);
-            // retrieve V3 Token
-            var req = {
-              method: 'GET',
-              url: CONSTANTS.API_URL + '/authorizations/1',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': "Bearer " + v2_id_token,
-              }
-            };
-            $http(req)
-              .success(function(resp) {
-                if (resp.result.success) {
-                  authtoken.setV3Token(resp.result.content.token);
+        auth0.signin(
+          options,
+          function(err, profile, idToken, accessToken, state, refreshToken) {
+            if (err) {
+              $log.error(err);
+              reject(err);
+            } else {
+              // set token
+              // authtoken.setV2Token(idToken);
+              // exchange token
+              authtoken.exchangeToken(refreshToken, idToken)
+                .then(function() {
                   $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
-                } else {
-                  $log.error("Failed to exchange token");
-                }
-              })
-              .error(function(err) {
-                // TODO handle error
-                $log.error(err);
-                reject(err);
-              });
-            resolve();
+                });
+              resolve();
           }
-        })
+        });
       });
+    }
+
+    function socialLogin(backend, state) {
+      // supported backends
+      var backends = ['facebook', 'google-oauth2', 'twitter', 'github'];
+      if (backends.indexOf(backend) > -1) {
+        auth0.login({
+          connection: backend,
+          device: 'webapp',
+          scope: "openid profile offline_access",
+          state: state
+        });
+      } else {
+        $log.error('Unsupported social login backend: ' + backend);
+        return false;
+      }
     }
 
     function logout(successCallback) {
@@ -83,12 +86,6 @@
 
     function isAuthenticated() {
       return !!authtoken.getV2Token();
-    }
-
-    function initiateResetPassword(email) {
-      return $q(function(resolve, reject) {
-        resolve(true);
-      });
     }
 
   }

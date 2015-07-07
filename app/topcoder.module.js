@@ -11,23 +11,26 @@
     'blocks.exception',
     'ngCookies',
     'angular-storage',
-    'restangular'
+    'restangular',
+    'auth0'
   ];
 
   angular
     .module('topcoder', dependencies)
     .run(appRun);
 
-  appRun.$inject = ['$rootScope', '$state', 'auth', '$cookies', 'helpers', '$log'];
+  appRun.$inject = ['$rootScope', '$state', 'tcAuth', '$cookies', 'helpers', '$log', 'auth'];
 
-  function appRun($rootScope, $state, auth, $cookies, helpers, $log) {
+  function appRun($rootScope, $state, tcAuth, $cookies, helpers, $log, auth) {
+
+    auth.hookEvents();
     // Attaching $state to the $rootScope allows us to access the
     // current state in index.html (see div with ui-view on the index page)
     $rootScope.$state = $state;
 
     // check AuthNAuth on change state start
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-      if (toState.data.authRequired && !auth.isAuthenticated()) {
+      if (toState.data.authRequired && !tcAuth.isAuthenticated()) {
         $log.debug('State requires authentication, and user is not logged in, redirecting');
         // setup redirect for post login
         event.preventDefault();
@@ -43,8 +46,12 @@
     });
   }
 
-  angular.module('topcoder').config(['$httpProvider', function($httpProvider) {
+  angular.module('topcoder').config(['$httpProvider', '$locationProvider', function($httpProvider, $locationProvider) {
     $httpProvider.interceptors.push('HeaderInterceptor');
+    $locationProvider.hashPrefix('!');
+
+  $locationProvider.html5Mode(true);
+
   }]);
 
 })();

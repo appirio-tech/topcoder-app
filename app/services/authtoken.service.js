@@ -3,9 +3,9 @@
 
   angular.module('topcoder').factory('authtoken', authtoken);
 
-  authtoken.$inject = ['CONSTANTS', '$window', '$cookies', 'store'];
+  authtoken.$inject = ['CONSTANTS', '$window', '$cookies', 'store', '$http', '$log'];
 
-  function authtoken(CONSTANTS, $window, $cookies, store) {
+  function authtoken(CONSTANTS, $window, $cookies, store, $http, $log) {
     var v2TokenKey = 'tcjwt';
     var v3TokenKey = 'appiriojwt';
 
@@ -15,7 +15,9 @@
       getV2Token: getV2Token,
       getV3Token: getV3Token,
       removeTokens: removeTokens,
-      refreshV3Token: refreshV3Token
+      refreshV3Token: refreshV3Token,
+      exchangeToken: exchangeToken,
+      getTokenFromAuth0Code: getTokenFromAuth0Code
     };
     return service;
 
@@ -32,6 +34,7 @@
     function getV3Token() {
       return store.get(v3TokenKey);
     }
+
     function getV2Token() {
       return $cookies.get(v2TokenKey);
     }
@@ -46,6 +49,46 @@
       // TODO
       var newToken = '';
       return newToken
+    }
+
+    function exchangeToken(refreshToken, idToken) {
+      return $http.post(
+          CONSTANTS.API_URL + '/authorizations', {
+            param: {
+              refreshToken: refreshToken,
+              externalToken: idToken
+            }
+          })
+        .then(
+          function(resp) {
+            setV3Token(resp.data.result.content.token);
+            return true;
+          },
+          function(err) {
+            $log.error(err);
+            removeTokens();
+          }
+        );
+    }
+
+    function getTokenFromAuth0Code(code) {
+      var req = {
+        method: 'POST',
+        url: CONSTANTS.API_URL + '/authorizations',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Auth0Code ' + code
+        },
+        data: {}
+      };
+      return $http(req).then(
+        function(resp) {
+          $log.debug(resp);
+        },
+        function(err) {
+          $log.error(err);
+        }
+      );
     }
   }
 

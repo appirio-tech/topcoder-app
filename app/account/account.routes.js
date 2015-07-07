@@ -11,7 +11,7 @@
     var states = {
       'login': {
         parent: 'root',
-        url: '/login?next',
+        url: '/login?next&code&state',
         data: {
           title: 'Login',
           authRequired: false

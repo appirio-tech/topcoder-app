@@ -8,7 +8,8 @@
     clientId: 'JFDo7HMkf0q2CkVFHojy3zHWafziprhT',
     domain: 'topcoder-dev.com',
     auth0Domain: 'topcoder-dev.auth0.com',
-    auth0Callback: 'https://www.topcoder-dev.com/reg2/callback.action',
+    // auth0Callback: 'https://www.topcoder-dev.com/reg2/callback.action',
+    auth0Callback: 'https://api.topcoder-dev.com/pub/callback.html',
     submissionDownloadPath: '/review/actions/DownloadContestSubmission?uid=',
 
 
