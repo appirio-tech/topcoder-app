@@ -41,14 +41,19 @@ html
 
   body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-strict-di)
 
-    include ./layout/header/sidebar.jade
 
-    include ./layout/header/header.jade
+    //- include ./layout/header/header.jade
+    div(ui-view="header")
+
+    //- include ./layout/header/sidebar.jade
+    div(ui-view="sidebar")
+
 
     .view-container(ng-class="{slided: main.sidebarActive}")
-      div(ui-view, ng-class="$state.current.name")
+      div(ui-view="container", ng-class="$state.current.name")
 
-    include ./layout/footer/footer.jade
+    //- include ./layout/footer/footer.jade
+    div(ui-view="footer")
 
     // build:js js/vendor.js
     //- bower:js
@@ -75,16 +80,21 @@ html
     script(src="topcoder.constants.js")
     script(src="topcoder.controller.js")
     script(src="topcoder.interceptors.js")
+    script(src="topcoder.routes.js")
     script(src="account/account.module.js")
     script(src="layout/layout.module.js")
     script(src="member-dashboard/member-dashboard.module.js")
     script(src="peer-review/peer-review.module.js")
+    script(src="sample/sample.module.js")
+    script(src="blocks/exception/exception.module.js")
+    script(src="blocks/logger/logger.module.js")
     script(src="account/account.routes.js")
     script(src="filters/local-time.filter.js")
     script(src="member-dashboard/index.js")
     script(src="member-dashboard/member-dashboard.routes.js")
     script(src="peer-review/peer-review.routes.js")
     script(src="peer-review/slideable.directive.js")
+    script(src="sample/sample.routes.js")
     script(src="services/api.service.js")
     script(src="services/auth.service.js")
     script(src="services/authtoken.service.js")
@@ -99,6 +109,17 @@ html
     script(src="services/user.service.js")
     script(src="account/login/login.controller.js")
     script(src="account/register/register.controller.js")
+    script(src="blocks/exception/exception-handler.provider.js")
+    script(src="blocks/exception/exception.js")
+    script(src="blocks/logger/logger.js")
+    script(src="bower_components/lodash/lodash.js")
+    script(src="bower_components/lodash/lodash.min.js")
+    script(src="bower_components/angular/angular.js")
+    script(src="bower_components/angular/angular.min.js")
+    script(src="bower_components/angular/index.js")
+    script(src="bower_components/restangular/Gruntfile.js")
+    script(src="bower_components/restangular/karma.conf.js")
+    script(src="bower_components/restangular/karma.underscore.conf.js")
     script(src="layout/header/header.controller.js")
     script(src="member-dashboard/blog-post/blog-post.controller.js")
     script(src="member-dashboard/helpful-links/helpful-links.controller.js")
@@ -113,6 +134,10 @@ html
     script(src="peer-review/readOnlyScorecard/readOnlyScorecard.controller.js")
     script(src="peer-review/review-status/review-status.controller.js")
     script(src="peer-review/review-status/review-status.filter.js")
+    script(src="bower_components/restangular/dist/restangular.js")
+    script(src="bower_components/restangular/dist/restangular.min.js")
+    script(src="bower_components/restangular/test/restangularSpec.js")
+    script(src="bower_components/restangular/src/restangular.js")
     //- endinject
 
     // inject:templates.js
