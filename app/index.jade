@@ -16,9 +16,6 @@ html
     //- inject:css
     link(rel="stylesheet", href="assets/css/reset.css")
     link(rel="stylesheet", href="assets/css/topcoder.css")
-    link(rel="stylesheet", href="assets/css/account/account.css")
-    link(rel="stylesheet", href="assets/css/account/login.css")
-    link(rel="stylesheet", href="assets/css/account/register.css")
     link(rel="stylesheet", href="assets/css/layout/account-header.css")
     link(rel="stylesheet", href="assets/css/layout/footer.css")
     link(rel="stylesheet", href="assets/css/layout/header.css")
@@ -27,6 +24,9 @@ html
     link(rel="stylesheet", href="assets/css/peer-review/peer-review.css")
     link(rel="stylesheet", href="assets/css/peer-review/readOnlyScorecard.css")
     link(rel="stylesheet", href="assets/css/peer-review/reviewStatus.css")
+    link(rel="stylesheet", href="assets/css/account/account.css")
+    link(rel="stylesheet", href="assets/css/account/login.css")
+    link(rel="stylesheet", href="assets/css/account/register.css")
     //- endinject
     // endbuild
 
@@ -91,15 +91,16 @@ html
     script(src="services/user.service.js")
     script(src="account/login/login.controller.js")
     script(src="account/register/register.controller.js")
+    script(src="account/reset-password/reset-password.controller.js")
     script(src="blocks/logger/logger.js")
     script(src="blocks/exception/exception-handler.provider.js")
     script(src="blocks/exception/exception.js")
     script(src="layout/header/header.controller.js")
     script(src="peer-review/completed-review/completed-review.controller.js")
     script(src="peer-review/edit-review/edit-review.controller.js")
-    script(src="peer-review/readOnlyScorecard/readOnlyScorecard.controller.js")
     script(src="peer-review/review-status/review-status.controller.js")
     script(src="peer-review/review-status/review-status.filter.js")
+    script(src="peer-review/readOnlyScorecard/readOnlyScorecard.controller.js")
     //- endinject
 
     // inject:templates.js
