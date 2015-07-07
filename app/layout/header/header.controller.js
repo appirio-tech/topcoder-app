@@ -3,22 +3,22 @@
 
   angular.module('tc.layout').controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$window', '$state', '$stateParams', 'auth', 'CONSTANTS', '$log', '$rootScope'];
+  HeaderController.$inject = ['$window', '$state', '$stateParams', 'tcAuth', 'CONSTANTS', '$log', '$rootScope'];
 
-  function HeaderController($window, $state, $stateParams, auth, CONSTANTS, $log, $rootScope) {
+  function HeaderController($window, $state, $stateParams, tcAuth, CONSTANTS, $log, $rootScope) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
-    vm.login = auth.login;
+    vm.login = tcAuth.login;
 
     function initHeaderProps(event) {
       $log.debug(event + ' triggered header update.');
-      vm.isAuth = auth.isAuthenticated;
+      vm.isAuth = tcAuth.isAuthenticated;
     }
     // init props default
     initHeaderProps('default');
 
     vm.logout = function() {
-      auth.logout().then(
+      tcAuth.logout().then(
         function() {
           // success
           $state.go('home');

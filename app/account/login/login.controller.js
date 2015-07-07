@@ -3,9 +3,9 @@
 
   angular.module('tc.account').controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$log', '$state', '$stateParams', 'tcAuth', '$location', 'authtoken', 'auth'];
+  LoginController.$inject = ['$log', '$state', '$stateParams', 'tcAuth', '$location', 'authtoken'];
 
-  function LoginController($log, $state, $stateParams, tcAuth, $location, authtoken, auth) {
+  function LoginController($log, $state, $stateParams, tcAuth, $location, authtoken) {
     var vm = this;
     vm.passwordReset = false;
     vm.userDoesntExist = false;

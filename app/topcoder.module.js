@@ -11,19 +11,16 @@
     'blocks.exception',
     'ngCookies',
     'angular-storage',
-    'restangular',
-    'auth0'
+    'restangular'
   ];
 
   angular
     .module('topcoder', dependencies)
     .run(appRun);
 
-  appRun.$inject = ['$rootScope', '$state', 'tcAuth', '$cookies', 'helpers', '$log', 'auth'];
+  appRun.$inject = ['$rootScope', '$state', 'tcAuth', '$cookies', 'helpers', '$log'];
 
-  function appRun($rootScope, $state, tcAuth, $cookies, helpers, $log, auth) {
-
-    auth.hookEvents();
+  function appRun($rootScope, $state, tcAuth, $cookies, helpers, $log) {
     // Attaching $state to the $rootScope allows us to access the
     // current state in index.html (see div with ui-view on the index page)
     $rootScope.$state = $state;
@@ -46,12 +43,8 @@
     });
   }
 
-  angular.module('topcoder').config(['$httpProvider', '$locationProvider', function($httpProvider, $locationProvider) {
+  angular.module('topcoder').config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('HeaderInterceptor');
-    $locationProvider.hashPrefix('!');
-
-  $locationProvider.html5Mode(true);
-
   }]);
 
 })();
