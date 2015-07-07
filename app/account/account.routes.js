@@ -49,8 +49,6 @@
       }
     };
 
-    $urlRouterProvider.otherwise('/login');
-
     angular.forEach(states, function(state, name) {
       $stateProvider.state(name, state);
     });

@@ -7,13 +7,23 @@
 
   p(ng-show="vm.wrongPassword", ng-class="{'login-error': vm.wrongPassword}") That password doesn't match the one we have on file. Please try again.
 
-  form(name="login-form")
-    input(name="username")
+  form(name="login-form", role="form", novalidate)
+    input(name="username", placeholder="Username or Email", type="text")
 
-    input(name="password")
+    input(name="password", placeholder="Password", type="password")
 
     button(type="submit") Login
 
+  section.social
+    p log in with another account
 
-  p Don't have an account? 
+    .social-icons
+      i.fa.fa-github-square
+      i.fa.fa-facebook-square
+      i.fa.fa-google-plus-square
+      i.fa.fa-twitter-square
+
+  a.forgot-password(ui-sref="resetPassword") Forgot Password?
+
+  p.redirect Don't have an account? 
     a(ui-sref="register") Join Now.
