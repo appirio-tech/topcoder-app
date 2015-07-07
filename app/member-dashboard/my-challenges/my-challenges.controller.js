@@ -162,8 +162,6 @@
         vm.lastRecordIndex = vm.pageIndex * vm.pageSize;
         vm.lastRecordIndex = vm.lastRecordIndex > vm.totalRecords ? vm.totalRecords : vm.lastRecordIndex;
       }
-      console.log(vm.firstRecordIndex);
-      console.log(vm.myChallenges);
       vm.myChallenges = data;
       angular.forEach(vm.myChallenges, function(challenge) {
         var now = moment();

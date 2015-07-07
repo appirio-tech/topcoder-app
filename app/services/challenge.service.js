@@ -76,7 +76,7 @@
           sortOrder = request && request.sortOrder ? request.sortOrder : 'asc';
           listType = request && request.type ? request.type : 'active';
           rApi.request = request;
-          rApi.all().getList('marathonMatches', {
+          rApi.all('marathonMatches').getList({
             listType: listType,
             sortColumn: sortColumn,
             sortOrder: sortOrder

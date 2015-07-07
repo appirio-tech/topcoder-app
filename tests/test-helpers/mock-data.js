@@ -7,7 +7,9 @@ var mockData = (function() {
     getMockChallengeDates: getMockChallengeDates,
     getMockUsersPeerReviews: getMockUsersPeerReviews,
     getMockBlogs: getMockBlogs,
-    getMockUserProfile: getMockUserProfile
+    getMockUserProfile: getMockUserProfile,
+    getMockChallenges: getMockChallenges,
+    getMockMarathons: getMockMarathons
   };
 
   function getMockStates() {
@@ -284,6 +286,36 @@ var mockData = (function() {
         ]
       }
     };
+  }
+
+  function getMockChallenges() {
+    var challenges = [];
+    challenges.push(getMockChallenge());
+    challenges.push(getMockChallenge());
+    return challenges;
+  }
+
+  function getMockMarathons() {
+    return [
+      {
+        "roundId": 15761,
+        "fullName": "USAID and Humanity United",
+        "shortName": "Tech Challenge for Atrocity Prevention",
+        "startDate": "08.22.2013 13:30 EDT",
+        "endDate": "08.22.2013 13:30 EDT",
+        "winnerHandle": "nhzp339",
+        "winnerScore": 376.79
+      },
+      {
+        "roundId": 15684,
+        "fullName": "Marathon Match 81",
+        "shortName": "Marathon Match 81",
+        "startDate": "06.05.2013 12:43 EDT",
+        "endDate": "06.05.2013 12:43 EDT",
+        "winnerHandle": "ACRush",
+        "winnerScore": 999534.81
+      }
+    ];
   }
 
 })();
