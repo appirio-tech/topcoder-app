@@ -72,6 +72,7 @@
     function logout(successCallback) {
       return $q(function(resolve, reject) {
         authtoken.removeTokens();
+        $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT);
         resolve();
       });
     }

@@ -39,8 +39,8 @@
         },
         function(err) {
           // handle error
-          $log.error("You messed up son! " + err);
-          // Set validity of password to false if authentication failed
+          vm.wrongPassword = true;
+          vm.password = '';
         }
       );
     };

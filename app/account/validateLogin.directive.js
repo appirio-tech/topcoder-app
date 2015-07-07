@@ -4,22 +4,28 @@
   angular.module('validateLogin', [])
   .directive('usernameExists', usernameExists);
 
-  usernameExists.$inject = ['$timeout', '$q', '$log'];
+  usernameExists.$inject = ['UserService', '$log', '$q'];
 
-  function usernameExists($timeout, $q, $log) {
+  function usernameExists(UserService, $log, $q) {
     return {
       require: 'ngModel',
-      link: function(scope, element, attrs, ngModel) {
-        ngModel.$asyncValidators.usernameExists = function(username) {
-          $log.info('Validating username or email: ' + username);
+      link: function(scope, element, attrs, ctrl) {
+        ctrl.$asyncValidators.username = function(modelValue, viewValue) {
+          $log.info('Validating username or email: ' + modelValue);
 
           // Fake API call that returns false
           // Check if the username exists here
           var defer = $q.defer();
-          $timeout(function(){
-            ngModel.$setValidity('usernameExists', true);
-            defer.resolve;
-          }, 1000);
+          UserService.validateUserHandle(modelValue).then(
+            function(resp) {
+              // doesn't exists
+              return defer.reject();
+            },
+            function(resp) {
+              // user exists --yipeee
+              return defer.resolve();
+            }
+          );
           return defer.promise;
         };
       }

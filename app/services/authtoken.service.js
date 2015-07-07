@@ -58,6 +58,9 @@
               refreshToken: refreshToken,
               externalToken: idToken
             }
+          },
+          {
+            withCredentials: true
           })
         .then(
           function(resp) {

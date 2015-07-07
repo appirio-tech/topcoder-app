@@ -37,19 +37,6 @@
     }
 
     // RESTANGULAR config
-
-    var _errorInterceptor = function(response) {
-      switch (response.status) {
-        case 403: // FORBIDDEN
-        case 500: // SERVER ERROR
-        case 503: // HTTP_503_SERVICE_UNAVAILABLE
-          $log.error(response);
-          return false; // error handled
-        default:
-          return true; // error not handled
-      }
-    };
-
     function getRestangularV3() {
       var _restangularV3 = Restangular.withConfig(function(Configurer) {
         Configurer
@@ -73,7 +60,15 @@
             return extractedData;
           })
           .setErrorInterceptor(function(response) {
-            return _errorInterceptor(response);
+            switch (response.status) {
+              case 403: // FORBIDDEN
+              case 500: // SERVER ERROR
+              case 503: // HTTP_503_SERVICE_UNAVAILABLE
+                $log.error(response);
+                return false; // error handled
+              default:
+                return true; // error not handled
+            }
           });
       });
       return _restangularV3;

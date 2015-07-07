@@ -9,15 +9,17 @@
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.login = tcAuth.login;
+    vm.logout = logout;
+
 
     function initHeaderProps(event) {
       $log.debug(event + ' triggered header update.');
-      vm.isAuth = tcAuth.isAuthenticated;
+      vm.isAuth = tcAuth.isAuthenticated();
     }
     // init props default
     initHeaderProps('default');
 
-    vm.logout = function() {
+    function logout() {
       tcAuth.logout().then(
         function() {
           // success
