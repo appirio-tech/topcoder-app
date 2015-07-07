@@ -1,40 +1,9 @@
 @import '../partials/combined';
 
 .login-container {
-  text-align: center;
-
-  h1 {
-    @include source-sans-light;
-    font-size: 46px;
-    color: #414042;
-  }
-
-  .login-notice {
-    @include source-sans;
-    font-size: 13px;
-    color: #58595B;
-  }
-
-  .login-error {
-    @extend .login-notice;
-    color: red;
-  }
-
-  form {
-    display: flex;
-    justify-content: center;
-
-    input, button {
-      flex-direction: column;
-      display: block;
-    }
-
-    button {
-      width: 215px;
-      height: 38px;
-      background-color: #94D7ED;
-      color: $white;
-      text-transform: uppercase;
-    }
+  .forgot-password {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 12px;
   }
 }

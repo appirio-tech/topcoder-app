@@ -7,9 +7,9 @@
 
   function LoginController($log, $state, $stateParams, tcAuth, $location, authtoken, auth) {
     var vm = this;
-    vm.passwordReset = true;
-    vm.userDoesntExist = true;
-    vm.wrongPassword = true;
+    vm.passwordReset = false;
+    vm.userDoesntExist = false;
+    vm.wrongPassword = false;
 
 
     if ($stateParams.state && $stateParams.code) {

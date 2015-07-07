@@ -27,6 +27,11 @@
 
 @mixin login-link {
   color: $login-blue;
+  text-decoration: underline;
+
+  &:visited {
+    color: $login-blue;
+  }
 }
 
 @mixin horizontal-rule {
