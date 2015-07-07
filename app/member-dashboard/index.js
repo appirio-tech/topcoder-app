@@ -29,11 +29,11 @@
   function MyDashboardCtrl($scope, $location, auth, profile) {
     var vm = this;
     vm.title = "My Dashboard";
-    vm.user = null;
     vm.identityListeners = {};
     vm.loggedIn = auth.isAuthenticated();
     vm.addIdentityChangeListener = addIdentityChangeListener;
     vm.removeIdentityChangeListener = removeIdentityChangeListener;
+    vm.activate = activate;
 
     // activate controller
     if (auth.isAuthenticated() === true) {
@@ -43,10 +43,6 @@
     }
 
     function activate() {
-      // app.addIdentityChangeListener("my-dashboard", function(identity) {
-      //   vm.user = identity;
-      // });
-
       profile.getUserProfile().then(function(response) {
         for (var name in vm.identityListeners) {
           var listener = vm.identityListeners[name];

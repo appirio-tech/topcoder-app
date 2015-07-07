@@ -5,7 +5,9 @@ var mockData = (function() {
     getMockStates: getMockStates,
     getMockChallenge: getMockChallenge,
     getMockChallengeDates: getMockChallengeDates,
-    getMockUsersPeerReviews: getMockUsersPeerReviews
+    getMockUsersPeerReviews: getMockUsersPeerReviews,
+    getMockBlogs: getMockBlogs,
+    getMockUserProfile: getMockUserProfile
   };
 
   function getMockStates() {
@@ -226,6 +228,62 @@ var mockData = (function() {
         "version":"v3"
       }
     }
+  }
+
+  function getMockBlogs() {
+    return [{
+      title: 'blog1',
+      link: 'http://blog.topcoder.com/blog1',
+      pubDate: new Date(),
+      description: '<p>Blog 1 description</p>'
+    }, {
+      title: 'blog2',
+      link: 'http://blog.topcoder.com/blog2',
+      pubDate: new Date(),
+      description: '<p>Blog 2 description</p>'
+    }];
+  }
+
+  function getMockUserProfile() {
+    return {
+      data: 
+      {
+        "handle": "vikasrohit",
+        "country": "India",
+        "memberSince": "2007-07-08T13:46:00.000-0400",
+        "quote": "Trying to be TopCoder....",
+        "photoLink": "/i/m/vikasrohit.jpeg",
+        "copilot": false,
+        "overallEarning": 10653.27,
+        "ratingSummary": [
+          {
+            "name": "Development",
+            "rating": 800,
+            "colorStyle": "color: #999999"
+          },
+          {
+            "name": "Assembly",
+            "rating": 866,
+            "colorStyle": "color: #999999"
+          },
+          {
+            "name": "Design",
+            "rating": 879,
+            "colorStyle": "color: #999999"
+          },
+          {
+            "name": "Algorithm",
+            "rating": 566,
+            "colorStyle": "color: #999999"
+          },
+          {
+            "name": "Marathon Match",
+            "rating": 961,
+            "colorStyle": "color: #00A900"
+          }
+        ]
+      }
+    };
   }
 
 })();
