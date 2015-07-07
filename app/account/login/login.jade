@@ -1,18 +1,24 @@
 .login-container
   h1 Login
 
-  p(ng-show="vm.passwordReset", ng-class="{'login-notice': vm.passwordReset}") Your password has been reset. You may now login.
+  form(name="vm.loginForm", role="form", ng-submit="vm.loginForm.$valid && vm.doLogin()", novalidate)
+    .form-errors
+      p.login-notice(ng-if="vm.passwordReset") Your password has been reset. You may now login.
 
-  p(ng-show="vm.userDoesntExist", ng-class="{'login-error': vm.userDoesntExist}") This user does not exist.
+      p.login-error(ng-if="vm.loginForm.$error.usernameExists") This user does not exist.
 
-  p(ng-show="vm.wrongPassword", ng-class="{'login-error': vm.wrongPassword}") That password doesn't match the one we have on file. Please try again.
+      p.login-error(ng-if="vm.wrongPassword") That password doesn't match the one we have on file. Please try again.
 
-  form(name="vm.loginForm", role="form", novalidate)
-    input(ng-model="vm.username", name="username", placeholder="Username or Email", type="text", required)
+      div(ng-if="vm.loginForm.$submitted")
+        p.login-error(ng-if="vm.loginForm.username.$error.required") Please enter your username or email.
+
+        p.login-error(ng-if="vm.loginForm.password.$error.required") Please enter your password.
+
+    input(ng-model="vm.username", ng-model-options="{debounce: {'default': 500}}", name="username", placeholder="Username or Email", type="text", required, username-exists)
 
     input(ng-model="vm.password", name="password", placeholder="Password", type="password", required)
 
-    button(type="submit", ng-click="vm.doLogin()") Login
+    button(type="submit", ng-disabled="vm.loginForm.$invalid", ng-class="{'enabled-button': vm.loginForm.$valid}") Login
 
   section.social
     p log in with another account

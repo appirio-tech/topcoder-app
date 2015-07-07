@@ -8,9 +8,6 @@
   function LoginController($log, $state, $stateParams, tcAuth, $location, authtoken) {
     var vm = this;
     vm.passwordReset = false;
-    vm.userDoesntExist = false;
-    vm.wrongPassword = false;
-
 
     if ($stateParams.state && $stateParams.code) {
       authtoken.getTokenFromAuth0Code($stateParams.code);
@@ -34,21 +31,18 @@
 
     vm.doLogin = function() {
       // TODO placeholder, validate form etc
-      if (vm.loginForm.$valid) {
-
-        tcAuth.login(vm.username, vm.password).then(
-          function(data) {
-            // success
-            $log.debug('logged in');
-            redirect();
-          },
-          function(err) {
-            // handle error
-            $log.error("You messed up son! " + err);
-          });
-      } else {
-        // do something
-      }
+      tcAuth.login(vm.username, vm.password).then(
+        function(data) {
+          // success
+          $log.debug('logged in');
+          redirect();
+        },
+        function(err) {
+          // handle error
+          $log.error("You messed up son! " + err);
+          // Set validity of password to false if authentication failed
+        }
+      );
     };
 
     vm.socialLogin = function(backend) {

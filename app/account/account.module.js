@@ -2,8 +2,8 @@
   'use strict';
 
   var dependencies = [
-    'ui.router',
-    // 'auth0'
+    'validateLogin',
+    'ui.router'
   ];
 
   angular.module('tc.account', dependencies);

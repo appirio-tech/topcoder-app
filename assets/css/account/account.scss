@@ -17,7 +17,7 @@ body, .view-container {
 
   // Basic element stylings
   h1 {
-    margin-bottom: 35px;
+    margin-bottom: 30px;
     @include source-sans-light;
     font-size: 46px;
     color: #414042;
@@ -54,6 +54,15 @@ body, .view-container {
     font-size: 21px;
   }
 
+  .enabled-button {
+    background-color: #27a9e1;
+  }
+
+  // Form stylings
+  .form-errors {
+    padding-bottom: 10px;
+  }
+
   .login-notice {
     font-size: 13px;
     color: #58595B;
@@ -64,6 +73,7 @@ body, .view-container {
     color: red;
   }
 
+  // Social section
   .social {
     margin-top: 15px;
 
