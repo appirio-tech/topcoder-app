@@ -38,7 +38,7 @@ describe('Blog Post Controller', function() {
       expect(blogService.getBlogFeed.callCount).to.be.equal(0);
     });
 
-    it('should get blog feed from mock service', function() {
+    it('should not have blogPosts', function() {
       expect(controller.blogPosts).not.to.exist;
     });
   });
