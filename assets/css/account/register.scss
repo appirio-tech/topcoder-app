@@ -1,5 +1,76 @@
 @import '../partials/combined';
 
 .register-container {
+  position: relative;
 
+  .login-error {
+    margin: 2px 0 12px 5px;
+  }
+  form {
+    display: flex;
+    flex-flow: row wrap;
+    width: 300px;
+    justify-content: space-between;
+  }
+
+  input[name="firstname"], input[name="lastname"] {
+    width: 136px;
+  }
+
+  input[name="country"] {
+    width: 220px;
+  }
+
+  input[name="age"] {
+    width: 50px;
+  }
+
+  .username-tips {
+    position: absolute;
+    top: 219px;
+    left: 330px;
+    width: 320px;
+    text-align: left;
+
+    h3, p {
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      @include source-sans-semi-bold;
+      font-size: 18px;
+    }
+
+    h3:before {
+      font-family: 'FontAwesome';
+      content: '\f053';
+      display: inline-block;
+      width: 20px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #808285;
+    }
+    p:before {
+      font-family: 'FontAwesome';
+      content: '';
+      display: inline-block;
+      width: 20px;
+    }
+  }
+
+  .terms {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    p {
+      font-size: 13px;
+      color: #808285;
+    }
+
+    p:first-child {
+      margin-bottom: 10px;
+    }
+  }
 }

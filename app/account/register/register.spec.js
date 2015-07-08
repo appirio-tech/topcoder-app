@@ -18,11 +18,4 @@ describe('Register Controller', function() {
     expect(controller).to.be.defined;
   });
 
-  it('should have a name property', function() {
-    expect(controller.name).to.be.defined;
-  });
-
-  it('should have register as the name property', function() {
-    expect(controller.name).to.equal('register');
-  });
 });

@@ -5,13 +5,12 @@ body, .view-container {
 }
 
 .login-container, .register-container {
-  width: 100%;
-  min-width: 300px;
+  width: 300px;
+  margin: 0 auto;
   padding-top: 25px;
   padding-bottom: 45px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   text-align: center;
   @include source-sans;
 
@@ -29,7 +28,7 @@ body, .view-container {
 
   input, button {
     display: block;
-    margin: 10px auto;
+    margin-bottom: 10px;
   }
 
   input {
@@ -78,7 +77,7 @@ body, .view-container {
     margin-top: 15px;
 
     p {
-      font-size: 26px;
+      font-size: 21px;
       line-height: 32px;
       color: #231F20;
     }

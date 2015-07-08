@@ -3,10 +3,21 @@
 
   angular.module('tc.account').controller('RegisterController', RegisterController);
 
-  RegisterController.$inject = [];
+  RegisterController.$inject = ['$log', 'tcAuth'];
 
-  function RegisterController() {
+  function RegisterController($log, tcAuth) {
     var vm = this;
-    vm.name = 'register';
+    vm.usernameTips = false;
+
+    vm.register = function() {
+      console.log('Registering');
+      tcAuth.login(vm.username, vm.password)
+      .then(function(data) {
+        $log.debug('registered successfully');
+      })
+      .catch(function(err) {
+      });
+    };
+
   }
 })();

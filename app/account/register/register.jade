@@ -1,20 +1,48 @@
 .register-container
   h1 Join Topcoder
 
-  form(name="register-form", role="form", novalidate)
-    input(name="firstname", placeholder="First Name", type="text")
+  form(name="registerForm", role="form", ng-submit="registerForm.$valid && vm.register()", novalidate)
+    input(ng-model="vm.firstname", name="firstname", placeholder="First Name", type="text", required)
 
-    input(name="lastname", placeholder="Last Name", type="text")
+    input(ng-model="vm.lastname", name="lastname", placeholder="Last Name", type="text", required)
 
-    button(type="submit") Join Now
+    input(ng-model="vm.country", name="country", placeholder="Country", type="text", required)
+
+    input(ng-model="vm.age", ng-model-options="{ updateOn: 'default blur' }", name="age", placeholder="Age", type="number", ng-min="13", required)
+
+    p.login-error(ng-if="registerForm.age.$error.min") You must be at least X years old to join Topcoder.
+
+    input(ng-model="vm.username", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false" name="username", placeholder="Username", type="text", required)
+
+    input(ng-model="vm.email", name="email", placeholder="Enter Your Email", type="email", required)
+
+    input(ng-model="vm.password", name="password", placeholder="Create Password", type="password", required)
+
+    button(type="submit", ng-disabled="registerForm.$invalid", ng-class="{'enabled-button': registerForm.$valid}") Join Now
+
+  .username-tips(ng-show="vm.usernameTips")
+    h3 Username Tips:
+
+    p This will be public to other members
+
+    p Between X and Y characters
+
+    p Contain numbers and letters
+
+    p You can always change it later
+
+  section.terms
+    p By clicking "JOIN NOW" I agree to Topcoder's
+
+    p #[a(href="http://www.topcoder.com/community/how-it-works/terms/") Terms of Service] and #[a(href="http://www.topcoder.com/community/how-it-works/privacy-policy/") Privacy Policy]
 
   section.social
     p Register using another account.
 
     .social-icons
-      .github
-      .facebook
-      .google
+      i.fa.fa-github-square
+      i.fa.fa-facebook-square
+      i.fa.fa-google-plus-square
 
   p.redirect Already have an account? 
     a(ui-sref="login") Login.

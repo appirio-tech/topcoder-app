@@ -43,7 +43,8 @@
           },
           'container@': {
             templateUrl: 'account/register/register.html',
-            controller: 'RegisterController'
+            controller: 'RegisterController',
+            controllerAs: 'vm'
           }
         }
       },
