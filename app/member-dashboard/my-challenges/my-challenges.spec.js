@@ -7,10 +7,10 @@ describe('Challenges Controller', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, '$controller', '$rootScope', '$q', 'auth', 'challenge');
+    bard.inject(this, '$controller', '$rootScope', '$q', 'tcAuth', 'challenge');
 
     challengeService = challenge;
-    authService = auth;
+    authService = tcAuth;
 
     // mock active challenges api
     sinon.stub(challengeService, 'getMyActiveChallenges', function() {

@@ -18,7 +18,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  BlogPostCtrl.$inject = ['$scope', 'auth', 'blog'];
+  BlogPostCtrl.$inject = ['$scope', 'tcAuth', 'blog'];
 
   /**
    * BlogPost Controller implementation
@@ -27,11 +27,11 @@
    * @param blog service to access and parse blog RSS feed
    * @constructor
    */
-  function BlogPostCtrl($scope, auth, blog) {
+  function BlogPostCtrl($scope, tcAuth, blog) {
     var vm = this;
 
     // activate controller
-    if (auth.isAuthenticated() === true) {
+    if (tcAuth.isAuthenticated() === true) {
       activate();
     } else {
       return false;

@@ -7,12 +7,12 @@
     '$rootScope',
     '$state',
     'authtoken',
-    'auth',
+    'tcAuth',
     '$cookies',
     run
   ]);
 
-  function run($rootScope, $state, authtoken, auth, $cookies) {
+  function run($rootScope, $state, authtoken, tcAuth, $cookies) {
     $rootScope.$state = $state;
     localStorage.setItem('tcjwt', $cookies.get('tcjwt'));
     $rootScope.$on('$locationChangeStart', function(event, newUrl, oldUrl) {
@@ -21,8 +21,8 @@
       }
     });
     return $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-      if (toState.authenticate && !auth.isAuthenticated()) {
-        return auth.checkLogin();
+      if (toState.authenticate && !tcAuth.isAuthenticated()) {
+        //return tcAuth.checkLogin();
       }
     });
   }

@@ -19,7 +19,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  MyChallengesCtrl.$inject = ['$scope', 'auth','challenge', 'CONSTANTS', '$q'];
+  MyChallengesCtrl.$inject = ['$scope', 'tcAuth','challenge', 'CONSTANTS', '$q'];
 
   /**
    * Controller implementation
@@ -28,7 +28,7 @@
    * @param ChallengeService services to access the challenges api
    * @constructor
    */
-  function MyChallengesCtrl($scope, auth, ChallengeService, CONSTANTS, $q) {
+  function MyChallengesCtrl($scope, tcAuth, ChallengeService, CONSTANTS, $q) {
     var vm = this;
     vm.loading = true;
     vm.newChallengesUrl = CONSTANTS.NEW_CHALLENGES_URL;
@@ -61,7 +61,7 @@
     var db = $scope.$parent.db;
 
     // getChallenges controller
-    if (auth.isAuthenticated() === true) {
+    if (tcAuth.isAuthenticated() === true) {
       getChallenges();
     } else {
       return false;

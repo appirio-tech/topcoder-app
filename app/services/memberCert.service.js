@@ -11,15 +11,20 @@
     .module('tc.myDashboard')
     .factory('memberCert', ProfileService);
 
-  ProfileService.$inject = ['Restangular3'];
+  ProfileService.$inject = ['Restangular3', 'authtoken'];
 
   /**
    * SRMService 
    * @param Restangular to access the REST api
    * @constructor
    */
-  function ProfileService(Restangular) {
+  function ProfileService(Restangular, authtoken) {
     var service = Restangular.withConfig(function(RestangularConfigurer) {
+      RestangularConfigurer.addFullRequestInterceptor(function(element, operation, what, url) {
+        return {
+          headers: {'Authorization': 'Bearer ' + authtoken.getV2Token()}
+        };
+      });
     });
 
     /**

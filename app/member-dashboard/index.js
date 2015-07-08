@@ -18,7 +18,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  MyDashboardCtrl.$inject = ['$scope', '$location', 'auth', 'profile'];
+  MyDashboardCtrl.$inject = ['$scope', '$location', 'tcAuth', 'profile'];
 
   /**
    * Controller implementation
@@ -26,17 +26,17 @@
    * @param $scope
    * @constructor
    */
-  function MyDashboardCtrl($scope, $location, auth, profile) {
+  function MyDashboardCtrl($scope, $location, tcAuth, profile) {
     var vm = this;
     vm.title = "My Dashboard";
     vm.identityListeners = {};
-    vm.loggedIn = auth.isAuthenticated();
+    vm.loggedIn = tcAuth.isAuthenticated();
     vm.addIdentityChangeListener = addIdentityChangeListener;
     vm.removeIdentityChangeListener = removeIdentityChangeListener;
     vm.activate = activate;
 
     // activate controller
-    if (auth.isAuthenticated() === true) {
+    if (tcAuth.isAuthenticated() === true) {
       activate();
     } else { // if user is not logged in, return (to avoid extra ajax calls)
       return false;

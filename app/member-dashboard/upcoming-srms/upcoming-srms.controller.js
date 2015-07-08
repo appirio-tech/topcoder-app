@@ -19,7 +19,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  UpcomingSRMsCtrl.$inject = ['$scope', '$location', 'auth','srms', 'CONSTANTS'];
+  UpcomingSRMsCtrl.$inject = ['$scope', '$location', 'tcAuth','srms', 'CONSTANTS'];
 
   /**
    * Controller implementation
@@ -28,7 +28,7 @@
    * @param SRMServices services to access topcoder API for SRM data
    * @constructor
    */
-  function UpcomingSRMsCtrl($scope, $location, auth, SRMService, CONSTANTS) {
+  function UpcomingSRMsCtrl($scope, $location, tcAuth, SRMService, CONSTANTS) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
     vm.loading = true;
@@ -49,7 +49,7 @@
     vm.sort = sort;
 
     // activate controller
-    if (auth.isAuthenticated() === true) {
+    if (tcAuth.isAuthenticated() === true) {
       getSRMs();
     } else {
       return false;

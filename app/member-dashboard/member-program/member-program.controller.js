@@ -19,7 +19,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  MemberProgramCtrl.$inject = ['$scope', '$q', 'auth', 'memberCert', 'CONSTANTS'];
+  MemberProgramCtrl.$inject = ['$scope', '$q', 'tcAuth', 'memberCert', 'UserService' , 'CONSTANTS'];
 
   /**
    * Controller implementation
@@ -27,7 +27,7 @@
    * @param $scope
    * @constructor
    */
-  function MemberProgramCtrl($scope, $q, auth, MemberCertService, CONSTANTS) {
+  function MemberProgramCtrl($scope, $q, tcAuth, MemberCertService, UserService, CONSTANTS) {
     var vm = this;
     vm.title = 'iOS Developer Community';
     vm.user = null;
@@ -49,7 +49,7 @@
     var db = $scope.$parent.db;
 
     // activate controller
-    if (auth.isAuthenticated() === true) {
+    if (tcAuth.isAuthenticated() === true) {
       db.addIdentityChangeListener("memberprogram", function(identity) {
         activate(identity);
       });
@@ -64,24 +64,28 @@
       vm.loading = true;
       vm.loadingMessage = "Checking your program status";
       vm.user = user;
-      var promises = [
-        MemberCertService.getMemberRegistration(vm.user.uid, CONSTANTS.SWIFT_PROGRAM_ID),
-        MemberCertService.peerBadgeCompleted(CONSTANTS.SWIFT_PROGRAM_ID)
-      ]
-      // gets member's registration status for the event
-      return $q.all(promises).then(function(data) {
-        var regResult = data.length > 0 ? data[0].result : null;
-        var reg = regResult ? regResult.content : null;
-        var peerBadgeResult = data.length > 1 ? data[1].result : null;
-        if (reg) {
-          vm.registration = reg;
-          peerBadgeCompleted = peerBadgeResult ? peerBadgeResult.content : false;
-          // peer badge is at 2 index in the array
-          vm.badges[2].completed = peerBadgeCompleted;
-        } else {
-          vm.registration = null;
-        }
-        vm.loading = false;
+
+      UserService.getUsername().then(function(response) {
+        var identity = response.data;
+        var promises = [
+          MemberCertService.getMemberRegistration(identity.uid, CONSTANTS.SWIFT_PROGRAM_ID),
+          MemberCertService.peerBadgeCompleted(CONSTANTS.SWIFT_PROGRAM_ID)
+        ]
+        // gets member's registration status for the event
+        return $q.all(promises).then(function(data) {
+          var regResult = data.length > 0 ? data[0].result : null;
+          var reg = regResult ? regResult.content : null;
+          var peerBadgeResult = data.length > 1 ? data[1].result : null;
+          if (reg) {
+            vm.registration = reg;
+            peerBadgeCompleted = peerBadgeResult ? peerBadgeResult.content : false;
+            // peer badge is at 2 index in the array
+            vm.badges[2].completed = peerBadgeCompleted;
+          } else {
+            vm.registration = null;
+          }
+          vm.loading = false;
+        });
       });
     }
 

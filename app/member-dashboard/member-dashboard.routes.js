@@ -15,7 +15,12 @@
         url: '/my-dashboard',
         templateUrl: 'member-dashboard/index.html',
         controller: 'dashboard as db',
-        authenticate: true
+        authenticate: true,
+        parent: 'root',
+        data: {
+          authRequired: false,
+          title: 'Dashboard page'
+        }
       }
     };
     for (name in states) {

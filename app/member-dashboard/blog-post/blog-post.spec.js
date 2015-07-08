@@ -6,10 +6,10 @@ describe('Blog Post Controller', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, '$controller', '$rootScope', '$q', 'auth', 'blog');
+    bard.inject(this, '$controller', '$rootScope', '$q', 'tcAuth', 'blog');
 
     blogService = blog;
-    authService = auth;
+    authService = tcAuth;
 
     sinon.stub(blogService, 'getBlogFeed', function() {
       var deferred = $q.defer();

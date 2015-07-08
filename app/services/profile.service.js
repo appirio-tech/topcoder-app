@@ -14,7 +14,7 @@
     ///////////////
 
     function getUserProfile() {
-      return user.getUsername()
+      return UserService.getUsername()
       .then(function(response) {
         return api.requestHandler('GET', CONSTANTS.API_URL_V2 + '/users/' + response.data.handle);
       });

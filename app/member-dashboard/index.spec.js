@@ -6,10 +6,10 @@ describe('Dashboard Controller', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, '$controller', '$rootScope', '$q', 'auth', 'profile', 'user');
-    authService = auth;
+    bard.inject(this, '$controller', '$rootScope', '$q', 'tcAuth', 'profile', 'UserService');
+    authService = tcAuth;
     profileService = profile;
-    userService = user;
+    userService = UserService;
     userProfileResp = mockData.getMockUserProfile();
 
     sinon.stub(profileService, 'getUserProfile', function() {

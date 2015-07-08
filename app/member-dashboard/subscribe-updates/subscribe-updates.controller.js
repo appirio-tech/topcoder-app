@@ -18,7 +18,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  SubscribeUpdatesCtrl.$inject = ['$scope', '$http', '$location', 'auth'];
+  SubscribeUpdatesCtrl.$inject = ['$scope', '$http', '$location', 'tcAuth'];
 
   /**
    * Controller implementation
@@ -26,10 +26,10 @@
    * @param $scope
    * @constructor
    */
-  function SubscribeUpdatesCtrl($scope, $http, $location, auth) {
+  function SubscribeUpdatesCtrl($scope, $http, $location, tcAuth) {
     var vm = this;
     vm.title = "Subscribe to Updates";
-    vm.loggedIn = auth.isAuthenticated();
+    vm.loggedIn = tcAuth.isAuthenticated();
     vm.frm = {};
     vm.email = null;
     // as of now not able to bind the url to view, so it is hard coded in view too

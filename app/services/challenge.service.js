@@ -6,6 +6,13 @@
   challenge.$inject = ['CONSTANTS', 'api','Restangular', 'Restangular3', '$q'];
 
   function challenge(CONSTANTS, api, Restangular, Restangular3, $q) {
+
+    var rApi2, rApi;
+    rApi2 = Restangular.withConfig(function(RestangularConfigurer) {});
+    rApi2.activeChallengeDeferredList = [];
+    rApi = Restangular3.withConfig(function(RestangularConfigurer) {});
+    rApi.marathonMatchesDeferredList = [];
+
     var service = {
       getReviewEndDate: getReviewEndDate,
       getChallengeDetails: getChallengeDetails,
@@ -14,19 +21,13 @@
     };
     return service;
 
-    var rApi2, rApi;
-    rApi2 = Restangular.withConfig(function(RestangularConfigurer) {});
-    rApi2.activeChallengeDeferredList = [];
-    rApi = Restangular3.withConfig(function(RestangularConfigurer) {});
-    rApi.marathonMatchesDeferredList = [];
-
     function getMyActiveChallenges(request) {
       var deferred = $q.defer();
 
       var prevRequest = rApi2.request;
 
       // If my active challenges has already been retrieved, simply return it
-      if(rApi2.myActiveChallenges && rApi2.myActiveChallenges != "waiting" && !this.uniqueRequest(prevRequest, request)) {
+      if(rApi2.myActiveChallenges && rApi2.myActiveChallenges != "waiting" && !uniqueRequest(prevRequest, request)) {
         deferred.resolve(rApi2.myActiveChallenges);
       } else {
         // Otherwise, set state to waiting, so that only one call is done to the server

@@ -49,13 +49,23 @@
 
   angular.module('topcoder').config(['$httpProvider', 'jwtInterceptorProvider', JwtConfig]);
 
-  Restangular3 = function(Restangular, CONSTANTS) {
+  Restangular3 = function(Restangular, authtoken, CONSTANTS) {
+    
+
     return Restangular.withConfig(function(RestangularConfigurer) {
+
+      RestangularConfigurer.addFullRequestInterceptor(function(element, operation, what, url) {
+        return {
+          headers: {'Authorization': 'Bearer ' + authtoken.getV2Token()}
+        };
+      });
       RestangularConfigurer.setBaseUrl(CONSTANTS.API_URL);
     });
   };
 
-  angular.module('topcoder').factory('Restangular3', ['Restangular', 'CONSTANTS', Restangular3]);
+
+
+  angular.module('topcoder').factory('Restangular3', ['Restangular', 'authtoken', 'CONSTANTS', Restangular3]);
 
   Restangular2 = function(RestangularProvider, CONSTANTS) {
     RestangularProvider.setBaseUrl(CONSTANTS.API_URL_V2);

@@ -22,7 +22,7 @@
   WelcomeBackCtrl.$inject = [
     '$scope',
     '$location',
-    'auth',
+    'tcAuth',
     'profile',
     'challenge',
     'CONSTANTS'
@@ -38,7 +38,7 @@
    * @param CONSTANTS Constants object
    * @constructor
    */
-  function WelcomeBackCtrl($scope, $location, auth, ProfileService, ChallengeService, CONSTANTS) {
+  function WelcomeBackCtrl($scope, $location, tcAuth, ProfileService, ChallengeService, CONSTANTS) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
     // edit profile url
@@ -56,7 +56,7 @@
     var db = $scope.$parent.db;
 
     // activate controller
-    if (auth.isAuthenticated() === true) {
+    if (tcAuth.isAuthenticated() === true) {
       db.addIdentityChangeListener("welcomeback", function(identity) {
         console.log(identity);
         activate(identity);
