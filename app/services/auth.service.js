@@ -1,58 +1,81 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').factory('auth', auth);
+  angular.module('topcoder').factory('tcAuth', tcAuth);
 
-  auth.$inject = ['CONSTANTS', '$window', 'authtoken', '$state', '$stateParams','api'];
+  tcAuth.$inject = ['CONSTANTS', '$window', 'authtoken', '$state', '$stateParams', 'api', '$rootScope', '$q', '$log', '$http', '$timeout'];
 
-  function auth(CONSTANTS, $window, authtoken, $state, $stateParams, api) {
+  function tcAuth(CONSTANTS, $window, authtoken, $state, $stateParams, api, $rootScope, $q, $log, $http, $timeout) {
     var auth0 = new Auth0({
       domain: CONSTANTS.auth0Domain,
       clientID: CONSTANTS.clientId,
+      // callbackOnLocationHash: true,
       callbackURL: CONSTANTS.auth0Callback
     });
 
     var service = {
       login: login,
+      socialLogin: socialLogin,
       logout: logout,
       register: register,
-      checkLogin: checkLogin,
       isAuthenticated: isAuthenticated
     };
     return service;
 
     ///////////////
 
-    function login(username, password, successCallback, errorCallback) {
+    function login(username, password) {
       var options = {
         connection: 'LDAP',
-        scope: 'openid profile',
+        scope: 'openid profile offline_access',
+        device: "webapp",
         username: username,
         password: password
       };
-
-      auth0.signin(options, function(err, profile, id_token, access_token, state) {
-        if (err) {
-          errorCallback(err)
-        } else {
-          authtoken.setToken(id_token);
-          successCallback(profile, id_token, access_token, state);
-        }
+      return $q(function(resolve, reject) {
+        auth0.signin(
+          options,
+          function(err, profile, idToken, accessToken, state, refreshToken) {
+            if (err) {
+              $log.error(err);
+              reject(err);
+            } else {
+              // exchange token
+              authtoken.exchangeToken(refreshToken, idToken)
+                .then(function() {
+                  // giving angular sometime to set the cookies
+                  $timeout(function() {
+                    $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
+                    resolve();
+                  }, 200);
+                });
+            }
+          });
       });
     }
 
-    function logout(successCallback) {
-      authtoken.removeToken();
-
-      if (typeof(successCallback) === 'function') {
-        successCallback();
-      } else {
-        $state.transitionTo($state.current, $stateParams, {
-          reload: true,
-          inherit: false,
-          notify: true
+    function socialLogin(backend, state) {
+      // supported backends
+      var backends = ['facebook', 'google-oauth2', 'twitter', 'github'];
+      if (backends.indexOf(backend) > -1) {
+        auth0.login({
+          connection: backend,
+          device: 'webapp',
+          scope: "openid profile offline_access",
+          state: state
         });
+      } else {
+        $log.error('Unsupported social login backend: ' + backend);
+        return false;
       }
+    }
+
+    function logout(successCallback) {
+      return $q(function(resolve, reject) {
+        authtoken.removeTokens();
+        $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT);
+        resolve();
+      });
     }
 
     function register(reg) {
@@ -63,14 +86,9 @@
       api.requestHandler('POST', url, JSON.stringify(reg));
     }
 
-    function checkLogin() {
-      if (!this.isAuthenticated) {
-        $window.location = '/login';
-      }
+    function isAuthenticated() {
+      return !!authtoken.getV2Token();
     }
 
-    function isAuthenticated() {
-      return !!authtoken.getToken();
-    }
   }
 })();

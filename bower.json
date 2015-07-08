@@ -27,7 +27,10 @@
     "angular-ui-router": "~0.2.15",
     "angular-cookies": "~1.4.1",
     "angular-jwt": "~0.0.9",
-    "moment": "~2.10.3"
+    "moment": "~2.10.3",
+    "restangular": "~1.5.1",
+    "a0-angular-storage": "~0.0.11",
+    "fontawesome": "~4.3.0"
   },
   "devDependencies": {
     "bardjs": "~0.1.4"

@@ -2,7 +2,7 @@
 @include glyphicons-halflings;
 
 // Shared (review-status.html, edit-review.html, completed-review.html)
-.container {
+.review-status-container, .completed-review-container, .edit-review-container, .read-only-scorecard-container {
   @include clearfix;
   padding-bottom: 30px;
 

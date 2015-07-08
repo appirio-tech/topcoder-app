@@ -5,6 +5,7 @@ var del          = require('del'); // rm -rf
 var $            = require('gulp-load-plugins')({lazy: true});
 var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
+var merge        = require('merge-stream');
 
 gulp.task('help', $.taskListing);
 gulp.task('default', ['help']);
@@ -51,7 +52,7 @@ gulp.task('fonts', ['clean-fonts'], function() {
   log('Copying fonts');
 
   return gulp
-    .src(config.fonts)
+    .src([config.fonts, 'bower_components/fontawesome/fonts/fontawesome-webfont.*'])
     .pipe(gulp.dest(config.build + 'fonts'));
 });
 
@@ -133,7 +134,7 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
 gulp.task('optimize', ['inject', 'test'], function() {
   log('Optimizing the JavaScript, CSS, and HTML');
 
-  var assets = $.useref.assets({searchPath: ['.tmp', 'app']});
+  var assets = $.useref.assets({searchPath: ['.tmp', 'app', 'assets']});
   var templateCache = config.temp + config.templateCache.file;
   var cssFilter = $.filter('**/*.css');
   var jsLibFilter = $.filter('**/' + config.optimized.vendor);
@@ -155,6 +156,7 @@ gulp.task('optimize', ['inject', 'test'], function() {
     .pipe($.uglify())
     .pipe(jsLibFilter.restore())
     .pipe(jsAppFilter)
+    .pipe($.if(!config.production, $.sourcemaps.init()))
     .pipe($.ngAnnotate())
     .pipe($.uglify())
     .pipe(jsAppFilter.restore())
@@ -162,6 +164,7 @@ gulp.task('optimize', ['inject', 'test'], function() {
     .pipe(assets.restore())
     .pipe($.useref())
     .pipe($.revReplace())
+    .pipe($.if(!config.production, $.sourcemaps.write()))
     // Uncomment if you want to see the JSON file containing
     // the file mapping (e.g., "{"js/app.js": "js/app-a9bae026bc.js"}")
     // .pipe(gulp.dest(config.build))
@@ -307,6 +310,44 @@ gulp.task('test', ['templatecache'], function(done) {
 
 gulp.task('autotest', ['vet', 'templatecache'], function(done) {
   startTests(false /* singleRun */, done);
+});
+
+gulp.task('deploy', ['build'], function() {
+  var awsConfig = {
+    params: {
+      Bucket: config.aws.bucket
+    },
+    "accessKeyId": config.aws.key,
+    "secretAccessKey": config.aws.secret
+  };
+
+  // create a new publisher
+  var publisher = $.awspublish.create(awsConfig);
+
+  // define custom headers
+  var headers = {
+    'Cache-Control': 'max-age=94608000, no-transform, public'
+  };
+
+  log('Deploying to S3');
+
+  var gzip = gulp.src('build/**/*.js').pipe($.awspublish.gzip());
+  var plain = gulp.src([ 'build/**/*', '!build/**/*.js' ]);
+
+  return merge(gzip, plain)
+    .pipe(publisher.publish(headers))
+    .pipe(publisher.sync())
+    .pipe(publisher.cache())
+    .pipe($.awspublish.reporter());
+
+  // return gulp
+  //   .src('./build/**/*')
+  //   .pipe($.awspublish.gzip({ext: '.gz'}))
+  //   // If not specified it will set x-amz-acl to public-read by default
+  //   .pipe(publisher.publish(headers))
+  //   .pipe(publisher.sync())
+  //   // print upload updates to console
+  //   .pipe($.awspublish.reporter());
 });
 
 //////////////

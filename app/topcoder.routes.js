@@ -8,8 +8,7 @@
   ]);
 
   function routes($stateProvider, $urlRouterProvider) {
-    var name, state, states;
-    states = {
+    var states = {
       '404': {
         parent: 'root',
         url: '/404',
@@ -31,7 +30,8 @@
         views: {
           'header@': {
             templateUrl: 'layout/header/header.html',
-            controller: 'HeaderController'
+            controller: 'HeaderController',
+            controllerAs: 'vm'
           },
           'sidebar@': {
             // TODO revisit to see how the layout works
@@ -44,11 +44,17 @@
             templateUrl: 'layout/footer/footer.html',
           }
         }
+      },
+      'home': {
+        // TODO - set new home page
+        parent: 'root',
+        url: '/',
+        template: 'This is the home page'
       }
     };
-    for (name in states) {
-      state = states[name];
+
+    angular.forEach(states, function(state, name) {
       $stateProvider.state(name, state);
-    }
+    });
   };
 })();

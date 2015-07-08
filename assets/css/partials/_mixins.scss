@@ -25,6 +25,15 @@
   }
 }
 
+@mixin login-link {
+  color: $login-blue;
+  text-decoration: underline;
+
+  &:visited {
+    color: $login-blue;
+  }
+}
+
 @mixin horizontal-rule {
   border: 0;
   border-bottom: 1px solid $horizontal-rule;

@@ -17,6 +17,7 @@ describe('Review Status Controller', function() {
         return $q.when(challengeDates);
       }
     };
+
     var reviewService = {
       getUsersPeerReviews: function() {
         return $q.when(userReviews);

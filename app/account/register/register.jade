@@ -1,3 +1,20 @@
-h1(ng-controller="RegisterController as vm") This is the {{vm.name}} page content
+.register-container
+  h1 Join Topcoder
 
-a(ui-sref="login") Link to Login
+  form(name="register-form", role="form", novalidate)
+    input(name="firstname", placeholder="First Name", type="text")
+
+    input(name="lastname", placeholder="Last Name", type="text")
+
+    button(type="submit") Join Now
+
+  section.social
+    p Register using another account.
+
+    .social-icons
+      .github
+      .facebook
+      .google
+
+  p.redirect Already have an account? 
+    a(ui-sref="login") Login.

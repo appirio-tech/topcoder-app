@@ -9,8 +9,7 @@
   ]);
 
   function routes($stateProvider, $urlRouterProvider, $httpProvider) {
-    var name, state, states;
-    states = {
+    var states = {
       review: {
         abstract: true,
         parent: 'root',
@@ -19,7 +18,7 @@
           authRequired: true,
         }
       },
-      'reviewStatus': {
+      'review.status': {
         parent: 'review',
         url: '/challenge/:challengeId',
         templateUrl: 'peer-review/review-status/review-status.html',
@@ -29,28 +28,31 @@
           title: 'Peer Review'
         }
       },
-      'readOnlyScorecard': {
+      'review.readOnlyScorecard': {
         parent: 'review',
         url: '/scorecard/:scorecardId',
         templateUrl: 'peer-review/readOnlyScorecard/readOnlyScorecard.html',
-        controller: 'ReadOnlyScorecardController'
+        controller: 'ReadOnlyScorecardController',
+        controllerAs: 'vm'
       },
-      'completed': {
+      'review.completed': {
         parent: 'review',
         url: '/:challengeId/reviews/:reviewId/completed',
         templateUrl: 'peer-review/completed-review/completed-review.html',
         controller: 'CompletedReviewController',
+        controllerAs: 'vm'
       },
-      'edit': {
+      'review.edit': {
         parent: 'review',
         url: '/:challengeId/reviews/:reviewId/edit',
         templateUrl: 'peer-review/edit-review/edit-review.html',
         controller: 'EditReviewController',
+        controllerAs: 'vm'
       }
     };
-    for (name in states) {
-      state = states[name];
+
+    angular.forEach(states, function(state, name) {
       $stateProvider.state(name, state);
-    }
+    });
   };
 })();

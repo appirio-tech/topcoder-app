@@ -1,5 +1,13 @@
-.login {
-  h1 {
-    color: green;
+@import '../partials/combined';
+
+.login-container {
+  .form-errors p {
+    margin-bottom: 10px;
+  }
+
+  .forgot-password {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 12px;
   }
 }

@@ -8,15 +8,14 @@
   ]);
 
   function routes($stateProvider, $urlRouterProvider) {
-    var name, state, states;
-    states = {
+    var states = {
       sample: {
         parent: 'root',
         abstract: true,
         url: '/sample',
         template: '<div ui-view>Sample test code</div>',
         data: {
-          authRequired: false,
+          authRequired: true,
           title: 'Sample page'
         }
       },
@@ -28,9 +27,9 @@
         }
       }
     };
-    for (name in states) {
-      state = states[name];
+
+    angular.forEach(states, function(state, name) {
       $stateProvider.state(name, state);
-    }
+    });
   };
 })();

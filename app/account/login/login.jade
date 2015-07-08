@@ -1,3 +1,32 @@
-h1(ng-controller="LoginController as vm") This is the {{vm.name}} page content
+.login-container
+  h1 Login
 
-a(ui-sref="register") Link to Register
+  form(name="vm.loginForm", role="form", ng-submit="vm.loginForm.$valid && vm.doLogin()", novalidate)
+    .form-errors
+
+      p.login-error(ng-show="vm.loginForm.username.$error.username-exists") This user does not exist.
+
+      p.login-error(ng-if="vm.wrongPassword") That password doesn't match the one we have on file. Please try again.
+
+      div(ng-if="vm.loginForm.$submitted")
+        p.login-error(ng-if="vm.loginForm.username.$error.required") Please enter your username or email.
+
+    input(ng-model="vm.username", ng-model-options="{debounce: {'default': 500}}", name="username", placeholder="Username or Email", type="text", required, username-exists)
+
+    input(ng-model="vm.password", name="password", placeholder="Password", type="password", required)
+
+    button(type="submit", ng-disabled="vm.loginForm.$invalid", ng-class="{'enabled-button': vm.loginForm.$valid}") Login
+
+  section.social
+    p log in with another account
+
+    .social-icons
+      i.fa.fa-github-square
+      i.fa.fa-facebook-square
+      i.fa.fa-google-plus-square
+      i.fa.fa-twitter-square
+
+  a.forgot-password(ui-sref="resetPasswordLink") Forgot Password?
+
+  p.redirect Don't have an account? 
+    a(ui-sref="register") Join Now.
