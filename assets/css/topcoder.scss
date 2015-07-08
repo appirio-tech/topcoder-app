@@ -7,14 +7,16 @@ body {
   line-height: 16px;
 }
 
+#header {
+  display: flex;
+  justify-content: center;
+}
+
 .view-container {
   max-width: 1010px;
-  margin: 25px auto;
+  min-height: 480px;
+  margin: 0 auto;
   background-color: $white;
-  @media only screen and (max-width: 1020px) {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
 }
 
 // Transits the header, content and footer on sidebar visibility

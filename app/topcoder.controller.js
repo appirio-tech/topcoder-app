@@ -3,15 +3,15 @@
 
   angular.module('topcoder').controller('TopcoderController', TopcoderController);
 
-  TopcoderController.$inject = ['$window', '$stateParams', 'auth', 'CONSTANTS', 'profile'];
+  TopcoderController.$inject = ['$window', '$stateParams', 'tcAuth', 'CONSTANTS', 'profile'];
 
-  function TopcoderController($window, $stateParams, auth, CONSTANTS, profile) {
+  function TopcoderController($window, $stateParams, tcAuth, CONSTANTS, profile) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.sidebarActive = false;
 
     vm.logout = function() {
-      auth.logout(function() {
+      tcAuth.logout(function() {
         if($stateParams.challengeId) {
           $window.location.href = 'https://www.' + vm.domain + '/challenge-details/' + $stateParams.challengeId + '/?type=develop';
         }

@@ -8,7 +8,8 @@
     clientId: 'JFDo7HMkf0q2CkVFHojy3zHWafziprhT',
     domain: 'topcoder-dev.com',
     auth0Domain: 'topcoder-dev.auth0.com',
-    auth0Callback: 'https://www.topcoder-dev.com/reg2/callback.action',
+    // auth0Callback: 'https://www.topcoder-dev.com/reg2/callback.action',
+    auth0Callback: 'https://api.topcoder-dev.com/pub/callback.html',
     submissionDownloadPath: '/review/actions/DownloadContestSubmission?uid=',
     COMMUNITY_URL: '//community.topcoder-dev.com',
     PHOTO_LINK_LOCATION: 'https://community.topcoder-dev.com',
@@ -19,6 +20,13 @@
     SWIFT_PROGRAM_URL: 'apple.topcoder-dev.com',
     BLOG_LOCATION: 'https://www.topcoder-dev.com/feed/?post_type=blog',
     UPCOMING_SRMS_URL: 'https://www.topcoder.com/challenges/data/upcoming/',
-    NEW_CHALLENGES_URL: 'https://www.topcoder.com/challenges/develop/upcoming/'
+    NEW_CHALLENGES_URL: 'https://www.topcoder.com/challenges/develop/upcoming/',
+
+
+
+    // EVENTS
+    EVENT_USER_LOGGED_IN: 'user_logged_in',
+    EVENT_USER_LOGGED_OUT: 'user_logged_out'
+
   });
 })();

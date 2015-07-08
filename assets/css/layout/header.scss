@@ -79,8 +79,9 @@
   }
 }
 
-header {
+header.topcoder-header {
   height: 94px;
+  width: 100%;
   background-color: $off-white;
   box-shadow: 0 2px 3px rgba(0,0,0,.25);
   @media only screen and (max-width: 1020px) {
@@ -90,7 +91,7 @@ header {
   .container {
     position: relative;
     height: 94px;
-    max-width: 1010px;
+    width: 1010px;
     margin: 0 auto;
     @media only screen and (max-width: 1020px) {
       height: 74px;

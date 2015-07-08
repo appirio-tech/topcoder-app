@@ -1,31 +1,31 @@
-.container.completed-review(ng-show="loaded")
+.completed-review-container(ng-show="vm.loaded")
   .back-link
     .arrow
 
-    p #[a.back(ui-sref="reviewStatus({challengeId: challengeId})") #[i] Back to Reviews]
+    p #[a.back(ui-sref="review.status({challengeId: vm.challengeId})") #[i] Back to Reviews]
 
   .scorecard-container
     .challenge-info
       img(src="images/swift-logo.png")
 
-      h1(ng-bind="challenge.challengeName")
+      h1(ng-bind="vm.challenge.challengeName")
 
     table.review-info
       tr
         td.info Submission:
         td
-          a.subLink(ng-href="https://software.{{domain}}{{submissionDownloadPath}}{{stats.uploadId}}") {{stats.submissionId}}
+          a.subLink(ng-href="https://software.{{vm.domain}}{{vm.submissionDownloadPath}}{{vm.stats.uploadId}}") {{vm.stats.submissionId}}
       tr
         td.info Last Modified On:
-        td {{stats.updatedAt || stats.createdAt | localTime}}
+        td {{vm.stats.updatedAt || vm.stats.createdAt | localTime}}
       tr
         td.info Reviewer:
-        td {{stats.username}}
+        td {{vm.stats.username}}
 
     hr
 
     form(name="completedForm", role="form")
-      .scorecard(ng-repeat="q in scorecard.questions")
+      .scorecard(ng-repeat="q in vm.scorecard.questions")
         h5.description {{q.description}}
 
         p.guidelines(ng-if="q.questionTypeId === 5", ng-repeat="guideline in q.guidelines track by $index") {{guideline}}

@@ -77,7 +77,18 @@ module.exports = function() {
 
     // Karma and testing settings
     specHelpers: ['tests/test-helpers/*.js'],
-    serverIntegrationSpecs: ['tests/server-integration/**/*.spec.js']
+    serverIntegrationSpecs: ['tests/server-integration/**/*.spec.js'],
+
+    // AWS settings
+    aws: {
+      bucket: process.env.AWS_BUCKET,
+      key: process.env.AWS_KEY,
+      region: process.env.AWS_REGION,
+      secret: process.env.AWS_SECRET
+    },
+
+    // Process.env variables
+    production: process.env.ENVIRONMENT === 'production'
   };
 
   config.getWiredepDefaultOptions = function () {
@@ -100,6 +111,9 @@ module.exports = function() {
       files: [].concat(
         bowerFiles,
         config.specHelpers,
+        app + 'topcoder.module.js',
+        app + 'topcoder.**.js',
+        app + '**/*.module.js',
         app + '**/*.js',
         assets + 'scripts/**/*.js',
         temp + config.templateCache.file,

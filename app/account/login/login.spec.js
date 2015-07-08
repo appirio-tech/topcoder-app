@@ -17,12 +17,4 @@ describe('Login Controller', function() {
   it('should be created successfully', function() {
     expect(controller).to.be.defined;
   });
-
-  it('should have a name property', function() {
-    expect(controller.name).to.be.defined;
-  });
-
-  it('should have login as the name property', function() {
-    expect(controller.name).to.equal('login');
-  });
 });

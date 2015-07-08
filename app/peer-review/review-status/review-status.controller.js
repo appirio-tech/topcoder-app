@@ -22,7 +22,7 @@
       .then(function(data) {
         var newReviewId = data.data.result.content;
 
-        $state.go('edit', {
+        $state.go('review.edit', {
           challengeId: vm.challengeId,
           reviewId: newReviewId
         });
