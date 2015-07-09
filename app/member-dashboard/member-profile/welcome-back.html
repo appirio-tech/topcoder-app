@@ -1,0 +1,36 @@
+<div class="member-profile" ng-controller="WelcomeBackCtrl as vm">
+  <div class="profile-left col-xs-12 col-sm-2">
+    <div class="profile-image"><img width="130px" src="{{vm.photoLink}}"></div>
+    <div rel="upload-photo" ng-show="vm.showUploadPhotoLink"><a href="{{vm.uploadPhotoLink}}">Upload Photo</a></div>
+    <div class="handle" style="{{vm.ratingColor}}">{{vm.profile.handle}}</div>
+    <div class="edit-profile"><a href="{{vm.editProfileUrl}}">(Edit)</a></div>
+    <div class="doj">Member Since: <span ng-bind="vm.profile.memberSince | date"></span></div>
+  </div>
+  <div class="profile-right col-xs-12 col-sm-10">
+    <div class="col-xs-6 col-sm-3" ng-show="vm.profile && vm.profile.overallEarning > 0">
+      <div class="money-in-bank">
+        <div rel="value" ng-bind="vm.profile.overallEarning || 0 | currency"></div>
+        <div rel="label">Money in Bank</div>
+      </div>
+    </div>
+    <!-- <div class="col-xs-{{12/vm.statsToShow}}">
+      <div class="open-challenges">
+        <div rel="value" ng-bind="vm.myOpenChallengesCount || 0"></div>
+        <div rel="label">Open Challenges</div>
+      </div>
+    </div>
+    <div class="col-xs-{{12/vm.statsToShow}}">
+      <div class="review-opportunities">
+        <div rel="value" ng-bind="vm.reviewOpportunities || 0"></div>
+        <div rel="label">Review Opportunities</div>
+      </div>
+    </div> -->
+    <div class="col-xs-12 rating-summary" ng-class="{'col-sm-9' : vm.profile && vm.profile.overallEarning > 0}">
+      <div class="track-rating" ng-repeat="rs in vm.profile.ratingSummary">
+        <div rel="value" ng-bind="rs.rating"></div>
+        <div rel="label" ng-bind="rs.name"></div>
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>

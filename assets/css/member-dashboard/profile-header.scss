@@ -1,0 +1,116 @@
+@import '../partials/combined';
+
+.member-profile-header {
+  border-bottom: 7px solid $black;
+  background-image: $community-background;
+  background-size: cover;
+  background-position: 50% 50%;
+  color: $white;
+}
+@media only screen and(min-width: 768px) {
+  .member-profile-header {
+    padding: 15px 0;
+  }
+}
+.member-profile {
+  .profile-left {
+    .handle {
+      color: $white;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    .edit-profile {
+      text-align: center;
+    }
+    .doj {
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+  .profile-right {
+    padding-top: 46px;
+  }
+  .profile-image {
+    width: 130px;
+    text-align: center;
+    height: 130px;
+    border: 5px solid $white;
+    //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+    border-radius: 72px;
+    overflow: hidden;
+    margin: auto;
+  }
+  .profile-bio {
+    height: 100px;
+    text-align: right;
+    direction: ltr;
+  }
+  .money-in-bank {
+    height: 82px;
+    text-align: center;
+    padding-top: 16px;
+    //Instead of the line below you could use @includebox-sizing($bs)
+    box-sizing: border-box;
+    div[rel="value"] {
+      font-size: 35px;
+    }
+    div[rel="label"] {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  }
+  .challenges-registered {
+    height: 82px;
+    text-align: center;
+    padding-top: 16px;
+    //Instead of the line below you could use @includebox-sizing($bs)
+    box-sizing: border-box;
+  }
+  .open-challenges {
+    height: 82px;
+    text-align: center;
+    padding-top: 16px;
+    //Instead of the line below you could use @includebox-sizing($bs)
+    box-sizing: border-box;
+    div[rel="value"] {
+      font-size: 35px;
+    }
+    div[rel="label"] {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  }
+  .review-opportunities {
+    height: 75px;
+    text-align: center;
+    padding-top: 16px;
+    //Instead of the line below you could use @includebox-sizing($bs)
+    box-sizing: border-box;
+    div[rel="value"] {
+      font-size: 35px;
+    }
+    div[rel="label"] {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  }
+  .rating-summary {
+    .track-rating {
+      float:left;
+      width: 100px;
+      height: 82px;
+      text-align: center;
+      padding-top: 16px;
+      //Instead of the line below you could use @includebox-sizing($bs)
+      box-sizing: border-box;
+      div[rel="value"] {
+        font-size: 35px;
+      }
+      div[rel="label"] {
+        margin-top: 15px;
+        font-weight: bold;
+      }
+    }
+  }
+}

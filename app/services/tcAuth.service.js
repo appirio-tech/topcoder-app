@@ -11,6 +11,7 @@
       clientID: CONSTANTS.clientId,
       // callbackOnLocationHash: true,
       callbackURL: CONSTANTS.auth0Callback
+      // callbackURL: 'http://local.topcoder-dev.com:3000/login'
     });
 
     var service = {
@@ -58,7 +59,7 @@
       var backends = ['facebook', 'google-oauth2', 'twitter', 'github'];
 
       if (backends.indexOf(backend) > -1) {
-        auth0.login({
+        auth0.signin({
           connection: backend,
           device: 'webapp',
           scope: "openid profile offline_access",

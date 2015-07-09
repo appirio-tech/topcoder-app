@@ -1,0 +1,21 @@
+@import '../partials/combined';
+
+.blog-post {
+  .panel {
+    @include padding-reset;
+  }
+  .post {
+    border-bottom: 1px solid $color_celeste_approx;
+    &:last-child {
+      border: none;
+    }
+  }
+  a {
+    color: $color_storm_dust_approx;
+    //Instead of the line below you could use @includebox-sizing($bs)
+    box-sizing: border-box;
+    &:hover {
+      color: $color_selective_yellow_approx;
+    }
+  }
+}

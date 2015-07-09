@@ -1,0 +1,67 @@
+@import '../partials/combined';
+
+.srm-gadget {
+}
+.srm-gadget-table {
+  td {
+    padding-left: 5px;
+  }
+  thead {
+    font-weight: bold;
+    border: 1px solid $color_celeste_approx;
+  }
+}
+.srm-gadget-coding-date {
+  width: 170px;
+}
+.upcoming-srms-div {
+  position: relative;
+  height: 100%;
+  .upcoming-srms-header {
+    margin-bottom: 20px;
+  }
+  .srm-gadget {
+    max-height: 300px;
+  }
+  th {
+    text-align: center;
+    .sort {
+      width: 100%;
+      height: 12px;
+      &.asc {
+        background: $color_wild_sand_approx $sort-arrows no-repeat center -94px;
+      }
+      &.desc {
+        background: $color_wild_sand_approx $sort-arrows no-repeat center 6px;
+      }
+    }
+    .sort-icon-place {
+      width: 100%;
+      height: 12px;
+    }
+  }
+  th[rel="sortable"] {
+    cursor: pointer;
+  }
+  td[rel="practice-now-link"] {
+    text-align: left;
+  }
+  .srm-gadget-coding-date {
+    width: 170px;
+  }
+  table > tbody> tr > td {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+  td[rel="srm-name"] > a {
+    color: $color_storm_dust_approx;
+    &:hover {
+      color: $color_selective_yellow_approx;
+    }
+  }
+}
+.practice-now-div {
+  position: absolute;
+  bottom: 0;
+}

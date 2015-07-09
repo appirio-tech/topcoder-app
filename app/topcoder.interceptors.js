@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var HeaderInterceptor, JwtConfig;
+  var HeaderInterceptor, JwtConfig, Restangular2, Restangular3;
 
   JwtConfig = function($httpProvider, jwtInterceptorProvider) {
     var jwtInterceptor;
@@ -48,4 +48,5 @@
   angular.module('topcoder').factory('HeaderInterceptor', HeaderInterceptor);
 
   angular.module('topcoder').config(['$httpProvider', 'jwtInterceptorProvider', JwtConfig]);
+  
 })();
