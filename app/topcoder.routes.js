@@ -49,7 +49,10 @@
         // TODO - set new home page
         parent: 'root',
         url: '/',
-        template: 'This is the home page'
+        template: 'This is the home page',
+        controller: ['$state', function($state) {
+          $state.go('sample');
+        }]
       }
     };
 

@@ -31,7 +31,9 @@
     "bootstrap": "~3.3.4",
     "restangular": "~1.5.1",
     "a0-angular-storage": "~0.0.11",
-    "fontawesome": "~4.3.0"
+    "fontawesome": "~4.3.0",
+    "auth0.js": "~6.4.2",
+    "auth0-angular": "~4.0.5"
   },
   "devDependencies": {
     "bardjs": "~0.1.4"

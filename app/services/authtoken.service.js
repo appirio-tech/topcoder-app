@@ -87,6 +87,7 @@
       return $http(req).then(
         function(resp) {
           $log.debug(resp);
+
         },
         function(err) {
           $log.error(err);
