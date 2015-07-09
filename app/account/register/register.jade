@@ -10,26 +10,46 @@
 
     input(ng-model="vm.age", ng-model-options="{ updateOn: 'default blur' }", name="age", placeholder="Age", type="number", ng-min="13", required)
 
-    p.login-error(ng-if="registerForm.age.$error.min") You must be at least X years old to join Topcoder.
+    p.login-error(ng-show="registerForm.age.$error.min") You must be at least X years old to join Topcoder.
 
-    input(ng-model="vm.username", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false" name="username", placeholder="Username", type="text", required)
+    input(ng-model="vm.username", ng-model-options="{debounce: {'default': 500}}", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false", name="username", placeholder="Username", type="text", username-is-free, required)
 
-    input(ng-model="vm.email", name="email", placeholder="Enter Your Email", type="email", required)
+    p.login-error(ng-show="registerForm.username.$error.usernameIsFree") This username already exists.
 
-    input(ng-model="vm.password", name="password", placeholder="Create Password", type="password", required)
+    input(ng-model="vm.email", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", required)
+
+    input(ng-model="vm.password", ng-focus="vm.passwordTips = true", ng-blur="vm.passwordTips = false", name="password", placeholder="Create Password", type="password", ng-minlength="7", ng-maxlength="30", has-letter, has-symbol, has-number, required)
 
     button(type="submit", ng-disabled="registerForm.$invalid", ng-class="{'enabled-button': registerForm.$valid}") Join Now
 
-  .username-tips(ng-show="vm.usernameTips")
+  .tips.username-tips(ng-show="vm.usernameTips")
     h3 Username Tips:
 
     p This will be public to other members
 
     p Between X and Y characters
 
-    p Contain numbers and letters
+    p Can contain numbers and letters
 
     p You can always change it later
+
+  .tips.email-tips(ng-show="vm.emailTips")
+    h3 Email Tips:
+
+    p This will be private and not shared with anyone.
+
+    p We will occasionally send you emails related to your account or interests.
+
+  .tips.password-tips(ng-show="vm.passwordTips")
+    h3 Password Tips:
+
+    p(ng-class="{'has-length-between-range': (registerForm.password.$dirty && !registerForm.password.$error.minlength && !registerForm.password.$error.maxlength && !registerForm.password.$error.required)}") Must be between 7 and 30 characters
+
+    p(ng-class="{'has-letter': (registerForm.password.$dirty && !registerForm.password.$error.hasLetter)}") At least one letter
+
+    p(ng-class="{'has-symbol': (registerForm.password.$dirty && !registerForm.password.$error.hasSymbol)}") At least one symbol
+
+    p(ng-class="{'has-number': (registerForm.password.$dirty && !registerForm.password.$error.hasNumber)}") At least one number
 
   section.terms
     p By clicking "JOIN NOW" I agree to Topcoder's

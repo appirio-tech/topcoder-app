@@ -4,7 +4,7 @@
   form(name="loginForm", role="form", ng-submit="loginForm.$valid && vm.doLogin()", novalidate)
     .form-errors
 
-      p.login-error(ng-show="loginForm.username.$error.username-exists") This user does not exist.
+      p.login-error(ng-show="loginForm.username.$error.usernameExists") This user does not exist.
 
       p.login-error(ng-if="vm.wrongPassword") That password doesn't match the one we have on file. Please try again.
 
