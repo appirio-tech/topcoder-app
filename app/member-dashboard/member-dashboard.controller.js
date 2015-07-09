@@ -12,7 +12,7 @@
    */
   angular
     .module('tc.myDashboard')
-    .controller('dashboard', MyDashboardCtrl);
+    .controller('DashboardCtrl', MyDashboardCtrl);
 
   /**
    * Inject dependencies

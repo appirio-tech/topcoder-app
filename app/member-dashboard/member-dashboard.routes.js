@@ -11,23 +11,22 @@
   function routes($stateProvider, $urlRouterProvider, $httpProvider) {
     var name, state, states;
     states = {
-      dashboard: {
-        abstract: true,
+      'baseDashboard': {
         parent: 'root',
+        abstract: true,
         templateUrl: 'member-dashboard/member-dashboard.html',
-        controller: 'dashboard as db',
-        data: {
-          authRequired: true,
-        }
-      },
-      'dashboard.landing': {
-        url: '/my-dashboard',
-        //controller: 'dashboard as db',
-        authenticate: true,
-        parent: 'dashboard',
+        controller: 'DashboardCtrl as db',
         data: {
           authRequired: true,
           title: 'Dashboard'
+        }
+      },
+      'dashboard': {
+        url: '/my-dashboard',
+        parent: 'baseDashboard',
+        //controller: 'dashboard as db',
+        data: {
+          authRequired: true,
         },
         views: {
           'my-challenges-widget': {

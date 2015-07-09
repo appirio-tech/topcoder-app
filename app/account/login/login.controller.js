@@ -21,9 +21,7 @@
           $log.debug('Redirecting: ' + $stateParams.next);
           $location.path(decodeURIComponent($stateParams.next));
         } else {
-          // FIXME
-          // $location.path('www.topcoder-dev.com/my-dashboard');
-          $state.go('sample.child1');
+          $state.go('dashboard');
         }
       }
     };
