@@ -1,0 +1,17 @@
+@import '../partials/combined';
+
+.subscribe-updates {
+  input[type="text"] {
+    color: $color_mine_shaft_approx!important;
+    background: $alabaster;
+    border: 1px solid $color_bon_jour_approx;
+    height: 32px;
+    line-height: 16px;
+    //Instead of the line below you could use @includebox-sizing($bs)
+    box-sizing: border-box;
+    width: 100%;
+  }
+  input[type="submit"] {
+    margin-top: 15px;
+  }
+}

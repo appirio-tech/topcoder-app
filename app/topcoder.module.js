@@ -5,6 +5,7 @@
     'tc.layout',
     'tc.account',
     'tc.peer-review',
+    'tc.myDashboard',
     'tc.sample',
     'ui.router',
     'blocks.logger',

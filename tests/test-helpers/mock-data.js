@@ -5,7 +5,11 @@ var mockData = (function() {
     getMockStates: getMockStates,
     getMockChallenge: getMockChallenge,
     getMockChallengeDates: getMockChallengeDates,
-    getMockUsersPeerReviews: getMockUsersPeerReviews
+    getMockUsersPeerReviews: getMockUsersPeerReviews,
+    getMockBlogs: getMockBlogs,
+    getMockUserProfile: getMockUserProfile,
+    getMockChallenges: getMockChallenges,
+    getMockMarathons: getMockMarathons
   };
 
   function getMockStates() {
@@ -226,6 +230,92 @@ var mockData = (function() {
         "version":"v3"
       }
     }
+  }
+
+  function getMockBlogs() {
+    return [{
+      title: 'blog1',
+      link: 'http://blog.topcoder.com/blog1',
+      pubDate: new Date(),
+      description: '<p>Blog 1 description</p>'
+    }, {
+      title: 'blog2',
+      link: 'http://blog.topcoder.com/blog2',
+      pubDate: new Date(),
+      description: '<p>Blog 2 description</p>'
+    }];
+  }
+
+  function getMockUserProfile() {
+    return {
+      data: 
+      {
+        "handle": "vikasrohit",
+        "country": "India",
+        "memberSince": "2007-07-08T13:46:00.000-0400",
+        "quote": "Trying to be TopCoder....",
+        "photoLink": "/i/m/vikasrohit.jpeg",
+        "copilot": false,
+        "overallEarning": 10653.27,
+        "ratingSummary": [
+          {
+            "name": "Development",
+            "rating": 800,
+            "colorStyle": "color: #999999"
+          },
+          {
+            "name": "Assembly",
+            "rating": 866,
+            "colorStyle": "color: #999999"
+          },
+          {
+            "name": "Design",
+            "rating": 879,
+            "colorStyle": "color: #999999"
+          },
+          {
+            "name": "Algorithm",
+            "rating": 566,
+            "colorStyle": "color: #999999"
+          },
+          {
+            "name": "Marathon Match",
+            "rating": 961,
+            "colorStyle": "color: #00A900"
+          }
+        ]
+      }
+    };
+  }
+
+  function getMockChallenges() {
+    var challenges = [];
+    challenges.push(getMockChallenge());
+    challenges.push(getMockChallenge());
+    return challenges;
+  }
+
+  function getMockMarathons() {
+    return [
+      {
+        "roundId": 15761,
+        "fullName": "USAID and Humanity United",
+        "shortName": "Tech Challenge for Atrocity Prevention",
+        "startDate": "08.22.2013 13:30 EDT",
+        "endDate": "08.22.2013 13:30 EDT",
+        "winnerHandle": "nhzp339",
+        "winnerScore": 376.79
+      },
+      {
+        "roundId": 15684,
+        "fullName": "Marathon Match 81",
+        "shortName": "Marathon Match 81",
+        "startDate": "06.05.2013 12:43 EDT",
+        "endDate": "06.05.2013 12:43 EDT",
+        "winnerHandle": "ACRush",
+        "winnerScore": 999534.81
+      }
+    ];
   }
 
 })();

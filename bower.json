@@ -28,6 +28,7 @@
     "angular-cookies": "~1.4.1",
     "angular-jwt": "~0.0.9",
     "moment": "~2.10.3",
+    "bootstrap": "~3.3.4",
     "restangular": "~1.5.1",
     "a0-angular-storage": "~0.0.11",
     "fontawesome": "~4.3.0"

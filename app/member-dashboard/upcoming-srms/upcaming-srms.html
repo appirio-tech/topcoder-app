@@ -1,0 +1,58 @@
+<div class="upcoming-srms-div" ng-controller="UpcomingSRMsCtrl as vm" >
+    <div class="upcoming-srms-header clearfix">
+      <div class="pull-left"><strong>Upcoming SRMs</strong></div>
+      <div class="pull-right" ng-show="vm.totalPages > 1">
+        <ul class="tc-pager">
+          <li ng-show="vm.prevPageLink.val > 0 && vm.prevPageLink.val <= vm.totalPages" ng-click="vm.changePage(vm.prevPageLink)" class="page-link pull-left" ng-class="vm.getCurrentPageClass(vm.prevPageLink)">
+            <a href="#">{{vm.prevPageLink.text}}</a>
+          </li>
+          <li class="page-status pull-left page-link">{{vm.firstRecordIndex}}-{{vm.lastRecordIndex}} of {{vm.totalRecords}}</li>
+          <li ng-show="vm.nextPageLink.val > 0 && vm.nextPageLink.val <= vm.totalPages" ng-click="vm.changePage(vm.nextPageLink)" class="page-link pull-left" ng-class="vm.getCurrentPageClass(vm.nextPageLink)">
+            <a href="#">{{vm.nextPageLink.text}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <table width="100%" class="table table-responsive">
+          <thead>
+              <tr class="active">
+                  <th>
+                    <span>Name</span>
+                    <div class="sort-icon-place"></div>
+                  </th>
+                  <th rel="sortable" ng-click="vm.sort('registrationStartTime')">
+                    <span>Registration</span>
+                    <div class="sort-icon-place" ng-class="{sort: vm.sortColumn == 'registrationStartTime', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} "></div>
+                  </th>
+                  <th rel="sortable" ng-click="vm.sort('codingStartTime')">
+                    <span>Coding</span>
+                    <div class="sort-icon-place" ng-class="{sort: vm.sortColumn == 'codingStartTime', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} "></div>
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-show="vm.upcomingSRMs.length > 0 && !vm.loading" ng-repeat="srm in vm.upcomingSRMs">
+                  <td rel="srm-name">
+                    <a href="{{vm.communityBaseUrl}}/tc?module=MatchDetails&rd={{srm.roundId}}">
+                      {{srm.contestName}}
+                    </a>
+                  </td>
+                  <td>{{srm.registrationStartTime | date:'medium' }}</td>
+                  <td>{{srm.codingStartTime | date:'medium'}}</td>
+              </tr>
+              <tr ng-show="vm.loading">
+                <td colspan="3"><div class="widget-loading"></div></td>
+              </tr>
+              <tr ng-show="vm.upcomingSRMs.length > 0">
+                  <td colspan="3" rel="practice-now-link">
+                    <a target="_blank" href="https://arena.topcoder.com">Practice now!</a>
+                  </td>
+              </tr>
+              <tr ng-show="vm.upcomingSRMs.length === 0">
+                <td colspan="3">There are no upcoming SRMs scheduled at this time</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+</div>

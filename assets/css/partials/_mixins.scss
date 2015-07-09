@@ -94,3 +94,11 @@
     content: "\e025";
   }
 }
+
+@mixin padding-reset {
+  padding: 0px;
+}
+
+@mixin center-aligned-text {
+  text-align : center;
+}

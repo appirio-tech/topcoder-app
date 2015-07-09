@@ -1,0 +1,50 @@
+@import '../partials/combined';
+
+
+.my-dashboard-container {
+  width: 100%;
+  .color-reset {
+    color: initial;
+  }
+  .widget-loading {
+    width: 100%;
+    height: 50px;
+    background: $loading no-repeat center center;
+  }
+}
+.my-dashboard-column-left {
+  width: 20%;
+  float: left;
+  margin-left: 50px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.my-dashboard-column-right {
+  width: 70%;
+  float: right;
+  margin-right: 50px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.my-dashboard-widget {
+  margin-bottom: 30px;
+  color: $color_storm_dust_approx;
+}
+.widget {
+  border: 1px solid $color_celeste_approx;
+  //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+  border-radius: 5px;
+}
+.tc-pager {
+}
+.page-link {
+  margin-right: 5px;
+}
+.marketing-message {
+  max-height: 150px;
+  border: none;
+}
+.marketing-message-iframe {
+  margin-left: -5px;
+  margin-top: -8px;
+}

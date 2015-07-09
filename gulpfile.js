@@ -234,6 +234,7 @@ gulp.task('serve', ['inject'], function() {
     },
     logPrefix: 'Topcoder-Account',
     notify: true,
+    port: 80,
     reloadDelay: 500
   };
 

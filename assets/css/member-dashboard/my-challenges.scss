@@ -1,0 +1,115 @@
+@import '../partials/combined';
+
+$url_8: url(../images/ico-track-develop.png);
+$url_9: url(../images/ico-track-design.png);
+$url_10: url(../images/sort-arrows.png);
+
+.my-challenges {
+  min-height: 50px;
+  .challenges-header {
+    margin-bottom: 20px;
+  }
+  .panel.tile-view {
+    border: none;
+    .tile {
+      float: left;
+      border: 1px solid $color_celeste_approx;
+      width: 200px;
+      margin-left: 20px;
+      margin-bottom: 20px;
+      min-height: 175px;
+
+      +.tile {
+        /*margin-left: 20px;*/
+      }
+      &.load-more {
+        text-align: center;
+        line-height: 175px;
+      }
+      .challenge-summary {
+        padding: 10px;
+        border-bottom: 1px solid $color_celeste_approx;
+        .title {
+          font-weight: bold;
+          @include ellipsis;
+          margin-bottom: 10px;
+        }
+        .community {
+        }
+      }
+      .challenge-details {
+        padding: 10px;
+        .registration-date {
+          label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+          }
+        }
+        .submission-date {
+          label {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+          }
+        }
+        .time-left {
+          margin-top: 10px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .develop {
+    background: $url_8 no-repeat center center;
+  }
+  .design {
+    background: $url_9 no-repeat center center;
+  }
+  th {
+    .sort {
+      width: 100%;
+      height: 12px;
+      &.asc {
+        background: $color_wild_sand_approx $url_10 no-repeat center -94px;
+      }
+      &.desc {
+        background: $color_wild_sand_approx $url_10 no-repeat center 6px;
+      }
+    }
+    .sort-icon-place {
+      width: 100%;
+      height: 12px;
+    }
+  }
+  th[rel="sortable"] {
+    cursor: pointer;
+  }
+  td[rel="roles"] {
+    max-width: 150px;
+    @include ellipsis;
+  }
+  td[rel="challenge-name"] {
+    text-align: left;
+    > a {
+      color: $color_storm_dust_approx;
+      &:hover {
+        color: $color_selective_yellow_approx;
+      }
+    }
+  }
+  table > {
+    thead > tr > th {
+      text-align: center;
+      white-space: nowrap;
+      padding-left: 13px;
+      padding-right: 13px;
+    }
+    tbody> tr > td {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      text-align: center;
+    }
+  }
+}
