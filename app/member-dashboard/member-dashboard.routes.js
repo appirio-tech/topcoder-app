@@ -13,13 +13,13 @@
     states = {
       dashboard: {
         url: '/my-dashboard',
-        templateUrl: 'member-dashboard/index.html',
+        templateUrl: 'member-dashboard/member-dashboard.html',
         controller: 'dashboard as db',
         authenticate: true,
         parent: 'root',
         data: {
           authRequired: false,
-          title: 'Dashboard page'
+          title: 'Dashboard'
         }
       }
     };

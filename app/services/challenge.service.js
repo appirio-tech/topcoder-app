@@ -3,14 +3,14 @@
 
   angular.module('topcoder').factory('challenge', challenge);
 
-  challenge.$inject = ['CONSTANTS', 'api','Restangular', 'Restangular3', '$q'];
+  challenge.$inject = ['CONSTANTS', 'api', '$q'];
 
-  function challenge(CONSTANTS, api, Restangular, Restangular3, $q) {
+  function challenge(CONSTANTS, api, $q) {
 
     var rApi2, rApi;
-    rApi2 = Restangular.withConfig(function(RestangularConfigurer) {});
+    rApi2 = api.restangularV2;
     rApi2.activeChallengeDeferredList = [];
-    rApi = Restangular3.withConfig(function(RestangularConfigurer) {});
+    rApi = api.restangularV3;
     rApi.marathonMatchesDeferredList = [];
 
     var service = {

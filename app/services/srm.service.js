@@ -11,18 +11,17 @@
     .module('tc.myDashboard')
     .factory('srms', SRMService);
 
-  SRMService.$inject = ['Restangular', '$filter'];
+  SRMService.$inject = ['api', '$filter'];
 
   /**
    * SRMService 
-   * @param Restangular to access the REST api
+   * @param api to access the REST api
    * @param $filter used to format the date
    * @constructor
    */
-  function SRMService(Restangular, $filter) {
+  function SRMService(api, $filter) {
 
-    var service = Restangular.withConfig(function(RestangularConfigurer) {
-    });
+    var service = api.restangularV2;
 
     /**
      * getSRMSchedule returns list of upcoming SRMs currently scheduled

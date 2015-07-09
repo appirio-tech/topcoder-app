@@ -11,21 +11,15 @@
     .module('tc.myDashboard')
     .factory('memberCert', ProfileService);
 
-  ProfileService.$inject = ['Restangular3', 'authtoken'];
+  ProfileService.$inject = ['api', 'authtoken'];
 
   /**
    * SRMService 
    * @param Restangular to access the REST api
    * @constructor
    */
-  function ProfileService(Restangular, authtoken) {
-    var service = Restangular.withConfig(function(RestangularConfigurer) {
-      RestangularConfigurer.addFullRequestInterceptor(function(element, operation, what, url) {
-        return {
-          headers: {'Authorization': 'Bearer ' + authtoken.getV2Token()}
-        };
-      });
-    });
+  function ProfileService(api, authtoken) {
+    var service = api.restangularV3;
 
     /**
      * getMemberRegistration Retrieves the registration status of the member for the given program

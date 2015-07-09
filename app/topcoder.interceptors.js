@@ -48,45 +48,5 @@
   angular.module('topcoder').factory('HeaderInterceptor', HeaderInterceptor);
 
   angular.module('topcoder').config(['$httpProvider', 'jwtInterceptorProvider', JwtConfig]);
-
-  Restangular3 = function(Restangular, authtoken, CONSTANTS) {
-    
-
-    return Restangular.withConfig(function(RestangularConfigurer) {
-
-      RestangularConfigurer.addFullRequestInterceptor(function(element, operation, what, url) {
-        return {
-          headers: {'Authorization': 'Bearer ' + authtoken.getV2Token()}
-        };
-      });
-      RestangularConfigurer.setBaseUrl(CONSTANTS.API_URL);
-    });
-  };
-
-
-
-  angular.module('topcoder').factory('Restangular3', ['Restangular', 'authtoken', 'CONSTANTS', Restangular3]);
-
-  Restangular2 = function(RestangularProvider, CONSTANTS) {
-    RestangularProvider.setBaseUrl(CONSTANTS.API_URL_V2);
-
-    RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-      var extractedData;
-      extractedData = '';
-      extractedData = data.data ? data.data : data;
-      if (operation === 'getList') {
-        if (!(Object.prototype.toString.call(extractedData) === '[object Array]')) {
-          extractedData = [extractedData];
-        }
-        extractedData.pagination = {
-          total: data.total,
-          pageIndex: data.pageIndex,
-          pageSize: data.pageSize
-        };
-      }
-      return extractedData;
-    });
-  };
-
-  angular.module('topcoder').config(['RestangularProvider', 'CONSTANTS', Restangular2]);
+  
 })();
