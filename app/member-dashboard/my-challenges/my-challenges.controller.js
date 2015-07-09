@@ -69,11 +69,13 @@
 
     function viewActiveChallenges() {
       vm.listType = 'active';
+      vm.myChallenges = [];
       getChallenges();
     }
 
     function viewPastChallenges() {
       vm.listType = 'past';
+      vm.myChallenges = [];
       getChallenges();
     }
 
@@ -84,8 +86,9 @@
      */
     function getChallenges() {
       initPaging();
+      console.log(vm.listType);
       var chlngRequest = {
-        type: vm.listType,
+        listType: vm.listType,
         pageIndex: vm.pageIndex,
         pageSize: vm.pageSize,
         sortColumn: vm.sortColumn,
@@ -100,7 +103,7 @@
       vm.loading = true;
       // Fetch challenges promise
       var chlngPromise = ChallengeService.getMyActiveChallenges(chlngRequest);
-      var mmPromise = ChallengeService.getMyMarathonMatches(mmRequest);
+      //var mmPromise = ChallengeService.getMyMarathonMatches(mmRequest);
       $q.all([chlngPromise]) // add mmPromise to the array when end point works
         .then(function(responses) {
           var chlngData = responses[0];
@@ -162,7 +165,11 @@
         vm.lastRecordIndex = vm.pageIndex * vm.pageSize;
         vm.lastRecordIndex = vm.lastRecordIndex > vm.totalRecords ? vm.totalRecords : vm.lastRecordIndex;
       }
-      vm.myChallenges = data;
+      if (vm.view == 'tiles') {
+        vm.myChallenges = vm.myChallenges.concat(data);
+      } else {
+        vm.myChallenges = data;
+      }
       angular.forEach(vm.myChallenges, function(challenge) {
         var now = moment();
         registrationDate = moment(challenge.registrationEndDate);
@@ -180,7 +187,7 @@
       // uncomment following line when API supports paging
       // vm.visibleChallenges = data;
       // remove following line when API supports paging
-      vm.visibleChallenges = data.slice(vm.firstRecordIndex - 1, vm.lastRecordIndex);
+      vm.visibleChallenges = vm.myChallenges.slice(vm.firstRecordIndex - 1, vm.lastRecordIndex);
     }
 
     /**

@@ -41,12 +41,13 @@
         var pageSize = request && request.pageSize ? request.pageSize : 10;
         var sortColumn  = request && request.sortColumn ? request.sortColumn : 'submissionEndDate';
         var sortOrder  = request && request.sortOrder ? request.sortOrder : 'asc';
+        var listType  = request && request.listType ? request.listType : 'active';
 
         rApi2.request = request;
 
         // Fetch list of active challenges for current user
         rApi2.one("user").getList("challenges", {
-            type: "active",
+            type: listType,
             pageIndex: pageIndex,
             pageSize: pageSize,
             sortColumn: sortColumn,
@@ -95,7 +96,8 @@
       return prevRequest.pageIndex != currRequest.pageIndex ||
         prevRequest.pageSize != currRequest.pageSize ||
         prevRequest.sortColumn != currRequest.sortColumn ||
-        prevRequest.sortOrder != currRequest.sortOrder;
+        prevRequest.sortOrder != currRequest.sortOrder ||
+        prevRequest.listType != currRequest.listType;
     }
 
     function getReviewEndDate(challengeId) {
