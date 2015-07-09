@@ -1,19 +1,18 @@
 .jumbotron.my-dashboard-container.member-profile-header
   .container
-    .welcome-back(ng-include="'member-dashboard/member-profile/welcome-back.html'")
+    .welcome-back(ui-view="profile-header-widget")
 .my-dashboard-container.container-fluid
   .clearfix.visible-md-block.visible-lg-block
   .row
     .col-xs-12
-      .my-dashboard-widget.my-challenges(ng-include="'member-dashboard/my-challenges/my-challenges.html'", ng-controller='MyChallengesCtrl as vm', ng-show='vm.renderWidget')
+      .my-dashboard-widget.my-challenges(ng-show='vm.renderWidget', ui-view="my-challenges-widget")
   .row
     .col-xs-12.col-sm-8.col-sm-push-4.col-md-9.col-md-push-3
       //
-        <div class="my-dashboard-widget marketing-message" ng-include="'member-dashboard/marketing-message/marketing-message.html'">
-        </div>
-      .my-dashboard-widget.srm-gadget(ng-include="'member-dashboard/upcoming-srms/upcaming-srms.html'")
+        .my-dashboard-widget.marketing-message(ui-view="marketing-message-widget)
+      .my-dashboard-widget.srm-gadget(ui-view="srms-widget")
     .col-xs-12.col-sm-4.col-sm-pull-8.col-md-3.col-md-pull-9
-      .my-dashboard-widget.member-program(ng-include="'member-dashboard/member-program/member-program.html'")
-      .my-dashboard-widget.helpful-links(ng-include="'member-dashboard/helpful-links/helpful-links.html'")
-      .my-dashboard-widget.subscribe-updates(ng-include="'member-dashboard/subscribe-updates/subscribe-updates.html'")
-      .my-dashboard-widget.blog-post(ng-include="'member-dashboard/blog-post/blog-feed.html'")
+      .my-dashboard-widget.member-program(ui-view="member-program-widget")
+      .my-dashboard-widget.helpful-links(ui-view="helpful-links-widget")
+      .my-dashboard-widget.subscribe-updates(ui-view="subscribe-updates-widget")
+      .my-dashboard-widget.blog-post(ui-view="blog-post-widget")
