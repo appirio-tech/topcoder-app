@@ -12,13 +12,21 @@
     var name, state, states;
     states = {
       dashboard: {
+        abstract: true,
+        parent: 'root',
+        template: '<div ui-view></div>',
+        data: {
+          authRequired: true,
+        }
+      },
+      landing: {
         url: '/my-dashboard',
         templateUrl: 'member-dashboard/member-dashboard.html',
         controller: 'dashboard as db',
         authenticate: true,
-        parent: 'root',
+        parent: 'dashboard',
         data: {
-          authRequired: false,
+          authRequired: true,
           title: 'Dashboard'
         }
       }
