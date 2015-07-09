@@ -3,9 +3,9 @@
 
   angular.module('topcoder').factory('api', api);
 
-  api.$inject = ['$http', 'authtoken', 'Restangular', 'CONSTANTS'];
+  api.$inject = ['$http', '$log', 'authtoken', 'Restangular', 'CONSTANTS'];
 
-  function api($http, authtoken, Restangular, CONSTANTS) {
+  function api($http, $log, authtoken, Restangular, CONSTANTS) {
     var service = {
       requestHandler: requestHandler,
       restangularV3: getRestangularV3(),
