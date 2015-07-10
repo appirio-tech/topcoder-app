@@ -63,6 +63,21 @@
           }
         }
       },
+      'registeredSuccessfully': {
+        url: '/registeredsuccessfully',
+        data: {
+          title: 'Registered',
+          authRequired: false
+        },
+        views: {
+          'header@': {
+            templateUrl: 'layout/header/account-header.html'
+          },
+          'container@': {
+            templateUrl: 'account/register/registered-successfully.html'
+          }
+        }
+      },
       'resetPasswordLink': {
         url: '/initiate-reset-password',
         data: {

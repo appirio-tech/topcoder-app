@@ -92,13 +92,15 @@ gulp.task('clean-code', function(done) {
   clean(files, done);
 });
 
-gulp.task('temp-html', function() {
+gulp.task('copy-html', function() {
+  log('Moving app html files to .tmp');
+
   return gulp
     .src([config.app + '**/*.html', '!' + config.app + 'specs.html'])
     .pipe(gulp.dest(config.temp));
 });
 
-gulp.task('templatecache', ['clean-code', 'jade', 'temp-html'], function() {
+gulp.task('templatecache', ['clean-code', 'jade', 'copy-html'], function() {
   log('Creating AngularJS $templateCache');
 
   return gulp
