@@ -76,7 +76,7 @@ SCSS Files
   - Since a class with the current state name is added to the ui-view (see the Creating New Views/Pages section), wrap your .scss file with this class, in order to write specific SCSS in its own file for that page.
 
 JS/ES6
-  - See this section on [naming conventions and style guide](https://github.com/appirio-tech/topcoder-app/blob/dev/README.md#contributing)
+  - See this section on [naming conventions and style guide](https://github.com/appirio-tech/topcoder-app/blob/dev/README.md#style-guide-and-naming-conventions)
 
 Creating New Views/Pages
   - To add a new page, create a folder in the app directory and follow the naming conventions found elsewhere, e.g. login.controller.js, login.jade, login.spec.js, etc.  Make sure to add a new state in the module's routes file.
