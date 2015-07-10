@@ -3,15 +3,15 @@
 
   angular.module('topcoder').controller('SampleController', SampleController);
 
-  SampleController.$inject = ['$log', 'UserService', 'tcAuth'];
+  SampleController.$inject = ['$log', 'userService', 'tcAuth'];
 
-  function SampleController($log, UserService, tcAuth) {
+  function SampleController($log, userService, tcAuth) {
     var vm = this;
 
     vm.loggedIn = tcAuth.isAuthenticated();
 
     if (vm.loggedIn) {
-      UserService.getUsername().then(function(data) {
+      userService.getUsername().then(function(data) {
           vm.user = data;
         },
         function(resp) {

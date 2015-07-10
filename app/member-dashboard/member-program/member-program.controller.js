@@ -19,7 +19,7 @@
    * Inject dependencies
    * @type {string[]}
    */
-  MemberProgramCtrl.$inject = ['$scope', '$q', 'tcAuth', 'memberCert', 'UserService' , 'CONSTANTS'];
+  MemberProgramCtrl.$inject = ['$scope', '$q', 'tcAuth', 'memberCert', 'userService' , 'CONSTANTS'];
 
   /**
    * Controller implementation
@@ -27,7 +27,7 @@
    * @param $scope
    * @constructor
    */
-  function MemberProgramCtrl($scope, $q, tcAuth, MemberCertService, UserService, CONSTANTS) {
+  function MemberProgramCtrl($scope, $q, tcAuth, MemberCertService, userService, CONSTANTS) {
     var vm = this;
     vm.title = 'iOS Developer Community';
     vm.user = null;
@@ -65,7 +65,7 @@
       vm.loadingMessage = "Checking your program status";
       vm.user = user;
 
-      UserService.getUsername().then(function(response) {
+      userService.getUsername().then(function(response) {
         var identity = response.data;
         var promises = [
           MemberCertService.getMemberRegistration(identity.uid, CONSTANTS.SWIFT_PROGRAM_ID),
