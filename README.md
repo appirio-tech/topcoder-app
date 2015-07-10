@@ -55,6 +55,10 @@ See sample.routes.js and peer-review.routes.js as examples.
 
 ## Contributing
 
+### Style Guide and Naming Conventions
+
+In general, follow this [AngularJS style guide](https://github.com/johnpapa/angular-styleguide), which covers JavaScript code style, JavaScript variable naming, and file naming conventions. One deviation is in the naming of services, where we follow the same pattern as controllers, e.g. UserService, ProfileService.
+
 ### Pull Requests
 
 To contribute to the repository, please create a feature branch off of the dev branch. Once you're finished working on the feature, make a pull request to merge it into dev. Then, make sure to delete the branch when it's no longer used.
@@ -72,7 +76,7 @@ SCSS Files
   - Since a class with the current state name is added to the ui-view (see the Creating New Views/Pages section), wrap your .scss file with this class, in order to write specific SCSS in its own file for that page.
 
 JS/ES6
-  - Follow this [AngularJS style guide](https://github.com/johnpapa/angular-styleguide)
+  - See this section on [naming conventions and style guide](https://github.com/appirio-tech/topcoder-app/blob/dev/README.md#contributing)
 
 Creating New Views/Pages
   - To add a new page, create a folder in the app directory and follow the naming conventions found elsewhere, e.g. login.controller.js, login.jade, login.spec.js, etc.  Make sure to add a new state in the module's routes file.
