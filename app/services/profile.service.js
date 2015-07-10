@@ -3,9 +3,9 @@
 
   angular.module('topcoder').factory('profile', profile);
 
-  profile.$inject = ['CONSTANTS', 'api', 'userService'];
+  profile.$inject = ['CONSTANTS', 'api', 'UserService'];
 
-  function profile(CONSTANTS, api, userService) {
+  function profile(CONSTANTS, api, UserService) {
     var service = {
       getUserProfile: getUserProfile
     };
@@ -14,7 +14,7 @@
     ///////////////
 
     function getUserProfile() {
-      return userService.getUsername()
+      return UserService.getUsername()
       .then(function(response) {
         return api.requestHandler('GET', CONSTANTS.API_URL_V2 + '/users/' + response.data.handle);
       });

@@ -3,9 +3,9 @@
 
   angular.module('topcoder').factory('tcAuth', tcAuth);
 
-  tcAuth.$inject = ['CONSTANTS', 'authtoken', '$rootScope', '$q', '$log', '$timeout', 'userService'];
+  tcAuth.$inject = ['CONSTANTS', 'authtoken', '$rootScope', '$q', '$log', '$timeout', 'UserService'];
 
-  function tcAuth(CONSTANTS, authtoken, $rootScope, $q, $log, $timeout, userService) {
+  function tcAuth(CONSTANTS, authtoken, $rootScope, $q, $log, $timeout, UserService) {
     var auth0 = new Auth0({
       domain: CONSTANTS.auth0Domain,
       clientID: CONSTANTS.clientId,
@@ -83,7 +83,7 @@
       // api params
       // required: ["firstName", "lastName", "handle", "country", "email"],
       // optional: ["password", "socialProviderId", "socialUserName", "socialEmail", "socialEmailVerified", "regSource", "socialUserId", "utm_source", "utm_medium", "utm_campaign"]
-      return userService.createUser(userInfo);
+      return UserService.createUser(userInfo);
     }
 
     function isAuthenticated() {

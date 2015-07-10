@@ -4,9 +4,9 @@
   angular.module('validateLogin', [])
   .directive('usernameExists', usernameExists);
 
-  usernameExists.$inject = ['userService', '$log', '$q'];
+  usernameExists.$inject = ['UserService', '$log', '$q'];
 
-  function usernameExists(userService, $log, $q) {
+  function usernameExists(UserService, $log, $q) {
     return {
       require: 'ngModel',
       link: function(scope, element, attrs, ctrl) {
@@ -15,7 +15,7 @@
 
           // Check if the username exists
           var defer = $q.defer();
-          userService.validateUserHandle(modelValue).then(
+          UserService.validateUserHandle(modelValue).then(
             function(resp) {
               // doesn't exists
               return defer.reject();

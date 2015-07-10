@@ -50,9 +50,9 @@
   }
 
 
-  usernameIsFree.$inject = ['userService', '$log', '$q'];
+  usernameIsFree.$inject = ['UserService', '$log', '$q'];
 
-  function usernameIsFree(userService, $log, $q) {
+  function usernameIsFree(UserService, $log, $q) {
     return {
       require: 'ngModel',
       link: function(scope, element, attrs, ctrl) {
@@ -61,7 +61,7 @@
 
           // Check if the username exists
           var defer = $q.defer();
-          userService.validateUserHandle(modelValue).then(
+          UserService.validateUserHandle(modelValue).then(
             function(resp) {
               // username is free
               return defer.resolve();

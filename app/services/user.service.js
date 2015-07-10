@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').factory('userService', userService);
+  angular.module('topcoder').factory('UserService', UserService);
 
-  userService.$inject = ['CONSTANTS', 'api', '$http'];
+  UserService.$inject = ['CONSTANTS', 'api', '$http'];
 
-  function userService(CONSTANTS, api, http) {
+  function UserService(CONSTANTS, api, http) {
     var service = {
       getUsername: getUsername,
       createUser: createUser,
