@@ -3,6 +3,7 @@
 
   var dependencies = [
     'validateLogin',
+    'validateRegister',
     'ui.router'
   ];
 

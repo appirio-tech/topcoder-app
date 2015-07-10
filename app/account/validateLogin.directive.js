@@ -10,11 +10,10 @@
     return {
       require: 'ngModel',
       link: function(scope, element, attrs, ctrl) {
-        ctrl.$asyncValidators.username = function(modelValue, viewValue) {
+        ctrl.$asyncValidators.usernameExists = function(modelValue, viewValue) {
           $log.info('Validating username or email: ' + modelValue);
 
-          // Fake API call that returns false
-          // Check if the username exists here
+          // Check if the username exists
           var defer = $q.defer();
           UserService.validateUserHandle(modelValue).then(
             function(resp) {

@@ -1,22 +1,23 @@
 .login-container
   h1 Login
-  form(name="vm.loginForm", role="form", ng-submit="vm.loginForm.$valid && vm.doLogin()", novalidate)
+
+  form(name="loginForm", role="form", ng-submit="loginForm.$valid && vm.doLogin()", novalidate)
     .form-errors
 
-      p.login-error(ng-if="vm.loginForm.username.$error.username-exists") This user does not exist.
+      p.login-error(ng-show="loginForm.username.$error.usernameExists") This user does not exist.
 
       p.login-error(ng-if="vm.wrongPassword") That password doesn't match the one we have on file. Please try again.
 
       p.login-error(ng-if="vm.socialLoginError === 401") User with that profile is not registered.
 
-      div(ng-if="vm.loginForm.$submitted")
-        p.login-error(ng-if="vm.loginForm.username.$error.required") Please enter your username or email.
+      div(ng-if="loginForm.$submitted")
+        p.login-error(ng-if="loginForm.username.$error.required") Please enter your username or email.
 
     input(ng-model="vm.username", ng-model-options="{debounce: {'default': 500}}", name="username", placeholder="Username or Email", type="text", required, username-exists)
 
     input(ng-model="vm.password", name="password", placeholder="Password", type="password", required)
 
-    button(type="submit", ng-disabled="vm.loginForm.$invalid", ng-class="{'enabled-button': vm.loginForm.$valid}") Login
+    button(type="submit", ng-disabled="loginForm.$invalid", ng-class="{'enabled-button': loginForm.$valid}") Login
 
   section.social
     p log in with another account

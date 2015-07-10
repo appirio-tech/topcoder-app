@@ -3,9 +3,9 @@
 
   angular.module('topcoder').factory('tcAuth', tcAuth);
 
-  tcAuth.$inject = ['CONSTANTS', '$window', 'authtoken', '$state', '$stateParams', 'api', '$rootScope', '$q', '$log', '$http', '$timeout'];
+  tcAuth.$inject = ['CONSTANTS', 'authtoken', '$rootScope', '$q', '$log', '$timeout', 'UserService'];
 
-  function tcAuth(CONSTANTS, $window, authtoken, $state, $stateParams, api, $rootScope, $q, $log, $http, $timeout) {
+  function tcAuth(CONSTANTS, authtoken, $rootScope, $q, $log, $timeout, UserService) {
     var auth0 = new Auth0({
       domain: CONSTANTS.auth0Domain,
       clientID: CONSTANTS.clientId,
@@ -33,31 +33,31 @@
         username: username,
         password: password
       };
+
       return $q(function(resolve, reject) {
-        auth0.signin(
-          options,
-          function(err, profile, idToken, accessToken, state, refreshToken) {
-            if (err) {
-              $log.error(err);
-              reject(err);
-            } else {
-              // exchange token
-              authtoken.exchangeToken(refreshToken, idToken)
-                .then(function() {
-                  // giving angular sometime to set the cookies
-                  $timeout(function() {
-                    $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
-                    resolve();
-                  }, 200);
-                });
-            }
-          });
+        auth0.signin(options, function(err, profile, idToken, accessToken, state, refreshToken) {
+          if (err) {
+            $log.error(err);
+            reject(err);
+          } else {
+            // exchange token
+            authtoken.exchangeToken(refreshToken, idToken)
+            .then(function() {
+              // giving angular sometime to set the cookies
+              $timeout(function() {
+                $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
+                resolve();
+              }, 200);
+            });
+          }
+        });
       });
     }
 
     function socialLogin(backend, state) {
       // supported backends
       var backends = ['facebook', 'google-oauth2', 'twitter', 'github'];
+
       if (backends.indexOf(backend) > -1) {
         auth0.signin({
           connection: backend,
@@ -79,12 +79,11 @@
       });
     }
 
-    function register(reg) {
+    function register(userInfo) {
       // api params
       // required: ["firstName", "lastName", "handle", "country", "email"],
       // optional: ["password", "socialProviderId", "socialUserName", "socialEmail", "socialEmailVerified", "regSource", "socialUserId", "utm_source", "utm_medium", "utm_campaign"]
-      var url = CONSTANTS.API_URL_V2 + '/users/';
-      api.requestHandler('POST', url, JSON.stringify(reg));
+      return UserService.createUser(userInfo);
     }
 
     function isAuthenticated() {
