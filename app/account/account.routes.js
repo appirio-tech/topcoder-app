@@ -9,9 +9,23 @@
     $locationProvider.html5Mode(true);
 
     var states = {
-      'login': {
+      'auth': {
         parent: 'root',
-        url: '/login?next&code&state&status',
+        onEnter: ['$state', '$stateParams', 'tcAuth', function($state, $stateParams, tcAuth) {
+          if (tcAuth.isAuthenticated()) {
+            // redirect to next if exists else dashboard
+            if ($stateParams.next) {
+              $log.debug('Redirecting: ' + $stateParams.next);
+              window.location.href = decodeURIComponent($stateParams.next);
+            } else {
+              $state.go('dashboard');
+            }
+          }
+        }]
+      },
+      'login': {
+        parent: 'auth',
+        url: '/login?next&code&state&status&userJWTToken',
         data: {
           title: 'Login',
           authRequired: false
@@ -32,6 +46,7 @@
         }
       },
       'register': {
+        parent: 'auth',
         url: '/register?next',
         data: {
           title: "Join",
@@ -93,6 +108,12 @@
             templateUrl: 'account/reset-password/reset-password.html',
           }
         }
+      },
+      logout: {
+        url: '/logout',
+        controller: ['tcAuth', function(tcAuth) {
+          tcAuth.logout();
+        }]
       }
     };
 

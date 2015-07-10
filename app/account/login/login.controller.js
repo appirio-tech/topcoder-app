@@ -9,6 +9,26 @@
     var vm = this;
     vm.passwordReset = false;
 
+
+    var redirect = function() {
+      // check if the user is already logged in
+      if (tcAuth.isAuthenticated()) {
+        // redirect to next if exists else dashboard
+        if ($stateParams.next) {
+          $log.debug('Redirecting: ' + $stateParams.next);
+          window.location.href = decodeURIComponent($stateParams.next);
+        } else {
+          $state.go('dashboard');
+        }
+      }
+    };
+
+    // Handling social login stuff
+    if ($stateParams.userJWTToken) {
+      // user logged in
+      authtoken.setV3Token($stateParams.userJWTToken);
+      redirect();
+    }
     if ($stateParams.status) {
       // handle social login callback
       var status = parseInt($stateParams.status);
@@ -30,21 +50,6 @@
       );
     }
 
-    var redirect = function(force) {
-      // check if the user is already logged in
-      if (tcAuth.isAuthenticated()) {
-        // redirect to next if exists else dashboard
-        if ($stateParams.next) {
-          $log.debug('Redirecting: ' + $stateParams.next);
-          window.location.href = decodeURIComponent($stateParams.next);
-        } else {
-          $state.go('dashboard');
-        }
-      }
-    };
-
-    redirect();
-
     vm.doLogin = function() {
       // TODO placeholder, validate form etc
       tcAuth.login(vm.username, vm.password).then(
@@ -62,9 +67,13 @@
     };
 
     vm.socialLogin = function(backend) {
-      var state = location.href;
-      tcAuth.socialLogin(backend, state);
-    }
+      var params = {}, callbackUrl;
+      if ($stateParams.next) {
+        params = {next: $stateParams.next};
+      }
+      callbackUrl = $state.href('login', params, {absolute: true});
+      tcAuth.socialLogin(backend, callbackUrl);
+    };
 
   }
 

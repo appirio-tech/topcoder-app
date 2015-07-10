@@ -92,7 +92,13 @@ gulp.task('clean-code', function(done) {
   clean(files, done);
 });
 
-gulp.task('templatecache', ['clean-code', 'jade'], function() {
+gulp.task('temp-html', function() {
+  return gulp
+    .src([config.app + '**/*.html', '!config.app' + '**/*spec.js'])
+    .pipe(gulp.dest(config.temp));
+});
+
+gulp.task('templatecache', ['clean-code', 'jade', 'temp-html'], function() {
   log('Creating AngularJS $templateCache');
 
   return gulp
