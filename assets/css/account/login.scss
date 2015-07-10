@@ -1,6 +1,18 @@
 @import '../partials/combined';
 
 .login-container {
+
+  * {
+    box-sizing: content-box;
+  }
+
+  form {
+    display: flex;
+    flex-flow: row wrap;
+    width: 300px;
+    justify-content: space-between;
+  }
+
   .form-errors p {
     margin-bottom: 10px;
   }

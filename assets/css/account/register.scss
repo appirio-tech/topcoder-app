@@ -3,6 +3,10 @@
 .register-container {
   position: relative;
 
+  * {
+    box-sizing: content-box;
+  }
+
   .login-error {
     margin: 2px 0 12px 5px;
   }

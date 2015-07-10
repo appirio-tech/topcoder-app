@@ -94,7 +94,7 @@ gulp.task('clean-code', function(done) {
 
 gulp.task('temp-html', function() {
   return gulp
-    .src([config.app + '**/*.html', '!config.app' + '**/*spec.js'])
+    .src([config.app + '**/*.html', '!' + config.app + 'specs.html'])
     .pipe(gulp.dest(config.temp));
 });
 
