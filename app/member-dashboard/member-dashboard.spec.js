@@ -28,7 +28,7 @@ describe('Dashboard Controller', function() {
         return false;
       });
 
-      controller = $controller('dashboard', {
+      controller = $controller('DashboardCtrl', {
         $scope: $rootScope.$new()
       });
       $rootScope.$apply();
@@ -59,7 +59,7 @@ describe('Dashboard Controller', function() {
         return true;
       });
 
-      controller = $controller('dashboard', {
+      controller = $controller('DashboardCtrl', {
         $scope: $rootScope.$new()
       });
       $rootScope.$apply();
@@ -116,7 +116,7 @@ describe('Dashboard Controller', function() {
       });
       userProfileResp.data.photoLink = '';
 
-      controller = $controller('dashboard', {
+      controller = $controller('DashboardCtrl', {
         $scope: $rootScope.$new()
       });
       $rootScope.$apply();
