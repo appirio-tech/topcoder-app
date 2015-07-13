@@ -353,7 +353,7 @@ gulp.task('deploy', ['build'], function() {
 
   log('Deploying to S3');
 
-  var gzip = gulp.src('build/**/*.js').pipe($.awspublish.gzip());
+  var gzip = gulp.src(['build/**/*.js', 'build/**/*.css']).pipe($.awspublish.gzip());
   var plain = gulp.src([ 'build/**/*', '!build/**/*.js' ]);
 
   return merge(gzip, plain)
