@@ -88,7 +88,8 @@ module.exports = function() {
     },
 
     // Process.env variables
-    production: process.env.ENVIRONMENT === 'production'
+    production: process.env.ENVIRONMENT === 'production',
+    qa: process.env.ENVIRONMENT === 'qa'
   };
 
   config.getWiredepDefaultOptions = function () {
