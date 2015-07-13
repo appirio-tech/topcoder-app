@@ -61,7 +61,6 @@
         console.log(identity);
         activate(identity);
       });
-      console.log(db.user)
       if (db.user) {
         activate(db.user);
       }
@@ -71,7 +70,7 @@
 
     function activate(user) {
       // fetch user info
-      ProfileService.getUserProfile(user.handle)
+      ProfileService.getUserProfile()
         .then(function(response) {
           var profile = response.data;
           vm.profile = profile;

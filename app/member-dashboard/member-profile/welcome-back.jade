@@ -1,0 +1,29 @@
+.member-profile
+  .profile
+    .profile-left
+        .profile-image
+          img(width='130px', src='{{vm.photoLink}}')
+        .profile-details
+          div(rel='upload-photo', ng-show='vm.showUploadPhotoLink')
+            a(href='{{vm.uploadPhotoLink}}') Upload Photo
+          .handle(style='{{vm.ratingColor}}') {{vm.profile.handle}}
+          .edit-profile
+            a(href='{{vm.editProfileUrl}}') (Edit Profile)
+          .doj
+            Member Since: 
+            span(ng-bind='vm.profile.memberSince | date')
+    .profile-right
+      .money-in-bank(ng-show='vm.profile && vm.profile.overallEarning > 0')
+        div(rel='value', ng-bind='vm.profile.overallEarning || 0 | currency')
+        div(rel='label') Money in Bank
+      .open-challenges
+        div(rel='value', ng-bind='vm.myOpenChallengesCount || 0')
+        div(rel='label') Open Challenges
+      .review-opportunities
+        div(rel='value', ng-bind='vm.reviewOpportunities || 0')
+        div(rel='label') Review Opportunities
+  .rating-summary
+    .track-rating(ng-repeat='rs in vm.profile.ratingSummary')
+      div(rel='value', ng-bind='rs.rating')  
+      div(rel='label', ng-bind='rs.name')
+.clear
