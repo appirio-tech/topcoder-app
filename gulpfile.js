@@ -113,6 +113,19 @@ gulp.task('templatecache', ['clean-code', 'jade', 'copy-html'], function() {
     .pipe(gulp.dest(config.temp));
 });
 
+gulp.task('ngConstants', function() {
+  var envFile = require('./config.js')();
+  var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
+
+  return $.ngConstant({
+      name: 'CONSTANTS',
+      dest: 'topcoder.constants.js',
+      constants: envConfig,
+      stream: true
+    })
+    .pipe(gulp.dest(config.app));
+});
+
 gulp.task('wiredep', ['jade'], function() {
   log('Injecting bower css/js and app js files into index.jade');
   var options = config.getWiredepDefaultOptions();
@@ -139,7 +152,7 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
     .pipe(gulp.dest(config.app));
 });
 
-gulp.task('optimize', ['inject', 'test'], function() {
+gulp.task('optimize', ['inject', 'test', 'ngConstants'], function() {
   log('Optimizing the JavaScript, CSS, and HTML');
 
   var assets = $.useref.assets({searchPath: ['.tmp', 'app', 'assets']});
@@ -164,7 +177,7 @@ gulp.task('optimize', ['inject', 'test'], function() {
     .pipe($.uglify())
     .pipe(jsLibFilter.restore())
     .pipe(jsAppFilter)
-    .pipe($.if(!config.production, $.sourcemaps.init()))
+    .pipe($.if(!config.production && !config.qa, $.sourcemaps.init()))
     .pipe($.ngAnnotate())
     .pipe($.uglify())
     .pipe(jsAppFilter.restore())
@@ -172,7 +185,7 @@ gulp.task('optimize', ['inject', 'test'], function() {
     .pipe(assets.restore())
     .pipe($.useref())
     .pipe($.revReplace())
-    .pipe($.if(!config.production, $.sourcemaps.write()))
+    .pipe($.if(!config.production && !config.qa, $.sourcemaps.write()))
     // Uncomment if you want to see the JSON file containing
     // the file mapping (e.g., "{"js/app.js": "js/app-a9bae026bc.js"}")
     // .pipe(gulp.dest(config.build))
@@ -216,7 +229,7 @@ gulp.task('build-specs', ['templatecache'], function() {
     .pipe(gulp.dest(config.app));
 });
 
-gulp.task('serve', ['inject'], function() {
+gulp.task('serve', ['inject', 'ngConstants'], function() {
 
   gulp.watch(config.sass, ['styles'])
     .on('change', function(event) { changeEvent(event); });
@@ -313,7 +326,7 @@ gulp.task('serve-build', ['build'], function() {
 });
 
 // gulp.task('test', ['vet', 'templatecache'], function(done) {
-gulp.task('test', ['templatecache'], function(done) {
+gulp.task('test', ['templatecache', 'ngConstants'], function(done) {
   startTests(true /* singleRun */, done);
 });
 
