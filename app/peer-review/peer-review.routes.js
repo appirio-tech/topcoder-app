@@ -11,9 +11,8 @@
   function routes($stateProvider, $urlRouterProvider, $httpProvider) {
     var states = {
       review: {
-        abstract: true,
         parent: 'root',
-        template: '<div ui-view></div>',
+        abstract: true,
         data: {
           authRequired: true,
         }
@@ -21,11 +20,15 @@
       'review.status': {
         parent: 'review',
         url: '/challenge/:challengeId',
-        templateUrl: 'peer-review/review-status/review-status.html',
-        controller: 'ReviewStatusController',
-        controllerAs: 'vm',
         data: {
           title: 'Peer Review'
+        },
+        views: {
+          'container@': {
+            templateUrl: 'peer-review/review-status/review-status.html',
+            controller: 'ReviewStatusController',
+            controllerAs: 'vm'
+          }
         }
       },
       'review.readOnlyScorecard': {
