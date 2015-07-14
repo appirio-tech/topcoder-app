@@ -34,7 +34,8 @@
     "moment": "~2.10.3",
     "bootstrap": "~3.3.4",
     "restangular": "~1.5.1",
-    "fontawesome": "~4.3.0"
+    "fontawesome": "~4.3.0",
+    "jstzdetect": "~1.0.6"
   },
   "devDependencies": {
     "bardjs": "~0.1.4"
