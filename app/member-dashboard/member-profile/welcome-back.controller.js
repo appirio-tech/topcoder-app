@@ -123,20 +123,18 @@
               if (!challenge.roles) {
                 return;
               }
-              var roles = challenge.roles.map(function(role) {
-                return role.toLowerCase();
+              angular.forEach(challenge.roles, function(role) {
+                var r = role.toLowerCase();
+                if(r == "submitter") {
+                  ctOpenChallenges++
+                }
+                if(r == "reviewer") {
+                  ctReviewChallenges++
+                }
+                if(r == "copilot") {
+                  ctCopilotChallenges++
+                }
               });
-              if(roles && roles.indexOf("submitter") != -1) {
-                ctOpenChallenges++
-              }
-              
-              if(roles && roles.indexOf("reviewer") != -1) {
-                ctReviewChallenges++
-              }
-
-              if(roles && roles.indexOf("copilot") != -1) {
-                ctCopilotChallenges++
-              }
             });
 
             vm.myOpenChallengesCount = ctOpenChallenges;
