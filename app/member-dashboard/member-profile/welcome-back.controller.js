@@ -120,16 +120,21 @@
             var ctCopilotChallenges = 0;
 
             angular.forEach(vm.myActiveChallenges, function(challenge) {
-              var roles = challenge.roles;
-              if(roles && roles.indexOf("Submitter") != -1) {
+              if (!challenge.roles) {
+                return;
+              }
+              var roles = challenge.roles.map(function(role) {
+                return role.toLowerCase();
+              });
+              if(roles && roles.indexOf("submitter") != -1) {
                 ctOpenChallenges++
               }
               
-              if(roles && roles.indexOf("Reviewer") != -1) {
+              if(roles && roles.indexOf("reviewer") != -1) {
                 ctReviewChallenges++
               }
 
-              if(roles && roles.indexOf("Copilot") != -1) {
+              if(roles && roles.indexOf("copilot") != -1) {
                 ctCopilotChallenges++
               }
             });
