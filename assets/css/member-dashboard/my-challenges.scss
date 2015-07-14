@@ -8,6 +8,24 @@ $url_10: url(../images/sort-arrows.png);
   min-height: 50px;
   .challenges-header {
     margin-bottom: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    .left {
+      .view-options {
+        visibility: hidden;
+      }
+    }
+    .center {
+
+    }
+    .right {
+      display: flex;
+      flex-flow: row wrap;
+      .timeline-options {
+        margin-left: 10px;
+      }
+    }
   }
   .panel.tile-view {
     border: none;
@@ -39,6 +57,8 @@ $url_10: url(../images/sort-arrows.png);
       }
       .challenge-details {
         padding: 10px;
+        display: flex;
+        flex-direction: column;
         .registration-date {
           label {
             display: block;
@@ -57,6 +77,36 @@ $url_10: url(../images/sort-arrows.png);
         .time-left {
           margin-top: 10px;
           font-weight: bold;
+        }
+        .reg-sub-summary {
+          margin-top: 10px;
+          .registrants {
+            margin-right: 10px;
+            .value {
+              margin-left: 5px;
+            }
+          }
+          .submissions {
+            .value {
+              margin-left: 5px;
+            }
+          }
+        }
+        .phase-msg {
+          margin-top: 10px;
+        }
+        .member-status-msg {
+          margin-top: 10px;
+          align-self: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .icon {
+
+          }
+          .msg {
+
+          }
         }
       }
     }

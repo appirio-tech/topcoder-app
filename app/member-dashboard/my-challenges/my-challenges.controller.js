@@ -174,6 +174,7 @@
         var now = moment();
         registrationDate = moment(challenge.registrationEndDate);
         submissionDate = moment(challenge.submissionEndDate);
+        challenge.currentPhaseRemainingTime = challenge.currentPhaseRemainingTime/(24*60*60);
         challenge.registrationClosed = now > registrationDate ? true : false;
         challenge.submissionClosed = now > submissionDate ? true : false;
         challenge.registrationTimeLeft = (registrationDate - now)/(24*60*60*1000);
@@ -183,6 +184,8 @@
         } else if (challenge.challengeCommunity == 'develop') {
           challenge.community = 'Development';
         }
+        // TODO create msg dynamically
+        challenge.memberStatusMsg = 'You are registered!';
       });
       // uncomment following line when API supports paging
       // vm.visibleChallenges = data;
