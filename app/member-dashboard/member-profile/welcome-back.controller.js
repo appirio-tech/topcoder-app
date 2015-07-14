@@ -117,19 +117,26 @@
 
             var ctOpenChallenges = 0;
             var ctReviewChallenges = 0;
+            var ctCopilotChallenges = 0;
 
             angular.forEach(vm.myActiveChallenges, function(challenge) {
-              if(challenge.roles && challenge.roles.indexOf("Submitter") != -1) {
+              var roles = challenge.roles;
+              if(roles && roles.indexOf("Submitter") != -1) {
                 ctOpenChallenges++
               }
               
-              if(challenge.roles && challenge.roles.indexOf("Reviewer") != -1) {
+              if(roles && roles.indexOf("Reviewer") != -1) {
                 ctReviewChallenges++
+              }
+
+              if(roles && roles.indexOf("Copilot") != -1) {
+                ctCopilotChallenges++
               }
             });
 
             vm.myOpenChallengesCount = ctOpenChallenges;
             vm.reviewOpportunities = ctReviewChallenges;
+            vm.copilotChallengesCount = ctCopilotChallenges;
           });
     }
 

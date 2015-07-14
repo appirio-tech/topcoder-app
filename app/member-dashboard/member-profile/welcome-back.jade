@@ -19,6 +19,9 @@
       .review-opportunities
         div(rel='value', ng-bind='vm.reviewOpportunities || 0')
         div(rel='label') Review Opportunities
+      .copilot-challenges
+        div(rel='value', ng-bind='vm.copilotChallengesCount || 0')
+        div(rel='label') Co-pilot Challenges
   .rating-summary
     .track-rating(ng-repeat='rs in vm.profile.ratingSummary')
       div(rel='value', ng-bind='rs.rating')  

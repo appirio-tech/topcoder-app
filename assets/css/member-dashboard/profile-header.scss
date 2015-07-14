@@ -75,6 +75,7 @@
         box-sizing: border-box;
       }
       .open-challenges {
+        display: none;
         text-align: center;
         padding-left: 10px;
         padding-right: 10px;
@@ -88,6 +89,20 @@
         }
       }
       .review-opportunities {
+        display: none;
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        //Instead of the line below you could use @includebox-sizing($bs)
+        box-sizing: border-box;
+        div[rel="value"] {
+          font-size: 20px;
+        }
+        div[rel="label"] {
+          margin-top: 15px;
+        }
+      }
+      .copilot-challenges {
         text-align: center;
         padding-left: 10px;
         padding-right: 10px;
