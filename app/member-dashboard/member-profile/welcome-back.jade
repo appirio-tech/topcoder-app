@@ -9,9 +9,6 @@
           .handle(style='{{vm.ratingColor}}') {{vm.profile.handle}}
           .edit-profile
             a(href='{{vm.editProfileUrl}}') (Edit Profile)
-          .doj
-            Member Since: 
-            span(ng-bind='vm.profile.memberSince | date')
     .profile-right
       .money-in-bank(ng-show='vm.profile && vm.profile.overallEarning > 0')
         div(rel='value', ng-bind='vm.profile.overallEarning || 0 | currency')
