@@ -35,7 +35,7 @@
             controllerAs: 'vm'
           },
           'srms-widget' :{
-            templateUrl : 'member-dashboard/upcoming-srms/upcaming-srms.html',
+            templateUrl : 'member-dashboard/upcoming-srms/upcoming-srms.html',
             controller: 'UpcomingSRMsCtrl',
             controllerAs: 'vm'
           },

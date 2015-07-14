@@ -47,6 +47,7 @@
     vm.isCurrentPage = isCurrentPage;
     vm.getCurrentPageClass = getCurrentPageClass;
     vm.sort = sort;
+    vm.view = 'tiles';
 
     // activate controller
     if (tcAuth.isAuthenticated() === true) {
