@@ -46,6 +46,12 @@
     position: absolute;
     width: 320px;
     text-align: left;
+    top: 13px;
+    @media only screen and (max-width: 915px) {
+      position: initial;
+      margin-left: 5px;
+      width: 300px;
+    }
 
     h3, p {
       margin-bottom: 10px;
@@ -54,6 +60,9 @@
     h3 {
       @include source-sans-semi-bold;
       font-size: 18px;
+      @media only screen and (max-width: 915px) {
+        font-size: 15px;
+      }
     }
 
     h3:before {
@@ -61,6 +70,9 @@
       content: '\f053';
       display: inline-block;
       width: 20px;
+      @media only screen and (max-width: 915px) {
+        display: none;
+      }
     }
 
     p {
@@ -81,12 +93,10 @@
   }
 
   .username-tips {
-    top: 219px;
     left: 330px;
   }
 
   .email-tips {
-    top: 270px;
     left: 330px;
 
     p:last-child {
@@ -95,7 +105,6 @@
   }
 
   .password-tips {
-    top: 322px;
     left: 330px;
 
     p:before {
