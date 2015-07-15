@@ -13,8 +13,31 @@
     justify-content: space-between;
   }
 
-  .form-errors p {
-    margin-bottom: 10px;
+  .form-errors {
+    width: 300px;
+
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
+  .validation-bar {
+    position: relative;
+
+    &:before {
+      content: '';
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 42px;
+      width: 5px;
+      background-color: red;
+    }
+
+    &.error-bar:before {
+      display: block;
+    }
   }
 
   .forgot-password {
