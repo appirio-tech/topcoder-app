@@ -3,12 +3,12 @@
 
   angular.module('tc.account').controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$log', '$state', '$stateParams', 'tcAuth', 'authtoken'];
+  LoginController.$inject = ['$log', '$state', '$stateParams', 'tcAuth', 'authtoken', 'UserService'];
 
-  function LoginController($log, $state, $stateParams, tcAuth, authtoken) {
+  function LoginController($log, $state, $stateParams, tcAuth, authtoken, UserService) {
     var vm = this;
     vm.passwordReset = false;
-
+    vm.usernameExists = true;
 
     var redirect = function() {
       // check if the user is already logged in
@@ -50,20 +50,30 @@
       );
     }
 
-    vm.doLogin = function() {
-      // TODO placeholder, validate form etc
-      tcAuth.login(vm.username, vm.password).then(
-        function(data) {
-          // success
-          $log.debug('logged in');
-          redirect(true);
-        },
-        function(err) {
-          // handle error
-          vm.wrongPassword = true;
-          vm.password = '';
-        }
-      );
+    vm.login = function() {
+      UserService.validateUserHandle(vm.username)
+      .then(function() {
+        // User does not exist
+        vm.usernameExists = false;
+      })
+      .catch(function() {
+        // User exists
+        vm.usernameExists = true;
+        tcAuth.login(vm.username, vm.password).then(
+          function(data) {
+            // success
+            $log.debug('logged in');
+            redirect(true);
+          },
+          function(err) {
+            // handle error
+            vm.wrongPassword = true;
+            vm.password = '';
+          }
+        );
+      });
+
+
     };
 
     vm.socialLogin = function(backend) {
