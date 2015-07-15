@@ -9,7 +9,7 @@
       strong SRMs
     .right
       .timeline-options
-        a(href="#", ng-click='vm.viewActiveSRMs()') Active
+        a(href="#", ng-click='vm.viewUpcomingSRMs()') Active
         span  | 
         a(href="#", ng-click='vm.viewPastSRMs()') Past
       ul.tc-pager(ng-show='vm.totalPages > 1')
@@ -24,12 +24,10 @@
         .title(ng-bind='srm.contestName')
       .srm-details
         .time-left
-            span(ng-bind='srm.registrationStartTime | deadlineMsg')
-            span(ng-bind='srm.registrationStartTime | timeDiff')
-        //.phase-msg(ng-show="srm.status=='Active'")
-          span(ng-bind="srm.currentPhaseName")
-          | 
-          span Phase Ends
+            div(ng-bind='srm.codingStartTime | timeDiff')
+        .phase-msg
+          span Coding 
+          span(ng-bind='srm.codingStartTime | deadlineStartMsg')
         //.srm-complete-msg(ng-show="srm.status=='Complete'")
           srm Complete
         //.reg-sub-summary

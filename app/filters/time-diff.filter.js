@@ -5,7 +5,7 @@
 
   function timeDiff() {
     return function(input) {
-      return moment(input).fromNow();
+      return moment(input).fromNow(true);
     };
   };
 

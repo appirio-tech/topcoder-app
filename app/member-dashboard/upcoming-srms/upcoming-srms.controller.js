@@ -48,6 +48,8 @@
     vm.getCurrentPageClass = getCurrentPageClass;
     vm.sort = sort;
     vm.view = 'tiles';
+    vm.viewUpcomingSRMs = viewUpcomingSRMs;
+    vm.viewPastSRMs = viewPastSRMs;
 
     // activate controller
     if (tcAuth.isAuthenticated() === true) {
@@ -143,6 +145,26 @@
     function initPaging() {
       vm.prevPageLink = {text: "Prev", val: vm.pageIndex - 1};
       vm.nextPageLink = {text: "Next", val: vm.pageIndex + 1};
+    }
+
+    /**
+     * Fetches past SRMs of the logged in member
+     *
+     */
+    function viewPastSRMs() {
+      vm.listType = 'past';
+      vm.srms = [];
+      getSRMs();
+    }
+
+    /**
+     * Fetches upcoming SRMs of the logged in member
+     *
+     */
+    function viewUpcomingSRMs() {
+      vm.listType = 'upcoming';
+      vm.srms = [];
+      getSRMs();
     }
   }
 
