@@ -2,23 +2,40 @@
   h1 Join Topcoder
 
   form(name="registerForm", role="form", ng-submit="registerForm.$valid && vm.register()", novalidate)
-    input(ng-model="vm.firstname", name="firstname", placeholder="First Name", type="text", required)
+    .first-last-names
+      input(ng-model="vm.firstname", maxlength="35", name="firstname", placeholder="First Name", type="text", required)
 
-    input(ng-model="vm.lastname", name="lastname", placeholder="Last Name", type="text", required)
+      input(ng-model="vm.lastname", maxlength="35", name="lastname", placeholder="Last Name", type="text", required)
 
-    input(ng-model="vm.country", name="country", placeholder="Country", type="text", required)
+    //- Show errors for first and last names once we know whether we can handle accents and other languages
+    //- .form-errors
+    //-   p.login-error(ng-show="registerForm.firstname.$dirty && registerForm.firstname.$error.pattern") Names must not contain symbols or numbers.
 
-    input(ng-model="vm.age", ng-model-options="{ updateOn: 'default blur' }", name="age", placeholder="Age", type="number", ng-min="13", required)
+    .country-age
+      input(ng-model="vm.country", name="country", placeholder="Country", type="text", required)
 
-    p.login-error(ng-show="registerForm.age.$error.min") You must be at least X years old to join Topcoder.
+      .validation-bar(ng-class="{ 'error-bar': registerForm.age.$error.min }")
+        input(ng-model="vm.age", ng-model-options="{ updateOn: 'default blur' }", name="age", placeholder="Age", type="number", ng-min="18", required)
 
-    input(ng-model="vm.username", ng-model-options="{debounce: {'default': 500}}", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false", name="username", placeholder="Username", type="text", username-is-free, required)
+    .form-errors
+      p.login-error(ng-show="registerForm.age.$error.min") You must be at least X years old to join Topcoder.
 
-    p.login-error(ng-show="registerForm.username.$error.usernameIsFree") This username already exists.
+    .validation-bar(ng-class="{ 'error-bar': (registerForm.username.$error.usernameIsFree || registerForm.username.$error.minlength || registerForm.username.$error.maxlength), 'success-bar': (registerForm.username.$valid && !registerForm.username.$error.usernameIsFree) }")
+      input(ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)
 
-    input(ng-model="vm.email", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", required)
+    .form-errors
+      p.login-error(ng-show="registerForm.username.$error.usernameIsFree") This username already exists.
 
-    input(ng-model="vm.password", ng-focus="vm.passwordTips = true", ng-blur="vm.passwordTips = false", name="password", placeholder="Create Password", type="password", ng-minlength="7", ng-maxlength="30", has-letter, has-symbol, has-number, required)
+      p.login-error(ng-show="registerForm.username.$error.minlength || registerForm.username.$error.maxlength") Username must be between 2 and 15 characters.
+
+    .validation-bar(ng-class="{ 'error-bar': (registerForm.email.$dirty && registerForm.email.$invalid), 'success-bar': (registerForm.email.$valid) }")
+      input(ng-model="vm.email", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", required)
+
+    .form-errors
+      p.login-error(ng-show="registerForm.email.$dirty && registerForm.email.$invalid") Please enter a valid email address.
+
+    .validation-bar(ng-class="{ 'success-bar': (registerForm.password.$valid) }")
+      input(ng-model="vm.password", ng-focus="vm.passwordTips = true", ng-blur="vm.passwordTips = false", name="password", placeholder="Create Password", type="password", ng-minlength="8", ng-maxlength="64", has-letter, has-symbol, has-number, required)
 
     button(type="submit", ng-disabled="registerForm.$invalid", ng-class="{'enabled-button': registerForm.$valid}") Join Now
 
@@ -27,7 +44,7 @@
 
     p This will be public to other members
 
-    p Between X and Y characters
+    p Between 2 and 15 characters
 
     p Can contain numbers and letters
 
@@ -43,13 +60,13 @@
   .tips.password-tips(ng-show="vm.passwordTips")
     h3 Password Tips:
 
-    p(ng-class="{'has-length-between-range': (registerForm.password.$dirty && !registerForm.password.$error.minlength && !registerForm.password.$error.maxlength && !registerForm.password.$error.required)}") Must be between 7 and 30 characters
+    p(ng-class="{ 'has-length-between-range': (registerForm.password.$dirty && !registerForm.password.$error.minlength && !registerForm.password.$error.maxlength && !registerForm.password.$error.required) }") Must be between 8 and 64 characters
 
-    p(ng-class="{'has-letter': (registerForm.password.$dirty && !registerForm.password.$error.hasLetter)}") At least one letter
+    p(ng-class="{ 'has-letter': (registerForm.password.$dirty && !registerForm.password.$error.hasLetter) }") At least one letter
 
-    p(ng-class="{'has-symbol': (registerForm.password.$dirty && !registerForm.password.$error.hasSymbol)}") At least one symbol
+    p(ng-class="{ 'has-symbol': (registerForm.password.$dirty && !registerForm.password.$error.hasSymbol) }") At least one symbol
 
-    p(ng-class="{'has-number': (registerForm.password.$dirty && !registerForm.password.$error.hasNumber)}") At least one number
+    p(ng-class="{ 'has-number': (registerForm.password.$dirty && !registerForm.password.$error.hasNumber) }") At least one number
 
   section.terms
     p By clicking "JOIN NOW" I agree to Topcoder's

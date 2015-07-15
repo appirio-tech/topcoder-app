@@ -2,6 +2,7 @@
 
 .login-container {
 
+  // Remove box-sizing when bootstrap is gone
   * {
     box-sizing: content-box;
   }
@@ -14,29 +15,8 @@
   }
 
   .form-errors {
-    width: 300px;
-
     p {
-      margin-bottom: 10px;
-    }
-  }
-
-  .validation-bar {
-    position: relative;
-
-    &:before {
-      content: '';
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 42px;
-      width: 5px;
-      background-color: red;
-    }
-
-    &.error-bar:before {
-      display: block;
+      margin-bottom: 20px;
     }
   }
 
