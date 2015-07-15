@@ -25,15 +25,9 @@
         .title(ng-bind='challenge.challengeName')
         .community(ng-bind='challenge.community')
       .challenge-details
-        .time-left(ng-show="challenge.currentPhaseRemainingTime > 0")
-            span(ng-bind='challenge.currentPhaseRemainingTime | number:0')
-            |  Days
-        .phase-msg(ng-show="challenge.status=='Active'")
-          span(ng-bind="challenge.currentPhaseName")
-          | 
-          span Phase Ends
-        .challenge-complete-msg(ng-show="challenge.status=='Complete'")
-          Challenge Complete
+        .time-left(ng-show="challenge.currentPhaseEndDate")
+            span(ng-bind='challenge.currentPhaseEndDate | timeDiff')
+        .phase-msg(ng-bind="challenge.phaseMsg")
         .reg-sub-summary
           span.registrants
             i.fa.fa-user
@@ -46,20 +40,6 @@
             i.fa.fa-clock-o
           .msg
             span(ng-bind="challenge.memberStatusMsg")
-        //.registration-date
-          label(ng-show='challenge.registrationClosed') Registration Closed:
-          label(ng-show='!challenge.registrationClosed') Register By:
-          span(ng-bind="challenge.registrationEndDate | date: 'MM/dd/yy HH:mm '")
-          //.time-left(ng-show='challenge.registrationTimeLeft > 0')
-            span(ng-bind='challenge.registrationTimeLeft | number:0')
-            |  Days left
-        //.submission-date
-          label(ng-show='challenge.submissionClosed') Submission Closed:
-          label(ng-show='!challenge.submissionClosed') Submit By:
-          span(ng-bind="challenge.submissionEndDate | date: 'MM/dd/yy HH:mm '")
-          .time-left(ng-show='challenge.submissionTimeLeft > 0')
-            span(ng-bind='challenge.submissionTimeLeft | number:0')
-            |  Days left
     .widget-loading(ng-show='vm.loading')
     .tile.load-more(ng-show='vm.totalPages > 1 && !vm.loading')
       a(ng-click='vm.changePage(vm.nextPageLink)') Load More

@@ -8,7 +8,7 @@
       if (moment(input).fromNow().indexOf('in') == 0) {
         return 'begins';
       }
-      if (moment(input).fromNow().indexOf('ago') == 0) {
+      if (moment(input).fromNow().indexOf('ago') != -1) {
         return 'began';
       }
       return '';
@@ -22,7 +22,7 @@
       if (moment(input).fromNow().indexOf('in') == 0) {
         return 'ends';
       }
-      if (moment(input).fromNow().indexOf('ago') == 0) {
+      if (moment(input).fromNow().indexOf('ago') != -1) {
         return 'ended';
       }
       return '';

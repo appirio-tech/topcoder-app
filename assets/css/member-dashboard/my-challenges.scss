@@ -94,6 +94,16 @@ $url_10: url(../images/sort-arrows.png);
         }
         .phase-msg {
           margin-top: 10px;
+          text-transform: capitalize;
+        }
+        .challenge-complete-msg {
+          margin-top: 10px;
+        }
+        .challenge-cancelled-msg {
+          margin-top: 10px;
+        }
+        .challenge-stalled-msg {
+          margin-top: 10px;
         }
         .member-status-msg {
           margin-top: 10px;

@@ -184,6 +184,7 @@
         } else if (challenge.challengeCommunity == 'develop') {
           challenge.community = 'Development';
         }
+        challenge.phaseMsg = preparePhaseMessage(challenge);
         // TODO create msg dynamically
         challenge.memberStatusMsg = 'You are registered!';
       });
@@ -191,6 +192,19 @@
       // vm.visibleChallenges = data;
       // remove following line when API supports paging
       vm.visibleChallenges = vm.myChallenges.slice(vm.firstRecordIndex - 1, vm.lastRecordIndex);
+    }
+
+    function preparePhaseMessage(challenge) {
+      if (challenge.status.toLowerCase() == 'completed') {
+        return "Challenge Complete";
+      }
+      if (challenge.currentPhaseName.toLowerCase() == 'stalled') {
+        return "Challenge Stalled";
+      }
+      if (challenge.currentPhaseName.toLowerCase() == 'cancelled') {
+        return "Challenge Cancelled";
+      }
+      return challenge.currentPhaseName + " Phase Ends";
     }
 
     /**
