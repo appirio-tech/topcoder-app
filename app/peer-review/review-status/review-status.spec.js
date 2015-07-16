@@ -29,8 +29,8 @@ describe('Review Status Controller', function() {
     };
 
     controller = $controller('ReviewStatusController', {
-      challenge: challengeService,
-      review: reviewService,
+      ChallengeService: challengeService,
+      ReviewService: reviewService,
       $stateParams: stateParams
     });
   });

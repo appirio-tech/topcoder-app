@@ -1,14 +1,13 @@
 (function() {
-  // The EditReviewController controller fetches the scorecard template and any
-  // answers saved but not submitted.
-
   'use strict';
 
+  // The EditReviewController controller fetches the scorecard template and any
+  // answers saved but not submitted.
   angular.module('tc.peer-review').controller('EditReviewController', EditReviewController);
 
-  EditReviewController.$inject = ['$state', '$stateParams', 'review', 'scorecard', 'user', 'challenge', 'helpers', '$q', 'CONSTANTS'];
+  EditReviewController.$inject = ['$state', '$stateParams', 'ReviewService', 'ScorecardService', 'UserService', 'ChallengeService', 'Helpers', '$q', 'CONSTANTS'];
 
-  function EditReviewController($state, $stateParams, review, scorecard, user, challenge, helpers, $q, CONSTANTS) {
+  function EditReviewController($state, $stateParams, ReviewService, ScorecardService, UserService, ChallengeService, Helpers, $q, CONSTANTS) {
     var vm = this;
     vm.submissionDownloadPath = CONSTANTS.submissionDownloadPath;
     vm.domain = CONSTANTS.domain;
@@ -22,11 +21,11 @@
     };
 
     vm.submitReviewItems = function() {
-      var body = helpers.compileReviewItems(vm.scorecard.questions, vm.review, vm.saved);
+      var body = Helpers.compileReviewItems(vm.scorecard.questions, vm.review, vm.saved);
 
-      review.saveReviewItems(body, vm.saved)
+      ReviewService.saveReviewItems(body, vm.saved)
       .then(function(response) {
-        return review.markAsCompleted($stateParams.reviewId);
+        return ReviewService.markAsCompleted($stateParams.reviewId);
       })
       .then(function(response) {
         $state.go('review.status', {
@@ -43,9 +42,9 @@
     };
 
     vm.saveReviewForLater = function() {
-      var body = helpers.compileReviewItems(vm.scorecard.questions, vm.review, vm.saved);
+      var body = Helpers.compileReviewItems(vm.scorecard.questions, vm.review, vm.saved);
 
-      review.saveReviewItems(body, vm.saved)
+      ReviewService.saveReviewItems(body, vm.saved)
       .then(function(data) {
         $state.go('review.status', {
           challengeId: vm.challengeId
@@ -64,10 +63,10 @@
 
     function activate() {
       var promises = [
-        user.getUsername(),
-        challenge.getChallengeDetails(vm.challengeId),
-        review.getReview($stateParams.reviewId),
-        scorecard.getScorecard(vm.challengeId)
+        UserService.getUsername(),
+        ChallengeService.getChallengeDetails(vm.challengeId),
+        ReviewService.getReview($stateParams.reviewId),
+        ScorecardService.getScorecard(vm.challengeId)
       ];
 
       $q.all(promises)
@@ -88,20 +87,20 @@
         var scorecardData = response[3].data.result.content[0];
         var scorecardId = scorecardData.id;
 
-        scorecard.getScorecardQuestions(scorecardId)
+        ScorecardService.getScorecardQuestions(scorecardId)
         .then(function(data) {
           var questions = data.data.result.content;
 
-          helpers.storeById(vm.scorecard.questions, questions);
-          helpers.parseQuestions(vm.scorecard.questions);
+          Helpers.storeById(vm.scorecard.questions, questions);
+          Helpers.parseQuestions(vm.scorecard.questions);
 
-          return review.getReviewItems($stateParams.reviewId);
+          return ReviewService.getReviewItems($stateParams.reviewId);
 
         })
         .then(function(data) {
           var answers = data.data.result.content;
 
-          vm.saved = helpers.parseAnswers(vm.scorecard.questions, answers);
+          vm.saved = Helpers.parseAnswers(vm.scorecard.questions, answers);
 
           vm.loaded = true;
         });

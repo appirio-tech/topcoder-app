@@ -7,10 +7,10 @@ describe('Challenges Controller', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, '$controller', '$rootScope', '$q', 'tcAuth', 'challenge');
+    bard.inject(this, '$controller', '$rootScope', '$q', 'TcAuthService', 'ChallengeService');
 
-    challengeService = challenge;
-    authService = tcAuth;
+    challengeService = ChallengeService;
+    authService = TcAuthService;
 
     // mock active challenges api
     sinon.stub(challengeService, 'getMyActiveChallenges', function() {
@@ -43,7 +43,7 @@ describe('Challenges Controller', function() {
 
   describe('before login activation', function() {
     beforeEach(function() {
-      controller = $controller('MyChallengesCtrl', {
+      controller = $controller('MyChallengesController', {
         $scope: $rootScope.$new(),
         auth: authService,
         challenge: challengeService
@@ -70,7 +70,7 @@ describe('Challenges Controller', function() {
       sinon.stub(authService, 'isAuthenticated', function() {
         return true;
       });
-      controller = $controller('MyChallengesCtrl', {
+      controller = $controller('MyChallengesController', {
         $scope: $rootScope.$new(),
         auth: authService,
         challenge: challengeService

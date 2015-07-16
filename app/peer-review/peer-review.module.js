@@ -8,7 +8,6 @@
     'angularSlideables'
   ];
 
-  angular
-    .module('tc.peer-review', dependencies);
+  angular.module('tc.peer-review', dependencies);
 
 })();

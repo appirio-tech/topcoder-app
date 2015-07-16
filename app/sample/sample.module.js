@@ -6,7 +6,6 @@
     'ui.router',
   ];
 
-  angular
-    .module('tc.sample', dependencies);
+  angular.module('tc.sample', dependencies);
 
 })();

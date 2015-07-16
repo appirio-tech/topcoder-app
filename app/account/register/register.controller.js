@@ -3,9 +3,9 @@
 
   angular.module('tc.account').controller('RegisterController', RegisterController);
 
-  RegisterController.$inject = ['$log', 'tcAuth', '$state'];
+  RegisterController.$inject = ['$log', 'TcAuthService', '$state'];
 
-  function RegisterController($log, tcAuth, $state) {
+  function RegisterController($log, TcAuthService, $state) {
     var vm = this;
 
     vm.register = function() {
@@ -27,7 +27,7 @@
         }
       };
 
-      tcAuth.register(userInfo)
+      TcAuthService.register(userInfo)
       .then(function(data) {
         $log.debug('registered successfully');
 

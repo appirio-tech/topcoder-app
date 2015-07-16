@@ -6,10 +6,10 @@ describe('Blog Post Controller', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, '$controller', '$rootScope', '$q', 'tcAuth', 'blog');
+    bard.inject(this, '$controller', '$rootScope', '$q', 'TcAuthService', 'BlogService');
 
-    blogService = blog;
-    authService = tcAuth;
+    blogService = BlogService;
+    authService = TcAuthService;
 
     sinon.stub(blogService, 'getBlogFeed', function() {
       var deferred = $q.defer();
@@ -22,7 +22,7 @@ describe('Blog Post Controller', function() {
 
   describe('before login activation', function() {
     beforeEach(function() {
-      controller = $controller('BlogPostCtrl', {
+      controller = $controller('BlogPostController', {
         $scope: $rootScope.$new(),
         auth: authService,
         blog: blogService
@@ -48,7 +48,7 @@ describe('Blog Post Controller', function() {
       sinon.stub(authService, 'isAuthenticated', function() {
         return true;
       });
-      controller = $controller('BlogPostCtrl', {
+      controller = $controller('BlogPostController', {
         $scope: $rootScope.$new(),
         auth: authService,
         blog: blogService

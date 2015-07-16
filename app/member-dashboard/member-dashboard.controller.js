@@ -1,49 +1,28 @@
-/**
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
- * @author mdesiderio
- * @version 1.0
- *
- * Controller for my dashboard page
- */
 (function () {
+  'use strict';
 
-  /**
-   * Create my dashboard controller
-   */
-  angular
-    .module('tc.myDashboard')
-    .controller('DashboardCtrl', MyDashboardCtrl);
+  angular.module('tc.myDashboard').controller('DashboardController', MyDashboardController);
 
-  /**
-   * Inject dependencies
-   * @type {string[]}
-   */
-  MyDashboardCtrl.$inject = ['$scope', '$location', 'tcAuth', 'profile'];
+  MyDashboardController.$inject = ['$location', 'TcAuthService', 'ProfileService'];
 
-  /**
-   * Controller implementation
-   *
-   * @param $scope
-   * @constructor
-   */
-  function MyDashboardCtrl($scope, $location, tcAuth, profile) {
+  function MyDashboardController($location, TcAuthService, ProfileService) {
     var vm = this;
     vm.title = "My Dashboard";
     vm.identityListeners = {};
-    vm.loggedIn = tcAuth.isAuthenticated();
+    vm.loggedIn = TcAuthService.isAuthenticated();
     vm.addIdentityChangeListener = addIdentityChangeListener;
     vm.removeIdentityChangeListener = removeIdentityChangeListener;
     vm.activate = activate;
 
     // activate controller
-    if (tcAuth.isAuthenticated() === true) {
+    if (TcAuthService.isAuthenticated() === true) {
       activate();
     } else { // if user is not logged in, return (to avoid extra ajax calls)
       return false;
     }
 
     function activate() {
-      profile.getUserProfile().then(function(response) {
+      ProfileService.getUserProfile().then(function(response) {
         for (var name in vm.identityListeners) {
           var listener = vm.identityListeners[name];
           if (typeof listener == 'function') {
