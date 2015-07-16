@@ -34,6 +34,7 @@
     vm.addIdentityChangeListener = addIdentityChangeListener;
     vm.removeIdentityChangeListener = removeIdentityChangeListener;
     vm.activate = activate;
+    vm.loggedInUser = null;
 
     // activate controller
     if (tcAuth.isAuthenticated() === true) {
@@ -44,17 +45,21 @@
 
     function activate() {
       profile.getUserProfile().then(function(response) {
+        var identityResp = response[0];
+        var profileResp = response[1];
+        vm.loggedInUser = profileResp.data;
+        vm.loggedInUser.uid = identityResp.data.uid;
         for (var name in vm.identityListeners) {
           var listener = vm.identityListeners[name];
           if (typeof listener == 'function') {
-            listener.call(vm, response.data);
+            listener.call(vm, profileResp.data);
           }
         };
         var highestRating, i, len, rating, ref;
-        vm.profile = response.data;
+        vm.profile = profileResp.data;
         vm.handleColor = 'color: #000000';
         highestRating = 0;
-        ref = response.data.ratingSummary;
+        ref = profileResp.data.ratingSummary;
         for (i = 0, len = ref.length; i < len; i++) {
           rating = ref[i];
           if (rating.rating > highestRating) {

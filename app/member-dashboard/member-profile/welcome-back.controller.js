@@ -72,7 +72,9 @@
       // fetch user info
       ProfileService.getUserProfile()
         .then(function(response) {
-          var profile = response.data;
+          var identityResp = response[0];
+          var profileResp = response[1];
+          var profile = profileResp.data;
           vm.profile = profile;
 
           var highestRating = 0;

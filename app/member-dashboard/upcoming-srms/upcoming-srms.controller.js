@@ -48,8 +48,12 @@
     vm.getCurrentPageClass = getCurrentPageClass;
     vm.sort = sort;
     vm.view = 'tiles';
+    vm.listType = 'upcoming';
     vm.viewUpcomingSRMs = viewUpcomingSRMs;
     vm.viewPastSRMs = viewPastSRMs;
+
+    // parent dashboard controller
+    var db = $scope.$parent.db;
 
     // activate controller
     if (tcAuth.isAuthenticated() === true) {
@@ -69,21 +73,26 @@
         pageIndex: vm.pageIndex,
         pageSize: vm.pageSize,
         sortColumn: vm.sortColumn,
-        sortOrder: vm.sortOrder
+        sortOrder: vm.sortOrder,
+        listType: vm.listType
        };
+      if (vm.listType == 'past') {
+        console.log(db.loggedInUser);
+        searchRequest['userId'] = db.loggedInUser.uid;
+      }
       // start loading
       vm.loading = true;
       // Fetch the future srms scheduled
       return SRMService.getSRMSchedule(searchRequest)
-        .then(function(data) {
-          if (data.pagination) {
-            vm.totalPages = Math.ceil(data.pagination.total / vm.pageSize);
-            vm.totalRecords = data.pagination.total;
+        .then(function(response) {
+          if (response.pagination) {
+            vm.totalPages = Math.ceil(response.pagination.total / vm.pageSize);
+            vm.totalRecords = response.pagination.total;
             vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
             vm.lastRecordIndex = vm.pageIndex * vm.pageSize;
             vm.lastRecordIndex = vm.lastRecordIndex > vm.totalRecords ? vm.totalRecords : vm.lastRecordIndex;
           }
-          vm.upcomingSRMs = data;
+          vm.upcomingSRMs = response.result.content;
           vm.loading = false;
       });
     }
