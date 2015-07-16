@@ -204,6 +204,10 @@
       if (challenge.currentPhaseName.toLowerCase() == 'cancelled') {
         return "Challenge Cancelled";
       }
+      if (challenge.currentPhaseRemainingTime < 0
+        && challenge.status.toLowerCase() == 'active') {
+        return challenge.currentPhaseName + " Phase Late";
+      }
       return challenge.currentPhaseName + " Phase Ends";
     }
 
