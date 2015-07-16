@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').factory('authtoken', authtoken);
+  angular.module('tc.services').factory('AuthTokenService', AuthTokenService);
 
-  authtoken.$inject = ['CONSTANTS', '$window', '$cookies', 'store', '$http', '$log'];
+  AuthTokenService.$inject = ['CONSTANTS', '$window', '$cookies', 'store', '$http', '$log'];
 
-  function authtoken(CONSTANTS, $window, $cookies, store, $http, $log) {
+  function AuthTokenService(CONSTANTS, $window, $cookies, store, $http, $log) {
     var v2TokenKey = 'tcjwt';
     var v3TokenKey = 'appiriojwt';
 

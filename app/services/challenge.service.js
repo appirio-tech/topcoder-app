@@ -1,23 +1,22 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').factory('challenge', challenge);
+  angular.module('tc.services').factory('ChallengeService', ChallengeService);
 
-  challenge.$inject = ['CONSTANTS', 'api', '$q'];
+  ChallengeService.$inject = ['CONSTANTS', 'ApiService', '$q'];
 
-  function challenge(CONSTANTS, api, $q) {
+  function ChallengeService(CONSTANTS, ApiService, $q) {
 
-    var rApi2, rApi;
-    rApi2 = api.restangularV2;
+    var rApi2 = ApiService.restangularV2;
     rApi2.activeChallengeDeferredList = [];
-    rApi = api.restangularV3;
+    var rApi = ApiService.restangularV3;
     rApi.marathonMatchesDeferredList = [];
 
     var service = {
-      getReviewEndDate: getReviewEndDate,
-      getChallengeDetails: getChallengeDetails,
       getMyActiveChallenges: getMyActiveChallenges,
-      getMyMarathonMatches: getMyMarathonMatches
+      getMyMarathonMatches: getMyMarathonMatches,
+      getReviewEndDate: getReviewEndDate,
+      getChallengeDetails: getChallengeDetails
     };
     return service;
 
@@ -101,13 +100,13 @@
     }
 
     function getReviewEndDate(challengeId) {
-      var url = CONSTANTS.API_URL + '/challenges/' + challengeId + '/phases/?filter=' + encodeURIComponent('challengeId=' + challengeId + ' & phaseType=4');
-      return api.requestHandler('GET', url);
+      var url = CONSTANTS.API_URL + '/phases/?filter=' + encodeURIComponent('challengeId=' + challengeId + ' & phaseType=4');
+      return ApiService.requestHandler('GET', url);
     }
 
     function getChallengeDetails(challengeId) {
       var url = CONSTANTS.API_URL_V2 + '/challenges/' + challengeId;
-      return api.requestHandler('GET', url, {}, true);
+      return ApiService.requestHandler('GET', url, {}, true);
     }
   };
 

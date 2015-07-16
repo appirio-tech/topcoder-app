@@ -1,35 +1,14 @@
-/**
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
- * @author vikas.agarwal@appirio.com
- * @version 1.0
- *
- * Controller for subscribe for updates widget
- */
 (function () {
+  'use strict';
 
-  /**
-   * Create my dashboard controller
-   */
-  angular
-    .module('tc.myDashboard')
-    .controller('SubscribeUpdatesCtrl', SubscribeUpdatesCtrl);
+  angular.module('tc.myDashboard').controller('SubscribeUpdatesController', SubscribeUpdatesController);
 
-  /**
-   * Inject dependencies
-   * @type {string[]}
-   */
-  SubscribeUpdatesCtrl.$inject = ['$scope', '$http', '$location', 'tcAuth'];
+  SubscribeUpdatesController.$inject = ['$scope', '$http', '$location', 'TcAuthService'];
 
-  /**
-   * Controller implementation
-   *
-   * @param $scope
-   * @constructor
-   */
-  function SubscribeUpdatesCtrl($scope, $http, $location, tcAuth) {
+  function SubscribeUpdatesController($scope, $http, $location, TcAuthService) {
     var vm = this;
     vm.title = "Subscribe to Updates";
-    vm.loggedIn = tcAuth.isAuthenticated();
+    vm.loggedIn = TcAuthService.isAuthenticated();
     vm.frm = {};
     vm.email = null;
     // as of now not able to bind the url to view, so it is hard coded in view too
@@ -39,7 +18,6 @@
     vm.feedBlitzFeedId = 926643;
     vm.subscribe = subscribe;
 
-    // activate controller
     activate();
 
     function activate() {

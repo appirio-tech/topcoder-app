@@ -6,9 +6,9 @@ describe('Dashboard Controller', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, '$controller', '$rootScope', '$q', 'tcAuth', 'profile', 'UserService');
-    authService = tcAuth;
-    profileService = profile;
+    bard.inject(this, '$controller', '$rootScope', '$q', 'TcAuthService', 'ProfileService', 'UserService');
+    authService = TcAuthService;
+    profileService = ProfileService;
     userService = UserService;
     userProfileResp = mockData.getMockUserProfile();
 
@@ -28,7 +28,7 @@ describe('Dashboard Controller', function() {
         return false;
       });
 
-      controller = $controller('DashboardCtrl', {
+      controller = $controller('DashboardController', {
         $scope: $rootScope.$new()
       });
       $rootScope.$apply();
@@ -59,7 +59,7 @@ describe('Dashboard Controller', function() {
         return true;
       });
 
-      controller = $controller('DashboardCtrl', {
+      controller = $controller('DashboardController', {
         $scope: $rootScope.$new()
       });
       $rootScope.$apply();
@@ -116,7 +116,7 @@ describe('Dashboard Controller', function() {
       });
       userProfileResp.data.photoLink = '';
 
-      controller = $controller('DashboardCtrl', {
+      controller = $controller('DashboardController', {
         $scope: $rootScope.$new()
       });
       $rootScope.$apply();

@@ -1,33 +1,11 @@
-/**
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
- * @author mdesiderio
- * @author vikas.agarwal@appirio.com
- * @version 1.0
- *
- * Controller for the member program widget
- */
 (function () {
+  'use strict';
 
-  /**
-   * Create member program widget
-   */
-  angular
-    .module('tc.myDashboard')
-    .controller('MemberProgramCtrl', MemberProgramCtrl);
+  angular.module('tc.myDashboard').controller('MemberProgramController', MemberProgramController);
 
-  /**
-   * Inject dependencies
-   * @type {string[]}
-   */
-  MemberProgramCtrl.$inject = ['$scope', '$q', 'tcAuth', 'memberCert', 'UserService' , 'CONSTANTS'];
+  MemberProgramController.$inject = ['$scope', '$q', 'TcAuthService', 'MemberCertService', 'UserService' , 'CONSTANTS'];
 
-  /**
-   * Controller implementation
-   *
-   * @param $scope
-   * @constructor
-   */
-  function MemberProgramCtrl($scope, $q, tcAuth, MemberCertService, UserService, CONSTANTS) {
+  function MemberProgramController($scope, $q, TcAuthService, MemberCertService, UserService, CONSTANTS) {
     var vm = this;
     vm.title = 'iOS Developer Community';
     vm.user = null;
@@ -49,7 +27,7 @@
     var db = $scope.$parent.db;
 
     // activate controller
-    if (tcAuth.isAuthenticated() === true) {
+    if (TcAuthService.isAuthenticated() === true) {
       db.addIdentityChangeListener("memberprogram", function(identity) {
         activate(identity);
       });
@@ -78,7 +56,7 @@
           var peerBadgeResult = data.length > 1 ? data[1].result : null;
           if (reg) {
             vm.registration = reg;
-            peerBadgeCompleted = peerBadgeResult ? peerBadgeResult.content : false;
+            var peerBadgeCompleted = peerBadgeResult ? peerBadgeResult.content : false;
             // peer badge is at 2 index in the array
             vm.badges[2].completed = peerBadgeCompleted;
           } else {
