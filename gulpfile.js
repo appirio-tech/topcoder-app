@@ -134,7 +134,10 @@ gulp.task('wiredep', ['jade'], function() {
   return gulp
     .src(config.index)
     .pipe(wiredep(options))
-    .pipe($.inject(gulp.src(config.js, {read: false}), {relative: true}))
+    .pipe($.inject(
+      gulp.src(config.js)
+      .pipe($.angularFilesort()),
+      {relative: true}))
     .pipe($.inject(gulp.src(config.nonBowerScripts, {read: false}), {
       starttag: '//- inject:nonBowerScripts',
       endtag: '//- endinject',
