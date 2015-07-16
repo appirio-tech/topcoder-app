@@ -7,6 +7,7 @@
     'tc.peer-review',
     'tc.myDashboard',
     'tc.sample',
+    'tc.profile',
     'ui.router',
     'blocks.logger',
     'blocks.exception',

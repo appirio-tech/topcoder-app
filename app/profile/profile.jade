@@ -1,0 +1,10 @@
+.profile-header-container
+  .left
+    img.profile-circle(src="https://www.topcoder.com/i/m/tladendo.jpeg")
+    .info
+      h1 {{vm.profile.handle}} - 
+        span.realName {{vm.profile.firstName}} {{vm.profile.lastName}}
+      h3.tracks {{vm.profile.tracks | displayTracks}}
+      h3.location {{[vm.profile.state, vm.profile.homeCountry] | displayLocation}}
+  .right
+    h4 member for {{vm.memberFor}} years

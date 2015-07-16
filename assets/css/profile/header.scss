@@ -1,0 +1,52 @@
+@import '../partials/combined';
+
+.profile-header-container {
+
+  .left {
+
+    float: left;
+
+    img.profile-circle {
+      border-radius: 50%;
+      float: left;
+      display: inline;
+      margin-right: 20px;
+      width: 110px;
+    }
+
+    .info {
+
+      float: right;
+      margin-top: 20px;
+
+      h1 {
+        font-size: 25px;
+        margin-bottom: 5px;
+        span.realName {
+          font-size: 15px;
+        }
+      }
+
+      h5 {
+        color: gray;
+        &.tracks {
+          text-transform: uppercase;
+        }
+        &.location {
+          margin-top: 10px;
+        }
+      }
+
+    }
+
+  }
+
+  .right {
+    float: right;
+
+    h4 {
+      color: gray;
+    }
+  }
+
+}
