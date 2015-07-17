@@ -12,7 +12,8 @@
     'blocks.exception',
     'ngCookies',
     'angular-storage',
-    'restangular'
+    'restangular',
+    'xml'
   ];
 
   angular

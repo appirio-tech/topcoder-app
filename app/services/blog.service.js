@@ -11,7 +11,7 @@
     .module('tc.myDashboard')
     .factory('blog', BlogService);
 
-  BlogService.$inject = ['Restangular', '$q', '$http', 'CONSTANTS', '$sce'];
+  BlogService.$inject = ['Restangular', '$q', '$http', 'CONSTANTS', '$sce', 'x2js'];
 
   /**
    * BlogService
@@ -22,7 +22,7 @@
    * @param $sce used to process the html of the blog post desciption
    * @constructor
    */
-  function BlogService(Restangular, $q, $http, CONSTANTS, $sce) {
+  function BlogService(Restangular, $q, $http, CONSTANTS, $sce, x2js) {
 
     var service = Restangular.withConfig(function(RestangularConfigurer) {
     });
@@ -37,20 +37,14 @@
       // fetch blog rss feed
       $http.get(CONSTANTS.BLOG_LOCATION)
         .success(function(data) {
-          // parse the blog rss feed using jquery
-          var rss = $($.parseXML(data));
+          // parse the blog rss feed using x2js
+          var rss = x2js.xml_str2json(data).rss;
 
-          var result = [];
+          var result = rss.channel.item;
 
-          // create an array of a json objects with title, link, pubDate, and description
-          // for each item found in the rss feed:
-          angular.forEach(rss.find("item"), function(item) {
-            result.push({
-              title: $(item).find("title").text(),
-              link: $(item).find("link").text(),
-              pubDate: new Date($(item).find("pubDate").text()),
-              description: $sce.trustAsHtml($(item).find("description").text())
-            });
+          // updates html in description field to be safe for display
+          result.forEach(function(item) {
+            item.description = $sce.trustAsHtml(item.description.toString());
           });
 
           deferred.resolve(result);
