@@ -23,26 +23,7 @@
     span(ng-show="vm.listType == 'past'") You have not participated in any challenges yet.
     span(ng-show="vm.listType == 'active'") No active challenges.
   .widget-body.tile-view(ng-show="vm.view == 'tiles'")
-    .tile(ng-show='vm.visibleChallenges.length > 0', ng-repeat='challenge in vm.visibleChallenges')
-      .challenge-summary
-        .title(ng-bind='challenge.challengeName')
-        .community(ng-bind='challenge.community')
-      .challenge-details
-        .time-left(ng-show="challenge.currentPhaseEndDate")
-            span(ng-bind='challenge.currentPhaseEndDate | timeDiff')
-        .phase-msg(ng-bind="challenge.phaseMsg")
-        .reg-sub-summary
-          span.registrants
-            i.fa.fa-user
-            span.value(ng-bind="challenge.numRegistrants")
-          span.submissions
-            i.fa.fa-cloud-download
-            span.value(ng-bind="challenge.numSubmissions")
-        .member-status-msg
-          .icon
-            i.fa.fa-clock-o
-          .msg
-            span(ng-bind="challenge.memberStatusMsg")
+    challenge-tile(challenge="challenge", ng-repeat='challenge in vm.visibleChallenges')
     .widget-loading(ng-show='vm.loading')
     .tile.load-more(ng-show='vm.totalPages > 1 && !vm.loading')
       a(ng-click='vm.changePage(vm.nextPageLink)') Load More
