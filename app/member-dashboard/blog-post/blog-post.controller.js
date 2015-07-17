@@ -1,44 +1,22 @@
-/**
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
- * @author mdesiderio
- * @version 1.0
- *
- * Controller for the blog post widget
- */
 (function () {
+  'use strict';
 
-  /**
-   * Create blog post controller controller
-   */
-  angular
-    .module('tc.myDashboard')
-    .controller('BlogPostCtrl', BlogPostCtrl);
+  angular.module('tc.myDashboard').controller('BlogPostController', BlogPostController);
 
-  /**
-   * Inject dependencies
-   * @type {string[]}
-   */
-  BlogPostCtrl.$inject = ['$scope', 'tcAuth', 'blog'];
+  BlogPostController.$inject = ['TcAuthService', 'BlogService'];
 
-  /**
-   * BlogPost Controller implementation
-   *
-   * @param $scope
-   * @param blog service to access and parse blog RSS feed
-   * @constructor
-   */
-  function BlogPostCtrl($scope, tcAuth, blog) {
+  // Accesss and parses the blog RSS feed
+  function BlogPostController(TcAuthService, BlogService) {
     var vm = this;
 
-    // activate controller
-    if (tcAuth.isAuthenticated() === true) {
+    if (TcAuthService.isAuthenticated() === true) {
       activate();
     } else {
       return false;
     }
 
     function activate() {
-      return blog.getBlogFeed()
+      return BlogService.getBlogFeed()
         .then(function(data) {
           vm.blogPosts = data;
       });

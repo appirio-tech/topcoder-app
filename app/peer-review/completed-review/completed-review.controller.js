@@ -1,13 +1,11 @@
 (function() {
-  // The CompletedReview controller displays a completed review.
-
   'use strict';
 
   angular.module('tc.peer-review').controller('CompletedReviewController',  CompletedReviewController);
 
-  CompletedReviewController.$inject = ['$stateParams', 'scorecard', 'review', 'user', 'challenge', 'helpers', '$q', 'CONSTANTS'];
+  CompletedReviewController.$inject = ['$stateParams', 'ScorecardService', 'ReviewService', 'UserService', 'ChallengeService', 'Helpers', '$q', 'CONSTANTS'];
 
-  function CompletedReviewController($stateParams, scorecard, review, user, challenge, helpers, $q, CONSTANTS) {
+  function CompletedReviewController($stateParams, ScorecardService, ReviewService, UserService, ChallengeService, Helpers, $q, CONSTANTS) {
     var vm = this;
     vm.submissionDownloadPath = CONSTANTS.submissionDownloadPath;
     vm.domain = CONSTANTS.domain;
@@ -27,10 +25,10 @@
 
     function activate() {
       var promises = [
-        user.getUsername(),
-        challenge.getChallengeDetails($stateParams.challengeId),
-        review.getReview($stateParams.reviewId),
-        scorecard.getScorecard(vm.challengeId)
+        UserService.getUsername(),
+        ChallengeService.getChallengeDetails($stateParams.challengeId),
+        ReviewService.getReview($stateParams.reviewId),
+        ScorecardService.getScorecard(vm.challengeId)
       ];
 
       $q.all(promises)
@@ -51,19 +49,19 @@
         var scorecardData = response[3].data.result.content[0];
         var scorecardId = scorecardData.id;
 
-        scorecard.getScorecardQuestions(scorecardId)
+        ScorecardService.getScorecardQuestions(scorecardId)
         .then(function(data) {
           var questions = data.data.result.content;
 
-          helpers.storeById(vm.scorecard.questions, questions);
-          helpers.parseQuestions(vm.scorecard.questions);
+          Helpers.storeById(vm.scorecard.questions, questions);
+          Helpers.parseQuestions(vm.scorecard.questions);
 
-          return review.getReviewItems($stateParams.reviewId);
+          return ReviewService.getReviewItems($stateParams.reviewId);
 
         }).then(function(data) {
           var answers = data.data.result.content;
 
-          helpers.parseAnswers(vm.scorecard.questions, answers);
+          Helpers.parseAnswers(vm.scorecard.questions, answers);
 
           vm.loaded = true;
         });

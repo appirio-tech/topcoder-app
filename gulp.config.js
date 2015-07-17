@@ -31,9 +31,6 @@ module.exports = function() {
     indexHtml: temp + 'index.html',
     jade: app + '**/*.jade',
     js: [
-      app + 'topcoder.module.js',
-      app + 'topcoder.*.js',
-      app + '**/*.module.js',
       app + '**/*.js',
       '!' + app + '**/*.spec.js'
     ],
@@ -88,7 +85,8 @@ module.exports = function() {
     },
 
     // Process.env variables
-    production: process.env.ENVIRONMENT === 'production'
+    production: process.env.ENVIRONMENT === 'production',
+    qa: process.env.ENVIRONMENT === 'qa'
   };
 
   config.getWiredepDefaultOptions = function () {

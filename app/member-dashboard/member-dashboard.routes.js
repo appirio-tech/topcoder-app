@@ -15,7 +15,7 @@
         parent: 'root',
         abstract: true,
         templateUrl: 'member-dashboard/member-dashboard.html',
-        controller: 'DashboardCtrl as db',
+        controller: 'DashboardController as db',
         data: {
           authRequired: true,
           title: 'Dashboard'
@@ -31,42 +31,42 @@
         views: {
           'my-challenges-widget': {
             templateUrl: "member-dashboard/my-challenges/my-challenges.html",
-            controller: 'MyChallengesCtrl',
+            controller: 'MyChallengesController',
             controllerAs: 'vm'
           },
           'srms-widget' :{
             templateUrl : 'member-dashboard/upcoming-srms/upcoming-srms.html',
-            controller: 'UpcomingSRMsCtrl',
+            controller: 'UpcomingSRMsController',
             controllerAs: 'vm'
           },
           'member-program-widget' : {
             templateUrl : 'member-dashboard/member-program/member-program.html',
-            controller: 'MemberProgramCtrl',
+            controller: 'MemberProgramController',
             controllerAs: 'vm'
           },
           'helpful-links-widget' : {
             templateUrl : 'member-dashboard/helpful-links/helpful-links.html',
-            controller: 'HelpfulLinksCtrl',
+            controller: 'HelpfulLinksController',
             controllerAs: 'vm'
           },
           'subscribe-updates-widget' : {
             templateUrl : 'member-dashboard/subscribe-updates/subscribe-updates.html',
-            controller: 'SubscribeUpdatesCtrl',
+            controller: 'SubscribeUpdatesController',
             controllerAs: 'vm'
           },
           'blog-post-widget' : {
             templateUrl : 'member-dashboard/blog-post/blog-feed.html',
-            controller: 'BlogPostCtrl',
+            controller: 'BlogPostController',
             controllerAs: 'vm'
           },
           'profile-header-widget' : {
             templateUrl : 'member-dashboard/member-profile/welcome-back.html',
-            controller: 'WelcomeBackCtrl',
+            controller: 'WelcomeBackController',
             controllerAs: 'vm'
           },
           'marketing-message-widget' : {
             templateUrl : 'member-dashboard/marketing-message/marketing-message.html',
-            controller: 'MarketingMessageCtrl',
+            controller: 'MarketingMessageController',
             controllerAs: 'vm'
           }
         }

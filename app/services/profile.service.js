@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').factory('profile', profile);
+  angular.module('tc.services').factory('ProfileService', ProfileService);
 
-  profile.$inject = ['CONSTANTS', 'api', 'UserService', '$q'];
+  ProfileService.$inject = ['CONSTANTS', 'ApiService', 'UserService'];
 
-  function profile(CONSTANTS, api, UserService, $q) {
+  function ProfileService(CONSTANTS, ApiService, UserService) {
     var service = {
       getUserProfile: getUserProfile
     };

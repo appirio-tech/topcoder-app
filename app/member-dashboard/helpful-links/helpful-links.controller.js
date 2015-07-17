@@ -1,32 +1,11 @@
-/**
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
- * @author mdesiderio
- * @version 1.0
- *
- * Controller for the helpful links widget
- */
- (function () {
+(function () {
+  'use strict';
 
-  /**
-   * Create helpful links controller
-   */
-  angular
-    .module('tc.myDashboard')
-    .controller('HelpfulLinksCtrl', HelpfulLinksCtrl);
+  angular.module('tc.myDashboard').controller('HelpfulLinksController', HelpfulLinksController);
 
-  /**
-   * Inject dependencies
-   * @type {string[]}
-   */
-  HelpfulLinksCtrl.$inject = ['$scope', '$location', 'CONSTANTS'];
+  HelpfulLinksController.$inject = ['$location', 'CONSTANTS'];
 
-  /**
-   * Helpful links controller implementation
-   *
-   * @param $scope
-   * @constructor
-   */
-  function HelpfulLinksCtrl($scope, $location, CONSTANTS) {
+  function HelpfulLinksController($location, CONSTANTS) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
     vm.mainUrl = CONSTANTS.MAIN_URL;
@@ -41,8 +20,7 @@
     vm.changeVisibleLinks = changeVisibleLinks;
     vm.showPreviousLinks = showPreviousLinks;
     vm.hasChildren = hasChildren;
-    
-    //activate controller
+
     activate();
 
     function activate() {

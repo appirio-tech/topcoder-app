@@ -1,34 +1,11 @@
-/**
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
- * @author mdesiderio
- * @author vikas.agarwal@appirio.com
- * @version 1.0
- *
- * Controller for the my challenges widget
- */
 (function () {
+  'use strict';
 
-  /**
-   * Create my challenges controller
-   */
-  angular
-    .module('tc.myDashboard')
-    .controller('MyChallengesCtrl', MyChallengesCtrl);
+  angular.module('tc.myDashboard').controller('MyChallengesController', MyChallengesController);
 
-  /**
-   * Inject dependencies
-   * @type {string[]}
-   */
-  MyChallengesCtrl.$inject = ['$scope', 'tcAuth','challenge', 'CONSTANTS', '$q'];
+  MyChallengesController.$inject = ['$scope', 'TcAuthService','ChallengeService', 'CONSTANTS', '$q'];
 
-  /**
-   * Controller implementation
-   *
-   * @param $scope
-   * @param ChallengeService services to access the challenges api
-   * @constructor
-   */
-  function MyChallengesCtrl($scope, tcAuth, ChallengeService, CONSTANTS, $q) {
+  function MyChallengesController($scope, TcAuthService, ChallengeService, CONSTANTS, $q) {
     var vm = this;
     vm.loading = true;
     vm.newChallengesUrl = CONSTANTS.NEW_CHALLENGES_URL;
@@ -61,7 +38,7 @@
     var db = $scope.$parent.db;
 
     // getChallenges controller
-    if (tcAuth.isAuthenticated() === true) {
+    if (TcAuthService.isAuthenticated() === true) {
       getChallenges();
     } else {
       return false;
@@ -79,11 +56,7 @@
       getChallenges();
     }
 
-    /**
-     * getChallenges Fetches user's active challenges from the API
-     *
-     * @return {Object} promise of API call
-     */
+    // Fetches user's active challenges from the API
     function getChallenges() {
       initPaging();
       console.log(vm.listType);
@@ -116,11 +89,7 @@
       });
     }
 
-    /**
-     * getMarathonMatches Fetches user's active challenges from the API
-     *
-     * @return {Object} promise of API call
-     */
+    // Fetches user's active challenges from the API
     function getMarathonMatches() {
       var searchRequest = {
         listType: vm.mm.listType,
@@ -279,6 +248,4 @@
       vm.view = view;
     }
   }
-
-
 })();

@@ -3,16 +3,16 @@
 
   angular.module('tc.account').controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$log', '$state', '$stateParams', 'tcAuth', 'authtoken'];
+  LoginController.$inject = ['$log', '$state', '$stateParams', 'TcAuthService', 'AuthTokenService', 'UserService'];
 
-  function LoginController($log, $state, $stateParams, tcAuth, authtoken) {
+  function LoginController($log, $state, $stateParams, TcAuthService, AuthTokenService, UserService) {
     var vm = this;
     vm.passwordReset = false;
-
+    vm.usernameExists = true;
 
     var redirect = function() {
       // check if the user is already logged in
-      if (tcAuth.isAuthenticated()) {
+      if (TcAuthService.isAuthenticated()) {
         // redirect to next if exists else dashboard
         if ($stateParams.next) {
           $log.debug('Redirecting: ' + $stateParams.next);
@@ -26,7 +26,7 @@
     // Handling social login stuff
     if ($stateParams.userJWTToken) {
       // user logged in
-      authtoken.setV3Token($stateParams.userJWTToken);
+      AuthTokenService.setV3Token($stateParams.userJWTToken);
       redirect();
     }
     if ($stateParams.status) {
@@ -34,7 +34,7 @@
       var status = parseInt($stateParams.status);
       switch(status) {
         case 200:
-          authtoken.getTokenFromAuth0Code($stateParams.code);
+          AuthTokenService.getTokenFromAuth0Code($stateParams.code);
           break;
         case 401:
         default:
@@ -42,7 +42,7 @@
           break;
       }
     } else if ($stateParams.code && $stateParams.state) {
-      authtoken.getTokenFromAuth0Code($stateParams.code).then(
+      AuthTokenService.getTokenFromAuth0Code($stateParams.code).then(
         function(v3Token) {
           $log.debug('looged in using social');
           redirect();
@@ -50,20 +50,30 @@
       );
     }
 
-    vm.doLogin = function() {
-      // TODO placeholder, validate form etc
-      tcAuth.login(vm.username, vm.password).then(
-        function(data) {
-          // success
-          $log.debug('logged in');
-          redirect(true);
-        },
-        function(err) {
-          // handle error
-          vm.wrongPassword = true;
-          vm.password = '';
-        }
-      );
+    vm.login = function() {
+      UserService.validateUserHandle(vm.username)
+      .then(function() {
+        // User does not exist
+        vm.usernameExists = false;
+      })
+      .catch(function() {
+        // User exists
+        vm.usernameExists = true;
+        TcAuthService.login(vm.username, vm.password).then(
+          function(data) {
+            // success
+            $log.debug('logged in');
+            redirect(true);
+          },
+          function(err) {
+            // handle error
+            vm.wrongPassword = true;
+            vm.password = '';
+          }
+        );
+      });
+
+
     };
 
     vm.socialLogin = function(backend) {
@@ -72,7 +82,7 @@
         params = {next: $stateParams.next};
       }
       callbackUrl = $state.href('login', params, {absolute: true});
-      tcAuth.socialLogin(backend, callbackUrl);
+      TcAuthService.socialLogin(backend, callbackUrl);
     };
 
   }

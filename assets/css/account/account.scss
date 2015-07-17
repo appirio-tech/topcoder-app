@@ -12,6 +12,7 @@ body, .view-container {
   display: flex;
   flex-direction: column;
   text-align: center;
+  justify-content: center;
   @include source-sans;
 
   // Basic element stylings
@@ -33,8 +34,9 @@ body, .view-container {
 
   input {
     height: 40px;
-    width: 290px;
-    padding-left: 10px;
+    width: 285px;
+    padding: 0;
+    padding-left: 15px;
     border: 0;
     @include source-sans;
     font-size: 16px;
@@ -51,6 +53,9 @@ body, .view-container {
     border: 0;
     border-radius: 8px;
     font-size: 21px;
+
+    // Remove box-sizing when bootstrap is gone
+    box-sizing: border-box;
   }
 
   .enabled-button {
@@ -59,7 +64,31 @@ body, .view-container {
 
   // Form stylings
   .form-errors {
-    padding-bottom: 10px;
+    width: 300px;
+  }
+
+  .validation-bar {
+    position: relative;
+
+    &:before {
+      content: '';
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 42px;
+      width: 5px;
+    }
+
+    &.error-bar:before {
+      display: block;
+      background-color: red;
+    }
+
+    &.success-bar:before {
+      display: block;
+      background-color: green;
+    }
   }
 
   .login-notice {
