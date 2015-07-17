@@ -31,6 +31,11 @@ $url_10: url(../images/sort-arrows.png);
         }
       }
     }
+    .widget-body.no-challenge {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
     .widget-body.tile-view {
       border: none;
       .tile {

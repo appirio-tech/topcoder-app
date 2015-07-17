@@ -17,7 +17,7 @@
     vm.pageSize = 5;
     vm.sortColumn = 'submissionEndDate';
     vm.sortOrder = 'asc';
-    vm.totalPages = 1;
+    vm.totalPages = 0;
     vm.totalRecords = vm.totalPages * vm.pageSize;
     vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
     vm.lastRecordIndex = vm.totalPages * vm.pageSize;

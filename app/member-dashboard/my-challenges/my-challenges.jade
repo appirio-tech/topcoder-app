@@ -19,6 +19,9 @@
         li.page-status.pull-left.page-link {{vm.firstRecordIndex}}-{{vm.lastRecordIndex}} of {{vm.totalRecords}}
         li.page-link.pull-left(ng-show='vm.nextPageLink.val > 0 && vm.nextPageLink.val <= vm.totalPages', ng-click='vm.changePage(vm.nextPageLink)', ng-class='vm.getCurrentPageClass(vm.nextPageLink)')
           a(href='#') {{vm.nextPageLink.text}}
+  .widget-body.no-challenge(ng-show="vm.totalPages == 0 && !vm.loading")
+    span(ng-show="vm.listType == 'past'") You have not participated in any challenges yet.
+    span(ng-show="vm.listType == 'active'") No active challenges.
   .widget-body.tile-view(ng-show="vm.view == 'tiles'")
     .tile(ng-show='vm.visibleChallenges.length > 0', ng-repeat='challenge in vm.visibleChallenges')
       .challenge-summary
