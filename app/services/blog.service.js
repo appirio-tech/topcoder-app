@@ -25,14 +25,14 @@
 
           // updates html in description field to be safe for display
           result.forEach(function(item) {
+            item.description = $sce.trustAsHtml(item.description.toString());
           });
-        });
 
-        deferred.resolve(result);
-      })
-      .error(function(error) {
-        deferred.reject(error);
-      });
+          deferred.resolve(result);
+        })
+        .error(function(error) {
+          deferred.reject(error);
+        });
 
       return deferred.promise;
     }

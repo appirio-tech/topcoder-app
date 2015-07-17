@@ -3,9 +3,9 @@
 
   angular.module('tc.myDashboard').controller('UpcomingSRMsController', UpcomingSRMsController);
 
-  UpcomingSRMsController.$inject = ['$location', 'TcAuthService','SRMService', 'CONSTANTS'];
+  UpcomingSRMsController.$inject = ['$scope', '$location', 'TcAuthService','SRMService', 'CONSTANTS'];
 
-  function UpcomingSRMsController($location, TcAuthService, SRMService, CONSTANTS) {
+  function UpcomingSRMsController($scope, $location, TcAuthService, SRMService, CONSTANTS) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
     vm.loading = true;

@@ -23,7 +23,7 @@
     }
 
     function activate() {
-      profile.getUserProfile().then(function(response) {
+      ProfileService.getUserProfile().then(function(response) {
         var identityResp = response[0];
         var profileResp = response[1];
         vm.loggedInUser = profileResp.data;

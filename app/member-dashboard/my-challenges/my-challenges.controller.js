@@ -141,8 +141,8 @@
       }
       angular.forEach(vm.myChallenges, function(challenge) {
         var now = moment();
-        registrationDate = moment(challenge.registrationEndDate);
-        submissionDate = moment(challenge.submissionEndDate);
+        var registrationDate = moment(challenge.registrationEndDate);
+        var submissionDate = moment(challenge.submissionEndDate);
         challenge.currentPhaseRemainingTime = challenge.currentPhaseRemainingTime/(24*60*60);
         challenge.registrationClosed = now > registrationDate ? true : false;
         challenge.submissionClosed = now > submissionDate ? true : false;
