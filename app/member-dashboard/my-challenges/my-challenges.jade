@@ -19,32 +19,15 @@
         li.page-status.pull-left.page-link {{vm.firstRecordIndex}}-{{vm.lastRecordIndex}} of {{vm.totalRecords}}
         li.page-link.pull-left(ng-show='vm.nextPageLink.val > 0 && vm.nextPageLink.val <= vm.totalPages', ng-click='vm.changePage(vm.nextPageLink)', ng-class='vm.getCurrentPageClass(vm.nextPageLink)')
           a(href='#') {{vm.nextPageLink.text}}
-  .panel.panel-default.tile-view(ng-show="vm.view == 'tiles'")
-    .tile(ng-show='vm.visibleChallenges.length > 0', ng-repeat='challenge in vm.visibleChallenges')
-      .challenge-summary
-        .title(ng-bind='challenge.challengeName')
-        .community(ng-bind='challenge.community')
-      .challenge-details
-        .time-left(ng-show="challenge.currentPhaseEndDate")
-            span(ng-bind='challenge.currentPhaseEndDate | timeDiff')
-        .phase-msg(ng-bind="challenge.phaseMsg")
-        .reg-sub-summary
-          span.registrants
-            i.fa.fa-user
-            span.value(ng-bind="challenge.numRegistrants")
-          span.submissions
-            i.fa.fa-cloud-download
-            span.value(ng-bind="challenge.numSubmissions")
-        .member-status-msg
-          .icon
-            i.fa.fa-clock-o
-          .msg
-            span(ng-bind="challenge.memberStatusMsg")
+  .widget-body.no-challenge(ng-show="vm.totalPages == 0 && !vm.loading")
+    span(ng-show="vm.listType == 'past'") You have not participated in any challenges yet.
+    span(ng-show="vm.listType == 'active'") No active challenges.
+  .widget-body.tile-view(ng-show="vm.view == 'tiles'")
+    challenge-tile(challenge="challenge", ng-repeat='challenge in vm.visibleChallenges')
     .widget-loading(ng-show='vm.loading')
     .tile.load-more(ng-show='vm.totalPages > 1 && !vm.loading')
       a(ng-click='vm.changePage(vm.nextPageLink)') Load More
-    .clearfix
-  .panel.panel-default(ng-show="vm.view == 'table'")
+  .widget-body(ng-show="vm.view == 'table'")
     table.table.table-responsive(width='100%')
       thead
         tr.active
@@ -83,3 +66,10 @@
             .widget-loading
         tr(ng-show='vm.visibleChallenges.length === 0')
           td(colspan='5') You don't have any active challenges
+  .useful-links
+    .new-challenges.link
+      a(href="https://www.topcoder-dev.com/challenges/", target="_blank") Find New Challenges
+    .topcoder-direct.link(ng-show='vm.visibleChallenges.length > 0')
+      a(href="https://www.topcoder-dev.com/direct", target="_blank") Launch Topcoder Direct
+    .help-library.link(ng-show='vm.visibleChallenges.length == 0')
+      a(href="https://community.topcoder-dev.com/", target="_blank") View Help Library

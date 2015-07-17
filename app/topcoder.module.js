@@ -14,6 +14,7 @@
     'ngCookies',
     'angular-storage',
     'restangular',
+    'xml',
     'CONSTANTS'
   ];
 

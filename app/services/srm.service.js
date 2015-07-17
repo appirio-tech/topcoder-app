@@ -7,7 +7,7 @@
 
   function SRMService(ApiService, $filter) {
 
-    var service = ApiService.restangularV2;
+    var service = ApiService.restangularV3;
 
     // Returns list of upcoming SRMs currently scheduled
     service.getSRMSchedule = function(request) {

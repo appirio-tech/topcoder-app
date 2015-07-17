@@ -6,170 +6,195 @@ $url_10: url(../images/sort-arrows.png);
 
 .my-challenges {
   min-height: 50px;
-  .challenges-header {
-    margin-bottom: 20px;
+  .widget-content {
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    .left {
-      .view-options {
-        visibility: hidden;
-      }
-    }
-    .center {
+    flex-flow: column wrap;
 
-    }
-    .right {
+    .challenges-header {
+      margin-bottom: 20px;
       display: flex;
       flex-flow: row wrap;
-      .timeline-options {
-        margin-left: 10px;
+      justify-content: space-between;
+      .left {
+        .view-options {
+          visibility: hidden;
+        }
+      }
+      .center {
+
+      }
+      .right {
+        display: flex;
+        flex-flow: row wrap;
+        .timeline-options {
+          margin-left: 10px;
+        }
       }
     }
-  }
-  .panel.tile-view {
-    border: none;
-    .tile {
-      float: left;
-      border: 1px solid $color_celeste_approx;
-      width: 200px;
-      margin-left: 20px;
-      margin-bottom: 20px;
-      min-height: 175px;
-
-      +.tile {
-        /*margin-left: 20px;*/
-      }
-      &.load-more {
-        text-align: center;
-        line-height: 175px;
-      }
-      .challenge-summary {
-        padding: 10px;
-        border-bottom: 1px solid $color_celeste_approx;
-        .title {
-          font-weight: bold;
-          @include ellipsis;
-          margin-bottom: 10px;
-        }
-        .community {
-        }
-      }
-      .challenge-details {
-        padding: 10px;
+    .widget-body.no-challenge {
         display: flex;
-        flex-direction: column;
-        .registration-date {
-          label {
-            display: block;
-            margin-bottom: 10px;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+    .widget-body.tile-view {
+      border: none;
+      .tile {
+        float: left;
+        border: 1px solid $color_celeste_approx;
+        width: 200px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        min-height: 175px;
+
+        +.tile {
+          /*margin-left: 20px;*/
+        }
+        &.load-more {
+          text-align: center;
+          line-height: 175px;
+        }
+        .challenge-summary {
+          padding: 10px;
+          border-bottom: 1px solid $color_celeste_approx;
+          .title {
             font-weight: bold;
-          }
-        }
-        .submission-date {
-          label {
-            display: block;
-            margin-top: 10px;
+            @include ellipsis;
             margin-bottom: 10px;
-            font-weight: bold;
+          }
+          .community {
           }
         }
-        .time-left {
-          margin-top: 10px;
-          font-weight: bold;
-        }
-        .reg-sub-summary {
-          margin-top: 10px;
-          .registrants {
-            margin-right: 10px;
-            .value {
-              margin-left: 5px;
-            }
-          }
-          .submissions {
-            .value {
-              margin-left: 5px;
-            }
-          }
-        }
-        .phase-msg {
-          margin-top: 10px;
-          text-transform: capitalize;
-        }
-        .challenge-complete-msg {
-          margin-top: 10px;
-        }
-        .challenge-cancelled-msg {
-          margin-top: 10px;
-        }
-        .challenge-stalled-msg {
-          margin-top: 10px;
-        }
-        .member-status-msg {
-          margin-top: 10px;
-          align-self: center;
+        .challenge-details {
+          padding: 10px;
           display: flex;
           flex-direction: column;
-          align-items: center;
-          .icon {
-
+          .registration-date {
+            label {
+              display: block;
+              margin-bottom: 10px;
+              font-weight: bold;
+            }
           }
-          .msg {
+          .submission-date {
+            label {
+              display: block;
+              margin-top: 10px;
+              margin-bottom: 10px;
+              font-weight: bold;
+            }
+          }
+          .time-left {
+            margin-top: 10px;
+            font-weight: bold;
+          }
+          .reg-sub-summary {
+            margin-top: 10px;
+            .registrants {
+              margin-right: 10px;
+              .value {
+                margin-left: 5px;
+              }
+            }
+            .submissions {
+              .value {
+                margin-left: 5px;
+              }
+            }
+          }
+          .phase-msg {
+            margin-top: 10px;
+            text-transform: capitalize;
+          }
+          .challenge-complete-msg {
+            margin-top: 10px;
+          }
+          .challenge-cancelled-msg {
+            margin-top: 10px;
+          }
+          .challenge-stalled-msg {
+            margin-top: 10px;
+          }
+          .member-status-msg {
+            margin-top: 10px;
+            align-self: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .icon {
 
+            }
+            .msg {
+
+            }
           }
         }
       }
     }
-  }
-  .develop {
-    background: $url_8 no-repeat center center;
-  }
-  .design {
-    background: $url_9 no-repeat center center;
-  }
-  th {
-    .sort {
-      width: 100%;
-      height: 12px;
-      &.asc {
-        background: $color_wild_sand_approx $url_10 no-repeat center -94px;
-      }
-      &.desc {
-        background: $color_wild_sand_approx $url_10 no-repeat center 6px;
+    .useful-links {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      .link {
+        border-radius: 5px;
+        padding: 10px;
+        background-color: $dark-gray;
+        margin: 10px;
+        a {
+          color: $white;
+          text-decoration: none;
+        }
       }
     }
-    .sort-icon-place {
-      width: 100%;
-      height: 12px;
+    .develop {
+      background: $url_8 no-repeat center center;
     }
-  }
-  th[rel="sortable"] {
-    cursor: pointer;
-  }
-  td[rel="roles"] {
-    max-width: 150px;
-    @include ellipsis;
-  }
-  td[rel="challenge-name"] {
-    text-align: left;
-    > a {
-      color: $color_storm_dust_approx;
-      &:hover {
-        color: $color_selective_yellow_approx;
+    .design {
+      background: $url_9 no-repeat center center;
+    }
+    th {
+      .sort {
+        width: 100%;
+        height: 12px;
+        &.asc {
+          background: $color_wild_sand_approx $url_10 no-repeat center -94px;
+        }
+        &.desc {
+          background: $color_wild_sand_approx $url_10 no-repeat center 6px;
+        }
+      }
+      .sort-icon-place {
+        width: 100%;
+        height: 12px;
       }
     }
-  }
-  table > {
-    thead > tr > th {
-      text-align: center;
-      white-space: nowrap;
-      padding-left: 13px;
-      padding-right: 13px;
+    th[rel="sortable"] {
+      cursor: pointer;
     }
-    tbody> tr > td {
-      padding-top: 20px;
-      padding-bottom: 20px;
-      text-align: center;
+    td[rel="roles"] {
+      max-width: 150px;
+      @include ellipsis;
+    }
+    td[rel="challenge-name"] {
+      text-align: left;
+      > a {
+        color: $color_storm_dust_approx;
+        &:hover {
+          color: $color_selective_yellow_approx;
+        }
+      }
+    }
+    table > {
+      thead > tr > th {
+        text-align: center;
+        white-space: nowrap;
+        padding-left: 13px;
+        padding-right: 13px;
+      }
+      tbody> tr > td {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: center;
+      }
     }
   }
 }

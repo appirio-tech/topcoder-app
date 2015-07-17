@@ -53,7 +53,6 @@ html
 
     // build:js js/vendor.js
     //- bower:js
-    script(src='../bower_components/jquery/dist/jquery.js')
     script(src='../bower_components/angular/angular.js')
     script(src='../bower_components/angular-ui-router/release/angular-ui-router.js')
     script(src='../bower_components/angular-cookies/angular-cookies.js')
@@ -66,6 +65,8 @@ html
     script(src='../bower_components/lodash/lodash.js')
     script(src='../bower_components/restangular/dist/restangular.js')
     script(src='../bower_components/jstzdetect/jstz.min.js')
+    script(src='../bower_components/x2js/xml2json.min.js')
+    script(src='../bower_components/angular-xml/angular-xml.js')
     //- endbower
     //- inject:nonBowerScripts
     script(src="/scripts/moment-timezone-with-data-2010-2020.js")
@@ -91,6 +92,7 @@ html
     script(src="member-dashboard/blog-post/blog-post.controller.js")
     script(src="layout/layout.module.js")
     script(src="layout/header/header.controller.js")
+    script(src="directives/challenge-tile/challenge-tile.directive.js")
     script(src="blocks/logger/logger.module.js")
     script(src="blocks/logger/logger.js")
     script(src="blocks/exception/exception.module.js")
@@ -121,7 +123,9 @@ html
     script(src="peer-review/peer-review.routes.js")
     script(src="member-dashboard/member-dashboard.routes.js")
     script(src="member-dashboard/member-dashboard.controller.js")
+    script(src="filters/time-diff.filter.js")
     script(src="filters/local-time.filter.js")
+    script(src="filters/deadline-msg.filter.js")
     script(src="account/validateRegister.directive.js")
     script(src="account/validateLogin.directive.js")
     script(src="account/account.routes.js")

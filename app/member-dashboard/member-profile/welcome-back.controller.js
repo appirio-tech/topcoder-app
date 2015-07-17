@@ -32,7 +32,6 @@
     // activate controller
     if (TcAuthService.isAuthenticated() === true) {
       db.addIdentityChangeListener("welcomeback", function(identity) {
-        console.log(identity);
         activate(identity);
       });
       if (db.user) {
@@ -62,7 +61,6 @@
           });
 
           vm.showUploadPhotoLink = false;
-          console.log(profile);
           // Parse user picture link to build photo url
           if (profile && profile.photoLink) {
             if (profile.photoLink.indexOf('//') != -1){

@@ -34,7 +34,8 @@
     "moment": "~2.10.3",
     "restangular": "~1.5.1",
     "fontawesome": "~4.3.0",
-    "jstzdetect": "~1.0.6"
+    "jstzdetect": "~1.0.6",
+    "angular-xml": "~2.1.1"
   },
   "devDependencies": {
     "bardjs": "~0.1.4"

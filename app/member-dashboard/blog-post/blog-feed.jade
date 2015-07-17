@@ -7,7 +7,7 @@
         .link
           a(href='{{blog.link}}', target='_blank') {{blog.title}}
         .pub-date.ellipsis {{blog.pubDate | date : 'MMMM dd'}}
-        .description(ng-bind="blog.description")
+        .description(ng-bind-html="blog.description")
     .useful-links
       .community-blog.link
         a(href="https://www.topcoder-dev.com/blog/") View Topcoder Blog
