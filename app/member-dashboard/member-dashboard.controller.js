@@ -23,23 +23,21 @@
     }
 
     function activate() {
-      ProfileService.getUserProfile().then(function(response) {
-        var identityResp = response[0];
-        var profileResp = response[1];
-        vm.loggedInUser = profileResp.data;
-        vm.loggedInUser.uid = identityResp.data.uid;
+      ProfileService.getUserProfile().then(function(profileRes) {
+        vm.loggedInUser = profileRes.data;
+        vm.loggedInUser.uid = profileRes.data.uid;
 
         for (var name in vm.identityListeners) {
           var listener = vm.identityListeners[name];
           if (typeof listener == 'function') {
-            listener.call(vm, profileResp.data);
+            listener.call(vm, profileRes.data);
           }
         };
         var highestRating, i, len, rating, ref;
-        vm.profile = profileResp.data;
+        vm.profile = profileRes.data;
         vm.handleColor = 'color: #000000';
         highestRating = 0;
-        ref = profileResp.data.ratingSummary;
+        ref = profileRes.data.ratingSummary;
         for (i = 0, len = ref.length; i < len; i++) {
           rating = ref[i];
           if (rating.rating > highestRating) {

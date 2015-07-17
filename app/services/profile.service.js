@@ -14,11 +14,11 @@
     ///////////////
 
     function getUserProfile() {
-      var usernamePromise = UserService.getUsername();
-      var profilePromise = usernamePromise.then(function(response) {
-        return ApiService.requestHandler('GET', CONSTANTS.API_URL_V2 + '/users/' + response.data.handle);
+      return UserService.getUsername().then(function(res) {
+        var handle = res.data.handle;
+
+        return ApiService.requestHandler('GET', CONSTANTS.API_URL_V2 + '/users/' + handle);
       });
-      return $q.all([usernamePromise, profilePromise]);
     }
   }
 

@@ -59,7 +59,7 @@
     // Fetches user's active challenges from the API
     function getChallenges() {
       initPaging();
-      console.log(vm.listType);
+
       var chlngRequest = {
         listType: vm.listType,
         pageIndex: vm.pageIndex,
@@ -140,6 +140,7 @@
         vm.myChallenges = data;
       }
       angular.forEach(vm.myChallenges, function(challenge) {
+        challenge = challenge.data;
         var now = moment();
         var registrationDate = moment(challenge.registrationEndDate);
         var submissionDate = moment(challenge.submissionEndDate);
