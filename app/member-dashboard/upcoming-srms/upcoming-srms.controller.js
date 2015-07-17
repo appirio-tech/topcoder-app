@@ -1,34 +1,11 @@
-/**
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
- * @author mdesiderio
- * @author vikas.agarwal@appirio.com
- * @version 1.0
- *
- * Controller for the upcoming srms widget
- */
 (function () {
+  'use strict';
 
-  /**
-   * Create upcoming srm widget controller
-   */
-  angular
-    .module('tc.myDashboard')
-    .controller('UpcomingSRMsCtrl', UpcomingSRMsCtrl);
+  angular.module('tc.myDashboard').controller('UpcomingSRMsController', UpcomingSRMsController);
 
-  /**
-   * Inject dependencies
-   * @type {string[]}
-   */
-  UpcomingSRMsCtrl.$inject = ['$scope', '$location', 'tcAuth','srms', 'CONSTANTS'];
+  UpcomingSRMsController.$inject = ['$location', 'TcAuthService','SRMService', 'CONSTANTS'];
 
-  /**
-   * Controller implementation
-   *
-   * @param $scope
-   * @param SRMServices services to access topcoder API for SRM data
-   * @constructor
-   */
-  function UpcomingSRMsCtrl($scope, $location, tcAuth, SRMService, CONSTANTS) {
+  function UpcomingSRMsController($location, TcAuthService, SRMService, CONSTANTS) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
     vm.loading = true;
@@ -56,17 +33,13 @@
     var db = $scope.$parent.db;
 
     // activate controller
-    if (tcAuth.isAuthenticated() === true) {
+    if (TcAuthService.isAuthenticated() === true) {
       getSRMs();
     } else {
       return false;
     }
 
-    /**
-     * getSRMs Fetches upcoming SRMs from the API
-     *
-     * @return {Object} promise of API call
-     */
+    // Fetches upcoming SRMs from the API
     function getSRMs() {
       initPaging();
       var searchRequest = {
@@ -120,24 +93,12 @@
       return pageLink.val === vm.pageIndex;
     }
 
-    /**
-     * getCurrentPageClass Identifies the css class to be used for the given page link
-     *
-     * @param {JSON} pageLink page link object
-     *
-     * @return {String}
-     */
+    // Identifies the css class to be used for the given page link
     function getCurrentPageClass(pageLink) {
       return isCurrentPage(pageLink) ? 'current-page' : '';
     }
 
-    /**
-     * sort sorts the results based on the given column
-     *
-     * @param {String} column page link object
-     *
-     * @return {Object} promise of API call with updated sort params
-     */
+    // sorts the results based on the given column
     function sort(column) {
       if (vm.sortColumn === column) {
         vm.sortOrder = vm.sortOrder === 'desc' ? 'asc' : 'desc';
@@ -148,9 +109,7 @@
       getSRMs();
     }
 
-    /**
-     * initPaging Initializes the paging
-     */
+    // Initializes the paging
     function initPaging() {
       vm.prevPageLink = {text: "Prev", val: vm.pageIndex - 1};
       vm.nextPageLink = {text: "Next", val: vm.pageIndex + 1};

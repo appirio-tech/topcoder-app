@@ -2,6 +2,7 @@
 
 .login-container {
 
+  // Remove box-sizing when bootstrap is gone
   * {
     box-sizing: content-box;
   }
@@ -13,8 +14,10 @@
     justify-content: space-between;
   }
 
-  .form-errors p {
-    margin-bottom: 10px;
+  .form-errors {
+    p {
+      margin-bottom: 20px;
+    }
   }
 
   .forgot-password {

@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('tc.peer-review').factory('review', review);
+  angular.module('tc.services').factory('ReviewService', ReviewService);
 
-  review.$inject = ['CONSTANTS', 'api'];
+  ReviewService.$inject = ['CONSTANTS', 'ApiService'];
 
-  function review(CONSTANTS, api) {
+  function ReviewService(CONSTANTS, ApiService) {
     var service = {
       getUsersPeerReviews: getUsersPeerReviews,
       getReview: getReview,
@@ -20,28 +20,28 @@
 
     function getUsersPeerReviews(challengeId) {
       var url = CONSTANTS.API_URL + '/reviews/?filter=' + encodeURIComponent('challengeId=' + challengeId);
-      return api.requestHandler('GET', url);
+      return ApiService.requestHandler('GET', url);
     }
 
     function getReview(reviewId) {
       var url = CONSTANTS.API_URL + '/reviews/' + reviewId;
-      return api.requestHandler('GET', url);
+      return ApiService.requestHandler('GET', url);
     }
 
     function getReviewItems(reviewId) {
       var url = CONSTANTS.API_URL + '/reviewItems/?filter=' + encodeURIComponent('reviewId=' + reviewId);
-      return api.requestHandler('GET', url);
+      return ApiService.requestHandler('GET', url);
     }
 
     function getNextReview(challengeId) {
       var url = CONSTANTS.API_URL + '/challenges/' + challengeId + '/assignNextReview';
-      return api.requestHandler('PUT', url);
+      return ApiService.requestHandler('PUT', url);
     }
 
     function saveReviewItems(body, isPreviouslySaved) {
       var method = isPreviouslySaved ? 'PUT' : 'POST';
       var url = CONSTANTS.API_URL + '/reviewItems/';
-      return api.requestHandler(method, url, JSON.stringify(body));
+      return ApiService.requestHandler(method, url, JSON.stringify(body));
     }
 
     function markAsCompleted(reviewId) {
@@ -51,7 +51,7 @@
         id: reviewId
       };
 
-      return api.requestHandler('PUT', url, JSON.stringify(body));
+      return ApiService.requestHandler('PUT', url, JSON.stringify(body));
     }
   };
 })();

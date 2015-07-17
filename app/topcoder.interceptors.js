@@ -4,22 +4,22 @@
 
   JwtConfig = function($httpProvider, jwtInterceptorProvider) {
     var jwtInterceptor;
-    jwtInterceptor = function(jwtHelper, authtoken, config) {
+    jwtInterceptor = function(jwtHelper, AuthTokenService, config) {
       // based on the url decide which token to send
       var idToken;
       if (config.url.indexOf('v2/') > -1) {
-        idToken = authtoken.getV2Token();
+        idToken = AuthTokenService.getV2Token();
       } else if(config.url.indexOf('v3/') > -1 && config.url.indexOf('v3/authorizations') < 0) {
         // FIXME looks like the services still need v2 token
-        idToken = authtoken.getV2Token();
+        idToken = AuthTokenService.getV2Token();
       }
       // make sure token hasn't expired
       if (idToken != null) {
         if (jwtHelper.isTokenExpired(idToken)) {
-          return authtoken.refreshToken(idToken).then(function(response) {
+          return AuthTokenService.refreshToken(idToken).then(function(response) {
             idToken = response.data.result.content.token;
             // v2 token doesn't expire
-            authtoken.setV3Token(idToken);
+            AuthTokenService.setV3Token(idToken);
             return idToken;
           });
         } else {
@@ -29,7 +29,7 @@
         return '';
       }
     };
-    jwtInterceptor.$inject = ['jwtHelper', 'authtoken', 'config'];
+    jwtInterceptor.$inject = ['jwtHelper', 'AuthTokenService', 'config'];
     jwtInterceptorProvider.tokenGetter = jwtInterceptor;
     return $httpProvider.interceptors.push('jwtInterceptor');
   };
@@ -48,5 +48,5 @@
   angular.module('topcoder').factory('HeaderInterceptor', HeaderInterceptor);
 
   angular.module('topcoder').config(['$httpProvider', 'jwtInterceptorProvider', JwtConfig]);
-  
+
 })();

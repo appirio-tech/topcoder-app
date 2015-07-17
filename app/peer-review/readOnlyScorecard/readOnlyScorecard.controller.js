@@ -3,9 +3,9 @@
 
   angular.module('tc.peer-review').controller('ReadOnlyScorecardController', ReadOnlyScorecardController);
 
-  ReadOnlyScorecardController.$inject = ['$stateParams', 'scorecard', 'helpers'];
+  ReadOnlyScorecardController.$inject = ['$stateParams', 'ScorecardService', 'Helpers'];
 
-  function ReadOnlyScorecardController($stateParams, scorecard, helpers) {
+  function ReadOnlyScorecardController($stateParams, ScorecardService, Helpers) {
     var scorecardId = $stateParams.scorecardId;
     var vm = this;
     vm.loaded = false;
@@ -14,19 +14,19 @@
     activate();
 
     function activate() {
-      scorecard.getScorecardById(scorecardId)
+      ScorecardService.getScorecardById(scorecardId)
       .then(function(response) {
         var scorecardData = response.data.result.content[0];
         vm.scorecard.name = scorecardData.name;
 
-        scorecard.getScorecardQuestions(scorecardId)
+        ScorecardService.getScorecardQuestions(scorecardId)
         .then(function(data) {
           vm.scorecard.questions = {};
 
           var questions = data.data.result.content;
 
-          helpers.storeById(vm.scorecard.questions, questions);
-          helpers.parseQuestions(vm.scorecard.questions);
+          Helpers.storeById(vm.scorecard.questions, questions);
+          Helpers.parseQuestions(vm.scorecard.questions);
 
           vm.loaded = true;
         });

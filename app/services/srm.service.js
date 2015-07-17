@@ -1,32 +1,15 @@
-/**
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
- * @author mdesiderio
- * @version 1.0
- *
- * SRMService. Factory to access topcoder API to retrieve SRM related info
- */
 (function () {
+  'use strict';
 
-  angular
-    .module('tc.myDashboard')
-    .factory('srms', SRMService);
+  angular.module('tc.services').factory('SRMService', SRMService);
 
-  SRMService.$inject = ['api', '$filter'];
+  SRMService.$inject = ['ApiService', '$filter'];
 
-  /**
-   * SRMService 
-   * @param api to access the REST api
-   * @param $filter used to format the date
-   * @constructor
-   */
-  function SRMService(api, $filter) {
+  function SRMService(ApiService, $filter) {
 
-    var service = api.restangularV3;
+    var service = ApiService.restangularV2;
 
-    /**
-     * getSRMSchedule returns list of upcoming SRMs currently scheduled
-     *
-     */
+    // Returns list of upcoming SRMs currently scheduled
     service.getSRMSchedule = function(request) {
 
       // add default paging
@@ -58,6 +41,6 @@
       return service.all("srms").getList(filters);
     }
 
-    return service;  
+    return service;
   }
 })();
