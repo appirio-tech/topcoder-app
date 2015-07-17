@@ -151,7 +151,10 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
 
   return gulp
     .src(config.index)
-    .pipe($.inject(gulp.src(config.css, {read: false}), {ignorePath: '.tmp', addRootSlash: false}))
+    .pipe($.inject( // Sort the css (reset.css, then topcoder.css, then everything else)
+      gulp.src([config.temp + 'assets/css/reset.css', config.css], {read: false})
+      .pipe($.naturalSort('desc')),
+      {ignorePath: '.tmp', addRootSlash: false}))
     .pipe(gulp.dest(config.app));
 });
 
