@@ -25,7 +25,7 @@
       },
       'login': {
         parent: 'auth',
-        url: '/login?next&code&state&status&userJWTToken',
+        url: '/login/?next&code&state&status&userJWTToken',
         data: {
           title: 'Login',
           authRequired: false
@@ -47,7 +47,7 @@
       },
       'register': {
         parent: 'auth',
-        url: '/register?next',
+        url: '/register/?next',
         data: {
           title: "Join",
           authRequired: false
@@ -64,7 +64,7 @@
         }
       },
       'registeredSuccessfully': {
-        url: '/registeredsuccessfully',
+        url: '/registered-successfully/',
         data: {
           title: 'Registered',
           authRequired: false
@@ -79,7 +79,7 @@
         }
       },
       'resetPasswordLink': {
-        url: '/initiate-reset-password',
+        url: '/initiate-reset-password/',
         data: {
           title: "Reset Password",
           authRequired: false
@@ -96,7 +96,7 @@
         }
       },
       'resetPasswordLinkConfirmation': {
-        url: '/reset-password-sent',
+        url: '/reset-password-sent/',
         data: {
           title: "Reset Password",
           authRequired: false
@@ -111,7 +111,7 @@
         }
       },
       'resetPassword': {
-        url: '/reset-password',
+        url: '/reset-password/',
         data: {
           title: "Reset Password",
           authRequired: false
@@ -126,7 +126,7 @@
         }
       },
       logout: {
-        url: '/logout',
+        url: '/logout/',
         controller: ['TcAuthService', function(TcAuthService) {
           TcAuthService.logout();
         }]
