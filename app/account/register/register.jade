@@ -2,6 +2,9 @@
   h1 Join Topcoder
 
   form(name="registerForm", role="form", ng-submit="registerForm.$valid && vm.register()", novalidate)
+    
+    p.error-msg(ng-if="vm.errMsg") {{vm.errMsg}}
+
     .first-last-names
       input(ng-model="vm.firstname", maxlength="64", name="firstname", placeholder="First Name", type="text", required)
 
@@ -40,7 +43,7 @@
       p.login-error(ng-show="registerForm.username.$error.minlength || registerForm.username.$error.maxlength") Username must be between 2 and 15 characters.
 
     .validation-bar(ng-class="{ 'error-bar': (registerForm.email.$dirty && registerForm.email.$invalid), 'success-bar': (registerForm.email.$valid) }")
-      input(ng-model="vm.email", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", required)
+      input(ng-model="vm.email", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", email-is-available, required)
 
       .tips.email-tips(ng-show="vm.emailTips")
         h3 Email Tips:
@@ -53,7 +56,7 @@
       p.login-error(ng-show="registerForm.email.$dirty && registerForm.email.$invalid") Please enter a valid email address.
 
     .validation-bar(ng-class="{ 'success-bar': (registerForm.password.$valid) }")
-      input(ng-model="vm.password", ng-focus="vm.passwordTips = true", ng-blur="vm.passwordTips = false", name="password", placeholder="Create Password", type="password", ng-minlength="8", ng-maxlength="64", has-letter, has-symbol, has-number, required)
+      input(ng-if="!vm.socialRegister", ng-model="vm.password", ng-focus="vm.passwordTips = true", ng-blur="vm.passwordTips = false", name="password", placeholder="Create Password", type="password", ng-minlength="8", ng-maxlength="64", has-letter, has-symbol, has-number, required)
 
       .tips.password-tips(ng-show="vm.passwordTips")
         h3 Password Tips:
@@ -77,9 +80,9 @@
     p Register using another account.
 
     .social-icons
-      i.fa.fa-github-square
-      i.fa.fa-facebook-square
-      i.fa.fa-google-plus-square
+      i.fa.fa-github-square(ng-click="vm.socialRegister('github')")
+      i.fa.fa-facebook-square(ng-click="vm.socialRegister('facebook')")
+      i.fa.fa-google-plus-square(ng-click="vm.socialRegister('google-oauth2')")
 
   p.redirect Already have an account? 
     a(ui-sref="login") Login.

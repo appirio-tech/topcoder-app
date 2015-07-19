@@ -11,6 +11,7 @@
       createUser: createUser,
       validateUserEmail: validateUserEmail,
       validateUserHandle: validateUserHandle,
+      validateSocialProfile: validateSocialProfile,
       generateResetToken: generateResetToken,
       resetPassword: resetPassword
     };
@@ -52,6 +53,15 @@
       };
       return $http.put(CONSTANTS.API_URL + '/users/resetPassword', data);
     }
+
+    function validateSocialProfile(userId, providerId) {
+      return ApiService.restangularV3.all('users').withHttpConfig({cache: false}).customGET('validateSocial',
+      {
+        socialUserId: userId,
+        socialProviderId: providerId
+      });
+    }
+
   }
 
 })();
