@@ -136,7 +136,7 @@ gulp.task('wiredep', ['jade'], function() {
     .pipe(wiredep(options))
     .pipe($.inject(
       gulp.src(config.js)
-      .pipe($.naturalSort())
+      .pipe($.naturalSort('desc'))
       .pipe($.angularFilesort()),
       {relative: true}))
     .pipe($.inject(gulp.src(config.nonBowerScripts, {read: false}), {
@@ -267,7 +267,7 @@ gulp.task('serve', ['inject', 'ngConstants'], function() {
     logPrefix: 'Topcoder-Account',
     notify: true,
     port: 3000,
-    reloadDelay: 500
+    reloadDelay: 1000
   };
 
   browserSync(options);
