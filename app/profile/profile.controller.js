@@ -4,9 +4,9 @@
     .module('tc.profile')
     .controller('ProfileCtrl', ProfileCtrl);
 
-  ProfileCtrl.$inject = ['profile'];
+  ProfileCtrl.$inject = ['ProfileService'];
 
-  function ProfileCtrl(profile) {
+  function ProfileCtrl(ProfileService) {
     var vm = this;
     vm.title = "Profile";
     vm.message = "Message"
@@ -15,8 +15,8 @@
     activate();
 
     function activate() {
-      vm.profile = profile.getMemberProfile();
-      vm.memberFor = moment().year() - moment(profile.createdAt).year() + '';
+      vm.profile = ProfileService.getMemberProfile();
+      vm.memberFor = moment().year() - moment(vm.profile.createdAt).year() + '';
     }
 
 
