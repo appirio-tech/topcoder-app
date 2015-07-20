@@ -3,9 +3,9 @@
 
   angular.module('topcoder').factory('profile', profile);
 
-  profile.$inject = ['CONSTANTS', 'api', 'UserService', '$q'];
+  profile.$inject = ['CONSTANTS', 'api', 'UserService'];
 
-  function profile(CONSTANTS, api, UserService, $q) {
+  function profile(CONSTANTS, api, UserService) {
     var service = {
       // for dashboard
       getUserProfile: getUserProfile,
@@ -24,7 +24,6 @@
     }
 
     function getMemberProfile() {
-      var defer = $q.defer();
       var profile = {
         "updatedAt": "2015-07-10T01:40Z",
         "createdAt": "2001-07-24T16:44Z",
