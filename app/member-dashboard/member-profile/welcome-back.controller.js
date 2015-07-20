@@ -1,44 +1,18 @@
-/**
- * Copyright (C) 2014 TopCoder Inc., All Rights Reserved.
- * @author mdesiderio
- * @author vikas.agarwal@appirio.com
- * @version 1.0
- *
- * Controller for the welcome back widget
- */
- (function () {
+(function () {
+  'use strict';
 
-  /**
-   * Create welcome back widget controller
-   */
-  angular
-    .module('tc.myDashboard')
-    .controller('WelcomeBackCtrl', WelcomeBackCtrl);
+  angular.module('tc.myDashboard').controller('WelcomeBackController', WelcomeBackController);
 
-  /**
-   * Inject dependencies
-   * @type {string[]}
-   */
-  WelcomeBackCtrl.$inject = [
+  WelcomeBackController.$inject = [
     '$scope',
     '$location',
-    'tcAuth',
-    'profile',
-    'challenge',
+    'TcAuthService',
+    'ProfileService',
+    'ChallengeService',
     'CONSTANTS'
   ];
 
-  /**
-   * Controller implementation
-   *
-   * @param $scope
-   * @param $location location service
-   * @param ProfileService services to access profile information via API
-   * @param ChallengeService services to access challenge info via API
-   * @param CONSTANTS Constants object
-   * @constructor
-   */
-  function WelcomeBackCtrl($scope, $location, tcAuth, ProfileService, ChallengeService, CONSTANTS) {
+  function WelcomeBackController($scope, $location, TcAuthService, ProfileService, ChallengeService, CONSTANTS) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
     // edit profile url
@@ -56,7 +30,7 @@
     var db = $scope.$parent.db;
 
     // activate controller
-    if (tcAuth.isAuthenticated() === true) {
+    if (TcAuthService.isAuthenticated() === true) {
       db.addIdentityChangeListener("welcomeback", function(identity) {
         console.log(identity);
         activate(identity);
@@ -96,7 +70,7 @@
               vm.photoLink = CONSTANTS.PHOTO_LINK_LOCATION + profile.photoLink;
             }
           } else {
-            vm.photoLink = CONSTANTS.PHOTO_LINK_LOCATION + '/i/m/nophoto_login.gif';  
+            vm.photoLink = CONSTANTS.PHOTO_LINK_LOCATION + '/i/m/nophoto_login.gif';
             vm.uploadPhotoLink = $location.protocol() + ":" + vm.communityBaseUrl + '/tc?module=MyHome';
             vm.showUploadPhotoLink = true;
           }
@@ -123,7 +97,7 @@
               if(challenge.roles && challenge.roles.indexOf("Submitter") != -1) {
                 ctOpenChallenges++
               }
-              
+
               if(challenge.roles && challenge.roles.indexOf("Reviewer") != -1) {
                 ctReviewChallenges++
               }
@@ -133,8 +107,5 @@
             vm.reviewOpportunities = ctReviewChallenges;
           });
     }
-
   }
-
-
 })();

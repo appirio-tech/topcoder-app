@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').factory('tcAuth', tcAuth);
+  angular.module('tc.services').factory('TcAuthService', TcAuthService);
 
-  tcAuth.$inject = ['CONSTANTS', 'authtoken', '$rootScope', '$q', '$log', '$timeout', 'UserService'];
+  TcAuthService.$inject = ['CONSTANTS', 'AuthTokenService', '$rootScope', '$q', '$log', '$timeout', 'UserService'];
 
-  function tcAuth(CONSTANTS, authtoken, $rootScope, $q, $log, $timeout, UserService) {
+  function TcAuthService(CONSTANTS, AuthTokenService, $rootScope, $q, $log, $timeout, UserService) {
     var auth0 = new Auth0({
       domain: CONSTANTS.auth0Domain,
       clientID: CONSTANTS.clientId,
@@ -41,7 +41,7 @@
             reject(err);
           } else {
             // exchange token
-            authtoken.exchangeToken(refreshToken, idToken)
+            AuthTokenService.exchangeToken(refreshToken, idToken)
             .then(function() {
               // giving angular sometime to set the cookies
               $timeout(function() {
@@ -73,7 +73,7 @@
 
     function logout(successCallback) {
       return $q(function(resolve, reject) {
-        authtoken.removeTokens();
+        AuthTokenService.removeTokens();
         $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT);
         resolve();
       });
@@ -87,7 +87,7 @@
     }
 
     function isAuthenticated() {
-      return !!authtoken.getV2Token();
+      return !!AuthTokenService.getV2Token();
     }
 
   }

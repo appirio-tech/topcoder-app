@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').factory('profile', profile);
+  angular.module('tc.services').factory('ProfileService', ProfileService);
 
-  profile.$inject = ['CONSTANTS', 'api', 'UserService'];
+  ProfileService.$inject = ['CONSTANTS', 'ApiService', 'UserService'];
 
-  function profile(CONSTANTS, api, UserService) {
+  function ProfileService(CONSTANTS, ApiService, UserService) {
     var service = {
       // for dashboard
       getUserProfile: getUserProfile,
@@ -19,7 +19,7 @@
     function getUserProfile() {
       return UserService.getUsername()
       .then(function(response) {
-        return api.requestHandler('GET', CONSTANTS.API_URL_V2 + '/users/' + response.data.handle);
+        return ApiService.requestHandler('GET', CONSTANTS.API_URL_V2 + '/users/' + response.data.handle);
       });
     }
 

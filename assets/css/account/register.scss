@@ -3,36 +3,55 @@
 .register-container {
   position: relative;
 
+  // Remove box-sizing when bootstrap is gone
   * {
     box-sizing: content-box;
   }
 
-  .login-error {
-    margin: 2px 0 12px 5px;
-  }
   form {
     display: flex;
-    flex-flow: row wrap;
+    flex-direction: column;
+    justify-content: center;
     width: 300px;
+  }
+
+  .form-errors {
+    text-align: left;
+
+    p {
+      margin: 2px 0 12px 5px;
+    }
+  }
+
+  .first-last-names, .country-age {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    width: 300px;
   }
 
   input[name="firstname"], input[name="lastname"] {
-    width: 136px;
+    width: 131px;
   }
 
   input[name="country"] {
-    width: 220px;
+    width: 215px;
   }
 
   input[name="age"] {
-    width: 50px;
+    width: 45px;
   }
 
   .tips {
     position: absolute;
     width: 320px;
     text-align: left;
+    top: 13px;
+    @media only screen and (max-width: 915px) {
+      position: initial;
+      margin-left: 5px;
+      width: 300px;
+    }
 
     h3, p {
       margin-bottom: 10px;
@@ -41,6 +60,9 @@
     h3 {
       @include source-sans-semi-bold;
       font-size: 18px;
+      @media only screen and (max-width: 915px) {
+        font-size: 15px;
+      }
     }
 
     h3:before {
@@ -48,6 +70,9 @@
       content: '\f053';
       display: inline-block;
       width: 20px;
+      @media only screen and (max-width: 915px) {
+        display: none;
+      }
     }
 
     p {
@@ -68,12 +93,10 @@
   }
 
   .username-tips {
-    top: 219px;
     left: 330px;
   }
 
   .email-tips {
-    top: 270px;
     left: 330px;
 
     p:last-child {
@@ -82,12 +105,11 @@
   }
 
   .password-tips {
-    top: 322px;
     left: 330px;
 
     p:before {
       content: '\f05d';
-      color: #6cc5a8;
+      color: #7ece95;
       display: none;
     }
 

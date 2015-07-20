@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('tc.peer-review').factory('scorecard', scorecard);
+  angular.module('tc.services').factory('ScorecardService', ScorecardService);
 
-  scorecard.$inject = ['CONSTANTS', 'api'];
+  ScorecardService.$inject = ['CONSTANTS', 'ApiService'];
 
-  function scorecard(CONSTANTS, api) {
+  function ScorecardService(CONSTANTS, ApiService) {
     var service = {
       getScorecardById: getScorecardById,
       getScorecard: getScorecard,
@@ -17,17 +17,17 @@
 
     function getScorecardById(scorecardId) {
         var url = CONSTANTS.API_URL + '/scorecards/?filter=' + encodeURIComponent('scorecardId=' + scorecardId);
-        return api.requestHandler('GET', url);
+        return ApiService.requestHandler('GET', url);
     }
 
     function getScorecard(challengeId) {
         var url = CONSTANTS.API_URL + '/scorecards/?filter=' + encodeURIComponent('challengeId=' + challengeId);
-        return api.requestHandler('GET', url);
+        return ApiService.requestHandler('GET', url);
     }
 
     function getScorecardQuestions(scorecardId) {
         var url = CONSTANTS.API_URL + '/scorecardQuestions/?filter=' + encodeURIComponent('scorecardId=' + scorecardId);
-        return api.requestHandler('GET', url);
+        return ApiService.requestHandler('GET', url);
     }
   };
 })();

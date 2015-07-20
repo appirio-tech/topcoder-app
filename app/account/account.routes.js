@@ -11,8 +11,8 @@
     var states = {
       'auth': {
         parent: 'root',
-        onEnter: ['$state', '$stateParams', 'tcAuth', function($state, $stateParams, tcAuth) {
-          if (tcAuth.isAuthenticated()) {
+        onEnter: ['$state', '$stateParams', 'TcAuthService', function($state, $stateParams, TcAuthService) {
+          if (TcAuthService.isAuthenticated()) {
             // redirect to next if exists else dashboard
             if ($stateParams.next) {
               $log.debug('Redirecting: ' + $stateParams.next);
@@ -127,8 +127,8 @@
       },
       logout: {
         url: '/logout',
-        controller: ['tcAuth', function(tcAuth) {
-          tcAuth.logout();
+        controller: ['TcAuthService', function(TcAuthService) {
+          TcAuthService.logout();
         }]
       }
     };

@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').factory('api', api);
+  angular.module('tc.services').factory('ApiService', ApiService);
 
-  api.$inject = ['$http', '$log', 'authtoken', 'Restangular', 'CONSTANTS'];
+  ApiService.$inject = ['$http', '$log', 'AuthTokenService', 'Restangular', 'CONSTANTS'];
 
-  function api($http, $log, authtoken, Restangular, CONSTANTS) {
+  function ApiService($http, $log, AuthTokenService, Restangular, CONSTANTS) {
     var service = {
       requestHandler: requestHandler,
       restangularV3: getRestangularV3(),
@@ -47,7 +47,7 @@
           })
           /*.addFullRequestInterceptor(function(element, operation, what, url) {
             return {
-              headers: {'Authorization': 'Bearer ' + authtoken.getV2Token()}
+              headers: {'Authorization': 'Bearer ' + AuthTokenService.getV2Token()}
             };
           })*/
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {

@@ -1,11 +1,11 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').factory('UserService', UserService);
+  angular.module('tc.services').factory('UserService', UserService);
 
-  UserService.$inject = ['CONSTANTS', 'api', '$http'];
+  UserService.$inject = ['CONSTANTS', 'ApiService', '$http'];
 
-  function UserService(CONSTANTS, api, http) {
+  function UserService(CONSTANTS, ApiService, http) {
     var service = {
       getUsername: getUsername,
       createUser: createUser,
@@ -20,20 +20,20 @@
 
     function getUsername() {
       var url = CONSTANTS.API_URL_V2 + '/user/identity';
-      return api.requestHandler('GET', url);
+      return ApiService.requestHandler('GET', url);
     }
 
     function createUser(body) {
-      return api.restangularV3.all('users').withHttpConfig({cache: false}).customPOST(JSON.stringify(body));
+      return ApiService.restangularV3.all('users').withHttpConfig({cache: false}).customPOST(JSON.stringify(body));
     }
 
     function validateUserHandle(handle) {
-      return api.restangularV3.all('users').withHttpConfig({cache: false}).customGET('validate/handle/' + handle);
+      return ApiService.restangularV3.all('users').withHttpConfig({cache: false}).customGET('validate/handle/' + handle);
     }
 
 
     function validateUserEmail(email) {
-      return api.restangularV3.all('users').withHttpConfig({cache: false}).customGET('validateEmail', {email: email});
+      return ApiService.restangularV3.all('users').withHttpConfig({cache: false}).customGET('validateEmail', {email: email});
     }
 
     function generateResetToken(email) {

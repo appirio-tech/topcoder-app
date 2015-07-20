@@ -2,6 +2,7 @@
   'use strict';
 
   var dependencies = [
+    'tc.services',
     'tc.layout',
     'tc.account',
     'tc.peer-review',
@@ -21,16 +22,16 @@
     .module('topcoder', dependencies)
     .run(appRun);
 
-  appRun.$inject = ['$rootScope', '$state', 'tcAuth', '$cookies', 'helpers', '$log'];
+  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log'];
 
-  function appRun($rootScope, $state, tcAuth, $cookies, helpers, $log) {
+  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log) {
     // Attaching $state to the $rootScope allows us to access the
     // current state in index.html (see div with ui-view on the index page)
     $rootScope.$state = $state;
 
     // check AuthNAuth on change state start
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-      if (toState.data.authRequired && !tcAuth.isAuthenticated()) {
+      if (toState.data.authRequired && !TcAuthService.isAuthenticated()) {
         $log.debug('State requires authentication, and user is not logged in, redirecting');
         // setup redirect for post login
         event.preventDefault();
@@ -42,7 +43,7 @@
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
       // set document title
-      document.title = helpers.getPageTitle(toState, $state.$current);
+      document.title = Helpers.getPageTitle(toState, $state.$current);
     });
   }
 
