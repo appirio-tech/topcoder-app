@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('tcUIComponents', []).directive('challengeTile', function() {
+  angular.module('tcUIComponents').directive('challengeTile', function() {
     return {
       restrict: 'E',
       templateUrl: 'directives/challenge-tile/challenge-tile.directive.html',
