@@ -47,8 +47,9 @@
     });
   }
 
-  angular.module('topcoder').config(['$httpProvider', function($httpProvider) {
+  angular.module('topcoder').config(['$httpProvider', 'RestangularProvider', function($httpProvider, RestangularProvider) {
     $httpProvider.interceptors.push('HeaderInterceptor');
+    RestangularProvider.setRequestSuffix('/');
   }]);
 
 })();
