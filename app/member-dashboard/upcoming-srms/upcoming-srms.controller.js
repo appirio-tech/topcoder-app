@@ -25,7 +25,7 @@
     vm.getCurrentPageClass = getCurrentPageClass;
     vm.sort = sort;
     vm.view = 'tiles';
-    vm.listType = 'upcoming';
+    vm.listType = 'future';
     vm.viewUpcomingSRMs = viewUpcomingSRMs;
     vm.viewPastSRMs = viewPastSRMs;
 

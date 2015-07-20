@@ -17,7 +17,7 @@
       var pageSize = request && request.pageSize ? request.pageSize : 10;
       var sortColumn  = request && request.sortColumn ? request.sortColumn : 'registrationStartTime';
       var sortOrder  = request && request.sortOrder ? request.sortOrder : 'asc';
-      var listType  = request && request.listType ? request.listType : 'upcoming';
+      var listType  = request && request.listType ? request.listType : 'future';
       var userId  = request && request.userId ? request.userId : null;
 
       service.request = request;
