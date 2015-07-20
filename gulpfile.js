@@ -136,6 +136,7 @@ gulp.task('wiredep', ['jade'], function() {
     .pipe(wiredep(options))
     .pipe($.inject(
       gulp.src(config.js)
+      .pipe($.naturalSort())
       .pipe($.angularFilesort()),
       {relative: true}))
     .pipe($.inject(gulp.src(config.nonBowerScripts, {read: false}), {
