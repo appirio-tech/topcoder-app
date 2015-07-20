@@ -227,7 +227,9 @@ gulp.task('build-specs', ['templatecache'], function() {
     .pipe($.inject(gulp.src(config.nonBowerScripts),
       {name: 'inject:nonBowerScripts', read: false}))
     .pipe($.inject(
-      gulp.src(config.js).pipe($.angularFilesort())
+      gulp.src(config.js)
+      .pipe($.naturalSort())
+      .pipe($.angularFilesort())
     ))
     .pipe($.inject(gulp.src(config.specHelpers),
       {name: 'inject:spechelpers', read: false}))

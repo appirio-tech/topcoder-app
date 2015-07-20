@@ -68,6 +68,11 @@
             templateUrl : 'member-dashboard/marketing-message/marketing-message.html',
             controller: 'MarketingMessageController',
             controllerAs: 'vm'
+          },
+          'ios-program': {
+            templateUrl: 'member-dashboard/ios-program/ios-program.html',
+            controller: 'iOSProgramController',
+            controllerAs: 'vm'
           }
         }
       }
