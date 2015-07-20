@@ -3,6 +3,11 @@
 .ios-program {
   margin-bottom: 35px;
 
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   .join-program {
     height: 175px;
     background-color: #e7e7e7;
