@@ -68,6 +68,16 @@ To contribute to the repository, please create a feature branch off of the dev b
 Jade Files
   - Use index.jade any other module's Jade files as a guide for syntax
   - You (usually) don't need to write the div tag
+  - Add a blank line in between sibling tags and when going back one indentation level:
+```
+    .wrapper
+      h1 Lorem ipsum
+      
+      p Sibling tag
+      
+    .wrapper2
+      p Child
+```
 
 SCSS Files
   - Use SCSS syntax (nesting)
