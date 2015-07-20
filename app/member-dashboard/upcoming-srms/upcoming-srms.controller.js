@@ -67,7 +67,10 @@
           }
           vm.upcomingSRMs = response.result.content;
           vm.loading = false;
-      });
+        }, function(error) {
+          // TODO show useful error information to user with actionable error reporting
+          vm.loading = false;
+        });
     }
 
     /**
