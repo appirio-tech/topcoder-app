@@ -2,13 +2,16 @@
 
 .profile-header-container {
 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
   .left {
 
-    float: left;
+    display: flex;
 
     img.profile-circle {
       border-radius: 50%;
-      float: left;
       display: inline;
       margin-right: 20px;
       width: 110px;
@@ -16,7 +19,6 @@
 
     .info {
 
-      float: right;
       margin-top: 20px;
 
       h1 {
@@ -42,7 +44,6 @@
   }
 
   .right {
-    float: right;
 
     h4 {
       color: gray;
