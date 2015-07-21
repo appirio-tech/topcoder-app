@@ -6,3 +6,4 @@ build
 dist
 report
 .idea
+.settings
