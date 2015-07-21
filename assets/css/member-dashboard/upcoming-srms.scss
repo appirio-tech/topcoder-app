@@ -42,7 +42,7 @@
     border: none;
     .tile {
       float: left;
-      border: 1px solid $color_celeste_approx;
+      background-color: $medium-gray;
       width: 200px;
       margin-left: 20px;
       margin-bottom: 20px;
@@ -57,7 +57,6 @@
       }
       .srm-summary {
         padding: 10px;
-        border-bottom: 1px solid $color_celeste_approx;
         .title {
           font-weight: bold;
           @include ellipsis;

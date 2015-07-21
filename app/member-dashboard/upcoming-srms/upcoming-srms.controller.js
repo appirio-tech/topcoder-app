@@ -65,7 +65,7 @@
             vm.lastRecordIndex = vm.pageIndex * vm.pageSize;
             vm.lastRecordIndex = vm.lastRecordIndex > vm.totalRecords ? vm.totalRecords : vm.lastRecordIndex;
           }
-          vm.upcomingSRMs = response.result.content;
+          vm.upcomingSRMs = response;
           vm.loading = false;
         }, function(error) {
           // TODO show useful error information to user with actionable error reporting

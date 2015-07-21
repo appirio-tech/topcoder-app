@@ -72,15 +72,20 @@
         sortColumn: vm.sortColumn,
         sortOrder: vm.sortOrder
       };
+      console.log(db.loggedInUser);
+      if(db.loggedInUser) {
+        chlngRequest['userId'] = mmRequest['userId'] = db.loggedInUser.uid;
+      }
       // show loading icon
       vm.loading = true;
       // Fetch challenges promise
       var chlngPromise = ChallengeService.getMyActiveChallenges(chlngRequest);
       //var mmPromise = ChallengeService.getMyMarathonMatches(mmRequest);
-      $q.all([chlngPromise]) // add mmPromise to the array when end point works
+      //$q.all([chlngPromise, mmPromise]) // uncomment when end point works
+      chlngPromise
         .then(function(responses) {
-          var chlngData = responses[0];
-          var mmData = responses[1];
+          var chlngData = responses;//responses[0];
+          //var mmData = responses[1];
           processChallengesResponse(chlngData);
           //processMarathonMatchesResponse(mmData);
           // stop loading icon

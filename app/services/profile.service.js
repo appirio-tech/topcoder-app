@@ -6,19 +6,31 @@
   ProfileService.$inject = ['CONSTANTS', 'ApiService', 'UserService', '$q'];
 
   function ProfileService(CONSTANTS, ApiService, UserService, $q) {
+
+    var restangular = ApiService.restangularV3;
+
     var service = {
-      getUserProfile: getUserProfile
+      getUserProfile: getUserProfile,
+      getUserStats: getUserStats,
+      getUserFinancials: getUserFinancials
     };
     return service;
 
     ///////////////
 
     function getUserProfile() {
-      return UserService.getUsername().then(function(res) {
-        var handle = res.data.handle;
+      var userId = UserService.getUserId();
+      return restangular.one('members', userId).one('profile').get();
+    }
 
-        return ApiService.requestHandler('GET', CONSTANTS.API_URL_V2 + '/users/' + handle);
-      });
+    function getUserStats() {
+      var userId = UserService.getUserId();
+      return restangular.one('members', userId).one('stats').get();
+    }
+
+    function getUserFinancials() {
+      var userId = UserService.getUserId();
+      return restangular.one('members', userId).one('financial').get();
     }
   }
 

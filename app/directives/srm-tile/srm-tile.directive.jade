@@ -1,21 +1,12 @@
 .tile
   .srm-summary
-    .title(ng-bind='srm.contestName')
+    .title(ng-bind='srm.name')
   .srm-details
     .time-left
-        div(ng-bind='srm.codingStartTime | timeDiff')
+        div(ng-bind='srm.startDate | timeDiff')
     .phase-msg
       span Coding 
-      span(ng-bind='srm.codingStartTime | deadlineStartMsg')
-    //.srm-complete-msg(ng-show="srm.status=='Complete'")
-      srm Complete
-    //.reg-sub-summary
-      span.registrants
-        i.fa.fa-user
-        span.value(ng-bind="srm.numRegistrants")
-      span.submissions
-        i.fa.fa-cloud-download
-        span.value(ng-bind="srm.numSubmissions")
+      span(ng-bind='srm.startDate | deadlineStartMsg')
     .member-status-msg
       .icon
         i.fa.fa-clock-o
