@@ -1,0 +1,140 @@
+.profile-about-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  p.long-description {
+    line-height: 1.5;
+    width: 50%;
+    margin: auto;
+  }
+  .tags {
+    display: flex;
+    margin: auto;
+    .tag {
+      background: #dddddd;
+      border-radius: 5px;
+      padding: 5px 10px 5px 10px;
+      margin: 15px 5px 15px 5px;
+    }
+  }
+  hr {
+    width: 100%;
+    border: 1px solid #dddddd;
+    margin-bottom: 15px;
+  }
+  .stats {
+    display: flex;
+    margin: auto;
+    .stat {
+      margin: 0px 15px 0px 15px;
+      .value {
+        text-align: center;
+        
+      }
+      .name {
+        margin-top: 8px;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 17px;
+      }
+    }
+  }
+  .categories {
+    display: flex;
+    margin: 10px auto 10px auto;
+    .category {
+      display: flex;
+      flex-direction: column;
+      background: #dddddd;
+      height: 250px;
+      width: 200px;
+      margin: 10px 20px 0px 20px;
+      padding: 15px 0 15px 0;
+      .name {
+        margin: auto;
+      }
+      .subcategory {
+        margin: 0px auto 10px auto;
+      }
+      .icon {
+        width: 80px;
+        height: 80px;
+        border: 1px dashed black;
+        margin: auto;
+      }
+      .ranking {
+        margin: auto;
+        .number {
+          font-size: 30px;
+          text-align: center;
+        }
+        .tag {
+          text-transform: uppercase;
+          margin: 10px auto 0px auto;
+        }
+      }
+    }
+  }
+  .skills {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0 15px 0;
+    h1 {
+      font-size: 25px;
+      margin: auto;
+    }
+    .list {
+      display: flex;
+      flex-direction: row;
+      margin: 40px auto 0 auto;
+      .skill {
+        margin: 0 30px 0 30px;
+        img.icon {
+          width: 100px;
+        }
+        .name {
+          text-align: center;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+  .links {
+    h1 {
+      font-size: 25px;
+      margin: auto;
+    }
+    .list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 30px 100px 0 100px;
+      .link {
+        background: #dddddd;
+        width: 375px;
+        height: 200px;
+        padding: 30px;
+        h2 {
+          font-weight: bold;
+          margin-bottom: 15px;
+        }
+        ul.properties {
+          li.property {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            .key {
+              // placeholder
+            }
+            .value {
+              // placeholder
+            }
+          }
+        }
+      }
+    }
+  }
+}

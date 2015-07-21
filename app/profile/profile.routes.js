@@ -14,7 +14,7 @@
       'baseProfile': {
         parent: 'root',
         abstract: true,
-        templateUrl: 'profile/profile.html',
+        templateUrl: 'profile/header/header.html',
         controller: 'ProfileCtrl as vm'
       },
       'profile': {
@@ -24,6 +24,11 @@
         data: {
         },
         views: {
+          'about': {
+            templateUrl: 'profile/about/about.html',
+            controller: 'ProfileAboutController',
+            controllerAs: 'vm'
+          }
         }
       }
     };
