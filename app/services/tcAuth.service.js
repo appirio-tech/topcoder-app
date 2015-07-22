@@ -42,35 +42,15 @@
           } else {
             // exchange token
             AuthTokenService.exchangeToken(refreshToken, idToken)
-            .then(function() {
+            .then(function(appiriojwt) {
               // giving angular sometime to set the cookies
               $timeout(function() {
-                // Store local copy of user info in UserService
-                var idString = profile.user_id;
-                var index    = idString.lastIndexOf('|');
-                var id       = idString.slice(index + 1);
+                // Store local copy of user info in local storage
+                UserService.setUserIdentity(appiriojwt);
 
-                UserService.getUser(id)
-                .then(function(res) {
-                  var user = res.result.content;
+                $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
 
-                  var userInfo = {
-                    username : user.handle,
-                    id       : user.id,
-                    email    : user.email,
-                    firstName: user.firstName,
-                    lastName : user.lastName
-                  };
-
-                  UserService.setUserInfo(userInfo);
-
-                  $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
-                  resolve();
-                })
-                .catch(function(err) {
-                  // Should we log the user out if this gives an error?
-                  $log.debug(err);
-                });
+                resolve();
               }, 200);
             });
           }
@@ -95,10 +75,9 @@
       }
     }
 
-    function logout(successCallback) {
-      UserService.setUserInfo(null);
-
+    function logout() {
       return $q(function(resolve, reject) {
+        UserService.setUserIdentity(null);
         AuthTokenService.removeTokens();
         $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT);
         resolve();

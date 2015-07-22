@@ -4,35 +4,63 @@
 
   JwtConfig = function($httpProvider, jwtInterceptorProvider) {
     var jwtInterceptor;
-    jwtInterceptor = function(jwtHelper, AuthTokenService, config) {
-      // based on the url decide which token to send
-      var idToken;
+    /*
+     * Use cases ->
+     *
+     *  1. Endpoints what should never need authToken  - skipAuthEndpoints
+     *  2. Endpoints that don't *need* authtokens, but if you have them add them
+     *    - determine what token to send based on v2 or v3
+     *  3. Endpoints that absolutely need tokens -
+     *    - determine what token to send based on v2 or v3
+     */
 
-      if (config.url.indexOf('v2/') > -1) {
-        idToken = AuthTokenService.getV2Token();
+     var haveItAddItEndpoints = [
+      {method: 'GET', url: '/v3/challenges'},
+     ];
 
-      } else if (config.url.indexOf('v3/') > -1 && config.url.indexOf('v3/users/') > -1) {
-        // Adds appiriojwt to the Authorization header when making a request to /v3/users/<id>
-        var path = config.url.slice(config.url.indexOf('/v3/users/'));
+     // rest of the endpoints all require auth token
 
-        if (/\/v3\/users\/\d+\/$/.test(path)) {
-          idToken = AuthTokenService.getV3Token();
+
+    jwtInterceptor = function(jwtHelper, AuthTokenService, TcAuthService, config) {
+      var found = false;
+      for (var i=0; i < haveItAddItEndpoints.length; i++) {
+        var obj = haveItAddItEndpoints[0];
+        if ((config.method.toUpperCase() === "OPTIONS" || config.method.toUpperCase() === obj.method) && config.url.indexOf(obj.url) > -1) {
+          // add token if we have it and if it hasn't expired
+          if (TcAuthService.isAuthenticated()) {
+            // FIXME looks like the services still need v2 token
+            var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV2oken();
+            if (!jwtHelper.isTokenExpired(idToken)) {
+              return token;
+            }
+          }
+          return '';
         }
-
-      } else if (config.url.indexOf('v3/') > -1 && config.url.indexOf('v3/authorizations') < 0) {
-        // FIXME looks like the services still need v2 token
-        idToken = AuthTokenService.getV2Token();
       }
 
+      // for everything else assume that we need to send token
+      var idToken;
+      if (config.url.indexOf('v2/') > -1) {
+        idToken = AuthTokenService.getV2Token();
+      } else if(config.url.indexOf('v3/') > -1) {
+        // FIXME looks like the services still need v2 token
+        if(config.url.indexOf('v3/users') > -1) {
+          idToken = AuthTokenService.getV3Token();
+        } else {
+          idToken = AuthTokenService.getV2Token();
+        }
+      }
       // make sure token hasn't expired
       if (idToken != null) {
         if (jwtHelper.isTokenExpired(idToken)) {
-          return AuthTokenService.refreshToken(idToken).then(function(response) {
-            idToken = response.data.result.content.token;
-            // v2 token doesn't expire
-            AuthTokenService.setV3Token(idToken);
-            return idToken;
-          });
+          return AuthTokenService.refreshToken(idToken).then(
+            function(response) {
+              idToken = response.data.result.content.token;
+              // v2 token doesn't expire
+              AuthTokenService.setV3Token(idToken);
+              return idToken;
+            }
+          );
         } else {
           return idToken;
         }
@@ -40,7 +68,9 @@
         return '';
       }
     };
-    jwtInterceptor.$inject = ['jwtHelper', 'AuthTokenService', 'config'];
+
+
+    jwtInterceptor.$inject = ['jwtHelper', 'AuthTokenService', 'TcAuthService', 'config'];
     jwtInterceptorProvider.tokenGetter = jwtInterceptor;
     return $httpProvider.interceptors.push('jwtInterceptor');
   };
@@ -57,7 +87,6 @@
   };
 
   angular.module('topcoder').factory('HeaderInterceptor', HeaderInterceptor);
-
   angular.module('topcoder').config(['$httpProvider', 'jwtInterceptorProvider', JwtConfig]);
 
 })();

@@ -3,9 +3,9 @@
 
   angular.module('tc.myDashboard').controller('DashboardController', MyDashboardController);
 
-  MyDashboardController.$inject = ['$location', 'TcAuthService', 'ProfileService'];
+  MyDashboardController.$inject = ['$location', 'TcAuthService', 'ProfileService', 'UserService'];
 
-  function MyDashboardController($location, TcAuthService, ProfileService) {
+  function MyDashboardController($location, TcAuthService, ProfileService, UserService) {
     var vm = this;
     vm.title = "My Dashboard";
     vm.identityListeners = {};
@@ -23,7 +23,9 @@
     }
 
     function activate() {
-      ProfileService.getUserProfile().then(function(profileRes) {
+      var userId = UserService.getUserIdentity().userId;
+
+      ProfileService.getUserProfile(userId).then(function(profileRes) {
         vm.loggedInUser = profileRes.result.content;
         vm.profile = vm.loggedInUser;
 
@@ -33,14 +35,14 @@
             listener.call(vm, profileRes.data);
           }
         };
-        
+
         if (vm.profile.photo.photoUrl === '') {
           return vm.profile.photoLink = '//community.topcoder.com/i/m/nophoto_login.gif';
         } else {
           return vm.profile.photoLink = '//community.topcoder.com' + vm.profile.photo.photoUrl;
         }
       });
-      ProfileService.getUserStats().then(function(response) {
+      ProfileService.getUserStats(userId).then(function(response) {
         var stats = response.result.content;
         var highestRating, i, len, rating, ref;
 

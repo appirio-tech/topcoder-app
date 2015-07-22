@@ -3,48 +3,32 @@
 
   angular.module('tc.services').factory('UserService', UserService);
 
-  UserService.$inject = ['CONSTANTS', 'ApiService', 'AuthTokenService', '$http'];
+  UserService.$inject = ['CONSTANTS', 'ApiService', 'AuthTokenService', '$http', 'store', 'jwtHelper'];
 
-  function UserService(CONSTANTS, ApiService, AuthTokenService, http) {
-    var _currentUser = null;
-
+  function UserService(CONSTANTS, ApiService, AuthTokenService, http, store, jwtHelper) {
     var service = {
-      getUser: getUser,
-      getUserInfo: getUserInfo,
-      setUserInfo: setUserInfo,
-      getUsername: getUsername,
+      getUserIdentity: getUserIdentity,
+      setUserIdentity: setUserIdentity,
       createUser: createUser,
       validateUserEmail: validateUserEmail,
       validateUserHandle: validateUserHandle,
       generateResetToken: generateResetToken,
-      resetPassword: resetPassword,
-      getUserId: getUserId
+      resetPassword: resetPassword
     };
     return service;
 
     ///////////////
 
-    function getUser(userId) {
-      return ApiService.restangularV3.one('users', userId).get();
+    function getUserIdentity() {
+      return JSON.parse(store.get('userObj'));
     }
 
-    function getUserInfo() {
-      return _currentUser;
-    }
-
-    function setUserInfo(user) {
-      _currentUser = user;
-    }
-
-    function getUserId() {
-      var token = AuthTokenService.getV3Token();
-      var decoded = AuthTokenService.decodeToken(token);
-      return decoded.userId;
-    }
-
-    function getUsername() {
-      var url = CONSTANTS.API_URL_V2 + '/user/identity';
-      return ApiService.requestHandler('GET', url);
+    function setUserIdentity(token) {
+      if (!token) {
+        store.remove('userObj');
+      } else {
+        store.set('userObj', JSON.stringify(jwtHelper.decodeToken(token)));
+      }
     }
 
     function createUser(body) {

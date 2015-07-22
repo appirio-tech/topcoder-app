@@ -11,13 +11,7 @@
     vm.loggedIn = TcAuthService.isAuthenticated();
 
     if (vm.loggedIn) {
-      UserService.getUsername().then(function(data) {
-          vm.user = data;
-        },
-        function(resp) {
-          vm.user = 'error';
-        }
-      );
+      vm.user = UserService.getUserIdentity();
     }
   };
 })();
