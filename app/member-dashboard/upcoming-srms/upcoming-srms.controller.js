@@ -57,15 +57,15 @@
       vm.loading = true;
       // Fetch the future srms scheduled
       return SRMService.getSRMSchedule(searchRequest)
-        .then(function(response) {
-          if (response.pagination) {
-            vm.totalPages = Math.ceil(response.pagination.total / vm.pageSize);
-            vm.totalRecords = response.pagination.total;
+        .then(function(data) {
+          if (data.pagination) {
+            vm.totalPages = Math.ceil(data.pagination.total / vm.pageSize);
+            vm.totalRecords = data.pagination.total;
             vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
             vm.lastRecordIndex = vm.pageIndex * vm.pageSize;
             vm.lastRecordIndex = vm.lastRecordIndex > vm.totalRecords ? vm.totalRecords : vm.lastRecordIndex;
           }
-          vm.upcomingSRMs = response;
+          vm.upcomingSRMs = data;
           vm.loading = false;
         }, function(error) {
           // TODO show useful error information to user with actionable error reporting

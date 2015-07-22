@@ -58,9 +58,6 @@ html
     script(src='../bower_components/angular/angular.js')
     script(src='../bower_components/angular-ui-router/release/angular-ui-router.js')
     script(src='../bower_components/angular-cookies/angular-cookies.js')
-    script(src='../bower_components/auth0-lock/build/auth0-lock.js')
-    script(src='../bower_components/auth0.js/build/auth0.js')
-    script(src='../bower_components/auth0-angular/build/auth0-angular.js')
     script(src='../bower_components/a0-angular-storage/dist/angular-storage.js')
     script(src='../bower_components/angular-jwt/dist/angular-jwt.js')
     script(src='../bower_components/moment/moment.js')
@@ -71,6 +68,7 @@ html
     script(src='../bower_components/angular-xml/angular-xml.js')
     //- endbower
     //- inject:nonBowerScripts
+    script(src="/scripts/auth0.js")
     script(src="/scripts/moment-timezone-with-data-2010-2020.js")
     //- endinject
     // endbuild
@@ -107,7 +105,7 @@ html
     script(src="member-dashboard/marketing-message/marketing-message.controller.js")
     script(src="member-dashboard/member-dashboard.controller.js")
     script(src="member-dashboard/member-dashboard.routes.js")
-    script(src="member-dashboard/member-profile/welcome-back.controller.js")
+    script(src="member-dashboard/member-profile/profile-header.controller.js")
     script(src="member-dashboard/member-program/member-program.controller.js")
     script(src="member-dashboard/my-challenges/my-challenges.controller.js")
     script(src="member-dashboard/subscribe-updates/subscribe-updates.controller.js")

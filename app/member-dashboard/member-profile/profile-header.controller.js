@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  angular.module('tc.myDashboard').controller('WelcomeBackController', WelcomeBackController);
+  angular.module('tc.myDashboard').controller('Dashboard.ProfileHeaderController', ProfileHeaderController);
 
-  WelcomeBackController.$inject = [
+  ProfileHeaderController.$inject = [
     '$scope',
     '$location',
     'TcAuthService',
@@ -12,7 +12,7 @@
     'CONSTANTS'
   ];
 
-  function WelcomeBackController($scope, $location, TcAuthService, ProfileService, ChallengeService, CONSTANTS) {
+  function ProfileHeaderController($scope, $location, TcAuthService, ProfileService, ChallengeService, CONSTANTS) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
     // edit profile url
@@ -32,10 +32,11 @@
     // activate controller
     if (TcAuthService.isAuthenticated() === true) {
       db.addIdentityChangeListener("welcomeback", function(identity) {
+        console.log(identity);
         activate(identity);
       });
       if (db.user) {
-        activate(db.user);
+        // activate(db.user);
       }
     } else { // if user is not logged in, return (to avoid extra ajax calls)
       return false;

@@ -4,11 +4,11 @@
         .profile-image
           img(width='130px', src='{{vm.photoLink}}')
         .profile-details
-          div(rel='upload-photo', ng-show='vm.showUploadPhotoLink')
-            a(href='{{vm.uploadPhotoLink}}') Upload Photo
+          //- div(rel='upload-photo', ng-show='vm.showUploadPhotoLink')
+          //-   a(href='{{vm.uploadPhotoLink}}') Upload Photo
           .handle(style='{{vm.ratingColor}}') {{vm.profile.handle}}
           .edit-profile
-            a(href='{{vm.editProfileUrl}}') (Edit Profile)
+            a(href="") (Edit Profile)
     .profile-right
       .money-in-bank(ng-show='vm.profile && vm.profile.overallEarning > 0')
         div(rel='value', ng-bind='vm.profile.overallEarning || 0 | currency')

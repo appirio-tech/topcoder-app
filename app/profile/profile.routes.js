@@ -4,11 +4,10 @@
   angular.module('tc.profile').config([
     '$stateProvider',
     '$urlRouterProvider',
-    '$httpProvider',
     routes
   ]);
 
-  function routes($stateProvider, $urlRouterProvider, $httpProvider) {
+  function routes($stateProvider, $urlRouterProvider) {
     var name, state, states;
     states = {
       'baseProfile': {

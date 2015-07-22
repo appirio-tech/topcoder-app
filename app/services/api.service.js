@@ -38,8 +38,8 @@
     }
 
     function _getRestangularV2() {
-      var baseUrl = CONSTANTS.API_URL_V2;
-      var token   = AuthTokenService.getV2Token();
+      var baseUrl = CONSTANTS.API_URL_V2,
+        token = AuthTokenService.getV2Token();
 
       var _restangular = Restangular.withConfig(function(Configurer) {
         Configurer
@@ -86,8 +86,8 @@
     }
 
     function _getRestangularV3() {
-      var baseUrl = CONSTANTS.API_URL;
-      var token   = AuthTokenService.getV2Token();
+      var baseUrl = CONSTANTS.API_URL,
+          token = AuthTokenService.getV2Token();
 
       var _restangular = Restangular.withConfig(function(Configurer) {
         Configurer

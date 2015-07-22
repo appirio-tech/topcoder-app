@@ -63,7 +63,7 @@
           function(data) {
             // success
             $log.debug('logged in');
-            redirect(true);
+            redirect();
           },
           function(err) {
             // handle error
