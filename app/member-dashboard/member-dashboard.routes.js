@@ -22,7 +22,7 @@
         }
       },
       'dashboard': {
-        url: '/my-dashboard',
+        url: '/my-dashboard/',
         parent: 'baseDashboard',
         //controller: 'dashboard as db',
         data: {
@@ -81,7 +81,5 @@
       state = states[name];
       $stateProvider.state(name, state);
     }
-    $urlRouterProvider.otherwise('/');
-    return $httpProvider.interceptors.push('HeaderInterceptor');
   }
 })();
