@@ -21,22 +21,19 @@
 
     ///////////////
 
-    function getUserProfile() {
-      var userId = UserService.getUserId();
+    function getUserProfile(userId) {
       return restangular.one('members', userId).one('profile').get();
     }
 
-    function getUserStats() {
-      var userId = UserService.getUserId();
+    function getUserStats(userId) {
       return restangular.one('members', userId).one('stats').get();
     }
 
-    function getUserFinancials() {
-      var userId = UserService.getUserId();
+    function getUserFinancials(userId) {
       return restangular.one('members', userId).one('financial').get();
     }
 
-    function getMemberProfile() {
+    function getMemberProfile(userId) {
       var profile = {
         "updatedAt": "2015-07-10T01:40Z",
         "createdAt": "2001-07-24T16:44Z",

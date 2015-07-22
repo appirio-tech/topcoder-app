@@ -42,10 +42,14 @@
           } else {
             // exchange token
             AuthTokenService.exchangeToken(refreshToken, idToken)
-            .then(function() {
+            .then(function(appiriojwt) {
               // giving angular sometime to set the cookies
               $timeout(function() {
+                // Store local copy of user info in local storage
+                UserService.setUserIdentity(appiriojwt);
+
                 $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
+
                 resolve();
               }, 200);
             });
@@ -71,8 +75,9 @@
       }
     }
 
-    function logout(successCallback) {
+    function logout() {
       return $q(function(resolve, reject) {
+        UserService.setUserIdentity(null);
         AuthTokenService.removeTokens();
         $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT);
         resolve();

@@ -3,9 +3,9 @@
 
   angular.module('tc.myDashboard').controller('iOSProgramController', iOSProgramController);
 
-  iOSProgramController.$inject = [];
+  iOSProgramController.$inject = ['UserService'];
 
-  function iOSProgramController () {
+  function iOSProgramController (UserService) {
     var vm = this;
     vm.test = 'test';
   }
