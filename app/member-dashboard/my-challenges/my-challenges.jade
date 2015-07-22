@@ -1,14 +1,14 @@
 .widget-content
   .challenges-header
-    //- .left
-      //- .view-options
-      //-   a(ng-click="vm.changeView('tiles')") Tile
-      //-   span  
-      //-   a(ng-click="vm.changeView('table')") Table
+    .left
+      .view-options
+        a(ng-click="vm.changeView('tiles')") Tile
+        span  
+        a(ng-click="vm.changeView('table')") Table
     .center
       strong My Challenges
     .right
-      a(href='{{vm.newChallengesUrl}}') Find New Challenges
+      a(href="#") View All My Challenges
       .timeline-options
         a(href="#", ng-click='vm.viewActiveChallenges()') Active
         span  | 
@@ -25,8 +25,8 @@
   .widget-body.tile-view(ng-show="vm.view == 'tiles'")
     challenge-tile(challenge="challenge", ng-repeat='challenge in vm.myChallenges')
     .widget-loading(ng-show='vm.loading')
-    .tile.load-more(ng-show='vm.totalPages > 1 && !vm.loading')
-      a(ng-click='vm.changePage(vm.nextPageLink)') Load More
+    //- .tile.load-more(ng-show='vm.totalPages > 1 && !vm.loading')
+      //- a(ng-click='vm.changePage(vm.nextPageLink)') Load More
   //- .widget-body(ng-show="vm.view == 'table'")
   //-   table.table.table-responsive(width='100%')
   //-     thead
@@ -71,5 +71,5 @@
       a(href="https://www.topcoder-dev.com/challenges/") Find New Challenges
     .topcoder-direct.link(ng-show='vm.visibleChallenges.length > 0')
       a(href="https://www.topcoder-dev.com/direct") Launch Topcoder Direct
-    .help-library.link(ng-show='vm.visibleChallenges.length == 0')
+    .help-library.link(ng-show='vm.myChallenges.length == 0')
       a(href="https://community.topcoder-dev.com/", target="_blank") View Help Library

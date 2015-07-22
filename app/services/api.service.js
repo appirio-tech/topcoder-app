@@ -8,8 +8,8 @@
   function ApiService($http, $log, AuthTokenService, Restangular, CONSTANTS) {
     var service = {
       requestHandler: requestHandler,
-      restangularV3: getRestangularV3(),
-      restangularV2: getRestangularV2()
+      restangularV2: _getRestangularV2(),
+      restangularV3: _getRestangularV3()
     };
     return service;
 
@@ -37,22 +37,23 @@
       return $http(options);
     }
 
-    // RESTANGULAR config
-    function getRestangularV3() {
-      var _restangularV3 = Restangular.withConfig(function(Configurer) {
+    function _getRestangularV2() {
+      var baseUrl = CONSTANTS.API_URL_V2,
+        token = AuthTokenService.getV2Token();
+
+      var _restangular = Restangular.withConfig(function(Configurer) {
         Configurer
-          .setBaseUrl(CONSTANTS.API_URL)
+          .setBaseUrl(baseUrl)
           .setDefaultHttpFields({
-            cache: true
+            cache: false
           })
           .addFullRequestInterceptor(function(element, operation, what, url) {
-            var headers = {
+            return {
               headers: {
-                'Authorization': 'Bearer ' + AuthTokenService.getV2Token(),
+                'Authorization': 'Bearer ' + token,
                 'Accept': 'application/json'
               }
             };
-            return headers;
           })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
             console.log(url);
@@ -61,10 +62,10 @@
             if (operation === 'getList') {
               // FIXME
               extractedData = data.result.content;
-              extractedData.meta = {
-                count: data.count,
-                next: data.next,
-                previous: data.previous
+              if (data.result.metadata) {
+                extractedData.metadata = {totalCount: data.result.metadata.totalCount};
+              } else {
+                extractedData.metadata = null;
               }
             } else {
               extractedData = data;
@@ -72,58 +73,68 @@
             return extractedData;
           })
           .setErrorInterceptor(function(response) {
+            // TODO
             switch (response.status) {
               case 403: // FORBIDDEN
               case 500: // SERVER ERROR
               case 503: // HTTP_503_SERVICE_UNAVAILABLE
-                $log.error(response);
-                return false; // error handled
               default:
+                $log.error("Restangular Error Interceptor" + JSON.stringify(response));
                 return true; // error not handled
             }
           });
-      });
-      return _restangularV3;
+        });
+      return _restangular;
     }
 
-    // RESTANGULAR config for V2 api
-    function getRestangularV2() {
-      var _restangularV2 = Restangular.withConfig(function(Configurer) {
+    function _getRestangularV3() {
+      var baseUrl = CONSTANTS.API_URL,
+          token = AuthTokenService.getV2Token();
+
+      var _restangular = Restangular.withConfig(function(Configurer) {
         Configurer
-          .setBaseUrl(CONSTANTS.API_URL_V2)
+          .setBaseUrl(baseUrl)
           .setDefaultHttpFields({
-            cache: true
+            cache: false
+          })
+          .addFullRequestInterceptor(function(element, operation, what, url) {
+            return {
+              headers: {
+                'Authorization': 'Bearer ' + token,
+                'Accept': 'application/json'
+              }
+            };
           })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-            var extractedData;
-            extractedData = '';
-            extractedData = data.data ? data.data : data;
+            var extractedData = null;
             if (operation === 'getList') {
-              if (!(Object.prototype.toString.call(extractedData) === '[object Array]')) {
-                extractedData = [extractedData];
+              // FIXME
+              extractedData = data.result.content;
+              if (data.result.metadata) {
+                extractedData.metadata = {totalCount: data.result.metadata.totalCount};
+              } else {
+                extractedData.metadata = null;
               }
-              extractedData.pagination = {
-                total: data.total,
-                pageIndex: data.pageIndex,
-                pageSize: data.pageSize
-              };
+            } else {
+              extractedData = data;
             }
             return extractedData;
           })
           .setErrorInterceptor(function(response) {
+            // TODO
             switch (response.status) {
               case 403: // FORBIDDEN
               case 500: // SERVER ERROR
               case 503: // HTTP_503_SERVICE_UNAVAILABLE
-                $log.error(response);
-                return false; // error handled
               default:
+                $log.error("Restangular Error Interceptor" + JSON.stringify(response));
                 return true; // error not handled
             }
           });
-      });
-      return _restangularV2;
+        });
+      return _restangular;
     }
+
   }
 
 })();
