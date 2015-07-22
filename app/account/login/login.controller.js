@@ -44,7 +44,7 @@
     } else if ($stateParams.code && $stateParams.state) {
       AuthTokenService.getTokenFromAuth0Code($stateParams.code).then(
         function(v3Token) {
-          $log.debug('looged in using social');
+          $log.debug('logged in using social');
           redirect();
         }
       );

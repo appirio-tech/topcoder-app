@@ -6,7 +6,12 @@
   UserService.$inject = ['CONSTANTS', 'ApiService', 'AuthTokenService', '$http'];
 
   function UserService(CONSTANTS, ApiService, AuthTokenService, http) {
+    var _currentUser = null;
+
     var service = {
+      getUser: getUser,
+      getUserInfo: getUserInfo,
+      setUserInfo: setUserInfo,
       getUsername: getUsername,
       createUser: createUser,
       validateUserEmail: validateUserEmail,
@@ -18,6 +23,18 @@
     return service;
 
     ///////////////
+
+    function getUser(userId) {
+      return ApiService.restangularV3.one('users', userId).get();
+    }
+
+    function getUserInfo() {
+      return _currentUser;
+    }
+
+    function setUserInfo(user) {
+      _currentUser = user;
+    }
 
     function getUserId() {
       var token = AuthTokenService.getV3Token();
@@ -44,7 +61,7 @@
     }
 
     function generateResetToken(email) {
-      return api.restangularV3.all('users').withHttpConfig({cache: false}).customGET('resetToken', {email: email});
+      return ApiService.restangularV3.all('users').withHttpConfig({cache: false}).customGET('resetToken', {email: email});
     }
 
     function resetPassword(handle, newPassword, resetToken) {

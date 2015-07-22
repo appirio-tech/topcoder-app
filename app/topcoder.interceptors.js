@@ -7,12 +7,23 @@
     jwtInterceptor = function(jwtHelper, AuthTokenService, config) {
       // based on the url decide which token to send
       var idToken;
+
       if (config.url.indexOf('v2/') > -1) {
         idToken = AuthTokenService.getV2Token();
-      } else if(config.url.indexOf('v3/') > -1 && config.url.indexOf('v3/authorizations') < 0) {
+
+      } else if (config.url.indexOf('v3/') > -1 && config.url.indexOf('v3/authorizations') < 0) {
+        // Adds appiriojwt to the Authorization header when making a request to /v3/users/<id>
+        var path = config.url.slice(config.url.indexOf('/v3/users/'));
+
+        if (/\/v3\/users\/\d+\/$/.test(path)) {
+          idToken = AuthTokenService.getV3Token();
+        }
+
+      } else if (config.url.indexOf('v3/') > -1 && config.url.indexOf('v3/users/') > -1) {
         // FIXME looks like the services still need v2 token
         idToken = AuthTokenService.getV2Token();
       }
+
       // make sure token hasn't expired
       if (idToken != null) {
         if (jwtHelper.isTokenExpired(idToken)) {
