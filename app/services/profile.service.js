@@ -10,7 +10,6 @@
     var restangular = ApiService.restangularV3;
 
     var service = {
-      getUserProfile: getUserProfile,
       getUserStats: getUserStats,
       getUserFinancials: getUserFinancials,
       // for dashboard
