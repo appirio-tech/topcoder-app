@@ -11,7 +11,7 @@
       if (config.url.indexOf('v2/') > -1) {
         idToken = AuthTokenService.getV2Token();
 
-      } else if (config.url.indexOf('v3/') > -1 && config.url.indexOf('v3/authorizations') < 0) {
+      } else if (config.url.indexOf('v3/') > -1 && config.url.indexOf('v3/users/') > -1) {
         // Adds appiriojwt to the Authorization header when making a request to /v3/users/<id>
         var path = config.url.slice(config.url.indexOf('/v3/users/'));
 
@@ -19,7 +19,7 @@
           idToken = AuthTokenService.getV3Token();
         }
 
-      } else if (config.url.indexOf('v3/') > -1 && config.url.indexOf('v3/users/') > -1) {
+      } else if (config.url.indexOf('v3/') > -1 && config.url.indexOf('v3/authorizations') < 0) {
         // FIXME looks like the services still need v2 token
         idToken = AuthTokenService.getV2Token();
       }
