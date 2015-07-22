@@ -5,7 +5,8 @@
   .directive('hasLetter', hasLetter)
   .directive('hasSymbol', hasSymbol)
   .directive('hasNumber', hasNumber)
-  .directive('usernameIsFree', usernameIsFree);
+  .directive('usernameIsFree', usernameIsFree)
+  .directive('emailIsAvailable', emailIsAvailable);
 
   function hasLetter() {
     return {
@@ -62,6 +63,33 @@
           // Check if the username exists
           var defer = $q.defer();
           UserService.validateUserHandle(modelValue).then(
+            function(resp) {
+              // username is free
+              return defer.resolve();
+            },
+            function(resp) {
+              // username already exists
+              return defer.reject();
+            }
+          );
+          return defer.promise;
+        };
+      }
+    };
+  }
+
+  emailIsAvailable.$inject = ['UserService', '$log', '$q'];
+
+  function emailIsAvailable(UserService, $log, $q) {
+    return {
+      require: 'ngModel',
+      link: function(scope, element, attrs, ctrl) {
+        ctrl.$asyncValidators.emailIsAvailable = function(modelValue, viewValue) {
+          $log.info('Validating email: ' + modelValue);
+
+          // Check if the username exists
+          var defer = $q.defer();
+          UserService.validateUserEmail(modelValue).then(
             function(resp) {
               // username is free
               return defer.resolve();
