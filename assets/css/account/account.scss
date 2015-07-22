@@ -105,6 +105,87 @@
     color: #ed5d5d;
   }
 
+  // Sidebar form field tips (e.g. username, email, password)
+  .tips {
+    position: absolute;
+    width: 320px;
+    text-align: left;
+    top: 13px;
+    @media only screen and (max-width: 915px) {
+      position: initial;
+      margin-left: 5px;
+      width: 300px;
+    }
+
+    h3, p {
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      @include source-sans-semi-bold;
+      font-size: 18px;
+      @media only screen and (max-width: 915px) {
+        font-size: 15px;
+      }
+    }
+
+    h3:before {
+      font-family: 'FontAwesome';
+      content: '\f053';
+      display: inline-block;
+      width: 20px;
+      @media only screen and (max-width: 915px) {
+        display: none;
+      }
+    }
+
+    p {
+      font-size: 14px;
+      color: #808285;
+      padding-left: 20px;
+      line-height: 1.2;
+      position: relative;
+    }
+    p:before {
+      font-family: 'FontAwesome';
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+    }
+  }
+
+  .username-tips {
+    left: 330px;
+  }
+
+  .email-tips {
+    left: 330px;
+
+    p:last-child {
+      line-height: 1.5;
+    }
+  }
+
+  .password-tips {
+    left: 330px;
+
+    p:before {
+      content: '\f05d';
+      color: #7ece95;
+      display: none;
+    }
+
+    .has-length-between-range:before,
+    .has-letter:before,
+    .has-symbol:before,
+    .has-number:before {
+      display: block;
+    }
+
+  }
+
   // Social section
   .social {
     margin-top: 15px;
