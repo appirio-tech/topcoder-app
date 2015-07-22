@@ -3,8 +3,6 @@
 
 body {
   @include source-sans;
-  font-size: 16px;
-  line-height: 16px;
 }
 
 #header {
@@ -15,8 +13,12 @@ body {
 .view-container {
   max-width: 1010px;
   min-height: 480px;
-  margin: 0 auto;
+  margin: 25px auto;
   background-color: $white;
+  @media only screen and (max-width: 1020px) {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 // Transits the header, content and footer on sidebar visibility
@@ -102,12 +104,3 @@ a.btn {
   @extend %extend_1;
 }
 
-.view-container {
-  max-width: 1010px;
-  margin: 25px auto;
-  background-color: $white;
-  @media only screen and (max-width: 1020px) {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-}

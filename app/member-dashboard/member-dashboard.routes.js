@@ -22,7 +22,7 @@
         }
       },
       'dashboard': {
-        url: '/my-dashboard',
+        url: '/my-dashboard/',
         parent: 'baseDashboard',
         //controller: 'dashboard as db',
         data: {
@@ -68,6 +68,11 @@
             templateUrl : 'member-dashboard/marketing-message/marketing-message.html',
             controller: 'MarketingMessageController',
             controllerAs: 'vm'
+          },
+          'ios-program': {
+            templateUrl: 'member-dashboard/ios-program/ios-program.html',
+            controller: 'iOSProgramController',
+            controllerAs: 'vm'
           }
         }
       }
@@ -76,7 +81,5 @@
       state = states[name];
       $stateProvider.state(name, state);
     }
-    $urlRouterProvider.otherwise('/');
-    return $httpProvider.interceptors.push('HeaderInterceptor');
   }
 })();

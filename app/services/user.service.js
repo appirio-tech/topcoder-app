@@ -3,11 +3,12 @@
 
   angular.module('tc.services').factory('UserService', UserService);
 
-  UserService.$inject = ['CONSTANTS', 'ApiService', '$http'];
+  UserService.$inject = ['CONSTANTS', 'ApiService', 'AuthTokenService', '$http', 'store', 'jwtHelper'];
 
-  function UserService(CONSTANTS, ApiService, http) {
+  function UserService(CONSTANTS, ApiService, AuthTokenService, http, store, jwtHelper) {
     var service = {
-      getUsername: getUsername,
+      getUserIdentity: getUserIdentity,
+      setUserIdentity: setUserIdentity,
       createUser: createUser,
       validateUserEmail: validateUserEmail,
       validateUserHandle: validateUserHandle,
@@ -18,9 +19,16 @@
 
     ///////////////
 
-    function getUsername() {
-      var url = CONSTANTS.API_URL_V2 + '/user/identity';
-      return ApiService.requestHandler('GET', url);
+    function getUserIdentity() {
+      return JSON.parse(store.get('userObj'));
+    }
+
+    function setUserIdentity(token) {
+      if (!token) {
+        store.remove('userObj');
+      } else {
+        store.set('userObj', JSON.stringify(jwtHelper.decodeToken(token)));
+      }
     }
 
     function createUser(body) {
@@ -37,7 +45,7 @@
     }
 
     function generateResetToken(email) {
-      return api.restangularV3.all('users').withHttpConfig({cache: false}).customGET('resetToken', {email: email});
+      return ApiService.restangularV3.all('users').withHttpConfig({cache: false}).customGET('resetToken', {email: email});
     }
 
     function resetPassword(handle, newPassword, resetToken) {

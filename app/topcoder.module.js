@@ -8,12 +8,14 @@
     'tc.peer-review',
     'tc.myDashboard',
     'tc.sample',
+    'tc.profile',
     'ui.router',
     'blocks.logger',
     'blocks.exception',
     'ngCookies',
     'angular-storage',
     'restangular',
+    'xml',
     'CONSTANTS'
   ];
 
@@ -46,8 +48,9 @@
     });
   }
 
-  angular.module('topcoder').config(['$httpProvider', function($httpProvider) {
+  angular.module('topcoder').config(['$httpProvider', 'RestangularProvider', function($httpProvider, RestangularProvider) {
     $httpProvider.interceptors.push('HeaderInterceptor');
+    RestangularProvider.setRequestSuffix('/');
   }]);
 
 })();

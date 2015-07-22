@@ -1,0 +1,51 @@
+.upcoming-srms-div
+  .upcoming-srms-header
+    .left
+      .view-options
+        a(ng-click="vm.changeView('tiles')") Tile
+        span  
+        a(ng-click="vm.changeView('table')") Table
+    .center
+      strong SRMs
+    .right
+      .timeline-options
+        a(href="#", ng-click='vm.viewUpcomingSRMs()') Active
+        span  | 
+        a(href="#", ng-click='vm.viewPastSRMs()') Past
+      ul.tc-pager(ng-show='vm.totalPages > 1')
+        li.page-link.pull-left(ng-show='vm.prevPageLink.val > 0 && vm.prevPageLink.val <= vm.totalPages', ng-click='vm.changePage(vm.prevPageLink)', ng-class='vm.getCurrentPageClass(vm.prevPageLink)')
+          a(href='#') {{vm.prevPageLink.text}}
+        li.page-status.pull-left.page-link {{vm.firstRecordIndex}}-{{vm.lastRecordIndex}} of {{vm.totalRecords}}
+        li.page-link.pull-left(ng-show='vm.nextPageLink.val > 0 && vm.nextPageLink.val <= vm.totalPages', ng-click='vm.changePage(vm.nextPageLink)', ng-class='vm.getCurrentPageClass(vm.nextPageLink)')
+          a(href='#') {{vm.nextPageLink.text}}
+  .widget-body.tile-view(ng-show="vm.view == 'tiles' && vm.upcomingSRMs.length > 0")
+    srm-tile(srm="srm", ng-repeat='srm in vm.upcomingSRMs')
+    .widget-loading(ng-show='vm.loading')
+  .widget-body.table-view(ng-show="vm.view == 'table'")
+    table.table.table-responsive(width='100%')
+      thead
+        tr.active
+          th
+            span Name
+            .sort-icon-place
+          th(rel='sortable', ng-click="vm.sort('registrationStartTime')")
+            span Registration
+            .sort-icon-place(ng-class="{sort: vm.sortColumn == 'registrationStartTime', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} ")
+          th(rel='sortable', ng-click="vm.sort('codingStartTime')")
+            span Coding
+            .sort-icon-place(ng-class="{sort: vm.sortColumn == 'codingStartTime', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} ")
+      tbody
+        tr(ng-show='vm.upcomingSRMs.length > 0 && !vm.loading', ng-repeat='srm in vm.upcomingSRMs')
+          td(rel='srm-name')
+            a(href='{{vm.communityBaseUrl}}/tc?module=MatchDetails&rd={{srm.roundId}}')
+              | {{srm.contestName}}
+          td {{srm.registrationStartTime | date:'medium' }}
+          td {{srm.codingStartTime | date:'medium'}}
+        tr(ng-show='vm.loading')
+          td(colspan='3')
+            .widget-loading
+        tr(ng-show='vm.upcomingSRMs.length > 0')
+          td(colspan='3', rel='practice-now-link')
+            a(target='_blank', href='https://arena.topcoder.com') Practice now!
+        tr(ng-show='vm.upcomingSRMs.length === 0')
+          td(colspan='3') There are no upcoming SRMs scheduled at this time

@@ -1,11 +1,8 @@
 @import '../partials/combined';
 
 .member-profile-header {
-  border-bottom: 7px solid $black;
-  background-image: $community-background;
-  background-size: cover;
-  background-position: 50% 50%;
-  color: $white;
+  border-bottom: 1px solid $white-gray;
+  margin-bottom: 20px;
 }
 @media only screen and(min-width: 768px) {
   .member-profile-header {
@@ -13,91 +10,121 @@
   }
 }
 .member-profile {
-  .profile-left {
-    .handle {
-      color: $white;
-      text-align: center;
-      font-weight: bold;
-      margin-top: 15px;
+  .profile {
+    border-bottom: 1px solid $white-gray;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    .profile-left {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+
+      .profile-image {
+        width: 130px;
+        text-align: center;
+        height: 130px;
+        border: 5px solid $white;
+        //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+        border-radius: 72px;
+        overflow: hidden;
+      }
+      .profile-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10px;
+        .handle {
+          color: $white;
+          text-align: center;
+          font-weight: bold;
+        }
+        .edit-profile {
+          text-align: center;
+        }
+        .doj {
+          text-align: center;
+          margin-top: 10px;
+        }
+      }
     }
-    .edit-profile {
-      text-align: center;
-    }
-    .doj {
-      text-align: center;
-      margin-top: 10px;
-    }
-  }
-  .profile-right {
-    padding-top: 46px;
-  }
-  .profile-image {
-    width: 130px;
-    text-align: center;
-    height: 130px;
-    border: 5px solid $white;
-    //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
-    border-radius: 72px;
-    overflow: hidden;
-    margin: auto;
-  }
-  .profile-bio {
-    height: 100px;
-    text-align: right;
-    direction: ltr;
-  }
-  .money-in-bank {
-    height: 82px;
-    text-align: center;
-    padding-top: 16px;
-    //Instead of the line below you could use @includebox-sizing($bs)
-    box-sizing: border-box;
-    div[rel="value"] {
-      font-size: 35px;
-    }
-    div[rel="label"] {
-      margin-top: 15px;
-      font-weight: bold;
-    }
-  }
-  .challenges-registered {
-    height: 82px;
-    text-align: center;
-    padding-top: 16px;
-    //Instead of the line below you could use @includebox-sizing($bs)
-    box-sizing: border-box;
-  }
-  .open-challenges {
-    height: 82px;
-    text-align: center;
-    padding-top: 16px;
-    //Instead of the line below you could use @includebox-sizing($bs)
-    box-sizing: border-box;
-    div[rel="value"] {
-      font-size: 35px;
-    }
-    div[rel="label"] {
-      margin-top: 15px;
-      font-weight: bold;
-    }
-  }
-  .review-opportunities {
-    height: 75px;
-    text-align: center;
-    padding-top: 16px;
-    //Instead of the line below you could use @includebox-sizing($bs)
-    box-sizing: border-box;
-    div[rel="value"] {
-      font-size: 35px;
-    }
-    div[rel="label"] {
-      margin-top: 15px;
-      font-weight: bold;
+    .profile-right {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+
+      .money-in-bank {
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        //Instead of the line below you could use @includebox-sizing($bs)
+        box-sizing: border-box;
+        div[rel="value"] {
+          font-size: 20px;
+        }
+        div[rel="label"] {
+          margin-top: 15px;
+        }
+      }
+      .challenges-registered {
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        //Instead of the line below you could use @includebox-sizing($bs)
+        box-sizing: border-box;
+      }
+      .open-challenges {
+        display: none;
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        //Instead of the line below you could use @includebox-sizing($bs)
+        box-sizing: border-box;
+        div[rel="value"] {
+          font-size: 20px;
+        }
+        div[rel="label"] {
+          margin-top: 15px;
+        }
+      }
+      .review-opportunities {
+        display: none;
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        //Instead of the line below you could use @includebox-sizing($bs)
+        box-sizing: border-box;
+        div[rel="value"] {
+          font-size: 20px;
+        }
+        div[rel="label"] {
+          margin-top: 15px;
+        }
+      }
+      .copilot-challenges {
+        text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
+        //Instead of the line below you could use @includebox-sizing($bs)
+        box-sizing: border-box;
+        div[rel="value"] {
+          font-size: 20px;
+        }
+        div[rel="label"] {
+          margin-top: 15px;
+        }
+      }
+      
     }
   }
   .rating-summary {
+    clear: both;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
     .track-rating {
-      float:left;
       width: 100px;
       height: 82px;
       text-align: center;
@@ -105,11 +132,10 @@
       //Instead of the line below you could use @includebox-sizing($bs)
       box-sizing: border-box;
       div[rel="value"] {
-        font-size: 35px;
+        font-size: 20px;
       }
       div[rel="label"] {
         margin-top: 15px;
-        font-weight: bold;
       }
     }
   }
