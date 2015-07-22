@@ -86,12 +86,12 @@
 
     &.error-bar:before {
       display: block;
-      background-color: red;
+      background-color: #ed5d5d;
     }
 
     &.success-bar:before {
       display: block;
-      background-color: green;
+      background-color: #7ece95;
     }
   }
 
@@ -102,7 +102,7 @@
 
   .login-error {
     @extend .login-notice;
-    color: red;
+    color: #ed5d5d;
   }
 
   // Social section
