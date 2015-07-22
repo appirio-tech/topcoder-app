@@ -45,16 +45,22 @@
           .setDefaultHttpFields({
             cache: true
           })
-          /*.addFullRequestInterceptor(function(element, operation, what, url) {
-            return {
-              headers: {'Authorization': 'Bearer ' + AuthTokenService.getV2Token()}
+          .addFullRequestInterceptor(function(element, operation, what, url) {
+            var headers = {
+              headers: {
+                'Authorization': 'Bearer ' + AuthTokenService.getV2Token(),
+                'Accept': 'application/json'
+              }
             };
-          })*/
+            return headers;
+          })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+            console.log(url);
+            console.log(data);
             var extractedData = null;
             if (operation === 'getList') {
               // FIXME
-              extractedData = data.results;
+              extractedData = data.result.content;
               extractedData.meta = {
                 count: data.count,
                 next: data.next,

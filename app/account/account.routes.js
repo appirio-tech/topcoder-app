@@ -11,6 +11,9 @@
     var states = {
       'auth': {
         parent: 'root',
+        data: {
+          onAccountPage: true
+        },
         onEnter: ['$state', '$stateParams', 'TcAuthService', function($state, $stateParams, TcAuthService) {
           if (TcAuthService.isAuthenticated()) {
             // redirect to next if exists else dashboard

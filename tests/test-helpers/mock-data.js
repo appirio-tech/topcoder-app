@@ -4,11 +4,11 @@ var mockData = (function() {
     getMockUsers: getMockUsers,
     getMockStates: getMockStates,
     getMockChallenge: getMockChallenge,
+    getMockChallenges: getMockChallenges,
     getMockChallengeDates: getMockChallengeDates,
     getMockUsersPeerReviews: getMockUsersPeerReviews,
     getMockBlogs: getMockBlogs,
     getMockUserProfile: getMockUserProfile,
-    getMockChallenges: getMockChallenges,
     getMockMarathons: getMockMarathons
   };
 
@@ -66,7 +66,7 @@ var mockData = (function() {
         "type": "develop",
         "forumLink": "http://apps.topcoder.com/forums/?module=Category&categoryID=28423",
         "appealsEndDate": "2015-05-01T00:00:00.000-0400",
-        "currentStatus": "Active",
+        "status": "Active",
         "challengeCommunity": "develop",
         "directUrl": "https://www.topcoder.com/direct/contest/detail.action?projectId=30049140",
         "technology": [
@@ -103,6 +103,13 @@ var mockData = (function() {
         }
       }
     }
+  }
+
+  function getMockChallenges() {
+    var challenges = [];
+    challenges.push(getMockChallenge());
+    challenges.push(getMockChallenge());
+    return challenges;
   }
 
   function getMockChallengeDates() {
@@ -248,7 +255,7 @@ var mockData = (function() {
 
   function getMockUserProfile() {
     return {
-      data: 
+      data:
       {
         "handle": "vikasrohit",
         "country": "India",
@@ -286,13 +293,6 @@ var mockData = (function() {
         ]
       }
     };
-  }
-
-  function getMockChallenges() {
-    var challenges = [];
-    challenges.push(getMockChallenge());
-    challenges.push(getMockChallenge());
-    return challenges;
   }
 
   function getMockMarathons() {

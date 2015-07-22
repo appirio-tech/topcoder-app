@@ -1,0 +1,75 @@
+.widget-content
+  .challenges-header
+    .left
+      .view-options
+        a(ng-click="vm.changeView('tiles')") Tile
+        span  
+        a(ng-click="vm.changeView('table')") Table
+    .center
+      strong My Challenges
+    .right
+      a(target='_blank', href='{{vm.newChallengesUrl}}') Find New Challenges
+      .timeline-options
+        a(href="#", ng-click='vm.viewActiveChallenges()') Active
+        span  | 
+        a(href="#", ng-click='vm.viewPastChallenges()') Past
+      ul.tc-pager(ng-hide='true')
+        li.page-link.pull-left(ng-show='vm.prevPageLink.val > 0 && vm.prevPageLink.val <= vm.totalPages', ng-click='vm.changePage(vm.prevPageLink)', ng-class='vm.getCurrentPageClass(vm.prevPageLink)')
+          a(href='#') {{vm.prevPageLink.text}}
+        li.page-status.pull-left.page-link {{vm.firstRecordIndex}}-{{vm.lastRecordIndex}} of {{vm.totalRecords}}
+        li.page-link.pull-left(ng-show='vm.nextPageLink.val > 0 && vm.nextPageLink.val <= vm.totalPages', ng-click='vm.changePage(vm.nextPageLink)', ng-class='vm.getCurrentPageClass(vm.nextPageLink)')
+          a(href='#') {{vm.nextPageLink.text}}
+  .widget-body.no-challenge(ng-show="vm.totalPages == 0 && !vm.loading")
+    span(ng-show="vm.listType == 'past'") You have not participated in any challenges yet.
+    span(ng-show="vm.listType == 'active'") No active challenges.
+  .widget-body.tile-view(ng-show="vm.view == 'tiles'")
+    challenge-tile(challenge="challenge", ng-repeat='challenge in vm.visibleChallenges')
+    .widget-loading(ng-show='vm.loading')
+    .tile.load-more(ng-show='vm.totalPages > 1 && !vm.loading')
+      a(ng-click='vm.changePage(vm.nextPageLink)') Load More
+  .widget-body(ng-show="vm.view == 'table'")
+    table.table.table-responsive(width='100%')
+      thead
+        tr.active
+          th.hidden-xs
+            span Type
+            .sort-icon-place
+          th.hidden-xs(rel='sortable', ng-click="vm.sort('firstPlacePrize')")
+            span First Prize
+            .sort-icon-place(ng-class="{sort: vm.sortColumn == 'firstPlacePrize', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} ")
+          th(rel='sortable', ng-click="vm.sort('challengeName')")
+            span Challenge
+            .sort-icon-place(ng-class="{sort: vm.sortColumn == 'challengeName', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} ")
+          th.hidden-sm.hidden-md.hidden-lg(rel='sortable', ng-click="vm.sort('firstPlacePrize')")
+            span Ist Prize
+            .sort-icon-place(ng-class="{sort: vm.sortColumn == 'firstPlacePrize', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} ")
+          th.hidden-xs.hidden-sm
+            span Roles
+            .sort-icon-place
+          th.hidden-xs(rel='sortable', ng-click="vm.sort('submissionEndDate')")
+            span Submit By
+            .sort-icon-place(ng-class="{sort: vm.sortColumn == 'submissionEndDate', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} ")
+      tbody
+        tr(ng-show='vm.visibleChallenges.length > 0 && !vm.loading', ng-repeat='challenge in vm.visibleChallenges')
+          td.hidden-xs(class='{{challenge.challengeCommunity}}')  
+          td.hidden-xs {{challenge.firstPlacePrize | currency}}
+          td(rel='challenge-name')
+            a(href='/challenge-details/{{challenge.challengeId}}?type={{challenge.challengeCommunity}}') {{challenge.challengeName}}
+            .hidden-sm.hidden-md.hidden-lg.margin-top-2x
+              span.color-reset Submit By:
+              |  {{challenge.submissionEndDate | date: 'MM/dd/yy HH:mm '}}
+          td.hidden-sm.hidden-md.hidden-lg {{challenge.firstPlacePrize | currency}}
+          td.ellipsis.hidden-xs.hidden-sm(rel='roles', title="{{challenge.roles.join(', ')}}") {{challenge.roles.join(', ')}}
+          td.hidden-xs {{challenge.submissionEndDate | date: 'MM/dd/yy HH:mm '}}
+        tr(ng-show='vm.loading')
+          td(colspan='5')
+            .widget-loading
+        tr(ng-show='vm.visibleChallenges.length === 0')
+          td(colspan='5') You don't have any active challenges
+  .useful-links
+    .new-challenges.link
+      a(href="https://www.topcoder-dev.com/challenges/", target="_blank") Find New Challenges
+    .topcoder-direct.link(ng-show='vm.visibleChallenges.length > 0')
+      a(href="https://www.topcoder-dev.com/direct", target="_blank") Launch Topcoder Direct
+    .help-library.link(ng-show='vm.visibleChallenges.length == 0')
+      a(href="https://community.topcoder-dev.com/", target="_blank") View Help Library

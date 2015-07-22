@@ -7,7 +7,7 @@
 
   function ChallengeService(CONSTANTS, ApiService, $q) {
 
-    var rApi2 = ApiService.restangularV2;
+    var rApi2 = ApiService.restangularV3;
     rApi2.activeChallengeDeferredList = [];
     var rApi = ApiService.restangularV3;
     rApi.marathonMatchesDeferredList = [];
@@ -41,12 +41,22 @@
         var sortColumn  = request && request.sortColumn ? request.sortColumn : 'submissionEndDate';
         var sortOrder  = request && request.sortOrder ? request.sortOrder : 'asc';
         var listType  = request && request.listType ? request.listType : 'active';
+        var userId  = request && request.userId ? request.userId : null;
 
         rApi2.request = request;
 
+        var filter = [];
+        if (listType) {
+          filter.push("listType=" + listType);
+        }
+        if (userId) {
+          filter.push("userId=" + userId);
+        }
+        filter = filter.join("&");
+
         // Fetch list of active challenges for current user
-        rApi2.one("user").getList("challenges", {
-            type: listType,
+        rApi2.all("challenges").getList({
+            filter: filter,
             pageIndex: pageIndex,
             pageSize: pageSize,
             sortColumn: sortColumn,

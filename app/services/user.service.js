@@ -3,20 +3,27 @@
 
   angular.module('tc.services').factory('UserService', UserService);
 
-  UserService.$inject = ['CONSTANTS', 'ApiService', '$http'];
+  UserService.$inject = ['CONSTANTS', 'ApiService', 'AuthTokenService', '$http'];
 
-  function UserService(CONSTANTS, ApiService, http) {
+  function UserService(CONSTANTS, ApiService, AuthTokenService, http) {
     var service = {
       getUsername: getUsername,
       createUser: createUser,
       validateUserEmail: validateUserEmail,
       validateUserHandle: validateUserHandle,
       generateResetToken: generateResetToken,
-      resetPassword: resetPassword
+      resetPassword: resetPassword,
+      getUserId: getUserId
     };
     return service;
 
     ///////////////
+
+    function getUserId() {
+      var token = AuthTokenService.getV3Token();
+      var decoded = AuthTokenService.decodeToken(token);
+      return decoded.userId;
+    }
 
     function getUsername() {
       var url = CONSTANTS.API_URL_V2 + '/user/identity';

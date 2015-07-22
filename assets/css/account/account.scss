@@ -1,7 +1,11 @@
 @import '../partials/combined';
 
-body, .view-container {
+.account-background {
   background-color: #f1f2f2;
+
+  & .view-container {
+    background-color: #f1f2f2;
+  }
 }
 
 .login-container, .register-container {
