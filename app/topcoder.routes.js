@@ -84,9 +84,6 @@
     // is routed back to this ng app.
     $urlRouterProvider.otherwise(function($injector) {
       $injector.invoke(['$log', '$state', function($log, $state) {
-        // FIXME - uncomment the next 2 lines once we have nginx configured
-        // $log.debug('Deferring to nginx to route');
-        // location.reload();
         $state.go('404');
       }]);
 
