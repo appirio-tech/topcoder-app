@@ -12,7 +12,7 @@
     var service = {
       getUserProfile: getUserProfile,
       getUserStats: getUserStats,
-      getUserFinancials: getUserFinancials
+      getUserFinancials: getUserFinancials,
       // for dashboard
       getUserProfile: getUserProfile,
       // for profile
