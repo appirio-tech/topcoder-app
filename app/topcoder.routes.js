@@ -77,11 +77,6 @@
       $stateProvider.state(name, state);
     });
 
-    // if we can't find a state to route, maybe it's a legacy page
-    // give legacy app a chance to render the page.
-    // if it doesn't exist there legacy app can show a 404
-    // NOTE: a side-effect of this would be an infinite reload in case the page
-    // is routed back to this ng app.
     $urlRouterProvider.otherwise(function($injector) {
       $injector.invoke(['$log', '$state', function($log, $state) {
         $state.go('404');
