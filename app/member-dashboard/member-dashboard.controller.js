@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('tc.myDashboard').controller('DashboardController', MyDashboardController);
+  angular.module('tc.myDashboard').controller('MyDashboardController', MyDashboardController);
 
   MyDashboardController.$inject = [];
 
