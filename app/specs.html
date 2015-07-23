@@ -45,16 +45,20 @@
     </script>
 
     <!-- bower:js -->
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="../bower_components/auth0-lock/build/auth0-lock.js"></script>
+    <script src="../bower_components/auth0.js/build/auth0.js"></script>
+    <script src="../bower_components/auth0-angular/build/auth0-angular.js"></script>
+    <script src="../bower_components/a0-angular-storage/dist/angular-storage.js"></script>
     <script src="../bower_components/angular-jwt/dist/angular-jwt.js"></script>
     <script src="../bower_components/moment/moment.js"></script>
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="../bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="../bower_components/lodash/lodash.js"></script>
     <script src="../bower_components/restangular/dist/restangular.js"></script>
-    <script src="../bower_components/a0-angular-storage/dist/angular-storage.js"></script>
+    <script src="../bower_components/jstzdetect/jstz.min.js"></script>
+    <script src="../bower_components/x2js/xml2json.min.js"></script>
+    <script src="../bower_components/angular-xml/angular-xml.js"></script>
     <script src="../bower_components/angular-mocks/angular-mocks.js"></script>
     <script src="../bower_components/sinon/index.js"></script>
     <script src="../bower_components/bardjs/dist/bard.js"></script>
@@ -62,64 +66,68 @@
     <!-- endbower -->
 
     <!-- inject:nonBowerScripts:js -->
-    <script src="/assets/scripts/auth0-1.6.4.js"></script>
-    <script src="/assets/scripts/jstz-1.0.4.js"></script>
     <script src="/assets/scripts/moment-timezone-with-data-2010-2020.js"></script>
     <!-- endinject -->
 
     <!-- inject:js -->
-    <script src="/app/topcoder.module.js"></script>
-    <script src="/app/topcoder.constants.js"></script>
-    <script src="/app/topcoder.controller.js"></script>
-    <script src="/app/topcoder.interceptors.js"></script>
-    <script src="/app/topcoder.routes.js"></script>
-    <script src="/app/account/account.module.js"></script>
-    <script src="/app/layout/layout.module.js"></script>
-    <script src="/app/member-dashboard/member-dashboard.module.js"></script>
     <script src="/app/peer-review/peer-review.module.js"></script>
-    <script src="/app/sample/sample.module.js"></script>
-    <script src="/app/blocks/exception/exception.module.js"></script>
-    <script src="/app/blocks/logger/logger.module.js"></script>
-    <script src="/app/account/account.routes.js"></script>
-    <script src="/app/account/validateLogin.directive.js"></script>
-    <script src="/app/filters/local-time.filter.js"></script>
-    <script src="/app/member-dashboard/index.js"></script>
-    <script src="/app/member-dashboard/member-dashboard.routes.js"></script>
-    <script src="/app/peer-review/peer-review.routes.js"></script>
-    <script src="/app/peer-review/slideable.directive.js"></script>
-    <script src="/app/sample/sample.routes.js"></script>
-    <script src="/app/services/api.service.js"></script>
-    <script src="/app/services/auth.service.js"></script>
-    <script src="/app/services/authtoken.service.js"></script>
-    <script src="/app/services/blog.service.js"></script>
-    <script src="/app/services/challenge.service.js"></script>
-    <script src="/app/services/helpers.service.js"></script>
-    <script src="/app/services/memberCert.service.js"></script>
-    <script src="/app/services/profile.service.js"></script>
-    <script src="/app/services/review.service.js"></script>
-    <script src="/app/services/scorecard.service.js"></script>
-    <script src="/app/services/srm.service.js"></script>
-    <script src="/app/services/user.service.js"></script>
-    <script src="/app/account/login/login.controller.js"></script>
-    <script src="/app/account/register/register.controller.js"></script>
-    <script src="/app/account/reset-password/reset-password.controller.js"></script>
-    <script src="/app/blocks/exception/exception-handler.provider.js"></script>
-    <script src="/app/blocks/exception/exception.js"></script>
-    <script src="/app/blocks/logger/logger.js"></script>
-    <script src="/app/layout/header/header.controller.js"></script>
-    <script src="/app/member-dashboard/blog-post/blog-post.controller.js"></script>
-    <script src="/app/member-dashboard/helpful-links/helpful-links.controller.js"></script>
-    <script src="/app/member-dashboard/marketing-message/marketing-message.controller.js"></script>
-    <script src="/app/member-dashboard/member-profile/welcome-back.controller.js"></script>
-    <script src="/app/member-dashboard/member-program/member-program.controller.js"></script>
-    <script src="/app/member-dashboard/my-challenges/my-challenges.controller.js"></script>
+    <script src="/app/peer-review/review-status/review-status.filter.js"></script>
+    <script src="/app/peer-review/review-status/review-status.controller.js"></script>
+    <script src="/app/peer-review/readOnlyScorecard/readOnlyScorecard.controller.js"></script>
+    <script src="/app/peer-review/edit-review/edit-review.controller.js"></script>
+    <script src="/app/peer-review/completed-review/completed-review.controller.js"></script>
+    <script src="/app/member-dashboard/member-dashboard.module.js"></script>
     <script src="/app/member-dashboard/subscribe-updates/subscribe-updates.controller.js"></script>
     <script src="/app/member-dashboard/upcoming-srms/upcoming-srms.controller.js"></script>
-    <script src="/app/peer-review/completed-review/completed-review.controller.js"></script>
-    <script src="/app/peer-review/edit-review/edit-review.controller.js"></script>
-    <script src="/app/peer-review/readOnlyScorecard/readOnlyScorecard.controller.js"></script>
-    <script src="/app/peer-review/review-status/review-status.controller.js"></script>
-    <script src="/app/peer-review/review-status/review-status.filter.js"></script>
+    <script src="/app/member-dashboard/my-challenges/my-challenges.controller.js"></script>
+    <script src="/app/member-dashboard/member-program/member-program.controller.js"></script>
+    <script src="/app/member-dashboard/member-profile/welcome-back.controller.js"></script>
+    <script src="/app/member-dashboard/marketing-message/marketing-message.controller.js"></script>
+    <script src="/app/member-dashboard/helpful-links/helpful-links.controller.js"></script>
+    <script src="/app/member-dashboard/blog-post/blog-post.controller.js"></script>
+    <script src="/app/layout/layout.module.js"></script>
+    <script src="/app/layout/header/header.controller.js"></script>
+    <script src="/app/directives/challenge-tile/challenge-tile.directive.js"></script>
+    <script src="/app/blocks/logger/logger.module.js"></script>
+    <script src="/app/blocks/logger/logger.js"></script>
+    <script src="/app/blocks/exception/exception.module.js"></script>
+    <script src="/app/blocks/exception/exception.js"></script>
+    <script src="/app/blocks/exception/exception-handler.provider.js"></script>
+    <script src="/app/account/account.module.js"></script>
+    <script src="/app/account/reset-password/reset-password.controller.js"></script>
+    <script src="/app/account/register/register.controller.js"></script>
+    <script src="/app/account/login/login.controller.js"></script>
+    <script src="/app/services/services.module.js"></script>
+    <script src="/app/services/user.service.js"></script>
+    <script src="/app/services/tcAuth.service.js"></script>
+    <script src="/app/services/srm.service.js"></script>
+    <script src="/app/services/scorecard.service.js"></script>
+    <script src="/app/services/review.service.js"></script>
+    <script src="/app/services/profile.service.js"></script>
+    <script src="/app/services/memberCert.service.js"></script>
+    <script src="/app/services/helpers.service.js"></script>
+    <script src="/app/services/challenge.service.js"></script>
+    <script src="/app/services/blog.service.js"></script>
+    <script src="/app/services/authtoken.service.js"></script>
+    <script src="/app/services/api.service.js"></script>
+    <script src="/app/sample/sample.module.js"></script>
+    <script src="/app/sample/sample.routes.js"></script>
+    <script src="/app/topcoder.module.js"></script>
+    <script src="/app/sample/sample.controller.js"></script>
+    <script src="/app/peer-review/slideable.directive.js"></script>
+    <script src="/app/peer-review/peer-review.routes.js"></script>
+    <script src="/app/member-dashboard/member-dashboard.routes.js"></script>
+    <script src="/app/member-dashboard/member-dashboard.controller.js"></script>
+    <script src="/app/filters/time-diff.filter.js"></script>
+    <script src="/app/filters/local-time.filter.js"></script>
+    <script src="/app/filters/deadline-msg.filter.js"></script>
+    <script src="/app/account/validateRegister.directive.js"></script>
+    <script src="/app/account/validateLogin.directive.js"></script>
+    <script src="/app/account/account.routes.js"></script>
+    <script src="/app/topcoder.routes.js"></script>
+    <script src="/app/topcoder.interceptors.js"></script>
+    <script src="/app/topcoder.controller.js"></script>
+    <script src="/app/topcoder.constants.js"></script>
     <!-- endinject -->
 
     <!-- inject:spechelpers:js -->
@@ -127,7 +135,7 @@
     <!-- endinject -->
 
     <!-- inject:specs:js -->
-    <script src="/app/member-dashboard/index.spec.js"></script>
+    <script src="/app/member-dashboard/member-dashboard.spec.js"></script>
     <script src="/app/services/challenge.service.spec.js"></script>
     <script src="/app/account/login/login.spec.js"></script>
     <script src="/app/account/register/register.spec.js"></script>

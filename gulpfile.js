@@ -136,6 +136,7 @@ gulp.task('wiredep', ['jade'], function() {
     .pipe(wiredep(options))
     .pipe($.inject(
       gulp.src(config.js)
+      .pipe($.naturalSort('desc'))
       .pipe($.angularFilesort()),
       {relative: true}))
     .pipe($.inject(gulp.src(config.nonBowerScripts, {read: false}), {
@@ -225,7 +226,11 @@ gulp.task('build-specs', ['templatecache'], function() {
       {name: 'inject:testlibraries', read: false}))
     .pipe($.inject(gulp.src(config.nonBowerScripts),
       {name: 'inject:nonBowerScripts', read: false}))
-    .pipe($.inject(gulp.src(config.js)))
+    .pipe($.inject(
+      gulp.src(config.js)
+      .pipe($.naturalSort())
+      .pipe($.angularFilesort())
+    ))
     .pipe($.inject(gulp.src(config.specHelpers),
       {name: 'inject:spechelpers', read: false}))
     .pipe($.inject(gulp.src(config.specs),
@@ -262,7 +267,7 @@ gulp.task('serve', ['inject', 'ngConstants'], function() {
     logPrefix: 'Topcoder-Account',
     notify: true,
     port: 3000,
-    reloadDelay: 500
+    reloadDelay: 1000
   };
 
   browserSync(options);

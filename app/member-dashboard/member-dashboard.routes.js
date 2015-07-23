@@ -22,7 +22,7 @@
         }
       },
       'dashboard': {
-        url: '/my-dashboard',
+        url: '/my-dashboard/',
         parent: 'baseDashboard',
         //controller: 'dashboard as db',
         data: {
@@ -31,12 +31,12 @@
         views: {
           'my-challenges-widget': {
             templateUrl: "member-dashboard/my-challenges/my-challenges.html",
-            controller: 'MyChallengesController',
+            controller: 'Dashboard.MyChallengesController',
             controllerAs: 'vm'
           },
           'srms-widget' :{
-            templateUrl : 'member-dashboard/upcoming-srms/upcoming-srms.html',
-            controller: 'UpcomingSRMsController',
+            templateUrl : 'member-dashboard/srms/dashboard-srms.html',
+            controller: 'Dashboard.SRMController',
             controllerAs: 'vm'
           },
           'member-program-widget' : {
@@ -60,13 +60,18 @@
             controllerAs: 'vm'
           },
           'profile-header-widget' : {
-            templateUrl : 'member-dashboard/member-profile/welcome-back.html',
-            controller: 'WelcomeBackController',
+            templateUrl : 'member-dashboard/member-profile/profile-header.html',
+            controller: 'Dashboard.ProfileHeaderController',
             controllerAs: 'vm'
           },
           'marketing-message-widget' : {
             templateUrl : 'member-dashboard/marketing-message/marketing-message.html',
             controller: 'MarketingMessageController',
+            controllerAs: 'vm'
+          },
+          'ios-program': {
+            templateUrl: 'member-dashboard/ios-program/ios-program.html',
+            controller: 'iOSProgramController',
             controllerAs: 'vm'
           }
         }
@@ -76,7 +81,5 @@
       state = states[name];
       $stateProvider.state(name, state);
     }
-    $urlRouterProvider.otherwise('/');
-    return $httpProvider.interceptors.push('HeaderInterceptor');
   }
 })();

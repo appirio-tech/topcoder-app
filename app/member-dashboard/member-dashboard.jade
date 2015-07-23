@@ -1,18 +1,11 @@
-.jumbotron.my-dashboard-container.member-profile-header
-  .container
-    .welcome-back(ui-view="profile-header-widget")
-.my-dashboard-container.container-fluid
-  .clearfix.visible-md-block.visible-lg-block
+.my-dashboard-container.member-profile-header
+  .welcome-back(ui-view="profile-header-widget")
+.my-dashboard-container.widgets
   .row
-    .col-xs-12
-      .my-dashboard-widget.my-challenges(ng-show='vm.renderWidget', ui-view="my-challenges-widget")
+    .my-dashboard-widget.my-challenges(ui-view="my-challenges-widget")
   .row
-    .col-xs-12.col-sm-8.col-sm-push-4.col-md-9.col-md-push-3
-      //
-        .my-dashboard-widget.marketing-message(ui-view="marketing-message-widget")
-      .my-dashboard-widget.srm-gadget(ui-view="srms-widget")
-    .col-xs-12.col-sm-4.col-sm-pull-8.col-md-3.col-md-pull-9
-      .my-dashboard-widget.member-program(ui-view="member-program-widget")
-      .my-dashboard-widget.helpful-links(ui-view="helpful-links-widget")
-      .my-dashboard-widget.subscribe-updates(ui-view="subscribe-updates-widget")
-      .my-dashboard-widget.blog-post(ui-view="blog-post-widget")
+    //.my-dashboard-widget.marketing-message(ui-view="marketing-message-widget")
+    .my-dashboard-widget.srm-gadget(ui-view="srms-widget")
+
+    .ios-program(ui-view="ios-program")
+    .my-dashboard-widget.blog-post(ui-view="blog-post-widget")
