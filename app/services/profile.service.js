@@ -22,6 +22,7 @@
     ///////////////
 
     function getUserProfile(userId) {
+      userId = userId || UserService.getUserIdentity().userId;
       return restangular.one('members', userId).one('profile').get();
     }
 
