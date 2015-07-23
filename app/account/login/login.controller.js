@@ -27,8 +27,10 @@
     if ($stateParams.userJWTToken) {
       // user logged in
       AuthTokenService.setV3Token($stateParams.userJWTToken);
+      UserService.setUserIdentity($stateParams.userJWTToken);
       redirect();
     }
+
     if ($stateParams.status) {
       // handle social login callback
       var status = parseInt($stateParams.status);
@@ -44,7 +46,7 @@
     } else if ($stateParams.code && $stateParams.state) {
       AuthTokenService.getTokenFromAuth0Code($stateParams.code).then(
         function(v3Token) {
-          $log.debug('looged in using social');
+          $log.debug('logged in using social');
           redirect();
         }
       );

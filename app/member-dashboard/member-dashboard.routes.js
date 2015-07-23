@@ -15,14 +15,14 @@
         parent: 'root',
         abstract: true,
         templateUrl: 'member-dashboard/member-dashboard.html',
-        controller: 'DashboardController as db',
+        controller: 'MyDashboardController as db',
         data: {
           authRequired: true,
           title: 'Dashboard'
         }
       },
       'dashboard': {
-        url: '/my-dashboard',
+        url: '/my-dashboard/',
         parent: 'baseDashboard',
         views: {
           'profile-header-widget' : {
@@ -57,7 +57,5 @@
       state = states[name];
       $stateProvider.state(name, state);
     }
-    $urlRouterProvider.otherwise('/');
-    return $httpProvider.interceptors.push('HeaderInterceptor');
   }
 })();

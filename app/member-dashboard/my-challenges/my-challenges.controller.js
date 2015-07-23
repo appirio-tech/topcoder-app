@@ -17,9 +17,10 @@
       viewActiveChallenges();
     }
 
+    var userId = UserService.getUserIdentity().userId;
+
     // get ACTIVE challenges & marathon matches
     var getChallenges = function(status, orderBy) {
-      var userId = UserService.getUser().userId;
       vm.loading = true;
       ChallengeService.getChallenges({
         limit: 10,
@@ -48,7 +49,6 @@
     activate();
 
     ////////////// DEPRECATE ///////////////
-
     // Fetches user's active challenges from the API
     function _getChallenges() {
       initPaging();

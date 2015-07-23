@@ -12,7 +12,7 @@
 
     var service = {
       getChallenges: getChallenges,
-
+      getiOSChallenges: getiOSChallenges,
       getMyMarathonMatches: _getMyMarathonMatches,
       getReviewEndDate: getReviewEndDate,
       getChallengeDetails: getChallengeDetails
@@ -31,7 +31,25 @@
         });
     }
 
+    function getiOSChallenges() {
+      var peerParams = {
+        'filter[reviewType]': 'PEER',
+        'filter[status]': 'Active',
+        limit: 3
+      };
 
+      var iOSParams = {
+        'filter[reviewType]': 'COMMUNITY,INTERNAL',
+        'filter[status]': 'Active',
+        limit: 3
+      };
+
+      var peerChallenges = api.all('challenges').getList(peerParams);
+      var iOSChallenges  = api.all('challenges').getList(iOSParams);
+
+      return peerChallenges;
+      // return $q.all([peerChallenges, iOSChallenges]);
+    }
 
     /** NOT USED NEEDS TO BE REFACTORED **/
 
@@ -133,9 +151,10 @@
     }
 
     function getChallengeDetails(challengeId) {
-      var url = CONSTANTS.API_URL + '/challenges/' + challengeId;
+      var url = CONSTANTS.API_URL_V2 + '/challenges/' + challengeId;
       return ApiService.requestHandler('GET', url, {}, true);
     }
+
   };
 
 })();

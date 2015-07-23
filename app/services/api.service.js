@@ -56,21 +56,8 @@
             };
           })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-            console.log(url);
-            console.log(data);
-            var extractedData = null;
-            if (operation === 'getList') {
-              // FIXME
-              extractedData = data.result.content;
-              if (data.result.metadata) {
-                extractedData.metadata = {totalCount: data.result.metadata.totalCount};
-              } else {
-                extractedData.metadata = null;
-              }
-            } else {
-              extractedData = data;
-            }
-            return extractedData;
+            // Just return raw data
+            return data;
           })
           .setErrorInterceptor(function(response) {
             // TODO
@@ -106,19 +93,22 @@
             };
           })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-            var extractedData = null;
-            if (operation === 'getList') {
-              // FIXME
-              extractedData = data.result.content;
-              if (data.result.metadata) {
-                extractedData.metadata = {totalCount: data.result.metadata.totalCount};
+            if (data != null) {
+              var extractedData = null;
+              if (operation === 'getList') {
+                extractedData = data.result.content;
+                if (data.result.metadata) {
+                  extractedData.metadata = {totalCount: data.result.metadata.totalCount};
+                } else {
+                  extractedData.metadata = null;
+                }
               } else {
-                extractedData.metadata = null;
+                extractedData = data.result.content;
               }
+              return extractedData;
             } else {
-              extractedData = data;
+              return null; // data
             }
-            return extractedData;
           })
           .setErrorInterceptor(function(response) {
             // TODO
@@ -127,7 +117,7 @@
               case 500: // SERVER ERROR
               case 503: // HTTP_503_SERVICE_UNAVAILABLE
               default:
-                $log.error("Restangular Error Interceptor" + JSON.stringify(response));
+                $log.error("Restangular Error Interceptor ", response);
                 return true; // error not handled
             }
           });

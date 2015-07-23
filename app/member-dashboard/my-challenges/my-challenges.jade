@@ -12,7 +12,7 @@
   .widget-body.no-challenge(ng-show="vm.myChallenges.length == 0 && !vm.loading")
     span(ng-show="vm.listType == 'past'") You have not participated in any challenges yet.
     span(ng-show="vm.listType == 'active'") No active challenges.
-  .widget-body.tile-view(ng-show="vm.view == 'tiles'")
+  .widget-body.tile-view
     challenge-tile(challenge="challenge", ng-repeat='challenge in vm.myChallenges')
     .widget-loading(ng-show='vm.loading')
   .useful-links

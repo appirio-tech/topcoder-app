@@ -69,11 +69,10 @@
           withCredentials: true
         })
       .then(
-        function(resp) {
-          setV3Token(resp.data.result.content.token);
-          // set payload
-          store.set("userObj", JSON.stringify(jwtHelper.decodeToken(resp.data.result.content.token)));
-          return true;
+        function(res) {
+          var appiriojwt = res.data.result.content.token;
+          setV3Token(appiriojwt);
+          return appiriojwt;
         },
         function(err) {
           $log.error(err);
@@ -96,7 +95,6 @@
       return $http(req).then(
         function(resp) {
           $log.debug(resp);
-
         },
         function(err) {
           $log.error(err);

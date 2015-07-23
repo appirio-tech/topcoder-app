@@ -39,7 +39,7 @@
       });
 
       ProfileService.getUserFinancials(userId).then(function(financials) {
-        vm.moneyEarned = financials.amount.toFixed(2);
+        vm.moneyEarned = financials.overallEarning;
       });
 
       // TODO - challenges
