@@ -11,10 +11,8 @@
     };
     return service;
 
-    function getNotifications() {
-      if (TcAuthService.isAuthenticated() === true) {
-        return ApiService.restangularV3.one('notifications').get();
-      }
+    function getNotifications() {   
+      return ApiService.restangularV3.one('notifications').get();
     }
   }
 })();

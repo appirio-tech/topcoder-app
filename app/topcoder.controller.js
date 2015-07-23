@@ -3,20 +3,20 @@
 
   angular.module('topcoder').controller('TopcoderController', TopcoderController);
 
-  TopcoderController.$inject = ['notifications', 'NotificationService'];
+  TopcoderController.$inject = ['notifications', 'NotificationService', 'TcAuthService'];
 
-  function TopcoderController(notifications, NotificationService) {
+  function TopcoderController(notifier, NotificationService, TcAuthService) {
     var vm = this;
-		NotificationService.getNotifications().then(function(data) {
-      vm.notifications = data.result.content;
-      
-      angular.forEach(vm.notifications, function(notification) {
-        if (notification.severity === "HIGH") {
-          notifications.showError({message: 'You received a notification of type: ' + notification.notificationTypeId });
-        } else {
-          notifications.showWarning({message: 'You received a notification of type: ' + notification.notificationTypeId });
-        }
-      })
-    });
+    if (TcAuthService.isAuthenticated() === true) {
+  		NotificationService.getNotifications().then(function(notifications) {        
+        angular.forEach(notifications, function(notification) {
+          if (notification.severity === "HIGH") {
+            notifier.showError({message: 'You received a notification of type: ' + notification.notificationTypeId });
+          } else {
+            notifier.showWarning({message: 'You received a notification of type: ' + notification.notificationTypeId });
+          }
+        })
+      });
+    }
   };
 })();
