@@ -5,6 +5,7 @@
     'angular-jwt',
     'ui.router',
     'ngCookies',
+    'tc.services',
     'angularSlideables'
   ];
 
