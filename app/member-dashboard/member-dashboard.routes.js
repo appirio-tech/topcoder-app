@@ -24,34 +24,15 @@
       'dashboard': {
         url: '/my-dashboard',
         parent: 'baseDashboard',
-        //controller: 'dashboard as db',
-        data: {
-          authRequired: true,
-        },
         views: {
           'my-challenges-widget': {
             templateUrl: "member-dashboard/my-challenges/my-challenges.html",
             controller: 'Dashboard.MyChallengesController',
             controllerAs: 'vm'
           },
-          // 'srms-widget' :{
-          //   templateUrl : 'member-dashboard/upcoming-srms/upcoming-srms.html',
-          //   controller: 'UpcomingSRMsController',
-          //   controllerAs: 'vm'
-          // },
-          'member-program-widget' : {
-            templateUrl : 'member-dashboard/member-program/member-program.html',
-            controller: 'MemberProgramController',
-            controllerAs: 'vm'
-          },
-          'helpful-links-widget' : {
-            templateUrl : 'member-dashboard/helpful-links/helpful-links.html',
-            controller: 'HelpfulLinksController',
-            controllerAs: 'vm'
-          },
-          'subscribe-updates-widget' : {
-            templateUrl : 'member-dashboard/subscribe-updates/subscribe-updates.html',
-            controller: 'SubscribeUpdatesController',
+          'srms-widget' :{
+            templateUrl : 'member-dashboard/srms/dashboard-srms.html',
+            controller: 'Dashboard.SRMController',
             controllerAs: 'vm'
           },
           'blog-post-widget' : {

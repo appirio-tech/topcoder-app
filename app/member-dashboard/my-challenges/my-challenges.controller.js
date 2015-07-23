@@ -47,8 +47,8 @@
       ChallengeService.getMyActiveChallenges({
         limit: 10,
         offset: 0,
-        orderBy: 'submissionEndDate asc', // TODO verify if this is the correct sort order clause,
-        filter: window.encodeURIComponent("userId="+userId+"&status="+status)
+        orderBy: orderBy, // TODO verify if this is the correct sort order clause,
+        filter: "userId="+userId+"&status="+status
       }).then(function(data){
         vm.myChallenges = data;
         vm.loading = false;
