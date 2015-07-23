@@ -9,6 +9,7 @@ html
     // build:css styles/vendor.css
     //- bower:css
     link(rel='stylesheet', href='../bower_components/fontawesome/css/font-awesome.css')
+    link(rel='stylesheet', href='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.css')
     //- endbower
     // endbuild
 
@@ -45,6 +46,8 @@ html
     //- include ./layout/header/header.jade
     #header(ui-view="header")
 
+    notifications-bar(class="notifications")
+
     //- include ./layout/header/sidebar.jade
     div(ui-view="sidebar")
 
@@ -65,6 +68,8 @@ html
     script(src='../bower_components/lodash/lodash.js')
     script(src='../bower_components/restangular/dist/restangular.js')
     script(src='../bower_components/jstzdetect/jstz.min.js')
+    script(src='../bower_components/angular-sanitize/angular-sanitize.js')
+    script(src='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.js')
     script(src='../bower_components/x2js/xml2json.min.js')
     script(src='../bower_components/angular-xml/angular-xml.js')
     script(src='../bower_components/angular-img-fallback/angular.dcb-img-fallback.js')
@@ -134,6 +139,7 @@ html
     script(src="services/challenge.service.js")
     script(src="services/helpers.service.js")
     script(src="services/memberCert.service.js")
+    script(src="services/notification.service.js")
     script(src="services/profile.service.js")
     script(src="services/review.service.js")
     script(src="services/scorecard.service.js")
