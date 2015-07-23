@@ -15,7 +15,7 @@
         parent: 'root',
         abstract: true,
         templateUrl: 'member-dashboard/member-dashboard.html',
-        controller: 'DashboardController as db',
+        controller: 'MyDashboardController as db',
         data: {
           authRequired: true,
           title: 'Dashboard'
@@ -24,11 +24,12 @@
       'dashboard': {
         url: '/my-dashboard/',
         parent: 'baseDashboard',
-        //controller: 'dashboard as db',
-        data: {
-          authRequired: true,
-        },
         views: {
+          'profile-header-widget' : {
+            templateUrl : 'member-dashboard/member-profile/profile-header.html',
+            controller: 'Dashboard.ProfileHeaderController',
+            controllerAs: 'vm'
+          },
           'my-challenges-widget': {
             templateUrl: "member-dashboard/my-challenges/my-challenges.html",
             controller: 'Dashboard.MyChallengesController',
@@ -39,39 +40,14 @@
             controller: 'Dashboard.SRMController',
             controllerAs: 'vm'
           },
-          'member-program-widget' : {
-            templateUrl : 'member-dashboard/member-program/member-program.html',
-            controller: 'MemberProgramController',
-            controllerAs: 'vm'
-          },
-          'helpful-links-widget' : {
-            templateUrl : 'member-dashboard/helpful-links/helpful-links.html',
-            controller: 'HelpfulLinksController',
-            controllerAs: 'vm'
-          },
-          'subscribe-updates-widget' : {
-            templateUrl : 'member-dashboard/subscribe-updates/subscribe-updates.html',
-            controller: 'SubscribeUpdatesController',
+          'ios-program': {
+            templateUrl: 'member-dashboard/ios-program/ios-program.html',
+            controller: 'iOSProgramController',
             controllerAs: 'vm'
           },
           'blog-post-widget' : {
             templateUrl : 'member-dashboard/blog-post/blog-feed.html',
             controller: 'BlogPostController',
-            controllerAs: 'vm'
-          },
-          'profile-header-widget' : {
-            templateUrl : 'member-dashboard/member-profile/profile-header.html',
-            controller: 'Dashboard.ProfileHeaderController',
-            controllerAs: 'vm'
-          },
-          'marketing-message-widget' : {
-            templateUrl : 'member-dashboard/marketing-message/marketing-message.html',
-            controller: 'MarketingMessageController',
-            controllerAs: 'vm'
-          },
-          'ios-program': {
-            templateUrl: 'member-dashboard/ios-program/ios-program.html',
-            controller: 'iOSProgramController',
             controllerAs: 'vm'
           }
         }

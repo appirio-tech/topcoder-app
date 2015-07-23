@@ -3,33 +3,32 @@
 
   angular.module('tc.myDashboard').controller('Dashboard.SRMController', SRMController);
 
-  SRMController.$inject = ['UserService', 'TcAuthService','SRMService', 'CONSTANTS'];
+  SRMController.$inject = ['UserService','SRMService', 'CONSTANTS'];
 
-  function SRMController(UserService, TcAuthService, SRMService, CONSTANTS) {
+  function SRMController(UserService, SRMService, CONSTANTS) {
     var vm = this;
-    // vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
     vm.loading = true;
     vm.srms = [];
-    vm.viewUpcomingSRMs = viewUpcomingSRMs;
+
     vm.viewPastSRMs = viewPastSRMs;
+    vm.viewUpcomingSRMs = viewUpcomingSRMs;
 
-
-    function activate() {
+    var activate = function() {
       viewUpcomingSRMs();
     }
 
-    // Fetches upcoming SRMs from the API
-    function getSRMs(status, orderBy) {
-      var userId = UserService.getUserIdentity().userId;
+    var userId = UserService.getUserIdentity().userId;
+
+    // get ACTIVE challenges & marathon matches
+    var getSRMs = function(status, orderBy) {
       vm.loading = true;
       SRMService.getSRMs({
         limit: 10,
         offset: 0,
         orderBy: orderBy, // TODO verify if this is the correct sort order clause,
-        "filter[userId]": userId,
-        "filter[status]": status
+        filter: "userId="+userId+"&status="+status
       }).then(function(data){
-        vm.srms = data;
+        vm.myChallenges = data;
         vm.loading = false;
       }, function(resp) {
         $log.error(resp);
@@ -37,25 +36,18 @@
       });
     }
 
-    /**
-     * Fetches past SRMs of the logged in member
-     *
-     */
-    function viewPastSRMs() {
-      vm.listType = 'past';
-      vm.srms = [];
-      getSRMs('past', 'submissionEndDate asc');
-    }
-
-    /**
-     * Fetches upcoming SRMs of the logged in member
-     *
-     */
     function viewUpcomingSRMs() {
       vm.srms = [];
       getSRMs('upcoming', 'submissionEndDate asc');
-    }
+    };
+
+    function viewPastSRMs() {
+      vm.srms = [];
+      getSRMs('past', 'submissionEndDate asc');
+    };
 
     activate();
   }
+
+
 })();

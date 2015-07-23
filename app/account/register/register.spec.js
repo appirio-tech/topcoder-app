@@ -7,8 +7,16 @@ describe('Register Controller', function() {
     bard.inject('$controller', '$rootScope');
   });
 
+  var state = {
+    href: function() {
+      return 'http://topcoder-dev.com/register/';
+    }
+  }
+
   beforeEach(function() {
-    controller = $controller('RegisterController');
+    controller = $controller('RegisterController', {
+      $state: state
+    });
     $rootScope.$apply();
   });
 
