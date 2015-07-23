@@ -92,9 +92,7 @@
             templateUrl: 'layout/header/account-header.html'
           },
           'container@': {
-            templateUrl: 'account/reset-password/reset-password-link.html',
-            controller: 'ResetPasswordController',
-            controllerAs: 'vm'
+            templateUrl: 'account/reset-password/reset-password-link.html'
           }
         }
       },
@@ -126,6 +124,8 @@
           },
           'container@': {
             templateUrl: 'account/reset-password/reset-password.html',
+            controller: 'ResetPasswordController',
+            controllerAs: 'vm'
           }
         }
       },
