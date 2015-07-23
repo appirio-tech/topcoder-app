@@ -25,6 +25,11 @@
         url: '/my-dashboard',
         parent: 'baseDashboard',
         views: {
+          'profile-header-widget' : {
+            templateUrl : 'member-dashboard/member-profile/profile-header.html',
+            controller: 'Dashboard.ProfileHeaderController',
+            controllerAs: 'vm'
+          },
           'my-challenges-widget': {
             templateUrl: "member-dashboard/my-challenges/my-challenges.html",
             controller: 'Dashboard.MyChallengesController',
@@ -35,24 +40,14 @@
             controller: 'Dashboard.SRMController',
             controllerAs: 'vm'
           },
-          'blog-post-widget' : {
-            templateUrl : 'member-dashboard/blog-post/blog-feed.html',
-            controller: 'BlogPostController',
-            controllerAs: 'vm'
-          },
-          'profile-header-widget' : {
-            templateUrl : 'member-dashboard/member-profile/profile-header.html',
-            controller: 'Dashboard.ProfileHeaderController',
-            controllerAs: 'vm'
-          },
-          'marketing-message-widget' : {
-            templateUrl : 'member-dashboard/marketing-message/marketing-message.html',
-            controller: 'MarketingMessageController',
-            controllerAs: 'vm'
-          },
           'ios-program': {
             templateUrl: 'member-dashboard/ios-program/ios-program.html',
             controller: 'iOSProgramController',
+            controllerAs: 'vm'
+          },
+          'blog-post-widget' : {
+            templateUrl : 'member-dashboard/blog-post/blog-feed.html',
+            controller: 'BlogPostController',
             controllerAs: 'vm'
           }
         }

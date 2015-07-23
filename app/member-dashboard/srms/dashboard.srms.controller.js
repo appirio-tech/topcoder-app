@@ -1,11 +1,11 @@
 (function () {
   'use strict';
 
-  angular.module('tc.myDashboard').controller('UpcomingSRMsController', UpcomingSRMsController);
+  angular.module('tc.myDashboard').controller('Dashboard.SRMController', SRMController);
 
-  UpcomingSRMsController.$inject = ['$scope', '$location', 'TcAuthService','SRMService', 'CONSTANTS'];
+  SRMController.$inject = ['$scope', '$location', 'TcAuthService','SRMService', 'CONSTANTS'];
 
-  function UpcomingSRMsController($scope, $location, TcAuthService, SRMService, CONSTANTS) {
+  function SRMController($scope, $location, TcAuthService, SRMService, CONSTANTS) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
     vm.loading = true;

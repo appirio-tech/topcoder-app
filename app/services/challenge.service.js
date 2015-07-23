@@ -11,8 +11,7 @@
     var api = ApiService.restangularV3;
 
     var service = {
-      getMyPastChallenges: getMyPastChallenges,
-      getMyActiveChallenges: getMyActiveChallenges,
+      getChallenges: getChallenges,
 
       getMyMarathonMatches: _getMyMarathonMatches,
       getReviewEndDate: getReviewEndDate,
@@ -20,30 +19,18 @@
     };
     return service;
 
-
-    function getMyActiveChallenges(params) {
+    function getChallenges(params) {
       var challengePromise = api.all('challenges').getList(params);
       // var marathonPromise = api.all('marathonMatches').getList(params);
       return $q.all([challengePromise])
         .then(function(responses) {
           // var data = responses[0].concat(responses[1]);
-          // TDOO - calculate metadata.totalCount
+          // TDOO - sort, calculate metadata.totalCount
           var data = responses[0];
           return data;
         });
     }
 
-   function getMyPastChallenges(params) {
-    var challengePromise = api.all('challenges').getList(params);
-    // var marathonPromise = api.all('marathonMatches').getList(params);
-    return $q.all([challengePromise])
-      .then(function(responses) {
-        // var data = responses[0].concat(responses[1]);
-        // TDOO - calculate metadata.totalCount
-        var data = responses[0];
-        return data;
-      });
-    }
 
 
     /** NOT USED NEEDS TO BE REFACTORED **/
