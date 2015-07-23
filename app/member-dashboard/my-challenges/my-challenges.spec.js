@@ -2,7 +2,6 @@
 describe('Challenges Controller', function() {
   var controller;
   var authService, challengeService;
-  var challenges = mockData.getMockChallenges();
   var marathons = mockData.getMockMarathons();
 
   beforeEach(function() {
