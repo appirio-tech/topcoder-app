@@ -71,9 +71,7 @@
       .then(
         function(res) {
           var appiriojwt = res.data.result.content.token;
-
           setV3Token(appiriojwt);
-
           return appiriojwt;
         },
         function(err) {
@@ -97,7 +95,6 @@
       return $http(req).then(
         function(resp) {
           $log.debug(resp);
-
         },
         function(err) {
           $log.error(err);

@@ -39,36 +39,15 @@
 
     function _getRestangularV2() {
       var baseUrl = CONSTANTS.API_URL_V2;
-      var token   = AuthTokenService.getV2Token();
-
       var _restangular = Restangular.withConfig(function(Configurer) {
         Configurer
           .setBaseUrl(baseUrl)
           .setDefaultHttpFields({
             cache: false
           })
-          .addFullRequestInterceptor(function(element, operation, what, url) {
-            return {
-              headers: {
-                'Authorization': 'Bearer ' + token,
-                'Accept': 'application/json'
-              }
-            };
-          })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-            var extractedData = null;
-            if (operation === 'getList') {
-              // FIXME
-              extractedData = data.result.content;
-              if (data.result.metadata) {
-                extractedData.metadata = {totalCount: data.result.metadata.totalCount};
-              } else {
-                extractedData.metadata = null;
-              }
-            } else {
-              extractedData = data;
-            }
-            return extractedData;
+            // Just return raw data
+            return data;
           })
           .setErrorInterceptor(function(response) {
             // TODO
@@ -87,36 +66,29 @@
 
     function _getRestangularV3() {
       var baseUrl = CONSTANTS.API_URL;
-      var token   = AuthTokenService.getV2Token();
-
       var _restangular = Restangular.withConfig(function(Configurer) {
         Configurer
           .setBaseUrl(baseUrl)
           .setDefaultHttpFields({
             cache: false
           })
-          .addFullRequestInterceptor(function(element, operation, what, url) {
-            return {
-              headers: {
-                'Authorization': 'Bearer ' + token,
-                'Accept': 'application/json'
-              }
-            };
-          })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-            var extractedData = null;
-            if (operation === 'getList') {
-              // FIXME
-              extractedData = data.result.content;
-              if (data.result.metadata) {
-                extractedData.metadata = {totalCount: data.result.metadata.totalCount};
+            if (data != null) {
+              var extractedData = null;
+              if (operation === 'getList') {
+                extractedData = data.result.content;
+                if (data.result.metadata) {
+                  extractedData.metadata = {totalCount: data.result.metadata.totalCount};
+                } else {
+                  extractedData.metadata = null;
+                }
               } else {
-                extractedData.metadata = null;
+                extractedData = data.result.content;
               }
+              return extractedData;
             } else {
-              extractedData = data;
+              return null; // data
             }
-            return extractedData;
           })
           .setErrorInterceptor(function(response) {
             // TODO

@@ -4,26 +4,30 @@
   angular.module('tc.profile').config([
     '$stateProvider',
     '$urlRouterProvider',
-    '$httpProvider',
     routes
   ]);
 
-  function routes($stateProvider, $urlRouterProvider, $httpProvider) {
+  function routes($stateProvider, $urlRouterProvider) {
     var name, state, states;
     states = {
       'baseProfile': {
         parent: 'root',
         abstract: true,
-        templateUrl: 'profile/profile.html',
+        templateUrl: 'profile/header/header.html',
         controller: 'ProfileCtrl as vm'
       },
       'profile': {
-        url: '/profile',
+        url: '/profile/',
         parent: 'baseProfile',
         //controller: 'dashboard as db',
         data: {
         },
         views: {
+          'about': {
+            templateUrl: 'profile/about/about.html',
+            controller: 'ProfileAboutController',
+            controllerAs: 'vm'
+          }
         }
       }
     };
