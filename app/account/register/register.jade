@@ -15,14 +15,7 @@
     //- .form-errors
     //-   p.login-error(ng-show="registerForm.firstname.$dirty && registerForm.firstname.$error.pattern") Names must not contain symbols or numbers.
 
-    .country-age
-      input(ng-model="vm.country", name="country", placeholder="Country", type="text", required)
-
-      .validation-bar(ng-class="{ 'error-bar': registerForm.age.$error.min }")
-        input(ng-model="vm.age", ng-model-options="{ updateOn: 'default blur' }", name="age", placeholder="Age", type="number", ng-min="18", required)
-
-    .form-errors
-      p.login-error(ng-show="registerForm.age.$error.min") You must be at least X years old to join Topcoder.
+    input(ng-model="vm.country", name="country", placeholder="Country", type="text", required)
 
     .validation-bar(ng-class="{ 'error-bar': (registerForm.username.$error.usernameIsFree || registerForm.username.$error.minlength || registerForm.username.$error.maxlength), 'success-bar': (registerForm.username.$valid && !registerForm.username.$error.usernameIsFree) }")
       input(ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)
