@@ -66,7 +66,7 @@
                 extractedData.metadata = null;
               }
             } else {
-              extractedData = data;
+              extractedData = data.result.content;
             }
             return extractedData;
           })
@@ -106,7 +106,6 @@
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
             var extractedData = null;
             if (operation === 'getList') {
-              // FIXME
               extractedData = data.result.content;
               if (data.result.metadata) {
                 extractedData.metadata = {totalCount: data.result.metadata.totalCount};
@@ -114,7 +113,7 @@
                 extractedData.metadata = null;
               }
             } else {
-              extractedData = data;
+              extractedData = data.result.content;
             }
             return extractedData;
           })

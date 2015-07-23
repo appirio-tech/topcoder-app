@@ -13,20 +13,21 @@
     vm.viewActiveChallenges = viewActiveChallenges;
     vm.viewPastChallenges = viewPastChallenges;
 
-
     var activate = function() {
       viewActiveChallenges();
     }
 
+    var userId = UserService.getUserIdentity().userId;
+
     // get ACTIVE challenges & marathon matches
-    var getChallenges = function(status) {
-      var userId = UserService.getUserIdentity().userId;
+    var getChallenges = function(status, orderBy) {
       vm.loading = true;
-      ChallengeService.getMyActiveChallenges({
+      ChallengeService.getChallenges({
         limit: 10,
         offset: 0,
-        orderBy: 'submissionEndDate asc', // TODO verify if this is the correct sort order clause,
-        filter: window.encodeURIComponent("userId="+userId+"&status="+status)
+        orderBy: orderBy, // TODO verify if this is the correct sort order clause,
+        "filter[userId]": userId,
+        "filter[status]": status
       }).then(function(data){
         vm.myChallenges = data;
         vm.loading = false;
@@ -38,12 +39,12 @@
 
     function viewActiveChallenges() {
       vm.myChallenges = [];
-      getChallenges('Active');
+      getChallenges('Active', 'submissionEndDate asc');
     };
 
     function viewPastChallenges() {
       vm.myChallenges = [];
-      getChallenges('Completed');
+      getChallenges('Completed', 'submissionEndDate asc');
     };
 
     activate();

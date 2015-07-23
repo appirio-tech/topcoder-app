@@ -1,18 +1,18 @@
 .member-profile
   .profile
     .profile-left
-        .profile-image
-          img(width='130px', src='{{vm.photoLink}}')
+        img.profile-circle(ng-src="{{vm.profile.photo.image}}", fallback-src="{{vm.defaultPhotoUrl}}")
+
         .profile-details
           //- div(rel='upload-photo', ng-show='vm.showUploadPhotoLink')
           //-   a(href='{{vm.uploadPhotoLink}}') Upload Photo
-          .handle(style='{{vm.ratingColor}}') {{vm.profile.handle}}
+          .handle {{vm.profile.handle}}
           .edit-profile
-            a(href="") (Edit Profile)
+            a(ng-href="{{vm.editProfileUrl}}") Edit Profile
     .profile-right
-      .money-in-bank(ng-show='vm.profile && vm.profile.overallEarning > 0')
-        div(rel='value', ng-bind='vm.profile.overallEarning || 0 | currency')
-        div(rel='label') Money in Bank
+      .money-in-bank
+        div(rel='value', ng-bind='vm.moneyEarned || 0 | currency')
+        div(rel='label') Money Earned
       .open-challenges
         div(rel='value', ng-bind='vm.myOpenChallengesCount || 0')
         div(rel='label') Open Challenges
@@ -23,7 +23,7 @@
         div(rel='value', ng-bind='vm.copilotChallengesCount || 0')
         div(rel='label') Co-pilot Challenges
   .rating-summary
-    .track-rating(ng-repeat='rs in vm.profile.ratingSummary')
-      div(rel='value', ng-bind='rs.rating')  
-      div(rel='label', ng-bind='rs.name')
+    .track-rating(ng-repeat="rs in vm.ratingSummary")
+      div(rel='value', ng-bind='{{rs.rating}}')  
+      div(rel='label') {{rs.phaseDesc}}
 .clear

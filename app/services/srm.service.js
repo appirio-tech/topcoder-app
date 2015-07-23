@@ -3,11 +3,20 @@
 
   angular.module('tc.services').factory('SRMService', SRMService);
 
-  SRMService.$inject = ['ApiService', '$filter'];
+  SRMService.$inject = ['ApiService', '$filter', '$q'];
 
-  function SRMService(ApiService, $filter) {
+  function SRMService(ApiService, $filter, $q) {
 
-    var service = ApiService.restangularV3;
+    var service = {
+      getSRMs: getSRMs
+    };
+    return service;
+
+    function getSRMs(params) {
+      var deferred = $q.defer();
+      deferred.resolve([]);
+      return deferred.promise;
+    }
 
     // Returns list of upcoming SRMs currently scheduled
     service.getSRMSchedule = function(request) {
