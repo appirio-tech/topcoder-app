@@ -15,7 +15,7 @@
         parent: 'root',
         abstract: true,
         templateUrl: 'member-dashboard/member-dashboard.html',
-        controller: 'DashboardController as db',
+        controller: 'MyDashboardController as db',
         data: {
           authRequired: true,
           title: 'Dashboard'

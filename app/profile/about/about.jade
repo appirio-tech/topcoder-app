@@ -1,0 +1,58 @@
+p.long-description {{vm.profile.longDescription}}
+
+.tags
+  .tag(ng-repeat="tag in vm.profile.tags")
+    | {{tag}}
+
+hr
+
+.stats
+  .stat
+    .value {{vm.profile.numProjects}}
+
+    .name Projects
+
+  .stat
+    .value
+      | {{vm.profile.numWins}}
+      | ({{vm.profile.numWins / vm.profile.numProjects | percentage}})
+
+    .name Wins
+
+.categories
+  .category(ng-repeat="category in vm.profile.categories")
+
+    .name {{category.name}}
+
+    .subcategory(ng-show="category.subcategory") {{category.subcategory}}
+
+    .icon
+
+    .ranking
+      .number {{category.rank | ordinal}}
+
+      .tag Ranking
+
+hr
+
+.skills
+  h1 Skills / Technologies
+  .list
+    .skill(ng-repeat="skill in vm.profile.skills")
+      img.icon(ng-src="images/{{skill.icon}}")
+
+      .name {{skill.name}}
+
+hr
+
+.links
+  h1 External Links
+  .list
+    .link(ng-repeat="link in vm.profile.links")
+      h2 {{link.name}}
+
+      ul.properties
+        li.property(ng-repeat="property in link.properties")
+          .key {{property.name}}
+
+          .value {{property.value}}
