@@ -57,7 +57,7 @@ $url_10: url(../images/sort-arrows.png);
           padding: 10px;
           .title {
             font-weight: bold;
-            @include ellipsis;
+            // @include ellipsis;
             margin-bottom: 10px;
           }
           .community {

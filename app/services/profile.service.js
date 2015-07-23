@@ -14,7 +14,7 @@
       getUserFinancials: getUserFinancials,
       // for dashboard
       getUserProfile: getUserProfile,
-      // for profile
+      // for profile - to be deprecated
       getMemberProfile: getMemberProfile
     };
     return service;
@@ -30,7 +30,10 @@
     }
 
     function getUserFinancials(userId) {
-      return restangular.one('members', userId).one('financial').get();
+      // TODO - Financial api endpoint needs to be updated to accept userId
+      // in the mean time...
+      // return restangular.one('members', userId).one('financial').get();
+      return restangular.all('members').one('financial').get();
     }
 
     function getMemberProfile(userId) {

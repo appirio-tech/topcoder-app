@@ -1,7 +1,7 @@
 @import '../partials/combined';
 
 .member-profile-header {
-  border-bottom: 1px solid $white-gray;
+  // border-bottom: 1px solid $white-gray;
   margin-bottom: 20px;
 }
 @media only screen and(min-width: 768px) {
@@ -116,7 +116,7 @@
           margin-top: 15px;
         }
       }
-      
+
     }
   }
   .rating-summary {

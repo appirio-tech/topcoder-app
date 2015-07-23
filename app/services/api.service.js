@@ -38,8 +38,8 @@
     }
 
     function _getRestangularV2() {
-      var baseUrl = CONSTANTS.API_URL_V2;
-      var token   = AuthTokenService.getV2Token();
+      var baseUrl = CONSTANTS.API_URL_V2,
+        token = AuthTokenService.getV2Token();
 
       var _restangular = Restangular.withConfig(function(Configurer) {
         Configurer
@@ -66,7 +66,7 @@
                 extractedData.metadata = null;
               }
             } else {
-              extractedData = data;
+              extractedData = data.result.content;
             }
             return extractedData;
           })
@@ -86,8 +86,8 @@
     }
 
     function _getRestangularV3() {
-      var baseUrl = CONSTANTS.API_URL;
-      var token   = AuthTokenService.getV2Token();
+      var baseUrl = CONSTANTS.API_URL,
+          token = AuthTokenService.getV2Token();
 
       var _restangular = Restangular.withConfig(function(Configurer) {
         Configurer
@@ -106,7 +106,6 @@
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
             var extractedData = null;
             if (operation === 'getList') {
-              // FIXME
               extractedData = data.result.content;
               if (data.result.metadata) {
                 extractedData.metadata = {totalCount: data.result.metadata.totalCount};
@@ -114,7 +113,7 @@
                 extractedData.metadata = null;
               }
             } else {
-              extractedData = data;
+              extractedData = data.result.content;
             }
             return extractedData;
           })
