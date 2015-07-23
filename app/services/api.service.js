@@ -56,8 +56,6 @@
             };
           })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-            console.log(url);
-            console.log(data);
             var extractedData = null;
             if (operation === 'getList') {
               // FIXME
@@ -68,7 +66,7 @@
                 extractedData.metadata = null;
               }
             } else {
-              extractedData = data;
+              extractedData = data.result.content;
             }
             return extractedData;
           })
@@ -108,7 +106,6 @@
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
             var extractedData = null;
             if (operation === 'getList') {
-              // FIXME
               extractedData = data.result.content;
               if (data.result.metadata) {
                 extractedData.metadata = {totalCount: data.result.metadata.totalCount};
@@ -116,7 +113,7 @@
                 extractedData.metadata = null;
               }
             } else {
-              extractedData = data;
+              extractedData = data.result.content;
             }
             return extractedData;
           })
@@ -127,7 +124,7 @@
               case 500: // SERVER ERROR
               case 503: // HTTP_503_SERVICE_UNAVAILABLE
               default:
-                $log.error("Restangular Error Interceptor" + JSON.stringify(response));
+                $log.error("Restangular Error Interceptor ", response);
                 return true; // error not handled
             }
           });

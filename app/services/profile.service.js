@@ -10,29 +10,30 @@
     var restangular = ApiService.restangularV3;
 
     var service = {
-      getUserProfile: getUserProfile,
       getUserStats: getUserStats,
       getUserFinancials: getUserFinancials,
-      // for profile
+      // for dashboard
+      getUserProfile: getUserProfile,
+      // for profile - to be deprecated
       getMemberProfile: getMemberProfile
     };
     return service;
 
     ///////////////
 
-    function getUserProfile() {
-      var userId = 10336829 || UserService.getUserId();
+    function getUserProfile(userId) {
       return restangular.one('members', userId).one('profile').get();
     }
 
-    function getUserStats() {
-      var userId = UserService.getUserId();
+    function getUserStats(userId) {
       return restangular.one('members', userId).one('stats').get();
     }
 
-    function getUserFinancials() {
-      var userId = UserService.getUserId();
-      return restangular.one('members', userId).one('financial').get();
+    function getUserFinancials(userId) {
+      // TODO - Financial api endpoint needs to be updated to accept userId
+      // in the mean time...
+      // return restangular.one('members', userId).one('financial').get();
+      return restangular.all('members').one('financial').get();
     }
 
     function getMemberProfile() {
@@ -136,8 +137,8 @@
               ]
             }
           ]
-        }
-      };
+        };
+      }
       return service.memberProfile;
     }
   }

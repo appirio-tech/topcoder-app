@@ -23,7 +23,7 @@
 
     jwtInterceptor = function(jwtHelper, AuthTokenService, TcAuthService, config) {
       var found = false;
-      for (var i=0;i<haveItAddItEndpoints.length;i++) {
+      for (var i=0; i < haveItAddItEndpoints.length; i++) {
         var obj = haveItAddItEndpoints[0];
         if ((config.method.toUpperCase() === "OPTIONS" || config.method.toUpperCase() === obj.method) && config.url.indexOf(obj.url) > -1) {
           // add token if we have it and if it hasn't expired

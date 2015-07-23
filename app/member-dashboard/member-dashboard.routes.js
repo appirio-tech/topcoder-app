@@ -22,7 +22,7 @@
         }
       },
       'dashboard': {
-        url: '/my-dashboard',
+        url: '/my-dashboard/',
         parent: 'baseDashboard',
         //controller: 'dashboard as db',
         data: {
@@ -34,11 +34,11 @@
             controller: 'Dashboard.MyChallengesController',
             controllerAs: 'vm'
           },
-          // 'srms-widget' :{
-          //   templateUrl : 'member-dashboard/upcoming-srms/upcoming-srms.html',
-          //   controller: 'UpcomingSRMsController',
-          //   controllerAs: 'vm'
-          // },
+          'srms-widget' :{
+            templateUrl : 'member-dashboard/srms/dashboard-srms.html',
+            controller: 'Dashboard.SRMController',
+            controllerAs: 'vm'
+          },
           'member-program-widget' : {
             templateUrl : 'member-dashboard/member-program/member-program.html',
             controller: 'MemberProgramController',
@@ -81,7 +81,5 @@
       state = states[name];
       $stateProvider.state(name, state);
     }
-    $urlRouterProvider.otherwise('/');
-    return $httpProvider.interceptors.push('HeaderInterceptor');
   }
 })();

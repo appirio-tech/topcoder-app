@@ -32,7 +32,8 @@
     "restangular": "~1.5.1",
     "fontawesome": "~4.3.0",
     "jstzdetect": "~1.0.6",
-    "angular-xml": "~2.1.1"
+    "angular-xml": "~2.1.1",
+    "angular-fallback-src": "~0.1.4"
   },
   "devDependencies": {
     "bardjs": "~0.1.4"

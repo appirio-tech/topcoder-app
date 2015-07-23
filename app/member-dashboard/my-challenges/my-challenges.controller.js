@@ -8,47 +8,26 @@
   function MyChallengesController(ChallengeService, UserService, $q, $log) {
     var vm = this;
     vm.loading = true;
-    // vm.newChallengesUrl = CONSTANTS.NEW_CHALLENGES_URL;
-    // vm.upcomingSrmsUrl = CONSTANTS.UPCOMING_SRMS_URL;
-    // vm.listType = 'active';
     vm.myChallenges = [];
-    // vm.visibleChallenges = [];
-    // vm.pageIndex = 1;
-    // vm.pageSize = 5;
-    // vm.sortColumn = 'submissionEndDate';
-    // vm.sortOrder = 'asc';
-    // vm.totalPages = 0;
-    // vm.totalRecords = vm.totalPages * vm.pageSize;
-    // vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
-    // vm.lastRecordIndex = vm.totalPages * vm.pageSize;
-    // vm.pageLinks = [];
-    // vm.prevPageLink = {};
-    // vm.nextPageLink = {};
-    // vm.changePage = changePage;
-    // vm.isCurrentPage = isCurrentPage;
-    // vm.getCurrentPageClass = getCurrentPageClass;
-    // vm.sort = sort;
-    vm.view = 'tiles';
-    // vm.changeView = changeView;
-    vm.renderWidget = false;
 
     vm.viewActiveChallenges = viewActiveChallenges;
     vm.viewPastChallenges = viewPastChallenges;
-
 
     var activate = function() {
       viewActiveChallenges();
     }
 
+    var userId = UserService.getUserIdentity().userId;
+
     // get ACTIVE challenges & marathon matches
-    var getChallenges = function(status) {
-      var userId = UserService.getUser().userId;
+    var getChallenges = function(status, orderBy) {
       vm.loading = true;
-      ChallengeService.getMyActiveChallenges({
+      ChallengeService.getChallenges({
         limit: 10,
         offset: 0,
-        orderBy: 'submissionEndDate asc', // TODO verify if this is the correct sort order clause,
-        filter: window.encodeURIComponent("userId="+userId+"&status="+status)
+        orderBy: orderBy, // TODO verify if this is the correct sort order clause,
+        "filter[userId]": userId,
+        "filter[status]": status
       }).then(function(data){
         vm.myChallenges = data;
         vm.loading = false;
@@ -60,17 +39,17 @@
 
     function viewActiveChallenges() {
       vm.myChallenges = [];
-      getChallenges('Active');
+      getChallenges('Active', 'submissionEndDate asc');
     };
 
     function viewPastChallenges() {
       vm.myChallenges = [];
-      getChallenges('Completed');
+      getChallenges('Completed', 'submissionEndDate asc');
     };
 
     activate();
 
-
+    ////////// TO BE DEPRECATED /////////
     // Fetches user's active challenges from the API
     function _getChallenges() {
       initPaging();

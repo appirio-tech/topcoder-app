@@ -1,0 +1,19 @@
+.upcoming-srms-div
+  .upcoming-srms-header
+    .center
+      strong SRMs
+    .right
+      .timeline-options
+        a(href="#", ng-click='vm.viewUpcomingSRMs()') Upcoming
+        span  | 
+        a(href="#", ng-click='vm.viewPastSRMs()') Past
+  .widget-body.no-challenge(ng-show="vm.srms.length == 0 && !vm.loading")
+    span(ng-show="vm.listType == 'past'") You have not participated in any challenges yet.
+    span(ng-show="vm.listType == 'active'") No active challenges.
+  .widget-body.tile-view
+    srm-tile(srm="srm", ng-repeat='srm in vm.upcomingSRMs')
+    .widget-loading(ng-show='vm.loading')
+  .useful-links
+    .topcoder-direct.link
+      a(href="https://arena.topcoder.com") Launch Topcoder Arena
+    

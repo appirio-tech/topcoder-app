@@ -11,7 +11,7 @@
     var states = {
       sample: {
         parent: 'root',
-        url: '/sample',
+        url: '/sample/',
         templateUrl: 'sample/sample.home.html',
         controller: 'SampleController',
         controllerAs: 'vm',
