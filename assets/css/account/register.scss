@@ -23,7 +23,7 @@
     }
   }
 
-  .first-last-names, .country-age {
+  .first-last-names {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -32,14 +32,6 @@
 
   input[name="firstname"], input[name="lastname"] {
     width: 131px;
-  }
-
-  input[name="country"] {
-    width: 215px;
-  }
-
-  input[name="age"] {
-    width: 45px;
   }
 
   .terms {
