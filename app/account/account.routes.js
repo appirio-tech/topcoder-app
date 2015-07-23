@@ -117,6 +117,7 @@
         url: '/reset-password/',
         data: {
           title: "Reset Password",
+          onAccountPage: true,
           authRequired: false
         },
         views: {
