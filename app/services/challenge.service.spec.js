@@ -5,10 +5,12 @@ describe('Challenge Service', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, '$httpBackend', '$q', 'ChallengeService');
+    bard.inject(this, '$httpBackend', 'ChallengeService');
   });
 
-  it('exists', function() {
+  // bard.verifyNoOutstandingHttpRequests();
+
+  it('should exist', function() {
     expect(ChallengeService).to.exist;
   });
 
@@ -17,7 +19,9 @@ describe('Challenge Service', function() {
       .when('GET', apiUrl + '/challenges/' + 123456)
       .respond(200, [{}]);
 
-    ChallengeService.getChallengeDetails(123456).then(function(data) {
+    ChallengeService.getChallengeDetails(123456)
+    .then(function(data) {
+      console.log('here');
       expect(data).to.exist;
     })
     $httpBackend.flush();
@@ -28,7 +32,8 @@ describe('Challenge Service', function() {
       .when('GET', apiUrl + '/challenges/' + 123456)
       .respond(500, {message: 'there was an error'});
 
-    ChallengeService.getChallengeDetails(123456).catch(function(error) {
+    ChallengeService.getChallengeDetails(123456)
+    .catch(function(error) {
       expect(error.data.message).to.match(/error/);
     })
     $httpBackend.flush();

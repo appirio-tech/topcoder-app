@@ -133,7 +133,7 @@
     }
 
     function getChallengeDetails(challengeId) {
-      var url = CONSTANTS.API_URL + '/challenges/' + challengeId;
+      var url = CONSTANTS.API_URL_V2 + '/challenges/' + challengeId;
       return ApiService.requestHandler('GET', url, {}, true);
     }
   };
