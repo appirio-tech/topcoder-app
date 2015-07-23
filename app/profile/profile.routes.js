@@ -17,7 +17,7 @@
         controller: 'ProfileCtrl as vm'
       },
       'profile': {
-        url: '/profile',
+        url: '/profile/',
         parent: 'baseProfile',
         //controller: 'dashboard as db',
         data: {
