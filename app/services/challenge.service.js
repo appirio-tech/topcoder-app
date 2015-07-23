@@ -12,11 +12,11 @@
 
     var service = {
       getChallenges: getChallenges,
+      getiOSChallenges: getiOSChallenges,
 
       getMyMarathonMatches: _getMyMarathonMatches,
       getReviewEndDate: getReviewEndDate,
-      getChallengeDetails: getChallengeDetails,
-      getChallenges: getChallenges
+      getChallengeDetails: getChallengeDetails
     };
     return service;
 
@@ -32,7 +32,69 @@
         });
     }
 
+    function getiOSChallenges() {
+      var peerParams = {
+        'filter[reviewType]': 'PEER',
+        'filter[status]': 'Active',
+        limit: 3
+      };
 
+      var iOSParams = {
+        'filter[reviewType]': 'COMMUNITY,INTERNAL',
+        'filter[status]': 'Active',
+        limit: 3
+      };
+
+      var peerChallenges = api.all('challenges').getList(peerParams);
+      var iOSChallenges  = api.all('challenges').getList(iOSParams);
+
+      return peerChallenges;
+      // return $q.all([peerChallenges, iOSChallenges]);
+
+      // return [
+      //   {
+      //     challengeName: 'Peer Review Load Test 0.4',
+      //     technologies: ['iOS'],
+      //     platforms: ['iOS'],
+      //     reviewType: 'PEER',
+      //     status: 'Active',
+      //     registrationEndDate: '2015-06-11T03:16:00.000-0400',
+      //     numRegistrants: 1058,
+      //     numSubmissions: 1034,
+      //     challengeType: 'Code',
+      //     challengeCommunity: 'develop',
+      //     challengeId: 30049290
+      //   },
+      //   {
+      //     challengeName: 'Real World iOS Challenge - 1',
+      //     technologies: ['Swift'],
+      //     platforms: [],
+      //     totalPrize: 200,
+      //     reviewType: 'INTERNAL',
+      //     status: 'Active',
+      //     registrationEndDate: '2015-06-27T11:01:00.000-0400',
+      //     numRegistrants: 5,
+      //     numSubmissions: 5,
+      //     challengeType: 'Design First2Finish',
+      //     challengeCommunity: 'develop',
+      //     challengeId: 30049240
+      //   },
+      //   {
+      //     challengeName: 'Lifelog iOS Mobile App using Swift UI Assembly 1 - realworldswift',
+      //     technologies: ['SWIFT', 'iOS'],
+      //     platforms: ['iOS'],
+      //     totalPrize: 1950,
+      //     reviewType: 'COMMUNITY',
+      //     status: 'Active',
+      //     registrationEndDate: '2015-03-25T11:49:18.335-0400',
+      //     numRegistrants: 28,
+      //     numSubmissions: 0,
+      //     challengeType: 'Assembly Competition',
+      //     challengeCommunity: 'develop',
+      //     challengeId: 30049013
+      //   }
+      // ];
+    }
 
     /** NOT USED NEEDS TO BE REFACTORED **/
 
@@ -138,51 +200,6 @@
       return ApiService.requestHandler('GET', url, {}, true);
     }
 
-    function getChallenges() {
-      return [
-        {
-          challengeName: 'Peer Review Load Test 0.4',
-          technologies: ['iOS'],
-          platforms: ['iOS'],
-          reviewType: 'PEER',
-          status: 'Active',
-          registrationEndDate: '2015-06-11T03:16:00.000-0400',
-          numRegistrants: 1058,
-          numSubmissions: 1034,
-          challengeType: 'Code',
-          challengeCommunity: 'develop',
-          challengeId: 30049290
-        },
-        {
-          challengeName: 'Real World iOS Challenge - 1',
-          technologies: ['Swift'],
-          platforms: [],
-          totalPrize: 200,
-          reviewType: 'INTERNAL',
-          status: 'Active',
-          registrationEndDate: '2015-06-27T11:01:00.000-0400',
-          numRegistrants: 5,
-          numSubmissions: 5,
-          challengeType: 'Design First2Finish',
-          challengeCommunity: 'develop',
-          challengeId: 30049240
-        },
-        {
-          challengeName: 'Lifelog iOS Mobile App using Swift UI Assembly 1 - realworldswift',
-          technologies: ['SWIFT', 'iOS'],
-          platforms: ['iOS'],
-          totalPrize: 1950,
-          reviewType: 'COMMUNITY',
-          status: 'Active',
-          registrationEndDate: '2015-03-25T11:49:18.335-0400',
-          numRegistrants: 28,
-          numSubmissions: 0,
-          challengeType: 'Assembly Competition',
-          challengeCommunity: 'develop',
-          challengeId: 30049013
-        }
-      ];
-    }
   };
 
 })();

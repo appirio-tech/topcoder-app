@@ -23,10 +23,23 @@
 
       MemberCertService.getMemberRegistration(userId, CONSTANTS.SWIFT_PROGRAM_ID)
       .then(function(res) {
-        if (res.result.content !== null) {
-          // Mock
-          vm.challenges = ChallengeService.getChallenges();
-          vm.registered = true;
+        console.log('registered or not: ', res.plain());
+        if (res !== undefined) {
+          ChallengeService.getiOSChallenges()
+          .then(function(challenges) {
+            // var peerChallenges = challenges[0];
+            // var iOSChallenges = challenges[1];
+            // console.log(peerChallenges);
+            // console.log('ios ', iOSChallenges);
+            // vm.challenges = [peerChallenges[0], iOSChallenges[0], iOSChallenges[1]];
+            vm.challenges = challenges;
+            console.log(vm.challenges);
+            vm.registered = true;
+          })
+          .catch(function(err) {
+            vm.registered = true;
+            $log.debug(err);
+          });
 
           // V2
           // ChallengeService.getChallenges({review: 'PEER'})

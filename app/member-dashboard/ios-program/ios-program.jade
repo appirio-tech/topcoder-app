@@ -26,7 +26,7 @@ section.ios
 
       i.fa.fa-apple.fa-3x
 
-      p.technologies Technologies: {{challenge.technologies | joinArray}}
+      p.technologies Technologies: {{challenge.technology}}
 
       p.prize(ng-class="{hidden: challenge.reviewType === 'PEER'}") {{challenge.totalPrize | currency:undefined:0}}
 
@@ -35,11 +35,9 @@ section.ios
 
       .stats
         i.fa.fa-user
-
         span {{challenge.numRegistrants}}
 
         i.fa.fa-files-o
-
         span {{challenge.numSubmissions}}
 
       a(ng-href="https://www.{{vm.domain}}/challenge-details/{{challenge.challengeId}}/?type=develop", title="Go to challenge") Register Now!
