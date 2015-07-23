@@ -39,7 +39,7 @@ hr
   h1 Skills / Technologies
   .list
     .skill(ng-repeat="skill in vm.profile.skills")
-      img.icon(src="images/{{skill.icon}}")
+      img.icon(ng-src="images/{{skill.icon}}")
 
       .name {{skill.name}}
 
