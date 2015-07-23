@@ -8,7 +8,7 @@
 
       h3.tracks {{vm.profile.tracks | displayTracks}}
 
-      h3.location {{[vm.profile.state, vm.profile.homeCountry] | displayLocation}}
+      h3.location {{[vm.profile.state, vm.profile.homeCountry] | joinArray}}
 
   .right
     h4 member for {{vm.memberFor}} years

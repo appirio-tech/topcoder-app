@@ -1,11 +1,45 @@
 hr
 
-a(href="http://ios.topcoder.com/")
-  .join-program
-    .logo
+section.ios
+  a(href="http://ios.topcoder.com/", ng-hide="vm.registered")
+    .join-program
+      .logo
+        i.fa.fa-apple.fa-3x
+
+        p Apple Certification
+
+      .call-to-action
+        p Start Apple Certification Today
+
+  .registered(ng-show="vm.registered")
+    .registered-badge
       i.fa.fa-apple.fa-3x
 
-      p Apple Certification
+      img(src="/images/member-program/svg/development-generic.svg", alt="Development Challenge Icon")
 
-    .call-to-action
-      p Start Apple Certification Today
+      p Badge 1 Achieved
+
+      a(href="http://ios.topcoder.com", title="topcoder iOS Member Program") View Challenges
+
+    .challenge(ng-repeat="challenge in vm.challenges")
+      p.title {{challenge.challengeName}}
+
+      i.fa.fa-apple.fa-3x
+
+      p.technologies Technologies: {{challenge.technologies | joinArray}}
+
+      p.prize(ng-class="{hidden: challenge.reviewType === 'PEER'}") {{challenge.totalPrize | currency:undefined:0}}
+
+      p.days-remaining {{challenge.registrationEndDate | timeDiff}}
+        span Registration Ends
+
+      .stats
+        i.fa.fa-user
+
+        span {{challenge.numRegistrants}}
+
+        i.fa.fa-files-o
+
+        span {{challenge.numSubmissions}}
+
+      a(ng-href="https://www.{{vm.domain}}/challenge-details/{{challenge.challengeId}}/?type=develop", title="Go to challenge") Register Now!
