@@ -15,6 +15,7 @@
   function ProfileHeaderController($scope, $location, UserService, ProfileService, ChallengeService, CONSTANTS) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
+    vm.STATIC_URL = CONSTANTS.STATIC_URL;
     // edit profile url
     vm.editProfileUrl = vm.communityBaseUrl + '/tc?module=MyHome';
     vm.defaultPhotoUrl = "/images/avatarPlaceholder.png";

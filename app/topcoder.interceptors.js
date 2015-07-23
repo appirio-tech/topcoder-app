@@ -23,14 +23,16 @@
 
     jwtInterceptor = function(jwtHelper, AuthTokenService, TcAuthService, config) {
       var found = false;
+      if (config.url.indexOf('.html') > -1)
+        return '';
       for (var i=0; i < haveItAddItEndpoints.length; i++) {
         var obj = haveItAddItEndpoints[0];
         if ((config.method.toUpperCase() === "OPTIONS" || config.method.toUpperCase() === obj.method) && config.url.indexOf(obj.url) > -1) {
           // add token if we have it and if it hasn't expired
           if (TcAuthService.isAuthenticated()) {
             // FIXME looks like the services still need v2 token
-            var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV2oken();
-            if (!jwtHelper.isTokenExpired(idToken)) {
+            var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV2Token();
+            if (!jwtHelper.isTokenExpired(token)) {
               return token;
             }
           }

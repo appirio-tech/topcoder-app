@@ -38,22 +38,12 @@
     }
 
     function _getRestangularV2() {
-      var baseUrl = CONSTANTS.API_URL_V2,
-        token = AuthTokenService.getV2Token();
-
+      var baseUrl = CONSTANTS.API_URL_V2;
       var _restangular = Restangular.withConfig(function(Configurer) {
         Configurer
           .setBaseUrl(baseUrl)
           .setDefaultHttpFields({
             cache: false
-          })
-          .addFullRequestInterceptor(function(element, operation, what, url) {
-            return {
-              headers: {
-                'Authorization': 'Bearer ' + token,
-                'Accept': 'application/json'
-              }
-            };
           })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
             // Just return raw data
@@ -75,22 +65,12 @@
     }
 
     function _getRestangularV3() {
-      var baseUrl = CONSTANTS.API_URL,
-          token = AuthTokenService.getV2Token();
-
+      var baseUrl = CONSTANTS.API_URL;
       var _restangular = Restangular.withConfig(function(Configurer) {
         Configurer
           .setBaseUrl(baseUrl)
           .setDefaultHttpFields({
             cache: false
-          })
-          .addFullRequestInterceptor(function(element, operation, what, url) {
-            return {
-              headers: {
-                'Authorization': 'Bearer ' + token,
-                'Accept': 'application/json'
-              }
-            };
           })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
             if (data != null) {
