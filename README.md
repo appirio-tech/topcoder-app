@@ -34,7 +34,7 @@ When you run `gulp serve`, it looks in .tmp for Jade files converted to HTML and
 This folder holds all of our Angular JavaScript and Jade files. Here you'll find the top level Angular app in topcoder.module.js. It has all of our submodules as dependencies (tc.peer-review, tc.account, etc.). Each submodule has its own folder, including its own Angular module declaration, e.g. 'peer-review/peer-review.module.js'. All files are named according to their Angular component, e.g. review-status.controller.js, peer-review.routes.js.
 
 #### app/services
-Services live in their own folder. As of right now they just exist inside the top level, 'topcoder' Angular app, but they will be moved into their own submodule tc.services, and become one of topcoder's dependencies.
+Services live in their own folder. All services are part of the tc.services module, which is a dependency of topcoder.module.js.
 
 #### assets
   - The assets folder contains CSS, fonts, images, and scripts.

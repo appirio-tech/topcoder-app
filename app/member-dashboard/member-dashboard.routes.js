@@ -31,14 +31,14 @@
         views: {
           'my-challenges-widget': {
             templateUrl: "member-dashboard/my-challenges/my-challenges.html",
-            controller: 'MyChallengesController',
+            controller: 'Dashboard.MyChallengesController',
             controllerAs: 'vm'
           },
-          'srms-widget' :{
-            templateUrl : 'member-dashboard/upcoming-srms/upcoming-srms.html',
-            controller: 'UpcomingSRMsController',
-            controllerAs: 'vm'
-          },
+          // 'srms-widget' :{
+          //   templateUrl : 'member-dashboard/upcoming-srms/upcoming-srms.html',
+          //   controller: 'UpcomingSRMsController',
+          //   controllerAs: 'vm'
+          // },
           'member-program-widget' : {
             templateUrl : 'member-dashboard/member-program/member-program.html',
             controller: 'MemberProgramController',
@@ -60,13 +60,18 @@
             controllerAs: 'vm'
           },
           'profile-header-widget' : {
-            templateUrl : 'member-dashboard/member-profile/welcome-back.html',
-            controller: 'WelcomeBackController',
+            templateUrl : 'member-dashboard/member-profile/profile-header.html',
+            controller: 'Dashboard.ProfileHeaderController',
             controllerAs: 'vm'
           },
           'marketing-message-widget' : {
             templateUrl : 'member-dashboard/marketing-message/marketing-message.html',
             controller: 'MarketingMessageController',
+            controllerAs: 'vm'
+          },
+          'ios-program': {
+            templateUrl: 'member-dashboard/ios-program/ios-program.html',
+            controller: 'iOSProgramController',
             controllerAs: 'vm'
           }
         }

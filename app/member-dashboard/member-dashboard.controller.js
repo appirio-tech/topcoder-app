@@ -13,6 +13,7 @@
     vm.addIdentityChangeListener = addIdentityChangeListener;
     vm.removeIdentityChangeListener = removeIdentityChangeListener;
     vm.activate = activate;
+    vm.loggedInUser = null;
 
     // activate controller
     if (TcAuthService.isAuthenticated() === true) {
@@ -22,29 +23,36 @@
     }
 
     function activate() {
-      ProfileService.getUserProfile().then(function(response) {
+      ProfileService.getUserProfile().then(function(profileRes) {
+        vm.loggedInUser = profileRes.result.content;
+        vm.profile = vm.loggedInUser;
+
         for (var name in vm.identityListeners) {
           var listener = vm.identityListeners[name];
           if (typeof listener == 'function') {
-            listener.call(vm, response.data);
+            listener.call(vm, profileRes.data);
           }
         };
+        
+        if (vm.profile.photo.photoUrl === '') {
+          return vm.profile.photoLink = '//community.topcoder.com/i/m/nophoto_login.gif';
+        } else {
+          return vm.profile.photoLink = '//community.topcoder.com' + vm.profile.photo.photoUrl;
+        }
+      });
+      ProfileService.getUserStats().then(function(response) {
+        var stats = response.result.content;
         var highestRating, i, len, rating, ref;
-        vm.profile = response.data;
+
         vm.handleColor = 'color: #000000';
         highestRating = 0;
-        ref = response.data.ratingSummary;
+        ref = stats.developStats.rankStats;
         for (i = 0, len = ref.length; i < len; i++) {
           rating = ref[i];
           if (rating.rating > highestRating) {
             highestRating = rating.rating;
-            vm.handleColor = rating.colorStyle;
+            vm.handleColor = rating.colorStyle ? rating.colorStyle : '';
           }
-        }
-        if (vm.profile.photoLink === '') {
-          return vm.profile.photoLink = '//community.topcoder.com/i/m/nophoto_login.gif';
-        } else {
-          return vm.profile.photoLink = '//community.topcoder.com' + vm.profile.photoLink;
         }
       });
     }

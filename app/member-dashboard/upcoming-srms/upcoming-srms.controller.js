@@ -3,9 +3,9 @@
 
   angular.module('tc.myDashboard').controller('UpcomingSRMsController', UpcomingSRMsController);
 
-  UpcomingSRMsController.$inject = ['$location', 'TcAuthService','SRMService', 'CONSTANTS'];
+  UpcomingSRMsController.$inject = ['$scope', '$location', 'TcAuthService','SRMService', 'CONSTANTS'];
 
-  function UpcomingSRMsController($location, TcAuthService, SRMService, CONSTANTS) {
+  function UpcomingSRMsController($scope, $location, TcAuthService, SRMService, CONSTANTS) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
     vm.loading = true;
@@ -24,6 +24,13 @@
     vm.isCurrentPage = isCurrentPage;
     vm.getCurrentPageClass = getCurrentPageClass;
     vm.sort = sort;
+    vm.view = 'tiles';
+    vm.listType = 'future';
+    vm.viewUpcomingSRMs = viewUpcomingSRMs;
+    vm.viewPastSRMs = viewPastSRMs;
+
+    // parent dashboard controller
+    var db = $scope.$parent.db;
 
     // activate controller
     if (TcAuthService.isAuthenticated() === true) {
@@ -39,8 +46,13 @@
         pageIndex: vm.pageIndex,
         pageSize: vm.pageSize,
         sortColumn: vm.sortColumn,
-        sortOrder: vm.sortOrder
+        sortOrder: vm.sortOrder,
+        listType: vm.listType
        };
+      if (vm.listType == 'past') {
+        console.log(db.loggedInUser);
+        searchRequest['userId'] = db.loggedInUser.uid;
+      }
       // start loading
       vm.loading = true;
       // Fetch the future srms scheduled
@@ -55,7 +67,10 @@
           }
           vm.upcomingSRMs = data;
           vm.loading = false;
-      });
+        }, function(error) {
+          // TODO show useful error information to user with actionable error reporting
+          vm.loading = false;
+        });
     }
 
     /**
@@ -101,6 +116,26 @@
     function initPaging() {
       vm.prevPageLink = {text: "Prev", val: vm.pageIndex - 1};
       vm.nextPageLink = {text: "Next", val: vm.pageIndex + 1};
+    }
+
+    /**
+     * Fetches past SRMs of the logged in member
+     *
+     */
+    function viewPastSRMs() {
+      vm.listType = 'past';
+      vm.srms = [];
+      getSRMs();
+    }
+
+    /**
+     * Fetches upcoming SRMs of the logged in member
+     *
+     */
+    function viewUpcomingSRMs() {
+      vm.listType = 'upcoming';
+      vm.srms = [];
+      getSRMs();
     }
   }
 

@@ -7,33 +7,61 @@
 
   function ChallengeService(CONSTANTS, ApiService, $q) {
 
-    var rApi2 = ApiService.restangularV2;
-    rApi2.activeChallengeDeferredList = [];
     var rApi = ApiService.restangularV3;
-    rApi.marathonMatchesDeferredList = [];
+    var api = ApiService.restangularV3;
 
     var service = {
+      getMyPastChallenges: getMyPastChallenges,
       getMyActiveChallenges: getMyActiveChallenges,
-      getMyMarathonMatches: getMyMarathonMatches,
+
+      getMyMarathonMatches: _getMyMarathonMatches,
       getReviewEndDate: getReviewEndDate,
       getChallengeDetails: getChallengeDetails
     };
     return service;
 
-    function getMyActiveChallenges(request) {
+
+    function getMyActiveChallenges(params) {
+      var challengePromise = api.all('challenges').getList(params);
+      // var marathonPromise = api.all('marathonMatches').getList(params);
+      return $q.all([challengePromise])
+        .then(function(responses) {
+          // var data = responses[0].concat(responses[1]);
+          // TDOO - calculate metadata.totalCount
+          var data = responses[0];
+          return data;
+        });
+    }
+
+   function getMyPastChallenges(params) {
+    var challengePromise = api.all('challenges').getList(params);
+    // var marathonPromise = api.all('marathonMatches').getList(params);
+    return $q.all([challengePromise])
+      .then(function(responses) {
+        // var data = responses[0].concat(responses[1]);
+        // TDOO - calculate metadata.totalCount
+        var data = responses[0];
+        return data;
+      });
+    }
+
+
+    /** NOT USED NEEDS TO BE REFACTORED **/
+
+    function _getMyActiveChallenges(request) {
       var deferred = $q.defer();
 
-      var prevRequest = rApi2.request;
+      var prevRequest = rApi.request;
 
       // If my active challenges has already been retrieved, simply return it
-      if(rApi2.myActiveChallenges && rApi2.myActiveChallenges != "waiting" && !uniqueRequest(prevRequest, request)) {
-        deferred.resolve(rApi2.myActiveChallenges);
+      if(rApi.myActiveChallenges && rApi.myActiveChallenges != "waiting" && !uniqueRequest(prevRequest, request)) {
+        deferred.resolve(rApi.myActiveChallenges);
       } else {
         // Otherwise, set state to waiting, so that only one call is done to the server
-        rApi2.myActiveChallenges = "waiting";
+        rApi.myActiveChallenges = "waiting";
 
         // Add promise to list to it can be resolved when call returns
-        rApi2.activeChallengeDeferredList.push(deferred);
+        rApi.activeChallengeDeferredList.push(deferred);
 
         // add default paging
         var pageIndex = request && request.pageIndex ? request.pageIndex : 1;
@@ -41,11 +69,21 @@
         var sortColumn  = request && request.sortColumn ? request.sortColumn : 'submissionEndDate';
         var sortOrder  = request && request.sortOrder ? request.sortOrder : 'asc';
         var listType  = request && request.listType ? request.listType : 'active';
+        var userId  = request && request.userId ? request.userId : null;
 
-        rApi2.request = request;
+        rApi.request = request;
+
+        var filter = [];
+        if (listType) {
+          filter.push("listType=" + listType);
+        }
+        if (userId) {
+          filter.push("userId=" + userId);
+        }
+        filter = filter.join("&");
 
         // Fetch list of active challenges for current user
-        rApi2.one("user").getList("challenges", {
+        rApi.all("challenges").getList({
             type: listType,
             pageIndex: pageIndex,
             pageSize: pageSize,
@@ -53,17 +91,19 @@
             sortOrder: sortOrder
           }).then(function(data) {
             // Sets the data, and returns it to all pending promises
-            rApi2.myActiveChallenges = data;
-            angular.forEach(rApi2.activeChallengeDeferredList, function(def) {
-              def.resolve(rApi2.myActiveChallenges);
+            rApi.myActiveChallenges = data;
+            angular.forEach(rApi.activeChallengeDeferredList, function(def) {
+              def.resolve(rApi.myActiveChallenges);
             });
-            rApi2.activeChallengeDeferredList = [];
+            rApi.activeChallengeDeferredList = [];
+            return rApi.myActiveChallenges;
           });
       }
 
       return deferred.promise;
     }
-    function getMyMarathonMatches(request) {
+
+    function _getMyMarathonMatches(request) {
       var deferred, listType, prevRequest, sortColumn, sortOrder;
       deferred = $q.defer();
       prevRequest = rApi.mmRequest;
@@ -86,11 +126,12 @@
             def.resolve(rApi.myMarathonMatches);
           });
           rApi.marathonMatchesDeferredList = [];
+          return rApi.myMarathonMatches;
         });
       }
       return deferred.promise;
     }
-    function uniqueRequest(prevRequest, currRequest) {
+    function _uniqueRequest(prevRequest, currRequest) {
       if (!prevRequest || !currRequest) return true;
       return prevRequest.pageIndex != currRequest.pageIndex ||
         prevRequest.pageSize != currRequest.pageSize ||
@@ -105,7 +146,7 @@
     }
 
     function getChallengeDetails(challengeId) {
-      var url = CONSTANTS.API_URL_V2 + '/challenges/' + challengeId;
+      var url = CONSTANTS.API_URL + '/challenges/' + challengeId;
       return ApiService.requestHandler('GET', url, {}, true);
     }
   };

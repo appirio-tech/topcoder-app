@@ -3,12 +3,16 @@
 
   angular.module('tc.services').factory('ProfileService', ProfileService);
 
-  ProfileService.$inject = ['CONSTANTS', 'ApiService', 'UserService'];
+  ProfileService.$inject = ['CONSTANTS', 'ApiService', 'UserService', '$q'];
 
-  function ProfileService(CONSTANTS, ApiService, UserService) {
+  function ProfileService(CONSTANTS, ApiService, UserService, $q) {
+
+    var restangular = ApiService.restangularV3;
+
     var service = {
-      // for dashboard
       getUserProfile: getUserProfile,
+      getUserStats: getUserStats,
+      getUserFinancials: getUserFinancials,
       // for profile
       getMemberProfile: getMemberProfile
     };
@@ -17,10 +21,18 @@
     ///////////////
 
     function getUserProfile() {
-      return UserService.getUsername()
-      .then(function(response) {
-        return ApiService.requestHandler('GET', CONSTANTS.API_URL_V2 + '/users/' + response.data.handle);
-      });
+      var userId = 10336829 || UserService.getUserId();
+      return restangular.one('members', userId).one('profile').get();
+    }
+
+    function getUserStats() {
+      var userId = UserService.getUserId();
+      return restangular.one('members', userId).one('stats').get();
+    }
+
+    function getUserFinancials() {
+      var userId = UserService.getUserId();
+      return restangular.one('members', userId).one('financial').get();
     }
 
     function getMemberProfile() {

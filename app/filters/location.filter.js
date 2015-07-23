@@ -5,7 +5,9 @@
 
   function DisplayLocation() {
     return function(components) {
-      return components.join(', ');
+      return components.filter(function(x) {
+        return x;
+      }).join(', ');
     };
   }
 
