@@ -19,7 +19,7 @@
       },
       'review.status': {
         parent: 'review',
-        url: '/challenge/:challengeId',
+        url: '/challenge/:challengeId/',
         data: {
           title: 'Peer Review'
         },
@@ -33,7 +33,7 @@
       },
       'review.readOnlyScorecard': {
         parent: 'review',
-        url: '/scorecard/:scorecardId',
+        url: '/scorecard/:scorecardId/',
         data: {
           title: 'Scorecard'
         },
@@ -47,7 +47,7 @@
       },
       'review.completed': {
         parent: 'review',
-        url: '/:challengeId/reviews/:reviewId/completed',
+        url: '/:challengeId/reviews/:reviewId/completed/',
         data: {
           title: 'Completed'
         },
@@ -61,7 +61,7 @@
       },
       'review.edit': {
         parent: 'review',
-        url: '/:challengeId/reviews/:reviewId/edit',
+        url: '/:challengeId/reviews/:reviewId/edit/',
         data: {
           title: 'Edit Review'
         },

@@ -1,0 +1,29 @@
+.member-profile
+  .profile
+    .profile-left
+        img.profile-circle(ng-src="{{vm.profile.photo.image}}", fallback-src="{{vm.defaultPhotoUrl}}")
+
+        .profile-details
+          //- div(rel='upload-photo', ng-show='vm.showUploadPhotoLink')
+          //-   a(href='{{vm.uploadPhotoLink}}') Upload Photo
+          .handle {{vm.profile.handle}}
+          .edit-profile
+            a(ng-href="{{vm.editProfileUrl}}") Edit Profile
+    .profile-right
+      .money-in-bank
+        div(rel='value', ng-bind='vm.moneyEarned || 0 | currency')
+        div(rel='label') Money Earned
+      .open-challenges
+        div(rel='value', ng-bind='vm.myOpenChallengesCount || 0')
+        div(rel='label') Open Challenges
+      .review-opportunities
+        div(rel='value', ng-bind='vm.reviewOpportunities || 0')
+        div(rel='label') Review Opportunities
+      .copilot-challenges
+        div(rel='value', ng-bind='vm.copilotChallengesCount || 0')
+        div(rel='label') Co-pilot Challenges
+  .rating-summary
+    .track-rating(ng-repeat="rs in vm.ratingSummary")
+      div(rel='value', ng-bind='{{rs.rating}}')  
+      div(rel='label') {{rs.phaseDesc}}
+.clear

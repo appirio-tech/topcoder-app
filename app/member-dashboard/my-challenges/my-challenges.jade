@@ -1,0 +1,24 @@
+.widget-content
+  .challenges-header
+    .center
+      strong My Challenges
+    .right
+      a(href="#") View All My Challenges
+      .timeline-options
+        a(href="#", ng-click='vm.viewActiveChallenges()') Active
+        span  | 
+        a(href="#", ng-click='vm.viewPastChallenges()') Past
+      
+  .widget-body.no-challenge(ng-show="vm.myChallenges.length == 0 && !vm.loading")
+    span(ng-show="vm.listType == 'past'") You have not participated in any challenges yet.
+    span(ng-show="vm.listType == 'active'") No active challenges.
+  .widget-body.tile-view
+    challenge-tile(challenge="challenge", ng-repeat='challenge in vm.myChallenges')
+    .widget-loading(ng-show='vm.loading')
+  .useful-links
+    .new-challenges.link
+      a(href="https://www.topcoder-dev.com/challenges/") Find New Challenges
+    .topcoder-direct.link
+      a(href="https://www.topcoder-dev.com/direct") Launch Topcoder Direct
+    .help-library.link(ng-show='vm.myChallenges.length == 0')
+      a(href="https://community.topcoder-dev.com/", target="_blank") View Help Library

@@ -1,65 +1,59 @@
 (function () {
   'use strict';
 
-  angular.module('tc.myDashboard').controller('MyChallengesController', MyChallengesController);
+  angular.module('tc.myDashboard').controller('Dashboard.MyChallengesController', MyChallengesController);
 
-  MyChallengesController.$inject = ['$scope', 'TcAuthService','ChallengeService', 'CONSTANTS', '$q'];
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log'];
 
-  function MyChallengesController($scope, TcAuthService, ChallengeService, CONSTANTS, $q) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log) {
     var vm = this;
     vm.loading = true;
-    vm.newChallengesUrl = CONSTANTS.NEW_CHALLENGES_URL;
-    vm.upcomingSrmsUrl = CONSTANTS.UPCOMING_SRMS_URL;
-    vm.listType = 'active';
     vm.myChallenges = [];
-    vm.visibleChallenges = [];
-    vm.pageIndex = 1;
-    vm.pageSize = 5;
-    vm.sortColumn = 'submissionEndDate';
-    vm.sortOrder = 'asc';
-    vm.totalPages = 1;
-    vm.totalRecords = vm.totalPages * vm.pageSize;
-    vm.firstRecordIndex = (vm.pageIndex - 1) * vm.pageSize + 1;
-    vm.lastRecordIndex = vm.totalPages * vm.pageSize;
-    vm.pageLinks = [];
-    vm.prevPageLink = {};
-    vm.nextPageLink = {};
-    vm.changePage = changePage;
-    vm.isCurrentPage = isCurrentPage;
-    vm.getCurrentPageClass = getCurrentPageClass;
-    vm.sort = sort;
-    vm.view = 'tiles';
-    vm.changeView = changeView;
-    vm.renderWidget = false;
+
     vm.viewActiveChallenges = viewActiveChallenges;
     vm.viewPastChallenges = viewPastChallenges;
 
-    // parent dashboard controller
-    var db = $scope.$parent.db;
+    var activate = function() {
+      viewActiveChallenges();
+    }
 
-    // getChallenges controller
-    if (TcAuthService.isAuthenticated() === true) {
-      getChallenges();
-    } else {
-      return false;
+    var userId = UserService.getUserIdentity().userId;
+
+    // get ACTIVE challenges & marathon matches
+    var getChallenges = function(status, orderBy) {
+      vm.loading = true;
+      ChallengeService.getChallenges({
+        limit: 10,
+        offset: 0,
+        orderBy: orderBy, // TODO verify if this is the correct sort order clause,
+        "filter[userId]": userId,
+        "filter[status]": status
+      }).then(function(data){
+        vm.myChallenges = data;
+        vm.loading = false;
+      }, function(resp) {
+        $log.error(resp);
+        // TODO - handle error
+      });
     }
 
     function viewActiveChallenges() {
-      vm.listType = 'active';
       vm.myChallenges = [];
-      getChallenges();
-    }
+      getChallenges('Active', 'submissionEndDate asc');
+    };
 
     function viewPastChallenges() {
-      vm.listType = 'past';
       vm.myChallenges = [];
-      getChallenges();
-    }
+      getChallenges('Completed', 'submissionEndDate asc');
+    };
 
+    activate();
+
+    ////////// TO BE DEPRECATED /////////
     // Fetches user's active challenges from the API
-    function getChallenges() {
+    function _getChallenges() {
       initPaging();
-      console.log(vm.listType);
+
       var chlngRequest = {
         listType: vm.listType,
         pageIndex: vm.pageIndex,
@@ -72,16 +66,20 @@
         sortColumn: vm.sortColumn,
         sortOrder: vm.sortOrder
       };
+      console.log(db.loggedInUser);
+      if(db.loggedInUser) {
+        chlngRequest['userId'] = mmRequest['userId'] = db.loggedInUser.uid;
+      }
       // show loading icon
       vm.loading = true;
       // Fetch challenges promise
       var chlngPromise = ChallengeService.getMyActiveChallenges(chlngRequest);
-      //var mmPromise = ChallengeService.getMyMarathonMatches(mmRequest);
+      // var mmPromise = ChallengeService.getMyMarathonMatches(mmRequest);
       $q.all([chlngPromise]) // add mmPromise to the array when end point works
         .then(function(responses) {
-          var chlngData = responses[0];
-          var mmData = responses[1];
-          processChallengesResponse(chlngData);
+          vm.myChallenges = responses[0];
+          // var mmData = responses[1];
+          // processChallengesResponse(chlngData);
           //processMarathonMatchesResponse(mmData);
           // stop loading icon
           vm.loading = false;
@@ -140,9 +138,11 @@
         vm.myChallenges = data;
       }
       angular.forEach(vm.myChallenges, function(challenge) {
+        // challenge = challenge.data;
         var now = moment();
         var registrationDate = moment(challenge.registrationEndDate);
         var submissionDate = moment(challenge.submissionEndDate);
+        challenge.currentPhaseRemainingTime = challenge.currentPhaseRemainingTime/(24*60*60);
         challenge.registrationClosed = now > registrationDate ? true : false;
         challenge.submissionClosed = now > submissionDate ? true : false;
         challenge.registrationTimeLeft = (registrationDate - now)/(24*60*60*1000);
@@ -152,11 +152,31 @@
         } else if (challenge.challengeCommunity == 'develop') {
           challenge.community = 'Development';
         }
+        challenge.phaseMsg = preparePhaseMessage(challenge);
+        // TODO create msg dynamically
+        challenge.memberStatusMsg = 'You are registered!';
       });
       // uncomment following line when API supports paging
       // vm.visibleChallenges = data;
       // remove following line when API supports paging
       vm.visibleChallenges = vm.myChallenges.slice(vm.firstRecordIndex - 1, vm.lastRecordIndex);
+    }
+
+    function preparePhaseMessage(challenge) {
+      if (challenge.status.toLowerCase() == 'completed') {
+        return "Challenge Complete";
+      }
+      if (challenge.currentPhaseName.toLowerCase() == 'stalled') {
+        return "Challenge Stalled";
+      }
+      if (challenge.currentPhaseName.toLowerCase() == 'cancelled') {
+        return "Challenge Cancelled";
+      }
+      if (challenge.currentPhaseRemainingTime < 0
+        && challenge.status.toLowerCase() == 'active') {
+        return challenge.currentPhaseName + " Phase Late";
+      }
+      return challenge.currentPhaseName + " Phase Ends";
     }
 
     /**
