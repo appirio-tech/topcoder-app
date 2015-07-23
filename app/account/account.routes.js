@@ -81,36 +81,6 @@
           }
         }
       },
-      'resetPasswordLink': {
-        url: '/initiate-reset-password/',
-        data: {
-          title: "Reset Password",
-          authRequired: false
-        },
-        views: {
-          'header@': {
-            templateUrl: 'layout/header/account-header.html'
-          },
-          'container@': {
-            templateUrl: 'account/reset-password/reset-password-link.html'
-          }
-        }
-      },
-      'resetPasswordLinkConfirmation': {
-        url: '/reset-password-sent/',
-        data: {
-          title: "Reset Password",
-          authRequired: false
-        },
-        views: {
-          'header@': {
-            templateUrl: 'layout/header/account-header.html'
-          },
-          'container@': {
-            templateUrl: 'account/reset-password/reset-password-link-sent.html',
-          }
-        }
-      },
       'resetPassword': {
         url: '/reset-password/',
         data: {
