@@ -30,10 +30,7 @@
     }
 
     function getUserFinancials(userId) {
-      // TODO - Financial api endpoint needs to be updated to accept userId
-      // in the mean time...
-      // return restangular.one('members', userId).one('financial').get();
-      return restangular.all('members').one('financial').get();
+      return restangular.one('members', userId).one('financial').get();
     }
 
     function getMemberProfile() {

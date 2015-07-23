@@ -13,7 +13,6 @@
     var service = {
       getChallenges: getChallenges,
       getiOSChallenges: getiOSChallenges,
-
       getMyMarathonMatches: _getMyMarathonMatches,
       getReviewEndDate: getReviewEndDate,
       getChallengeDetails: getChallengeDetails

@@ -1,12 +1,12 @@
 .member-profile
   .profile
     .profile-left
-        img.profile-circle(ng-src="{{vm.profile.photo.image}}", fallback-src="{{vm.defaultPhotoUrl}}")
+        img.profile-circle(fallback-src="{{vm.defaultPhotoUrl}}", ng-src="{{vm.profile}}")
 
         .profile-details
           //- div(rel='upload-photo', ng-show='vm.showUploadPhotoLink')
           //-   a(href='{{vm.uploadPhotoLink}}') Upload Photo
-          .handle {{vm.profile.handle}}
+          {{vm.profile.handle}}
           .edit-profile
             a(ng-href="{{vm.editProfileUrl}}") Edit Profile
     .profile-right
