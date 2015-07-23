@@ -12,6 +12,7 @@
     var service = {
       getUserStats: getUserStats,
       getUserFinancials: getUserFinancials,
+      getTracks: getTracks,
       // for dashboard
       getUserProfile: getUserProfile,
       // for profile - to be deprecated
@@ -27,7 +28,30 @@
     }
 
     function getUserStats(userId) {
+      userId = userId || UserService.getUserIdentity().userId;
       return restangular.one('members', userId).one('stats').get();
+    }
+
+    function getTracks(stats) {
+      var tracks = [
+        {
+          'name': 'Develop',
+          'challenges': stats.developStats.challenges,
+        },
+        {
+          'name': 'Design',
+          'challenges': stats.designStats.challenges,
+        },
+        {
+          'name': 'Data Science',
+          'challenges': stats.dataScienceStats.challenges,
+        }
+      ].filter(function(track) {
+        return track.challenges > 0;
+      }).map(function(track) {
+        return track.name;
+      });
+      return tracks;
     }
 
     function getUserFinancials(userId) {

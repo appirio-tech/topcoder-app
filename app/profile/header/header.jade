@@ -6,7 +6,7 @@
       h1 {{vm.profile.handle}} - 
         span.realName {{vm.profile.firstName}} {{vm.profile.lastName}}
 
-      h3.tracks {{vm.profile.tracks | displayTracks}}
+      h3.tracks {{vm.tracks | displayTracks}}
 
       h3.location {{[vm.profile.state, vm.profile.homeCountry] | displayLocation}}
 

@@ -1,3 +1,4 @@
+var glo;
 (function () {
 
   angular
@@ -7,11 +8,12 @@
   ProfileCtrl.$inject = ['$scope', 'ProfileService'];
 
   function ProfileCtrl($scope, ProfileService) {
-    var vm = this;
+    var vm = glo = this;
     var vms = [vm];
     vm.title = "Profile";
     vm.message = "Message"
     vm.profile = {};
+    vm.tracks = [];
     $scope.initProfile = initProfile;
 
     activate();
@@ -20,9 +22,12 @@
       vm.profile = ProfileService.getMemberProfile();
       vm.memberFor = moment().year() - moment(vm.profile.createdAt).year() + '';
       ProfileService.getUserProfile().then(function(profile) {
-        vms = vms.forEach(function(vm) {
-          vm.profile = profile.result.content;
-          console.log(vm.profile);
+        ProfileService.getUserStats().then(function(stats) {
+          vms = vms.forEach(function(vm) {
+            vm.profile = profile;
+            vm.stats = stats;
+          });
+          vm.tracks = ProfileService.getTracks(vm.stats);
         });
       });
     }
