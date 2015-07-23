@@ -3,7 +3,8 @@
 
   form(name="registerForm", role="form", ng-submit="registerForm.$valid && vm.register()", novalidate)
     
-    p.error-msg(ng-if="vm.errMsg") {{vm.errMsg}}
+    p.login-error(ng-show="vm.errMsg") {{vm.errMsg}}
+    br
 
     .first-last-names
       input(ng-model="vm.firstname", maxlength="64", name="firstname", placeholder="First Name", type="text", required)
@@ -56,7 +57,7 @@
       p.login-error(ng-show="registerForm.email.$dirty && registerForm.email.$invalid") Please enter a valid email address.
 
     .validation-bar(ng-class="{ 'success-bar': (registerForm.password.$valid) }")
-      input(ng-if="!vm.socialRegister", ng-model="vm.password", ng-focus="vm.passwordTips = true", ng-blur="vm.passwordTips = false", name="password", placeholder="Create Password", type="password", ng-minlength="8", ng-maxlength="64", has-letter, has-symbol, has-number, required)
+      input(ng-if="!vm.isSocialRegistration", ng-model="vm.password", ng-focus="vm.passwordTips = true", ng-blur="vm.passwordTips = false", name="password", placeholder="Create Password", type="password", ng-minlength="8", ng-maxlength="64", has-letter, has-symbol, has-number, required)
 
       .tips.password-tips(ng-show="vm.passwordTips")
         h3 Password Tips:

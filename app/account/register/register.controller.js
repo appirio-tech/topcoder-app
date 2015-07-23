@@ -25,67 +25,28 @@
     vm.socialUserId = null;
     vm.socialProfile = null;
     if (window.location.hash) {
-      auth0Register.getProfile(window.location.hash, function(err, profile, id_token, access_token, state) {
-        if (!err) {
-          // hide password field
-          vm.socialRegister = true;
-          vm.socialProfile = profile;
-
-          // pre-populate data
-          vm.socialProvider = profile.identities[0].connection;
-          var firstName = "" , lastName = "", handle = "", email = "", socialProviderId='';
-          if(vm.socialProvider === 'google-oauth2') {
-            firstName = profile.given_name;
-            lastName = profile.family_name;
-            handle = profile.nickname;
-            email = profile.email;
-            socialProviderId = 2;
-          } else if (vm.socialProvider === 'facebook') {
-            firstName = profile.given_name;
-            lastName = profile.family_name;
-            handle = firstName + '.' + lastName;
-            email = profile.email;
-            socialProviderId = 1;
-          } else if (vm.socialProvider === 'twitter') {
-            var splitName = profile.name.split(" ");
-            firstName = splitName[0];
-            if (splitName.length > 1) {
-              lastName = splitName[1];
-            }
-            handle = profile.screen_name;
-            socialProviderId = 3;
-          } else if (vm.socialProvider === 'github') {
-            var splitName = profile.name.split(" ");
-            firstName = splitName[0];
-            if (splitName.length > 1) {
-              lastName = splitName[1];
-            }
-            handle = profile.nickname;
-            email = profile.email;
-            socialProviderId = 4;
-          }
-          vm.socialUserId = profile.user_id.substring(profile.user_id.indexOf('|')+1);
-          // validate social profile
-          UserService.validateSocialProfile(vm.socialUserId, socialProviderId).then(
-            function (data) {
-              // success
-              vm.username = handle;
-              vm.firstname = firstName;
-              vm.lastname = lastName;
-              vm.email = email;
-
-            }, function (resp) {
-              $log.error('Socail handle exist');
-              // TODO - display message to user
-              vm.errMsg = "An account with that profile already exists. Please login to access your account.";
-              vm.socialRegister = false;
-            }
-          )
-        } else {
-          $log.error(err);
-          // reset form?
-          vm.socialRegister = false;
+      TcAuthService.socialRegisterCallbackHandler(auth0Register, window.location.hash)
+      .then(function(result) {
+        vm.socialUserId = result.data.socialUserId;
+        vm.username = result.data.username;
+        vm.firstname = result.data.firstname;
+        vm.lastname = result.data.lastname;
+        vm.email = result.data.email;
+        vm.isSocialRegistration = true;
+        vm.socialProfile = result.data.socialProfile;
+        vm.socialProvider = result.data.socialProvider;
+      })
+    .catch(function(result) {
+        switch (result.status) {
+          case "SOCIAL_PROFILE_ALREADY_EXISTS":
+            vm.errMsg = "An account with that profile already exists. Please login to access your account.";
+            break;
+          case "INVALID_HASH":
+          default:
+            vm.errMsg = "Whoops! Something went wrong. Please try again later.";
+            break;
         }
+        vm.isSocialRegistration = false;
       });
     }
 
@@ -103,7 +64,7 @@
         utmCampaign: ''
       };
 
-      if (!vm.socialRegister) {
+      if (!vm.isSocialRegistration) {
         userInfo.credential = { password: vm.password };
       } else {
         userInfo.profile = {

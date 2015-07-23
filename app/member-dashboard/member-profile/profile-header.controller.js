@@ -6,13 +6,13 @@
   ProfileHeaderController.$inject = [
     '$scope',
     '$location',
-    'TcAuthService',
+    'UserService',
     'ProfileService',
     'ChallengeService',
     'CONSTANTS'
   ];
 
-  function ProfileHeaderController($scope, $location, TcAuthService, ProfileService, ChallengeService, CONSTANTS) {
+  function ProfileHeaderController($scope, $location, UserService, ProfileService, ChallengeService, CONSTANTS) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
     // edit profile url
@@ -30,45 +30,35 @@
     var db = $scope.$parent.db;
 
     // activate controller
-    if (TcAuthService.isAuthenticated() === true) {
-      db.addIdentityChangeListener("welcomeback", function(identity) {
-        console.log(identity);
-        activate(identity);
-      });
-      if (db.user) {
-        // activate(db.user);
-      }
-    } else { // if user is not logged in, return (to avoid extra ajax calls)
-      return false;
-    }
 
-    function activate(user) {
 
-      ProfileService.getUserProfile().then(function(profileRes) {
+    function activate() {
+      var userId = UserService.getUserIdentity().userId;
+      ProfileService.getUserProfile(userId).then(function(profileRes) {
         vm.profile = profileRes.result.content;
 
         vm.showUploadPhotoLink = false;
-        // Parse user picture link to build photo url
-        if (vm.profile && vm.profile.photo.photoUrl) {
-          if (vm.profile.photo.photoUrl.indexOf('//') != -1){
-            vm.photoLink = vm.profile.photo.photoUrl;
-          } else {
-            vm.photoLink = CONSTANTS.PHOTO_LINK_LOCATION + vm.profile.photo.photoUrl;
-          }
-        } else {
-          vm.photoLink = CONSTANTS.PHOTO_LINK_LOCATION + '/i/m/nophoto_login.gif';
-          vm.uploadPhotoLink = $location.protocol() + ":" + vm.communityBaseUrl + '/tc?module=MyHome';
-          vm.showUploadPhotoLink = true;
-        }
+        // // Parse user picture link to build photo url
+        // if (vm.profile && vm.profile.photo.photoUrl) {
+        //   if (vm.profile.photo.photoUrl.indexOf('//') != -1){
+        //     vm.photoLink = vm.profile.photo.photoUrl;
+        //   } else {
+        //     vm.photoLink = CONSTANTS.PHOTO_LINK_LOCATION + vm.profile.photo.photoUrl;
+        //   }
+        // } else {
+        //   vm.photoLink = CONSTANTS.PHOTO_LINK_LOCATION + '/i/m/nophoto_login.gif';
+        //   vm.uploadPhotoLink = $location.protocol() + ":" + vm.communityBaseUrl + '/tc?module=MyHome';
+        //   vm.showUploadPhotoLink = true;
+        // }
 
-        if (vm.profile.photo.photoUrl === '') {
-          return vm.profile.photoLink = '//community.topcoder.com/i/m/nophoto_login.gif';
-        } else {
-          return vm.profile.photoLink = '//community.topcoder.com' + vm.profile.photo.photoUrl;
-        }
+        // if (vm.profile.photo.photoUrl === '') {
+        //   return vm.profile.photoLink = '//community.topcoder.com/i/m/nophoto_login.gif';
+        // } else {
+        //   return vm.profile.photoLink = '//community.topcoder.com' + vm.profile.photo.photoUrl;
+        // }
       });
 
-      ProfileService.getUserStats().then(function(response) {
+      ProfileService.getUserStats(userId).then(function(response) {
         var stats = response.result.content;
 
         var highestRating, i, len, rating, ref;
@@ -85,7 +75,7 @@
         }
       });
 
-      ProfileService.getUserFinancials().then(function(financials) {
+      ProfileService.getUserFinancials(userId).then(function(financials) {
         console.log(financials);
 
         // calculates the count of metrices to be shown in profile header

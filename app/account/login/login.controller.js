@@ -27,8 +27,10 @@
     if ($stateParams.userJWTToken) {
       // user logged in
       AuthTokenService.setV3Token($stateParams.userJWTToken);
+      UserService.setUserIdentity($stateParams.userJWTToken);
       redirect();
     }
+
     if ($stateParams.status) {
       // handle social login callback
       var status = parseInt($stateParams.status);
