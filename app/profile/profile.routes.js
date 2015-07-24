@@ -14,7 +14,7 @@
         parent: 'root',
         abstract: true,
         templateUrl: 'profile/header/header.html',
-        controller: 'ProfileCtrl as vm',
+        controller: 'ProfileCtrl as vm'
       },
       'profile': {
         url: '/profile/',
@@ -26,7 +26,7 @@
           'about': {
             templateUrl: 'profile/about/about.html',
             controller: 'ProfileAboutController',
-            controllerAs: 'vm',
+            controllerAs: 'vm'
           }
         }
       }
