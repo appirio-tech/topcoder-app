@@ -12,7 +12,8 @@
       'auth': {
         parent: 'root',
         data: {
-          onAccountPage: true
+          onAccountPage: true,
+          authRequired: false
         },
         onEnter: ['$state', '$stateParams', 'TcAuthService', function($state, $stateParams, TcAuthService) {
           if (TcAuthService.isAuthenticated()) {
@@ -30,8 +31,7 @@
         parent: 'auth',
         url: '/login/?next&code&state&status&userJWTToken',
         data: {
-          title: 'Login',
-          authRequired: false
+          title: 'Login'
         },
         views: {
           'header@': {
@@ -52,8 +52,7 @@
         parent: 'auth',
         url: '/register/?next',
         data: {
-          title: "Join",
-          authRequired: false
+          title: "Join"
         },
         views: {
           'header@': {
@@ -82,11 +81,10 @@
         }
       },
       'resetPassword': {
+        parent: 'auth',
         url: '/reset-password/?token&handle',
         data: {
-          title: "Reset Password",
-          onAccountPage: true,
-          authRequired: false
+          title: "Reset Password"
         },
         views: {
           'header@': {
