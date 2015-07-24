@@ -1,30 +1,30 @@
-p.long-description {{vm.profile.longDescription}}
+p.description {{vm.profile.description}}
 
 .tags
-  .tag(ng-repeat="tag in vm.profile.tags")
-    | {{tag}}
+  .tag(ng-repeat="track in vm.tracks")
+    | {{track}}
 
 hr
 
 .stats
   .stat
-    .value {{vm.profile.numProjects}}
+    .value {{vm.numProjects}}
 
     .name Projects
 
   .stat
     .value
-      | {{vm.profile.numWins}}
-      | ({{vm.profile.numWins / vm.profile.numProjects | percentage}})
+      | {{vm.numWins}}
+      | ({{vm.numWins / vm.numProjects | percentage}})
 
     .name Wins
 
 .categories
-  .category(ng-repeat="category in vm.profile.categories")
+  .category(ng-repeat="category in vm.categories")
 
-    .name {{category.name}}
+    .name {{category.type}}
 
-    .subcategory(ng-show="category.subcategory") {{category.subcategory}}
+    .subcategory(ng-show="category.subtype") {{category.subtype}}
 
     .icon
 
@@ -38,17 +38,17 @@ hr
 .skills
   h1 Skills / Technologies
   .list
-    .skill(ng-repeat="skill in vm.profile.skills")
-      img.icon(ng-src="images/{{skill.icon}}")
+    .skill(ng-repeat="skill in vm.skills")
+      img.icon(ng-src="images/javascript-logo.png")
 
-      .name {{skill.name}}
+      .name {{skill}}
 
 hr
 
 .links
   h1 External Links
   .list
-    .link(ng-repeat="link in vm.profile.links")
+    .link(ng-repeat="link in vm.mockProfile.links")
       h2 {{link.name}}
 
       ul.properties

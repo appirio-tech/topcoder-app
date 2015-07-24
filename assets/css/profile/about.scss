@@ -2,10 +2,11 @@
   margin-top: 30px;
   display: flex;
   flex-direction: column;
-  p.long-description {
+  p.description {
     line-height: 1.5;
     width: 50%;
     margin: auto;
+    text-align: center;
   }
   .tags {
     display: flex;

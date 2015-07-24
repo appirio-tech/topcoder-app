@@ -10,13 +10,18 @@
     var restangular = ApiService.restangularV3;
 
     var service = {
-      getUserStats: getUserStats,
-      getUserFinancials: getUserFinancials,
-      getTracks: getTracks,
-      // for dashboard
+      // primary, for global use
       getUserProfile: getUserProfile,
+      getUserSkills: getUserSkills,
+      getUserFinancials: getUserFinancials,
+      getUserStats: getUserStats,
+      // auxiliary function for profile
+      getNumProjects: getNumProjects,
+      getNumWins: getNumWins,
+      getRanks: getRanks,
+      getTracks: getTracks,
       // for profile - to be deprecated
-      getMemberProfile: getMemberProfile
+      getMockMemberProfile: getMockMemberProfile
     };
     return service;
 
@@ -27,9 +32,71 @@
       return restangular.one('members', userId).one('profile').get();
     }
 
+    function getUserSkills(userId) {
+      userId = userId || UserService.getUserIdentity().userId;
+      return restangular.one('members', userId).one('skills').get();
+    }
+
+    function getUserFinancials(userId) {
+      // TODO - Financial api endpoint needs to be updated to accept userId
+      // in the mean time...
+      // return restangular.one('members', userId).one('financial').get();
+      return restangular.all('members').one('financial').get();
+    }
+
     function getUserStats(userId) {
       userId = userId || UserService.getUserIdentity().userId;
       return restangular.one('members', userId).one('stats').get();
+    }
+
+    function getNumProjects(stats) {
+      return stats.developStats.challenges +
+             stats.designStats.challenges +
+             stats.dataScienceStats.challenges;
+    }
+
+    function getNumWins(stats) {
+      return stats.developStats.wins +
+             stats.designStats.wins +
+             stats.dataScienceStats.wins;
+    }
+
+    function getRanks(stats) {
+      var dev = stats.developStats.rankStats.map(function(x) {
+        return {
+          'type': 'Develop',
+          'subtype': x.phaseDesc,
+          'rank': x.overallRank
+        };
+      });
+      var des = stats.designStats.rankStats.map(function(x) {
+        return {
+          'type': 'Design',
+          'subtype': x.phaseDesc,
+          'rank': x.overallRank
+        };
+      });
+      var srm = stats.dataScienceStats.srmStats.srmRankStats.map(function(x) {
+        return {
+          'type': 'Data Science',
+          'subtype': 'SRM',
+          'rank': x.rank
+        };
+      });
+      var marathon = stats.dataScienceStats.marathonMatchStats.marathonRankStats.map(function(x) {
+        return {
+          'type': 'Data Science',
+          'subtype': 'Marathon',
+          'rank': x.rank
+        };
+      });
+      var ans = dev.concat(des)
+        .concat(srm)
+        .concat(marathon)
+        .filter(function(x) {
+        return x.rank > 0;
+      });
+      return ans;
     }
 
     function getTracks(stats) {
@@ -54,14 +121,7 @@
       return tracks;
     }
 
-    function getUserFinancials(userId) {
-      // TODO - Financial api endpoint needs to be updated to accept userId
-      // in the mean time...
-      // return restangular.one('members', userId).one('financial').get();
-      return restangular.all('members').one('financial').get();
-    }
-
-    function getMemberProfile() {
+    function getMockMemberProfile() {
       if (!service.memberProfile) {
         service.memberProfile = {
           "updatedAt": "2015-07-10T01:40Z",
