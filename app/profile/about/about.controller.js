@@ -4,16 +4,17 @@
     .module('tc.profile')
     .controller('ProfileAboutController', ProfileAboutController);
 
-  ProfileAboutController.$inject = ['ProfileService'];
+  ProfileAboutController.$inject = ['$scope', 'ProfileService'];
 
-  function ProfileAboutController(ProfileService) {
+  function ProfileAboutController($scope, ProfileService) {
     var vm = this;
     vm.profile = {};
 
     activate();
 
     function activate() {
-      vm.profile = ProfileService.getMemberProfile();
+      vm.mockProfile = ProfileService.getMockMemberProfile();
+      $scope.initProfile(vm);
     }
 
   }

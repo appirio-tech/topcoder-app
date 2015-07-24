@@ -3,12 +3,12 @@
 
   angular.module('tc.account').controller('ResetPasswordController', ResetPasswordController);
 
-  ResetPasswordController.$inject = ['$state', '$location', 'UserService'];
+  ResetPasswordController.$inject = ['$state', '$stateParams', 'UserService', 'TcAuthService'];
 
-  function ResetPasswordController($state, $location, UserService) {
+  function ResetPasswordController($state, $stateParams, UserService, TcAuthService) {
     var vm = this;
-    vm.token = $location.search().token;
-    vm.handle = $location.search().handle;
+    vm.token = $stateParams.token;
+    vm.handle = $stateParams.handle;
 
     vm.clearState = function() {
       vm.resetTokenSent = false;

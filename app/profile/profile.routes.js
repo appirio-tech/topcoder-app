@@ -7,7 +7,7 @@
     routes
   ]);
 
-  function routes($stateProvider, $urlRouterProvider) {
+  function routes($stateProvider, $stateParams, $urlRouterProvider) {
     var name, state, states;
     states = {
       'baseProfile': {
