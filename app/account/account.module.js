@@ -4,7 +4,8 @@
   var dependencies = [
     'validateLogin',
     'validateRegister',
-    'ui.router'
+    'ui.router',
+    'tc.services',
   ];
 
   angular.module('tc.account', dependencies);

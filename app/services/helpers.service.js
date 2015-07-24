@@ -15,11 +15,17 @@
       compileReviewItems: compileReviewItems,
       countCompleted: countCompleted,
       getParameterByName: getParameterByName,
-      getPageTitle: getPageTitle
+      getPageTitle: getPageTitle,
+      isEmail: isEmail
     };
     return service;
 
     /////////////////////
+
+    function isEmail(value) {
+      var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+      return re.test(value);
+    }
 
     function storeById(object, questions) {
       angular.forEach(questions, function(question) {

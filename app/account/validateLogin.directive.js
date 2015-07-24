@@ -2,29 +2,43 @@
   'use strict';
 
   angular.module('validateLogin', [])
-  .directive('usernameExists', usernameExists);
+  .directive('usernameOrEmailExists', usernameOrEmailExists);
 
-  usernameExists.$inject = ['UserService', '$log', '$q'];
+  usernameOrEmailExists.$inject = ['UserService', 'Helpers', '$log', '$q'];
 
-  function usernameExists(UserService, $log, $q) {
+
+  function usernameOrEmailExists(UserService, Helpers, $log, $q) {
     return {
       require: 'ngModel',
       link: function(scope, element, attrs, ctrl) {
-        ctrl.$asyncValidators.usernameExists = function(modelValue, viewValue) {
+        ctrl.$asyncValidators.usernameOrEmailExists = function(modelValue, viewValue) {
           $log.info('Validating username or email: ' + modelValue);
-
           // Check if the username exists
           var defer = $q.defer();
-          UserService.validateUserHandle(modelValue).then(
+          if (Helpers.isEmail(modelValue)) {
+            // ensure email exists
+            UserService.validateUserEmail(modelValue).then(
             function(resp) {
-              // doesn't exists
+              // email doesn't exist
               return defer.reject();
             },
             function(resp) {
-              // user exists --yipeee
+              // email exists
               return defer.resolve();
-            }
-          );
+            });
+          } else {
+            // make sure username exists
+            UserService.validateUserHandle(modelValue).then(
+              function(resp) {
+                // doesn't exists
+                return defer.reject();
+              },
+              function(resp) {
+                // user exists --yipeee
+                return defer.resolve();
+              }
+            );
+          }
           return defer.promise;
         };
       }
