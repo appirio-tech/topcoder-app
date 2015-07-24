@@ -5,9 +5,9 @@
 
   function DisplayTracks() {
     var map = {
-      'design'       : 'Designer',
-      'develop'      : 'Developer',
-      'data science' : 'Data Scientist'
+      'Design'       : 'Designer',
+      'Develop'      : 'Developer',
+      'Data Science' : 'Data Scientist'
     };
     return function(tracks) {
       return tracks.map(function(track) {
