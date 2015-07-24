@@ -41,7 +41,14 @@
       if (vm.resetPasswordForm.$valid) {
         UserService.resetPassword(vm.handle, vm.password, vm.token).then(
           function() {
-            $state.go('login');
+            TcAuthService.login(vm.handle, vm.password).then(
+              function() { 
+                $state.go('dashboard');
+              },
+              function(err) {
+                vm.loginFailed = true;
+              }
+            );
           },
           function(err) {
             vm.resetFailed = true;
