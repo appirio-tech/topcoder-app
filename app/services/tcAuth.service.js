@@ -3,14 +3,14 @@
 
   angular.module('tc.services').factory('TcAuthService', TcAuthService);
 
-  TcAuthService.$inject = ['CONSTANTS', 'AuthTokenService', '$rootScope', '$q', '$log', '$timeout', 'UserService'];
+  TcAuthService.$inject = ['CONSTANTS', 'AuthTokenService', '$rootScope', '$q', '$log', '$timeout', 'UserService', 'Helpers'];
 
-  function TcAuthService(CONSTANTS, AuthTokenService, $rootScope, $q, $log, $timeout, UserService) {
+  function TcAuthService(CONSTANTS, AuthTokenService, $rootScope, $q, $log, $timeout, UserService, Helpers) {
     var auth0 = new Auth0({
       domain: CONSTANTS.auth0Domain,
       clientID: CONSTANTS.clientId,
       // callbackOnLocationHash: true,
-      callbackURL: CONSTANTS.auth0Callback
+      // callbackURL: CONSTANTS.auth0Callback
       // callbackURL: 'http://local.topcoder-dev.com:3000/login'
     });
 
@@ -24,14 +24,20 @@
     };
     return service;
 
+
     ///////////////
 
-    function login(username, password) {
+    function _isEmail(usernameOrEmail) {
+      var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+      return re.test(usernameOrEmail);
+    }
+
+    function login(usernameOrEmail, password) {
       var options = {
-        connection: 'LDAP',
+        connection: Helpers.isEmail(usernameOrEmail) ? 'TC-User-Database' : 'LDAP',
         scope: 'openid profile offline_access',
         device: "webapp",
-        username: username,
+        username: usernameOrEmail,
         password: password
       };
 

@@ -81,42 +81,11 @@
           }
         }
       },
-      'resetPasswordLink': {
-        url: '/initiate-reset-password/',
-        data: {
-          title: "Reset Password",
-          authRequired: false
-        },
-        views: {
-          'header@': {
-            templateUrl: 'layout/header/account-header.html'
-          },
-          'container@': {
-            templateUrl: 'account/reset-password/reset-password-link.html',
-            controller: 'ResetPasswordController',
-            controllerAs: 'vm'
-          }
-        }
-      },
-      'resetPasswordLinkConfirmation': {
-        url: '/reset-password-sent/',
-        data: {
-          title: "Reset Password",
-          authRequired: false
-        },
-        views: {
-          'header@': {
-            templateUrl: 'layout/header/account-header.html'
-          },
-          'container@': {
-            templateUrl: 'account/reset-password/reset-password-link-sent.html',
-          }
-        }
-      },
       'resetPassword': {
         url: '/reset-password/',
         data: {
           title: "Reset Password",
+          onAccountPage: true,
           authRequired: false
         },
         views: {
@@ -125,6 +94,8 @@
           },
           'container@': {
             templateUrl: 'account/reset-password/reset-password.html',
+            controller: 'ResetPasswordController',
+            controllerAs: 'vm'
           }
         }
       },

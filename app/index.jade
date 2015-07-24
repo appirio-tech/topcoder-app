@@ -1,14 +1,18 @@
 doctype html
 html
-  head
+  head(profile="http://www.w3.org/2005/10/profile")
     base(href="/")
 
     meta(http-equiv="X-UA-Compatible", content="IE=edge, chrome=1")
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
 
+    // favicon
+    link(rel="shortcut icon", type="image/png", href="/images/favicon.ico")
+      
     // build:css styles/vendor.css
     //- bower:css
     link(rel='stylesheet', href='../bower_components/fontawesome/css/font-awesome.css')
+    link(rel='stylesheet', href='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.css')
     //- endbower
     // endbuild
 
@@ -34,6 +38,7 @@ html
     link(rel="stylesheet", href="assets/css/member-dashboard/blog-post.css")
     link(rel="stylesheet", href="assets/css/layout/header.css")
     link(rel="stylesheet", href="assets/css/layout/footer.css")
+    link(rel="stylesheet", href="assets/css/account/reset-password.css")
     link(rel="stylesheet", href="assets/css/account/register.css")
     link(rel="stylesheet", href="assets/css/account/login.css")
     link(rel="stylesheet", href="assets/css/account/account.css")
@@ -44,6 +49,8 @@ html
 
     //- include ./layout/header/header.jade
     #header(ui-view="header")
+
+    notifications-bar(class="notifications")
 
     //- include ./layout/header/sidebar.jade
     div(ui-view="sidebar")
@@ -65,9 +72,11 @@ html
     script(src='../bower_components/lodash/lodash.js')
     script(src='../bower_components/restangular/dist/restangular.js')
     script(src='../bower_components/jstzdetect/jstz.min.js')
+    script(src='../bower_components/angular-sanitize/angular-sanitize.js')
+    script(src='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.js')
     script(src='../bower_components/x2js/xml2json.min.js')
     script(src='../bower_components/angular-xml/angular-xml.js')
-    script(src='../bower_components/angular-fallback-src/fallback-src.js')
+    script(src='../bower_components/angular-img-fallback/angular.dcb-img-fallback.js')
     //- endbower
     //- inject:nonBowerScripts
     script(src="/scripts/auth0.js")
@@ -94,8 +103,8 @@ html
     script(src="directives/srm-tile/srm-tile.directive.js")
     script(src="topcoder.module.js")
     script(src="filters/deadline-msg.filter.js")
+    script(src="filters/join-array.filter.js")
     script(src="filters/local-time.filter.js")
-    script(src="filters/location.filter.js")
     script(src="filters/ordinal.filter.js")
     script(src="filters/percentage.filter.js")
     script(src="filters/time-diff.filter.js")
@@ -104,16 +113,12 @@ html
     script(src="layout/header/header.controller.js")
     script(src="member-dashboard/member-dashboard.module.js")
     script(src="member-dashboard/blog-post/blog-post.controller.js")
-    script(src="member-dashboard/helpful-links/helpful-links.controller.js")
     script(src="member-dashboard/ios-program/ios-program.controller.js")
-    script(src="member-dashboard/marketing-message/marketing-message.controller.js")
     script(src="member-dashboard/member-dashboard.controller.js")
     script(src="member-dashboard/member-dashboard.routes.js")
     script(src="member-dashboard/member-profile/profile-header.controller.js")
-    script(src="member-dashboard/member-program/member-program.controller.js")
     script(src="member-dashboard/my-challenges/my-challenges.controller.js")
     script(src="member-dashboard/srms/dashboard.srms.controller.js")
-    script(src="member-dashboard/subscribe-updates/subscribe-updates.controller.js")
     script(src="peer-review/peer-review.module.js")
     script(src="peer-review/completed-review/completed-review.controller.js")
     script(src="peer-review/edit-review/edit-review.controller.js")
@@ -136,6 +141,7 @@ html
     script(src="services/challenge.service.js")
     script(src="services/helpers.service.js")
     script(src="services/memberCert.service.js")
+    script(src="services/notification.service.js")
     script(src="services/profile.service.js")
     script(src="services/review.service.js")
     script(src="services/scorecard.service.js")

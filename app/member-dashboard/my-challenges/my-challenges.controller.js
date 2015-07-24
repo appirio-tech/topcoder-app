@@ -26,8 +26,7 @@
         limit: 10,
         offset: 0,
         orderBy: orderBy, // TODO verify if this is the correct sort order clause,
-        "filter[userId]": userId,
-        "filter[status]": status
+        filter: "userId="+userId+"&status="+status
       }).then(function(data){
         vm.myChallenges = data;
         vm.loading = false;
@@ -49,7 +48,7 @@
 
     activate();
 
-    ////////// TO BE DEPRECATED /////////
+    ////////////// DEPRECATE ///////////////
     // Fetches user's active challenges from the API
     function _getChallenges() {
       initPaging();
