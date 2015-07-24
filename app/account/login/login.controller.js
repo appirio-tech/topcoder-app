@@ -3,9 +3,9 @@
 
   angular.module('tc.account').controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$log', '$state', '$stateParams', 'TcAuthService', 'AuthTokenService', 'UserService'];
+  LoginController.$inject = ['$log', '$state', '$stateParams', 'TcAuthService', 'AuthTokenService', 'UserService', 'Helpers'];
 
-  function LoginController($log, $state, $stateParams, TcAuthService, AuthTokenService, UserService) {
+  function LoginController($log, $state, $stateParams, TcAuthService, AuthTokenService, UserService, Helpers) {
     var vm = this;
     vm.passwordReset = false;
     vm.usernameExists = true;
@@ -52,30 +52,46 @@
       );
     }
 
-    vm.login = function() {
-      UserService.validateUserHandle(vm.username)
-      .then(function() {
-        // User does not exist
-        vm.usernameExists = false;
-      })
-      .catch(function() {
-        // User exists
-        vm.usernameExists = true;
-        TcAuthService.login(vm.username, vm.password).then(
-          function(data) {
-            // success
-            $log.debug('logged in');
-            redirect();
-          },
-          function(err) {
-            // handle error
-            vm.wrongPassword = true;
-            vm.password = '';
-          }
-        );
+    function _doLogin(usernameOrEmail, password) {
+     TcAuthService.login(usernameOrEmail, password).then(
+      function(data) {
+        // success
+        $log.debug('logged in');
+        redirect();
+      },
+      function(err) {
+        // handle error
+        vm.wrongPassword = true;
+        vm.password = '';
       });
+    }
 
-
+    vm.login = function() {
+      if (Helpers.isEmail(vm.username)) {
+        // ensure email exists
+        UserService.validateUserEmail(vm.username).then(
+        function(resp) {
+          // email doesn't exist
+          vm.usernameExists = false;
+        },
+        function(resp) {
+          // email exists
+          vm.usernameExists = true;
+          _doLogin(vm.username, vm.password);
+        });
+      } else {
+        // username - make sure it exists
+        UserService.validateUserHandle(vm.username)
+        .then(function() {
+          // User does not exist
+          vm.usernameExists = false;
+        })
+        .catch(function() {
+          // User exists
+          vm.usernameExists = true;
+          _doLogin(vm.username, vm.password);
+        });
+      }
     };
 
     vm.socialLogin = function(backend) {
