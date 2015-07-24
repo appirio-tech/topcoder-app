@@ -11,6 +11,7 @@
     var states = {
       'auth': {
         parent: 'root',
+        abstract: true,
         data: {
           onAccountPage: true
         },

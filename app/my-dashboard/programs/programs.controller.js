@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  angular.module('tc.myDashboard').controller('iOSProgramController', iOSProgramController);
+  angular.module('tc.myDashboard').controller('ProgramsController', ProgramsController);
 
-  iOSProgramController.$inject = [
+  ProgramsController.$inject = [
     'UserService',
     'MemberCertService',
     'CONSTANTS',
@@ -11,7 +11,7 @@
     'ChallengeService'
   ];
 
-  function iOSProgramController (UserService, MemberCertService, CONSTANTS, $log, ChallengeService) {
+  function ProgramsController (UserService, MemberCertService, CONSTANTS, $log, ChallengeService) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.registered = false;

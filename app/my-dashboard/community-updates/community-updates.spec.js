@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('Blog Post Controller', function() {
+describe('CommunityUpdatesController', function() {
   var controller;
   var blogs = mockData.getMockBlogs();
 
@@ -18,7 +18,7 @@ describe('Blog Post Controller', function() {
 
   describe('before activation', function() {
     beforeEach(function() {
-      controller = $controller('BlogPostController');
+      controller = $controller('CommunityUpdatesController');
     });
 
     it('should be created successfully', function() {
@@ -32,11 +32,11 @@ describe('Blog Post Controller', function() {
 
   describe('after activation', function() {
     beforeEach(function() {
-      controller = $controller('BlogPostController');
+      controller = $controller('CommunityUpdatesController');
       $rootScope.$apply();
     });
 
-    it('should be created successfully', function() {
+    it('should exist', function() {
       expect(controller).to.exist;
     });
 

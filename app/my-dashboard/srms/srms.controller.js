@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('tc.myDashboard').controller('Dashboard.SRMController', SRMController);
+  angular.module('tc.myDashboard').controller('SRMController', SRMController);
 
   SRMController.$inject = ['UserService','SRMService', 'CONSTANTS'];
 

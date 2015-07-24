@@ -1,12 +1,12 @@
 (function () {
   'use strict';
 
-  angular.module('tc.myDashboard').controller('BlogPostController', BlogPostController);
+  angular.module('tc.myDashboard').controller('CommunityUpdatesController', CommunityUpdatesController);
 
-  BlogPostController.$inject = ['BlogService', '$log'];
+  CommunityUpdatesController.$inject = ['BlogService', '$log'];
 
-  // Accesss and parses the blog RSS feed
-  function BlogPostController(BlogService, $log) {
+  // Access and parses the blog RSS feed
+  function CommunityUpdatesController(BlogService, $log) {
     var vm = this;
 
     activate();
