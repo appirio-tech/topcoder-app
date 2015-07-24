@@ -51,12 +51,12 @@
     }
 
     function generateResetToken(email) {
-      return api.restangularV3.all('users').withHttpConfig(_config).customGET('resetToken', {email: email});
+      return ApiService.restangularV3.all('users').withHttpConfig(_config).customGET('resetToken', {email: email});
     }
 
     function resetPassword(handle, newPassword, resetToken) {
       var data = {
-        params: {
+        param: {
           handle: handle,
           credential: {
             password: newPassword,
@@ -64,12 +64,7 @@
           }
         }
       };
-      return $http({
-        url: CONSTANTS.API_URL + '/users/resetPassword',
-        method: 'put',
-        skipAuthorization: true,
-        data: data
-      });
+      return ApiService.restangularV3.all('users').withHttpConfig(_config).one('resetPassword').customPUT(JSON.stringify(data));
     }
 
     function getUser() {
