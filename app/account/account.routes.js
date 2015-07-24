@@ -82,7 +82,7 @@
         }
       },
       'resetPassword': {
-        url: '/reset-password/',
+        url: '/reset-password/?token&handle',
         data: {
           title: "Reset Password",
           onAccountPage: true,
