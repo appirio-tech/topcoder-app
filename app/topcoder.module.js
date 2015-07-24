@@ -15,6 +15,8 @@
     'ngCookies',
     'angular-storage',
     'restangular',
+    'ngNotificationsBar',
+    'ngSanitize',
     'xml',
     'CONSTANTS'
   ];
