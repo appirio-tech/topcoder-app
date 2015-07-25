@@ -152,7 +152,7 @@
           title = state.data.title;
           if (title.indexOf('{{') > -1) {
             // dynamic data
-            var resolveData = $currentState.local.resolve.$$values;
+            var resolveData = $currentState.locals.resolve.$$values;
             title = _renderTemplateStr(title, resolveData);
           }
         }

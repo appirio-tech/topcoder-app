@@ -4,9 +4,9 @@
     .module('tc.profile')
     .controller('ProfileCtrl', ProfileCtrl);
 
-  ProfileCtrl.$inject = ['$scope', 'ProfileService', '$q'];
+  ProfileCtrl.$inject = ['$scope', 'ProfileService', '$q', '$log', 'userId'];
 
-  function ProfileCtrl($scope, ProfileService, $q) {
+  function ProfileCtrl($scope, ProfileService, $q, $log, userId) {
     var vm = this;
     var vms = [vm];
     vm.title = "Profile";
@@ -14,15 +14,16 @@
     vm.profile = {};
     vm.tracks = [];
     $scope.initProfile = initProfile;
+    vm.userId = userId;
 
     activate();
 
     function activate() {
       vm.mockProfile = ProfileService.getMockMemberProfile();
       vm.memberFor = moment().year() - moment(vm.profile.createdAt).year() + '';
-      var profile = ProfileService.getUserProfile();
-      var stats = ProfileService.getUserStats();
-      var skills = ProfileService.getUserSkills();
+      var profile = ProfileService.getUserProfile(vm.userId);
+      var stats = ProfileService.getUserStats(vm.userId);
+      var skills = ProfileService.getUserSkills(vm.userId);
       $q.all([profile, stats, skills]).then(function(data) {
         profile = data[0];
         stats = data[1];

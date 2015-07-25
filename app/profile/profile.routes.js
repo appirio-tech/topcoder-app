@@ -10,25 +10,36 @@
   function routes($stateProvider, $stateParams, $urlRouterProvider) {
     var name, state, states;
     states = {
-      'baseProfile': {
+      'profile': {
         parent: 'root',
         abstract: true,
-        templateUrl: 'profile/header/header.html',
-        controller: 'ProfileCtrl as vm'
-      },
-      'profile': {
-        url: '/profile/',
-        parent: 'baseProfile',
-        //controller: 'dashboard as db',
-        data: {
+        url: '/members/:userHandle/:userId/',
+        templateUrl: 'profile/profile.html',
+        controller: 'ProfileCtrl as vm',
+        resolve: {
+          userHandle: ['$stateParams', function($stateParams) {
+            return $stateParams.userHandle;
+          }],
+          userId: ['$stateParams', function($stateParams) {
+            return $stateParams.userId;
+          }]
         },
-        views: {
-          'about': {
-            templateUrl: 'profile/about/about.html',
-            controller: 'ProfileAboutController',
-            controllerAs: 'vm'
-          }
+        data: {
+          authRequired: false,
+          title: "{{userHandle}} Profile"
         }
+      },
+      'profile.about': {
+        url: '',
+        templateUrl: 'profile/about/about.html',
+        controller: 'ProfileAboutController',
+        controllerAs: 'vm'
+      },
+      'profile.develop': {
+        url: '',
+        template: "<div> Develop section </div>",
+        // controller: 'ProfileAboutController',
+        // controllerAs: 'vm'
       }
     };
     for (name in states) {

@@ -41,13 +41,17 @@
         var next = $state.href(toState.name, toParams, {absolute: false});
         $state.go('login', {next: next});
       }
-
     });
 
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
       // set document title
       document.title = Helpers.getPageTitle(toState, $state.$current);
     });
+
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, eventrror) {
+      console.log.bind(console);
+    });
+
   }
 
   angular.module('topcoder').config(['$httpProvider', 'RestangularProvider', function($httpProvider, RestangularProvider) {
