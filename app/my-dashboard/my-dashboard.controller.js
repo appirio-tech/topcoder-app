@@ -7,8 +7,5 @@
 
   function MyDashboardController() {
     var vm = this;
-
   }
-
-
 })();

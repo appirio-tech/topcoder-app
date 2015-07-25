@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('tc.myDashboard').controller('Dashboard.MyChallengesController', MyChallengesController);
+  angular.module('tc.myDashboard').controller('MyChallengesController', MyChallengesController);
 
   MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log'];
 

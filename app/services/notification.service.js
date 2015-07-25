@@ -11,7 +11,7 @@
     };
     return service;
 
-    function getNotifications() {   
+    function getNotifications() {
       return ApiService.restangularV3.one('notifications').get();
     }
   }

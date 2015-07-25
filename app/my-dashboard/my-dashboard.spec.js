@@ -13,7 +13,7 @@ describe('Dashboard Controller', function() {
     controller = $controller('MyDashboardController');
   });
 
-  it('should be created successfully', function() {
+  it('should exist', function() {
     expect(controller).to.exist;
   });
 });

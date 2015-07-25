@@ -1,18 +1,16 @@
 (function () {
   'use strict';
 
-  angular.module('tc.myDashboard').controller('Dashboard.ProfileHeaderController', ProfileHeaderController);
+  angular.module('tc.myDashboard').controller('HeaderDashboardController', HeaderDashboardController);
 
-  ProfileHeaderController.$inject = [
-    '$scope',
+  HeaderDashboardController.$inject = [
     '$location',
     'UserService',
     'ProfileService',
-    'ChallengeService',
     'CONSTANTS'
   ];
 
-  function ProfileHeaderController($scope, $location, UserService, ProfileService, ChallengeService, CONSTANTS) {
+  function HeaderDashboardController($location, UserService, ProfileService, CONSTANTS) {
     var vm = this;
     vm.communityBaseUrl = $location.protocol() + ":" + CONSTANTS.COMMUNITY_URL;
     vm.STATIC_URL = CONSTANTS.STATIC_URL;
