@@ -13,8 +13,9 @@
     var redirect = function() {
       // check if the user is already logged in
       if (TcAuthService.isAuthenticated()) {
-        // redirect to next if exists else dashboard
-        if ($stateParams.next) {
+        // make sure domain is topcoder | dev | qa
+        var re = /\w+\.topcoder(-\w+)*\.com/;
+        if (re.test($stateParams.next)) {
           $log.debug('Redirecting: ' + $stateParams.next);
           window.location.href = decodeURIComponent($stateParams.next);
         } else {
