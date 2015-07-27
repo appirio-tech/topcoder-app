@@ -37,6 +37,7 @@
         connection: Helpers.isEmail(usernameOrEmail) ? 'TC-User-Database' : 'LDAP',
         scope: 'openid profile offline_access',
         device: "webapp",
+        sso: false,
         username: usernameOrEmail,
         password: password
       };
