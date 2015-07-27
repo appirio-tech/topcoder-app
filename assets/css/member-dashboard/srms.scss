@@ -1,19 +1,5 @@
 @import '../partials/combined';
 
-.srm-gadget {
-}
-.srm-gadget-table {
-  td {
-    padding-left: 5px;
-  }
-  thead {
-    font-weight: bold;
-    border: 1px solid $color_celeste_approx;
-  }
-}
-.srm-gadget-coding-date {
-  width: 170px;
-}
 .upcoming-srms-div {
   display: flex;
   flex-flow: column wrap;
@@ -93,9 +79,7 @@
       }
     }
   }
-  .srm-gadget {
-    max-height: 300px;
-  }
+
   th {
     text-align: center;
     .sort {
@@ -133,8 +117,4 @@
       color: $color_selective_yellow_approx;
     }
   }
-}
-.practice-now-div {
-  position: absolute;
-  bottom: 0;
 }

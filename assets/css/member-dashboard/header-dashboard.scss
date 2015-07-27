@@ -1,141 +1,91 @@
 @import '../partials/combined';
 
-.member-profile-header {
-  // border-bottom: 1px solid $white-gray;
-  margin-bottom: 20px;
-}
-@media only screen and(min-width: 768px) {
-  .member-profile-header {
-    padding: 15px 0;
-  }
-}
-.member-profile {
-  .profile {
-    border-bottom: 1px solid $white-gray;
+.header-dashboard {
+
+  header {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 10px;
-    .profile-left {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
+    align-items: center;
 
-      .profile-image {
-        width: 130px;
-        text-align: center;
-        height: 130px;
-        border: 5px solid $white;
-        //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
-        border-radius: 72px;
-        overflow: hidden;
-      }
-      .profile-details {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 10px;
-        .handle {
-          color: $white;
-          text-align: center;
-          font-weight: bold;
-        }
-        .edit-profile {
-          text-align: center;
-        }
-        .doj {
-          text-align: center;
-          margin-top: 10px;
-        }
-      }
-    }
-    .profile-right {
+    .user {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      align-items: center;
 
+      img {
+        width: 130px;
+        height: 130px;
+        border-radius: 72px;
+      }
 
-      .money-in-bank {
+      .profile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 20px;
+
+        p {
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+        a {
+          color: inherit;
+          font-size: 12px;
+        }
+      }
+    }
+    .user-stats {
+      display: flex;
+      flex-direction: row;
+      text-transform: uppercase;
+      font-size: 14px;
+
+      .money-earned, .copilot-challenges {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 50px;
+
+        p:first-child {
+          font-size: 16px;
+        }
+      }
+
+      .money-earned {
         text-align: center;
         padding-left: 10px;
         padding-right: 10px;
-        //Instead of the line below you could use @includebox-sizing($bs)
-        box-sizing: border-box;
-        div[rel="value"] {
-          font-size: 20px;
-        }
-        div[rel="label"] {
-          margin-top: 15px;
-        }
       }
-      .challenges-registered {
-        text-align: center;
-        padding-left: 10px;
-        padding-right: 10px;
-        //Instead of the line below you could use @includebox-sizing($bs)
-        box-sizing: border-box;
-      }
-      .open-challenges {
-        display: none;
-        text-align: center;
-        padding-left: 10px;
-        padding-right: 10px;
-        //Instead of the line below you could use @includebox-sizing($bs)
-        box-sizing: border-box;
-        div[rel="value"] {
-          font-size: 20px;
-        }
-        div[rel="label"] {
-          margin-top: 15px;
-        }
-      }
-      .review-opportunities {
-        display: none;
-        text-align: center;
-        padding-left: 10px;
-        padding-right: 10px;
-        //Instead of the line below you could use @includebox-sizing($bs)
-        box-sizing: border-box;
-        div[rel="value"] {
-          font-size: 20px;
-        }
-        div[rel="label"] {
-          margin-top: 15px;
-        }
-      }
+
       .copilot-challenges {
         text-align: center;
         padding-left: 10px;
         padding-right: 10px;
-        //Instead of the line below you could use @includebox-sizing($bs)
-        box-sizing: border-box;
-        div[rel="value"] {
-          font-size: 20px;
-        }
-        div[rel="label"] {
-          margin-top: 15px;
+
+        span {
+          display: block;
         }
       }
 
     }
   }
-  .rating-summary {
-    clear: both;
+
+  .ratings {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    .track-rating {
-      width: 100px;
-      height: 82px;
+    margin-bottom: 27px;
+    font-size: 13px;
+
+    .track {
+      width: 120px;
+      height: 50px;
       text-align: center;
-      padding-top: 16px;
-      //Instead of the line below you could use @includebox-sizing($bs)
-      box-sizing: border-box;
-      div[rel="value"] {
-        font-size: 20px;
-      }
-      div[rel="label"] {
-        margin-top: 15px;
+      text-transform: uppercase;
+
+      p:first-child {
+        font-size: 16px;
+        margin-bottom: 15px;
       }
     }
   }

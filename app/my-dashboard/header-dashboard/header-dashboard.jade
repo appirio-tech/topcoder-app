@@ -1,29 +1,29 @@
-.member-profile
-  .profile
-    .profile-left
-        img.profile-circle(fallback-src="{{vm.defaultPhotoUrl}}", ng-src="{{vm.profile}}")
+header
+  .user
+      img(fallback-src="{{vm.defaultPhotoUrl}}", ng-src="{{vm.profile}}")
 
-        .profile-details
-          //- div(rel='upload-photo', ng-show='vm.showUploadPhotoLink')
-          //-   a(href='{{vm.uploadPhotoLink}}') Upload Photo
-          p {{vm.profile.handle}}
-          .edit-profile
-            a(ng-href="{{vm.editProfileUrl}}") Edit Profile
-    .profile-right
-      .money-in-bank
-        div(rel='value', ng-bind='vm.moneyEarned || 0 | currency')
-        div(rel='label') Money Earned
-      .open-challenges
-        div(rel='value', ng-bind='vm.myOpenChallengesCount || 0')
-        div(rel='label') Open Challenges
-      .review-opportunities
-        div(rel='value', ng-bind='vm.reviewOpportunities || 0')
-        div(rel='label') Review Opportunities
-      .copilot-challenges
-        div(rel='value', ng-bind='vm.copilotChallengesCount || 0')
-        div(rel='label') Co-pilot Challenges
-  .rating-summary
-    .track-rating(ng-repeat="rs in vm.ratingSummary")
-      div(rel='value', ng-bind='{{rs.rating}}')  
-      div(rel='label') {{rs.phaseDesc}}
-.clear
+      .profile
+        p {{vm.profile.handle}}
+
+        a(ng-href="http://community.{{vm.domain}}.com/tc?module=MyHome") Edit Profile
+
+  .user-stats
+    .money-earned
+      p(ng-bind='vm.moneyEarned || 0 | currency:undefined:0')
+
+      p Money Earned
+
+    .copilot-challenges(ng-show="vm.isCopilot")
+      p(ng-bind='vm.copilotChallengesCount || 0')
+
+      p Co-Pilot #[span Challenges]
+
+hr
+
+.ratings
+  .track(ng-repeat="track in vm.trackRatings")
+    p(ng-bind="track.rating")
+
+    p(ng-bind="track.phaseDesc")
+
+hr

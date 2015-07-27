@@ -1,10 +1,10 @@
-.my-dashboard-container.member-profile-header
-  .welcome-back(ui-view="header")
-.my-dashboard-container.widgets
-  .row
-    .my-dashboard-widget.my-challenges(ui-view="my-challenges")
-  .row
-    .my-dashboard-widget.srm-gadget(ui-view="srms")
+.my-dashboard-container
+  .header-dashboard(ui-view="header-dashboard")
 
-    .ios-program(ui-view="programs")
-    .my-dashboard-widget.blog-post(ui-view="community-updates")
+  .my-challenges(ui-view="my-challenges")
+
+  .srms(ui-view="srms")
+
+  .programs(ui-view="programs")
+
+  .community-updates(ui-view="community-updates")

@@ -10,41 +10,9 @@
     margin-bottom: 35px;
   }
 
-  .color-reset {
-    color: initial;
-  }
-
   .widget-loading {
     width: 100%;
     height: 50px;
     background: $loading no-repeat center center;
   }
-
-  &.widgets {
-  }
-}
-
-.my-dashboard-widget {
-  margin-bottom: 30px;
-  color: $color_storm_dust_approx;
-}
-
-.widget {
-  //border: 1px solid $color_celeste_approx;
-  //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
-  //border-radius: 5px;
-}
-
-.page-link {
-  margin-right: 5px;
-}
-
-.marketing-message {
-  max-height: 150px;
-  border: none;
-}
-
-.marketing-message-iframe {
-  margin-left: -5px;
-  margin-top: -8px;
 }
