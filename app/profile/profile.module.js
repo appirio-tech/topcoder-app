@@ -6,6 +6,7 @@
     'ui.router',
     'ngCookies',
     'tc.services',
+    'tcUIComponents',
     'angularSlideables'
   ];
 
