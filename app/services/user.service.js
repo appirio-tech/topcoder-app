@@ -32,7 +32,7 @@
       if (!token) {
         store.remove('userObj');
       } else {
-        store.set('userObj', JSON.stringify(jwtHelper.decodeToken(token)));
+        store.set('userObj', JSON.stringify(token));
       }
     }
 

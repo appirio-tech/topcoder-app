@@ -3,10 +3,11 @@
 
   angular.module('tc.myDashboard').controller('MyChallengesController', MyChallengesController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log'];
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS) {
     var vm = this;
+    vm.domain = CONSTANTS.domain;
     vm.loading = true;
     vm.myChallenges = [];
 

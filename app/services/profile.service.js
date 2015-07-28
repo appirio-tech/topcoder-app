@@ -27,23 +27,24 @@
 
     ///////////////
 
-    function getUserProfile(userId) {
-      userId = userId || UserService.getUserIdentity().userId;
-      return restangular.one('members', userId).one('profile').get();
+    function getUserProfile(username) {
+      username = username || UserService.getUserIdentity().username;
+      console.log('user identity: ', UserService.getUserIdentity())
+      return restangular.one('members', username).get();
     }
 
-    function getUserSkills(userId) {
-      userId = userId || UserService.getUserIdentity().userId;
-      return restangular.one('members', userId).one('skills').get();
+    function getUserSkills(username) {
+      username = username || UserService.getUserIdentity().username;
+      return restangular.one('members', username).one('skills').get();
     }
 
-    function getUserFinancials(userId) {
-      return restangular.one('members', userId).one('financial').get();
+    function getUserFinancials(username) {
+      return restangular.one('members', username).one('financial').get();
     }
 
-    function getUserStats(userId) {
-      userId = userId || UserService.getUserIdentity().userId;
-      return restangular.one('members', userId).one('stats').get();
+    function getUserStats(username) {
+      username = username || UserService.getUserIdentity().username;
+      return restangular.one('members', username).one('stats').get();
     }
 
     function getNumProjects(stats) {

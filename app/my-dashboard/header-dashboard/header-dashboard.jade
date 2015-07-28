@@ -1,6 +1,6 @@
 header
   .user
-      img(fallback-src="{{vm.defaultPhotoUrl}}", ng-src="{{vm.profile}}")
+      img(fallback-src="{{vm.defaultPhotoUrl}}", ng-src="https://www.{{vm.domain}}{{vm.profile.photo.photoFile}}")
 
       .profile
         p {{vm.profile.handle}}
