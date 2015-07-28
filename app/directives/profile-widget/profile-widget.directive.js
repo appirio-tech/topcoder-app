@@ -5,9 +5,7 @@
       restrict: 'E',
       templateUrl: 'directives/profile-widget/profile-widget.html',
       scope: {
-        handle: '=handle',
-        tracks: '=tracks',
-        location: '=location'
+        profile: '=profile'
       }
     };
   });

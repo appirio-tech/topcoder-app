@@ -12,7 +12,6 @@
     vm.title = "Profile";
     vm.message = "Message"
     vm.profile = {};
-    vm.tracks = [];
     $scope.initProfile = initProfile;
     vm.userId = userId;
 
@@ -30,12 +29,12 @@
         skills = data[2];
         vms = vms.forEach(function(vm) {
           vm.profile = profile;
-          vm.location = [vm.profile.state, vm.profile.homeCountry].filter(function(x) {
+          vm.profile.location = [vm.profile.state, vm.profile.homeCountry].filter(function(x) {
             return x;
           });
           vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
           vm.stats = stats;
-          vm.tracks = ProfileService.getTracks(vm.stats);
+          vm.profile.tracks = ProfileService.getTracks(vm.stats);
           vm.numProjects = ProfileService.getNumProjects(vm.stats);
           vm.numWins = ProfileService.getNumWins(vm.stats);
           // slicing is temporary,

@@ -1,9 +1,9 @@
 .profile-widget-directive
-  img.profile-circle(ng-src="https://www.topcoder.com/i/m/{{handle}}.jpeg")
+  img.profile-circle(ng-src="https://www.topcoder.com/i/m/{{profile.handle}}.jpeg")
 
   .info
-    h1 {{handle}}
+    h1 {{profile.handle}}
 
-    h3.tracks {{tracks | displayTracks}}
+    h3.tracks {{profile.tracks | displayTracks}}
 
-    h3.location {{location | joinArray}}
+    h3.location {{profile.location | joinArray}}
