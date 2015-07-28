@@ -41,7 +41,7 @@
     }
 
     function validateUserHandle(handle) {
-      return ApiService.restangularV3.all('users').withHttpConfig(_config).customGET('validate/handle/' + handle);
+      return ApiService.restangularV3.all('users').withHttpConfig(_config).customGET('validateHandle', {handle: handle});
     }
 
 
