@@ -70,25 +70,33 @@
     vm.login = function() {
       if (Helpers.isEmail(vm.username)) {
         // ensure email exists
-        UserService.validateUserEmail(vm.username).then(
-        function(resp) {
-          // email doesn't exist
-          vm.usernameExists = false;
-        },
-        function(resp) {
-          // email exists
+        UserService.validateUserEmail(vm.username).then(function(data) {
+          if (data.valid) {
+            // email doesn't exist
+            vm.usernameExists = false;
+          } else {
+            vm.usernameExists = true;
+            _doLogin(vm.username, vm.password);
+          }
+        }).catch(function(resp) {
+          // TODO handle error
+          // assume email exists, login would in any case if it didn't
           vm.usernameExists = true;
           _doLogin(vm.username, vm.password);
         });
       } else {
         // username - make sure it exists
-        UserService.validateUserHandle(vm.username)
-        .then(function() {
-          // User does not exist
-          vm.usernameExists = false;
-        })
-        .catch(function() {
-          // User exists
+        UserService.validateUserHandle(vm.username).then(function(data) {
+          if (data.valid) {
+            // email doesn't exist
+            vm.usernameExists = false;
+          } else {
+            vm.usernameExists = true;
+            _doLogin(vm.username, vm.password);
+          }
+        }).catch(function(resp) {
+          // TODO handle error
+          // assume email exists, login would in any case if it didn't
           vm.usernameExists = true;
           _doLogin(vm.username, vm.password);
         });

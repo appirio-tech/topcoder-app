@@ -58,20 +58,23 @@
       require: 'ngModel',
       link: function(scope, element, attrs, ctrl) {
         ctrl.$asyncValidators.usernameIsFree = function(modelValue, viewValue) {
-          $log.info('Validating username or email: ' + modelValue);
+          $log.info('Validating username: ' + modelValue);
 
           // Check if the username exists
           var defer = $q.defer();
           UserService.validateUserHandle(modelValue).then(
-            function(resp) {
-              // username is free
-              return defer.resolve();
-            },
-            function(resp) {
-              // username already exists
-              return defer.reject();
+            function(data) {
+              if (data.valid) {
+                // username is free
+                return defer.resolve();
+              } else {
+                return defer.reject(data.reasonCode);
+              }
             }
-          );
+          ).catch(function(resp) {
+              // call failed - assuming username is free, register call will fail anyways
+              return defer.resolve();
+          });
           return defer.promise;
         };
       }
@@ -90,15 +93,18 @@
           // Check if the username exists
           var defer = $q.defer();
           UserService.validateUserEmail(modelValue).then(
-            function(resp) {
-              // username is free
-              return defer.resolve();
-            },
-            function(resp) {
-              // username already exists
-              return defer.reject();
+            function(data) {
+              if (data.valid) {
+                // email is available
+                return defer.resolve();
+              } else {
+                return defer.reject(data.reasonCode);
+              }
             }
-          );
+          ).catch(function(resp) {
+              // call failed - assuming available is free, register call will fail anyways
+              return defer.resolve();
+          });
           return defer.promise;
         };
       }
