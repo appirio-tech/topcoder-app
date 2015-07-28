@@ -18,15 +18,14 @@
     activate();
 
     function activate() {
-      var userId = UserService.getUserIdentity().userId;
+      var username = UserService.getUserIdentity().username;
 
-      ProfileService.getUserProfile(userId)
+      ProfileService.getUserProfile(username)
       .then(function(profile) {
-        console.log("profile: ", profile);
         vm.profile = profile;
       });
 
-      ProfileService.getUserStats(userId)
+      ProfileService.getUserStats(username)
       .then(function(stats) {
         var trackRatings = [];
 
@@ -48,7 +47,7 @@
 
       });
 
-      ProfileService.getUserFinancials(userId)
+      ProfileService.getUserFinancials(username)
       .then(function(financials) {
         vm.moneyEarned = financials.overallEarning;
       });

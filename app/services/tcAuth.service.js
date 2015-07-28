@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('TcAuthService', TcAuthService);
 
-  TcAuthService.$inject = ['CONSTANTS', 'AuthTokenService', '$rootScope', '$q', '$log', '$timeout', 'UserService', 'Helpers'];
+  TcAuthService.$inject = ['CONSTANTS', 'AuthTokenService', '$rootScope', '$q', '$log', '$timeout', 'UserService', 'Helpers', 'ApiService'];
 
-  function TcAuthService(CONSTANTS, AuthTokenService, $rootScope, $q, $log, $timeout, UserService, Helpers) {
+  function TcAuthService(CONSTANTS, AuthTokenService, $rootScope, $q, $log, $timeout, UserService, Helpers, ApiService) {
     var auth0 = new Auth0({
       domain: CONSTANTS.auth0Domain,
       clientID: CONSTANTS.clientId,
@@ -54,11 +54,23 @@
               // giving angular sometime to set the cookies
               $timeout(function() {
                 // Store local copy of user info in local storage
-                UserService.setUserIdentity(appiriojwt);
+                var decodedToken = AuthTokenService.decodeToken(appiriojwt);
+                var userId = decodedToken.userId;
 
-                $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
+                // Remove this call once the JWT payload comes with all these fields
+                ApiService.restangularV3.one('users', userId).get()
+                .then(function(user) {
+                  decodedToken.username  = user.handle;
+                  decodedToken.email     = user.email;
+                  decodedToken.firstName = user.firstName;
+                  decodedToken.lastName  = user.lastName;
 
-                resolve();
+                  UserService.setUserIdentity(decodedToken);
+
+                  $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
+
+                  resolve();
+                });
               }, 200);
             });
           }
