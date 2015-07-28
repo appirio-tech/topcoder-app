@@ -19,6 +19,7 @@
       getNumProjects: getNumProjects,
       getNumWins: getNumWins,
       getRanks: getRanks,
+      getChallengeTypeStats: getChallengeTypeStats,
       getTracks: getTracks,
       // for profile - to be deprecated
       getMockMemberProfile: getMockMemberProfile
@@ -94,6 +95,25 @@
         return x.rank > 0;
       });
       return ans;
+    }
+
+    function getChallengeTypeStats(stats, track, type) {
+      if (track != 'datascience') {
+        var ans = stats[track + 'Stats']['rankStats'].filter(function(x) {
+          return type === x.phaseDesc.toLowerCase().replace(/ /g, '');
+        });
+        ans[0].challenges = stats[track + 'Stats']['challengeStats'].filter(function(x) {
+          return type === x.phaseDesc.toLowerCase().replace(/ /g, '');
+        })[0].challenges;
+        ans[0].detailed = stats[track + 'Stats']['submissionStats'].filter(function(x) {
+          return type === x.phaseDesc.toLowerCase().replace(/ /g, '');
+        })[0];
+        return ans[0];
+      } else if (type == 'srm') {
+        return stats.dataScienceStats.srmStats.srmRankStats[0];
+      } else {
+        return stats.dataScienceStats.marathonMatchStats.marathonRankStats[0];
+      }
     }
 
     function getTracks(stats) {

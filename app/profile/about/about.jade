@@ -1,58 +1,59 @@
-p.description {{vm.profile.description}}
+.profile-about-container
+  p.description {{vm.profile.description}}
 
-.tags
-  .tag(ng-repeat="track in vm.tracks")
-    | {{track}}
+  .tags
+    .tag(ng-repeat="track in vm.tracks")
+      | {{track}}
 
-hr
+  hr
 
-.stats
-  .stat
-    .value {{vm.numProjects}}
+  .horizontal-stats
+    .stat
+      .value {{vm.numProjects}}
 
-    .name Projects
+      .name Projects
 
-  .stat
-    .value
-      | {{vm.numWins}}
-      | ({{vm.numWins / vm.numProjects | percentage}})
+    .stat
+      .value
+        | {{vm.numWins}}
+        | ({{vm.numWins / vm.numProjects | percentage}})
 
-    .name Wins
+      .name Wins
 
-.categories
-  .category(ng-repeat="category in vm.categories")
+  .categories
+    .category(ng-repeat="category in vm.categories")
 
-    .name {{category.type}}
+      .name {{category.type}}
 
-    .subcategory(ng-show="category.subtype") {{category.subtype}}
+      .subcategory(ng-show="category.subtype") {{category.subtype}}
 
-    .icon
+      .icon
 
-    .ranking
-      .number {{category.rank | ordinal}}
+      .ranking
+        .number {{category.rank | ordinal}}
 
-      .tag Ranking
+        .tag Ranking
 
-hr
+  hr
 
-.skills
-  h1 Skills / Technologies
-  .list
-    .skill(ng-repeat="skill in vm.skills")
-      img.icon(ng-src="images/javascript-logo.png")
+  .skills
+    h1 Skills / Technologies
+    .list
+      .skill(ng-repeat="skill in vm.skills")
+        img.icon(ng-src="images/javascript-logo.png")
 
-      .name {{skill}}
+        .name {{skill}}
 
-hr
+  hr
 
-.links
-  h1 External Links
-  .list
-    .link(ng-repeat="link in vm.mockProfile.links")
-      h2 {{link.name}}
+  .links
+    h1 External Links
+    .list
+      .link(ng-repeat="link in vm.mockProfile.links")
+        h2 {{link.name}}
 
-      ul.properties
-        li.property(ng-repeat="property in link.properties")
-          .key {{property.name}}
+        ul.properties
+          li.property(ng-repeat="property in link.properties")
+            .key {{property.name}}
 
-          .value {{property.value}}
+            .value {{property.value}}

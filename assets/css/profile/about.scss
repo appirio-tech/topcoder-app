@@ -18,29 +18,7 @@
       margin: 15px 5px;
     }
   }
-  hr {
-    width: 100%;
-    border: 1px solid #dddddd;
-    margin-bottom: 15px;
-  }
-  .stats {
-    display: flex;
-    justify-content: center;
-    .stat {
-      margin: 0px 15px;
-      .value {
-        text-align: center;
-        
-      }
-      .name {
-        margin-top: 8px;
-        text-align: center;
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: 17px;
-      }
-    }
-  }
+
   .categories {
     display: flex;
     margin: 10px auto;

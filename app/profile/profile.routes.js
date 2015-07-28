@@ -13,7 +13,6 @@
       'profile': {
         parent: 'root',
         abstract: true,
-        url: '/members/:userHandle/:userId/',
         templateUrl: 'profile/profile.html',
         controller: 'ProfileCtrl as vm',
         resolve: {
@@ -30,16 +29,21 @@
         }
       },
       'profile.about': {
-        url: '',
+        url: '/members/:userHandle/:userId/',
         templateUrl: 'profile/about/about.html',
         controller: 'ProfileAboutController',
         controllerAs: 'vm'
       },
       'profile.develop': {
-        url: '',
-        template: "<div> Develop section </div>",
-        // controller: 'ProfileAboutController',
-        // controllerAs: 'vm'
+        url: '/members/:userHandle/:userId/develop/:type/',
+        templateUrl: 'profile/develop/develop.html',
+        controller: 'ProfileDevelopController',
+        resolve: {
+          type: ['$stateParams', function($stateParams) {
+            return $stateParams.type;
+          }]
+        },
+        controllerAs: 'vm'
       }
     };
     for (name in states) {
