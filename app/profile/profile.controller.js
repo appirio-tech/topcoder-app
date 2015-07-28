@@ -30,6 +30,9 @@
         skills = data[2];
         vms = vms.forEach(function(vm) {
           vm.profile = profile;
+          vm.location = [vm.profile.state, vm.profile.homeCountry].filter(function(x) {
+            return x;
+          });
           vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
           vm.stats = stats;
           vm.tracks = ProfileService.getTracks(vm.stats);

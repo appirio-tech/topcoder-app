@@ -8,7 +8,7 @@
         handle: '=handle',
         tracks: '=tracks',
         location: '=location'
-      }
+      },
     };
   });
 })();
