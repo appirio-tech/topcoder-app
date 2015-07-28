@@ -35,6 +35,9 @@
           vm.tracks = ProfileService.getTracks(vm.stats);
           vm.numProjects = ProfileService.getNumProjects(vm.stats);
           vm.numWins = ProfileService.getNumWins(vm.stats);
+          if (vm.deferred) {
+            vm.deferred.resolve(vm);
+          }
           // slicing is temporary,
           // until horizontal scroll is implemented
           vm.skills = skills.skills.slice(0,6);

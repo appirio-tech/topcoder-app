@@ -1,0 +1,81 @@
+.profile-develop-container
+  hr
+  h1.type Develop: {{vm.typeStats.phaseDesc}}
+  hr
+
+  ul.horizontal-stats
+    li.stat
+      .value {{vm.typeStats.overallRank}}
+      .name RANK
+    li.stat
+      .value {{vm.typeStats.rating}}
+      .name RATING
+    li.stat
+      .value {{vm.typeStats.challenges}}
+      .name PROJECTS
+    li.stat
+      .value {{vm.typeStats.overallCountryRank}}
+      .name COUNTRY RANK
+    li.stat
+      .value {{vm.typeStats.reliability | percentage}}
+      .name RELIABILITY
+
+  .stats
+    h2.detailed Detailed Stats
+
+    ul.vertical-stats
+      li
+        .left Submissions
+        .right {{vm.typeStats.detailed.submissions}}
+
+      li
+        .left Submission Rate
+        .right {{vm.typeStats.detailed.submissionRate | percentage}}
+
+      li
+        .left Passed Screening
+        .right {{vm.typeStats.detailed.passedScreening}}
+
+      li
+        .left Screening Success Rate
+        .right {{vm.typeStats.detailed.screeningSuccessRate | percentage}}
+
+      li
+        .left Passed Review
+        .right {{vm.typeStats.detailed.passedReview}}
+
+      li
+        .left Review Success Rate
+        .right {{vm.typeStats.detailed.reviewSuccessRate | percentage}}
+
+      li
+        .left Maximum Score
+        .right {{vm.typeStats.detailed.maxScore}}
+
+      li
+        .left Minimum Score
+        .right {{vm.typeStats.detailed.minScore}}
+
+      li
+        .left Appeals
+        .right {{vm.typeStats.detailed.appeals}}
+
+      li
+        .left Appeals Success Rate
+        .right {{vm.typeStats.detailed.appealSuccessRate | percentage}}
+
+      li
+        .left Average Score
+        .right {{vm.typeStats.detailed.avgScore}}
+
+      li
+        .left Average Placement
+        .right {{vm.typeStats.detailed.avgPlacement}}
+
+      li
+        .left Wins
+        .right {{vm.typeStats.detailed.wins}}
+
+      li
+        .left Win Percentage
+        .right {{vm.typeStats.detailed.winPercent | percentage}}

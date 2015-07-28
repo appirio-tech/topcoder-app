@@ -1,0 +1,22 @@
+.profile-develop-container {
+  display: flex;
+  flex-direction: column;
+  h1.type {
+    margin: 0 auto 15px auto;
+    font-size: 18px;
+  }
+  .stats {
+    h2.detailed {
+      margin: 50px auto 25px auto;
+      text-align: center;
+    }
+    ul.vertical-stats {
+      width: 500px;
+      margin: 0 auto;
+      li {
+        margin: 10px 0;
+      }
+    }
+  }
+  
+}
