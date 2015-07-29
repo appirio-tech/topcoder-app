@@ -2,7 +2,7 @@
   p.description {{vm.profile.description}}
 
   .tags
-    .tag(ng-repeat="track in vm.tracks")
+    .tag(ng-repeat="track in (vm.profile.tracks | displayTracks)")
       | {{track}} 
 
   hr

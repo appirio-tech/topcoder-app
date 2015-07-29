@@ -12,12 +12,11 @@
     vm.title = "Profile";
     vm.message = "Message"
     vm.profile = {};
-    $scope.initProfile = initProfile;
     vm.userHandle = userHandle;
 
-    activate();
+    activate(vms);
 
-    function activate() {
+    function activate(vms) {
       // show edit profile link if user is authenticated and is viewing their own profile
       if (TcAuthService.isAuthenticated() && UserService.getUserIdentity().username == vm.userHandle) {
         vm.showEditProfileLink = true;
@@ -33,6 +32,7 @@
           vm.profile = profile;
           vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
           vm.stats = stats;
+          vm.profile.tracks = vm.profile.tracks || ProfileService.getTracks(vm.stats) || [];
           vm.numProjects = ProfileService.getNumProjects(vm.stats);
           vm.numWins = ProfileService.getNumWins(vm.stats);
           if (vm.deferred) {
@@ -46,7 +46,7 @@
       });
     }
 
-    function initProfile(vm) {
+    $scope.initProfile = function(vm) {
       vms.push(vm);
     }
 

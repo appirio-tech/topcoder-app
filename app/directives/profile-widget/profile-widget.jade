@@ -4,7 +4,7 @@
   .info
     h1 {{profile.handle}}
 
-    h3.tracks {{profile.tracks | displayTracks}}
+    h3.tracks {{profile.tracks | displayTracks | join: ', '}}
 
     h3.location {{profile.homeCountry}}
 
