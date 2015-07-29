@@ -29,7 +29,6 @@
     ///////////////
 
     function getUserProfile(username) {
-      console.log('user identity: ', UserService.getUserIdentity())
       return restangular.one('members', username).get();
     }
 

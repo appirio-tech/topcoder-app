@@ -7,7 +7,7 @@ header
 .section-loading(ng-show="vm.loading")
 
 section.challenges(ng-hide="vm.loading")
-  challenge-tile.tile(ng-repeat="challenge in vm.myChallenges", challenge="challenge")
+  challenge-tile.tile(ng-repeat="challenge in vm.myChallenges", challenge="challenge", domain="vm.domain")
 
 .section-links
   .new-challenges.link
@@ -15,7 +15,7 @@ section.challenges(ng-hide="vm.loading")
 
   .topcoder-direct.link
     a(href="https://www.{{vm.domain}}/direct") Launch Topcoder Direct
-    
+
   .help-library.link(ng-show='vm.myChallenges.length == 0')
     a(href="https://community.{{vm.domain}}/", target="_blank") View Help Library
 
