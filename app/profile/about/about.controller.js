@@ -9,11 +9,10 @@
   function ProfileAboutController($scope, ProfileService) {
     var vm = this;
     vm.profile = {};
-
+    vm.mockProfile = ProfileService.getMockMemberProfile();
     activate();
 
     function activate() {
-      vm.mockProfile = ProfileService.getMockMemberProfile();
       $scope.initProfile(vm);
     }
 

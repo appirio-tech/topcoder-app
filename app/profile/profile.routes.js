@@ -5,7 +5,15 @@
     '$stateProvider',
     '$urlRouterProvider',
     routes
-  ]);
+  ]).run(['$rootScope', '$state', function($rootScope, $state) {
+    // handle state change error
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+      if (toState.name.indexOf('profile') > -1 && error.status === 400) {
+        // unable to find a member with that username
+        $state.go('404');
+      }
+    });
+  }]);
 
   function routes($stateProvider, $stateParams, $urlRouterProvider) {
     var name, state, states;
@@ -19,6 +27,9 @@
         resolve: {
           userHandle: ['$stateParams', function($stateParams) {
             return $stateParams.userHandle;
+          }],
+          profile: ['userHandle', 'ProfileService', function(userHandle, ProfileService) {
+            return ProfileService.getUserProfile(userHandle);
           }]
         },
         data: {

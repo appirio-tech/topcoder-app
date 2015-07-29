@@ -4,9 +4,9 @@
     .module('tc.profile')
     .controller('ProfileCtrl', ProfileCtrl);
 
-  ProfileCtrl.$inject = ['$scope', 'TcAuthService', 'UserService', 'ProfileService', '$q', '$log', 'userHandle'];
+  ProfileCtrl.$inject = ['$scope', 'TcAuthService', 'UserService', 'ProfileService', '$q', '$log', 'userHandle', 'profile'];
 
-  function ProfileCtrl($scope, TcAuthService, UserService, ProfileService, $q, $log, userHandle) {
+  function ProfileCtrl($scope, TcAuthService, UserService, ProfileService, $q, $log, userHandle, profile) {
     var vm = this;
     var vms = [vm];
     vm.title = "Profile";
@@ -24,18 +24,15 @@
       } else {
         vm.showEditProfileLink = false;
       }
-      var profile = ProfileService.getUserProfile(vm.userHandle);
       var stats = ProfileService.getUserStats(vm.userHandle);
       var skills = ProfileService.getUserSkills(vm.userHandle);
-      $q.all([profile, stats, skills]).then(function(data) {
-        profile = data[0];
-        stats = data[1];
-        skills = data[2];
+      $q.all([stats, skills]).then(function(data) {
+        stats = data[0];
+        skills = data[1];
         vms = vms.forEach(function(vm) {
           vm.profile = profile;
           vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
           vm.stats = stats;
-          // vm.profile.tracks = ProfileService.getTracks(vm.stats);
           vm.numProjects = ProfileService.getNumProjects(vm.stats);
           vm.numWins = ProfileService.getNumWins(vm.stats);
           if (vm.deferred) {

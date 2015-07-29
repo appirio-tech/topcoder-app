@@ -25,6 +25,7 @@ hr
   .track(ng-repeat="r in vm.rankStats")
     p(ng-bind="r.rank")
 
-    p(ng-bind="r.track")
+    p {{r.track}}:
+    p {{r.subTrack}}
 
 hr

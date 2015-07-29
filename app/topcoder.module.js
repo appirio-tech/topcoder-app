@@ -18,6 +18,7 @@
     'ngNotificationsBar',
     'ngSanitize',
     'xml',
+    'angular.filter',
     'CONSTANTS'
   ];
 
