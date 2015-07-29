@@ -10,8 +10,14 @@
       'DATA'   : 'Data Scientist'
     };
     return function(tracks) {
-      if (tracks)
-        return _.map(tracks, function(n) { return map[n.toUpperCase()]}).join(", ");
+      if (tracks) {
+        if (typeof tracks === 'string')
+          return map[tracks];
+        else
+          return tracks.map(function(track) {
+            return map[track.toUpperCase()];
+          });
+      }
       return '';
     };
   }

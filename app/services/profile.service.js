@@ -128,17 +128,19 @@
     }
 
     function getTracks(stats) {
+      console.log('stats');
+      console.log(stats);
       var tracks = [
         {
-          'name': 'Develop',
+          'name': 'DEVELOP',
           'challenges': stats.developStats.challenges,
         },
         {
-          'name': 'Design',
+          'name': 'DESIGN',
           'challenges': stats.designStats.challenges,
         },
         {
-          'name': 'Data Science',
+          'name': 'DATA',
           'challenges': stats.dataScienceStats.challenges,
         }
       ].filter(function(track) {

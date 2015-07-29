@@ -33,6 +33,7 @@
           vm.profile = profile;
           vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
           vm.stats = stats;
+          vm.profile.tracks = vm.profile.tracks || ProfileService.getTracks(vm.stats) || [];
           vm.numProjects = ProfileService.getNumProjects(vm.stats);
           vm.numWins = ProfileService.getNumWins(vm.stats);
           if (vm.deferred) {
