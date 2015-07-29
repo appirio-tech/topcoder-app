@@ -40,20 +40,7 @@ header.topcoder-header(ng-class="{slided: main.sidebarActive}")
 
     div#user-widget.slideable
       div#user-widget-content(style="visibility: hidden;")
-        .userWidget(style='display: block;')
-          .details
-            .userPic
-              img(img-src='https://www.topcoder.com/i/m/{{vm.userHandle}}')
-
-            .userDetails
-              a.tc_coder.coder(ui-sref="profile.about({userHandle:vm.userHandle})") {{vm.userHandle}}
-
-              p.country {{vm.profile.homeCountry}}
-              p.lbl Member Since :
-
-              p.val.memberSince {{vm.profile.createdAt | date : 'MMM d, yyyy'}}
-
         .action
-          a.profileLink(ui-sref="profile.about({userHandle:vm.userHandle})") My Profile
-          a(ui-sref="dashboard") My TopCoder
+          a.profileLink(ui-sref="profile.about({userHandle:vm.userHandle})") Profile
+          a(ui-sref="dashboard") My Dashboard
           a.linkAlt(href='//community.topcoder.com/tc?module=MyHome') Account Settings
