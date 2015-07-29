@@ -5,7 +5,13 @@
       restrict: 'E',
       templateUrl: 'directives/profile-widget/profile-widget.html',
       scope: {
-        profile: '=profile'
+        profile: '=profile',
+        editProfileLink: '=editProfileLink'
+      },
+      link: function($scope, elem, attrs, ctrl) {
+        if (_.isUndefined($scope.editProfileLink)) {
+          $scope.editProfileLink = false;
+        }
       }
     };
   });

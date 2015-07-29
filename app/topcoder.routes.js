@@ -29,7 +29,7 @@
       '404': {
         parent: 'root',
         url: '/404/',
-        template: '<div> Gone Fishing! </div>',
+        template: '<div><img ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8J45Krm40FLDAiD7_muHh081I1o4s2gPcl-uAVu5JvSL1Qqx5"></div>',
         data: {
           title: 'Page Not Found',
         }

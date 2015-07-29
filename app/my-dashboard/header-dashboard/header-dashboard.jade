@@ -1,12 +1,13 @@
 header
-  .user
-      img(fallback-src="{{vm.defaultPhotoUrl}}", ng-src="https://www.{{vm.domain}}{{vm.profile.photo.photoFile}}")
+  //- .user
+  //-     img(fallback-src="{{vm.defaultPhotoUrl}}", ng-src="https://www.{{vm.domain}}{{vm.profile.photo.photoFile}}")
 
-      .profile
-        p {{vm.profile.handle}}
+  //-     .profile
+  //-       p {{vm.profile.handle}}
 
-        a(ng-href="http://community.{{vm.domain}}/tc?module=MyHome") Edit Profile
+  //-       a(ng-href="http://community.{{vm.domain}}/tc?module=MyHome") Edit Profile
 
+  profile-widget(profile="vm.profile", edit-profile-link="true")
   .user-stats
     .money-earned
       p(ng-bind='vm.moneyEarned || 0 | currency:undefined:0')
@@ -21,9 +22,10 @@ header
 hr
 
 .ratings
-  .track(ng-repeat="track in vm.trackRatings")
-    p(ng-bind="track.rating")
+  .track(ng-repeat="r in vm.rankStats")
+    p(ng-bind="r.rank")
 
-    p(ng-bind="track.phaseDesc")
+    p {{r.track}}:
+    p {{r.subTrack}}
 
 hr
