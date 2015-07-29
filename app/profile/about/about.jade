@@ -22,18 +22,17 @@
 
 
   .categories
-    .category(ng-repeat="category in vm.categories")
-      .a(ui-sref="profile.develop({subTrack: category.subTrack})")
-        .name {{category.track}}
+    .category(ng-repeat="category in vm.categories", ui-sref="profile.develop({subTrack: category.subTrack})")
+      .name {{category.track}}
 
-        .subcategory(ng-show="category.subTrack") {{category.subTrack}}
+      .subcategory(ng-show="category.subTrack") {{category.subTrack}}
 
-        .icon
+      .icon
 
-        .ranking
-          .number {{category.rank | ordinal}}
+      .ranking
+        .number {{category.rank | ordinal}}
 
-          .tag Ranking
+        .tag Ranking
 
   hr
 

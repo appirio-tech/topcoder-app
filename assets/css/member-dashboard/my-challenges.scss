@@ -11,7 +11,7 @@ $url_10: url(../images/sort-arrows.png);
 
   header {
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: 35px;
 
     h1 {
       text-align: center;
@@ -19,8 +19,8 @@ $url_10: url(../images/sort-arrows.png);
 
     p {
       position: absolute;
-      top: 0;
-      right: 0;
+      top: 3px;
+      right: 10px;
 
       a {
         text-decoration: underline;
@@ -31,83 +31,114 @@ $url_10: url(../images/sort-arrows.png);
   section.challenges {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    /* The negative margin here removes the leftmost tiles'
+       margin, since we can't use .tile:first-child here */
     margin-left: -20px;
 
     .tile {
       background-color: $medium-gray;
+      box-sizing: border-box;
       width: 23%;
+      min-height: 175px;
+      padding: 10px;
       margin-left: 20px;
       margin-bottom: 20px;
-      min-height: 175px;
 
-      .challenge-summary {
-        padding: 10px;
-        .title {
+      .challenge-name {
+        a {
           font-weight: bold;
-          min-height: 50px;
+          color: #4f4f4f;
+          display: block;
+          text-decoration: none;
           @include ellipsis;
-          margin-bottom: 10px;
-        }
-        .community {
+          margin-bottom: 15px;
         }
       }
-      .challenge-details {
-        padding: 10px;
+
+      .challenge-icons {
         display: flex;
-        flex-direction: column;
-        .registration-date {
-          label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-          }
-        }
-        .submission-date {
-          label {
-            display: block;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            font-weight: bold;
-          }
-        }
-        .time-left {
-          margin-top: 10px;
-          font-weight: bold;
-        }
-        .reg-sub-summary {
-          margin-top: 10px;
-          .registrants {
-            margin-right: 10px;
-            .value {
-              margin-left: 5px;
-            }
-          }
-          .submissions {
-            .value {
-              margin-left: 5px;
-            }
-          }
-        }
-        .phase-msg {
-          margin-top: 10px;
-          text-transform: capitalize;
-        }
-        .challenge-complete-msg {
-          margin-top: 10px;
-        }
-        .challenge-cancelled-msg {
-          margin-top: 10px;
-        }
-        .challenge-stalled-msg {
-          margin-top: 10px;
-        }
-        .member-status-msg {
-          margin-top: 10px;
-          align-self: center;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .roles-and-track {
           display: flex;
-          flex-direction: column;
-          align-items: center;
+          flex-direction: row;
+
+          img, .role {
+            margin-right: 10px;
+          }
+
+          img {
+            width: 25px;
+            height: 25px;
+          }
+
+          .role {
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            background-color: #d6d6d6;
+            color: $dark-gray;
+            font-size: 14px;
+            text-align: center;
+            line-height: 25px;
+          }
+        }
+
+        a {
+          color: $dark-gray;
+          line-height: 25px;
+        }
+      }
+
+      .challenge-status {
+        color: $dark-gray;
+
+        .days-remaining {
+          margin-top: 15px;
+          font-size: 20px;
+
+          span {
+            display: block;
+            margin-top: 5px;
+            @include source-sans-semi-bold;
+            font-size: 14px;
+            text-transform: uppercase;
+          }
+        }
+
+        .stats {
+          margin-top: 15px;
+          min-height: 23px;
+          font-size: 22px;
+          color: #4f4f4f;
+
+          .registrants, .submissions {
+            display: inline-block;
+          }
+
+          i {
+            margin-right: 5px;
+          }
+
+          span {
+            margin-right: 10px;
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+
+        .phase-status {
+          display: flex;
+          flex-direction: row;
+          margin-top: 35px;
+
+          i {
+            color: #7ece95;
+            margin-right: 5px;
+          }
         }
       }
     }

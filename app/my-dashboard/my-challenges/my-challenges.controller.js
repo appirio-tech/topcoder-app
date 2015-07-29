@@ -3,9 +3,9 @@
 
   angular.module('tc.myDashboard').controller('MyChallengesController', MyChallengesController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS'];
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
@@ -24,12 +24,16 @@
     var getChallenges = function(status, orderBy) {
       vm.loading = true;
       ChallengeService.getChallenges({
-        limit: 10,
+        limit: 6,
         offset: 0,
         orderBy: orderBy, // TODO verify if this is the correct sort order clause,
         filter: "userId="+userId+"&status="+status
       }).then(function(data){
+        Helpers.addTrack(data);
+        processChallengesResponse(data);
+
         vm.myChallenges = data;
+
         vm.loading = false;
       }, function(resp) {
         $log.error(resp);
@@ -48,6 +52,24 @@
     };
 
     activate();
+
+    function processChallengesResponse(data) {
+      angular.forEach(data, function(challenge) {
+        var now = moment();
+        var registrationDate = moment(challenge.registrationEndDate);
+        var submissionDate = moment(challenge.submissionEndDate);
+
+        challenge.registrationClosed = now > registrationDate ? true : false;
+        challenge.submissionClosed = now > submissionDate ? true : false;
+        challenge.registrationTimeLeft = (registrationDate - now)/(24*60*60*1000);
+        challenge.submissionTimeLeft = (submissionDate - now)/(24*60*60*1000);
+
+        // challenge.phaseMsg = preparePhaseMessage(challenge);
+
+        // TODO create msg dynamically
+        challenge.memberStatusMsg = 'You are registered!';
+      });
+    }
 
     ////////////// DEPRECATE ///////////////
     // Fetches user's active challenges from the API
@@ -123,7 +145,7 @@
       vm.visibleChallenges = data.slice(vm.firstRecordIndex - 1, vm.lastRecordIndex);
     }
 
-    function processChallengesResponse(data) {
+    function processChallengesResponseOld(data) {
       if (data.pagination) {
         vm.totalPages = Math.ceil(data.pagination.total / vm.pageSize);
         vm.totalRecords = data.pagination.total;
