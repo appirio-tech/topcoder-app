@@ -12,12 +12,11 @@
     vm.title = "Profile";
     vm.message = "Message"
     vm.profile = {};
-    $scope.initProfile = initProfile;
     vm.userHandle = userHandle;
 
-    activate();
+    activate(vms);
 
-    function activate() {
+    function activate(vms) {
       // show edit profile link if user is authenticated and is viewing their own profile
       if (TcAuthService.isAuthenticated() && UserService.getUserIdentity().username == vm.userHandle) {
         vm.showEditProfileLink = true;
@@ -47,7 +46,7 @@
       });
     }
 
-    function initProfile(vm) {
+    $scope.initProfile = function(vm) {
       vms.push(vm);
     }
 
