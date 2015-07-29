@@ -25,30 +25,13 @@
         vm.profile = profile;
       });
 
-      ProfileService.getUserStats(username)
-      .then(function(stats) {
-        var trackRatings = [];
+      ProfileService.getUserStats(username).then(function(stats) {
+        vm.rankStats = ProfileService.getRanks(stats);
+      }).catch(function(err) {
+        // todo handle error
+      })
 
-        if (stats.developStats && stats.developStats.rankStats) {
-          trackRatings = trackRatings.concat(stats.developStats.rankStats);
-        }
-
-        if (stats.designStats && stats.designStats.rankStats) {
-          trackRatings = trackRatings.concat(stats.designStats.rankStats);
-        }
-
-        angular.forEach(trackRatings, function(track){
-          if (track.phaseDesc === "Assembly Competition") {
-            track.phaseDesc = "Assembly"
-          }
-        })
-
-        vm.trackRatings = trackRatings;
-
-      });
-
-      ProfileService.getUserFinancials(username)
-      .then(function(financials) {
+      ProfileService.getUserFinancials(username).then(function(financials) {
         vm.moneyEarned = financials.overallEarning;
       });
 

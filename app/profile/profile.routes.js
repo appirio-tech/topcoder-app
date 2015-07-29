@@ -13,14 +13,12 @@
       'profile': {
         parent: 'root',
         abstract: true,
+        url: '/members/:userHandle/',
         templateUrl: 'profile/profile.html',
         controller: 'ProfileCtrl as vm',
         resolve: {
           userHandle: ['$stateParams', function($stateParams) {
             return $stateParams.userHandle;
-          }],
-          userId: ['$stateParams', function($stateParams) {
-            return $stateParams.userId;
           }]
         },
         data: {
@@ -29,20 +27,15 @@
         }
       },
       'profile.about': {
-        url: '/members/:userHandle/:userId/',
+        url: '',
         templateUrl: 'profile/about/about.html',
         controller: 'ProfileAboutController',
         controllerAs: 'vm'
       },
       'profile.develop': {
-        url: '/members/:userHandle/:userId/develop/:type/',
+        url: 'develop/?:subTrack',
         templateUrl: 'profile/develop/develop.html',
         controller: 'ProfileDevelopController',
-        resolve: {
-          type: ['$stateParams', function($stateParams) {
-            return $stateParams.type;
-          }]
-        },
         controllerAs: 'vm'
       }
     };
