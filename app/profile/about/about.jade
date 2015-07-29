@@ -20,19 +20,20 @@
 
       .name Wins
 
+
   .categories
     .category(ng-repeat="category in vm.categories")
+      .a(ui-sref="profile.develop({subTrack: category.subTrack})")
+        .name {{category.track}}
 
-      .name {{category.type}}
+        .subcategory(ng-show="category.subTrack") {{category.subTrack}}
 
-      .subcategory(ng-show="category.subtype") {{category.subtype}}
+        .icon
 
-      .icon
+        .ranking
+          .number {{category.rank | ordinal}}
 
-      .ranking
-        .number {{category.rank | ordinal}}
-
-        .tag Ranking
+          .tag Ranking
 
   hr
 

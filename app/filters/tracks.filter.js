@@ -5,14 +5,14 @@
 
   function DisplayTracks() {
     var map = {
-      'Design'       : 'Designer',
-      'Develop'      : 'Developer',
-      'Data Science' : 'Data Scientist'
+      'DESIGN' : 'Designer',
+      'DEVELOP': 'Developer',
+      'DATA'   : 'Data Scientist'
     };
     return function(tracks) {
-      return tracks.map(function(track) {
-        return map[track];
-      }).join(', ');
+      if (tracks)
+        return _.map(tracks, function(n) { return map[n.toUpperCase()]}).join(", ");
+      return '';
     };
   }
 

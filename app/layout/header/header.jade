@@ -43,21 +43,17 @@ header.topcoder-header(ng-class="{slided: main.sidebarActive}")
         .userWidget(style='display: block;')
           .details
             .userPic
-              img(ng-src='{{main.profile.photoLink}}')
+              img(img-src='https://www.topcoder.com/i/m/{{vm.userHandle}}')
 
             .userDetails
-              a.tc_coder.coder(ng-href='https://www.topcoder-dev.com/member-profile/{{main.profile.handle}}', style='{{handleColor}}') {{main.profile.handle}}
+              a.tc_coder.coder(ui-sref="profile.about({userHandle:vm.userHandle})") {{vm.userHandle}}
 
-              p.country {{main.profile.country}}
+              p.country {{vm.profile.homeCountry}}
               p.lbl Member Since :
 
-              p.val.memberSince {{main.profile.memberSince | date : 'MMM d, yyyy'}}
-
-              p.lbl(style='display: none;') Total Earnings :
-
-              p.val.memberEarning
+              p.val.memberSince {{vm.profile.createdAt | date : 'MMM d, yyyy'}}
 
         .action
-          a.profileLink(ng-href='https://www.topcoder-dev.com/member-profile/{{main.profile.handle}}') My Profile
+          a.profileLink(ui-sref="profile.about({userHandle:vm.userHandle})") My Profile
           a(ui-sref="dashboard") My TopCoder
           a.linkAlt(href='//community.topcoder.com/tc?module=MyHome') Account Settings

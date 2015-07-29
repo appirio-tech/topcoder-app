@@ -29,13 +29,11 @@
     ///////////////
 
     function getUserProfile(username) {
-      username = username || UserService.getUserIdentity().username;
       console.log('user identity: ', UserService.getUserIdentity())
       return restangular.one('members', username).get();
     }
 
     function getUserSkills(username) {
-      username = username || UserService.getUserIdentity().username;
       return restangular.one('members', username).one('skills').get();
     }
 
@@ -44,7 +42,6 @@
     }
 
     function getUserStats(username) {
-      username = username || UserService.getUserIdentity().username;
       return restangular.one('members', username).one('stats').get();
     }
 
@@ -61,34 +58,47 @@
     }
 
     function getRanks(stats) {
-      var dev = stats.developStats.rankStats.map(function(x) {
-        return {
-          'type': 'Develop',
-          'subtype': x.phaseDesc,
-          'rank': x.overallRank
-        };
-      });
-      var des = stats.designStats.rankStats.map(function(x) {
-        return {
-          'type': 'Design',
-          'subtype': x.phaseDesc,
-          'rank': x.overallRank
-        };
-      });
-      var srm = stats.dataScienceStats.srmStats.srmRankStats.map(function(x) {
-        return {
-          'type': 'Data Science',
-          'subtype': 'SRM',
-          'rank': x.rank
-        };
-      });
-      var marathon = stats.dataScienceStats.marathonMatchStats.marathonRankStats.map(function(x) {
-        return {
-          'type': 'Data Science',
-          'subtype': 'Marathon',
-          'rank': x.rank
-        };
-      });
+      if (!stats) {
+        return [];
+      }
+      var dev = [], des = [], srm = [], marathon = [];
+      if (stats.developStats && stats.developStats.rankStats) {
+        dev = stats.developStats.rankStats.map(function(x) {
+          return {
+            'track': 'Develop',
+            'subTrack': x.subTrackName.trim(),
+            'rank': x.overallRank
+          };
+        });
+      }
+      // show # of wins for design
+      if (stats.designStats) {
+        des = [
+          {
+            'track': 'Design',
+            'subTrack': '',
+            'rank': stats.designStats.wins
+          }
+        ];
+      }
+      if (stats.dataScienceStats && stats.dataScienceStats.srmStats && stats.dataScienceStats.srmStats.rankStats) {
+        srm = stats.dataScienceStats.srmStats.rankStats.map(function(x) {
+          return {
+            'track': 'Data Science',
+            'subTrack': 'SRM',
+            'rank': x.rank
+          };
+        });
+      }
+      if (stats.dataScienceStats && stats.dataScienceStats.marathonMatchStats && stats.dataScienceStats.marathonMatchStats.rankStats) {
+        marathon = stats.dataScienceStats.marathonMatchStats.rankStats.map(function(x) {
+          return {
+            'track': 'Data Science',
+            'subTrack': 'Marathon',
+            'rank': x.rank
+          };
+        });
+      }
       var ans = dev.concat(des)
         .concat(srm)
         .concat(marathon)
@@ -101,13 +111,13 @@
     function getChallengeTypeStats(stats, track, type) {
       if (track != 'datascience') {
         var ans = stats[track + 'Stats']['rankStats'].filter(function(x) {
-          return type === x.phaseDesc.toLowerCase().replace(/ /g, '');
+          return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         });
         ans[0].challenges = stats[track + 'Stats']['challengeStats'].filter(function(x) {
-          return type === x.phaseDesc.toLowerCase().replace(/ /g, '');
+          return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         })[0].challenges;
         ans[0].detailed = stats[track + 'Stats']['submissionStats'].filter(function(x) {
-          return type === x.phaseDesc.toLowerCase().replace(/ /g, '');
+          return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         })[0];
         return ans[0];
       } else if (type == 'srm') {

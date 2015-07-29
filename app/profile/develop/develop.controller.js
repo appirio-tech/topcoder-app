@@ -4,21 +4,21 @@
     .module('tc.profile')
     .controller('ProfileDevelopController', ProfileDevelopController);
 
-  ProfileDevelopController.$inject = ['$scope', 'ProfileService', 'type', '$q'];
+  ProfileDevelopController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams'];
 
-  function ProfileDevelopController($scope, ProfileService, type, $q) {
+  function ProfileDevelopController($scope, ProfileService, $q, $stateParams) {
     var vm = this;
-    vm.type = type || 'assemblycompetition';
-    vm.profile = {};
+    vm.subTrack = $stateParams.subTrack;
+    // vm.profile = {};
 
     activate();
 
     function activate() {
-      vm.mockProfile = ProfileService.getMockMemberProfile();
+      // vm.mockProfile = ProfileService.getMockMemberProfile();
       $scope.initProfile(vm);
       vm.deferred = $q.defer();
       vm.deferred.promise.then(function() {
-        vm.typeStats = ProfileService.getChallengeTypeStats(vm.stats, 'develop', vm.type);
+        vm.typeStats = ProfileService.getChallengeTypeStats(vm.stats, 'develop', vm.subTrack);
         console.log(vm.typeStats);
       });
     }

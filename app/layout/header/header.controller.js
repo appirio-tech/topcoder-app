@@ -3,9 +3,9 @@
 
   angular.module('tc.layout').controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$window', '$state', '$stateParams', 'TcAuthService', 'CONSTANTS', '$log', '$rootScope'];
+  HeaderController.$inject = ['$window', '$state', '$stateParams', 'TcAuthService', 'CONSTANTS', '$log', '$rootScope', 'UserService', 'ProfileService'];
 
-  function HeaderController($window, $state, $stateParams, TcAuthService, CONSTANTS, $log, $rootScope) {
+  function HeaderController($window, $state, $stateParams, TcAuthService, CONSTANTS, $log, $rootScope, UserService, ProfileService) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.login = TcAuthService.login;
@@ -15,6 +15,16 @@
     function initHeaderProps(event) {
       $log.debug(event + ' triggered header update.');
       vm.isAuth = TcAuthService.isAuthenticated();
+      if (vm.isAuth) {
+        vm.userHandle = UserService.getUserIdentity().username;
+         ProfileService.getUserProfile(vm.userHandle).then(function(data) {
+          vm.profile = data;
+         })
+         .catch(function(resp) {
+          $log.error("Unable to get user data");
+          // todo handle error
+         })
+      }
     }
     // init props default
     initHeaderProps('default');
