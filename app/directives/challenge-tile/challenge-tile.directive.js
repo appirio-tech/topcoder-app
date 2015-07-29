@@ -5,7 +5,8 @@
       restrict: 'E',
       templateUrl: 'directives/challenge-tile/challenge-tile.directive.html',
       scope: {
-        challenge: '=challenge'
+        challenge: '=challenge',
+        domain: '='
       }
     };
   });

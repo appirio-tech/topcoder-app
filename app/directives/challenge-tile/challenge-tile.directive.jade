@@ -1,23 +1,30 @@
-.challenge-name(ng-bind='challenge.challengeName')
+.challenge-name
+  a(ng-href="https://www.{{domain}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}") {{challenge.challengeName}}
 
 .challenge-details
-  .time-left(ng-show="challenge.currentPhaseEndDate")
-      span(ng-bind='challenge.currentPhaseEndDate | timeDiff')
+  .challenge-icons
+    .roles-and-track
+      img(ng-show="challenge.track === 'develop'", src="/images/member-program/svg/development-generic.svg")
+      img(ng-show="challenge.track === 'design' || challenge.track === 'Data Science'", src="/images/member-program/svg/design-generic.svg")
 
-  .phase-msg(ng-bind="challenge.phaseMsg")
+      .role(ng-repeat="role in challenge.userDetails.roles") {{role}}
 
-  .reg-sub-summary
-    span.registrants
-      i.fa.fa-user
-      span.value(ng-bind="challenge.numRegistrants")
+    a(ng-href="http://apps.topcoder.com/forums//?module=Category&categoryID={{challenge.forumId}}")
+      i.fa.fa-comment
 
-    span.submissions
-      i.fa.fa-cloud-download
-      span.value(ng-bind="challenge.numSubmissions")
+  .challenge-status
+    p.days-remaining {{challenge.registrationEndDate | timeDiff}}
+      span Registration Ends
 
-  .member-status-msg
-    .icon
-      i.fa.fa-clock-o
+    .stats
+      .registrants(ng-show="challenge.numRegistrants > 0")
+        i.fa.fa-user
+        span {{challenge.numRegistrants}}
+      .submissions(ng-show="challenge.numSubmissions > 0")
+        i.fa.fa-files-o
+        span {{challenge.numSubmissions}}
 
-    .msg
-      span(ng-bind="challenge.memberStatusMsg")
+    .phase-status
+      i.fa.fa-check-circle-o
+
+      p {{challenge.memberStatusMsg}}
