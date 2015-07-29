@@ -18,8 +18,7 @@
       $scope.initProfile(vm);
       vm.deferred = $q.defer();
       vm.deferred.promise.then(function() {
-        vm.typeStats = ProfileService.getChallengeTypeStats(vm.stats, 'develop', vm.subTrack);
-        console.log(vm.typeStats);
+        vm.typeStats = ProfileService.getChallengeTypeStats(vm.stats, 'develop', vm.subTrack.toLowerCase().replace(/ /g, ''));
       });
     }
 
