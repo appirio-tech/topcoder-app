@@ -40,9 +40,8 @@
     h1 Skills / Technologies
     .list
       .skill(ng-repeat="skill in vm.skills")
-        img.icon(ng-src="images/javascript-logo.png")
-
-        .name {{skill}}
+        skill-tile(skill="skill")
+      
 
   hr
 

@@ -35,7 +35,8 @@
     "ng-notifications-bar": "~0.0.15",
     "angular-xml": "~2.1.1",
     "angular-img-fallback": "~0.1.3",
-    "angular-filter": "~0.5.4"
+    "angular-filter": "~0.5.4",
+    "devicon": "*"
   },
   "devDependencies": {
     "bardjs": "~0.1.4"

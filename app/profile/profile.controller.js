@@ -40,7 +40,7 @@
           }
           // slicing is temporary,
           // until horizontal scroll is implemented
-          vm.skills = skills.skills.slice(0,6);
+          vm.skills = skills.skills;//.slice(0,6);
           vm.categories = ProfileService.getRanks(vm.stats).slice(0,4);
         });
       });
