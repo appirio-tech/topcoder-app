@@ -12,7 +12,7 @@
   function HeaderDashboardController(UserService, ProfileService, CONSTANTS) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
-    vm.defaultPhotoUrl = "/images/avatarPlaceholder.png";
+    vm.defaultPhotoUrl = CONSTANTS.ASSET_PREFIX + "/images/avatarPlaceholder.png";
     vm.isCopilot = true;
 
     activate();
