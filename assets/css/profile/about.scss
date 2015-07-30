@@ -20,6 +20,15 @@
   }
 
   .categories {
+    .leftButton, .rightButton {
+      height: 275px;
+      width: 75px;
+      margin: 10px 20px;
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      justify-content: center;
+    }
     display: flex;
     margin: 10px auto;
     .category {
@@ -71,7 +80,14 @@
       width: 85%;
       overflow-x: auto;
       margin: 40px auto 0 auto;
+      .leftButton, .rightButton {
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
       .skill {
+        width: 150px;
         text-align: center;
         margin: 0 30px;
         i {
