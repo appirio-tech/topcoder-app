@@ -34,24 +34,5 @@ $url_10: url(../images/sort-arrows.png);
     /* The negative margin here removes the leftmost tiles'
        margin, since we can't use .tile:first-child here */
     margin-left: -20px;
-
-    .spotlight {
-      width: 48%;
-
-      .placeholder {
-        font-size: 22px;
-        color: $dark-gray;
-        text-align: center;
-        margin-top: 15px;
-        margin-bottom: 15px;
-      }
-
-      .challenge-status {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding-top: 50px;
-      }
-    }
   }
 }

@@ -8,7 +8,7 @@ header
   //-       a(ng-href="http://community.{{vm.domain}}/tc?module=MyHome") Edit Profile
 
   profile-widget(profile="vm.profile", edit-profile-link="true")
-  
+
   .user-stats
     .money-earned
       p(ng-bind='vm.moneyEarned || 0 | currency:undefined:0')
@@ -22,13 +22,16 @@ header
 
 hr
 
-.section-loading(ng-show="vm.loading")
+.loading(ng-show="vm.loading")
+  .section-loading
 
-.ratings(ng-hide="vm.loading")
+  hr
+
+.ratings(ng-if="vm.hasRatings && !vm.loading")
   .track(ng-repeat="r in vm.rankStats")
     p(ng-bind="r.rank")
 
     p {{r.track}}:
     p {{r.subTrack}}
 
-hr
+  hr
