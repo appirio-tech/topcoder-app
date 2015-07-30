@@ -21,15 +21,7 @@
     return service;
 
     function getChallenges(params) {
-      var challengePromise = api.all('challenges').getList(params);
-      // var marathonPromise = api.all('marathonMatches').getList(params);
-      return $q.all([challengePromise])
-        .then(function(responses) {
-          // var data = responses[0].concat(responses[1]);
-          // TDOO - sort, calculate metadata.totalCount
-          var data = responses[0];
-          return data;
-        });
+      return api.all('challenges').getList(params);
     }
 
     function getSpotlightChallenges() {

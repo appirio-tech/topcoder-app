@@ -14,13 +14,13 @@ section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
   challenge-tile.tile.spotlight(spotlight, challenge="vm.spotlightChallenge", domain="vm.domain")
 
 .section-links
-  .new-challenges.link
-    a(href="https://www.{{vm.domain}}/challenges/") Find New Challenges
+  .link
+    a(href="https://www.{{vm.domain}}/challenges/?pageIndex=1") Find New Challenges
 
-  .topcoder-direct.link(ng-show="vm.userHasChallenges")
+  .link(ng-show="vm.isCopilot")
     a(href="https://www.{{vm.domain}}/direct") Launch Topcoder Direct
 
-  .help-library.link(ng-hide="vm.userHasChallenges")
+  .link(ng-hide="vm.userHasChallenges")
     a(href="https://community.{{vm.domain}}/", target="_blank") View Help Library
 
 .spotlightChallenges(ng-hide="vm.userHasChallenges")

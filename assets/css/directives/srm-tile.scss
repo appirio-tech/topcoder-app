@@ -1,0 +1,50 @@
+@import '../partials/combined';
+
+.srm-tile {
+  background-color: $medium-gray;
+  box-sizing: border-box;
+  width: 23%;
+  padding: 10px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+
+  .srm-name {
+    a {
+      font-weight: bold;
+      color: #4f4f4f;
+      display: block;
+      text-decoration: none;
+      @include ellipsis;
+      margin-bottom: 15px;
+    }
+  }
+
+  .srm-status {
+    color: $dark-gray;
+    padding-top: 10px;
+
+    .days-remaining {
+      margin-top: 15px;
+      font-size: 20px;
+
+      span {
+        display: block;
+        margin-top: 5px;
+        @include source-sans-semi-bold;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+    }
+
+    .phase-status {
+      display: flex;
+      flex-direction: row;
+      margin-top: 35px;
+
+      i {
+        color: #7ece95;
+        margin-right: 5px;
+      }
+    }
+  }
+}

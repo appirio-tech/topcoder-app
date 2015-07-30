@@ -7,47 +7,33 @@
 
   function SRMController(UserService, SRMService, CONSTANTS) {
     var vm = this;
-    vm.loading = true;
+    vm.domain = CONSTANTS.domain;
     vm.srms = [];
-
-    vm.viewPastSRMs = viewPastSRMs;
-    vm.viewUpcomingSRMs = viewUpcomingSRMs;
-
-    var activate = function() {
-      viewUpcomingSRMs();
-    }
+    vm.loading = true;
 
     var userId = UserService.getUserIdentity().userId;
 
-    // get ACTIVE challenges & marathon matches
-    var getSRMs = function(status, orderBy) {
-      vm.loading = true;
-      SRMService.getSRMs({
-        limit: 10,
-        offset: 0,
-        orderBy: orderBy, // TODO verify if this is the correct sort order clause,
-        filter: "userId="+userId+"&status="+status
-      }).then(function(data){
-        vm.myChallenges = data;
-        vm.loading = false;
-      }, function(resp) {
-        $log.error(resp);
-        // TODO - handle error
-      });
+    activate();
+
+    function activate() {
+      getSRMs();
     }
 
-    function viewUpcomingSRMs() {
-      vm.srms = [];
-      getSRMs('upcoming', 'submissionEndDate asc');
-    };
+    function getSRMs() {
+      var params = {
+        filter: 'listType=future'
+      };
 
-    function viewPastSRMs() {
-      vm.srms = [];
-      getSRMs('past', 'submissionEndDate asc');
-    };
-
-    activate();
+      SRMService.getSRMs(params)
+      .then(function(data){
+        console.log('srms: ', data.plain());
+        vm.srms = data;
+        vm.loading = false;
+      }, function(resp) {
+        // TODO - handle error
+        $log.error(resp);
+        vm.loading = false;
+      });
+    }
   }
-
-
 })();

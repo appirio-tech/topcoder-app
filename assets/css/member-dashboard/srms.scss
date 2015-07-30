@@ -1,120 +1,30 @@
 @import '../partials/combined';
 
-.upcoming-srms-div {
+.srms {
+  min-height: 50px;
   display: flex;
-  flex-flow: column wrap;
-  .upcoming-srms-header {
-    margin-bottom: 20px;
+  flex-direction: column;
+
+  header {
+    position: relative;
+    margin-bottom: 35px;
+
+    p.viewSRMs {
+      position: absolute;
+      top: 3px;
+      right: 10px;
+
+      a {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  section.srms {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
-    .left {
-      .view-options {
-        visibility: hidden;
-      }
-    }
-    .center {
-
-    }
-    .right {
-      display: flex;
-      flex-flow: row wrap;
-      .timeline-options {
-        margin-left: 10px;
-      }
-    }
-  }
-  .widget-body.tile-view {
-    border: none;
-    .tile {
-      float: left;
-      background-color: $medium-gray;
-      width: 200px;
-      margin-left: 20px;
-      margin-bottom: 20px;
-      min-height: 175px;
-
-      +.tile {
-        /*margin-left: 20px;*/
-      }
-      &.load-more {
-        text-align: center;
-        line-height: 175px;
-      }
-      .srm-summary {
-        padding: 10px;
-        .title {
-          font-weight: bold;
-          @include ellipsis;
-          margin-bottom: 10px;
-        }
-        .community {
-        }
-      }
-      .srm-details {
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        .time-left {
-          margin-top: 10px;
-          font-weight: bold;
-        }
-        .phase-msg {
-          margin-top: 10px;
-          text-transform: uppercase;
-        }
-        .member-status-msg {
-          margin-top: 10px;
-          align-self: center;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          .icon {
-
-          }
-          .msg {
-
-          }
-        }
-      }
-    }
-  }
-
-  th {
-    text-align: center;
-    .sort {
-      width: 100%;
-      height: 12px;
-      &.asc {
-        background: $color_wild_sand_approx $sort-arrows no-repeat center -94px;
-      }
-      &.desc {
-        background: $color_wild_sand_approx $sort-arrows no-repeat center 6px;
-      }
-    }
-    .sort-icon-place {
-      width: 100%;
-      height: 12px;
-    }
-  }
-  th[rel="sortable"] {
-    cursor: pointer;
-  }
-  td[rel="practice-now-link"] {
-    text-align: left;
-  }
-  .srm-gadget-coding-date {
-    width: 170px;
-  }
-  table > tbody> tr > td {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: center;
-  }
-  td[rel="srm-name"] > a {
-    color: $color_storm_dust_approx;
-    &:hover {
-      color: $color_selective_yellow_approx;
-    }
+    /* The negative margin here removes the leftmost tiles'
+       margin, since we can't use .tile:first-child here */
+    margin-left: -20px;
   }
 }

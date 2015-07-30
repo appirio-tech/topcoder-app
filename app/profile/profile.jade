@@ -1,7 +1,7 @@
-.profile-header-container
+.profile-header-container(ng-hide="vm.loading", ng-cloak)
   .left
     profile-widget(profile="vm.profile", edit-profile-link="vm.showEditProfileLink")
   .right
     h4 member for {{vm.tenure}} years
 
-ui-view
+ui-view(ng-hide="vm.loading", ng-cloak)
