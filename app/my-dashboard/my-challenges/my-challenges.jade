@@ -1,12 +1,14 @@
 header
   h1.section-title My Challenges
 
-  p
+  p.noChallenges(ng-hide="vm.userHasChallenges") You have not participated in any challenges yet.
+
+  p.viewChallenges(ng-show="vm.userHasChallenges")
     a(ui-sref="something") View All My Challenges
 
 .section-loading(ng-show="vm.loading")
 
-section.challenges(ng-hide="vm.loading")
+section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
   challenge-tile.tile(ng-repeat="challenge in vm.myChallenges", challenge="challenge", domain="vm.domain")
 
   challenge-tile.tile.spotlight(spotlight, challenge="vm.spotlightChallenge", domain="vm.domain")
@@ -15,10 +17,13 @@ section.challenges(ng-hide="vm.loading")
   .new-challenges.link
     a(href="https://www.{{vm.domain}}/challenges/") Find New Challenges
 
-  .topcoder-direct.link
+  .topcoder-direct.link(ng-show="vm.userHasChallenges")
     a(href="https://www.{{vm.domain}}/direct") Launch Topcoder Direct
 
-  .help-library.link(ng-show='vm.myChallenges.length == 0')
+  .help-library.link(ng-hide="vm.userHasChallenges")
     a(href="https://community.{{vm.domain}}/", target="_blank") View Help Library
+
+.spotlightChallenges(ng-hide="vm.userHasChallenges")
+  challenge-tile.tile.spotlight(ng-repeat="spotlight in vm.spotlightChallenges", spotlight, challenge="spotlight", domain="vm.domain")
 
 hr

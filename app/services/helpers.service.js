@@ -16,8 +16,7 @@
       countCompleted: countCompleted,
       getParameterByName: getParameterByName,
       getPageTitle: getPageTitle,
-      isEmail: isEmail,
-      addTrack: addTrack
+      isEmail: isEmail
     };
     return service;
 
@@ -161,48 +160,6 @@
     function isEmail(value) {
       var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       return re.test(value);
-    }
-
-    function addTrack(challenges) {
-      var tracks = {
-        'Application Front-End Design': 'design',
-        'Banners/Icons': 'design',
-        'Design First2Finish': 'design',
-        'Front-End Flash': 'design',
-        'Idea Generation': 'design',
-        'Logo Design': 'design',
-        'Print/Presentation': 'design',
-        'Studio Other': 'design',
-        'Web Design': 'design',
-        'Widget or Mobile Screen Design': 'design',
-        'Wireframes': 'design',
-        'Architecture': 'develop',
-        'Assembly': 'develop',
-        'Bug Hunt': 'develop',
-        'Code': 'develop',
-        'Conceptualization': 'develop',
-        'Content Creation': 'develop',
-        'Copilot Posting': 'develop',
-        'Component Design': 'develop',
-        'Component Development': 'develop',
-        'First2Finish': 'develop',
-        'Marathon Match': 'develop',
-        'RIA Build': 'develop',
-        'Specification': 'develop',
-        'Test Scenarios': 'develop',
-        'Test Suites': 'develop',
-        'UI Prototype': 'develop'
-      }
-
-      challenges.forEach(function(challenge) {
-        var subtrack = challenge.challengeType;
-        if (tracks[subtrack]) {
-          challenge.track = tracks[subtrack];
-          challenge.userDetails.roles = ['R', 'CP'];
-        } else {
-          challenge.track = 'Data Science';
-        }
-      });
     }
   }
 })();

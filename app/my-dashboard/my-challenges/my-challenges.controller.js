@@ -10,6 +10,7 @@
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
     vm.myChallenges = [];
+    vm.userHasChallenges = true;
 
     // Can we remove these since the filter is going on a different page?
     vm.viewActiveChallenges = viewActiveChallenges;
@@ -51,20 +52,26 @@
         var challenges = data[0];
         var spotlightChallenges = data[1];
 
-        // Helpers.addTrack(challenges);
-        processChallengesResponse(challenges);
+        if (challenges.length > 0) {
+          processChallengesResponse(challenges);
 
-        vm.myChallenges = challenges;
-        console.log('regular challenges: ', vm.myChallenges.plain())
+          vm.myChallenges = challenges;
+          console.log('regular challenges: ', vm.myChallenges.plain())
 
-        vm.spotlightChallenge = spotlightChallenges[0];
-        console.log('spotlight: ', vm.spotlightChallenge);
+          vm.spotlightChallenge = spotlightChallenges[0];
+          console.log('spotlight: ', vm.spotlightChallenge);
 
-        vm.loading = false;
-
+          vm.userHasChallenges = true;
+          vm.loading = false;
+        } else {
+          vm.userHasChallenges = false;
+          vm.spotlightChallenges = spotlightChallenges.slice(0, 2);
+          vm.loading = false;
+        }
       })
       .catch(function(err) {
         $log.error(err);
+        vm.userHasChallenges = true;
         vm.loading = false;
         // TODO - handle error
       });
