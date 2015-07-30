@@ -11,17 +11,30 @@
     vm.loading = true;
     vm.myChallenges = [];
 
+    // Can we remove these since the filter is going on a different page?
     vm.viewActiveChallenges = viewActiveChallenges;
     vm.viewPastChallenges = viewPastChallenges;
 
-    var activate = function() {
+    var userId = UserService.getUserIdentity().userId;
+
+    activate();
+
+    function activate() {
       viewActiveChallenges();
     }
 
-    var userId = UserService.getUserIdentity().userId;
+    function viewActiveChallenges() {
+      vm.myChallenges = [];
+      getChallenges('Active', 'submissionEndDate asc');
+    };
+
+    function viewPastChallenges() {
+      vm.myChallenges = [];
+      getChallenges('Completed', 'submissionEndDate asc');
+    };
 
     // get ACTIVE challenges and spotlight challenges
-    var getChallenges = function(status, orderBy) {
+    function getChallenges(status, orderBy) {
       vm.loading = true;
       var challengeOptions = {
         limit: 6,
@@ -56,18 +69,6 @@
         // TODO - handle error
       });
     }
-
-    function viewActiveChallenges() {
-      vm.myChallenges = [];
-      getChallenges('Active', 'submissionEndDate asc');
-    };
-
-    function viewPastChallenges() {
-      vm.myChallenges = [];
-      getChallenges('Completed', 'submissionEndDate asc');
-    };
-
-    activate();
 
     function processChallengesResponse(data) {
       angular.forEach(data, function(challenge) {

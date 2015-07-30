@@ -9,7 +9,7 @@ header
 section.challenges(ng-hide="vm.loading")
   challenge-tile.tile(ng-repeat="challenge in vm.myChallenges", challenge="challenge", domain="vm.domain")
 
-  challenge-tile.tile.spotlight(challenge="vm.spotlightChallenge", domain="vm.domain", spotlight)
+  challenge-tile.tile.spotlight(spotlight, challenge="vm.spotlightChallenge", domain="vm.domain")
 
 .section-links
   .new-challenges.link

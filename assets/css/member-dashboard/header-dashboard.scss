@@ -70,15 +70,19 @@
     }
   }
 
+  .loading {
+    margin-top: -20px;
+  }
+
   .ratings {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    margin-bottom: 27px;
     font-size: 13px;
 
     .track {
       width: 120px;
+      margin-bottom: 20px;
       text-align: center;
 
       p:first-child {

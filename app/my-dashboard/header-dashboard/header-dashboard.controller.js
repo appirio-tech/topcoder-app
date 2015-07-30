@@ -13,8 +13,9 @@
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.defaultPhotoUrl = "/images/avatarPlaceholder.png";
-    vm.isCopilot = true;
+    vm.isCopilot = false;
     vm.loading = true;
+    vm.hasRatings = true;
 
     activate();
 
@@ -26,15 +27,24 @@
         vm.profile = profile;
       });
 
-      ProfileService.getUserStats(username).then(function(stats) {
+      ProfileService.getUserStats(username)
+      .then(function(stats) {
         vm.rankStats = ProfileService.getRanks(stats);
+
+        if (vm.rankStats.length === 0) {
+          vm.hasRatings = false;
+        }
+
         vm.loading = false;
-      }).catch(function(err) {
+      })
+      .catch(function(err) {
+        vm.hasRatings = false;
         vm.loading = false;
         // todo handle error
       })
 
-      ProfileService.getUserFinancials(username).then(function(financials) {
+      ProfileService.getUserFinancials(username)
+      .then(function(financials) {
         vm.moneyEarned = financials.overallEarning;
       });
 
