@@ -21,7 +21,7 @@ module.exports = function() {
         BLOG_LOCATION: 'https://www.topcoder-dev.com/feed/?post_type=blog',
         UPCOMING_SRMS_URL: 'https://www.topcoder.com/challenges/data/upcoming/',
         NEW_CHALLENGES_URL: 'https://www.topcoder.com/challenges/develop/upcoming/',
-        ASSET_PREFIX: '',
+        ASSET_PREFIX: process.env.ASSET_PREFIX || '',
 
         // EVENTS
         EVENT_USER_LOGGED_IN: 'user_logged_in',
