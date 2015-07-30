@@ -24,9 +24,16 @@
       .value {{vm.typeStats.reliability | percentage}}
       .name RELIABILITY
 
-  .buttons
-    button(ng-click="vm.viewing = 'challenges'") Challenges
-    button(ng-click="vm.viewing = 'stats'") Stats
+  .tabs
+    a(ng-click="vm.viewing = 'challenges'",
+      ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
+    ) Challenges
+
+    a(ng-click="vm.viewing = 'stats'",
+      ng-class="vm.viewing == 'stats' ? 'selected' : ''"
+    ) Stats
+
+  hr
 
   .challenges(ng-show="vm.viewing == 'challenges'")
     .challenge.tile(ng-repeat="challenge in vm.challenges")

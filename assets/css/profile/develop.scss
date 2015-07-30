@@ -27,13 +27,18 @@
     }
   }
 
-  .buttons {
+  .tabs {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 30px 0;
-    button {
+    margin: 30px 0 0 0;
+    a {
       width: 100px;
+      padding: 8px;
+      text-align: center;
+      &.selected {
+        border: 1px solid #dddddd;
+      }
     }
   }
 
