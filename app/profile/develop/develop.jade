@@ -24,7 +24,15 @@
       .value {{vm.typeStats.reliability | percentage}}
       .name RELIABILITY
 
-  .stats
+  .buttons
+    button(ng-click="vm.viewing = 'challenges'") Challenges
+    button(ng-click="vm.viewing = 'stats'") Stats
+
+  .challenges(ng-show="vm.viewing == 'challenges'")
+    .challenge.tile(ng-repeat="challenge in vm.challenges")
+      challenge-tile(challenge="challenge", domain="vm.domain")
+
+  .stats(ng-show="vm.viewing == 'stats'")
     h2.detailed Detailed Stats
 
     ul.vertical-stats
