@@ -13,6 +13,7 @@ html
     //- bower:css
     link(rel='stylesheet', href='../bower_components/fontawesome/css/font-awesome.css')
     link(rel='stylesheet', href='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.css')
+    link(rel='stylesheet', href='../bower_components/devicon/devicon.min.css')
     //- endbower
     // endbuild
 
@@ -37,6 +38,7 @@ html
     link(rel="stylesheet", href="assets/css/layout/header.css")
     link(rel="stylesheet", href="assets/css/layout/footer.css")
     link(rel="stylesheet", href="assets/css/directives/profile-widget/profile-widget.css")
+    link(rel="stylesheet", href="assets/css/directives/challenge-tiles.css")
     link(rel="stylesheet", href="assets/css/account/reset-password.css")
     link(rel="stylesheet", href="assets/css/account/register.css")
     link(rel="stylesheet", href="assets/css/account/login.css")
@@ -76,6 +78,7 @@ html
     script(src='../bower_components/x2js/xml2json.min.js')
     script(src='../bower_components/angular-xml/angular-xml.js')
     script(src='../bower_components/angular-img-fallback/angular.dcb-img-fallback.js')
+    script(src='../bower_components/angular-filter/dist/angular-filter.js')
     //- endbower
     //- inject:nonBowerScripts
     script(src="/scripts/auth0.js")
@@ -100,11 +103,12 @@ html
     script(src="topcoder.module.js")
     script(src="directives/asset-src/asset-src.directive.js")
     script(src="directives/tcui-components.module.js")
-    script(src="directives/challenge-tile/challenge-tile.directive.js")
+    script(src="directives/challenge-tiles/challenge-tile.directive.js")
     script(src="directives/profile-widget/profile-widget.directive.js")
+    script(src="directives/skill-tile/skill-tile.directive.js")
+    script(src="directives/slideable.directive.js")
     script(src="directives/srm-tile/srm-tile.directive.js")
     script(src="filters/deadline-msg.filter.js")
-    script(src="filters/join-array.filter.js")
     script(src="filters/local-time.filter.js")
     script(src="filters/location.filter.js")
     script(src="filters/ordinal.filter.js")
@@ -128,7 +132,6 @@ html
     script(src="peer-review/readOnlyScorecard/readOnlyScorecard.controller.js")
     script(src="peer-review/review-status/review-status.controller.js")
     script(src="peer-review/review-status/review-status.filter.js")
-    script(src="peer-review/slideable.directive.js")
     script(src="profile/profile.module.js")
     script(src="profile/about/about.controller.js")
     script(src="profile/develop/develop.controller.js")

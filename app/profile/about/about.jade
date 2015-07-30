@@ -2,8 +2,8 @@
   p.description {{vm.profile.description}}
 
   .tags
-    .tag(ng-repeat="track in vm.tracks")
-      | {{track}}
+    .tag(ng-repeat="track in (vm.profile.tracks | displayTracks)")
+      | {{track}} 
 
   hr
 
@@ -20,12 +20,14 @@
 
       .name Wins
 
+
   .categories
-    .category(ng-repeat="category in vm.categories")
+    .leftButton(ng-click="vm.shiftCategories(-1)") &#9664;
 
-      .name {{category.type}}
+    .category(ng-repeat="category in vm.categories.slice(vm.categoryIndex, vm.categoryIndex + 4)", ui-sref="profile.develop({subTrack: category.subTrack})")
+      .name {{category.track}}
 
-      .subcategory(ng-show="category.subtype") {{category.subtype}}
+      .subcategory(ng-show="category.subTrack") {{category.subTrack}}
 
       .icon
 
@@ -34,15 +36,22 @@
 
         .tag Ranking
 
+    .rightButton(ng-click="vm.shiftCategories(1)") &#9654;
+
   hr
 
   .skills
     h1 Skills / Technologies
-    .list
-      .skill(ng-repeat="skill in vm.skills")
-        img.icon(ng-src="images/javascript-logo.png")
 
-        .name {{skill}}
+
+    .list
+      .leftButton(ng-click="vm.shiftSkills(-1)") &#9664;
+
+      .skill(ng-repeat="skill in vm.skills.slice(vm.skillIndex, vm.skillIndex + 5)")
+        skill-tile(skill="skill")
+
+      .rightButton(ng-click="vm.shiftSkills(1)") &#9654;
+
 
   hr
 

@@ -1,0 +1,121 @@
+@import '../partials/combined';
+
+// Default Challenge Tile Stylings
+.tile {
+  background-color: $medium-gray;
+  box-sizing: border-box;
+  width: 23%;
+  padding: 10px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+
+  .challenge-name {
+    a {
+      font-weight: bold;
+      color: #4f4f4f;
+      display: block;
+      text-decoration: none;
+      @include ellipsis;
+      margin-bottom: 15px;
+    }
+  }
+
+  .challenge-icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .roles-and-track {
+      display: flex;
+      flex-direction: row;
+
+      img, .role {
+        margin-right: 10px;
+      }
+
+      img {
+        width: 25px;
+        height: 25px;
+      }
+
+      .role {
+        width: 25px;
+        height: 25px;
+        border-radius: 5px;
+        background-color: #d6d6d6;
+        color: $dark-gray;
+        font-size: 14px;
+        text-align: center;
+        line-height: 25px;
+      }
+    }
+
+    a {
+      color: $dark-gray;
+      line-height: 25px;
+    }
+  }
+
+  .challenge-status {
+    color: $dark-gray;
+
+    .days-remaining {
+      margin-top: 15px;
+      font-size: 20px;
+
+      span {
+        display: block;
+        margin-top: 5px;
+        @include source-sans-semi-bold;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+    }
+
+    .stats {
+      margin-top: 15px;
+      min-height: 23px;
+      font-size: 22px;
+      color: #4f4f4f;
+
+      .registrants, .submissions {
+        display: inline-block;
+        margin-right: 10px;
+      }
+
+      i {
+        margin-right: 5px;
+      }
+    }
+
+    .phase-status {
+      display: flex;
+      flex-direction: row;
+      margin-top: 35px;
+
+      i {
+        color: #7ece95;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+// Stylings for Spotlight Challenges
+.spotlight {
+  width: 48%;
+
+  .placeholder {
+    font-size: 22px;
+    color: $dark-gray;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .challenge-status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 50px;
+  }
+}

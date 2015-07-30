@@ -28,23 +28,20 @@
 
     ///////////////
 
-    function getUserProfile(userId) {
-      userId = userId || UserService.getUserIdentity().userId;
-      return restangular.one('members', userId).one('profile').get();
+    function getUserProfile(username) {
+      return restangular.one('members', username).get();
     }
 
-    function getUserSkills(userId) {
-      userId = userId || UserService.getUserIdentity().userId;
-      return restangular.one('members', userId).one('skills').get();
+    function getUserSkills(username) {
+      return restangular.one('members', username).one('skills').get();
     }
 
-    function getUserFinancials(userId) {
-      return restangular.one('members', userId).one('financial').get();
+    function getUserFinancials(username) {
+      return restangular.one('members', username).one('financial').get();
     }
 
-    function getUserStats(userId) {
-      userId = userId || UserService.getUserIdentity().userId;
-      return restangular.one('members', userId).one('stats').get();
+    function getUserStats(username) {
+      return restangular.one('members', username).one('stats').get();
     }
 
     function getNumProjects(stats) {
@@ -60,34 +57,47 @@
     }
 
     function getRanks(stats) {
-      var dev = stats.developStats.rankStats.map(function(x) {
-        return {
-          'type': 'Develop',
-          'subtype': x.phaseDesc,
-          'rank': x.overallRank
-        };
-      });
-      var des = stats.designStats.rankStats.map(function(x) {
-        return {
-          'type': 'Design',
-          'subtype': x.phaseDesc,
-          'rank': x.overallRank
-        };
-      });
-      var srm = stats.dataScienceStats.srmStats.srmRankStats.map(function(x) {
-        return {
-          'type': 'Data Science',
-          'subtype': 'SRM',
-          'rank': x.rank
-        };
-      });
-      var marathon = stats.dataScienceStats.marathonMatchStats.marathonRankStats.map(function(x) {
-        return {
-          'type': 'Data Science',
-          'subtype': 'Marathon',
-          'rank': x.rank
-        };
-      });
+      if (!stats) {
+        return [];
+      }
+      var dev = [], des = [], srm = [], marathon = [];
+      if (stats.developStats && stats.developStats.rankStats) {
+        dev = stats.developStats.rankStats.map(function(x) {
+          return {
+            'track': 'Develop',
+            'subTrack': x.subTrackName.trim(),
+            'rank': x.overallRank
+          };
+        });
+      }
+      // show # of wins for design
+      if (stats.designStats) {
+        des = [
+          {
+            'track': 'Design',
+            'subTrack': '',
+            'rank': stats.designStats.wins
+          }
+        ];
+      }
+      if (stats.dataScienceStats && stats.dataScienceStats.srmStats && stats.dataScienceStats.srmStats.rankStats) {
+        srm = stats.dataScienceStats.srmStats.rankStats.map(function(x) {
+          return {
+            'track': 'Data Science',
+            'subTrack': 'SRM',
+            'rank': x.rank
+          };
+        });
+      }
+      if (stats.dataScienceStats && stats.dataScienceStats.marathonMatchStats && stats.dataScienceStats.marathonMatchStats.rankStats) {
+        marathon = stats.dataScienceStats.marathonMatchStats.rankStats.map(function(x) {
+          return {
+            'track': 'Data Science',
+            'subTrack': 'Marathon',
+            'rank': x.rank
+          };
+        });
+      }
       var ans = dev.concat(des)
         .concat(srm)
         .concat(marathon)
@@ -100,13 +110,13 @@
     function getChallengeTypeStats(stats, track, type) {
       if (track != 'datascience') {
         var ans = stats[track + 'Stats']['rankStats'].filter(function(x) {
-          return type === x.phaseDesc.toLowerCase().replace(/ /g, '');
+          return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         });
         ans[0].challenges = stats[track + 'Stats']['challengeStats'].filter(function(x) {
-          return type === x.phaseDesc.toLowerCase().replace(/ /g, '');
+          return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         })[0].challenges;
         ans[0].detailed = stats[track + 'Stats']['submissionStats'].filter(function(x) {
-          return type === x.phaseDesc.toLowerCase().replace(/ /g, '');
+          return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         })[0];
         return ans[0];
       } else if (type == 'srm') {
@@ -117,17 +127,19 @@
     }
 
     function getTracks(stats) {
+      console.log('stats');
+      console.log(stats);
       var tracks = [
         {
-          'name': 'Develop',
+          'name': 'DEVELOP',
           'challenges': stats.developStats.challenges,
         },
         {
-          'name': 'Design',
+          'name': 'DESIGN',
           'challenges': stats.designStats.challenges,
         },
         {
-          'name': 'Data Science',
+          'name': 'DATA',
           'challenges': stats.dataScienceStats.challenges,
         }
       ].filter(function(track) {

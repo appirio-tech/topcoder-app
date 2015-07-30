@@ -5,7 +5,15 @@
     '$stateProvider',
     '$urlRouterProvider',
     routes
-  ]);
+  ]).run(['$rootScope', '$state', function($rootScope, $state) {
+    // handle state change error
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+      if (toState.name.indexOf('profile') > -1 && error.status === 400) {
+        // unable to find a member with that username
+        $state.go('404');
+      }
+    });
+  }]);
 
   function routes($stateProvider, $stateParams, $urlRouterProvider) {
     var name, state, states;
@@ -13,14 +21,15 @@
       'profile': {
         parent: 'root',
         abstract: true,
+        url: '/members/:userHandle/',
         templateUrl: 'profile/profile.html',
         controller: 'ProfileCtrl as vm',
         resolve: {
           userHandle: ['$stateParams', function($stateParams) {
             return $stateParams.userHandle;
           }],
-          userId: ['$stateParams', function($stateParams) {
-            return $stateParams.userId;
+          profile: ['userHandle', 'ProfileService', function(userHandle, ProfileService) {
+            return ProfileService.getUserProfile(userHandle);
           }]
         },
         data: {
@@ -29,20 +38,15 @@
         }
       },
       'profile.about': {
-        url: '/members/:userHandle/:userId/',
+        url: '',
         templateUrl: 'profile/about/about.html',
         controller: 'ProfileAboutController',
         controllerAs: 'vm'
       },
       'profile.develop': {
-        url: '/members/:userHandle/:userId/develop/:type/',
+        url: 'develop/?:subTrack',
         templateUrl: 'profile/develop/develop.html',
         controller: 'ProfileDevelopController',
-        resolve: {
-          type: ['$stateParams', function($stateParams) {
-            return $stateParams.type;
-          }]
-        },
         controllerAs: 'vm'
       }
     };

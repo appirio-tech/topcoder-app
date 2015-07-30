@@ -13,42 +13,37 @@
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.defaultPhotoUrl = CONSTANTS.ASSET_PREFIX + "/images/avatarPlaceholder.png";
-    vm.isCopilot = true;
+    vm.isCopilot = false;
+    vm.loading = true;
+    vm.hasRatings = true;
 
     activate();
 
     function activate() {
-      var userId = UserService.getUserIdentity().userId;
+      var username = UserService.getUserIdentity().username;
 
-      ProfileService.getUserProfile(userId)
+      ProfileService.getUserProfile(username)
       .then(function(profile) {
-        console.log("profile: ", profile);
         vm.profile = profile;
       });
 
-      ProfileService.getUserStats(userId)
+      ProfileService.getUserStats(username)
       .then(function(stats) {
-        var trackRatings = [];
+        vm.rankStats = ProfileService.getRanks(stats);
 
-        if (stats.developStats && stats.developStats.rankStats) {
-          trackRatings = trackRatings.concat(stats.developStats.rankStats);
+        if (vm.rankStats.length === 0) {
+          vm.hasRatings = false;
         }
 
-        if (stats.designStats && stats.designStats.rankStats) {
-          trackRatings = trackRatings.concat(stats.designStats.rankStats);
-        }
+        vm.loading = false;
+      })
+      .catch(function(err) {
+        vm.hasRatings = false;
+        vm.loading = false;
+        // todo handle error
+      })
 
-        angular.forEach(trackRatings, function(track){
-          if (track.phaseDesc === "Assembly Competition") {
-            track.phaseDesc = "Assembly"
-          }
-        })
-
-        vm.trackRatings = trackRatings;
-
-      });
-
-      ProfileService.getUserFinancials(userId)
+      ProfileService.getUserFinancials(username)
       .then(function(financials) {
         vm.moneyEarned = financials.overallEarning;
       });

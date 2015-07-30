@@ -3,37 +3,25 @@
 
   angular.module('tc.myDashboard').controller('MyChallengesController', MyChallengesController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log'];
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers) {
     var vm = this;
+    vm.domain = CONSTANTS.domain;
     vm.loading = true;
     vm.myChallenges = [];
+    vm.userHasChallenges = true;
 
+    // Can we remove these since the filter is going on a different page?
     vm.viewActiveChallenges = viewActiveChallenges;
     vm.viewPastChallenges = viewPastChallenges;
 
-    var activate = function() {
-      viewActiveChallenges();
-    }
-
     var userId = UserService.getUserIdentity().userId;
 
-    // get ACTIVE challenges & marathon matches
-    var getChallenges = function(status, orderBy) {
-      vm.loading = true;
-      ChallengeService.getChallenges({
-        limit: 10,
-        offset: 0,
-        orderBy: orderBy, // TODO verify if this is the correct sort order clause,
-        filter: "userId="+userId+"&status="+status
-      }).then(function(data){
-        vm.myChallenges = data;
-        vm.loading = false;
-      }, function(resp) {
-        $log.error(resp);
-        // TODO - handle error
-      });
+    activate();
+
+    function activate() {
+      viewActiveChallenges();
     }
 
     function viewActiveChallenges() {
@@ -46,7 +34,66 @@
       getChallenges('Completed', 'submissionEndDate asc');
     };
 
-    activate();
+    // get ACTIVE challenges and spotlight challenges
+    function getChallenges(status, orderBy) {
+      vm.loading = true;
+      var challengeOptions = {
+        limit: 6,
+        offset: 0,
+        orderBy: orderBy, // TODO verify if this is the correct sort order clause,
+        filter: "userId="+userId+"&status="+status
+      };
+
+      $q.all([
+        ChallengeService.getChallenges(challengeOptions),
+        ChallengeService.getSpotlightChallenges()
+      ])
+      .then(function(data){
+        var challenges = data[0];
+        var spotlightChallenges = data[1];
+
+        if (challenges.length > 0) {
+          processChallengesResponse(challenges);
+
+          vm.myChallenges = challenges;
+          console.log('regular challenges: ', vm.myChallenges.plain())
+
+          vm.spotlightChallenge = spotlightChallenges[0];
+          console.log('spotlight: ', vm.spotlightChallenge);
+
+          vm.userHasChallenges = true;
+          vm.loading = false;
+        } else {
+          vm.userHasChallenges = false;
+          vm.spotlightChallenges = spotlightChallenges.slice(0, 2);
+          vm.loading = false;
+        }
+      })
+      .catch(function(err) {
+        $log.error(err);
+        vm.userHasChallenges = true;
+        vm.loading = false;
+        // TODO - handle error
+      });
+    }
+
+    function processChallengesResponse(data) {
+      angular.forEach(data, function(challenge) {
+        var now = moment();
+        var registrationDate = moment(challenge.registrationEndDate);
+        var submissionDate = moment(challenge.submissionEndDate);
+
+        challenge.registrationClosed = now > registrationDate ? true : false;
+        challenge.submissionClosed = now > submissionDate ? true : false;
+        challenge.registrationTimeLeft = (registrationDate - now)/(24*60*60*1000);
+        challenge.submissionTimeLeft = (submissionDate - now)/(24*60*60*1000);
+
+        // challenge.phaseMsg = preparePhaseMessage(challenge);
+
+        // TODO create msg dynamically
+        challenge.memberStatusMsg = 'You are registered!';
+      });
+    }
 
     ////////////// DEPRECATE ///////////////
     // Fetches user's active challenges from the API
@@ -122,7 +169,7 @@
       vm.visibleChallenges = data.slice(vm.firstRecordIndex - 1, vm.lastRecordIndex);
     }
 
-    function processChallengesResponse(data) {
+    function processChallengesResponseOld(data) {
       if (data.pagination) {
         vm.totalPages = Math.ceil(data.pagination.total / vm.pageSize);
         vm.totalRecords = data.pagination.total;

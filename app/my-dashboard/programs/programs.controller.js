@@ -34,7 +34,6 @@
             // var iOSChallenges = challenges[1];
             // vm.challenges = [peerChallenges[0], iOSChallenges[0], iOSChallenges[1]];
             vm.challenges = challenges;
-            console.log(vm.challenges);
             vm.registered = true;
           })
           .catch(function(err) {

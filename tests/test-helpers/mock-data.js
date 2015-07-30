@@ -4,6 +4,7 @@ var mockData = (function() {
     getMockUsers: getMockUsers,
     getMockStates: getMockStates,
     getMockChallenge: getMockChallenge,
+    getMockSpotlightChallenges: getMockSpotlightChallenges,
     getMockiOSChallenges: getMockiOSChallenges,
     getMockChallengeDates: getMockChallengeDates,
     getMockUsersPeerReviews: getMockUsersPeerReviews,
@@ -103,6 +104,27 @@ var mockData = (function() {
         }
       }
     }
+  }
+
+  function getMockSpotlightChallenges() {
+    return [
+      {
+        challengeName: 'Styx iOS Video Mobile App Bug Fixes - 177+214',
+        challengeType: 'Code',
+        totalPrize: '1200',
+        registrationStartDate: '2015-05-01T00:00:00.000-0400',
+        numRegistrants: 21,
+        numSubmissions: 8
+      },
+      {
+        challengeName: 'Styx iOS Video Mobile App Bug Fixes - 177+214',
+        challengeType: 'Code',
+        totalPrize: '1200',
+        registrationStartDate: '2015-05-01T00:00:00.000-0400',
+        numRegistrants: 21,
+        numSubmissions: 8
+      }
+    ];
   }
 
   function getMockiOSChallenges() {

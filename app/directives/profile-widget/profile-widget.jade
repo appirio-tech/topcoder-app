@@ -1,9 +1,11 @@
 .profile-widget-directive
-  img.profile-circle(ng-src="https://www.topcoder.com/i/m/{{profile.handle}}.jpeg")
+  img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="https://www.topcoder.com/i/m/{{profile.handle}}.jpeg")
 
   .info
     h1 {{profile.handle}}
 
-    h3.tracks {{profile.tracks | displayTracks}}
+    h3.tracks {{profile.tracks | displayTracks | join: ', '}}
 
-    h3.location {{profile.location | joinArray}}
+    h3.location {{profile.homeCountry}}
+
+    a(ng-show="editProfileLink" ng-href="http://community.{{vm.domain}}/tc?module=MyHome") Edit Profile

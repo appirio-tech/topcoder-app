@@ -1,24 +1,29 @@
-.widget-content
-  .challenges-header
-    .center
-      strong My Challenges
-    .right
-      a(href="#") View All My Challenges
-      .timeline-options
-        a(href="#", ng-click='vm.viewActiveChallenges()') Active
-        span  | 
-        a(href="#", ng-click='vm.viewPastChallenges()') Past
-      
-  .widget-body.no-challenge(ng-show="vm.myChallenges.length == 0 && !vm.loading")
-    span(ng-show="vm.listType == 'past'") You have not participated in any challenges yet.
-    span(ng-show="vm.listType == 'active'") No active challenges.
-  .widget-body.tile-view
-    challenge-tile(challenge="challenge", ng-repeat='challenge in vm.myChallenges')
-    .widget-loading(ng-show='vm.loading')
-  .useful-links
-    .new-challenges.link
-      a(href="https://www.topcoder-dev.com/challenges/") Find New Challenges
-    .topcoder-direct.link
-      a(href="https://www.topcoder-dev.com/direct") Launch Topcoder Direct
-    .help-library.link(ng-show='vm.myChallenges.length == 0')
-      a(href="https://community.topcoder-dev.com/", target="_blank") View Help Library
+header
+  h1.section-title My Challenges
+
+  p.noChallenges(ng-hide="vm.userHasChallenges") You have not participated in any challenges yet.
+
+  p.viewChallenges(ng-show="vm.userHasChallenges")
+    a(ui-sref="something") View All My Challenges
+
+.section-loading(ng-show="vm.loading")
+
+section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
+  challenge-tile.tile(ng-repeat="challenge in vm.myChallenges", challenge="challenge", domain="vm.domain")
+
+  challenge-tile.tile.spotlight(spotlight, challenge="vm.spotlightChallenge", domain="vm.domain")
+
+.section-links
+  .new-challenges.link
+    a(href="https://www.{{vm.domain}}/challenges/") Find New Challenges
+
+  .topcoder-direct.link(ng-show="vm.userHasChallenges")
+    a(href="https://www.{{vm.domain}}/direct") Launch Topcoder Direct
+
+  .help-library.link(ng-hide="vm.userHasChallenges")
+    a(href="https://community.{{vm.domain}}/", target="_blank") View Help Library
+
+.spotlightChallenges(ng-hide="vm.userHasChallenges")
+  challenge-tile.tile.spotlight(ng-repeat="spotlight in vm.spotlightChallenges", spotlight, challenge="spotlight", domain="vm.domain")
+
+hr

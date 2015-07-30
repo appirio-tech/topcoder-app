@@ -22,11 +22,6 @@
 
     /////////////////////
 
-    function isEmail(value) {
-      var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-      return re.test(value);
-    }
-
     function storeById(object, questions) {
       angular.forEach(questions, function(question) {
         object[question.id] = question;
@@ -160,6 +155,11 @@
           title += ' | '
         }
         return title + 'TopCoder';
+    }
+
+    function isEmail(value) {
+      var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+      return re.test(value);
     }
   }
 })();

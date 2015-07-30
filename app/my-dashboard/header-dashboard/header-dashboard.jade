@@ -1,11 +1,13 @@
 header
-  .user
-      img(fallback-src="{{vm.defaultPhotoUrl}}", ng-src="{{vm.profile}}")
+  //- .user
+  //-     img(fallback-src="{{vm.defaultPhotoUrl}}", ng-src="https://www.{{vm.domain}}{{vm.profile.photo.photoFile}}")
 
-      .profile
-        p {{vm.profile.handle}}
+  //-     .profile
+  //-       p {{vm.profile.handle}}
 
-        a(ng-href="http://community.{{vm.domain}}/tc?module=MyHome") Edit Profile
+  //-       a(ng-href="http://community.{{vm.domain}}/tc?module=MyHome") Edit Profile
+
+  profile-widget(profile="vm.profile", edit-profile-link="true")
 
   .user-stats
     .money-earned
@@ -20,10 +22,16 @@ header
 
 hr
 
-.ratings
-  .track(ng-repeat="track in vm.trackRatings")
-    p(ng-bind="track.rating")
+.loading(ng-show="vm.loading")
+  .section-loading
 
-    p(ng-bind="track.phaseDesc")
+  hr
 
-hr
+.ratings(ng-if="vm.hasRatings && !vm.loading")
+  .track(ng-repeat="r in vm.rankStats")
+    p(ng-bind="r.rank")
+
+    p {{r.track}}:
+    p {{r.subTrack}}
+
+  hr
