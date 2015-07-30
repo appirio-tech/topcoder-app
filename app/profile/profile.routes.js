@@ -33,7 +33,7 @@
           }]
         },
         data: {
-          authRequired: true,
+          authRequired: false,
           title: "{{userHandle}} Profile"
         }
       },
