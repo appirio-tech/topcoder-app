@@ -1,14 +1,13 @@
-.tile
-  .srm-summary
-    .title(ng-bind='srm.name')
-  .srm-details
-    .time-left
-        div(ng-bind='srm.startDate | timeDiff')
-    .phase-msg
-      span Coding 
-      span(ng-bind='srm.startDate | deadlineStartMsg')
-    .member-status-msg
-      .icon
-        i.fa.fa-clock-o
-      .msg
-        span(ng-bind="srm.memberStatusMsg")
+.srm-name
+  a(ng-href="https://community.{{domain}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
+
+.srm-status
+  p.days-remaining {{srm.startDate | timeDiff}}
+    span Registration Ends
+    //- span(ng-bind='srm.startDate | deadlineStartMsg')
+
+  .phase-status
+    i.fa.fa-check-circle-o
+
+    p You are registered!
+    //- p {{srm.memberStatusMsg}}
