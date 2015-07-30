@@ -17,7 +17,13 @@ $url_10: url(../images/sort-arrows.png);
       text-align: center;
     }
 
-    p {
+    p.noChallenges {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    p.viewChallenges {
       position: absolute;
       top: 3px;
       right: 10px;
@@ -34,5 +40,13 @@ $url_10: url(../images/sort-arrows.png);
     /* The negative margin here removes the leftmost tiles'
        margin, since we can't use .tile:first-child here */
     margin-left: -20px;
+  }
+
+  .spotlightChallenges {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 10px;
   }
 }
