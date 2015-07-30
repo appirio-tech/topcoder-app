@@ -22,7 +22,10 @@
 
 
   .categories
-    .leftButton(ng-click="vm.shiftCategories(-1)") &#9664;
+    .leftButton(
+      ng-click="vm.shiftCategories(-1)",
+      ng-show="vm.categoryIndex > 0"
+    ) &#9664;
 
     .category(ng-repeat="category in vm.categories.slice(vm.categoryIndex, vm.categoryIndex + 4)", ui-sref="profile.develop({subTrack: category.subTrack})")
       .name {{category.track}}
@@ -36,7 +39,10 @@
 
         .tag Ranking
 
-    .rightButton(ng-click="vm.shiftCategories(1)") &#9654;
+    .rightButton(
+      ng-click="vm.shiftCategories(1)",
+      ng-show="vm.categoryIndex < vm.categories.length - 4"
+    ) &#9654;
 
   hr
 
@@ -45,12 +51,18 @@
 
 
     .list
-      .leftButton(ng-click="vm.shiftSkills(-1)") &#9664;
+      .leftButton(
+        ng-click="vm.shiftSkills(-1)",
+        ng-show="vm.skillIndex > 0"
+      ) &#9664;
 
       .skill(ng-repeat="skill in vm.skills.slice(vm.skillIndex, vm.skillIndex + 5)")
         skill-tile(skill="skill")
 
-      .rightButton(ng-click="vm.shiftSkills(1)") &#9654;
+      .rightButton(
+        ng-click="vm.shiftSkills(1)",
+        ng-show="vm.skillIndex < vm.skills.length - 5"
+      ) &#9654;
 
 
   hr
