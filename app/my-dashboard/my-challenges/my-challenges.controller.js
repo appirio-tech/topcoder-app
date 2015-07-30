@@ -12,10 +12,6 @@
     vm.myChallenges = [];
     vm.userHasChallenges = true;
 
-    // Can we remove these since the filter is going on a different page?
-    vm.viewActiveChallenges = viewActiveChallenges;
-    vm.viewPastChallenges = viewPastChallenges;
-
     var userId = UserService.getUserIdentity().userId;
 
     activate();
@@ -26,18 +22,12 @@
 
     function viewActiveChallenges() {
       vm.myChallenges = [];
-      getChallenges('Active', 'submissionEndDate asc');
-    };
-
-    function viewPastChallenges() {
-      vm.myChallenges = [];
-      getChallenges('Completed', 'submissionEndDate asc');
+      getChallenges('Active', 'submissionEndDate desc');
     };
 
     // get ACTIVE challenges and spotlight challenges
     function getChallenges(status, orderBy) {
-      vm.loading = true;
-      var challengeOptions = {
+      var params = {
         limit: 6,
         offset: 0,
         orderBy: orderBy, // TODO verify if this is the correct sort order clause,
@@ -45,7 +35,7 @@
       };
 
       $q.all([
-        ChallengeService.getChallenges(challengeOptions),
+        ChallengeService.getChallenges(params),
         ChallengeService.getSpotlightChallenges()
       ])
       .then(function(data){

@@ -25,34 +25,30 @@
     flex-direction: row;
     justify-content: space-between;
 
-    .roles-and-track {
-      display: flex;
-      flex-direction: row;
-
-      img, .role {
-        margin-right: 10px;
-      }
-
-      img {
-        width: 25px;
-        height: 25px;
-      }
-
-      .role {
-        width: 25px;
-        height: 25px;
-        border-radius: 5px;
-        background-color: #d6d6d6;
-        color: $dark-gray;
-        font-size: 14px;
-        text-align: center;
-        line-height: 25px;
-      }
+    img, .role {
+      margin-right: 10px;
     }
+
+    img {
+      width: 25px;
+      height: 25px;
+    }
+
 
     a {
       color: $dark-gray;
       line-height: 25px;
+    }
+  }
+  .roles {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    min-height: 70px;
+
+    .role {
+      margin-top: 5px;
+      color: $dark-gray;
+      font-size: 14px;
     }
   }
 

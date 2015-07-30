@@ -1,8 +1,5 @@
-@import '../partials/combined';
 
-$url_8: url(../images/ico-track-develop.png);
-$url_9: url(../images/ico-track-design.png);
-$url_10: url(../images/sort-arrows.png);
+@import '../partials/combined';
 
 .my-challenges {
   min-height: 50px;
@@ -12,10 +9,6 @@ $url_10: url(../images/sort-arrows.png);
   header {
     position: relative;
     margin-bottom: 35px;
-
-    h1 {
-      text-align: center;
-    }
 
     p.noChallenges {
       text-align: center;

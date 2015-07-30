@@ -5,7 +5,8 @@
       restrict: 'E',
       templateUrl: 'directives/srm-tile/srm-tile.directive.html',
       scope: {
-        srm: '=srm'
+        srm: '=srm',
+        domain: '=domain'
       }
     };
   });

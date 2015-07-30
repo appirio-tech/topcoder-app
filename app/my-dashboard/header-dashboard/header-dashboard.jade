@@ -28,10 +28,13 @@ hr
   hr
 
 .ratings(ng-if="vm.hasRatings && !vm.loading")
-  .track(ng-repeat="r in vm.rankStats")
-    p(ng-bind="r.rank")
+  h1.section-title My Ranks
 
-    p {{r.track}}:
-    p {{r.subTrack}}
+  .tracks
+    .track(ng-repeat="r in vm.rankStats")
+      p(ng-bind="r.rank")
+
+      p {{r.track}}:
+      p {{r.subTrack}}
 
   hr
