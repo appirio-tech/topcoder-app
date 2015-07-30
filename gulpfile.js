@@ -7,6 +7,9 @@ var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
 var merge        = require('merge-stream');
 
+var envFile = require('./config.js')();
+var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
+
 gulp.task('help', $.taskListing);
 gulp.task('default', ['help']);
 
@@ -114,9 +117,6 @@ gulp.task('templatecache', ['clean-code', 'jade', 'copy-html'], function() {
 });
 
 gulp.task('ngConstants', function() {
-  var envFile = require('./config.js')();
-  var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
-
   return $.ngConstant({
       name: 'CONSTANTS',
       dest: 'topcoder.constants.js',
@@ -124,6 +124,11 @@ gulp.task('ngConstants', function() {
       stream: true
     })
     .pipe(gulp.dest(config.app));
+});
+
+gulp.task('sassConstants', function() {
+  return $.file('_environment.scss', '$prefix: "' + envConfig.CONSTANTS.ASSET_PREFIX + '"', { src: true })
+    .pipe(gulp.dest(config.assets + 'css/partials/'));
 });
 
 gulp.task('wiredep', ['jade'], function() {
@@ -159,7 +164,7 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
     .pipe(gulp.dest(config.app));
 });
 
-gulp.task('optimize', ['inject', 'test', 'ngConstants'], function() {
+gulp.task('optimize', ['inject', 'test', 'ngConstants', 'sassConstants'], function() {
   log('Optimizing the JavaScript, CSS, and HTML');
 
   var assets = $.useref.assets({searchPath: ['.tmp', 'app', 'assets']});
@@ -240,7 +245,7 @@ gulp.task('build-specs', ['templatecache'], function() {
     .pipe(gulp.dest(config.app));
 });
 
-gulp.task('serve', ['inject', 'ngConstants'], function() {
+gulp.task('serve', ['inject', 'ngConstants', 'sassConstants'], function() {
 
   gulp.watch(config.sass, ['styles'])
     .on('change', function(event) { changeEvent(event); });
@@ -337,7 +342,7 @@ gulp.task('serve-build', ['build'], function() {
 });
 
 // gulp.task('test', ['vet', 'templatecache'], function(done) {
-gulp.task('test', ['templatecache', 'ngConstants'], function(done) {
+gulp.task('test', ['templatecache', 'ngConstants', 'sassConstants'], function(done) {
   startTests(true /* singleRun */, done);
 });
 

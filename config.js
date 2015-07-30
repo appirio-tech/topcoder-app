@@ -21,6 +21,7 @@ module.exports = function() {
         BLOG_LOCATION: 'https://www.topcoder-dev.com/feed/?post_type=blog',
         UPCOMING_SRMS_URL: 'https://www.topcoder.com/challenges/data/upcoming/',
         NEW_CHALLENGES_URL: 'https://www.topcoder.com/challenges/develop/upcoming/',
+        ASSET_PREFIX: '',
 
         // EVENTS
         EVENT_USER_LOGGED_IN: 'user_logged_in',
@@ -48,6 +49,7 @@ module.exports = function() {
         BLOG_LOCATION: 'https://www.topcoder.com/feed/?post_type=blog',
         UPCOMING_SRMS_URL: 'https://www.topcoder.com/challenges/data/upcoming/',
         NEW_CHALLENGES_URL: 'https://www.topcoder.com/challenges/develop/upcoming/',
+        ASSET_PREFIX: process.env.ASSET_PREFIX || 'https://s3.amazonaws.com/app.topcoder-dev.com',
 
         // EVENTS
         EVENT_USER_LOGGED_IN: 'user_logged_in',
