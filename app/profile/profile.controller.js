@@ -12,6 +12,7 @@
     vm.title = "Profile";
     vm.message = "Message"
     vm.profile = {};
+    vm.loading = true;
     vm.userHandle = userHandle;
 
     activate(vms);
@@ -42,12 +43,24 @@
           // until horizontal scroll is implemented
           vm.skills = skills.skills;
           vm.categories = ProfileService.getRanks(vm.stats);
+          vm.loading = false;
         });
       });
     }
 
-    $scope.initProfile = function(vm) {
-      vms.push(vm);
+    $scope.initProfile = function(newVm) {
+      if (!vm.stats) {
+        vms.push(newVm);
+      } else {
+        newVm.profile = vm.profile;
+        newVm.stats = vm.stats;
+        newVm.numProjects = vm.numProjects;
+        newVm.numWins = vm.numWins;
+        newVm.skills = vm.skills;
+        newVm.categories = vm.categories;
+        newVm.altResolve = true;
+        newVm.loading = false;
+      }
     }
 
   }

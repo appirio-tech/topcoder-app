@@ -13,6 +13,7 @@
     vm.domain = CONSTANTS.domain;
     vm.challenges = [];
     vm.profile = {};
+    vm.loading = true;
 
     activate();
 
@@ -21,6 +22,7 @@
       $scope.initProfile(vm);
       vm.deferred = $q.defer();
       vm.deferred.promise.then(function() {
+        console.log('resol')
         vm.typeStats = ProfileService.getChallengeTypeStats(vm.stats, 'develop', vm.subTrack.toLowerCase().replace(/ /g, ''));
         ChallengeService.getChallenges({
           filter: 'userId=' + vm.profile.userId
@@ -28,6 +30,9 @@
           vm.challenges = data;
         });
       });
+      if (vm.altResolve) {
+        vm.deferred.resolve(vm);
+      }
     }
 
   }
