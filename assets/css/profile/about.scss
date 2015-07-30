@@ -22,15 +22,15 @@
   .categories {
     .leftButton, .rightButton {
       height: 275px;
-      width: 75px;
-      margin: 10px 20px;
+      width: 50px;
+      margin: 10px;
       display: flex;
       text-align: center;
       flex-direction: column;
       justify-content: center;
     }
     display: flex;
-    margin: 10px auto;
+    margin: 10px 0;
     .category {
       display: flex;
       flex-direction: column;
