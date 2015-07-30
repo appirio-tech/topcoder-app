@@ -14,6 +14,7 @@
     vm.domain = CONSTANTS.domain;
     vm.defaultPhotoUrl = "/images/avatarPlaceholder.png";
     vm.isCopilot = true;
+    vm.loading = true;
 
     activate();
 
@@ -27,7 +28,9 @@
 
       ProfileService.getUserStats(username).then(function(stats) {
         vm.rankStats = ProfileService.getRanks(stats);
+        vm.loading = false;
       }).catch(function(err) {
+        vm.loading = false;
         // todo handle error
       })
 

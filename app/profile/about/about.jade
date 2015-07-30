@@ -48,9 +48,7 @@
       .leftButton(ng-click="vm.shiftSkills(-1)") &#9664;
 
       .skill(ng-repeat="skill in vm.skills.slice(vm.skillIndex, vm.skillIndex + 5)")
-        img.icon(ng-src="images/javascript-logo.png")
-
-        .name {{skill}}
+        skill-tile(skill="skill")
 
       .rightButton(ng-click="vm.shiftSkills(1)") &#9654;
 

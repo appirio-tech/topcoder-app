@@ -77,6 +77,8 @@
     .list {
       display: flex;
       flex-direction: row;
+      width: 85%;
+      overflow-x: auto;
       margin: 40px auto 0 auto;
       .leftButton, .rightButton {
         height: 100px;
@@ -85,9 +87,11 @@
         justify-content: center;
       }
       .skill {
+        width: 150px;
+        text-align: center;
         margin: 0 30px;
-        img.icon {
-          width: 100px;
+        i {
+          font-size: 30px;
         }
         .name {
           text-align: center;

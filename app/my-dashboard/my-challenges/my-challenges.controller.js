@@ -20,23 +20,39 @@
 
     var userId = UserService.getUserIdentity().userId;
 
-    // get ACTIVE challenges & marathon matches
+    // get ACTIVE challenges and spotlight challenges
     var getChallenges = function(status, orderBy) {
       vm.loading = true;
-      ChallengeService.getChallenges({
+      var challengeOptions = {
         limit: 6,
         offset: 0,
         orderBy: orderBy, // TODO verify if this is the correct sort order clause,
         filter: "userId="+userId+"&status="+status
-      }).then(function(data){
-        Helpers.addTrack(data);
-        processChallengesResponse(data);
+      };
 
-        vm.myChallenges = data;
+      $q.all([
+        ChallengeService.getChallenges(challengeOptions),
+        ChallengeService.getSpotlightChallenges()
+      ])
+      .then(function(data){
+        var challenges = data[0];
+        var spotlightChallenges = data[1];
+
+        // Helpers.addTrack(challenges);
+        processChallengesResponse(challenges);
+
+        vm.myChallenges = challenges;
+        console.log('regular challenges: ', vm.myChallenges.plain())
+
+        vm.spotlightChallenge = spotlightChallenges[0];
+        console.log('spotlight: ', vm.spotlightChallenge);
 
         vm.loading = false;
-      }, function(resp) {
-        $log.error(resp);
+
+      })
+      .catch(function(err) {
+        $log.error(err);
+        vm.loading = false;
         // TODO - handle error
       });
     }
