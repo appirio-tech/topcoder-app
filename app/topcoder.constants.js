@@ -19,6 +19,7 @@ angular.module("CONSTANTS", [])
 	"BLOG_LOCATION": "https://www.topcoder-dev.com/feed/?post_type=blog",
 	"UPCOMING_SRMS_URL": "https://www.topcoder.com/challenges/data/upcoming/",
 	"NEW_CHALLENGES_URL": "https://www.topcoder.com/challenges/develop/upcoming/",
+	"ASSET_PREFIX": "",
 	"EVENT_USER_LOGGED_IN": "user_logged_in",
 	"EVENT_USER_LOGGED_OUT": "user_logged_out"
 })
