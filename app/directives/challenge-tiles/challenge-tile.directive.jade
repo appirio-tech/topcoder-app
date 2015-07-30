@@ -3,8 +3,8 @@
 
 .challenge-details
   .challenge-icons
-    img(ng-show="challenge.track === 'DEVELOP'", src="/images/member-program/svg/development-generic.svg")
-    img(ng-show="challenge.track === 'DESIGN' || challenge.track === 'Data Science'", src="/images/member-program/svg/design-generic.svg")
+    img(ng-show="challenge.track === 'DEVELOP'", asset-src="/images/member-program/svg/development-generic.svg")
+    img(ng-show="challenge.track === 'DESIGN' || challenge.track === 'Data Science'", asset-src="/images/member-program/svg/design-generic.svg")
 
     a(ng-href="http://apps.topcoder.com/forums//?module=Category&categoryID={{challenge.forumId}}")
       i.fa.fa-comment
