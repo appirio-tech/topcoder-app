@@ -22,7 +22,9 @@
 
 
   .categories
-    .category(ng-repeat="category in vm.categories", ui-sref="profile.develop({subTrack: category.subTrack})")
+    .leftButton(ng-click="vm.shiftCategories(-1)") &#9664;
+
+    .category(ng-repeat="category in vm.categories.slice(vm.categoryIndex, vm.categoryIndex + 4)", ui-sref="profile.develop({subTrack: category.subTrack})")
       .name {{category.track}}
 
       .subcategory(ng-show="category.subTrack") {{category.subTrack}}
@@ -34,15 +36,24 @@
 
         .tag Ranking
 
+    .rightButton(ng-click="vm.shiftCategories(1)") &#9654;
+
   hr
 
   .skills
     h1 Skills / Technologies
+
+
     .list
-      .skill(ng-repeat="skill in vm.skills")
+      .leftButton(ng-click="vm.shiftSkills(-1)") &#9664;
+
+      .skill(ng-repeat="skill in vm.skills.slice(vm.skillIndex, vm.skillIndex + 5)")
         img.icon(ng-src="images/javascript-logo.png")
 
         .name {{skill}}
+
+      .rightButton(ng-click="vm.shiftSkills(1)") &#9654;
+
 
   hr
 
