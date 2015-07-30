@@ -1,4 +1,4 @@
 @function url($path) {
   $prefix: '' !default;
-  @return unquote('url(' + $prefix + $path + ')');
+  @return unquote('url(' + unquote($prefix) + unquote($path) + ')');
 }
