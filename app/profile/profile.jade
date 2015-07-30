@@ -3,5 +3,6 @@
     profile-widget(profile="vm.profile", edit-profile-link="vm.showEditProfileLink")
   .right
     h4 member for {{vm.tenure}} years
+    a(href="http://forums.topcoder.com/?module=History&userID={{vm.profile.userId}}") forum post history
 
 ui-view(ng-hide="vm.loading", ng-cloak)
