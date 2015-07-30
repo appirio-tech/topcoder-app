@@ -18,5 +18,21 @@
       }
     }
   }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 30px 0;
+    button {
+      width: 100px;
+    }
+  }
+
+  .challenges {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
   
 }
