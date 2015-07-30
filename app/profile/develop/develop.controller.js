@@ -13,6 +13,7 @@
     vm.domain = CONSTANTS.domain;
     vm.challenges = [];
     vm.profile = {};
+    vm.loading = true;
 
     activate();
 
@@ -28,6 +29,9 @@
           vm.challenges = data;
         });
       });
+      if (vm.altResolve) {
+        vm.deferred.resolve(vm);
+      }
     }
 
   }
