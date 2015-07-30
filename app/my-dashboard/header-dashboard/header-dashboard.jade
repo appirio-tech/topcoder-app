@@ -22,7 +22,9 @@ header
 
 hr
 
-.ratings
+.section-loading(ng-show="vm.loading")
+
+.ratings(ng-hide="vm.loading")
   .track(ng-repeat="r in vm.rankStats")
     p(ng-bind="r.rank")
 
