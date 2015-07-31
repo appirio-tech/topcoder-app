@@ -3,13 +3,14 @@
   .nav
     .backButton
       a(ui-sref="profile.about") &#9664;
+
     .dropdown(
       dropdown-select="vm.dropdown",
       dropdown-model="vm.ddSelected",
       dropdown-item-label="text",
       dropdown-onchange="vm.selectSubTrack(vm.ddSelected.value)"
     )
-  //h1.type {{vm.track}}: {{vm.subTrack}}
+
   hr
 
   ul.horizontal-stats
