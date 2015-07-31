@@ -222,6 +222,7 @@
           "links": [
             {
               "name": "Github",
+              "logo": "git-logo.png",
               "properties": [
                 {
                   "name": "Repos",
@@ -235,6 +236,7 @@
             },
             {
               "name": "Stack Overflow",
+              "logo": "stackoverflow-logo.png",
               "properties": [
                 {
                   "name": "Reputation",

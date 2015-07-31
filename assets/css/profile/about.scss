@@ -22,15 +22,15 @@
   .categories {
     .leftButton, .rightButton {
       height: 275px;
-      width: 75px;
-      margin: 10px 20px;
+      width: 50px;
+      margin: 10px;
       display: flex;
       text-align: center;
       flex-direction: column;
       justify-content: center;
     }
     display: flex;
-    margin: 10px auto;
+    margin: 10px 0;
     .category {
       display: flex;
       flex-direction: column;
@@ -77,7 +77,7 @@
     .list {
       display: flex;
       flex-direction: row;
-      width: 85%;
+      width: 70%;
       overflow-x: auto;
       margin: 40px auto 0 auto;
       .leftButton, .rightButton {
@@ -116,6 +116,9 @@
         width: 375px;
         height: 200px;
         padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         h2 {
           font-weight: bold;
           margin-bottom: 15px;
@@ -132,6 +135,13 @@
             .value {
               // placeholder
             }
+          }
+        }
+        .logo {
+          padding: 10px;
+          align-self: flex-end;
+          img {
+            width: 50px;
           }
         }
       }
