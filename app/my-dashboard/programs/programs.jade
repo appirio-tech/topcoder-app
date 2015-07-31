@@ -1,6 +1,8 @@
 hr
 
 section.ios
+  h1.section-title iOS: Show Your Skills
+
   a(href="http://ios.topcoder.com/", ng-hide="vm.registered")
     .join-program
       .logo
@@ -12,6 +14,7 @@ section.ios
         p Start Apple Certification Today
 
   .registered(ng-show="vm.registered")
+
     .registered-badge
       i.fa.fa-apple.fa-3x
 
@@ -26,7 +29,7 @@ section.ios
 
       i.fa.fa-apple.fa-3x
 
-      p.technologies Technologies: {{challenge.technology}}
+      p.technologies Technologies: {{challenge.technologies}}
 
       p.prize(ng-class="{hidden: challenge.reviewType === 'PEER'}") {{challenge.totalPrize | currency:undefined:0}}
 
