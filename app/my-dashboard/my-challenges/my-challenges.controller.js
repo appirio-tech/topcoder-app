@@ -46,10 +46,7 @@
           processChallengesResponse(challenges);
 
           vm.myChallenges = challenges;
-          console.log('regular challenges: ', vm.myChallenges.plain())
-
           vm.spotlightChallenge = spotlightChallenges[0];
-          console.log('spotlight: ', vm.spotlightChallenge);
 
           vm.userHasChallenges = true;
           vm.loading = false;
@@ -67,8 +64,8 @@
       });
     }
 
-    function processChallengesResponse(data) {
-      angular.forEach(data, function(challenge) {
+    function processChallengesResponse(challenges) {
+      angular.forEach(challenges, function(challenge) {
         var now = moment();
         var registrationDate = moment(challenge.registrationEndDate);
         var submissionDate = moment(challenge.submissionEndDate);
@@ -79,6 +76,9 @@
         challenge.submissionTimeLeft = (submissionDate - now)/(24*60*60*1000);
 
         // challenge.phaseMsg = preparePhaseMessage(challenge);
+
+        challenge.userDetails.roles = challenge.userDetails.roles.join(', ');
+        console.log(challenge.userDetails.roles, 'hi');
 
         // TODO create msg dynamically
         challenge.memberStatusMsg = 'You are registered!';

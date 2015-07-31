@@ -16,9 +16,11 @@
 
       },
       scope: {
-        challenge: '=challenge',
-        domain: '='
-      }
+        challenge: '=challenge'
+      },
+      controller: ['$scope', 'CONSTANTS', function($scope, CONSTANTS) {
+        $scope.DOMAIN = CONSTANTS.domain;
+      }]
     };
   });
 })();

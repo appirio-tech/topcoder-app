@@ -108,7 +108,7 @@
     }
 
     function getChallengeTypeStats(stats, track, type) {
-      if (track != 'datascience') {
+      if (track !== 'Data Science') {
         var ans = stats[track + 'Stats']['rankStats'].filter(function(x) {
           return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         });
@@ -120,9 +120,9 @@
         })[0];
         return ans[0];
       } else if (type == 'srm') {
-        return stats.dataScienceStats.srmStats.srmRankStats[0];
+        return stats.dataScienceStats.srmStats.rankStats[0];
       } else {
-        return stats.dataScienceStats.marathonMatchStats.marathonRankStats[0];
+        return stats.dataScienceStats.marathonMatchStats.rankStats[0];
       }
     }
 
