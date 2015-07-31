@@ -25,7 +25,12 @@ module.exports = function() {
 
         // EVENTS
         EVENT_USER_LOGGED_IN: 'user_logged_in',
-        EVENT_USER_LOGGED_OUT: 'user_logged_out'
+        EVENT_USER_LOGGED_OUT: 'user_logged_out',
+
+        STATE_LOADING: 'loading',
+        STATE_ERROR: 'error',
+        STATE_READY: 'ready'
+
       }
     },
     'production': {
@@ -53,7 +58,12 @@ module.exports = function() {
 
         // EVENTS
         EVENT_USER_LOGGED_IN: 'user_logged_in',
-        EVENT_USER_LOGGED_OUT: 'user_logged_out'
+        EVENT_USER_LOGGED_OUT: 'user_logged_out',
+
+        STATE_LOADING: 'loading',
+        STATE_ERROR: 'error',
+        STATE_READY: 'ready'
+
       }
     }
   };

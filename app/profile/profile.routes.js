@@ -23,7 +23,7 @@
         abstract: true,
         url: '/members/:userHandle/',
         templateUrl: 'profile/profile.html',
-        controller: 'ProfileCtrl as vm',
+        controller: 'ProfileCtrl as profileVm',
         resolve: {
           userHandle: ['$stateParams', function($stateParams) {
             return $stateParams.userHandle;

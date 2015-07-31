@@ -1,8 +1,8 @@
-.profile-header-container(ng-hide="vm.loading", ng-cloak)
+.profile-header-container(ng-cloak)
   .left
-    profile-widget(profile="vm.profile", edit-profile-link="vm.showEditProfileLink")
+    profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink")
   .right
-    h4 member for {{vm.tenure}} years
-    a(href="http://forums.topcoder.com/?module=History&userID={{vm.profile.userId}}") forum post history
+    h4 member for {{profileVm.tenure}} years
+    
 
-ui-view(ng-hide="vm.loading", ng-cloak)
+ui-view(ng-cloak)

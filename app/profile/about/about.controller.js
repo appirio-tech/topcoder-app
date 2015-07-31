@@ -4,12 +4,10 @@
     .module('tc.profile')
     .controller('ProfileAboutController', ProfileAboutController);
 
-  ProfileAboutController.$inject = ['$scope', 'ProfileService'];
+  ProfileAboutController.$inject = ['$log', '$scope', 'ProfileService'];
 
-  function ProfileAboutController($scope, ProfileService) {
+  function ProfileAboutController($log, $scope, ProfileService) {
     var vm = this;
-    vm.profile = {};
-    vm.mockProfile = ProfileService.getMockMemberProfile();
     vm.categoryIndex = 0;
     vm.skillIndex = 0;
     vm.shiftCategories = shiftCategories;
@@ -18,7 +16,7 @@
     activate();
 
     function activate() {
-      $scope.initProfile(vm);
+      vm.mockProfile = ProfileService.getMockMemberProfile();
     }
 
     function shiftCategories(x) {
@@ -45,7 +43,7 @@
           if (vm.skillIndex > vm.skills.length - 5) vm.skillIndex = vm.skills.length - 5;
         }
       }
-     
+
     }
 
   }
