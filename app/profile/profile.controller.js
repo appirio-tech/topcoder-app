@@ -50,6 +50,14 @@
       vm.status.stats = CONSTANTS.STATE_ERROR;
     });
 
+    // skills
+    vm.skillsPromise = ProfileService.getUserSkills(vm.userHandle).then(function(skills) {
+      vm.skills = skills.skills;
+      vm.status.skills = CONSTANTS.STATE_READY;
+    }).catch(function(err) {
+      vm.status.skills = CONSTANTS.STATE_ERROR;
+    });
+
     function activate() {
       $log.debug('Calling ProfileController activate()');
       // show edit profile link if user is authenticated and is viewing their own profile
@@ -59,14 +67,6 @@
         vm.showEditProfileLink = false;
       }
       vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
-
-      // skills
-      ProfileService.getUserSkills(vm.userHandle).then(function(skills) {
-        vm.skills = skills.skills;
-        vm.status.skills = CONSTANTS.STATE_READY;
-      }).catch(function(err) {
-        vm.status.skills = CONSTANTS.STATE_ERROR;
-      });
 
     }
   }
