@@ -44,7 +44,7 @@
         controllerAs: 'vm'
       },
       'profile.develop': {
-        url: 'develop/?:subTrack',
+        url: 'develop/?:track&:subTrack',
         templateUrl: 'profile/develop/develop.html',
         controller: 'ProfileDevelopController',
         controllerAs: 'vm'

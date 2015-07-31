@@ -27,7 +27,7 @@
       ng-show="vm.categoryIndex > 0"
     ) &#9664;
 
-    .category(ng-repeat="category in vm.categories.slice(vm.categoryIndex, vm.categoryIndex + 4)", ui-sref="profile.develop({subTrack: category.subTrack})")
+    .category(ng-repeat="category in vm.categories.slice(vm.categoryIndex, vm.categoryIndex + 4)", ui-sref="profile.develop({track: category.track, subTrack: category.subTrack})")
       .name {{category.track}}
 
       .subcategory(ng-show="category.subTrack") {{category.subTrack}}
