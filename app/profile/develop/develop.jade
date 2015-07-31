@@ -1,6 +1,12 @@
 .profile-develop-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
   hr
-  h1.type {{vm.track}}: {{vm.subTrack}}
+  .dropdown(
+    dropdown-select="vm.dropdown",
+    dropdown-model="vm.ddSelected",
+    dropdown-item-label="text",
+    dropdown-onchange="vm.selectSubTrack(vm.ddSelected.value)"
+  )
+  //h1.type {{vm.track}}: {{vm.subTrack}}
   hr
 
   ul.horizontal-stats

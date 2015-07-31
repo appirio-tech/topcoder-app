@@ -7,6 +7,7 @@
     'ngCookies',
     'tc.services',
     'tcUIComponents',
+    'ngDropdowns',
     'angularSlideables'
   ];
 
