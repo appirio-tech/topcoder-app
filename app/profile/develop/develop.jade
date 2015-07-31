@@ -37,8 +37,10 @@
 
   tc-section(ng-show="vm.viewing == 'challenges'", state="profileVm.status.pastChallenges")
     .challenges
-      .challenge.tile(ng-repeat="challenge in profileVm.pastChallenges | filter: {'track': vm.track, 'subTrack': vm.subTrack}")
+      .challenge.tile(ng-repeat="challenge in vm.pastChallenges = (profileVm.pastChallenges | filter: {'track': vm.track, 'subTrack': vm.subTrack})")
         challenge-tile(challenge="challenge", domain="vm.domain")
+      .div(ng-show="!vm.pastChallenges || vm.pastChallenges.length == 0")
+        No past challenges available for this user
 
   .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
     .graphs
