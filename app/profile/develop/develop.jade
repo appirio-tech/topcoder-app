@@ -2,7 +2,7 @@
   hr
   .nav
     .backButton
-      a(ui-sref="profile.about") &#9664;
+      a(ng-click="vm.back()") &#9664;
 
     .dropdown(
       dropdown-select="vm.dropdown",

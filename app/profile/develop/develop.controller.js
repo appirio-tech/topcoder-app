@@ -4,9 +4,9 @@
     .module('tc.profile')
     .controller('ProfileDevelopController', ProfileDevelopController);
 
-  ProfileDevelopController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state'];
+  ProfileDevelopController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window'];
 
-  function ProfileDevelopController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state) {
+  function ProfileDevelopController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window) {
     var vm = this;
     vm.subTrack = $stateParams.subTrack;
     vm.track = $stateParams.track;
@@ -17,6 +17,7 @@
     vm.dropdown = [];
     vm.ddSelected = {};
     vm.selectSubTrack = selectSubTrack;
+    vm.back = back;
 
     activate();
 
@@ -44,6 +45,10 @@
 
     function selectSubTrack(subTrack) {
       $state.go('profile.develop', {track: 'develop', subTrack: subTrack});
+    }
+
+    function back() {
+      $window.history.back();
     }
 
   }
