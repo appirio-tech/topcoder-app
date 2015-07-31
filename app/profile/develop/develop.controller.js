@@ -9,31 +9,24 @@
   function ProfileDevelopController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS) {
     var vm = this;
     vm.subTrack = $stateParams.subTrack;
-    vm.viewing = 'stats';
+    vm.track = $stateParams.track;
+    vm.viewing = 'challenges';
     vm.domain = CONSTANTS.domain;
     vm.challenges = [];
-    vm.profile = {};
-    vm.loading = true;
-
+    var profileVm = $scope.$parent.profileVm;
     activate();
 
     function activate() {
-      // vm.mockProfile = ProfileService.getMockMemberProfile();
-      $scope.initProfile(vm);
-      vm.deferred = $q.defer();
-      vm.deferred.promise.then(function() {
-        vm.typeStats = ProfileService.getChallengeTypeStats(vm.stats, 'develop', vm.subTrack.toLowerCase().replace(/ /g, ''));
-        ChallengeService.getChallenges({
-          filter: 'userId=' + vm.profile.userId
-        }).then(function(data) {
-          vm.challenges = data;
-        });
+      profileVm.statsPromise.then(function(data) {
+        vm.typeStats = ProfileService.getChallengeTypeStats(
+          profileVm.stats, 'develop',
+          vm.subTrack.toLowerCase().replace(/ /g, '')
+        );
       });
-      if (vm.altResolve) {
-        vm.deferred.resolve(vm);
-      }
-    }
+      // profileVm.pastChallengesPromise.then(function(data) {
 
+      // });
+    }
   }
 
 

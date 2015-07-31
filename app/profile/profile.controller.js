@@ -4,66 +4,70 @@
     .module('tc.profile')
     .controller('ProfileCtrl', ProfileCtrl);
 
-  ProfileCtrl.$inject = ['$scope', 'TcAuthService', 'UserService', 'ProfileService', '$q', '$log', 'userHandle', 'profile'];
+  ProfileCtrl.$inject = ['$scope', 'CONSTANTS', '$log',
+    'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService',
+    'userHandle', 'profile'
+  ];
 
-  function ProfileCtrl($scope, TcAuthService, UserService, ProfileService, $q, $log, userHandle, profile) {
+  function ProfileCtrl($scope, CONSTANTS, $log, TcAuthService, UserService, ProfileService, ChallengeService, userHandle, profile) {
     var vm = this;
-    var vms = [vm];
-    vm.title = "Profile";
-    vm.message = "Message"
-    vm.profile = {};
-    vm.loading = true;
+    // set profile to the object that was resolved
+    vm.profile = profile;
     vm.userHandle = userHandle;
 
-    activate(vms);
+    // spinnerssss
+    $log.debug()
+    vm.status = {
+      'badges': CONSTANTS.STATE_LOADING,
+      'stats': CONSTANTS.STATE_LOADING,
+      'skills': CONSTANTS.STATE_LOADING,
+      'externalLinks': CONSTANTS.STATE_READY,
+      'pastChallenges': CONSTANTS.STATE_LOADING
+    };
 
-    function activate(vms) {
+    activate();
+
+    // adding stats promise on scope so child states can use this.
+    vm.statsPromise = ProfileService.getUserStats(vm.userHandle).then(function(stats) {
+      vm.stats = stats;
+      vm.profile.tracks = vm.profile.tracks || ProfileService.getTracks(vm.stats) || [];
+      vm.numProjects = ProfileService.getNumProjects(vm.stats);
+      vm.numWins = ProfileService.getNumWins(vm.stats);
+      vm.categories = ProfileService.getRanks(vm.stats);
+      vm.status.stats = CONSTANTS.STATE_READY;
+      return vm.stats;
+    }).catch(function(err) {
+      $log.error(err);
+      vm.status.stats = CONSTANTS.STATE_ERROR;
+    });
+
+    vm.pastChallengesPromise = ChallengeService.getChallenges({filter: 'userId=' + profile.userId+"&status=completed"})
+    .then(function(data) {
+      vm.status.pastChallenges = CONSTANTS.STATE_READY;
+      vm.pastChallenges = data;
+      return data;
+    }).catch(function(err) {
+      vm.status.stats = CONSTANTS.STATE_ERROR;
+    });
+
+    function activate() {
+      $log.debug('Calling ProfileController activate()');
       // show edit profile link if user is authenticated and is viewing their own profile
       if (TcAuthService.isAuthenticated() && UserService.getUserIdentity().username == vm.userHandle) {
         vm.showEditProfileLink = true;
       } else {
         vm.showEditProfileLink = false;
       }
-      var stats = ProfileService.getUserStats(vm.userHandle);
-      var skills = ProfileService.getUserSkills(vm.userHandle);
-      $q.all([stats, skills]).then(function(data) {
-        stats = data[0];
-        skills = data[1];
-        vms = vms.forEach(function(vm) {
-          vm.profile = profile;
-          vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
-          vm.stats = stats;
-          vm.profile.tracks = vm.profile.tracks || ProfileService.getTracks(vm.stats) || [];
-          vm.numProjects = ProfileService.getNumProjects(vm.stats);
-          vm.numWins = ProfileService.getNumWins(vm.stats);
-          if (vm.deferred) {
-            vm.deferred.resolve(vm);
-          }
-          // slicing is temporary,
-          // until horizontal scroll is implemented
-          vm.skills = skills.skills;
-          vm.categories = ProfileService.getRanks(vm.stats);
-          vm.loading = false;
-        });
+      vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
+
+      // skills
+      ProfileService.getUserSkills(vm.userHandle).then(function(skills) {
+        vm.skills = skills.skills;
+        vm.status.skills = CONSTANTS.STATE_READY;
+      }).catch(function(err) {
+        vm.status.skills = CONSTANTS.STATE_ERROR;
       });
-    }
 
-    $scope.initProfile = function(newVm) {
-      if (!vm.stats) {
-        vms.push(newVm);
-      } else {
-        newVm.profile = vm.profile;
-        newVm.stats = vm.stats;
-        newVm.numProjects = vm.numProjects;
-        newVm.numWins = vm.numWins;
-        newVm.skills = vm.skills;
-        newVm.categories = vm.categories;
-        newVm.altResolve = true;
-        newVm.loading = false;
-      }
     }
-
   }
-
-
 })();

@@ -23,7 +23,7 @@
         abstract: true,
         url: '/members/:userHandle/',
         templateUrl: 'profile/profile.html',
-        controller: 'ProfileCtrl as vm',
+        controller: 'ProfileCtrl as profileVm',
         resolve: {
           userHandle: ['$stateParams', function($stateParams) {
             return $stateParams.userHandle;
@@ -44,7 +44,7 @@
         controllerAs: 'vm'
       },
       'profile.develop': {
-        url: 'develop/?:subTrack',
+        url: 'develop/?:track&:subTrack',
         templateUrl: 'profile/develop/develop.html',
         controller: 'ProfileDevelopController',
         controllerAs: 'vm'
