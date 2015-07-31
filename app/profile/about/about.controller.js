@@ -8,7 +8,7 @@
 
   function ProfileAboutController($log, $scope, ProfileService) {
     var vm = this;
-    var profileVm = $scope.$parent.profileVm
+    var profileVm = $scope.$parent.profileVm;
     vm.categoryIndex = 0;
     vm.skillIndex = 0;
     vm.shiftCategories = shiftCategories;
@@ -20,7 +20,6 @@
       vm.mockProfile = ProfileService.getMockMemberProfile();
       profileVm.statsPromise.then(function() {
         vm.categories = profileVm.categories;
-        console.log(vm.categories);
       });
       profileVm.skillsPromise.then(function() {
         vm.skills = profileVm.skills;
