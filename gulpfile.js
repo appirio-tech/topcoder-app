@@ -59,6 +59,14 @@ gulp.task('fonts', ['clean-fonts'], function() {
     .pipe(gulp.dest(config.build + 'fonts'));
 });
 
+gulp.task('dev-fonts', ['fonts'], function() {
+  log('Copying devicon fonts');
+
+  return gulp
+    .src('bower_components/devicon/fonts/**.*')
+    .pipe(gulp.dest(config.build + 'styles/fonts'));
+})
+
 gulp.task('images', ['clean-images'], function() {
   log('Copying and compressing the images');
 
@@ -205,7 +213,7 @@ gulp.task('optimize', ['inject', 'test', 'ngConstants', 'sassConstants'], functi
     .pipe(gulp.dest(config.build));
 });
 
-gulp.task('build', ['optimize', 'images', 'fonts'], function() {
+gulp.task('build', ['optimize', 'images', 'dev-fonts'], function() {
   log('Building everything');
 
   var msg = {
