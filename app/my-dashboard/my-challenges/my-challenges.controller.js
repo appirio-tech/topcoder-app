@@ -77,9 +77,6 @@
 
         // challenge.phaseMsg = preparePhaseMessage(challenge);
 
-        challenge.userDetails.roles = challenge.userDetails.roles.join(', ');
-        console.log(challenge.userDetails.roles, 'hi');
-
         // TODO create msg dynamically
         challenge.memberStatusMsg = 'You are registered!';
       });

@@ -9,7 +9,7 @@
     a(ng-href="http://apps.topcoder.com/forums//?module=Category&categoryID={{challenge.forumId}}")
       i.fa.fa-comment
 
-  p.roles Roles: {{challenge.userDetails.roles}}
+  p.roles Roles: {{challenge.userDetails.roles | listRoles}}
 
   .challenge-status
     p.days-remaining {{challenge.registrationEndDate | timeDiff}}
@@ -18,10 +18,10 @@
     .stats
       .registrants(ng-show="challenge.numRegistrants > 0")
         i.fa.fa-user
-        span {{challenge.numRegistrants}}
+        a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}#viewRegistrant") {{challenge.numRegistrants}}
       .submissions(ng-show="challenge.numSubmissions > 0")
         i.fa.fa-files-o
-        span {{challenge.numSubmissions}}
+        a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}#viewRegistrant") {{challenge.numSubmissions}}
 
     .phase-status
       i.fa.fa-check-circle-o
