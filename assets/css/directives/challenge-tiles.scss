@@ -106,13 +106,14 @@
     font-size: 22px;
     color: $dark-gray;
     text-align: center;
-    margin-top: 30px;
+    min-height: 90px;
+    padding-top: 70px;
+    padding-bottom: 20px;
   }
 
   .challenge-status {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-top: 50px;
   }
 }
