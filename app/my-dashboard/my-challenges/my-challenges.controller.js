@@ -44,7 +44,7 @@
 
         if (challenges.length > 0) {
           vm.myChallenges = challenges;
-          console.log('complete challenges before: ', vm.myChallenges);
+
           vm.spotlightChallenge = spotlightChallenges[0];
 
           vm.userHasChallenges = true;
