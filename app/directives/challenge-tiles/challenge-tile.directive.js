@@ -19,19 +19,16 @@
         challenge: '='
       },
       controller: ['$scope', 'CONSTANTS', '$attrs', function($scope, CONSTANTS, $attrs) {
-
-        console.log($attrs);
         $scope.DOMAIN = CONSTANTS.domain;
-        console.log('scope', $scope);
 
         activate();
 
         function activate() {
           if (!$attrs.spotlight) {
-            // console.log('challenge in directive', vm.challenge.userDetails);
-            processChallenge(vm.challenge);
+            processChallenge($scope.challenge);
           }
         }
+
         function processChallenge(challenge) {
           var now = moment();
           var registrationDate = moment(challenge.registrationEndDate);
