@@ -26,7 +26,6 @@
 
       SRMService.getSRMs(params)
       .then(function(data){
-        console.log('srms: ', data.plain());
         vm.srms = data;
         vm.loading = false;
       }, function(resp) {

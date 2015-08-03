@@ -5,6 +5,10 @@
 
   function listRoles() {
     return function(roles) {
+      if (!roles) {
+        return "No assigned role.";
+      }
+
       var rolesString = roles.join(', ');
 
       if (rolesString.length > 60) {

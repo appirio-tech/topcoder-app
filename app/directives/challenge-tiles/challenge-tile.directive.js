@@ -16,10 +16,37 @@
 
       },
       scope: {
-        challenge: '=challenge'
+        challenge: '='
       },
-      controller: ['$scope', 'CONSTANTS', function($scope, CONSTANTS) {
+      controller: ['$scope', 'CONSTANTS', '$attrs', function($scope, CONSTANTS, $attrs) {
+
+        console.log($attrs);
         $scope.DOMAIN = CONSTANTS.domain;
+        console.log('scope', $scope);
+
+        activate();
+
+        function activate() {
+          if (!$attrs.spotlight) {
+            // console.log('challenge in directive', vm.challenge.userDetails);
+            processChallenge(vm.challenge);
+          }
+        }
+        function processChallenge(challenge) {
+          var now = moment();
+          var registrationDate = moment(challenge.registrationEndDate);
+          var submissionDate = moment(challenge.submissionEndDate);
+
+          challenge.registrationClosed = now > registrationDate ? true : false;
+          challenge.submissionClosed = now > submissionDate ? true : false;
+          challenge.registrationTimeLeft = (registrationDate - now)/(24*60*60*1000);
+          challenge.submissionTimeLeft = (submissionDate - now)/(24*60*60*1000);
+
+          // challenge.phaseMsg = preparePhaseMessage(challenge);
+
+          // TODO create msg dynamically
+          challenge.memberStatusMsg = 'You are registered!';
+        }
       }]
     };
   });
