@@ -21,6 +21,7 @@
       getRanks: getRanks,
       getChallengeTypeStats: getChallengeTypeStats,
       getTracks: getTracks,
+      getSubTracks: getSubTracks,
       // for profile - to be deprecated
       getMockMemberProfile: getMockMemberProfile
     };
@@ -126,9 +127,14 @@
       }
     }
 
+    function getSubTracks(stats, track) {
+        var ans = stats[track + 'Stats']['rankStats'].map(function(x) {
+          return x.subTrackName;
+        });
+        return ans;
+    }
+
     function getTracks(stats) {
-      console.log('stats');
-      console.log(stats);
       var tracks = [
         {
           'name': 'DEVELOP',

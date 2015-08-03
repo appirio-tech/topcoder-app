@@ -7,13 +7,14 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
 
     // favicon
-    link(rel="shortcut icon", type="image/png", href="/images/favicon.ico")
+    link(rel="shortcut icon", type="image/png", href="images/favicon.ico")
 
     // build:css styles/vendor.css
     //- bower:css
     link(rel='stylesheet', href='../bower_components/fontawesome/css/font-awesome.css')
     link(rel='stylesheet', href='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.css')
     link(rel='stylesheet', href='../bower_components/devicon/devicon.min.css')
+    link(rel='stylesheet', href='../bower_components/angular-dropdowns/dist/angular-dropdowns.css')
     //- endbower
     // endbuild
 
@@ -80,6 +81,7 @@ html
     script(src='../bower_components/angular-xml/angular-xml.js')
     script(src='../bower_components/angular-img-fallback/angular.dcb-img-fallback.js')
     script(src='../bower_components/angular-filter/dist/angular-filter.js')
+    script(src='../bower_components/angular-dropdowns/dist/angular-dropdowns.js')
     //- endbower
     //- inject:nonBowerScripts
     script(src="/scripts/auth0.js")

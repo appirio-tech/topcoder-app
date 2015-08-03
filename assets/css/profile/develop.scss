@@ -1,9 +1,18 @@
 .profile-develop-container {
   display: flex;
   flex-direction: column;
-  h1.type {
-    margin: 0 auto 15px auto;
-    font-size: 18px;
+  .nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+    .backButton {
+      margin-left: 10px;
+      a {
+        color: black;
+        text-decoration: none;
+      }
+    }
   }
   .stats {
     .graphs {

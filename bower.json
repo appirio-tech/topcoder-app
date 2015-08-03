@@ -36,7 +36,8 @@
     "angular-xml": "~2.1.1",
     "angular-img-fallback": "~0.1.3",
     "angular-filter": "~0.5.4",
-    "devicon": "*"
+    "devicon": "*",
+    "angular-dropdowns": "1.1.0"
   },
   "devDependencies": {
     "bardjs": "~0.1.4"

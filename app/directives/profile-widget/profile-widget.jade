@@ -1,8 +1,9 @@
 .profile-widget-directive
-  img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="https://www.topcoder.com/i/m/{{profile.handle}}.jpeg")
+  img.profile-circle(fallback-src="images/avatarPlaceholder.png", ng-src="https://www.topcoder.com/i/m/{{profile.handle}}.jpeg")
 
   .info
     h1 {{profile.handle}} 
+
       a(href="http://forums.topcoder-dev.com/?module=History&userID={{vm.profile.userId}}")
         i.fa.fa-comment-o
 
