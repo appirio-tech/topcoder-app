@@ -196,7 +196,7 @@ gulp.task('optimize', ['inject', 'test', 'ngConstants', 'sassConstants'], functi
     .pipe($.rev())
     .pipe(assets.restore())
     .pipe($.useref())
-    .pipe($.revReplace({prefix: envConfig.CONSTANTS.ASSET_PREFIX + '/'}))
+    .pipe($.revReplace({prefix: envConfig.CONSTANTS.ASSET_PREFIX}))
     .pipe($.if(!config.production && !config.qa, $.sourcemaps.write()))
     // Uncomment if you want to see the JSON file containing
     // the file mapping (e.g., "{"js/app.js": "js/app-a9bae026bc.js"}")
