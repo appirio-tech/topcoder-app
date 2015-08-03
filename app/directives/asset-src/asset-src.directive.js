@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  
+
   angular.module('topcoder').directive('assetSrc', ['CONSTANTS', function(consts) {
       return {
           restrict: 'A',
