@@ -17,6 +17,7 @@
     'restangular',
     'ngNotificationsBar',
     'ngSanitize',
+    'ngDropdowns',
     'xml',
     'angular.filter',
     'CONSTANTS'

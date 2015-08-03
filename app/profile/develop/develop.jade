@@ -1,6 +1,16 @@
 .profile-develop-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
   hr
-  h1.type {{vm.track}}: {{vm.subTrack}}
+  .nav
+    .backButton
+      a(ng-click="vm.back()") &#9664;
+
+    .dropdown(
+      dropdown-select="vm.dropdown",
+      dropdown-model="vm.ddSelected",
+      dropdown-item-label="text",
+      dropdown-onchange="vm.selectSubTrack(vm.ddSelected.value)"
+    )
+
   hr
 
   ul.horizontal-stats
@@ -40,7 +50,7 @@
       .challenge.tile(ng-repeat="challenge in vm.pastChallenges = (profileVm.pastChallenges | filter: {'track': vm.track, 'subTrack': vm.subTrack})")
         challenge-tile(challenge="challenge", domain="vm.domain")
       .div(ng-show="!vm.pastChallenges || vm.pastChallenges.length == 0")
-        No past challenges available for this user
+        | No past challenges available for this user
 
   .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
     .graphs
