@@ -23,7 +23,7 @@ hr
   h1.section-title My Ranks
 
   .tracks
-    .track(ng-repeat="r in vm.rankStats")
+    .track(ng-repeat="r in vm.rankStats | orderBy: ['track', 'rank']", ui-sref="profile.develop({userHandle: vm.profile.handle, track: r.track, subTrack: r.subTrack})")
       p(ng-bind="r.rank")
 
       p {{r.track}}:
