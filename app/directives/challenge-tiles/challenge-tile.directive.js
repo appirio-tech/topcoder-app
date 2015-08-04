@@ -16,9 +16,35 @@
 
       },
       scope: {
-        challenge: '=challenge',
-        domain: '='
-      }
+        challenge: '='
+      },
+      controller: ['$scope', 'CONSTANTS', '$attrs', function($scope, CONSTANTS, $attrs) {
+        $scope.DOMAIN = CONSTANTS.domain;
+
+        activate();
+
+        function activate() {
+          if (!$attrs.spotlight) {
+            processChallenge($scope.challenge);
+          }
+        }
+
+        function processChallenge(challenge) {
+          var now = moment();
+          var registrationDate = moment(challenge.registrationEndDate);
+          var submissionDate = moment(challenge.submissionEndDate);
+
+          challenge.registrationClosed = now > registrationDate ? true : false;
+          challenge.submissionClosed = now > submissionDate ? true : false;
+          challenge.registrationTimeLeft = (registrationDate - now)/(24*60*60*1000);
+          challenge.submissionTimeLeft = (submissionDate - now)/(24*60*60*1000);
+
+          // challenge.phaseMsg = preparePhaseMessage(challenge);
+
+          // TODO create msg dynamically
+          challenge.memberStatusMsg = 'You are registered!';
+        }
+      }]
     };
   });
 })();

@@ -43,13 +43,9 @@
   .roles {
     margin-top: 10px;
     margin-bottom: 20px;
-    min-height: 70px;
-
-    .role {
-      margin-top: 5px;
-      color: $dark-gray;
-      font-size: 14px;
-    }
+    min-height: 40px;
+    color: $dark-gray;
+    font-size: 14px;
   }
 
   .challenge-status {
@@ -81,6 +77,11 @@
 
       i {
         margin-right: 5px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
       }
     }
 

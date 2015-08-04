@@ -9,7 +9,7 @@
     var vm = this;
     // set some $rootScope constants here
     $rootScope.DOMAIN = CONSTANTS.domain;
-    console.log("rootscope", $rootScope)
+
     if (TcAuthService.isAuthenticated() === true) {
   		NotificationService.getNotifications().then(function(notifications) {
         angular.forEach(notifications, function(notification) {

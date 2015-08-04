@@ -24,7 +24,8 @@
     function activate() {
       profileVm.statsPromise.then(function(data) {
         vm.typeStats = ProfileService.getChallengeTypeStats(
-          profileVm.stats, 'develop',
+          profileVm.stats,
+          vm.track,
           vm.subTrack.toLowerCase().replace(/ /g, '')
         );
         vm.dropdown = ProfileService.getSubTracks(profileVm.stats, vm.track.toLowerCase())
