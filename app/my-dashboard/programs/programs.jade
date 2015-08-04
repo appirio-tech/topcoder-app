@@ -1,6 +1,8 @@
 hr
 
-section.ios
+.section-loading(ng-show="vm.loading")
+
+section.ios(ng-hide="vm.loading")
   h1.section-title iOS: Show Your Skills
 
   a(href="http://ios.topcoder.com/", ng-hide="vm.registered")

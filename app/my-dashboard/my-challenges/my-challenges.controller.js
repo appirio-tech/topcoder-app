@@ -43,7 +43,6 @@
         var spotlightChallenges = data[1];
 
         if (challenges.length > 0) {
-          processChallengesResponse(challenges);
           // FIXME until we figure out the correct sort order param
           challenges = _.sortByOrder(challenges, 'registrationEndDate', 'desc');
 

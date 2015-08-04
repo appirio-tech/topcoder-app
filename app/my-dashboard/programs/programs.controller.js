@@ -15,6 +15,7 @@
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.registered = false;
+    vm.loading = true;
 
     activate();
 
@@ -35,15 +36,18 @@
             // vm.challenges = [peerChallenges[0], iOSChallenges[0], iOSChallenges[1]];
             vm.challenges = challenges;
             vm.registered = true;
+            vm.loading = false;
           })
           .catch(function(err) {
             vm.registered = true;
+            vm.loading = false;
             $log.debug(err);
           });
         }
       })
       .catch(function(err) {
         vm.registered = false;
+        vm.loading = false;
         $log.debug(err);
       });
     }
