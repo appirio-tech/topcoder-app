@@ -22,7 +22,7 @@
 
     function viewActiveChallenges() {
       vm.myChallenges = [];
-      getChallenges('Active', 'submissionEndDate desc');
+      getChallenges('Active', 'submissionEndDate asc');
     };
 
     // get ACTIVE challenges and spotlight challenges
@@ -43,8 +43,11 @@
         var spotlightChallenges = data[1];
 
         if (challenges.length > 0) {
-          vm.myChallenges = challenges;
+          processChallengesResponse(challenges);
+          // FIXME until we figure out the correct sort order param
+          challenges = _.sortByOrder(challenges, 'registrationEndDate', 'desc');
 
+          vm.myChallenges = challenges;
           vm.spotlightChallenge = spotlightChallenges[0];
 
           vm.userHasChallenges = true;

@@ -101,11 +101,11 @@
 
       li
         .left Average Score
-        .right {{vm.typeStats.detailed.avgScore}}
+        .right {{vm.typeStats.detailed.avgScore | number: 2}}
 
       li
         .left Average Placement
-        .right {{vm.typeStats.detailed.avgPlacement}}
+        .right {{vm.typeStats.detailed.avgPlacement | number: 2}}
 
       li
         .left Wins
