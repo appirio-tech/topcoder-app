@@ -109,6 +109,7 @@
     }
 
     function getChallengeTypeStats(stats, track, type) {
+      track = track.toLowerCase();
       if (track !== 'Data Science') {
         var ans = stats[track + 'Stats']['rankStats'].filter(function(x) {
           return type === x.subTrackName.toLowerCase().replace(/ /g, '');

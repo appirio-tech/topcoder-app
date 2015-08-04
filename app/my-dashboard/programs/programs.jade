@@ -26,7 +26,7 @@ section.ios(ng-hide="vm.loading")
 
       a(href="http://ios.{{vm.domain}}", title="topcoder iOS Member Program") View Challenges
 
-    .challenge(ng-repeat="challenge in vm.challenges")
+    .challenge(ng-repeat="challenge in vm.challenges | orderBy:reviewType:true| orderBy:registrationEndDate:true")
       p.title {{challenge.challengeName}}
 
       i.fa.fa-apple.fa-3x

@@ -12,8 +12,11 @@
   p.roles Roles: {{challenge.userDetails.roles | listRoles}}
 
   .challenge-status
-    p.days-remaining {{challenge.registrationEndDate | timeDiff}}
+    p.days-remaining(ng-show="challenge.status === 'Active'") {{challenge.registrationEndDate | timeDiff}}
       span Registration Ends
+    p(ng-show="challenge.status === 'Completed'") 
+      span Ended {{challenge.submissionEndDate | date: "mediumDate"}}
+      
 
     .stats
       .registrants(ng-show="challenge.numRegistrants > 0")
@@ -23,7 +26,9 @@
         i.fa.fa-files-o
         a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}#viewRegistrant") {{challenge.numSubmissions}}
 
-    .phase-status
+    .phase-status(ng-show="challenge.status === 'Active'")
       i.fa.fa-check-circle-o
 
       p {{challenge.memberStatusMsg}}
+
+    

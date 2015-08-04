@@ -54,23 +54,12 @@
     }
 
     function getiOSChallenges() {
-      var peerParams = {
-        'filter[reviewType]': 'PEER',
-        'filter[status]': 'Active',
-        limit: 3
-      };
-
       var iOSParams = {
-        'filter[reviewType]': 'COMMUNITY,INTERNAL',
-        'filter[status]': 'Active',
-        limit: 3
+        filter: "technologies=ios&status=active",
+        limit: 3,
+        offset: 0,
       };
-
-      var peerChallenges = api.all('challenges').getList(peerParams);
-      var iOSChallenges  = api.all('challenges').getList(iOSParams);
-
-      return peerChallenges;
-      // return $q.all([peerChallenges, iOSChallenges]);
+      return api.all('challenges').getList(iOSParams);
     }
 
     /** NOT USED NEEDS TO BE REFACTORED **/
