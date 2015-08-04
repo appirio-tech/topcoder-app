@@ -21,6 +21,12 @@ body {
   }
 }
 
+.notifications {
+  .close-click {
+    font-size: inherit;
+  }
+}
+
 // Transits the header, content and footer on sidebar visibility
 .view-container,
 header,
