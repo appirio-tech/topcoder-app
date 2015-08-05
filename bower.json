@@ -40,7 +40,8 @@
     "angular-dropdowns": "1.1.0"
   },
   "devDependencies": {
-    "bardjs": "~0.1.4"
+    "bardjs": "~0.1.4",
+    "jquery": "~2.1.4"
   },
   "resolutions": {
     "angular": "1.4.3"

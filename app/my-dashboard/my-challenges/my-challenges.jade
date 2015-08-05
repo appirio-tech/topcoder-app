@@ -11,7 +11,7 @@ header
 section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
   challenge-tile.tile(ng-repeat="challenge in vm.myChallenges", challenge="challenge")
 
-  challenge-tile.tile.spotlight(spotlight, challenge="vm.spotlightChallenge")
+  challenge-tile.tile.spotlight(spotlight="spotlight", challenge="vm.spotlightChallenge")
 
 .section-links
   .link
