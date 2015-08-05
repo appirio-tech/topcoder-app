@@ -9,11 +9,6 @@
         }
 
         return 'directives/challenge-tiles/challenge-tile.directive.html';
-
-        if (attrs.challenge.challengeType = "SRM") {
-          return 'directives/challenge-tiles/srm-tile.directive.html';
-        }
-
       },
       scope: {
         challenge: '='
