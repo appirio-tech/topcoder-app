@@ -127,8 +127,6 @@
     }
 
     function getTracks(stats) {
-      console.log('stats');
-      console.log(stats);
       var tracks = [
         {
           'name': 'DEVELOP',

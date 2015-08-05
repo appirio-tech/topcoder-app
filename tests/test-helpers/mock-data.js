@@ -433,54 +433,54 @@ var mockData = (function() {
           "challengeStats": [
            {
               "phaseId": 112,
-              "phaseDesc": "Design     ",
+              "subTrackName": "Design     ",
               "challenges": 348
             },
             {
               "phaseId": 117,
-              "phaseDesc": "Specification",
+              "subTrackName": "Specification",
               "challenges": 12
             },
             {
               "phaseId": 118,
-              "phaseDesc": "Architecture",
+              "subTrackName": "Architecture",
               "challenges": 146
             },
             {
               "phaseId": 124,
-              "phaseDesc": "Test Suites",
+              "subTrackName": "Test Suites",
               "challenges": 2
             },
             {
               "phaseId": 125,
-              "phaseDesc": "Assembly Competition",
+              "subTrackName": "Assembly Competition",
               "challenges": 15
             },
             {
               "phaseId": 130,
-              "phaseDesc": "UI Prototype Competition",
+              "subTrackName": "UI Prototype Competition",
               "challenges": 1
             },
             {
               "phaseId": 134,
-              "phaseDesc": "Conceptualization",
+              "subTrackName": "Conceptualization",
               "challenges": 31
             },
             {
               "phaseId": 137,
-              "phaseDesc": "Test Scenarios",  
+              "subTrackName": "Test Scenarios",  
               "challenges": 1
             },
             {
               "phaseId": 149,
-              "phaseDesc": "First2Finish",
+              "subTrackName": "First2Finish",
               "challenges": 1
             }
           ],
           "rankStats": [
-              "Design": {
+              {
                   "phaseId": 112,
-                  "phaseDesc": "Design",
+                  "subTrackName": "Design",
                   "rating": 1616,
                   "activePercentile": 0,
                   "activeRank": 0,
@@ -493,9 +493,9 @@ var mockData = (function() {
                   "volatility": 441,
                   "reliability": 0
               },
-              "Architecture": {
+              {
                   "phaseId": 118,
-                  "phaseDesc": "Architecture",
+                  "subTrackName": "Architecture",
                   "rating": 1172,
                   "activePercentile": 0,
                   "activeRank": 0,
@@ -508,9 +508,9 @@ var mockData = (function() {
                   "volatility": 232,
                   "reliability": 0.0667
               },
-              "Assembly Competition": {
+              {
                   "phaseId": 125,
-                  "phaseDesc": "Assembly Competition",
+                  "subTrackName": "Assembly Competition",
                   "rating": 1566,
                   "activePercentile": 0,
                   "activeRank": 0,
@@ -525,9 +525,9 @@ var mockData = (function() {
               }
           ],
           "submissionStats": [
-              "First2Finish": {
+              {
                   "phaseId": 149,
-                  "phaseDesc": "First2Finish",
+                  "subTrackName": "First2Finish",
                   "numRatings": 1,
                   "submissions": 0,
                   "submissionRate": 0,
@@ -545,9 +545,9 @@ var mockData = (function() {
                   "numChallenges": null,
                   "winPercent": 0
               },
-              "Architecture": {
+              {
                   "phaseId": 118,
-                  "phaseDesc": "Architecture",
+                  "subTrackName": "Architecture",
                   "numRatings": 120,
                   "submissions": 36,
                   "submissionRate": 0.3,
@@ -565,9 +565,9 @@ var mockData = (function() {
                   "numChallenges": null,
                   "winPercent": 0.75
               },
-              "Conceptualization": {
+              {
                   "phaseId": 134,
-                  "phaseDesc": "Conceptualization",
+                  "subTrackName": "Conceptualization",
                   "numRatings": 30,
                   "submissions": 7,
                   "submissionRate": 0.2333333333333333,
@@ -585,9 +585,9 @@ var mockData = (function() {
                   "numChallenges": null,
                   "winPercent": 0
               },
-              "Design   ": {
+              {
                   "phaseId": 112,
-                  "phaseDesc": "Design     ",
+                  "subTrackName": "Design     ",
                   "numRatings": 327,
                   "submissions": 155,
                   "submissionRate": 0.4740061162079511,
@@ -605,9 +605,9 @@ var mockData = (function() {
                   "numChallenges": null,
                   "winPercent": 0.4838709677419355
               },
-              "UI Prototype Competition": {
+              {
                   "phaseId": 130,
-                  "phaseDesc": "UI Prototype Competition",
+                  "subTrackName": "UI Prototype Competition",
                   "numRatings": 1,
                   "submissions": 0,
                   "submissionRate": 0,
@@ -625,9 +625,9 @@ var mockData = (function() {
                   "numChallenges": null,
                   "winPercent": 0
               },
-              "Specification": {
+              {
                   "phaseId": 117,
-                  "phaseDesc": "Specification",
+                  "subTrackName": "Specification",
                   "numRatings": 11,
                   "submissions": 0,
                   "submissionRate": 0,
@@ -645,9 +645,9 @@ var mockData = (function() {
                   "numChallenges": null,
                   "winPercent": 0
               },
-              "Test Scenarios": {
+              {
                   "phaseId": 137,
-                  "phaseDesc": "Test Scenarios",
+                  "subTrackName": "Test Scenarios",
                   "numRatings": 1,
                   "submissions": 0,
                   "submissionRate": 0,
@@ -665,9 +665,9 @@ var mockData = (function() {
                   "numChallenges": null,
                   "winPercent": 0
               },
-              "Assembly Competition": {
+              {
                   "phaseId": 125,
-                  "phaseDesc": "Assembly Competition",
+                  "subTrackName": "Assembly Competition",
                   "numRatings": 10,
                   "submissions": 2,
                   "submissionRate": 0.2,
@@ -685,9 +685,9 @@ var mockData = (function() {
                   "numChallenges": null,
                   "winPercent": 0
               },
-              "Test Suites": {
+              {
                   "phaseId": 124,
-                  "phaseDesc": "Test Suites",
+                  "subTrackName": "Test Suites",
                   "numRatings": 2,
                   "submissions": 0,
                   "submissionRate": 0,
@@ -709,7 +709,7 @@ var mockData = (function() {
           "historyStats": [
           {
               "phaseId": 112,
-              "phaseDesc": "Design",
+              "subTrackName": "Design",
               "projectId": 10681741,
               "componentName": "Hashing Utility",
               "ratingDate": "11/11/04 9:00 AM",
@@ -848,21 +848,21 @@ var mockData = (function() {
             }
           ],
           "ratingStats": [
-              "Design": {
+              {
                   "phaseId": 112,
-                  "phaseDesc": "Design",
+                  "subTrackName": "Design",
                   "maxRating": 1940,
                   "minRating": 1029
               },
-              "Architecture": {
+              {
                   "phaseId": 118,
-                  "phaseDesc": "Architecture",
+                  "subTrackName": "Architecture",
                   "maxRating": 1260,
                   "minRating": 973
               },
-              "Assembly Competition": {
+              {
                   "phaseId": 125,
-                  "phaseDesc": "Assembly Competition",
+                  "subTrackName": "Assembly Competition",
                   "maxRating": 1566,
                   "minRating": 1515
               }
