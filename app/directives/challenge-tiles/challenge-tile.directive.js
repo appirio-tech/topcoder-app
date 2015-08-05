@@ -1,6 +1,9 @@
 (function() {
   'use strict';
-  angular.module('tcUIComponents').directive('challengeTile', function() {
+
+  angular.module('tcUIComponents').directive('challengeTile', challengeTile);
+
+  function challengeTile() {
     return {
       restrict: 'E',
       templateUrl: function(elem, attrs) {
@@ -41,5 +44,5 @@
         }
       }]
     };
-  });
+  }
 })();
