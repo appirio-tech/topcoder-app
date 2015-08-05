@@ -12,7 +12,7 @@
       .stat
         .value {{profileVm.numProjects}}
 
-        .name Projects
+        .name Challenges
 
       .stat
         .value
@@ -36,6 +36,7 @@
         .subcategory(ng-show="category.subTrack") {{category.subTrack}}
 
         .icon
+          img(src="images/member-program/svg/development-generic.svg")
 
         .ranking
           .number {{category.rank | ordinal}}
@@ -50,7 +51,7 @@
   hr
 
   tc-section(state="profileVm.status.skills")
-    .skills
+    .skills(ng-show="profileVm.skills && profileVm.skills.length > 0")
       h1 Skills / Technologies
 
 

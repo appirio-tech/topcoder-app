@@ -44,7 +44,6 @@
 
         if (challenges.length > 0) {
           // FIXME until we figure out the correct sort order param
-          challenges = _.sortByOrder(challenges, 'registrationEndDate', 'desc');
 
           vm.myChallenges = challenges;
           vm.spotlightChallenge = spotlightChallenges[0];
