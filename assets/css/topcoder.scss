@@ -10,6 +10,18 @@ body {
   justify-content: center;
 }
 
+.demoChanges {
+  .notifications-container {
+    position: static;
+    z-index: 0;
+  }
+  .error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+  }
+}
+
 .view-container {
   max-width: 1010px;
   min-height: 480px;

@@ -10,6 +10,8 @@
     // set some $rootScope constants here
     $rootScope.DOMAIN = CONSTANTS.domain;
 
-    NotificationService.getNotifications();
+    $rootScope.$on(CONSTANTS.EVENT_USER_LOGGED_IN, function() {
+      NotificationService.getNotifications();
+    });
   };
 })();
