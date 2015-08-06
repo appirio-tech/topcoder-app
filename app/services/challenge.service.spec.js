@@ -21,7 +21,6 @@ describe('Challenge Service', function() {
 
     ChallengeService.getChallengeDetails(123456)
     .then(function(data) {
-      console.log('here');
       expect(data).to.exist;
     })
     $httpBackend.flush();
