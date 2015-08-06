@@ -73,7 +73,7 @@ gulp.task('images', ['clean-images'], function() {
 
   return gulp
     .src(config.images)
-    // .pipe($.imagemin({optimizationLevel: 4}))
+    .pipe($.imagemin({optimizationLevel: 4}))
     .pipe(gulp.dest(config.temp + 'images'));
 });
 
@@ -177,7 +177,7 @@ gulp.task('optimize', ['inject', 'test', 'ngConstants', 'images'], function() {
   var jsLibFilter = $.filter('**/' + config.optimized.vendor);
   var jsAppFilter = $.filter('**/' + config.optimized.app);
 
-  var imageStream = gulp.src(config.temp + '/**/*.{svg,png,jpg,jpeg,gif,ico}');
+  var imageStream = gulp.src(config.temp + '/**/*.{svg,png,jpg,jpeg,gif}');
   var userefStream = gulp
     .src(config.indexHtml)
     .pipe($.plumber())
@@ -186,35 +186,34 @@ gulp.task('optimize', ['inject', 'test', 'ngConstants', 'images'], function() {
       endtag: '<!-- endinject -->',
       relative: true
     }))
+    .pipe(assets)
+    .pipe(cssFilter)
+    .pipe($.csso())
+    .pipe(cssFilter.restore())
+    .pipe(jsLibFilter)
+    .pipe($.uglify())
+    .pipe(jsLibFilter.restore())
+    .pipe(jsAppFilter)
+    .pipe($.if(!config.production && !config.qa, $.sourcemaps.init()))
+    .pipe($.ngAnnotate())
+    .pipe($.uglify())
+    .pipe(jsAppFilter.restore())
+    .pipe(assets.restore())
+    .pipe($.useref())
 
-    var revAll = new RevAll({
-      prefix: envConfig.CONSTANTS.ASSET_PREFIX,
-      dontRenameFile: [/^\/favicon.ico$/g, /^\/index.html/g]
-    });
+  var revAll = new RevAll({
+    prefix: envConfig.CONSTANTS.ASSET_PREFIX,
+    dontRenameFile: [/^\/index.html/g]
+  });
 
-    return merge(userefStream, imageStream)
-      .pipe(revAll.revision())
-      .pipe(assets)
-      .pipe(cssFilter)
-      .pipe($.csso())
-      .pipe(cssFilter.restore())
-      .pipe(jsLibFilter)
-      .pipe($.uglify())
-      .pipe(jsLibFilter.restore())
-      .pipe(jsAppFilter)
-      .pipe($.if(!config.production && !config.qa, $.sourcemaps.init()))
-      .pipe($.ngAnnotate())
-      .pipe($.uglify())
-      .pipe(jsAppFilter.restore())
-      .pipe(assets.restore())
-      .pipe($.useref())
-      // .pipe($.revAllReplace({prefix: envConfig.CONSTANTS.ASSET_PREFIX}))
-      .pipe($.if(!config.production && !config.qa, $.sourcemaps.write()))
-      // Uncomment if you want to see the JSON file containing
-      // the file mapping (e.g., "{"js/app.js": "js/app-a9bae026bc.js"}")
-      // .pipe(gulp.dest(config.build))
-      // .pipe($.rev.manifest())
-      .pipe(gulp.dest(config.build));
+  return merge(userefStream, imageStream)
+    .pipe(revAll.revision())
+    .pipe($.if(!config.production && !config.qa, $.sourcemaps.write()))
+    // Uncomment if you want to see the JSON file containing
+    // the file mapping (e.g., "{"js/app.js": "js/app-a9bae026bc.js"}")
+    // .pipe(gulp.dest(config.build))
+    // .pipe(revAll.manifestFile())
+    .pipe(gulp.dest(config.build));
 });
 
 gulp.task('build', ['optimize', 'dev-fonts'], function() {
