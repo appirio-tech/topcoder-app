@@ -14,7 +14,29 @@ var LoginData = function() {
     								'username' : 'ChristinoBolder',
     								'password' : 'Appirio123'
     							}
-    						  ],	                       
+    						  ],
+    						  
+    this.fbCredentials = [ {
+  								'username' : 'topcoderpuneet4@gmail.com',
+  								'password' : 'LavaIris123'
+  							   }
+    					 ],
+  						  	
+  	this.googleCredentials = [ {
+  								'username' : 'topcoderpuneet4@gmail.com',
+								'password' : 'LavaIris123'
+							   }
+  						 ],
+  						 
+  	this.gitCredentials = [ {
+  								'username' : 'auto-user9',
+  								'password' : 'appirio123$'
+  								}
+  							],					 
+  						  	
+  						  	
+    						  
+    						  
     this.baseUrl = 'http://app.topcoder-dev.com/login';
     
 };
