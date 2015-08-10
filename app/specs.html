@@ -45,6 +45,7 @@
     </script>
 
     <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
@@ -59,6 +60,8 @@
     <script src="../bower_components/x2js/xml2json.min.js"></script>
     <script src="../bower_components/angular-xml/angular-xml.js"></script>
     <script src="../bower_components/angular-img-fallback/angular.dcb-img-fallback.js"></script>
+    <script src="../bower_components/angular-filter/dist/angular-filter.js"></script>
+    <script src="../bower_components/angular-dropdowns/dist/angular-dropdowns.js"></script>
     <script src="../bower_components/angular-mocks/angular-mocks.js"></script>
     <script src="../bower_components/sinon/index.js"></script>
     <script src="../bower_components/bardjs/dist/bard.js"></script>
@@ -94,10 +97,10 @@
     <script src="/app/sample/sample.routes.js"></script>
     <script src="/app/sample/sample.controller.js"></script>
     <script src="/app/profile/profile.module.js"></script>
+    <script src="/app/profile/subtrack/subtrack.controller.js"></script>
     <script src="/app/profile/profile.routes.js"></script>
-    <script src="/app/profile/header/header.controller.js"></script>
+    <script src="/app/profile/profile.controller.js"></script>
     <script src="/app/profile/about/about.controller.js"></script>
-    <script src="/app/peer-review/slideable.directive.js"></script>
     <script src="/app/peer-review/peer-review.module.js"></script>
     <script src="/app/peer-review/review-status/review-status.filter.js"></script>
     <script src="/app/peer-review/review-status/review-status.controller.js"></script>
@@ -105,26 +108,32 @@
     <script src="/app/peer-review/peer-review.routes.js"></script>
     <script src="/app/peer-review/edit-review/edit-review.controller.js"></script>
     <script src="/app/peer-review/completed-review/completed-review.controller.js"></script>
-    <script src="/app/member-dashboard/member-dashboard.module.js"></script>
-    <script src="/app/member-dashboard/srms/dashboard.srms.controller.js"></script>
-    <script src="/app/member-dashboard/my-challenges/my-challenges.controller.js"></script>
-    <script src="/app/member-dashboard/member-profile/profile-header.controller.js"></script>
-    <script src="/app/member-dashboard/member-dashboard.routes.js"></script>
-    <script src="/app/member-dashboard/member-dashboard.controller.js"></script>
-    <script src="/app/member-dashboard/ios-program/ios-program.controller.js"></script>
-    <script src="/app/member-dashboard/blog-post/blog-post.controller.js"></script>
+    <script src="/app/my-dashboard/my-dashboard.module.js"></script>
+    <script src="/app/my-dashboard/srms/srms.controller.js"></script>
+    <script src="/app/my-dashboard/programs/programs.controller.js"></script>
+    <script src="/app/my-dashboard/my-dashboard.routes.js"></script>
+    <script src="/app/my-dashboard/my-dashboard.controller.js"></script>
+    <script src="/app/my-dashboard/my-challenges/my-challenges.controller.js"></script>
+    <script src="/app/my-dashboard/header-dashboard/header-dashboard.controller.js"></script>
+    <script src="/app/my-dashboard/community-updates/community-updates.controller.js"></script>
     <script src="/app/layout/layout.module.js"></script>
     <script src="/app/layout/header/header.controller.js"></script>
     <script src="/app/filters/tracks.filter.js"></script>
     <script src="/app/filters/time-diff.filter.js"></script>
     <script src="/app/filters/percentage.filter.js"></script>
     <script src="/app/filters/ordinal.filter.js"></script>
+    <script src="/app/filters/location.filter.js"></script>
     <script src="/app/filters/local-time.filter.js"></script>
-    <script src="/app/filters/join-array.filter.js"></script>
+    <script src="/app/filters/listRoles.filter.js"></script>
     <script src="/app/filters/deadline-msg.filter.js"></script>
     <script src="/app/directives/tcui-components.module.js"></script>
+    <script src="/app/directives/tc-section/tc-section.directive.js"></script>
     <script src="/app/directives/srm-tile/srm-tile.directive.js"></script>
-    <script src="/app/directives/challenge-tile/challenge-tile.directive.js"></script>
+    <script src="/app/directives/slideable.directive.js"></script>
+    <script src="/app/directives/skill-tile/skill-tile.directive.js"></script>
+    <script src="/app/directives/right-placeholder.directive.js"></script>
+    <script src="/app/directives/profile-widget/profile-widget.directive.js"></script>
+    <script src="/app/directives/challenge-tiles/challenge-tile.directive.js"></script>
     <script src="/app/blocks/logger/logger.module.js"></script>
     <script src="/app/blocks/logger/logger.js"></script>
     <script src="/app/blocks/exception/exception.module.js"></script>
@@ -144,13 +153,16 @@
     <!-- endinject -->
 
     <!-- inject:specs:js -->
-    <script src="/app/member-dashboard/member-dashboard.spec.js"></script>
+    <script src="/app/my-dashboard/my-dashboard.spec.js"></script>
+    <script src="/app/profile/profile.controller.spec.js"></script>
     <script src="/app/services/challenge.service.spec.js"></script>
+    <script src="/app/services/profile.service.spec.js"></script>
+    <script src="/app/blocks/exception/exception-handler.provider.spec.js"></script>
     <script src="/app/account/login/login.spec.js"></script>
     <script src="/app/account/register/register.spec.js"></script>
-    <script src="/app/blocks/exception/exception-handler.provider.spec.js"></script>
-    <script src="/app/member-dashboard/blog-post/blog-post.spec.js"></script>
-    <script src="/app/member-dashboard/my-challenges/my-challenges.spec.js"></script>
+    <script src="/app/directives/challenge-tiles/challenge-tile.spec.js"></script>
+    <script src="/app/my-dashboard/community-updates/community-updates.spec.js"></script>
+    <script src="/app/my-dashboard/my-challenges/my-challenges.spec.js"></script>
     <script src="/app/peer-review/completed-review/completed-review.spec.js"></script>
     <script src="/app/peer-review/edit-review/edit-review.spec.js"></script>
     <script src="/app/peer-review/readOnlyScorecard/readOnlyScorecard.spec.js"></script>

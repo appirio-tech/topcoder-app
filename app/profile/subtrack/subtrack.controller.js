@@ -2,13 +2,13 @@
 
   angular
     .module('tc.profile')
-    .controller('ProfileDevelopController', ProfileDevelopController);
+    .controller('ProfileSubtrackController', ProfileSubtrackController);
 
-  ProfileDevelopController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window'];
+  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window'];
 
-  function ProfileDevelopController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window) {
+  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window) {
     var vm = this;
-    vm.subTrack = $stateParams.subTrack;
+    vm.subTrack = decodeURIComponent($stateParams.subTrack);
     vm.track = $stateParams.track;
     vm.viewing = 'challenges';
     vm.domain = CONSTANTS.domain;
@@ -31,7 +31,7 @@
         vm.dropdown = ProfileService.getSubTracks(profileVm.stats, vm.track.toLowerCase())
         .map(function(x) {
           return {
-            text: 'Develop' + ': ' + x,
+            text: vm.track + ': ' + x,
             value: x
           };
         });
@@ -45,7 +45,7 @@
     }
 
     function selectSubTrack(subTrack) {
-      $state.go('profile.develop', {track: 'develop', subTrack: subTrack});
+      $state.go('profile.subtrack', {track: vm.track, subTrack: subTrack});
     }
 
     function back() {

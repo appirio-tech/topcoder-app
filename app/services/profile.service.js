@@ -72,14 +72,15 @@
         });
       }
       // show # of wins for design
-      if (stats.designStats) {
-        des = [
-          {
+      if (stats.designStats && stats.designStats.submissionStats) {
+        des = stats.designStats.submissionStats.map(function(x) {
+          return {
             'track': 'Design',
-            'subTrack': '',
-            'rank': stats.designStats.wins
-          }
-        ];
+            'subTrack': x.subTrackName,
+            'rank': false,
+            'wins': x.wins
+          };
+        });
       }
       if (stats.dataScienceStats && stats.dataScienceStats.srmStats && stats.dataScienceStats.srmStats.rankStats) {
         srm = stats.dataScienceStats.srmStats.rankStats.map(function(x) {
@@ -103,7 +104,7 @@
         .concat(srm)
         .concat(marathon)
         .filter(function(x) {
-        return x.rank > 0;
+        return x.rank > 0 || x.wins;
       });
       return ans;
     }
@@ -111,7 +112,7 @@
     function getChallengeTypeStats(stats, track, type) {
       track = track.toLowerCase().replace(/ /g, '');
       type = type.toLowerCase().replace(/ /g, '');
-      if (track !== 'Data Science') {
+      if (track == 'develop') {
         var ans = stats[track + 'Stats']['rankStats'].filter(function(x) {
           return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         });
@@ -122,6 +123,12 @@
           return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         })[0];
         return ans[0];
+
+      } else if (track == 'design') {
+        var ans = stats[track + 'Stats']['submissionStats'].filter(function(x) {
+          return type === x.subTrackName.toLowerCase().replace(/ /g, '');
+        });
+        return ans[0];
       } else if (type == 'srm') {
         return stats.dataScienceStats.srmStats.rankStats[0];
       } else {
@@ -130,10 +137,18 @@
     }
 
     function getSubTracks(stats, track) {
+      track = track.toLowerCase().replace(/ /g, '');
+      if (track == 'develop') {
         var ans = stats[track + 'Stats']['rankStats'].map(function(x) {
           return x.subTrackName;
         });
         return ans;
+      } else if (track == 'design') {
+        var ans = stats[track + 'Stats']['submissionStats'].map(function(x) {
+          return x.subTrackName;
+        });
+        return ans;
+      }
     }
 
     function getTracks(stats) {
