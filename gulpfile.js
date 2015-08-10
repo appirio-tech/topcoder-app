@@ -34,6 +34,7 @@ gulp.task('jade', ['clean-html'], function() {
     .pipe($.plumber())
     .pipe($.jade({pretty: true}))
     .pipe($.replace(/-->/g, ' -->'))
+    .pipe($.replace('NEW_RELIC_APPLICATION_ID', envConfig.CONSTANTS.NEW_RELIC_APPLICATION_ID))
     .pipe(gulp.dest(config.temp));
 });
 
