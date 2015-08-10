@@ -31,7 +31,7 @@
 
   function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log, NotificationService, $window, CONSTANTS) {
     // Attaching $state to the $rootScope allows us to access the
-    // current state in index.html (see div with ui-view on the index page)
+    // current state in index.html (see the body tag)
     $rootScope.$state = $state;
 
     $window.NEW_RELIC_APPLICATION_ID = CONSTANTS.NEW_RELIC_APPLICATION_ID;
