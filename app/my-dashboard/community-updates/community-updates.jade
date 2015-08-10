@@ -8,7 +8,6 @@ hr
       .post(ng-repeat='blog in vm.blogPosts | orderBy : pubDate : true | limitTo : 4')
         .link
           a(href='{{blog.link}}', target='_blank') {{blog.title}}
-        .pub-date.ellipsis {{blog.pubDate | date : 'MMMM dd'}}
         .description(ng-bind-html="blog.description")
     .section-links
       .community-blog.link
