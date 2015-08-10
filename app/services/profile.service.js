@@ -72,7 +72,7 @@
         });
       }
       // show # of wins for design
-      if (stats.designStats) {
+      if (stats.designStats && stats.designStats.submissionStats) {
         des = stats.designStats.submissionStats.map(function(x) {
           return {
             'track': 'Design',

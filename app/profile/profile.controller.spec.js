@@ -22,11 +22,11 @@ describe('Profile Controller', function() {
     $httpBackend
       .when('GET', new RegExp(apiUrl + '/challenges/.*'))
       .respond(200, {result: {content: []}});
-    // mock stats 
+    // mock stats
     $httpBackend
       .when('GET', apiUrl + '/members/rakesh/stats/')
       .respond(200, {result: {content: mockStats}});
-    // mock skills 
+    // mock skills
     $httpBackend
       .when('GET', apiUrl + '/members/rakesh/skills/')
       .respond(200, {result: {content: mockSkills}});

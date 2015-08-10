@@ -783,7 +783,7 @@ var mockData = (function() {
             },
             {
               "phaseId": 137,
-              "subTrackName": "Test Scenarios",  
+              "subTrackName": "Test Scenarios",
               "challenges": 1
             },
             {
@@ -1187,7 +1187,7 @@ var mockData = (function() {
           "challenges": null,
           "wins": null,
           "rankStats": {},
-          "submissionStats": {},
+          "submissionStats": [],
           "ratingStats": {}
       },
       "dataScienceStats": {
