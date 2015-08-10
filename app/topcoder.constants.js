@@ -15,7 +15,7 @@ angular.module("CONSTANTS", [])
 	"HELP_APP_URL": "help.topcoder-dev.com",
 	"MAIN_URL": "https://www.topcoder-dev.com",
 	"NEW_CHALLENGES_URL": "https://www.topcoder.com/challenges/develop/upcoming/",
-	"NEW_RELIC_APPLICATION_ID": "",
+	"NEW_RELIC_APPLICATION_ID": "8957921",
 	"PHOTO_LINK_LOCATION": "https://community.topcoder-dev.com",
 	"submissionDownloadPath": "/review/actions/DownloadContestSubmission?uid=",
 	"SWIFT_PROGRAM_ID": 3445,

@@ -27,14 +27,12 @@
     .module('topcoder', dependencies)
     .run(appRun);
 
-  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log', 'NotificationService', '$window', 'CONSTANTS'];
+  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log', 'NotificationService'];
 
-  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log, NotificationService, $window, CONSTANTS) {
+  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log, NotificationService) {
     // Attaching $state to the $rootScope allows us to access the
     // current state in index.html (see the body tag)
     $rootScope.$state = $state;
-
-    $window.NEW_RELIC_APPLICATION_ID = CONSTANTS.NEW_RELIC_APPLICATION_ID;
 
     // check AuthNAuth on change state start
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
