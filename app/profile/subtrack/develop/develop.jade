@@ -1,18 +1,4 @@
-.profile-develop-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
-  hr
-  .nav
-    .backButton
-      a(ng-click="vm.back()") &#9664;
-
-    .dropdown(
-      dropdown-select="vm.dropdown",
-      dropdown-model="vm.ddSelected",
-      dropdown-item-label="text",
-      dropdown-onchange="vm.selectSubTrack(vm.ddSelected.value)"
-    )
-
-  hr
-
+.develop(ng-if="vm.track == 'Develop'")
   ul.horizontal-stats
     li.stat
       .value {{vm.typeStats.overallRank}}
@@ -45,7 +31,10 @@
 
   hr
 
-  tc-section(ng-show="vm.viewing == 'challenges'", state="profileVm.status.pastChallenges")
+  tc-section(
+    ng-show="vm.viewing == 'challenges'",
+    state="profileVm.status.pastChallenges"
+  )
     .challenges
       .challenge.tile(ng-repeat="challenge in vm.pastChallenges = (profileVm.pastChallenges | filter: {'track': vm.track, 'subTrack': vm.subTrack})")
         challenge-tile(challenge="challenge", domain="vm.domain")

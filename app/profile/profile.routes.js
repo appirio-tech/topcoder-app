@@ -43,10 +43,10 @@
         controller: 'ProfileAboutController',
         controllerAs: 'vm'
       },
-      'profile.develop': {
-        url: 'develop/?:track&:subTrack',
-        templateUrl: 'profile/develop/develop.html',
-        controller: 'ProfileDevelopController',
+      'profile.subtrack': {
+        url: 'details/?:track&:subTrack',
+        templateUrl: 'profile/subtrack/subtrack.html',
+        controller: 'ProfileSubtrackController',
         controllerAs: 'vm'
       }
     };

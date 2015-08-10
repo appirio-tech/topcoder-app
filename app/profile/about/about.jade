@@ -29,7 +29,7 @@
 
       .category(
         ng-repeat="category in profileVm.categories.slice(vm.categoryIndex, vm.categoryIndex + 4)", 
-        ui-sref="profile.develop({track: category.track, subTrack: category.subTrack})"
+        ui-sref="profile.subtrack({track: category.track, subTrack: category.subTrack})"
       )
         .name {{category.track}}
 
@@ -38,10 +38,14 @@
         .icon
           img(src="/images/member-program/svg/development-generic.svg")
 
-        .ranking
+        .ranking(ng-if="category.rank")
           .number {{category.rank | ordinal}}
 
           .tag Ranking
+        .ranking(ng-if="category.wins")
+          .number {{category.wins}}
+
+          .tag Wins
 
       .rightButton(
         ng-click="vm.shiftCategories(1)",
