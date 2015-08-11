@@ -25,6 +25,26 @@
         text-decoration: underline;
       }
     }
+
+    p.viewDashboard {
+      position: absolute;
+      top: 3px;
+      left: 10px;
+
+      a {
+        text-decoration: underline;
+      }
+    }
+
+    p.filters {
+      position: absolute;
+      top: 3px;
+      right: 10px;
+
+      a {
+        text-decoration: underline;
+      }
+    }
   }
 
   section.challenges {

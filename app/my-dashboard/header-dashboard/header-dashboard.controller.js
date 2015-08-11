@@ -6,20 +6,26 @@
   HeaderDashboardController.$inject = [
     'UserService',
     'ProfileService',
-    'CONSTANTS'
+    'CONSTANTS',
+    '$state'
   ];
 
-  function HeaderDashboardController(UserService, ProfileService, CONSTANTS) {
+  function HeaderDashboardController(UserService, ProfileService, CONSTANTS, $state) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.defaultPhotoUrl = CONSTANTS.ASSET_PREFIX + "images/avatarPlaceholder.png";
     vm.isCopilot = false;
     vm.loading = true;
     vm.hasRatings = true;
+    vm.showRanks = true;
+    var stateData = $state.current.data;
 
     activate();
 
     function activate() {
+      if (stateData && typeof stateData.showRanks != 'undefined') {
+        vm.showRanks = stateData.showRanks;
+      }
       var username = UserService.getUserIdentity().username;
 
       ProfileService.getUserProfile(username)
