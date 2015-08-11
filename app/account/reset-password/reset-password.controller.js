@@ -50,7 +50,7 @@
                 $state.go('dashboard');
               },
               function(err) {
-                vm.loginFailed = true;
+                $state.go('login', { "notifyReset": true });
               }
             );
           },
