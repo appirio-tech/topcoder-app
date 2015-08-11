@@ -7,7 +7,8 @@
 
   function NotificationService(notifier, ApiService, TcAuthService, $rootScope) {
   	var service = {
-      getNotifications: getNotifications
+      getNotifications: getNotifications,
+      inform: inform
     };
     return service;
 
@@ -39,6 +40,10 @@
           })
         });
       }
+    }
+    
+    function inform(message) {
+      notifier.showSuccess({message:message});
     }
   }
 })();

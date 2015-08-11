@@ -4,18 +4,24 @@
   angular.module('tc.myDashboard').controller('HeaderDashboardController', HeaderDashboardController);
 
   HeaderDashboardController.$inject = [
+    '$stateParams', 
+    'NotificationService',
     'UserService',
     'ProfileService',
     'CONSTANTS'
   ];
 
-  function HeaderDashboardController(UserService, ProfileService, CONSTANTS) {
+  function HeaderDashboardController($stateParams, NotificationService, UserService, ProfileService, CONSTANTS) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.defaultPhotoUrl = CONSTANTS.ASSET_PREFIX + "images/avatarPlaceholder.png";
     vm.isCopilot = false;
     vm.loading = true;
     vm.hasRatings = true;
+    
+    if ($stateParams.notifyReset) {
+      NotificationService.inform('Thanks. Your new password has been set.');
+    }
 
     activate();
 
