@@ -1,0 +1,42 @@
+.design(ng-if="vm.track == 'Co-Pilot'")
+  ul.horizontal-stats
+    li.stat
+      .value {{vm.typeStats.contests}}
+      .name CONTESTS
+
+    li.stat
+      .value {{vm.typeStats.projects}}
+      .name PROJECTS
+
+    li.stat
+      .value {{vm.typeStats.fulfillment + '%'}}
+      .name FULFILLMENT
+
+  hr
+
+  .stats
+    .graphs
+      img(src="images/graph.png")
+
+    h2.detailed Detailed Stats
+
+    ul.vertical-stats
+      li
+        .left Contests
+        .right {{vm.typeStats.contests}}
+
+      li
+        .left Projects
+        .right {{vm.typeStats.projects}}
+
+      li
+        .left Active Contests
+        .right {{vm.typeStats.activeContests}}
+
+      li
+        .left Active Projects
+        .right {{vm.typeStats.activeProjects}}
+
+      li
+        .left Fulfillment
+        .right {{vm.typeStats.fulfillment + '%'}}

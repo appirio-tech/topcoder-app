@@ -8,7 +8,7 @@
 
   function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window) {
     var vm = this;
-    vm.subTrack = decodeURIComponent($stateParams.subTrack);
+    vm.subTrack = decodeURIComponent($stateParams.subTrack || '') || '';
     vm.track = $stateParams.track;
     vm.viewing = 'challenges';
     vm.domain = CONSTANTS.domain;
@@ -28,16 +28,24 @@
           vm.track,
           vm.subTrack.toLowerCase().replace(/ /g, '')
         );
-        vm.dropdown = ProfileService.getSubTracks(profileVm.stats, vm.track.toLowerCase())
-        .map(function(x) {
-          return {
-            text: vm.track + ': ' + x,
-            value: x
+        if (vm.subTrack) {
+          vm.dropdown = ProfileService.getSubTracks(profileVm.stats, vm.track.toLowerCase())
+          .map(function(x) {
+            return {
+              text: vm.track + ': ' + x,
+              value: x
+            };
+          });
+          vm.ddSelected = vm.dropdown.filter(function(x) {
+            return x.value === vm.subTrack;
+          })[0];
+        } else {
+          vm.ddSelected =  {
+            text: 'Co-Pilot',
+            value: 'Co-Pilot'
           };
-        });
-        vm.ddSelected = vm.dropdown.filter(function(x) {
-          return x.value === vm.subTrack;
-        })[0];
+        }
+
       });
       // profileVm.pastChallengesPromise.then(function(data) {
 

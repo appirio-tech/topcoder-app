@@ -134,6 +134,10 @@
           return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         });
         return ans[0];
+
+      } else if (track == 'co-pilot') {
+        var ans = stats.copilotStats;
+        return ans;
       } else if (type == 'srm') {
         return stats.dataScienceStats.srmStats.rankStats[0];
       } else {
