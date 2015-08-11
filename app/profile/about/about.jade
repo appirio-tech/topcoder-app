@@ -46,6 +46,12 @@
           .number {{category.wins}}
 
           .tag Wins
+        
+        .ranking(ng-if="category.fulfillment")
+          .number {{category.fulfillment + '%'}}
+
+          .tag Fulfillment
+
 
       .rightButton(
         ng-click="vm.shiftCategories(1)",

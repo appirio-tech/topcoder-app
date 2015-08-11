@@ -61,7 +61,7 @@
       if (!stats) {
         return [];
       }
-      var dev = [], des = [], srm = [], marathon = [];
+      var dev = [], des = [], srm = [], marathon = [], copilot = [];
       if (stats.developStats && stats.developStats.rankStats) {
         dev = stats.developStats.rankStats.map(function(x) {
           return {
@@ -100,12 +100,17 @@
           };
         });
       }
+      if (stats.copilotStats) {
+        copilot = stats.copilotStats;
+        copilot.track = 'Co-Pilot';
+      }
       var ans = dev.concat(des)
         .concat(srm)
         .concat(marathon)
+        .concat(stats.copilotStats)
         .filter(function(x) {
-        return x.rank > 0 || x.wins;
-      });
+          return x.rank || x.wins || x.fulfillment;
+        });
       return ans;
     }
 
