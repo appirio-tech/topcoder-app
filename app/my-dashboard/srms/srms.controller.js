@@ -3,9 +3,9 @@
 
   angular.module('tc.myDashboard').controller('SRMController', SRMController);
 
-  SRMController.$inject = ['UserService','SRMService', 'CONSTANTS'];
+  SRMController.$inject = ['UserService','SRMService', 'CONSTANTS', '$log'];
 
-  function SRMController(UserService, SRMService, CONSTANTS) {
+  function SRMController(UserService, SRMService, CONSTANTS, $log) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.srms = [];
