@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('Helpers', Helpers);
 
-  Helpers.$inject = ['$window', '$location'];
+  Helpers.$inject = ['$window', '$location', '$http', 'ISO3166'];
 
-  function Helpers($window, $location) {
+  function Helpers($window, $location, $http, ISO3166) {
     // TODO: Separate helpers by submodule
 
     var service = {
@@ -16,7 +16,8 @@
       countCompleted: countCompleted,
       getParameterByName: getParameterByName,
       getPageTitle: getPageTitle,
-      isEmail: isEmail
+      isEmail: isEmail,
+      getCountyObjFromIP: getCountyObjFromIP
     };
     return service;
 
@@ -160,6 +161,19 @@
     function isEmail(value) {
       var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       return re.test(value);
+    }
+
+    function getCountyObjFromIP() {
+      return $http.get("http://ipinfo.io")
+        .then(function(data) {
+          if (data.data && data.data.country) {
+            return ISO3166.getCountryObjFromAlpha2(data.data.country);
+          }
+          return null;
+        }, function(err) {
+          // unable to lookup ip address
+          return null;
+        });
     }
   }
 })();

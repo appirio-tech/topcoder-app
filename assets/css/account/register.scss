@@ -34,6 +34,14 @@
     width: 131px;
   }
 
+  .country-dropdown {
+    text-align: left;
+
+    .highlight {
+      font-weight: bold;
+    }
+  }
+
   .terms {
     margin-top: 10px;
     margin-bottom: 10px;

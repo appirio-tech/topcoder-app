@@ -6,6 +6,8 @@
     'validateRegister',
     'ui.router',
     'tc.services',
+    'ngIsoConstants',
+    'angucomplete-alt'
   ];
 
   angular.module('tc.account', dependencies);
