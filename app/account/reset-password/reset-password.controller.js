@@ -41,13 +41,14 @@
     }
     
     vm.resetPassword = function() {
+      $state.go('dashboard', { "notifyReset": true });
       vm.loading = true;
       if (vm.resetPasswordForm.$valid) {
         UserService.resetPassword(vm.handle, vm.password, vm.token).then(
           function() {
             TcAuthService.login(vm.handle, vm.password).then(
               function() { 
-                $state.go('dashboard');
+                $state.go('dashboard', { "notifyReset": true });
               },
               function(err) {
                 $state.go('login', { "notifyReset": true });
