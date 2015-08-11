@@ -21,9 +21,11 @@
 
     vm.sendLink = function() {
       if (vm.generateTokenForm.$valid) {
+        vm.loading = true;
         UserService.generateResetToken(vm.email).then(
           function() {
             vm.resetTokenSent = true;
+            vm.loading = false;
           },
           function(err) {
             if (err.status == 400)
@@ -32,12 +34,14 @@
               vm.emailNotFound = true;
               
             vm.resetTokenFailed = true;
+            vm.loading = false;
           }
         );
       }
     }
     
     vm.resetPassword = function() {
+      vm.loading = true;
       if (vm.resetPasswordForm.$valid) {
         UserService.resetPassword(vm.handle, vm.password, vm.token).then(
           function() {
@@ -52,6 +56,7 @@
           },
           function(err) {
             vm.resetFailed = true;
+            vm.loading = false;
           }
         );
       }
