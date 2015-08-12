@@ -3,11 +3,24 @@
 
   angular.module('tc.account').controller('RegisterController', RegisterController);
 
-  RegisterController.$inject = ['$log', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService'];
+  RegisterController.$inject = ['$log', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService', '$interval', '$timeout'];
 
-  function RegisterController($log, CONSTANTS, $state, $stateParams, TcAuthService, UserService) {
+  function RegisterController($log, CONSTANTS, $state, $stateParams, TcAuthService, UserService, $interval, $timeout) {
     var vm = this;
+    var defaultPlaceholder = 'Create Password';
+    vm.placeholder = defaultPlaceholder;
 
+    $interval(function() {
+      console.log(vm.passwordFocus);
+    }, 250);
+
+    vm.blur = function() {
+      $timeout(function() {
+        if (vm.password !== undefined && vm.password === '') {
+          vm.placeholder = defaultPlaceholder;
+        }
+      });
+    };
 
     // Social Registeration callback
     var params = {}, callbackUrl;

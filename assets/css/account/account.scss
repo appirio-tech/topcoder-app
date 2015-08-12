@@ -31,14 +31,14 @@
     @include login-link;
   }
 
-  input, button {
+  input:not([type="checkbox"]), button {
     display: block;
     margin-bottom: 10px;
   }
 
-  input {
+  input:not([type="checkbox"]) {
     height: 40px;
-    width: 285px;
+    width: 300px;
     padding: 0;
     padding-left: 15px;
     border: 0;
@@ -98,9 +98,6 @@
     border-radius: 8px;
     font-size: 21px;
     cursor: default;
-
-    // Remove box-sizing when bootstrap is gone
-    box-sizing: border-box;
   }
 
   .enabled-button {
@@ -145,6 +142,43 @@
   .login-error {
     @extend .login-notice;
     color: #ed5d5d;
+  }
+
+  // Hide Password Directive Stylings
+  .hide-password {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 40px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 10px;
+    border: 0;
+
+    @include source-sans;
+    font-size: 16px;
+    background-color: $white;
+    color: #231F20;
+
+    div[ng-transclude] input {
+      width: 155px;
+      margin-bottom: 0;
+      padding-left: 0;
+      outline: 0;
+    }
+
+    label {
+      text-transform: uppercase;
+      font-size: 12px;
+      color: #808285;
+    }
+
+    input[type="checkbox"] {
+      width: 15px;
+      margin: 0;
+    }
   }
 
   // Sidebar form field tips (e.g. username, email, password)
