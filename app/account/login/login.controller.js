@@ -3,9 +3,9 @@
 
   angular.module('tc.account').controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$log', '$state', '$stateParams', 'TcAuthService', 'AuthTokenService', 'UserService', 'Helpers'];
+  LoginController.$inject = ['$log', '$state', '$stateParams', 'TcAuthService', 'AuthTokenService', 'UserService', 'NotificationService', 'Helpers'];
 
-  function LoginController($log, $state, $stateParams, TcAuthService, AuthTokenService, UserService, Helpers) {
+  function LoginController($log, $state, $stateParams, TcAuthService, AuthTokenService, UserService, NotificationService, Helpers) {
     var vm = this;
     vm.passwordReset = false;
     vm.usernameExists = true;
@@ -51,6 +51,10 @@
           redirect();
         }
       );
+    }
+    
+    if ($stateParams.notifyReset) {
+      NotificationService.inform('Your new password has been set. Please log in. If you have any trouble, please contact support@topcoder.com.');
     }
 
     function _doLogin(usernameOrEmail, password) {

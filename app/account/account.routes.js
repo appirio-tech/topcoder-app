@@ -31,6 +31,7 @@
       'login': {
         parent: 'auth',
         url: '/login/?next&code&state&status&userJWTToken',
+        params: { 'notifyReset': false },
         data: {
           title: 'Login'
         },

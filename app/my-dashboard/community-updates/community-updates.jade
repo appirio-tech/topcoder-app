@@ -1,17 +1,21 @@
 hr
 
-.widget
-  .widget-heading
-    span.section-title Community Updates
-  .widget-body
-    .posts
-      .post(ng-repeat='blog in vm.blogPosts | orderBy : pubDate : true | limitTo : 4')
-        .link
-          a(href='{{blog.link}}', target='_blank') {{blog.title}}
-        .pub-date.ellipsis {{blog.pubDate | date : 'MMMM dd'}}
-        .description(ng-bind-html="blog.description")
-    .section-links
-      .community-blog.link
-        a(href="https://www.topcoder-dev.com/blog/") View Topcoder Blog
-      .community.link
-        a(href="https://community.topcoder-dev.com/") Go to Community
+header
+  h1.section-title Community Updates
+
+section
+  .posts
+    .post(ng-repeat='blog in vm.blogPosts | orderBy : pubDate : true | limitTo : 4')
+      .blog-link
+        a(ng-href='{{blog.link}}', target='_blank') {{blog.title}}
+
+      .pub-date {{blog.pubDate | localTime}}
+
+      .description(ng-bind-html="blog.description")
+
+  .section-links
+    .link
+      a(ng-href="https://www.{{DOMAIN}}/blog/") View Topcoder Blog
+
+    .link
+      a(ng-href="https://community.{{DOMAIN}}/") Go to Community

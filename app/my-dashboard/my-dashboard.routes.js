@@ -23,6 +23,7 @@
       },
       'dashboard': {
         url: '/my-dashboard/',
+        params: { 'notifyReset': false },
         parent: 'baseDashboard',
         views: {
           'header-dashboard' : {

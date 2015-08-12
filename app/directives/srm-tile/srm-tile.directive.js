@@ -5,9 +5,11 @@
       restrict: 'E',
       templateUrl: 'directives/srm-tile/srm-tile.directive.html',
       scope: {
-        srm: '=srm',
-        domain: '=domain'
-      }
+        srm: '=srm'
+      },
+      controller: ['$scope', 'CONSTANTS', function($scope, CONSTANTS) {
+        $scope.DOMAIN = CONSTANTS.domain;
+      }]
     };
   });
 })();
