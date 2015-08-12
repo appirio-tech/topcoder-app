@@ -13,6 +13,8 @@
     vm.userHasChallenges = true;
     vm.viewActiveChallenges = viewActiveChallenges;
     vm.viewPastChallenges = viewPastChallenges;
+    vm.view = 'table';
+    vm.changeView = changeView;
 
     var userId = UserService.getUserIdentity().userId;
 
@@ -20,6 +22,10 @@
 
     function activate() {
       viewActiveChallenges();
+    }
+
+    function changeView(view) {
+      vm.view = view;
     }
 
     function viewActiveChallenges() {

@@ -77,6 +77,16 @@
         }
       }
 
+      p.viewOptions {
+        position: absolute;
+        top: 3px;
+        right: 150px;
+
+        a {
+          text-decoration: underline;
+        }
+      }
+
       p.filters {
         position: absolute;
         top: 3px;
@@ -88,12 +98,57 @@
       }
     }
 
-    section.challenges {
+    section.challenges.tile-view {
       display: flex;
       flex-flow: row wrap;
       /* The negative margin here removes the leftmost tiles'
          margin, since we can't use .tile:first-child here */
       margin-left: -20px;
+    }
+
+    section.challenges.table-view {
+      table {
+        thead {
+          tr {
+            th {
+              background-color: $medium-gray;
+              padding: 5px;
+              border-top: 1px solid $horizontal-rule;
+              border-bottom: 1px solid $horizontal-rule;
+
+              &:nth-child(1) {
+                border-left: 1px solid $horizontal-rule;
+              }
+              &:last-child {
+                border-right: 1px solid $horizontal-rule;
+              }
+            }
+          }
+        }
+        tbody {
+          tr {
+            td {
+              padding: 5px;
+              text-align: center;
+              border-bottom: 1px solid $horizontal-rule;
+
+              &:nth-child(1) {
+                border-left: 1px solid $horizontal-rule;
+              }
+              &:last-child {
+                border-right: 1px solid $horizontal-rule;
+              }
+
+              &.DESIGN {
+              background-image: url('/images/ico-track-develop.png');
+              background-repeat: no-repeat;
+              background-size: contain;
+              background-position: center;
+              }
+            }
+          }
+        }
+      }
     }
 
     .spotlightChallenges {
