@@ -32,7 +32,7 @@
           },
           'my-challenges': {
             templateUrl: "my-dashboard/my-challenges/my-challenges.html",
-            controller: 'MyChallengesController',
+            controller: 'MyChallengesWidgetController',
             controllerAs: 'vm'
           },
           'srms' :{
@@ -48,37 +48,6 @@
           'community-updates' : {
             templateUrl: 'my-dashboard/community-updates/community-updates.html',
             controller: 'CommunityUpdatesController',
-            controllerAs: 'vm'
-          }
-        }
-      },
-      'baseMyChallenges': {
-        parent: 'root',
-        abstract: true,
-        templateUrl: 'my-dashboard/my-challenges/my-challenges-detailed.html',
-        controller: 'MyChallengesController',
-        controllerAs: 'vm',
-        data: {
-          authRequired: true,
-          title: 'My Challenges'
-        }
-      },
-      'my-challenges': {
-        url: '/my-challenges/',
-        parent: 'baseMyChallenges',
-        data: {
-          detailed: true,
-          showRanks: false
-        },
-        views: {
-          'header-dashboard' : {
-            templateUrl: 'my-dashboard/header-dashboard/header-dashboard.html',
-            controller: 'HeaderDashboardController',
-            controllerAs: 'vm'
-          },
-          'my-challenges-detailed': {
-            templateUrl: "my-dashboard/my-challenges/my-challenges.html",
-            controller: 'MyChallengesController',
             controllerAs: 'vm'
           }
         }

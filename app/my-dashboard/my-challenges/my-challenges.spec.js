@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('Challenges Controller', function() {
+describe('Challenges Widget Controller', function() {
   var controller;
   var authService, challengeService;
   var marathons = mockData.getMockMarathons();
