@@ -61,7 +61,7 @@
       if (!stats) {
         return [];
       }
-      var dev = [], des = [], srm = [], marathon = [], copilot = [];
+      var dev = [], design = [], srm = [], marathon = [], copilot = [];
       if (stats.developStats && stats.developStats.rankStats) {
         dev = stats.developStats.rankStats.map(function(x) {
           return {
@@ -73,7 +73,7 @@
       }
       // show # of wins for design
       if (stats.designStats && stats.designStats.submissionStats) {
-        des = stats.designStats.submissionStats.map(function(x) {
+        design = stats.designStats.submissionStats.map(function(x) {
           return {
             'track': 'Design',
             'subTrack': x.subTrackName,
@@ -104,7 +104,7 @@
         copilot = stats.copilotStats;
         copilot.track = 'Co-Pilot';
       }
-      var ans = dev.concat(des)
+      var ans = dev.concat(design)
         .concat(srm)
         .concat(marathon)
         .concat(stats.copilotStats)

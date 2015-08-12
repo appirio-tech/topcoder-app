@@ -30,14 +30,14 @@
         );
         if (vm.subTrack) {
           vm.dropdown = ProfileService.getSubTracks(profileVm.stats, vm.track.toLowerCase())
-          .map(function(x) {
+          .map(function(subtrack) {
             return {
-              text: vm.track + ': ' + x,
-              value: x
+              text: vm.track + ': ' + subtrack,
+              value: subtrack
             };
           });
-          vm.ddSelected = vm.dropdown.filter(function(x) {
-            return x.value === vm.subTrack;
+          vm.ddSelected = vm.dropdown.filter(function(selection) {
+            return selection.value === vm.subTrack;
           })[0];
         } else {
           vm.ddSelected =  {
