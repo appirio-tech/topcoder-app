@@ -9,8 +9,9 @@
       scope: {
         state: '=state'
       },
-      controller: ['$log', '$scope', function($log, $scope) {
+      controller: ['$log', '$scope', '$element', function($log, $scope, $element) {
         $log.debug("state ", $scope.state);
+        $element.addClass('tc-section');
         $scope.errMsg = "You messed up son!"
       }]
     };
