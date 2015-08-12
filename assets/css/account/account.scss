@@ -144,8 +144,8 @@
     color: #ed5d5d;
   }
 
-  // Hide Password Directive Stylings
-  .hide-password {
+  // Toggle password directive stylings
+  toggle-password {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -162,7 +162,7 @@
     background-color: $white;
     color: #231F20;
 
-    div[ng-transclude] input {
+    input:not([type="checkbox"]) {
       width: 155px;
       margin-bottom: 0;
       padding-left: 0;
