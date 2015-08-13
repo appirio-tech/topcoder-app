@@ -9,9 +9,9 @@ header
 .section-loading(ng-show="vm.loading")
 
 section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
-  challenge-tile.tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge")
+  challenge-tile.tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="'tile'")
 
-  challenge-tile.tile.spotlight(spotlight="spotlight", challenge="vm.spotlightChallenge")
+  challenge-tile.spotlight(spotlight="spotlight", challenge="vm.spotlightChallenge", view="'tile'")
 
 .section-links
   .link
@@ -24,6 +24,6 @@ section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
     a(href="https://community.{{vm.domain}}/", target="_blank") View Help Library
 
 .spotlightChallenges(ng-hide="vm.userHasChallenges")
-  challenge-tile.tile.spotlight(ng-repeat="spotlight in vm.spotlightChallenges", spotlight, challenge="spotlight", domain="vm.domain")
+  challenge-tile.spotlight(ng-repeat="spotlight in vm.spotlightChallenges", spotlight, challenge="spotlight", domain="vm.domain", view="'tile'")
 
 hr

@@ -50,9 +50,24 @@
   section.challenges {
     display: flex;
     flex-flow: row wrap;
-    /* The negative margin here removes the leftmost tiles'
-       margin, since we can't use .tile:first-child here */
-    margin-left: -20px;
+    challenge-tile {
+      &.list {
+        width: 100%;
+      }
+      &.tile {
+        width: 23%;
+        margin-bottom: 20px;
+        +.tile {
+          margin-left: 20px;
+        }
+        &.spotlight {
+          width: 48%;
+        }
+      }
+      +challenge-tile {
+        margin-left: 20px;
+      }
+    }
   }
 
   .spotlightChallenges {

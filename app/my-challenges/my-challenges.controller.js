@@ -13,7 +13,7 @@
     vm.userHasChallenges = true;
     vm.viewActiveChallenges = viewActiveChallenges;
     vm.viewPastChallenges = viewPastChallenges;
-    vm.view = 'table';
+    vm.view = 'list';
     vm.changeView = changeView;
 
     var userId = UserService.getUserIdentity().userId;

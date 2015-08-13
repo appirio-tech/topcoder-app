@@ -9,9 +9,9 @@
       p.noChallenges(ng-hide="vm.userHasChallenges") You have not participated in any challenges yet.
 
       p.viewOptions
-        a(ng-click="vm.changeView('table')", href="#") Table
+        a(ng-click="vm.changeView('list')", href="#", ng-class="{disabled: vm.view == 'list'}") List
         span &nbsp; | &nbsp;
-        a(ng-click="vm.changeView('tile')", href="#") Tile
+        a(ng-click="vm.changeView('tile')", href="#", ng-class="{disabled: vm.view == 'tile'}") Tile
 
       p.filters
         a(ng-click="vm.viewActiveChallenges()", href="#") Active
@@ -20,39 +20,8 @@
 
     .section-loading(ng-show="vm.loading")
 
-    section.challenges.tile-view(ng-if="vm.userHasChallenges && !vm.loading && vm.view == 'tile'")
-      challenge-tile.tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge")
-
-    section.challenges.table-view(ng-show="vm.view == 'table'")
-      table(width='100%')
-        thead
-          tr
-            th
-              span Type
-              .sort-icon-place
-            th(rel='sortable', ng-click="vm.sort('challengeName')")
-              span Name
-              .sort-icon-place(ng-class="{sort: vm.sortColumn == 'challengeName', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} ")
-            th(rel='sortable', ng-click="vm.sort('firstPlacePrize')")
-              span Ist Prize
-              .sort-icon-place(ng-class="{sort: vm.sortColumn == 'firstPlacePrize', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} ")
-            th
-              span Roles
-              .sort-icon-place
-            th(rel='sortable', ng-click="vm.sort('submissionEndDate')")
-              span Submit By
-              .sort-icon-place(ng-class="{sort: vm.sortColumn == 'submissionEndDate', desc: vm.sortOrder == 'desc', asc: vm.sortOrder == 'asc'} ")
-        tbody
-          tr(ng-show='vm.myChallenges.length > 0 && !vm.loading', ng-repeat='challenge in vm.myChallenges')
-            td(class='{{challenge.track}}')
-            td(rel='challenge-name')
-              a(href='/challenge-details/{{challenge.challengeId}}?type={{challenge.challengeCommunity}}') {{challenge.challengeName}}
-            td {{challenge.firstPlacePrize | currency}}
-            td.ellipsis(rel='roles', title="{{challenge.userDetails.roles | listRoles}}") {{challenge.userDetails.roles | listRoles}}
-            td {{challenge.submissionEndDate | date: 'MM/dd/yy HH:mm '}}
-          tr(ng-show='vm.loading')
-            td(colspan='5')
-              .widget-loading
+    section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
+      challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.view", ng-class="vm.view")
 
     .section-links
       .link
