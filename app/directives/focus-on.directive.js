@@ -5,17 +5,10 @@
 
   function focusOn() {
     return function(scope, element, attr) {
-      scope.$on(attr.focusOn, function(e) {
+      scope.$watch(attr.focusOn, function(newValue) {
+        console.log('refocusing on element');
         element[0].focus();
       });
-
-      scope.$on('toggleType', function(e) {
-        if (element.attr('type') === 'password') {
-          element.attr('type', 'text');
-        } else {
-          element.attr('type', 'password');
-        }
-      })
     };
   }
 })();

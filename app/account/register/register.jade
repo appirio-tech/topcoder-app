@@ -52,7 +52,7 @@
     .validation-bar(ng-class="{ 'success-bar': (registerForm.password.$valid) }")
       toggle-password
 
-      .tips.password-tips(ng-show="vm.passwordFocus || (vm.showPassword !== undefined)")
+      .tips.password-tips(ng-show="vm.passwordFocus")
         h3 Password Tips:
 
         p(ng-class="{ 'has-length-between-range': (registerForm.password.$dirty && !registerForm.password.$error.minlength && !registerForm.password.$error.maxlength && !registerForm.password.$error.required) }") Must be between 8 and 64 characters

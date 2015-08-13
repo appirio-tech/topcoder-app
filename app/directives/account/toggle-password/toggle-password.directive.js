@@ -23,27 +23,20 @@
           console.log('checkboxInput: ', checkboxInput);
         });
 
-        // $element.bind('click', function(event) {
-        //   if ($element.children()[1].className.indexOf('ng-show') > -1) {
-        //     console.log('found class');
-        //     event.preventDefault();
-        //     $scope.checksomething();
-        //   }
-        //   console.log($element.children());
-        //   console.log('outer directives event: ', event);
-        // });
-
-        $scope.broadcastOnClick = function() {
-          $timeout(function() {
-            $scope.$broadcast('focusPassword');
-          });
-        };
 
         console.log($scope);
 
         $scope.blur = function(e) {
-          console.log('blurring');
+          console.log('blurring from password input field');
           parentScope.passwordFocus = false;
+
+          $timeout(function() {
+            console.log('after timeout password focus value is : ', parentScope.passwordFocus);
+            if (parentScope.passwordFocus !== true) {
+              console.log('password focus was not set back to true by checkbox');
+              parentScope.passwordFocus = false;
+            }
+          }, 0);
 
           if (parentScope.password === '' || parentScope.password === undefined) {
             console.log('putting default placeholder and setting field to pristine')
@@ -64,11 +57,11 @@
         $scope.checksomething = function() {
           console.log('clicking button');
           console.log('showing or hiding password');
-          // console.log(checkboxInput.blur());
-          console.log(passwordInput.focus());
+          parentScope.passwordFocus = true;
+          $scope.$broadcast('refocus');
         };
 
-        $element.bind('mousedown', $scope.broadcastOnClick);
+        // $element.bind('mousedown', $scope.broadcastOnClick);
       }]
     };
   }
