@@ -61,7 +61,7 @@
       if (!stats) {
         return [];
       }
-      var dev = [], des = [], srm = [], marathon = [];
+      var dev = [], design = [], srm = [], marathon = [], copilot = [];
       if (stats.developStats && stats.developStats.rankStats) {
         dev = stats.developStats.rankStats.map(function(x) {
           return {
@@ -73,7 +73,7 @@
       }
       // show # of wins for design
       if (stats.designStats && stats.designStats.submissionStats) {
-        des = stats.designStats.submissionStats.map(function(x) {
+        design = stats.designStats.submissionStats.map(function(x) {
           return {
             'track': 'Design',
             'subTrack': x.subTrackName,
@@ -100,12 +100,17 @@
           };
         });
       }
-      var ans = dev.concat(des)
+      if (stats.copilotStats) {
+        copilot = stats.copilotStats;
+        copilot.track = 'Co-Pilot';
+      }
+      var ans = dev.concat(design)
         .concat(srm)
         .concat(marathon)
+        .concat(stats.copilotStats)
         .filter(function(x) {
-        return x.rank > 0 || x.wins;
-      });
+          return x && (x.rank || x.wins || x.fulfillment);
+        });
       return ans;
     }
 
@@ -129,6 +134,10 @@
           return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         });
         return ans[0];
+
+      } else if (track == 'co-pilot') {
+        var ans = stats.copilotStats;
+        return ans;
       } else if (type == 'srm') {
         return stats.dataScienceStats.srmStats.rankStats[0];
       } else {
