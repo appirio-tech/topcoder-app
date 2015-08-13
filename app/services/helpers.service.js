@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('Helpers', Helpers);
 
-  Helpers.$inject = ['$window', '$location'];
+  Helpers.$inject = ['$window', '$location', '$state'];
 
-  function Helpers($window, $location) {
+  function Helpers($window, $location, $state) {
     // TODO: Separate helpers by submodule
 
     var service = {
@@ -16,7 +16,8 @@
       countCompleted: countCompleted,
       getParameterByName: getParameterByName,
       getPageTitle: getPageTitle,
-      isEmail: isEmail
+      isEmail: isEmail,
+      redirectPostLogin: redirectPostLogin
     };
     return service;
 
@@ -160,6 +161,19 @@
     function isEmail(value) {
       var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       return re.test(value);
+    }
+
+    function redirectPostLogin(nextParam) {
+      // make sure domain is topcoder | dev | qa
+      var re1 = /^(\w+\.)*topcoder(-\w+)*\.com/,
+        re2 = /^\/\w+/;
+      if (re1.test(nextParam)) {
+        $window.location.href = decodeURIComponent(nextParam);
+      } else if (re2.test(nextParam)) {
+        $location.url(nextParam);
+      } else {
+        $state.go('dashboard');
+      }
     }
   }
 })();
