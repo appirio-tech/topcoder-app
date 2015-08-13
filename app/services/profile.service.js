@@ -109,7 +109,7 @@
         .concat(marathon)
         .concat(stats.copilotStats)
         .filter(function(x) {
-          return x.rank || x.wins || x.fulfillment;
+          return x && (x.rank || x.wins || x.fulfillment);
         });
       return ans;
     }
