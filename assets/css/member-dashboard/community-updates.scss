@@ -13,7 +13,6 @@
     .post {
       display: flex;
       flex-direction: column;
-      background-color: $medium-gray;
       margin-right: 25px;
       padding: 10px;
       width: 23%;
@@ -26,18 +25,13 @@
         min-height: 50px;
 
         a {
+          text-decoration: none;
           color: $color_storm_dust_approx;
 
           &:hover {
             color: $color_selective_yellow_approx;
           }
         }
-      }
-
-      .pub-date {
-        margin-top: 10px;
-        font-size: 12px;
-        text-align: right;
       }
 
       .description {
