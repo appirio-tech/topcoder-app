@@ -1,4 +1,4 @@
 section
-  span.section-loading(ng-show="state === 'loading'", style="min-height: 50px;") loading
+  .section-loading(ng-show="state === 'loading'")
   p(ng-show="state === 'error'") {{errMsg}}
   div(ng-transclude, ng-show="state === 'ready'")
