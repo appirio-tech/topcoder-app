@@ -9,8 +9,6 @@ section
       .blog-link
         a(ng-href='{{blog.link}}', target='_blank') {{blog.title}}
 
-      .pub-date {{blog.pubDate | localTime}}
-
       .description(ng-bind-html="blog.description")
 
   .section-links
