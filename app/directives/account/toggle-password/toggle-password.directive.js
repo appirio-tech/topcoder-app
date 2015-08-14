@@ -13,7 +13,6 @@
         var parentScope = $scope.vm;
         var defaultPlaceholder = 'Create Password';
         parentScope.placeholder = defaultPlaceholder;
-        parentScope.showPassword = false;
         parentScope.password = '';
 
         $timeout(function() {
@@ -23,45 +22,51 @@
           console.log('checkboxInput: ', checkboxInput);
         });
 
+        $element.bind('click', function(event) {
+          passwordInput.focus();
+        });
 
-        console.log($scope);
+        $scope.onFocus = function(event) {
+          // console.log("EVENT FOCUS: ", event);
+          parentScope.passwordFocus = true;
+          parentScope.placeholder = '';
+        }
 
-        $scope.blur = function(e) {
-          console.log('blurring from password input field');
+        $scope.onBlur = function(event) {
+          console.log("EVENT BLUR: ", event.relatedTarget);
           parentScope.passwordFocus = false;
 
+          // $timeout(function() {
+          //   console.log('after timeout password focus value is : ', parentScope.passwordFocus);
+          //   if (parentScope.passwordFocus !== true) {
+          //     console.log('password focus was not set back to true by checkbox');
+          //     parentScope.passwordFocus = false;
+          //   }
+          // }, 0);
+
           $timeout(function() {
-            console.log('after timeout password focus value is : ', parentScope.passwordFocus);
-            if (parentScope.passwordFocus !== true) {
-              console.log('password focus was not set back to true by checkbox');
-              parentScope.passwordFocus = false;
+            if (parentScope.password === '' || parentScope.password === undefined) {
+              console.log('putting default placeholder and setting field to pristine')
+              parentScope.placeholder = defaultPlaceholder;
+              $scope.registerForm.password.$setPristine();
             }
           }, 0);
+        };
 
-          if (parentScope.password === '' || parentScope.password === undefined) {
-            console.log('putting default placeholder and setting field to pristine')
-            parentScope.placeholder = defaultPlaceholder;
-            $scope.registerForm.password.$setPristine();
-            parentScope.showPassword = undefined;
-          }
+        $scope.labelClicked = function() {
+          console.log('label clicked');
+          $scope.refocus = !$scope.refocus;
         };
 
         $scope.toggleInputType = function() {
-          if (parentScope.showPassword === true) {
-            return 'text';
+          var $passwordInput = angular.element(passwordInput);
+
+          if ($passwordInput.attr('type') === 'text') {
+            $passwordInput.attr('type', 'password');
           } else {
-            return 'password';
+            $passwordInput.attr('type', 'text');
           }
         }
-
-        $scope.checksomething = function() {
-          console.log('clicking button');
-          console.log('showing or hiding password');
-          parentScope.passwordFocus = true;
-          $scope.$broadcast('refocus');
-        };
-
-        // $element.bind('mousedown', $scope.broadcastOnClick);
       }]
     };
   }

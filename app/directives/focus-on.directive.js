@@ -3,11 +3,17 @@
 
   angular.module('tcUIComponents').directive('focusOn', focusOn);
 
-  function focusOn() {
+  focusOn.$inject = ['$timeout'];
+
+  function focusOn($timeout) {
     return function(scope, element, attr) {
-      scope.$watch(attr.focusOn, function(newValue) {
-        console.log('refocusing on element');
-        element[0].focus();
+      scope.$watch('refocus', function(newValue) {
+        $timeout(function() {
+          if (newValue !== undefined) {
+            console.log('refocusing on element');
+            element[0].focus();
+          }
+        }, 0);
       });
     };
   }
