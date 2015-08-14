@@ -10,7 +10,6 @@
       scope.$watch('refocus', function(newValue) {
         $timeout(function() {
           if (newValue !== undefined) {
-            console.log('refocusing on element');
             element[0].focus();
           }
         }, 0);
