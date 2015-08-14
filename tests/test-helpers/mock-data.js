@@ -1398,6 +1398,7 @@ var mockData = (function() {
             "range3900To3999": 0
           }
         ]
+      }
       },
       "copilotStats": {
           "contests":2264,
@@ -1407,8 +1408,8 @@ var mockData = (function() {
           "activeContests":23,
           "activeProjects":3,
           "fulfillment":89.49
-        }
       }
+
     };
   }
 
