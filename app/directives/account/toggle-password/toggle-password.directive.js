@@ -39,7 +39,12 @@
 
             if (parentScope.password === '' || parentScope.password === undefined) {
               parentScope.placeholder = defaultPlaceholder;
-              $scope.registerForm.password.$setPristine();
+
+              if (parentScope.registerForm) {
+                parentScope.registerForm.password.$setPristine();
+              } else if (parentScope.resetPasswordForm) {
+                parentScope.resetPasswordForm.password.$setPristine();
+              }
             }
           }
         };
