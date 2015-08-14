@@ -51,6 +51,9 @@
     display: flex;
     flex-flow: row wrap;
     challenge-tile {
+      &.spotlight {
+        width: 48%;
+      }
       &.list {
         width: 100%;
       }

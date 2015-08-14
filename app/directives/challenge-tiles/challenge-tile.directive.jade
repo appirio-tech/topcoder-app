@@ -1,4 +1,4 @@
-.challenge.tile(ng-show="view=='tile'")
+.challenge.tile-view(ng-show="view=='tile'")
   .challenge-name
     a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}") {{challenge.challengeName}}
 
@@ -31,7 +31,7 @@
         i.fa.fa-check-circle-o
 
         p {{challenge.memberStatusMsg}}
-.challenge.list(ng-show="view=='list'")
+.challenge.list-view(ng-show="view=='list'")
   .challenge-icons
     img(ng-show="challenge.track === 'DEVELOP'", src="/images/member-program/svg/development-generic.svg")
     img(ng-show="challenge.track === 'DESIGN' || challenge.track === 'Data Science'", src="/images/member-program/svg/design-generic.svg")

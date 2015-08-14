@@ -79,18 +79,18 @@ describe('Challenges Controller', function() {
 
     it('vm.domain should be initialized to default value', function() {
       // default value for domain
-      expect(myChallenges.domain).to.be.equal('topcoder-dev.com');
+      expect(myChallenges.domain).to.equal('topcoder-dev.com');
     });
 
     it('vm.userHasChallenges should be initialized to default value', function() {
       // default value for pageIndex
-      expect(myChallenges.userHasChallenges).to.be.equal(true);
+      expect(myChallenges.userHasChallenges).to.equal(true);
     });
 
     it('myChallenges.myChallenges should be initialized', function() {
       // default value for pageIndex
-      expect(myChallenges.myChallenges).to.be.exist;
-      expect(myChallenges.myChallenges.length).to.be.equal(challenges.length);
+      expect(myChallenges.myChallenges).to.exist;
+      expect(myChallenges.myChallenges.length).to.equal(challenges.length);
     });
   });
 
@@ -106,15 +106,15 @@ describe('Challenges Controller', function() {
     });
 
     it('past challenges should be fetched', function() {
-      expect(myChallenges.myChallenges).to.be.exist;
-      expect(myChallenges.myChallenges.length).to.be.equal(challenges.length);
+      expect(myChallenges.myChallenges).to.exist;
+      expect(myChallenges.myChallenges.length).to.equal(challenges.length);
       // apply past filter
       myChallenges.viewPastChallenges();
       $rootScope.$apply();
-      expect(myChallenges.myChallenges).to.be.exist;
+      expect(myChallenges.myChallenges).to.exist;
       // should have one less challenge for past filter as per mocked method
       console.log('verfiig');
-      expect(myChallenges.myChallenges.length).to.be.equal(challenges.length - 1);
+      expect(myChallenges.myChallenges.length).to.equal(challenges.length - 1);
     });
   });
 

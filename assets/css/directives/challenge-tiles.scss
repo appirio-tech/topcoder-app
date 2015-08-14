@@ -1,7 +1,7 @@
 @import '../partials/combined';
 
 // Default Challenge Tile Stylings
-.challenge.tile {
+.challenge.tile-view {
   background-color: $medium-gray;
   box-sizing: border-box;
   width: 100%;
@@ -97,7 +97,7 @@
 }
 
 
-.challenge.list {
+.challenge.list-view {
   width: 100%;
   border-bottom: 1px solid $medium-gray;
   box-sizing: border-box;
