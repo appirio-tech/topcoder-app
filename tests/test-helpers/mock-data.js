@@ -709,6 +709,7 @@ var mockData = (function() {
       "handle": "rakesh",
       "email": "email@domain.com.z",
       "description": "abc",
+      "quote": "def",
       "address": {
         "streetAddr1": "123",
         "streetAddr2": "456",
@@ -727,9 +728,9 @@ var mockData = (function() {
         "photoUrl": "https://topcoder-dev-media.s3.amazonaws.com/member_profile/userId-123123123.png"
       },
       "tracks": [
-        "develop",
-        "design",
-        "data_science"
+        "DEVELOP",
+        "DESIGN",
+        "DATA_SCIENCE"
       ]
     };
   }

@@ -9,53 +9,51 @@ describe('Profile About Controller', function() {
   beforeEach(function() {
     bard.appModule('topcoder');
     bard.appModule('tc.profile');
-    bard.inject(this, '$httpBackend', '$controller', 'CONSTANTS');
+    bard.inject(this, '$httpBackend', '$controller', 'CONSTANTS', '$q');
 
-    controller = $controller('ProfileAboutCtrl', {
-      $scope: {},
+    var deferred = $q.defer();
+    controller = $controller('ProfileAboutController', {
+      $scope: {$parent: {profileVm: {
+        statsPromise: deferred.promise,
+        skillsPromise: deferred.promise,
+        categories: [{}, {}, {}, {}, {}],
+        skills: [{}, {}, {}, {}, {}]
+      }}},
       userHandle: 'rakesh',
       profile: mockProfile
     });
 
+    deferred.resolve();
 
-    // mock challenges
-    $httpBackend
-      .when('GET', new RegExp(apiUrl + '/challenges/.*'))
-      .respond(200, {result: {content: []}});
-    // mock stats
-    $httpBackend
-      .when('GET', apiUrl + '/members/rakesh/stats/')
-      .respond(200, {result: {content: mockStats}});
-    // mock skills
-    $httpBackend
-      .when('GET', apiUrl + '/members/rakesh/skills/')
-      .respond(200, {result: {content: mockSkills}});
+    controller.categories = [{}, {}, {}, {}, {}];
+    controller.skills = [{}, {}, {}, {}, {}, {}];
+    controller.categoryIndex = 0;
+    controller.skillIndex = 0;
+
   });
 
-  afterEach(function() {
-    $httpBackend.flush();
-    $httpBackend.verifyNoOutstandingExpectation();
-    $httpBackend.verifyNoOutstandingRequest();
+  it('should have some variables defined', function() {
+    expect(controller.categories).to.be.defined;
+    expect(controller.skills).to.be.defined;
+    expect(controller.categoryIndex).to.be.defined;
+    expect(controller.skillIndex).to.be.defined;
   });
 
-  it('should be defined', function() {
-    expect(controller).to.be.defined;
+  describe('paging', function() {
+    it('should be able to page categories', function() {
+      controller.shiftCategories(-1);
+      expect(controller.categoryIndex).to.equal(0);
+      controller.shiftCategories(1);
+      expect(controller.categoryIndex).to.equal(1);
+    });
+
+    it('should be able to page skills', function() {
+      controller.shiftSkills(-1);
+      expect(controller.skillIndex).to.equal(0);
+      controller.shiftSkills(1);
+      expect(controller.skillIndex).to.equal(1);
+    });
   });
 
-  it('should have some properties', function() {
-    expect(controller.userHandle).to.be.equal('rakesh');
-    expect(controller.status).to.be.defined;
-    expect(controller.statsPromise).to.be.defined;
-    expect(controller.pastChallengesPromise).to.be.defined;
-    expect(controller.skillsPromise).to.be.defined;
-  });
-
-  it('should have tenure', function() {
-    expect(controller.tenure).to.be.equal(14);
-  });
-
-  it('should have default status', function() {
-    expect(controller.status.externalLinks).to.be.equal(CONSTANTS.STATE_READY);
-  });
 
 });
