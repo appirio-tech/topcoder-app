@@ -7,6 +7,7 @@
     'tc.account',
     'tc.peer-review',
     'tc.myDashboard',
+    'tc.myChallenges',
     'tc.sample',
     'tc.profile',
     'ui.router',

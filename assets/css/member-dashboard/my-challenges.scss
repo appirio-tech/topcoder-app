@@ -25,14 +25,52 @@
         text-decoration: underline;
       }
     }
+
+    p.viewDashboard {
+      position: absolute;
+      top: 3px;
+      left: 10px;
+
+      a {
+        text-decoration: underline;
+      }
+    }
+
+    p.filters {
+      position: absolute;
+      top: 3px;
+      right: 10px;
+
+      a {
+        text-decoration: underline;
+      }
+    }
   }
 
   section.challenges {
     display: flex;
     flex-flow: row wrap;
-    /* The negative margin here removes the leftmost tiles'
-       margin, since we can't use .tile:first-child here */
-    margin-left: -20px;
+    challenge-tile {
+      &.spotlight {
+        width: 48%;
+      }
+      &.list {
+        width: 100%;
+      }
+      &.tile {
+        width: 23%;
+        margin-bottom: 20px;
+        +.tile {
+          margin-left: 20px;
+        }
+        &.spotlight {
+          width: 48%;
+        }
+      }
+      +challenge-tile {
+        margin-left: 20px;
+      }
+    }
   }
 
   .spotlightChallenges {
