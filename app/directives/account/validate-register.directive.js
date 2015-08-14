@@ -1,12 +1,12 @@
 (function() {
   'use strict';
 
-  angular.module('validateRegister', [])
-  .directive('hasLetter', hasLetter)
-  .directive('hasSymbol', hasSymbol)
-  .directive('hasNumber', hasNumber)
-  .directive('usernameIsFree', usernameIsFree)
-  .directive('emailIsAvailable', emailIsAvailable);
+  angular.module('tcUIComponents')
+    .directive('hasLetter', hasLetter)
+    .directive('hasSymbol', hasSymbol)
+    .directive('hasNumber', hasNumber)
+    .directive('usernameIsFree', usernameIsFree)
+    .directive('emailIsAvailable', emailIsAvailable);
 
   function hasLetter() {
     return {

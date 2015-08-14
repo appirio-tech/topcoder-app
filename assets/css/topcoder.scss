@@ -1,6 +1,15 @@
 @import 'partials/combined';
 @include glyphicons-halflings;
 
+html {
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   @include source-sans;
 }

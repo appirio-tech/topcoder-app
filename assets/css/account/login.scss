@@ -1,12 +1,6 @@
 @import '../partials/combined';
 
 .login-container {
-
-  // Remove box-sizing when bootstrap is gone
-  * {
-    box-sizing: content-box;
-  }
-
   form {
     display: flex;
     flex-flow: row wrap;

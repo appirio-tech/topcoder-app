@@ -2,8 +2,6 @@
   'use strict';
 
   var dependencies = [
-    'validateLogin',
-    'validateRegister',
     'ui.router',
     'tc.services',
   ];
@@ -20,5 +18,4 @@
     // .run(['auth', function(auth) {
     //   auth.hookEvents();
     // }]);
-
 })();
