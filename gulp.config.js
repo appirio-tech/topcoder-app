@@ -120,9 +120,9 @@ module.exports = function() {
       exclude: [],
       coverage: {
         dir: report + 'coverage',
-        reports: [
+        reporters: [
           {type: 'html', subdir: 'report-html'},
-          {type: 'lcov', subdir: 'report-lcov'},
+          {type: 'lcov', subdir: '.', file: 'lcov.info'},
           {type: 'text-summary'}
         ]
       },
