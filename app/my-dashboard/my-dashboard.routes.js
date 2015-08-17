@@ -38,7 +38,7 @@
           },
           'srms' :{
             templateUrl: 'my-dashboard/srms/srms.html',
-            controller: 'SRMController',
+            controller: 'SRMWidgetController',
             controllerAs: 'vm'
           },
           'programs': {

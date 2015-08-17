@@ -1,12 +1,11 @@
 @import '../partials/combined';
 
-.srm-tile {
+.srm.tile-view {
   background-color: $medium-gray;
   box-sizing: border-box;
-  width: 23%;
+  display: flex;
+  flex-direction: column;
   padding: 10px;
-  margin-left: 20px;
-  margin-bottom: 20px;
 
   .srm-name {
     a {
@@ -45,6 +44,79 @@
         color: #7ece95;
         margin-right: 5px;
       }
+    }
+  }
+}
+
+.srm.list-view {
+  border-bottom: 1px solid $medium-gray;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+
+  .srm-name {
+    flex: 1;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    text-align: center;
+    a {
+      font-weight: bold;
+      color: #4f4f4f;
+      display: block;
+      text-decoration: none;
+      @include ellipsis;
+    }
+  }
+
+
+  color: $dark-gray;
+  padding-top: 10px;
+
+  .days-remaining {
+    flex: 1;
+    text-align: center;
+    font-size: 20px;
+
+    span {
+      display: block;
+      @include source-sans-semi-bold;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+  }
+
+  .division {
+    flex: 1;
+    text-align: center;
+    span {
+      display: block;
+      @include source-sans-semi-bold;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+  }
+
+  .rank {
+    flex: 1;
+    text-align: center;
+    span {
+      display: block;
+      @include source-sans-semi-bold;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+  }
+
+  .phase-status {
+    display: flex;
+    flex-direction: row;
+
+    i {
+      color: #7ece95;
+      margin-right: 5px;
     }
   }
 }

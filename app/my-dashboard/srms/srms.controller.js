@@ -1,11 +1,11 @@
 (function () {
   'use strict';
 
-  angular.module('tc.myDashboard').controller('SRMController', SRMController);
+  angular.module('tc.myDashboard').controller('SRMWidgetController', SRMWidgetController);
 
-  SRMController.$inject = ['UserService','SRMService'];
+  SRMWidgetController.$inject = ['UserService','SRMService'];
 
-  function SRMController(UserService, SRMService) {
+  function SRMWidgetController(UserService, SRMService) {
     var vm = this;
     vm.srms = [];
     vm.loading = true;
