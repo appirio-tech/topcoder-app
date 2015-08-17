@@ -56,7 +56,7 @@ describe('Profile Service', function() {
 
     it('should return ranks', function() {
       var ranks = service.getRanks(mockStats);
-      expect(ranks.length).to.be.equal(3);
+      expect(ranks.length).to.be.equal(4);
     });
 
     it('should return subtrack stats', function() {
@@ -67,6 +67,11 @@ describe('Profile Service', function() {
     it('should return a user\'s tracks', function() {
       var tracks = service.getTracks(mockStats);
       expect(tracks.length).to.be.equal(2);
+    });
+
+    it('should return subtracks', function() {
+      var subtracks = service.getSubTracks(mockStats, 'develop');
+      expect(subtracks.length).to.be.equal(3);
     });
   });
 

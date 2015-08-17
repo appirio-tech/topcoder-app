@@ -30,7 +30,7 @@ module.exports = function(config) {
 
     coverageReporter: {
       dir: gulpConfig.karma.coverage.dir,
-      type: 'lcov'
+      reporters: gulpConfig.karma.coverage.reporters
     },
 
     // web server port
