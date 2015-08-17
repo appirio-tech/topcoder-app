@@ -165,6 +165,7 @@
 
     function redirectPostLogin(nextParam) {
       // make sure domain is topcoder | dev | qa
+      nextParam = decodeURIComponent(nextParam);
       var re1 = /^(\w+\.)*topcoder(-\w+)*\.com/;
       var re2 = /^\/\w+/;
 
@@ -173,6 +174,7 @@
       } else if (re2.test(nextParam)) {
         $location.url(nextParam);
       } else {
+        console.log($state);
         $state.go('dashboard');
       }
     }
