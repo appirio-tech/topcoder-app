@@ -6,6 +6,7 @@ describe('Helper Service', function() {
       href: "/"
     }
   };
+  // sinon.spy(fakeWindow.location, "href");
   var fakeLocation = {
     url: function(param) {
       return;
@@ -39,8 +40,8 @@ describe('Helper Service', function() {
 
   describe("redirectPostLogin()", function() {
     it("should redirect to the next param", function() {
-      Helpers.redirectPostLogin(encodeURIComponent("www.topcoder-dev.com"));
-      expect(fakeWindow.location.href).to.equal("www.topcoder-dev.com");
+      Helpers.redirectPostLogin(encodeURIComponent("http://www.topcoder-dev.com"));
+      expect(fakeWindow.location.href).to.equal("http://www.topcoder-dev.com");
     });
 
     it("should redirect to the next param", function() {
