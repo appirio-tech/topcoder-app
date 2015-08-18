@@ -4,7 +4,7 @@ describe('Challenge Service', function() {
   var apiUrl = 'https://api.topcoder-dev.com/v3';
 
   beforeEach(function() {
-    bard.appModule('topcoder');
+    bard.appModule('tc.services');
     bard.inject(this, '$httpBackend', 'ChallengeService');
   });
 
