@@ -1,0 +1,25 @@
+.account-info-container
+  h1.tab-title Account Info
+
+  .fields
+    .field-section
+      h4.field-title Username
+
+      p My_Username
+
+    .field-section
+      h4.field-title Email
+
+      p my@username.com
+
+    .field-section.reset-password
+      h4.field-title Reset Password
+
+      input(type="password", placeholder="Enter Current Password")
+
+      toggle-password
+
+      //- button(type="submit", ng-disabled="loginForm.$invalid", ng-class="{'enabled-button': loginForm.$valid}") Login
+      button(type="submit") Reset Password
+
+

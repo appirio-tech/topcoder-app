@@ -1,13 +1,5 @@
 @import '../partials/combined';
 
-.account-background {
-  background-color: #f1f2f2;
-
-  & .view-container {
-    background-color: #f1f2f2;
-  }
-}
-
 .login-container, .register-container, .reset-password-container {
   width: 300px;
   margin: 0 auto;
@@ -22,9 +14,8 @@
   // Basic element stylings
   h1 {
     margin-bottom: 30px;
-    @include source-sans-light;
-    font-size: 46px;
-    color: #414042;
+    @include ui-h1;
+    color: $ui-dark-gray;
   }
 
   a {
@@ -88,16 +79,7 @@
   }
 
   button {
-    width: 300px;
-    height: 50px;
-    margin-top: 20px;
-    background-color: #94D7ED;
-    color: $white;
-    text-transform: uppercase;
-    border: 0;
-    border-radius: 8px;
-    font-size: 21px;
-    cursor: default;
+    @include ui-submit-button;
   }
 
   .enabled-button {
@@ -144,42 +126,7 @@
     color: #ed5d5d;
   }
 
-  // Toggle password directive stylings
-  toggle-password {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    height: 40px;
-    margin-bottom: 10px;
-    padding-left: 15px;
-    padding-right: 10px;
-    border: 0;
-
-    @include source-sans;
-    font-size: 16px;
-    background-color: $white;
-    color: #231F20;
-
-    input:not([type="checkbox"]) {
-      width: 155px;
-      margin-bottom: 0;
-      padding-left: 0;
-      outline: 0;
-    }
-
-    label {
-      text-transform: uppercase;
-      font-size: 12px;
-      color: #808285;
-    }
-
-    input[type="checkbox"] {
-      width: 15px;
-      margin: 0;
-    }
-  }
+  @include ui-form-placeholder;
 
   // Sidebar form field tips (e.g. username, email, password)
   .tips {
@@ -302,17 +249,5 @@
   .redirect {
     margin-top: 10px;
     font-size: 14px;
-  }
-
-  ::-webkit-input-placeholder {
-    color: #231F20;
-  }
-
-  ::-moz-placeholder {
-    color: #231F20;
-  }
-
-  :-ms-input-placeholder {
-    color: #231F20;
   }
 }

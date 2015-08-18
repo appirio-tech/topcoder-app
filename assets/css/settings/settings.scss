@@ -1,0 +1,90 @@
+@import '../partials/combined';
+
+.settings-container {
+
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    padding: 20px 0 7px 100px;
+
+    h1 {
+      @include ui-h1;
+      color: $ui-blue;
+      margin-right: 75px;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: row;
+
+      li {
+        display: inline-block;
+        margin-right: 25px;
+      }
+
+      a {
+        @include source-sans-light;
+        font-size: 18px;
+        color: $ui-gray;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .active-tab {
+    color: $ui-blue;
+    text-decoration: underline;
+  }
+
+  hr {
+    border-width: 1px 0 0 0;
+  }
+
+  // Tab content
+  .profile-settings-container, .account-info-container {
+    padding-left: 100px;
+
+    .tab-title {
+      margin-top: 50px;
+      margin-bottom: 35px;
+      font-size: 32px;
+      @include source-sans-light;
+      color: $ui-light-gray;
+    }
+
+    .fields {
+      margin-left: 3px;
+    }
+
+    .field-section {
+      margin-bottom: 40px;
+
+      h4 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: $ui-dark-gray;
+      }
+
+      p {
+        font-size: 14px;
+        color: $ui-light-gray;
+      }
+    }
+  }
+
+  // Common element stylings
+  button {
+    @include ui-submit-button;
+  }
+
+  @include ui-form-placeholder;
+
+  input:not([type="checkbox"]) {
+    @include ui-form-field;
+  }
+}

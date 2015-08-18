@@ -7,6 +7,7 @@
 
   function RegisterController($log, CONSTANTS, $state, $stateParams, TcAuthService, UserService) {
     var vm = this;
+    vm.defaultPlaceholder = 'Create Password';
 
     // Social Registeration callback
     var params = {}, callbackUrl;

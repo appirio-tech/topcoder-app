@@ -22,6 +22,8 @@ html
     //- inject:css
     link(rel="stylesheet", href="assets/css/reset.css")
     link(rel="stylesheet", href="assets/css/topcoder.css")
+    link(rel="stylesheet", href="assets/css/settings/settings.css")
+    link(rel="stylesheet", href="assets/css/settings/account-info.css")
     link(rel="stylesheet", href="assets/css/profile/subtrack.css")
     link(rel="stylesheet", href="assets/css/profile/header.css")
     link(rel="stylesheet", href="assets/css/profile/about.css")
@@ -30,15 +32,16 @@ html
     link(rel="stylesheet", href="assets/css/peer-review/peer-review.css")
     link(rel="stylesheet", href="assets/css/peer-review/edit.css")
     link(rel="stylesheet", href="assets/css/peer-review/completed.css")
+    link(rel="stylesheet", href="assets/css/my-challenges/my-challenges.css")
     link(rel="stylesheet", href="assets/css/member-dashboard/srms.css")
     link(rel="stylesheet", href="assets/css/member-dashboard/programs.css")
     link(rel="stylesheet", href="assets/css/member-dashboard/my-dashboard.css")
     link(rel="stylesheet", href="assets/css/member-dashboard/my-challenges.css")
     link(rel="stylesheet", href="assets/css/member-dashboard/header-dashboard.css")
     link(rel="stylesheet", href="assets/css/member-dashboard/community-updates.css")
-    link(rel="stylesheet", href="assets/css/my-challenges/my-challenges.css")
     link(rel="stylesheet", href="assets/css/layout/header.css")
     link(rel="stylesheet", href="assets/css/layout/footer.css")
+    link(rel="stylesheet", href="assets/css/directives/toggle-password.css")
     link(rel="stylesheet", href="assets/css/directives/tc-section.css")
     link(rel="stylesheet", href="assets/css/directives/srm-tile.css")
     link(rel="stylesheet", href="assets/css/directives/profile-widget.css")
@@ -50,7 +53,7 @@ html
     //- endinject
     // endbuild
 
-  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'account-background': $state.current.data.onAccountPage}", ng-strict-di)
+  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh}", ng-strict-di)
 
     //- include ./layout/header/header.jade
     #header(ui-view="header")
@@ -84,6 +87,7 @@ html
     script(src='../bower_components/angular-img-fallback/angular.dcb-img-fallback.js')
     script(src='../bower_components/angular-filter/dist/angular-filter.js')
     script(src='../bower_components/angular-dropdowns/dist/angular-dropdowns.js')
+    script(src='../bower_components/angular-mocks/angular-mocks.js')
     //- endbower
     //- inject:nonBowerScripts
     script(src="/scripts/auth0.js")
@@ -166,6 +170,11 @@ html
     script(src="services/srm.service.js")
     script(src="services/tcAuth.service.js")
     script(src="services/user.service.js")
+    script(src="settings/settings.module.js")
+    script(src="settings/account-info/account-info.controller.js")
+    script(src="settings/edit-profile/edit-profile.controller.js")
+    script(src="settings/settings.controller.js")
+    script(src="settings/settings.routes.js")
     script(src="topcoder.constants.js")
     script(src="topcoder.controller.js")
     script(src="topcoder.interceptors.js")

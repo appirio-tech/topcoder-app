@@ -1,6 +1,7 @@
 @import 'partials/combined';
 @include glyphicons-halflings;
 
+// Resets and top level container stylings
 html {
   min-height: 100%;
   box-sizing: border-box;
@@ -28,6 +29,14 @@ body {
     color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
+  }
+}
+
+.ui-refresh {
+  background-color: #f1f2f2;
+
+  & .view-container {
+    background-color: #f1f2f2;
   }
 }
 
@@ -78,7 +87,7 @@ footer {
   overflow: hidden;
 }
 
-// Element styles
+// Styles for elements used across modules
 button {
   cursor: pointer;
   outline: 0;
@@ -93,42 +102,3 @@ a {
   min-height: 50px;
   background: $loading no-repeat center center;
 }
-
-//urls
-$url_0: url(./wp-content/themes/tcs-responsive/css/PIE.htc);
-
-//@extend-elements
-//original selectors
-//.btn, a.btn
-%extend_1 {
-  display: inline-block;
-  background: $color_california_approx;
-  color: $white;
-  box-sizing: content-box;
-  padding: 0px;
-  border: none;
-  border-bottom: 4px solid $color_flush_orange_approx;
-  height: 32px;
-  line-height: 34px;
-  width: 130px;
-  text-align: center;
-  font-size: 15px;
-  //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
-  border-radius: 6px;
-  behavior: $url_0;
-  position: relative;
-}
-
-
-.btn {
-  @extend %extend_1;
-  &:hover {
-    background: $color_flush_orange_approx;
-    text-decoration: none;
-    color: $white;
-  }
-}
-a.btn {
-  @extend %extend_1;
-}
-

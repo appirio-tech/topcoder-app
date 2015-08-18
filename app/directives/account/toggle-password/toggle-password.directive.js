@@ -11,8 +11,7 @@
 
         var passwordInput;
         var parentScope = $scope.vm;
-        var defaultPlaceholder = 'Create Password';
-        parentScope.placeholder = defaultPlaceholder;
+        parentScope.placeholder = parentScope.defaultPlaceholder;
         parentScope.password = '';
 
         $timeout(function() {
@@ -38,7 +37,7 @@
             parentScope.passwordFocus = false;
 
             if (parentScope.password === '' || parentScope.password === undefined) {
-              parentScope.placeholder = defaultPlaceholder;
+              parentScope.placeholder = parentScope.defaultPlaceholder;
 
               if (parentScope.registerForm) {
                 parentScope.registerForm.password.$setPristine();

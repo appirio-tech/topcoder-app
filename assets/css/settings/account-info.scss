@@ -1,0 +1,19 @@
+@import '../partials/combined';
+
+.account-info-container {
+  .field-section.reset-password {
+    display: flex;
+    flex-direction: column;
+
+    > input {
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 200px;
+      text-transform: none;
+      @include source-sans-light;
+      font-size: 18px;
+    }
+  }
+}
