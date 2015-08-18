@@ -26,19 +26,17 @@
       a {
         @include source-sans-light;
         font-size: 18px;
-        color: $ui-gray;
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
+        color: $ui-blue;
+        text-decoration: underline;
+        cursor: pointer;
       }
     }
   }
 
   .active-tab {
-    color: $ui-blue;
-    text-decoration: underline;
+    color: $ui-gray;
+    text-decoration: none;
+    cursor: default;
   }
 
   hr {
@@ -70,7 +68,7 @@
         color: $ui-dark-gray;
       }
 
-      p {
+      p:not(.form-error) {
         font-size: 14px;
         color: $ui-light-gray;
       }

@@ -3,7 +3,7 @@
 
   form(name="vm.registerForm", role="form", ng-submit="vm.registerForm.$valid && vm.register()", novalidate)
 
-    p.login-error(ng-show="vm.errMsg") {{vm.errMsg}}
+    p.form-error(ng-show="vm.errMsg") {{vm.errMsg}}
     br
 
     .first-last-names
@@ -13,7 +13,7 @@
 
     //- Show errors for first and last names once we know whether we can handle accents, other languages, and not symbols/numbers
     //- .form-errors
-    //-   p.login-error(ng-show="vm.registerForm.firstname.$dirty && vm.registerForm.firstname.$error.pattern") Names must not contain symbols or numbers.
+    //-   p.form-error(ng-show="vm.registerForm.firstname.$dirty && vm.registerForm.firstname.$error.pattern") Names must not contain symbols or numbers.
 
     input(ng-model="vm.country", name="country", placeholder="Country", type="text", required)
 
@@ -32,9 +32,9 @@
         p You can always change it later
 
     .form-errors
-      p.login-error(ng-show="vm.registerForm.username.$error.usernameIsFree") This username already exists.
+      p.form-error(ng-show="vm.registerForm.username.$error.usernameIsFree") This username already exists.
 
-      p.login-error(ng-show="vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength") Username must be between 2 and 15 characters.
+      p.form-error(ng-show="vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength") Username must be between 2 and 15 characters.
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.email.$dirty && vm.registerForm.email.$invalid), 'success-bar': (vm.registerForm.email.$valid) }")
       input(right-placeholder, focused-placeholder="Email", ng-model="vm.email", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", email-is-available, required)
@@ -47,7 +47,7 @@
         p We will occasionally send you emails related to your account or interests.
 
     .form-errors
-      p.login-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$invalid") Please enter a valid email address.
+      p.form-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$invalid") Please enter a valid email address.
 
     .validation-bar(ng-class="{ 'success-bar': (vm.registerForm.password.$valid) }")
       toggle-password

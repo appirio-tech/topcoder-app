@@ -146,3 +146,8 @@
     color: #231F20;
   }
 }
+
+@mixin ui-enabled-button {
+  background-color: $ui-enabled-button-blue;
+  cursor: pointer;
+}

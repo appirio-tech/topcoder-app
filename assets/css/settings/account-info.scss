@@ -1,12 +1,18 @@
 @import '../partials/combined';
 
 .account-info-container {
-  .field-section.reset-password {
+  padding-bottom: 75px;
+
+  .reset-password form {
     display: flex;
     flex-direction: column;
 
-    > input {
+    input[name="currentPassword"] {
       margin-bottom: 10px;
+    }
+
+    p {
+      margin: 5px 0 12px 5px;
     }
 
     button {
@@ -14,6 +20,10 @@
       text-transform: none;
       @include source-sans-light;
       font-size: 18px;
+
+      &.enabled-button {
+        @include ui-enabled-button;
+      }
     }
   }
 }
