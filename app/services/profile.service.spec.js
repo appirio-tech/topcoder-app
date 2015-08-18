@@ -15,7 +15,7 @@ describe('Profile Service', function() {
     $httpBackend
       .when('GET', apiUrl + '/members/rakesh/')
       .respond(200, {result: {content: mockProfile}});
-    // mock stats 
+    // mock stats
     $httpBackend
       .when('GET', apiUrl + '/members/rakesh/stats/')
       .respond(200, {result: {content: mockStats}});

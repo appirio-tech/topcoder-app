@@ -6,6 +6,12 @@
   UserService.$inject = ['CONSTANTS', 'ApiService', 'AuthTokenService', '$http', 'store', 'jwtHelper'];
 
   function UserService(CONSTANTS, ApiService, AuthTokenService, http, store, jwtHelper) {
+
+    var _config = {
+      cache: false,
+      skipAuthorization: true
+    };
+
     var service = {
       getUserIdentity: getUserIdentity,
       setUserIdentity: setUserIdentity,
@@ -17,12 +23,7 @@
       resetPassword: resetPassword
     };
     return service;
-
     ///////////////
-    var _config = {
-      cache: false,
-      skipAuthorization: true
-    };
 
     function getUserIdentity() {
       return JSON.parse(store.get('userObj'));
@@ -64,7 +65,7 @@
           }
         }
       };
-      return ApiService.restangularV3.all('users').withHttpConfig(_config).one('resetPassword').customPUT(JSON.stringify(data));
+      return ApiService.restangularV3.all('users').one('resetPassword').withHttpConfig(_config).customPUT(JSON.stringify(data));
     }
 
     function getUser() {
@@ -83,7 +84,6 @@
         socialProviderId: providerId
       });
     }
-
   }
 
 })();

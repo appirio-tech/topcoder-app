@@ -30,7 +30,7 @@
 
   appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log', 'NotificationService'];
 
-  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log, NotificationService) {
+  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log, NotificationServicem) {
     // Attaching $state to the $rootScope allows us to access the
     // current state in index.html (see the body tag)
     $rootScope.$state = $state;
