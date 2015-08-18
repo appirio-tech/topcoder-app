@@ -8,6 +8,7 @@
     'tc.peer-review',
     'tc.myDashboard',
     'tc.mySRMs',
+    'tc.myChallenges',
     'tc.sample',
     'tc.profile',
     'ui.router',

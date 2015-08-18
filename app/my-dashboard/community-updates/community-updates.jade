@@ -5,11 +5,9 @@ header
 
 section
   .posts
-    .post(ng-repeat='blog in vm.blogPosts | orderBy : pubDate : true | limitTo : 4')
+    .post(ng-repeat='blog in vm.blogPosts | orderBy : pubDate | limitTo : 4')
       .blog-link
         a(ng-href='{{blog.link}}', target='_blank') {{blog.title}}
-
-      .pub-date {{blog.pubDate | localTime}}
 
       .description(ng-bind-html="blog.description")
 

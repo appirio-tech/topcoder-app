@@ -1,8 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('validateLogin', [])
-  .directive('usernameOrEmailExists', usernameOrEmailExists);
+  angular.module('tcUIComponents').directive('usernameOrEmailExists', usernameOrEmailExists);
 
   usernameOrEmailExists.$inject = ['UserService', 'Helpers', '$log', '$q'];
 

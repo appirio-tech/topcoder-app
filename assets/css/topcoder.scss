@@ -1,6 +1,15 @@
 @import 'partials/combined';
 @include glyphicons-halflings;
 
+html {
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
   @include source-sans;
 }
@@ -79,11 +88,11 @@ a {
   cursor: pointer;
 }
 
-// These should go in assets/css/partials:
-//colors
-$color_california_approx: #ff9900;
-$white: #fff;
-$color_flush_orange_approx: #ff7a00;
+.section-loading {
+  width: 100%;
+  min-height: 50px;
+  background: $loading no-repeat center center;
+}
 
 //urls
 $url_0: url(./wp-content/themes/tcs-responsive/css/PIE.htc);

@@ -33,7 +33,7 @@
           },
           'my-challenges': {
             templateUrl: "my-dashboard/my-challenges/my-challenges.html",
-            controller: 'MyChallengesController',
+            controller: 'MyChallengesWidgetController',
             controllerAs: 'vm'
           },
           'srms' :{

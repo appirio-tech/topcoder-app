@@ -8,7 +8,6 @@
   function RegisterController($log, CONSTANTS, $state, $stateParams, TcAuthService, UserService) {
     var vm = this;
 
-
     // Social Registeration callback
     var params = {}, callbackUrl;
     if ($stateParams.next) {

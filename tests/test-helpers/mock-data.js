@@ -711,6 +711,7 @@ var mockData = (function() {
       "handle": "rakesh",
       "email": "email@domain.com.z",
       "description": "abc",
+      "quote": "def",
       "address": {
         "streetAddr1": "123",
         "streetAddr2": "456",
@@ -729,9 +730,9 @@ var mockData = (function() {
         "photoUrl": "https://topcoder-dev-media.s3.amazonaws.com/member_profile/userId-123123123.png"
       },
       "tracks": [
-        "develop",
-        "design",
-        "data_science"
+        "DEVELOP",
+        "DESIGN",
+        "DATA_SCIENCE"
       ]
     };
   }
@@ -1400,6 +1401,7 @@ var mockData = (function() {
             "range3900To3999": 0
           }
         ]
+      }
       },
       "copilotStats": {
           "contests":2264,
@@ -1409,8 +1411,8 @@ var mockData = (function() {
           "activeContests":23,
           "activeProjects":3,
           "fulfillment":89.49
-        }
       }
+
     };
   }
 
