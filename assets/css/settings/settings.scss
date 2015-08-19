@@ -4,23 +4,41 @@
 
   header {
     display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    padding: 20px 0 7px 100px;
+    flex-direction: column;
+    padding-bottom: 10px;
+
+    @media only screen and (min-width: 550px) {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      padding: 20px 0 7px 100px;
+    }
 
     h1 {
       @include ui-h1;
       color: $ui-blue;
-      margin-right: 75px;
+      @media only screen and (min-width: 550px) {
+        margin-right: 75px;
+      }
     }
 
     nav {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+
+      @media only screen and (min-width: 550px) {
+        display: flex;
+        flex-direction: row;
+      }
 
       li {
-        display: inline-block;
-        margin-right: 25px;
+        display: block;
+        margin-top: 10px;
+
+        @media only screen and (min-width: 550px) {
+          display: inline-block;
+          margin-right: 25px;
+        }
       }
 
       a {
@@ -45,18 +63,24 @@
 
   // Tab content
   .profile-settings-container, .account-info-container {
-    padding-left: 100px;
+    @media only screen and (min-width: 550px) {
+      padding-left: 100px;
+    }
 
     .tab-title {
-      margin-top: 50px;
       margin-bottom: 35px;
       font-size: 32px;
       @include source-sans-light;
       color: $ui-light-gray;
+      @media only screen and (min-width: 550px) {
+        margin-top: 50px;
+      }
     }
 
     .fields {
-      margin-left: 3px;
+      @media only screen and (min-width: 550px) {
+        margin-left: 3px;
+      }
     }
 
     .field-section {

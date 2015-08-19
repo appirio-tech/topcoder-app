@@ -3,9 +3,9 @@
 
   angular.module('tc.settings').controller('AccountInfoController', AccountInfoController);
 
-  AccountInfoController.$inject = ['UserService'];
+  AccountInfoController.$inject = ['UserService', '$log'];
 
-  function AccountInfoController(UserService) {
+  function AccountInfoController(UserService, $log) {
     var vm = this;
     vm.defaultPlaceholder = 'Enter New Password';
     vm.submitNewPassword  = submitNewPassword;
@@ -24,7 +24,8 @@
 
       UserService.resetPassword(vm.username, vm.password, resetToken)
       .then(function() {
-
+        vm.password = '';
+        vm.currentPassword = '';
       })
       .catch(function(err) {
         console.log('See the following error message:');
