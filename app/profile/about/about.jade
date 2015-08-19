@@ -1,5 +1,5 @@
 .profile-about-container
-  p.description {{profileVm.profile.description}}
+  p.description {{profileVm.profile.quote}}
 
   .tags
     .tag(ng-repeat="role in (profileVm.profile.tracks | role)")
@@ -42,7 +42,7 @@
           .number {{category.rank | ordinal}}
 
           .tag Ranking
-        .ranking(ng-if="category.wins")
+        .ranking(ng-if="category.wins && !category.rank")
           .number {{category.wins}}
 
           .tag Wins

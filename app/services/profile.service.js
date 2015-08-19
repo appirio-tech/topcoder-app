@@ -70,7 +70,8 @@
           return {
             'track': 'Develop',
             'subTrack': subTrack.name,
-            'rank': subTrack.rank
+            'rank': subTrack.rank ? subTrack.rank.overallRank : 0,
+            'wins': subTrack.wins
           };
         });
       }
