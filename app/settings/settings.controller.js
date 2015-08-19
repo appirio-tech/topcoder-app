@@ -7,12 +7,10 @@
 
   function SettingsController() {
     var vm = this;
-    vm.testSettings = 'settings vm test value';
 
     activate();
 
     function activate() {
-      console.log('Settings Controller activated.');
     }
   }
 

@@ -22,7 +22,8 @@
     'ngDropdowns',
     'xml',
     'angular.filter',
-    'CONSTANTS'
+    'CONSTANTS',
+    'dcbImgFallback'
   ];
 
   angular

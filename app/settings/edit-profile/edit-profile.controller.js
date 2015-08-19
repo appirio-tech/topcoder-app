@@ -3,17 +3,20 @@
 
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
-  EditProfileController.$inject = [];
+  EditProfileController.$inject = ['userData'];
 
-  function EditProfileController() {
+  function EditProfileController(userData) {
     var vm = this;
-    vm.testValue = 'testValue';
+    vm.updatePassword = updatePassword;
+    vm.userData = userData;
 
     activate();
 
     function activate() {
-      console.log('Edit Profile Controller activated.');
     }
 
+    function updatePassword() {
+
+    }
   }
 })();
