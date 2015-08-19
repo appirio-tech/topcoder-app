@@ -19,7 +19,6 @@
       },
       controller: ['$scope', 'CONSTANTS', '$attrs', function($scope, CONSTANTS, $attrs) {
         $scope.DOMAIN = CONSTANTS.domain;
-        console.log('tile controller');
 
         activate();
 

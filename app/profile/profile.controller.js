@@ -43,8 +43,6 @@
 
     vm.pastChallengesPromise = ChallengeService.getChallenges({filter: 'userId=' + profile.userId+"&status=completed"})
     .then(function(data) {
-      console.log('challenges!');
-      console.log(data);
       vm.status.pastChallenges = CONSTANTS.STATE_READY;
       vm.pastChallenges = data;
       return data;
