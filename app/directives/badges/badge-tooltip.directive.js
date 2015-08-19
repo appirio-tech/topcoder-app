@@ -11,25 +11,12 @@
     console.log('badgeTooltip');
     return {
       restrict: 'A',
-      template: "<div class='tooltip' ng-hide='hide'> " +
-                  "<div class='.inner'> " +
-                    "<header ng-bind='badge.name'></header> " +
-                    "<div class='.data'> " +
-                      "<p class'earnedOn' ng-bind='badge.date'></p> " +
-                    "</div>" +
-                    "<div class='.data'> " +
-                      "<p class=.currentlyEarned'>" +
-                        "<span ng-bind='badge.currentlyEarned'></span>" +
-                      "</p>" +
-                    "</div>" +
-                    "<div class='.arrow'></div> " +
-                  "</div>" +
-                "</div>",
+      templateUrl: 'directives/badges/badge-tooltip.html',
       scope: {
-        badge: '=',
-        hide: true
+        badge: '='
       },
-      link : function(scope, element, attr){
+      link : function(scope, element, attr) {
+        scope.hide = true;
         return new TcBadgeTooltipDirective(scope, element, attr);
       }
     }
@@ -40,25 +27,34 @@
    */
   var TcBadgeTooltipDirective = function (scope, element, attr) {
 
-    var tooltipHtml = angular.element(element);//angular.element('#badgeTooltip');
+    var tooltipElement = element.children(0);
+    if (!tooltipElement.hasClass('tooltip')) {
+      return;
+    }
+    var tooltipHtml = tooltipElement[0];
 
     var tooltipFn = this;
 
-    element.on('mouseenter', function(){
-      //tooltipFn.populateTooltip(scope, tooltipHtml, attr);
-
-      tooltipHtml.css('z-index', '-2000');
+    element.on('mouseenter', function() {
+      tooltipElement.css('z-index', '-2000');
       scope.hide = false;
-      var ht = tooltipHtml.height();
-      var wt = tooltipHtml.width() - element.width();
-      var top  = element.offset().top - ht - 10;
-      var lt = element.offset().left - wt / 2;
-      tooltipHtml.offset({left : lt, top : top});
-      tooltipHtml.css('z-index', '2000');
+      // apply scope to display the tooltip element at z-index -2000
+      // otherwise we won't get the height of the element
+      scope.$apply();
+
+      var ht = tooltipHtml.offsetHeight;
+      var wt = tooltipHtml.offsetWidth - element[0].offsetWidth;
+      var top  = element[0].offsetTop - ht - 10;
+      var lt = element[0].offsetLeft - wt / 2;
+
+      tooltipElement.css("left", lt + 'px');
+      tooltipElement.css("top", top + 'px');
+      tooltipElement.css('z-index', '2000');
     });
 
     element.on('mouseleave', function(){
       scope.hide = true;
+      scope.$apply();
     });
   }
 })();

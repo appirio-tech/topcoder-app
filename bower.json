@@ -38,7 +38,8 @@
     "angular-filter": "~0.5.4",
     "devicon": "*",
     "angular-dropdowns": "1.1.0",
-    "angular-mocks": "1.4.3"
+    "angular-mocks": "1.4.3",
+    "ngDialog": "0.5.1"
   },
   "devDependencies": {
     "bardjs": "~0.1.4",

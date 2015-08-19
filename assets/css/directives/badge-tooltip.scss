@@ -615,6 +615,7 @@ span.subBadge.selected {
 /* tooltip */
 
 .tooltip {
+  display: block;
   position: absolute;
   left: 0;
   top: 0;
@@ -669,6 +670,6 @@ span.subBadge.selected {
   margin-left: -5px;
   width: 10px;
   height: 9px;
-  background: url(@@cdn/i/tt-arrow.png) no-repeat;
+  background: url(/images/tt-arrow.png) no-repeat;
   background-position: 0 0;
 }
