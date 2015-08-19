@@ -5,7 +5,7 @@
       .name WINS
 
     li.stat
-      .value {{vm.typeStats.submissions}}
+      .value {{vm.typeStats.submissions.submissions}}
       .name SUBMISSIONS
 
   .tabs
@@ -38,11 +38,11 @@
     ul.vertical-stats
       li
         .left Submissions
-        .right {{vm.typeStats.submissions}}
+        .right {{vm.typeStats.submissions.submissions}}
 
       li
         .left Passed Screening
-        .right {{vm.typeStats.passedScreening}}
+        .right {{vm.typeStats.submissions.passedScreening}}
 
       li
         .left Wins
