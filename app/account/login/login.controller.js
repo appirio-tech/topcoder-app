@@ -10,26 +10,12 @@
     vm.passwordReset = false;
     vm.usernameExists = true;
 
-    var redirect = function() {
-      // check if the user is already logged in
-      if (TcAuthService.isAuthenticated()) {
-        // make sure domain is topcoder | dev | qa
-        var re = /(\w+\.)*topcoder(-\w+)*\.com/;
-        if (re.test($stateParams.next)) {
-          $log.debug('Redirecting: ' + $stateParams.next);
-          window.location.href = decodeURIComponent($stateParams.next);
-        } else {
-          $state.go('dashboard');
-        }
-      }
-    };
-
     // Handling social login stuff
     if ($stateParams.userJWTToken) {
       // user logged in
       AuthTokenService.setV3Token($stateParams.userJWTToken);
       UserService.setUserIdentity($stateParams.userJWTToken);
-      redirect();
+      Helpers.redirectPostLogin($stateParams.next);
     }
 
     if ($stateParams.status) {
@@ -48,11 +34,11 @@
       AuthTokenService.getTokenFromAuth0Code($stateParams.code).then(
         function(v3Token) {
           $log.debug('logged in using social');
-          redirect();
+          Helpers.redirectPostLogin($stateParams.next);
         }
       );
     }
-    
+
     if ($stateParams.notifyReset) {
       NotificationService.inform('Your new password has been set. Please log in. If you have any trouble, please contact support@topcoder.com.');
     }
@@ -62,7 +48,7 @@
       function(data) {
         // success
         $log.debug('logged in');
-        redirect();
+        Helpers.redirectPostLogin($stateParams.next);
       },
       function(err) {
         // handle error

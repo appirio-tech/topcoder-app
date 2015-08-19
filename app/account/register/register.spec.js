@@ -4,7 +4,9 @@ describe('Register Controller', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject('$controller', '$rootScope');
+    bard.inject('$controller', '$rootScope', '$q');
+
+
   });
 
   var state = {
@@ -14,9 +16,17 @@ describe('Register Controller', function() {
   }
 
   beforeEach(function() {
+    var helperService = {
+      getCountyObjFromIP: function() {
+        return $q.when({name: "United States", alpha2: "US", alpha3: "USA", code: "840"});
+      }
+    };
+
     controller = $controller('RegisterController', {
-      $state: state
+      $state: state,
+      Helpers: helperService
     });
+
     $rootScope.$apply();
   });
 

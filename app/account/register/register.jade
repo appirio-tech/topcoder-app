@@ -15,7 +15,22 @@
     //- .form-errors
     //-   p.login-error(ng-show="vm.registerForm.firstname.$dirty && vm.registerForm.firstname.$error.pattern") Names must not contain symbols or numbers.
 
-    input(ng-model="vm.country", name="country", placeholder="Country", type="text", required)
+    //- input(ng-model="vm.country", name="country", placeholder="Country", type="text", required)
+    .country-dropdown
+      angucomplete-alt(
+        id="countryId",
+        placeholder="Country",
+        pause="100",
+        selected-object="vm.countryUpdated",
+        local-data="vm.countries",
+        search-fields="name",
+        title-field="name",
+        match-class="highlight",
+        initial-value="vm.countryObj",
+        minlength="1",
+        auto-match=true,
+        field-required=true,
+      )
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.username.$error.usernameIsFree || vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength), 'success-bar': (vm.registerForm.username.$valid && !vm.registerForm.username.$error.usernameIsFree) }")
       input(right-placeholder, focused-placeholder="Username", ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)

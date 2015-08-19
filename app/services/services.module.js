@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var dependencies = [];
+  var dependencies = ['ngIsoConstants.services'];
 
   angular.module('tc.services', dependencies);
 

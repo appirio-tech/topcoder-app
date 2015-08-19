@@ -66,7 +66,11 @@
       } else {
         vm.showEditProfileLink = false;
       }
-      vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
+      if (profile.createdAt) {
+        vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
+      } else {
+        vm.tenure = false;
+      }
 
     }
   }
