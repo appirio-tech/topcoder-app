@@ -30,7 +30,7 @@ describe('Account Info Controller', function() {
     expect(controller.defaultPlaceholder).to.exist;
   });
   it('should have a submitNewPassword method', function() {
-    expect(controller.submitNewPassword).to.exist;
+    expect(controller.submitNewPassword).to.be.a('function');
   });
   it('should get the username from local storage', function() {
     expect(controller.username).to.equal('nicktest');
