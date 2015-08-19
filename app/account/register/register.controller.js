@@ -3,9 +3,9 @@
 
   angular.module('tc.account').controller('RegisterController', RegisterController);
 
-  RegisterController.$inject = ['$log', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService'];
+  RegisterController.$inject = ['$log', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService', 'ISO3166', 'Helpers'];
 
-  function RegisterController($log, CONSTANTS, $state, $stateParams, TcAuthService, UserService) {
+  function RegisterController($log, CONSTANTS, $state, $stateParams, TcAuthService, UserService, ISO3166, Helpers) {
     var vm = this;
 
     // Social Registeration callback
@@ -17,7 +17,6 @@
     var auth0Register = new Auth0({
       domain: CONSTANTS.auth0Domain,
       clientID: CONSTANTS.clientId,
-      // callbackOnLocationHash: true,
       callbackURL: callbackUrl
     });
     vm.socialProvider = null;
@@ -48,6 +47,17 @@
         vm.isSocialRegistration = false;
       });
     }
+
+    // lookup users country
+    Helpers.getCountyObjFromIP()
+      .then(function(obj) {
+        vm.countryObj = obj;
+      });
+    vm.countries = ISO3166.getAllCountryObjects();
+    vm.countryUpdated = function ($item) {
+      // update country
+      vm.country = _.get($item, "originalObject.name", undefined);
+    };
 
     vm.register = function() {
       var userInfo = {
