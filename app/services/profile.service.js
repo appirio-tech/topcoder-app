@@ -109,7 +109,7 @@
       var ans = dev.concat(design)
         .concat(srm)
         .concat(marathon)
-        .concat(stats.copilotStats)
+        .concat(copilot)
         .filter(function(subTrack) {
           return subTrack && (subTrack.rank || subTrack.wins || subTrack.fulfillment);
         });
@@ -154,6 +154,8 @@
           return subTrack.name;
         });
         return ans;
+      } else {
+        return [];
       }
     }
 
