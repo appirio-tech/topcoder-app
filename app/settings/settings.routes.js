@@ -17,21 +17,26 @@
         controllerAs: 'settings',
         data: {
           authRequired: true,
-          UIRefresh: true,
-          title: 'Settings'
+          UIRefresh: true
         }
       },
       'settings.profile': {
         url: 'profile/',
         templateUrl: 'settings/edit-profile/edit-profile.html',
         controller: 'EditProfileController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          title: 'Edit Profile'
+        }
       },
       'settings.account': {
         url: 'account/',
         templateUrl: 'settings/account-info/account-info.html',
         controller: 'AccountInfoController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          title: 'Account Info'
+        }
       }
     };
 
