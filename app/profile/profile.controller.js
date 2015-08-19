@@ -1,8 +1,7 @@
 (function () {
+  'use strict';
 
-  angular
-    .module('tc.profile')
-    .controller('ProfileCtrl', ProfileCtrl);
+  angular.module('tc.profile').controller('ProfileCtrl', ProfileCtrl);
 
   ProfileCtrl.$inject = ['$scope', 'CONSTANTS', '$log',
     'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService',

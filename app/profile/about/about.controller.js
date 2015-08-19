@@ -1,8 +1,7 @@
 (function () {
+  'use strict';
 
-  angular
-    .module('tc.profile')
-    .controller('ProfileAboutController', ProfileAboutController);
+  angular.module('tc.profile').controller('ProfileAboutController', ProfileAboutController);
 
   ProfileAboutController.$inject = ['$log', '$scope', 'ProfileService'];
 
@@ -50,10 +49,6 @@
           if (vm.skillIndex > vm.skills.length - 5) vm.skillIndex = vm.skills.length - 5;
         }
       }
-
     }
-
   }
-
-
 })();

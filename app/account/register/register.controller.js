@@ -8,6 +8,9 @@
   function RegisterController($log, CONSTANTS, $state, $stateParams, TcAuthService, UserService, ISO3166, Helpers) {
     var vm = this;
 
+    // Set default for toggle password directive
+    vm.defaultPlaceholder = 'Create Password';
+
     // Social Registeration callback
     var params = {}, callbackUrl;
     if ($stateParams.next) {

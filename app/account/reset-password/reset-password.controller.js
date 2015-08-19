@@ -9,6 +9,7 @@
     var vm = this;
     vm.token = $stateParams.token;
     vm.handle = $stateParams.handle;
+    vm.defaultPlaceholder = 'Enter New Password';
 
     vm.clearState = function() {
       vm.resetTokenSent = false;
@@ -32,21 +33,21 @@
               vm.alreadySent = true;
             else if (err.status == 404)
               vm.emailNotFound = true;
-              
+
             vm.resetTokenFailed = true;
             vm.loading = false;
           }
         );
       }
     }
-    
+
     vm.resetPassword = function() {
       vm.loading = true;
       if (vm.resetPasswordForm.$valid) {
         UserService.resetPassword(vm.handle, vm.password, vm.token).then(
           function() {
             TcAuthService.login(vm.handle, vm.password).then(
-              function() { 
+              function() {
                 $state.go('dashboard', { "notifyReset": true });
               },
               function(err) {

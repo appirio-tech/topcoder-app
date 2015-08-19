@@ -6,50 +6,43 @@
   function togglePassword() {
     return {
       restrict: 'E',
+      require: '^form',
       templateUrl: 'directives/account/toggle-password/toggle-password.html',
-      controller: ['$scope', '$element', '$timeout', function($scope, $element, $timeout) {
+      link: function(scope, element, attrs, formController) {
+        var vm = scope.vm;
+        vm.placeholder = vm.defaultPlaceholder;
+        vm.password = '';
 
-        var passwordInput;
-        var parentScope = $scope.vm;
-        var defaultPlaceholder = 'Create Password';
-        parentScope.placeholder = defaultPlaceholder;
-        parentScope.password = '';
+        var passwordInput = element.children()[0];
 
-        $timeout(function() {
-          passwordInput = $element.children()[0];
-        });
-
-        $element.bind('click', function(event) {
+        element.bind('click', function(event) {
           passwordInput.focus();
         });
 
-        $scope.onFocus = function(event) {
-          parentScope.passwordFocus = true;
-          parentScope.placeholder = '';
+        vm.onFocus = function(event) {
+          vm.passwordFocus = true;
+          vm.placeholder = '';
         }
 
-        $scope.onBlur = function(event) {
+        vm.onBlur = function(event) {
           var relatedTarget = angular.element(event.relatedTarget);
 
+          // If you are blurring from the password input and clicking the checkbox
           if (relatedTarget.attr('type') === 'checkbox') {
-            parentScope.passwordFocus = true;
-            parentScope.placeholder = '';
+            vm.passwordFocus = true;
+            vm.placeholder = '';
           } else {
-            parentScope.passwordFocus = false;
+            // If you are blurring from the password input and clicking anywhere but the checkbox
+            vm.passwordFocus = false;
 
-            if (parentScope.password === '' || parentScope.password === undefined) {
-              parentScope.placeholder = defaultPlaceholder;
-
-              if (parentScope.registerForm) {
-                parentScope.registerForm.password.$setPristine();
-              } else if (parentScope.resetPasswordForm) {
-                parentScope.resetPasswordForm.password.$setPristine();
-              }
+            if (vm.password === '' || vm.password === undefined) {
+              vm.placeholder = vm.defaultPlaceholder;
+              formController.password.$setPristine();
             }
           }
         };
 
-        $scope.toggleInputType = function() {
+        vm.toggleInputType = function() {
           var $passwordInput = angular.element(passwordInput);
 
           if ($passwordInput.attr('type') === 'text') {
@@ -58,7 +51,7 @@
             $passwordInput.attr('type', 'text');
           }
         }
-      }]
+      }
     };
   }
 })();
