@@ -6,6 +6,7 @@ var $            = require('gulp-load-plugins')({lazy: true});
 var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
 var merge        = require('merge-stream');
+var RevAll       = require('gulp-rev-all');
 
 var envFile = require('./config.js')();
 var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
@@ -31,6 +32,9 @@ gulp.task('jade', ['clean-html'], function() {
   return gulp
     .src(config.jade)
     .pipe($.plumber())
+    .pipe($.data(function(file) {
+      return envConfig;
+    }))
     .pipe($.jade({pretty: true}))
     .pipe($.replace(/-->/g, ' -->'))
     .pipe(gulp.dest(config.temp));
@@ -73,7 +77,7 @@ gulp.task('images', ['clean-images'], function() {
   return gulp
     .src(config.images)
     .pipe($.imagemin({optimizationLevel: 4}))
-    .pipe(gulp.dest(config.build + 'images'));
+    .pipe(gulp.dest(config.temp + 'images'));
 });
 
 gulp.task('clean', function(done) {
@@ -134,11 +138,6 @@ gulp.task('ngConstants', function() {
     .pipe(gulp.dest(config.app));
 });
 
-// gulp.task('sassConstants', function() {
-//   return $.file('_environment.scss', '$prefix: "' + envConfig.CONSTANTS.ASSET_PREFIX + '"', { src: true })
-//     .pipe(gulp.dest(config.assets + 'css/partials/'));
-// });
-
 gulp.task('wiredep', ['jade'], function() {
   log('Injecting bower css/js and app js files into index.jade');
   var options = config.getWiredepDefaultOptions();
@@ -172,7 +171,7 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
     .pipe(gulp.dest(config.app));
 });
 
-gulp.task('optimize', ['inject', 'test', 'ngConstants'], function() {
+gulp.task('optimize', ['inject', 'test', 'ngConstants', 'images'], function() {
   log('Optimizing the JavaScript, CSS, and HTML');
 
   var assets = $.useref.assets({searchPath: ['.tmp', 'app', 'assets']});
@@ -181,7 +180,8 @@ gulp.task('optimize', ['inject', 'test', 'ngConstants'], function() {
   var jsLibFilter = $.filter('**/' + config.optimized.vendor);
   var jsAppFilter = $.filter('**/' + config.optimized.app);
 
-  return gulp
+  var imageStream = gulp.src(config.temp + '/**/*.{svg,png,jpg,jpeg,gif}');
+  var userefStream = gulp
     .src(config.indexHtml)
     .pipe($.plumber())
     .pipe($.inject(gulp.src(templateCache, {read: false}), {
@@ -201,19 +201,25 @@ gulp.task('optimize', ['inject', 'test', 'ngConstants'], function() {
     .pipe($.ngAnnotate())
     .pipe($.uglify())
     .pipe(jsAppFilter.restore())
-    .pipe($.rev())
     .pipe(assets.restore())
     .pipe($.useref())
-    .pipe($.revReplace({prefix: envConfig.CONSTANTS.ASSET_PREFIX}))
+
+  var revAll = new RevAll({
+    prefix: envConfig.CONSTANTS.ASSET_PREFIX,
+    dontRenameFile: [/^\/index.html/g]
+  });
+
+  return merge(userefStream, imageStream)
+    .pipe(revAll.revision())
     .pipe($.if(!config.production && !config.qa, $.sourcemaps.write()))
     // Uncomment if you want to see the JSON file containing
     // the file mapping (e.g., "{"js/app.js": "js/app-a9bae026bc.js"}")
     // .pipe(gulp.dest(config.build))
-    // .pipe($.rev.manifest())
+    // .pipe(revAll.manifestFile())
     .pipe(gulp.dest(config.build));
 });
 
-gulp.task('build', ['optimize', 'images', 'dev-fonts'], function() {
+gulp.task('build', ['optimize', 'dev-fonts'], function() {
   log('Building everything');
 
   var msg = {

@@ -7,6 +7,7 @@
     'tc.account',
     'tc.peer-review',
     'tc.myDashboard',
+    'tc.myChallenges',
     'tc.sample',
     'tc.profile',
     'ui.router',
@@ -27,11 +28,11 @@
     .module('topcoder', dependencies)
     .run(appRun);
 
-  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log'];
+  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log', 'NotificationService'];
 
-  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log) {
+  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log, NotificationService) {
     // Attaching $state to the $rootScope allows us to access the
-    // current state in index.html (see div with ui-view on the index page)
+    // current state in index.html (see the body tag)
     $rootScope.$state = $state;
 
     // check AuthNAuth on change state start
@@ -54,6 +55,7 @@
       console.log.bind(console);
     });
 
+    // NotificationService.getNotifications();
   }
 
   angular.module('topcoder').config(['$httpProvider', 'RestangularProvider', function($httpProvider, RestangularProvider) {

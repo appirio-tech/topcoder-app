@@ -7,15 +7,17 @@
 
   function NotificationService(notifier, ApiService, TcAuthService, $rootScope) {
   	var service = {
-      getNotifications: getNotifications
+      getNotifications: getNotifications,
+      inform: inform
     };
     return service;
 
-    $rootScope.$on('$stateChangeSuccess', function(){
+    var showing = false;
+
+    $rootScope.$on(CONSTANTS.EVENT_USER_LOGGED_OUT, function() {
+      showing = false;
       getNotifications();
     });
-
-    var showing = false;
 
     function getNotifications() {
       if (TcAuthService.isAuthenticated() === true && !showing) {
@@ -24,8 +26,8 @@
           angular.forEach(notifications, function(notification) {
 
             var opts = {
-              message: notification.notificationTypeId === 1 ? 
-                'Your checkpoint submission for challenge xyz is due in 3 days' :
+              message: notification.notificationTypeId === 1 ?
+                'Your checkpoint submission for Styx iOS... is due in 3 days' :
                 'You received a notification of type: ' + notification.notificationTypeId
             };
 
@@ -38,6 +40,10 @@
           })
         });
       }
+    }
+    
+    function inform(message) {
+      notifier.showSuccess({message:message});
     }
   }
 })();

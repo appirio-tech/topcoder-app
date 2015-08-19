@@ -42,9 +42,11 @@
     "appirio-tech-ng-iso-constants": "git@github.com:appirio-tech/ng-iso-constants#~1.0.0"
   },
   "devDependencies": {
-    "bardjs": "~0.1.4"
+    "bardjs": "~0.1.4",
+    "jquery": "~2.1.4"
   },
   "resolutions": {
-    "angular": "1.4.3"
+    "angular": "1.4.3",
+    "angular-mocks": "1.4.3"
   }
 }

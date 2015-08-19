@@ -1,11 +1,11 @@
 (function () {
   'use strict';
 
-  angular.module('tc.myDashboard').controller('MyChallengesController', MyChallengesController);
+  angular.module('tc.myDashboard').controller('MyChallengesWidgetController', MyChallengesWidgetController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers'];
+  MyChallengesWidgetController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers) {
+  function MyChallengesWidgetController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
@@ -23,7 +23,7 @@
     function viewActiveChallenges() {
       vm.myChallenges = [];
       getChallenges('Active', 'submissionEndDate asc');
-    };
+    }
 
     // get ACTIVE challenges and spotlight challenges
     function getChallenges(status, orderBy) {

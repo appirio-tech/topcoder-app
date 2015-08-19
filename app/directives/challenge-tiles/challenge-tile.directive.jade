@@ -1,34 +1,64 @@
-.challenge-name
-  a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}") {{challenge.challengeName}}
+.challenge.tile-view(ng-show="view=='tile'")
+  .challenge-name
+    a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}") {{challenge.challengeName}}
 
-.challenge-details
+  .challenge-details
+    .challenge-icons
+      img(ng-show="challenge.track === 'DEVELOP'", src="/images/member-program/svg/development-generic.svg")
+      img(ng-show="challenge.track === 'DESIGN' || challenge.track === 'Data Science'", src="/images/member-program/svg/design-generic.svg")
+
+      a(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
+        i.fa.fa-comment
+
+    p.roles Roles: {{challenge.userDetails.roles | listRoles}}
+
+    .challenge-status
+      p.days-remaining(ng-show="challenge.status === 'Active'") {{challenge.registrationEndDate | timeDiff}}
+        span Registration Ends
+      p(ng-show="challenge.status === 'Completed'")
+        span Ended {{challenge.submissionEndDate | date: "mediumDate"}}
+
+
+      .stats
+        .registrants(ng-show="challenge.numRegistrants > 0")
+          i.fa.fa-user
+          a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}#viewRegistrant") {{challenge.numRegistrants}}
+        .submissions(ng-show="challenge.numSubmissions > 0")
+          i.fa.fa-files-o
+          a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}#viewRegistrant") {{challenge.numSubmissions}}
+
+      .phase-status(ng-show="challenge.status === 'Active'")
+        i.fa.fa-check-circle-o
+
+        p {{challenge.memberStatusMsg}}
+.challenge.list-view(ng-show="view=='list'")
   .challenge-icons
-    img(ng-show="challenge.track === 'DEVELOP'", asset-src="images/member-program/svg/development-generic.svg")
-    img(ng-show="challenge.track === 'DESIGN' || challenge.track === 'Data Science'", asset-src="images/member-program/svg/design-generic.svg")
+    img(ng-show="challenge.track === 'DEVELOP'", src="/images/member-program/svg/development-generic.svg")
+    img(ng-show="challenge.track === 'DESIGN' || challenge.track === 'Data Science'", src="/images/member-program/svg/design-generic.svg")
 
-    a(ng-href="http://apps.topcoder.com/forums//?module=Category&categoryID={{challenge.forumId}}")
-      i.fa.fa-comment
-
-  p.roles Roles: {{challenge.userDetails.roles | listRoles}}
-
-  .challenge-status
-    p.days-remaining(ng-show="challenge.status === 'Active'") {{challenge.registrationEndDate | timeDiff}}
-      span Registration Ends
-    p(ng-show="challenge.status === 'Completed'") 
-      span Ended {{challenge.submissionEndDate | date: "mediumDate"}}
-      
-
-    .stats
-      .registrants(ng-show="challenge.numRegistrants > 0")
-        i.fa.fa-user
-        a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}#viewRegistrant") {{challenge.numRegistrants}}
-      .submissions(ng-show="challenge.numSubmissions > 0")
-        i.fa.fa-files-o
-        a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}#viewRegistrant") {{challenge.numSubmissions}}
-
+  .challenge-name
+    a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}") {{challenge.challengeName}}
     .phase-status(ng-show="challenge.status === 'Active'")
       i.fa.fa-check-circle-o
 
       p {{challenge.memberStatusMsg}}
 
-    
+  p.roles Roles : {{challenge.userDetails.roles | listRoles}}
+
+  p.days-remaining(ng-show="challenge.status === 'Active'") {{challenge.registrationEndDate | timeDiff}}
+    span Registration Ends
+  p(ng-show="challenge.status === 'Completed'")
+    span Ended {{challenge.submissionEndDate | date: "mediumDate"}}
+
+  .stats
+    .registrants(ng-show="challenge.numRegistrants > 0")
+      i.fa.fa-user
+      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}#viewRegistrant") {{challenge.numRegistrants}}
+    .submissions(ng-show="challenge.numSubmissions > 0")
+      i.fa.fa-files-o
+      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}#viewRegistrant") {{challenge.numSubmissions}}
+
+  
+  .challenge-links
+    a(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
+      i.fa.fa-comment

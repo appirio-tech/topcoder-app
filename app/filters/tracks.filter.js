@@ -7,7 +7,7 @@
     var map = {
       'DESIGN' : 'Designer',
       'DEVELOP': 'Developer',
-      'DATA'   : 'Data Scientist'
+      'DATA_SCIENCE': 'Data Scientist'
     };
     return function(tracks) {
       if (tracks) {

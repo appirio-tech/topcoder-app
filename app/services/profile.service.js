@@ -61,7 +61,7 @@
       if (!stats) {
         return [];
       }
-      var dev = [], des = [], srm = [], marathon = [];
+      var dev = [], design = [], srm = [], marathon = [], copilot = [];
       if (stats.developStats && stats.developStats.rankStats) {
         dev = stats.developStats.rankStats.map(function(x) {
           return {
@@ -72,14 +72,15 @@
         });
       }
       // show # of wins for design
-      if (stats.designStats) {
-        des = [
-          {
+      if (stats.designStats && stats.designStats.submissionStats) {
+        design = stats.designStats.submissionStats.map(function(x) {
+          return {
             'track': 'Design',
-            'subTrack': '',
-            'rank': stats.designStats.wins
-          }
-        ];
+            'subTrack': x.subTrackName,
+            'rank': false,
+            'wins': x.wins
+          };
+        });
       }
       if (stats.dataScienceStats && stats.dataScienceStats.srmStats && stats.dataScienceStats.srmStats.rankStats) {
         srm = stats.dataScienceStats.srmStats.rankStats.map(function(x) {
@@ -99,19 +100,24 @@
           };
         });
       }
-      var ans = dev.concat(des)
+      if (stats.copilotStats) {
+        copilot = stats.copilotStats;
+        copilot.track = 'Co-Pilot';
+      }
+      var ans = dev.concat(design)
         .concat(srm)
         .concat(marathon)
+        .concat(stats.copilotStats)
         .filter(function(x) {
-        return x.rank > 0;
-      });
+          return x && (x.rank || x.wins || x.fulfillment);
+        });
       return ans;
     }
 
     function getChallengeTypeStats(stats, track, type) {
       track = track.toLowerCase().replace(/ /g, '');
       type = type.toLowerCase().replace(/ /g, '');
-      if (track !== 'Data Science') {
+      if (track == 'develop') {
         var ans = stats[track + 'Stats']['rankStats'].filter(function(x) {
           return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         });
@@ -122,6 +128,16 @@
           return type === x.subTrackName.toLowerCase().replace(/ /g, '');
         })[0];
         return ans[0];
+
+      } else if (track == 'design') {
+        var ans = stats[track + 'Stats']['submissionStats'].filter(function(x) {
+          return type === x.subTrackName.toLowerCase().replace(/ /g, '');
+        });
+        return ans[0];
+
+      } else if (track == 'co-pilot') {
+        var ans = stats.copilotStats;
+        return ans;
       } else if (type == 'srm') {
         return stats.dataScienceStats.srmStats.rankStats[0];
       } else {
@@ -130,10 +146,18 @@
     }
 
     function getSubTracks(stats, track) {
+      track = track.toLowerCase().replace(/ /g, '');
+      if (track == 'develop') {
         var ans = stats[track + 'Stats']['rankStats'].map(function(x) {
           return x.subTrackName;
         });
         return ans;
+      } else if (track == 'design') {
+        var ans = stats[track + 'Stats']['submissionStats'].map(function(x) {
+          return x.subTrackName;
+        });
+        return ans;
+      }
     }
 
     function getTracks(stats) {
@@ -161,72 +185,6 @@
     function getMockMemberProfile() {
       if (!service.memberProfile) {
         service.memberProfile = {
-          "updatedAt": "2015-07-10T01:40Z",
-          "createdAt": "2001-07-24T16:44Z",
-          "createdBy": null,
-          "updatedBy": null,
-          "firstName": "F_NAME",
-          "lastName": "L_NAME",
-          "otherLangName": "NIAL",
-          "handle": "rakesh",
-          "email": "email@domain.com.z",
-          "description": "abc",
-          "tracks": [
-            "design",
-            "develop",
-            "data science"
-          ],
-          "streetAddr1": "123",
-          "streetAddr2": "456",
-          "city": "hello",
-          "zip": "12345",
-          "stateCode": "null",
-          "homeCountryCode": "840",
-          "competitionCountryCode": "840",
-          "homeCountry": "United States",
-          "competitionCountry": "United States",
-          "photo": {
-            "imageId": 22202176,
-            "photoUrl": "abc"
-          },
-          "registrationTypeId": 1,
-          "state": "California",
-          "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor.",
-          "tags": ["Assembly", "Architecture", "Data Science", "Co-Pilot"],
-          "numWins": 126,
-          "numProjects": 132,
-          "categories": [
-            {
-              "name": "Development",
-              "subcategory": "Assembly",
-              "rank": 23
-            },
-            {
-              "name": "Development",
-              "subcategory": "Architecture",
-              "rank": 144
-            },
-            {
-              "name": "Data Science",
-              "subcategory": false,
-              "rank": 3
-            },
-            {
-              "name": "Co-Pilot Stats",
-              "subcategory": false,
-              "rank": 23
-            }
-          ],
-          "skills": [
-            {
-              "name": "Javascript",
-              "icon": "javascript-logo.png"
-            },
-            {
-              "name": "NPM",
-              "icon": "npm-logo.png"
-            }
-          ],
           "links": [
             {
               "name": "Github",

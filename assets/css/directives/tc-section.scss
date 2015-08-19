@@ -1,0 +1,11 @@
+@import '../partials/combined';
+
+.tc-section {
+  min-height: 100px;
+
+  .section-loading {
+    width: 100%;
+    min-height: 100px;
+    background: $loading no-repeat center center;
+  }
+}

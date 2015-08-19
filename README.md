@@ -25,6 +25,8 @@ Install dependencies by running the following in the root of the project:
 Running `gulp test` will perform a single run of the unit tests with Karma in the command line.
 Running `gulp autotest` will keep the server running and watching files in the command line.
 
+To read about the file and folder structure of tests, read [this section](https://github.com/appirio-tech/topcoder-app#tests)
+
 ### Description of Files and Folders
 
 #### .tmp
@@ -48,7 +50,9 @@ Services live in their own folder. All services are part of the tc.services modu
 This is the optimized code ready for production. You can serve it by running `grunt serve-build`. In here we have minified, concatenated vendor.js and app.js as well as minified and concatenated app.css. Running `grunt build` also creates a templates.js file which stores all our HTML in Angular's $templateCache. This is created in .tmp, injected in the index.html, and concatenated with the rest of the app JavaScript. The last step in creating the build folder is that all of our files are revved and rewritten to have a unique filename, allowing us to put them on our CDN.
 
 #### tests
-The tests folder contains mock data (tests/test-helpers/mock-data.js). It also has a file for integration tests down the road, but this is not currently wired up (server-integration/someDataService.spec.js). To run tests, use the `gulp serve-specs` task. This serves up specs.html, where you can see all the tests passing. It will watch files and reload as you work on code and save. Spec files live alongside the code they are testing. For example, in peer-review you have review-status.controller.js and review-status.spec.js in the same review-status folder. If you want to see an example of tests, use review-status.spec.js as an example of controller tests and services/challenge.service.spec.js as an example of service tests.
+The tests folder contains mock data (tests/test-helpers/mock-data.js). It also has a file for integration tests down the road, but this is not currently wired up (server-integration/someDataService.spec.js). To run tests, use the `gulp serve-specs` task. This serves up specs.html, where you can see all the tests passing. It will watch files and reload as you work on code and save.
+
+Spec files live alongside the code they are testing. For example, in peer-review you have review-status.controller.js and review-status.spec.js in the same review-status folder. If you want to see an example of tests, use review-status.spec.js as an example of controller tests and services/challenge.service.spec.js as an example of service tests.
 
 ## UI-Router and States
 See sample.routes.js and peer-review.routes.js as examples.

@@ -1,6 +1,9 @@
 (function() {
   'use strict';
-  angular.module('tcUIComponents').directive('challengeTile', function() {
+
+  angular.module('tcUIComponents').directive('challengeTile', challengeTile);
+
+  function challengeTile() {
     return {
       restrict: 'E',
       templateUrl: function(elem, attrs) {
@@ -9,14 +12,10 @@
         }
 
         return 'directives/challenge-tiles/challenge-tile.directive.html';
-
-        if (attrs.challenge.challengeType = "SRM") {
-          return 'directives/challenge-tiles/srm-tile.directive.html';
-        }
-
       },
       scope: {
-        challenge: '='
+        challenge: '=',
+        view: '='
       },
       controller: ['$scope', 'CONSTANTS', '$attrs', function($scope, CONSTANTS, $attrs) {
         $scope.DOMAIN = CONSTANTS.domain;
@@ -38,6 +37,7 @@
           challenge.submissionClosed = now > submissionDate ? true : false;
           challenge.registrationTimeLeft = (registrationDate - now)/(24*60*60*1000);
           challenge.submissionTimeLeft = (submissionDate - now)/(24*60*60*1000);
+          challenge.track = challenge.track.trim();
 
           // challenge.phaseMsg = preparePhaseMessage(challenge);
 
@@ -46,5 +46,5 @@
         }
       }]
     };
-  });
+  }
 })();
