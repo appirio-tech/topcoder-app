@@ -38,7 +38,8 @@
     "angular-filter": "~0.5.4",
     "devicon": "*",
     "angular-dropdowns": "1.1.0",
-    "angular-mocks": "1.4.3"
+    "angucomplete-alt": "~1.1.0",
+    "appirio-tech-ng-iso-constants": "git@github.com:appirio-tech/ng-iso-constants#~1.0.0"
   },
   "devDependencies": {
     "bardjs": "~0.1.4",

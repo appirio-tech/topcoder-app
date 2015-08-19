@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('Helpers', Helpers);
 
-  Helpers.$inject = ['$window', '$location'];
+  Helpers.$inject = ['$window', '$location', '$state', '$http', 'ISO3166'];
 
-  function Helpers($window, $location) {
+  function Helpers($window, $location, $state, $http, ISO3166) {
     // TODO: Separate helpers by submodule
 
     var service = {
@@ -16,7 +16,9 @@
       countCompleted: countCompleted,
       getParameterByName: getParameterByName,
       getPageTitle: getPageTitle,
-      isEmail: isEmail
+      isEmail: isEmail,
+      getCountyObjFromIP: getCountyObjFromIP,
+      redirectPostLogin: redirectPostLogin
     };
     return service;
 
@@ -96,70 +98,98 @@
     }
 
     /**
-       * Given a string of the type 'object.property.property', traverse the given context (eg the current $state object) and return the
-       * value found at that path.
-       *
-       * @param objectPath
-       * @param context
-       * @returns {*}
-       */
-      function _getObjectValue(objectPath, context) {
-        var i;
-        var propertyArray = objectPath.split('.');
-        var propertyReference = context;
-        for (i = 0; i < propertyArray.length; i++) {
-          if (angular.isDefined(propertyReference[propertyArray[i]])) {
-            propertyReference = propertyReference[propertyArray[i]];
-          } else {
-            // if the specified property was not found, default to the state's name
-            return undefined;
-          }
+     * Given a string of the type 'object.property.property', traverse the given context (eg the current $state object) and return the
+     * value found at that path.
+     *
+     * @param objectPath
+     * @param context
+     * @returns {*}
+     */
+    function _getObjectValue(objectPath, context) {
+      var i;
+      var propertyArray = objectPath.split('.');
+      var propertyReference = context;
+      for (i = 0; i < propertyArray.length; i++) {
+        if (angular.isDefined(propertyReference[propertyArray[i]])) {
+          propertyReference = propertyReference[propertyArray[i]];
+        } else {
+          // if the specified property was not found, default to the state's name
+          return undefined;
         }
-        return propertyReference;
       }
+      return propertyReference;
+    }
 
-     /**
-       *
-       * @param template
-       * @param context
-       * @returns {*}
-       */
-      function _renderTemplateStr(template, context) {
-        var str2BCompiled = template.match(/{{[.\w]+}}/g);
-        var compiledMap = {};
-        if (str2BCompiled) {
-          str2BCompiled.forEach(function(str) {
-            var expr = str.replace('{{', '').replace('}}', '');
-            compiledMap[str] = _getObjectValue(expr.trim(), context);
-          });
-          // now loop over all keys and replace with compiled value
-          Object.keys(compiledMap).forEach(function(k) {
-            template = template.replace(k, compiledMap[k])
-          });
-        }
-        return template;
+    /**
+     *
+     * @param template
+     * @param context
+     * @returns {*}
+     */
+    function _renderTemplateStr(template, context) {
+      var str2BCompiled = template.match(/{{[.\w]+}}/g);
+      var compiledMap = {};
+      if (str2BCompiled) {
+        str2BCompiled.forEach(function(str) {
+          var expr = str.replace('{{', '').replace('}}', '');
+          compiledMap[str] = _getObjectValue(expr.trim(), context);
+        });
+        // now loop over all keys and replace with compiled value
+        Object.keys(compiledMap).forEach(function(k) {
+          template = template.replace(k, compiledMap[k])
+        });
       }
+      return template;
+    }
 
 
     function getPageTitle(state, $currentState) {
       var title = '';
-        if (state.data && state.data.title) {
-          title = state.data.title;
-          if (title.indexOf('{{') > -1) {
-            // dynamic data
-            var resolveData = $currentState.locals.resolve.$$values;
-            title = _renderTemplateStr(title, resolveData);
-          }
+      if (state.data && state.data.title) {
+        title = state.data.title;
+        if (title.indexOf('{{') > -1) {
+          // dynamic data
+          var resolveData = $currentState.locals.resolve.$$values;
+          title = _renderTemplateStr(title, resolveData);
         }
-        if (title) {
-          title += ' | '
-        }
-        return title + 'TopCoder';
+      }
+      if (title) {
+        title += ' | '
+      }
+      return title + 'TopCoder';
     }
 
     function isEmail(value) {
       var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
       return re.test(value);
+    }
+
+    function getCountyObjFromIP() {
+      return $http.get("http://ipinfo.io")
+        .then(function(data) {
+          if (data.data && data.data.country) {
+            return ISO3166.getCountryObjFromAlpha2(data.data.country);
+          }
+          return null;
+        }, function(err) {
+          // unable to lookup ip address
+          return null;
+        });
+    }
+
+    function redirectPostLogin(nextParam) {
+      // make sure domain is topcoder | dev | qa
+      nextParam = decodeURIComponent(nextParam);
+      var re1 = /^(https?:\/\/)*(\w+\.)*topcoder(-\w+)*\.com/;
+      var re2 = /^\/\w+/;
+
+      if (re1.test(nextParam)) {
+        $window.location.href = nextParam;
+      } else if (re2.test(nextParam)) {
+        $location.url(nextParam);
+      } else {
+        $state.go('dashboard');
+      }
     }
   }
 })();

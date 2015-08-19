@@ -47,12 +47,10 @@ describe('Challenges Controller', function() {
     sinon.stub(challengeService, 'getChallenges', function(data) {
       var deferred = $q.defer();
       var resp = null;
-      console.log(data);
       if (data.filter.indexOf('status=Active') != -1) {
         resp = JSON.parse(JSON.stringify(challenges));
       } else {
         resp = JSON.parse(JSON.stringify(challenges.slice(1)));
-        console.log(resp);
       }
       resp.pagination = {
         total: resp.length,
@@ -113,7 +111,6 @@ describe('Challenges Controller', function() {
       $rootScope.$apply();
       expect(myChallenges.myChallenges).to.exist;
       // should have one less challenge for past filter as per mocked method
-      console.log('verfiig');
       expect(myChallenges.myChallenges.length).to.equal(challenges.length - 1);
     });
   });
