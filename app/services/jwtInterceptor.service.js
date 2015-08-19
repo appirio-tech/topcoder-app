@@ -28,7 +28,7 @@
       for (var i = 0; i < haveItAddItEndpoints.length; i++) {
         var obj = haveItAddItEndpoints[i];
         var re = new RegExp(obj.url);
-        if ((config.method.toUpperCase() === "OPTIONS" || config.method.toUpperCase() === obj.method) && re.test(config.url)) {
+        if (config.method.toUpperCase() === obj.method && re.test(config.url)) {
           if (TcAuthService.isAuthenticated()) {
             var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token();
             // FIXME looks like the services still need v2 token
