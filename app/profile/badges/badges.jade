@@ -1,0 +1,12 @@
+aside.badges
+  header.head
+    h4 Badges
+  .badgeGroups
+    .groupBadge(ng-repeat='ag in vm.achievementGroups', ng-class='ag.groupClass', ng-show='ag.specificAchievements[0].active')
+      span.subBadge.hpLogo(ng-if="ag.groupClass.substring(0 , 9) === 'HP-Badges'")
+      span.subBadge(ng-repeat='achievement in ag.specificAchievements', ng-class="(achievement.isStudio ? 'Studio-' : '') + achievement.specificClass + ' ' + ( achievement.active | iif : 'selected' : '' )", badge-tooltip, badge='achievement')
+  // /.badge-badges
+  .footer-badges
+    .singleBadge(ng-class=" achievement.groupClass  + ' ' + (achievement.active | iif : 'selected' : '' ) ", ng-repeat='achievement in vm.singleAchievements', ng-show='achievement.active', badge-tooltip, badge='achievement')
+    .clear-float
+  // /.footer-badges
