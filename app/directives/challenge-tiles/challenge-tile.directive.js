@@ -19,6 +19,7 @@
       },
       controller: ['$scope', 'CONSTANTS', '$attrs', function($scope, CONSTANTS, $attrs) {
         $scope.DOMAIN = CONSTANTS.domain;
+        console.log('tile controller');
 
         activate();
 
@@ -37,7 +38,8 @@
           challenge.submissionClosed = now > submissionDate ? true : false;
           challenge.registrationTimeLeft = (registrationDate - now)/(24*60*60*1000);
           challenge.submissionTimeLeft = (submissionDate - now)/(24*60*60*1000);
-          challenge.track = challenge.track.trim();
+          // temporary...right now many challenges have a `null` track
+          challenge.track = challenge.track ? challenge.track.trim() : 'DEVELOP';
 
           // challenge.phaseMsg = preparePhaseMessage(challenge);
 

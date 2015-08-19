@@ -1,3 +1,4 @@
+var sub;
 (function () {
 
   angular
@@ -7,7 +8,8 @@
   ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window'];
 
   function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window) {
-    var vm = this;
+    var vm = sub = this;
+    vm.scope = $scope;
     vm.subTrack = decodeURIComponent($stateParams.subTrack || '') || '';
     vm.track = $stateParams.track;
     vm.viewing = 'challenges';
