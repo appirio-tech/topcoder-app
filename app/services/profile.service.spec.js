@@ -56,7 +56,7 @@ describe('Profile Service', function() {
 
     it('should return ranks', function() {
       var ranks = service.getRanks(mockStats);
-      expect(ranks.length).to.be.equal(6);
+      expect(ranks.length).to.be.equal(7);
     });
 
     it('should return subtrack stats', function() {

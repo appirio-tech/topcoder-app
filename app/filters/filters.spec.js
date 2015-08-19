@@ -20,6 +20,7 @@ describe('filters', function() {
     it('should handle strings', function() {
       expect(trackFilter('DATA_SCIENCE')).to.equal('Data Science');
       expect(trackFilter('DEVELOP')).to.equal('Develop');
+      expect(trackFilter('FIRST_2_FINISH')).to.equal('First2Finish');
     });
 
     it('should handle arrays', function() {
