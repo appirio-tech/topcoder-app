@@ -53,3 +53,11 @@ hr {
   border: 1px solid #dddddd;
   margin-bottom: 15px;
 }
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+  .badges {
+    max-height: 350px;
+    overflow: auto;
+    margin-top: 10px;
+  }
+}

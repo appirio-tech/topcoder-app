@@ -19,6 +19,7 @@
     'ngNotificationsBar',
     'ngSanitize',
     'ngDropdowns',
+    'ngDialog',
     'xml',
     'angular.filter',
     'CONSTANTS'
