@@ -53,15 +53,11 @@
     }
 
     function getNumProjects(stats) {
-      return stats.DEVELOP.challenges +
-             stats.DESIGN.challenges +
-             stats.DATA_SCIENCE.challenges;
+      return stats.challenges;
     }
 
     function getNumWins(stats) {
-      return stats.DEVELOP.wins +
-             stats.DESIGN.wins +
-             stats.DATA_SCIENCE.wins;
+      return stats.wins;
     }
 
     function getRanks(stats) {

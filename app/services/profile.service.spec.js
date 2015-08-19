@@ -46,32 +46,32 @@ describe('Profile Service', function() {
 
     it('should accurately compute numProjects', function() {
       var num = service.getNumProjects(mockStats);
-      expect(num).to.be.equal(559);
+      expect(num).to.be.equal(411);
     });
 
     it('should accurately computer numWins', function() {
       var num = service.getNumWins(mockStats);
-      expect(num).to.be.equal(88);
+      expect(num).to.be.equal(166);
     });
 
     it('should return ranks', function() {
       var ranks = service.getRanks(mockStats);
-      expect(ranks.length).to.be.equal(4);
+      expect(ranks.length).to.be.equal(6);
     });
 
     it('should return subtrack stats', function() {
       var subtrackStats = service.getChallengeTypeStats(mockStats, 'develop', 'design');
-      expect(subtrackStats.rating).to.be.equal(1616);
+      expect(subtrackStats.rank.rating).to.be.equal(2125);
     });
 
     it('should return a user\'s tracks', function() {
       var tracks = service.getTracks(mockStats);
-      expect(tracks.length).to.be.equal(2);
+      expect(tracks.length).to.be.equal(3);
     });
 
     it('should return subtracks', function() {
       var subtracks = service.getSubTracks(mockStats, 'develop');
-      expect(subtracks.length).to.be.equal(3);
+      expect(subtracks.length).to.be.equal(11);
     });
   });
 
