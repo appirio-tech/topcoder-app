@@ -8,7 +8,7 @@
       a(href="http://forums.{{DOMAIN}}/?module=History&userID={{vm.profile.userId}}")
         i.fa.fa-comment-o
 
-    h3.tracks {{profile.tracks | displayTracks | join: ', '}}
+    h3.tracks {{profile.tracks | track | join: ', '}}
 
     h3.location {{profile.homeCountry}}
 

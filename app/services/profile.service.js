@@ -74,7 +74,7 @@
           return {
             'track': 'Develop',
             'subTrack': subTrack.name,
-            'rank': subTrack.rank.overallRank
+            'rank': subTrack.rank
           };
         });
       }
@@ -85,11 +85,11 @@
             'track': 'Design',
             'subTrack': subTrack.name,
             'rank': false,
-            'wins': subTrack.submissions.wins
+            'wins': subTrack.wins
           };
         });
       }
-      if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.srm) {
+      if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.srm && stats.DATA_SCIENCE.srm.rank) {
         var srmStats = stats.DATA_SCIENCE.srm;
         srm = {
           'track': 'Data Science',
@@ -97,7 +97,7 @@
           'rank': srmStats.rank.rank
         };
       }
-      if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.marathonMatch) {
+      if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.marathonMatch && stats.DATA_SCIENCE.marathonMatch.rank) {
         var marathonStats = stats.DATA_SCIENCE.marathonMatch;
         marathon = {
           'track': 'Data Science',
@@ -113,8 +113,8 @@
         .concat(srm)
         .concat(marathon)
         .concat(stats.copilotStats)
-        .filter(function(x) {
-          return x && (x.rank || x.wins || x.fulfillment);
+        .filter(function(subTrack) {
+          return subTrack && (subTrack.rank || subTrack.wins || subTrack.fulfillment);
         });
       return ans;
     }
@@ -161,8 +161,6 @@
     }
 
     function getTracks(stats) {
-      console.log('STATS!');
-      console.log(stats);
       var tracks = [
         {
           'name': 'DEVELOP',
