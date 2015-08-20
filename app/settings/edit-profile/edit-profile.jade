@@ -13,20 +13,27 @@
 
         input(name="location", type="text", value="{{vm.userData.location}}", ng-model="vm.userData.location", maxlength="50")
 
-      .field-section
+      .field-section.about-me
         h4.field-title About Me
 
         input(name="aboutMe", type="text", value="{{vm.userData.aboutMe}}", ng-model="vm.userData.aboutMe", maxlength="50")
 
         span {{vm.userData.aboutMe.length}}/50
 
-      .field-section
+      .field-section.work
         h4.field-title What type of work are you looking for?
+
+        .select-tracks
+          .track-button(ng-class="{'selected-track': vm.userData.tracks.design}", ng-click="vm.toggleTrack('design')") Design
+
+          .track-button(ng-class="{'selected-track': vm.userData.tracks.development}", ng-click="vm.toggleTrack('development')") Development
+
+          .track-button(ng-class="{'selected-track': vm.userData.tracks.dataScience}", ng-click="vm.toggleTrack('dataScience')") Data Science
+
+      button(type="submit") Save
 
       .field-section
         h4.field-title Add Your Skills
 
       .field-section
         h4.field-title Links to Work
-
-      button(type="submit") Save

@@ -33,10 +33,10 @@ body {
 }
 
 .ui-refresh {
-  background-color: #f1f2f2;
+  background-color: $ui-page-gray;
 
   & .view-container {
-    background-color: #f1f2f2;
+    background-color: $ui-page-gray;
   }
 }
 

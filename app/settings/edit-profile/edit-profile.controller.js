@@ -7,16 +7,24 @@
 
   function EditProfileController(userData) {
     var vm = this;
-    vm.updatePassword = updatePassword;
-    vm.userData = userData;
+    vm.userData      = userData;
+
+    vm.updateProfile = updateProfile;
+    vm.toggleTrack   = toggleTrack;
 
     activate();
 
     function activate() {
     }
 
-    function updatePassword() {
+    function updateProfile() {
 
+    }
+
+    function toggleTrack(track) {
+      console.log('here');
+      console.log(vm.userData.tracks[track]);
+      vm.userData.tracks[track] = !vm.userData.tracks[track];
     }
   }
 })();

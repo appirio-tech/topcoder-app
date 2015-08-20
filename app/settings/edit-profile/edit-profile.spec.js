@@ -13,7 +13,7 @@ describe('Edit Profile Controller', function() {
       tracks: {
         'development': true,
         'design': false,
-        'data science': true
+        'dataScience': true
       },
       skills: ['nunchuck skills', 'bow hunting skills', 'computer hacking skills'],
       externalLinks: ['github', 'stack overflow']
@@ -51,9 +51,9 @@ describe('Edit Profile Controller', function() {
     });
 
     it('should have the tracks that the user is interested in', function() {
-      expect(user.tracks).to.have.all.keys(['development', 'design', 'data science']);
+      expect(user.tracks).to.have.all.keys(['development', 'design', 'dataScience']);
       expect(user.tracks['development']).to.be.true;
-      expect(user.tracks['data science']).to.be.true;
+      expect(user.tracks['dataScience']).to.be.true;
       expect(user.tracks['design']).to.be.false;
     });
 
@@ -67,21 +67,10 @@ describe('Edit Profile Controller', function() {
       $rootScope.$apply();
     });
 
-    it('should have an updatePassword method', function() {
-      expect(vm.updatePassword).to.be.a('function');
+    it('should have an updateProfile method', function() {
+      expect(vm.updateProfile).to.be.a('function');
     });
 
-    xit('should update a user\'s password if the current password was entered correctly', function() {
-      vm.submitNewPassword();
-    });
-
-    xit('should return an error if the user entered an incorrect current password', function() {
-
-    });
-
-    xit('should return an error if there was a server error', function() {
-
-    });
   });
 
 });
