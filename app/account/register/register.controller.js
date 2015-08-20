@@ -91,7 +91,7 @@
       var body = {
         param: userInfo,
         options: {
-          afterActivationURL: 'app.topcoder-dev.com/my-dashboard'
+          afterActivationURL: CONSTANTS.MAIN_URL + '/my-dashboard/'
         }
       }
 
