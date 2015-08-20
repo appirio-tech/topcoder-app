@@ -46,5 +46,8 @@
     "bardjs": "~0.1.4",
     "jquery": "~2.1.4",
     "angular-mocks": "1.4.x"
+  },
+  "resolutions": {
+    "angular": "1.4.4"
   }
 }
