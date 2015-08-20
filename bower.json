@@ -48,6 +48,7 @@
     "angular-mocks": "1.4.x"
   },
   "resolutions": {
-    "angular": "1.4.4"
+    "angular": "1.4.4",
+    "angular-sanitize": "1.4.x"
   }
 }
