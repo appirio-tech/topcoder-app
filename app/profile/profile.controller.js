@@ -41,7 +41,7 @@
       vm.status.stats = CONSTANTS.STATE_ERROR;
     });
 
-    vm.pastChallengesPromise = ChallengeService.getChallenges({filter: 'userId=' + profile.userId+"&status=completed"})
+    vm.pastChallengesPromise = ChallengeService.getUserChallenges(profile.userId, {orderBy: 'submissionenddate desc', status: 'complete'})
     .then(function(data) {
       vm.status.pastChallenges = CONSTANTS.STATE_READY;
       vm.pastChallenges = data;

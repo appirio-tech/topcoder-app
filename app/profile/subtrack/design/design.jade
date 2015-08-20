@@ -26,7 +26,6 @@
     .challenges
       .challenge.tile(ng-repeat="challenge in vm.pastChallenges = (profileVm.pastChallenges)")
         challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
-      //.challenge.tile(ng-repeat="challenge in vm.pastChallenges = (profileVm.pastChallenges | filter: {'track': vm.track, 'subTrack': vm.subTrack})")
 
       .div(ng-show="!vm.pastChallenges || vm.pastChallenges.length == 0")
         | No past challenges available for this user
