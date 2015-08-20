@@ -1,9 +1,3 @@
-/**
- * This code is copyright (c) 2014 Topcoder Corporation
- * author: TCS-ASSEMBLER
- * version 1.0
- */
-
 (function () {
   'use strict';
 
@@ -21,7 +15,6 @@
     badgeCtrl.dealWithBadgeData(userId, $scope, ProfileService);
 
     UserService.getUserProfile(handle).then(function(resp) {
-      console.log(resp);
       $scope.coder = resp;
     });
 
@@ -64,14 +57,6 @@
             if(achievement.description.indexOf('Studio ') === 0) {
               value.isStudio = true;
             }
-            //get active badge's count if available.
-            // if(userId && $.inArray(value.id, excluded_badgesID) <= -1 ){
-            //   ProfileService.getAchievementCurrent(handle).then(function (data){
-            //     badgeCtrl.populateData(value, data.count);
-            //   }, function errorCallback(){
-            //     // do nothing.
-            //   });
-            // }
           }
         });
       }
