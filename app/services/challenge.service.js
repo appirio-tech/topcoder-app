@@ -22,7 +22,7 @@
     return service;
 
     function getChallenges(params) {
-       return api.all('challenges').getList(params);
+      return api.all('challenges').getList(params);
     }
 
     function getUserChallenges(userId, params) {
