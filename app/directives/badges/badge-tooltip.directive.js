@@ -8,7 +8,6 @@
    * Add a badge tooltip.
    */
   function badgeTooltip() {
-    console.log('badgeTooltip');
     return {
       restrict: 'A',
       templateUrl: 'directives/badges/badge-tooltip.html',

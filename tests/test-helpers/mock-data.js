@@ -14,7 +14,8 @@ var mockData = (function() {
     getMockMarathons: getMockMarathons,
     getMockProfile: getMockProfile,
     getMockStats: getMockStats,
-    getMockSkills: getMockSkills
+    getMockSkills: getMockSkills,
+    getMockBadge: getMockBadge
   };
 
   function getMockStates() {
@@ -1492,6 +1493,14 @@ var mockData = (function() {
         ]
       }
     };
+  }
+
+  function getMockBadge() {
+    return {
+      name: "Mock achievement",
+      date: "Sept 10, 2010",
+      currentlyEarned: 2
+    }
   }
 
 
