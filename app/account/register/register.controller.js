@@ -88,7 +88,14 @@
         }
       }
 
-      TcAuthService.register({param: userInfo})
+      var body = {
+        param: userInfo,
+        options: {
+          afterActivationURL: 'app.topcoder-dev.com/my-dashboard'
+        }
+      }
+
+      TcAuthService.register(body)
       .then(function(data) {
         $log.debug('registered successfully');
 
