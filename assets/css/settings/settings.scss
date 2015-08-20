@@ -61,43 +61,6 @@
     border-width: 1px 0 0 0;
   }
 
-  // Tab content
-  .edit-profile-container, .account-info-container {
-    @media only screen and (min-width: 550px) {
-      padding-left: 100px;
-    }
-
-    .tab-title {
-      margin-bottom: 35px;
-      font-size: 32px;
-      @include source-sans-light;
-      color: $ui-light-gray;
-      @media only screen and (min-width: 550px) {
-        margin-top: 50px;
-      }
-    }
-
-    .fields {
-      @media only screen and (min-width: 550px) {
-        margin-left: 3px;
-      }
-    }
-
-    .field-section {
-      margin-bottom: 40px;
-
-      h4 {
-        margin-bottom: 10px;
-        font-size: 18px;
-        color: $ui-dark-gray;
-      }
-
-      p:not(.form-error) {
-        font-size: 14px;
-        color: $ui-light-gray;
-      }
-    }
-  }
 
   // Common element stylings
   button {
@@ -108,5 +71,43 @@
 
   input:not([type="checkbox"]) {
     @include ui-form-field;
+  }
+}
+
+// Tab content
+.edit-profile-container, .account-info-container {
+  @media only screen and (min-width: 550px) {
+    padding-left: 100px;
+  }
+
+  .tab-title {
+    margin-bottom: 35px;
+    font-size: 32px;
+    @include source-sans-light;
+    color: $ui-light-gray;
+    @media only screen and (min-width: 550px) {
+      margin-top: 50px;
+    }
+  }
+
+  .fields {
+    @media only screen and (min-width: 550px) {
+      margin-left: 3px;
+    }
+  }
+
+  .field-section {
+    margin-bottom: 40px;
+
+    h4 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: $ui-dark-gray;
+    }
+
+    p:not(.form-error) {
+      font-size: 14px;
+      color: $ui-light-gray;
+    }
   }
 }

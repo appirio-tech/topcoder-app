@@ -19,11 +19,76 @@
     }
   }
 
-  input[name="aboutMe"] {
-    margin-right: 10px;
+  .about-me {
+
+    input[name="aboutMe"] {
+      margin-bottom: 5px;
+
+      @media only screen and (min-width: 550px) {
+        margin-right: 10px;
+      }
+    }
+
+    span {
+      max-width: 300px;
+      display: block;
+      text-align: right;
+      margin-right: 5px;
+
+      @media only screen and (min-width: 550px) {
+        display: inline;
+        text-align: left;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .work h4 {
+    margin-bottom: 20px;
+  }
+
+  .select-tracks {
+    display: flex;
+    flex-direction: column;
+
+    @media only screen and (min-width: 960px) {
+      flex-direction: row;
+    }
+
+    .track-button {
+      width: 255px;
+      height: 50px;
+      line-height: 50px;
+      margin-bottom: 10px;
+      @include ui-track-button;
+
+      @media only screen and (min-width: 960px) {
+        margin-bottom: 0;
+        margin-right: 15px;
+      }
+    }
+
+    .selected-track {
+      position: relative;
+      @include ui-track-button-selected;
+
+      &:before {
+        width: 25px;
+        font-size: 25px;
+        font-family: 'FontAwesome';
+        content: "\f05d";
+        color: $ui-page-gray;
+        position: absolute;
+        top: 0;
+        left: 18px;
+      }
+    }
   }
 
   button {
+    width: 200px;
+    font-size: 18px;
+    margin-bottom: 40px;
     @include ui-enabled-button;
   }
 }
