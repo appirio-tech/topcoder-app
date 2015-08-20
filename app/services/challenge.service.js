@@ -12,6 +12,7 @@
 
     var service = {
       getChallenges: getChallenges,
+      getUserChallenges: getUserChallenges,
       getSpotlightChallenges: getSpotlightChallenges,
       getiOSChallenges: getiOSChallenges,
       getMyMarathonMatches: _getMyMarathonMatches,
@@ -22,6 +23,10 @@
 
     function getChallenges(params) {
       return api.all('challenges').getList(params);
+    }
+
+    function getUserChallenges(userId, params) {
+       return api.one('members', userId).all('challenges').getList(params);
     }
 
     function getSpotlightChallenges() {

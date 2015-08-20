@@ -20,7 +20,7 @@ describe('Profile Controller', function() {
 
     // mock challenges
     $httpBackend
-      .when('GET', new RegExp(apiUrl + '/challenges/.*'))
+      .when('GET', new RegExp(apiUrl + '/members.*/challenges/.*'))
       .respond(200, {result: {content: []}});
     // mock stats
     $httpBackend
