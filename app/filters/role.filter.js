@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').filter('displayTracks', DisplayTracks);
+  angular.module('topcoder').filter('role', RoleFilter);
 
-  function DisplayTracks() {
+  function RoleFilter() {
     var map = {
       'DESIGN' : 'Designer',
       'DEVELOP': 'Developer',

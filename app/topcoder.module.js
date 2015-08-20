@@ -11,6 +11,7 @@
     'tc.myChallenges',
     'tc.sample',
     'tc.profile',
+    'tc.settings',
     'ui.router',
     'blocks.logger',
     'blocks.exception',
@@ -22,7 +23,8 @@
     'ngDropdowns',
     'xml',
     'angular.filter',
-    'CONSTANTS'
+    'CONSTANTS',
+    'dcbImgFallback'
   ];
 
   angular

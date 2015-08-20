@@ -102,3 +102,52 @@
 @mixin center-aligned-text {
   text-align : center;
 }
+
+// UI REFRESH STYLES
+@mixin ui-submit-button {
+  width: 300px;
+  height: 50px;
+  margin-top: 20px;
+  background-color: #94D7ED;
+  color: $white;
+  text-transform: uppercase;
+  border: 0;
+  border-radius: 8px;
+  font-size: 21px;
+  cursor: default;
+}
+
+@mixin ui-h1 {
+  @include source-sans-light;
+  font-size: 46px;
+}
+
+@mixin ui-form-field {
+  height: 40px;
+  width: 300px;
+  padding: 0;
+  padding-left: 15px;
+  border: 0;
+  @include source-sans;
+  font-size: 16px;
+  color: #231F20;
+}
+
+@mixin ui-form-placeholder {
+  ::-webkit-input-placeholder {
+    color: #231F20;
+  }
+
+  ::-moz-placeholder {
+    color: #231F20;
+  }
+
+  :-ms-input-placeholder {
+    color: #231F20;
+  }
+}
+
+@mixin ui-enabled-button {
+  background-color: $ui-enabled-button-blue;
+  cursor: pointer;
+}

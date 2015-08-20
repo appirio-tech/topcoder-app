@@ -1,8 +1,7 @@
 (function () {
+  'use strict';
 
-  angular
-    .module('tc.profile')
-    .controller('ProfileCtrl', ProfileCtrl);
+  angular.module('tc.profile').controller('ProfileCtrl', ProfileCtrl);
 
   ProfileCtrl.$inject = ['$scope', 'CONSTANTS', '$log',
     'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService',
@@ -66,7 +65,11 @@
       } else {
         vm.showEditProfileLink = false;
       }
-      vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
+      if (profile.createdAt) {
+        vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
+      } else {
+        vm.tenure = false;
+      }
 
     }
   }
