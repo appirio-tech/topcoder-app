@@ -9,13 +9,18 @@
     var api = ApiService.restangularV3;
 
     var service = {
-      getSRMs: getSRMs
+      getSRMs: getSRMs,
+      getSRMResults: getSRMResults
     };
 
     return service;
 
     function getSRMs(params) {
       return api.all('srms').getList(params);
+    }
+
+    function getSRMResults(params) {
+      return api.all('srmResults').getList(params);
     }
   }
 })();

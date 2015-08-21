@@ -15,7 +15,9 @@ var mockData = (function() {
     getMockMarathons: getMockMarathons,
     getMockProfile: getMockProfile,
     getMockStats: getMockStats,
-    getMockSkills: getMockSkills
+    getMockSkills: getMockSkills,
+    getMockSRMs: getMockSRMs,
+    getMockSRMResults: getMockSRMResults
   };
 
   function getMockStates() {
@@ -1813,6 +1815,100 @@ var mockData = (function() {
         ]
       }
     };
+  }
+
+  function getMockSRMs() {
+    return [
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "id": 4460,
+        "name": "Holder",
+        "status": "FUTURE",
+        "type": "SINGLE_ROUND_MATCH",
+        "startDate": "8/30/15 12:00 AM",
+        "endDate": "8/30/15 12:00 AM"
+      },
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "id": 4465,
+        "name": "Single Round Match 135",
+        "status": "FUTURE",
+        "type": "SINGLE_ROUND_MATCH",
+        "startDate": "8/30/15 12:00 AM",
+        "endDate": "8/30/15 12:00 AM"
+      },
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "id": 14623,
+        "name": "Single Round Match 636",
+        "status": "FUTURE",
+        "type": "SINGLE_ROUND_MATCH",
+        "startDate": "9/28/15 12:00 AM",
+        "endDate": "9/28/15 12:00 AM"
+      }
+    ];
+  }
+
+  function getMockSRMResults() {
+    return [
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "userId": 22688955,
+        "contestId": 4460,
+        "oldRating": 0,
+        "newRating": 637,
+        "rated": 1,
+        "roomPlacement": 19,
+        "division": 2,
+        "finalPoints": -25.0,
+        "divisionPlacement": 633,
+        "ovarallRank": null
+      },
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "userId": 22688955,
+        "contestId": 4465,
+        "oldRating": 637,
+        "newRating": 637,
+        "rated": 0,
+        "roomPlacement": 12,
+        "division": 2,
+        "finalPoints": 0.0,
+        "divisionPlacement": 270,
+        "ovarallRank": null
+      },
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "userId": 22688955,
+        "contestId": 14623,
+        "oldRating": 637,
+        "newRating": 635,
+        "rated": 1,
+        "roomPlacement": 5,
+        "division": 2,
+        "finalPoints": 127.32,
+        "divisionPlacement": 463,
+        "ovarallRank": null
+      }
+    ];
   }
 
 
