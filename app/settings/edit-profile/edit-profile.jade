@@ -4,31 +4,34 @@
   form(name="vm.editProfile", ng-submit="vm.editProfile.$valid && vm.updateProfile()")
     .fields
       .field-section.edit-image
-        img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="undefined")
+        img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photo.photoUrl}}")
 
         a(href) edit image
 
       .field-section
         h4.field-title Location
 
-        input(name="location", type="text", value="{{vm.userData.location}}", ng-model="vm.userData.location", maxlength="50")
+        input(name="location", type="text", value="{{vm.userData.competitionCountry}}", ng-model="vm.userData.competitionCountry", maxlength="50", required)
 
-      .field-section.about-me
+        .form-errors
+          .form-error(ng-show="vm.editProfile.location.$error.required") You must enter a location.
+
+      .field-section.description
         h4.field-title About Me
 
-        input(name="aboutMe", type="text", value="{{vm.userData.aboutMe}}", ng-model="vm.userData.aboutMe", maxlength="50")
+        input(name="description", type="text", value="{{vm.userData.description}}", ng-model="vm.userData.description", maxlength="50")
 
-        span {{vm.userData.aboutMe.length}}/50
+        span {{vm.userData.description.length || 0}}/50
 
       .field-section.work
         h4.field-title What type of work are you looking for?
 
         .select-tracks
-          .track-button(ng-class="{'selected-track': vm.userData.tracks.design}", ng-click="vm.toggleTrack('design')") Design
+          .track-button(ng-class="{'selected-track': vm.tracks.design}", ng-click="vm.toggleTrack('design')") Design
 
-          .track-button(ng-class="{'selected-track': vm.userData.tracks.development}", ng-click="vm.toggleTrack('development')") Development
+          .track-button(ng-class="{'selected-track': vm.tracks.development}", ng-click="vm.toggleTrack('development')") Development
 
-          .track-button(ng-class="{'selected-track': vm.userData.tracks.dataScience}", ng-click="vm.toggleTrack('dataScience')") Data Science
+          .track-button(ng-class="{'selected-track': vm.tracks.dataScience}", ng-click="vm.toggleTrack('dataScience')") Data Science
 
       button(type="submit") Save
 
