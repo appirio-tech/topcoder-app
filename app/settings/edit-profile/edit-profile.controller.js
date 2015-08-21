@@ -14,8 +14,6 @@
       userData.tracks = [];
     }
 
-    console.log('userData: ', userData.plain());
-
     activate();
 
     function activate() {
@@ -32,9 +30,6 @@
       }, []);
 
       var body = vm.userData.plain();
-
-      $log.info('Before saving: ');
-      $log.info(body);
 
       ProfileService.updateUserProfile(body)
       .then(function(data) {

@@ -30,7 +30,6 @@
         var re = new RegExp(obj.url);
         if (config.method.toUpperCase() === obj.method && re.test(config.url)) {
           if (TcAuthService.isAuthenticated()) {
-            console.log
             var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token();
             if (token && !jwtHelper.isTokenExpired(token)) {
               return token;
@@ -54,7 +53,6 @@
         return idToken;
       } else {
         return AuthTokenService.refreshV3Token(idToken).then(function(token) {
-            console.log("TOKEN: ", token);
             idToken = token;
             // v2 token doesn't expire
             AuthTokenService.setV3Token(idToken);
