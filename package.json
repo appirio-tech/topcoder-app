@@ -69,6 +69,7 @@
     "mocha": "^2.2.5",
     "mocha-clean": "^0.4.0",
     "phantomjs": "^1.9.17",
+    "protractor-html-screenshot-reporter": "0.0.21",
     "sinon": "^1.15.3",
     "sinon-chai": "^2.8.0",
     "wiredep": "^2.2.2",
