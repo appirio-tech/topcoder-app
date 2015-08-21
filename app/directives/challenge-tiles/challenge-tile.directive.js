@@ -38,7 +38,11 @@
           challenge.registrationTimeLeft = (registrationDate - now)/(24*60*60*1000);
           challenge.submissionTimeLeft = (submissionDate - now)/(24*60*60*1000);
           // temporary...right now many challenges have a `null` track
-          challenge.track = challenge.track ? challenge.track.trim() : 'DEVELOP';
+          challenge.track = challenge.track ? challenge.track.trim() : 'DESIGN';
+          if (challenge.track == 'DESIGN' && challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
+            console.log('FLONKY');
+            challenge.thumbnailId = challenge.userDetails.submissions[0].id;
+          }
 
           // challenge.phaseMsg = preparePhaseMessage(challenge);
 

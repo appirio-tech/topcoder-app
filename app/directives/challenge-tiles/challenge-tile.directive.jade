@@ -10,6 +10,9 @@
       a(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
         i.fa.fa-comment
 
+    div.thumbnail(ng-if="challenge.track === 'DESIGN'")
+      img(ng-src="http://studio.topcoder.com/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full")
+
     p.roles Roles: {{challenge.userDetails.roles | listRoles}}
 
     .challenge-status
