@@ -31,10 +31,10 @@
         return result;
       }, []);
 
-      var body = vm.userData;
+      var body = vm.userData.plain();
 
       $log.info('Before saving: ');
-      $log.info(body.plain());
+      $log.info(body);
 
       ProfileService.updateUserProfile(body)
       .then(function(data) {
@@ -57,7 +57,7 @@
 
       vm.tracks = {
         design: _.contains(userData.tracks, 'design') || false,
-        development: _.contains(userData.tracks, 'development') || false,
+        development: _.contains(userData.tracks, 'develop') || false,
         data_science: _.contains(userData.tracks, 'data_science') || false,
       };
     }
