@@ -10,7 +10,6 @@
     var v3TokenKey = 'appiriojwt';
 
     var service = {
-      setV2Token: setV2Token,
       setV3Token: setV3Token,
       getV2Token: getV2Token,
       getV3Token: getV3Token,
@@ -23,10 +22,6 @@
     return service;
 
     ///////////////
-
-    function setV2Token(token) {
-      $window.document.cookie = v2TokenKey + '=' + token + '; path=/; domain=.' + CONSTANTS.domain + '; expires=' + new Date(new Date().getTime() + 12096e5);
-    }
 
     function setV3Token(token) {
       store.set(v3TokenKey, token);
@@ -52,23 +47,39 @@
     }
 
     function refreshV3Token(token) {
-      // TODO
-      var newToken = '';
-      return newToken
+      // This is a promise of a JWT id_token
+      return $http({
+        url: CONSTANTS.API_URL + '/authorizations/1',
+        method: 'GET',
+        headers: {
+          'Authorization': "Bearer " + token
+        },
+        data: {}
+      }).then(function(response) {
+        var appiriojwt = res.data.result.content.token;
+        setV3Token(appiriojwt);
+        return appiriojwt;
+      }).catch(function(resp) {
+        $log.error(resp);
+        removeTokens();
+      });
     }
 
     function exchangeToken(refreshToken, idToken) {
-      return $http.post(
-        CONSTANTS.API_URL + '/authorizations', {
+      var req = {
+        method: "POST",
+        url: CONSTANTS.API_URL + '/authorizations',
+        data: {
           param: {
             refreshToken: refreshToken,
             externalToken: idToken
           }
         },
-        {
-          withCredentials: true
-        })
-      .then(
+        skipAuthorization: true,
+        withCredentials: true,
+        headers: {}
+      };
+      return $http(req).then(
         function(res) {
           var appiriojwt = res.data.result.content.token;
           setV3Token(appiriojwt);

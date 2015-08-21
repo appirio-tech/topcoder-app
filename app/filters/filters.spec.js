@@ -2,17 +2,29 @@ describe('filters', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, 'displayTracksFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter');
+    bard.inject(this, 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter');
   });
 
-  describe('tracks filter', function() {
+  describe('role filter', function() {
     it('should handle strings', function() {
-      expect(displayTracksFilter('DATA_SCIENCE')).to.equal('Data Scientist');
-      expect(displayTracksFilter('DEVELOP')).to.equal('Developer');
+      expect(roleFilter('DATA_SCIENCE')).to.equal('Data Scientist');
+      expect(roleFilter('DEVELOP')).to.equal('Developer');
     });
 
     it('should handle arrays', function() {
-      expect(displayTracksFilter(['DATA_SCIENCE', 'DEVELOP'])).to.include('Developer');
+      expect(roleFilter(['DATA_SCIENCE', 'DEVELOP'])).to.include('Developer');
+    });
+  });
+
+  describe('track filter', function() {
+    it('should handle strings', function() {
+      expect(trackFilter('DATA_SCIENCE')).to.equal('Data Science');
+      expect(trackFilter('DEVELOP')).to.equal('Develop');
+      expect(trackFilter('FIRST_2_FINISH')).to.equal('First2Finish');
+    });
+
+    it('should handle arrays', function() {
+      expect(trackFilter(['DATA_SCIENCE', 'DEVELOP'])).to.include('Develop');
     });
   });
 

@@ -8,8 +8,8 @@
       a(href="http://forums.{{DOMAIN}}/?module=History&userID={{vm.profile.userId}}")
         i.fa.fa-comment-o
 
-    h3.tracks {{profile.tracks || [] | displayTracks | join: ', '}}
+    h3.tracks {{profile.tracks || [] | track | join: ', '}}
 
     h3.location {{profile.homeCountry}}
 
-    a(ng-show="editProfileLink" ng-href="http://community.{{DOMAIN}}/tc?module=MyHome") Edit Profile
+    a(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile

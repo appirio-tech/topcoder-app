@@ -5,6 +5,7 @@ var mockData = (function() {
     getMockStates: getMockStates,
     getMockChallenge: getMockChallenge,
     getMockChallengeWithUserDetails: getMockChallengeWithUserDetails,
+    getMockUserChallenges: getMockUserChallenges,
     getMockSpotlightChallenges: getMockSpotlightChallenges,
     getMockiOSChallenges: getMockiOSChallenges,
     getMockChallengeDates: getMockChallengeDates,
@@ -15,6 +16,8 @@ var mockData = (function() {
     getMockProfile: getMockProfile,
     getMockStats: getMockStats,
     getMockSkills: getMockSkills,
+    getMockSRMs: getMockSRMs,
+    getMockSRMResults: getMockSRMResults,
     getMockBadge: getMockBadge
   };
 
@@ -425,6 +428,504 @@ var mockData = (function() {
       };
   }
 
+  function getMockUserChallenges() {
+    return [
+      {
+        "updatedAt": "2014-04-04T06:04Z",
+        "createdAt": "2014-03-30T08:48Z",
+        "createdBy": "151743",
+        "updatedBy": "22841596",
+        "technologies": "iOS",
+        "status": "Completed",
+        "track": null,
+        "subTrack": "Bug Hunt",
+        "name": "24 hour Hercules Player Personal Content DVR iOS 1 0 9 1 Bug Hunt",
+        "type": "Bug Hunt",
+        "reviewType": null,
+        "id": 30041541,
+        "userId": 151743,
+        "forumId": 22045,
+        "numSubmissions": 3,
+        "numRegistrants": 4,
+        "registrationStartDate": "2014-03-30T16:00Z",
+        "registrationEndDate": "2014-03-31T16:00Z",
+        "checkpointSubmissionEndDate": null,
+        "submissionEndDate": "2014-03-31T16:00Z",
+        "platforms": "iOS",
+        "numberOfCheckpointPrizes": null,
+        "totalCheckpointPrize": null,
+        "isPrivate": null,
+        "upcomingPhase": null,
+        "userDetails": {
+          "roles": [
+            "Reviewer",
+            "Specification Submitter",
+            "Copilot"
+          ],
+          "hasUserSubmittedForReview": false,
+          "submissionReviewScore": null,
+          "winningPlacements": null,
+          "submissions": [
+            {
+              "id": 177052,
+              "submittedAt": "2014-03-30T08:48Z",
+              "status": "Active",
+              "score": null,
+              "placement": null,
+              "challengeId": 30041541
+            }
+          ]
+        },
+        "projectId": 6680,
+        "projectName": "My Media",
+        "handle": "Ghostar"
+      },
+      {
+        "updatedAt": "2014-05-09T21:11Z",
+        "createdAt": "2014-05-06T21:04Z",
+        "createdBy": "151743",
+        "updatedBy": "22841596",
+        "technologies": "Android",
+        "status": "Completed",
+        "track": null,
+        "subTrack": "Bug Hunt",
+        "name": "Hercules PCDVR Android App - Version 1 0 9 8 Bug Hunt",
+        "type": "Bug Hunt",
+        "reviewType": null,
+        "id": 30042563,
+        "userId": 151743,
+        "forumId": 22846,
+        "numSubmissions": 3,
+        "numRegistrants": 6,
+        "registrationStartDate": "2014-05-06T22:40Z",
+        "registrationEndDate": "2014-05-08T22:40Z",
+        "checkpointSubmissionEndDate": null,
+        "submissionEndDate": "2014-05-08T22:40Z",
+        "platforms": "Android",
+        "numberOfCheckpointPrizes": null,
+        "totalCheckpointPrize": null,
+        "isPrivate": null,
+        "upcomingPhase": null,
+        "userDetails": {
+          "roles": [
+            "Reviewer",
+            "Specification Submitter",
+            "Copilot"
+          ],
+          "hasUserSubmittedForReview": false,
+          "submissionReviewScore": null,
+          "winningPlacements": null,
+          "submissions": [
+            {
+              "id": 179562,
+              "submittedAt": "2014-05-06T21:04Z",
+              "status": "Active",
+              "score": null,
+              "placement": null,
+              "challengeId": 30042563
+            }
+          ]
+        },
+        "projectId": 6680,
+        "projectName": "My Media",
+        "handle": "Ghostar"
+      },
+      {
+        "updatedAt": "2014-07-02T19:46Z",
+        "createdAt": "2014-06-30T03:27Z",
+        "createdBy": "151743",
+        "updatedBy": "22841596",
+        "technologies": "iOS",
+        "status": "Completed",
+        "track": null,
+        "subTrack": "Bug Hunt",
+        "name": "24 hour - Hercules PCDVR iOS App - Version 1 0 9 15 bug hunt",
+        "type": "Bug Hunt",
+        "reviewType": null,
+        "id": 30043808,
+        "userId": 151743,
+        "forumId": 23852,
+        "numSubmissions": 4,
+        "numRegistrants": 5,
+        "registrationStartDate": "2014-06-30T16:00Z",
+        "registrationEndDate": "2014-07-01T16:00Z",
+        "checkpointSubmissionEndDate": null,
+        "submissionEndDate": "2014-07-01T16:00Z",
+        "platforms": "iOS",
+        "numberOfCheckpointPrizes": null,
+        "totalCheckpointPrize": null,
+        "isPrivate": null,
+        "upcomingPhase": null,
+        "userDetails": {
+          "roles": [
+            "Approver",
+            "Reviewer",
+            "Specification Submitter",
+            "Copilot"
+          ],
+          "hasUserSubmittedForReview": false,
+          "submissionReviewScore": null,
+          "winningPlacements": null,
+          "submissions": [
+            {
+              "id": 183230,
+              "submittedAt": "2014-06-30T03:27Z",
+              "status": "Active",
+              "score": null,
+              "placement": null,
+              "challengeId": 30043808
+            }
+          ]
+        },
+        "projectId": 6680,
+        "projectName": "My Media",
+        "handle": "Ghostar"
+      },
+      {
+        "updatedAt": "2014-07-08T05:18Z",
+        "createdAt": "2014-07-06T02:31Z",
+        "createdBy": "151743",
+        "updatedBy": "22841596",
+        "technologies": "Android",
+        "status": "Completed",
+        "track": null,
+        "subTrack": "Bug Hunt",
+        "name": "Hercules PCDVR Android App - 24 hour - Version 1 0  9 17 Bug Hunt",
+        "type": "Bug Hunt",
+        "reviewType": null,
+        "id": 30043966,
+        "userId": 151743,
+        "forumId": 23974,
+        "numSubmissions": 5,
+        "numRegistrants": 6,
+        "registrationStartDate": "2014-07-06T16:00Z",
+        "registrationEndDate": "2014-07-07T16:00Z",
+        "checkpointSubmissionEndDate": null,
+        "submissionEndDate": "2014-07-07T16:00Z",
+        "platforms": "Android",
+        "numberOfCheckpointPrizes": null,
+        "totalCheckpointPrize": null,
+        "isPrivate": null,
+        "upcomingPhase": null,
+        "userDetails": {
+          "roles": [
+            "Reviewer",
+            "Copilot",
+            "Specification Submitter"
+          ],
+          "hasUserSubmittedForReview": false,
+          "submissionReviewScore": null,
+          "winningPlacements": null,
+          "submissions": [
+            {
+              "id": 183526,
+              "submittedAt": "2014-07-06T02:31Z",
+              "status": "Active",
+              "score": null,
+              "placement": null,
+              "challengeId": 30043966
+            }
+          ]
+        },
+        "projectId": 6680,
+        "projectName": "My Media",
+        "handle": "Ghostar"
+      },
+      {
+        "updatedAt": "2014-12-09T00:08Z",
+        "createdAt": "2014-12-09T00:01Z",
+        "createdBy": "151743",
+        "updatedBy": "151743",
+        "technologies": "Android",
+        "status": "Deleted",
+        "track": null,
+        "subTrack": "First2Finish",
+        "name": "Hercules OnCampus TV App - 0 min displayed on Live TV grid",
+        "type": "First2Finish",
+        "reviewType": "INTERNAL",
+        "id": 30047806,
+        "userId": 151743,
+        "forumId": 27229,
+        "numSubmissions": 0,
+        "numRegistrants": 0,
+        "registrationStartDate": "2014-12-09T00:02Z",
+        "registrationEndDate": "2015-01-08T00:02Z",
+        "checkpointSubmissionEndDate": null,
+        "submissionEndDate": "2015-01-08T00:07Z",
+        "platforms": "Android",
+        "numberOfCheckpointPrizes": null,
+        "totalCheckpointPrize": null,
+        "isPrivate": null,
+        "upcomingPhase": null,
+        "userDetails": {
+          "roles": [
+            "Approver",
+            "Observer",
+            "Iterative Reviewer"
+          ],
+          "hasUserSubmittedForReview": false,
+          "submissionReviewScore": null,
+          "winningPlacements": null,
+          "submissions": null
+        },
+        "projectId": 8324,
+        "projectName": "Android TV",
+        "handle": "Ghostar"
+      },
+      {
+        "updatedAt": "2014-02-20T13:12Z",
+        "createdAt": "2014-02-17T11:59Z",
+        "createdBy": "151743",
+        "updatedBy": "22841596",
+        "technologies": "iOS",
+        "status": "Completed",
+        "track": null,
+        "subTrack": "Bug Hunt",
+        "name": "24 hour Hercules Player Personal Content DVR iOS 1-8-0-7 Bug Hunt",
+        "type": "Bug Hunt",
+        "reviewType": null,
+        "id": 30039586,
+        "userId": 151743,
+        "forumId": 21348,
+        "numSubmissions": 4,
+        "numRegistrants": 6,
+        "registrationStartDate": "2014-02-17T15:25Z",
+        "registrationEndDate": "2014-02-19T15:25Z",
+        "checkpointSubmissionEndDate": null,
+        "submissionEndDate": "2014-02-19T15:30Z",
+        "platforms": "iOS",
+        "numberOfCheckpointPrizes": null,
+        "totalCheckpointPrize": null,
+        "isPrivate": null,
+        "upcomingPhase": null,
+        "userDetails": {
+          "roles": [
+            "Copilot",
+            "Reviewer",
+            "Specification Submitter"
+          ],
+          "hasUserSubmittedForReview": false,
+          "submissionReviewScore": null,
+          "winningPlacements": null,
+          "submissions": [
+            {
+              "id": 171701,
+              "submittedAt": "2014-02-17T12:00Z",
+              "status": "Active",
+              "score": null,
+              "placement": null,
+              "challengeId": 30039586
+            }
+          ]
+        },
+        "projectId": 6680,
+        "projectName": "My Media",
+        "handle": "Ghostar"
+      },
+      {
+        "updatedAt": "2014-03-03T03:27Z",
+        "createdAt": "2014-03-01T03:26Z",
+        "createdBy": "151743",
+        "updatedBy": "22841596",
+        "technologies": "iOS",
+        "status": "Completed",
+        "track": null,
+        "subTrack": "Bug Hunt",
+        "name": "24 hour Hercules Player Personal Content DVR iOS 1 0 8 9 Bug Hunt",
+        "type": "Bug Hunt",
+        "reviewType": null,
+        "id": 30040956,
+        "userId": 151743,
+        "forumId": 21683,
+        "numSubmissions": 4,
+        "numRegistrants": 5,
+        "registrationStartDate": "2014-03-01T08:51Z",
+        "registrationEndDate": "2014-03-02T08:51Z",
+        "checkpointSubmissionEndDate": null,
+        "submissionEndDate": "2014-03-02T08:56Z",
+        "platforms": "iOS",
+        "numberOfCheckpointPrizes": null,
+        "totalCheckpointPrize": null,
+        "isPrivate": null,
+        "upcomingPhase": null,
+        "userDetails": {
+          "roles": [
+            "Specification Submitter",
+            "Reviewer",
+            "Copilot"
+          ],
+          "hasUserSubmittedForReview": false,
+          "submissionReviewScore": null,
+          "winningPlacements": null,
+          "submissions": [
+            {
+              "id": 174657,
+              "submittedAt": "2014-03-01T03:26Z",
+              "status": "Active",
+              "score": null,
+              "placement": null,
+              "challengeId": 30040956
+            }
+          ]
+        },
+        "projectId": 6680,
+        "projectName": "My Media",
+        "handle": "Ghostar"
+      },
+      {
+        "updatedAt": "2014-03-13T12:51Z",
+        "createdAt": "2014-03-10T11:33Z",
+        "createdBy": "151743",
+        "updatedBy": "22841596",
+        "technologies": "iOS",
+        "status": "Completed",
+        "track": null,
+        "subTrack": "Bug Hunt",
+        "name": "24 hour Hercules Player Personal Content DVR iOS 1 0 8 11 Bug Hunt",
+        "type": "Bug Hunt",
+        "reviewType": null,
+        "id": 30041194,
+        "userId": 151743,
+        "forumId": 21775,
+        "numSubmissions": 4,
+        "numRegistrants": 7,
+        "registrationStartDate": "2014-03-10T12:45Z",
+        "registrationEndDate": "2014-03-11T12:45Z",
+        "checkpointSubmissionEndDate": null,
+        "submissionEndDate": "2014-03-11T12:50Z",
+        "platforms": "iOS",
+        "numberOfCheckpointPrizes": null,
+        "totalCheckpointPrize": null,
+        "isPrivate": null,
+        "upcomingPhase": null,
+        "userDetails": {
+          "roles": [
+            "Approver",
+            "Reviewer",
+            "Specification Submitter",
+            "Copilot"
+          ],
+          "hasUserSubmittedForReview": false,
+          "submissionReviewScore": null,
+          "winningPlacements": null,
+          "submissions": [
+            {
+              "id": 175391,
+              "submittedAt": "2014-03-10T11:33Z",
+              "status": "Active",
+              "score": null,
+              "placement": null,
+              "challengeId": 30041194
+            }
+          ]
+        },
+        "projectId": 6680,
+        "projectName": "My Media",
+        "handle": "Ghostar"
+      },
+      {
+        "updatedAt": "2014-05-09T22:06Z",
+        "createdAt": "2014-05-06T20:48Z",
+        "createdBy": "151743",
+        "updatedBy": "22841596",
+        "technologies": "iOS",
+        "status": "Completed",
+        "track": null,
+        "subTrack": "Bug Hunt",
+        "name": "Hercules PCDVR iOS App - Version 1 0 9 8 Bug hunt",
+        "type": "Bug Hunt",
+        "reviewType": null,
+        "id": 30042561,
+        "userId": 151743,
+        "forumId": 22844,
+        "numSubmissions": 3,
+        "numRegistrants": 7,
+        "registrationStartDate": "2014-05-06T22:09Z",
+        "registrationEndDate": "2014-05-08T22:09Z",
+        "checkpointSubmissionEndDate": null,
+        "submissionEndDate": "2014-05-08T22:09Z",
+        "platforms": "iOS",
+        "numberOfCheckpointPrizes": null,
+        "totalCheckpointPrize": null,
+        "isPrivate": null,
+        "upcomingPhase": null,
+        "userDetails": {
+          "roles": [
+            "Copilot",
+            "Specification Submitter",
+            "Reviewer"
+          ],
+          "hasUserSubmittedForReview": false,
+          "submissionReviewScore": null,
+          "winningPlacements": null,
+          "submissions": [
+            {
+              "id": 179560,
+              "submittedAt": "2014-05-06T20:49Z",
+              "status": "Active",
+              "score": null,
+              "placement": null,
+              "challengeId": 30042561
+            }
+          ]
+        },
+        "projectId": 6680,
+        "projectName": "My Media",
+        "handle": "Ghostar"
+      },
+      {
+        "updatedAt": "2014-06-17T01:43Z",
+        "createdAt": "2014-06-14T03:15Z",
+        "createdBy": "151743",
+        "updatedBy": "22841596",
+        "technologies": "iOS",
+        "status": "Completed",
+        "track": null,
+        "subTrack": "Bug Hunt",
+        "name": "Hercules PCDVR iOS App - Version 1 0 9 14 Bug hunt",
+        "type": "Bug Hunt",
+        "reviewType": null,
+        "id": 30043468,
+        "userId": 151743,
+        "forumId": 23565,
+        "numSubmissions": 4,
+        "numRegistrants": 4,
+        "registrationStartDate": "2014-06-14T04:28Z",
+        "registrationEndDate": "2014-06-16T04:28Z",
+        "checkpointSubmissionEndDate": null,
+        "submissionEndDate": "2014-06-16T04:28Z",
+        "platforms": "iOS",
+        "numberOfCheckpointPrizes": null,
+        "totalCheckpointPrize": null,
+        "isPrivate": null,
+        "upcomingPhase": null,
+        "userDetails": {
+          "roles": [
+            "Copilot",
+            "Reviewer",
+            "Specification Submitter"
+          ],
+          "hasUserSubmittedForReview": false,
+          "submissionReviewScore": null,
+          "winningPlacements": null,
+          "submissions": [
+            {
+              "id": 182096,
+              "submittedAt": "2014-06-14T03:15Z",
+              "status": "Active",
+              "score": null,
+              "placement": null,
+              "challengeId": 30043468
+            }
+          ]
+        },
+        "projectId": 6680,
+        "projectName": "My Media",
+        "handle": "Ghostar"
+      }
+    ];
+  }
+
   function getMockSpotlightChallenges() {
     return [
       {
@@ -792,677 +1293,549 @@ var mockData = (function() {
       "createdAt": null,
       "createdBy": null,
       "updatedBy": null,
-      "numWins": null,
-      "numChallenges": null,
-      "developStats": {
-          "challenges": 557,
-          "wins": 88,
-          "challengeStats": [
-           {
-              "phaseId": 112,
-              "subTrackName": "Design     ",
-              "challenges": 348
+      "userId": 10336829,
+      "challenges": 411,
+      "wins": 166,
+      "DEVELOP": {
+        "challenges": 400,
+        "wins": 166,
+        "subTracks": [
+          {
+            "id": 112,
+            "name": "DESIGN",
+            "challenges": 56,
+            "rank": {
+              "rating": 2125,
+              "activePercentile": 0,
+              "activeRank": 0,
+              "activeCountryRank": 0,
+              "activeSchoolRank": 0,
+              "overallPercentile": 96.8013,
+              "overallRank": 19,
+              "overallCountryRank": 8,
+              "overallSchoolRank": 0,
+              "volatility": 446,
+              "reliability": 0.6667
             },
-            {
-              "phaseId": 117,
-              "subTrackName": "Specification",
-              "challenges": 12
+            "submissions": {
+              "numRatings": 51,
+              "submissions": 21,
+              "submissionRate": 0.4117647058823529,
+              "passedScreening": 21,
+              "screeningSuccessRate": 1,
+              "passedReview": 21,
+              "reviewSuccessRate": 1,
+              "appeals": 125,
+              "appealSuccessRate": 0.488,
+              "maxScore": 99.71,
+              "minScore": 85.85,
+              "avgScore": 96.59619047619047,
+              "avgPlacement": 1.1428571428571428,
+              "wins": 19,
+              "winPercent": 0.9047619047619048
             },
-            {
-              "phaseId": 118,
-              "subTrackName": "Architecture",
-              "challenges": 146
-            },
-            {
-              "phaseId": 124,
-              "subTrackName": "Test Suites",
-              "challenges": 2
-            },
-            {
-              "phaseId": 125,
-              "subTrackName": "Assembly Competition",
-              "challenges": 15
-            },
-            {
-              "phaseId": 130,
-              "subTrackName": "UI Prototype Competition",
-              "challenges": 1
-            },
-            {
-              "phaseId": 134,
-              "subTrackName": "Conceptualization",
-              "challenges": 31
-            },
-            {
-              "phaseId": 137,
-              "subTrackName": "Test Scenarios",
-              "challenges": 1
-            },
-            {
-              "phaseId": 149,
-              "subTrackName": "First2Finish",
-              "challenges": 1
+            "rating": {
+              "maxRating": 2183,
+              "minRating": 1318
             }
-          ],
-          "rankStats": [
-              {
-                  "phaseId": 112,
-                  "subTrackName": "Design",
-                  "rating": 1616,
-                  "activePercentile": 0,
-                  "activeRank": 0,
-                  "activeCountryRank": 0,
-                  "activeSchoolRank": 0,
-                  "overallPercentile": 91.7508,
-                  "overallRank": 49,
-                  "overallCountryRank": 8,
-                  "overallSchoolRank": 0,
-                  "volatility": 441,
-                  "reliability": 0
-              },
-              {
-                  "phaseId": 118,
-                  "subTrackName": "Architecture",
-                  "rating": 1172,
-                  "activePercentile": 0,
-                  "activeRank": 0,
-                  "activeCountryRank": 0,
-                  "activeSchoolRank": 0,
-                  "overallPercentile": 63.4409,
-                  "overallRank": 34,
-                  "overallCountryRank": 3,
-                  "overallSchoolRank": 0,
-                  "volatility": 232,
-                  "reliability": 0.0667
-              },
-              {
-                  "phaseId": 125,
-                  "subTrackName": "Assembly Competition",
-                  "rating": 1566,
-                  "activePercentile": 0,
-                  "activeRank": 0,
-                  "activeCountryRank": 0,
-                  "activeSchoolRank": 0,
-                  "overallPercentile": 91.7448,
-                  "overallRank": 44,
-                  "overallCountryRank": 4,
-                  "overallSchoolRank": 0,
-                  "volatility": 307,
-                  "reliability": 0.2222
-              }
-          ],
-          "submissionStats": [
-              {
-                  "phaseId": 149,
-                  "subTrackName": "First2Finish",
-                  "numRatings": 1,
-                  "submissions": 0,
-                  "submissionRate": 0,
-                  "passedScreening": 0,
-                  "screeningSuccessRate": 0,
-                  "passedReview": 0,
-                  "reviewSuccessRate": 0,
-                  "appeals": 0,
-                  "appealSuccessRate": 0,
-                  "maxScore": 0,
-                  "minScore": 0,
-                  "avgScore": 0,
-                  "avgPlacement": 0,
-                  "numWins": 0,
-                  "numChallenges": null,
-                  "winPercent": 0
-              },
-              {
-                  "phaseId": 118,
-                  "subTrackName": "Architecture",
-                  "numRatings": 120,
-                  "submissions": 36,
-                  "submissionRate": 0.3,
-                  "passedScreening": 34,
-                  "screeningSuccessRate": 0.9444444444444444,
-                  "passedReview": 34,
-                  "reviewSuccessRate": 0.9444444444444444,
-                  "appeals": 315,
-                  "appealSuccessRate": 0.3904761904761905,
-                  "maxScore": 98.2,
-                  "minScore": 0,
-                  "avgScore": 89.91176470588235,
-                  "avgPlacement": 1.2647058823529411,
-                  "numWins": 27,
-                  "numChallenges": null,
-                  "winPercent": 0.75
-              },
-              {
-                  "phaseId": 134,
-                  "subTrackName": "Conceptualization",
-                  "numRatings": 30,
-                  "submissions": 7,
-                  "submissionRate": 0.2333333333333333,
-                  "passedScreening": 7,
-                  "screeningSuccessRate": 1,
-                  "passedReview": 3,
-                  "reviewSuccessRate": 0.42857142857142855,
-                  "appeals": 6,
-                  "appealSuccessRate": 0.3333333333333333,
-                  "maxScore": 90.31,
-                  "minScore": 82.6,
-                  "avgScore": 86.80333333333333,
-                  "avgPlacement": 2.6666666666666665,
-                  "numWins": 0,
-                  "numChallenges": null,
-                  "winPercent": 0
-              },
-              {
-                  "phaseId": 112,
-                  "subTrackName": "Design     ",
-                  "numRatings": 327,
-                  "submissions": 155,
-                  "submissionRate": 0.4740061162079511,
-                  "passedScreening": 153,
-                  "screeningSuccessRate": 0.9870967741935484,
-                  "passedReview": 151,
-                  "reviewSuccessRate": 0.9741935483870968,
-                  "appeals": 685,
-                  "appealSuccessRate": 0.5430656934306569,
-                  "maxScore": 98.34,
-                  "minScore": 67.23,
-                  "avgScore": 89.51681818181818,
-                  "avgPlacement": 1.9025974025974026,
-                  "numWins": 75,
-                  "numChallenges": null,
-                  "winPercent": 0.4838709677419355
-              },
-              {
-                  "phaseId": 130,
-                  "subTrackName": "UI Prototype Competition",
-                  "numRatings": 1,
-                  "submissions": 0,
-                  "submissionRate": 0,
-                  "passedScreening": 0,
-                  "screeningSuccessRate": 0,
-                  "passedReview": 0,
-                  "reviewSuccessRate": 0,
-                  "appeals": 0,
-                  "appealSuccessRate": 0,
-                  "maxScore": 0,
-                  "minScore": 0,
-                  "avgScore": 0,
-                  "avgPlacement": 0,
-                  "numWins": 0,
-                  "numChallenges": null,
-                  "winPercent": 0
-              },
-              {
-                  "phaseId": 117,
-                  "subTrackName": "Specification",
-                  "numRatings": 11,
-                  "submissions": 0,
-                  "submissionRate": 0,
-                  "passedScreening": 0,
-                  "screeningSuccessRate": 0,
-                  "passedReview": 0,
-                  "reviewSuccessRate": 0,
-                  "appeals": 0,
-                  "appealSuccessRate": 0,
-                  "maxScore": 0,
-                  "minScore": 0,
-                  "avgScore": 0,
-                  "avgPlacement": 0,
-                  "numWins": 0,
-                  "numChallenges": null,
-                  "winPercent": 0
-              },
-              {
-                  "phaseId": 137,
-                  "subTrackName": "Test Scenarios",
-                  "numRatings": 1,
-                  "submissions": 0,
-                  "submissionRate": 0,
-                  "passedScreening": 0,
-                  "screeningSuccessRate": 0,
-                  "passedReview": 0,
-                  "reviewSuccessRate": 0,
-                  "appeals": 0,
-                  "appealSuccessRate": 0,
-                  "maxScore": 0,
-                  "minScore": 0,
-                  "avgScore": 0,
-                  "avgPlacement": 0,
-                  "numWins": 0,
-                  "numChallenges": null,
-                  "winPercent": 0
-              },
-              {
-                  "phaseId": 125,
-                  "subTrackName": "Assembly Competition",
-                  "numRatings": 10,
-                  "submissions": 2,
-                  "submissionRate": 0.2,
-                  "passedScreening": 2,
-                  "screeningSuccessRate": 1,
-                  "passedReview": 2,
-                  "reviewSuccessRate": 1,
-                  "appeals": 18,
-                  "appealSuccessRate": 0.5555555555555556,
-                  "maxScore": 98.96,
-                  "minScore": 96.04,
-                  "avgScore": 97.5,
-                  "avgPlacement": 3,
-                  "numWins": 0,
-                  "numChallenges": null,
-                  "winPercent": 0
-              },
-              {
-                  "phaseId": 124,
-                  "subTrackName": "Test Suites",
-                  "numRatings": 2,
-                  "submissions": 0,
-                  "submissionRate": 0,
-                  "passedScreening": 0,
-                  "screeningSuccessRate": 0,
-                  "passedReview": 0,
-                  "reviewSuccessRate": 0,
-                  "appeals": 0,
-                  "appealSuccessRate": 0,
-                  "maxScore": 0,
-                  "minScore": 0,
-                  "avgScore": 0,
-                  "avgPlacement": 0,
-                  "numWins": 0,
-                  "numChallenges": null,
-                  "winPercent": 0
-              }
-          ],
-          "historyStats": [
+          },
           {
-              "phaseId": 112,
-              "subTrackName": "Design",
-              "projectId": 10681741,
-              "componentName": "Hashing Utility",
-              "ratingDate": "11/11/04 9:00 AM",
-              "newRating": 1029
-          }
-          ],
-          "distributionStats": [
-            {
-              "phaseId": 112,
-              "range0To099": 0,
-              "range100To199": 0,
-              "range200To299": 0,
-              "range300To399": 0,
-              "range400To499": 0,
-              "range500To599": 0,
-              "range600To699": 0,
-              "range700To799": 0,
-              "range800To899": 0,
-              "range900To999": 0,
-              "range1000To1099": 0,
-              "range1100To1199": 0,
-              "range1200To1299": 0,
-              "range1300To1399": 0,
-              "range1400To1499": 0,
-              "range1500To1599": 0,
-              "range1600To699": null,
-              "range1700To1799": 0,
-              "range1800To1899": 0,
-              "range1900To1999": 0,
-              "range2000To2099": 0,
-              "range2100To2199": 0,
-              "range2200To2299": 0,
-              "range2300To2399": 0,
-              "range2400To2499": 0,
-              "range2500To2599": 0,
-              "range2600To2699": 0,
-              "range2700To2799": 0,
-              "range2800To2899": 0,
-              "range2900To2999": 0,
-              "range3000To3099": 0,
-              "range3100To3199": 0,
-              "range3200To3299": 0,
-              "range3300To3399": 0,
-              "range3400To3499": 0,
-              "range3500To3599": 0,
-              "range3600To3699": 0,
-              "range3700To3799": 0,
-              "range3800To3899": 0,
-              "range3900To3999": 0
+            "id": 113,
+            "name": "DEVELOPMENT",
+            "challenges": 93,
+            "rank": {
+              "rating": 1332,
+              "activePercentile": 0,
+              "activeRank": 0,
+              "activeCountryRank": 0,
+              "activeSchoolRank": 0,
+              "overallPercentile": 82.3051,
+              "overallRank": 261,
+              "overallCountryRank": 167,
+              "overallSchoolRank": 0,
+              "volatility": 251,
+              "reliability": 0.4667
             },
-            {
-              "phaseId": 118,
-              "range0To099": 0,
-              "range100To199": 0,
-              "range200To299": 0,
-              "range300To399": 0,
-              "range400To499": 0,
-              "range500To599": 0,
-              "range600To699": 0,
-              "range700To799": 0,
-              "range800To899": 0,
-              "range900To999": 0,
-              "range1000To1099": 0,
-              "range1100To1199": 1,
-              "range1200To1299": 0,
-              "range1300To1399": 0,
-              "range1400To1499": 0,
-              "range1500To1599": 0,
-              "range1600To699": null,
-              "range1700To1799": 0,
-              "range1800To1899": 0,
-              "range1900To1999": 0,
-              "range2000To2099": 0,
-              "range2100To2199": 0,
-              "range2200To2299": 0,
-              "range2300To2399": 0,
-              "range2400To2499": 0,
-              "range2500To2599": 0,
-              "range2600To2699": 0,
-              "range2700To2799": 0,
-              "range2800To2899": 0,
-              "range2900To2999": 0,
-              "range3000To3099": 0,
-              "range3100To3199": 0,
-              "range3200To3299": 0,
-              "range3300To3399": 0,
-              "range3400To3499": 0,
-              "range3500To3599": 0,
-              "range3600To3699": 0,
-              "range3700To3799": 0,
-              "range3800To3899": 0,
-              "range3900To3999": 0
+            "submissions": {
+              "numRatings": 86,
+              "submissions": 46,
+              "submissionRate": 0.5348837209302325,
+              "passedScreening": 46,
+              "screeningSuccessRate": 1,
+              "passedReview": 45,
+              "reviewSuccessRate": 0.9782608695652174,
+              "appeals": 144,
+              "appealSuccessRate": 0.4583333333333333,
+              "maxScore": 98.21,
+              "minScore": 72.85,
+              "avgScore": 89.0163043478261,
+              "avgPlacement": 2.0217391304347827,
+              "wins": 22,
+              "winPercent": 0.4782608695652174
             },
-            {
-              "phaseId": 125,
-              "range0To099": 0,
-              "range100To199": 0,
-              "range200To299": 0,
-              "range300To399": 0,
-              "range400To499": 0,
-              "range500To599": 0,
-              "range600To699": 0,
-              "range700To799": 0,
-              "range800To899": 0,
-              "range900To999": 0,
-              "range1000To1099": 0,
-              "range1100To1199": 0,
-              "range1200To1299": 0,
-              "range1300To1399": 0,
-              "range1400To1499": 0,
-              "range1500To1599": 1,
-              "range1600To699": null,
-              "range1700To1799": 0,
-              "range1800To1899": 0,
-              "range1900To1999": 0,
-              "range2000To2099": 0,
-              "range2100To2199": 0,
-              "range2200To2299": 0,
-              "range2300To2399": 0,
-              "range2400To2499": 0,
-              "range2500To2599": 0,
-              "range2600To2699": 0,
-              "range2700To2799": 0,
-              "range2800To2899": 0,
-              "range2900To2999": 0,
-              "range3000To3099": 0,
-              "range3100To3199": 0,
-              "range3200To3299": 0,
-              "range3300To3399": 0,
-              "range3400To3499": 0,
-              "range3500To3599": 0,
-              "range3600To3699": 0,
-              "range3700To3799": 0,
-              "range3800To3899": 0,
-              "range3900To3999": 0
+            "rating": {
+              "maxRating": 1768,
+              "minRating": 1156
             }
-          ],
-          "ratingStats": [
-              {
-                  "phaseId": 112,
-                  "subTrackName": "Design",
-                  "maxRating": 1940,
-                  "minRating": 1029
-              },
-              {
-                  "phaseId": 118,
-                  "subTrackName": "Architecture",
-                  "maxRating": 1260,
-                  "minRating": 973
-              },
-              {
-                  "phaseId": 125,
-                  "subTrackName": "Assembly Competition",
-                  "maxRating": 1566,
-                  "minRating": 1515
-              }
-          ]
+          },
+          {
+            "id": 117,
+            "name": "SPECIFICATION",
+            "challenges": 4,
+            "rank": {
+              "rating": 1378,
+              "activePercentile": 0,
+              "activeRank": 0,
+              "activeCountryRank": 0,
+              "activeSchoolRank": 0,
+              "overallPercentile": 85.2941,
+              "overallRank": 10,
+              "overallCountryRank": 5,
+              "overallSchoolRank": 0,
+              "volatility": 385,
+              "reliability": 1
+            },
+            "submissions": {
+              "numRatings": 4,
+              "submissions": 1,
+              "submissionRate": 0.25,
+              "passedScreening": 1,
+              "screeningSuccessRate": 1,
+              "passedReview": 1,
+              "reviewSuccessRate": 1,
+              "appeals": 3,
+              "appealSuccessRate": 0.3333333333333333,
+              "maxScore": 97.78,
+              "minScore": 97.78,
+              "avgScore": 97.78,
+              "avgPlacement": 1,
+              "wins": 1,
+              "winPercent": 1
+            },
+            "rating": {
+              "maxRating": 1378,
+              "minRating": 1378
+            }
+          },
+          {
+            "id": 118,
+            "name": "ARCHITECTURE",
+            "challenges": 184,
+            "rank": {
+              "rating": 2437,
+              "activePercentile": 94.1176,
+              "activeRank": 1,
+              "activeCountryRank": 1,
+              "activeSchoolRank": 0,
+              "overallPercentile": 98.9247,
+              "overallRank": 1,
+              "overallCountryRank": 1,
+              "overallSchoolRank": 0,
+              "volatility": 155,
+              "reliability": 0.9333
+            },
+            "submissions": {
+              "numRatings": 158,
+              "submissions": 114,
+              "submissionRate": 0.7215189873417721,
+              "passedScreening": 113,
+              "screeningSuccessRate": 0.9912280701754386,
+              "passedReview": 113,
+              "reviewSuccessRate": 0.9912280701754386,
+              "appeals": 779,
+              "appealSuccessRate": 0.40821566110397944,
+              "maxScore": 100,
+              "minScore": 87.53,
+              "avgScore": 96.77159292035398,
+              "avgPlacement": 1.0442477876106195,
+              "wins": 108,
+              "winPercent": 0.9473684210526315
+            },
+            "rating": {
+              "maxRating": 2538,
+              "minRating": 1549
+            }
+          },
+          {
+            "id": 120,
+            "name": "BUG_HUNT",
+            "challenges": 1,
+            "rank": null,
+            "submissions": {
+              "numRatings": 1,
+              "submissions": 1,
+              "submissionRate": 1,
+              "passedScreening": 0,
+              "screeningSuccessRate": 0,
+              "passedReview": 0,
+              "reviewSuccessRate": 0,
+              "appeals": 0,
+              "appealSuccessRate": 0,
+              "maxScore": 10,
+              "minScore": 10,
+              "avgScore": 10,
+              "avgPlacement": 2,
+              "wins": 0,
+              "winPercent": 0
+            },
+            "rating": {
+              "maxRating": 0,
+              "minRating": 0
+            }
+          },
+          {
+            "id": 125,
+            "name": "ASSEMBLY_COMPETITION",
+            "challenges": 22,
+            "rank": {
+              "rating": 1733,
+              "activePercentile": 91.5033,
+              "activeRank": 13,
+              "activeCountryRank": 8,
+              "activeSchoolRank": 0,
+              "overallPercentile": 95.3096,
+              "overallRank": 25,
+              "overallCountryRank": 16,
+              "overallSchoolRank": 0,
+              "volatility": 416,
+              "reliability": 0.8
+            },
+            "submissions": {
+              "numRatings": 19,
+              "submissions": 16,
+              "submissionRate": 0.8421052631578947,
+              "passedScreening": 16,
+              "screeningSuccessRate": 1,
+              "passedReview": 16,
+              "reviewSuccessRate": 1,
+              "appeals": 70,
+              "appealSuccessRate": 0.35714285714285715,
+              "maxScore": 99.82,
+              "minScore": 87.55,
+              "avgScore": 97.01375,
+              "avgPlacement": 1.1875,
+              "wins": 14,
+              "winPercent": 0.875
+            },
+            "rating": {
+              "maxRating": 2060,
+              "minRating": 1497
+            }
+          },
+          {
+            "id": 134,
+            "name": "CONCEPTUALIZATION",
+            "challenges": 6,
+            "rank": null,
+            "submissions": {
+              "numRatings": 6,
+              "submissions": 0,
+              "submissionRate": 0,
+              "passedScreening": 0,
+              "screeningSuccessRate": 0,
+              "passedReview": 0,
+              "reviewSuccessRate": 0,
+              "appeals": 0,
+              "appealSuccessRate": 0,
+              "maxScore": 0,
+              "minScore": 0,
+              "avgScore": 0,
+              "avgPlacement": 0,
+              "wins": 0,
+              "winPercent": 0
+            },
+            "rating": {
+              "maxRating": 0,
+              "minRating": 0
+            }
+          },
+          {
+            "id": 140,
+            "name": "COPILOT_POSTING",
+            "challenges": 27,
+            "rank": null,
+            "submissions": {
+              "numRatings": 22,
+              "submissions": 1,
+              "submissionRate": 0.04545454545454546,
+              "passedScreening": 0,
+              "screeningSuccessRate": 0,
+              "passedReview": 0,
+              "reviewSuccessRate": 0,
+              "appeals": 0,
+              "appealSuccessRate": 0,
+              "maxScore": 10,
+              "minScore": 10,
+              "avgScore": 10,
+              "avgPlacement": 6,
+              "wins": 0,
+              "winPercent": 0
+            },
+            "rating": {
+              "maxRating": 0,
+              "minRating": 0
+            }
+          },
+          {
+            "id": 146,
+            "name": "CONTENT_CREATION",
+            "challenges": 1,
+            "rank": null,
+            "submissions": {
+              "numRatings": 1,
+              "submissions": 0,
+              "submissionRate": 0,
+              "passedScreening": 0,
+              "screeningSuccessRate": 0,
+              "passedReview": 0,
+              "reviewSuccessRate": 0,
+              "appeals": 0,
+              "appealSuccessRate": 0,
+              "maxScore": 0,
+              "minScore": 0,
+              "avgScore": 0,
+              "avgPlacement": 0,
+              "wins": 0,
+              "winPercent": 0
+            },
+            "rating": {
+              "maxRating": 0,
+              "minRating": 0
+            }
+          },
+          {
+            "id": 149,
+            "name": "FIRST_2_FINISH",
+            "challenges": 1,
+            "rank": null,
+            "submissions": {
+              "numRatings": 1,
+              "submissions": 1,
+              "submissionRate": 1,
+              "passedScreening": 0,
+              "screeningSuccessRate": 0,
+              "passedReview": 0,
+              "reviewSuccessRate": 0,
+              "appeals": 0,
+              "appealSuccessRate": 0,
+              "maxScore": 0,
+              "minScore": 0,
+              "avgScore": 0,
+              "avgPlacement": 0,
+              "wins": 0,
+              "winPercent": 0
+            },
+            "rating": {
+              "maxRating": 0,
+              "minRating": 0
+            }
+          },
+          {
+            "id": 150,
+            "name": "CODE",
+            "challenges": 5,
+            "rank": null,
+            "submissions": {
+              "numRatings": 5,
+              "submissions": 4,
+              "submissionRate": 0.8,
+              "passedScreening": 3,
+              "screeningSuccessRate": 0.75,
+              "passedReview": 3,
+              "reviewSuccessRate": 0.75,
+              "appeals": 9,
+              "appealSuccessRate": 0.3333333333333333,
+              "maxScore": 100,
+              "minScore": 82.5,
+              "avgScore": 92.29333333333334,
+              "avgPlacement": 4.333333333333333,
+              "wins": 2,
+              "winPercent": 0.5
+            },
+            "rating": {
+              "maxRating": 0,
+              "minRating": 0
+            }
+          }
+        ]
       },
-      "designStats": {
-          "challenges": null,
-          "wins": null,
-          "rankStats": {},
-          "submissionStats": [],
-          "ratingStats": {}
-      },
-      "dataScienceStats": {
-          "challenges": 2,
-          "wins": 0,
-          "srmStats": {
-          "challenges": 2,
-          "wins": 0,
-          "srmRankStats": [
-          {
-              "rating": 1012,
-              "percentile": 0,
-              "rank": null,
-              "countryRank": null,
-              "schoolRank": null,
-              "volatility": 266,
-              "maximumRating": 1134,
-              "minimumRating": 972,
-              "defaultLanguage": "C#",
-              "competitions": 4,
-              "mostRecentEventName": "SRM 223",
-              "mostRecentEventDate": "2004-12-18T08:00Z"
-          }
-          ],
-          "srmChallengeStats": [
-          {
-              "levelName": "Level One",
-              "challenges": 0,
-              "failedChallenges": 0
-          },
-          {
-              "levelName": "Level Two",
-              "challenges": 1,
-              "failedChallenges": 0
-          },
-          {
-              "levelName": "Level Three",
-              "challenges": 1,
-              "failedChallenges": 1
-          }
-          ],
-          "srmDivisionStats": [
-          {
-              "levelName": null,
-              "problemsSubmitted": null,
-              "problemsFailed": null,
-              "problemsSysByTest": null
-          },
-          {
-              "levelName": null,
-              "problemsSubmitted": null,
-              "problemsFailed": null,
-              "problemsSysByTest": null
-          },
-          {
-              "levelName": null,
-              "problemsSubmitted": null,
-              "problemsFailed": null,
-              "problemsSysByTest": null
-          }
-          ],
-          "srmHistoryStats": [
-          {
-              "challengeId": 5864,
-              "challengeName": "SRM 218",
-              "date": "2004-11-04T08:00Z",
-              "rating": 1134,
-              "placement": 1091,
-              "percentile": 56.36
-          },
-          {
-              "challengeId": 5865,
-              "challengeName": "SRM 219",
-              "date": "2004-11-20T08:00Z",
-              "rating": 1089,
-              "placement": 1232,
-              "percentile": 51.0139
-          },
-          {
-              "challengeId": 5867,
-              "challengeName": "SRM 221",
-              "date": "2004-12-01T08:00Z",
-              "rating": 972,
-              "placement": 1525,
-              "percentile": 39.6279
-          },
-          {
-              "challengeId": 5869,
-              "challengeName": "SRM 223",
-              "date": "2004-12-18T08:00Z",
-              "rating": 1012,
-              "placement": 1424,
-              "percentile": 43.7821
-          }
-          ],
-          "srmDistributionStats": [
-          {
-              "range0To099": 27,
-              "range100To199": 92,
-              "range200To299": 255,
-              "range300To399": 972,
-              "range400To499": 2145,
-              "range500To599": 3790,
-              "range600To699": 5424,
-              "range700To799": 7719,
-              "range800To899": 8509,
-              "range900To999": 7491,
-              "range1000To1099": 5682,
-              "range1100To1199": 5387,
-              "range1200To1299": 4531,
-              "range1300To1399": 3069,
-              "range1400To1499": 2077,
-              "range1500To1599": 1494,
-              "range1600To1699": 953,
-              "range1700To1799": 709,
-              "range1800To1899": 502,
-              "range1900To1999": 398,
-              "range2000To2099": 266,
-              "range2100To2199": 189,
-              "range2200To2299": 156,
-              "range2300To2399": 118,
-              "range2400To2499": 89,
-              "range2500To2599": 69,
-              "range2600To2699": 46,
-              "range2700To2799": 36,
-              "range2800To2899": 17,
-              "range2900To2999": 21,
-              "range2900To3099": null,
-              "range3100To3199": 8,
-              "range3200To3299": 5,
-              "range3300To3399": 3,
-              "range3400To3499": 2,
-              "range3500To3599": 0,
-              "range3600To3699": 1,
-              "range3700To3799": 1,
-              "range3800To3899": 0,
-              "range3900To3999": null
-          }
-          ]
-      },
-      "marathonMatchStats": {
-        "challenges": 0,
+      "DESIGN": {
+        "challenges": 1,
         "wins": 0,
-        "marathonRankStats": [
+        "subTracks": [
           {
-            "rating": null,
+            "id": 22,
+            "name": "IDEA_GENERATION",
+            "submissions": {
+              "submissions": 0,
+              "passedScreening": 0,
+              "wins": 0,
+              "failedContests": 0,
+              "completedContests": 0,
+              "challenges": 0
+            }
+          },
+          {
+            "id": 18,
+            "name": "WIREFRAMES",
+            "submissions": {
+              "submissions": 0,
+              "passedScreening": 0,
+              "wins": 0,
+              "failedContests": 0,
+              "completedContests": 0,
+              "challenges": 0
+            }
+          },
+          {
+            "id": 40,
+            "name": "DESIGN_FIRST_2_FINISH",
+            "submissions": {
+              "submissions": 0,
+              "passedScreening": 0,
+              "wins": 0,
+              "failedContests": 0,
+              "completedContests": 0,
+              "challenges": 1
+            }
+          },
+          {
+            "id": 17,
+            "name": "WEB_DESIGNS",
+            "submissions": {
+              "submissions": 0,
+              "passedScreening": 0,
+              "wins": 0,
+              "failedContests": 0,
+              "completedContests": 0,
+              "challenges": 0
+            }
+          },
+          {
+            "id": 21,
+            "name": "PRINT_OR_PRESENTATION",
+            "submissions": {
+              "submissions": 0,
+              "passedScreening": 0,
+              "wins": 0,
+              "failedContests": 0,
+              "completedContests": 0,
+              "challenges": 0
+            }
+          }
+        ]
+      },
+      "DATA_SCIENCE": {
+        "challenges": 10,
+        "wins": 0,
+        "srm": {
+          "challenges": 10,
+          "wins": 0,
+          "rank": {
+            "rating": 799,
+            "percentile": 26.15,
+            "rank": 6280,
+            "countryRank": 1127,
+            "schoolRank": 0,
+            "volatility": 473,
+            "maximumRating": 1247,
+            "minimumRating": 799,
+            "defaultLanguage": "Java",
+            "competitions": 15,
+            "mostRecentEventName": "SRM 621",
+            "mostRecentEventDate": "2014-05-20T05:00Z"
+          },
+          "challengeDetails": [
+            {
+              "levelName": "Level Three",
+              "challenges": 3,
+              "failedChallenges": 1
+            },
+            {
+              "levelName": "Level Two",
+              "challenges": 4,
+              "failedChallenges": 2
+            },
+            {
+              "levelName": "Level One",
+              "challenges": 3,
+              "failedChallenges": 3
+            }
+          ],
+          "division1": [
+            {
+              "levelName": "Level Three",
+              "problemsSubmitted": 0,
+              "problemsFailed": 0,
+              "problemsSysByTest": 0
+            },
+            {
+              "levelName": "Level One",
+              "problemsSubmitted": 4,
+              "problemsFailed": 0,
+              "problemsSysByTest": 2
+            },
+            {
+              "levelName": "Level Two",
+              "problemsSubmitted": 2,
+              "problemsFailed": 1,
+              "problemsSysByTest": 1
+            }
+          ],
+          "division2": [
+            {
+              "levelName": "Level Three",
+              "problemsSubmitted": 3,
+              "problemsFailed": 1,
+              "problemsSysByTest": 0
+            },
+            {
+              "levelName": "Level Two",
+              "problemsSubmitted": 9,
+              "problemsFailed": 2,
+              "problemsSysByTest": 1
+            },
+            {
+              "levelName": "Level One",
+              "problemsSubmitted": 9,
+              "problemsFailed": 0,
+              "problemsSysByTest": 1
+            }
+          ]
+        },
+        "marathonMatch": {
+          "rank": {
+            "rating": 0,
             "competitions": 0,
-            "avgRank": null,
-            "avgNumSubmissions": null,
-            "bestRank": null,
+            "avgRank": 0,
+            "avgNumSubmissions": 0,
+            "bestRank": 0,
             "wins": 0,
             "topFiveFinishes": 0,
             "topTenFinishes": 0,
             "rank": 0,
             "percentile": 0,
-            "volatility": null,
-            "minimumRating": null,
-            "maximumRating": null,
-            "countryRank": null,
+            "volatility": 0,
+            "minimumRating": 0,
+            "maximumRating": 0,
+            "countryRank": 0,
             "mostRecentEventName": null,
             "mostRecentEventDate": null,
-            "schoolRank": null,
-            "defaultLanguage": "C#"
+            "schoolRank": 0,
+            "defaultLanguage": "Java"
           }
-        ],
-        "marathonHistoryStats": [],
-        "marathonDistributionStats": [
-          {
-            "range0To099": null,
-            "range100To199": 0,
-            "range200To299": 0,
-            "range300To399": 2,
-            "range400To499": 18,
-            "range500To599": 56,
-            "range600To699": 245,
-            "range700To799": 586,
-            "range800To899": 718,
-            "range900To999": 761,
-            "range1000To1099": 776,
-            "range1100To1199": 715,
-            "range1200To1299": 628,
-            "range1300To1399": 557,
-            "range1400To1499": 394,
-            "range1500To1599": 248,
-            "range1600To1699": 175,
-            "range1700To1799": 95,
-            "range1800To1899": null,
-            "range1900To1999": 48,
-            "range2000To2099": 27,
-            "range2100To2199": 18,
-            "range2200To2299": 12,
-            "range2300To2399": 10,
-            "range2400To2499": 4,
-            "range2500To2599": 4,
-            "range2600To2699": 1,
-            "range2700To2799": 3,
-            "range2800To2899": 4,
-            "range2900To2999": 0,
-            "range2900To3099": null,
-            "range3100To3199": 0,
-            "range3200To3299": 0,
-            "range3300To3399": 0,
-            "range3400To3499": 0,
-            "range3500To3599": 0,
-            "range3600To3699": 0,
-            "range3700To3799": 0,
-            "range3800To3899": 0,
-            "range3900To3999": 0
-          }
-        ]
-      }
+        }
       },
-      "copilotStats": {
-          "contests":2264,
-          "projects":90,
-          "failures":238,
-          "reposts":157,
-          "activeContests":23,
-          "activeProjects":3,
-          "fulfillment":89.49
+      "COPILOT": {
+        "contests": 24,
+        "projects": 3,
+        "failures": 4,
+        "reposts": 9,
+        "activeContests": 0,
+        "activeProjects": 0,
+        "fulfillment": 83.33
       }
-
-    };
+    }
   }
 
   function getMockSkills() {
@@ -1500,7 +1873,101 @@ var mockData = (function() {
       name: "Mock achievement",
       date: "Sept 10, 2010",
       currentlyEarned: 2
-    }
+    };
+  }
+
+  function getMockSRMs() {
+    return [
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "id": 4460,
+        "name": "Holder",
+        "status": "FUTURE",
+        "type": "SINGLE_ROUND_MATCH",
+        "startDate": "8/30/15 12:00 AM",
+        "endDate": "8/30/15 12:00 AM"
+      },
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "id": 4465,
+        "name": "Single Round Match 135",
+        "status": "FUTURE",
+        "type": "SINGLE_ROUND_MATCH",
+        "startDate": "8/30/15 12:00 AM",
+        "endDate": "8/30/15 12:00 AM"
+      },
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "id": 14623,
+        "name": "Single Round Match 636",
+        "status": "FUTURE",
+        "type": "SINGLE_ROUND_MATCH",
+        "startDate": "9/28/15 12:00 AM",
+        "endDate": "9/28/15 12:00 AM"
+      }
+    ];
+  }
+
+  function getMockSRMResults() {
+    return [
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "userId": 22688955,
+        "contestId": 4460,
+        "oldRating": 0,
+        "newRating": 637,
+        "rated": 1,
+        "roomPlacement": 19,
+        "division": 2,
+        "finalPoints": -25.0,
+        "divisionPlacement": 633,
+        "ovarallRank": null
+      },
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "userId": 22688955,
+        "contestId": 4465,
+        "oldRating": 637,
+        "newRating": 637,
+        "rated": 0,
+        "roomPlacement": 12,
+        "division": 2,
+        "finalPoints": 0.0,
+        "divisionPlacement": 270,
+        "ovarallRank": null
+      },
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "userId": 22688955,
+        "contestId": 14623,
+        "oldRating": 637,
+        "newRating": 635,
+        "rated": 1,
+        "roomPlacement": 5,
+        "division": 2,
+        "finalPoints": 127.32,
+        "divisionPlacement": 463,
+        "ovarallRank": null
+      }
+    ];
   }
 
 

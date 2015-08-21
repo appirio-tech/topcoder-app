@@ -5,7 +5,7 @@
       .name WINS
 
     li.stat
-      .value {{vm.typeStats.submissions}}
+      .value {{vm.typeStats.submissions.submissions}}
       .name SUBMISSIONS
 
   .tabs
@@ -24,8 +24,9 @@
     state="profileVm.status.pastChallenges"
   )
     .challenges
-      .challenge.tile(ng-repeat="challenge in vm.pastChallenges = (profileVm.pastChallenges | filter: {'track': vm.track, 'subTrack': vm.subTrack})")
-        challenge-tile(challenge="challenge", domain="vm.domain")
+      .challenge.tile(ng-repeat="challenge in vm.pastChallenges = (profileVm.pastChallenges)")
+        challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
+
       .div(ng-show="!vm.pastChallenges || vm.pastChallenges.length == 0")
         | No past challenges available for this user
 
@@ -38,11 +39,11 @@
     ul.vertical-stats
       li
         .left Submissions
-        .right {{vm.typeStats.submissions}}
+        .right {{vm.typeStats.submissions.submissions}}
 
       li
         .left Passed Screening
-        .right {{vm.typeStats.passedScreening}}
+        .right {{vm.typeStats.submissions.passedScreening}}
 
       li
         .left Wins

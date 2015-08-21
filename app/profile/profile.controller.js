@@ -1,8 +1,7 @@
 (function () {
+  'use strict';
 
-  angular
-    .module('tc.profile')
-    .controller('ProfileCtrl', ProfileCtrl);
+  angular.module('tc.profile').controller('ProfileCtrl', ProfileCtrl);
 
   ProfileCtrl.$inject = ['$scope', 'CONSTANTS', '$log',
     'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService',
@@ -42,7 +41,7 @@
       vm.status.stats = CONSTANTS.STATE_ERROR;
     });
 
-    vm.pastChallengesPromise = ChallengeService.getChallenges({filter: 'userId=' + profile.userId+"&status=completed"})
+    vm.pastChallengesPromise = ChallengeService.getUserChallenges(profile.userId, {orderBy: 'submissionenddate desc', status: 'complete'})
     .then(function(data) {
       vm.status.pastChallenges = CONSTANTS.STATE_READY;
       vm.pastChallenges = data;

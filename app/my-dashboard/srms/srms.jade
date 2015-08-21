@@ -2,12 +2,12 @@ header
   h1.section-title SRMs
 
   p.viewSRMs()
-    a(ui-sref="goToNewSRMsPageWhenBuilt") View All Past SRMs
+    a(ui-sref="my-srms") View All Past SRMs
 
 .section-loading(ng-show="vm.loading")
 
 section.srm-tiles(ng-hide="vm.loading")
-  srm-tile.srm-tile(ng-repeat="srm in vm.srms", srm="srm")
+  srm-tile.srm-tile(ng-repeat="srm in vm.srms", srm="srm", view="'tile'", ng-class="'tile-view'")
 
 .section-links
   .link

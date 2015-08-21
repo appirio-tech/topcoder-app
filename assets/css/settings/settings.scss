@@ -1,0 +1,113 @@
+@import '../partials/combined';
+
+.settings-container {
+
+  header {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+
+    @media only screen and (min-width: 550px) {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      padding: 20px 0 7px 100px;
+    }
+
+    h1 {
+      @include ui-h1;
+      color: $ui-blue;
+      @media only screen and (min-width: 550px) {
+        margin-right: 75px;
+      }
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+
+      @media only screen and (min-width: 550px) {
+        display: flex;
+        flex-direction: row;
+      }
+
+      li {
+        display: block;
+        margin-top: 10px;
+
+        @media only screen and (min-width: 550px) {
+          display: inline-block;
+          margin-right: 25px;
+        }
+      }
+
+      a {
+        @include source-sans-light;
+        font-size: 18px;
+        color: $ui-blue;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .active-tab {
+    color: $ui-gray;
+    text-decoration: none;
+    cursor: default;
+  }
+
+  hr {
+    border-width: 1px 0 0 0;
+  }
+
+
+  // Common element stylings
+  button {
+    @include ui-submit-button;
+  }
+
+  @include ui-form-placeholder;
+
+  input:not([type="checkbox"]) {
+    @include ui-form-field;
+  }
+}
+
+// Tab content
+.edit-profile-container, .account-info-container {
+  @media only screen and (min-width: 550px) {
+    padding-left: 100px;
+  }
+
+  .tab-title {
+    margin-bottom: 35px;
+    font-size: 32px;
+    @include source-sans-light;
+    color: $ui-light-gray;
+    @media only screen and (min-width: 550px) {
+      margin-top: 50px;
+    }
+  }
+
+  .fields {
+    @media only screen and (min-width: 550px) {
+      margin-left: 3px;
+    }
+  }
+
+  .field-section {
+    margin-bottom: 40px;
+
+    h4 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: $ui-dark-gray;
+    }
+
+    p:not(.form-error) {
+      font-size: 14px;
+      color: $ui-light-gray;
+    }
+  }
+}

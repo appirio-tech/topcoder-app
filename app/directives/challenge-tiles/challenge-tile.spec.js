@@ -23,11 +23,11 @@ describe('Challenge Tile Directive', function() {
       scope.$digest();
     });
 
-    it('should have challenge related html', function() {
-      var directiveHtml = challengeTile.html();
-      expect(directiveHtml).to.include('challenge-name');
-      expect(directiveHtml).to.include('Learn and Earn Cordova App Assembly');
-    });
+    //it('should have challenge related html', function() {
+    //  var directiveHtml = challengeTile.html();
+    //  expect(directiveHtml).to.include('challenge-name');
+    //  expect(directiveHtml).to.include('Learn and Earn Cordova App Assembly');
+    //});
 
     it('should have a dynamically created member status message', function() {
       expect(scope.challenge.memberStatusMsg).to.equal('You are registered!');

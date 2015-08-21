@@ -11,7 +11,6 @@
     'angularSlideables'
   ];
 
-  angular
-    .module('tc.profile', dependencies);
+  angular.module('tc.profile', dependencies);
 
 })();

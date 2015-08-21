@@ -7,9 +7,11 @@
     'tc.account',
     'tc.peer-review',
     'tc.myDashboard',
+    'tc.mySRMs',
     'tc.myChallenges',
     'tc.sample',
     'tc.profile',
+    'tc.settings',
     'ui.router',
     'blocks.logger',
     'blocks.exception',
@@ -22,7 +24,8 @@
     'ngDialog',
     'xml',
     'angular.filter',
-    'CONSTANTS'
+    'CONSTANTS',
+    'dcbImgFallback'
   ];
 
   angular
