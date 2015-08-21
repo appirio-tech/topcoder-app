@@ -103,7 +103,10 @@
         url: '/logout/',
         controller: ['TcAuthService', function(TcAuthService) {
           TcAuthService.logout();
-        }]
+        }],
+        data: {
+          authRequired: false
+        }
       }
     };
 

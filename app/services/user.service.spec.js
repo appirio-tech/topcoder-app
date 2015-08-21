@@ -5,7 +5,7 @@ describe('User Service', function() {
   beforeEach(function() {
     bard.appModule('topcoder');
     bard.inject(this, '$httpBackend', 'UserService');
-    
+
     // mock api
     $httpBackend
       .when('GET', apiUrl + '/users/resetToken/?email=valid@test.com')
@@ -23,7 +23,7 @@ describe('User Service', function() {
       .when('PUT', apiUrl + '/users/resetPassword/', '{"param":{"handle":"validhandle","credential":{"password":"validpassword","resetToken":"invalidtoken"}}}')
       .respond(400);
   });
-  
+
   afterEach(function() {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
@@ -44,7 +44,7 @@ describe('User Service', function() {
       });
     $httpBackend.flush();
   });
-  
+
   it('cant get a recently requested reset token', function() {
     UserService.generateResetToken('recent@test.com')
       .then(function() {
@@ -54,7 +54,7 @@ describe('User Service', function() {
       });
    $httpBackend.flush();
   });
-  
+
   it('cant get a reset token for a user that doesnt exist', function() {
     UserService.generateResetToken('recent@test.com')
       .then(function() {
@@ -64,7 +64,7 @@ describe('User Service', function() {
       });
    $httpBackend.flush();
   });
-  
+
   it('resets the password', function() {
     UserService.resetPassword('validhandle', 'validpassword', 'validtoken')
       .then(function() {
@@ -74,7 +74,7 @@ describe('User Service', function() {
       });
    $httpBackend.flush();
   });
-  
+
   it('fails to reset the password', function() {
     UserService.resetPassword('validhandle', 'validpassword', 'invalidtoken')
       .then(function() {
