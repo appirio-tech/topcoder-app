@@ -55,9 +55,43 @@ hr {
 }
 
 .ngdialog.ngdialog-theme-default .ngdialog-content {
+  display: flex;
+  flex-flow: row wrap;
+
   .badges {
-    max-height: 350px;
-    overflow: auto;
+    width: 100%;
     margin-top: 10px;
+    justify-content: center;
+
+    .content {
+      max-height: 300px;
+      overflow: auto;
+      .badgeGroups {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+      }
+      .footer-badges {
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+      }
+    }
+  }
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+  @media (max-width: 768px) {
+    width: 100%;
+    border-radius: 0;
+  }
+  @media (min-width: 768px) {
+    width: 80%;
+  }
+  @media (min-width: 992px) {
+    width: 60%;
+  }
+  @media (min-width: 1200px) {
+    width: 50%;
   }
 }
