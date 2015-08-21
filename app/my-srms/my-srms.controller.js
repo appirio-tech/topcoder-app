@@ -3,9 +3,9 @@
 
   angular.module('tc.myDashboard').controller('MySRMsController', MySRMsController);
 
-  MySRMsController.$inject = ['UserService','SRMService'];
+  MySRMsController.$inject = ['UserService','SRMService', '$log'];
 
-  function MySRMsController(UserService, SRMService) {
+  function MySRMsController(UserService, SRMService, $log) {
     var vm = this;
     vm.srms = [];
     vm.srmResults = [];

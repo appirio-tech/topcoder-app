@@ -22,7 +22,7 @@
 
     function viewActiveChallenges() {
       vm.myChallenges = [];
-      getChallenges('Active', 'submissionEndDate asc');
+      getChallenges('Active', 'submissionenddate');
     }
 
     // get ACTIVE challenges and spotlight challenges
@@ -31,7 +31,7 @@
         limit: 6,
         offset: 0,
         orderBy: orderBy, // TODO verify if this is the correct sort order clause,
-        filter: "userId="+userId+"&status="+status
+        filter: "status="+status
       };
 
       $q.all([

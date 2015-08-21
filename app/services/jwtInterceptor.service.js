@@ -22,8 +22,7 @@
 
         // matchs everything besides /v3/members/{handle}/financial
         { method: 'GET', url: '\/v3\/members\/\\w+\/(?!financial)\\w+'},
-        { method: 'GET', url: '\/v3\/members\/\\w+\/$'},
-        { method: 'PUT', url: '\/v3\/members\/\\w+\/$'}
+        { method: 'GET', url: '\/v3\/members\/\\w+\/$'}
       ];
 
       for (var i = 0; i < haveItAddItEndpoints.length; i++) {
@@ -31,21 +30,10 @@
         var re = new RegExp(obj.url);
         if (config.method.toUpperCase() === obj.method && re.test(config.url)) {
           if (TcAuthService.isAuthenticated()) {
+            console.log
             var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token();
             if (token && !jwtHelper.isTokenExpired(token)) {
               return token;
-            } else if (token && jwtHelper.isTokenExpired(token)) {
-              return AuthTokenService.refreshV3Token(token).then(function(response) {
-                  token = response.data.result.content.token;
-                  // v2 token doesn't expire
-                  AuthTokenService.setV3Token(token);
-                  return token;
-                })
-                .catch(function(resp) {
-                  // must have expired, redirect to login?
-                  $state.go('login');
-                  return null;
-                });
             }
           }
           // else
@@ -56,8 +44,6 @@
       // for everything else assume that we need to send token
 
       var idToken = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token();
-      // FIXME looks like the services still need v2 token
-      idToken = config.url.indexOf('v3/users') > -1 ? idToken : AuthTokenService.getV2Token();
 
       if (!TcAuthService.isAuthenticated() || idToken == null) {
         $state.go('login');
@@ -67,8 +53,9 @@
       if (!jwtHelper.isTokenExpired(idToken)) {
         return idToken;
       } else {
-        return AuthTokenService.refreshToken(idToken).then(function(response) {
-            idToken = response.data.result.content.token;
+        return AuthTokenService.refreshV3Token(idToken).then(function(token) {
+            console.log("TOKEN: ", token);
+            idToken = token;
             // v2 token doesn't expire
             AuthTokenService.setV3Token(idToken);
             return idToken;
