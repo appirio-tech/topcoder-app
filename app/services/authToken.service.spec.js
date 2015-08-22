@@ -2,11 +2,6 @@
 describe('TcAuthToken Service', function() {
   var apiUrl = 'https://api.topcoder-dev.com/v3';
   var service;
-  var fakeWindow = {
-    document: {
-      cookie: "/"
-    }
-  };
 
   var fakeStore = {
       get: sinon.spy(function(name) {
@@ -22,6 +17,9 @@ describe('TcAuthToken Service', function() {
     fakeCookies = {
       get: sinon.spy(function(name) {
         return "value";
+      }),
+      remove: sinon.spy(function(name) {
+        return;
       })
     },
     fakeJwtHelper = {
@@ -32,7 +30,6 @@ describe('TcAuthToken Service', function() {
 
   beforeEach(function() {
     bard.appModule('tc.services', function($provide) {
-      $provide.value('$window', fakeWindow);
       $provide.value('store', fakeStore);
       $provide.value('$cookies', fakeCookies);
       $provide.value('jwtHelper', fakeJwtHelper);
@@ -60,9 +57,8 @@ describe('TcAuthToken Service', function() {
 
     it('should remove tokens from store & cookie"', function() {
       service.removeTokens();
-      // expect($window.document.cookie).to.equal();
+      expect($cookies.remove).to.have.been.calledWith('tcjwt');
       expect(store.remove).to.be.have.been.calledWith('appiriojwt');
-      expect(store.remove).to.be.have.been.calledWith('userObj');
     });
 
     it('should use jwtHelper to decode token"', function() {

@@ -9,6 +9,7 @@ describe('Challenges Controller', function() {
     bard.appModule('topcoder');
     bard.inject(this,
       '$controller',
+      'JwtInterceptorService',
       '$rootScope',
       '$q',
       'TcAuthService',
@@ -16,6 +17,10 @@ describe('Challenges Controller', function() {
       'UserService',
       'CONSTANTS',
       'Helpers');
+
+    bard.mockService(JwtInterceptorService, {
+      getToken: function() { return "v3Token"; }
+    });
 
     challengeService = ChallengeService;
     authService = TcAuthService;

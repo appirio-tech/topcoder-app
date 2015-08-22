@@ -21,8 +21,8 @@
         { method: 'GET', url: '\/v2\/challenges'},
 
         // matchs everything besides /v3/members/{handle}/financial
-        { method: 'GET', url: '\/v3\/members\/\\w+\/(?!financial)\\w+'},
-        { method: 'GET', url: '\/v3\/members\/\\w+\/$'},
+        { method: 'GET', url: '\/v3\/members\/\\w+\/(?!financial)\\w*'},
+        // { method: 'GET', url: '\/v3\/members\/\\w+\/$'},
       ];
 
       for (var i = 0; i < haveItAddItEndpoints.length; i++) {
@@ -31,8 +31,6 @@
         if (config.method.toUpperCase() === obj.method && re.test(config.url)) {
           if (TcAuthService.isAuthenticated()) {
             var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token();
-            // FIXME looks like the services still need v2 token
-            token = config.url.indexOf('v3/users') > -1 ? idToken : AuthTokenService.getV2Token();
             if (token && !jwtHelper.isTokenExpired(token)) {
               return token;
             }
@@ -43,10 +41,7 @@
       }
 
       // for everything else assume that we need to send token
-
       var idToken = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token();
-      // FIXME looks like the services still need v2 token
-      idToken = config.url.indexOf('v3/users') > -1 ? idToken : AuthTokenService.getV2Token();
 
       if (!TcAuthService.isAuthenticated() || idToken == null) {
         $state.go('login');

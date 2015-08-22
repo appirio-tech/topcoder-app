@@ -165,7 +165,14 @@
     }
 
     function getCountyObjFromIP() {
-      return $http.get("http://ipinfo.io")
+      var req = {
+
+      };
+      return $http({
+          method: "GET",
+          url: "http://ipinfo.io",
+          skipAuthorization: true
+        })
         .then(function(data) {
           if (data.data && data.data.country) {
             return ISO3166.getCountryObjFromAlpha2(data.data.country);
