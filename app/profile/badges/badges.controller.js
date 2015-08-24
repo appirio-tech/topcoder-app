@@ -14,7 +14,7 @@
 
     badgeCtrl.dealWithBadgeData(userId, $scope, ProfileService);
 
-    UserService.getUserProfile(handle).then(function(resp) {
+    UserService.getV2UserProfile(handle).then(function(resp) {
       $scope.coder = resp;
     });
 

@@ -21,7 +21,7 @@
       validateSocialProfile: validateSocialProfile,
       generateResetToken: generateResetToken,
       resetPassword: resetPassword,
-      getUserProfile: getUserProfile
+      getV2UserProfile: getV2UserProfile
     };
     return service;
     ///////////////
@@ -90,7 +90,7 @@
      * Temporary end point for getting member's badges/achievements. This endpoint
      * should be removed once we have it in v3.
      */
-    function getUserProfile(handle) {
+    function getV2UserProfile(handle) {
       return ApiService.restangularV2.one('users', handle).get();
     }
   }
