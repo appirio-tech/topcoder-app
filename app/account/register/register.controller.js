@@ -88,7 +88,14 @@
         }
       }
 
-      TcAuthService.register({param: userInfo})
+      var body = {
+        param: userInfo,
+        options: {
+          afterActivationURL: CONSTANTS.MAIN_URL + '/my-dashboard/'
+        }
+      }
+
+      TcAuthService.register(body)
       .then(function(data) {
         $log.debug('registered successfully');
 
