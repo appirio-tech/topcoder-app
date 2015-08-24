@@ -4,25 +4,24 @@
   /**
    * The controller for badges section of member-profile page.
    */
-  var BadgeCtrl = function ($scope, CONSTANTS, ProfileService, UserService) {
+  var BadgeCtrl = function ($scope, CONSTANTS, ProfileService, UserService, userHandle) {
     var badgeCtrl = this;
+    // use logged in user's handle for showing badges if not injected into the controller
+    badgeCtrl.userHandle = userHandle ? userHandle : UserService.getUserIdentity().username;
     badgeCtrl.init($scope);
     badgeCtrl.mapBadges();
 
-    var userId = UserService.getUserIdentity().userId;
-    var handle = UserService.getUserIdentity().username;
+    badgeCtrl.dealWithBadgeData($scope, ProfileService);
 
-    badgeCtrl.dealWithBadgeData(userId, $scope, ProfileService);
-
-    UserService.getV2UserProfile(handle).then(function(resp) {
+    UserService.getV2UserProfile(badgeCtrl.userHandle).then(function(resp) {
       $scope.coder = resp;
     });
 
   };
   /**
-   * Deal with badge data when user id is ready.
+   * Deal with badge data when we have the user profile ready.
    */
-  BadgeCtrl.prototype.dealWithBadgeData = function(userId, $scope, ProfileService){
+  BadgeCtrl.prototype.dealWithBadgeData = function($scope, ProfileService){
     var badgeCtrl = this;
     /*
       The service method getUser( handle )  already contains achievements information.
@@ -669,5 +668,5 @@
     .module('tc.profile')
     .controller('BadgesController', BadgeCtrl);
 
-  BadgeCtrl.$inject = ['$scope', 'CONSTANTS', 'ProfileService', 'UserService'];
+  BadgeCtrl.$inject = ['$scope', 'CONSTANTS', 'ProfileService', 'UserService', 'userHandle'];
 })();
