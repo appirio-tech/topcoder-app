@@ -17,7 +17,8 @@ var mockData = (function() {
     getMockStats: getMockStats,
     getMockSkills: getMockSkills,
     getMockSRMs: getMockSRMs,
-    getMockSRMResults: getMockSRMResults
+    getMockSRMResults: getMockSRMResults,
+    getMockBadge: getMockBadge
   };
 
   function getMockStates() {
@@ -1170,6 +1171,56 @@ var mockData = (function() {
             "rating": 961,
             "colorStyle": "color: #00A900"
           }
+        ],
+        "Achievements": [
+          {
+            "date": "2012-09-28T00:00:00.000-0400",
+            "description": "First Marathon Competition"
+          },
+          {
+            "date": "2012-09-28T00:00:00.000-0400",
+            "description": "First Rated Algorithm Competition"
+          },
+          {
+            "date": "2012-09-28T00:00:00.000-0400",
+            "description": "Five Rated Algorithm Competitions"
+          },
+          {
+            "date": "2012-09-28T00:00:00.000-0400",
+            "description": "Three Marathon Competitions"
+          },
+          {
+            "date": "2010-04-07T00:00:00.000-0400",
+            "description": "First Forum Post"
+          },
+          {
+            "date": "2010-02-18T00:00:00.000-0500",
+            "description": "First Passing Submission"
+          },
+          {
+            "date": "2009-12-18T00:00:00.000-0500",
+            "description": "One Hundred Forum Posts"
+          },
+          {
+            "date": "2009-12-10T00:00:00.000-0500",
+            "description": "First Placement"
+          },
+          {
+            "date": "2009-12-10T00:00:00.000-0500",
+            "description": "First Win"
+          },
+          {
+            "date": "2009-02-19T00:00:00.000-0500",
+            "description": "Five Hundred Forum Posts"
+          },
+          {
+            "date": "2008-09-30T00:00:00.000-0400",
+            "description": "Digital Run Top Five"
+          },
+          {
+            "date": "2008-05-01T00:00:00.000-0400",
+            "description": "One Thousand Forum Posts"
+          }
         ]
       }
     };
@@ -1814,6 +1865,14 @@ var mockData = (function() {
           "iOS"
         ]
       }
+    };
+  }
+
+  function getMockBadge() {
+    return {
+      name: "Mock achievement",
+      date: "Sept 10, 2010",
+      currentlyEarned: 2
     };
   }
 

@@ -5,14 +5,15 @@
 
   ProfileCtrl.$inject = ['$scope', 'CONSTANTS', '$log',
     'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService',
-    'userHandle', 'profile'
+    'userHandle', 'profile', 'ngDialog'
   ];
 
-  function ProfileCtrl($scope, CONSTANTS, $log, TcAuthService, UserService, ProfileService, ChallengeService, userHandle, profile) {
+  function ProfileCtrl($scope, CONSTANTS, $log, TcAuthService, UserService, ProfileService, ChallengeService, userHandle, profile, ngDialog) {
     var vm = this;
     // set profile to the object that was resolved
     vm.profile = profile;
     vm.userHandle = userHandle;
+    vm.showBadges = showBadges;
 
     // spinnerssss
     $log.debug()
@@ -71,6 +72,20 @@
         vm.tenure = false;
       }
 
+    }
+
+    function showBadges() {
+      ngDialog.open({
+        template: 'profile/badges/badges.html',
+        controller: 'BadgesController',
+        controllerAs: 'vm',
+        className: 'ngdialog-theme-default',
+        resolve: {
+          userHandle: function() {
+            return vm.userHandle;
+          }
+        }
+      });
     }
   }
 })();

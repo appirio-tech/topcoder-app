@@ -46,6 +46,13 @@
         templateUrl: 'profile/subtrack/subtrack.html',
         controller: 'ProfileSubtrackController',
         controllerAs: 'vm'
+      },
+      'profileBadges': {
+        url: '/members/:userHandle/badges/',
+        templateUrl: 'profile/badges/badges.html',
+        parent: 'root',
+        controller: 'BadgesController',
+        controllerAs: 'vm'
       }
     };
 
