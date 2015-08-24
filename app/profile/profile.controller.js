@@ -79,7 +79,12 @@
         template: 'profile/badges/badges.html',
         controller: 'BadgesController',
         controllerAs: 'vm',
-        className: 'ngdialog-theme-default'
+        className: 'ngdialog-theme-default',
+        resolve: {
+          userHandle: function() {
+            return vm.userHandle;
+          }
+        }
       });
     }
   }
