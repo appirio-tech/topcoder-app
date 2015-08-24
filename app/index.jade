@@ -16,6 +16,8 @@ html
     link(rel='stylesheet', href='../bower_components/devicon/devicon.min.css')
     link(rel='stylesheet', href='../bower_components/angular-dropdowns/dist/angular-dropdowns.css')
     link(rel='stylesheet', href='../bower_components/angucomplete-alt/angucomplete-alt.css')
+    link(rel='stylesheet', href='../bower_components/ngDialog/css/ngDialog.css')
+    link(rel='stylesheet', href='../bower_components/ngDialog/css/ngDialog-theme-default.css')
     //- endbower
     // endbuild
 
@@ -49,6 +51,7 @@ html
     link(rel="stylesheet", href="assets/css/directives/srm-tile.css")
     link(rel="stylesheet", href="assets/css/directives/profile-widget.css")
     link(rel="stylesheet", href="assets/css/directives/challenge-tiles.css")
+    link(rel="stylesheet", href="assets/css/directives/badge-tooltip.css")
     link(rel="stylesheet", href="assets/css/account/reset-password.css")
     link(rel="stylesheet", href="assets/css/account/register.css")
     link(rel="stylesheet", href="assets/css/account/login.css")
@@ -92,6 +95,8 @@ html
     script(src='../bower_components/angular-dropdowns/dist/angular-dropdowns.js')
     script(src='../bower_components/angucomplete-alt/angucomplete-alt.js')
     script(src='../bower_components/appirio-tech-ng-iso-constants/dist/ng-iso-constants.js')
+    script(src='../bower_components/angular-mocks/angular-mocks.js')
+    script(src='../bower_components/ngDialog/js/ngDialog.js')
     //- endbower
     //- inject:nonBowerScripts
     script(src="/scripts/auth0.js")
@@ -115,6 +120,7 @@ html
     script(src="directives/account/toggle-password/toggle-password.directive.js")
     script(src="directives/account/validate-login.directive.js")
     script(src="directives/account/validate-register.directive.js")
+    script(src="directives/badges/badge-tooltip.directive.js")
     script(src="directives/challenge-tiles/challenge-tile.directive.js")
     script(src="directives/focus-on.directive.js")
     script(src="directives/profile-widget/profile-widget.directive.js")
@@ -125,6 +131,7 @@ html
     script(src="directives/tc-section/tc-section.directive.js")
     script(src="topcoder.module.js")
     script(src="filters/deadline-msg.filter.js")
+    script(src="filters/iif.filter.js")
     script(src="filters/listRoles.filter.js")
     script(src="filters/local-time.filter.js")
     script(src="filters/location.filter.js")
@@ -158,6 +165,7 @@ html
     script(src="peer-review/review-status/review-status.filter.js")
     script(src="profile/profile.module.js")
     script(src="profile/about/about.controller.js")
+    script(src="profile/badges/badges.controller.js")
     script(src="profile/profile.controller.js")
     script(src="profile/profile.routes.js")
     script(src="profile/subtrack/subtrack.controller.js")
