@@ -22,7 +22,7 @@ describe('Profile Badges Controller', function() {
     userService = UserService;
 
     // mock user api
-    sinon.stub(userService, 'getUserProfile', function() {
+    sinon.stub(userService, 'getV2UserProfile', function() {
       var deferred = $q.defer();
       deferred.resolve(mockUserProfile.data);
       return deferred.promise;
