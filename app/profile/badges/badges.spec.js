@@ -37,6 +37,7 @@ describe('Profile Badges Controller', function() {
     scope = $rootScope.$new();
     controller = $controller('BadgesController', {
       $scope: scope,
+      userHandle: 'vikasrohit'
     });
     $rootScope.$apply();
 
