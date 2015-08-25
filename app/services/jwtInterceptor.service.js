@@ -22,7 +22,6 @@
 
         // matchs everything besides /v3/members/{handle}/financial
         { method: 'GET', url: '\/v3\/members\/\\w+\/(?!financial)\\w*'},
-        // { method: 'GET', url: '\/v3\/members\/\\w+\/$'},
       ];
 
       for (var i = 0; i < haveItAddItEndpoints.length; i++) {
@@ -51,7 +50,7 @@
       if (!jwtHelper.isTokenExpired(idToken)) {
         return idToken;
       } else {
-        return AuthTokenService.refreshToken(idToken).then(function(response) {
+        return AuthTokenService.refreshV3Token(idToken).then(function(response) {
             idToken = response.data.result.content.token;
             // v2 token doesn't expire
             AuthTokenService.setV3Token(idToken);
@@ -64,7 +63,6 @@
           });
       }
     }
-
     return service;
   };
 })();
