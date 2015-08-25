@@ -11,10 +11,23 @@
       .field-section
         h4.field-title Location
 
-        input(name="location", type="text", value="{{vm.userData.competitionCountry}}", ng-model="vm.userData.competitionCountry", maxlength="50", required)
+        .country-dropdown
+          angucomplete-alt(
+            id="countryId",
+            input-name="location",
+            placeholder="Country",
+            pause="100",
+            selected-object="vm.updateCountry",
+            local-data="vm.countries",
+            initial-value="vm.countryObj",
+            search-fields="name",
+            title-field="name",
+            match-class="angucomplete-highlight",
+            minlength="1"
+          )
 
         .form-errors
-          .form-error(ng-show="vm.editProfile.location.$error.required") You must enter a location.
+          p.form-error(ng-show="vm.editProfile.location.$error.required") Please enter a valid country.
 
       .field-section.description
         h4.field-title About Me
@@ -31,7 +44,7 @@
 
           .track-button(ng-class="{'selected-track': vm.tracks.develop}", ng-click="vm.toggleTrack('develop')") Development
 
-          .track-button(ng-class="{'selected-track': vm.tracks.dataScience}", ng-click="vm.toggleTrack('dataScience')") Data Science
+          .track-button(ng-class="{'selected-track': vm.tracks.data_science}", ng-click="vm.toggleTrack('data_science')") Data Science
 
       button(type="submit") Save
 

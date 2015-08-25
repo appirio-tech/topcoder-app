@@ -56,10 +56,15 @@
       .then(function(obj) {
         vm.countryObj = obj;
       });
+
     vm.countries = ISO3166.getAllCountryObjects();
-    vm.countryUpdated = function ($item) {
+
+    vm.updateCountry = function (angucompleteCountryObj) {
       // update country
-      vm.country = _.get($item, "originalObject.name", undefined);
+      vm.country = _.get(angucompleteCountryObj, 'originalObject.alpha3', undefined);
+
+      var valid = _.isUndefined(vm.country) ? false : true;
+      vm.registerForm.country.$setValidity('required', valid);
     };
 
     vm.register = function() {
