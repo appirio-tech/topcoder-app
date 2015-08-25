@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('AuthTokenService', AuthTokenService);
 
-  AuthTokenService.$inject = ['CONSTANTS', '$window', '$cookies', 'store', '$http', '$log', 'jwtHelper'];
+  AuthTokenService.$inject = ['CONSTANTS', '$cookies', '$location', 'store', '$http', '$log', 'jwtHelper'];
 
-  function AuthTokenService(CONSTANTS, $window, $cookies, store, $http, $log, jwtHelper) {
+  function AuthTokenService(CONSTANTS, $cookies, $location,  store, $http, $log, jwtHelper) {
     var v2TokenKey = 'tcjwt';
     var v3TokenKey = 'appiriojwt';
 
@@ -37,9 +37,11 @@
 
     function removeTokens() {
       // remove tokens
-      $window.document.cookie = v2TokenKey + '=; path=/; domain=.' + CONSTANTS.domain + '; expires=' + (new Date(0)).toUTCString();
+      // need to provide domain when removing cookie
+      var domain = $location.host().substring($location.host().indexOf("."));
+      $cookies.remove(v2TokenKey, {domain: domain});
+      $cookies.remove('tcsso', {domain: domain});
       store.remove(v3TokenKey);
-      store.remove('userObj');
     }
 
     function decodeToken(token) {

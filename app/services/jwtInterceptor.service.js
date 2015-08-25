@@ -21,8 +21,7 @@
         { method: 'GET', url: '\/v2\/challenges'},
 
         // matchs everything besides /v3/members/{handle}/financial
-        { method: 'GET', url: '\/v3\/members\/\\w+\/(?!financial)\\w+'},
-        { method: 'GET', url: '\/v3\/members\/\\w+\/$'}
+        { method: 'GET', url: '\/v3\/members\/\\w+\/(?!financial)\\w*'}
       ];
 
       for (var i = 0; i < haveItAddItEndpoints.length; i++) {
@@ -41,7 +40,6 @@
       }
 
       // for everything else assume that we need to send token
-
       var idToken = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token();
 
       if (!TcAuthService.isAuthenticated() || idToken == null) {
@@ -52,8 +50,8 @@
       if (!jwtHelper.isTokenExpired(idToken)) {
         return idToken;
       } else {
-        return AuthTokenService.refreshV3Token(idToken).then(function(token) {
-            idToken = token;
+        return AuthTokenService.refreshV3Token(idToken).then(function(response) {
+            idToken = response.data.result.content.token;
             // v2 token doesn't expire
             AuthTokenService.setV3Token(idToken);
             return idToken;
@@ -65,7 +63,6 @@
           });
       }
     }
-
     return service;
   };
 })();

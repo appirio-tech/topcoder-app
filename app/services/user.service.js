@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('UserService', UserService);
 
-  UserService.$inject = ['CONSTANTS', 'ApiService', 'AuthTokenService', '$http', 'store', 'jwtHelper'];
+  UserService.$inject = ['CONSTANTS', 'ApiService', '$injector', 'AuthTokenService', '$http', 'store', 'jwtHelper'];
 
-  function UserService(CONSTANTS, ApiService, AuthTokenService, http, store, jwtHelper) {
+  function UserService(CONSTANTS, ApiService, $injector, AuthTokenService, http, store, jwtHelper) {
 
     var _config = {
       cache: false,
@@ -14,7 +14,6 @@
 
     var service = {
       getUserIdentity: getUserIdentity,
-      setUserIdentity: setUserIdentity,
       createUser: createUser,
       validateUserEmail: validateUserEmail,
       validateUserHandle: validateUserHandle,
@@ -27,16 +26,22 @@
     ///////////////
 
     function getUserIdentity() {
-      return JSON.parse(store.get('userObj'));
-    }
-
-    function setUserIdentity(token) {
-      if (!token) {
-        store.remove('userObj');
+      var TcAuthService = $injector.get('TcAuthService');
+      if (TcAuthService.isAuthenticated()) {
+        var decodedToken = AuthTokenService.decodeToken(AuthTokenService.getV3Token());
+        return decodedToken;
       } else {
-        store.set('userObj', JSON.stringify(token));
+        return null;
       }
     }
+
+    // function setUserIdentity(token) {
+    //   if (!token) {
+    //     store.remove('userObj');
+    //   } else {
+    //     store.set('userObj', JSON.stringify(token));
+    //   }
+    // }
 
     function createUser(body) {
       return ApiService.restangularV3.all('users').withHttpConfig(_config).customPOST(JSON.stringify(body));
@@ -67,15 +72,6 @@
         }
       };
       return ApiService.restangularV3.all('users').one('resetPassword').withHttpConfig(_config).customPUT(JSON.stringify(data));
-    }
-
-    function getUser() {
-      var TcAuthService = $injector.get('TcAuthService');
-      if (TcAuthService.isAuthenticated()) {
-        return JSON.parse(store.get('userObj'));
-      } else {
-        return null;
-      }
     }
 
     function validateSocialProfile(userId, providerId) {

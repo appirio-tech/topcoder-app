@@ -61,7 +61,7 @@
     function activate() {
       $log.debug('Calling ProfileController activate()');
       // show edit profile link if user is authenticated and is viewing their own profile
-      if (TcAuthService.isAuthenticated() && UserService.getUserIdentity().username == vm.userHandle) {
+      if (TcAuthService.isAuthenticated() && UserService.getUserIdentity().handle == vm.userHandle) {
         vm.showEditProfileLink = true;
       } else {
         vm.showEditProfileLink = false;

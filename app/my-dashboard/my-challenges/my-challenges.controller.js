@@ -12,7 +12,7 @@
     vm.myChallenges = [];
     vm.userHasChallenges = true;
 
-    var userId = UserService.getUserIdentity().userId;
+    var handle = UserService.getUserIdentity().handle;
 
     activate();
 
@@ -22,7 +22,7 @@
 
     function viewActiveChallenges() {
       vm.myChallenges = [];
-      getChallenges('Active', 'submissionenddate');
+      getChallenges('active', 'submissionEndDate asc');
     }
 
     // get ACTIVE challenges and spotlight challenges
@@ -35,7 +35,7 @@
       };
 
       $q.all([
-        ChallengeService.getChallenges(params),
+        ChallengeService.getUserChallenges(handle, params),
         ChallengeService.getSpotlightChallenges()
       ])
       .then(function(data){

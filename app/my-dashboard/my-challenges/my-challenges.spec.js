@@ -44,10 +44,10 @@ describe('Challenges Widget Controller', function() {
     });
 
     // mock challenges api
-    sinon.stub(challengeService, 'getChallenges', function(data) {
+    sinon.stub(challengeService, 'getUserChallenges', function(handle, params) {
       var deferred = $q.defer();
       var resp = null;
-      if (data.filter.indexOf('status=Active') != -1) {
+      if (params.filter.indexOf('status=active') != -1) {
         resp = JSON.parse(JSON.stringify(challenges));
       } else {
         resp = JSON.parse(JSON.stringify(challenges.slice(1)));

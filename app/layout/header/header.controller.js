@@ -16,7 +16,7 @@
       $log.debug(event + ' triggered header update.');
       vm.isAuth = TcAuthService.isAuthenticated();
       if (vm.isAuth) {
-        vm.userHandle = UserService.getUserIdentity().username;
+        vm.userHandle = UserService.getUserIdentity().handle;
          ProfileService.getUserProfile(vm.userHandle).then(function(data) {
           vm.profile = data;
          })

@@ -25,8 +25,8 @@
       return api.all('challenges').getList(params);
     }
 
-    function getUserChallenges(userId, params) {
-       return api.one('members', userId).all('challenges').getList(params);
+    function getUserChallenges(handle, params) {
+       return api.one('members', handle).all('challenges').getList(params);
     }
 
     function getSpotlightChallenges() {
