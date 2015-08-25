@@ -30,7 +30,7 @@
 
     function viewActiveChallenges() {
       vm.myChallenges = [];
-      getChallenges('Active', 'submissionEndDate asc');
+      getChallenges('Active', 'submissionEndDate%20asc');
     };
 
     function viewPastChallenges() {
@@ -43,7 +43,7 @@
       var params = {
         offset: 0,
         orderBy: orderBy, // TODO verify if this is the correct sort order clause,
-        filter: "&status="+status
+        filter: "status="+status
       };
 
       $q.all([
