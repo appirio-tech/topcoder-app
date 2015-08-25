@@ -1,19 +1,19 @@
 (function () {
+  'use strict';
 
-  angular
-    .module('tc.profile')
-    .controller('ProfileCtrl', ProfileCtrl);
+  angular.module('tc.profile').controller('ProfileCtrl', ProfileCtrl);
 
   ProfileCtrl.$inject = ['$scope', 'CONSTANTS', '$log',
     'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService',
-    'userHandle', 'profile'
+    'userHandle', 'profile', 'ngDialog'
   ];
 
-  function ProfileCtrl($scope, CONSTANTS, $log, TcAuthService, UserService, ProfileService, ChallengeService, userHandle, profile) {
+  function ProfileCtrl($scope, CONSTANTS, $log, TcAuthService, UserService, ProfileService, ChallengeService, userHandle, profile, ngDialog) {
     var vm = this;
     // set profile to the object that was resolved
     vm.profile = profile;
     vm.userHandle = userHandle;
+    vm.showBadges = showBadges;
 
     // spinnerssss
     $log.debug()
@@ -41,7 +41,7 @@
       vm.status.stats = CONSTANTS.STATE_ERROR;
     });
 
-    vm.pastChallengesPromise = ChallengeService.getChallenges({filter: 'userId=' + profile.userId+"&status=completed"})
+    vm.pastChallengesPromise = ChallengeService.getUserChallenges(profile.userId, {orderBy: 'submissionenddate desc', status: 'complete'})
     .then(function(data) {
       vm.status.pastChallenges = CONSTANTS.STATE_READY;
       vm.pastChallenges = data;
@@ -61,13 +61,31 @@
     function activate() {
       $log.debug('Calling ProfileController activate()');
       // show edit profile link if user is authenticated and is viewing their own profile
-      if (TcAuthService.isAuthenticated() && UserService.getUserIdentity().username == vm.userHandle) {
+      if (TcAuthService.isAuthenticated() && UserService.getUserIdentity().handle == vm.userHandle) {
         vm.showEditProfileLink = true;
       } else {
         vm.showEditProfileLink = false;
       }
-      vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
+      if (profile.createdAt) {
+        vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
+      } else {
+        vm.tenure = false;
+      }
 
+    }
+
+    function showBadges() {
+      ngDialog.open({
+        template: 'profile/badges/badges.html',
+        controller: 'BadgesController',
+        controllerAs: 'vm',
+        className: 'ngdialog-theme-default',
+        resolve: {
+          userHandle: function() {
+            return vm.userHandle;
+          }
+        }
+      });
     }
   }
 })();

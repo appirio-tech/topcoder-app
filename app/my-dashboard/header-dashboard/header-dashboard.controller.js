@@ -4,12 +4,14 @@
   angular.module('tc.myDashboard').controller('HeaderDashboardController', HeaderDashboardController);
 
   HeaderDashboardController.$inject = [
+    '$stateParams',
+    'NotificationService',
     'UserService',
     'ProfileService',
     'CONSTANTS'
   ];
 
-  function HeaderDashboardController(UserService, ProfileService, CONSTANTS) {
+  function HeaderDashboardController($stateParams, NotificationService, UserService, ProfileService, CONSTANTS) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.defaultPhotoUrl = CONSTANTS.ASSET_PREFIX + "images/avatarPlaceholder.png";
@@ -17,17 +19,21 @@
     vm.loading = true;
     vm.hasRatings = true;
 
+    if ($stateParams.notifyReset) {
+      NotificationService.inform('Thanks. Your new password has been set.');
+    }
+
     activate();
 
     function activate() {
-      var username = UserService.getUserIdentity().username;
+      var handle = UserService.getUserIdentity().handle;
 
-      ProfileService.getUserProfile(username)
+      ProfileService.getUserProfile(handle)
       .then(function(profile) {
         vm.profile = profile;
       });
 
-      ProfileService.getUserStats(username)
+      ProfileService.getUserStats(handle)
       .then(function(stats) {
         vm.rankStats = ProfileService.getRanks(stats);
 
@@ -43,7 +49,7 @@
         // todo handle error
       })
 
-      ProfileService.getUserFinancials(username)
+      ProfileService.getUserFinancials(handle)
       .then(function(financials) {
         vm.moneyEarned = financials.overallEarning;
       });

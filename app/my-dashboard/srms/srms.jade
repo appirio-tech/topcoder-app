@@ -2,19 +2,19 @@ header
   h1.section-title SRMs
 
   p.viewSRMs()
-    a(ui-sref="goToNewSRMsPageWhenBuilt") View All Past SRMs
+    a(ui-sref="my-srms") View All Past SRMs
 
 .section-loading(ng-show="vm.loading")
 
-section.srms(ng-hide="vm.loading")
-  srm-tile.srm-tile(ng-repeat="srm in vm.srms", srm="srm", domain="vm.domain")
+section.srm-tiles(ng-hide="vm.loading")
+  srm-tile.srm-tile(ng-repeat="srm in vm.srms", srm="srm", view="'tile'", ng-class="'tile-view'")
 
 .section-links
   .link
-    a(href="https://community.{{vm.domain}}/tc?module=ProblemArchive") Problem Archives
+    a(href="https://community.{{DOMAIN}}/tc?module=ProblemArchive") Problem Archives
 
   .link
-    a(href="https://apps.{{vm.domain}}/wiki/display/tc/Algorithm+Problem+Set+Analysis") Match Editorials
+    a(href="https://community.{{DOMAIN}}/wiki/display/tc/Algorithm+Problem+Set+Analysis") Match Editorials
 
   .link
-    a(href="https://arena.{{vm.domain}}/") Launch Topcoder Arena
+    a(href="https://arena.{{DOMAIN}}/") Launch Topcoder Arena

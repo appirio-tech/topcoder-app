@@ -12,6 +12,7 @@
 
     var service = {
       getChallenges: getChallenges,
+      getUserChallenges: getUserChallenges,
       getSpotlightChallenges: getSpotlightChallenges,
       getiOSChallenges: getiOSChallenges,
       getMyMarathonMatches: _getMyMarathonMatches,
@@ -22,6 +23,10 @@
 
     function getChallenges(params) {
       return api.all('challenges').getList(params);
+    }
+
+    function getUserChallenges(handle, params) {
+       return api.one('members', handle).all('challenges').getList(params);
     }
 
     function getSpotlightChallenges() {
@@ -162,7 +167,7 @@
     }
 
     function getChallengeDetails(challengeId) {
-      var url = CONSTANTS.API_URL_V2 + '/challenges/' + challengeId;
+      var url = CONSTANTS.API_URL + '/challenges/' + challengeId;
       return ApiService.requestHandler('GET', url, {}, true);
     }
 

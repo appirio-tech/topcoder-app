@@ -3,16 +3,15 @@
 .register-container {
   position: relative;
 
-  // Remove box-sizing when bootstrap is gone
-  * {
-    box-sizing: content-box;
-  }
-
   form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 300px;
+
+    input[name="firstname"], input[name="lastname"] {
+      width: 146px;
+    }
   }
 
   .form-errors {
@@ -28,10 +27,6 @@
     flex-direction: row;
     justify-content: space-between;
     width: 300px;
-  }
-
-  input[name="firstname"], input[name="lastname"] {
-    width: 131px;
   }
 
   .terms {

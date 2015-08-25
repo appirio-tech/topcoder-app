@@ -1,18 +1,18 @@
 (function () {
   'use strict';
 
-  angular.module('tc.myDashboard').controller('MyChallengesController', MyChallengesController);
+  angular.module('tc.myDashboard').controller('MyChallengesWidgetController', MyChallengesWidgetController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers'];
+  MyChallengesWidgetController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers) {
+  function MyChallengesWidgetController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
     vm.myChallenges = [];
     vm.userHasChallenges = true;
 
-    var userId = UserService.getUserIdentity().userId;
+    var handle = UserService.getUserIdentity().handle;
 
     activate();
 
@@ -22,8 +22,8 @@
 
     function viewActiveChallenges() {
       vm.myChallenges = [];
-      getChallenges('Active', 'submissionEndDate asc');
-    };
+      getChallenges('active', 'submissionEndDate asc');
+    }
 
     // get ACTIVE challenges and spotlight challenges
     function getChallenges(status, orderBy) {
@@ -31,11 +31,11 @@
         limit: 6,
         offset: 0,
         orderBy: orderBy, // TODO verify if this is the correct sort order clause,
-        filter: "userId="+userId+"&status="+status
+        filter: "status="+status
       };
 
       $q.all([
-        ChallengeService.getChallenges(params),
+        ChallengeService.getUserChallenges(handle, params),
         ChallengeService.getSpotlightChallenges()
       ])
       .then(function(data){

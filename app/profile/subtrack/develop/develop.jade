@@ -1,0 +1,105 @@
+.develop(ng-if="vm.track == 'Develop'")
+  ul.horizontal-stats
+    li.stat
+      .value {{vm.typeStats.rank.overallRank}}
+      .name RANK
+
+    li.stat
+      .value {{vm.typeStats.rank.rating}}
+      .name RATING
+
+    li.stat
+      .value {{vm.typeStats.challenges}}
+      .name PROJECTS
+
+    li.stat
+      .value {{vm.typeStats.rank.overallCountryRank}}
+      .name COUNTRY RANK
+
+    li.stat
+      .value {{vm.typeStats.rank.reliability | percentage}}
+      .name RELIABILITY
+
+  .tabs
+    a(ng-click="vm.viewing = 'challenges'",
+      ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
+    ) Challenges
+
+    a(ng-click="vm.viewing = 'stats'",
+      ng-class="vm.viewing == 'stats' ? 'selected' : ''"
+    ) Stats
+
+  hr
+
+  tc-section(
+    ng-show="vm.viewing == 'challenges'",
+    state="profileVm.status.pastChallenges"
+  )
+    .challenges
+      .challenge.tile(ng-repeat="challenge in vm.pastChallenges = (profileVm.pastChallenges)")
+        challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
+      .div(ng-show="!vm.pastChallenges || vm.pastChallenges.length == 0")
+        | No past challenges available for this user
+
+  .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
+    .graphs
+      img(src="/images/graph.png")
+
+    h2.detailed Detailed Stats
+
+    ul.vertical-stats
+      li
+        .left Submissions
+        .right {{vm.typeStats.submissions.submissions}}
+
+      li
+        .left Submission Rate
+        .right {{vm.typeStats.submissions.submissionRate | percentage}}
+
+      li
+        .left Passed Screening
+        .right {{vm.typeStats.submissions.passedScreening}}
+
+      li
+        .left Screening Success Rate
+        .right {{vm.typeStats.submissions.screeningSuccessRate | percentage}}
+
+      li
+        .left Passed Review
+        .right {{vm.typeStats.submissions.passedReview}}
+
+      li
+        .left Review Success Rate
+        .right {{vm.typeStats.submissions.reviewSuccessRate | percentage}}
+
+      li
+        .left Maximum Score
+        .right {{vm.typeStats.submissions.maxScore}}
+
+      li
+        .left Minimum Score
+        .right {{vm.typeStats.submissions.minScore}}
+
+      li
+        .left Appeals
+        .right {{vm.typeStats.submissions.appeals}}
+
+      li
+        .left Appeals Success Rate
+        .right {{vm.typeStats.submissions.appealSuccessRate | percentage}}
+
+      li
+        .left Average Score
+        .right {{vm.typeStats.submissions.avgScore | number: 2}}
+
+      li
+        .left Average Placement
+        .right {{vm.typeStats.submissions.avgPlacement | number: 2}}
+
+      li
+        .left Wins
+        .right {{vm.typeStats.wins}}
+
+      li
+        .left Win Percentage
+        .right {{vm.typeStats.submissions.winPercent | percentage}}

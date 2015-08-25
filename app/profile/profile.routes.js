@@ -3,7 +3,6 @@
 
   angular.module('tc.profile').config([
     '$stateProvider',
-    '$urlRouterProvider',
     routes
   ]).run(['$rootScope', '$state', function($rootScope, $state) {
     // handle state change error
@@ -15,9 +14,8 @@
     });
   }]);
 
-  function routes($stateProvider, $stateParams, $urlRouterProvider) {
-    var name, state, states;
-    states = {
+  function routes($stateProvider) {
+    var states = {
       'profile': {
         parent: 'root',
         abstract: true,
@@ -43,15 +41,23 @@
         controller: 'ProfileAboutController',
         controllerAs: 'vm'
       },
-      'profile.develop': {
-        url: 'develop/?:track&:subTrack',
-        templateUrl: 'profile/develop/develop.html',
-        controller: 'ProfileDevelopController',
+      'profile.subtrack': {
+        url: 'details/?:track&:subTrack',
+        templateUrl: 'profile/subtrack/subtrack.html',
+        controller: 'ProfileSubtrackController',
+        controllerAs: 'vm'
+      },
+      'profileBadges': {
+        url: '/members/:userHandle/badges/',
+        templateUrl: 'profile/badges/badges.html',
+        parent: 'root',
+        controller: 'BadgesController',
         controllerAs: 'vm'
       }
     };
-    for (name in states) {
-      state = states[name];
+
+    for (var name in states) {
+      var state = states[name];
       $stateProvider.state(name, state);
     }
   }

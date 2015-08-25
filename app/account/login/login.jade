@@ -4,14 +4,14 @@
   form(name="loginForm", role="form", ng-submit="loginForm.$valid && vm.login()", novalidate)
     .form-errors
 
-      p.login-error(ng-hide="vm.usernameExists") This user does not exist.
+      p.form-error(ng-hide="vm.usernameExists") This user does not exist.
 
-      p.login-error(ng-show="vm.wrongPassword") That password doesn't match the one we have on file. Please try again.
+      p.form-error(ng-show="vm.wrongPassword") That password doesn't match the one we have on file. Please try again.
 
-      p.login-error(ng-show="vm.socialLoginError === 401") User with that profile is not registered.
+      p.form-error(ng-show="vm.socialLoginError === 401") User with that profile is not registered.
 
       div(ng-show="loginForm.$submitted")
-        p.login-error(ng-show="loginForm.username.$error.required") Please enter your username or email.
+        p.form-error(ng-show="loginForm.username.$error.required") Please enter your username or email.
 
     div.validation-bar(ng-class="{'error-bar': !vm.usernameExists}")
       input(ng-model="vm.username", ng-blur="vm.usernameExists = true", name="username", placeholder="Username or Email", type="text", required)

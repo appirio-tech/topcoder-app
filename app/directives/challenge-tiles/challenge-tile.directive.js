@@ -14,7 +14,8 @@
         return 'directives/challenge-tiles/challenge-tile.directive.html';
       },
       scope: {
-        challenge: '='
+        challenge: '=',
+        view: '='
       },
       controller: ['$scope', 'CONSTANTS', '$attrs', function($scope, CONSTANTS, $attrs) {
         $scope.DOMAIN = CONSTANTS.domain;
@@ -36,6 +37,8 @@
           challenge.submissionClosed = now > submissionDate ? true : false;
           challenge.registrationTimeLeft = (registrationDate - now)/(24*60*60*1000);
           challenge.submissionTimeLeft = (submissionDate - now)/(24*60*60*1000);
+          // temporary...right now many challenges have a `null` track
+          challenge.track = challenge.track ? challenge.track.trim() : 'DEVELOP';
 
           // challenge.phaseMsg = preparePhaseMessage(challenge);
 

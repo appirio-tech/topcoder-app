@@ -24,7 +24,10 @@
 
       MemberCertService.getMemberRegistration(userId, CONSTANTS.SWIFT_PROGRAM_ID)
       .then(function(res) {
-        if (res !== undefined) {
+        if (res === undefined || res === null) {
+          vm.registered = false;
+          vm.loading = false;
+        } else {
           ChallengeService.getiOSChallenges()
           .then(function(challenges) {
             // When filtering by reviewType is fixed on the backend,

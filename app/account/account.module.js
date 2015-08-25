@@ -2,10 +2,10 @@
   'use strict';
 
   var dependencies = [
-    'validateLogin',
-    'validateRegister',
     'ui.router',
     'tc.services',
+    'ngIsoConstants',
+    'angucomplete-alt'
   ];
 
   angular.module('tc.account', dependencies);
@@ -20,5 +20,4 @@
     // .run(['auth', function(auth) {
     //   auth.hookEvents();
     // }]);
-
 })();

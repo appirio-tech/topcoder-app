@@ -23,6 +23,7 @@
       },
       'dashboard': {
         url: '/my-dashboard/',
+        params: { 'notifyReset': false },
         parent: 'baseDashboard',
         views: {
           'header-dashboard' : {
@@ -32,12 +33,12 @@
           },
           'my-challenges': {
             templateUrl: "my-dashboard/my-challenges/my-challenges.html",
-            controller: 'MyChallengesController',
+            controller: 'MyChallengesWidgetController',
             controllerAs: 'vm'
           },
           'srms' :{
             templateUrl: 'my-dashboard/srms/srms.html',
-            controller: 'SRMController',
+            controller: 'SRMWidgetController',
             controllerAs: 'vm'
           },
           'programs': {

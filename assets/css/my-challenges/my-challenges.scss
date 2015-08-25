@@ -1,0 +1,133 @@
+
+@import '../partials/combined';
+@import '../partials/combined';
+
+.my-challenges-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  hr {
+    @include horizontal-rule;
+    margin-bottom: 35px;
+  }
+
+  .section-loading {
+    width: 100%;
+    height: 50px;
+    background: $loading no-repeat center center;
+  }
+
+  .section-title {
+    font-size: 22px;
+    color: #4f4f4f;
+    text-align: center;
+  }
+
+  .section-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .link {
+      border-radius: 5px;
+      padding: 10px;
+      background-color: $dark-gray;
+      margin: 10px;
+
+      a {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .my-challenges {
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+
+    header {
+      position: relative;
+      margin-bottom: 35px;
+
+      p.noChallenges {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 18px;
+      }
+
+      p.viewChallenges {
+        position: absolute;
+        top: 3px;
+        right: 10px;
+
+        a {
+          text-decoration: underline;
+        }
+      }
+
+      p.viewDashboard {
+        position: absolute;
+        top: 3px;
+        left: 10px;
+
+        a {
+          text-decoration: underline;
+        }
+      }
+
+      p.viewOptions {
+        position: absolute;
+        top: 3px;
+        right: 150px;
+
+        a {
+          text-decoration: underline;
+
+          &.disabled {
+            text-decoration: none;
+            color: $dark-gray;
+            cursor: default;
+          }
+        }
+      }
+
+      p.filters {
+        position: absolute;
+        top: 3px;
+        right: 10px;
+
+        a {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    section.challenges {
+      display: flex;
+      flex-flow: row wrap;
+
+      challenge-tile {
+        &.list {
+          width: 100%;
+        }
+        &.tile {
+          width: 23%;
+          margin-bottom: 20px;
+        }
+        +challenge-tile {
+          margin-left: 20px;
+        }
+      }
+    }
+
+    .spotlightChallenges {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+  }
+}

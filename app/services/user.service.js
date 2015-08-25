@@ -3,38 +3,45 @@
 
   angular.module('tc.services').factory('UserService', UserService);
 
-  UserService.$inject = ['CONSTANTS', 'ApiService', 'AuthTokenService', '$http', 'store', 'jwtHelper'];
+  UserService.$inject = ['CONSTANTS', 'ApiService', '$injector', 'AuthTokenService', '$http', 'store', 'jwtHelper'];
 
-  function UserService(CONSTANTS, ApiService, AuthTokenService, http, store, jwtHelper) {
-    var service = {
-      getUserIdentity: getUserIdentity,
-      setUserIdentity: setUserIdentity,
-      createUser: createUser,
-      validateUserEmail: validateUserEmail,
-      validateUserHandle: validateUserHandle,
-      validateSocialProfile: validateSocialProfile,
-      generateResetToken: generateResetToken,
-      resetPassword: resetPassword
-    };
-    return service;
+  function UserService(CONSTANTS, ApiService, $injector, AuthTokenService, http, store, jwtHelper) {
 
-    ///////////////
     var _config = {
       cache: false,
       skipAuthorization: true
     };
 
-    function getUserIdentity() {
-      return JSON.parse(store.get('userObj'));
-    }
+    var service = {
+      getUserIdentity: getUserIdentity,
+      createUser: createUser,
+      validateUserEmail: validateUserEmail,
+      validateUserHandle: validateUserHandle,
+      validateSocialProfile: validateSocialProfile,
+      generateResetToken: generateResetToken,
+      resetPassword: resetPassword,
+      getV2UserProfile: getV2UserProfile
+    };
+    return service;
+    ///////////////
 
-    function setUserIdentity(token) {
-      if (!token) {
-        store.remove('userObj');
+    function getUserIdentity() {
+      var TcAuthService = $injector.get('TcAuthService');
+      if (TcAuthService.isAuthenticated()) {
+        var decodedToken = AuthTokenService.decodeToken(AuthTokenService.getV3Token());
+        return decodedToken;
       } else {
-        store.set('userObj', JSON.stringify(token));
+        return null;
       }
     }
+
+    // function setUserIdentity(token) {
+    //   if (!token) {
+    //     store.remove('userObj');
+    //   } else {
+    //     store.set('userObj', JSON.stringify(token));
+    //   }
+    // }
 
     function createUser(body) {
       return ApiService.restangularV3.all('users').withHttpConfig(_config).customPOST(JSON.stringify(body));
@@ -64,16 +71,7 @@
           }
         }
       };
-      return ApiService.restangularV3.all('users').withHttpConfig(_config).one('resetPassword').customPUT(JSON.stringify(data));
-    }
-
-    function getUser() {
-      var TcAuthService = $injector.get('TcAuthService');
-      if (TcAuthService.isAuthenticated()) {
-        return JSON.parse(store.get('userObj'));
-      } else {
-        return null;
-      }
+      return ApiService.restangularV3.all('users').one('resetPassword').withHttpConfig(_config).customPUT(JSON.stringify(data));
     }
 
     function validateSocialProfile(userId, providerId) {
@@ -84,6 +82,13 @@
       });
     }
 
+    /**
+     * Temporary end point for getting member's badges/achievements. This endpoint
+     * should be removed once we have it in v3.
+     */
+    function getV2UserProfile(handle) {
+      return ApiService.restangularV2.one('users', handle).get();
+    }
   }
 
 })();

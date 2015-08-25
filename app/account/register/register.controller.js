@@ -3,11 +3,13 @@
 
   angular.module('tc.account').controller('RegisterController', RegisterController);
 
-  RegisterController.$inject = ['$log', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService'];
+  RegisterController.$inject = ['$log', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService', 'ISO3166', 'Helpers'];
 
-  function RegisterController($log, CONSTANTS, $state, $stateParams, TcAuthService, UserService) {
+  function RegisterController($log, CONSTANTS, $state, $stateParams, TcAuthService, UserService, ISO3166, Helpers) {
     var vm = this;
 
+    // Set default for toggle password directive
+    vm.defaultPlaceholder = 'Create Password';
 
     // Social Registeration callback
     var params = {}, callbackUrl;
@@ -18,7 +20,6 @@
     var auth0Register = new Auth0({
       domain: CONSTANTS.auth0Domain,
       clientID: CONSTANTS.clientId,
-      // callbackOnLocationHash: true,
       callbackURL: callbackUrl
     });
     vm.socialProvider = null;
@@ -50,6 +51,17 @@
       });
     }
 
+    // lookup users country
+    Helpers.getCountyObjFromIP()
+      .then(function(obj) {
+        vm.countryObj = obj;
+      });
+    vm.countries = ISO3166.getAllCountryObjects();
+    vm.countryUpdated = function ($item) {
+      // update country
+      vm.country = _.get($item, "originalObject.name", undefined);
+    };
+
     vm.register = function() {
       var userInfo = {
         handle: vm.username,
@@ -76,7 +88,14 @@
         }
       }
 
-      TcAuthService.register({param: userInfo})
+      var body = {
+        param: userInfo,
+        options: {
+          afterActivationURL: CONSTANTS.MAIN_URL + '/my-dashboard/'
+        }
+      }
+
+      TcAuthService.register(body)
       .then(function(data) {
         $log.debug('registered successfully');
 

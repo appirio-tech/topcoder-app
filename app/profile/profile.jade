@@ -1,8 +1,10 @@
 .profile-header-container(ng-cloak)
   .left
     profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink")
-  .right
+  .right(ng-if="profileVm.tenure")
     h4 member for {{profileVm.tenure}} years
-    
+  .right
+    a(ng-click="profileVm.showBadges()") View All Badges
+
 
 ui-view(ng-cloak)

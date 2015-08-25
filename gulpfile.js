@@ -32,6 +32,9 @@ gulp.task('jade', ['clean-html'], function() {
   return gulp
     .src(config.jade)
     .pipe($.plumber())
+    .pipe($.data(function(file) {
+      return envConfig;
+    }))
     .pipe($.jade({pretty: true}))
     .pipe($.replace(/-->/g, ' -->'))
     .pipe(gulp.dest(config.temp));

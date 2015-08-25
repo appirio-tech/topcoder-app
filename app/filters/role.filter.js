@@ -1,13 +1,13 @@
 (function() {
   'use strict';
 
-  angular.module('topcoder').filter('displayTracks', DisplayTracks);
+  angular.module('topcoder').filter('role', RoleFilter);
 
-  function DisplayTracks() {
+  function RoleFilter() {
     var map = {
       'DESIGN' : 'Designer',
       'DEVELOP': 'Developer',
-      'DATA'   : 'Data Scientist'
+      'DATA_SCIENCE': 'Data Scientist'
     };
     return function(tracks) {
       if (tracks) {

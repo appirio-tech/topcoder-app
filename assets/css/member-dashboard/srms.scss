@@ -20,11 +20,17 @@
     }
   }
 
-  section.srms {
+  section.srm-tiles {
     display: flex;
     flex-flow: row wrap;
     /* The negative margin here removes the leftmost tiles'
        margin, since we can't use .tile:first-child here */
     margin-left: -20px;
+    
+    srm-tile.tile-view {
+      width: 23%;
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
   }
 }

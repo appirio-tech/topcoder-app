@@ -1,0 +1,50 @@
+.design(ng-if="vm.track == 'Design'")
+  ul.horizontal-stats
+    li.stat
+      .value {{vm.typeStats.wins}}
+      .name WINS
+
+    li.stat
+      .value {{vm.typeStats.submissions.submissions}}
+      .name SUBMISSIONS
+
+  .tabs
+    a(ng-click="vm.viewing = 'challenges'",
+      ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
+    ) Challenges
+
+    a(ng-click="vm.viewing = 'stats'",
+      ng-class="vm.viewing == 'stats' ? 'selected' : ''"
+    ) Stats
+
+  hr
+
+  tc-section(
+    ng-show="vm.viewing == 'challenges'",
+    state="profileVm.status.pastChallenges"
+  )
+    .challenges
+      .challenge.tile(ng-repeat="challenge in vm.pastChallenges = (profileVm.pastChallenges)")
+        challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
+
+      .div(ng-show="!vm.pastChallenges || vm.pastChallenges.length == 0")
+        | No past challenges available for this user
+
+  .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
+    .graphs
+      img(src="/images/graph.png")
+
+    h2.detailed Detailed Stats
+
+    ul.vertical-stats
+      li
+        .left Submissions
+        .right {{vm.typeStats.submissions.submissions}}
+
+      li
+        .left Passed Screening
+        .right {{vm.typeStats.submissions.passedScreening}}
+
+      li
+        .left Wins
+        .right {{vm.typeStats.wins}}

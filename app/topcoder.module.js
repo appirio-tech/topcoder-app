@@ -7,8 +7,11 @@
     'tc.account',
     'tc.peer-review',
     'tc.myDashboard',
+    'tc.mySRMs',
+    'tc.myChallenges',
     'tc.sample',
     'tc.profile',
+    'tc.settings',
     'ui.router',
     'blocks.logger',
     'blocks.exception',
@@ -18,9 +21,11 @@
     'ngNotificationsBar',
     'ngSanitize',
     'ngDropdowns',
+    'ngDialog',
     'xml',
     'angular.filter',
-    'CONSTANTS'
+    'CONSTANTS',
+    'dcbImgFallback'
   ];
 
   angular
@@ -31,7 +36,7 @@
 
   function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log, NotificationService) {
     // Attaching $state to the $rootScope allows us to access the
-    // current state in index.html (see div with ui-view on the index page)
+    // current state in index.html (see the body tag)
     $rootScope.$state = $state;
 
     // check AuthNAuth on change state start
