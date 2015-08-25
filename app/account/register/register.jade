@@ -3,7 +3,7 @@
 
   form(name="vm.registerForm", role="form", ng-submit="vm.registerForm.$valid && vm.register()", novalidate, autocomplete="off")
 
-    // Stops Chrome from filling in form fields (and not triggering a change event that angular would use)
+    // Stops Chrome from autofilling and autocompleting
     input(autocomplete="false", name="hidden", type="text", style="display:none;")
 
     p.form-error(ng-show="vm.errMsg") {{vm.errMsg}}
