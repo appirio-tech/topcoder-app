@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('Challenges Controller', function() {
+describe('My Challenges Controller', function() {
   var controller;
   var authService, challengeService, userService;
   var marathons = mockData.getMockMarathons();
@@ -9,6 +9,7 @@ describe('Challenges Controller', function() {
     bard.appModule('topcoder');
     bard.inject(this,
       '$controller',
+      'JwtInterceptorService',
       '$rootScope',
       '$q',
       'TcAuthService',
@@ -16,6 +17,10 @@ describe('Challenges Controller', function() {
       'UserService',
       'CONSTANTS',
       'Helpers');
+
+    bard.mockService(JwtInterceptorService, {
+      getToken: function() { return "v3Token"; }
+    });
 
     challengeService = ChallengeService;
     authService = TcAuthService;
@@ -44,7 +49,7 @@ describe('Challenges Controller', function() {
     });
 
     // mock challenges api
-    sinon.stub(challengeService, 'getChallenges', function(data) {
+    sinon.stub(challengeService, 'getUserChallenges', function(data) {
       var deferred = $q.defer();
       var resp = null;
       if (data.filter.indexOf('status=Active') != -1) {
