@@ -18,6 +18,7 @@
     vm.isCopilot = false;
     vm.loading = true;
     vm.hasRatings = true;
+    vm.rankStats = [];
 
     if ($stateParams.notifyReset) {
       NotificationService.inform('Thanks. Your new password has been set.');
