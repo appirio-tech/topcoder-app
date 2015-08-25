@@ -16,6 +16,7 @@
     vm.domain = CONSTANTS.domain;
     vm.registered = false;
     vm.loading = true;
+    vm.challenges = [];
 
     activate();
 
