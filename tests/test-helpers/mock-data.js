@@ -1251,37 +1251,40 @@ var mockData = (function() {
 
   function getMockProfile() {
     return {
-      "updatedAt": "2015-07-10T01:40Z",
-      "createdAt": "2001-07-24T16:44Z",
-      "createdBy": null,
-      "updatedBy": null,
-      "firstName": "F_NAME",
-      "lastName": "L_NAME",
-      "otherLangName": "NIAL",
-      "handle": "rakesh",
-      "email": "email@domain.com.z",
-      "description": "abc",
-      "quote": "def",
-      "address": {
-        "streetAddr1": "123",
-        "streetAddr2": "456",
-        "city": "Sunnyvale",
-        "zip": "94086",
-        "stateCode": "CA",
-        "addressTypeId": 1,
-        "addressType": "office"
-      },
-      "homeCountryCode": 840,
-      "competitionCountryCode": 840,
-      "homeCountry": "United States",
-      "competitionCountry": "United States",
+      "updatedAt":null,
+      "createdAt":null,
+      "createdBy":null,
+      "updatedBy":null,
+      "userId":10336829,
+      "firstName":"Albert",
+      "lastName":"Wang",
+      "quote":"Competing since 2004, albertwang has achieved ratings in multiple data science, architecture, and devleopment challenge tracks. He is most skilled in component design and architecture",
+      "description":"Test description",
+      "otherLangName":"NIAL",
+      "handle":"albertwang",
+      "email":"email@domain.com.z",
+      "addresses":[
+        {
+          "updatedAt":null,
+          "createdAt":null,
+          "createdBy":null,
+          "updatedBy":null,
+          "addressId":90263,
+          "streetAddr1":"123 Main Street",
+          "streetAddr2":"address_2",
+          "city":"Santa Clause",
+          "zip":"47579",
+          "stateCode":"IN",
+          "type":"HOME"
+        }
+      ],
+      "homeCountryCode":"USA",
+      "competitionCountryCode":"SXM",
       "photo": {
-        "imageId": 22202176,
-        "photoUrl": "https://topcoder-dev-media.s3.amazonaws.com/member_profile/userId-123123123.png"
+        "imageId":20744540,
+        "photoUrl":"https://www.topcoder.com/i/m/albertwang.jpeg"
       },
-      "tracks": [
-        "DEVELOP",
-        "DESIGN",
+      "tracks":[
         "DATA_SCIENCE"
       ]
     };

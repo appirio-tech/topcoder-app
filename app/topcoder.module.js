@@ -25,7 +25,8 @@
     'xml',
     'angular.filter',
     'CONSTANTS',
-    'dcbImgFallback'
+    'dcbImgFallback',
+    'ap-file-upload'
   ];
 
   angular
