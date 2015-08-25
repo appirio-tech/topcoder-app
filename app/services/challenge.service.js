@@ -63,6 +63,7 @@
         filter: "technologies=ios&status=active",
         limit: 3,
         offset: 0,
+        orderBy: 'submissionenddate'
       };
       return api.all('challenges').getList(iOSParams);
     }

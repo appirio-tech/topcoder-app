@@ -29,19 +29,11 @@
           title: 'Edit Profile'
         },
         resolve: {
-          userData: ['UserService', function(UserService) {
-            return {
-              location: 'China',
-              aboutMe: 'I like algorithms and stuff.',
-              image: 'path/to/image.svg',
-              tracks: {
-                'development': true,
-                'design': false,
-                'data science': true
-              },
-              skills: ['nunchuck skills', 'bow hunting skills', 'computer hacking skills'],
-              externalLinks: ['github', 'stack overflow']
-            };
+          userHandle: ['UserService', function(UserService) {
+            return UserService.getUserIdentity().handle;
+          }],
+          userData: ['userHandle', 'ProfileService', function(userHandle, ProfileService) {
+            return ProfileService.getUserProfile(userHandle);
           }]
         },
       },
