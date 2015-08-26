@@ -35,7 +35,6 @@
     "angular-sanitize": "1.4.x",
     "angular-ui-router": "~0.2.15",
     "angular-xml": "~2.1.1",
-    "Appirio File Upload": "ap-file-uploader#~0.3.8",
     "appirio-tech-ng-iso-constants": "git@github.com:appirio-tech/ng-iso-constants#~1.0.0",
     "devicon": "*",
     "fontawesome": "~4.3.0",

@@ -6,14 +6,7 @@
       .field-section.edit-image
         img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photo.photoUrl}}")
 
-        .upload-image
-          p Edit Image
-
-          ap-uploader(
-            config="vm.editImageConfig",
-            uploading="vm.editImageUploading",
-            has-errors="vm.editImageHasErrors"
-          )
+        a(href) edit image
 
       .field-section
         h4.field-title Location
