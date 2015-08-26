@@ -9,7 +9,11 @@
         .upload-image
           p Edit Image
 
-          div(ap-uploader)
+          ap-uploader(
+            config="vm.editImageConfig",
+            uploading="vm.editImageUploading",
+            has-errors="vm.editImageHasErrors"
+          )
 
       .field-section
         h4.field-title Location

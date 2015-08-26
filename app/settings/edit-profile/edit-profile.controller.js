@@ -3,13 +3,28 @@
 
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
-  EditProfileController.$inject = ['userData', 'ProfileService', '$log', 'ISO3166'];
+  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', '$log', 'ISO3166', 'CONSTANTS'];
 
-  function EditProfileController(userData, ProfileService, $log, ISO3166) {
+  function EditProfileController(userData, userHandle, ProfileService, $log, ISO3166, CONSTANTS) {
     var vm = this;
     vm.updateProfile  = updateProfile;
     vm.toggleTrack    = toggleTrack;
     vm.updateCountry = updateCountry;
+
+    vm.countries = ISO3166.getAllCountryObjects();
+    vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.competitionCountryCode);
+
+    vm.editImageUploading = null;
+    vm.editImageHasErrors = null;
+    vm.editImageConfig = {
+      name: 'editImage',
+      allowMultiple: false,
+      urlPresigner: CONSTANTS.API_URL + '/members/' + userHandle + '/photoUploadUrl',
+      fileEndpoint: CONSTANTS.API_URL + '/members/' + userHandle + '/photo',
+      saveParams: {
+        token: (new Date()).getTime()
+      }
+    };
 
     if (userData.tracks === null) {
       userData.tracks = [];
@@ -18,9 +33,6 @@
     activate();
 
     function activate() {
-      vm.countries = ISO3166.getAllCountryObjects();
-      vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.competitionCountryCode);
-
       processData(userData);
       vm.userData = userData.plain();
     }
