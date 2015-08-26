@@ -18,7 +18,8 @@ var mockData = (function() {
     getMockSkills: getMockSkills,
     getMockSRMs: getMockSRMs,
     getMockSRMResults: getMockSRMResults,
-    getMockBadge: getMockBadge
+    getMockBadge: getMockBadge,
+    getMockUserFinancials: getMockUserFinancials
   };
 
   function getMockStates() {
@@ -1968,6 +1969,12 @@ var mockData = (function() {
         "ovarallRank": null
       }
     ];
+  }
+
+  function getMockUserFinancials() {
+    return {
+      overallEarning: 5100
+    };
   }
 
 

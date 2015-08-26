@@ -57,7 +57,7 @@
           'Authorization': "Bearer " + token
         },
         data: {}
-      }).then(function(response) {
+      }).then(function(res) {
         var appiriojwt = res.data.result.content.token;
         setV3Token(appiriojwt);
         return appiriojwt;

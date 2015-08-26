@@ -97,6 +97,19 @@ a {
   cursor: pointer;
 }
 
+// Country dropdown styles
+.angucomplete-highlight {
+  color: $black;
+  font-weight: bold;
+}
+
+.angucomplete-dropdown {
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+
+// Section loading and form styles
 .section-loading {
   width: 100%;
   min-height: 50px;
@@ -108,6 +121,8 @@ a {
 }
 
 .form-notice {
+  margin-top: 5px;
+  margin-bottom: 5px;
   font-size: 13px;
   color: #58595B;
 }

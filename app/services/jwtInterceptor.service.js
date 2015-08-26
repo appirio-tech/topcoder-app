@@ -21,7 +21,7 @@
         { method: 'GET', url: '\/v2\/challenges'},
 
         // matchs everything besides /v3/members/{handle}/financial
-        { method: 'GET', url: '\/v3\/members\/\\w+\/(?!financial)\\w*'},
+        { method: 'GET', url: '\/v3\/members\/\\w+\/(?!financial)\\w*'}
       ];
 
       for (var i = 0; i < haveItAddItEndpoints.length; i++) {

@@ -12,6 +12,7 @@
     var service = {
       // primary, for global use
       getUserProfile: getUserProfile,
+      updateUserProfile: updateUserProfile,
       getUserSkills: getUserSkills,
       getUserFinancials: getUserFinancials,
       getUserStats: getUserStats,
@@ -31,6 +32,12 @@
 
     function getUserProfile(username) {
       return restangular.one('members', username).get();
+    }
+
+    function updateUserProfile(userData) {
+      var data = { param: userData };
+
+      return restangular.one('members', userData.handle).customPUT(JSON.stringify(data));
     }
 
     function getUserSkills(username) {
