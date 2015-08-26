@@ -16,12 +16,16 @@
     var profileVm = $scope.$parent.profileVm;
     vm.dropdown = [];
     vm.ddSelected = {};
+    vm.distribution = {};
     vm.selectSubTrack = selectSubTrack;
     vm.back = back;
 
     activate();
 
     function activate() {
+      ProfileService.getDistributionStats(vm.track, vm.subTrack).then(function(data) {
+        vm.distribution = data;
+      });
       profileVm.statsPromise.then(function(data) {
         vm.typeStats = ProfileService.getChallengeTypeStats(
           profileVm.stats,
