@@ -7,6 +7,7 @@ var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
 var merge        = require('merge-stream');
 var RevAll       = require('gulp-rev-all');
+var protractor   = require('gulp-angular-protractor');
 
 var envFile = require('./config.js')();
 var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
@@ -353,6 +354,17 @@ gulp.task('serve-build', ['build'], function() {
 
   browserSync(options);
 
+});
+
+gulp.task('e2e', [], function(done) {
+  gulp.src(['./tests/e2e/app/*.js'])
+    .pipe(protractor({
+        'configFile': 'tests/e2e/conf.js',
+        'args': ['--baseUrl', 'http://127.0.0.1:8000'],
+        'autoStartStopServer': true,
+        'debug': true
+    }))
+    .on('error', function(e) { throw e });
 });
 
 // gulp.task('test', ['vet', 'templatecache'], function(done) {
