@@ -55,7 +55,7 @@
       p.form-error(ng-show="vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength") Username must be between 2 and 15 characters.
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.email.$dirty && vm.registerForm.email.$invalid), 'success-bar': (vm.registerForm.email.$valid) }")
-      input(right-placeholder, focused-placeholder="Email", ng-model="vm.email", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", email-is-available, required)
+      input(right-placeholder, focused-placeholder="Email", ng-model="vm.email", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required)
 
       .tips.email-tips(ng-show="vm.emailTips")
         h3 Email Tips:
