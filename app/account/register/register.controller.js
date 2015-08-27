@@ -117,7 +117,8 @@
           scope: "openid profile offline_access",
           state: callbackUrl,
           connection: backend,
-          response_type: 'token'
+          response_type: 'token',
+          callbackURL: callbackUrl
         });
     }
   }
