@@ -23,8 +23,9 @@
     activate();
 
     function activate() {
-      ProfileService.getDistributionStats(vm.track, vm.subTrack).then(function(data) {
-        vm.distribution = data;
+      vm.distributionPromise = ProfileService.getDistributionStats(vm.track, vm.subTrack);
+      vm.distributionPromise.then(function(data) {
+        vm.distribution = data.distribution;
       });
       profileVm.statsPromise.then(function(data) {
         vm.typeStats = ProfileService.getChallengeTypeStats(

@@ -43,7 +43,7 @@
 
   .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
     .graphs
-      distribution-graph(data="vm.distribution")
+      distribution-graph(promise="vm.distributionPromise")
 
     h2.detailed Detailed Stats
 

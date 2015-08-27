@@ -10,14 +10,27 @@
         return 'directives/distribution-graph/distribution-graph.directive.html';
       },
       scope: {
-        data: '='
+        promise: '='
       },
-      controller: ['$scope']
+      controller: ['$scope', DistributionGraphController]
     };
   }
 
   function DistributionGraphController($scope) {
-    
+    var w       = 600,
+        h       = 350,
+        padding = 100;
+
+    activate();
+
+    function activate() {
+      $scope.promise.then(function(data) {
+        $scope.distribution = data.distribution;
+        console.log($scope.distribution);
+      });
+    }
+    //var xScale = d3.scale.ordinal()
+    //               .domain(d3.range(data.length))
   }
 
 })();

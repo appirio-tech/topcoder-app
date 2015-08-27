@@ -61,7 +61,7 @@
     }
 
     function getDistributionStats(track, subTrack) {
-      return restangular.one('member').one('stats').one('distribution').get({
+      return restangular.one('members').one('stats').one('distribution').get({
         'filter': 'track=' + track + '&subTrack=' + subTrack
       });
     }
