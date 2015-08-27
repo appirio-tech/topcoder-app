@@ -45,11 +45,15 @@
       .then(function(res) {
         var xhr = new XMLHttpRequest();
         var formData = new FormData();
-        formData.append(file.name, file);
+        formData.append('userimage', file, file.name);
 
+        xhr.open('PUT', res.preSignedURL, true);
+        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+
+        // xhr version of the success callback
         xhr.onreadystatechange = function() {
           var status = xhr.status;
-          if ((status >= 200 && status < 300) || status === 304) {
+          if (((status >= 200 && status < 300) || status === 304) && xhr.readyState === 4) {
             ImageService.createFileRecord(userHandle, {param: {token: res.token}})
             .then(function(res) {
               $log.info('Successfully made file record.');
@@ -66,8 +70,6 @@
           $log.error(res);
         }
 
-        xhr.open('PUT', res.preSignedURL, true);
-        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
         xhr.send(formData);
       })
       .catch(function(err) {
