@@ -1,26 +1,19 @@
 /* jshint -W117, -W030 */
 describe('Edit Profile Controller', function() {
   var vm;
+  var mockProfile = mockData.getMockProfile();
 
   beforeEach(function() {
     bard.appModule('tc.settings');
     bard.inject(this, '$controller', '$rootScope', '$q');
 
-    var userData = {
-      location: 'China',
-      aboutMe: 'I like algorithms and stuff.',
-      image: 'path/to/image.svg',
-      tracks: {
-        'development': true,
-        'design': false,
-        'dataScience': true
-      },
-      skills: ['nunchuck skills', 'bow hunting skills', 'computer hacking skills'],
-      externalLinks: ['github', 'stack overflow']
+    mockProfile.plain = function() {
+      return this;
     };
 
     vm = $controller('EditProfileController', {
-      userData: userData
+      userData: mockProfile,
+      userHandle: 'albertwang'
     });
   });
 
@@ -41,25 +34,15 @@ describe('Edit Profile Controller', function() {
       expect(user).to.be.an('object');
     });
 
-    it('should have all userData fields from the resolve', function() {
-      expect(user.location).to.equal('China');
-      expect(user.aboutMe).to.equal('I like algorithms and stuff.');
-      expect(user.tracks).to.be.an('object');
-      expect(user.skills).to.be.an('array');
-      expect(user.externalLinks).to.be.an('array');
-      expect(user.image).to.exist;
-    });
-
     it('should have the tracks that the user is interested in', function() {
-      expect(user.tracks).to.have.all.keys(['development', 'design', 'dataScience']);
-      expect(user.tracks['development']).to.be.true;
-      expect(user.tracks['dataScience']).to.be.true;
-      expect(user.tracks['design']).to.be.false;
+      expect(user.tracks).to.contain('DATA_SCIENCE');
     });
 
-    it('should have the user\'s external links', function() {
-      expect(user.externalLinks).to.contain('github');
-    });
+    it('should store the tracks in an object after processing', function() {
+      expect(vm.tracks['develop']).to.be.false;
+      expect(vm.tracks['data_science']).to.be.true;
+      expect(vm.tracks['design']).to.be.false;
+    })
   });
 
   describe('updating a user\'s information', function() {
@@ -70,7 +53,16 @@ describe('Edit Profile Controller', function() {
     it('should have an updateProfile method', function() {
       expect(vm.updateProfile).to.be.a('function');
     });
+  });
 
+  describe('updating a profile image', function() {
+    it('should get a presigned url', function() {
+
+    });
+
+    it('should make a request to something', function() {
+
+    });
   });
 
 });

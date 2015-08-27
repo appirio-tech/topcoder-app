@@ -116,7 +116,9 @@
       auth0Register.login({
           scope: "openid profile offline_access",
           state: callbackUrl,
-          response_type: 'token'
+          connection: backend,
+          response_type: 'token',
+          callbackURL: callbackUrl
         });
     }
   }

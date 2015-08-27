@@ -50,8 +50,7 @@
       if (!jwtHelper.isTokenExpired(idToken)) {
         return idToken;
       } else {
-        return AuthTokenService.refreshV3Token(idToken).then(function(response) {
-            idToken = response.data.result.content.token;
+        return AuthTokenService.refreshV3Token(idToken).then(function(idToken) {
             // v2 token doesn't expire
             AuthTokenService.setV3Token(idToken);
             return idToken;
