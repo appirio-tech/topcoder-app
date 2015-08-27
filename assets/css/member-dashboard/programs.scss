@@ -38,15 +38,24 @@
     }
 
     .call-to-action {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
       justify-content: space-around;
-      text-transform: uppercase;
       @include source-sans-bold;
       color: #727272;
       font-size: 22px;
+      cursor: pointer;
 
       p {
         width: 255px;
         line-height: 1.2;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: $dark-gray;
+        margin: 10px;
+        color: $white;
       }
     }
   }
