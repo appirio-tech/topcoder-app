@@ -1,17 +1,33 @@
 /* jshint -W117, -W030 */
 describe('SubTrack Controller', function() {
   var profileCtrl, controller;
+  var challengeService, profileService;
   var mockProfile = mockData.getMockProfile();
   var mockStats = mockData.getMockStats();
   var mockSkills = mockData.getMockSkills();
+  var mockChallenges = mockData.getMockiOSChallenges();
   var apiUrl = 'https://api.topcoder-dev.com/v3';
+  var track = 'develop', subTrack = 'development';
+  var profileScope, scope;
 
   beforeEach(function() {
     bard.appModule('topcoder');
     bard.appModule('tc.profile');
-    bard.inject(this, '$httpBackend', '$controller', 'CONSTANTS', '$rootScope');
+    bard.inject(this,
+      '$httpBackend',
+      '$controller',
+      'CONSTANTS',
+      '$rootScope',
+      '$q',
+      '$state',
+      'ChallengeService',
+      'ProfileService'
+    );
 
-    var profileScope = $rootScope.$new();
+    challengeService = ChallengeService;
+    profileService = ProfileService;
+
+    profileScope = $rootScope.$new();
     profileCtrl = $controller('ProfileCtrl', {
       $scope: profileScope,
       userHandle: 'rakesh',
@@ -19,16 +35,22 @@ describe('SubTrack Controller', function() {
     });
     profileScope.profileVm = profileCtrl;
 
-    var scope = profileScope.$new();
-    controller = $controller('ProfileSubtrackController', {
-      $scope: scope
+
+    // mock challenges api
+    sinon.stub(challengeService, 'getUserChallenges', function(handle, data) {
+      var deferred = $q.defer();
+      var resp = null;
+      if (data.filter.subTrack.toLowerCase() == 'design') {
+        resp = JSON.parse(JSON.stringify(mockChallenges.slice(1)));
+      } else {
+        resp = JSON.parse(JSON.stringify(mockChallenges));
+      }
+      resp.metadata = {
+        totalCount: resp.length
+      };
+      deferred.resolve(resp);
+      return deferred.promise;
     });
-
-
-    // mock challenges
-    $httpBackend
-      .when('GET', new RegExp(apiUrl + '/members.*/challenges/.*'))
-      .respond(200, {result: {content: []}});
     // mock stats
     $httpBackend
       .when('GET', apiUrl + '/members/rakesh/stats/')
@@ -45,23 +67,120 @@ describe('SubTrack Controller', function() {
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  it('should be defined', function() {
-    expect(controller).to.be.defined;
+
+  bard.verifyNoOutstandingHttpRequests();
+
+  describe('default values', function() {
+
+    beforeEach( function(){
+      scope = profileScope.$new();
+      controller = $controller('ProfileSubtrackController', {
+        $scope: scope,
+        $stateParams: {
+          track: track,
+          subTrack: subTrack
+        }
+      });
+    });
+
+    it('should be defined', function() {
+      expect(controller).to.be.defined;
+    });
+
+    it('should have some properties', function() {
+      expect(controller.status).to.be.defined;
+      expect(controller.track).to.be.defined;
+      expect(controller.subTrack).to.be.defined;
+    });
+
+    it('should have default status', function() {
+      expect(controller.status.challenges).to.be.equal(CONSTANTS.STATE_LOADING);
+    });
+
+    it('should have correct track and subTrack', function() {
+      expect(controller.track).to.be.equal(track);
+      expect(controller.subTrack).to.be.equal(subTrack);
+    });
+
+    it('should have challenges inialized to empty array', function() {
+      expect(controller.challenges).to.exist;
+      expect(controller.challenges.length).to.be.equal(0);
+    });
+
   });
 
-  it('should have some properties', function() {
-    expect(controller.userHandle).to.be.equal('rakesh');
-    expect(controller.status).to.be.defined;
-    expect(controller.statsPromise).to.be.defined;
-    expect(controller.skillsPromise).to.be.defined;
+  describe('inialization', function() {
+
+    beforeEach( function(){
+      scope = profileScope.$new();
+      controller = $controller('ProfileSubtrackController', {
+        $scope: scope,
+        $stateParams: {
+          track: track,
+          subTrack: subTrack
+        }
+      });
+      profileScope.$apply();
+    });
+
+    it('should be defined', function() {
+      expect(controller).to.be.defined;
+    });
+
+    it('should have updated status', function() {
+      expect(controller.status.challenges).to.be.equal(CONSTANTS.STATE_READY);
+    });
+
+    it('should have correct track and subTrack', function() {
+      expect(controller.track).to.be.equal(track);
+      expect(controller.subTrack).to.be.equal(subTrack);
+    });
+
+    it('should have challenges loaded', function() {
+      expect(controller.challenges).to.exist;
+      expect(controller.challenges.length).to.be.equal(3);
+    });
+
   });
 
-  it('should have tenure', function() {
-    expect(controller.tenure).to.be.equal(14);
-  });
+  describe('change sub track', function() {
+    var goCallCount = 0;
+    var argState = null;
+    var argParams = null;
+    var changeTo = 'DESIGN';
+    beforeEach( function(){
+      scope = profileScope.$new();
+      controller = $controller('ProfileSubtrackController', {
+        $scope: scope,
+        $stateParams: {
+          track: track,
+          subTrack: subTrack
+        },
+        $state: {
+          go: function(state, params) {
+            goCallCount++;
+            argState = state;
+            argParams = params;
+          }
+        }
+      });
+      profileScope.$apply();
+    });
 
-  it('should have default status', function() {
-    expect(controller.status.externalLinks).to.be.equal(CONSTANTS.STATE_READY);
+    it('subTrack should be changed', function() {
+      expect(controller.challenges).to.exist;
+      expect(controller.challenges.length).to.equal(mockChallenges.length);
+      // change subTrack
+      controller.selectSubTrack(changeTo);
+      profileScope.$apply();
+      expect(goCallCount).to.equal(1);
+      expect(argState).to.equal('profile.subtrack');
+      expect(argParams).not.to.null;
+      expect(argParams.track).to.exist;
+      expect(argParams.track).to.equal(track);
+      expect(argParams.subTrack).to.exist;
+      expect(argParams.subTrack).to.equal(changeTo);
+    });
   });
 
 });
