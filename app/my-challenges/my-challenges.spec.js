@@ -26,19 +26,6 @@ describe('My Challenges Controller', function() {
     authService = TcAuthService;
     userService = UserService;
 
-    // mock marathon matches api
-    sinon.stub(challengeService, 'getMyMarathonMatches', function() {
-      var deferred = $q.defer();
-      var resp = JSON.parse(JSON.stringify(marathons));
-      resp.pagination = {
-        total: marathons.length,
-        pageIndex: 1,
-        pageSize: 10
-      };
-      deferred.resolve(resp);
-      return deferred.promise;
-    });
-
     // mock user api
     sinon.stub(userService, 'getUserIdentity', function() {
       return {
@@ -49,18 +36,16 @@ describe('My Challenges Controller', function() {
     });
 
     // mock challenges api
-    sinon.stub(challengeService, 'getUserChallenges', function(data) {
+    sinon.stub(challengeService, 'getUserChallenges', function(handle, data) {
       var deferred = $q.defer();
       var resp = null;
-      if (data.filter.indexOf('status=Active') != -1) {
+      if (data.filter.status == 'active') {
         resp = JSON.parse(JSON.stringify(challenges));
       } else {
         resp = JSON.parse(JSON.stringify(challenges.slice(1)));
       }
-      resp.pagination = {
-        total: resp.length,
-        pageIndex: 1,
-        pageSize: 10
+      resp.metadata = {
+        totalCount: resp.length
       };
       deferred.resolve(resp);
       return deferred.promise;
