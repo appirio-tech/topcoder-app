@@ -18,6 +18,9 @@
     vm.ddSelected = {};
     vm.selectSubTrack = selectSubTrack;
     vm.back = back;
+    vm.status = {
+      'challenges': CONSTANTS.STATE_LOADING
+    };
 
     activate();
 
@@ -47,9 +50,25 @@
         }
 
       });
-      // profileVm.pastChallengesPromise.then(function(data) {
 
-      // });
+      vm.pastChallengesPromise = ChallengeService.getUserChallenges(
+        profileVm.profile.handle,
+        {
+          filter: {
+            status: 'completed',
+            track: vm.track,
+            subTrack: vm.subTrack
+          },
+          orderBy: 'submissionEndDate desc'
+        }
+      )
+      .then(function(data) {
+        vm.challenges = data;
+        vm.status.challenges = CONSTANTS.STATE_READY;
+        return data;
+      }).catch(function(err) {
+        vm.status.challenges = CONSTANTS.STATE_ERROR;
+      });
     }
 
     function selectSubTrack(subTrack) {

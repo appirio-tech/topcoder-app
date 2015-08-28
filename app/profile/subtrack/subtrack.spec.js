@@ -1,6 +1,6 @@
 /* jshint -W117, -W030 */
-describe('Profile Controller', function() {
-  var controller;
+describe('SubTrack Controller', function() {
+  var profileCtrl, controller;
   var mockProfile = mockData.getMockProfile();
   var mockStats = mockData.getMockStats();
   var mockSkills = mockData.getMockSkills();
@@ -9,12 +9,19 @@ describe('Profile Controller', function() {
   beforeEach(function() {
     bard.appModule('topcoder');
     bard.appModule('tc.profile');
-    bard.inject(this, '$httpBackend', '$controller', 'CONSTANTS');
+    bard.inject(this, '$httpBackend', '$controller', 'CONSTANTS', '$rootScope');
 
-    controller = $controller('ProfileCtrl', {
-      $scope: {},
+    var profileScope = $rootScope.$new();
+    profileCtrl = $controller('ProfileCtrl', {
+      $scope: profileScope,
       userHandle: 'rakesh',
       profile: mockProfile
+    });
+    profileScope.profileVm = profileCtrl;
+
+    var scope = profileScope.$new();
+    controller = $controller('ProfileSubtrackController', {
+      $scope: scope
     });
 
 

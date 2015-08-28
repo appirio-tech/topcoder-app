@@ -21,8 +21,7 @@
       'badges': CONSTANTS.STATE_LOADING,
       'stats': CONSTANTS.STATE_LOADING,
       'skills': CONSTANTS.STATE_LOADING,
-      'externalLinks': CONSTANTS.STATE_READY,
-      'pastChallenges': CONSTANTS.STATE_LOADING
+      'externalLinks': CONSTANTS.STATE_READY
     };
 
     activate();
@@ -38,15 +37,6 @@
       return vm.stats;
     }).catch(function(err) {
       $log.error(err);
-      vm.status.stats = CONSTANTS.STATE_ERROR;
-    });
-
-    vm.pastChallengesPromise = ChallengeService.getUserChallenges(profile.userId, {orderBy: 'submissionenddate desc', status: 'complete'})
-    .then(function(data) {
-      vm.status.pastChallenges = CONSTANTS.STATE_READY;
-      vm.pastChallenges = data;
-      return data;
-    }).catch(function(err) {
       vm.status.stats = CONSTANTS.STATE_ERROR;
     });
 
