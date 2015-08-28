@@ -28,7 +28,7 @@
 
     function getUserChallenges(handle, params) {
       params.filter = _parseFilterParam(params);
-      return api.one('members', handle).one('challenges').get(params);
+      return api.one('members', handle).all('challenges').getList(params);
     }
 
     function getSpotlightChallenges() {
