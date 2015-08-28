@@ -74,11 +74,11 @@
       return ApiService.restangularV3.all('users').one('resetPassword').withHttpConfig(_config).customPUT(JSON.stringify(data));
     }
 
-    function validateSocialProfile(userId, providerId) {
+    function validateSocialProfile(userId, provider) {
       return ApiService.restangularV3.all('users').withHttpConfig({cache: false}).customGET('validateSocial',
       {
         socialUserId: userId,
-        socialProviderId: providerId
+        socialProvider: provider
       });
     }
 

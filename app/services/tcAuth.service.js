@@ -133,7 +133,7 @@
             }
             var socialUserId = profile.user_id.substring(profile.user_id.indexOf('|')+1);
             // validate social profile
-            UserService.validateSocialProfile(socialUserId, socialProviderId).then(
+            UserService.validateSocialProfile(socialUserId, socialProvider).then(
               function (data) {
                 // success
                 var result = {

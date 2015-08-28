@@ -13,9 +13,18 @@
       height: 65px;
     }
 
-    a {
-      color: $ui-blue;
-      text-decoration: underline;
+    .upload-image {
+      display: flex;
+      flex-direction: column;
+
+      p {
+        margin-top: 15px;
+        margin-bottom: 10px;
+      }
+
+      input {
+        padding: 0;
+      }
     }
   }
 
