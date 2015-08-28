@@ -15,13 +15,38 @@
     vm.viewPastChallenges = viewPastChallenges;
     vm.view = 'list';
     vm.changeView = changeView;
+    vm.statusFilter = 'active';
+    vm.offset = 0;
+    // maximum number of challenges to be shown on the page
+    vm.limit = 5;
+    // actual number of challenges shown on the page
+    vm.count = 0;
+    // total number of challenges available for the current filters
+    vm.totalCount = 0;
+    vm.nextPage = nextPage;
+    vm.prevPage = prevPage;
+    // flag holding the state of visibility of next pager
+    vm.nextPageAvailable = false;
+    // flag holding the state of visibility of previous pager
+    vm.prevPageAvailable = false;
 
     var userId = UserService.getUserIdentity().userId;
+    var handle = UserService.getUserIdentity().handle;
 
     activate();
 
     function activate() {
       viewActiveChallenges();
+    }
+
+    function nextPage() {
+      vm.offset += vm.limit;
+      getChallenges('submissionEndDate');
+    }
+
+    function prevPage() {
+      vm.offset -= vm.limit;
+      getChallenges('submissionEndDate');
     }
 
     function changeView(view) {
@@ -30,24 +55,45 @@
 
     function viewActiveChallenges() {
       vm.myChallenges = [];
-      getChallenges('Active', 'submissionEndDate%20asc');
+      vm.statusFilter = 'active';
+      getChallenges('submissionEndDate');
     };
 
     function viewPastChallenges() {
       vm.myChallenges = [];
-      getChallenges('Completed|Cancelled', 'submissionEndDate asc');
+      vm.statusFilter = 'completed';
+      getChallenges('submissionEndDate');
     };
 
-    // get ACTIVE challenges and spotlight challenges
-    function getChallenges(status, orderBy) {
-      var params = {
-        offset: 0,
-        orderBy: orderBy, // TODO verify if this is the correct sort order clause,
-        filter: "status="+status
-      };
+    /**
+     * Helper method to validate the pager state.
+     */
+    function _validatePager() {
+      if (vm.count + vm.offset >= vm.totalCount) {
+        vm.nextPageAvailable = false;
+      } else {
+        vm.nextPageAvailable = true;
+      }
+      if (vm.offset <= 0) {
+        vm.prevPageAvailable = false;
+      } else {
+        vm.prevPageAvailable = true;
+      }
+    }
 
-      $q.all([
-        ChallengeService.getUserChallenges(params),
+    // get ACTIVE challenges and spotlight challenges
+    function getChallenges(orderBy) {
+      var params = {
+        limit: vm.limit,
+        offset: vm.offset,
+        orderBy: orderBy, // TODO verify if this is the correct sort order clause,
+        filter: {
+          status : vm.statusFilter
+        }
+      };
+      vm.loading = true;
+      return $q.all([
+        ChallengeService.getUserChallenges(handle, params),
         ChallengeService.getSpotlightChallenges()
       ])
       .then(function(data){
@@ -58,11 +104,15 @@
           // FIXME until we figure out the correct sort order param
 
           vm.myChallenges = challenges;
+          vm.count = challenges.length;
+          vm.totalCount = challenges.metadata.totalCount;
+          _validatePager();
           vm.spotlightChallenge = spotlightChallenges[0];
 
           vm.userHasChallenges = true;
           vm.loading = false;
         } else {
+          vm.count = 0;
           vm.userHasChallenges = false;
           vm.spotlightChallenges = spotlightChallenges.slice(0, 2);
           vm.loading = false;
