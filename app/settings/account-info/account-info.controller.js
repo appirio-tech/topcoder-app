@@ -7,8 +7,7 @@
 
   function AccountInfoController(UserService, $log) {
     var vm = this;
-    vm.defaultPlaceholder = 'Enter New Password';
-    vm.submitNewPassword  = submitNewPassword;
+    vm.saveAccountInfo = saveAccountInfo;
 
     activate();
 
@@ -19,18 +18,8 @@
       vm.email    = user.email;
     }
 
-    function submitNewPassword() {
-      var resetToken = 'something';
+    function saveAccountInfo() {
 
-      UserService.resetPassword(vm.username, vm.password, resetToken)
-      .then(function() {
-        vm.password = '';
-        vm.currentPassword = '';
-      })
-      .catch(function(err) {
-        console.log('See the following error message:');
-        $log.error(err);
-      });
     }
   }
 })();

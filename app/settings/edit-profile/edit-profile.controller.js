@@ -10,21 +10,16 @@
     vm.toggleTrack    = toggleTrack;
     vm.updateCountry  = updateCountry;
     vm.onFileChange   = onFileChange;
-    vm.updateImage    = updateImage;
     vm.updateProfile  = updateProfile;
-
-    vm.countries = ISO3166.getAllCountryObjects();
-    vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.competitionCountryCode);
-
-    if (userData.tracks === null) {
-      userData.tracks = [];
-    }
 
     activate();
 
     function activate() {
+      vm.countries = ISO3166.getAllCountryObjects();
+      vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.competitionCountryCode);
+
       processData(userData);
-      vm.userData = userData.plain();
+      vm.userData = userData
     }
 
 
@@ -36,8 +31,8 @@
         var countryCode = _.get(angucompleteCountryObj, 'originalObject.alpha3', undefined);
         vm.userData.competitionCountryCode = countryCode;
 
-        var valid = _.isUndefined(countryCode) ? false : true;
-        vm.editProfile.location.$setValidity('required', valid);
+        var isValidCountry = _.isUndefined(countryCode) ? false : true;
+        vm.editProfile.location.$setValidity('required', isValidCountry);
     }
 
     function onFileChange(file) {
@@ -57,6 +52,7 @@
             ImageService.createFileRecord(userHandle, {param: {token: res.token}})
             .then(function(res) {
               $log.info('Successfully made file record.');
+              // TODO: Broadcast profile update event
             })
             .catch(function(err) {
               $log.info('Error in creating file record');
@@ -78,17 +74,6 @@
       });
     }
 
-    function updateImage() {
-      ImageService.updateImage()
-      .then(function(res) {
-        vm.token = res.token;
-        vm.presignedUrl = res.presignedUrl;
-      })
-      .catch(function(err){
-        $log.error(err);
-      });
-    }
-
     function updateProfile() {
       vm.userData.tracks = _.reduce(vm.tracks, function(result, isInterested, trackName) {
         if (isInterested) {
@@ -97,9 +82,7 @@
         return result;
       }, []);
 
-      var body = vm.userData;
-
-      ProfileService.updateUserProfile(body)
+      ProfileService.updateUserProfile(vm.userData)
       .then(function() {
         $log.info('Saved successfully');
       })

@@ -2,28 +2,4 @@
 
 .account-info-container {
   padding-bottom: 75px;
-
-  .reset-password form {
-    display: flex;
-    flex-direction: column;
-
-    input[name="currentPassword"] {
-      margin-bottom: 10px;
-    }
-
-    p {
-      margin: 5px 0 12px 5px;
-    }
-
-    button {
-      width: 200px;
-      text-transform: none;
-      @include source-sans-light;
-      font-size: 18px;
-
-      &.enabled-button {
-        @include ui-enabled-button;
-      }
-    }
-  }
 }
