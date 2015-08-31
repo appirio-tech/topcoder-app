@@ -3,9 +3,9 @@
 
   angular.module('tc.myChallenges').controller('MyChallengesController', MyChallengesController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers'];
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
@@ -16,19 +16,14 @@
     vm.view = 'list';
     vm.changeView = changeView;
     vm.statusFilter = 'active';
-    vm.offset = 0;
-    // maximum number of challenges to be shown on the page
-    vm.limit = 5;
-    // actual number of challenges shown on the page
-    vm.count = 0;
-    // total number of challenges available for the current filters
-    vm.totalCount = 0;
-    vm.nextPage = nextPage;
-    vm.prevPage = prevPage;
-    // flag holding the state of visibility of next pager
-    vm.nextPageAvailable = false;
-    // flag holding the state of visibility of previous pager
-    vm.prevPageAvailable = false;
+    vm.pageParams = {
+      offset : 0,
+      limit: 5,
+      count: 0,
+      totalCount: 0
+    };
+    vm.getChallenges = getChallenges;
+    vm.orderBy = 'submissionEndDate';
 
     var userId = UserService.getUserIdentity().userId;
     var handle = UserService.getUserIdentity().handle;
@@ -41,12 +36,12 @@
 
     function nextPage() {
       vm.offset += vm.limit;
-      getChallenges('submissionEndDate');
+      getChallenges();
     }
 
     function prevPage() {
       vm.offset -= vm.limit;
-      getChallenges('submissionEndDate');
+      getChallenges();
     }
 
     function changeView(view) {
@@ -56,37 +51,21 @@
     function viewActiveChallenges() {
       vm.myChallenges = [];
       vm.statusFilter = 'active';
-      getChallenges('submissionEndDate');
+      getChallenges();
     };
 
     function viewPastChallenges() {
       vm.myChallenges = [];
       vm.statusFilter = 'completed';
-      getChallenges('submissionEndDate');
+      getChallenges();
     };
 
-    /**
-     * Helper method to validate the pager state.
-     */
-    function _validatePager() {
-      if (vm.count + vm.offset >= vm.totalCount) {
-        vm.nextPageAvailable = false;
-      } else {
-        vm.nextPageAvailable = true;
-      }
-      if (vm.offset <= 0) {
-        vm.prevPageAvailable = false;
-      } else {
-        vm.prevPageAvailable = true;
-      }
-    }
-
     // get ACTIVE challenges and spotlight challenges
-    function getChallenges(orderBy) {
+    function getChallenges() {
       var params = {
-        limit: vm.limit,
-        offset: vm.offset,
-        orderBy: orderBy, // TODO verify if this is the correct sort order clause,
+        limit: vm.pageParams.limit,
+        offset: vm.pageParams.offset,
+        orderBy: vm.orderBy, // TODO verify if this is the correct sort order clause,
         filter: {
           status : vm.statusFilter
         }
@@ -104,15 +83,11 @@
           // FIXME until we figure out the correct sort order param
 
           vm.myChallenges = challenges;
-          vm.count = challenges.length;
-          vm.totalCount = challenges.metadata.totalCount;
-          _validatePager();
           vm.spotlightChallenge = spotlightChallenges[0];
 
           vm.userHasChallenges = true;
           vm.loading = false;
         } else {
-          vm.count = 0;
           vm.userHasChallenges = false;
           vm.spotlightChallenges = spotlightChallenges.slice(0, 2);
           vm.loading = false;

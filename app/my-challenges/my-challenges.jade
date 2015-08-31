@@ -21,10 +21,7 @@
     .section-loading(ng-show="vm.loading")
 
     section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
-      p.pager
-        a(ng-click="vm.prevPage()", ng-class="{disabled: !vm.prevPageAvailable}") Prev
-        span &nbsp; | &nbsp;
-        a(ng-click="vm.nextPage()", ng-class="{disabled: !vm.nextPageAvailable}") Next
+      tc-pager(reload-promise="vm.getChallenges", data="vm.myChallenges", page-params="vm.pageParams")
       .data(ng-class="vm.view + '-view'")
         challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.view", ng-class="vm.view")
 
