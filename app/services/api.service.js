@@ -72,6 +72,19 @@
           .setDefaultHttpFields({
             cache: false
           })
+          .setRestangularFields({
+            id: 'handle',
+            route: 'members'
+          })
+          .addRequestInterceptor(function(element, operation, what, url) {
+            console.log('what: ', what);
+            if (what === 'members') {
+              return {
+                param: element
+              };
+            }
+            return element;
+          })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
             if (data != null) {
               var extractedData = null;
