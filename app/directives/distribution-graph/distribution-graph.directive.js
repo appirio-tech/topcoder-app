@@ -21,37 +21,37 @@
     $scope.colors = [
       // grey
       {
-        'color': '#766c6b',
+        'color': '#7f7f7f',
         'start': 0,
         'end': 899
       },
       // green
       {
-        'color': '#73c733',
+        'color': '#99cc09',
         'start': 900,
         'end': 1199
       },
       // blue
       {
-        'color': '#393c9c',
+        'color': '#09affe',
         'start': 1200,
         'end': 1499
       },
       // yellow
       {
-        'color': '#e0d739',
+        'color': '#f39426',
         'start': 1500,
         'end': 2199
       },
       // red
       {
-        'color': '#e04939',
+        'color': '#fe0866',
         'start': 2200,
         'end': Infinity
       }
     ];
-    var w       = 600,
-        h       = 350,
+    var w       = 700,
+        h       = 400,
         padding = 100;
 
     activate();
@@ -68,20 +68,38 @@
                        .domain(d3.range(ranges.length))
                        .rangeRoundBands([padding, w], 0.05);
         var yScale = d3.scale.linear()
-                       .domain([0, d3.max(ranges, function(range) { return range.number })])
+                       .domain([0, d3.max(ranges, function(range) { return range.number }) + 1])
                        .range([h - padding, 0]);
         var xScale2 = d3.scale.linear()
-                        .domain([0, d3.max(ranges, function(range) { return range.end })])
+                        .domain([ranges[0].start,
+                                d3.max(ranges, function(range) { return range.end })])
                         .range([padding, w]);
         var svg = d3.select('div.distribution-graph')
                     .append('svg')
                     .attr('width', w)
                     .attr('height', h);
 
-        svg.selectAll('rect')
+        svg.append('rect')
+           .attr('x', padding)
+           .attr('y', 0)
+           .attr('width', w)
+           .attr('height', h - padding)
+           .attr('fill', '#eeeeee')
+
+        svg.append('line')
+           .attr('x1', xScale2($scope.rating))
+           .attr('y1', h - padding)
+           .attr('x2', xScale2($scope.rating))
+           .attr('y2', 0)
+           .attr('class', 'my-rating')
+           .attr('stroke-width', 2)
+           .attr('stroke', ratingToColor($scope.colors, $scope.rating));
+
+        svg.selectAll('rect.bar')
            .data(ranges)
            .enter()
            .append('rect')
+           .attr('class', 'bar')
            .attr('x', function(d, i) {
              return xScale(i);
            })
@@ -103,6 +121,31 @@
            .on('mouseout', function(d) {
              $scope.displayCoders = false;
              $scope.$digest();
+           })
+
+        svg.selectAll('line.xaxis')
+           .data(ranges)
+           .enter()
+           .append('line')
+           .attr('class', 'xaxis')
+           .attr('x1', function(d, i) {
+             if (i === 0) {
+               return padding;
+             } else {
+               return xScale(i) - .5;
+             }
+           })
+           .attr('x2', function(d, i) {
+             if (i === ranges.length - 1) {
+               return w;
+             } else {
+               return xScale(i) + xScale.rangeBand() + .5;
+             }
+           })
+           .attr('y1', h - padding + .5)
+           .attr('y2', h - padding + .5)
+           .attr('stroke', function(d) {
+             return ratingToColor($scope.colors, d.start);
            })
 
         var xAxis = d3.svg.axis()
@@ -136,18 +179,6 @@
            //.attr('transform', 'rotate(180)')
            .call(yAxis);
 
-        svg.selectAll('line')
-           .data(ranges)
-           .enter()
-           .append('rect')
-
-        svg.append('line')
-           .attr('x1', xScale2($scope.rating))
-           .attr('y1', h - padding)
-           .attr('x2', xScale2($scope.rating))
-           .attr('y2', 0)
-           .attr('stroke-width', 2)
-           .attr('stroke', ratingToColor($scope.colors, $scope.rating));
 
       });
 
@@ -182,16 +213,14 @@
     }
 
     function removeLeadingZeroes(ranges) {
-      for (var i = 0; i < ranges.length; i++) {
-        if (ranges[i].number > 0) return;
-        else ranges.shift();
+      while(ranges[0].number == 0) {
+        ranges.shift(); 
       }
     }
 
     function removeTrailingZeroes(ranges) {
-      for (var i = ranges.length - 1; i >= 0; i--) {
-        if (ranges[i].number > 0) return;
-        else ranges.pop();
+      while (ranges[ranges.length - 1].number == 0) {
+        ranges.pop();
       }
     }
 

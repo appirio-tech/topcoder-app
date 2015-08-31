@@ -3,5 +3,8 @@
 
   .info-port
     .coders(ng-if="displayCoders")
-      .span {{numCoders}}
-      .span coders
+      .num {{numCoders}}
+      .label CODERS
+    .rating(ng-if="!displayCoders")
+      .num {{rating}}
+      .label RATING

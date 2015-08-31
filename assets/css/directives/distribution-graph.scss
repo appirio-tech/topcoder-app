@@ -1,5 +1,4 @@
 .graph-viewer {
-  width: 900px;
   display: flex;
   flex-direction: row;
   .distribution-graph {
@@ -7,7 +6,7 @@
     .axis path,
     .axis line {
         fill: none;
-        stroke: black;
+        stroke: none;
         shape-rendering: crispEdges;
     }
 
@@ -16,8 +15,12 @@
         font-size: 11px;
     }
 
-    rect:hover {
+    rect.bar:hover {
       fill: black;
+    }
+
+    line.my-rating {
+      pointer-effects: none;
     }
 
     text.label {
@@ -36,32 +39,37 @@
       pointer-events: none;
     }
 
-    #tooltip {
-      position: absolute;
-      height: 18px;
-      padding: 5px;
-      background-color: white;
-      border: 1px solid black;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      pointer-effects: none;
-    }
-
-    #tooltip p {
-      font-family: sans-serif;
-      font-size: 12px;
-      text-align: center;
-    }
-
-    #tooltip.hidden {
-      display: none;
-    }
   }
   .info-port {
-    border-left: solid 1px black;
+    margin-left: 2px;
+    background: #eeeeee;
+    height: 300px;
+    width: 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    margin-right: 100px;
+    .coders, .rating {
+      width: 130px;
+      height: 130px;
+      background: #09affe;
+      -moz-border-radius: 65px;
+      -webkit-border-radius: 65px;
+      border-radius: 65px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .num {
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+      }
+      .label {
+        color: white;
+      }
+    }
   }
 }
