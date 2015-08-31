@@ -115,6 +115,7 @@
             }
           });
         });
+
       return _restangular;
     }
 

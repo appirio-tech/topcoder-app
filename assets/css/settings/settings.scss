@@ -37,7 +37,7 @@
 
         @media only screen and (min-width: 550px) {
           display: inline-block;
-          margin-right: 25px;
+          margin-right: 30px;
         }
       }
 
@@ -75,7 +75,7 @@
 }
 
 // Tab content
-.edit-profile-container, .account-info-container {
+.edit-profile-container, .account-info-container, .update-password-container, .preferences-container {
   @media only screen and (min-width: 550px) {
     padding-left: 100px;
   }

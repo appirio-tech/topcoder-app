@@ -18,15 +18,6 @@
         data: {
           authRequired: true,
           UIRefresh: true
-        }
-      },
-      'settings.profile': {
-        url: 'profile/',
-        templateUrl: 'settings/edit-profile/edit-profile.html',
-        controller: 'EditProfileController',
-        controllerAs: 'vm',
-        data: {
-          title: 'Edit Profile'
         },
         resolve: {
           userHandle: ['UserService', function(UserService) {
@@ -37,6 +28,15 @@
           }]
         },
       },
+      'settings.profile': {
+        url: 'profile/',
+        templateUrl: 'settings/edit-profile/edit-profile.html',
+        controller: 'EditProfileController',
+        controllerAs: 'vm',
+        data: {
+          title: 'Edit Profile'
+        }
+      },
       'settings.account': {
         url: 'account/',
         templateUrl: 'settings/account-info/account-info.html',
@@ -44,6 +44,24 @@
         controllerAs: 'vm',
         data: {
           title: 'Account Info'
+        }
+      },
+      'settings.password': {
+        url: 'password/',
+        templateUrl: 'settings/update-password/update-password.html',
+        controller: 'UpdatePasswordController',
+        controllerAs: 'vm',
+        data: {
+          title: 'Password'
+        }
+      },
+      'settings.preferences': {
+        url: 'preferences/',
+        templateUrl: 'settings/preferences/preferences.html',
+        controller: 'PreferencesController',
+        controllerAs: 'vm',
+        data: {
+          title: 'Preferences'
         }
       }
     };
