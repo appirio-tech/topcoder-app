@@ -35,9 +35,7 @@
     }
 
     function updateUserProfile(userData) {
-      var data = { param: userData };
-
-      return restangular.one('members', userData.handle).customPUT(JSON.stringify(data));
+      return userData.save();
     }
 
     function getUserSkills(username) {

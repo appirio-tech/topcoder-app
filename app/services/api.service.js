@@ -72,6 +72,10 @@
           .setDefaultHttpFields({
             cache: false
           })
+          .setRestangularFields({
+            id: 'handle',
+            route: 'members'
+          })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {
             if (data != null) {
               var extractedData = null;
@@ -102,6 +106,7 @@
             }
           });
         });
+
       return _restangular;
     }
 

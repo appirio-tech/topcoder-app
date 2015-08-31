@@ -3,34 +3,36 @@
 
   angular.module('tc.settings').controller('AccountInfoController', AccountInfoController);
 
-  AccountInfoController.$inject = ['UserService', '$log'];
+  AccountInfoController.$inject = ['userData', 'UserService', 'ProfileService', '$log', 'ISO3166'];
 
-  function AccountInfoController(UserService, $log) {
+  function AccountInfoController(userData, UserService, ProfileService, $log, ISO3166) {
     var vm = this;
-    vm.defaultPlaceholder = 'Enter New Password';
-    vm.submitNewPassword  = submitNewPassword;
+    vm.saveAccountInfo = saveAccountInfo;
+    vm.updateCountry   = updateCountry;
 
     activate();
 
     function activate() {
-      var user    = UserService.getUserIdentity();
+      processData();
+      vm.userData = userData;
 
-      vm.username = user.handle;
-      vm.email    = user.email;
+      vm.countries = ISO3166.getAllCountryObjects();
+      vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.homeCountryCode);
     }
 
-    function submitNewPassword() {
-      var resetToken = 'something';
+    function updateCountry(angucompleteCountryObj) {
+      var countryCode = _.get(angucompleteCountryObj, 'originalObject.alpha3', undefined);
 
-      UserService.resetPassword(vm.username, vm.password, resetToken)
-      .then(function() {
-        vm.password = '';
-        vm.currentPassword = '';
-      })
-      .catch(function(err) {
-        console.log('See the following error message:');
-        $log.error(err);
-      });
+      var isValidCountry = _.isUndefined(countryCode) ? false : true;
+      vm.updateAccountInfo.country.$setValidity('required', isValidCountry);
+    }
+
+    function saveAccountInfo() {
+      ProfileService.updateUserProfile(userData);
+    }
+
+    function processData() {
+      vm.homeAddress = _.find(userData.addresses, {type: 'HOME'}) || {};
     }
   }
 })();

@@ -5,36 +5,55 @@
     .field-section
       h4.field-title Username
 
-      p {{vm.username}}
+      p {{vm.userData.handle}}
 
     .field-section
       h4.field-title Email
 
-      p {{vm.email}}
+      p {{vm.userData.email}}
 
-    .field-section.reset-password
-      form(name="vm.newPasswordForm", role="form", ng-submit="vm.newPasswordForm.$valid && vm.submitNewPassword()", novalidate)
+    .field-section.update-account-info
+      form(name="vm.updateAccountInfo", role="form", ng-submit="vm.updateAccountInfo.$valid && vm.saveAccountInfo()", novalidate, autocomplete="off")
+        // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
+        input(autocomplete="false", name="hidden", type="text", style="display:none;")
 
-        h4.field-title Reset Password
+        .address-fields
+          label *First name (Given name)
+            input(name="firstname", type="text", value="{{vm.userData.firstName}}", ng-model="vm.userData.firstName")
 
-        .validation-bar(ng-class="{ 'error-bar': (vm.newPasswordForm.currentPassword.$dirty && vm.newPasswordForm.currentPassword.$invalid), 'success-bar': (vm.newPasswordForm.currentPassword.$valid) }")
-          input(right-placeholder, focused-placeholder="Current", name="currentPassword", type="password", placeholder="Enter Current Password")
+          label *Last name (Surname)
+            input(name="lastname", type="text", value="{{vm.userData.lastName}}", ng-model="vm.userData.lastName")
 
-        .form-errors
-          p.form-error(ng-show="vm.newPasswordForm.currentPassword.$error.wrongPassword") The password entered was incorrect.
+          label Address
+            input(name="address", type="text", value="{{vm.homeAddress.streetAddr1}}", ng-model="vm.homeAddress.streetAddr1")
 
-        .validation-bar(ng-class="{ 'success-bar': (vm.newPasswordForm.password.$valid) }")
-          toggle-password
+          label Address 2 (apartment, suite, etc.)
+            input(name="address2", type="text", value="{{vm.homeAddress.streetAddr2}}", ng-model="vm.homeAddress.streetAddr2")
 
-          .tips.password-tips(ng-show="vm.passwordFocus")
-            h3 Password Tips:
+          label City
+            input(name="city", type="text", value="{{vm.homeAddress.city}}", ng-model="vm.homeAddress.city")
 
-            p(ng-class="{ 'has-length-between-range': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.minlength && !vm.newPasswordForm.password.$error.maxlength && !vm.newPasswordForm.password.$error.required) }") Must be between 8 and 64 characters
+          label State/Province
+            input(name="state", type="text", value="{{vm.homeAddress.stateCode}}", ng-model="vm.homeAddress.stateCode")
 
-            p(ng-class="{ 'has-letter': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasLetter) }") At least one letter
+          label Zip code/Post code
+            input(name="zipcode", type="text", value="{{vm.homeAddress.zip}}", ng-model="vm.homeAddress.zip")
 
-            p(ng-class="{ 'has-symbol': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasSymbol) }") At least one symbol
+          label *Country
+            angucomplete-alt(
+              input-name="country",
+              pause="100",
+              selected-object="vm.updateCountry",
+              local-data="vm.countries",
+              initial-value="vm.countryObj",
+              search-fields="name",
+              title-field="name",
+              match-class="angucomplete-highlight",
+              minlength="1"
+            )
 
-            p(ng-class="{ 'has-number': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasNumber) }") At least one number
+            .form-errors
+              p.form-error(ng-show="vm.updateAccountInfo.country.$error.required") Please enter a valid country.
 
-        button(type="submit", ng-disabled="vm.newPasswordForm.$invalid", ng-class="{'enabled-button': vm.newPasswordForm.$valid}") Reset Password
+
+        button(type="submit", ng-disabled="vm.updateAccountInfo.$invalid", ng-class="{'enabled-button': vm.updateAccountInfo.$valid}") Save

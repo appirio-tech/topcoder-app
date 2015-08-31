@@ -60,11 +60,10 @@
     vm.countries = ISO3166.getAllCountryObjects();
 
     vm.updateCountry = function (angucompleteCountryObj) {
-      // update country
-      vm.country = _.get(angucompleteCountryObj, 'originalObject.alpha3', undefined);
+      var countryCode = _.get(angucompleteCountryObj, 'originalObject.alpha3', undefined);
 
-      var valid = _.isUndefined(vm.country) ? false : true;
-      vm.registerForm.country.$setValidity('required', valid);
+      var isValidCountry = _.isUndefined(countryCode) ? false : true;
+      vm.registerForm.country.$setValidity('required', isValidCountry);
     };
 
     vm.register = function() {
