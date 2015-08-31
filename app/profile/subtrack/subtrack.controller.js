@@ -21,6 +21,19 @@
     vm.status = {
       'challenges': CONSTANTS.STATE_LOADING
     };
+    vm.offset = 0;
+    // maximum number of challenges to be shown on the page
+    vm.limit = 2;
+    // actual number of challenges shown on the page
+    vm.count = 0;
+    // total number of challenges available for the current filters
+    vm.totalCount = 0;
+    vm.nextPage = nextPage;
+    vm.prevPage = prevPage;
+    // flag holding the state of visibility of next pager
+    vm.nextPageAvailable = false;
+    // flag holding the state of visibility of previous pager
+    vm.prevPageAvailable = false;
 
     activate();
 
@@ -51,24 +64,7 @@
 
       });
 
-      vm.pastChallengesPromise = ChallengeService.getUserChallenges(
-        profileVm.profile.handle,
-        {
-          filter: {
-            status: 'completed',
-            track: vm.track,
-            subTrack: vm.subTrack
-          },
-          orderBy: 'submissionEndDate desc'
-        }
-      )
-      .then(function(data) {
-        vm.challenges = data;
-        vm.status.challenges = CONSTANTS.STATE_READY;
-        return data;
-      }).catch(function(err) {
-        vm.status.challenges = CONSTANTS.STATE_ERROR;
-      });
+      _getChallenges();
     }
 
     function selectSubTrack(subTrack) {
@@ -77,6 +73,59 @@
 
     function back() {
       $window.history.back();
+    }
+
+    function nextPage() {
+      vm.offset += vm.limit;
+      _getChallenges();
+    }
+
+    function prevPage() {
+      vm.offset -= vm.limit;
+      _getChallenges();
+    }
+
+    /**
+     * Helper method to validate the pager state.
+     */
+    function _validatePager() {
+      if (vm.count + vm.offset >= vm.totalCount) {
+        vm.nextPageAvailable = false;
+      } else {
+        vm.nextPageAvailable = true;
+      }
+      if (vm.offset <= 0) {
+        vm.prevPageAvailable = false;
+      } else {
+        vm.prevPageAvailable = true;
+      }
+    }
+
+    function _getChallenges() {
+      vm.status.challenges = CONSTANTS.STATE_LOADING;
+      return vm.pastChallengesPromise = ChallengeService.getUserChallenges(
+        profileVm.profile.handle,
+        {
+          filter: {
+            status: 'completed',
+            track: vm.track,
+            subTrack: vm.subTrack
+          },
+          limit: vm.limit,
+          offset: vm.offset,
+          orderBy: 'submissionEndDate desc'
+        }
+      )
+      .then(function(data) {
+        vm.challenges = data;
+        vm.status.challenges = CONSTANTS.STATE_READY;
+        vm.count = vm.challenges.length;
+        vm.totalCount = vm.challenges.metadata.totalCount;
+        _validatePager();
+        return data;
+      }).catch(function(err) {
+        vm.status.challenges = CONSTANTS.STATE_ERROR;
+      });
     }
 
   }

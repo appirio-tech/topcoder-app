@@ -35,6 +35,14 @@
     ng-show="vm.viewing == 'challenges'",
     state="vm.status.challenges"
   )
+    p.pager
+      a(ng-click="vm.prevPage()", ng-class="{disabled: !vm.prevPageAvailable}") Prev
+      span &nbsp; | &nbsp;
+      span(ng-bind="vm.offset + 1")
+      span -
+      span(ng-bind="vm.offset + vm.count")
+      span &nbsp; | &nbsp;
+      a(ng-click="vm.nextPage()", ng-class="{disabled: !vm.nextPageAvailable}") Next
     .challenges
       .challenge.tile(ng-repeat="challenge in vm.challenges")
         challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")

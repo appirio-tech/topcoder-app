@@ -1,3 +1,5 @@
+@import '../partials/combined';
+
 .profile-subtrack-container {
   display: flex;
   flex-direction: column;
@@ -49,6 +51,26 @@
         text-align: center;
         &.selected {
           border: 1px solid #dddddd;
+        }
+      }
+    }
+
+    
+
+    p.pager {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-end;
+      margin-right: 10px;
+      margin-bottom: 10px;
+
+      a {
+        text-decoration: underline;
+
+        &.disabled {
+          text-decoration: none;
+          color: $dark-gray;
+          cursor: default;
         }
       }
     }
