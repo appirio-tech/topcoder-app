@@ -1,7 +1,10 @@
 .edit-profile-container
   h1.tab-title Profile
 
-  form(name="vm.editProfile", ng-submit="vm.editProfile.$valid && vm.updateProfile()")
+  form(name="vm.editProfile", ng-submit="vm.editProfile.$valid && vm.updateProfile()", autocomplete="off")
+    // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
+    input(autocomplete="false", name="hidden", type="text", style="display:none;")
+
     .fields
       .field-section.edit-image
         img.profile-circle(fallback-src="/images/avatarPlaceholder.png", loading-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photo.photoUrl}}")
@@ -47,28 +50,37 @@
         .select-tracks
           .track-section
             .track-checkbox
-              input(type="checkbox", name="trackDesign")
+              input(type="checkbox", id="checkbox-design", ng-checked="vm.tracks.design")
+
+              label(for="checkbox-design")
+                span(ng-class="{ 'checked-track': vm.tracks.design }", ng-click="vm.toggleTrack('design')")
 
             .track-info
-              label(for="trackDesign") Design
+              h4 Design
 
               p Find challenges about Brand, Logo, Web UI, Mobile UI, UX. You know and use tools like Photoshop, Illustrator, Sketch, OmniGraffle.
 
           .track-section
             .track-checkbox
-              input(type="checkbox", name="trackDevelopment")
+              input(type="checkbox", id="checkbox-develop", ng-checked="vm.tracks.develop")
+
+              label(for="checkbox-develop")
+                span(ng-class="{ 'checked-track': vm.tracks.develop }", ng-click="vm.toggleTrack('develop')")
 
             .track-info
-              label(for="trackDevelopment") Development
+              h4 Development
 
               p Find challenges about coding and development. You know languages like PHP, Python, Ruby, Objective-C, C#, MySQL, JavaScript, Java.
 
           .track-section
             .track-checkbox
-              input(type="checkbox", name="trackDataScience")
+              input(type="checkbox", id="checkbox-datascience", ng-checked="vm.tracks.data_science")
+
+              label(for="checkbox-datascience")
+                span(ng-class="{ 'checked-track': vm.tracks.data_science }", ng-click="vm.toggleTrack('data_science')")
 
             .track-info
-              label(for="trackDataScience") Data Science
+              h4 Data Science
 
               p Find challenges about data and algorithms. You know data sets, algorithms, DB structures, statistics, data analysis.
 

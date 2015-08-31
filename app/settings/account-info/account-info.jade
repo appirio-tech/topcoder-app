@@ -5,24 +5,55 @@
     .field-section
       h4.field-title Username
 
-      p {{vm.username}}
+      p {{vm.userData.handle}}
 
     .field-section
       h4.field-title Email
 
-      p {{vm.email}}
+      p {{vm.userData.email}}
 
     .field-section.update-account-info
-      form(name="vm.updateAccountInfo", role="form", ng-submit="vm.updateAccountInfo.$valid && vm.saveAccountInfo()", novalidate)
-        .validation-bar(ng-class="{ 'error-bar': (vm.updateAccountInfo.currentPassword.$dirty && vm.updateAccountInfo.currentPassword.$invalid), 'success-bar': (vm.updateAccountInfo.currentPassword.$valid) }")
-          input(right-placeholder, focused-placeholder="Current", name="currentPassword", type="password", placeholder="Enter Current Password")
+      form(name="vm.updateAccountInfo", role="form", ng-submit="vm.updateAccountInfo.$valid && vm.saveAccountInfo()", novalidate, autocomplete="off")
+        // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
+        input(autocomplete="false", name="hidden", type="text", style="display:none;")
 
-        .form-errors
-          p.form-error(ng-show="vm.updateAccountInfo.currentPassword.$error.wrongPassword") The password entered was incorrect.
+        .address-fields
+          label *First name (Given name)
+            input(name="firstname", type="text", value="{{vm.userData.firstName}}", ng-model="vm.userData.firstName")
 
-        .validation-bar(ng-class="{ 'success-bar': (vm.updateAccountInfo.password.$valid) }")
-          toggle-password
+          label *Last name (Surname)
+            input(name="lastname", type="text", value="{{vm.userData.lastName}}", ng-model="vm.userData.lastName")
+
+          label Address
+            input(name="address", type="text", value="{{vm.homeAddress.streetAddr1}}", ng-model="vm.homeAddress.streetAddr1")
+
+          label Address 2 (apartment, suite, etc.)
+            input(name="address2", type="text", value="{{vm.homeAddress.streetAddr2}}", ng-model="vm.homeAddress.streetAddr2")
+
+          label City
+            input(name="city", type="text", value="{{vm.homeAddress.city}}", ng-model="vm.homeAddress.city")
+
+          label State/Province
+            input(name="state", type="text", value="{{vm.homeAddress.stateCode}}", ng-model="vm.homeAddress.stateCode")
+
+          label Zip code/Post code
+            input(name="zipcode", type="text", value="{{vm.homeAddress.zip}}", ng-model="vm.homeAddress.zip")
+
+          label *Country
+            angucomplete-alt(
+              input-name="country",
+              pause="100",
+              selected-object="vm.updateCountry",
+              local-data="vm.countries",
+              initial-value="vm.countryObj",
+              search-fields="name",
+              title-field="name",
+              match-class="angucomplete-highlight",
+              minlength="1"
+            )
+
+            .form-errors
+              p.form-error(ng-show="vm.updateAccountInfo.country.$error.required") Please enter a valid country.
 
 
         button(type="submit", ng-disabled="vm.updateAccountInfo.$invalid", ng-class="{'enabled-button': vm.updateAccountInfo.$valid}") Save
-

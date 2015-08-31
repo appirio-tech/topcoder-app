@@ -76,13 +76,27 @@
       }
 
       .track-checkbox {
+        input[type="checkbox"] {
+          display: none;
+        }
+
+        span {
+          display: block;
+          width: 17px;
+          height: 19px;
+          background: url(/images/checkbox-sprite.png) -17px top no-repeat;
+          cursor: pointer;
+
+          &.checked-track {
+            background: url(/images/checkbox-sprite.png) left top no-repeat;
+          }
+        }
       }
 
       .track-info {
         margin-left: 15px;
 
-        label {
-          display: block;
+        h4 {
           text-transform: uppercase;
           font-size: 18px;
         }

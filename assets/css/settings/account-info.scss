@@ -2,4 +2,34 @@
 
 .account-info-container {
   padding-bottom: 75px;
+
+  .update-account-info {
+    width: 630px;
+
+    .address-fields {
+      @media only screen and (min-width: 768px) {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+      }
+    }
+
+    label {
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    input {
+      display: block;
+      margin-top: 7px;
+    }
+
+    .form-errors {
+      margin-top: 8px;
+    }
+
+    button.enabled-button {
+      @include ui-enabled-button;
+    }
+  }
 }

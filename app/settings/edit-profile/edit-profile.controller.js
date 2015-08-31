@@ -22,11 +22,6 @@
       vm.userData = userData
     }
 
-
-    function toggleTrack(track) {
-      vm.tracks[track] = !vm.tracks[track];
-    }
-
     function updateCountry(angucompleteCountryObj) {
         var countryCode = _.get(angucompleteCountryObj, 'originalObject.alpha3', undefined);
         vm.userData.competitionCountryCode = countryCode;
@@ -89,6 +84,10 @@
       .catch(function(err) {
         $log.error(err);
       });
+    }
+
+    function toggleTrack(track) {
+      vm.tracks[track] = !vm.tracks[track];
     }
 
     function processData(userInfo) {
