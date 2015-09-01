@@ -5,9 +5,19 @@
 
     .axis path,
     .axis line {
-        fill: none;
-        stroke: none;
-        shape-rendering: crispEdges;
+      fill: none;
+      stroke: none;
+      shape-rendering: crispEdges;
+    }
+
+
+    .grid .tick {
+      stroke: white;
+      opacity: 0.7;
+    }
+
+    .grid path {
+      stroke-width: 0;
     }
 
     .axis text {
@@ -16,7 +26,7 @@
     }
 
     rect.bar:hover {
-      fill: black;
+      //fill: black;
     }
 
     line.my-rating {
