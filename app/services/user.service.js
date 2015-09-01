@@ -3,9 +3,11 @@
 
   angular.module('tc.services').factory('UserService', UserService);
 
-  UserService.$inject = ['CONSTANTS', 'ApiService', '$injector', 'AuthTokenService', '$http', 'store', 'jwtHelper'];
+  UserService.$inject = ['CONSTANTS', 'ApiService', '$injector', 'AuthTokenService'];
 
-  function UserService(CONSTANTS, ApiService, $injector, AuthTokenService, http, store, jwtHelper) {
+  function UserService(CONSTANTS, ApiService, $injector, AuthTokenService) {
+
+    var api = ApiService.restangularV3;
 
     var _config = {
       cache: false,
@@ -20,10 +22,12 @@
       validateSocialProfile: validateSocialProfile,
       generateResetToken: generateResetToken,
       resetPassword: resetPassword,
+      updatePassword: updatePassword,
       getV2UserProfile: getV2UserProfile
     };
     return service;
-    ///////////////
+
+    //////////////////////////////////////////
 
     function getUserIdentity() {
       var TcAuthService = $injector.get('TcAuthService');
@@ -35,30 +39,22 @@
       }
     }
 
-    // function setUserIdentity(token) {
-    //   if (!token) {
-    //     store.remove('userObj');
-    //   } else {
-    //     store.set('userObj', JSON.stringify(token));
-    //   }
-    // }
-
     function createUser(body) {
-      return ApiService.restangularV3.all('users').withHttpConfig(_config).customPOST(JSON.stringify(body));
+      return api.all('users').withHttpConfig(_config).customPOST(JSON.stringify(body));
     }
 
     function validateUserHandle(handle) {
-      return ApiService.restangularV3.all('users').withHttpConfig(_config).customGET('validateHandle', {handle: handle});
+      return api.all('users').withHttpConfig(_config).customGET('validateHandle', {handle: handle});
     }
 
 
     function validateUserEmail(email) {
 
-      return ApiService.restangularV3.all('users').withHttpConfig(_config).customGET('validateEmail', {email: email});
+      return api.all('users').withHttpConfig(_config).customGET('validateEmail', {email: email});
     }
 
     function generateResetToken(email) {
-      return ApiService.restangularV3.all('users').withHttpConfig(_config).customGET('resetToken', {email: email});
+      return api.all('users').withHttpConfig(_config).customGET('resetToken', {email: email});
     }
 
     function resetPassword(handle, newPassword, resetToken) {
@@ -71,11 +67,26 @@
           }
         }
       };
-      return ApiService.restangularV3.all('users').one('resetPassword').withHttpConfig(_config).customPUT(JSON.stringify(data));
+      return api.all('users').one('resetPassword').withHttpConfig(_config).customPUT(JSON.stringify(data));
+    }
+
+    function updatePassword(newPassword, oldPassword) {
+      var userId = getUserIdentity().userId;
+
+      var body = {
+        param: {
+          credential: {
+            password: newPassword,
+            currentPassword: oldPassword
+          }
+        }
+      };
+
+      return api.one('users', userId).patch(JSON.stringify(body));
     }
 
     function validateSocialProfile(userId, provider) {
-      return ApiService.restangularV3.all('users').withHttpConfig({cache: false}).customGET('validateSocial',
+      return api.all('users').withHttpConfig({cache: false}).customGET('validateSocial',
       {
         socialUserId: userId,
         socialProvider: provider

@@ -7,28 +7,25 @@
 
   function UpdatePasswordController(UserService, $log) {
     var vm = this;
-    vm.defaultPlaceholder = 'Enter New Password';
-    vm.submitNewPassword  = submitNewPassword;
+    vm.submitNewPassword = submitNewPassword;
+    var user = UserService.getUserIdentity();
 
     activate();
 
     function activate() {
-      var user    = UserService.getUserIdentity();
-
+      vm.defaultPlaceholder = 'Enter New Password';
       vm.username = user.handle;
       vm.email    = user.email;
     }
 
     function submitNewPassword() {
-      var resetToken = 'something';
-
-      UserService.resetPassword(vm.username, vm.password, resetToken)
+      UserService.updatePassword(vm.password, vm.currentPassword)
       .then(function() {
         vm.password = '';
         vm.currentPassword = '';
+        alert('Your password has been updated.');
       })
       .catch(function(err) {
-        console.log('See the following error message:');
         $log.error(err);
       });
     }
