@@ -1,4 +1,4 @@
-.develop(ng-if="vm.track == 'Develop'")
+.develop(ng-if="vm.track == 'DEVELOP'")
   ul.horizontal-stats
     li.stat
       .value {{vm.typeStats.rank.overallRank}}
@@ -43,7 +43,7 @@
 
   .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
     .graphs
-      img(src="/images/graph.png")
+      distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating")
 
     h2.detailed Detailed Stats
 

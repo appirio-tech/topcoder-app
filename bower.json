@@ -41,8 +41,18 @@
     "jstzdetect": "~1.0.6",
     "moment": "~2.10.3",
     "ng-notifications-bar": "~0.0.15",
+    "angular-xml": "~2.1.1",
+    "angular-img-fallback": "~0.1.3",
+    "angular-filter": "~0.5.4",
+    "angular-sanitize": "1.4.x",
+    "devicon": "*",
+    "angular-dropdowns": "1.1.0",
+    "angucomplete-alt": "~1.1.0",
+    "appirio-tech-ng-iso-constants": "git@github.com:appirio-tech/ng-iso-constants#~1.0.0",
+    "angular-mocks": "1.4.3",
     "ngDialog": "0.5.1",
-    "restangular": "~1.5.1"
+    "restangular": "~1.5.1",
+    "d3": "~3.5.6"
   },
   "devDependencies": {
     "bardjs": "~0.1.4",
