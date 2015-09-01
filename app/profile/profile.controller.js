@@ -70,11 +70,15 @@
         vm.showEditProfileLink = false;
       }
       if (profile.createdAt) {
-        vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
+        vm.tenure = yearsSince(profile.createdAt);
       } else {
         vm.tenure = false;
       }
 
+    }
+
+    function yearsSince(dateString) {
+      return moment().isoWeekYear() - moment(dateString).isoWeekYear();
     }
 
     function showBadges() {
