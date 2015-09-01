@@ -22,30 +22,35 @@
       // grey
       {
         'color': '#7f7f7f',
+        'darkerColor': '#656565',
         'start': 0,
         'end': 899
       },
       // green
       {
         'color': '#99cc09',
+        'darkerColor': '#7aa307',
         'start': 900,
         'end': 1199
       },
       // blue
       {
         'color': '#09affe',
+        'darkerColor': '#078ccb',
         'start': 1200,
         'end': 1499
       },
       // yellow
       {
         'color': '#f39426',
+        'darkerColor': '#c2761e',
         'start': 1500,
         'end': 2199
       },
       // red
       {
         'color': '#fe0866',
+        'darkerColor': '#cb0651',
         'start': 2200,
         'end': Infinity
       }
@@ -86,6 +91,20 @@
            .attr('height', h - padding)
            .attr('fill', '#eeeeee')
 
+        svg.append('g')
+           .attr('class', 'grid')
+           .attr('transform', 'translate(' + padding + ',0)')
+           .call(
+             yAxis(5).tickSize(-w, 0, 0)
+                    .tickFormat('')
+           )
+
+        svg.append('g')
+           .attr('class', 'axis')
+           .attr('transform', 'translate(' + padding + ',0)')
+           .call(yAxis(5))
+
+
         svg.append('line')
            .attr('x1', xScale2($scope.rating))
            .attr('y1', h - padding)
@@ -114,11 +133,15 @@
              return ratingToColor($scope.colors, d.start);
            })
            .on('mouseover', function(d) {
+             d3.select(this)
+               .attr('fill', ratingToDarkerColor($scope.colors, d.start));
              $scope.displayCoders = true;
              $scope.numCoders = d.number;
              $scope.$digest();
            })
            .on('mouseout', function(d) {
+             d3.select(this)
+               .attr('fill', ratingToColor($scope.colors, d.start));
              $scope.displayCoders = false;
              $scope.$digest();
            })
@@ -153,10 +176,12 @@
                       .orient('bottom')
                       .ticks(ranges.length);
 
-        var yAxis = d3.svg.axis()
-                      .scale(yScale)
-                      .orient('left')
-                      .ticks(5);
+        function yAxis(ticks) {
+          return d3.svg.axis()
+            .scale(yScale)
+            .orient('left')
+            .ticks(ticks);
+        }
 
         svg.append('g')
            .attr('class', 'axis')
@@ -172,13 +197,6 @@
              var range = ranges[i];
              return range.start + ' - ' + range.end;
            });
-
-        svg.append('g')
-           .attr('class', 'axis')
-           .attr('transform', 'translate(' + padding + ',0)')
-           //.attr('transform', 'rotate(180)')
-           .call(yAxis);
-
 
       });
 
@@ -229,6 +247,13 @@
         return rating >= color.start && rating <= color.end;
       });
       return colors[0] && colors[0].color || 'black';
+    }
+
+    function ratingToDarkerColor(colors, rating) {
+      colors = colors.filter(function(color) {
+        return rating >= color.start && rating <= color.end;
+      });
+      return colors[0] && colors[0].darkerColor || 'black';
     }
     
     // TODO: delete because this is probably unnecessary
