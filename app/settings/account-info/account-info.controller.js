@@ -17,7 +17,7 @@
       vm.userData = userData;
 
       vm.countries = ISO3166.getAllCountryObjects();
-      vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.homeCountryCode || '');
+      vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.homeCountryCode);
     }
 
     function updateCountry(angucompleteCountryObj) {
