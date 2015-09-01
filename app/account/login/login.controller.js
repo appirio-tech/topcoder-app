@@ -101,13 +101,7 @@
       TcAuthService.socialLogin(backend, callbackUrl);
     };
 
-    vm.goToRegister = function() {
-      var params = {};
-      if ($stateParams.next) {
-        params = {next: $stateParams.next};
-      }
-      $state.go('register', params);
-    }
+    vm.$stateParams = $stateParams;
   }
 
 })();
