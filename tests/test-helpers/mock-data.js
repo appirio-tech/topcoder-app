@@ -1253,7 +1253,7 @@ var mockData = (function() {
   function getMockProfile() {
     return {
       "updatedAt":null,
-      "createdAt":null,
+      "createdAt":'2010-04-25T01:32:21.196+0600',
       "createdBy":null,
       "updatedBy":null,
       "userId":10336829,

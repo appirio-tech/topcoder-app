@@ -11,7 +11,7 @@ describe('Preferences Controller', function() {
       return this;
     };
 
-    vm = $controller('Preferences', {});
+    vm = $controller('PreferencesController', {});
   });
 
   bard.verifyNoOutstandingHttpRequests();

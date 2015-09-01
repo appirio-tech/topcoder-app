@@ -88,7 +88,7 @@ describe('Header Dashboard Controller', function() {
       expect(controller.loading).to.equal(false);
       // default value for profile
       expect(controller.profile).to.exist;
-      expect(controller.profile.handle).to.equal('rakesh');
+      expect(controller.profile.handle).to.equal('albertwang');
       // value for rankStats
       expect(controller.rankStats).to.exist;
       // there are 7 sub tracks with non null/zero value for one of rank/wins/fulfillment
@@ -127,7 +127,7 @@ describe('Header Dashboard Controller', function() {
       expect(controller.loading).to.equal(false);
       // default value for profile
       expect(controller.profile).to.exist;
-      expect(controller.profile.handle).to.equal('rakesh');
+      expect(controller.profile.handle).to.equal('albertwang');
       // rankStats should be empty
       expect(controller.rankStats).to.exist;
       expect(controller.rankStats).to.have.length(0);
@@ -201,7 +201,7 @@ describe('Header Dashboard Controller', function() {
       expect(controller.loading).to.equal(false);
       // default value for profile
       expect(controller.profile).to.exist;
-      expect(controller.profile.handle).to.equal('rakesh');
+      expect(controller.profile.handle).to.equal('albertwang');
       // value for rankStats
       expect(controller.rankStats).to.exist;
       // there are 7 sub tracks with non null/zero value for one of rank/wins/fulfillment

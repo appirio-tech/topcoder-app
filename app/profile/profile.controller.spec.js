@@ -51,7 +51,7 @@ describe('Profile Controller', function() {
   });
 
   it('should have tenure', function() {
-    expect(controller.tenure).to.be.equal(14);
+    expect(controller.tenure).to.be.equal(5);
   });
 
   it('should have default status', function() {
