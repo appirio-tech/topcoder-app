@@ -1,12 +1,18 @@
 .edit-profile-container
   h1.tab-title Profile
 
-  form(name="vm.editProfile", ng-submit="vm.editProfile.$valid && vm.updateProfile()")
+  form(name="vm.editProfile", ng-submit="vm.editProfile.$valid && vm.updateProfile()", autocomplete="off")
+    // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
+    input(autocomplete="false", name="hidden", type="text", style="display:none;")
+
     .fields
       .field-section.edit-image
-        img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photo.photoUrl}}")
+        img.profile-circle(fallback-src="/images/avatarPlaceholder.png", loading-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photo.photoUrl}}")
 
-        a(href) edit image
+        .upload-image
+          p Edit Image
+
+          input(type="file", name="image", on-file-change)
 
       .field-section
         h4.field-title Location
@@ -32,21 +38,53 @@
       .field-section.description
         h4.field-title About Me
 
-        input(name="description", type="text", value="{{vm.userData.description}}", ng-model="vm.userData.description", maxlength="50")
+        input(name="description", type="text", value="{{vm.userData.description}}", ng-model="vm.userData.description", maxlength="144")
 
-        span {{vm.userData.description.length || 0}}/50
+        span {{vm.userData.description.length || 0}}/144
 
-      .field-section.work
-        h4.field-title What type of work are you looking for?
+      .field-section.my-tracks
+        h4.field-title My Tracks
+
+        h6.field-subtitle These are the main categories that help us select the best challenges for you
 
         .select-tracks
-          .track-button(ng-class="{'selected-track': vm.tracks.design}", ng-click="vm.toggleTrack('design')") Design
+          .track-section
+            .track-checkbox
+              input(type="checkbox", id="checkbox-design", ng-checked="vm.tracks.design")
 
-          .track-button(ng-class="{'selected-track': vm.tracks.develop}", ng-click="vm.toggleTrack('develop')") Development
+              label(for="checkbox-design")
+                span(ng-class="{ 'checked-track': vm.tracks.design }", ng-click="vm.toggleTrack('design')")
 
-          .track-button(ng-class="{'selected-track': vm.tracks.data_science}", ng-click="vm.toggleTrack('data_science')") Data Science
+            .track-info
+              h4 Design
 
-      button(type="submit") Save
+              p Find challenges about Brand, Logo, Web UI, Mobile UI, UX. You know and use tools like Photoshop, Illustrator, Sketch, OmniGraffle.
+
+          .track-section
+            .track-checkbox
+              input(type="checkbox", id="checkbox-develop", ng-checked="vm.tracks.develop")
+
+              label(for="checkbox-develop")
+                span(ng-class="{ 'checked-track': vm.tracks.develop }", ng-click="vm.toggleTrack('develop')")
+
+            .track-info
+              h4 Development
+
+              p Find challenges about coding and development. You know languages like PHP, Python, Ruby, Objective-C, C#, MySQL, JavaScript, Java.
+
+          .track-section
+            .track-checkbox
+              input(type="checkbox", id="checkbox-datascience", ng-checked="vm.tracks.data_science")
+
+              label(for="checkbox-datascience")
+                span(ng-class="{ 'checked-track': vm.tracks.data_science }", ng-click="vm.toggleTrack('data_science')")
+
+            .track-info
+              h4 Data Science
+
+              p Find challenges about data and algorithms. You know data sets, algorithms, DB structures, statistics, data analysis.
+
+      button(type="submit", ng-disabled="vm.editProfile.$invalid", ng-class="{'enabled-button': vm.editProfile.$valid}") Save
 
       .field-section
         h4.field-title Add Your Skills

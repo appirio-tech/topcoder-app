@@ -16,6 +16,7 @@
       getUserSkills: getUserSkills,
       getUserFinancials: getUserFinancials,
       getUserStats: getUserStats,
+      getDistributionStats: getDistributionStats,
       // auxiliary functions for profile
       getNumProjects: getNumProjects,
       getNumWins: getNumWins,
@@ -35,9 +36,7 @@
     }
 
     function updateUserProfile(userData) {
-      var data = { param: userData };
-
-      return restangular.one('members', userData.handle).customPUT(JSON.stringify(data));
+      return userData.save();
     }
 
     function getUserSkills(username) {
@@ -59,6 +58,12 @@
       return deferred.promise;
     }
 
+    function getDistributionStats(track, subTrack) {
+      return restangular.one('members').one('stats').one('distribution').get({
+        'filter': 'track=' + track + '&subTrack=' + subTrack
+      });
+    }
+
     function getNumProjects(stats) {
       return stats.challenges;
     }
@@ -75,7 +80,7 @@
       if (stats.DEVELOP && stats.DEVELOP.subTracks) {
         dev = stats.DEVELOP.subTracks.map(function(subTrack) {
           return {
-            'track': 'Develop',
+            'track': 'DEVELOP',
             'subTrack': subTrack.name,
             'rank': subTrack.rank ? subTrack.rank.overallRank : 0,
             'wins': subTrack.wins
@@ -86,7 +91,7 @@
       if (stats.DESIGN && stats.DESIGN.subTracks) {
         design = stats.DESIGN.subTracks.map(function(subTrack) {
           return {
-            'track': 'Design',
+            'track': 'DESIGN',
             'subTrack': subTrack.name,
             'rank': false,
             'wins': subTrack.wins
@@ -96,7 +101,7 @@
       if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.srm && stats.DATA_SCIENCE.srm.rank) {
         var srmStats = stats.DATA_SCIENCE.srm;
         srm = {
-          'track': 'Data Science',
+          'track': 'DATA_SCIENCE',
           'subTrack': 'SRM',
           'rank': srmStats.rank.rank
         };
