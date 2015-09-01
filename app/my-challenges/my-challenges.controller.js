@@ -16,13 +16,15 @@
     vm.view = 'list';
     vm.changeView = changeView;
     vm.statusFilter = 'active';
+    // paging params, these are updated by tc-pager
     vm.pageParams = {
       offset : 0,
       limit: 5,
       count: 0,
-      totalCount: 0
+      totalCount: 0,
+      // counter used to indicate page change
+      updated: 0
     };
-    vm.getChallenges = getChallenges;
     vm.orderBy = 'submissionEndDate';
 
     var userId = UserService.getUserIdentity().userId;
@@ -31,17 +33,11 @@
     activate();
 
     function activate() {
+      // watches page change counter to reload the data
+      $scope.$watch('vm.pageParams.updated', function(updatedParams) {
+        _getChallenges();
+      });
       viewActiveChallenges();
-    }
-
-    function nextPage() {
-      vm.offset += vm.limit;
-      getChallenges();
-    }
-
-    function prevPage() {
-      vm.offset -= vm.limit;
-      getChallenges();
     }
 
     function changeView(view) {
@@ -51,17 +47,17 @@
     function viewActiveChallenges() {
       vm.myChallenges = [];
       vm.statusFilter = 'active';
-      getChallenges();
+      _getChallenges();
     };
 
     function viewPastChallenges() {
       vm.myChallenges = [];
       vm.statusFilter = 'completed';
-      getChallenges();
+      _getChallenges();
     };
 
     // get ACTIVE challenges and spotlight challenges
-    function getChallenges() {
+    function _getChallenges() {
       var params = {
         limit: vm.pageParams.limit,
         offset: vm.pageParams.offset,

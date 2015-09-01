@@ -21,19 +21,15 @@
     vm.status = {
       'challenges': CONSTANTS.STATE_LOADING
     };
-    vm.offset = 0;
-    // maximum number of challenges to be shown on the page
-    vm.limit = 2;
-    // actual number of challenges shown on the page
-    vm.count = 0;
-    // total number of challenges available for the current filters
-    vm.totalCount = 0;
-    vm.nextPage = nextPage;
-    vm.prevPage = prevPage;
-    // flag holding the state of visibility of next pager
-    vm.nextPageAvailable = false;
-    // flag holding the state of visibility of previous pager
-    vm.prevPageAvailable = false;
+    // paging params, these are updated by tc-pager
+    vm.pageParams = {
+      offset : 0,
+      limit: 5,
+      count: 0,
+      totalCount: 0,
+      // counter used to indicate page change
+      updated: 0
+    };
 
     activate();
 
@@ -64,6 +60,10 @@
 
       });
 
+      // watches page change counter to reload the data
+      $scope.$watch('vm.pageParams.updated', function(updatedParams) {
+        _getChallenges();
+      });
       _getChallenges();
     }
 
@@ -75,35 +75,9 @@
       $window.history.back();
     }
 
-    function nextPage() {
-      vm.offset += vm.limit;
-      _getChallenges();
-    }
-
-    function prevPage() {
-      vm.offset -= vm.limit;
-      _getChallenges();
-    }
-
-    /**
-     * Helper method to validate the pager state.
-     */
-    function _validatePager() {
-      if (vm.count + vm.offset >= vm.totalCount) {
-        vm.nextPageAvailable = false;
-      } else {
-        vm.nextPageAvailable = true;
-      }
-      if (vm.offset <= 0) {
-        vm.prevPageAvailable = false;
-      } else {
-        vm.prevPageAvailable = true;
-      }
-    }
-
     function _getChallenges() {
       vm.status.challenges = CONSTANTS.STATE_LOADING;
-      return vm.pastChallengesPromise = ChallengeService.getUserChallenges(
+      return ChallengeService.getUserChallenges(
         profileVm.profile.handle,
         {
           filter: {
@@ -111,17 +85,14 @@
             track: vm.track,
             subTrack: vm.subTrack
           },
-          limit: vm.limit,
-          offset: vm.offset,
+          limit: vm.pageParams.limit,
+          offset: vm.pageParams.offset,
           orderBy: 'submissionEndDate desc'
         }
       )
       .then(function(data) {
         vm.challenges = data;
         vm.status.challenges = CONSTANTS.STATE_READY;
-        vm.count = vm.challenges.length;
-        vm.totalCount = vm.challenges.metadata.totalCount;
-        _validatePager();
         return data;
       }).catch(function(err) {
         vm.status.challenges = CONSTANTS.STATE_ERROR;

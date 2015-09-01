@@ -7,12 +7,10 @@
       replace: true,
       templateUrl: 'directives/tc-pager/tc-pager.html',
       scope: {
-        reloadPromise: '&',
-        data: '=data',
-        pageParams: '='
+        pageParams: '=',
+        data: '='
       },
       controller: ['$log', '$scope', '$element', function($log, $scope, $element) {
-        $log.debug("reloadPromise ", $scope.reloadPromise);
         $element.addClass('tc-pager');
         var vm = this;
 
@@ -28,32 +26,46 @@
         vm.nextPageAvailable = false;
         // flag holding the state of visibility of previous pager
         vm.prevPageAvailable = false;
-        vm.init = init;
 
-        init($scope.data);
+        activate();
 
-        function init(result) {
-          vm.pageParams.count = result.length;
-          vm.pageParams.totalCount = result.metadata.totalCount;
+        function activate() {
+          // attaches watcher to watch data changes
+          $scope.$watch('data', function(updatedValue) {
+            $log.debug("data updated for pager ", updatedValue);
+            init(updatedValue);
+          });
+        }
+
+        /**
+         * Initalizes/Updates paging state.
+         */
+        function init(data) {
+          vm.pageParams.count = data.length;
+          if (data.metadata) {
+            vm.pageParams.totalCount = data.metadata.totalCount;
+          }
           _validatePager();
         }
 
+        /**
+         * Navigate to next page.
+         */
         function nextPage() {
-          vm.pageParams.offset += vm.pageParams.limit;
-          $scope.reloadPromise()().then(function(result) {
-            vm.pageParams.count = result.length;
-            vm.pageParams.totalCount = result.metadata.totalCount;
-            _validatePager();
-          });
+          if (vm.nextPageAvailable) {
+            vm.pageParams.offset += vm.pageParams.limit;
+            vm.pageParams.updated++;
+          }
         }
 
+        /**
+         * Navigate to previous page.
+         */
         function prevPage() {
-          vm.pageParams.offset -= vm.pageParams.limit;
-          $scope.reloadPromise()().then(function() {
-            vm.pageParams.count = result.length;
-            vm.pageParams.totalCount = result.metadata.totalCount;
-            _validatePager();
-          });
+          if (vm.prevPageAvailable) {
+            vm.pageParams.offset -= vm.pageParams.limit;
+            vm.pageParams.updated++;
+          }
         }
 
         /**
