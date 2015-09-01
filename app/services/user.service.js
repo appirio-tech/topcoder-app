@@ -75,7 +75,7 @@
     }
 
     function validateSocialProfile(userId, provider) {
-      return ApiService.restangularV3.all('users').withHttpConfig({cache: false}).customGET('validateSocial',
+      return ApiService.restangularV3.all('users').withHttpConfig(_config).customGET('validateSocial',
       {
         socialUserId: userId,
         socialProvider: provider

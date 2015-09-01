@@ -120,5 +120,13 @@
           callbackURL: callbackUrl
         });
     }
+
+    vm.goToLogin = function() {
+      var params = {};
+      if ($stateParams.next) {
+        params = {next: $stateParams.next};
+      }
+      $state.go('login', params);
+    }
   }
 })();
