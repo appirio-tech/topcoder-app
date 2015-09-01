@@ -77,7 +77,6 @@
             route: 'members'
           })
           .addRequestInterceptor(function(element, operation, what, url) {
-            console.log('what: ', what);
             if (what === 'members') {
               return {
                 param: element
