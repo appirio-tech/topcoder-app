@@ -10,6 +10,7 @@
       templateUrl: 'directives/account/toggle-password/toggle-password.html',
       link: function(scope, element, attrs, formController) {
         var vm = scope.vm;
+        vm.passwordField = formController.password;
         vm.placeholder = vm.defaultPlaceholder;
         vm.password = '';
 

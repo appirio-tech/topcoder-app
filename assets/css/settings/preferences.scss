@@ -1,0 +1,23 @@
+@import '../partials/combined';
+
+.preferences-container {
+  padding-bottom: 25px;
+
+  ul {
+    width: 175px;
+    margin-top: 25px;
+  }
+
+  li {
+    font-size: 16px;
+  }
+
+  a {
+    @include bluelink;
+    color: $ui-blue;
+  }
+
+  hr {
+    margin: 12px 0;
+  }
+}
