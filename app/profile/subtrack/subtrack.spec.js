@@ -59,6 +59,13 @@ describe('SubTrack Controller', function() {
     $httpBackend
       .when('GET', apiUrl + '/members/rakesh/skills/')
       .respond(200, {result: {content: mockSkills}});
+    // mock profile api
+    sinon.stub(profileService, 'getDistributionStats', function(track, subTrack) {
+      var deferred = $q.defer();
+      var resp = {distribution: []};
+      deferred.resolve(resp);
+      return deferred.promise;
+    });
   });
 
   afterEach(function() {

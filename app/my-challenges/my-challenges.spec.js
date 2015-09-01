@@ -60,7 +60,8 @@ describe('My Challenges Controller', function() {
       $scope = $rootScope.$new();
       myChallenges = $controller('MyChallengesController', {
         ChallengeService : challengeService,
-        UserService : userService
+        UserService : userService,
+        $scope: $scope
       });
       $rootScope.$apply();
     });
@@ -88,7 +89,8 @@ describe('My Challenges Controller', function() {
       $scope = $rootScope.$new();
       myChallenges = $controller('MyChallengesController', {
         ChallengeService : challengeService,
-        UserService : userService
+        UserService : userService,
+        $scope: $scope
       });
       $rootScope.$apply();
     });
