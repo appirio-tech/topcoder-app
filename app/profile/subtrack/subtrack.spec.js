@@ -6,7 +6,7 @@ describe('SubTrack Controller', function() {
   var mockStats = mockData.getMockStats();
   var mockSkills = mockData.getMockSkills();
   var mockChallenges = mockData.getMockiOSChallenges();
-  var apiUrl = 'https://api.topcoder-dev.com/v3';
+  var apiUrl;
   var track = 'develop', subTrack = 'development';
   var profileScope, scope;
 
@@ -24,6 +24,7 @@ describe('SubTrack Controller', function() {
       'ProfileService'
     );
 
+    apiUrl = CONSTANTS.API_URL;
     challengeService = ChallengeService;
     profileService = ProfileService;
 

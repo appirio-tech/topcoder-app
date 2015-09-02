@@ -1,6 +1,7 @@
 /* jshint -W117, -W030 */
 describe('Header Dashboard Controller', function() {
   var controller;
+  var domain;
   var authService, notificationService, userService, profileService;
   var profile = mockData.getMockProfile();
   var stats = mockData.getMockStats();
@@ -19,6 +20,7 @@ describe('Header Dashboard Controller', function() {
       'CONSTANTS',
       'Helpers');
 
+    domain = CONSTANTS.domain;
     notificationService = NotificationService;
     authService = TcAuthService;
     userService = UserService;
@@ -78,22 +80,15 @@ describe('Header Dashboard Controller', function() {
     });
 
     it('variables should be initialized to correct value', function() {
-      // default value for domain
-      expect(controller.domain).to.equal('topcoder-dev.com');
-      // default value for isCopilot
+      expect(controller.domain).to.equal(domain);
       expect(controller.isCopilot).to.equal(false);
-      // default value for hasRatings
       expect(controller.hasRatings).to.equal(true);
-      // default value for loading
       expect(controller.loading).to.equal(false);
-      // default value for profile
       expect(controller.profile).to.exist;
       expect(controller.profile.handle).to.equal('albertwang');
-      // value for rankStats
       expect(controller.rankStats).to.exist;
       // there are 7 sub tracks with non null/zero value for one of rank/wins/fulfillment
       expect(controller.rankStats).to.have.length(7);
-      // default value for moneyEarned
       expect(controller.moneyEarned).to.equal(5100);
     });
   });
@@ -117,21 +112,14 @@ describe('Header Dashboard Controller', function() {
     });
 
     it('variables should be initialized to correct value', function() {
-      // default value for domain
-      expect(controller.domain).to.equal('topcoder-dev.com');
-      // default value for isCopilot
+      expect(controller.domain).to.equal(domain);
       expect(controller.isCopilot).to.equal(false);
-      // default value for hasRatings
       expect(controller.hasRatings).to.equal(false);
-      // default value for loading
       expect(controller.loading).to.equal(false);
-      // default value for profile
       expect(controller.profile).to.exist;
       expect(controller.profile.handle).to.equal('albertwang');
-      // rankStats should be empty
       expect(controller.rankStats).to.exist;
       expect(controller.rankStats).to.have.length(0);
-      // default value for moneyEarned
       expect(controller.moneyEarned).to.equal(5100);
     });
   });
@@ -155,21 +143,14 @@ describe('Header Dashboard Controller', function() {
     });
 
     it('variables should be initialized to correct value', function() {
-      // default value for domain
-      expect(controller.domain).to.equal('topcoder-dev.com');
-      // default value for isCopilot
+      expect(controller.domain).to.equal(domain);
       expect(controller.isCopilot).to.equal(false);
-      // default value for loading
       expect(controller.loading).to.equal(false);
-      // default value for profile
       expect(controller.profile).not.to.exist;
-      // value for rankStats
       expect(controller.rankStats).to.exist;
       // there are 7 sub tracks with non null/zero value for one of rank/wins/fulfillment
       expect(controller.rankStats).to.have.length(7);
-      // default value for hasRatings
       expect(controller.hasRatings).to.equal(true);
-      // default value for moneyEarned
       expect(controller.moneyEarned).to.equal(5100);
     });
   });
@@ -193,22 +174,15 @@ describe('Header Dashboard Controller', function() {
     });
 
     it('variables should be initialized to correct value', function() {
-      // default value for domain
-      expect(controller.domain).to.equal('topcoder-dev.com');
-      // default value for isCopilot
+      expect(controller.domain).to.equal(domain);
       expect(controller.isCopilot).to.equal(false);
-      // default value for loading
       expect(controller.loading).to.equal(false);
-      // default value for profile
       expect(controller.profile).to.exist;
       expect(controller.profile.handle).to.equal('albertwang');
-      // value for rankStats
       expect(controller.rankStats).to.exist;
       // there are 7 sub tracks with non null/zero value for one of rank/wins/fulfillment
       expect(controller.rankStats).to.have.length(7);
-      // default value for hasRatings
       expect(controller.hasRatings).to.equal(true);
-      // moneyEarned should not exist
       expect(controller.moneyEarned).not.to.exist;
     });
   });

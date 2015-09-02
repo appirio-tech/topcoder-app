@@ -1,10 +1,12 @@
 /* jshint -W117, -W030 */
 describe('User Service', function() {
-  var apiUrl = 'https://api.topcoder-dev.com/v3';
+  var apiUrl;
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, '$httpBackend', 'UserService');
+    bard.inject(this, '$httpBackend', 'UserService', 'CONSTANTS');
+
+    apiUrl = CONSTANTS.API_URL;
 
     // mock api
     $httpBackend

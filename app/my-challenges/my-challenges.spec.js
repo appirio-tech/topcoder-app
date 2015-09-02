@@ -66,9 +66,8 @@ describe('My Challenges Controller', function() {
       $rootScope.$apply();
     });
 
-    it('vm.domain should be initialized to default value', function() {
-      // default value for domain
-      expect(myChallenges.domain).to.equal('topcoder-dev.com');
+    it('vm.domain should exist', function() {
+      expect(myChallenges.domain).to.exist;
     });
 
     it('vm.userHasChallenges should be initialized to default value', function() {

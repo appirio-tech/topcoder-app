@@ -1,6 +1,7 @@
 /* jshint -W117, -W030 */
 describe('Challenges Widget Controller', function() {
   var controller;
+  var domain;
   var authService, challengeService, userService;
   var marathons = mockData.getMockMarathons();
   var challenges = mockData.getMockiOSChallenges();
@@ -17,6 +18,7 @@ describe('Challenges Widget Controller', function() {
       'CONSTANTS',
       'Helpers');
 
+    domain = CONSTANTS.domain;
     challengeService = ChallengeService;
     authService = TcAuthService;
     userService = UserService;
@@ -64,7 +66,7 @@ describe('Challenges Widget Controller', function() {
 
     it('vm.domain should be initialized to default value', function() {
       // default value for domain
-      expect(myChallenges.domain).to.equal('topcoder-dev.com');
+      expect(myChallenges.domain).to.equal(domain);
     });
 
     it('vm.userHasChallenges should be initialized to default value', function() {
