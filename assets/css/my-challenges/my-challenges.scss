@@ -114,6 +114,9 @@
       display: flex;
       flex-flow: column wrap;
       position: relative;
+      /* The negative margin here removes the leftmost tiles'
+         margin, since we can't use .tile:first-child here */
+      margin-left: -20px;
 
       .data {
         display: flex;
@@ -125,15 +128,13 @@
       }
 
       challenge-tile {
-        &.list {
-          width: 100%;
-        }
-        &.tile {
+        &.tile-view {
           width: 23%;
+          margin-left: 20px;
           margin-bottom: 20px;
         }
-        +challenge-tile {
-          margin-left: 20px;
+        &.list-view {
+          width: 100%;
         }
       }
     }
