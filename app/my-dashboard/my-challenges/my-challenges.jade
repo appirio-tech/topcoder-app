@@ -9,9 +9,9 @@ header
 .section-loading(ng-show="vm.loading")
 
 section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
-  challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="'tile'", class="tile")
+  challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="'tile'", ng-class="'tile-view'")
 
-  challenge-tile.spotlight(spotlight="spotlight", challenge="vm.spotlightChallenge", view="'tile'")
+  challenge-tile.spotlight(spotlight="spotlight", challenge="vm.spotlightChallenge", view="'tile'", ng-class="'tile-view'")
 
 .section-links
   .link
