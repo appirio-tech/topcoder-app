@@ -118,4 +118,14 @@
       @include ui-enabled-button;
     }
   }
+
+  .field-section {
+    position: relative;
+  }
+
+  .form-errors {
+    position: absolute;
+    top: 70px;
+    left: 3px;
+  }
 }

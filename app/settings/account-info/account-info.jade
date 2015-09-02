@@ -19,10 +19,10 @@
 
         .address-fields
           label *First name (Given name)
-            input(name="firstname", type="text", value="{{vm.userData.firstName}}", ng-model="vm.userData.firstName")
+            input(name="firstname", type="text", value="{{vm.userData.firstName}}", ng-model="vm.userData.firstName", maxlength="64", required)
 
           label *Last name (Surname)
-            input(name="lastname", type="text", value="{{vm.userData.lastName}}", ng-model="vm.userData.lastName")
+            input(name="lastname", type="text", value="{{vm.userData.lastName}}", ng-model="vm.userData.lastName", maxlength="64", required)
 
           label Address
             input(name="address", type="text", value="{{vm.homeAddress.streetAddr1}}", ng-model="vm.homeAddress.streetAddr1")
@@ -52,8 +52,8 @@
               minlength="1"
             )
 
-            .form-errors
-              p.form-error(ng-show="vm.updateAccountInfo.country.$error.required") Please enter a valid country.
+            .account-info-error
+              p.form-error(ng-show="vm.updateAccountInfo.country.$error.required") Please choose a country from the list.
 
 
         button(type="submit", ng-disabled="vm.updateAccountInfo.$invalid", ng-class="{'enabled-button': vm.updateAccountInfo.$valid}") Save
