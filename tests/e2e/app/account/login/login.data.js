@@ -10,6 +10,28 @@ var LoginData = function() {
                             	}
                            ],
                            
+    this.wrongPasswordCredentials= [
+                                    {
+                                    	'username' : 'aqmansuri',
+                                    	'password' : 'appirio123$'
+                                    },
+                                    {
+                                    	'username' : 'DhananjayKumar1',
+                                    	'password' : 'wrongpassword'
+                                    }
+                                    ],
+   this.notExisitingCredentials = [
+                                   {
+                                	   'username' : 'aqmansurinotexist',
+                                		'password':'notexist'   
+                                   },
+                                   {
+                                	   'username' : 'DhananjayKumar1notexist',
+                                	   'password' : 'notexist'
+                                   }
+                                   
+                                   ]                                    
+                           
     this.twitterCredentials = [ {
     								'username' : 'ChristinoBolder',
     								'password' : 'Appirio123'
@@ -38,6 +60,8 @@ var LoginData = function() {
     						  
     						  
     this.baseUrl = 'http://app.topcoder-dev.com/login';
+    this.invalidPasswordMessage = 'That password doesn\'t match the one we have on file. Please try again.';
+    this.invalidHandle = 'This user does not exist.'
     
 };
 module.exports = new LoginData;
