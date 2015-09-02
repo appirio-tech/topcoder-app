@@ -3,14 +3,13 @@
 
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
-  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', '$log', 'ISO3166', 'ImageService'];
+  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS'];
 
-  function EditProfileController(userData, userHandle, ProfileService, $log, ISO3166, ImageService) {
+  function EditProfileController(userData, userHandle, ProfileService, $log, ISO3166, ImageService, $rootScope, CONSTANTS) {
     var vm = this;
     vm.toggleTrack    = toggleTrack;
     vm.updateCountry  = updateCountry;
     vm.onFileChange   = onFileChange;
-    vm.updateImage    = updateImage;
     vm.updateProfile  = updateProfile;
 
     vm.countries = ISO3166.getAllCountryObjects();
@@ -41,52 +40,9 @@
     }
 
     function onFileChange(file) {
-      ImageService.getPresignedUrl(userHandle)
-      .then(function(res) {
-        var xhr = new XMLHttpRequest();
-        var formData = new FormData();
-        formData.append('userimage', file, file.name);
-
-        xhr.open('PUT', res.preSignedURL, true);
-        xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-
-        // xhr version of the success callback
-        xhr.onreadystatechange = function() {
-          var status = xhr.status;
-          if (((status >= 200 && status < 300) || status === 304) && xhr.readyState === 4) {
-            ImageService.createFileRecord(userHandle, {param: {token: res.token}})
-            .then(function(res) {
-              $log.info('Successfully made file record.');
-            })
-            .catch(function(err) {
-              $log.info('Error in creating file record');
-              $log.error(err);
-            });
-          }
-        };
-
-        xhr.onerror = function(res) {
-          $log.info('Error uploading to s3');
-          $log.error(res);
-        }
-
-        xhr.send(formData);
-      })
-      .catch(function(err) {
-        $log.info('Error getting presigned url');
-        $log.error(err);
-      });
-    }
-
-    function updateImage() {
-      ImageService.updateImage()
-      .then(function(res) {
-        vm.token = res.token;
-        vm.presignedUrl = res.presignedUrl;
-      })
-      .catch(function(err){
-        $log.error(err);
-      });
+      ImageService.getPresignedUrl(userHandle, file)
+      .then(ImageService.uploadFileToS3)
+      .then(ImageService.createFileRecord)
     }
 
     function updateProfile() {
