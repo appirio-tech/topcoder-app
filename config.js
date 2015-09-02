@@ -27,7 +27,7 @@ module.exports = function() {
         // EVENTS
         EVENT_USER_LOGGED_IN: 'user_logged_in',
         EVENT_USER_LOGGED_OUT: 'user_logged_out',
-        EVENT_PROFILE_UPDATED: 'profile_updated'
+        EVENT_PROFILE_UPDATED: 'profile_updated',
 
         STATE_LOADING: 'loading',
         STATE_ERROR: 'error',
@@ -62,7 +62,7 @@ module.exports = function() {
         // EVENTS
         EVENT_USER_LOGGED_IN: 'user_logged_in',
         EVENT_USER_LOGGED_OUT: 'user_logged_out',
-        EVENT_PROFILE_UPDATED: 'profile_updated'
+        EVENT_PROFILE_UPDATED: 'profile_updated',
 
         STATE_LOADING: 'loading',
         STATE_ERROR: 'error',
@@ -97,7 +97,7 @@ module.exports = function() {
         // EVENTS
         EVENT_USER_LOGGED_IN: 'user_logged_in',
         EVENT_USER_LOGGED_OUT: 'user_logged_out',
-        EVENT_PROFILE_UPDATED: 'profile_updated'
+        EVENT_PROFILE_UPDATED: 'profile_updated',
 
         STATE_LOADING: 'loading',
         STATE_ERROR: 'error',
