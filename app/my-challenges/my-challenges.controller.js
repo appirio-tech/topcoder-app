@@ -45,15 +45,19 @@
     }
 
     function viewActiveChallenges() {
-      vm.myChallenges = [];
-      vm.statusFilter = 'active';
-      _getChallenges();
+      if (vm.statusFilter != 'active') {
+        vm.myChallenges = [];
+        vm.statusFilter = 'active';
+        _getChallenges();
+      }
     };
 
     function viewPastChallenges() {
-      vm.myChallenges = [];
-      vm.statusFilter = 'completed';
-      _getChallenges();
+      if (vm.statusFilter != 'completed') {
+        vm.myChallenges = [];
+        vm.statusFilter = 'completed';
+        _getChallenges();
+      }
     };
 
     // get ACTIVE challenges and spotlight challenges

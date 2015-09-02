@@ -29,22 +29,28 @@
     }
 
     function viewPastSRMs() {
-      vm.listType = 'past';
-      getSRMs();
-      getSRMs().then(function() {
-        getSRMResults().then(function() {
-          angular.forEach(vm.srms, function(srm) {
-            if (vm.srmResults[srm.id]) {
-              srm.result = vm.srmResults[srm.id];
-            }
+      if (vm.listType != 'past') {
+        vm.srms = [];
+        vm.listType = 'past';
+        getSRMs();
+        getSRMs().then(function() {
+          getSRMResults().then(function() {
+            angular.forEach(vm.srms, function(srm) {
+              if (vm.srmResults[srm.id]) {
+                srm.result = vm.srmResults[srm.id];
+              }
+            });
           });
         });
-      });
+      }
     }
 
     function viewUpcomingSRMs() {
-      vm.listType = 'future';
-      getSRMs();
+      if (vm.listType != 'future') {
+        vm.srms = [];
+        vm.listType = 'future';
+        getSRMs();
+      }
     }
 
     function getSRMs() {
