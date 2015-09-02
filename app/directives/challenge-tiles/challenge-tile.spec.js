@@ -2,13 +2,16 @@
 describe('Challenge Tile Directive', function() {
   var scope;
   var element;
+  var domain;
   var challenge = mockData.getMockChallengeWithUserDetails();
   var spotlightChallenge = mockData.getMockSpotlightChallenges()[0];
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, '$compile', '$rootScope');
+    bard.inject(this, '$compile', '$rootScope', 'CONSTANTS');
+
     scope = $rootScope.$new();
+    domain = CONSTANTS.domain;
   });
 
   bard.verifyNoOutstandingHttpRequests();
@@ -34,7 +37,7 @@ describe('Challenge Tile Directive', function() {
     });
 
     it('should have domain added to the scope', function() {
-      expect(element.isolateScope().DOMAIN).to.equal('topcoder-dev.com');
+      expect(element.isolateScope().DOMAIN).to.equal(domain);
     });
   });
 

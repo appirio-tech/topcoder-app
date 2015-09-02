@@ -3,12 +3,12 @@
 
   angular.module('tc.profile').controller('ProfileCtrl', ProfileCtrl);
 
-  ProfileCtrl.$inject = ['$scope', 'CONSTANTS', '$log',
+  ProfileCtrl.$inject = ['CONSTANTS', '$log',
     'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService',
     'userHandle', 'profile', 'ngDialog'
   ];
 
-  function ProfileCtrl($scope, CONSTANTS, $log, TcAuthService, UserService, ProfileService, ChallengeService, userHandle, profile, ngDialog) {
+  function ProfileCtrl(CONSTANTS, $log, TcAuthService, UserService, ProfileService, ChallengeService, userHandle, profile, ngDialog) {
     var vm = this;
     // set profile to the object that was resolved
     vm.profile = profile;
@@ -21,8 +21,7 @@
       'badges': CONSTANTS.STATE_LOADING,
       'stats': CONSTANTS.STATE_LOADING,
       'skills': CONSTANTS.STATE_LOADING,
-      'externalLinks': CONSTANTS.STATE_READY,
-      'pastChallenges': CONSTANTS.STATE_LOADING
+      'externalLinks': CONSTANTS.STATE_READY
     };
 
     activate();
@@ -31,22 +30,13 @@
     vm.statsPromise = ProfileService.getUserStats(vm.userHandle).then(function(stats) {
       vm.stats = stats;
       vm.profile.tracks = vm.profile.tracks || ProfileService.getTracks(vm.stats) || [];
-      vm.numProjects = ProfileService.getNumProjects(vm.stats);
-      vm.numWins = ProfileService.getNumWins(vm.stats);
+      vm.numProjects = vm.stats.challenges;
+      vm.numWins = vm.stats.wins;
       vm.categories = ProfileService.getRanks(vm.stats);
       vm.status.stats = CONSTANTS.STATE_READY;
       return vm.stats;
     }).catch(function(err) {
       $log.error(err);
-      vm.status.stats = CONSTANTS.STATE_ERROR;
-    });
-
-    vm.pastChallengesPromise = ChallengeService.getUserChallenges(profile.userId, {orderBy: 'submissionenddate desc', status: 'complete'})
-    .then(function(data) {
-      vm.status.pastChallenges = CONSTANTS.STATE_READY;
-      vm.pastChallenges = data;
-      return data;
-    }).catch(function(err) {
       vm.status.stats = CONSTANTS.STATE_ERROR;
     });
 
@@ -67,11 +57,15 @@
         vm.showEditProfileLink = false;
       }
       if (profile.createdAt) {
-        vm.tenure = moment().isoWeekYear() - moment(profile.createdAt).isoWeekYear();
+        vm.tenure = yearsSince(profile.createdAt);
       } else {
         vm.tenure = false;
       }
 
+    }
+
+    function yearsSince(dateString) {
+      return moment().isoWeekYear() - moment(dateString).isoWeekYear();
     }
 
     function showBadges() {

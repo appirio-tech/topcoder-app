@@ -1,11 +1,13 @@
 /* jshint -W117, -W030 */
 describe('Challenge Service', function() {
   var challengeData = mockData.getMockChallenge();
-  var apiUrl = 'https://api.topcoder-dev.com/v3';
+  var apiUrl;
 
   beforeEach(function() {
     bard.appModule('tc.services');
-    bard.inject(this, '$httpBackend', 'ChallengeService');
+    bard.inject(this, '$httpBackend', 'ChallengeService', 'CONSTANTS');
+
+    apiUrl = CONSTANTS.API_URL;
   });
 
   bard.verifyNoOutstandingHttpRequests();

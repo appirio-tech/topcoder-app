@@ -3,7 +3,7 @@
 
   form(name="vm.registerForm", role="form", ng-submit="vm.registerForm.$valid && vm.register()", novalidate, autocomplete="off")
 
-    // Stops Chrome from autofilling and autocompleting
+    // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
     input(autocomplete="false", name="hidden", type="text", style="display:none;")
 
     p.form-error(ng-show="vm.errMsg") {{vm.errMsg}}
@@ -19,7 +19,6 @@
 
     .country-dropdown
       angucomplete-alt(
-        id="countryId",
         input-name="country",
         placeholder="Country",
         pause="100",

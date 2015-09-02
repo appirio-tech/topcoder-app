@@ -12,31 +12,22 @@
     vm.onFileChange   = onFileChange;
     vm.updateProfile  = updateProfile;
 
-    vm.countries = ISO3166.getAllCountryObjects();
-    vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.competitionCountryCode);
-
-    if (userData.tracks === null) {
-      userData.tracks = [];
-    }
-
     activate();
 
     function activate() {
+      vm.countries = ISO3166.getAllCountryObjects();
+      vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.competitionCountryCode);
+
       processData(userData);
-      vm.userData = userData.plain();
-    }
-
-
-    function toggleTrack(track) {
-      vm.tracks[track] = !vm.tracks[track];
+      vm.userData = userData
     }
 
     function updateCountry(angucompleteCountryObj) {
         var countryCode = _.get(angucompleteCountryObj, 'originalObject.alpha3', undefined);
         vm.userData.competitionCountryCode = countryCode;
 
-        var valid = _.isUndefined(countryCode) ? false : true;
-        vm.editProfile.location.$setValidity('required', valid);
+        var isValidCountry = _.isUndefined(countryCode) ? false : true;
+        vm.editProfile.location.$setValidity('required', isValidCountry);
     }
 
     function onFileChange(file) {
@@ -53,15 +44,17 @@
         return result;
       }, []);
 
-      var body = vm.userData;
-
-      ProfileService.updateUserProfile(body)
+      ProfileService.updateUserProfile(vm.userData)
       .then(function() {
         $log.info('Saved successfully');
       })
       .catch(function(err) {
         $log.error(err);
       });
+    }
+
+    function toggleTrack(track) {
+      vm.tracks[track] = !vm.tracks[track];
     }
 
     function processData(userInfo) {

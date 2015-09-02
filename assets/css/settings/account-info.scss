@@ -3,27 +3,33 @@
 .account-info-container {
   padding-bottom: 75px;
 
-  .reset-password form {
-    display: flex;
-    flex-direction: column;
+  .update-account-info {
+    width: 630px;
 
-    input[name="currentPassword"] {
-      margin-bottom: 10px;
-    }
-
-    p {
-      margin: 5px 0 12px 5px;
-    }
-
-    button {
-      width: 200px;
-      text-transform: none;
-      @include source-sans-light;
-      font-size: 18px;
-
-      &.enabled-button {
-        @include ui-enabled-button;
+    .address-fields {
+      @media only screen and (min-width: 768px) {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
       }
+    }
+
+    label {
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    input {
+      display: block;
+      margin-top: 7px;
+    }
+
+    .form-errors {
+      margin-top: 8px;
+    }
+
+    button.enabled-button {
+      @include ui-enabled-button;
     }
   }
 }

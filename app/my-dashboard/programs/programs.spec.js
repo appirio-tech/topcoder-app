@@ -1,6 +1,7 @@
 /* jshint -W117, -W030 */
 describe('Programs Controller', function() {
   var controller;
+  var domain;
   var authService, challengeService, userService, memberCertService;
   var marathons = mockData.getMockMarathons();
   var challenges = mockData.getMockiOSChallenges();
@@ -18,6 +19,7 @@ describe('Programs Controller', function() {
       'CONSTANTS',
       'Helpers');
 
+    domain = CONSTANTS.domain;
     challengeService = ChallengeService;
     authService = TcAuthService;
     userService = UserService;
@@ -70,7 +72,7 @@ describe('Programs Controller', function() {
 
     it('variables initialized to correct value', function() {
       // default value for domain
-      expect(controller.domain).to.equal('topcoder-dev.com');
+      expect(controller.domain).to.equal(domain);
       // default value for registered
       expect(controller.registered).to.equal(true);
       // default value for loading
@@ -102,7 +104,7 @@ describe('Programs Controller', function() {
 
     it('variables initialized to correct value', function() {
       // default value for domain
-      expect(controller.domain).to.equal('topcoder-dev.com');
+      expect(controller.domain).to.equal(domain);
       // default value for registered
       expect(controller.registered).to.equal(false);
       // default value for loading
@@ -134,7 +136,7 @@ describe('Programs Controller', function() {
 
     it('variables should be initialized to correct value', function() {
       // default value for domain
-      expect(controller.domain).to.equal('topcoder-dev.com');
+      expect(controller.domain).to.equal(domain);
       // default value for registered
       expect(controller.registered).to.equal(false);
       // default value for loading

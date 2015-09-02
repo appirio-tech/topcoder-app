@@ -15,8 +15,15 @@ describe('Account Info Controller', function() {
       }
     };
 
+    var userData = {
+      handle: 'nicktest',
+      email: 'nicktest@gmail.com',
+      homeCountryCode: 'USA'
+    };
+
     controller = $controller('AccountInfoController', {
-      UserService: userService
+      UserService: userService,
+      userData: userData
     });
   });
 
@@ -24,20 +31,6 @@ describe('Account Info Controller', function() {
 
   it('should be created successfully', function() {
     expect(controller).to.exist;
-  });
-
-  it('should have a defaultPlaceholder property', function() {
-    expect(controller.defaultPlaceholder).to.exist;
-  });
-  it('should have a submitNewPassword method', function() {
-    expect(controller.submitNewPassword).to.be.a('function');
-  });
-  it('should get the username from local storage', function() {
-    expect(controller.username).to.equal('nicktest');
-  });
-
-  it('should get the user\'s email from local storage', function() {
-    expect(controller.email).to.equal('nicktest@gmail.com');
   });
 
   describe('updating a user\'s password', function() {

@@ -1,6 +1,7 @@
 /* jshint -W117, -W030 */
 describe('My Challenges Controller', function() {
   var controller;
+  var domain;
   var authService, challengeService, userService;
   var marathons = mockData.getMockMarathons();
   var challenges = mockData.getMockiOSChallenges();
@@ -22,22 +23,10 @@ describe('My Challenges Controller', function() {
       getToken: function() { return "v3Token"; }
     });
 
+    domain = CONSTANTS.domain;
     challengeService = ChallengeService;
     authService = TcAuthService;
     userService = UserService;
-
-    // mock marathon matches api
-    sinon.stub(challengeService, 'getMyMarathonMatches', function() {
-      var deferred = $q.defer();
-      var resp = JSON.parse(JSON.stringify(marathons));
-      resp.pagination = {
-        total: marathons.length,
-        pageIndex: 1,
-        pageSize: 10
-      };
-      deferred.resolve(resp);
-      return deferred.promise;
-    });
 
     // mock user api
     sinon.stub(userService, 'getUserIdentity', function() {
@@ -49,18 +38,16 @@ describe('My Challenges Controller', function() {
     });
 
     // mock challenges api
-    sinon.stub(challengeService, 'getUserChallenges', function(data) {
+    sinon.stub(challengeService, 'getUserChallenges', function(handle, data) {
       var deferred = $q.defer();
       var resp = null;
-      if (data.filter.indexOf('status=Active') != -1) {
+      if (data.filter.status == 'active') {
         resp = JSON.parse(JSON.stringify(challenges));
       } else {
         resp = JSON.parse(JSON.stringify(challenges.slice(1)));
       }
-      resp.pagination = {
-        total: resp.length,
-        pageIndex: 1,
-        pageSize: 10
+      resp.metadata = {
+        totalCount: resp.length
       };
       deferred.resolve(resp);
       return deferred.promise;
@@ -75,14 +62,14 @@ describe('My Challenges Controller', function() {
       $scope = $rootScope.$new();
       myChallenges = $controller('MyChallengesController', {
         ChallengeService : challengeService,
-        UserService : userService
+        UserService : userService,
+        $scope: $scope
       });
       $rootScope.$apply();
     });
 
-    it('vm.domain should be initialized to default value', function() {
-      // default value for domain
-      expect(myChallenges.domain).to.equal('topcoder-dev.com');
+    it('vm.domain should exist', function() {
+      expect(myChallenges.domain).to.equal(domain);
     });
 
     it('vm.userHasChallenges should be initialized to default value', function() {
@@ -103,7 +90,8 @@ describe('My Challenges Controller', function() {
       $scope = $rootScope.$new();
       myChallenges = $controller('MyChallengesController', {
         ChallengeService : challengeService,
-        UserService : userService
+        UserService : userService,
+        $scope: $scope
       });
       $rootScope.$apply();
     });
