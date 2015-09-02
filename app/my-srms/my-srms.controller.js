@@ -21,7 +21,9 @@
     activate();
 
     function activate() {
-      getSRMs();
+      getSRMs().then(function() {
+        vm.loading = false;
+      });
     }
 
     function changeView(view) {
@@ -32,13 +34,14 @@
       if (vm.listType != 'past') {
         vm.srms = [];
         vm.listType = 'past';
-        getSRMs();
+        vm.loading = true;
         getSRMs().then(function() {
           getSRMResults().then(function() {
             angular.forEach(vm.srms, function(srm) {
               if (vm.srmResults[srm.id]) {
                 srm.result = vm.srmResults[srm.id];
               }
+              vm.loading = false;
             });
           });
         });
@@ -49,7 +52,10 @@
       if (vm.listType != 'future') {
         vm.srms = [];
         vm.listType = 'future';
-        getSRMs();
+        vm.loading = true;
+        getSRMs().then(function() {
+          vm.loading = false;
+        });
       }
     }
 
@@ -64,11 +70,9 @@
       return SRMService.getSRMs(params)
       .then(function(data){
         vm.srms = data;
-        vm.loading = false;
       }, function(resp) {
         // TODO - handle error
         $log.error(resp);
-        vm.loading = false;
       });
     }
 
@@ -82,11 +86,9 @@
         angular.forEach(data, function(srmResult) {
           vm.srmResults[srmResult['contestId']] = srmResult;
         });
-        vm.loading = false;
       }, function(resp) {
         // TODO - handle error
         $log.error(resp);
-        vm.loading = false;
       });
     }
   }
