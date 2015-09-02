@@ -79,5 +79,4 @@ describe('Review Status Controller', function() {
       expect(controller.reviewsDue).to.equal('2015-05-01T04:00Z');
     });
   });
-
 });

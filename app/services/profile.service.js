@@ -18,8 +18,6 @@
       getUserStats: getUserStats,
       getDistributionStats: getDistributionStats,
       // auxiliary functions for profile
-      getNumProjects: getNumProjects,
-      getNumWins: getNumWins,
       getRanks: getRanks,
       getChallengeTypeStats: getChallengeTypeStats,
       getTracks: getTracks,
@@ -62,14 +60,6 @@
       return restangular.one('members').one('stats').one('distribution').get({
         'filter': 'track=' + track + '&subTrack=' + subTrack
       });
-    }
-
-    function getNumProjects(stats) {
-      return stats.challenges;
-    }
-
-    function getNumWins(stats) {
-      return stats.wins;
     }
 
     function getRanks(stats) {
