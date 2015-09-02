@@ -46,7 +46,6 @@ describe('Profile Controller', function() {
     expect(controller.userHandle).to.be.equal('rakesh');
     expect(controller.status).to.be.defined;
     expect(controller.statsPromise).to.be.defined;
-    expect(controller.pastChallengesPromise).to.be.defined;
     expect(controller.skillsPromise).to.be.defined;
   });
 

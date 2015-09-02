@@ -100,13 +100,29 @@
 
         a {
           text-decoration: underline;
+
+          &.disabled {
+            text-decoration: none;
+            color: $dark-gray;
+            cursor: default;
+          }
         }
       }
     }
 
     section.challenges {
       display: flex;
-      flex-flow: row wrap;
+      flex-flow: column wrap;
+      position: relative;
+
+      .data {
+        display: flex;
+        flex-flow: row wrap;
+
+        &.list-view {
+          flex-flow: column wrap;
+        }
+      }
 
       challenge-tile {
         &.list {
