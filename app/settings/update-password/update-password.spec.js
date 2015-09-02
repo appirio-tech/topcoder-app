@@ -11,7 +11,16 @@ describe('Update Password Controller', function() {
       return this;
     };
 
-    vm = $controller('UpdatePasswordController', {});
+    vm = $controller('UpdatePasswordController', {
+      UserService: {
+        getUserIdentity: function() {
+          return {
+            handle: 'foo',
+            email: 'bar'
+          };
+        }
+      }
+    });
   });
 
   bard.verifyNoOutstandingHttpRequests();

@@ -22,11 +22,13 @@
     return service;
 
     function getChallenges(params) {
+      params.filter = _parseFilterParam(params);
       return api.all('challenges').getList(params);
     }
 
     function getUserChallenges(handle, params) {
-       return api.one('members', handle).all('challenges').getList(params);
+      params.filter = _parseFilterParam(params);
+      return api.one('members', handle).all('challenges').getList(params);
     }
 
     function getSpotlightChallenges() {
@@ -63,7 +65,7 @@
         filter: "technologies=ios&status=active",
         limit: 3,
         offset: 0,
-        orderBy: 'submissionenddate'
+        orderBy: 'submissionEndDate'
       };
       return api.all('challenges').getList(iOSParams);
     }
@@ -170,6 +172,21 @@
     function getChallengeDetails(challengeId) {
       var url = CONSTANTS.API_URL + '/challenges/' + challengeId;
       return ApiService.requestHandler('GET', url, {}, true);
+    }
+
+    /**
+     * Helper method to parse the filter param as required by v3 API from JSON format
+     */
+    function _parseFilterParam(params) {
+      var filter = [];
+      if (params.filter) {
+        for(var filterKey in params.filter) {
+          var filterValue = params.filter[filterKey];
+          filter.push(filterKey + '=' + filterValue);
+        }
+        return filter.join('&');
+      }
+      return null;
     }
 
   };
