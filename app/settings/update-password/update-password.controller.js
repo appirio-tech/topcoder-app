@@ -23,7 +23,10 @@
       .then(function() {
         vm.password = '';
         vm.currentPassword = '';
-        alert('Your password has been updated.');
+        vm.newPasswordForm.$setPristine();
+        vm.placeholder = vm.defaultPlaceholder;
+
+        $log.info('Your password has been updated.');
       })
       .catch(function(err) {
         $log.error(err);
