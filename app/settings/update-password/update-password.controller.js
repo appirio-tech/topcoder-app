@@ -3,19 +3,18 @@
 
   angular.module('tc.settings').controller('UpdatePasswordController', UpdatePasswordController);
 
-  UpdatePasswordController.$inject = ['UserService', '$log'];
+  UpdatePasswordController.$inject = ['UserService', '$log', 'userData'];
 
-  function UpdatePasswordController(UserService, $log) {
+  function UpdatePasswordController(UserService, $log, userData) {
     var vm = this;
     vm.submitNewPassword = submitNewPassword;
-    var user = UserService.getUserIdentity();
 
     activate();
 
     function activate() {
       vm.defaultPlaceholder = 'Enter New Password';
-      vm.username = user.handle;
-      vm.email    = user.email;
+      vm.username = userData.handle;
+      vm.email    = userData.email;
     }
 
     function submitNewPassword() {
