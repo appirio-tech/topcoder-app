@@ -1,0 +1,14 @@
+.skill-picker-container
+  h1 Welcome to Topcoder!
+
+  h4 Complete Your Profile, get more attention.
+
+  .track-picker
+    h4.field-title What type of work are you looking for?
+
+    .select-tracks
+      .track-button(ng-class="{'selected-track': vm.tracks.design}", ng-click="vm.toggleTrack('design')") Design
+
+      .track-button(ng-class="{'selected-track': vm.tracks.develop}", ng-click="vm.toggleTrack('develop')") Development
+
+      .track-button(ng-class="{'selected-track': vm.tracks.data_science}", ng-click="vm.toggleTrack('data_science')") Data Science

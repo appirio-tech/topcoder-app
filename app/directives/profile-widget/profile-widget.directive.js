@@ -11,12 +11,14 @@
         profile: '=profile',
         editProfileLink: '=editProfileLink'
       },
-      link: function($scope, elem, attrs, ctrl) {
-        $scope.DOMAIN = CONSTANTS.domain;
+      link: function(scope, elem, attrs) {
+        scope.DOMAIN = CONSTANTS.domain;
 
-        if (_.isUndefined($scope.editProfileLink)) {
-          $scope.editProfileLink = false;
-        }
+        scope.$watch('editProfileLink', function(newValue, oldValue, scope) {
+          if (newValue) {
+            scope.editProfileLink = newValue;
+          }
+        });
       }
     };
   }
