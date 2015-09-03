@@ -21,7 +21,7 @@
     .section-loading(ng-show="vm.loading")
 
     section.challenges(ng-show="vm.userHasChallenges && !vm.loading")
-      tc-pager(data="vm.myChallenges", page-params="vm.pageParams")
+      tc-paginator(data="vm.myChallenges", page-params="vm.pageParams")
       .data(ng-class="vm.view + '-view'")
         challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.view", ng-class="vm.view")
 
