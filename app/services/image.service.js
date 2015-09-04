@@ -56,7 +56,7 @@
       formData.append('userimage', response.file, response.file.name);
 
       xhr.open('PUT', response.preSignedURL, true);
-      xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+      xhr.setRequestHeader('Content-Type', response.file.type);
 
       // xhr version of the success callback
       xhr.onreadystatechange = function() {
@@ -72,7 +72,7 @@
               }
             }
           });
-        } else {
+        } else if (status >= 400) {
           $log.error('Error uploading to S3 with status: ' + status);
         }
       };
