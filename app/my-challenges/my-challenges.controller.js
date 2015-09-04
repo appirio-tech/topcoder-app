@@ -3,9 +3,9 @@
 
   angular.module('tc.myChallenges').controller('MyChallengesController', MyChallengesController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers'];
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
@@ -15,12 +15,28 @@
     vm.viewPastChallenges = viewPastChallenges;
     vm.view = 'list';
     vm.changeView = changeView;
+    vm.statusFilter = 'active';
+    // paging params, these are updated by tc-pager
+    vm.pageParams = {
+      offset : 0,
+      limit: 5,
+      count: 0,
+      totalCount: 0,
+      // counter used to indicate page change
+      updated: 0
+    };
+    vm.orderBy = 'submissionEndDate';
 
     var userId = UserService.getUserIdentity().userId;
+    var handle = UserService.getUserIdentity().handle;
 
     activate();
 
     function activate() {
+      // watches page change counter to reload the data
+      $scope.$watch('vm.pageParams.updated', function(updatedParams) {
+        _getChallenges();
+      });
       viewActiveChallenges();
     }
 
@@ -29,25 +45,36 @@
     }
 
     function viewActiveChallenges() {
-      vm.myChallenges = [];
-      getChallenges('Active', 'submissionEndDate%20asc');
+      if (vm.statusFilter != 'active') {
+        vm.myChallenges = [];
+        vm.pageParams.offset = 0;
+        vm.statusFilter = 'active';
+        _getChallenges();
+      }
     };
 
     function viewPastChallenges() {
-      vm.myChallenges = [];
-      getChallenges('Completed|Cancelled', 'submissionEndDate asc');
+      if (vm.statusFilter != 'completed') {
+        vm.myChallenges = [];
+        vm.pageParams.offset = 0;
+        vm.statusFilter = 'completed';
+        _getChallenges();
+      }
     };
 
     // get ACTIVE challenges and spotlight challenges
-    function getChallenges(status, orderBy) {
+    function _getChallenges() {
       var params = {
-        offset: 0,
-        orderBy: orderBy, // TODO verify if this is the correct sort order clause,
-        filter: "status="+status
+        limit: vm.pageParams.limit,
+        offset: vm.pageParams.offset,
+        orderBy: vm.orderBy, // TODO verify if this is the correct sort order clause,
+        filter: {
+          status : vm.statusFilter
+        }
       };
-
-      $q.all([
-        ChallengeService.getUserChallenges(params),
+      vm.loading = true;
+      return $q.all([
+        ChallengeService.getUserChallenges(handle, params),
         ChallengeService.getSpotlightChallenges()
       ])
       .then(function(data){

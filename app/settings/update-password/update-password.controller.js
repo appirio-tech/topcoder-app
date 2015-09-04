@@ -3,32 +3,31 @@
 
   angular.module('tc.settings').controller('UpdatePasswordController', UpdatePasswordController);
 
-  UpdatePasswordController.$inject = ['UserService', '$log'];
+  UpdatePasswordController.$inject = ['UserService', '$log', 'userData'];
 
-  function UpdatePasswordController(UserService, $log) {
+  function UpdatePasswordController(UserService, $log, userData) {
     var vm = this;
-    vm.defaultPlaceholder = 'Enter New Password';
-    vm.submitNewPassword  = submitNewPassword;
+    vm.submitNewPassword = submitNewPassword;
 
     activate();
 
     function activate() {
-      var user    = UserService.getUserIdentity();
-
-      vm.username = user.handle;
-      vm.email    = user.email;
+      vm.defaultPlaceholder = 'Enter New Password';
+      vm.username = userData.handle;
+      vm.email    = userData.email;
     }
 
     function submitNewPassword() {
-      var resetToken = 'something';
-
-      UserService.resetPassword(vm.username, vm.password, resetToken)
+      UserService.updatePassword(vm.password, vm.currentPassword)
       .then(function() {
         vm.password = '';
         vm.currentPassword = '';
+        vm.newPasswordForm.$setPristine();
+        vm.placeholder = vm.defaultPlaceholder;
+
+        $log.info('Your password has been updated.');
       })
       .catch(function(err) {
-        console.log('See the following error message:');
         $log.error(err);
       });
     }

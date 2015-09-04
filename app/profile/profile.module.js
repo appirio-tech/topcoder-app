@@ -8,7 +8,8 @@
     'tc.services',
     'tcUIComponents',
     'ngDropdowns',
-    'angularSlideables'
+    'angularSlideables',
+    'ngDialog'
   ];
 
   angular.module('tc.profile', dependencies);
