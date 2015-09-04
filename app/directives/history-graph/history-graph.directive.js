@@ -155,23 +155,24 @@
            .attr('d', line)
 
 
-        svg.append('g')
-           .selectAll('line')
-           .data($scope.colors)
-           .enter()
-           .append('line')
-           .attr('x1', totalW - 3)
-           .attr('x2', totalW - 3)
-           .attr('y1', function(d) {
-             return processRatingStripePoint(y(d.start));
-           })
-           .attr('y2', function(d) {
-             return processRatingStripePoint(y(d.end));
-           })
-           .attr('stroke', function(d) {
-             return d.color;
-           })
-           .attr('stroke-width', 3)
+           // FIXME !!!
+//        svg.append('g')
+//           .selectAll('line')
+//           .data($scope.colors)
+//           .enter()
+//           .append('line')
+//           .attr('x1', totalW - 3)
+//           .attr('x2', totalW - 3)
+//           .attr('y1', function(d) {
+//             return processRatingStripePoint(y(d.start));
+//           })
+//           .attr('y2', function(d) {
+//             return processRatingStripePoint(y(d.end));
+//           })
+//           .attr('stroke', function(d) {
+//             return d.color;
+//           })
+//           .attr('stroke-width', 3)
 
         function processRatingStripePoint(y) {
           console.log('y:' + y)
