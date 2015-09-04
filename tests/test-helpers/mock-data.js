@@ -14,6 +14,7 @@ var mockData = (function() {
     getMockUserProfile: getMockUserProfile,
     getMockMarathons: getMockMarathons,
     getMockProfile: getMockProfile,
+    getMockHistory: getMockHistory,
     getMockStats: getMockStats,
     getMockSkills: getMockSkills,
     getMockSRMs: getMockSRMs,
@@ -1289,6 +1290,68 @@ var mockData = (function() {
         "DATA_SCIENCE"
       ]
     };
+  }
+
+  function getMockHistory() {
+    return {
+      "id": "-306aafb8:14f65e30765:-8000",
+      "result": {
+        "success": true,
+        "status": 200,
+        "metadata": null,
+        "content": {
+          "updatedAt": null,
+          "createdAt": null,
+          "createdBy": null,
+          "updatedBy": null,
+          "userId": 151743,
+          "handle": "Ghostar",
+          "DEVELOP": {
+            "subTracks": [
+              {
+                "id": 112,
+                "name": "DESIGN",
+                "history": [
+                  {
+                    "challengeId": 30009817,
+                    "challengeName": "Disney Marine Munch - Flash Game Module Architecture",
+                    "ratingDate": "2010-02-28T13:00:00.000Z",
+                    "newRating": 1172
+                  }
+                ]
+              },
+              {
+                "id": 125,
+                "name": "ASSEMBLY_COMPETITION",
+                "history": [
+                  {
+                    "challengeId": 30007872,
+                    "challengeName": "Best Buy Blackberry Web Application Wrapper Assembly",
+                    "ratingDate": "2009-10-18T23:30:00.000Z",
+                    "newRating": 1515
+                  },
+                  {
+                    "challengeId": 30008010,
+                    "challengeName": "Best Buy Android Web Application Wrapper Assembly",
+                    "ratingDate": "2009-10-24T01:00:00.000Z",
+                    "newRating": 1566
+                  }
+                ]
+              }
+            ]
+          },
+          "DATA_SCIENCE": {
+            "SRM": {
+              "history": []
+            },
+            "MARATHON_MATCH": {
+              "history": []
+            }
+          }
+        }
+      },
+      "version": "v3"
+    }
   }
 
   function getMockStats() {

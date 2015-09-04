@@ -12,6 +12,10 @@ describe('Update Password Controller', function() {
     };
 
     vm = $controller('UpdatePasswordController', {
+      userData: {
+        handle: 'foo',
+        email: 'bar'
+      },
       UserService: {
         getUserIdentity: function() {
           return {

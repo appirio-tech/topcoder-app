@@ -43,8 +43,10 @@
       var historyDeferred = $q.defer();
       vm.historyPromise = historyDeferred.promise;
       ProfileService.getHistoryStats(profileVm.profile.handle).then(function(data) {
-        vm.history = ProfileService.getChallengeTypeStats(data, vm.track, vm.subTrack).history;
-        historyDeferred.resolve(vm.history);
+        if (data.handle) {
+          vm.history = ProfileService.getChallengeTypeStats(data, vm.track, vm.subTrack).history;
+          historyDeferred.resolve(vm.history);
+        }
       });
       profileVm.statsPromise.then(function(data) {
         vm.typeStats = ProfileService.getChallengeTypeStats(
