@@ -56,9 +56,11 @@
         'end': Infinity
       }
     ];
-    var w       = 700,
-        h       = 400,
-        padding = 100;
+    var w       = 600,
+        h       = 300,
+        padding = { top: 10, left: 100, bottom: 100, right: 0 };
+    var totalW = w + padding.left + padding.right;
+    var totalH = h + padding.top + padding.bottom;
 
     activate();
 
@@ -72,45 +74,48 @@
         removeTrailingZeroes(ranges);
         var xScale = d3.scale.ordinal()
                        .domain(d3.range(ranges.length))
-                       .rangeRoundBands([padding, w], 0.05);
+                       .rangeRoundBands([padding.left, padding.left + w], 0.05);
         var yScale = d3.scale.linear()
                        .domain([0, d3.max(ranges, function(range) { return range.number }) + 1])
-                       .range([h - padding, 0]);
+                       .range([totalH - padding.bottom, padding.top]);
         var xScale2 = d3.scale.linear()
                         .domain([ranges[0].start,
                                 d3.max(ranges, function(range) { return range.end })])
-                        .range([padding, w]);
+                        .range([padding.left, totalW - padding.right]);
         var svg = d3.select('div.distribution-graph')
                     .append('svg')
-                    .attr('width', w)
-                    .attr('height', h);
+                    .attr('width', totalW)
+                    .attr('height', totalH);
 
         svg.append('rect')
-           .attr('x', padding)
-           .attr('y', 0)
+           .attr('x', padding.left)
+           .attr('y', padding.top)
            .attr('width', w)
-           .attr('height', h - padding)
+           .attr('height', h)
            .attr('fill', '#eeeeee')
 
         svg.append('g')
            .attr('class', 'grid')
-           .attr('transform', 'translate(' + padding + ',0)')
+           .attr('transform', 'translate(' + padding.left + ',0)')
            .call(
-             yAxis(5).tickSize(-w, 0, 0)
+             yAxis(5).tickSize(-totalW, 0, 0)
                     .tickFormat('')
            )
 
         svg.append('g')
            .attr('class', 'axis')
-           .attr('transform', 'translate(' + padding + ',0)')
+           .attr('transform', 'translate(' + padding.left + ', 0)')
            .call(yAxis(5))
 
 
+        function logr(x) {
+          console.log(x); return x;
+        }
         svg.append('line')
            .attr('x1', xScale2($scope.rating))
-           .attr('y1', h - padding)
+           .attr('y1', totalH - padding.bottom)
            .attr('x2', xScale2($scope.rating))
-           .attr('y2', 0)
+           .attr('y2', padding.top)
            .attr('class', 'my-rating')
            .attr('stroke-width', 2)
            .attr('stroke', ratingToColor($scope.colors, $scope.rating));
@@ -128,7 +133,7 @@
            })
            .attr('width', xScale.rangeBand())
            .attr('height', function(d) {
-             return h - padding - yScale(d.number);
+             return totalH - padding.bottom - yScale(d.number);
            })
            .attr('fill', function(d) {
              return ratingToColor($scope.colors, d.start);
@@ -154,20 +159,20 @@
            .attr('class', 'xaxis')
            .attr('x1', function(d, i) {
              if (i === 0) {
-               return padding;
+               return padding.left;
              } else {
                return xScale(i) - .5;
              }
            })
            .attr('x2', function(d, i) {
              if (i === ranges.length - 1) {
-               return w;
+               return totalW - padding.right;
              } else {
                return xScale(i) + xScale.rangeBand() + .5;
              }
            })
-           .attr('y1', h - padding + .5)
-           .attr('y2', h - padding + .5)
+           .attr('y1', h + padding.top + .5)
+           .attr('y2', h + padding.top + .5)
            .attr('stroke', function(d) {
              return ratingToColor($scope.colors, d.start);
            })
@@ -186,7 +191,7 @@
 
         svg.append('g')
            .attr('class', 'axis')
-           .attr('transform', 'translate(0,' + (h - padding) + ')')
+           .attr('transform', 'translate(0,' + (h + padding.top) + ')')
            .call(xAxis)
            .selectAll('text')
            .attr('x', 9)
