@@ -31,7 +31,6 @@
 
     function getPresignedUrl(userHandle, file) {
       var deferred = $q.defer();
-      console.log(file.type);
 
       api.one('members', userHandle).post('photoUploadUrl', {contentType: file.type})
       .then(function(response) {
