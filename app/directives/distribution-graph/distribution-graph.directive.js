@@ -57,8 +57,8 @@
       }
     ];
     var w       = 600,
-        h       = 300,
-        padding = { top: 10, left: 100, bottom: 100, right: 0 };
+        h       = 400,
+        padding = { top: 20, left: 100, bottom: 100, right: 0 };
     var totalW = w + padding.left + padding.right;
     var totalH = h + padding.top + padding.bottom;
 
@@ -92,7 +92,7 @@
            .attr('y', padding.top)
            .attr('width', w)
            .attr('height', h)
-           .attr('fill', '#eeeeee')
+           .attr('fill', '#f6f6f6')
 
         svg.append('g')
            .attr('class', 'grid')
