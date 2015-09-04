@@ -16,7 +16,7 @@
     return service;
 
     function createFileRecord(S3Response) {
-      return api.one('members', S3Response.userHandle).customPUT(JSON.stringify(S3Response.body), 'photo', {}, {'Content-Type': S3Response.fileType})
+      return api.one('members', S3Response.userHandle).one('photo').put(JSON.stringify(S3Response.body))
       .then(function() {
         // Show notification that upload was successful
         $rootScope.$broadcast(CONSTANTS.EVENT_PROFILE_UPDATED);
@@ -31,8 +31,9 @@
 
     function getPresignedUrl(userHandle, file) {
       var deferred = $q.defer();
+      console.log(file.type);
 
-      api.one('members', userHandle).customPOST(undefined, 'photoUploadUrl', {}, {'Content-Type': file.type})
+      api.one('members', userHandle).post('photoUploadUrl', {contentType: file.type})
       .then(function(response) {
         deferred.resolve({
           preSignedURL: response.preSignedURL,
@@ -65,9 +66,15 @@
           $log.info('Successfully uploaded file')
           deferred.resolve({
             userHandle: response.userHandle,
-            body: { param: { token: response.token } },
-            fileType: response.file.type
+            body: {
+              param: {
+                token: response.token,
+                contentType: response.file.type
+              }
+            }
           });
+        } else {
+          $log.error('Error uploading to S3 with status: ' + status);
         }
       };
 
