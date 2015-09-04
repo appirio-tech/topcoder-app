@@ -76,8 +76,14 @@
             id: 'handle',
             route: 'members'
           })
-          .addRequestInterceptor(function(element, operation, what, url) {
-            if (what === 'members') {
+          .addFullRequestInterceptor(function(element, operation, what, url, headers, queryParams) {
+            console.log('headers:', headers);
+            if (url.indexOf('photoUploadUrl') > -1) {
+              console.log('element', element);
+              return {
+                element: undefined
+              };
+            } else if (what === 'members') {
               return {
                 param: element
               };
