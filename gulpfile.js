@@ -7,7 +7,6 @@ var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
 var merge        = require('merge-stream');
 var RevAll       = require('gulp-rev-all');
-var protractor   = require('gulp-angular-protractor');
 
 var envFile = require('./config.js')();
 var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
@@ -232,7 +231,7 @@ gulp.task('build', ['optimize', 'dev-fonts'], function() {
   log(msg);
 });
 
-gulp.task('build-specs', ['templatecache'], function() {
+gulp.task('build-specs', ['templatecache', 'ngConstants'], function() {
   log('Building the spec runner');
 
   var wiredep = require('wiredep').stream;
@@ -358,7 +357,7 @@ gulp.task('serve-build', ['build'], function() {
 
 gulp.task('e2e', [], function(done) {
   gulp.src(['./tests/e2e/app/*.js'])
-    .pipe(protractor({
+    .pipe($.angularProtractor({
         'configFile': 'tests/e2e/conf.js',
         'args': ['--baseUrl', 'http://127.0.0.1:8000'],
         'autoStartStopServer': true,

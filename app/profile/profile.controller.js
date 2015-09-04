@@ -3,12 +3,12 @@
 
   angular.module('tc.profile').controller('ProfileCtrl', ProfileCtrl);
 
-  ProfileCtrl.$inject = ['$scope', 'CONSTANTS', '$log',
+  ProfileCtrl.$inject = ['CONSTANTS', '$log',
     'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService',
     'userHandle', 'profile', 'ngDialog'
   ];
 
-  function ProfileCtrl($scope, CONSTANTS, $log, TcAuthService, UserService, ProfileService, ChallengeService, userHandle, profile, ngDialog) {
+  function ProfileCtrl(CONSTANTS, $log, TcAuthService, UserService, ProfileService, ChallengeService, userHandle, profile, ngDialog) {
     var vm = this;
     // set profile to the object that was resolved
     vm.profile = profile;
@@ -30,8 +30,8 @@
     vm.statsPromise = ProfileService.getUserStats(vm.userHandle).then(function(stats) {
       vm.stats = stats;
       vm.profile.tracks = vm.profile.tracks || ProfileService.getTracks(vm.stats) || [];
-      vm.numProjects = ProfileService.getNumProjects(vm.stats);
-      vm.numWins = ProfileService.getNumWins(vm.stats);
+      vm.numProjects = vm.stats.challenges;
+      vm.numWins = vm.stats.wins;
       vm.categories = ProfileService.getRanks(vm.stats);
       vm.status.stats = CONSTANTS.STATE_READY;
       return vm.stats;

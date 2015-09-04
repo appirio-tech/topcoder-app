@@ -1,17 +1,17 @@
 (function() {
   'use strict';
-  angular.module('tcUIComponents').directive('tcPager', function() {
+  angular.module('tcUIComponents').directive('tcPaginator', function() {
     return {
       restrict: 'E',
       transclude: true,
       replace: true,
-      templateUrl: 'directives/tc-pager/tc-pager.html',
+      templateUrl: 'directives/tc-paginator/tc-paginator.html',
       scope: {
         pageParams: '=',
         data: '='
       },
       controller: ['$log', '$scope', '$element', function($log, $scope, $element) {
-        $element.addClass('tc-pager');
+        $element.addClass('tc-paginator');
         var vm = this;
 
         // pageParams.offset 0 based index of the first challenge to be shown

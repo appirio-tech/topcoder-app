@@ -87,7 +87,7 @@
           userId: vm.socialUserId,
           name: vm.firstname + " " + vm.lastname,
           email: vm.socialProfile.email,
-          emailVerified: vm.socialProfile.emailVerified,
+          emailVerified: vm.socialProfile.email_verified,
           providerType: vm.socialProvider
         }
       }
@@ -120,5 +120,7 @@
           callbackURL: callbackUrl
         });
     }
+
+    vm.$stateParams = $stateParams;
   }
 })();

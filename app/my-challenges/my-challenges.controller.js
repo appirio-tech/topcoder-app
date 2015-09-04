@@ -47,6 +47,7 @@
     function viewActiveChallenges() {
       if (vm.statusFilter != 'active') {
         vm.myChallenges = [];
+        vm.pageParams.offset = 0;
         vm.statusFilter = 'active';
         _getChallenges();
       }
@@ -55,6 +56,7 @@
     function viewPastChallenges() {
       if (vm.statusFilter != 'completed') {
         vm.myChallenges = [];
+        vm.pageParams.offset = 0;
         vm.statusFilter = 'completed';
         _getChallenges();
       }

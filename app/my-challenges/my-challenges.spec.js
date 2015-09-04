@@ -1,6 +1,7 @@
 /* jshint -W117, -W030 */
 describe('My Challenges Controller', function() {
   var controller;
+  var domain;
   var authService, challengeService, userService;
   var marathons = mockData.getMockMarathons();
   var challenges = mockData.getMockiOSChallenges();
@@ -22,6 +23,7 @@ describe('My Challenges Controller', function() {
       getToken: function() { return "v3Token"; }
     });
 
+    domain = CONSTANTS.domain;
     challengeService = ChallengeService;
     authService = TcAuthService;
     userService = UserService;
@@ -66,9 +68,8 @@ describe('My Challenges Controller', function() {
       $rootScope.$apply();
     });
 
-    it('vm.domain should be initialized to default value', function() {
-      // default value for domain
-      expect(myChallenges.domain).to.equal('topcoder-dev.com');
+    it('vm.domain should exist', function() {
+      expect(myChallenges.domain).to.equal(domain);
     });
 
     it('vm.userHasChallenges should be initialized to default value', function() {

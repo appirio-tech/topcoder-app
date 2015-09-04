@@ -19,8 +19,6 @@
       getDistributionStats: getDistributionStats,
       getHistoryStats: getHistoryStats,
       // auxiliary functions for profile
-      getNumProjects: getNumProjects,
-      getNumWins: getNumWins,
       getRanks: getRanks,
       getChallengeTypeStats: getChallengeTypeStats,
       getTracks: getTracks,
@@ -67,14 +65,6 @@
 
     function getHistoryStats(handle) {
       return restangular.one('members', handle).one('stats').one('history').get();
-    }
-
-    function getNumProjects(stats) {
-      return stats.challenges;
-    }
-
-    function getNumWins(stats) {
-      return stats.wins;
     }
 
     function getRanks(stats) {

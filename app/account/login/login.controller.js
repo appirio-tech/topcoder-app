@@ -101,6 +101,7 @@
       TcAuthService.socialLogin(backend, callbackUrl);
     };
 
+    vm.$stateParams = $stateParams;
   }
 
 })();
