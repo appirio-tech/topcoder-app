@@ -1,4 +1,4 @@
-.history-graph-container
+.history-graph-container(ng-show="graphState.show == 'history'")
   .history-graph
 
   .info-port
@@ -7,5 +7,5 @@
       .label RATING
     .history-info(ng-if="historyRating")
       | Attained on {{historyDate}} in challenge "{{historyChallenge}}"
-    .compare
-      button COMPARE
+    .lower
+      button(ng-click="graphState.show = 'distribution'") COMPARE

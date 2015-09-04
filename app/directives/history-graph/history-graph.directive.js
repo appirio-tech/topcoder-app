@@ -11,7 +11,8 @@
       },
       scope: {
         promise: '=',
-        rating: '='
+        rating: '=',
+        graphState: '='
       },
       controller: ['$scope', HistoryGraphController]
     };
@@ -116,11 +117,17 @@
            .attr('transform', 'translate(0,' + (h + padding.top) +')')
            .call(xAxis());
 
+        svg.selectAll('g.x.axis .tick text')
+           .attr('font-size', function(d) {
+             return moment(d).format('MM') == '01' ? 12 : 10;
+           });
+
 
         svg.append('g')
             .attr('class', 'y axis')
             .attr('transform', 'translate(' + padding.left + ')')
-            .call(yAxis())
+            .call(yAxis().tickFormat(function(d) { return parseInt(d) })
+             )
 
         svg.append('g')
            .attr('class', 'grid')

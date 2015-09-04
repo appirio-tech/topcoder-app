@@ -11,7 +11,8 @@
       },
       scope: {
         promise: '=',
-        rating: '='
+        rating: '=',
+        graphState: '='
       },
       controller: ['$scope', DistributionGraphController]
     };

@@ -1,4 +1,4 @@
-.graph-viewer(ng-if="fasdf")
+.graph-viewer(ng-show="graphState.show == 'distribution'")
   .distribution-graph
 
   .info-port
@@ -8,3 +8,6 @@
     .rating(ng-if="!displayCoders")
       .num {{rating}}
       .label RATING
+
+    .compare
+      button(ng-click="graphState.show = 'history'") COMPARE

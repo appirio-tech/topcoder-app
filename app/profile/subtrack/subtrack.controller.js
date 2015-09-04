@@ -8,6 +8,7 @@
 
   function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window) {
     var vm = this;
+    vm.graphState = { show: 'history' };
     vm.subTrack = decodeURIComponent($stateParams.subTrack || '') || '';
     vm.track = $stateParams.track;
     vm.viewing = 'challenges';

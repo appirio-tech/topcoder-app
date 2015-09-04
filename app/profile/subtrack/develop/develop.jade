@@ -44,9 +44,9 @@
 
   .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
     .graphs
-      distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating")
+      distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
-      history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating")
+      history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
     h2.detailed Detailed Stats
 
