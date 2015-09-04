@@ -67,7 +67,7 @@
       p.form-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$invalid") Please enter a valid email address.
 
     .validation-bar(ng-class="{ 'success-bar': (vm.registerForm.password.$valid) }")
-      toggle-password
+      toggle-password(ng-if="!vm.isSocialRegistration")
 
       .tips.password-tips(ng-show="vm.passwordFocus")
         h3 Password Tips:
@@ -96,4 +96,4 @@
       i.fa.fa-google-plus-square(ng-click="vm.socialRegister('google-oauth2')")
 
   p.redirect Already have an account? 
-    a(ui-sref="login") Login.
+    a(ui-sref="login(vm.$stateParams)") Login.

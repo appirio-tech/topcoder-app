@@ -86,7 +86,7 @@
     }
 
     function validateSocialProfile(userId, provider) {
-      return api.all('users').withHttpConfig({cache: false}).customGET('validateSocial',
+      return api.all('users').withHttpConfig(_config).customGET('validateSocial',
       {
         socialUserId: userId,
         socialProvider: provider
