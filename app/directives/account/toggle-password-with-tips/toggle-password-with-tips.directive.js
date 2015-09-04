@@ -1,13 +1,13 @@
 (function() {
   'use strict';
 
-  angular.module('tcUIComponents').directive('togglePassword', togglePassword);
+  angular.module('tcUIComponents').directive('togglePasswordWithTips', togglePasswordWithTips);
 
-  function togglePassword() {
+  function togglePasswordWithTips() {
     return {
       restrict: 'E',
       require: '^form',
-      templateUrl: 'directives/account/toggle-password/toggle-password.html',
+      templateUrl: 'directives/account/toggle-password-with-tips/toggle-password-with-tips.html',
       link: function(scope, element, attrs, formController) {
         var vm = scope.vm;
         vm.passwordField = formController.password;

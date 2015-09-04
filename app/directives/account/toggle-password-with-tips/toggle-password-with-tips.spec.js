@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('Toggle Password Directive', function() {
+describe('Toggle Password With Tips Directive', function() {
   var scope;
   var element;
   // var challenge = mockData.getMockChallengeWithUserDetails();
