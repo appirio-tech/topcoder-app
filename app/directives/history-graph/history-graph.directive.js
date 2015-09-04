@@ -60,6 +60,9 @@
         h       = 400,
         padding = { top: 20, right: 5, bottom: 30, left: 50 };
 
+    var totalH = h + padding.top + padding.bottom;
+    var totalW = w + padding.left + padding.right;
+
     activate();
 
     function activate() {
@@ -71,11 +74,11 @@
         });
 
         var x = d3.time.scale()
-                  .range([0 + padding.left, w + padding.left])
+                  .range([padding.left + 5, w + padding.left - 5])
                   .domain(d3.extent(history, function(d) { return d.ratingDate; }));
 
         var y = d3.scale.linear()
-                  .range([h + padding.top, padding.top])
+                  .range([h + padding.top - 5, padding.top + 5])
                   .domain(d3.extent(history, function(d) { return d.newRating; }));
 
 
@@ -150,6 +153,36 @@
            .datum(history)
            .attr('class', 'line')
            .attr('d', line)
+
+
+        svg.append('g')
+           .selectAll('line')
+           .data($scope.colors)
+           .enter()
+           .append('line')
+           .attr('x1', totalW - 3)
+           .attr('x2', totalW - 3)
+           .attr('y1', function(d) {
+             return processRatingStripePoint(y(d.start));
+           })
+           .attr('y2', function(d) {
+             return processRatingStripePoint(y(d.end));
+           })
+           .attr('stroke', function(d) {
+             return d.color;
+           })
+           .attr('stroke-width', 3)
+
+        function processRatingStripePoint(y) {
+          console.log('y:' + y)
+          if (y < padding.top) {
+            return padding.top;
+          } else if (y > totalH - padding.bottom) {
+            return padding.bottom;
+          } else {
+            return y;
+          }
+        }
 
         svg.selectAll('circle')
            .data(history)
