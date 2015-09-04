@@ -20,6 +20,12 @@
           passwordInput.focus();
         });
 
+        element.bind('keyup', function(event) {
+          if (event.keyCode === 13) {
+            passwordInput.blur();
+          }
+        });
+
         vm.onFocus = function(event) {
           vm.passwordFocus = true;
           vm.placeholder = '';

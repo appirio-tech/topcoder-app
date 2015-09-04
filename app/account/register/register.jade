@@ -63,7 +63,7 @@
       p.form-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$invalid") Please enter a valid email address.
 
     .validation-bar(ng-class="{ 'success-bar': (vm.registerForm.password.$valid) }")
-      toggle-password
+      toggle-password(ng-if="!vm.isSocialRegistration")
 
       .tips.password-tips(ng-show="vm.passwordFocus")
         h3 Password Tips:
@@ -72,7 +72,7 @@
 
         p(ng-class="{ 'has-letter': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasLetter) }") At least one letter
 
-        p(ng-class="{ 'has-number': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasNumber && !vm.registerForm.password.$error.hasSymbol) }") At least one number or symbol
+        p(ng-class="{ 'has-number': (vm.registerForm.password.$dirty && (!vm.registerForm.password.$error.hasNumber || !vm.registerForm.password.$error.hasSymbol)) }") At least one number or symbol
 
     button(type="submit", ng-disabled="vm.registerForm.$invalid", ng-class="{'enabled-button': vm.registerForm.$valid}") Join
 
@@ -90,4 +90,4 @@
       i.fa.fa-google-plus-square(ng-click="vm.socialRegister('google-oauth2')")
 
   p.redirect Already have an account? 
-    a(ui-sref="login") Login.
+    a(ui-sref="login(vm.$stateParams)") Login.

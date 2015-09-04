@@ -17,6 +17,7 @@
       getUserFinancials: getUserFinancials,
       getUserStats: getUserStats,
       getDistributionStats: getDistributionStats,
+      getHistoryStats: getHistoryStats,
       // auxiliary functions for profile
       getRanks: getRanks,
       getChallengeTypeStats: getChallengeTypeStats,
@@ -60,6 +61,10 @@
       return restangular.one('members').one('stats').one('distribution').get({
         'filter': 'track=' + track + '&subTrack=' + subTrack
       });
+    }
+
+    function getHistoryStats(handle) {
+      return restangular.one('members', handle).one('stats').one('history').get();
     }
 
     function getRanks(stats) {

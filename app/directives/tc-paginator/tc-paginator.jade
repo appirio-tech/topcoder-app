@@ -1,0 +1,10 @@
+p.pager
+  a.prev(ng-click="vm.prevPage()", ng-class="{disabled: !vm.prevPageAvailable}") Prev
+  span &nbsp; | &nbsp;
+  span.first(ng-bind="vm.pageParams.offset + 1")
+  span -
+  span.last(ng-bind="vm.pageParams.offset + vm.pageParams.count")
+  span &nbsp; of &nbsp;
+  span.total(ng-bind="vm.pageParams.totalCount")
+  span &nbsp; | &nbsp;
+  a.next(ng-click="vm.nextPage()", ng-class="{disabled: !vm.nextPageAvailable}") Next

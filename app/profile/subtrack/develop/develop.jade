@@ -35,7 +35,7 @@
     ng-show="vm.viewing == 'challenges'",
     state="vm.status.challenges"
   )
-    tc-pager(data="vm.challenges", page-params="vm.pageParams")
+    tc-paginator(data="vm.challenges", page-params="vm.pageParams")
     .challenges
       .challenge.tile(ng-repeat="challenge in vm.challenges")
         challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
@@ -44,7 +44,9 @@
 
   .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
     .graphs
-      distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating")
+      distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
+
+      history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
     h2.detailed Detailed Stats
 
