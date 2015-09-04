@@ -1,0 +1,78 @@
+.history-graph-container {
+  display: flex;
+  flex-direction: row;
+  .history-graph {
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: none;
+      shape-rendering: crispEdges;
+    }
+
+    .x.axis path {
+      display: none;
+    }
+
+    rect {
+      fill: #f6f6f6;
+    }
+
+    .line {
+      fill: none;
+      stroke: #c5c5c5;
+      stroke-width: 2.3px;
+    }
+
+    .grid .tick {
+      stroke: white;
+      opacity: 0.7;
+    }
+
+    .tick text {
+      font-size: 10px;
+    }
+
+
+  }
+  .info-port {
+    background: #f6f6f6;
+    margin-top: 20px;
+    height: 400px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 100px;
+    .rating {
+      width: 130px;
+      height: 130px;
+      background: #09affe;
+      -moz-border-radius: 65px;
+      -webkit-border-radius: 65px;
+      border-radius: 65px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .num {
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+      }
+      .label {
+        color: white;
+      }
+      margin-bottom: 20px;
+    }
+    .history-info {
+      margin-bottom: 20px;
+      padding: 0 5px;
+      text-align: center;
+    }
+    .compare {
+    }
+  }
+}

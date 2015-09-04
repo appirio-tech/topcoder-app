@@ -1,0 +1,11 @@
+.history-graph-container
+  .history-graph
+
+  .info-port
+    .rating
+      .num {{historyRating || rating}}
+      .label RATING
+    .history-info(ng-if="historyRating")
+      | Attained on {{historyDate}} in challenge "{{historyChallenge}}"
+    .compare
+      button COMPARE
