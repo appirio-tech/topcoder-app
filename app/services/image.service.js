@@ -16,7 +16,7 @@
     return service;
 
     function createFileRecord(S3Response) {
-      return api.one('members', S3Response.userHandle).one('photo').put(JSON.stringify(S3Response.body))
+      return api.one('members', S3Response.userHandle).customPUT(S3Response.body, 'photo')
       .then(function() {
         // Show notification that upload was successful
         $rootScope.$broadcast(CONSTANTS.EVENT_PROFILE_UPDATED);
@@ -66,10 +66,8 @@
           deferred.resolve({
             userHandle: response.userHandle,
             body: {
-              param: {
-                token: response.token,
-                contentType: response.file.type
-              }
+              token: response.token,
+              contentType: response.file.type
             }
           });
         } else if (status >= 400) {
