@@ -3,7 +3,7 @@
 
   angular.module('tcUIComponents')
     .directive('hasLetter', hasLetter)
-    .directive('hasSymbol', hasSymbol)
+    .directive('hasSymbolOrNumber', hasSymbolOrNumber)
     .directive('hasNumber', hasNumber)
     .directive('usernameIsFree', usernameIsFree)
     .directive('emailIsAvailable', emailIsAvailable);
@@ -22,12 +22,12 @@
     };
   }
 
-  function hasSymbol() {
+  function hasSymbolOrNumber() {
     return {
       require: 'ngModel',
       link: function(scope, element, attrs, ctrl) {
-        ctrl.$validators.hasSymbol = function(modelValue, viewValue) {
-          if (/[-!$@#%^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(viewValue)) {
+        ctrl.$validators.hasSymbolOrNumber = function(modelValue, viewValue) {
+          if (/[-!$@#%^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(viewValue) || /[\d]/.test(viewValue)) {
             return true;
           }
           return false;

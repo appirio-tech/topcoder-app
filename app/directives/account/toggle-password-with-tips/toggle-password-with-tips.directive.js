@@ -35,7 +35,7 @@
           var relatedTarget = angular.element(event.relatedTarget);
 
           // If you are blurring from the password input and clicking the checkbox
-          if (relatedTarget.attr('type') === 'checkbox') {
+          if (relatedTarget.attr('type') === 'checkbox' && relatedTarget.attr('id') === 'passwordCheckbox') {
             vm.passwordFocus = true;
             vm.placeholder = '';
           } else {
