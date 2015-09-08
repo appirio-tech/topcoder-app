@@ -15,12 +15,8 @@
 					 console.log('baseUrl'+resetPasswordData.baseUrl);
 					 resetPasswordPage.get(resetPasswordData.baseUrl);
 					 resetPasswordPage.clickForgotPassword(resetUserDataCred.username);
-//					 resetPasswordPage.login(resetUserDataCred);
 				 });
 		  
-				 it('welcomes the user for logout', function() {
-					 resetPasswordPage.logOut();
-				 });
 		  
 //				 afterEach(function() {  
 //					 browser.manage().logs().get('browser').then(function(browserLog) {
@@ -55,12 +51,8 @@
 					 resetPasswordPage.get(resetPasswordData.baseUrl);
 					 resetPasswordPage.clickInvalidUserForgotPassword(resetUserDataCred.username, 
 							 resetPasswordData.notExistingUserMessage);
-//					 resetPasswordPage.login(resetUserDataCred);
 				 });
 		  
-//				 it('welcomes the user for logout', function() {
-//					 resetPasswordPage.logOut();
-//				 });
 		  
 //				 afterEach(function() {  
 //					 browser.manage().logs().get('browser').then(function(browserLog) {
@@ -95,12 +87,8 @@
 //					 resetPasswordPage.clickForgotPassword(resetUserDataCred.username);
 					 resetPasswordPage.clickAgainForgotPassword(resetUserDataCred.username, 
 							 resetPasswordData.passwordAlreadySent);
-//					 resetPasswordPage.login(resetUserDataCred);
 				 });
 		  
-//				 it('welcomes the user for logout', function() {
-//					 resetPasswordPage.logOut();
-//				 });
 		  
 //				 afterEach(function() {  
 //					 browser.manage().logs().get('browser').then(function(browserLog) {

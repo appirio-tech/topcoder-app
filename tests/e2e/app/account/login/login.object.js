@@ -317,7 +317,7 @@ var LoginPage = function() {
 	  browser.driver.wait(function(){
 		 var password = browser.driver.findElement(by.id('Passwd'));
 		 password.sendKeys(loginUser1.password);
-		 console.log(' fb login Passwd');
+		 console.log(' google login Passwd');
 		 return true;
 	  },30000);
 	  

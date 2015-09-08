@@ -21,7 +21,7 @@
         { method: 'GET', url: '\/v2\/challenges'},
 
         // matchs everything besides /v3/members/{handle}/financial
-        { method: 'GET', url: '\/v3\/members\/\\w+\/(?!financial)\\w*'},
+        { method: 'GET', url: '\/v3\/members\/\\w+\/(?!financial)\\w*'}
       ];
 
       for (var i = 0; i < haveItAddItEndpoints.length; i++) {
@@ -30,8 +30,19 @@
         if (config.method.toUpperCase() === obj.method && re.test(config.url)) {
           if (TcAuthService.isAuthenticated()) {
             var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token();
-            if (token && !jwtHelper.isTokenExpired(token)) {
+            if (!jwtHelper.isTokenExpired(token)) {
               return token;
+            } else {
+              return AuthTokenService.refreshV3Token(token).then(function(idToken) {
+                  // v2 token doesn't expire
+                  AuthTokenService.setV3Token(idToken);
+                  return idToken;
+                })
+                .catch(function(resp) {
+                  // Server will not or cannot refresh token
+                  $state.go('login');
+                  return null;
+                });
             }
           }
           // else
@@ -46,18 +57,17 @@
         $state.go('login');
         return;
       }
-      // Note only v3tokens exoire
+      // Note only v3tokens expire
       if (!jwtHelper.isTokenExpired(idToken)) {
         return idToken;
       } else {
-        return AuthTokenService.refreshV3Token(idToken).then(function(response) {
-            idToken = response.data.result.content.token;
+        return AuthTokenService.refreshV3Token(idToken).then(function(idToken) {
             // v2 token doesn't expire
             AuthTokenService.setV3Token(idToken);
             return idToken;
           })
           .catch(function(resp) {
-            // must have expired, redirect to login?
+            // Server will not or cannot refresh token
             $state.go('login');
             return null;
           });

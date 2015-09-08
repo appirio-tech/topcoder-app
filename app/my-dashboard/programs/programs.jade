@@ -5,17 +5,17 @@ hr
 section.ios(ng-hide="vm.loading")
   h1.section-title iOS: Show Your Skills
 
-  a(href="http://ios.topcoder.com/", ng-hide="vm.registered")
+  .unregistered(ng-hide="vm.registered || vm.loading")
     .join-program
       .logo
         i.fa.fa-apple.fa-3x
 
-        p Apple Certification
+        p iOS Dev Community
 
-      .call-to-action
-        p Start Apple Certification Today
+      .call-to-action(ng-click="vm.registerUser()")
+        p Join Us
 
-  .registered(ng-show="vm.registered")
+  .registered(ng-show="vm.registered && !vm.loading")
 
     .registered-badge
       i.fa.fa-apple.fa-3x

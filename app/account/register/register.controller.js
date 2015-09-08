@@ -56,10 +56,14 @@
       .then(function(obj) {
         vm.countryObj = obj;
       });
+
     vm.countries = ISO3166.getAllCountryObjects();
-    vm.countryUpdated = function ($item) {
-      // update country
-      vm.country = _.get($item, "originalObject.name", undefined);
+
+    vm.updateCountry = function (angucompleteCountryObj) {
+      var countryCode = _.get(angucompleteCountryObj, 'originalObject.alpha3', undefined);
+
+      var isValidCountry = _.isUndefined(countryCode) ? false : true;
+      vm.registerForm.country.$setValidity('required', isValidCountry);
     };
 
     vm.register = function() {
@@ -111,7 +115,9 @@
       auth0Register.login({
           scope: "openid profile offline_access",
           state: callbackUrl,
-          response_type: 'token'
+          connection: backend,
+          response_type: 'token',
+          callbackURL: callbackUrl
         });
     }
   }
