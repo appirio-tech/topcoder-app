@@ -6,6 +6,7 @@ describe('SubTrack Controller', function() {
   var mockStats = mockData.getMockStats();
   var mockSkills = mockData.getMockSkills();
   var mockChallenges = mockData.getMockiOSChallenges();
+  var mockHistory = mockData.getMockHistory();
   var apiUrl;
   var track = 'develop', subTrack = 'development';
   var profileScope, scope;
@@ -58,12 +59,23 @@ describe('SubTrack Controller', function() {
       .respond(200, {result: {content: mockStats}});
     // mock skills
     $httpBackend
+      .when('GET', apiUrl + '/members/albertwang/stats/history/')
+      .respond(200, mockHistory);
+    // mock history
+    $httpBackend
       .when('GET', apiUrl + '/members/rakesh/skills/')
       .respond(200, {result: {content: mockSkills}});
     // mock profile api
     sinon.stub(profileService, 'getDistributionStats', function(track, subTrack) {
       var deferred = $q.defer();
       var resp = {distribution: []};
+      deferred.resolve(resp);
+      return deferred.promise;
+    });
+
+    sinon.stub(profileService, 'getHistoryStats', function(handle) {
+      var deferred = $q.defer();
+      var resp = {};
       deferred.resolve(resp);
       return deferred.promise;
     });

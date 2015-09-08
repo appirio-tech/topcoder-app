@@ -1,7 +1,9 @@
-.graph-viewer {
+.history-graph-container {
   display: flex;
   flex-direction: row;
-  .distribution-graph {
+  .history-graph {
+
+    margin-left: 40px;
 
     .axis path,
     .axis line {
@@ -10,50 +12,34 @@
       shape-rendering: crispEdges;
     }
 
+    .x.axis path {
+      display: none;
+    }
+
+    rect {
+      fill: #f6f6f6;
+    }
+
+    .line {
+      fill: none;
+      stroke: #c5c5c5;
+      stroke-width: 2.3px;
+    }
 
     .grid .tick {
       stroke: white;
       opacity: 0.7;
     }
 
-    .grid path {
-      stroke-width: 0;
+    .y.axis .tick text {
+      font-size: 10px;
     }
 
-    .axis text {
-        font-family: sans-serif;
-        font-size: 11px;
-    }
-
-    rect.bar:hover {
-      //fill: black;
-    }
-
-    line.my-rating {
-      pointer-effects: none;
-    }
-
-    text.label {
-      text-anchor: middle;
-      font-family: sans-serif;
-      font-size: 12px;
-      fill: white;
-      pointer-events: none;
-    }
-
-    text.countryLabel {
-      text-anchor: middle;
-      font-family: sans-serif;
-      font-size: 12px;
-      fill: black;
-      pointer-events: none;
-    }
 
   }
   .info-port {
-    margin-left: 2px;
-    margin-top: 20px;
     background: #f6f6f6;
+    margin-top: 20px;
     height: 400px;
     width: 250px;
     display: flex;
@@ -61,7 +47,7 @@
     justify-content: center;
     align-items: center;
     margin-right: 100px;
-    .coders, .rating {
+    .rating {
       width: 130px;
       height: 130px;
       background: #09affe;
@@ -83,9 +69,12 @@
       }
       margin-bottom: 20px;
     }
-
-    .compare {
-      
+    .history-info {
+      margin-bottom: 20px;
+      padding: 0 5px;
+      text-align: center;
+    }
+    .lower {
     }
   }
 }

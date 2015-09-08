@@ -1,5 +1,135 @@
 @import '../partials/combined';
 
 .skill-picker-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
+  h1 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  p {
+    font-size: 15px;
+    padding: 5px 20px;
+  }
+
+  .track-picker {
+    h1 {
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+
+    .select-tracks {
+      .track-selection {
+
+      }
+      .track-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 5px;
+        height: 55px;
+        background-color: $white;
+        border-radius: 5px;
+
+        &.button-expanded {
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+
+      .track-checkbox {
+        margin-left:  15px;
+
+        input[type="checkbox"] {
+          display: none;
+        }
+
+        label {
+          font-size: 18px;
+          text-transform: uppercase;
+          color: #b7b7b7;
+          cursor: pointer;
+
+
+          span {
+            display: inline-block;
+            margin-right: 5px;
+            vertical-align: middle;
+            width: 17px;
+            height: 19px;
+            background: url(/images/checkbox-sprite.png) -17px top no-repeat;
+            cursor: pointer;
+          }
+          &.checked-track {
+            color: #3d3d3d;
+
+            span {
+              background: url(/images/checkbox-sprite.png) left top no-repeat;
+            }
+          }
+        }
+
+        .subscript {
+          position: relative;
+          margin-left: 3px;
+          top: +0.25em;
+          font-size: 80%;
+          letter-spacing: 3px;
+          color: #7f7f7f;
+        }
+      }
+    }
+
+    .mobile {
+      .dropdown-mobile {
+        width: 55px;
+        height: 40px;
+        line-height: 45px;
+        text-align: center;
+        color: #7f7f7f;
+        border-left: solid 1px #b7b7b7;
+
+        i {
+          font-size: 1.75em;
+        }
+      }
+
+      .track-skills {
+        display: flex;
+        flex-flow: row wrap;
+        padding: 10px 15px 20px;
+        background-color: $white;
+        border-top: 1px solid #f0f0f0;
+        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 5px;
+
+        .track-skill {
+          margin-right: 5px;
+          margin-bottom: 5px;
+          border-radius: 5px;
+          background-color: #f0f0f0;
+          padding: 5px 10px;
+        }
+
+        .skill-selected {
+          background-color: #0096ff;
+          color: $white;
+        }
+      }
+    }
+
+    button {
+      @include ui-submit-button;
+
+      &.enabled-button {
+        @include ui-enabled-button;
+      }
+    }
+  }
 }
