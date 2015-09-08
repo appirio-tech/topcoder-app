@@ -13,10 +13,6 @@
 
       input(right-placeholder, focused-placeholder="Last", ng-model="vm.lastname", maxlength="64", name="lastname", placeholder="Last Name", type="text", required)
 
-    //- Show errors for first and last names once we know whether we can handle accents, other languages, and not symbols/numbers
-    //- .form-errors
-    //-   p.form-error(ng-show="vm.registerForm.firstname.$dirty && vm.registerForm.firstname.$error.pattern") Names must not contain symbols or numbers.
-
     .country-dropdown
       angucomplete-alt(
         input-name="country",
@@ -32,7 +28,7 @@
       )
 
       .form-errors
-        p.form-error(ng-show="vm.registerForm.country.$error.required") Please enter a valid country.
+        p.form-error(ng-show="vm.registerForm.country.$error.required") Please choose a country from the list.
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.username.$error.usernameIsFree || vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength), 'success-bar': (vm.registerForm.username.$valid && !vm.registerForm.username.$error.usernameIsFree) }")
       input(right-placeholder, focused-placeholder="Username", ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)
@@ -67,7 +63,7 @@
       p.form-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$invalid") Please enter a valid email address.
 
     .validation-bar(ng-class="{ 'success-bar': (vm.registerForm.password.$valid) }")
-      toggle-password(ng-if="!vm.isSocialRegistration")
+      toggle-password-with-tips(ng-if="!vm.isSocialRegistration")
 
       .tips.password-tips(ng-show="vm.passwordFocus")
         h3 Password Tips:
@@ -76,14 +72,12 @@
 
         p(ng-class="{ 'has-letter': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasLetter) }") At least one letter
 
-        p(ng-class="{ 'has-symbol': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasSymbol) }") At least one symbol
+        p(ng-class="{ 'has-symbol-or-number': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
-        p(ng-class="{ 'has-number': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasNumber) }") At least one number
-
-    button(type="submit", ng-disabled="vm.registerForm.$invalid", ng-class="{'enabled-button': vm.registerForm.$valid}") Join Now
+    button(type="submit", ng-disabled="vm.registerForm.$invalid", ng-class="{'enabled-button': vm.registerForm.$valid}") Join
 
   section.terms
-    p By clicking "JOIN NOW" I agree to Topcoder's
+    p By clicking "JOIN" I agree to Topcoder's
 
     p #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms of Service] and #[a(href="http://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank") Privacy Policy]
 
