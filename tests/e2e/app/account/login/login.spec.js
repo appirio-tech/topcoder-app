@@ -42,6 +42,82 @@
 			 
 		 }
 		 i=0;
+		 for (; i< loginUser.wrongPasswordCredentials.length; i++) {
+			 console.log('user creds :'+loginUser.wrongPasswordCredentials[i].username);
+			 (function(loginUserCred) {
+				 it('Invalid Password Login', function() {
+					 loginPage.get(loginUser.baseUrl);
+					 loginPage.invalidPasswordLogin(loginUserCred, loginUser.invalidPasswordMessage);
+				 });
+		  
+//				 it('welcomes the user for logout', function() {
+//					 loginPage.logOut();
+//				 });
+		  
+//				 afterEach(function() {  
+//					 browser.manage().logs().get('browser').then(function(browserLog) {
+//						 var i = 0,
+//						 severWarnings = false;
+//
+//						 for(i; i <= browserLog.length-1; i++){
+//							 if(browserLog[i].level.name === 'SEVERE'){
+//								 console.log('\n' + browserLog[i].level.name);
+//								 //uncomment to see the error
+//								 console.log('(Possibly exception) \n' + browserLog[i].message);
+//
+//								 severWarnings = true;
+//							 }
+//						 }
+//						 //remove it to run test case even if test case is successful
+////						 expect(severWarnings).toBe(false);
+//					 });
+//				 });
+		        })(loginUser.wrongPasswordCredentials[i]);
+			 
+			 
+		 }
+		 
+		 i=0;
+		 for (; i< loginUser.notExisitingCredentials.length; i++) {
+			 console.log('user creds :'+loginUser.notExisitingCredentials[i].username);
+			 (function(loginUserCred) {
+				 it('Invalid username Login', function() {
+					 loginPage.get(loginUser.baseUrl);
+					 loginPage.invalidPasswordLogin(loginUserCred, loginUser.invalidHandle);
+				 });
+		  
+//				 it('welcomes the user for logout', function() {
+//					 loginPage.logOut();
+//				 });
+		  
+//				 afterEach(function() {  
+//					 browser.manage().logs().get('browser').then(function(browserLog) {
+//						 var i = 0,
+//						 severWarnings = false;
+//
+//						 for(i; i <= browserLog.length-1; i++){
+//							 if(browserLog[i].level.name === 'SEVERE'){
+//								 console.log('\n' + browserLog[i].level.name);
+//								 //uncomment to see the error
+//								 console.log('(Possibly exception) \n' + browserLog[i].message);
+//
+//								 severWarnings = true;
+//							 }
+//						 }
+//						 //remove it to run test case even if test case is successful
+////						 expect(severWarnings).toBe(false);
+//					 });
+//				 });
+		        })(loginUser.notExisitingCredentials[i]);
+			 
+			 
+		 }
+		 
+		 
+		 
+		 
+		 
+		 i=0;
 		for(;i < loginUser.twitterCredentials.length; i++) {
 			 (function(loginUserCred) {
 				 it('Welcomes the user', function() {

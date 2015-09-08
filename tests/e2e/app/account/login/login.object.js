@@ -29,7 +29,9 @@ var LoginPage = function() {
 	  
     
 	  loginButton.click().then(function(){
-    	
+//		  username = element(by.model('vm.username'));
+//		  var userNameAvail = username.isPresent();
+//		  console.log('user name status'+userNameAvail);
     	element.all(by.css('.label')).each(function(element, index) {
     		
     	var isClickable = EC.elementToBeClickable(element);
@@ -38,6 +40,99 @@ var LoginPage = function() {
  			console.log(index, text);
  		});
     });
+    	expect(true).toEqual(true);
+   });
+  };
+  
+  this.invalidPasswordLogin = function(loginUser, errMsg) {
+	  browser.driver.ignoreSynchronization = true;
+		
+	  var EC = protractor.ExpectedConditions;
+		
+	  var userInput = element(by.model('vm.username'));
+	  var isClickable = EC.elementToBeClickable(userInput);
+	  browser.wait(isClickable, 30000);
+	  userInput.sendKeys(loginUser.username);
+  	
+	  var passwordInput = element(by.model('vm.password'));
+	  isClickable = EC.elementToBeClickable(passwordInput);
+	  browser.wait(isClickable, 30000);
+	  passwordInput.sendKeys(loginUser.password);
+	  
+	  console.log('password '+loginUser.password);
+	  
+	  var loginButton = browser.driver.findElement(By.css('.enabled-button'));
+//	  isClickable = EC.elementToBeClickable(loginButton);
+//	  browser.wait(isClickable, 30000);
+	  console.log('userInput'); 
+	  
+    
+	  loginButton.click().then(function(){
+		  username = element(by.model('vm.username'));
+		  var userNameAvail = username.isPresent();
+		  console.log('user name status'+userNameAvail);
+		  var formError = element(by.css('.form-errors')).all(by.css('.form-error')).get(1);
+		  isClickable = EC.elementToBeClickable(formError);
+		  browser.wait(isClickable, 30000);
+		  console.log('text '+formError.getInnerHtml());
+		  expect(formError.getInnerHtml()).toEqual(errMsg);
+//		  expect(formError.isDisplayed()).toEqual(true);
+		  
+//    	element.all(by.css('.label')).each(function(element, index) {
+//    		
+//    	var isClickable = EC.elementToBeClickable(element);
+//    	browser.wait(isClickable, 10000);
+// 		element.getText().then(function (text) {
+// 			console.log(index, text);
+// 		});
+//    });
+    	expect(true).toEqual(true);
+   });
+  };
+  
+  
+  this.invalidUserName = function(loginUser, errMsg) {
+	  browser.driver.ignoreSynchronization = true;
+		
+	  var EC = protractor.ExpectedConditions;
+		
+	  var userInput = element(by.model('vm.username'));
+	  var isClickable = EC.elementToBeClickable(userInput);
+	  browser.wait(isClickable, 30000);
+	  userInput.sendKeys(loginUser.username);
+  	
+	  var passwordInput = element(by.model('vm.password'));
+	  isClickable = EC.elementToBeClickable(passwordInput);
+	  browser.wait(isClickable, 30000);
+	  passwordInput.sendKeys(loginUser.password);
+	  
+	  console.log('password '+loginUser.password);
+	  
+	  var loginButton = browser.driver.findElement(By.css('.enabled-button'));
+//	  isClickable = EC.elementToBeClickable(loginButton);
+//	  browser.wait(isClickable, 30000);
+	  console.log('userInput'); 
+	  
+    
+	  loginButton.click().then(function(){
+		  username = element(by.model('vm.username'));
+		  var userNameAvail = username.isPresent();
+		  console.log('user name status'+userNameAvail);
+		  var formError = element(by.css('.form-errors')).all(by.css('.form-error')).get(1);
+		  isClickable = EC.elementToBeClickable(formError);
+		  browser.wait(isClickable, 30000);
+		  console.log('text '+formError.getInnerHtml());
+		  expect(formError.getInnerHtml()).toEqual(errMsg);
+//		  expect(formError.isDisplayed()).toEqual(true);
+		  
+//    	element.all(by.css('.label')).each(function(element, index) {
+//    		
+//    	var isClickable = EC.elementToBeClickable(element);
+//    	browser.wait(isClickable, 10000);
+// 		element.getText().then(function (text) {
+// 			console.log(index, text);
+// 		});
+//    });
     	expect(true).toEqual(true);
    });
   };
@@ -203,7 +298,7 @@ var LoginPage = function() {
 	  var isClickable = EC.elementToBeClickable(userInput);
 	  browser.wait(isClickable, 30000);
 	  
-	  var fbSquare = browser.driver.findElement(by.css('.social-icons .fa-google-square'));
+	  var fbSquare = browser.driver.findElement(by.css('.social-icons .fa-google-plus-square'));
 	  fbSquare.click();
 	  browser.driver.wait(function() {
 		  var emailId = browser.driver.findElement(by.id('Email'));
@@ -222,7 +317,7 @@ var LoginPage = function() {
 	  browser.driver.wait(function(){
 		 var password = browser.driver.findElement(by.id('Passwd'));
 		 password.sendKeys(loginUser1.password);
-		 console.log(' fb login Passwd');
+		 console.log(' google login Passwd');
 		 return true;
 	  },30000);
 	  
