@@ -8,6 +8,7 @@
   function SkillPickerController() {
     var vm = this;
     vm.toggleSkill = toggleSkill;
+    vm.selectTrack = selectTrack;
 
     activate();
 
@@ -21,7 +22,7 @@
       vm.skills = {
         design: ['Photoshop', 'Illustrator', 'InDesign', 'UX', 'UI', 'Sketch'],
         develop: ['Java', 'JavaScript', 'Ruby', 'Objective C', 'Python', 'SASS', 'HTML', 'CSS', 'LESS', 'C#', 'iOS', 'C++', 'Xcode', '.NET', 'PHP', 'MySQL', 'MongoDB'],
-        data_science: ['Java', 'JavaScript', 'Ruby', 'Objective C', 'Python', 'SASS', 'HTML', 'CSS', 'LESS', 'C#', 'iOS', 'C++', 'Xcode', '.NET', 'PHP', 'MySQL', 'MongoDB']
+        data_science: ['Java', 'Algorithms', 'Ruby', 'Objective C', 'Python', 'SASS', 'HTML', 'CSS', 'LESS', 'C#', 'iOS', 'C++', 'Xcode', '.NET', 'PHP', 'MySQL', 'MongoDB']
       };
 
       vm.selectedSkills = {
@@ -38,14 +39,23 @@
     }
 
     function toggleSkill(track, skill) {
-      if (!vm.selectedSkills[track][skill]) {
-        vm.selectedSkills[track][skill] = true;
+      var selectedSkill = vm.selectedSkills[track][skill];
+      if (!selectedSkill) {
+        selectedSkill = true;
         vm.selectedSkills[track].numSkills += 1;
 
       } else {
-        vm.selectedSkills[track][skill] = false;
+        selectedSkill = false;
         vm.selectedSkills[track].numSkills -= 1;
       }
+    }
+
+    function selectTrack(track) {
+      if (vm.tracks[track] === vm.dropdown[track]) {
+        vm.dropdown[track] = !vm.dropdown[track];
+      }
+
+      vm.tracks[track] = !vm.tracks[track];
     }
   }
 })();

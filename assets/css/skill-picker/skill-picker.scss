@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 
   h1 {
     margin-bottom: 20px;
@@ -15,6 +16,7 @@
   p {
     font-size: 15px;
     padding: 5px 20px;
+    max-width: 440px;
   }
 
   .track-picker {
@@ -87,6 +89,10 @@
     }
 
     .mobile {
+      @media only screen and (min-width: 960px) {
+        display: none;
+      }
+
       .dropdown-mobile {
         width: 55px;
         height: 40px;
@@ -122,6 +128,10 @@
           color: $white;
         }
       }
+    }
+
+    .reminder {
+      margin-top: 5px;
     }
 
     button {

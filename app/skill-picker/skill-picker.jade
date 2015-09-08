@@ -12,9 +12,9 @@
           .track-checkbox
             input(type="checkbox", id="checkbox-design-mobile", ng-checked="vm.tracks.design")
 
-            label(for="checkbox-design-mobile", ng-click="vm.tracks.design = !vm.tracks.design", ng-class="{ 'checked-track': vm.tracks.design }") #[span] Design
+            label(for="checkbox-design-mobile", ng-click="vm.selectTrack('design')", ng-class="{ 'checked-track': vm.tracks.design }") #[span] Design
 
-            span.subscript [{{vm.selectedSkills.design.numSkills || 0}}]
+            span.subscript [{{vm.selectedSkills.design.numSkills}}]
 
           .dropdown-mobile(ng-click="vm.dropdown.design = !vm.dropdown.design")
             i.fa(ng-class="{'fa-caret-down': !vm.dropdown.design, 'fa-caret-up': vm.dropdown.design}")
@@ -27,9 +27,9 @@
         .track-checkbox
           input(type="checkbox", id="checkbox-develop-mobile", ng-checked="vm.tracks.develop")
 
-          label(for="checkbox-develop-mobile", ng-click="vm.tracks.develop = !vm.tracks.develop", ng-class="{ 'checked-track': vm.tracks.develop }") #[span] Development
+          label(for="checkbox-develop-mobile", ng-click="vm.selectTrack('develop')", ng-class="{ 'checked-track': vm.tracks.develop }") #[span] Development
 
-          span.subscript [{{vm.selectedSkills.develop.numSkills || 0}}]
+          span.subscript [{{vm.selectedSkills.develop.numSkills}}]
 
         .dropdown-mobile(ng-click="vm.dropdown.develop = !vm.dropdown.develop")
           i.fa(ng-class="{'fa-caret-down': !vm.dropdown.develop, 'fa-caret-up': vm.dropdown.develop}")
@@ -41,9 +41,9 @@
         .track-checkbox
           input(type="checkbox", id="checkbox-data-science-mobile", ng-checked="vm.tracks.data_science")
 
-          label(for="checkbox-data-science-mobile", ng-click="vm.tracks.data_science = !vm.tracks.data_science", ng-class="{ 'checked-track': vm.tracks.data_science }") #[span] Data Science
+          label(for="checkbox-data-science-mobile", ng-click="vm.selectTrack('data_science')", ng-class="{ 'checked-track': vm.tracks.data_science }") #[span] Data Science
 
-          span.subscript [{{vm.selectedSkills.data_science.numSkills || 0}}]
+          span.subscript [{{vm.selectedSkills.data_science.numSkills}}]
 
         .dropdown-mobile(ng-click="vm.dropdown.data_science = !vm.dropdown.data_science")
           i.fa(ng-class="{'fa-caret-down': !vm.dropdown.data_science, 'fa-caret-up': vm.dropdown.data_science}")
@@ -51,6 +51,6 @@
       .track-skills(ng-show="vm.dropdown.data_science")
         .track-skill(ng-repeat="skill in vm.skills.data_science", ng-click="vm.toggleSkill('data_science', skill)", ng-class="{'skill-selected': vm.selectedSkills.data_science[skill]}") {{skill}}
 
-    p Please pick at least one track, you can always change it later.
+    p.reminder Please pick at least one track, you can always change it later.
 
     button(type="button", ng-class="{'enabled-button': vm.tracks.design || vm.tracks.develop || vm.tracks.data_science}") Done
