@@ -3,14 +3,17 @@
 
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
-  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS'];
+  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS', 'TagsService'];
 
-  function EditProfileController(userData, userHandle, ProfileService, $log, ISO3166, ImageService, $rootScope, CONSTANTS) {
+  function EditProfileController(userData, userHandle, ProfileService, $log, ISO3166, ImageService, $rootScope, CONSTANTS, TagsService) {
     var vm = this;
     vm.toggleTrack    = toggleTrack;
     vm.updateCountry  = updateCountry;
     vm.onFileChange   = onFileChange;
     vm.updateProfile  = updateProfile;
+    vm.skills = false;
+    vm.addSkill = addSkill;
+    vm.tags = [];
 
     activate();
 
@@ -19,7 +22,28 @@
       vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.competitionCountryCode);
 
       processData(userData);
-      vm.userData = userData
+      vm.userData = userData;
+      
+      TagsService.getApprovedSkillTags()
+      .then(function(tags) {
+        vm.tags = tags;
+      })
+      .catch(function(err) {
+        $log.error(err);
+      });
+
+      ProfileService.getUserSkills(vm.userData.handle)
+      .then(function(skills) {
+        vm.skills = skills.skills;
+      })
+      .catch(function(err) {
+        $log.error(err);
+      });
+    }
+    
+    function addSkill(skill) {
+      var skillTagId = _.get(skill, 'originalObject.id');
+      ProfileService.addUserSkill(vm.userData.handle, skillTagId);
     }
 
     function updateCountry(angucompleteCountryObj) {

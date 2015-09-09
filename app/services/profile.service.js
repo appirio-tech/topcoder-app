@@ -14,6 +14,7 @@
       getUserProfile: getUserProfile,
       updateUserProfile: updateUserProfile,
       getUserSkills: getUserSkills,
+      addUserSkill: addUserSkill,
       getUserFinancials: getUserFinancials,
       getUserStats: getUserStats,
       getDistributionStats: getDistributionStats,
@@ -40,6 +41,12 @@
 
     function getUserSkills(username) {
       return restangular.one('members', username).one('skills').get();
+    }
+    
+    function addUserSkill(username, skillTagId) {
+      var body = {};
+      body[skillTagId] = { 'hidden': false };
+      return restangular.one('members', username).one('skills').patch(JSON.stringify(body));
     }
 
     function getUserFinancials(username) {
