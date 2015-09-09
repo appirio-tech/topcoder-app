@@ -43,7 +43,7 @@
       controller: ['$scope', function($scope) {
 
         for (var key in _iconMap) {
-          if ($scope.skill.trim().toLowerCase().indexOf(key) > -1) {
+          if ($scope.skill.tagName.trim().toLowerCase().indexOf(key) > -1) {
             $scope.icon = _iconMap[key];
             break;
           }
