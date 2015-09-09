@@ -9,10 +9,13 @@
       templateUrl: 'directives/profile-widget/profile-widget.html',
       scope: {
         profile: '=profile',
-        editProfileLink: '=editProfileLink'
+        editProfileLink: '=editProfileLink',
+        numChallenges: '=numChallenges'
       },
       link: function(scope, elem, attrs) {
         scope.DOMAIN = CONSTANTS.domain;
+        console.log('profile');
+        console.log(scope.profile);
 
         scope.$watch('editProfileLink', function(newValue, oldValue, scope) {
           if (newValue) {

@@ -1,6 +1,6 @@
 .profile-header-container(ng-cloak)
   .left
-    profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink")
+    profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-challenges="profileVm.numProjects")
   .right(ng-if="profileVm.tenure")
     h4 member for {{profileVm.tenure}} years
   .right
