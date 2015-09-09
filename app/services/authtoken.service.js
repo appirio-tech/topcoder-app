@@ -3,14 +3,13 @@
 
   angular.module('tc.services').factory('AuthTokenService', AuthTokenService);
 
-  AuthTokenService.$inject = ['CONSTANTS', '$window', '$cookies', 'store', '$http', '$log', 'jwtHelper'];
+  AuthTokenService.$inject = ['CONSTANTS', '$cookies', '$location', 'store', '$http', '$log', 'jwtHelper'];
 
-  function AuthTokenService(CONSTANTS, $window, $cookies, store, $http, $log, jwtHelper) {
+  function AuthTokenService(CONSTANTS, $cookies, $location,  store, $http, $log, jwtHelper) {
     var v2TokenKey = 'tcjwt';
     var v3TokenKey = 'appiriojwt';
 
     var service = {
-      setV2Token: setV2Token,
       setV3Token: setV3Token,
       getV2Token: getV2Token,
       getV3Token: getV3Token,
@@ -23,10 +22,6 @@
     return service;
 
     ///////////////
-
-    function setV2Token(token) {
-      $window.document.cookie = v2TokenKey + '=' + token + '; path=/; domain=.' + CONSTANTS.domain + '; expires=' + new Date(new Date().getTime() + 12096e5);
-    }
 
     function setV3Token(token) {
       store.set(v3TokenKey, token);
@@ -42,9 +37,11 @@
 
     function removeTokens() {
       // remove tokens
-      $window.document.cookie = v2TokenKey + '=; path=/; domain=.' + CONSTANTS.domain + '; expires=' + (new Date(0)).toUTCString();
+      // need to provide domain when removing cookie
+      var domain = $location.host().substring($location.host().indexOf("."));
+      $cookies.remove(v2TokenKey, {domain: domain});
+      $cookies.remove('tcsso', {domain: domain});
       store.remove(v3TokenKey);
-      store.remove('userObj');
     }
 
     function decodeToken(token) {
@@ -52,23 +49,39 @@
     }
 
     function refreshV3Token(token) {
-      // TODO
-      var newToken = '';
-      return newToken
+      // This is a promise of a JWT id_token
+      return $http({
+        url: CONSTANTS.API_URL + '/authorizations/1',
+        method: 'GET',
+        headers: {
+          'Authorization': "Bearer " + token
+        },
+        data: {}
+      }).then(function(res) {
+        var appiriojwt = res.data.result.content.token;
+        setV3Token(appiriojwt);
+        return appiriojwt;
+      }).catch(function(resp) {
+        $log.error(resp);
+        removeTokens();
+      });
     }
 
     function exchangeToken(refreshToken, idToken) {
-      return $http.post(
-        CONSTANTS.API_URL + '/authorizations', {
+      var req = {
+        method: "POST",
+        url: CONSTANTS.API_URL + '/authorizations',
+        data: {
           param: {
             refreshToken: refreshToken,
             externalToken: idToken
           }
         },
-        {
-          withCredentials: true
-        })
-      .then(
+        skipAuthorization: true,
+        withCredentials: true,
+        headers: {}
+      };
+      return $http(req).then(
         function(res) {
           var appiriojwt = res.data.result.content.token;
           setV3Token(appiriojwt);

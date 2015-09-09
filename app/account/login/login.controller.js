@@ -14,7 +14,6 @@
     if ($stateParams.userJWTToken) {
       // user logged in
       AuthTokenService.setV3Token($stateParams.userJWTToken);
-      UserService.setUserIdentity($stateParams.userJWTToken);
       Helpers.redirectPostLogin($stateParams.next);
     }
 
@@ -34,7 +33,7 @@
       AuthTokenService.getTokenFromAuth0Code($stateParams.code).then(
         function(v3Token) {
           $log.debug('logged in using social');
-          Helpers.redirectPostLogin($stateParams.next);
+          return Helpers.redirectPostLogin($stateParams.next);
         }
       );
     }
@@ -44,11 +43,11 @@
     }
 
     function _doLogin(usernameOrEmail, password) {
-     TcAuthService.login(usernameOrEmail, password).then(
+     return TcAuthService.login(usernameOrEmail, password).then(
       function(data) {
         // success
         $log.debug('logged in');
-        Helpers.redirectPostLogin($stateParams.next);
+        return Helpers.redirectPostLogin($stateParams.next);
       },
       function(err) {
         // handle error
@@ -102,6 +101,7 @@
       TcAuthService.socialLogin(backend, callbackUrl);
     };
 
+    vm.$stateParams = $stateParams;
   }
 
 })();

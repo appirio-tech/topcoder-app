@@ -1,7 +1,7 @@
 # Topcoder-App
 This repository houses any new topcoder pages or refactored Angular apps/pages from the tc-site repository.
 
-The technologies used are Jade, SCSS, ES6, Angular, and Gulp.
+The technologies used are Jade, SCSS, Angular, and Gulp.
 
 ## Installation
 
@@ -12,6 +12,8 @@ If you don't have compass installed, run the following:
 Install dependencies by running the following in the root of the project:
  - npm install
  - bower install
+
+In order to test a logged in user, you must make an entry in your /etc/hosts file, pointing local.topcoder-dev.com to localhost. For example, open your /etc/hosts file with something like `vim /etc/hosts` and add `127.0.0.1 local.topcoder-dev.com`. After you run `gulp serve`, which launches a new window or tab, change `http://localhost:3000/sample/` to `http://local.topcoder-dev.com:3000/sample/`. You will then be able to login and pick up information from the cookies with `.topcoder-dev.com` as the domain.
 
 ## Gulpfile Commands
 - Run `gulp` to get the full list of commands
@@ -89,7 +91,7 @@ SCSS Files
   - Store new variables and mixins in the appropriate file in `assets/css/partials`
   - Since a class with the current state name is added to the ui-view (see the Creating New Views/Pages section), wrap your .scss file with this class, in order to write specific SCSS in its own file for that page.
 
-JS/ES6
+JavaScript
   - See this section on [naming conventions and style guide](https://github.com/appirio-tech/topcoder-app/blob/dev/README.md#style-guide-and-naming-conventions)
 
 Creating New Views/Pages

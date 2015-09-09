@@ -23,24 +23,26 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.4.x",
-    "angular-ui-router": "~0.2.15",
-    "angular-cookies": "1.4.x",
     "a0-angular-storage": "~0.0.11",
+    "angucomplete-alt": "~1.1.0",
+    "angular": "1.4.x",
+    "angular-cookies": "1.4.x",
+    "angular-dropdowns": "1.1.0",
+    "angular-filter": "~0.5.4",
+    "angular-img-fallback": "~0.1.3",
     "angular-jwt": "~0.0.9",
-    "moment": "~2.10.3",
-    "restangular": "~1.5.1",
+    "angular-sanitize": "1.4.x",
+    "angular-ui-router": "~0.2.15",
+    "angular-xml": "~2.1.1",
+    "appirio-tech-ng-iso-constants": "git@github.com:appirio-tech/ng-iso-constants#~1.0.1",
+    "devicon": "*",
     "fontawesome": "~4.3.0",
     "jstzdetect": "~1.0.6",
+    "moment": "~2.10.3",
     "ng-notifications-bar": "~0.0.15",
-    "angular-xml": "~2.1.1",
-    "angular-img-fallback": "~0.1.3",
-    "angular-filter": "~0.5.4",
-    "angular-sanitize": "1.4.x",
-    "devicon": "*",
-    "angular-dropdowns": "1.1.0",
-    "angucomplete-alt": "~1.1.0",
-    "appirio-tech-ng-iso-constants": "git@github.com:appirio-tech/ng-iso-constants#~1.0.0"
+    "ngDialog": "0.5.1",
+    "restangular": "~1.5.1",
+    "d3": "~3.5.6"
   },
   "devDependencies": {
     "bardjs": "~0.1.4",
@@ -48,7 +50,7 @@
     "angular-mocks": "1.4.x"
   },
   "resolutions": {
-    "angular": "1.4.4",
-    "angular-sanitize": "1.4.x"
+    "angular": "1.4.5",
+    "angular-sanitize": "1.3.18"
   }
 }

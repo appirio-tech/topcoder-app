@@ -14,8 +14,13 @@ var mockData = (function() {
     getMockUserProfile: getMockUserProfile,
     getMockMarathons: getMockMarathons,
     getMockProfile: getMockProfile,
+    getMockHistory: getMockHistory,
     getMockStats: getMockStats,
-    getMockSkills: getMockSkills
+    getMockSkills: getMockSkills,
+    getMockSRMs: getMockSRMs,
+    getMockSRMResults: getMockSRMResults,
+    getMockBadge: getMockBadge,
+    getMockUserFinancials: getMockUserFinancials
   };
 
   function getMockStates() {
@@ -1168,6 +1173,56 @@ var mockData = (function() {
             "rating": 961,
             "colorStyle": "color: #00A900"
           }
+        ],
+        "Achievements": [
+          {
+            "date": "2012-09-28T00:00:00.000-0400",
+            "description": "First Marathon Competition"
+          },
+          {
+            "date": "2012-09-28T00:00:00.000-0400",
+            "description": "First Rated Algorithm Competition"
+          },
+          {
+            "date": "2012-09-28T00:00:00.000-0400",
+            "description": "Five Rated Algorithm Competitions"
+          },
+          {
+            "date": "2012-09-28T00:00:00.000-0400",
+            "description": "Three Marathon Competitions"
+          },
+          {
+            "date": "2010-04-07T00:00:00.000-0400",
+            "description": "First Forum Post"
+          },
+          {
+            "date": "2010-02-18T00:00:00.000-0500",
+            "description": "First Passing Submission"
+          },
+          {
+            "date": "2009-12-18T00:00:00.000-0500",
+            "description": "One Hundred Forum Posts"
+          },
+          {
+            "date": "2009-12-10T00:00:00.000-0500",
+            "description": "First Placement"
+          },
+          {
+            "date": "2009-12-10T00:00:00.000-0500",
+            "description": "First Win"
+          },
+          {
+            "date": "2009-02-19T00:00:00.000-0500",
+            "description": "Five Hundred Forum Posts"
+          },
+          {
+            "date": "2008-09-30T00:00:00.000-0400",
+            "description": "Digital Run Top Five"
+          },
+          {
+            "date": "2008-05-01T00:00:00.000-0400",
+            "description": "One Thousand Forum Posts"
+          }
         ]
       }
     };
@@ -1198,40 +1253,105 @@ var mockData = (function() {
 
   function getMockProfile() {
     return {
-      "updatedAt": "2015-07-10T01:40Z",
-      "createdAt": "2001-07-24T16:44Z",
-      "createdBy": null,
-      "updatedBy": null,
-      "firstName": "F_NAME",
-      "lastName": "L_NAME",
-      "otherLangName": "NIAL",
-      "handle": "rakesh",
-      "email": "email@domain.com.z",
-      "description": "abc",
-      "quote": "def",
-      "address": {
-        "streetAddr1": "123",
-        "streetAddr2": "456",
-        "city": "Sunnyvale",
-        "zip": "94086",
-        "stateCode": "CA",
-        "addressTypeId": 1,
-        "addressType": "office"
-      },
-      "homeCountryCode": 840,
-      "competitionCountryCode": 840,
-      "homeCountry": "United States",
-      "competitionCountry": "United States",
+      "updatedAt":null,
+      "createdAt":'2010-04-25T01:32:21.196+0600',
+      "createdBy":null,
+      "updatedBy":null,
+      "userId":10336829,
+      "firstName":"Albert",
+      "lastName":"Wang",
+      "quote":"Competing since 2004, albertwang has achieved ratings in multiple data science, architecture, and devleopment challenge tracks. He is most skilled in component design and architecture",
+      "description":"Test description",
+      "otherLangName":"NIAL",
+      "handle":"albertwang",
+      "email":"email@domain.com.z",
+      "addresses":[
+        {
+          "updatedAt":null,
+          "createdAt":null,
+          "createdBy":null,
+          "updatedBy":null,
+          "addressId":90263,
+          "streetAddr1":"123 Main Street",
+          "streetAddr2":"address_2",
+          "city":"Santa Clause",
+          "zip":"47579",
+          "stateCode":"IN",
+          "type":"HOME"
+        }
+      ],
+      "homeCountryCode":"USA",
+      "competitionCountryCode":"SXM",
       "photo": {
-        "imageId": 22202176,
-        "photoUrl": "https://topcoder-dev-media.s3.amazonaws.com/member_profile/userId-123123123.png"
+        "imageId":20744540,
+        "photoUrl":"https://www.topcoder.com/i/m/albertwang.jpeg"
       },
-      "tracks": [
-        "DEVELOP",
-        "DESIGN",
+      "tracks":[
         "DATA_SCIENCE"
       ]
     };
+  }
+
+  function getMockHistory() {
+    return {
+      "id": "-306aafb8:14f65e30765:-8000",
+      "result": {
+        "success": true,
+        "status": 200,
+        "metadata": null,
+        "content": {
+          "updatedAt": null,
+          "createdAt": null,
+          "createdBy": null,
+          "updatedBy": null,
+          "userId": 151743,
+          "handle": "Ghostar",
+          "DEVELOP": {
+            "subTracks": [
+              {
+                "id": 112,
+                "name": "DESIGN",
+                "history": [
+                  {
+                    "challengeId": 30009817,
+                    "challengeName": "Disney Marine Munch - Flash Game Module Architecture",
+                    "ratingDate": "2010-02-28T13:00:00.000Z",
+                    "newRating": 1172
+                  }
+                ]
+              },
+              {
+                "id": 125,
+                "name": "ASSEMBLY_COMPETITION",
+                "history": [
+                  {
+                    "challengeId": 30007872,
+                    "challengeName": "Best Buy Blackberry Web Application Wrapper Assembly",
+                    "ratingDate": "2009-10-18T23:30:00.000Z",
+                    "newRating": 1515
+                  },
+                  {
+                    "challengeId": 30008010,
+                    "challengeName": "Best Buy Android Web Application Wrapper Assembly",
+                    "ratingDate": "2009-10-24T01:00:00.000Z",
+                    "newRating": 1566
+                  }
+                ]
+              }
+            ]
+          },
+          "DATA_SCIENCE": {
+            "SRM": {
+              "history": []
+            },
+            "MARATHON_MATCH": {
+              "history": []
+            }
+          }
+        }
+      },
+      "version": "v3"
+    }
   }
 
   function getMockStats() {
@@ -1812,6 +1932,114 @@ var mockData = (function() {
           "iOS"
         ]
       }
+    };
+  }
+
+  function getMockBadge() {
+    return {
+      name: "Mock achievement",
+      date: "Sept 10, 2010",
+      currentlyEarned: 2
+    };
+  }
+
+  function getMockSRMs() {
+    return [
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "id": 4460,
+        "name": "Holder",
+        "status": "FUTURE",
+        "type": "SINGLE_ROUND_MATCH",
+        "startDate": "8/30/15 12:00 AM",
+        "endDate": "8/30/15 12:00 AM"
+      },
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "id": 4465,
+        "name": "Single Round Match 135",
+        "status": "FUTURE",
+        "type": "SINGLE_ROUND_MATCH",
+        "startDate": "8/30/15 12:00 AM",
+        "endDate": "8/30/15 12:00 AM"
+      },
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "id": 14623,
+        "name": "Single Round Match 636",
+        "status": "FUTURE",
+        "type": "SINGLE_ROUND_MATCH",
+        "startDate": "9/28/15 12:00 AM",
+        "endDate": "9/28/15 12:00 AM"
+      }
+    ];
+  }
+
+  function getMockSRMResults() {
+    return [
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "userId": 22688955,
+        "contestId": 4460,
+        "oldRating": 0,
+        "newRating": 637,
+        "rated": 1,
+        "roomPlacement": 19,
+        "division": 2,
+        "finalPoints": -25.0,
+        "divisionPlacement": 633,
+        "ovarallRank": null
+      },
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "userId": 22688955,
+        "contestId": 4465,
+        "oldRating": 637,
+        "newRating": 637,
+        "rated": 0,
+        "roomPlacement": 12,
+        "division": 2,
+        "finalPoints": 0.0,
+        "divisionPlacement": 270,
+        "ovarallRank": null
+      },
+      {
+        "updatedAt": null,
+        "createdAt": null,
+        "createdBy": null,
+        "updatedBy": null,
+        "userId": 22688955,
+        "contestId": 14623,
+        "oldRating": 637,
+        "newRating": 635,
+        "rated": 1,
+        "roomPlacement": 5,
+        "division": 2,
+        "finalPoints": 127.32,
+        "divisionPlacement": 463,
+        "ovarallRank": null
+      }
+    ];
+  }
+
+  function getMockUserFinancials() {
+    return {
+      overallEarning: 5100
     };
   }
 

@@ -53,24 +53,8 @@
             .then(function(appiriojwt) {
               // giving angular sometime to set the cookies
               $timeout(function() {
-                // Store local copy of user info in local storage
-                var decodedToken = AuthTokenService.decodeToken(appiriojwt);
-                var userId = decodedToken.userId;
-
-                // Remove this call once the JWT payload comes with all these fields
-                ApiService.restangularV3.one('users', userId).get()
-                .then(function(user) {
-                  decodedToken.username  = user.handle;
-                  decodedToken.email     = user.email;
-                  decodedToken.firstName = user.firstName;
-                  decodedToken.lastName  = user.lastName;
-
-                  UserService.setUserIdentity(decodedToken);
-
-                  $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
-
-                  resolve();
-                });
+                $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
+                resolve();
               }, 200);
             });
           }
@@ -98,7 +82,6 @@
 
     function logout() {
       return $q(function(resolve, reject) {
-        UserService.setUserIdentity(null);
         AuthTokenService.removeTokens();
         $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT);
         resolve();
@@ -150,7 +133,7 @@
             }
             var socialUserId = profile.user_id.substring(profile.user_id.indexOf('|')+1);
             // validate social profile
-            UserService.validateSocialProfile(socialUserId, socialProviderId).then(
+            UserService.validateSocialProfile(socialUserId, socialProvider).then(
               function (data) {
                 // success
                 var result = {
@@ -180,7 +163,7 @@
     }
 
     function isAuthenticated() {
-      return !!AuthTokenService.getV3Token();
+      return !!AuthTokenService.getV3Token() && !!AuthTokenService.getV2Token();
     }
 
   }

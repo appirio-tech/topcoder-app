@@ -231,7 +231,7 @@ gulp.task('build', ['optimize', 'dev-fonts'], function() {
   log(msg);
 });
 
-gulp.task('build-specs', ['templatecache'], function() {
+gulp.task('build-specs', ['templatecache', 'ngConstants'], function() {
   log('Building the spec runner');
 
   var wiredep = require('wiredep').stream;
@@ -353,6 +353,17 @@ gulp.task('serve-build', ['build'], function() {
 
   browserSync(options);
 
+});
+
+gulp.task('e2e', [], function(done) {
+  gulp.src(['./tests/e2e/app/*.js'])
+    .pipe($.angularProtractor({
+        'configFile': 'tests/e2e/conf.js',
+        'args': ['--baseUrl', 'http://127.0.0.1:8000'],
+        'autoStartStopServer': true,
+        'debug': true
+    }))
+    .on('error', function(e) { throw e });
 });
 
 // gulp.task('test', ['vet', 'templatecache'], function(done) {

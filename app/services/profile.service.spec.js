@@ -3,19 +3,20 @@ describe('Profile Service', function() {
   var service;
   var mockProfile = mockData.getMockProfile();
   var mockStats = mockData.getMockStats();
-  var apiUrl = 'https://api.topcoder-dev.com/v3';
+  var apiUrl;
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, '$httpBackend', 'ProfileService', '$rootScope');
+    bard.inject(this, '$httpBackend', 'ProfileService', '$rootScope', 'CONSTANTS');
 
+    apiUrl  = CONSTANTS.API_URL;
     service = ProfileService;
 
     // mock profile api
     $httpBackend
       .when('GET', apiUrl + '/members/rakesh/')
       .respond(200, {result: {content: mockProfile}});
-    // mock stats 
+    // mock stats
     $httpBackend
       .when('GET', apiUrl + '/members/rakesh/stats/')
       .respond(200, {result: {content: mockStats}});
@@ -42,16 +43,6 @@ describe('Profile Service', function() {
         expect(stats).to.be.defined;
       });
       $httpBackend.flush();
-    });
-
-    it('should accurately compute numProjects', function() {
-      var num = service.getNumProjects(mockStats);
-      expect(num).to.be.equal(411);
-    });
-
-    it('should accurately computer numWins', function() {
-      var num = service.getNumWins(mockStats);
-      expect(num).to.be.equal(166);
     });
 
     it('should return ranks', function() {

@@ -8,6 +8,7 @@
 
   function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window) {
     var vm = this;
+    vm.graphState = { show: 'history' };
     vm.subTrack = decodeURIComponent($stateParams.subTrack || '') || '';
     vm.track = $stateParams.track;
     vm.viewing = 'challenges';
@@ -16,12 +17,37 @@
     var profileVm = $scope.$parent.profileVm;
     vm.dropdown = [];
     vm.ddSelected = {};
+    vm.distribution = {};
     vm.selectSubTrack = selectSubTrack;
     vm.back = back;
+    vm.status = {
+      'challenges': CONSTANTS.STATE_LOADING
+    };
+    // paging params, these are updated by tc-pager
+    vm.pageParams = {
+      offset : 0,
+      limit: 5,
+      count: 0,
+      totalCount: 0,
+      // counter used to indicate page change
+      updated: 0
+    };
 
     activate();
 
     function activate() {
+      vm.distributionPromise = ProfileService.getDistributionStats(vm.track, vm.subTrack);
+      vm.distributionPromise.then(function(data) {
+        vm.distribution = data.distribution;
+      });
+      var historyDeferred = $q.defer();
+      vm.historyPromise = historyDeferred.promise;
+      ProfileService.getHistoryStats(profileVm.profile.handle).then(function(data) {
+        if (data.handle) {
+          vm.history = ProfileService.getChallengeTypeStats(data, vm.track, vm.subTrack).history;
+          historyDeferred.resolve(vm.history);
+        }
+      });
       profileVm.statsPromise.then(function(data) {
         vm.typeStats = ProfileService.getChallengeTypeStats(
           profileVm.stats,
@@ -47,9 +73,12 @@
         }
 
       });
-      // profileVm.pastChallengesPromise.then(function(data) {
 
-      // });
+      // watches page change counter to reload the data
+      $scope.$watch('vm.pageParams.updated', function(updatedParams) {
+        _getChallenges();
+      });
+      _getChallenges();
     }
 
     function selectSubTrack(subTrack) {
@@ -58,6 +87,30 @@
 
     function back() {
       $window.history.back();
+    }
+
+    function _getChallenges() {
+      vm.status.challenges = CONSTANTS.STATE_LOADING;
+      return ChallengeService.getUserChallenges(
+        profileVm.profile.handle,
+        {
+          filter: {
+            status: 'completed',
+            track: vm.track,
+            subTrack: vm.subTrack
+          },
+          limit: vm.pageParams.limit,
+          offset: vm.pageParams.offset,
+          orderBy: 'submissionEndDate desc'
+        }
+      )
+      .then(function(data) {
+        vm.challenges = data;
+        vm.status.challenges = CONSTANTS.STATE_READY;
+        return data;
+      }).catch(function(err) {
+        vm.status.challenges = CONSTANTS.STATE_ERROR;
+      });
     }
 
   }

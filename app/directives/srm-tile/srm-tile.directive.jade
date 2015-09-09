@@ -1,13 +1,33 @@
-.srm-name
-  a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
+.srm.tile-view(ng-show="view=='tile'")
+  .srm-name
+    a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
 
-.srm-status
-  p.days-remaining {{srm.startDate | timeDiff}}
+  .srm-status
+    p.days-remaining {{srm.startDate | timeDiff}}
+      span Registration Ends
+      //- span(ng-bind='srm.startDate | deadlineStartMsg')
+
+    .phase-status
+      i.fa.fa-check-circle-o
+
+      p You are registered!
+      //- p {{srm.memberStatusMsg}}
+.srm.list-view(ng-show="view=='list'")
+  .srm-name
+    a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
+    .phase-status
+      i.fa.fa-check-circle-o
+      p You are registered!
+      //- p {{srm.memberStatusMsg}}
+
+  .days-remaining {{srm.startDate | timeDiff}}
     span Registration Ends
     //- span(ng-bind='srm.startDate | deadlineStartMsg')
 
-  .phase-status
-    i.fa.fa-check-circle-o
+  .division(ng-show="showResults") {{srm.result.division || 'N/A'}}
+    span Division
 
-    p You are registered!
-    //- p {{srm.memberStatusMsg}}
+  .rank(ng-show="showResults") {{srm.result.roomPlacement || 'N/A'}}
+    span Rank
+
+

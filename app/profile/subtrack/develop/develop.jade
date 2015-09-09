@@ -1,4 +1,4 @@
-.develop(ng-if="vm.track == 'Develop'")
+.develop(ng-if="vm.track == 'DEVELOP'")
   ul.horizontal-stats
     li.stat
       .value {{vm.typeStats.rank.overallRank}}
@@ -33,17 +33,20 @@
 
   tc-section(
     ng-show="vm.viewing == 'challenges'",
-    state="profileVm.status.pastChallenges"
+    state="vm.status.challenges"
   )
+    tc-paginator(data="vm.challenges", page-params="vm.pageParams")
     .challenges
-      .challenge.tile(ng-repeat="challenge in vm.pastChallenges = (profileVm.pastChallenges)")
+      .challenge.tile(ng-repeat="challenge in vm.challenges")
         challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
-      .div(ng-show="!vm.pastChallenges || vm.pastChallenges.length == 0")
+      .div(ng-show="!vm.challenges || vm.challenges.length == 0")
         | No past challenges available for this user
 
   .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
     .graphs
-      img(src="/images/graph.png")
+      distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
+
+      history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
     h2.detailed Detailed Stats
 

@@ -46,11 +46,12 @@
 
       p {{challenge.memberStatusMsg}}
 
-  p.roles Roles : {{challenge.userDetails.roles | listRoles}}
+  .roles
+    p Roles : {{challenge.userDetails.roles | listRoles}}
 
   p.days-remaining(ng-show="challenge.status === 'Active'") {{challenge.registrationEndDate | timeDiff}}
     span Registration Ends
-  p(ng-show="challenge.status === 'Completed'")
+  p.completion-date(ng-show="challenge.status === 'Completed'")
     span Ended {{challenge.submissionEndDate | date: "mediumDate"}}
 
   .stats

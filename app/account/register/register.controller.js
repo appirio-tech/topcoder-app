@@ -56,10 +56,14 @@
       .then(function(obj) {
         vm.countryObj = obj;
       });
+
     vm.countries = ISO3166.getAllCountryObjects();
-    vm.countryUpdated = function ($item) {
-      // update country
-      vm.country = _.get($item, "originalObject.name", undefined);
+
+    vm.updateCountry = function (angucompleteCountryObj) {
+      var countryCode = _.get(angucompleteCountryObj, 'originalObject.alpha3', undefined);
+
+      var isValidCountry = _.isUndefined(countryCode) ? false : true;
+      vm.registerForm.country.$setValidity('required', isValidCountry);
     };
 
     vm.register = function() {
@@ -83,12 +87,19 @@
           userId: vm.socialUserId,
           name: vm.firstname + " " + vm.lastname,
           email: vm.socialProfile.email,
-          emailVerified: vm.socialProfile.emailVerified,
+          emailVerified: vm.socialProfile.email_verified,
           providerType: vm.socialProvider
         }
       }
 
-      TcAuthService.register({param: userInfo})
+      var body = {
+        param: userInfo,
+        options: {
+          afterActivationURL: CONSTANTS.MAIN_URL + '/my-dashboard/'
+        }
+      }
+
+      TcAuthService.register(body)
       .then(function(data) {
         $log.debug('registered successfully');
 
@@ -104,8 +115,12 @@
       auth0Register.login({
           scope: "openid profile offline_access",
           state: callbackUrl,
-          response_type: 'token'
+          connection: backend,
+          response_type: 'token',
+          callbackURL: callbackUrl
         });
     }
+
+    vm.$stateParams = $stateParams;
   }
 })();

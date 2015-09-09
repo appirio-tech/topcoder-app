@@ -1,14 +1,16 @@
 /* jshint -W117, -W030 */
 describe('Challenge Service', function() {
   var challengeData = mockData.getMockChallenge();
-  var apiUrl = 'https://api.topcoder-dev.com/v2';
+  var apiUrl;
 
   beforeEach(function() {
-    bard.appModule('topcoder');
-    bard.inject(this, '$httpBackend', 'ChallengeService');
+    bard.appModule('tc.services');
+    bard.inject(this, '$httpBackend', 'ChallengeService', 'CONSTANTS');
+
+    apiUrl = CONSTANTS.API_URL;
   });
 
-  // bard.verifyNoOutstandingHttpRequests();
+  bard.verifyNoOutstandingHttpRequests();
 
   it('should exist', function() {
     expect(ChallengeService).to.exist;

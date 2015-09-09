@@ -1,11 +1,11 @@
 .profile-widget-directive
-  a(ui-sref="profile.about({userHandle: profile.handle})") 
-    img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profile.photo.photoUrl}}")
+  a(ui-sref="profile.about({userHandle: profile.handle})")
+    img.profile-circle(fallback-img="/images/avatarPlaceholder.png", loading-src="/images/avatarPlaceholder.png", ng-src="{{profile.photoURL}}")
 
   .info
-    h1 {{profile.handle}} 
+    h1 {{profile.handle}}
 
-      a(href="http://forums.{{DOMAIN}}/?module=History&userID={{vm.profile.userId}}")
+      a(href="http://forums.{{DOMAIN}}/?module=History&userID={{profile.userId}}")
         i.fa.fa-comment-o
 
     h3.tracks {{profile.tracks || [] | track | join: ', '}}

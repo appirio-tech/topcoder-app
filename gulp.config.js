@@ -58,6 +58,7 @@ module.exports = function() {
     bower: {
       json: require('./bower.json'),
       directory: './bower_components/',
+      exclude: ['package.js'],
       ignorePath: '../..'
     },
 
@@ -92,6 +93,7 @@ module.exports = function() {
   config.getWiredepDefaultOptions = function () {
     var options = {
       bowerJson: config.bower.json,
+      exclude: config.bower.exclude,
       directory: config.bower.directory,
       ignorePath: config.bower.ignorePath
     };
@@ -117,7 +119,7 @@ module.exports = function() {
         temp + config.templateCache.file,
         config.serverIntegrationSpecs
       ),
-      exclude: [],
+      exclude: ['package.js'],
       coverage: {
         dir: report + 'coverage',
         reporters: [

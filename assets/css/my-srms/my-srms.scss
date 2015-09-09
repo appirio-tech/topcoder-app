@@ -1,0 +1,106 @@
+@import '../partials/combined';
+
+.my-srms-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  hr {
+    @include horizontal-rule;
+    margin-bottom: 35px;
+  }
+
+  .section-loading {
+    width: 100%;
+    height: 50px;
+    background: $loading no-repeat center center;
+  }
+
+  .section-title {
+    font-size: 22px;
+    color: #4f4f4f;
+    text-align: center;
+  }
+
+  .section-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .link {
+      border-radius: 5px;
+      padding: 10px;
+      background-color: $dark-gray;
+      margin: 10px;
+
+      a {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  header {
+    position: relative;
+    margin-bottom: 35px;
+
+    p.viewDashboard {
+      position: absolute;
+      top: 3px;
+      left: 10px;
+
+      a {
+        text-decoration: underline;
+      }
+    }
+
+    p.viewOptions {
+      position: absolute;
+      top: 3px;
+      right: 150px;
+
+      a {
+        text-decoration: underline;
+
+        &.disabled {
+          text-decoration: none;
+          color: $dark-gray;
+          cursor: default;
+        }
+      }
+    }
+
+    p.filters {
+      position: absolute;
+      top: 3px;
+      right: 10px;
+
+      a {
+        text-decoration: underline;
+
+        &.disabled {
+          text-decoration: none;
+          color: $dark-gray;
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  section.srms {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: -20px;
+
+    srm-tile {
+      &.tile-view {
+        width: 23%;
+        margin-left: 20px;
+        margin-bottom: 20px;
+      }
+      &.list-view {
+        width: 100%;
+      }
+    }
+  }
+}

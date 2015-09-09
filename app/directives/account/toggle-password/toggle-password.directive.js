@@ -10,6 +10,7 @@
       templateUrl: 'directives/account/toggle-password/toggle-password.html',
       link: function(scope, element, attrs, formController) {
         var vm = scope.vm;
+        vm.passwordField = formController.password;
         vm.placeholder = vm.defaultPlaceholder;
         vm.password = '';
 
@@ -17,6 +18,12 @@
 
         element.bind('click', function(event) {
           passwordInput.focus();
+        });
+
+        element.bind('keyup', function(event) {
+          if (event.keyCode === 13) {
+            passwordInput.blur();
+          }
         });
 
         vm.onFocus = function(event) {

@@ -119,6 +119,10 @@
   justify-content: space-between;
 
   .challenge-name {
+    flex: 3;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
     margin: 10px 0px;
     a {
       font-weight: bold;
@@ -129,9 +133,10 @@
   }
 
   .challenge-icons {
+    flex: 1;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     margin: 10px 0px;
 
     img, .role {
@@ -151,10 +156,11 @@
   }
 
   .challenge-links {
+    flex: 1;
     margin: 10px 0px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
 
     img {
       width: 25px;
@@ -168,12 +174,18 @@
   }
 
   .roles {
+    flex: 2;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
     margin: 10px 0px;
     color: $dark-gray;
     font-size: 14px;
   }
 
   .days-remaining {
+    flex: 1;
     font-size: 20px;
     color: $dark-gray;
     margin: 10px 0px;
@@ -186,7 +198,15 @@
     }
   }
 
+  .completion-date {
+    flex: 1;
+  }
+
   .stats {
+    flex: 2;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
     font-size: 22px;
     color: #4f4f4f;
     margin: 10px 0px;
@@ -207,6 +227,7 @@
   }
 
   .phase-status {
+    flex: 1;
     display: flex;
     flex-direction: row;
     color: $dark-gray;

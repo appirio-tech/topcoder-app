@@ -1,3 +1,5 @@
+@import '../partials/combined';
+
 .profile-subtrack-container {
   display: flex;
   flex-direction: column;
@@ -15,15 +17,12 @@
     }
   }
   .develop, .design {
-      
+
     .stats {
       .graphs {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        img {
-          width: 700px;
-        }
       }
       h2.detailed {
         margin: 50px auto 25px auto;
