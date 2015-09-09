@@ -35,14 +35,14 @@
     "angular-ui-router": "~0.2.15",
     "angular-xml": "~2.1.1",
     "appirio-tech-ng-iso-constants": "git@github.com:appirio-tech/ng-iso-constants#~1.0.1",
+    "d3": "~3.5.6",
     "devicon": "*",
     "fontawesome": "~4.3.0",
     "jstzdetect": "~1.0.6",
     "moment": "~2.10.3",
     "ng-notifications-bar": "~0.0.15",
     "ngDialog": "0.5.1",
-    "restangular": "~1.5.1",
-    "d3": "~3.5.6"
+    "restangular": "~1.5.1"
   },
   "devDependencies": {
     "bardjs": "~0.1.4",

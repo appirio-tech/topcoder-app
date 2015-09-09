@@ -16,7 +16,7 @@
     return service;
 
     function createFileRecord(S3Response) {
-      return api.one('members', S3Response.userHandle).one('photo').customPUT(JSON.stringify(S3Response.body))
+      return api.one('members', S3Response.userHandle).customPUT(S3Response.body, 'photo')
       .then(function() {
         // Show notification that upload was successful
         $rootScope.$broadcast(CONSTANTS.EVENT_PROFILE_UPDATED);
@@ -32,7 +32,7 @@
     function getPresignedUrl(userHandle, file) {
       var deferred = $q.defer();
 
-      api.one('members', userHandle).customPOST(undefined, 'photoUploadUrl', {}, {'Content-Type': file.type})
+      api.one('members', userHandle).post('photoUploadUrl', {contentType: file.type})
       .then(function(response) {
         deferred.resolve({
           preSignedURL: response.preSignedURL,
@@ -52,21 +52,25 @@
     function uploadFileToS3(response) {
       var deferred = $q.defer();
       var xhr = new XMLHttpRequest();
-      var formData = new FormData();
-      formData.append('userimage', response.file, response.file.name);
 
       xhr.open('PUT', response.preSignedURL, true);
-      xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+      xhr.setRequestHeader('Content-Type', response.file.type);
 
       // xhr version of the success callback
       xhr.onreadystatechange = function() {
         var status = xhr.status;
         if (((status >= 200 && status < 300) || status === 304) && xhr.readyState === 4) {
-          $log.info('Successfully uploaded file')
+          $log.info('Successfully uploaded file');
           deferred.resolve({
             userHandle: response.userHandle,
-            body: { param: { token: response.token } }
+            body: {
+              token: response.token,
+              contentType: response.file.type
+            }
           });
+        } else if (status >= 400) {
+          $log.error('Error uploading to S3 with status: ' + status);
+          deferred.reject(err);
         }
       };
 
@@ -75,7 +79,7 @@
         deferred.reject(err);
       }
 
-      xhr.send(formData);
+      xhr.send(response.file);
 
       return deferred.promise;
     }

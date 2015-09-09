@@ -77,7 +77,7 @@
             route: 'members'
           })
           .addRequestInterceptor(function(element, operation, what, url) {
-            if (what === 'members') {
+            if (url.indexOf('members') > -1) {
               return {
                 param: element
               };
