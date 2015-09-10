@@ -65,6 +65,23 @@
             if (res.valid) {
               return defer.resolve();
             } else {
+              switch (res.reasonCode) {
+                case 'INVALID_LENGTH':
+                  scope.vm.usernameErrorMessage = 'That username is not the correct length or format.';
+                  break;
+                case 'INVALID_FORMAT':
+                  scope.vm.usernameErrorMessage = 'That username is not the correct length or format.';
+                  break;
+                case 'INVALID_HANDLE':
+                  scope.vm.usernameErrorMessage = 'That username is not allowed.';
+                  break;
+                case 'ALREADY_TAKEN':
+                  scope.vm.usernameErrorMessage = 'That username is already taken.'
+                  break;
+                default:
+                  scope.vm.usernameErrorMessage = 'That username is not the correct length or format.';
+              }
+
               return defer.reject(res.reasonCode);
             }
           }).catch(function(err) {
