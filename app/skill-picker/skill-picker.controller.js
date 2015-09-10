@@ -14,13 +14,13 @@
     activate();
 
     function activate() {
-      TagsService.getTags()
-      .then(function(res) {
-        // console.log('tags: ', res);
-      })
-      .catch(function(err) {
-        $log.error(err);
-      });
+      // TagsService.getApprovedSkillTags()
+      // .then(function(res) {
+      //   // console.log('tags: ', res);
+      // })
+      // .catch(function(err) {
+      //   $log.error(err);
+      // });
 
       vm.noTrackSelected = true;
 

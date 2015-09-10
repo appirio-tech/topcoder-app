@@ -11,9 +11,23 @@ describe('Edit Profile Controller', function() {
       return this;
     };
 
+    var tagsService = {
+      getApprovedSkillTags: function() {
+        return $q.when({});
+      }
+    };
+
+    var profileService = {
+      getUserSkills: function() {
+        return $q.when({});
+      }
+    };
+
     vm = $controller('EditProfileController', {
       userData: mockProfile,
-      userHandle: 'albertwang'
+      userHandle: 'albertwang',
+      TagsService: tagsService,
+      ProfileService: profileService
     });
   });
 

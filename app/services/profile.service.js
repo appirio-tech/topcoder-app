@@ -13,8 +13,11 @@
       // primary, for global use
       getUserProfile: getUserProfile,
       updateUserProfile: updateUserProfile,
+
       getUserSkills: getUserSkills,
-      updateUserSkills: updateUserSkills,
+      addUserSkill: addUserSkill,
+      hideUserSkill: hideUserSkill,
+
       getUserFinancials: getUserFinancials,
       getUserStats: getUserStats,
       getDistributionStats: getDistributionStats,
@@ -43,8 +46,15 @@
       return restangular.one('members', username).one('skills').get();
     }
 
-    function updateUserSkills(body) {
-      var username = UserService.getUserIdentity().handle;
+    function addUserSkill(username, skillTagId) {
+      var body = { skills: {} };
+      body['skills'][skillTagId] = { 'hidden': false };
+      return restangular.one('members', username).one('skills').patch(body);
+    }
+
+    function hideUserSkill(username, skillTagId) {
+      var body = { skills: {} };
+      body['skills'][skillTagId] = { 'hidden': true };
       return restangular.one('members', username).one('skills').patch(body);
     }
 

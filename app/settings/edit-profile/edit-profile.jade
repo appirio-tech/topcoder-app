@@ -85,9 +85,29 @@
               p Find challenges about data and algorithms. You know data sets, algorithms, DB structures, statistics, data analysis.
 
       button(type="submit", ng-disabled="vm.editProfile.$invalid", ng-class="{'enabled-button': vm.editProfile.$valid}") Save
+    
+  .field-section.edit-skills
+    h4.field-title My Skills
+    h5 This skills are shown on the
+    
+    angucomplete-alt(
+      id="tagId",
+      input-name="skill-input",
+      placeholder='Type skill name here and press "Enter" to add it',
+      pause="100",
+      selected-object="vm.addSkill",
+      local-data="vm.tags",
+      search-fields="name",
+      title-field="name",
+      match-class="angucomplete-highlight",
+      minlength="1"
+    )
+    
+    .skills
+      .skill(ng-repeat="skill in vm.skills | orderBy:'-score'")
+        skill-tile(skill="skill" enable-hide="true")
 
-      .field-section
-        h4.field-title Add Your Skills
+  .clearfix
 
-      .field-section
-        h4.field-title Links to Work
+  .field-section
+    h4.field-title Links to Work
