@@ -14,6 +14,7 @@
       getUserProfile: getUserProfile,
       updateUserProfile: updateUserProfile,
       getUserSkills: getUserSkills,
+      updateUserSkills: updateUserSkills,
       getUserFinancials: getUserFinancials,
       getUserStats: getUserStats,
       getDistributionStats: getDistributionStats,
@@ -40,6 +41,11 @@
 
     function getUserSkills(username) {
       return restangular.one('members', username).one('skills').get();
+    }
+
+    function updateUserSkills(body) {
+      var username = UserService.getUserIdentity().handle;
+      return restangular.one('members', username).one('skills').patch(body);
     }
 
     function getUserFinancials(username) {

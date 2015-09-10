@@ -16,94 +16,112 @@
   p {
     font-size: 15px;
     padding: 5px 20px;
-    max-width: 440px;
+
+    &.instruction {
+      max-width: 440px;
+    }
   }
 
   .track-picker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     h1 {
       margin-top: 15px;
       margin-bottom: 10px;
     }
 
-    .select-tracks {
-      .track-selection {
+    .track-section {
+      max-width: 440px;
+    }
+    .track-button {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 5px;
+      height: 55px;
+      background-color: $white;
+      border-radius: 5px;
 
-      }
-      .track-button {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 5px;
-        height: 55px;
-        background-color: $white;
-        border-radius: 5px;
+      @media only screen and (min-width: 960px) {
+        margin-right: 10px;
 
-        &.button-expanded {
-          border-bottom-right-radius: 0;
-          border-bottom-left-radius: 0;
+        &:last-child {
+          margin-right: 0;
         }
       }
 
-      .track-checkbox {
-        margin-left:  15px;
+      &.button-expanded {
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
 
-        input[type="checkbox"] {
-          display: none;
-        }
+    .track-checkbox {
+      margin-left:  15px;
 
-        label {
-          font-size: 18px;
-          text-transform: uppercase;
-          color: #b7b7b7;
+      input[type="checkbox"] {
+        display: none;
+      }
+
+      label {
+        font-size: 18px;
+        text-transform: uppercase;
+        color: #b7b7b7;
+        cursor: pointer;
+
+
+        span {
+          display: inline-block;
+          margin-right: 5px;
+          vertical-align: middle;
+          width: 17px;
+          height: 19px;
+          background: url(/images/checkbox-sprite.png) -17px top no-repeat;
           cursor: pointer;
-
+        }
+        &.checked-track {
+          color: #3d3d3d;
 
           span {
-            display: inline-block;
-            margin-right: 5px;
-            vertical-align: middle;
-            width: 17px;
-            height: 19px;
-            background: url(/images/checkbox-sprite.png) -17px top no-repeat;
-            cursor: pointer;
-          }
-          &.checked-track {
-            color: #3d3d3d;
-
-            span {
-              background: url(/images/checkbox-sprite.png) left top no-repeat;
-            }
+            background: url(/images/checkbox-sprite.png) left top no-repeat;
           }
         }
+      }
 
-        .subscript {
-          position: relative;
-          margin-left: 3px;
-          top: +0.25em;
-          font-size: 80%;
-          letter-spacing: 3px;
-          color: #7f7f7f;
-        }
+      .subscript {
+        position: relative;
+        margin-left: 3px;
+        top: +0.25em;
+        font-size: 80%;
+        letter-spacing: 3px;
+        color: #7f7f7f;
+      }
+    }
+
+    .dropdown {
+      width: 55px;
+      height: 40px;
+      line-height: 45px;
+      text-align: center;
+      color: #7f7f7f;
+      border-left: solid 1px #b7b7b7;
+
+      @media only screen and (min-width: 960px) {
+        color: $ui-enabled-button-blue;
+        border: 0;
+      }
+
+      i {
+        font-size: 1.75em;
       }
     }
 
     .mobile {
       @media only screen and (min-width: 960px) {
         display: none;
-      }
-
-      .dropdown-mobile {
-        width: 55px;
-        height: 40px;
-        line-height: 45px;
-        text-align: center;
-        color: #7f7f7f;
-        border-left: solid 1px #b7b7b7;
-
-        i {
-          font-size: 1.75em;
-        }
       }
 
       .track-skills {
@@ -128,10 +146,60 @@
           color: $white;
         }
       }
+
+      .reminder {
+        margin-top: 5px;
+      }
     }
 
-    .reminder {
-      margin-top: 5px;
+    .desktop {
+      @media only screen and (max-width: 959px) {
+        display: none;
+      }
+
+      .track-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .track-button {
+          width: 300px;
+        }
+      }
+
+      .skills-tab {
+        max-width: 920px;
+        padding: 30px;
+        padding-bottom: 0;
+        margin-top: 10px;
+        background-color: #d1d3d4;
+
+        .choose-prompt {
+          padding: 30px 0;
+          text-align: center;
+        }
+
+        .track-skills {
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: space-between;
+
+          .track-skill {
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            margin-bottom: 30px;
+            background-color: $white;
+            text-align: center;
+            cursor: pointer;
+
+            &.skill-selected {
+              background-color: $ui-enabled-button-blue;
+              color: $white;
+            }
+          }
+        }
+      }
     }
 
     button {
