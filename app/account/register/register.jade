@@ -50,7 +50,7 @@
       p.form-error(ng-show="vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength") Username must be between 2 and 15 characters.
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.email.$dirty && vm.registerForm.email.$invalid), 'success-bar': (vm.registerForm.email.$valid) }")
-      input(right-placeholder, focused-placeholder="Email", ng-model="vm.email", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required)
+      input(right-placeholder, focused-placeholder="Email", ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required)
 
       .tips.email-tips(ng-show="vm.emailTips")
         h3 Email Tips:
@@ -60,7 +60,9 @@
         p We will occasionally send you emails related to your account or interests.
 
     .form-errors
-      p.form-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$invalid") Please enter a valid email address.
+      p.form-error(ng-show="vm.registerForm.email.$dirty && (vm.registerForm.email.$error.emailIsAvailable || vm.registerForm.email.$error.validEmail)", ng-bind="vm.emailErrorMessage")
+
+      p.form-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$error.required") Please enter an email address.
 
     .validation-bar(ng-class="{ 'success-bar': (vm.registerForm.password.$valid) }")
       toggle-password-with-tips(ng-if="!vm.isSocialRegistration")
