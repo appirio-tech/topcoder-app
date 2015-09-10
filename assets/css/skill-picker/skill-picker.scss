@@ -10,7 +10,6 @@
     margin-bottom: 20px;
     font-size: 18px;
     font-weight: bold;
-    text-align: center;
   }
 
   p {
@@ -32,15 +31,12 @@
       margin-bottom: 10px;
     }
 
-    .track-section {
-      max-width: 440px;
-    }
     .track-button {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
       align-items: center;
       margin-top: 5px;
+      width: 300px;
       height: 55px;
       background-color: $white;
       border-radius: 5px;
@@ -52,11 +48,6 @@
           margin-right: 0;
         }
       }
-
-      &.button-expanded {
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-      }
     }
 
     .track-checkbox {
@@ -66,12 +57,11 @@
         display: none;
       }
 
-      label {
+      .checkbox-toggle {
         font-size: 18px;
         text-transform: uppercase;
         color: #b7b7b7;
         cursor: pointer;
-
 
         span {
           display: inline-block;
@@ -90,48 +80,37 @@
           }
         }
       }
-
-      .subscript {
-        position: relative;
-        margin-left: 3px;
-        top: +0.25em;
-        font-size: 80%;
-        letter-spacing: 3px;
-        color: #7f7f7f;
-      }
-    }
-
-    .dropdown {
-      width: 55px;
-      height: 40px;
-      line-height: 45px;
-      text-align: center;
-      color: #7f7f7f;
-      border-left: solid 1px #b7b7b7;
-
-      @media only screen and (min-width: 960px) {
-        color: $ui-enabled-button-blue;
-        border: 0;
-      }
-
-      i {
-        font-size: 1.75em;
-      }
     }
 
     .mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       @media only screen and (min-width: 960px) {
         display: none;
       }
 
-      .track-skills {
-        display: flex;
-        flex-flow: row wrap;
-        padding: 10px 15px 20px;
+      .skills-container {
+        margin-top: 10px;
+        width: 300px;
+      }
+
+      .skills-section {
+        margin-bottom: 10px;
         background-color: $white;
-        border-top: 1px solid #f0f0f0;
-        border-bottom-right-radius: 5px;
-        border-bottom-left-radius: 5px;
+        border-radius: 5px;
+
+        p {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border-bottom: 1px solid #b7b7b7;
+        }
+
+        .track-skills {
+          display: flex;
+          flex-flow: row wrap;
+          padding: 10px 15px;
+        }
 
         .track-skill {
           margin-right: 5px;

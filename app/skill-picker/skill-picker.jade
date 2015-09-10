@@ -4,55 +4,58 @@
   p.instruction Pick your tracks and select relevant skills. This helps to get you into the community and find appropriate competitions.
 
   .track-picker
-    h1 Tell us what you do
+    h1 Tell us who you are
 
     .mobile
-      .track-section
-        .track-button(ng-class="{'button-expanded': vm.dropdown.design}")
-          .track-checkbox
-            input(type="checkbox", id="checkbox-design-mobile", ng-checked="vm.tracks.design")
+      .track-button(ng-click="vm.selectTrack('design')")
+        .track-checkbox
+          input(type="checkbox", ng-checked="vm.tracks.design")
 
-            label(for="checkbox-design-mobile", ng-click="vm.selectTrack('design')", ng-class="{ 'checked-track': vm.tracks.design }") #[span] Design
+          .checkbox-toggle(ng-class="{ 'checked-track': vm.tracks.design }") #[span] Design
 
-            span.subscript [{{vm.selectedSkills.design.numSkills}}]
+      .track-button(ng-click="vm.selectTrack('develop')")
+        .track-checkbox
+          input(type="checkbox", ng-checked="vm.tracks.develop")
 
-          .dropdown(ng-click="vm.dropdown.design = !vm.dropdown.design")
-            i.fa(ng-class="{'fa-caret-down': !vm.dropdown.design, 'fa-caret-up': vm.dropdown.design}")
+          .checkbox-toggle(ng-class="{ 'checked-track': vm.tracks.develop }") #[span] Development
 
-        .track-skills(ng-show="vm.dropdown.design")
-          .track-skill(ng-repeat="skill in vm.skills.design", ng-click="vm.toggleSkill('design', skill)", ng-class="{'skill-selected': vm.selectedSkills.design[skill]}") {{skill}}
+      .track-button(ng-click="vm.selectTrack('data_science')")
+        .track-checkbox
+          input(type="checkbox", ng-checked="vm.tracks.data_science")
 
-      .track-section
-        .track-button(ng-class="{'button-expanded': vm.dropdown.develop}")
-          .track-checkbox
-            input(type="checkbox", id="checkbox-develop-mobile", ng-checked="vm.tracks.develop")
+          .checkbox-toggle(ng-class="{ 'checked-track': vm.tracks.data_science }") #[span] Data Science
 
-            label(for="checkbox-develop-mobile", ng-click="vm.selectTrack('develop')", ng-class="{ 'checked-track': vm.tracks.develop }") #[span] Development
+      p.reminder(ng-show="!vm.tracks.design && !vm.tracks.develop && !vm.tracks.data_science") Please pick at least one track, you can always change it later.
 
-            span.subscript [{{vm.selectedSkills.develop.numSkills}}]
+      p.reminder(ng-show="vm.tracks.design || vm.tracks.develop || vm.tracks.data_science") Select your skills
 
-          .dropdown(ng-click="vm.dropdown.develop = !vm.dropdown.develop")
-            i.fa(ng-class="{'fa-caret-down': !vm.dropdown.develop, 'fa-caret-up': vm.dropdown.develop}")
+      .skills-container
+        .skills-section(ng-show="vm.tracks.design")
+          p Design
 
-        .track-skills(ng-show="vm.dropdown.develop")
-          .track-skill(ng-repeat="skill in vm.skills.develop", ng-click="vm.toggleSkill('develop', skill)", ng-class="{'skill-selected': vm.selectedSkills.develop[skill]}") {{skill}}
+          .track-skills
+            .track-skill(ng-repeat="skill in vm.skills.design", ng-click="vm.toggleSkill('design', skill)", ng-class="{'skill-selected': vm.selectedSkills.design[skill]}") {{skill}}
 
-      .track-section
-        .track-button(ng-class="{'button-expanded': vm.dropdown.data_science}")
-          .track-checkbox
-            input(type="checkbox", id="checkbox-data-science-mobile", ng-checked="vm.tracks.data_science")
+        .skills-section(ng-show="vm.tracks.develop")
+          p Development
 
-            label(for="checkbox-data-science-mobile", ng-click="vm.selectTrack('data_science')", ng-class="{ 'checked-track': vm.tracks.data_science }") #[span] Data Science
+          .track-skills
+            .track-skill(ng-repeat="skill in vm.skills.develop", ng-click="vm.toggleSkill('develop', skill)", ng-class="{'skill-selected': vm.selectedSkills.develop[skill]}") {{skill}}
 
-            span.subscript [{{vm.selectedSkills.data_science.numSkills}}]
+        .skills-section(ng-show="vm.tracks.data_science")
+          p Data Science
 
-          .dropdown(ng-click="vm.dropdown.data_science = !vm.dropdown.data_science")
-            i.fa(ng-class="{'fa-caret-down': !vm.dropdown.data_science, 'fa-caret-up': vm.dropdown.data_science}")
+          .track-skills
+            .track-skill(ng-repeat="skill in vm.skills.data_science", ng-click="vm.toggleSkill('data_science', skill)", ng-class="{'skill-selected': vm.selectedSkills.data_science[skill]}") {{skill}}
 
-        .track-skills(ng-show="vm.dropdown.data_science")
-          .track-skill(ng-repeat="skill in vm.skills.data_science", ng-click="vm.toggleSkill('data_science', skill)", ng-class="{'skill-selected': vm.selectedSkills.data_science[skill]}") {{skill}}
 
-      p.reminder Please pick at least one track, you can always change it later.
+
+
+
+
+
+
+
 
     .desktop
       .track-buttons
@@ -62,7 +65,7 @@
 
             label(for="checkbox-design-mobile", ng-class="{ 'checked-track': vm.tracks.design }") #[span] Design
 
-            span.subscript [{{vm.selectedSkills.design.numSkills}}]
+            //- span.subscript [{{vm.selectedSkills.design.numSkills}}]
 
           .dropdown
             i.fa(ng-class="{'fa-caret-down': vm.dropdown.design}")
@@ -73,7 +76,7 @@
 
             label(for="checkbox-develop-mobile", ng-class="{ 'checked-track': vm.tracks.develop }") #[span] Development
 
-            span.subscript [{{vm.selectedSkills.develop.numSkills}}]
+            //- span.subscript [{{vm.selectedSkills.develop.numSkills}}]
 
           .dropdown
             i.fa(ng-class="{'fa-caret-down': vm.dropdown.develop}")
@@ -84,7 +87,7 @@
 
             label(for="checkbox-data-science-mobile", ng-class="{ 'checked-track': vm.tracks.data_science }") #[span] Data Science
 
-            span.subscript [{{vm.selectedSkills.data_science.numSkills}}]
+            //- span.subscript [{{vm.selectedSkills.data_science.numSkills}}]
 
           .dropdown
             i.fa(ng-class="{'fa-caret-down': vm.dropdown.data_science}")

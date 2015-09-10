@@ -63,10 +63,6 @@
     }
 
     function selectTrack(track) {
-      if (vm.tracks[track] === vm.dropdown[track]) {
-        vm.dropdown[track] = !vm.dropdown[track];
-      }
-
       vm.tracks[track] = !vm.tracks[track];
     }
 
