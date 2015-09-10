@@ -3,14 +3,16 @@
 
   angular.module('tc.services').factory('TagsService', TagsService);
 
-  TagsService.$inject = ['ApiService'];
+  TagsService.$inject = ['ApiService', '$q'];
 
-  function TagsService(ApiService) {
+  function TagsService(ApiService, $q) {
     var api = ApiService.restangularV3;
-    
+
     var service = {
       getApprovedSkillTags: function() {
-        return api.one("tags").get({filter: 'domain=SKILLS&status=APPROVED'});
+        return api.all("tags")
+          .withHttpConfig({skipAuthorization: true})
+          .getList({filter: 'domain=SKILLS&status=APPROVED'});
       }
     };
 

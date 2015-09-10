@@ -23,7 +23,7 @@
 
       processData(userData);
       vm.userData = userData;
-      
+
       TagsService.getApprovedSkillTags()
       .then(function(tags) {
         vm.tags = tags;
@@ -40,10 +40,17 @@
         $log.error(err);
       });
     }
-    
+
     function addSkill(skill) {
-      var skillTagId = _.get(skill, 'originalObject.id');
-      ProfileService.addUserSkill(vm.userData.handle, skillTagId);
+      if (skill) {
+        var skillTagId = _.get(skill, 'originalObject.id').toString();
+        ProfileService.addUserSkill(vm.userData.handle, skillTagId).then(function(resp) {
+          // find the new skill in response object and inject it into our existing list.
+          // we dont want to replace the entire object / map  because we will lose hidden tags
+          var newSkill = _.find(resp.skills, {tagId: skillTagId});
+          vm.skills.push(newSkill);
+        });
+      }
     }
 
     function updateCountry(angucompleteCountryObj) {

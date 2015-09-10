@@ -104,8 +104,8 @@
     )
     
     .skills
-      .skill(ng-repeat="skill in vm.skills")
-        skill-tile(skill="skill")
+      .skill(ng-repeat="skill in vm.skills | orderBy:'-score'")
+        skill-tile(skill="skill" enable-hide="true")
 
   .clearfix
 
