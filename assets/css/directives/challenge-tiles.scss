@@ -38,6 +38,16 @@
       line-height: 25px;
     }
   }
+
+  .thumbnail {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 0;
+    img {
+    }
+  }
+
   .roles {
     margin-top: 10px;
     margin-bottom: 20px;
