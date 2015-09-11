@@ -1,62 +1,57 @@
-.profile-about-container
-  p.description {{profileVm.profile.quote}}
+.profile-header-container(ng-cloak)
+  profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-challenges="profileVm.numProjects")
 
-  .tags
-    .tag(ng-repeat="role in (profileVm.profile.tracks | role)")
-      | {{role}} 
+  .tracks-links
+    .tracks
+      .track(ng-repeat="track in (profileVm.profile.tracks | track)")
+        | {{track}}
+
+    hr
+    
+    .links
+      a.forums(href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
+        Forum Posts
+      a.badges
+        a(ng-click="profileVm.showBadges()") Badges
+
+.profile-about-container
 
   hr
 
   tc-section(state="profileVm.status.stats")
-    .horizontal-stats
-      .stat
-        .value {{profileVm.numProjects}}
-
-        .name Challenges
-
-      .stat
-        .value
-          | {{profileVm.numWins}}
-          | ({{profileVm.numWins / profileVm.numProjects | percentage}})
-
-        .name Wins
 
     .categories
-      .leftButton(
-        ng-click="vm.shiftCategories(-1)",
-        ng-show="vm.categoryIndex > 0"
-      ) &#9664;
 
-      .category(
-        ng-repeat="category in profileVm.categories.slice(vm.categoryIndex, vm.categoryIndex + 4)", 
-        ui-sref="profile.subtrack({track: category.track, subTrack: category.subTrack})"
+      .track(ng-if="profileVm.categories['MARATHON'].rank || profileVm.categories['SRM'].rank")
+        .name Data Science
+
+      .track(
+        ng-repeat="track in profileVm.profile.tracks",
+        ng-if="profileVm.categories[track].length > 0"
       )
-        .name {{category.track | track}}
 
-        .subcategory(ng-show="category.subTrack") {{category.subTrack | track}}
+        .name {{track}}
 
-        .icon
-          img(src="/images/member-program/svg/development-generic.svg")
+        .subtrack(
+          ng-repeat="subtrack in profileVm.categories[track]",
+          ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})"
+        )
+          .name {{subtrack.subTrack | track}}
 
-        .ranking(ng-if="category.rank")
-          .number {{category.rank | ordinal}}
+          .ranking(ng-if="subtrack.rank")
+            .number {{subtrack.rank | ordinal}}
 
-          .tag Ranking
-        .ranking(ng-if="category.wins && !category.rank")
-          .number {{category.wins}}
+            .tag Ranking
 
-          .tag Wins
-        
-        .ranking(ng-if="category.fulfillment")
-          .number {{category.fulfillment + '%'}}
+          .ranking(ng-if="subtrack.wins && !subtrack.rank")
+            .number {{subtrack.wins}}
 
-          .tag Fulfillment
+            .tag Wins
+          
+          .ranking(ng-if="subtrack.fulfillment")
+            .number {{subtrack.fulfillment + '%'}}
 
-
-      .rightButton(
-        ng-click="vm.shiftCategories(1)",
-        ng-show="vm.categoryIndex < vm.categories.length - 4"
-      ) &#9654;
+            .tag Fulfillment
 
   hr
 

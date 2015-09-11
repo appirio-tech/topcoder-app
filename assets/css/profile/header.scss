@@ -3,16 +3,22 @@
 .profile-header-container {
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 
-  .left {
+  .tracks-links {
+    .tracks {
+      display: flex;
+      justify-content: center;
+      .track {
+        background: #dddddd;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin: 15px 5px;
+      }
+    }
 
-    display: flex;
 
-  }
-
-  .right {
 
     h4 {
       color: gray;

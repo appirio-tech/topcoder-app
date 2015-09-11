@@ -2,38 +2,12 @@
   margin-top: 30px;
   display: flex;
   flex-direction: column;
-  p.description {
-    line-height: 1.5;
-    width: 50%;
-    margin: auto;
-    text-align: center;
-  }
-  .tags {
-    display: flex;
-    justify-content: center;
-    .tag {
-      background: #dddddd;
-      border-radius: 5px;
-      padding: 5px 10px;
-      margin: 15px 5px;
-    }
-  }
 
   .categories {
-    .leftButton, .rightButton {
-      height: 275px;
-      width: 50px;
-      margin: 10px;
-      display: flex;
-      text-align: center;
-      flex-direction: column;
-      justify-content: center;
-      &:hover {
-        cursor: pointer;
-      }
-    }
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     margin: 10px 0;
     .category {
       display: flex;

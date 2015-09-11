@@ -4,7 +4,7 @@
     .module('tc.profile')
     .controller('ProfileSubtrackController', ProfileSubtrackController);
 
-  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window'];
+  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window', 'userHandle'];
 
   function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window) {
     var vm = this;
@@ -15,6 +15,7 @@
     vm.domain = CONSTANTS.domain;
     vm.challenges = [];
     var profileVm = $scope.$parent.profileVm;
+    vm.userHandle = profileVm.profile.handle;
     vm.dropdown = [];
     vm.ddSelected = {};
     vm.distribution = {};

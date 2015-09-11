@@ -5,17 +5,11 @@
   .info
     h1 {{profile.handle}}
 
-    h3.tracks {{profile.tracks || [] | track | join: ', '}}
+    h3.tenure(ng-if="profile.startMonth")
+      | Member Since {{profile.startMonth}}
 
-    h3.location-challenges {{profile.homeCountryCode | country}} || {{numChallenges}}
+    p.description {{profile.quote}}
+
+    h3.location-challenges {{profile.homeCountryCode | country}} | {{numChallenges}} Challenges
 
     a(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
-
-  .tracks-links
-    .tracks
-      .track(ng-repeat="track in (profile.tracks | track)")
-        | {{track}}
-    hr
-    .links
-      a.forums(href="http://forums.{{DOMAIN}}/?module=History&userID={{profile.userId}}")
-        i.fa.fa-comment-o
