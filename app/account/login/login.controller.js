@@ -7,6 +7,7 @@
 
   function LoginController($log, $state, $stateParams, TcAuthService, AuthTokenService, UserService, NotificationService, Helpers) {
     var vm = this;
+    vm.$stateParams = $stateParams;
     vm.passwordReset = false;
     vm.usernameExists = true;
 
@@ -57,7 +58,11 @@
     }
 
     vm.login = function() {
+      vm.usernameExists = true;
+      vm.wrongPassword = false;
+
       if (Helpers.isEmail(vm.username)) {
+        vm.emailOrUsername = 'email';
         // ensure email exists
         UserService.validateUserEmail(vm.username).then(function(data) {
           if (data.valid) {
@@ -74,10 +79,11 @@
           _doLogin(vm.username, vm.password);
         });
       } else {
+        vm.emailOrUsername = 'username';
         // username - make sure it exists
         UserService.validateUserHandle(vm.username).then(function(data) {
           if (data.valid) {
-            // email doesn't exist
+            // username doesn't exist
             vm.usernameExists = false;
           } else {
             vm.usernameExists = true;
@@ -100,8 +106,6 @@
       callbackUrl = $state.href('login', params, {absolute: true});
       TcAuthService.socialLogin(backend, callbackUrl);
     };
-
-    vm.$stateParams = $stateParams;
   }
 
 })();
