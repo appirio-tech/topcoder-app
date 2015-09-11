@@ -67,17 +67,14 @@ html
     //- endinject
     // endbuild
 
-  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh}", ng-strict-di)
+  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh, 'menu-visible': main.menuVisible}", ng-strict-di)
 
     //- include ./layout/header/header.jade
     #header(ui-view="header")
 
     notifications-bar.notifications(closeIcon="fa fa-times-circle")
 
-    //- include ./layout/header/sidebar.jade
-    div(ui-view="sidebar")
-
-    .view-container(ng-class="{slided: main.sidebarActive}")
+    .view-container
       div(ui-view="container")
 
     //- include ./layout/footer/footer.jade
