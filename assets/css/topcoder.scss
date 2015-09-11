@@ -121,8 +121,6 @@ a {
 }
 
 .form-notice {
-  margin-top: 5px;
-  margin-bottom: 5px;
   font-size: 13px;
   color: #58595B;
 }
@@ -270,7 +268,7 @@ a {
 
   .has-length-between-range:before,
   .has-letter:before,
-  .has-symbol:before,
+  .has-symbol-or-number:before,
   .has-number:before {
     display: block;
   }

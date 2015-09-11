@@ -1,4 +1,4 @@
 (function() {
   'use strict';
-  angular.module('tcUIComponents', []);
+  angular.module('tcUIComponents', ['dcbImgFallback']);
 })();

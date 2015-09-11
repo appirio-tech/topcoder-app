@@ -16,6 +16,7 @@
 
     label {
       display: block;
+      position: relative;
       margin-bottom: 15px;
     }
 
@@ -24,8 +25,10 @@
       margin-top: 7px;
     }
 
-    .form-errors {
-      margin-top: 8px;
+    .account-info-error {
+      position: absolute;
+      top: 65px;
+      left: 3px;
     }
 
     button.enabled-button {

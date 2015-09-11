@@ -13,10 +13,6 @@
 
       input(right-placeholder, focused-placeholder="Last", ng-model="vm.lastname", maxlength="64", name="lastname", placeholder="Last Name", type="text", required)
 
-    //- Show errors for first and last names once we know whether we can handle accents, other languages, and not symbols/numbers
-    //- .form-errors
-    //-   p.form-error(ng-show="vm.registerForm.firstname.$dirty && vm.registerForm.firstname.$error.pattern") Names must not contain symbols or numbers.
-
     .country-dropdown
       angucomplete-alt(
         input-name="country",
@@ -32,7 +28,7 @@
       )
 
       .form-errors
-        p.form-error(ng-show="vm.registerForm.country.$error.required") Please enter a valid country.
+        p.form-error(ng-show="vm.registerForm.country.$error.required") Please choose a country from the list.
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.username.$error.usernameIsFree || vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength), 'success-bar': (vm.registerForm.username.$valid && !vm.registerForm.username.$error.usernameIsFree) }")
       input(right-placeholder, focused-placeholder="Username", ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)
@@ -40,60 +36,60 @@
       .tips.username-tips(ng-show="vm.usernameTips")
         h3 Username Tips:
 
-        p This will be public to other members
+        p Your username will be public
 
-        p Between 2 and 15 characters
+        p Please choose one that is between 2 and 15 characters
 
-        p Can contain numbers and letters
-
-        p You can always change it later
+        p It can contain letters, numbers, and these characters: -_.{}[]
 
     .form-errors
-      p.form-error(ng-show="vm.registerForm.username.$error.usernameIsFree") This username already exists.
+      p.form-error(ng-show="vm.registerForm.username.$dirty && vm.registerForm.username.$error.usernameIsFree", ng-bind="vm.usernameErrorMessage")
 
-      p.form-error(ng-show="vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength") Username must be between 2 and 15 characters.
+      p.form-error(ng-show="vm.registerForm.username.$dirty && (vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength)") That username is not the correct length or format.
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.email.$dirty && vm.registerForm.email.$invalid), 'success-bar': (vm.registerForm.email.$valid) }")
-      input(right-placeholder, focused-placeholder="Email", ng-model="vm.email", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required)
+      input(right-placeholder, focused-placeholder="Email", ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required)
 
       .tips.email-tips(ng-show="vm.emailTips")
         h3 Email Tips:
 
-        p This will be private and not shared with anyone.
+        p Your email address will be private and not shared with anyone.
 
-        p We will occasionally send you emails related to your account or interests.
+        p We'll occasionally send you emails related to your activities or interests.
 
     .form-errors
-      p.form-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$invalid") Please enter a valid email address.
+      p.form-error(ng-show="vm.registerForm.email.$dirty && (vm.registerForm.email.$error.emailIsAvailable || vm.registerForm.email.$error.validEmail)", ng-bind="vm.emailErrorMessage")
+
+      p.form-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$error.required") Please enter an email address.
 
     .validation-bar(ng-class="{ 'success-bar': (vm.registerForm.password.$valid) }")
-      toggle-password(ng-if="!vm.isSocialRegistration")
+      toggle-password-with-tips(ng-if="!vm.isSocialRegistration")
 
       .tips.password-tips(ng-show="vm.passwordFocus")
         h3 Password Tips:
 
-        p(ng-class="{ 'has-length-between-range': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.minlength && !vm.registerForm.password.$error.maxlength && !vm.registerForm.password.$error.required) }") Must be between 8 and 64 characters
+        p Your password must have:
+
+        p(ng-class="{ 'has-length-between-range': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.minlength && !vm.registerForm.password.$error.maxlength && !vm.registerForm.password.$error.required) }") At least 8 characters
 
         p(ng-class="{ 'has-letter': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasLetter) }") At least one letter
 
-        p(ng-class="{ 'has-symbol': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasSymbol) }") At least one symbol
-
-        p(ng-class="{ 'has-number': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasNumber) }") At least one number
+        p(ng-class="{ 'has-symbol-or-number': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
     button(type="submit", ng-disabled="vm.registerForm.$invalid", ng-class="{'enabled-button': vm.registerForm.$valid}") Join Now
 
   section.terms
-    p By clicking "JOIN NOW" I agree to Topcoder's
+    p By clicking "JOIN NOW" you agree to Topcoder's
 
     p #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms of Service] and #[a(href="http://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank") Privacy Policy]
 
   section.social
-    p Register using another account.
+    p Use an existing account to register.
 
     .social-icons
       i.fa.fa-github-square(ng-click="vm.socialRegister('github')")
       i.fa.fa-facebook-square(ng-click="vm.socialRegister('facebook')")
       i.fa.fa-google-plus-square(ng-click="vm.socialRegister('google-oauth2')")
 
-  p.redirect Already have an account? 
-    a(ui-sref="login(vm.$stateParams)") Login.
+  p.redirect Already a member? 
+    a(ui-sref="login(vm.$stateParams)") Log in.

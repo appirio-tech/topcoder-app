@@ -12,7 +12,8 @@
     activate();
 
     function activate() {
-      vm.defaultPlaceholder = 'Enter New Password';
+      vm.defaultPlaceholder = 'New Password';
+      vm.currentPasswordDefaultPlaceholder = 'Current Password';
       vm.username = userData.handle;
       vm.email    = userData.email;
     }
@@ -23,7 +24,9 @@
         vm.password = '';
         vm.currentPassword = '';
         vm.newPasswordForm.$setPristine();
+        vm.currentPasswordFocus = false;
         vm.placeholder = vm.defaultPlaceholder;
+        vm.currentPasswordPlaceholder = vm.currentPasswordDefaultPlaceholder;
 
         $log.info('Your password has been updated.');
       })

@@ -3,11 +3,12 @@
 
   angular.module('tcUIComponents').directive('focusOn', focusOn);
 
-  focusOn.$inject = ['$timeout'];
+  focusOn.$inject = ['$timeout', '$parse'];
 
-  function focusOn($timeout) {
+  function focusOn($timeout, $parse) {
     return function(scope, element, attr) {
-      scope.$watch('refocus', function(newValue) {
+      var model = $parse(attr.focusOn);
+      scope.$watch(model, function(newValue) {
         $timeout(function() {
           if (newValue !== undefined) {
             element[0].focus();
