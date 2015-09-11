@@ -30,7 +30,6 @@
     vm.statsPromise = ProfileService.getUserStats(vm.userHandle).then(function(stats) {
       vm.stats = stats;
       vm.profile.tracks = vm.profile.tracks || ProfileService.getTracks(vm.stats) || [];
-      console.log('tracks: ' + profile.tracks)
       vm.numProjects = vm.stats.challenges;
       vm.numWins = vm.stats.wins;
       vm.categories = ProfileService.getRanks(vm.stats);
