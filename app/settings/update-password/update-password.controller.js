@@ -21,7 +21,7 @@
       UserService.getUserProfile({fields: 'credential'})
       .then(function(res) {
         vm.loaded = true;
-        vm.isSocialRegistrant = res.credential.hasPassword;
+        vm.isSocialRegistrant = !res.credential.hasPassword;
       })
       .catch(function(err) {
         $log.error("Error fetching user profile. Redirecting to edit profile.");
