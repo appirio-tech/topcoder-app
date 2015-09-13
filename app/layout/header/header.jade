@@ -8,7 +8,7 @@
       button.btn-open-menu(type="button", ng-if="!main.menuVisible", ng-click="main.menuVisible = true") Menu
       button.btn-close-menu(type="button", ng-if="main.menuVisible", ng-click="main.menuVisible = false")
       // User link (profile or join)
-      a(href="javascript:;", ng-switch="main.loggedIn" class="user-link" data-ng-if="!main.menuVisible")
+      a(href="javascript:;", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
         img(ng-switch-when="true", src="/images/sample-avatar.png", class="user-avatar") 
         span(ng-switch-when="false" class="btn-link") JOIN
         
@@ -25,22 +25,22 @@
               a(href="javascript:;" class="menu-link") {{suggestion}}
           
       // user menu
-      li.menu-item.link-group.user-menu(ng-switch="main.loggedIn", ng-class="{'anonymous-menu': !main.loggedIn}")
+      li.menu-item.link-group.user-menu(ng-switch="vm.isAuth", ng-class="{'anonymous-menu': !vm.isAuth}")
         // links for logged in user
         div(ng-switch-when="true")
           .menu-item-header
-            img(src="/images/sample-avatar.png", class="user-avatar") 
-            span.username Victor G.
+            img(class="user-avatar" fallback-img="/images/avatarPlaceholder.png", loading-src="/images/avatarPlaceholder.png", ng-src="{{vm.profile.photoURL}}") 
+            span.username {{vm.userHandle}}
           a.btn-link.btn-edit-profile.show-small(href="javascript:;") EDIT
           ul.submenu
             li.submenu-item #[a.menu-link(href="javascript:;") DASHBOARD]
             li.submenu-item #[a.menu-link(href="javascript:;") MY PROFILE]
             li.submenu-item #[a.menu-link(href="javascript:;") SETTINGS]
-            li.submenu-item #[a.menu-link(href="javascript:;", ng-click="main.menuVisible = main.loggedIn = false") LOG OUT]
+            li.submenu-item #[a.menu-link(ng-click="vm.logout(); main.menuVisible = vm.isAuth = false") LOG OUT]
         // links for anonymous user
         .menu-item-header(ng-switch-when="false")
-          a.btn-link(href="javascript:;") REGISTER
-          a.btn-link.secondary-link(href="javascript:;", ng-click="main.menuVisible = false; main.loggedIn = true") LOG IN
+          a.btn-link(ui-sref="register") REGISTER
+          a.btn-link.secondary-link(ui-sref="login") LOG IN
           
       // 'COMPETE' link group
       li.menu-item.link-group

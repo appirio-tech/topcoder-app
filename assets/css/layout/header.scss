@@ -175,6 +175,7 @@
   .user-avatar {
     height: 31px;
     vertical-align: middle;
+    border-radius: 50%;
   }
 
   .username {
@@ -473,7 +474,7 @@
   // Change source ordering for user logo and username
   .user-menu .menu-item-header {
     position: relative;
-      padding-right: 40px;
+    padding-right: 40px;
 
     .user-avatar {
       position: absolute;
