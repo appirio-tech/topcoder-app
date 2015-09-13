@@ -8,10 +8,11 @@
     'NotificationService',
     'UserService',
     'ProfileService',
-    'CONSTANTS'
+    'CONSTANTS',
+    'userIdentity'
   ];
 
-  function HeaderDashboardController($stateParams, NotificationService, UserService, ProfileService, CONSTANTS) {
+  function HeaderDashboardController($stateParams, NotificationService, UserService, ProfileService, CONSTANTS, userIdentity) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.defaultPhotoUrl = CONSTANTS.ASSET_PREFIX + "images/avatarPlaceholder.png";
@@ -27,7 +28,7 @@
     activate();
 
     function activate() {
-      var handle = UserService.getUserIdentity().handle;
+      var handle = userIdentity.handle;
 
       ProfileService.getUserProfile(handle)
       .then(function(profile) {

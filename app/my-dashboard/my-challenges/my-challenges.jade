@@ -17,7 +17,7 @@ section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
   .link
     a(href="https://www.{{vm.domain}}/challenges/?pageIndex=1") Find New Challenges
 
-  .link(ng-show="vm.isCopilot")
+  .link(ng-show="dashboard.isCopilot")
     a(href="https://www.{{vm.domain}}/direct") Launch Topcoder Direct
 
   .link(ng-hide="vm.userHasChallenges")
