@@ -1,7 +1,12 @@
 @import '../partials/combined';
 
+#header {
+  @include clearfix;
+}
+
 .header-wrapper {
   box-sizing: content-box;
+  z-index: 1000;
 }
 
 .search-icon {
@@ -395,12 +400,7 @@
       position: static;
     }
 
-    // Clearfix
-    &:after {
-      content: "";
-      display: block;
-      clear: both;
-    }
+    @include clearfix;
 
     .submenu {
       position: absolute;
