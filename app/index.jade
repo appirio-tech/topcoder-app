@@ -67,17 +67,14 @@ html
     //- endinject
     // endbuild
 
-  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh}", ng-strict-di)
+  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh, 'menu-visible': main.menuVisible}", ng-strict-di)
 
     //- include ./layout/header/header.jade
     #header(ui-view="header")
 
     notifications-bar.notifications(closeIcon="fa fa-times-circle")
 
-    //- include ./layout/header/sidebar.jade
-    div(ui-view="sidebar")
-
-    .view-container(ng-class="{slided: main.sidebarActive}")
+    .view-container
       div(ui-view="container")
 
     //- include ./layout/footer/footer.jade
@@ -123,6 +120,7 @@ html
     script(src="blocks/exception/exception.js")
     script(src="blocks/exception/exception-handler.provider.js")
     script(src="blocks/logger/logger.module.js")
+    script(src="blocks/logger/logEnhancer.js")
     script(src="blocks/logger/logger.js")
     script(src="directives/tcui-components.module.js")
     script(src="directives/account/toggle-password/toggle-password.directive.js")
@@ -199,6 +197,7 @@ html
     script(src="services/review.service.js")
     script(src="services/scorecard.service.js")
     script(src="services/srm.service.js")
+    script(src="services/tags.service.js")
     script(src="services/tcAuth.service.js")
     script(src="services/user.service.js")
     script(src="settings/settings.module.js")

@@ -12,7 +12,7 @@
         parent: 'root',
         url: '/skillpicker/',
         data: {
-          authRequired: true,
+          // authRequired: true,
           UIRefresh: true,
           title: 'Skill Picker'
         },
