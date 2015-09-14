@@ -1,34 +1,58 @@
 .profile-widget-directive {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
 
   img.profile-circle {
     border-radius: 50%;
     display: inline;
     margin-right: 20px;
-    width: 130px;
-    height: 130px;
+    width: 140px;
+    height: 140px;
+    margin-top: 30px;
   }
 
-  .info {
-    margin-top: 20px;
+  h1.handle {
+    margin-top: 10px;
+    font-size: 32px;
+    line-height: 38px;
+    font-family: 'Sofia Pro';
+    font-weight: bold;
+  }
 
-    h1 {
-      font-size: 25px;
-      margin-bottom: 5px;
-      span.realName {
-        font-size: 15px;
-      }
-    }
+  h3.tenure {
+    margin-top: 5px;
+    font-size: 19px;
+    font-family: 'Sofia Pro';
+    font-weight: light;
+    color: #d1d3d4;
+    text-transform: uppercase;
+  }
 
-    h5 {
-      color: gray;
-      &.tracks {
-        text-transform: uppercase;
-      }
-      &.location {
-        margin-top: 10px;
-      }
+  h5 {
+    color: gray;
+    &.tracks {
+      text-transform: uppercase;
     }
+    &.location {
+      margin-top: 10px;
+    }
+  }
+
+  h3.location-challenges {
+    margin-top: 29px;
+    font-size: 19px;
+    font-family: 'Sofia Pro';
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  p.description {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 24px;
+    font-family: 'Source Sans Pro';
+    width: 254px;
+    text-align: center;
   }
 }

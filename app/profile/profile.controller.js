@@ -57,15 +57,11 @@
         vm.showEditProfileLink = false;
       }
       if (profile.createdAt) {
-        vm.tenure = yearsSince(profile.createdAt);
+        profile.startMonth = moment(profile.createdAt).format('MMMM YYYY');
       } else {
-        vm.tenure = false;
+        profile.startMonth = moment().format('MMMM YYYY')// false;
       }
 
-    }
-
-    function yearsSince(dateString) {
-      return moment().isoWeekYear() - moment(dateString).isoWeekYear();
     }
 
     function showBadges() {

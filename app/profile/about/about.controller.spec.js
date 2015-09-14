@@ -39,21 +39,4 @@ describe('Profile About Controller', function() {
     expect(controller.skillIndex).to.be.defined;
   });
 
-  describe('paging', function() {
-    it('should be able to page categories', function() {
-      controller.shiftCategories(-1);
-      expect(controller.categoryIndex).to.equal(0);
-      controller.shiftCategories(1);
-      expect(controller.categoryIndex).to.equal(1);
-    });
-
-    it('should be able to page skills', function() {
-      controller.shiftSkills(-1);
-      expect(controller.skillIndex).to.equal(0);
-      controller.shiftSkills(1);
-      expect(controller.skillIndex).to.equal(1);
-    });
-  });
-
-
 });
