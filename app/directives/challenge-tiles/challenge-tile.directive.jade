@@ -1,6 +1,10 @@
-.challenge.tile-view(ng-show="view=='tile'")
-  .challenge-name
+.challenge.tile-view(ng-show="view === 'tile'", ng-class="challenge.track")
+  .challenge-track
+
+  header
     a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}") {{challenge.name}}
+
+    p {{subTrack}}
 
   .challenge-details
     .challenge-icons
@@ -34,6 +38,7 @@
         i.fa.fa-check-circle-o
 
         p {{challenge.memberStatusMsg}}
+
 .challenge.list-view(ng-show="view=='list'")
   .challenge-icons
     img(ng-show="challenge.track === 'DEVELOP'", src="/images/member-program/svg/development-generic.svg")
@@ -62,7 +67,7 @@
       i.fa.fa-files-o
       a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.challengeId}}/?type={{challenge.track}}#viewRegistrant") {{challenge.numSubmissions}}
 
-  
+
   .challenge-links
     a(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
       i.fa.fa-comment

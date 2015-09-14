@@ -2,19 +2,43 @@
 
 // Default Challenge Tile Stylings
 .challenge.tile-view {
-  background-color: $medium-gray;
-  box-sizing: border-box;
-  width: 100%;
-  padding: 10px;
+  position: relative;
+  width: 270px;
+  border: 1px solid #DCDCDC;
+  border-radius: 4px;
+  background-color: $white;
 
-  .challenge-name {
+  .challenge-track {
+    width: 5px;
+    height: 52px;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    border-top-left-radius: 4px;
+  }
+
+  header {
+    padding: 0 20px;
+    height: 52px;
+    border-bottom: 1px solid #F0F0F0;
+
     a {
-      font-weight: bold;
-      color: #4f4f4f;
       display: block;
+      width: 210px;
+      padding-top: 8px;
+      padding-bottom: 5px;
+      font-family: SofiaProMedium, Arial;
+      font-size: 14px;
+      line-height: 18px;
+      color: #3D3D3D;
       text-decoration: none;
       @include ellipsis;
-      margin-bottom: 15px;
+    }
+
+    p {
+      text-transform: uppercase;
+      font-size: 11px;
+      line-height: 13px;
     }
   }
 
@@ -31,7 +55,6 @@
       width: 25px;
       height: 25px;
     }
-
 
     a {
       color: $dark-gray;
@@ -110,7 +133,6 @@
 .challenge.list-view {
   width: 100%;
   border-bottom: 1px solid $medium-gray;
-  box-sizing: border-box;
   padding: 10px;
   display: flex;
   flex-flow: row wrap;
@@ -255,5 +277,39 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+}
+
+// Dynamic colors based on track
+.DESIGN {
+  .challenge-track {
+    background-color: $accent-color;
+  }
+  header p {
+    color: $accent-color
+  }
+}
+.DEVELOP {
+  .challenge-track {
+    background-color: $success-color;
+  }
+  header p {
+    color: $success-color;
+  }
+}
+.DATA_SCIENCE {
+  .challenge-track {
+    background-color: #F39426;
+  }
+  header p {
+    color: #F39426;
+  }
+}
+.COPILOT {
+  .challenge-track {
+    background-color: #7F7F7F;
+  }
+  header p {
+    color: #7F7F7F;
   }
 }

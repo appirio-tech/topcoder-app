@@ -22,6 +22,8 @@
 
         activate();
 
+        console.log('CHALLENGE: ', $scope.challenge.plain());
+
         function activate() {
           if (!$attrs.spotlight) {
             processChallenge($scope.challenge);
@@ -29,6 +31,8 @@
         }
 
         function processChallenge(challenge) {
+          $scope.subTrack = challenge.subTrack.replace('_', ' ');
+
           var now = moment();
           var registrationDate = moment(challenge.registrationEndDate);
           var submissionDate = moment(challenge.submissionEndDate);
