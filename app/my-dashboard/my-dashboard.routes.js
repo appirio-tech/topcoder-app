@@ -19,6 +19,11 @@
         data: {
           authRequired: true,
           title: 'Dashboard'
+        },
+        resolve: {
+          userIdentity: ['UserService', function(UserService) {
+            return UserService.getUserIdentity();
+          }]
         }
       },
       'dashboard': {
