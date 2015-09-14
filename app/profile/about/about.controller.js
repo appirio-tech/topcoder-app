@@ -10,6 +10,7 @@
     var profileVm = $scope.$parent.profileVm;
     vm.categoryIndex = 0;
     vm.skillIndex = 0;
+    vm.imgMap = {};
 
     activate();
 
@@ -22,6 +23,12 @@
         vm.skills = profileVm.skills;
       });
     }
+
+    vm.imgMap = {
+      'DEVELOP': 'develop',
+      'DESIGN': 'design',
+      'DATA_SCIENCE': 'data'
+    };
 
   }
 })();
