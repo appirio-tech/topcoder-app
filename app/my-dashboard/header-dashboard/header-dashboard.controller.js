@@ -37,6 +37,7 @@
 
       ProfileService.getUserStats(handle)
       .then(function(stats) {
+        vm.numCopilotActiveContests = stats.COPILOT.activeContests;
         vm.rankStats = ProfileService.getRanks(stats);
 
         if (vm.rankStats.length === 0) {
