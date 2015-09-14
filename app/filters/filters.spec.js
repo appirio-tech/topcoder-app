@@ -2,7 +2,7 @@ describe('filters', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter');
+    bard.inject(this, 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter', 'countryFilter');
   });
 
   describe('role filter', function() {
@@ -54,6 +54,16 @@ describe('filters', function() {
     it('should list roles', function() {
       expect(listRolesFilter(false)).to.be.equal('No assigned role.');
       expect(listRolesFilter([1,2])).to.be.equal('1, 2');
-    })
-  })
+    });
+  });
+
+  describe('country filter', function() {
+    it('should filter country', function() {
+      expect(countryFilter('GBR')).to.be.equal('United Kingdom');
+      expect(countryFilter('asdfl')).to.be.equal('');
+      expect(countryFilter('USA')).to.be.equal('United States');
+      expect(countryFilter('US')).to.be.equal('United States');
+    });
+  });
+
 });
