@@ -4,43 +4,72 @@
   flex-direction: column;
 
   .categories {
+    .activity {
+      font-size: 18px;
+      line-height: 21px;
+      font-weight: bold;
+      font-family: 'Lucida Grande';
+      text-transform: uppercase;
+    }
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     margin: 10px 0;
-    .category {
+    .track {
       display: flex;
       flex-direction: column;
-      background: #dddddd;
-      height: 250px;
-      width: 200px;
-      margin: 10px 20px;
-      padding: 15px 0;
       cursor: pointer;
 
       .name {
         margin: auto;
+        font-family: 'Sofia Pro';
+        font-weight: 200;
+        font-size: 19.6px;
+        line-height: 24px;
       }
-      .subcategory {
-        margin: 0px auto 10px auto;
+      .subtrack {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 300px;
+        height: 52px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        .name {
+          flex-basis: 150px;
+          font-family: 'Sofia Pro';
+          font-size: 14px;
+          line-height: 18px;
+          font-weight: 300;
+          text-transform: uppercase;
+        }
+        .ranking {
+          margin: auto;
+          .number {
+            text-align: center;
+            font-family: 'Sofia Pro';
+            font-size: 13.4px;
+            line-height: 16px;
+            font-weight: 600;
+          }
+          .tag {
+            text-transform: uppercase;
+            margin: 10px auto 0px auto;
+            font-family: 'Sofia Pro';
+            font-size: 8.4px;
+            line-height: 10px;
+            color: #7f7f7f;
+            font-weight: normal;
+          }
+        }
       }
       .icon {
         width: 80px;
         height: 80px;
         margin: auto;
       }
-      .ranking {
-        margin: auto;
-        .number {
-          font-size: 30px;
-          text-align: center;
-        }
-        .tag {
-          text-transform: uppercase;
-          margin: 10px auto 0px auto;
-        }
-      }
+
     }
   }
   .skills {

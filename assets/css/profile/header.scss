@@ -19,7 +19,10 @@
         align-items: center;
         margin: 15px 8px 0 8px;
         .text {
+          font-family: 'Sofia Pro';
+          font-weight: 500;
           font-size: 12px;
+          line-height: 14px;
           margin-top: 11px;
           text-transform: uppercase;
         }
@@ -37,7 +40,7 @@
       flex-direction: row;
       align-items: center;
       .link {
-        background: $ui-blue;
+        background: #00aeff;
         border-radius: 5px;
         padding: 7px 12px;
         text-decoration: none;
@@ -46,6 +49,7 @@
         margin-left: 5px;
         margin-right: 5px;
         font-size: 14px;
+        font-family: 'Sofia Pro';
         line-height: 20px;
       }
     }
