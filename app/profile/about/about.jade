@@ -23,6 +23,8 @@
 
     .categories
 
+      h3.activity Topcoder Activity
+
       .track(ng-if="profileVm.categories['MARATHON'].rank || profileVm.categories['SRM'].rank")
         .name Data Science
 
@@ -31,6 +33,7 @@
         ng-if="profileVm.categories[track].length > 0"
       )
 
+        img(ng-src="images/ico-track-{{vm.imgMap[track]}}-outline.svg")
         .name {{track}}
 
         .subtrack(
