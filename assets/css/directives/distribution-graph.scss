@@ -52,8 +52,9 @@
   }
   .info-port {
     margin-left: 2px;
-    background: #eeeeee;
-    height: 300px;
+    margin-top: 20px;
+    background: #f6f6f6;
+    height: 400px;
     width: 250px;
     display: flex;
     flex-direction: column;
@@ -80,6 +81,11 @@
       .label {
         color: white;
       }
+      margin-bottom: 20px;
+    }
+
+    .compare {
+      
     }
   }
 }

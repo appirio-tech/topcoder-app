@@ -12,6 +12,7 @@
     'tc.sample',
     'tc.profile',
     'tc.settings',
+    'tc.skill-picker',
     'ui.router',
     'blocks.logger',
     'blocks.exception',

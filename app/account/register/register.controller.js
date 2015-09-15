@@ -6,7 +6,10 @@
   RegisterController.$inject = ['$log', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService', 'ISO3166', 'Helpers'];
 
   function RegisterController($log, CONSTANTS, $state, $stateParams, TcAuthService, UserService, ISO3166, Helpers) {
+    $log = $log.getInstance("RegisterController");
+    $log.debug("-init");
     var vm = this;
+
 
     // Set default for toggle password directive
     vm.defaultPlaceholder = 'Create Password';
@@ -25,9 +28,12 @@
     vm.socialProvider = null;
     vm.socialUserId = null;
     vm.socialProfile = null;
+
     if (window.location.hash) {
+      $log.debug("LocHash found, calling socialRegisterCallbackHandler");
       TcAuthService.socialRegisterCallbackHandler(auth0Register, window.location.hash)
       .then(function(result) {
+        $log.debug(JSON.stringify(result));
         vm.socialUserId = result.data.socialUserId;
         vm.username = result.data.username;
         vm.firstname = result.data.firstname;
@@ -38,6 +44,7 @@
         vm.socialProvider = result.data.socialProvider;
       })
     .catch(function(result) {
+        $log.warn(JSON.stringify(result));
         switch (result.status) {
           case "SOCIAL_PROFILE_ALREADY_EXISTS":
             vm.errMsg = "An account with that profile already exists. Please login to access your account.";
@@ -87,7 +94,7 @@
           userId: vm.socialUserId,
           name: vm.firstname + " " + vm.lastname,
           email: vm.socialProfile.email,
-          emailVerified: vm.socialProfile.emailVerified,
+          emailVerified: vm.socialProfile.email_verified,
           providerType: vm.socialProvider
         }
       }
@@ -98,7 +105,7 @@
           afterActivationURL: CONSTANTS.MAIN_URL + '/my-dashboard/'
         }
       }
-
+      $log.debug('attempting to register user');
       TcAuthService.register(body)
       .then(function(data) {
         $log.debug('registered successfully');
@@ -120,5 +127,7 @@
           callbackURL: callbackUrl
         });
     }
+
+    vm.$stateParams = $stateParams;
   }
 })();

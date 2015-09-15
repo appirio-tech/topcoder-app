@@ -3,7 +3,7 @@
 
   angular.module('tcUIComponents')
     .directive('hasLetter', hasLetter)
-    .directive('hasSymbol', hasSymbol)
+    .directive('hasSymbolOrNumber', hasSymbolOrNumber)
     .directive('hasNumber', hasNumber)
     .directive('usernameIsFree', usernameIsFree)
     .directive('emailIsAvailable', emailIsAvailable);
@@ -22,12 +22,12 @@
     };
   }
 
-  function hasSymbol() {
+  function hasSymbolOrNumber() {
     return {
       require: 'ngModel',
       link: function(scope, element, attrs, ctrl) {
-        ctrl.$validators.hasSymbol = function(modelValue, viewValue) {
-          if (/[-!$@#%^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(viewValue)) {
+        ctrl.$validators.hasSymbolOrNumber = function(modelValue, viewValue) {
+          if (/[-!$@#%^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(viewValue) || /[\d]/.test(viewValue)) {
             return true;
           }
           return false;
@@ -50,7 +50,6 @@
     };
   }
 
-
   usernameIsFree.$inject = ['UserService', '$log', '$q'];
 
   function usernameIsFree(UserService, $log, $q) {
@@ -60,21 +59,36 @@
         ctrl.$asyncValidators.usernameIsFree = function(modelValue, viewValue) {
           $log.info('Validating username: ' + modelValue);
 
-          // Check if the username exists
           var defer = $q.defer();
-          UserService.validateUserHandle(modelValue).then(
-            function(data) {
-              if (data.valid) {
-                // username is free
-                return defer.resolve();
-              } else {
-                return defer.reject(data.reasonCode);
-              }
-            }
-          ).catch(function(resp) {
-              // call failed - assuming username is free, register call will fail anyways
+
+          UserService.validateUserHandle(modelValue).then(function(res) {
+            if (res.valid) {
               return defer.resolve();
+            } else {
+              switch (res.reasonCode) {
+                case 'INVALID_LENGTH':
+                  scope.vm.usernameErrorMessage = 'That username is not the correct length or format.';
+                  break;
+                case 'INVALID_FORMAT':
+                  scope.vm.usernameErrorMessage = 'That username is not the correct length or format.';
+                  break;
+                case 'INVALID_HANDLE':
+                  scope.vm.usernameErrorMessage = 'That username is not allowed.';
+                  break;
+                case 'ALREADY_TAKEN':
+                  scope.vm.usernameErrorMessage = 'That username is already taken.'
+                  break;
+                default:
+                  scope.vm.usernameErrorMessage = 'That username is not the correct length or format.';
+              }
+
+              return defer.reject(res.reasonCode);
+            }
+          }).catch(function(err) {
+            // call failed - assuming username is free, register call will fail anyways
+            return defer.resolve();
           });
+
           return defer.promise;
         };
       }
@@ -90,21 +104,34 @@
         ctrl.$asyncValidators.emailIsAvailable = function(modelValue, viewValue) {
           $log.info('Validating email: ' + modelValue);
 
-          // Check if the username exists
           var defer = $q.defer();
-          UserService.validateUserEmail(modelValue).then(
-            function(data) {
-              if (data.valid) {
-                // email is available
-                return defer.resolve();
-              } else {
-                return defer.reject(data.reasonCode);
-              }
-            }
-          ).catch(function(resp) {
-              // call failed - assuming available is free, register call will fail anyways
+
+          UserService.validateUserEmail(modelValue).then(function(res) {
+            if (res.valid) {
               return defer.resolve();
+            } else {
+              switch (res.reasonCode) {
+                case 'ALREADY_TAKEN':
+                  scope.vm.emailErrorMessage = 'That email address is already taken.';
+                  break;
+                case 'INVALID_EMAIL':
+                  scope.vm.emailErrorMessage = 'Please enter a valid email address.';
+                  break;
+                case 'INVALID_LENGTH':
+                  scope.vm.emailErrorMessage = 'Email address should be 100 characters or less.';
+                  break;
+                default:
+                  scope.vm.emailErrorMessage = 'Please enter a valid email address.';
+              }
+
+              return defer.reject(res.reasonCode);
+            }
+          }).
+          catch(function(err) {
+            // call failed - assuming available is free, register call will fail anyways
+            return defer.resolve();
           });
+
           return defer.promise;
         };
       }

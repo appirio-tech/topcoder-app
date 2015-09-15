@@ -77,7 +77,7 @@
             route: 'members'
           })
           .addRequestInterceptor(function(element, operation, what, url) {
-            if (what === 'members') {
+            if (url.indexOf('members') > -1) {
               return {
                 param: element
               };
@@ -101,6 +101,16 @@
             } else {
               return null; // data
             }
+          })
+          .addElementTransformer('skills', function(elem) {
+            // transform map to simple array
+            var skills = []
+            _.forEach(elem.skills, function(n,k) {
+              n.tagId = k;
+              skills.push(n);
+            });
+            elem.skills = skills;
+            return elem;
           })
           .setErrorInterceptor(function(response) {
             // TODO

@@ -1,27 +1,23 @@
 .login-container
   h1 Login
 
-  form(name="loginForm", role="form", ng-submit="loginForm.$valid && vm.login()", novalidate)
+  form(name="vm.loginForm", role="form", ng-submit="vm.loginForm.$valid && vm.login()", novalidate)
     .form-errors
+      p.form-error(ng-hide="vm.usernameExists") We couldn't find a member with that {{vm.emailOrUsername || "username"}}. Please check that you entered it correctly.
 
-      p.form-error(ng-hide="vm.usernameExists") This user does not exist.
-
-      p.form-error(ng-show="vm.wrongPassword") That password doesn't match the one we have on file. Please try again.
+      p.form-error(ng-show="vm.wrongPassword") That password is incorrect. Please check that you entered the right one.
 
       p.form-error(ng-show="vm.socialLoginError === 401") User with that profile is not registered.
 
-      div(ng-show="loginForm.$submitted")
-        p.form-error(ng-show="loginForm.username.$error.required") Please enter your username or email.
-
     div.validation-bar(ng-class="{'error-bar': !vm.usernameExists}")
-      input(ng-model="vm.username", ng-blur="vm.usernameExists = true", name="username", placeholder="Username or Email", type="text", required)
+      input(ng-model="vm.username", name="username", placeholder="Username or Email", type="text", required)
 
-    input(ng-model="vm.password", name="password", placeholder="Password", type="password", required)
+    toggle-password
 
-    button(type="submit", ng-disabled="loginForm.$invalid", ng-class="{'enabled-button': loginForm.$valid}") Login
+    button(type="submit", ng-disabled="vm.loginForm.$invalid", ng-class="{'enabled-button': vm.loginForm.$valid}") Log In
 
   section.social
-    p log in with another account
+    p Log in with another account
 
     .social-icons
       i.fa.fa-github-square(ng-click="vm.socialLogin('github')")
@@ -29,8 +25,8 @@
       i.fa.fa-google-plus-square(ng-click="vm.socialLogin('google-oauth2')")
       i.fa.fa-twitter-square(ng-click="vm.socialLogin('twitter')")
 
-  a.forgot-password(ui-sref="resetPassword") Forgot Password?
+  a.forgot-password(ui-sref="resetPassword") Forgot your password?
 
-  p.redirect Don't have an account? 
-    a(ui-sref="register") Join Now.
+  p.redirect Not a member yet? 
+    a(ui-sref="register(vm.$stateParams)") Join now.
 

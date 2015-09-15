@@ -13,10 +13,15 @@
       // primary, for global use
       getUserProfile: getUserProfile,
       updateUserProfile: updateUserProfile,
+
       getUserSkills: getUserSkills,
+      addUserSkill: addUserSkill,
+      hideUserSkill: hideUserSkill,
+
       getUserFinancials: getUserFinancials,
       getUserStats: getUserStats,
       getDistributionStats: getDistributionStats,
+      getHistoryStats: getHistoryStats,
       // auxiliary functions for profile
       getRanks: getRanks,
       getChallengeTypeStats: getChallengeTypeStats,
@@ -41,6 +46,18 @@
       return restangular.one('members', username).one('skills').get();
     }
 
+    function addUserSkill(username, skillTagId) {
+      var body = { skills: {} };
+      body['skills'][skillTagId] = { 'hidden': false };
+      return restangular.one('members', username).one('skills').patch(body);
+    }
+
+    function hideUserSkill(username, skillTagId) {
+      var body = { skills: {} };
+      body['skills'][skillTagId] = { 'hidden': true };
+      return restangular.one('members', username).one('skills').patch(body);
+    }
+
     function getUserFinancials(username) {
       return restangular.one('members', username).one('financial').get();
     }
@@ -60,6 +77,10 @@
       return restangular.one('members').one('stats').one('distribution').get({
         'filter': 'track=' + track + '&subTrack=' + subTrack
       });
+    }
+
+    function getHistoryStats(handle) {
+      return restangular.one('members', handle).one('stats').one('history').get();
     }
 
     function getRanks(stats) {
@@ -89,32 +110,40 @@
         });
       }
       if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.srm && stats.DATA_SCIENCE.srm.rank) {
-        var srmStats = stats.DATA_SCIENCE.srm;
+        var srmStats = stats.DATA_SCIENCE.SRM;
         srm = {
           'track': 'DATA_SCIENCE',
           'subTrack': 'SRM',
-          'rank': srmStats.rank.rank
+          'rank': srmStats.rank.rating
         };
       }
       if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.marathonMatch && stats.DATA_SCIENCE.marathonMatch.rank) {
-        var marathonStats = stats.DATA_SCIENCE.marathonMatch;
+        var marathonStats = stats.DATA_SCIENCE.MARATHON_MATCH;
         marathon = {
-          'track': 'Data Science',
-          'subTrack': 'Marathon',
-          'rank': marathonStats.rank.rank
+          'track': 'DATA_SCIENCE',
+          'subTrack': 'MARATHON',
+          'rank': marathonStats.rank.rating
         };
       }
       if (stats.COPILOT) {
         copilot = stats.COPILOT;
         copilot.track = 'Co-Pilot';
       }
-      var ans = dev.concat(design)
-        .concat(srm)
-        .concat(marathon)
-        .concat(copilot)
-        .filter(function(subTrack) {
-          return subTrack && (subTrack.rank || subTrack.wins || subTrack.fulfillment);
-        });
+      var ans = {
+        'DEVELOP': removeRankless(dev),
+        'DESIGN': removeRankless(design),
+        'MARATHON': marathon,
+        'SRM': srm,
+        'CO_PILOT': copilot
+      }
+      console.log('ans:::');
+      console.log(ans);
+      function removeRankless(arr) {
+        return arr
+          .filter(function(subTrack) {
+            return subTrack && (subTrack.rank || subTrack.wins || subTrack.fulfillment);
+          });
+      }
       return ans;
     }
 

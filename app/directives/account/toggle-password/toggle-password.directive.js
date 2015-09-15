@@ -10,46 +10,52 @@
       templateUrl: 'directives/account/toggle-password/toggle-password.html',
       link: function(scope, element, attrs, formController) {
         var vm = scope.vm;
-        vm.passwordField = formController.password;
-        vm.placeholder = vm.defaultPlaceholder;
-        vm.password = '';
+        vm.currentPasswordField = formController.currentPassword;
+        vm.currentPasswordPlaceholder = vm.currentPasswordDefaultPlaceholder;
+        vm.currentPassword = '';
 
-        var passwordInput = element.children()[0];
+        var currentPasswordInput = element.children()[0];
 
         element.bind('click', function(event) {
-          passwordInput.focus();
+          currentPasswordInput.focus();
         });
 
-        vm.onFocus = function(event) {
-          vm.passwordFocus = true;
-          vm.placeholder = '';
+        element.bind('keyup', function(event) {
+          if (event.keyCode === 13) {
+            currentPasswordInput.blur();
+          }
+        });
+
+        vm.onCPFocus = function(event) {
+          vm.currentPasswordFocus = true;
+          vm.currentPasswordPlaceholder = '';
         }
 
-        vm.onBlur = function(event) {
+        vm.onCPBlur = function(event) {
           var relatedTarget = angular.element(event.relatedTarget);
 
           // If you are blurring from the password input and clicking the checkbox
-          if (relatedTarget.attr('type') === 'checkbox') {
-            vm.passwordFocus = true;
-            vm.placeholder = '';
+          if (relatedTarget.attr('type') === 'checkbox' && relatedTarget.attr('id') === 'currentPasswordCheckbox') {
+            vm.currentPasswordFocus = true;
+            vm.currentPasswordPlaceholder = '';
           } else {
             // If you are blurring from the password input and clicking anywhere but the checkbox
-            vm.passwordFocus = false;
+            vm.currentPasswordFocus = false;
 
-            if (vm.password === '' || vm.password === undefined) {
-              vm.placeholder = vm.defaultPlaceholder;
-              formController.password.$setPristine();
+            if (vm.currentPassword === '' || vm.currentPassword === undefined) {
+              vm.currentPasswordPlaceholder = vm.currentPasswordDefaultPlaceholder;
+              formController.currentPassword.$setPristine();
             }
           }
         };
 
-        vm.toggleInputType = function() {
-          var $passwordInput = angular.element(passwordInput);
+        vm.toggleTypeAttribute = function() {
+          var $currentPasswordInput = angular.element(currentPasswordInput);
 
-          if ($passwordInput.attr('type') === 'text') {
-            $passwordInput.attr('type', 'password');
+          if ($currentPasswordInput.attr('type') === 'text') {
+            $currentPasswordInput.attr('type', 'password');
           } else {
-            $passwordInput.attr('type', 'text');
+            $currentPasswordInput.attr('type', 'text');
           }
         }
       }

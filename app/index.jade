@@ -18,6 +18,7 @@ html
     link(rel='stylesheet', href='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.css')
     link(rel='stylesheet', href='../bower_components/ngDialog/css/ngDialog.css')
     link(rel='stylesheet', href='../bower_components/ngDialog/css/ngDialog-theme-default.css')
+    link(rel='stylesheet', href='../bower_components/angularjs-toaster/toaster.css')
     //- endbower
     // endbuild
 
@@ -25,6 +26,7 @@ html
     //- inject:css
     link(rel="stylesheet", href="assets/css/reset.css")
     link(rel="stylesheet", href="assets/css/topcoder.css")
+    link(rel="stylesheet", href="assets/css/skill-picker/skill-picker.css")
     link(rel="stylesheet", href="assets/css/settings/update-password.css")
     link(rel="stylesheet", href="assets/css/settings/settings.css")
     link(rel="stylesheet", href="assets/css/settings/preferences.css")
@@ -49,11 +51,13 @@ html
     link(rel="stylesheet", href="assets/css/member-dashboard/community-updates.css")
     link(rel="stylesheet", href="assets/css/layout/header.css")
     link(rel="stylesheet", href="assets/css/layout/footer.css")
+    link(rel="stylesheet", href="assets/css/directives/toggle-password-with-tips.css")
     link(rel="stylesheet", href="assets/css/directives/toggle-password.css")
     link(rel="stylesheet", href="assets/css/directives/tc-section.css")
-    link(rel="stylesheet", href="assets/css/directives/tc-pager.css")
+    link(rel="stylesheet", href="assets/css/directives/tc-paginator.css")
     link(rel="stylesheet", href="assets/css/directives/srm-tile.css")
     link(rel="stylesheet", href="assets/css/directives/profile-widget.css")
+    link(rel="stylesheet", href="assets/css/directives/history-graph.css")
     link(rel="stylesheet", href="assets/css/directives/distribution-graph.css")
     link(rel="stylesheet", href="assets/css/directives/challenge-tiles.css")
     link(rel="stylesheet", href="assets/css/directives/badge-tooltip.css")
@@ -64,17 +68,14 @@ html
     //- endinject
     // endbuild
 
-  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh}", ng-strict-di)
+  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh, 'menu-visible': main.menuVisible}", ng-strict-di)
 
     //- include ./layout/header/header.jade
     #header(ui-view="header")
 
     notifications-bar.notifications(closeIcon="fa fa-times-circle")
 
-    //- include ./layout/header/sidebar.jade
-    div(ui-view="sidebar")
-
-    .view-container(ng-class="{slided: main.sidebarActive}")
+    .view-container
       div(ui-view="container")
 
     //- include ./layout/footer/footer.jade
@@ -87,22 +88,23 @@ html
     script(src='../bower_components/angucomplete-alt/angucomplete-alt.js')
     script(src='../bower_components/angular-cookies/angular-cookies.js')
     script(src='../bower_components/angular-dropdowns/dist/angular-dropdowns.js')
-    script(src='../bower_components/angular-filter/dist/angular-filter.min.js')
+    script(src='../bower_components/angular-filter/dist/angular-filter.js')
     script(src='../bower_components/angular-img-fallback/angular.dcb-img-fallback.js')
     script(src='../bower_components/angular-jwt/dist/angular-jwt.js')
-    script(src='../bower_components/angular-mocks/angular-mocks.js')
     script(src='../bower_components/angular-sanitize/angular-sanitize.js')
     script(src='../bower_components/angular-ui-router/release/angular-ui-router.js')
     script(src='../bower_components/x2js/xml2json.min.js')
     script(src='../bower_components/angular-xml/angular-xml.js')
     script(src='../bower_components/appirio-tech-ng-iso-constants/dist/ng-iso-constants.js')
+    script(src='../bower_components/d3/d3.js')
     script(src='../bower_components/jstzdetect/jstz.min.js')
     script(src='../bower_components/moment/moment.js')
     script(src='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.js')
     script(src='../bower_components/ngDialog/js/ngDialog.js')
     script(src='../bower_components/lodash/lodash.js')
     script(src='../bower_components/restangular/dist/restangular.js')
-    script(src='../bower_components/d3/d3.js')
+    script(src='../bower_components/angular-animate/angular-animate.js')
+    script(src='../bower_components/angularjs-toaster/toaster.js')
     //- endbower
     //- inject:nonBowerScripts
     script(src="/scripts/auth0.js")
@@ -121,25 +123,28 @@ html
     script(src="blocks/exception/exception.js")
     script(src="blocks/exception/exception-handler.provider.js")
     script(src="blocks/logger/logger.module.js")
+    script(src="blocks/logger/logEnhancer.js")
     script(src="blocks/logger/logger.js")
     script(src="directives/tcui-components.module.js")
     script(src="directives/account/toggle-password/toggle-password.directive.js")
+    script(src="directives/account/toggle-password-with-tips/toggle-password-with-tips.directive.js")
     script(src="directives/account/validate-email.directive.js")
-    script(src="directives/account/validate-login.directive.js")
     script(src="directives/account/validate-register.directive.js")
     script(src="directives/badges/badge-tooltip.directive.js")
     script(src="directives/challenge-tiles/challenge-tile.directive.js")
     script(src="directives/distribution-graph/distribution-graph.directive.js")
     script(src="directives/focus-on.directive.js")
+    script(src="directives/history-graph/history-graph.directive.js")
     script(src="directives/on-file-change.directive.js")
     script(src="directives/profile-widget/profile-widget.directive.js")
     script(src="directives/right-placeholder.directive.js")
     script(src="directives/skill-tile/skill-tile.directive.js")
     script(src="directives/slideable.directive.js")
     script(src="directives/srm-tile/srm-tile.directive.js")
-    script(src="directives/tc-pager/tc-pager.directive.js")
+    script(src="directives/tc-paginator/tc-paginator.directive.js")
     script(src="directives/tc-section/tc-section.directive.js")
     script(src="topcoder.module.js")
+    script(src="filters/country.filter.js")
     script(src="filters/deadline-msg.filter.js")
     script(src="filters/iif.filter.js")
     script(src="filters/listRoles.filter.js")
@@ -196,6 +201,7 @@ html
     script(src="services/review.service.js")
     script(src="services/scorecard.service.js")
     script(src="services/srm.service.js")
+    script(src="services/tags.service.js")
     script(src="services/tcAuth.service.js")
     script(src="services/user.service.js")
     script(src="settings/settings.module.js")
@@ -205,6 +211,9 @@ html
     script(src="settings/settings.controller.js")
     script(src="settings/settings.routes.js")
     script(src="settings/update-password/update-password.controller.js")
+    script(src="skill-picker/skill-picker.module.js")
+    script(src="skill-picker/skill-picker.controller.js")
+    script(src="skill-picker/skill-picker.routes.js")
     script(src="topcoder.constants.js")
     script(src="topcoder.controller.js")
     script(src="topcoder.interceptors.js")

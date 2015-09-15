@@ -4,16 +4,18 @@
     .module('tc.profile')
     .controller('ProfileSubtrackController', ProfileSubtrackController);
 
-  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window'];
+  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window', 'userHandle'];
 
   function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window) {
     var vm = this;
+    vm.graphState = { show: 'history' };
     vm.subTrack = decodeURIComponent($stateParams.subTrack || '') || '';
     vm.track = $stateParams.track;
     vm.viewing = 'challenges';
     vm.domain = CONSTANTS.domain;
     vm.challenges = [];
     var profileVm = $scope.$parent.profileVm;
+    vm.userHandle = profileVm.profile.handle;
     vm.dropdown = [];
     vm.ddSelected = {};
     vm.distribution = {};
@@ -38,6 +40,14 @@
       vm.distributionPromise = ProfileService.getDistributionStats(vm.track, vm.subTrack);
       vm.distributionPromise.then(function(data) {
         vm.distribution = data.distribution;
+      });
+      var historyDeferred = $q.defer();
+      vm.historyPromise = historyDeferred.promise;
+      ProfileService.getHistoryStats(profileVm.profile.handle).then(function(data) {
+        if (data.handle) {
+          vm.history = ProfileService.getChallengeTypeStats(data, vm.track, vm.subTrack).history;
+          historyDeferred.resolve(vm.history);
+        }
       });
       profileVm.statsPromise.then(function(data) {
         vm.typeStats = ProfileService.getChallengeTypeStats(

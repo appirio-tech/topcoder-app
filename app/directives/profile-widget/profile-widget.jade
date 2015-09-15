@@ -1,15 +1,14 @@
 .profile-widget-directive
-  a(ui-sref="profile.about({userHandle: profile.handle})") 
-    img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profile.photo.photoUrl}}")
+  a(ui-sref="profile.about({userHandle: profile.handle})")
+    img.profile-circle(fallback-img="/images/avatarPlaceholder.png", ng-src="http://www.topcoder.com{{profile.photoURL}}")
 
-  .info
-    h1 {{profile.handle}} 
+  h1.handle {{profile.handle}}
 
-      a(href="http://forums.{{DOMAIN}}/?module=History&userID={{vm.profile.userId}}")
-        i.fa.fa-comment-o
+  h3.tenure(ng-if="profile.startMonth")
+    | Member Since {{profile.startMonth}}
 
-    h3.tracks {{profile.tracks || [] | track | join: ', '}}
+  h3.location-challenges {{profile.homeCountryCode | country}} | {{numChallenges}} Challenges
 
-    h3.location {{profile.homeCountry}}
+  p.description {{profile.quote}}
 
-    a(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
+  a(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile

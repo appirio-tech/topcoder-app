@@ -1,46 +1,77 @@
-header.topcoder-header(ng-class="{slided: main.sidebarActive}")
-  .container
-    a(id="topcoder-logo", ng-href="https://www.{{vm.domain}}", title="topcoder")
-      img(src="/images/logo.png", alt="Topcoder Logo")
-
-    nav.top-right
-      ul
-        li.login(ng-hide="vm.isAuth") #[a(ui-sref="login") Log In]
-
-        li.logout(ng-show="vm.isAuth") #[a(ng-click="vm.logout()") Log Out]
-
-        li.contact #[a(href="#") Contact]
-
-        li.help #[a(href="#") Help]
-
-        li.search #[a(href="#") #[i#search] Search]
-
-        li.my-account(ng-show="vm.isAuth") #[a(ng-click="vm.isActive = !vm.isActive", slide-toggle="#user-widget") My Account]
-
-        li.signup(ng-hide="vm.isAuth") #[a(ui-sref="register") Sign Up]
-
-    button.bars(type="button", ng-click="main.sidebarActive = !main.sidebarActive")
-      span.icon-bar
-      span.icon-bar
-      span.icon-bar
-
-    nav.bottom
-      ul
-        li #[a(ng-href="https://www.{{vm.domain}}/challenges/") Challenges]
-
-        li #[a(ng-href="https://www.{{vm.domain}}/community/") Community]
-
-        li #[a(ng-href="https://www.{{vm.domain}}/about/") About]
-
-        li #[a.blog(ng-href="https://www.{{vm.domain}}/blog/") Blog]
-
-    a#signup(ng-hide="vm.isAuth", ui-sref="register") Sign Up
-    a#my-account(ng-show="vm.isAuth", ng-click="vm.isActive = !vm.isActive", ng-init="vm.isActive = false", slide-toggle="#user-widget") My Account
-      i(ng-class="{'active': isActive}")
-
-    div#user-widget.slideable
-      div#user-widget-content(style="visibility: hidden;")
-        .action
-          a.profileLink(ui-sref="profile.about({userHandle:vm.userHandle})") Profile
-          a(ui-sref="dashboard") My Dashboard
-          a.linkAlt(href='//community.topcoder.com/tc?module=MyHome') Account Settings
+// Header container
+.header-wrapper(ng-class="{'autocomplete': main.searchTerm.length > 0}")
+  // Main header element
+  header.top-header
+    // Header content visible on small screens
+    .show-small.mobile-heading
+      span.tc-text-logo(ng-if="main.menuVisible") [ topcoder ]
+      button.btn-open-menu(type="button", ng-if="!main.menuVisible", ng-click="main.menuVisible = true") Menu
+      button.btn-close-menu(type="button", ng-if="main.menuVisible", ng-click="main.menuVisible = false")
+      // User link (profile or join)
+      a(href="javascript:;", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
+        img(ng-switch-when="true", class="user-avatar", fallback-img="/images/avatarPlaceholder.png", loading-src="/images/avatarPlaceholder.png", ng-src="{{vm.profile.photoURL}}") 
+        span(ng-switch-when="false" class="btn-link") JOIN
+        
+    // main menu 
+    ul.main-menu
+      // search container
+      li.menu-item.search-wrapper
+        .menu-item-header.show-large #[button.btn-expand-search.search-icon(type="button")]
+        .submenu
+          input(type="text" placeholder="find people or competitions" ng-model="main.searchTerm")
+          // Suggestion list container
+          ul.suggestion-list(ng-if="main.searchTerm.length > 0")
+            li(ng-repeat="suggestion in main.suggestions | filter:main.searchTerm | limitTo:5") 
+              a(href="javascript:;" class="menu-link") {{suggestion}}
+          
+      // user menu
+      li.menu-item.link-group.user-menu(ng-switch="vm.isAuth", ng-class="{'anonymous-menu': !vm.isAuth}")
+        // links for logged in user
+        div(ng-switch-when="true")
+          .menu-item-header
+            img(class="user-avatar" fallback-img="/images/avatarPlaceholder.png", loading-src="/images/avatarPlaceholder.png", ng-src="{{vm.profile.photoURL}}") 
+            span.username {{vm.userHandle}}
+          a.btn-link.btn-edit-profile.show-small(href="javascript:;") EDIT
+          ul.submenu
+            li.submenu-item #[a.menu-link(href="/my-dashboard") DASHBOARD]
+            li.submenu-item #[a.menu-link(href="javascript:;") MY PROFILE]
+            li.submenu-item #[a.menu-link(href="/settings/profile/") SETTINGS]
+            li.submenu-item #[a.menu-link(ng-click="vm.logout(); main.menuVisible = vm.isAuth = false") LOG OUT]
+        // links for anonymous user
+        .menu-item-header(ng-switch-when="false")
+          a.btn-link(ui-sref="register") REGISTER
+          a.btn-link.secondary-link(ui-sref="login") LOG IN
+          
+      // 'COMPETE' link group
+      li.menu-item.link-group
+        .menu-item-header COMPETE
+        ul.submenu
+          //li.submenu-item #[a.menu-link(href="javascript:;") START HERE]
+          li.submenu-item #[a.menu-link(href="javascript:;") DESIGN CHALLENGES]
+          li.submenu-item #[a.menu-link(href="javascript:;") DEVELOPMENT CHALLENGES]
+          li.submenu-item #[a.menu-link(href="javascript:;") DATA SCIENCE CHALLENGES]
+          li.submenu-item #[a.menu-link(href="javascript:;") COMPETITIVE PROGRAMMING (ARENA)]
+            
+      // 'LEARN' link group
+      li.menu-item.link-group
+        .menu-item-header LEARN
+        ul.submenu
+          //li.submenu-item #[a.menu-link(href="javascript:;") START HERE]
+          li.submenu-item #[a.menu-link(href="javascript:;") DESIGN]
+          li.submenu-item #[a.menu-link(href="javascript:;").active DEVELOPMENT]
+          li.submenu-item #[a.menu-link(href="javascript:;") DATA SCIENCE]
+          li.submenu-item #[a.menu-link(href="javascript:;") COMPETITIVE PROGRAMMING]
+          //li.submenu-item #[a.menu-link(href="javascript:;") TUTORIALS]
+          //li.submenu-item #[a.menu-link(href="javascript:;") EDITORIALS]
+          
+      // 'COMMUNITY' link group
+      li.menu-item.link-group
+        .menu-item-header COMMUNITY
+        ul.submenu
+          //li.submenu-item #[a.menu-link(href="javascript:;") HOME]
+          li.submenu-item #[a.menu-link(href="/community/members") MEMBERS]
+          li.submenu-item #[a.menu-link(href="/community/member-programs") PROGRAMS]
+          li.submenu-item #[a.menu-link(href="http://apps.topcoder.com/forums") FORUMS]
+          li.submenu-item #[a.menu-link(href="/community/statistics") STATISTICS]
+          li.submenu-item #[a.menu-link(href="/community/events") EVENTS]
+          li.submenu-item #[a.menu-link(href="/blog") BLOG]

@@ -15,11 +15,6 @@ body {
   @include source-sans;
 }
 
-#header {
-  display: flex;
-  justify-content: center;
-}
-
 .notifications {
   .notifications-container {
     position: static;
@@ -57,36 +52,6 @@ body {
   }
 }
 
-// Transits the header, content and footer on sidebar visibility
-.view-container,
-header,
-footer {
-  transition-duration: 0.3s;
-  -moz-transition-duration: 0.3s;
-  -webkit-transition: -webkit-transform .3s ease-in-out;
-  -ms-transition: transform .3s ease-in-out;
-  transition: transform .3s ease-in-out;
-  z-index: 1000;
-}
-
-.slided {
-  @media only screen and (max-width: 1020px) {
-    -moz-transform: transform3d(-82%,0,0);
-    -ms-transform: translateX(-82%);
-    -ms-transform: transform3d(-82%,0,0);
-    -webkit-transform: translate3d(-82%, 0px, 0px);
-    transform: translate3d(-82%, 0px, 0px);
-    margin-right: 0px;
-    margin-left: 0px;
-  }
-}
-
-// Stops scrolling when sidebar is visible
-.stop-scrolling {
-  height: 100%;
-  overflow: hidden;
-}
-
 // Styles for elements used across modules
 button {
   cursor: pointer;
@@ -121,8 +86,6 @@ a {
 }
 
 .form-notice {
-  margin-top: 5px;
-  margin-bottom: 5px;
   font-size: 13px;
   color: #58595B;
 }
@@ -270,7 +233,7 @@ a {
 
   .has-length-between-range:before,
   .has-letter:before,
-  .has-symbol:before,
+  .has-symbol-or-number:before,
   .has-number:before {
     display: block;
   }
