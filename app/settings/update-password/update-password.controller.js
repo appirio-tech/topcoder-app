@@ -3,9 +3,9 @@
 
   angular.module('tc.settings').controller('UpdatePasswordController', UpdatePasswordController);
 
-  UpdatePasswordController.$inject = ['UserService', '$log', 'userData', '$state'];
+  UpdatePasswordController.$inject = ['UserService', '$log', 'toaster', 'userData', '$state'];
 
-  function UpdatePasswordController(UserService, $log, userData, $state) {
+  function UpdatePasswordController(UserService, $log, toaster, userData, $state) {
     var vm = this;
     vm.submitNewPassword = submitNewPassword;
 
@@ -34,6 +34,7 @@
       .then(function() {
         vm.password = '';
         vm.currentPassword = '';
+        toaster.pop('success', "Success", "Password successfully updated");
         vm.newPasswordForm.$setPristine();
         vm.currentPasswordFocus = false;
         vm.placeholder = vm.defaultPlaceholder;
