@@ -3,9 +3,9 @@
 
   angular.module('tc.settings').controller('UpdatePasswordController', UpdatePasswordController);
 
-  UpdatePasswordController.$inject = ['UserService', '$log', 'userData'];
+  UpdatePasswordController.$inject = ['UserService', '$log', 'toaster', 'userData', '$state'];
 
-  function UpdatePasswordController(UserService, $log, userData) {
+  function UpdatePasswordController(UserService, $log, toaster, userData, $state) {
     var vm = this;
     vm.submitNewPassword = submitNewPassword;
 
@@ -16,6 +16,17 @@
       vm.currentPasswordDefaultPlaceholder = 'Current Password';
       vm.username = userData.handle;
       vm.email    = userData.email;
+      vm.loaded   = false;
+
+      UserService.getUserProfile({fields: 'credential'})
+      .then(function(res) {
+        vm.loaded = true;
+        vm.isSocialRegistrant = !res.credential.hasPassword;
+      })
+      .catch(function(err) {
+        $log.error("Error fetching user profile. Redirecting to edit profile.");
+        $state.go('settings.profile');
+      });
     }
 
     function submitNewPassword() {
@@ -23,6 +34,7 @@
       .then(function() {
         vm.password = '';
         vm.currentPassword = '';
+        toaster.pop('success', "Success", "Password successfully updated");
         vm.newPasswordForm.$setPristine();
         vm.currentPasswordFocus = false;
         vm.placeholder = vm.defaultPlaceholder;

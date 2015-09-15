@@ -3,9 +3,9 @@
 
   angular.module('tc.myChallenges').controller('MyChallengesController', MyChallengesController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope'];
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope, userIdentity) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
@@ -33,6 +33,8 @@
     activate();
 
     function activate() {
+      vm.isCopilot = _.includes(userIdentity.roles, 'copilot');
+
       // watches page change counter to reload the data
       $scope.$watch('vm.pageParams.updated', function(updatedParams) {
         _getChallenges();

@@ -42,7 +42,8 @@
     "moment": "~2.10.3",
     "ng-notifications-bar": "~0.0.15",
     "ngDialog": "0.5.1",
-    "restangular": "~1.5.1"
+    "restangular": "~1.5.1",
+    "angularjs-toaster": "~0.4.15"
   },
   "devDependencies": {
     "bardjs": "~0.1.4",
