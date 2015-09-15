@@ -3,41 +3,14 @@
 
   angular.module('tc.account').controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$log', '$state', '$stateParams', 'TcAuthService', 'AuthTokenService', 'UserService', 'NotificationService', 'Helpers'];
+  LoginController.$inject = ['$log', '$state', '$stateParams', '$location', 'TcAuthService', 'AuthTokenService', 'UserService', 'NotificationService', 'Helpers', 'CONSTANTS'];
 
-  function LoginController($log, $state, $stateParams, TcAuthService, AuthTokenService, UserService, NotificationService, Helpers) {
+  function LoginController($log, $state, $stateParams, $location, TcAuthService, AuthTokenService, UserService, NotificationService, Helpers, CONSTANTS) {
+    $log = $log.getInstance("LoginController");
     var vm = this;
     vm.$stateParams = $stateParams;
     vm.passwordReset = false;
     vm.usernameExists = true;
-
-    // Handling social login stuff
-    if ($stateParams.userJWTToken) {
-      // user logged in
-      AuthTokenService.setV3Token($stateParams.userJWTToken);
-      Helpers.redirectPostLogin($stateParams.next);
-    }
-
-    if ($stateParams.status) {
-      // handle social login callback
-      var status = parseInt($stateParams.status);
-      switch(status) {
-        case 200:
-          AuthTokenService.getTokenFromAuth0Code($stateParams.code);
-          break;
-        case 401:
-        default:
-          vm.socialLoginError = status;
-          break;
-      }
-    } else if ($stateParams.code && $stateParams.state) {
-      AuthTokenService.getTokenFromAuth0Code($stateParams.code).then(
-        function(v3Token) {
-          $log.debug('logged in using social');
-          return Helpers.redirectPostLogin($stateParams.next);
-        }
-      );
-    }
 
     if ($stateParams.notifyReset) {
       NotificationService.inform('Your new password has been set. Please log in. If you have any trouble, please contact support@topcoder.com.');
@@ -49,11 +22,18 @@
         // success
         $log.debug('logged in');
         return Helpers.redirectPostLogin($stateParams.next);
-      },
-      function(err) {
-        // handle error
-        vm.wrongPassword = true;
-        vm.password = '';
+      })
+     .catch(function(resp) {
+        $log.warn(resp);
+        switch (resp.status) {
+          case "ACCOUNT_INACTIVE":
+            // user should already be redirected
+            break;
+          case "UNKNOWN_ERROR":
+          default:
+            vm.wrongPassword = true;
+            vm.password = '';
+        }
       });
     }
 
@@ -104,7 +84,19 @@
         params = {next: $stateParams.next};
       }
       callbackUrl = $state.href('login', params, {absolute: true});
-      TcAuthService.socialLogin(backend, callbackUrl);
+      TcAuthService.socialLogin(backend, callbackUrl)
+      .then(function() {
+        $log.debug('logged in');
+        return Helpers.redirectPostLogin($stateParams.next);
+      })
+      .catch(function(resp) {
+        switch (resp.status) {
+          case "ACCOUNT_INACTIVE":
+            window.location.href = "https://www." + CONSTANTS.domain + "/account-inactive/";
+          default:
+            break;
+        }
+      });
     };
   }
 

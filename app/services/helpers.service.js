@@ -18,11 +18,64 @@
       getPageTitle: getPageTitle,
       isEmail: isEmail,
       getCountyObjFromIP: getCountyObjFromIP,
-      redirectPostLogin: redirectPostLogin
+      redirectPostLogin: redirectPostLogin,
+      getSocialUserData: getSocialUserData
+
     };
     return service;
 
     /////////////////////
+
+    function getSocialUserData(profile, accessToken) {
+      var socialProvider = profile.identities[0].connection;
+      var firstName = "",
+        lastName = "",
+        handle = "",
+        email = "",
+        socialProviderId = '';
+      if (socialProvider === 'google-oauth2') {
+        firstName = profile.given_name;
+        lastName = profile.family_name;
+        handle = profile.nickname;
+        email = profile.email;
+        socialProviderId = 2;
+      } else if (socialProvider === 'facebook') {
+        firstName = profile.given_name;
+        lastName = profile.family_name;
+        handle = firstName + '.' + lastName;
+        email = profile.email;
+        socialProviderId = 1;
+      } else if (socialProvider === 'twitter') {
+        var splitName = profile.name.split(" ");
+        firstName = splitName[0];
+        if (splitName.length > 1) {
+          lastName = splitName[1];
+        }
+        handle = profile.screen_name;
+        socialProviderId = 3;
+      } else if (socialProvider === 'github') {
+        var splitName = profile.name.split(" ");
+        firstName = splitName[0];
+        if (splitName.length > 1) {
+          lastName = splitName[1];
+        }
+        handle = profile.nickname;
+        email = profile.email;
+        socialProviderId = 4;
+      }
+      var socialUserId = profile.user_id.substring(profile.user_id.indexOf('|') + 1);
+      return {
+        socialUserId: socialUserId,
+        username: handle,
+        firstname: firstName,
+        lastname: lastName,
+        email: email,
+        socialProfile: profile,
+        socialProvider: socialProvider,
+        // TODO should this be refresh token or accessToken?
+        accessToken: accessToken
+      }
+    }
 
     function storeById(object, questions) {
       angular.forEach(questions, function(question) {

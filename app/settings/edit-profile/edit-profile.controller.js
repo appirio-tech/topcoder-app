@@ -3,15 +3,17 @@
 
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
-  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS'];
+  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS'];
 
-  function EditProfileController(userData, userHandle, ProfileService, $log, ISO3166, ImageService, $rootScope, CONSTANTS) {
+  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, $rootScope, CONSTANTS) {
+    $log = $log.getInstance("EditProfileCtrl");
+
     var vm = this;
     vm.toggleTrack    = toggleTrack;
     vm.updateCountry  = updateCountry;
     vm.onFileChange   = onFileChange;
     vm.updateProfile  = updateProfile;
-
+    vm.linkedExternalAccounts = [];
     activate();
 
     function activate() {
@@ -19,7 +21,13 @@
       vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.competitionCountryCode);
 
       processData(userData);
-      vm.userData = userData
+      vm.userData = userData;
+
+      ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId)
+      .then(function(data) {
+        vm.linkedExternalAccounts = data;
+      });
+
     }
 
     function updateCountry(angucompleteCountryObj) {

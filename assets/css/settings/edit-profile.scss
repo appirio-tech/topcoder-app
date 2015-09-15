@@ -128,4 +128,14 @@
     top: 70px;
     left: 3px;
   }
+
+  .external-account-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .external-account-tile {
+    width: 100px;
+    height: 100px;
+  }
 }
