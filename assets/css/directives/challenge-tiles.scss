@@ -27,7 +27,7 @@
       width: 210px;
       padding-top: 8px;
       padding-bottom: 5px;
-      font-family: SofiaProMedium, Arial;
+      @include sofia-pro-medium;
       font-size: 14px;
       line-height: 18px;
       color: #3D3D3D;
@@ -36,9 +36,10 @@
     }
 
     p {
-      text-transform: uppercase;
+      @include sofia-pro-light;
       font-size: 11px;
       line-height: 13px;
+      text-transform: uppercase;
     }
   }
 
