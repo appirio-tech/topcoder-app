@@ -99,7 +99,8 @@ describe('SubTrack Controller', function() {
         $stateParams: {
           track: track,
           subTrack: subTrack
-        }
+        },
+        userHandle: 'rakesh'
       });
     });
 
@@ -138,7 +139,8 @@ describe('SubTrack Controller', function() {
         $stateParams: {
           track: track,
           subTrack: subTrack
-        }
+        },
+        userHandle: 'rakesh'
       });
       profileScope.$apply();
     });
@@ -182,7 +184,8 @@ describe('SubTrack Controller', function() {
             argState = state;
             argParams = params;
           }
-        }
+        },
+        userHandle: 'rakesh'
       });
       profileScope.$apply();
     });

@@ -2,7 +2,7 @@
 describe('My Challenges Controller', function() {
   var controller;
   var domain;
-  var authService, challengeService, userService;
+  var authService, challengeService, userService, identity;
   var marathons = mockData.getMockMarathons();
   var challenges = mockData.getMockiOSChallenges();
 
@@ -27,6 +27,13 @@ describe('My Challenges Controller', function() {
     challengeService = ChallengeService;
     authService = TcAuthService;
     userService = UserService;
+
+    identity = function() {
+      return {
+        handle: 'albertwang',
+        userId: 123456
+      };
+    };
 
     // mock user api
     sinon.stub(userService, 'getUserIdentity', function() {
@@ -63,7 +70,8 @@ describe('My Challenges Controller', function() {
       myChallenges = $controller('MyChallengesController', {
         ChallengeService : challengeService,
         UserService : userService,
-        $scope: $scope
+        $scope: $scope,
+        userIdentity: identity
       });
       $rootScope.$apply();
     });
@@ -91,7 +99,8 @@ describe('My Challenges Controller', function() {
       myChallenges = $controller('MyChallengesController', {
         ChallengeService : challengeService,
         UserService : userService,
-        $scope: $scope
+        $scope: $scope,
+        userIdentity: identity
       });
       $rootScope.$apply();
     });

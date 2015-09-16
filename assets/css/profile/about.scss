@@ -30,16 +30,24 @@
     align-items: center;
     margin: 10px 0;
     .track {
+      margin-top: 22.4px;
       display: flex;
       flex-direction: column;
       cursor: pointer;
 
       .name {
+        img {
+          height: 21px;
+          width: 21px;
+          margin-right: 5.5px;
+          margin-bottom: -3px;
+        }
         margin: auto;
         font-family: 'Sofia Pro';
         font-weight: 200;
         font-size: 19.6px;
         line-height: 24px;
+        margin-bottom: 10.6px;
       }
       .subtrack {
         display: flex;
@@ -75,6 +83,15 @@
             color: #7f7f7f;
             font-weight: normal;
           }
+        }
+        .arrow {
+          font-family: 'Sofia Pro';
+          font-weight: 200;
+          color: #cccccc;
+          font-size: 18px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
       }
       .icon {
