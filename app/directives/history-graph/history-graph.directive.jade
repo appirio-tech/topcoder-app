@@ -8,4 +8,4 @@
     .history-info(ng-if="historyRating")
       | Attained on {{historyDate}} in challenge "{{historyChallenge}}"
     .lower
-      button(ng-click="graphState.show = 'distribution'") COMPARE
+      a.compare(ng-click="graphState.show = 'distribution'") COMPARE

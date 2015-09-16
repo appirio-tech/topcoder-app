@@ -33,8 +33,9 @@
         ng-if="profileVm.categories[track].length > 0"
       )
 
-        img(ng-src="images/ico-track-{{vm.imgMap[track]}}-outline.svg")
-        .name {{track}}
+        .name
+          img(ng-src="images/ico-track-{{vm.imgMap[track]}}-outline.svg")
+          | {{track}}
 
         .subtrack(
           ng-repeat="subtrack in profileVm.categories[track]",
@@ -56,6 +57,8 @@
             .number {{subtrack.fulfillment + '%'}}
 
             .tag Fulfillment
+
+          .arrow >
 
   hr
 
