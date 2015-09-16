@@ -11,8 +11,6 @@ header
 section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
   challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="'tile'", ng-class="'tile-view'")
 
-  challenge-tile.spotlight(spotlight="spotlight", challenge="vm.spotlightChallenge", view="'tile'", ng-class="'tile-view'")
-
 .section-links
   .link
     a(href="https://www.{{vm.domain}}/challenges/?pageIndex=1") Find New Challenges

@@ -2,7 +2,6 @@
 
 .srm.tile-view {
   background-color: $medium-gray;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -50,7 +49,6 @@
 
 .srm.list-view {
   border-bottom: 1px solid $medium-gray;
-  box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
