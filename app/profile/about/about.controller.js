@@ -3,20 +3,25 @@
 
   angular.module('tc.profile').controller('ProfileAboutController', ProfileAboutController);
 
-  ProfileAboutController.$inject = ['$log', '$scope', 'ProfileService'];
+  ProfileAboutController.$inject = ['$log', '$scope', 'ProfileService', 'ExternalAccountService'];
 
-  function ProfileAboutController($log, $scope, ProfileService) {
+  function ProfileAboutController($log, $scope, ProfileService, ExternalAccountService) {
     var vm = this;
+    $log = $log.getInstance("ProfileAboutController");
+
     var profileVm = $scope.$parent.profileVm;
     vm.categoryIndex = 0;
     vm.skillIndex = 0;
-    vm.shiftCategories = shiftCategories;
-    vm.shiftSkills = shiftSkills;
+    vm.imgMap = {};
 
     activate();
 
     function activate() {
-      vm.mockProfile = ProfileService.getMockMemberProfile();
+      ExternalAccountService.getLinkedExternalLinksData(profileVm.userHandle)
+      .then(function(data) {
+        vm.linkedExternalAccountsData = data.plain();
+      });
+
       profileVm.statsPromise.then(function() {
         vm.categories = profileVm.categories;
       });
@@ -25,30 +30,11 @@
       });
     }
 
-    function shiftCategories(x) {
-      if (vm.categories && vm.categories.length !== 0) {
-        if (x < 0 && vm.categoryIndex > 0) {
-          vm.categoryIndex -= 4;
-          if (vm.categoryIndex < 0) vm.categoryIndex = 0;
-        }
-        else if (x > 0 && vm.categoryIndex < vm.categories.length - 4) {
-          vm.categoryIndex += 4;
-          if (vm.categoryIndex > vm.categories.length - 4) vm.categoryIndex = vm.categories.length - 4;
-        }
-      }
-    }
+    vm.imgMap = {
+      'DEVELOP': 'develop',
+      'DESIGN': 'design',
+      'DATA_SCIENCE': 'data'
+    };
 
-    function shiftSkills(x) {
-      if (vm.skills && vm.skills.length !== 0) {
-        if (x < 0 && vm.skillIndex > 0) {
-          vm.skillIndex -= 5;
-          if (vm.skillIndex < 0) vm.skillIndex = 0;
-        }
-        else if (x > 0 && vm.skillIndex < vm.skills.length - 5) {
-          vm.skillIndex += 5;
-          if (vm.skillIndex > vm.skills.length - 5) vm.skillIndex = vm.skills.length - 5;
-        }
-      }
-    }
   }
 })();

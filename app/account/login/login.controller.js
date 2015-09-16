@@ -11,6 +11,7 @@
     vm.$stateParams = $stateParams;
     vm.passwordReset = false;
     vm.usernameExists = true;
+    vm.currentPasswordDefaultPlaceholder = "Password";
 
     if ($stateParams.notifyReset) {
       NotificationService.inform('Your new password has been set. Please log in. If you have any trouble, please contact support@topcoder.com.');
@@ -50,13 +51,13 @@
             vm.usernameExists = false;
           } else {
             vm.usernameExists = true;
-            _doLogin(vm.username, vm.password);
+            _doLogin(vm.username, vm.currentPassword);
           }
         }).catch(function(resp) {
           // TODO handle error
           // assume email exists, login would in any case if it didn't
           vm.usernameExists = true;
-          _doLogin(vm.username, vm.password);
+          _doLogin(vm.username, vm.currentPassword);
         });
       } else {
         vm.emailOrUsername = 'username';
@@ -67,13 +68,13 @@
             vm.usernameExists = false;
           } else {
             vm.usernameExists = true;
-            _doLogin(vm.username, vm.password);
+            _doLogin(vm.username, vm.currentPassword);
           }
         }).catch(function(resp) {
           // TODO handle error
           // assume email exists, login would in any case if it didn't
           vm.usernameExists = true;
-          _doLogin(vm.username, vm.password);
+          _doLogin(vm.username, vm.currentPassword);
         });
       }
     };

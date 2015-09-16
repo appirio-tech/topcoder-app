@@ -13,6 +13,7 @@
 
     var service = {
       getLinkedExternalAccounts: getLinkedExternalAccounts,
+      getLinkedExternalLinksData: getLinkedExternalLinksData,
       linkExternalAccount: linkExternalAccount,
       unlinkExternalAccount: unlinkExternalAccount
     };
@@ -31,6 +32,14 @@
       .then(function(result) {
         return result.profiles || [];
       });
+    }
+
+    function getLinkedExternalLinksData(userHandle) {
+      return api.one('members', userHandle).withHttpConfig({skipAuthorization: true}).customGET('externalAccounts')
+      .then(function(data) {
+        console.log(data.plain());
+        return data;
+      })
     }
 
     function unlinkExternalAccount(account) {

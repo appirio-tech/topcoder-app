@@ -26,7 +26,8 @@
     'xml',
     'angular.filter',
     'CONSTANTS',
-    'dcbImgFallback'
+    'dcbImgFallback',
+    'toaster'
   ];
 
   angular

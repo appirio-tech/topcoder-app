@@ -18,6 +18,7 @@ html
     link(rel='stylesheet', href='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.css')
     link(rel='stylesheet', href='../bower_components/ngDialog/css/ngDialog.css')
     link(rel='stylesheet', href='../bower_components/ngDialog/css/ngDialog-theme-default.css')
+    link(rel='stylesheet', href='../bower_components/angularjs-toaster/toaster.css')
     //- endbower
     // endbuild
 
@@ -57,6 +58,7 @@ html
     link(rel="stylesheet", href="assets/css/directives/srm-tile.css")
     link(rel="stylesheet", href="assets/css/directives/profile-widget.css")
     link(rel="stylesheet", href="assets/css/directives/history-graph.css")
+    link(rel="stylesheet", href="assets/css/directives/external-link-data.css")
     link(rel="stylesheet", href="assets/css/directives/external-account.css")
     link(rel="stylesheet", href="assets/css/directives/distribution-graph.css")
     link(rel="stylesheet", href="assets/css/directives/challenge-tiles.css")
@@ -68,17 +70,15 @@ html
     //- endinject
     // endbuild
 
-  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh}", ng-strict-di)
+  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh, 'menu-visible': main.menuVisible}", ng-strict-di)
 
     //- include ./layout/header/header.jade
     #header(ui-view="header")
 
     notifications-bar.notifications(closeIcon="fa fa-times-circle")
+    toaster-container(toaster-options="{{main.globalToasterConfig}}")
 
-    //- include ./layout/header/sidebar.jade
-    div(ui-view="sidebar")
-
-    .view-container(ng-class="{slided: main.sidebarActive}")
+    .view-container
       div(ui-view="container")
 
     //- include ./layout/footer/footer.jade
@@ -106,6 +106,8 @@ html
     script(src='../bower_components/ngDialog/js/ngDialog.js')
     script(src='../bower_components/lodash/lodash.js')
     script(src='../bower_components/restangular/dist/restangular.js')
+    script(src='../bower_components/angular-animate/angular-animate.js')
+    script(src='../bower_components/angularjs-toaster/toaster.js')
     //- endbower
     //- inject:nonBowerScripts
     script(src="/scripts/auth0-angular.js")
@@ -147,6 +149,7 @@ html
     script(src="directives/tc-paginator/tc-paginator.directive.js")
     script(src="directives/tc-section/tc-section.directive.js")
     script(src="topcoder.module.js")
+    script(src="filters/country.filter.js")
     script(src="filters/deadline-msg.filter.js")
     script(src="filters/iif.filter.js")
     script(src="filters/listRoles.filter.js")
@@ -204,6 +207,7 @@ html
     script(src="services/review.service.js")
     script(src="services/scorecard.service.js")
     script(src="services/srm.service.js")
+    script(src="services/tags.service.js")
     script(src="services/tcAuth.service.js")
     script(src="services/user.service.js")
     script(src="settings/settings.module.js")

@@ -19,6 +19,11 @@
         data: {
           authRequired: true,
           title: 'My Challenges'
+        },
+        resolve: {
+          userIdentity: ['UserService', function(UserService) {
+            return UserService.getUserIdentity();
+          }]
         }
       }
     };

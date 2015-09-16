@@ -23,6 +23,7 @@
       generateResetToken: generateResetToken,
       resetPassword: resetPassword,
       updatePassword: updatePassword,
+      getUserProfile: getUserProfile,
       getV2UserProfile: getV2UserProfile
     };
     return service;
@@ -91,6 +92,11 @@
         socialUserId: userId,
         socialProvider: provider
       });
+    }
+
+    function getUserProfile(queryParams) {
+      var userId = getUserIdentity().userId;
+      return api.one('users', userId).get(queryParams);
     }
 
     /**

@@ -102,6 +102,16 @@
               return null; // data
             }
           })
+          .addElementTransformer('skills', function(elem) {
+            // transform map to simple array
+            var skills = []
+            _.forEach(elem.skills, function(n,k) {
+              n.tagId = k;
+              skills.push(n);
+            });
+            elem.skills = skills;
+            return elem;
+          })
           .setErrorInterceptor(function(response) {
             // TODO
             switch (response.status) {
