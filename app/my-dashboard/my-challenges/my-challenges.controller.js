@@ -28,7 +28,7 @@
     // get ACTIVE challenges and spotlight challenges
     function getChallenges(status, orderBy) {
       var params = {
-        limit: 1,
+        limit: 8,
         offset: 0,
         orderBy: orderBy, // TODO verify if this is the correct sort order clause,
         filter: {

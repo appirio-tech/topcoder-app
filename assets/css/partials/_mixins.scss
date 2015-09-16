@@ -70,12 +70,20 @@
   font-weight: 300;
 }
 
+@mixin sofia-pro-regular {
+  font-family: 'Sofia Pro', Arial;
+  font-weight: 400;
+}
+
 @mixin sofia-pro-medium {
   font-family: 'Sofia Pro', Arial;
   font-weight: 500;
 }
 
-
+@mixin sofia-pro-bold {
+  font-family: 'Sofia Pro', Arial;
+  font-weight: bold;
+}
 
 @mixin glyphicons-halflings {
   @font-face {

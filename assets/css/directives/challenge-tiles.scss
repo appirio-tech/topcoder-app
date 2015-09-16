@@ -43,94 +43,154 @@
     }
   }
 
-  .challenge-icons {
+  // .thumbnail {
+  //   display: flex;
+  //   flex-direction: row;
+  //   justify-content: center;
+  //   margin: 20px 0;
+  //   img {
+  //   }
+  // }
+
+  .challenge-details {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    img, .role {
-      margin-right: 10px;
+  .currentPhase {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    @include sofia-pro-light;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .challenge-calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75px;
+    height: 63px;
+    margin-bottom: 20px;
+    background-image: url(/images/svgs/ico-calendar.svg);
+
+    > p {
+      @include sofia-pro-bold;
     }
 
-    img {
-      width: 25px;
-      height: 25px;
+    .starts-in {
+      margin-top: 3px;
+      font-size: 10px;
+      line-height: 13px;
+      text-transform: uppercase;
+      color: #7F7F7F;
     }
 
-    a {
-      color: $dark-gray;
-      line-height: 25px;
+    .time-remaining {
+      margin-top: 5px;
+      font-size: 24px;
+      color: #3D3D3D;
+    }
+
+    .unit-of-time {
+      margin-top: 1px;
+      font-size: 10px;
+      text-transform: lowercase;
+      color: #7F7F7F;
     }
   }
 
-  .thumbnail {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 20px 0;
-    img {
-    }
+  .phase-action {
+    width: 112px;
+    height: 30px;
+    border-radius: 4px;
+    margin-bottom: 25px;
+    background-color: $primary-color;
+    @include sofia-pro-regular;
+    font-size: 14px;
+    line-height: 30px;
+    color: $white;
+    text-transform: uppercase;
+    text-align: center;
   }
 
   .roles {
-    margin-top: 10px;
-    margin-bottom: 20px;
-    min-height: 40px;
-    color: $dark-gray;
-    font-size: 14px;
+    min-height: 36px;
+    margin-bottom: 25px;
+    color: #3D3D3D;
+    @include source-sans;
+    font-size: 13px;
+    line-height: 18px;
   }
 
-  .challenge-status {
-    color: $dark-gray;
+  .challenge-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 38px;
+    width: 100%;
+    padding: 0 20px;
+    background-color: #FCFCFC;
 
-    .days-remaining {
-      margin-top: 15px;
-      font-size: 20px;
-
-      span {
-        display: block;
-        margin-top: 5px;
-        @include source-sans-semi-bold;
-        font-size: 14px;
-        text-transform: uppercase;
-      }
+    a {
+      text-decoration: none;
     }
 
-    .stats {
-      margin-top: 15px;
-      min-height: 23px;
-      font-size: 22px;
-      color: #4f4f4f;
-
-      .registrants, .submissions {
-        display: inline-block;
-        margin-right: 10px;
-      }
-
-      i {
-        margin-right: 5px;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-    }
-
-    .phase-status {
+    .stats, .registrants, .submissions, .forum {
       display: flex;
       flex-direction: row;
-      margin-top: 35px;
-
-      i {
-        color: #7ece95;
-        margin-right: 5px;
-      }
+      align-items: center;
     }
+
+    .registrants, .submissions, .form {
+      cursor: pointer;
+    }
+
+    .registrants {
+      margin-right: 15px;
+    }
+
+    p {
+      @include sofia-pro-bold;
+      font-size: 11px;
+      color: #3D3D3D;
+    }
+
+    .forum p {
+      @include sofia-pro-regular;
+      text-transform: uppercase;
+    }
+  }
+
+  div[class$="-icon"] {
+    margin-right: 3px;
+  }
+
+  .registrants-icon {
+    width: 15px;
+    height: 16px;
+    background-image: url(/images/svgs/ico-users.svg);
+    background-size: 15px 16px;
+  }
+
+  .submissions-icon {
+    width: 22px;
+    height: 14px;
+    background-image: url(/images/svgs/ico-submissions.svg);
+  }
+
+  .forum-icon {
+    width: 20px;
+    height: 17px;
+    background-image: url(/images/svgs/ico-posts.svg);
   }
 }
 
 
+
+/* ///////////////////////// */
 .challenge.list-view {
   width: 100%;
   border-bottom: 1px solid $medium-gray;
@@ -150,29 +210,6 @@
       color: #4f4f4f;
       text-decoration: none;
       @include ellipsis;
-    }
-  }
-
-  .challenge-icons {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 10px 0px;
-
-    img, .role {
-      margin-right: 10px;
-    }
-
-    img {
-      width: 25px;
-      height: 25px;
-    }
-
-
-    a {
-      color: $dark-gray;
-      line-height: 25px;
     }
   }
 
@@ -259,58 +296,22 @@
       margin-right: 5px;
     }
   }
-
-}
-
-// Stylings for Spotlight Challenges
-.spotlight {
-
-  .placeholder {
-    font-size: 22px;
-    color: $dark-gray;
-    text-align: center;
-    min-height: 90px;
-    padding-top: 60px;
-    padding-bottom: 10px;
-  }
-
-  .challenge-status {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
 }
 
 // Dynamic colors based on track
 .DESIGN {
-  .challenge-track {
-    background-color: $accent-color;
-  }
-  header p {
-    color: $accent-color
-  }
+  .challenge-track { background-color: $accent-color; }
+  header p { color: $accent-color; }
 }
 .DEVELOP {
-  .challenge-track {
-    background-color: $success-color;
-  }
-  header p {
-    color: $success-color;
-  }
+  .challenge-track { background-color: $success-color; }
+  header p { color: $success-color; }
 }
 .DATA_SCIENCE {
-  .challenge-track {
-    background-color: #F39426;
-  }
-  header p {
-    color: #F39426;
-  }
+  .challenge-track { background-color: #F39426; }
+  header p { color: #F39426; }
 }
 .COPILOT {
-  .challenge-track {
-    background-color: #7F7F7F;
-  }
-  header p {
-    color: #7F7F7F;
-  }
+  .challenge-track { background-color: #7F7F7F; }
+  header p { color: #7F7F7F; }
 }
