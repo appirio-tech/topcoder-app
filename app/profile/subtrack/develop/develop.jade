@@ -21,11 +21,11 @@
       .name RELIABILITY
 
   .tabs
-    a(ng-click="vm.viewing = 'challenges'",
+    a.left(ng-click="vm.viewing = 'challenges'",
       ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
     ) Challenges
 
-    a(ng-click="vm.viewing = 'stats'",
+    a.right(ng-click="vm.viewing = 'stats'",
       ng-class="vm.viewing == 'stats' ? 'selected' : ''"
     ) Stats
 

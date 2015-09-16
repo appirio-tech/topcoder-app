@@ -3,17 +3,80 @@
 .profile-subtrack-container {
   display: flex;
   flex-direction: column;
+  
   .nav {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    margin-bottom: 5px;
-    .backButton {
-      margin-left: 10px;
-      a {
-        color: black;
-        text-decoration: none;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    .arrow {
+      width: 15px;
+    }
+    .right {
+      width: 15px;
+    }
+    .breadcrumbs {
+      .handle {
+        display: none;
       }
+      .track {
+        display: block;
+        font-family: 'Sofia Pro';
+        font-size: 14px;
+        line-height: 16px;
+        color: #a3a3ae;
+        font-weight: 200;
+        text-align: center;
+      }
+      .subtrack {
+        display: block;
+        font-family: 'Sofia Pro';
+        font-size: 14px;
+        line-height: 16px;
+        color: #00aeff;
+        font-weight: 700;
+        text-align: center;
+      }
+    }
+  }
+  .horizontal-stats {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    .stat {
+      margin: 5px 7px;
+      background: #f6f6f6;
+      height: 85px;
+      width: 85px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-family: 'Sofia Pro';
+
+      .value {
+        font-weight: 700;
+        text-align: center;
+        font-size: 20px;
+      }
+      .name {
+        font-weight: 500;
+        margin-top: 8px;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 9px;
+        color: #a3a3ae;
+      }
+    }
+  }
+
+  ul.vertical-stats {
+    display: flex;
+    flex-direction: column;
+    li {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
   }
   .develop, .design {
@@ -21,7 +84,7 @@
     .stats {
       .graphs {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
       }
       h2.detailed {
@@ -44,10 +107,25 @@
       margin: 30px 0 0 0;
       a {
         width: 100px;
-        padding: 8px;
+        border: 1px solid #00aeff;
+        color: #00aeff;
+        width: 140px;
+        height: 30px;
+        padding-top: 6px;
         text-align: center;
+        font-family: 'Sofia Pro';
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        &.left {
+          border-radius: 5px 0 0 5px;
+        }
+        &.right {
+          border-radius: 0 5px 5px 0;
+        }
         &.selected {
-          border: 1px solid #dddddd;
+          background: #00aeff;
+          color: white;
         }
       }
     }

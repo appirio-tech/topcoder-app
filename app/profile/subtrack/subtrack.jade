@@ -1,7 +1,14 @@
 .profile-subtrack-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
 
-  .breadcrumbs
-    .handle {{vm.userHandle}} // {{vm.track}} // {{vm.subTrack}}
+  .nav
+    img.arrow(src="/images/ico-arrow-big-left.svg")
+
+    .breadcrumbs
+      .handle {{vm.userHandle}} //
+      .track {{vm.track}}
+      .subtrack // {{vm.subTrack}}
+
+    .right
 
   hr
 
