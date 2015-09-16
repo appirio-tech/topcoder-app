@@ -54,16 +54,33 @@
        margin, since we can't use .tile:first-child here */
     margin-left: -20px;
 
+    @media only screen and (max-width: 400px) {
+      display: block;
+      margin-left: 0;
+      width: 300px;
+      white-space: nowrap;
+      overflow-y: hidden;
+      overflow-x: scroll;
+      -webkit-overflow-scrolling: touch;
+    }
+
     challenge-tile {
       display: flex;
       flex-flow: row wrap;
+      width: 270px;
+      @media only screen and (max-width: 400px) {
+        display: inline-block;
+        flex-flow: none;
+      }
 
       &.tile-view {
         margin-left: 20px;
         margin-bottom: 20px;
 
-        &.spotlight {
-          width: 48%;
+        @media only screen and (max-width: 400px) {
+          margin-bottom: 0;
+          margin-left: 0;
+          margin-right: 10px;
         }
       }
 
