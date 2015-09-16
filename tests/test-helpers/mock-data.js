@@ -1795,7 +1795,7 @@ var mockData = (function() {
       "DATA_SCIENCE": {
         "challenges": 10,
         "wins": 0,
-        "srm": {
+        "SRM": {
           "challenges": 10,
           "wins": 0,
           "rank": {
@@ -1870,7 +1870,7 @@ var mockData = (function() {
             }
           ]
         },
-        "marathonMatch": {
+        "MARATHON_MATCH": {
           "rank": {
             "rating": 0,
             "competitions": 0,
