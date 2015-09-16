@@ -62,7 +62,7 @@
       padding: {
         top: 20,
         right: 30,
-        bottom: 30,
+        bottom: 100,
         left: 30
       }
     };
@@ -73,7 +73,7 @@
       padding: {
         top: 10,
         right: 30,
-        bottom: 30,
+        bottom: 100,
         left: 30
       }
     };

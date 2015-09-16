@@ -90,12 +90,27 @@
       h2.detailed {
         margin: 50px auto 25px auto;
         text-align: center;
+        font-family: 'Lucida Grande';
+        font-size: 18px;
+        line-height: 21px;
+        font-weight: bold;
+        text-transform: uppercase;
       }
       ul.vertical-stats {
-        width: 500px;
+        width: 90%;
         margin: 0 auto;
         li {
-          margin: 10px 0;
+          font-family: 'Sofia Pro';
+          font-size: 15px;
+          line-height: 18px;
+          padding: 14px;
+          border-bottom: 1px solid #f6f6f6;
+          .right {
+            color: #00aeff;
+          }
+          &.first {
+            border-top: 1px solid #f6f6f6;
+          }
         }
       }
     }

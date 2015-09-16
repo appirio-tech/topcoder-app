@@ -1,7 +1,8 @@
 .profile-subtrack-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
 
   .nav
-    img.arrow(src="/images/ico-arrow-big-left.svg")
+    a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
+      img.arrow(src="/images/ico-arrow-big-left.svg")
 
     .breadcrumbs
       .handle {{vm.userHandle}} //
