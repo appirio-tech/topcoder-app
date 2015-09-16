@@ -32,7 +32,7 @@
         function activate() {
           // attaches watcher to watch data changes
           $scope.$watch('data', function(updatedValue) {
-            $log.debug("data updated for pager ", updatedValue);
+            $log.debug("data updated for paginator ", updatedValue);
             init(updatedValue);
           });
         }

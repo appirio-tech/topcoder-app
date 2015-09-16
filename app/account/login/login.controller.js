@@ -10,6 +10,7 @@
     vm.$stateParams = $stateParams;
     vm.passwordReset = false;
     vm.usernameExists = true;
+    vm.currentPasswordDefaultPlaceholder = "Password";
 
     // Handling social login stuff
     if ($stateParams.userJWTToken) {
@@ -53,7 +54,7 @@
       function(err) {
         // handle error
         vm.wrongPassword = true;
-        vm.password = '';
+        vm.currentPassword = '';
       });
     }
 
@@ -70,13 +71,13 @@
             vm.usernameExists = false;
           } else {
             vm.usernameExists = true;
-            _doLogin(vm.username, vm.password);
+            _doLogin(vm.username, vm.currentPassword);
           }
         }).catch(function(resp) {
           // TODO handle error
           // assume email exists, login would in any case if it didn't
           vm.usernameExists = true;
-          _doLogin(vm.username, vm.password);
+          _doLogin(vm.username, vm.currentPassword);
         });
       } else {
         vm.emailOrUsername = 'username';
@@ -87,13 +88,13 @@
             vm.usernameExists = false;
           } else {
             vm.usernameExists = true;
-            _doLogin(vm.username, vm.password);
+            _doLogin(vm.username, vm.currentPassword);
           }
         }).catch(function(resp) {
           // TODO handle error
           // assume email exists, login would in any case if it didn't
           vm.usernameExists = true;
-          _doLogin(vm.username, vm.password);
+          _doLogin(vm.username, vm.currentPassword);
         });
       }
     };

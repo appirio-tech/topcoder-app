@@ -12,7 +12,7 @@
     div.validation-bar(ng-class="{'error-bar': !vm.usernameExists}")
       input(ng-model="vm.username", name="username", placeholder="Username or Email", type="text", required)
 
-    input(ng-model="vm.password", name="password", placeholder="Password", type="password", required)
+    toggle-password
 
     button(type="submit", ng-disabled="vm.loginForm.$invalid", ng-class="{'enabled-button': vm.loginForm.$valid}") Log In
 

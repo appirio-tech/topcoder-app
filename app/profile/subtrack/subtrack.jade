@@ -1,15 +1,7 @@
 .profile-subtrack-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
-  hr
-  .nav
-    .backButton
-      a(ng-click="vm.back()") &#9664;
 
-    .dropdown(
-      dropdown-select="vm.dropdown",
-      dropdown-model="vm.ddSelected",
-      dropdown-item-label="text",
-      dropdown-onchange="vm.selectSubTrack(vm.ddSelected.value)"
-    )
+  .breadcrumbs
+    .handle {{vm.userHandle}} // {{vm.track}} // {{vm.subTrack}}
 
   hr
 
