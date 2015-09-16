@@ -67,7 +67,7 @@
       restangular.one('members', username).one('stats').get().then(function(data) {
         if (!data.DEVELOP) data.DEVELOP = {challenges: 0, wins: 0, subTracks: []};
         if (!data.DESIGN) data.DESIGN = {challenges: 0, wins: 0, subTracks: []};
-        if (!data.DATA_SCIENCE) data.DATA_SCIENCE = {challenges: 0, wins: 0, srm: {}, marathonMatch: {}};
+        if (!data.DATA_SCIENCE) data.DATA_SCIENCE = {challenges: 0, wins: 0, SRM: {}, MARATHON_MATCH: {}};
         deferred.resolve(data);
       });
       return deferred.promise;
@@ -109,16 +109,16 @@
           };
         });
       }
-      if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.srm && stats.DATA_SCIENCE.srm.rank) {
-        var srmStats = stats.DATA_SCIENCE.srm;
+      if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.SRM && stats.DATA_SCIENCE.SRM.rank) {
+        var srmStats = stats.DATA_SCIENCE.SRM;
         srm = {
           'track': 'DATA_SCIENCE',
           'subTrack': 'SRM',
           'rank': srmStats.rank.rating
         };
       }
-      if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.marathonMatch && stats.DATA_SCIENCE.marathonMatch.rank) {
-        var marathonStats = stats.DATA_SCIENCE.marathonMatch;
+      if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.MARATHON_MATCH && stats.DATA_SCIENCE.MARATHON_MATCH.rank) {
+        var marathonStats = stats.DATA_SCIENCE.MARATHON_MATCH;
         marathon = {
           'track': 'DATA_SCIENCE',
           'subTrack': 'MARATHON',
@@ -165,9 +165,9 @@
         var ans = stats.COPILOT;
         return ans;
       } else if (type == 'SRM') {
-        return stats.DATA_SCIENCE.srm;
+        return stats.DATA_SCIENCE.SRM;
       } else {
-        return stats.DATA_SCIENCE.marathonMatch;
+        return stats.DATA_SCIENCE.MARATHON_MATCH;
       }
     }
 
