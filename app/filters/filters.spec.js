@@ -2,7 +2,7 @@ describe('filters', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter', 'countryFilter');
+    bard.inject(this, 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter');
   });
 
   describe('role filter', function() {
@@ -34,7 +34,7 @@ describe('filters', function() {
       expect(percentageFilter(.985)).to.be.equal('99%');
     });
   });
-  
+
   describe('ordinal number filter', function() {
     it('should render ordinal numbers', function() {
       expect(ordinalFilter(1)).to.be.equal('1st');
@@ -56,14 +56,4 @@ describe('filters', function() {
       expect(listRolesFilter([1,2])).to.be.equal('1, 2');
     });
   });
-
-  describe('country filter', function() {
-    it('should filter country', function() {
-      expect(countryFilter('GBR')).to.be.equal('United Kingdom');
-      expect(countryFilter('asdfl')).to.be.equal('');
-      expect(countryFilter('USA')).to.be.equal('United States');
-      expect(countryFilter('US')).to.be.equal('United States');
-    });
-  });
-
 });
