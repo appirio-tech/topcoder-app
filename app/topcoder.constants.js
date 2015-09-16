@@ -11,7 +11,7 @@ angular.module("CONSTANTS", [])
 	"COMMUNITY_URL": "//community.topcoder-dev.com",
 	"domain": "topcoder-dev.com",
 	"ENVIRONMENT": "development",
-	"FORUMS_APP_URL": "forums.topcoder-dev.com",
+	"FORUMS_APP_URL": "//apps.topcoder-dev.com/forums",
 	"HELP_APP_URL": "help.topcoder-dev.com",
 	"MAIN_URL": "https://www.topcoder-dev.com",
 	"NEW_CHALLENGES_URL": "https://www.topcoder.com/challenges/develop/upcoming/",

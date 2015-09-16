@@ -18,6 +18,7 @@ html
     link(rel='stylesheet', href='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.css')
     link(rel='stylesheet', href='../bower_components/ngDialog/css/ngDialog.css')
     link(rel='stylesheet', href='../bower_components/ngDialog/css/ngDialog-theme-default.css')
+    link(rel='stylesheet', href='../bower_components/angularjs-toaster/toaster.css')
     //- endbower
     // endbuild
 
@@ -67,17 +68,14 @@ html
     //- endinject
     // endbuild
 
-  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh}", ng-strict-di)
+  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh, 'menu-visible': main.menuVisible}", ng-strict-di)
 
     //- include ./layout/header/header.jade
     #header(ui-view="header")
 
     notifications-bar.notifications(closeIcon="fa fa-times-circle")
 
-    //- include ./layout/header/sidebar.jade
-    div(ui-view="sidebar")
-
-    .view-container(ng-class="{slided: main.sidebarActive}")
+    .view-container
       div(ui-view="container")
 
     //- include ./layout/footer/footer.jade
@@ -90,7 +88,7 @@ html
     script(src='../bower_components/angucomplete-alt/angucomplete-alt.js')
     script(src='../bower_components/angular-cookies/angular-cookies.js')
     script(src='../bower_components/angular-dropdowns/dist/angular-dropdowns.js')
-    script(src='../bower_components/angular-filter/dist/angular-filter.min.js')
+    script(src='../bower_components/angular-filter/dist/angular-filter.js')
     script(src='../bower_components/angular-img-fallback/angular.dcb-img-fallback.js')
     script(src='../bower_components/angular-jwt/dist/angular-jwt.js')
     script(src='../bower_components/angular-sanitize/angular-sanitize.js')
@@ -105,6 +103,8 @@ html
     script(src='../bower_components/ngDialog/js/ngDialog.js')
     script(src='../bower_components/lodash/lodash.js')
     script(src='../bower_components/restangular/dist/restangular.js')
+    script(src='../bower_components/angular-animate/angular-animate.js')
+    script(src='../bower_components/angularjs-toaster/toaster.js')
     //- endbower
     //- inject:nonBowerScripts
     script(src="/scripts/auth0.js")
@@ -123,6 +123,7 @@ html
     script(src="blocks/exception/exception.js")
     script(src="blocks/exception/exception-handler.provider.js")
     script(src="blocks/logger/logger.module.js")
+    script(src="blocks/logger/logEnhancer.js")
     script(src="blocks/logger/logger.js")
     script(src="directives/tcui-components.module.js")
     script(src="directives/account/toggle-password/toggle-password.directive.js")
@@ -200,6 +201,7 @@ html
     script(src="services/review.service.js")
     script(src="services/scorecard.service.js")
     script(src="services/srm.service.js")
+    script(src="services/tags.service.js")
     script(src="services/tcAuth.service.js")
     script(src="services/user.service.js")
     script(src="settings/settings.module.js")

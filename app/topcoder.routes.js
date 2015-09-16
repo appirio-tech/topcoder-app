@@ -50,10 +50,6 @@
             controller: 'HeaderController',
             controllerAs: 'vm'
           },
-          'sidebar@': {
-            // TODO revisit to see how the layout works
-            templateUrl: 'layout/header/sidebar.html',
-          },
           'container@': {
             template: "<div ui-view>Main container, add your stuff here</div>"
           },

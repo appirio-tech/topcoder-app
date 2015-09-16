@@ -22,6 +22,13 @@ describe('Update Password Controller', function() {
             handle: 'foo',
             email: 'bar'
           };
+        },
+        getUserProfile: function() {
+          return $q.when({
+            credential: {
+              hasPassword: false
+            }
+          });
         }
       }
     });

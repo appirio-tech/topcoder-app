@@ -38,16 +38,34 @@
       restrict: 'E',
       templateUrl: 'directives/skill-tile/skill-tile.directive.html',
       scope: {
-        skill: '=skill'
+        skill: '=',
+        enableHide: "="
       },
-      controller: ['$scope', function($scope) {
+      controller: ['$scope', 'ProfileService', 'UserService', function($scope, ProfileService, UserService) {
 
         for (var key in _iconMap) {
-          if ($scope.skill.trim().toLowerCase().indexOf(key) > -1) {
+          if ($scope.skill.tagName.trim().toLowerCase().indexOf(key) > -1) {
             $scope.icon = _iconMap[key];
             break;
           }
         }
+
+        $scope.toggle = function() {
+          var skillTagId = $scope.skill.tagId;
+          var handle = UserService.getUserIdentity().handle;
+          if ($scope.skill.hidden) {
+            // un-hide skill
+            ProfileService.addUserSkill(handle, skillTagId).then(function(_skills) {
+              $scope.skill.hidden = false;
+            });
+          } else {
+            // hide skill
+            ProfileService.hideUserSkill(handle, skillTagId).then(function(_skills) {
+              $scope.skill.hidden = true;
+            });
+          }
+        };
+
       }]
     };
   });

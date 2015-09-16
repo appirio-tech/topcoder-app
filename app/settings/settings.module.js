@@ -4,7 +4,8 @@
   var dependencies = [
     'ui.router',
     'tc.services',
-    'tcUIComponents'
+    'tcUIComponents',
+    'toaster'
   ];
 
   angular.module('tc.settings', dependencies);
