@@ -47,10 +47,6 @@ describe('Profile Controller', function() {
       expect(controller.skillsPromise).to.be.defined;
     });
 
-    it('should have tenure', function() {
-      expect(controller.tenure).to.equal(5);
-    });
-
     it('should have default status', function() {
       expect(controller.status.externalLinks).to.equal(CONSTANTS.STATE_READY);
     });
