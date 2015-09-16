@@ -40,27 +40,27 @@
         // links for anonymous user
         .menu-item-header(ng-switch-when="false")
           a.btn-link(ui-sref="register") REGISTER
-          a.btn-link.secondary-link(ui-sref="login") LOG IN
+          a.btn-link.secondary-link(ui-sref="login") LOGIN
           
       // 'COMPETE' link group
       li.menu-item.link-group
         .menu-item-header COMPETE
         ul.submenu
           //li.submenu-item #[a.menu-link(href="javascript:;") START HERE]
-          li.submenu-item #[a.menu-link(href="javascript:;") DESIGN CHALLENGES]
-          li.submenu-item #[a.menu-link(href="javascript:;") DEVELOPMENT CHALLENGES]
-          li.submenu-item #[a.menu-link(href="javascript:;") DATA SCIENCE CHALLENGES]
-          li.submenu-item #[a.menu-link(href="javascript:;") COMPETITIVE PROGRAMMING (ARENA)]
+          li.submenu-item #[a.menu-link(href="/challenges/design/active/") DESIGN CHALLENGES]
+          li.submenu-item #[a.menu-link(href="/challenges/develop/active") DEVELOPMENT CHALLENGES]
+          li.submenu-item #[a.menu-link(href="/challenges/data/active") DATA SCIENCE CHALLENGES]
+          li.submenu-item #[a.menu-link(href="https://arena.topcoder.com/") COMPETITIVE PROGRAMMING (ARENA)]
             
       // 'LEARN' link group
       li.menu-item.link-group
         .menu-item-header LEARN
         ul.submenu
           //li.submenu-item #[a.menu-link(href="javascript:;") START HERE]
-          li.submenu-item #[a.menu-link(href="javascript:;") DESIGN]
-          li.submenu-item #[a.menu-link(href="javascript:;").active DEVELOPMENT]
-          li.submenu-item #[a.menu-link(href="javascript:;") DATA SCIENCE]
-          li.submenu-item #[a.menu-link(href="javascript:;") COMPETITIVE PROGRAMMING]
+          li.submenu-item #[a.menu-link(href="/community/design/") DESIGN]
+          li.submenu-item #[a.menu-link(href="/community/development/").active DEVELOPMENT]
+          li.submenu-item #[a.menu-link(href="/community/data-science/") DATA SCIENCE]
+          li.submenu-item #[a.menu-link(href="/community/data-science/") COMPETITIVE PROGRAMMING]
           //li.submenu-item #[a.menu-link(href="javascript:;") TUTORIALS]
           //li.submenu-item #[a.menu-link(href="javascript:;") EDITORIALS]
           
