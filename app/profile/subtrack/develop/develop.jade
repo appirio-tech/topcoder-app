@@ -21,11 +21,11 @@
       .name RELIABILITY
 
   .tabs
-    a(ng-click="vm.viewing = 'challenges'",
+    a.left(ng-click="vm.viewing = 'challenges'",
       ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
     ) Challenges
 
-    a(ng-click="vm.viewing = 'stats'",
+    a.right(ng-click="vm.viewing = 'stats'",
       ng-class="vm.viewing == 'stats' ? 'selected' : ''"
     ) Stats
 
@@ -48,10 +48,10 @@
 
       history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
-    h2.detailed Detailed Stats
+    h2.detailed Details
 
     ul.vertical-stats
-      li
+      li.first
         .left Submissions
         .right {{vm.typeStats.submissions.submissions}}
 

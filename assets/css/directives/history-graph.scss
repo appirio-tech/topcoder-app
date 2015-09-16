@@ -1,9 +1,12 @@
 .history-graph-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   .history-graph {
 
-    margin-left: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 
     .axis path,
     .axis line {
@@ -38,15 +41,14 @@
 
   }
   .info-port {
-    background: #f6f6f6;
+    background: white;
     margin-top: 20px;
-    height: 400px;
-    width: 250px;
+    height: 200px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-right: 100px;
     .rating {
       width: 130px;
       height: 130px;
@@ -61,10 +63,15 @@
 
       .num {
         color: white;
-        font-size: 25px;
+        font-family: 'Sofia Pro';
+        font-size: 35px;
         font-weight: bold;
+        margin-bottom: 2px;
       }
       .label {
+        font-family: 'Sofia Pro';
+        font-size: 14px;
+        font-weight: 200;
         color: white;
       }
       margin-bottom: 20px;
@@ -75,6 +82,16 @@
       text-align: center;
     }
     .lower {
+    }
+    .compare {
+      color: #00aeff;
+      background: white;
+      border: 1px solid #00aeff;
+      border-radius: 5px;
+      font-family: 'Sofia Pro';
+      font-size: 14px;
+      line-height: 20px;
+      padding: 5px;
     }
   }
 }
