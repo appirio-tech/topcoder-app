@@ -23,22 +23,14 @@
       controller: ['$log', '$scope', 'ExternalAccountService', 'toaster',
         function($log, $scope, ExternalAccountService, toaster) {
           $log = $log.getInstance("ExtAccountDirectiveCtrl")
-
+          $scope.accountList = _.clone(_supportedAccounts, true);
           $scope.$watch('linkedAccounts', function(newValue, oldValue) {
-            for (var i=0;i<_supportedAccounts.length;i++) {
-              $scope.accountList[i] = _supportedAccounts[i];
+            for (var i=0;i<$scope.accountList.length;i++) {
               $scope.accountList[i].linked = !!_.find(newValue, function(a) {
                 return $scope.accountList[i].provider === a.providerType;
               });
             }
           });
-          $scope.accountList = [];
-          for (var i=0;i<_supportedAccounts.length;i++) {
-            $scope.accountList[i] = _supportedAccounts[i];
-            $scope.accountList[i].linked = !!_.find($scope.linkedAccounts, function(a) {
-              return $scope.accountList[i].provider === a.providerType;
-            });
-          }
 
           $scope.link = function(provider) {
             $log.debug(String.supplant('connecting to ' + provider));
@@ -84,9 +76,7 @@
       controller: ['$log', '$scope', 'ExternalAccountService',
         function($log, $scope, ExternalAccountService) {
           $log = $log.getInstance('ExternalLinksDataDirective');
-
           $scope.$watch('linkedAccountsData', function(newValue, oldValue) {
-            // $log.debug(JSON.stringify($scope.linkedAccountsData));
             var linkedAccounts = [];
             for (var i=0;i<_supportedAccounts.length;i++) {
               var n = _supportedAccounts[i],
