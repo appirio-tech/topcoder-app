@@ -32,10 +32,6 @@ describe('Challenge Tile Directive', function() {
     //  expect(directiveHtml).to.include('Learn and Earn Cordova App Assembly');
     //});
 
-    it('should have a dynamically created member status message', function() {
-      expect(scope.challenge.memberStatusMsg).to.equal('You are registered!');
-    });
-
     it('should have domain added to the scope', function() {
       expect(element.isolateScope().DOMAIN).to.equal(domain);
     });
