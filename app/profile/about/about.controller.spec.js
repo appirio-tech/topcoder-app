@@ -16,6 +16,7 @@ describe('Profile About Controller', function() {
       $scope: {$parent: {profileVm: {
         statsPromise: deferred.promise,
         skillsPromise: deferred.promise,
+        externalLinksPromise: deferred.promise,
         categories: [{}, {}, {}, {}, {}],
         skills: [{}, {}, {}, {}, {}]
       }}},
@@ -29,6 +30,7 @@ describe('Profile About Controller', function() {
     controller.skills = [{}, {}, {}, {}, {}, {}];
     controller.categoryIndex = 0;
     controller.skillIndex = 0;
+    controller.linkedExternalAccountsData = {};
 
   });
 
@@ -37,6 +39,7 @@ describe('Profile About Controller', function() {
     expect(controller.skills).to.be.defined;
     expect(controller.categoryIndex).to.be.defined;
     expect(controller.skillIndex).to.be.defined;
+    expect(controller.linkedExternalAccountsData).to.be.defined;
   });
 
 });

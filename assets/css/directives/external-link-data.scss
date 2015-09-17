@@ -1,0 +1,50 @@
+.external-link-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+
+  .external-link-tile {
+    background: #dddddd;
+    width: 200px;
+    height: 240px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    margin: 10px;
+
+    h2 {
+      font-weight: bold;
+    }
+    .handle {
+     font-weight: bold;
+    }
+    .title {
+      // placeholder
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      li {
+        justify-content: space-between;
+        margin: 10px 0 10px 0;
+        width: 90px;
+        font-size: 90%;
+        .key {
+            text-transform: capitalize;
+        }
+        .value {
+            // placeholder
+        }
+      }
+    }
+    .logo {
+      padding: 10px;
+      font-size: 50px;
+    }
+  }
+}

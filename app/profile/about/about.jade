@@ -1,3 +1,4 @@
+
 .profile-header-container(ng-cloak)
   profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-challenges="profileVm.numProjects")
 
@@ -19,6 +20,34 @@
 
   hr
 
+  tc-section(ng-show="vm.displaySection.skills" state="profileVm.status.skills" class="skills")
+    hr
+    h3.activity Skills &amp; Technologies  
+    .list(ng-show="profileVm.skills && profileVm.skills.length > 0")
+      .leftButton(
+        ng-click="vm.shiftSkills(-1)",
+        ng-show="vm.skillIndex > 0"
+      ) &#9664;
+
+      .skill(ng-repeat="skill in profileVm.skills.slice(vm.skillIndex, vm.skillIndex + 5)")
+        skill-tile(skill="skill")
+
+      .rightButton(
+        ng-click="vm.shiftSkills(1)",
+        ng-show="vm.skillIndex < vm.skills.length - 5"
+      ) &#9654;
+  
+    .empty-state(ng-show="profileVm.skills && profileVm.skills.length == 0")
+      .action-text show us your skills &amp; tools, we'd love that!
+      
+        .skill(ng-repeat="skill in vm.sampleSkills")
+          skill-tile(skill="skill")
+      
+      .description The more the better. Skills are important for all challenge organizers and <br>
+        the community at large. So, go ahead and tell us more about you.
+      
+      button.link-button(ui-sref="settings.profile") ADD YOUR SKILLS
+  
   tc-section(state="profileVm.status.stats")
 
     .categories
@@ -58,44 +87,18 @@
 
             .tag Fulfillment
 
-          .arrow >
+          .arrow &gt;
 
-  hr
+  tc-section(ng-show="vm.displaySection.externalLinks" state="profileVm.status.externalLinks" class="external-links")
+    hr
+    h3.activity Links
+    external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccountsData")
 
-  tc-section(state="profileVm.status.skills")
-    .skills(ng-show="profileVm.skills && profileVm.skills.length > 0")
-      h1 Skills / Technologies
+    .empty-state(ng-hide="vm.hasLinks")
+      .action-text you are connected, be proud of it
 
+      external-accounts.external-account-container(linked-accounts="[]")
 
-      .list
-        .leftButton(
-          ng-click="vm.shiftSkills(-1)",
-          ng-show="vm.skillIndex > 0"
-        ) &#9664;
+      .description Adding your links to your profile will allow you to build your reputation, and show the other members how you're connected.
 
-        .skill(ng-repeat="skill in profileVm.skills.slice(vm.skillIndex, vm.skillIndex + 5)")
-          skill-tile(skill="skill")
-
-        .rightButton(
-          ng-click="vm.shiftSkills(1)",
-          ng-show="vm.skillIndex < vm.skills.length - 5"
-        ) &#9654;
-
-
-  hr
-
-  tc-section(state="profileVm.status.externalLinks")
-    .links
-      h1 External Links
-      .list
-        .link(ng-repeat="link in vm.mockProfile.links")
-          h2 {{link.name}}
-
-          ul.properties
-            li.property(ng-repeat="property in link.properties")
-              .key {{property.name}}
-
-              .value {{property.value}}
-
-          .logo
-            img(ng-src="/images/{{link.logo}}")
+      button.link-button(ui-sref="settings.profile") ADD YOUR LINKS

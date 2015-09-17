@@ -4,11 +4,11 @@
   angular.module('tc.profile').controller('ProfileCtrl', ProfileCtrl);
 
   ProfileCtrl.$inject = ['CONSTANTS', '$log',
-    'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService',
+    'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService', 'ExternalAccountService',
     'userHandle', 'profile', 'ngDialog'
   ];
 
-  function ProfileCtrl(CONSTANTS, $log, TcAuthService, UserService, ProfileService, ChallengeService, userHandle, profile, ngDialog) {
+  function ProfileCtrl(CONSTANTS, $log, TcAuthService, UserService, ProfileService, ChallengeService, ExternalAccountService, userHandle, profile, ngDialog) {
     var vm = this;
     // set profile to the object that was resolved
     vm.profile = profile;
@@ -21,7 +21,7 @@
       'badges': CONSTANTS.STATE_LOADING,
       'stats': CONSTANTS.STATE_LOADING,
       'skills': CONSTANTS.STATE_LOADING,
-      'externalLinks': CONSTANTS.STATE_READY
+      'externalLinks': CONSTANTS.STATE_LOADING
     };
 
     activate();
@@ -48,14 +48,18 @@
       vm.status.skills = CONSTANTS.STATE_ERROR;
     });
 
+    // externalLinks
+    vm.externalLinksPromise = ExternalAccountService.getLinkedExternalLinksData(vm.userHandle).then(function(data) {
+      vm.linkedExternalAccountsData = data.plain();
+      vm.status.externalLinks = CONSTANTS.STATE_READY;
+    }).catch(function(err) {
+      vm.status.externalLinks = CONSTANTS.STATE_ERROR;
+    });
+
     function activate() {
       $log.debug('Calling ProfileController activate()');
       // show edit profile link if user is authenticated and is viewing their own profile
-      if (TcAuthService.isAuthenticated() && UserService.getUserIdentity().handle == vm.userHandle) {
-        vm.showEditProfileLink = true;
-      } else {
-        vm.showEditProfileLink = false;
-      }
+      vm.showEditProfileLink = TcAuthService.isAuthenticated() && UserService.getUserIdentity().handle.toLowerCase() === vm.userHandle.toLowerCase();
       if (profile.createdAt) {
         profile.startMonth = moment(profile.createdAt).format('MMMM YYYY');
       } else {

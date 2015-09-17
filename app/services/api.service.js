@@ -77,7 +77,7 @@
             route: 'members'
           })
           .addRequestInterceptor(function(element, operation, what, url) {
-            if (url.indexOf('members') > -1) {
+            if (url.indexOf('members') > -1 || (operation.toLowerCase() === 'post' && url.indexOf('profiles') > -1)) {
               return {
                 param: element
               };
