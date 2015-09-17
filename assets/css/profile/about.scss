@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
 
+  // moved outhere from within sub section to re-use
   .link-button {
     background: #00aeff;
     border-radius: 5px;
@@ -14,6 +15,13 @@
     font-size: 14px;
     font-family: 'Sofia Pro';
     line-height: 20px;
+  }
+  .activity {
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: bold;
+    font-family: 'Lucida Grande';
+    text-transform: uppercase;
   }
 
   .categories {
@@ -104,6 +112,7 @@
   }
 
   .skills {
+    text-align: center;
     display: flex;
     flex-direction: column;
     margin: 15px 0;
@@ -128,7 +137,6 @@
       }
       .skill {
         width: 150px;
-        text-align: center;
         margin: 0 30px;
         i {
           font-size: 30px;
@@ -148,50 +156,18 @@
     }
   }
   .external-links {
-    h1 {
-      font-size: 25px;
-      margin: auto;
+    text-align: center;
+
+    .empty-state {
       text-align: center;
-    }
-    .list {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      padding: 30px 40px 0 40px;
-      .link {
-        background: #dddddd;
-        width: 375px;
-        height: 200px;
-        padding: 30px;
+      .action-text {
+        text-transform: uppercase;
+      }
+
+      .external-account-container {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        h2 {
-          font-weight: bold;
-          margin-bottom: 15px;
-        }
-        ul.properties {
-          li.property {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            .key {
-              // placeholder
-            }
-            .value {
-              // placeholder
-            }
-          }
-        }
-        .logo {
-          padding: 10px;
-          align-self: flex-end;
-          img {
-            width: 50px;
-          }
-        }
+        flex-direction: row;
+        margin: 20px;
       }
     }
   }

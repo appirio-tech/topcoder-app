@@ -1,6 +1,5 @@
 .external-link-list
   div.external-link-tile(ng-repeat="account in linkedAccounts")
-    //- .name {{account.provider}}
     div.logo
       i.fa(ng-class="(account|providerData:'className') || 'fa-globe'")
     h2 {{account|providerData:"displayName"}}
