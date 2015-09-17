@@ -1,4 +1,6 @@
-section
-  .section-loading(ng-show="state === 'loading'")
-  p(ng-show="state === 'error'") {{errMsg}}
-  div(ng-transclude, ng-show="state === 'ready'")
+section(ng-switch="state")
+  .section-loading(ng-switch-when="loading")
+
+  p(ng-switch-when="error") {{errMsg}}
+
+  div(ng-transclude, ng-switch-when="ready")

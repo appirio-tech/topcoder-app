@@ -63,14 +63,12 @@
     }
 
     function getUserStats(username) {
-      var deferred = $q.defer();
-      restangular.one('members', username).one('stats').get().then(function(data) {
+      return restangular.one('members', username).one('stats').get().then(function(data) {
         if (!data.DEVELOP) data.DEVELOP = {challenges: 0, wins: 0, subTracks: []};
         if (!data.DESIGN) data.DESIGN = {challenges: 0, wins: 0, subTracks: []};
         if (!data.DATA_SCIENCE) data.DATA_SCIENCE = {challenges: 0, wins: 0, SRM: {}, MARATHON_MATCH: {}};
-        deferred.resolve(data);
+        return data;
       });
-      return deferred.promise;
     }
 
     function getDistributionStats(track, subTrack) {

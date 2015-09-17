@@ -20,7 +20,8 @@ var mockData = (function() {
     getMockSRMs: getMockSRMs,
     getMockSRMResults: getMockSRMResults,
     getMockBadge: getMockBadge,
-    getMockUserFinancials: getMockUserFinancials
+    getMockUserFinancials: getMockUserFinancials,
+    getMockLinkedExternalAccounts: getMockLinkedExternalAccounts
   };
 
   function getMockStates() {
@@ -2040,6 +2041,20 @@ var mockData = (function() {
   function getMockUserFinancials() {
     return {
       overallEarning: 5100
+    };
+  }
+
+  function getMockLinkedExternalAccounts() {
+    return {
+      github: null,
+      stackoverflow: null,
+      dribble: null,
+      behance: null,
+      bitbucket: null,
+      linkedin: null,
+      twitter: null,
+      userId: 123,
+      plain: function(){}
     };
   }
 

@@ -115,13 +115,53 @@
   }
 }
 
-@mixin padding-reset {
-  padding: 0px;
+// Replace with classes from style guide, when it's finished
+@mixin button-s {
+  height: 20px;
+  line-height: 20px;
+  padding: 0 8px;
+  border: none;
+  border-radius: 3px;
+  color: $white;
+  background-color: $primary-color;
+  @include sofia-pro-regular;
+  font-size: 11px;
+  text-transform: uppercase;
+  text-align: center;
+}
+@mixin button-m {
+  @include button-s;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 15px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+@mixin button-l {
+  @include button-s;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 15px;
+  @include sofia-pro-bold;
+  font-size: 18px;
+  border-radius: 4px;
+
+}
+@mixin button-xl {
+  @include button-s;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 15px;
+  @include sofia-pro-bold;
+  font-size: 24px;
+  border-radius: 4px;
+
+}
+@mixin button-m-wide {
+  @include button-m;
+  padding: 0 30px;
 }
 
-@mixin center-aligned-text {
-  text-align : center;
-}
 
 // UI REFRESH STYLES
 @mixin ui-submit-button {

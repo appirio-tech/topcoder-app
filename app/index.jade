@@ -36,6 +36,7 @@ html
     link(rel="stylesheet", href="assets/css/profile/header.css")
     link(rel="stylesheet", href="assets/css/profile/badges.css")
     link(rel="stylesheet", href="assets/css/profile/about.css")
+    link(rel="stylesheet", href="assets/css/profile/about.desktop.css")
     link(rel="stylesheet", href="assets/css/peer-review/reviewStatus.css")
     link(rel="stylesheet", href="assets/css/peer-review/readOnlyScorecard.css")
     link(rel="stylesheet", href="assets/css/peer-review/peer-review.css")
@@ -59,6 +60,8 @@ html
     link(rel="stylesheet", href="assets/css/directives/profile-widget.css")
     link(rel="stylesheet", href="assets/css/directives/profile-widget.desktop.css")
     link(rel="stylesheet", href="assets/css/directives/history-graph.css")
+    link(rel="stylesheet", href="assets/css/directives/external-link-data.css")
+    link(rel="stylesheet", href="assets/css/directives/external-account.css")
     link(rel="stylesheet", href="assets/css/directives/distribution-graph.css")
     link(rel="stylesheet", href="assets/css/directives/challenge-tiles.css")
     link(rel="stylesheet", href="assets/css/directives/badge-tooltip.css")
@@ -75,6 +78,7 @@ html
     #header(ui-view="header")
 
     notifications-bar.notifications(closeIcon="fa fa-times-circle")
+    toaster-container(toaster-options="{{main.globalToasterConfig}}")
 
     .view-container
       div(ui-view="container")
@@ -108,11 +112,12 @@ html
     script(src='../bower_components/angularjs-toaster/toaster.js')
     //- endbower
     //- inject:nonBowerScripts
+    script(src="/scripts/auth0-angular.js")
     script(src="/scripts/auth0.js")
     script(src="/scripts/moment-timezone-with-data-2010-2020.js")
     //- endinject
     // endbuild
-
+    
     // build:js /js/app.js
     //- inject:js
     script(src="account/account.module.js")
@@ -134,6 +139,7 @@ html
     script(src="directives/badges/badge-tooltip.directive.js")
     script(src="directives/challenge-tiles/challenge-tile.directive.js")
     script(src="directives/distribution-graph/distribution-graph.directive.js")
+    script(src="directives/external-account/external-account.directive.js")
     script(src="directives/focus-on.directive.js")
     script(src="directives/history-graph/history-graph.directive.js")
     script(src="directives/on-file-change.directive.js")
@@ -192,6 +198,7 @@ html
     script(src="services/authtoken.service.js")
     script(src="services/blog.service.js")
     script(src="services/challenge.service.js")
+    script(src="services/externalAccounts.service.js")
     script(src="services/helpers.service.js")
     script(src="services/image.service.js")
     script(src="services/jwtInterceptor.service.js")

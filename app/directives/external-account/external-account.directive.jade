@@ -1,0 +1,5 @@
+div.ext-tile(ng-repeat="account in accountList")
+  a(ng-click="!account.linked && link(account.provider)", ng-class="{'linked': account.linked}")
+    .external-account-icon-box(ng-class="{'linked': account.linked}")
+      i.fa(ng-class="account.className")
+    .name {{account.displayName}}

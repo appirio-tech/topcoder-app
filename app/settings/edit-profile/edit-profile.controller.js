@@ -3,14 +3,17 @@
 
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
-  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS', 'TagsService'];
 
-  function EditProfileController(userData, userHandle, ProfileService, $log, ISO3166, ImageService, $rootScope, CONSTANTS, TagsService) {
+  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS', 'TagsService'];
+
+  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, $rootScope, CONSTANTS, TagsService) {
+    $log = $log.getInstance("EditProfileCtrl");
     var vm = this;
     vm.toggleTrack    = toggleTrack;
     vm.updateCountry  = updateCountry;
     vm.onFileChange   = onFileChange;
     vm.updateProfile  = updateProfile;
+    vm.linkedExternalAccounts = [];
     vm.skills = false;
     vm.addSkill = addSkill;
     vm.tags = [];
@@ -24,12 +27,21 @@
       processData(userData);
       vm.userData = userData;
 
+      ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId)
+      .then(function(data) {
+        vm.linkedExternalAccounts = data;
+      })
+      .catch(function(err) {
+        $log.error(JSON.stringify(err));
+      });
+
+
       TagsService.getApprovedSkillTags()
       .then(function(tags) {
         vm.tags = tags;
       })
       .catch(function(err) {
-        $log.error(err);
+        $log.error(JSON.stringify(err));
       });
 
       ProfileService.getUserSkills(vm.userData.handle)
@@ -37,7 +49,7 @@
         vm.skills = skills.skills;
       })
       .catch(function(err) {
-        $log.error(err);
+        $log.error(JSON.stringify(err));
       });
     }
 
