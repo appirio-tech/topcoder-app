@@ -1,19 +1,5 @@
 .profile-header-container(ng-cloak)
-  profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-challenges="profileVm.numProjects")
-
-  .tracks-links
-    .tracks
-      .track(ng-repeat="track in (profileVm.profile.tracks)")
-        img(ng-src="images/ico-track-{{vm.imgMap[track]}}-outline.svg")
-        .text {{track | track}}
-
-    hr
-    
-    .links
-      a.forums.link(href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
-        | Forum Posts
-      a.badges.link(ng-click="profileVm.showBadges()")
-        | Badges
+  profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-challenges="profileVm.numProjects", profile-vm="profileVm")
 
 .profile-about-container
 
@@ -34,7 +20,7 @@
       )
 
         .name
-          img(ng-src="images/ico-track-{{vm.imgMap[track]}}-outline.svg")
+          img(ng-src="images/ico-track-{{profileVm.imgMap[track]}}-outline.svg")
           | {{track}}
 
         .subtrack(

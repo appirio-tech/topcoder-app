@@ -2,13 +2,30 @@
   a(ui-sref="profile.about({userHandle: profile.handle})")
     img.profile-circle(fallback-img="/images/avatarPlaceholder.png", ng-src="http://www.topcoder.com{{profile.photoURL}}")
 
-  h1.handle {{profile.handle}}
+  .info
+    h1.handle {{profile.handle}}
 
-  h3.tenure(ng-if="profile.startMonth")
-    | Member Since {{profile.startMonth}}
+    h3.tenure(ng-if="profile.startMonth")
+      | Member Since {{profile.startMonth}}
 
-  h3.location-challenges {{profile.homeCountryCode | isoCountry}} | {{numChallenges}} Challenges
+    h3.location-challenges {{profile.homeCountryCode | isoCountry}} | {{numChallenges}} Challenges
 
-  p.description {{profile.quote}}
+    p.description {{profile.quote}}
 
-  a(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
+    a(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
+
+  .tracks-links
+    .tracks
+      .track(ng-repeat="track in (profile.tracks)")
+        img(ng-src="images/ico-track-{{profileVm.imgMap[track]}}-outline.svg")
+        .text {{track | track}}
+
+    hr
+    
+    .links
+      a.forums.link(href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
+        | Forum Posts
+      a.badges.link(ng-click="profileVm.showBadges()")
+        | Badges
+
+

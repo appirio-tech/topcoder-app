@@ -15,6 +15,12 @@
     vm.userHandle = userHandle;
     vm.showBadges = showBadges;
 
+    vm.imgMap = {
+      'DEVELOP': 'develop',
+      'DESIGN': 'design',
+      'DATA_SCIENCE': 'data'
+    };
+
     // spinnerssss
     $log.debug()
     vm.status = {
@@ -78,4 +84,5 @@
       });
     }
   }
+
 })();

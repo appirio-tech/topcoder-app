@@ -22,7 +22,8 @@
 
   h3.tenure {
     margin-top: 5px;
-    font-size: 19px;
+    font-size: 18px;
+    line-height: 23px;
     font-family: 'Sofia Pro';
     font-weight: light;
     color: #d1d3d4;
@@ -41,7 +42,7 @@
 
   h3.location-challenges {
     margin-top: 29px;
-    font-size: 19px;
+    font-size: 18px;
     font-family: 'Sofia Pro';
     font-weight: 500;
     text-transform: uppercase;
@@ -54,5 +55,55 @@
     font-family: 'Source Sans Pro';
     width: 254px;
     text-align: center;
+  }
+  .tracks-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .tracks {
+      display: flex;
+      justify-content: center;
+      .track {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 15px 8px 0 8px;
+        .text {
+          font-family: 'Sofia Pro';
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 14px;
+          margin-top: 11px;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    hr {
+      margin-top: 14px;
+      color: #f0f0f0;
+    }
+
+    .links {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .link {
+        background: #00aeff;
+        border-radius: 5px;
+        padding: 7px 12px;
+        text-decoration: none;
+        color: white;
+        text-transform: uppercase;
+        margin-left: 5px;
+        margin-right: 5px;
+        font-size: 14px;
+        font-family: 'Sofia Pro';
+        line-height: 20px;
+      }
+    }
+
+
   }
 }
