@@ -1,85 +1,63 @@
+@media (min-width: 768px) {
+
 .profile-about-container {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
+  margin-top: 90px;
 
   .categories {
     .activity {
-      font-size: 18px;
-      line-height: 21px;
+      font-size: 28px;
+      line-height: 34px;
       font-weight: bold;
-      font-family: 'Lucida Grande';
+      font-family: 'Sofia Pro';
       text-transform: uppercase;
     }
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
+
     .track {
+      width: 100%;
       margin-top: 22.4px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       cursor: pointer;
 
       .name {
         img {
-          height: 21px;
-          width: 21px;
-          margin-right: 5.5px;
-          margin-bottom: -3px;
+          height: 30px;
+          width: 30px;
+          margin-right: 6px;
+          margin-bottom: -5px;
         }
         margin: auto;
-        font-family: 'Sofia Pro';
         font-weight: 200;
-        font-size: 19.6px;
-        line-height: 24px;
-        margin-bottom: 10.6px;
+        font-size: 28px;
+        line-height: 34px;
+        margin-bottom: 34px;
       }
       .subtrack {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 300px;
-        height: 52px;
+        align-items: center;
+        width: 75%;
+        height: 75px;
         border-top: 1px solid #f0f0f0;
         border-bottom: 1px solid #f0f0f0;
         .name {
-          flex-basis: 150px;
-          font-family: 'Sofia Pro';
-          font-size: 14px;
-          line-height: 18px;
-          font-weight: 300;
-          text-transform: uppercase;
+          font-size: 20px;
+          line-height: 24px;
+          margin-top: 35px;
         }
         .ranking {
           margin: auto;
           .number {
-            text-align: center;
-            font-family: 'Sofia Pro';
-            font-size: 13.4px;
-            line-height: 16px;
-            font-weight: 600;
+            font-size: 18px;
+            line-height: 23px;
           }
           .tag {
-            text-transform: uppercase;
-            margin: 10px auto 0px auto;
-            font-family: 'Sofia Pro';
-            font-size: 8.4px;
-            line-height: 10px;
+            margin: 7px auto 0px auto;
+            font-size: 18px;
+            line-height: 23px;
             color: #7f7f7f;
-            font-weight: normal;
           }
         }
         .arrow {
-          font-family: 'Sofia Pro';
-          font-weight: 200;
           color: #cccccc;
-          font-size: 18px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+          height: 15px;
+          margin-right: 10px;
         }
       }
       .icon {
@@ -174,4 +152,6 @@
       }
     }
   }
+}
+
 }
