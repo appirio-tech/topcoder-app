@@ -8,7 +8,7 @@
       button.btn-open-menu(type="button", ng-if="!main.menuVisible", ng-click="main.menuVisible = true") Menu
       button.btn-close-menu(type="button", ng-if="main.menuVisible", ng-click="main.menuVisible = false")
       // User link (profile or join)
-      a(ui-sref="profile", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
+      a(ui-sref="profile.about({userHandle: vm.userHandle})", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
         img(ng-switch-when="true", class="user-avatar", ng-src="{{vm.profile.photoURL}}") 
         span(ng-switch-when="false" class="btn-link") JOIN
         
@@ -34,8 +34,8 @@
           a.btn-link.btn-edit-profile.show-small(ui-sref="settings.profile") EDIT
           ul.submenu
             li.submenu-item #[a.menu-link(ui-sref="dashboard") DASHBOARD]
-            li.submenu-item #[a.menu-link(ui-sref="profile") MY PROFILE]
-            li.submenu-item #[a.menu-link(ui-sref="settings") SETTINGS]
+            li.submenu-item #[a.menu-link(ui-sref="profile.about({userHandle: vm.userHandle})") MY PROFILE]
+            li.submenu-item #[a.menu-link(ui-sref="settings.profile") SETTINGS]
             li.submenu-item #[a.menu-link(ng-click="vm.logout(); main.menuVisible = vm.isAuth = false") LOG OUT]
         // links for anonymous user
         .menu-item-header(ng-switch-when="false")
