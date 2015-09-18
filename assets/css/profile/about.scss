@@ -1,5 +1,4 @@
 @import '../partials/combined';
-
 .profile-about-container {
   margin-top: 30px;
   display: flex;
@@ -113,6 +112,7 @@
       margin: auto;
     }
     .more {
+      margin-top: 20px;
       @include button-m;
     }
     .list {
@@ -193,11 +193,14 @@
       cursor: pointer;
 
       .name {
-        img {
-          height: 30px;
-          width: 30px;
+        div {
+          background-size: 30px;
           margin-right: 6px;
           margin-bottom: -5px;
+          height: 30px;
+          width: 30px;
+          margin: auto;
+          margin-top: 10px;
         }
         margin: auto;
         font-weight: 200;

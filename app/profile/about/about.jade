@@ -42,8 +42,8 @@
       )
 
         .name
-          img(ng-src="images/ico-track-{{profileVm.imgMap[track]}}-outline.svg")
           | {{track}}
+          div(class="{{profileVm.imgMap[track]}}-icon")
 
         .subtrack(
           ng-repeat="subtrack in profileVm.categories[track]",

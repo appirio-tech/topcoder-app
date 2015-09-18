@@ -17,7 +17,8 @@
   .tracks-links
     .tracks
       .track(ng-repeat="track in (profile.tracks)")
-        img(ng-src="images/ico-track-{{profileVm.imgMap[track]}}-outline.svg")
+        div(class="{{profileVm.imgMap[track]}}-icon")
+          div
         .text {{track | track}}
 
     hr
