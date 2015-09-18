@@ -396,13 +396,13 @@ gulp.task('deploy', ['build'], function() {
   log('Deploying to S3');
 
   var gzip = gulp.src(['build/**/*.js', 'build/**/*.css']).pipe($.awspublish.gzip());
-  var plain = gulp.src([ 'build/**/*', '!build/**/*.js', '!build/index.html' ]);
-  var index = gulp.src(['build/index.html'])
-    .pipe(publisher.publish({'Cache-Control': 'max-age=0, no-transform, public'}))
-    .pipe(publisher.sync())
-    .pipe($.awspublish.reporter());
+  var plain = gulp.src([ 'build/**/*', '!build/**/*.js' ]);
+  // var index = gulp.src(['build/index.html'])
+  //   .pipe(publisher.publish({'Cache-Control': 'max-age=0, no-transform, public'}))
+  //   .pipe(publisher.sync())
+  //   .pipe($.awspublish.reporter());
 
-  return merge(gzip, plain, index)
+  return merge(gzip, plain)
     .pipe(publisher.publish(headers))
     .pipe(publisher.sync())
     .pipe(publisher.cache())
