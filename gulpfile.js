@@ -48,6 +48,7 @@ gulp.task('styles', ['clean-styles'], function() {
     .pipe($.plumber())
     .pipe($.sass())
     .pipe($.autoprefixer({browsers: ['last 2 version']}))
+    .pipe($.replace(/\/fonts/g, envConfig.CONSTANTS.ASSET_PREFIX + '/fonts'))
     .pipe(gulp.dest(config.temp));
 });
 
