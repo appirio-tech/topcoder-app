@@ -13,6 +13,7 @@ html {
 
 body {
   @include source-sans;
+  background-color: $ui-page-gray;
 }
 
 .notifications {
@@ -27,23 +28,9 @@ body {
   }
 }
 
-.ui-refresh {
-  background-color: $ui-page-gray;
-
-  & .view-container {
-    background-color: $ui-page-gray;
-  }
-}
-
 .view-container {
-  max-width: 1010px;
+  padding-bottom: 60px;
   min-height: 480px;
-  margin: 25px auto;
-  background-color: $white;
-  @media only screen and (max-width: 1020px) {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
 }
 
 .notifications {
@@ -53,11 +40,6 @@ body {
 }
 
 // Styles for elements used across modules
-button {
-  cursor: pointer;
-  outline: 0;
-}
-
 a {
   cursor: pointer;
 }

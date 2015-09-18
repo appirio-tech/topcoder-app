@@ -36,6 +36,11 @@
             controller: 'HeaderDashboardController',
             controllerAs: 'vm'
           },
+          'subtrack-stats': {
+              templateUrl: "my-dashboard/subtrack-stats/subtrack-stats.html",
+              controller: 'SubtrackStatsController',
+              controllerAs: 'vm'
+          },
           'my-challenges': {
             templateUrl: "my-dashboard/my-challenges/my-challenges.html",
             controller: 'MyChallengesWidgetController',
