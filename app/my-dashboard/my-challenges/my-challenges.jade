@@ -1,10 +1,7 @@
 header
-  h1.section-title My Challenges
+  h1.section-title Active Challenges
 
   p.noChallenges(ng-hide="vm.userHasChallenges") You have not participated in any challenges yet.
-
-  p.viewChallenges(ng-show="vm.userHasChallenges")
-    a(ui-sref="my-challenges") View All My Challenges
 
 .section-loading(ng-show="vm.loading")
 
@@ -13,7 +10,7 @@ section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
 
 .section-links
   .link
-    a(href="https://www.{{vm.domain}}/challenges/?pageIndex=1") Find New Challenges
+    a(ui-sref="my-challenges") View All
 
   .link(ng-show="dashboard.isCopilot")
     a(href="https://www.{{vm.domain}}/direct") Launch Topcoder Direct
@@ -23,5 +20,3 @@ section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
 
 .spotlightChallenges(ng-hide="vm.userHasChallenges")
   challenge-tile.spotlight(ng-repeat="spotlight in vm.spotlightChallenges", spotlight, challenge="spotlight", domain="vm.domain", view="'tile'")
-
-hr

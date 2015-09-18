@@ -13,7 +13,6 @@
         parent: 'root',
         abstract: true,
         data: {
-          UIRefresh: true,
           authRequired: false
         },
         onEnter: ['$state', '$stateParams', 'TcAuthService', function($state, $stateParams, TcAuthService) {

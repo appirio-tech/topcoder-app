@@ -128,6 +128,8 @@
   font-size: 11px;
   text-transform: uppercase;
   text-align: center;
+  cursor: pointer;
+  outline: 0;
 }
 @mixin button-m {
   @include button-s;
@@ -162,6 +164,23 @@
   padding: 0 30px;
 }
 
+@mixin module-s {
+  margin-top: 6px;
+  background-color: $white;
+}
+
+@mixin module-l {
+  @include module-s;
+  max-width: 1242px;
+  padding-top: 30px;
+  @media only screen and (min-width: 900px) {
+    padding: 90px 0 30px;
+  }
+}
+
+@mixin module-full-width {
+  width: 100%;
+}
 
 // UI REFRESH STYLES
 @mixin ui-submit-button {

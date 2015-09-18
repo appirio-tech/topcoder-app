@@ -1,10 +1,14 @@
 @import '../partials/combined';
 
 .programs {
-  margin-bottom: 35px;
+  min-width: 1242px;
 
   .section-title {
     margin-bottom: 35px;
+
+    span {
+      text-transform: none;
+    }
   }
 
   section.ios {

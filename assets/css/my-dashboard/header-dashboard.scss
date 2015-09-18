@@ -15,37 +15,9 @@
       text-transform: uppercase;
     }
 
-    .user {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-
-      img {
-        width: 130px;
-        height: 130px;
-        border-radius: 72px;
-      }
-
-      .profile {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-left: 20px;
-
-        p {
-          font-weight: bold;
-          margin-bottom: 5px;
-        }
-        a {
-          color: inherit;
-          font-size: 12px;
-        }
-      }
-    }
     .user-stats {
       display: flex;
       flex-direction: row;
-      text-transform: uppercase;
       font-size: 14px;
 
       .money-earned, .copilot-challenges {
@@ -54,8 +26,22 @@
         justify-content: space-between;
         height: 50px;
 
-        p:first-child {
-          font-size: 16px;
+        p {
+          text-transform: uppercase;
+        }
+
+        .number {
+          @include sofia-pro-bold;
+          font-size: 22px;
+          line-height: 28px;
+          color: #3D3D3D;
+        }
+
+        p:not(.number) {
+          @include sofia-pro-regular;
+          font-size: 12px;
+          line-height: 14px;
+          color: #A3A3AE;
         }
       }
 
@@ -69,40 +55,6 @@
         text-align: center;
         padding-left: 10px;
         padding-right: 10px;
-
-        span {
-          display: block;
-        }
-      }
-
-    }
-  }
-
-  .loading {
-    margin-top: -20px;
-  }
-
-  .ratings {
-    display: flex;
-    flex-direction: column;
-
-    .tracks {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
-      font-size: 13px;
-      margin-top: 20px;
-
-      .track {
-        width: 120px;
-        margin-bottom: 20px;
-        text-align: center;
-        cursor: pointer;
-
-        p:first-child {
-          font-size: 16px;
-          margin-bottom: 15px;
-        }
       }
     }
   }

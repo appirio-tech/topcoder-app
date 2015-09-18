@@ -1,19 +1,35 @@
 @import '../partials/combined';
 
+.header-dashboard {
+  @include module-full-width;
+  background-color: $white;
+
+  header {
+    max-width: 1242px;
+    margin: 0 auto;
+    padding: 20px 50px 0;
+    @media only screen and (min-width: 900px) {
+      padding: 45px 50px 33px;
+    }
+  }
+}
+
 .my-dashboard-container {
-  width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  hr {
-    @include horizontal-rule;
-    margin-bottom: 35px;
+  .subtrack-stats, .my-challenges, .srms, .programs, .community-updates {
+    @include module-l;
+    width: 100%;
   }
 
   .section-title {
-    font-size: 22px;
-    color: #4f4f4f;
+    @include sofia-pro-bold;
+    font-size: 28px;
+    color: #3D3D3D;
     text-align: center;
+    text-transform: uppercase;
   }
 
   .section-links {

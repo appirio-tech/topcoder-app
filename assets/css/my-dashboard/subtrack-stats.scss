@@ -1,0 +1,32 @@
+@import '../partials/combined';
+
+.subtrack-stats {
+  .loading {
+    margin-top: -20px;
+  }
+
+  .ratings {
+    display: flex;
+    flex-direction: column;
+
+    .tracks {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      font-size: 13px;
+      margin-top: 20px;
+
+      .track {
+        width: 120px;
+        margin-bottom: 20px;
+        text-align: center;
+        cursor: pointer;
+
+        p:first-child {
+          font-size: 16px;
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+}

@@ -2,31 +2,13 @@ header
   h1 Dashboard
 
   .user-stats
-    .money-earned
-      p(ng-bind='vm.moneyEarned || 0 | currency:undefined:0')
-
-      p WON IN PRIZES
-
     .copilot-challenges(ng-show="dashboard.isCopilot")
-      p(ng-bind='vm.numCopilotActiveContests')
+      p.number(ng-bind='vm.numCopilotActiveContests')
 
-      p Co-Pilot #[span Challenges]
+      p Active Challenges
 
-hr
+    .money-earned
+      p.number(ng-bind='vm.moneyEarned || 0 | currency:undefined:0')
 
-.loading(ng-show="vm.loading")
-  .section-loading
+      p Won in prizes
 
-  hr
-
-.ratings(ng-if="vm.showRanks && vm.hasRatings && !vm.loading")
-  h1.section-title My Ranks
-
-  .tracks
-    .track(ng-repeat="r in vm.rankStats | orderBy: ['track', 'rank']", ui-sref="profile.develop({userHandle: vm.profile.handle, track: r.track, subTrack: r.subTrack})")
-      p(ng-bind="r.rank")
-
-      p {{r.track}}:
-      p {{r.subTrack}}
-
-  hr
