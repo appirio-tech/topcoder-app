@@ -61,9 +61,9 @@
       h: 400,
       padding: {
         top: 20,
-        right: 30,
+        right: 5,
         bottom: 100,
-        left: 30
+        left: 50
       }
     };
 
