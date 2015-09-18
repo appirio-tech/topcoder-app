@@ -154,7 +154,7 @@
           return type === subTrack.name;
         });
         return ans[0];
-      } else if (track == 'DESIGN') {
+      } else if (track == 'DESIGN' && !_.isUndefined(stats.DESIGN) ) {
         var ans = stats.DESIGN.subTracks.filter(function(subTrack) {
           return type === subTrack.name;
         });

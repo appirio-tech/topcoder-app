@@ -1,6 +1,6 @@
 .profile-widget-directive
   a(ui-sref="profile.about({userHandle: profile.handle})")
-    img.profile-circle(fallback-img="/images/avatarPlaceholder.png", ng-src="http://www.topcoder.com{{profile.photoURL}}")
+    img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profile.photoURL}}")
 
   h1.handle {{profile.handle}}
 
@@ -9,6 +9,6 @@
 
   h3.location-challenges {{profile.homeCountryCode | isoCountry}} | {{numChallenges}} Challenges
 
-  p.description {{profile.quote}}
+  p.description {{profile.description}}
 
   a(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile

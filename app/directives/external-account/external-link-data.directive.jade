@@ -20,10 +20,10 @@
         .handle {{account.data.handle}}
         ul
           li 
-            .value tbd
+            .value {{(account.data.reputation|number:0) || 0}}
             .key reputation
           li 
-            .value tbd  
+            .value {{(account.data.answers|number:0) || 0}}  
             .key answers
 
       div(ng-switch-when="behance")
