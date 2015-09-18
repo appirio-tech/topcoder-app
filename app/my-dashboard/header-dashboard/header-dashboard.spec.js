@@ -97,7 +97,7 @@ describe('Header Dashboard Controller', function() {
       expect(controller.rankStats).to.exist;
       // there are 7 sub tracks with non null/zero value for one of rank/wins/fulfillment
       expect(controller.rankStats).to.have.length(7);
-      expect(controller.moneyEarned).to.equal(5100);
+      expect(controller.moneyEarned).to.equal(60.50);
     });
   });
 
@@ -129,7 +129,7 @@ describe('Header Dashboard Controller', function() {
       expect(controller.profile.handle).to.equal('albertwang');
       expect(controller.rankStats).to.exist;
       expect(controller.rankStats).to.have.length(0);
-      expect(controller.moneyEarned).to.equal(5100);
+      expect(controller.moneyEarned).to.equal(60.50);
     });
   });
 
@@ -161,7 +161,7 @@ describe('Header Dashboard Controller', function() {
       // there are 7 sub tracks with non null/zero value for one of rank/wins/fulfillment
       expect(controller.rankStats).to.have.length(7);
       expect(controller.hasRatings).to.equal(true);
-      expect(controller.moneyEarned).to.equal(5100);
+      expect(controller.moneyEarned).to.equal(60.50);
     });
   });
 

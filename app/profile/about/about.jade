@@ -5,7 +5,7 @@
   .tracks-links
     .tracks
       .track(ng-repeat="track in (profileVm.profile.tracks)")
-        img(ng-src="images/ico-track-{{vm.imgMap[track]}}-outline.svg")
+        img(ng-src="/images/ico-track-{{vm.imgMap[track]}}-outline.svg")
         .text {{track | track}}
 
     hr
@@ -17,8 +17,6 @@
         | Badges
 
 .profile-about-container
-
-  hr
 
   tc-section(ng-show="vm.displaySection.skills" state="profileVm.status.skills" class="skills")
     hr
@@ -63,7 +61,7 @@
       )
 
         .name
-          img(ng-src="images/ico-track-{{vm.imgMap[track]}}-outline.svg")
+          img(ng-src="/images/ico-track-{{vm.imgMap[track]}}-outline.svg")
           | {{track}}
 
         .subtrack(
