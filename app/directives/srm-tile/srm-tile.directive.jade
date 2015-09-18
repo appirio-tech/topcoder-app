@@ -1,17 +1,21 @@
 .srm.tile-view(ng-show="view=='tile'")
-  .srm-name
+  .challenge-track
+
+  header
     a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
 
-  .srm-status
-    p.days-remaining {{srm.startDate | timeDiff}}
-      span Registration Ends
-      //- span(ng-bind='srm.startDate | deadlineStartMsg')
+  .srm-details
+    p.starts-in Starts in #[span 3 days]
 
-    .phase-status
-      i.fa.fa-check-circle-o
+    .srm-calendar
+      span.day 1
+      span.month October
+      span.hour 1:00am
+      span.time-zone PST
 
-      p You are registered!
-      //- p {{srm.memberStatusMsg}}
+    button.srm-action Register
+
+
 .srm.list-view(ng-show="view=='list'")
   .srm-name
     a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
