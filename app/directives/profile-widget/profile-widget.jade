@@ -1,6 +1,6 @@
 .profile-widget-directive
   a(ui-sref="profile.about({userHandle: profile.handle})")
-    img.profile-circle(fallback-img="/images/avatarPlaceholder.png", ng-src="{{profile.photoURL}}")
+    img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profile.photoURL}}")
 
   .info
     h1.handle {{profile.handle}}
@@ -28,4 +28,4 @@
       a.badges.link(ng-click="profileVm.showBadges()")
         | Badges
 
-
+  p.description {{profile.description}}

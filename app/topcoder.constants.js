@@ -14,6 +14,7 @@ angular.module("CONSTANTS", [])
 	"FORUMS_APP_URL": "//apps.topcoder-dev.com/forums",
 	"HELP_APP_URL": "help.topcoder-dev.com",
 	"MAIN_URL": "https://www.topcoder-dev.com",
+	"ARENA_URL": "//arena.topcoder-dev.com",
 	"NEW_CHALLENGES_URL": "https://www.topcoder.com/challenges/develop/upcoming/",
 	"NEW_RELIC_APPLICATION_ID": "",
 	"PHOTO_LINK_LOCATION": "https://community.topcoder-dev.com",

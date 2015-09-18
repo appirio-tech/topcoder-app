@@ -8,8 +8,8 @@
       button.btn-open-menu(type="button", ng-if="!main.menuVisible", ng-click="main.menuVisible = true") Menu
       button.btn-close-menu(type="button", ng-if="main.menuVisible", ng-click="main.menuVisible = false")
       // User link (profile or join)
-      a(href="javascript:;", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
-        img(ng-switch-when="true", class="user-avatar", fallback-img="/images/avatarPlaceholder.png", loading-src="/images/avatarPlaceholder.png", ng-src="{{vm.profile.photoURL}}") 
+      a(ui-sref="profile.about({userHandle: vm.userHandle})", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
+        img(ng-switch-when="true", class="user-avatar", ng-src="{{vm.profile.photoURL}}") 
         span(ng-switch-when="false" class="btn-link") JOIN
         
     // main menu 
@@ -29,13 +29,13 @@
         // links for logged in user
         div(ng-switch-when="true")
           .menu-item-header
-            img(class="user-avatar" fallback-img="/images/avatarPlaceholder.png", loading-src="/images/avatarPlaceholder.png", ng-src="{{vm.profile.photoURL}}") 
+            img(class="user-avatar", ng-src="{{vm.profile.photoURL}}") 
             span.username {{vm.userHandle}}
-          a.btn-link.btn-edit-profile.show-small(href="javascript:;") EDIT
+          a.btn-link.btn-edit-profile.show-small(ui-sref="settings.profile") EDIT
           ul.submenu
-            li.submenu-item #[a.menu-link(href="/my-dashboard") DASHBOARD]
-            li.submenu-item #[a.menu-link(href="javascript:;") MY PROFILE]
-            li.submenu-item #[a.menu-link(href="/settings/profile/") SETTINGS]
+            li.submenu-item #[a.menu-link(ui-sref="dashboard") DASHBOARD]
+            li.submenu-item #[a.menu-link(ui-sref="profile.about({userHandle: vm.userHandle})") MY PROFILE]
+            li.submenu-item #[a.menu-link(ui-sref="settings.profile") SETTINGS]
             li.submenu-item #[a.menu-link(ng-click="vm.logout(); main.menuVisible = vm.isAuth = false") LOG OUT]
         // links for anonymous user
         .menu-item-header(ng-switch-when="false")
@@ -47,20 +47,20 @@
         .menu-item-header COMPETE
         ul.submenu
           //li.submenu-item #[a.menu-link(href="javascript:;") START HERE]
-          li.submenu-item #[a.menu-link(href="/challenges/design/active/") DESIGN CHALLENGES]
-          li.submenu-item #[a.menu-link(href="/challenges/develop/active") DEVELOPMENT CHALLENGES]
-          li.submenu-item #[a.menu-link(href="/challenges/data/active") DATA SCIENCE CHALLENGES]
-          li.submenu-item #[a.menu-link(href="https://arena.topcoder.com/") COMPETITIVE PROGRAMMING (ARENA)]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.MAIN_URL}}/challenges/design/active/") DESIGN CHALLENGES]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.MAIN_URL}}/challenges/develop/active") DEVELOPMENT CHALLENGES]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.MAIN_URL}}/challenges/data/active") DATA SCIENCE CHALLENGES]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.ARENA_URL}}" target="_blank") COMPETITIVE PROGRAMMING (ARENA)]
             
       // 'LEARN' link group
       li.menu-item.link-group
         .menu-item-header LEARN
         ul.submenu
           //li.submenu-item #[a.menu-link(href="javascript:;") START HERE]
-          li.submenu-item #[a.menu-link(href="/community/design/") DESIGN]
-          li.submenu-item #[a.menu-link(href="/community/development/").active DEVELOPMENT]
-          li.submenu-item #[a.menu-link(href="/community/data-science/") DATA SCIENCE]
-          li.submenu-item #[a.menu-link(href="/community/data-science/") COMPETITIVE PROGRAMMING]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.MAIN_URL}}/community/design/") DESIGN]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.MAIN_URL}}/community/development/").active DEVELOPMENT]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.MAIN_URL}}/community/data-science/") DATA SCIENCE]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.MAIN_URL}}/community/data-science/") COMPETITIVE PROGRAMMING]
           //li.submenu-item #[a.menu-link(href="javascript:;") TUTORIALS]
           //li.submenu-item #[a.menu-link(href="javascript:;") EDITORIALS]
           
@@ -69,9 +69,9 @@
         .menu-item-header COMMUNITY
         ul.submenu
           //li.submenu-item #[a.menu-link(href="javascript:;") HOME]
-          li.submenu-item #[a.menu-link(href="/community/members/") MEMBERS]
-          li.submenu-item #[a.menu-link(href="/community/member-programs/") PROGRAMS]
-          li.submenu-item #[a.menu-link(ng-href="{{main.constants.FORUMS_APP_URL}}") FORUMS]
-          li.submenu-item #[a.menu-link(href="/community/statistics/") STATISTICS]
-          li.submenu-item #[a.menu-link(href="/community/events/") EVENTS]
-          li.submenu-item #[a.menu-link(href="/blog/") BLOG]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.MAIN_URL}}/community/members/") MEMBERS]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.MAIN_URL}}/community/member-programs/") PROGRAMS]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.FORUMS_APP_URL}}" target="_blank") FORUMS]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.MAIN_URL}}/community/statistics/") STATISTICS]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.MAIN_URL}}/community/events/") EVENTS]
+          li.submenu-item #[a.menu-link(ng-href="{{main.constants.MAIN_URL}}/blog/") BLOG]

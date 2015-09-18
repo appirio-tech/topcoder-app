@@ -2,9 +2,21 @@
 .profile-header-container(ng-cloak)
   profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-challenges="profileVm.numProjects", profile-vm="profileVm")
 
-.profile-about-container
+  .tracks-links
+    .tracks
+      .track(ng-repeat="track in (profileVm.profile.tracks)")
+        img(ng-src="/images/ico-track-{{vm.imgMap[track]}}-outline.svg")
+        .text {{track | track}}
 
-  hr
+    hr
+    
+    .links
+      a.forums.link(href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
+        | Forum Posts
+      a.badges.link(ng-click="profileVm.showBadges()")
+        | Badges
+
+.profile-about-container
 
   tc-section(ng-show="vm.displaySection.skills" state="profileVm.status.skills" class="skills")
     hr
@@ -74,7 +86,7 @@
     .empty-state(ng-hide="vm.hasLinks")
       .action-text you are connected, be proud of it
 
-      external-accounts.external-account-container(linked-accounts="[]")
+      external-accounts.external-account-container(linked-accounts="[]" read-only="true")
 
       .description Adding your links to your profile will allow you to build your reputation, and show the other members how you're connected.
 

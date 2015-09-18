@@ -1,11 +1,11 @@
 header
-  profile-widget(profile="vm.profile", edit-profile-link="true")
+  h1 Dashboard
 
   .user-stats
     .money-earned
       p(ng-bind='vm.moneyEarned || 0 | currency:undefined:0')
 
-      p Money Earned
+      p WON IN PRIZES
 
     .copilot-challenges(ng-show="dashboard.isCopilot")
       p(ng-bind='vm.numCopilotActiveContests')
