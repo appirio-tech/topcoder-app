@@ -399,11 +399,6 @@ gulp.task('deploy', ['build'], function() {
   var gzip = gulp.src(['build/**/*.js', 'build/**/*.css']).pipe($.awspublish.gzip());
   var plain = gulp.src([ 'build/**/*', '!build/**/*.js' ]);
 
-
-  .pipe(publisher.publish())
-  // now when you sync files of the other type will not be deleted
-  .pipe(publisher.sync())
-  .pipe(awspublish.reporter());
   return merge(gzip, plain)
     .pipe(publisher.cache())
     .pipe(publisher.publish(headers, {force:true}))
