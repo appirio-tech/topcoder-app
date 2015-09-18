@@ -7,6 +7,14 @@
     justify-content: space-between;
     align-items: center;
 
+    h1 {
+      @include sofia-pro-bold;
+      font-size: 32px;
+      line-height: 38px;
+      color: #3D3D3D;
+      text-transform: uppercase;
+    }
+
     .user {
       display: flex;
       flex-direction: row;
