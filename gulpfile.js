@@ -402,7 +402,6 @@ gulp.task('deploy', ['build'], function() {
   return merge(gzip, plain)
     .pipe(publisher.publish(headers))
     .pipe(publisher.sync())
-    .pipe(publisher.cache())
     .pipe($.awspublish.reporter());
 });
 
