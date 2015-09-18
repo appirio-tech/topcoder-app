@@ -9,7 +9,7 @@
       button.btn-close-menu(type="button", ng-if="main.menuVisible", ng-click="main.menuVisible = false")
       // User link (profile or join)
       a(href="javascript:;", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
-        img(ng-switch-when="true", class="user-avatar", fallback-img="/images/avatarPlaceholder.png", loading-src="/images/avatarPlaceholder.png", ng-src="{{vm.profile.photoURL}}") 
+        img(ng-switch-when="true", class="user-avatar", ng-src="{{vm.profile.photoURL}}") 
         span(ng-switch-when="false" class="btn-link") JOIN
         
     // main menu 
@@ -29,7 +29,7 @@
         // links for logged in user
         div(ng-switch-when="true")
           .menu-item-header
-            img(class="user-avatar" fallback-img="/images/avatarPlaceholder.png", loading-src="/images/avatarPlaceholder.png", ng-src="{{vm.profile.photoURL}}") 
+            img(class="user-avatar", ng-src="{{vm.profile.photoURL}}") 
             span.username {{vm.userHandle}}
           a.btn-link.btn-edit-profile.show-small(ui-sref="settings.profile") EDIT
           ul.submenu
