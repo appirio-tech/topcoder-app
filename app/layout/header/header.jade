@@ -8,7 +8,7 @@
       button.btn-open-menu(type="button", ng-if="!main.menuVisible", ng-click="main.menuVisible = true") Menu
       button.btn-close-menu(type="button", ng-if="main.menuVisible", ng-click="main.menuVisible = false")
       // User link (profile or join)
-      a(href="javascript:;", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
+      a(ui-sref="profile", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
         img(ng-switch-when="true", class="user-avatar", ng-src="{{vm.profile.photoURL}}") 
         span(ng-switch-when="false" class="btn-link") JOIN
         
