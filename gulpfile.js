@@ -397,10 +397,6 @@ gulp.task('deploy', ['build'], function() {
 
   var gzip = gulp.src(['build/**/*.js', 'build/**/*.css']).pipe($.awspublish.gzip());
   var plain = gulp.src([ 'build/**/*', '!build/**/*.js' ]);
-  // var index = gulp.src(['build/index.html'])
-  //   .pipe(publisher.publish({'Cache-Control': 'max-age=0, no-transform, public'}))
-  //   .pipe(publisher.sync())
-  //   .pipe($.awspublish.reporter());
 
   return merge(gzip, plain)
     .pipe(publisher.publish(headers))
@@ -409,7 +405,7 @@ gulp.task('deploy', ['build'], function() {
     .pipe($.awspublish.reporter());
 });
 
-/////////////////////////////////////////////////
+/////////////////////////////////////
 
 function changeEvent(event) {
   var srcPattern = new RegExp('/.*(?=/' + config.source + ')/');
