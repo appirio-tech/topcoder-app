@@ -42,13 +42,14 @@ gulp.task('jade', ['clean-html'], function() {
 
 gulp.task('styles', ['clean-styles'], function() {
   log('Compiling Sass --> CSS');
+  var assetPrefix = envConfig.CONSTANTS.ASSET_PREFIX.length ? envConfig.CONSTANTS.ASSET_PREFIX : '/';
 
   return gulp
     .src(config.sass, {base: './'})
     .pipe($.plumber())
     .pipe($.sass())
     .pipe($.autoprefixer({browsers: ['last 2 version']}))
-    .pipe($.replace(/\/fonts/g, envConfig.CONSTANTS.ASSET_PREFIX + 'fonts'))
+    .pipe($.replace(/\/fonts/g, assetPrefix + 'fonts'))
     .pipe(gulp.dest(config.temp));
 });
 
