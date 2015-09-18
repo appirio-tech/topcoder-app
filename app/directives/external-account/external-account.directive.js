@@ -18,7 +18,8 @@
       restrict: 'E',
       templateUrl: 'directives/external-account/external-account.directive.html',
       scope: {
-        linkedAccounts: '='
+        linkedAccounts: '=',
+        readOnly: '='
       },
       controller: ['$log', '$scope', 'ExternalAccountService', 'toaster',
         function($log, $scope, ExternalAccountService, toaster) {

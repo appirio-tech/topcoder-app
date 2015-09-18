@@ -42,12 +42,14 @@ gulp.task('jade', ['clean-html'], function() {
 
 gulp.task('styles', ['clean-styles'], function() {
   log('Compiling Sass --> CSS');
+  var assetPrefix = envConfig.CONSTANTS.ASSET_PREFIX.length ? envConfig.CONSTANTS.ASSET_PREFIX : '/';
 
   return gulp
     .src(config.sass, {base: './'})
     .pipe($.plumber())
     .pipe($.sass())
     .pipe($.autoprefixer({browsers: ['last 2 version']}))
+    .pipe($.replace(/\/fonts/g, assetPrefix + 'fonts'))
     .pipe(gulp.dest(config.temp));
 });
 
@@ -398,22 +400,13 @@ gulp.task('deploy', ['build'], function() {
   var plain = gulp.src([ 'build/**/*', '!build/**/*.js' ]);
 
   return merge(gzip, plain)
-    .pipe(publisher.publish(headers))
-    .pipe(publisher.sync())
     .pipe(publisher.cache())
+    .pipe(publisher.publish(headers, {force:true}))
+    .pipe(publisher.sync())
     .pipe($.awspublish.reporter());
-
-  // return gulp
-  //   .src('./build/**/*')
-  //   .pipe($.awspublish.gzip({ext: '.gz'}))
-  //   // If not specified it will set x-amz-acl to public-read by default
-  //   .pipe(publisher.publish(headers))
-  //   .pipe(publisher.sync())
-  //   // print upload updates to console
-  //   .pipe($.awspublish.reporter());
 });
 
-//////////////
+/////////////////////////////////////
 
 function changeEvent(event) {
   var srcPattern = new RegExp('/.*(?=/' + config.source + ')/');
