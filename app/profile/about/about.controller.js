@@ -32,6 +32,8 @@
       profileVm.skillsPromise.then(function() {
         // show section if user is viewing his/her own profile OR if we have data
         vm.skills = profileVm.skills;
+        console.log('skills:')
+        console.log(profileVm.skills)
         vm.displaySection.skills = profileVm.showEditProfileLink || !!vm.skills.length;
       });
     }

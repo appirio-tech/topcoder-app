@@ -10,19 +10,10 @@
     hr
     h3.activity Skills &amp; Technologies  
     .list(ng-show="profileVm.skills && profileVm.skills.length > 0")
-      .leftButton(
-        ng-click="vm.shiftSkills(-1)",
-        ng-show="vm.skillIndex > 0"
-      ) &#9664;
 
-      .skill(ng-repeat="skill in profileVm.skills.slice(vm.skillIndex, vm.skillIndex + 5)")
+      .skill(ng-repeat="skill in profileVm.skills")
         skill-tile(skill="skill")
 
-      .rightButton(
-        ng-click="vm.shiftSkills(1)",
-        ng-show="vm.skillIndex < vm.skills.length - 5"
-      ) &#9654;
-  
     .empty-state(ng-show="profileVm.skills && profileVm.skills.length == 0")
       .action-text show us your skills &amp; tools, we'd love that!
       
