@@ -18,7 +18,6 @@
     .user-stats {
       display: flex;
       flex-direction: row;
-      text-transform: uppercase;
       font-size: 14px;
 
       .money-earned, .copilot-challenges {
@@ -26,6 +25,10 @@
         flex-direction: column;
         justify-content: space-between;
         height: 50px;
+
+        p {
+          text-transform: uppercase;
+        }
 
         .number {
           @include sofia-pro-bold;
