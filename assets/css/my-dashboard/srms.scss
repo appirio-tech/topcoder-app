@@ -5,18 +5,15 @@
   display: flex;
   flex-direction: column;
 
-  header {
+   > header {
     position: relative;
     margin-bottom: 35px;
 
-    p.viewSRMs {
+    a.viewSRMs {
       position: absolute;
       top: 3px;
       right: 10px;
-
-      a {
-        text-decoration: underline;
-      }
+      text-decoration: underline;
     }
   }
 
@@ -26,11 +23,42 @@
     /* The negative margin here removes the leftmost tiles'
        margin, since we can't use .tile:first-child here */
     margin-left: -20px;
-    
+
     srm-tile.tile-view {
       width: 23%;
       margin-left: 20px;
       margin-bottom: 20px;
+    }
+
+    .srm-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 270px;
+      height: 319px;
+      padding: 0 21px;
+      border: 1px solid #DCDCDC;
+      border-radius: 4px;
+
+      h2 {
+        margin-top: 70px;
+        margin-bottom: 48px;
+        @include sofia-pro-light;
+        font-size: 24px;
+        text-align: center;
+        color: #3D3D3D;
+        text-transform: uppercase;
+
+        span {
+          @include sofia-pro-bold;
+        }
+      }
+
+      a {
+        margin-bottom: 21px;
+        @include button-m-wide;
+        text-decoration: none;
+      }
     }
   }
 }
