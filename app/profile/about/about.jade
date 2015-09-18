@@ -2,20 +2,6 @@
 .profile-header-container(ng-cloak)
   profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-challenges="profileVm.numProjects", profile-vm="profileVm")
 
-  .tracks-links
-    .tracks
-      .track(ng-repeat="track in (profileVm.profile.tracks)")
-        img(ng-src="/images/ico-track-{{vm.imgMap[track]}}-outline.svg")
-        .text {{track | track}}
-
-    hr
-    
-    .links
-      a.forums.link(href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
-        | Forum Posts
-      a.badges.link(ng-click="profileVm.showBadges()")
-        | Badges
-
 .profile-about-container
 
   tc-section(ng-show="vm.displaySection.skills" state="profileVm.status.skills" class="skills")
@@ -23,8 +9,10 @@
     h3.activity Skills &amp; Technologies  
     .list(ng-show="profileVm.skills && profileVm.skills.length > 0")
 
-      .skill(ng-repeat="skill in profileVm.skills")
+      .skill(ng-repeat="skill in vm.skills")
         skill-tile(skill="skill")
+
+    button.more(ng-show="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW MORE
 
     .empty-state(ng-show="profileVm.skills && profileVm.skills.length == 0")
       .action-text show us your skills &amp; tools, we'd love that!
@@ -36,6 +24,8 @@
         the community at large. So, go ahead and tell us more about you.
       
       button.link-button(ui-sref="settings.profile") ADD YOUR SKILLS
+
+  hr
   
   tc-section(state="profileVm.status.stats")
 

@@ -1,7 +1,8 @@
 a(ng-click="enableHide && toggle()")
 
-  i.colored(ng-show="icon", ng-class="icon") 
-  img.default(ng-hide="icon", src="/images/ico-code-c.svg")
+  .skill-icon
+    i.colored(ng-show="icon", ng-class="icon") 
+    img.default(ng-hide="icon", src="/images/ico-code-c.svg")
   .name {{skill.tagName}} [{{skill.score}}]
   spam(ng-if="skill.hidden") Hidden
 

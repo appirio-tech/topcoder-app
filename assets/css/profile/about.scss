@@ -1,21 +1,10 @@
+@import '../partials/combined';
+
 .profile-about-container {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
 
-  // moved outhere from within sub section to re-use
-  .link-button {
-    background: #00aeff;
-    border-radius: 5px;
-    padding: 7px 12px;
-    margin: 10px;
-    text-decoration: none;
-    color: white;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-family: 'Sofia Pro';
-    line-height: 20px;
-  }
   .activity {
     font-size: 18px;
     line-height: 21px;
@@ -116,24 +105,44 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: 15px 0;
     h1 {
       font-size: 25px;
       margin: auto;
     }
+    .more {
+      @include button-m;
+    }
     .list {
       display: flex;
       flex-direction: row;
+      justify-content: center;
       flex-wrap: wrap;
       width: 90%;
       margin-top: 22px;
+      margin-bottom: 10px;
       .skill {
-        width: 150px;
-        margin: 0 30px;
-        i {
-          font-size: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 130px;
+        .skill-icon {
+          margin: auto;
+          padding: 10px;
+          border: 1px solid #f0f0f0;
+          height: 80px;
+          width: 80px;
+          img, i {
+            font-size: 50px;
+          }
         }
         .name {
+          font-family: 'Sofia Pro';
+          font-weight: 300;
           text-align: center;
           margin-top: 10px;
         }

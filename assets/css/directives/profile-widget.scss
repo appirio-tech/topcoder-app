@@ -14,6 +14,7 @@
 
   h1.handle {
     margin-top: 10px;
+    text-align: center;
     font-size: 32px;
     line-height: 38px;
     font-family: 'Sofia Pro';
@@ -85,7 +86,7 @@
     }
 
     .links {
-      margin-top: 30px;
+      margin-top: 15px;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -113,7 +114,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  padding-top: 30px;
   img.profile-circle {
     margin-top: 10px;
     width: 180px;
@@ -127,6 +127,7 @@
 
     h1.handle {
       margin: 0;
+      text-align: left;
       font-size: 46px;
       line-height: 56px;
     }
