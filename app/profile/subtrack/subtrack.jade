@@ -5,7 +5,9 @@
       img.arrow(src="/images/ico-arrow-big-left.svg")
 
     .breadcrumbs
-      .handle {{vm.userHandle}} //
+      .handle
+        img.profile-circle(fallback-img="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
+        | {{vm.userHandle}} /
       .track {{vm.track | track}}
       .subtrack // {{vm.subTrack | track}}
 

@@ -10,7 +10,8 @@
       scope: {
         profile: '=profile',
         editProfileLink: '=editProfileLink',
-        numChallenges: '=numChallenges'
+        numChallenges: '=numChallenges',
+        profileVm: '=profileVm'
       },
       link: function(scope, elem, attrs) {
         scope.DOMAIN = CONSTANTS.domain;
