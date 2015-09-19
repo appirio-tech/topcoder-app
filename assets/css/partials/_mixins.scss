@@ -182,6 +182,13 @@
   width: 100%;
 }
 
+@mixin horizontal-scroll {
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
 // UI REFRESH STYLES
 @mixin ui-submit-button {
   width: 300px;
