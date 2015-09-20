@@ -65,6 +65,11 @@
   font-weight: 700;
 }
 
+@mixin sofia-pro-extra-light {
+  font-family: 'Sofia Pro', Arial;
+  font-weight: 200;
+}
+
 @mixin sofia-pro-light {
   font-family: 'Sofia Pro', Arial;
   font-weight: 300;
@@ -172,6 +177,8 @@
 @mixin module-l {
   @include module-s;
   max-width: 1242px;
+  margin-left: 10px;
+  margin-right: 10px;
   padding-top: 30px;
   @media only screen and (min-width: 900px) {
     padding: 90px 0 30px;
@@ -188,6 +195,26 @@
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
 }
+
+@mixin background-image-size($width, $height) {
+  width: $width;
+  height: $height;
+  background-size: $width, $height;
+}
+
+@mixin develop-icon-outline {
+  background-image: url(/images/ico-track-develop-outline.svg);
+}
+
+@mixin design-icon-outline {
+  background-image: url(/images/ico-track-design-outline.svg);
+}
+
+@mixin data-icon-outline {
+  background-image: url(/images/ico-track-data-outline.svg);
+}
+
+
 
 // UI REFRESH STYLES
 @mixin ui-submit-button {
