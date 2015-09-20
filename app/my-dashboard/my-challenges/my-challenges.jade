@@ -1,20 +1,35 @@
-header
-  h1.section-title Active Challenges
-
-  p.noChallenges(ng-hide="vm.userHasChallenges") You have not participated in any challenges yet.
+header(ng-hide="vm.loading")
+  h1.section-title(ng-bind="vm.userHasChallenges ? 'Active Challenges' : 'Challenges'")
 
 .section-loading(ng-show="vm.loading")
 
-section(ng-if="vm.userHasChallenges && !vm.loading")
+section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
+  h3 Prove your skills
+
+  .tracks
+    .track
+      .develop-icon-outline
+      p Development
+
+    .track
+      .design-icon-outline
+      p Design
+
+    .track
+      .data-science-icon-outline
+      p Data Science
+
+  p.info Hey, whatever your like might be—Design, Development, or Data Science—we have it! Explore the Challenges section and show us what you’re made of!
+
+  a(ng-href="https://www.{{DOMAIN}}/challenges/") View Challenges
+
+section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading")
   .challenges
     challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="'tile'", ng-class="'tile-view'")
 
-.section-links
+.section-links(ng-if="vm.userHasChallenges && !vm.loading")
   .link
     a(ui-sref="my-challenges") View All
 
-  .link(ng-show="dashboard.isCopilot")
-    a(href="https://www.{{vm.domain}}/direct") Launch Topcoder Direct
-
-  .link(ng-hide="vm.userHasChallenges")
-    a(href="https://community.{{vm.domain}}/", target="_blank") View Help Library
+  .link
+    a(ui-sref="my-challenges") Past Challenges
