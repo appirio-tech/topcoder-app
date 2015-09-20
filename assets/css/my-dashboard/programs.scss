@@ -2,10 +2,8 @@
 
 .programs {
   .section-loading {
-    min-height: 500px;
+    min-height: 200px;
   }
-
-  section.ios { min-height: 175px; }
 
   h1.section-title {
     span { text-transform: none; }
@@ -15,19 +13,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 300px;
-    @media only screen and (max-width: 450px) {
-      padding-top: 10px;
+    min-width: 300px;
+    margin: 0 auto;
+    @media only screen and (min-width: 800px) {
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 750px;
+    }
+    @media only screen and (min-width: 900px) {
+      padding-left: 90px;
+      padding-right: 90px;
+      max-width: none;
     }
 
     img {
-      width: 100%;
+      width: 300px;
+      @media only screen and (min-width: 800px) {
+        order: 2;
+      }
+      @media only screen and (min-width: 1030px) {
+        width: 335px;
+      }
+      @media only screen and (min-width: 1100px) {
+        width: 400px;
+      }
+      @media only screen and (min-width: 1200px) {
+        width: 508px;
+      }
     }
   }
 
   .join-program {
-    width: 260px;
-    padding-bottom: 40px;
+    max-width: 451px;
+    padding: 0 20px 40px;
+    @media only screen and (min-width: 800px) {
+      order: 1;
+      padding: 0;
+      margin-bottom: 30px;
+    }
 
     h3 {
       margin-top: 30px;
@@ -35,6 +58,12 @@
       font-size: 23px;
       text-transform: uppercase;
       color: #3D3D3D;
+      @media only screen and (min-width: 900px) {
+        margin-top: 0;
+      }
+      @media only screen and (min-width: 1000px) {
+        font-size: 40px;
+      }
 
       span { text-transform: none; }
     }
@@ -45,6 +74,10 @@
       font-size: 18px;
       line-height: 24px;
       color: #A3A3AE;
+      @media only screen and (min-width: 1000px) {
+        font-size: 22px;
+        margin-top: 6px;
+      }
     }
 
     p {
@@ -52,6 +85,10 @@
       @include source-sans-regular;
       font-size: 13px;
       line-height: 26px;
+      @media only screen and (min-width: 1000px) {
+        font-size: 16px;
+        margin-top: 60px;
+      }
     }
 
     a {
@@ -61,6 +98,9 @@
       color: $primary-color;
       text-decoration: none;
       text-transform: uppercase;
+      @media only screen and (min-width: 1000px) {
+        font-size: 16px;
+      }
     }
   }
 
