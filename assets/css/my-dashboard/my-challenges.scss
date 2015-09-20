@@ -50,52 +50,47 @@
     min-height: 500px;
   }
 
-  section.challenges {
+  section {
     display: flex;
-    flex-flow: row wrap;
     justify-content: center;
-    padding: 20px 15px;
+    padding: 20px 0;
     background-color: #FCFCFC;
 
-    @media only screen and (max-width: 400px) {
-      display: block;
-      width: 320px;
-      margin-left: 0;
-      padding: 15px;
-      white-space: nowrap;
-      overflow-y: hidden;
-      overflow-x: scroll;
-      -webkit-overflow-scrolling: touch;
-    }
+    .challenges {
+      width: 100%;
+      @include horizontal-scroll;
+      @media only screen and (min-width: 1125px) {
+        display: flex;
+        flex-flow: row wrap;
+        width: 1125px;
+      }
 
-    challenge-tile {
-      display: flex;
-      flex-flow: row wrap;
-      width: 270px;
-
-
-      @media only screen and (max-width: 400px) {
+      challenge-tile {
         display: inline-block;
-        flex-flow: none;
-      }
-
-      &.tile-view {
-        margin-left: 15px;
-        margin-bottom: 15px;
-
-        &:nth-child(4n + 1) {
-          margin-left: -15px;
+        @media only screen and (min-width: 1125px) {
+          display: block;
         }
 
-        @media only screen and (max-width: 400px) {
-          margin-bottom: 0;
-          margin-left: 0;
-          margin-right: 10px;
-        }
-      }
+        &.tile-view {
+          margin-left: 15px;
+          margin-bottom: 15px;
+          @media only screen and (min-width: 1125px) {
+            &:nth-child(4n + 1) {
+              margin-left: 0;
+            }
+          }
 
-      &.list-view {
-        width: 100%;
+          &:last-child {
+            margin-right: 15px;
+            @media only screen and (min-width: 1125px) {
+              margin-right: 0;
+            }
+          }
+        }
+
+        &.list-view {
+          width: 100%;
+        }
       }
     }
   }

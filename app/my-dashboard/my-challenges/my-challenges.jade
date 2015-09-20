@@ -5,8 +5,9 @@ header
 
 .section-loading(ng-show="vm.loading")
 
-section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
-  challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="'tile'", ng-class="'tile-view'")
+section(ng-if="vm.userHasChallenges && !vm.loading")
+  .challenges
+    challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="'tile'", ng-class="'tile-view'")
 
 .section-links
   .link
@@ -17,6 +18,3 @@ section.challenges(ng-if="vm.userHasChallenges && !vm.loading")
 
   .link(ng-hide="vm.userHasChallenges")
     a(href="https://community.{{vm.domain}}/", target="_blank") View Help Library
-
-.spotlightChallenges(ng-hide="vm.userHasChallenges")
-  challenge-tile.spotlight(ng-repeat="spotlight in vm.spotlightChallenges", spotlight, challenge="spotlight", domain="vm.domain", view="'tile'")
