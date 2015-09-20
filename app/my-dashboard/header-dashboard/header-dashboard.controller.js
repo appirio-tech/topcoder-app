@@ -37,7 +37,7 @@
 
       ProfileService.getUserStats(handle)
       .then(function(stats) {
-        if (!_.isUndefined(stats.COPILOT)) {
+        if (stats.COPILOT != null) {
           vm.numCopilotActiveContests = stats.COPILOT.activeContests;
         } else {
           vm.numCopilotActiveContests = 0;

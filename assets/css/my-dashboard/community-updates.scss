@@ -1,42 +1,106 @@
 @import '../partials/combined';
 
 .community-updates {
+  display: flex;
+  flex-direction: column;
+  color: #3D3D3D;
+
   header {
-    margin-bottom: 35px;
+    margin-top: 6px;
+    margin-bottom: -6px;
+    padding-top: 30px;
+    padding-bottom: 24px;
+    background-color: $white;
+    @media only screen and (min-width: 570px) {
+      margin-bottom: 0;
+    }
+    @media only screen and (min-width: 1132px) {
+      margin-top: 0;
+      padding-top: 0;
+      padding-bottom: 30px;
+    }
   }
 
   .posts {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 25px;
+    @media only screen and (min-width: 570px) {
+      display: flex;
+      flex-flow: row wrap;
+      margin: 0 auto;
+      width: 550px;
+    }
+    @media only screen and (min-width: 850px) {
+      width: 830px;
+    }
+    @media only screen and (min-width: 1132px) {
+      width: 1110px;
+    }
 
     .post {
+      @include module-s;
       display: flex;
       flex-direction: column;
-      margin-right: 25px;
-      padding: 10px;
-      width: 23%;
+      border: 1px solid #F0F0F0;
+      @media only screen and (min-width: 570px) {
+        width: 270px;
+        height: 386px;
 
-      &:last-child {
-        margin-right: 0;
+        &:nth-child(2n + 1) {
+          margin-right: 10px;
+        }
+      }
+      @media only screen and (min-width: 850px) {
+        margin-right: 10px;
+
+        &:nth-child(3) {
+          margin-right: 0;
+        }
+      }
+      @media only screen and (min-width: 1132px) {
+        margin-top: 0;
+
+        &:nth-child(3) {
+          margin-right: 10px;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
       }
 
       .blog-link {
-        min-height: 50px;
+        min-height: 76px;
+        padding: 20px 10px 12px;
+        @include sofia-pro-medium;
+        font-size: 16px;
+        line-height: 22px;
+        background-color: #F2FAFF;
+        @media only screen and (min-width: 570px) {
+          padding: 20px 20px 12px;
+        }
 
         a {
           text-decoration: none;
-          color: $color_storm_dust_approx;
-
-          &:hover {
-            color: $color_selective_yellow_approx;
-          }
+          color: inherit;
         }
       }
 
       .description {
-        margin-top: 10px;
-        font-size: 14px;
+        padding: 20px 10px;
+        @include source-sans-regular;
+        font-size: 13px;
+        line-height: 18px;
+        @media only screen and (min-width: 570px) {
+          padding: 20px 20px;
+        }
+
+        a {
+          display: block;
+          margin-top: 25px;
+          color: $primary-color;
+          text-decoration: none;
+          @media only screen and (min-width: 1132px) {
+            margin-top: 0;
+          }
+        }
       }
     }
   }
