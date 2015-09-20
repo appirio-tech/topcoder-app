@@ -4,21 +4,36 @@
 
   header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+
+    @media only screen and (min-width: 450px) {
+      flex-direction: row;
+      justify-content: space-between;
+
+    }
 
     h1 {
       @include sofia-pro-bold;
-      font-size: 32px;
-      line-height: 38px;
+      font-size: 22px;
+      line-height: 26px;
       color: #3D3D3D;
       text-transform: uppercase;
+      @media only screen and (min-width: 450px) {
+        font-size: 32px;
+        line-height: 38px;
+      }
     }
 
     .user-stats {
       display: flex;
       flex-direction: row;
-      font-size: 14px;
+
+      .slash {
+        width: 20px;
+        height: 35px;
+        background-color: #D1D3D4;
+      }
 
       .money-earned, .copilot-challenges {
         display: flex;
@@ -32,16 +47,24 @@
 
         .number {
           @include sofia-pro-bold;
-          font-size: 22px;
-          line-height: 28px;
+          font-size: 18px;
+          line-height: 23px;
           color: #3D3D3D;
+          @media only screen and (min-width: 450px) {
+            font-size: 22px;
+            line-height: 28px;
+          }
         }
 
         p:not(.number) {
           @include sofia-pro-regular;
-          font-size: 12px;
-          line-height: 14px;
+          font-size: 10px;
+          line-height: 13px;
           color: #A3A3AE;
+          @media only screen and (min-width: 450px) {
+            font-size: 12px;
+            line-height: 14px;
+          }
         }
       }
 
