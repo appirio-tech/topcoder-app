@@ -16,12 +16,6 @@
     width: 100%;
   }
 
-  .programs {
-    @media only screen and (max-width: 450px) {
-      padding-top: 10px;
-    }
-  }
-
   .section-title {
     @include sofia-pro-bold;
     font-size: 22px;

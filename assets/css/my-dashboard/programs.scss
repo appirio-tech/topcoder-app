@@ -16,6 +16,9 @@
     flex-direction: column;
     align-items: center;
     width: 300px;
+    @media only screen and (max-width: 450px) {
+      padding-top: 10px;
+    }
 
     img {
       width: 100%;
