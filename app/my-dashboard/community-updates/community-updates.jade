@@ -1,17 +1,11 @@
 header
   h1.section-title Community Updates
 
-section
-  .posts
-    .post(ng-repeat='blog in vm.blogPosts | orderBy : pubDate | limitTo : 4')
-      .blog-link
-        a(ng-href='{{blog.link}}', target='_blank') {{blog.title}}
+.section-loading(ng-show="vm.loading")
 
-      .description(ng-bind-html="blog.description")
+.posts(ng-hide="vm.loading")
+  .post(ng-repeat='blog in vm.blogPosts | orderBy : pubDate | limitTo : 4')
+    .blog-link
+      a(ng-href='{{blog.link}}', target='_blank') {{blog.title}}
 
-  .section-links
-    .link
-      a(ng-href="https://www.{{DOMAIN}}/blog/") View Topcoder Blog
-
-    .link
-      a(ng-href="https://community.{{DOMAIN}}/") Go to Community
+    .description(ng-bind-html="blog.description")
