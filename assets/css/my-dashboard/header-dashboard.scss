@@ -1,25 +1,35 @@
 @import '../partials/combined';
 
 .header-dashboard {
+  @include module-full-width;
+  background-color: $white;
 
   header {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    @media only screen and (min-width: 450px) {
+    max-width: 1242px;
+    margin: 0 auto;
+    padding-top: 20px;
+    @media only screen and (min-width: 600px) {
       flex-direction: row;
       justify-content: space-between;
-
+      padding: 25px 25px 23px;
+    }
+    @media only screen and (min-width: 900px) {
+      padding: 40px 50px 33px;
     }
 
+
     h1 {
+      margin-bottom: 10px;
       @include sofia-pro-bold;
       font-size: 22px;
       line-height: 26px;
       color: #3D3D3D;
       text-transform: uppercase;
-      @media only screen and (min-width: 450px) {
+      @media only screen and (min-width: 600px) {
+        margin-bottom: 0;
         font-size: 32px;
         line-height: 38px;
       }
@@ -28,10 +38,16 @@
     .user-stats {
       display: flex;
       flex-direction: row;
+      align-items: center;
+      margin-bottom: 12px;
+      @media only screen and (min-width: 600px) {
+        margin-bottom: 0;
+      }
 
       .slash {
         width: 20px;
         height: 35px;
+        margin-right: 15px;
         background-color: #D1D3D4;
       }
 
@@ -39,7 +55,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 50px;
+        text-align: center;
 
         p {
           text-transform: uppercase;
@@ -50,7 +66,9 @@
           font-size: 18px;
           line-height: 23px;
           color: #3D3D3D;
-          @media only screen and (min-width: 450px) {
+          text-align: right;
+          @media only screen and (min-width: 600px) {
+            text-align: center;
             font-size: 22px;
             line-height: 28px;
           }
@@ -61,7 +79,7 @@
           font-size: 10px;
           line-height: 13px;
           color: #A3A3AE;
-          @media only screen and (min-width: 450px) {
+          @media only screen and (min-width: 600px) {
             font-size: 12px;
             line-height: 14px;
           }
@@ -69,15 +87,18 @@
       }
 
       .money-earned {
-        text-align: center;
-        padding-left: 10px;
-        padding-right: 10px;
+        @media only screen and (min-width: 600px) {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
       }
 
       .copilot-challenges {
-        text-align: center;
-        padding-left: 10px;
-        padding-right: 10px;
+        margin-right: 15px;
+        @media only screen and (min-width: 600px) {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
       }
     }
   }
