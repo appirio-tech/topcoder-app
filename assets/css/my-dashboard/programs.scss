@@ -1,66 +1,63 @@
 @import '../partials/combined';
 
 .programs {
-  min-width: 1242px;
+  .section-loading {
+    min-height: 500px;
+  }
 
-  .section-title {
-    margin-bottom: 35px;
+  section.ios { min-height: 175px; }
 
-    span {
-      text-transform: none;
+  h1.section-title {
+    span { text-transform: none; }
+  }
+
+  .unregistered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+
+    img {
+      width: 100%;
     }
-  }
-
-  section.ios {
-    min-height: 175px;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
   }
 
   .join-program {
-    height: 175px;
-    background-color: #e7e7e7;
-    display: flex;
-    flex-direction: row;
+    width: 260px;
+    padding-bottom: 40px;
 
-    & > div {
-      flex: 1;
-      display: flex;
-      text-align: center;
-      align-items: center;
+    h3 {
+      margin-top: 30px;
+      @include sofia-pro-light;
+      font-size: 23px;
+      text-transform: uppercase;
+      color: #3D3D3D;
+
+      span { text-transform: none; }
     }
 
-    .logo {
-      justify-content: center;
-
-      p {
-        margin-left: 20px;
-      }
+    h4 {
+      margin-top: 10px;
+      @include source-sans-light;
+      font-size: 18px;
+      line-height: 24px;
+      color: #A3A3AE;
     }
 
-    .call-to-action {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
+    p {
+      margin-top: 20px;
+      @include source-sans-regular;
+      font-size: 13px;
+      line-height: 26px;
+    }
 
-      justify-content: space-around;
-      @include source-sans-bold;
-      color: #727272;
-      font-size: 22px;
-      cursor: pointer;
-
-      p {
-        width: 255px;
-        line-height: 1.2;
-        border-radius: 5px;
-        padding: 10px;
-        background-color: $dark-gray;
-        margin: 10px;
-        color: $white;
-      }
+    a {
+      display: block;
+      margin-top: 30px;
+      font-size: 13px;
+      color: $primary-color;
+      text-decoration: none;
+      text-transform: uppercase;
     }
   }
 
