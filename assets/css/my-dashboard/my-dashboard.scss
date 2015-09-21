@@ -4,12 +4,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
-  @media only screen and (min-width: 1262px) {
-    padding-left: 0;
-    padding-right: 0;
-  }
 
   .subtrack-stats, .my-challenges, .srms, .programs {
     @include module-l;

@@ -5,7 +5,7 @@
     margin-bottom: 27px;
     @media only screen and (min-width: 900px) {
       font-size: 28px;
-      margin-bottom: 60px;
+      margin-bottom: 30px;
     }
   }
 
@@ -105,7 +105,7 @@
   .hasChallenges {
     display: flex;
     justify-content: center;
-    padding: 20px 0;
+    padding-top: 20px;
     background-color: #FCFCFC;
 
     .challenges {
@@ -115,6 +115,7 @@
         display: flex;
         flex-flow: row wrap;
         width: 1125px;
+        overflow: visible;
       }
 
       challenge-tile {

@@ -6,13 +6,7 @@
   function challengeTile() {
     return {
       restrict: 'E',
-      templateUrl: function(elem, attrs) {
-        if (attrs.spotlight) {
-          return 'directives/challenge-tiles/spotlight-tile.directive.html';
-        }
-
-        return 'directives/challenge-tiles/challenge-tile.directive.html';
-      },
+      templateUrl: 'directives/challenge-tile/challenge-tile.directive.html',
       scope: {
         challenge: '=',
         view: '='
@@ -23,9 +17,7 @@
         activate();
 
         function activate() {
-          if (!$attrs.spotlight) {
-            processChallenge($scope.challenge);
-          }
+          processChallenge($scope.challenge);
         }
 
         function processChallenge(challenge) {

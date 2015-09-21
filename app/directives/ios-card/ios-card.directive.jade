@@ -1,0 +1,38 @@
+.challenge.tile-view(ng-show="view === 'tile'", ng-class="challenge.track")
+  .challenge-track
+
+  header
+    a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+
+    p iOS {{challenge.track}}
+
+  .challenge-details
+    p.prize-money(ng-show="challenge.reviewType === 'PEER'") Peer Review Challenge
+
+    p.prize-money(ng-hide="challenge.reviewType === 'PEER'") {{challenge.totalCheckpointPrize || 0 | currency:undefined:0}}
+
+    p.technologies {{challenge.technologies}}
+
+    .challenge-calendar
+      p.starts-in Starts In
+      p.time-remaining 3
+      p.unit-of-time days
+
+    button.phase-action(ng-class="{'action-completed': challenge.currentPhaseActionCompleted}") Submit
+
+    .challenge-links
+      .stats
+        a.registrants(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+          .registrants-icon
+
+          p {{challenge.numRegistrants}}
+
+        a.submissions(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+          .submissions-icon
+
+          p {{challenge.numSubmissions}}
+
+      a.forum(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
+        .forum-icon
+
+        p Posts
