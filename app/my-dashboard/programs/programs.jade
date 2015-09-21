@@ -1,3 +1,6 @@
+header(ng-hide="vm.loading")
+  h1.section-title #[span iOS]: Show Your Skills
+
 .section-loading(ng-show="vm.loading")
 
 section.ios(ng-hide="vm.loading")
@@ -17,34 +20,14 @@ section.ios(ng-hide="vm.loading")
       //-   p Join Us
 
   .registered(ng-show="vm.registered")
-    h1.section-title #[span iOS]: Show Your Skills
+    .badge-and-challenges
+      .registered-badge
+        .flex-wrapper
+          p iOS DEVELOPER
 
-    .registered-badge
-      i.fa.fa-apple.fa-3x
+          .badge-timeline
+            img(src="/images/member-program/svg/Member-06.svg", alt="Development Challenge Icon")
 
-      img(src="/images/member-program/svg/Member-06.svg", alt="Development Challenge Icon")
+          a(href="http://ios.{{vm.domain}}", title="topcoder iOS Member Program") View Challenges
 
-      p Badge 1 Achieved
-
-      a(href="http://ios.{{vm.domain}}", title="topcoder iOS Member Program") View Challenges
-
-    .challenge(ng-repeat="challenge in vm.challenges | orderBy:reviewType:true| orderBy:registrationEndDate:true")
-      p.title {{challenge.challengeName}}
-
-      i.fa.fa-apple.fa-3x
-
-      p.technologies Technologies: {{challenge.technologies}}
-
-      p.prize(ng-class="{hidden: challenge.reviewType === 'PEER'}") {{challenge.totalPrize | currency:undefined:0}}
-
-      p.days-remaining {{challenge.registrationEndDate | timeDiff}}
-        span Registration Ends
-
-      .stats
-        i.fa.fa-user
-        span {{challenge.numRegistrants}}
-
-        i.fa.fa-files-o
-        span {{challenge.numSubmissions}}
-
-      a(ng-href="https://www.{{vm.domain}}/challenge-details/{{challenge.challengeId}}/?type=develop", title="Go to challenge") Register Now!
+      ios-card(ng-repeat="challenge in vm.challenges | orderBy:reviewType:true| orderBy:registrationEndDate:true", challenge="challenge", view="'tile'")
