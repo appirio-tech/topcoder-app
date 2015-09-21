@@ -16,8 +16,7 @@
         controller: 'SettingsController',
         controllerAs: 'settings',
         data: {
-          authRequired: true,
-          UIRefresh: true
+          authRequired: true
         },
         resolve: {
           userHandle: ['UserService', function(UserService) {

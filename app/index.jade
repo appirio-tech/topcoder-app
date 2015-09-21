@@ -33,6 +33,7 @@ html
     link(rel="stylesheet", href="assets/css/settings/edit-profile.css")
     link(rel="stylesheet", href="assets/css/settings/account-info.css")
     link(rel="stylesheet", href="assets/css/profile/subtrack.css")
+    link(rel="stylesheet", href="assets/css/profile/icons.css")
     link(rel="stylesheet", href="assets/css/profile/header.css")
     link(rel="stylesheet", href="assets/css/profile/badges.css")
     link(rel="stylesheet", href="assets/css/profile/about.css")
@@ -42,6 +43,7 @@ html
     link(rel="stylesheet", href="assets/css/peer-review/edit.css")
     link(rel="stylesheet", href="assets/css/peer-review/completed.css")
     link(rel="stylesheet", href="assets/css/my-srms/my-srms.css")
+    link(rel="stylesheet", href="assets/css/my-dashboard/subtrack-stats.css")
     link(rel="stylesheet", href="assets/css/my-dashboard/srms.css")
     link(rel="stylesheet", href="assets/css/my-dashboard/programs.css")
     link(rel="stylesheet", href="assets/css/my-dashboard/my-dashboard.css")
@@ -56,6 +58,7 @@ html
     link(rel="stylesheet", href="assets/css/directives/tc-section.css")
     link(rel="stylesheet", href="assets/css/directives/tc-paginator.css")
     link(rel="stylesheet", href="assets/css/directives/srm-tile.css")
+    link(rel="stylesheet", href="assets/css/directives/skill-tile.css")
     link(rel="stylesheet", href="assets/css/directives/profile-widget.css")
     link(rel="stylesheet", href="assets/css/directives/history-graph.css")
     link(rel="stylesheet", href="assets/css/directives/external-link-data.css")
@@ -70,18 +73,16 @@ html
     //- endinject
     // endbuild
 
-  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh, 'menu-visible': main.menuVisible}", ng-strict-di)
+  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'menu-visible': main.menuVisible}", ng-strict-di)
 
-    //- include ./layout/header/header.jade
     #header(ui-view="header")
 
     notifications-bar.notifications(closeIcon="fa fa-times-circle")
+
     toaster-container(toaster-options="{{main.globalToasterConfig}}")
 
-    .view-container
-      div(ui-view="container")
+    .view-container(ui-view="container")
 
-    //- include ./layout/footer/footer.jade
     div(ui-view="footer")
 
     // build:js /js/vendor.js
@@ -91,7 +92,7 @@ html
     script(src='../bower_components/angucomplete-alt/angucomplete-alt.js')
     script(src='../bower_components/angular-cookies/angular-cookies.js')
     script(src='../bower_components/angular-dropdowns/dist/angular-dropdowns.js')
-    script(src='../bower_components/angular-filter/dist/angular-filter.js')
+    script(src='../bower_components/angular-filter/dist/angular-filter.min.js')
     script(src='../bower_components/angular-img-fallback/angular.dcb-img-fallback.js')
     script(src='../bower_components/angular-jwt/dist/angular-jwt.js')
     script(src='../bower_components/angular-sanitize/angular-sanitize.js')
@@ -116,7 +117,7 @@ html
     script(src="/scripts/moment-timezone-with-data-2010-2020.js")
     //- endinject
     // endbuild
-    
+
     // build:js /js/app.js
     //- inject:js
     script(src="account/account.module.js")
@@ -173,6 +174,7 @@ html
     script(src="my-dashboard/my-dashboard.routes.js")
     script(src="my-dashboard/programs/programs.controller.js")
     script(src="my-dashboard/srms/srms.controller.js")
+    script(src="my-dashboard/subtrack-stats/subtrack-stats.controller.js")
     script(src="my-srms/my-srms.controller.js")
     script(src="my-srms/my-srms.module.js")
     script(src="my-srms/my-srms.routes.js")

@@ -2,7 +2,7 @@
 
 .review-status-container {
   h1 {
-    @include source-sans;
+    @include source-sans-regular;
     font-size: 38px;
     color: $light-black;
     margin-top: 11px;
@@ -69,7 +69,7 @@
     width: 100%;
     color: $dark-gray;
     text-align: center;
-    @include source-sans;
+    @include source-sans-regular;
 
     thead {
       background-color: $table-head-gray;

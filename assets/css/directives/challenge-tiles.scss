@@ -73,7 +73,7 @@
     width: 75px;
     height: 63px;
     margin-bottom: 20px;
-    background-image: url(/images/svgs/ico-calendar.svg);
+    background-image: url(/images/ico-calendar.svg);
 
     > p {
       @include sofia-pro-bold;
@@ -110,7 +110,7 @@
     min-height: 36px;
     margin-bottom: 25px;
     color: #3D3D3D;
-    @include source-sans;
+    @include source-sans-regular;
     font-size: 13px;
     line-height: 18px;
   }
@@ -123,6 +123,8 @@
     height: 38px;
     width: 100%;
     padding: 0 20px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
     background-color: #FCFCFC;
 
     a {
@@ -162,20 +164,20 @@
   .registrants-icon {
     width: 15px;
     height: 16px;
-    background-image: url(/images/svgs/ico-users.svg);
+    background-image: url(/images/ico-users.svg);
     background-size: 15px 16px;
   }
 
   .submissions-icon {
     width: 22px;
     height: 14px;
-    background-image: url(/images/svgs/ico-submissions.svg);
+    background-image: url(/images/ico-submissions.svg);
   }
 
   .forum-icon {
     width: 20px;
     height: 17px;
-    background-image: url(/images/svgs/ico-posts.svg);
+    background-image: url(/images/ico-posts.svg);
   }
 }
 

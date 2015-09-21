@@ -14,6 +14,7 @@
 
   h1.handle {
     margin-top: 10px;
+    text-align: center;
     font-size: 32px;
     line-height: 38px;
     font-family: 'Sofia Pro';
@@ -22,7 +23,8 @@
 
   h3.tenure {
     margin-top: 5px;
-    font-size: 19px;
+    font-size: 18px;
+    line-height: 23px;
     font-family: 'Sofia Pro';
     font-weight: light;
     color: #d1d3d4;
@@ -41,7 +43,7 @@
 
   h3.location-challenges {
     margin-top: 29px;
-    font-size: 19px;
+    font-size: 18px;
     font-family: 'Sofia Pro';
     font-weight: 500;
     text-transform: uppercase;
@@ -55,4 +57,116 @@
     width: 254px;
     text-align: center;
   }
+  .tracks-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .tracks {
+      display: flex;
+      justify-content: center;
+      .track {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 15px 8px 0 8px;
+        .text {
+          font-family: 'Sofia Pro';
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 14px;
+          margin-top: 11px;
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    hr {
+      margin-top: 14px;
+      color: #f0f0f0;
+    }
+
+    .links {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .link {
+        background: #00aeff;
+        border-radius: 5px;
+        padding: 7px 12px;
+        text-decoration: none;
+        color: white;
+        text-transform: uppercase;
+        margin-left: 5px;
+        margin-right: 5px;
+        font-size: 14px;
+        font-family: 'Sofia Pro';
+        line-height: 20px;
+      }
+    }
+
+
+  }
+}
+@media (min-width: 768px) {
+
+.profile-widget-directive {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  img.profile-circle {
+    margin-top: 10px;
+    width: 180px;
+    height: 180px;
+  }
+  .info {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+
+    h1.handle {
+      margin: 0;
+      text-align: left;
+      font-size: 46px;
+      line-height: 56px;
+    }
+
+    h3.tenure {
+      margin-top: 3px;
+    }
+
+    h3.location-challenges {
+      margin-top: 36px;
+    }
+
+    p.description {
+      margin-top: 12px;
+      width: 361px;
+      text-align: left;
+    }
+
+  }
+  .tracks-links {
+    margin-top: -2.1px;
+    .tracks {
+      .track {
+        img {
+          height: 44px;
+        }
+        .text {
+          margin-top: 8px;
+        }
+      }
+    }
+    hr {
+      margin-bottom: 0;
+    }
+
+    .links {
+      margin-top: 20px;
+    }
+  }
+}
+
 }

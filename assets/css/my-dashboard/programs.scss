@@ -1,61 +1,105 @@
 @import '../partials/combined';
 
 .programs {
-  margin-bottom: 35px;
-
-  .section-title {
-    margin-bottom: 35px;
+  .section-loading {
+    min-height: 200px;
   }
 
-  section.ios {
-    min-height: 175px;
+  h1.section-title {
+    span { text-transform: none; }
   }
 
-  a {
-    color: inherit;
-    text-decoration: none;
+  .unregistered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+    margin: 0 auto;
+    @media only screen and (min-width: 800px) {
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 750px;
+    }
+    @media only screen and (min-width: 900px) {
+      padding-left: 90px;
+      padding-right: 90px;
+      max-width: none;
+    }
+
+    img {
+      width: 300px;
+      @media only screen and (min-width: 800px) {
+        order: 2;
+      }
+      @media only screen and (min-width: 1030px) {
+        width: 335px;
+      }
+      @media only screen and (min-width: 1100px) {
+        width: 400px;
+      }
+      @media only screen and (min-width: 1200px) {
+        width: 508px;
+      }
+    }
   }
 
   .join-program {
-    height: 175px;
-    background-color: #e7e7e7;
-    display: flex;
-    flex-direction: row;
-
-    & > div {
-      flex: 1;
-      display: flex;
-      text-align: center;
-      align-items: center;
+    max-width: 451px;
+    padding: 0 20px 40px;
+    @media only screen and (min-width: 800px) {
+      order: 1;
+      padding: 0;
+      margin-bottom: 30px;
     }
 
-    .logo {
-      justify-content: center;
+    h3 {
+      margin-top: 30px;
+      @include sofia-pro-light;
+      font-size: 23px;
+      text-transform: uppercase;
+      color: #3D3D3D;
+      @media only screen and (min-width: 900px) {
+        margin-top: 0;
+      }
+      @media only screen and (min-width: 1000px) {
+        font-size: 40px;
+      }
 
-      p {
-        margin-left: 20px;
+      span { text-transform: none; }
+    }
+
+    h4 {
+      margin-top: 10px;
+      @include source-sans-light;
+      font-size: 18px;
+      line-height: 24px;
+      color: #A3A3AE;
+      @media only screen and (min-width: 1000px) {
+        font-size: 22px;
+        margin-top: 6px;
       }
     }
 
-    .call-to-action {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
+    p {
+      margin-top: 20px;
+      @include source-sans-regular;
+      font-size: 13px;
+      line-height: 26px;
+      @media only screen and (min-width: 1000px) {
+        font-size: 16px;
+        margin-top: 60px;
+      }
+    }
 
-      justify-content: space-around;
-      @include source-sans-bold;
-      color: #727272;
-      font-size: 22px;
-      cursor: pointer;
-
-      p {
-        width: 255px;
-        line-height: 1.2;
-        border-radius: 5px;
-        padding: 10px;
-        background-color: $dark-gray;
-        margin: 10px;
-        color: $white;
+    a {
+      display: block;
+      margin-top: 30px;
+      font-size: 13px;
+      color: $primary-color;
+      text-decoration: none;
+      text-transform: uppercase;
+      @media only screen and (min-width: 1000px) {
+        font-size: 16px;
       }
     }
   }

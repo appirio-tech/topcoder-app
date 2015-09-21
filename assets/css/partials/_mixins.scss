@@ -44,7 +44,7 @@
   font-weight: 300;
 }
 
-@mixin source-sans {
+@mixin source-sans-regular {
   font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
@@ -63,6 +63,11 @@
 @mixin source-sans-bold {
   font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
   font-weight: 700;
+}
+
+@mixin sofia-pro-extra-light {
+  font-family: 'Sofia Pro', Arial;
+  font-weight: 200;
 }
 
 @mixin sofia-pro-light {
@@ -128,6 +133,8 @@
   font-size: 11px;
   text-transform: uppercase;
   text-align: center;
+  cursor: pointer;
+  outline: 0;
 }
 @mixin button-m {
   @include button-s;
@@ -162,6 +169,58 @@
   padding: 0 30px;
 }
 
+@mixin module-s {
+  margin-top: 6px;
+  background-color: $white;
+}
+
+@mixin module-l {
+  @include module-s;
+  max-width: 1242px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 30px;
+  @media only screen and (min-width: 900px) {
+    padding: 90px 0 30px;
+  }
+}
+
+@mixin module-full-width {
+  width: 100%;
+}
+
+@mixin horizontal-scroll {
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+@mixin background-image-size($width, $height) {
+  width: $width;
+  height: $height;
+  background-size: $width, $height;
+}
+
+@mixin develop-icon-outline {
+  background-image: url(/images/ico-track-develop-outline.svg);
+  background-repeat: no-repeat;
+}
+
+@mixin design-icon-outline {
+  background-image: url(/images/ico-track-design-outline.svg);
+  background-repeat: no-repeat;
+}
+
+@mixin data-icon-outline {
+  background-image: url(/images/ico-track-data-outline.svg);
+  background-repeat: no-repeat;
+}
+
+@mixin copilot-icon-outline {
+  background-image: url(/images/ico-track-co_pilot-outline.svg);
+  background-repeat: no-repeat;
+}
 
 // UI REFRESH STYLES
 @mixin ui-submit-button {
@@ -188,7 +247,7 @@
   padding: 0;
   padding-left: 15px;
   border: 0;
-  @include source-sans;
+  @include source-sans-regular;
   font-size: 16px;
   color: #231F20;
 }

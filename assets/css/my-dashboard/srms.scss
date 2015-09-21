@@ -17,47 +17,74 @@
     }
   }
 
-  section.srm-tiles {
+  section {
     display: flex;
-    flex-flow: row wrap;
-    /* The negative margin here removes the leftmost tiles'
-       margin, since we can't use .tile:first-child here */
-    margin-left: -20px;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #FCFCFC;
 
-    srm-tile.tile-view {
-      width: 23%;
-      margin-left: 20px;
-      margin-bottom: 20px;
-    }
+    .srm-tiles {
+      width: 100%;
+      @include horizontal-scroll;
+      @media only screen and (min-width: 1125px) {
+        display: flex;
+        flex-flow: row wrap;
+        width: 1125px;
+      }
 
-    .srm-links {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 270px;
-      height: 319px;
-      padding: 0 21px;
-      border: 1px solid #DCDCDC;
-      border-radius: 4px;
-
-      h2 {
-        margin-top: 70px;
-        margin-bottom: 48px;
-        @include sofia-pro-light;
-        font-size: 24px;
-        text-align: center;
-        color: #3D3D3D;
-        text-transform: uppercase;
-
-        span {
-          @include sofia-pro-bold;
+      srm-tile{
+        display: inline-block;
+        margin-left: 15px;
+        margin-bottom: 15px;
+        @media only screen and (min-width: 1125px) {
+          display: block;
+          &:first-child {
+            margin-left: 0;
+          }
         }
       }
 
-      a {
-        margin-bottom: 21px;
-        @include button-m-wide;
-        text-decoration: none;
+      .srm-links-card {
+        display: inline-block;
+        width: 270px;
+        height: 319px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        padding: 0 21px;
+        border: 1px solid #DCDCDC;
+        border-radius: 4px;
+        @media only screen and (min-width: 1125px) {
+          margin-right: 0;
+          display: block;
+          margin-left: 15px;
+        }
+      }
+
+      .flex-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+          margin-top: 70px;
+          margin-bottom: 48px;
+          @include sofia-pro-light;
+          font-size: 24px;
+          text-align: center;
+          color: #3D3D3D;
+          text-transform: uppercase;
+          white-space: normal;
+
+          span {
+            @include sofia-pro-bold;
+          }
+        }
+
+        a {
+          margin-bottom: 21px;
+          @include button-m-wide;
+          text-decoration: none;
+        }
       }
     }
   }

@@ -58,7 +58,7 @@
 
     h1 {
       @include ellipsis;
-      @include source-sans;
+      @include source-sans-regular;
       display: inline-block;
       vertical-align: middle;
       font-size: 38px;
@@ -70,7 +70,7 @@
   }
 
   table.review-info {
-    @include source-sans;
+    @include source-sans-regular;
     margin-top: 15px;
     margin-left: 5px;
 
@@ -106,7 +106,7 @@
     background-color: $white;
 
     .scorecard {
-      @include source-sans;
+      @include source-sans-regular;
       color: $dark-gray;
 
       h5.description {

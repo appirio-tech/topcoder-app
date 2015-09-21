@@ -1,100 +1,149 @@
-
 @import '../partials/combined';
 
 .my-challenges {
-  min-height: 50px;
-  display: flex;
-  flex-direction: column;
-
-  > header {
-    position: relative;
-    margin-bottom: 35px;
-
-    p.noChallenges {
-      text-align: center;
-      margin-top: 10px;
-      font-size: 18px;
-    }
-
-    p.viewChallenges {
-      position: absolute;
-      top: 3px;
-      right: 10px;
-
-      a {
-        text-decoration: underline;
-      }
-    }
-
-    p.viewDashboard {
-      position: absolute;
-      top: 3px;
-      left: 10px;
-
-      a {
-        text-decoration: underline;
-      }
-    }
-
-    p.filters {
-      position: absolute;
-      top: 3px;
-      right: 10px;
-
-      a {
-        text-decoration: underline;
-      }
+  .section-title {
+    margin-bottom: 27px;
+    @media only screen and (min-width: 900px) {
+      font-size: 28px;
+      margin-bottom: 60px;
     }
   }
 
-  section.challenges {
-    display: flex;
-    flex-flow: row wrap;
-    /* The negative margin here removes the leftmost tiles'
-       margin, since we can't use .tile:first-child here */
-    margin-left: -20px;
+  .section-loading {
+    min-height: 500px;
+  }
 
-    @media only screen and (max-width: 400px) {
-      display: block;
-      margin-left: 0;
-      width: 300px;
-      white-space: nowrap;
-      overflow-y: hidden;
-      overflow-x: scroll;
-      -webkit-overflow-scrolling: touch;
+  .noChallenges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #3D3D3D;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    h3 {
+      margin-bottom: 20px;
+      @include sofia-pro-extra-light;
+      font-size: 18px;
+      text-transform: uppercase;
+      @media only screen and (min-width: 900px) {
+        font-size: 28px;
+        margin-bottom: 30px;
+      }
     }
 
-    challenge-tile {
+    .tracks {
       display: flex;
-      flex-flow: row wrap;
-      width: 270px;
-      @media only screen and (max-width: 400px) {
-        display: inline-block;
-        flex-flow: none;
+      flex-direction: row;
+      justify-content: space-between;
+      min-width: 260px;
+      @media only screen and (min-width: 450px) {
+        min-width: 350px;
       }
 
-      &.tile-view {
-        margin-left: 20px;
-        margin-bottom: 20px;
+      .track {
+        div:first-child {
+          margin: 0 auto 10px;
+          @include background-image-size(44px, 43px);
+        }
 
-        @media only screen and (max-width: 400px) {
-          margin-bottom: 0;
-          margin-left: 0;
-          margin-right: 10px;
+        &:last-child {
+          display: none;
+          @media only screen and (min-width: 450px) {
+            display: block;
+          }
+        }
+
+        p {
+          @include sofia-pro-medium;
+          font-size: 12px;
+          text-transform: uppercase;
         }
       }
+      .develop-icon-outline {
+        @include develop-icon-outline;
+      }
+      .design-icon-outline {
+        @include design-icon-outline;
+      }
+      .data-science-icon-outline {
+        @include data-icon-outline;
+      }
+      .copilot-icon-outline {
+        @include copilot-icon-outline;
+      }
+    }
 
-      &.list-view {
-        width: 100%;
+    .info {
+      max-width: 650px;
+      margin-top: 50px;
+      @include sofia-pro-light;
+      font-size: 15px;
+      line-height: 22.4px;
+      text-align: center;
+      @media only screen and (min-width: 900px) {
+        max-width: 856px;
+        margin-top: 90px;
+        font-size: 22px;
+        line-height: 32px;
+      }
+    }
+
+    a {
+      margin-top: 20px;
+      margin-bottom: 40px;
+      @include button-l;
+      text-decoration: none;
+      @media only screen and (min-width: 900px) {
+        @include button-xl;
+        margin-top: 30px;
+        margin-bottom: 90px;
       }
     }
   }
 
-  .spotlightChallenges {
+  .hasChallenges {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #FCFCFC;
+
+    .challenges {
+      width: 100%;
+      @include horizontal-scroll;
+      @media only screen and (min-width: 1125px) {
+        display: flex;
+        flex-flow: row wrap;
+        width: 1125px;
+      }
+
+      challenge-tile {
+        display: inline-block;
+        @media only screen and (min-width: 1125px) {
+          display: block;
+        }
+
+        &.tile-view {
+          margin-left: 15px;
+          margin-bottom: 15px;
+          @media only screen and (min-width: 1125px) {
+            &:nth-child(4n + 1) {
+              margin-left: 0;
+            }
+          }
+
+          &:last-child {
+            margin-right: 15px;
+            @media only screen and (min-width: 1125px) {
+              margin-right: 0;
+            }
+          }
+        }
+
+        &.list-view {
+          width: 100%;
+        }
+      }
+    }
   }
 }

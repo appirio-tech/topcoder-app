@@ -94,7 +94,9 @@
         switch (resp.status) {
           case "ACCOUNT_INACTIVE":
             window.location.href = "https://www." + CONSTANTS.domain + "/account-inactive/";
+          case "USER_NOT_REGISTERED":
           default:
+            vm.socialLoginError = 401;
             break;
         }
       });

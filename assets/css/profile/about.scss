@@ -1,21 +1,9 @@
+@import '../partials/combined';
 .profile-about-container {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
 
-  // moved outhere from within sub section to re-use
-  .link-button {
-    background: #00aeff;
-    border-radius: 5px;
-    padding: 7px 12px;
-    margin: 10px;
-    text-decoration: none;
-    color: white;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-family: 'Sofia Pro';
-    line-height: 20px;
-  }
   .activity {
     font-size: 18px;
     line-height: 21px;
@@ -41,6 +29,7 @@
       margin-top: 22.4px;
       display: flex;
       flex-direction: column;
+      align-items: center;
       cursor: pointer;
 
       .name {
@@ -115,33 +104,45 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     margin: 15px 0;
     h1 {
       font-size: 25px;
       margin: auto;
     }
+    .more {
+      margin-top: 20px;
+      @include button-m;
+    }
     .list {
       display: flex;
       flex-direction: row;
-      width: 70%;
-      overflow-x: auto;
-      margin: 40px auto 0 auto;
-      .leftButton, .rightButton {
-        height: 100px;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 90%;
+      margin-top: 22px;
+      margin-bottom: 10px;
+      .skill {
         display: flex;
         flex-direction: column;
+        align-items: center;
         justify-content: center;
-        &:hover {
-          cursor: pointer;
-        }
-      }
-      .skill {
-        width: 150px;
-        margin: 0 30px;
-        i {
-          font-size: 30px;
+        width: 100px;
+        height: 130px;
+        .skill-icon {
+          margin: auto;
+          padding: 10px;
+          border: 1px solid #f0f0f0;
+          height: 80px;
+          width: 80px;
+          img, i {
+            font-size: 50px;
+          }
         }
         .name {
+          font-family: 'Sofia Pro';
+          font-weight: 300;
           text-align: center;
           margin-top: 10px;
         }
@@ -171,4 +172,164 @@
       }
     }
   }
+}
+@media (min-width: 768px) {
+
+.profile-about-container {
+  margin-top: 90px;
+
+  .categories {
+    .activity {
+      font-size: 28px;
+      line-height: 34px;
+      font-weight: bold;
+      font-family: 'Sofia Pro';
+      text-transform: uppercase;
+    }
+
+    .track {
+      width: 100%;
+      margin-top: 22.4px;
+      cursor: pointer;
+
+      .name {
+        div {
+          background-size: 30px;
+          margin-right: 6px;
+          margin-bottom: -5px;
+          height: 30px;
+          width: 30px;
+          margin: auto;
+          margin-top: 10px;
+        }
+        margin: auto;
+        font-weight: 200;
+        font-size: 28px;
+        line-height: 34px;
+        margin-bottom: 34px;
+      }
+      .subtrack {
+        align-items: center;
+        width: 75%;
+        height: 75px;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        .name {
+          font-size: 20px;
+          line-height: 24px;
+          margin-top: 35px;
+        }
+        .ranking {
+          margin: auto;
+          .number {
+            font-size: 18px;
+            line-height: 23px;
+          }
+          .tag {
+            margin: 7px auto 0px auto;
+            font-size: 18px;
+            line-height: 23px;
+            color: #7f7f7f;
+          }
+        }
+        .arrow {
+          color: #cccccc;
+          height: 15px;
+          margin-right: 10px;
+        }
+      }
+      .icon {
+        width: 80px;
+        height: 80px;
+        margin: auto;
+      }
+
+    }
+  }
+  .skills {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    h1 {
+      font-size: 25px;
+      margin: auto;
+    }
+    .list {
+      display: flex;
+      flex-direction: row;
+      width: 70%;
+      overflow-x: auto;
+      margin: 40px auto 0 auto;
+      .leftButton, .rightButton {
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .skill {
+        width: 150px;
+        text-align: center;
+        margin: 0 30px;
+        i {
+          font-size: 30px;
+        }
+        .name {
+          text-align: center;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+  .links {
+    h1 {
+      font-size: 25px;
+      margin: auto;
+    }
+    .list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 30px 40px 0 40px;
+      .link {
+        background: #dddddd;
+        width: 375px;
+        height: 200px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        h2 {
+          font-weight: bold;
+          margin-bottom: 15px;
+        }
+        ul.properties {
+          li.property {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            .key {
+              // placeholder
+            }
+            .value {
+              // placeholder
+            }
+          }
+        }
+        .logo {
+          padding: 10px;
+          align-self: flex-end;
+          img {
+            width: 50px;
+          }
+        }
+      }
+    }
+  }
+}
+
 }

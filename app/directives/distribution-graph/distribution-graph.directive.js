@@ -63,7 +63,7 @@
         top: 20,
         left: 50,
         bottom: 100,
-        right: 50
+        right: 5
       }
     };
 

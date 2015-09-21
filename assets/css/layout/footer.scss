@@ -1,7 +1,7 @@
 @import '../partials/combined';
 
 footer {
-  @include source-sans;
+  @include source-sans-regular;
   background-color: $light-black;
   color: $light-gray;
   min-height: 150px;
