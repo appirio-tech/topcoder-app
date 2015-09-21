@@ -132,6 +132,7 @@
   @include sofia-pro-regular;
   font-size: 11px;
   text-transform: uppercase;
+  text-decoration: none;
   text-align: center;
   cursor: pointer;
   outline: 0;
@@ -169,6 +170,16 @@
   padding: 0 30px;
 }
 
+@mixin button-secondary {
+  background-color: #D1D3D4;
+}
+
+@mixin button-ghost {
+  background-color: $white;
+  color: $primary-color;
+  border: 1px solid $primary-color;
+}
+
 @mixin module-s {
   margin-top: 6px;
   background-color: $white;
@@ -181,12 +192,24 @@
   margin-right: 10px;
   padding-top: 30px;
   @media only screen and (min-width: 900px) {
-    padding: 90px 0 30px;
+    padding-top: 90px
   }
 }
 
 @mixin module-full-width {
   width: 100%;
+}
+
+@mixin module-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: $white;
+  min-height: 72px;
+  @media only screen and (min-width: 900px) {
+    padding: 30px 0;
+  }
 }
 
 @mixin horizontal-scroll {

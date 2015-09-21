@@ -26,7 +26,7 @@
       @include sofia-pro-bold;
       font-size: 22px;
       line-height: 26px;
-      color: #3D3D3D;
+      color: $primary-text;
       text-transform: uppercase;
       @media only screen and (min-width: 600px) {
         margin-bottom: 0;
@@ -65,7 +65,7 @@
           @include sofia-pro-bold;
           font-size: 18px;
           line-height: 23px;
-          color: #3D3D3D;
+          color: $primary-text;
           text-align: right;
           @media only screen and (min-width: 600px) {
             text-align: center;

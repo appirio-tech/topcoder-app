@@ -30,7 +30,7 @@
       @include sofia-pro-medium;
       font-size: 14px;
       line-height: 18px;
-      color: #3D3D3D;
+      color: $primary-text;
       text-decoration: none;
       @include ellipsis;
     }
@@ -81,7 +81,7 @@
     .time-remaining {
       margin-top: 5px;
       font-size: 24px;
-      color: #3D3D3D;
+      color: $primary-text;
     }
 
     .unit-of-time {
@@ -100,7 +100,7 @@
   .roles {
     min-height: 36px;
     margin-bottom: 25px;
-    color: #3D3D3D;
+    color: $primary-text;
     @include source-sans-regular;
     font-size: 13px;
     line-height: 18px;
@@ -139,7 +139,7 @@
     p {
       @include sofia-pro-bold;
       font-size: 11px;
-      color: #3D3D3D;
+      color: $primary-text;
     }
 
     .forum p {

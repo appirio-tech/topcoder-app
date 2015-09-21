@@ -31,3 +31,6 @@ section.ios(ng-hide="vm.loading")
           a(href="http://ios.{{vm.domain}}", title="topcoder iOS Member Program") View Challenges
 
       ios-card(ng-repeat="challenge in vm.challenges | orderBy:reviewType:true| orderBy:registrationEndDate:true", challenge="challenge", view="'tile'")
+
+.ios-links(ng-hide="vm.loading")
+  p Want to get better at Swift? Learn about the FREE Topcoder #[a(ng-href="https://swift.{{DOMAIN}}/") Swift Course 101]

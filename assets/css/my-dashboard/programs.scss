@@ -63,7 +63,7 @@
       @include sofia-pro-light;
       font-size: 23px;
       text-transform: uppercase;
-      color: #3D3D3D;
+      color: $primary-text;
       @media only screen and (min-width: 900px) {
         margin-top: 0;
       }
@@ -153,7 +153,7 @@
         margin-bottom: 37px;
         @include sofia-pro-light;
         font-size: 20px;
-        color: #3D3D3D;
+        color: $primary-text;
       }
 
       .badge-timeline {
@@ -177,6 +177,26 @@
         &:last-child {
           margin-right: 0;
         }
+      }
+    }
+  }
+
+  .ios-links {
+    @include module-links;
+
+    p {
+      @include source-sans-regular;
+      font-size: 14px;
+      line-height: 20px;
+      color: $primary-text;
+      @media only screen and (min-width: 900px) {
+        font-size: 16px;
+      }
+
+      a {
+        color: $primary-color;
+        cursor: pointer;
+        text-decoration: none;
       }
     }
   }

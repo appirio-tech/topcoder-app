@@ -72,7 +72,7 @@
           @include sofia-pro-light;
           font-size: 24px;
           text-align: center;
-          color: #3D3D3D;
+          color: $primary-text;
           text-transform: uppercase;
           white-space: normal;
 
@@ -86,6 +86,26 @@
           @include button-m-wide;
           text-decoration: none;
         }
+      }
+    }
+  }
+
+  .srms-links {
+    @include module-links;
+
+    p {
+      @include source-sans-regular;
+      font-size: 14px;
+      line-height: 20px;
+      color: $primary-text;
+      @media only screen and (min-width: 900px) {
+        font-size: 16px;
+      }
+
+      a {
+        color: $primary-color;
+        cursor: pointer;
+        text-decoration: none;
       }
     }
   }
