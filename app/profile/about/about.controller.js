@@ -3,52 +3,40 @@
 
   angular.module('tc.profile').controller('ProfileAboutController', ProfileAboutController);
 
-  ProfileAboutController.$inject = ['$log', '$scope', 'ProfileService'];
+  ProfileAboutController.$inject = ['$log', '$scope', 'ProfileService', 'ExternalAccountService'];
 
-  function ProfileAboutController($log, $scope, ProfileService) {
+  function ProfileAboutController($log, $scope, ProfileService, ExternalAccountService, UserService) {
     var vm = this;
+    $log = $log.getInstance("ProfileAboutController");
+
     var profileVm = $scope.$parent.profileVm;
     vm.categoryIndex = 0;
     vm.skillIndex = 0;
-    vm.shiftCategories = shiftCategories;
-    vm.shiftSkills = shiftSkills;
+    vm.displaySection = {};
 
     activate();
 
     function activate() {
-      vm.mockProfile = ProfileService.getMockMemberProfile();
+
+      profileVm.externalLinksPromise.then(function() {
+        vm.linkedExternalAccountsData = profileVm.linkedExternalAccountsData;
+        // show section if user is viewing his/her own profile OR if we have data
+        vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
+        vm.displaySection.externalLinks = profileVm.showEditProfileLink || vm.hasLinks;
+      });
+
       profileVm.statsPromise.then(function() {
         vm.categories = profileVm.categories;
       });
+
       profileVm.skillsPromise.then(function() {
-        vm.skills = profileVm.skills;
+        // show section if user is viewing his/her own profile OR if we have data
+        vm.fullSkills = profileVm.skills;
+        vm.someSkills = profileVm.skills.slice(0, 9);
+        vm.skills = vm.someSkills;
+        vm.displaySection.skills = profileVm.showEditProfileLink || !!vm.skills.length;
       });
     }
 
-    function shiftCategories(x) {
-      if (vm.categories && vm.categories.length !== 0) {
-        if (x < 0 && vm.categoryIndex > 0) {
-          vm.categoryIndex -= 4;
-          if (vm.categoryIndex < 0) vm.categoryIndex = 0;
-        }
-        else if (x > 0 && vm.categoryIndex < vm.categories.length - 4) {
-          vm.categoryIndex += 4;
-          if (vm.categoryIndex > vm.categories.length - 4) vm.categoryIndex = vm.categories.length - 4;
-        }
-      }
-    }
-
-    function shiftSkills(x) {
-      if (vm.skills && vm.skills.length !== 0) {
-        if (x < 0 && vm.skillIndex > 0) {
-          vm.skillIndex -= 5;
-          if (vm.skillIndex < 0) vm.skillIndex = 0;
-        }
-        else if (x > 0 && vm.skillIndex < vm.skills.length - 5) {
-          vm.skillIndex += 5;
-          if (vm.skillIndex > vm.skills.length - 5) vm.skillIndex = vm.skills.length - 5;
-        }
-      }
-    }
   }
 })();

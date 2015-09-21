@@ -129,7 +129,6 @@
 
       challenge-tile {
         &.tile-view {
-          width: 23%;
           margin-left: 20px;
           margin-bottom: 20px;
         }
@@ -137,14 +136,6 @@
           width: 100%;
         }
       }
-    }
-
-    .spotlightChallenges {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-top: 20px;
-      margin-bottom: 10px;
     }
   }
 }

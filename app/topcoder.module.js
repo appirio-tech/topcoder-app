@@ -26,7 +26,8 @@
     'xml',
     'angular.filter',
     'CONSTANTS',
-    'dcbImgFallback'
+    'dcbImgFallback',
+    'toaster'
   ];
 
   angular
@@ -56,7 +57,7 @@
       document.title = Helpers.getPageTitle(toState, $state.$current);
     });
 
-    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, eventrror) {
+    $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
       console.log.bind(console);
     });
 

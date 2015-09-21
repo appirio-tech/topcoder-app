@@ -7,19 +7,19 @@
 .header-wrapper {
   box-sizing: content-box;
   z-index: 1000;
+  border-bottom: 1px solid #D1D3D4;
 }
 
 .search-icon {
   display: inline-block;
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 12px;
   background: url('/images/magnifying_glass.svg');
   background-size: contain;
   border: none;
   outline: none;
   cursor: pointer;
   background-repeat: no-repeat;
-  box-sizing: border-box;
 }
 
 .tc-text-logo {
@@ -151,22 +151,21 @@
     display: block;
     height: 32px;
     width: 100%;
-    box-sizing: border-box;
     padding: 0 15px 0 37px;
     background: transparent;
     outline: none;
   }
 
   ::-webkit-input-placeholder {
-      color: #7f7f7f; 
+      color: #7f7f7f;
   }
 
   ::-moz-placeholder {  /* Firefox 19+ */
-     color: #7f7f7f;  
+     color: #7f7f7f;
   }
 
-  :-ms-input-placeholder {  
-     color: #7f7f7f;  
+  :-ms-input-placeholder {
+     color: #7f7f7f;
   }
 
   .submenu:before {
@@ -211,7 +210,7 @@
 @media only screen and (max-width : 991px) {
   .header-wrapper {
     // When autocomplete list is displayed, hide all menu items and footer (except copyright notice)
-    &.autocomplete .menu-item:not(.search-wrapper), 
+    &.autocomplete .menu-item:not(.search-wrapper),
     &.autocomplete ~ .bottom-footer > *:not(.copyright-notice) {
       display: none;
     }
@@ -307,7 +306,7 @@
   }
 
   // Hide mobile-only elements
-  .show-small {  
+  .show-small {
     display: none;
   }
 
@@ -320,7 +319,7 @@
     padding: 38px 54px 28px 54px;
 
     &:before {
-      display: none;  
+      display: none;
     }
 
     input {
@@ -334,15 +333,15 @@
     }
 
     ::-webkit-input-placeholder {
-         color: #d1d3d4; 
+         color: #d1d3d4;
     }
 
     ::-moz-placeholder {  /* Firefox 19+ */
-      color: #d1d3d4;  
+      color: #d1d3d4;
     }
 
-    :-ms-input-placeholder {  
-      color: #d1d3d4;  
+    :-ms-input-placeholder {
+      color: #d1d3d4;
     }
   }
 
@@ -353,11 +352,11 @@
     margin: 0 auto;
 
     .main-menu {
-      line-height: 54px;  
+      line-height: 54px;
     }
 
     // Expand the submenu only when hovering on header or submenu itself or if submenu is marked with .expanded
-    .menu-item:not(:hover) .submenu:not(.expanded):not(:hover) {  
+    .menu-item:not(:hover) .submenu:not(.expanded):not(:hover) {
       display: none;
     }
 
@@ -420,11 +419,10 @@
     }
 
     .link-group .menu-link {
-      max-width: 100px;
-      height: 120px;
+      width: 130px;
+      height: 122px;
       font-size: 12px;
       line-height: 1.2em;
-      padding: 0 20px;
 
       &:before {
         content: '';
@@ -442,7 +440,6 @@
     // Right-hand menu items
     .user-menu, .search-wrapper {
       float: right;
-      margin-right: 36px;
       color: #a3a3a3;
       font-size: 15px;
 
@@ -455,7 +452,7 @@
       margin-right: 20px;
 
       .menu-item-header {
-        padding-right: 0;  
+        padding-right: 0;
       }
 
       a {
@@ -489,10 +486,6 @@
   .submenu-item {
     display: inline-block;
     vertical-align: bottom;
-
-    + .submenu-item {
-      margin-left: 10px;  
-    }
   }
 
   .link-group {
@@ -507,20 +500,20 @@
     height: 22px;
     width: 1px;
     background-color: #a3a3a3;
-    margin-right: 20px;
+    margin: 0px 12px 0px 12px;
     vertical-align: middle;
   }
 
   .user-menu + .link-group {
-    margin-left: 40px;
+    padding: 0px 40px 0px 40px;
 
     ~ .link-group {
-      margin-left: 80px;
+      padding: 0px 40px 0px 40px;
     }
   }
 
   .nav-categories {
-    position: relative;  
+    position: relative;
   }
 
   .nav-category {
@@ -530,7 +523,7 @@
       font-size: 16px;
       line-height: 1.2em;
       color: #a3a3a3;
-      font-weight: 600;  
+      font-weight: 600;
       padding: 0;
     }
 
@@ -551,7 +544,7 @@
       height: 30px;
       margin-top: -15px;
       right: 50px;
-      
+
       button {
         line-height: 30px;
       }

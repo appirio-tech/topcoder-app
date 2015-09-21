@@ -34,7 +34,7 @@ describe('filters', function() {
       expect(percentageFilter(.985)).to.be.equal('99%');
     });
   });
-  
+
   describe('ordinal number filter', function() {
     it('should render ordinal numbers', function() {
       expect(ordinalFilter(1)).to.be.equal('1st');
@@ -54,6 +54,6 @@ describe('filters', function() {
     it('should list roles', function() {
       expect(listRolesFilter(false)).to.be.equal('No assigned role.');
       expect(listRolesFilter([1,2])).to.be.equal('1, 2');
-    })
-  })
+    });
+  });
 });

@@ -2,51 +2,10 @@
 
 .profile-header-container {
 
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 
-  .left {
-
-    display: flex;
-
-  }
-
-  .right {
-
-    h4 {
-      color: gray;
-    }
-  }
 }
 
-.horizontal-stats {
-  display: flex;
-  justify-content: center;
-  .stat {
-    margin: 0px 15px;
-    .value {
-      text-align: center;
-    }
-    .name {
-      margin-top: 8px;
-      text-align: center;
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 17px;
-    }
-  }
-}
 
-ul.vertical-stats {
-  display: flex;
-  flex-direction: column;
-  li {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
 
 hr {
   width: 100%;

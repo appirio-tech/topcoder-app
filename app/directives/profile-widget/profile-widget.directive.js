@@ -9,7 +9,9 @@
       templateUrl: 'directives/profile-widget/profile-widget.html',
       scope: {
         profile: '=profile',
-        editProfileLink: '=editProfileLink'
+        editProfileLink: '=editProfileLink',
+        numChallenges: '=numChallenges',
+        profileVm: '=profileVm'
       },
       link: function(scope, elem, attrs) {
         scope.DOMAIN = CONSTANTS.domain;

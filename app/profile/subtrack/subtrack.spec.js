@@ -7,6 +7,7 @@ describe('SubTrack Controller', function() {
   var mockSkills = mockData.getMockSkills();
   var mockChallenges = mockData.getMockiOSChallenges();
   var mockHistory = mockData.getMockHistory();
+  var mockExternalLinks = mockData.getMockLinkedExternalAccounts();
   var apiUrl;
   var track = 'develop', subTrack = 'development';
   var profileScope, scope;
@@ -65,6 +66,10 @@ describe('SubTrack Controller', function() {
     $httpBackend
       .when('GET', apiUrl + '/members/rakesh/skills/')
       .respond(200, {result: {content: mockSkills}});
+    $httpBackend
+      .when('GET', apiUrl + '/members/rakesh/externalAccounts/')
+      .respond(200, {result: { content: mockExternalLinks}});
+
     // mock profile api
     sinon.stub(profileService, 'getDistributionStats', function(track, subTrack) {
       var deferred = $q.defer();
@@ -99,7 +104,8 @@ describe('SubTrack Controller', function() {
         $stateParams: {
           track: track,
           subTrack: subTrack
-        }
+        },
+        userHandle: 'rakesh'
       });
     });
 
@@ -138,7 +144,8 @@ describe('SubTrack Controller', function() {
         $stateParams: {
           track: track,
           subTrack: subTrack
-        }
+        },
+        userHandle: 'rakesh'
       });
       profileScope.$apply();
     });
@@ -182,7 +189,8 @@ describe('SubTrack Controller', function() {
             argState = state;
             argParams = params;
           }
-        }
+        },
+        userHandle: 'rakesh'
       });
       profileScope.$apply();
     });

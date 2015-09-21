@@ -12,7 +12,7 @@
       controller: ['$log', '$scope', '$element', function($log, $scope, $element) {
         $log.debug("state ", $scope.state);
         $element.addClass('tc-section');
-        $scope.errMsg = "You messed up son!"
+        $scope.errMsg = "Whoops! Something went wrong. Please try again later."
       }]
     };
   });

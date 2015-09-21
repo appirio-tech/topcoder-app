@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('AuthTokenService', AuthTokenService);
 
-  AuthTokenService.$inject = ['CONSTANTS', '$cookies', '$location', 'store', '$http', '$log', 'jwtHelper'];
+  AuthTokenService.$inject = ['CONSTANTS', '$cookies', '$location', 'store', '$http', '$log', 'jwtHelper', '$q'];
 
-  function AuthTokenService(CONSTANTS, $cookies, $location,  store, $http, $log, jwtHelper) {
+  function AuthTokenService(CONSTANTS, $cookies, $location,  store, $http, $log, jwtHelper, $q) {
     var v2TokenKey = 'tcjwt';
     var v3TokenKey = 'appiriojwt';
 
@@ -81,17 +81,20 @@
         withCredentials: true,
         headers: {}
       };
-      return $http(req).then(
-        function(res) {
-          var appiriojwt = res.data.result.content.token;
-          setV3Token(appiriojwt);
-          return appiriojwt;
-        },
-        function(err) {
-          $log.error(err);
-          removeTokens();
-        }
-      );
+      return $q(function(resolve, reject) {
+        $http(req).then(
+          function(res) {
+            var appiriojwt = res.data.result.content.token;
+            setV3Token(appiriojwt);
+            resolve(appiriojwt);
+          },
+          function(err) {
+            $log.error(err);
+            removeTokens();
+            reject(err);
+          }
+        );
+      });
     }
 
     function getTokenFromAuth0Code(code) {

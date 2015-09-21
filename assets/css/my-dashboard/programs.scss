@@ -1,0 +1,218 @@
+@import '../partials/combined';
+
+.programs {
+  .section-loading {
+    min-height: 200px;
+  }
+
+  h1.section-title {
+    span { text-transform: none; }
+  }
+
+  .unregistered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+    margin: 0 auto;
+    @media only screen and (min-width: 800px) {
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 750px;
+    }
+    @media only screen and (min-width: 900px) {
+      padding-left: 90px;
+      padding-right: 90px;
+      max-width: none;
+    }
+
+    img {
+      width: 300px;
+      @media only screen and (min-width: 800px) {
+        order: 2;
+      }
+      @media only screen and (min-width: 1030px) {
+        width: 335px;
+      }
+      @media only screen and (min-width: 1100px) {
+        width: 400px;
+      }
+      @media only screen and (min-width: 1200px) {
+        width: 508px;
+      }
+    }
+  }
+
+  .join-program {
+    max-width: 451px;
+    padding: 0 20px 40px;
+    @media only screen and (min-width: 800px) {
+      order: 1;
+      padding: 0;
+      margin-bottom: 30px;
+    }
+
+    h3 {
+      margin-top: 30px;
+      @include sofia-pro-light;
+      font-size: 23px;
+      text-transform: uppercase;
+      color: #3D3D3D;
+      @media only screen and (min-width: 900px) {
+        margin-top: 0;
+      }
+      @media only screen and (min-width: 1000px) {
+        font-size: 40px;
+      }
+
+      span { text-transform: none; }
+    }
+
+    h4 {
+      margin-top: 10px;
+      @include source-sans-light;
+      font-size: 18px;
+      line-height: 24px;
+      color: #A3A3AE;
+      @media only screen and (min-width: 1000px) {
+        font-size: 22px;
+        margin-top: 6px;
+      }
+    }
+
+    p {
+      margin-top: 20px;
+      @include source-sans-regular;
+      font-size: 13px;
+      line-height: 26px;
+      @media only screen and (min-width: 1000px) {
+        font-size: 16px;
+        margin-top: 60px;
+      }
+    }
+
+    a {
+      display: block;
+      margin-top: 30px;
+      font-size: 13px;
+      color: $primary-color;
+      text-decoration: none;
+      text-transform: uppercase;
+      @media only screen and (min-width: 1000px) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .registered {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 350px;
+
+    .registered-badge, .challenge {
+      margin-right: 25px;
+      background-color: #e7e7e7;
+    }
+
+    .registered-badge {
+      max-width: 25%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 25%;
+      text-align: center;
+
+      img {
+        display: block;
+        margin: 25px auto;
+        width: 22%;
+      }
+
+      p {
+        margin-top: 10px;
+        text-transform: uppercase;
+        @include source-sans-bold;
+        font-size: 16px;
+        color: #727272;
+      }
+
+      a {
+        margin-top: 10px;
+        text-decoration: underline;
+      }
+    }
+
+    .challenge {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      flex: 25%;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      p {
+        color: #727272;
+      }
+
+      .title {
+        min-height: 60px;
+        margin-top: 10px;
+        @include source-sans-semi-bold;
+      }
+
+      .technologies {
+        margin-top: 10px;
+        min-height: 32px;
+      }
+
+      .prize {
+        padding-top: 10px;
+        min-height: 25px;
+        font-size: 20px;
+      }
+
+      .hidden {
+        visibility: hidden;
+      }
+
+      .days-remaining {
+        margin-top: 15px;
+        font-size: 20px;
+
+        span {
+          display: block;
+          margin-top: 5px;
+          @include source-sans-semi-bold;
+          font-size: 12px;
+          text-transform: uppercase;
+        }
+      }
+
+      .stats {
+        margin-top: 15px;
+        font-size: 18px;
+
+        i {
+          margin-right: 5px;
+        }
+
+        span {
+          margin-right: 10px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      a {
+        margin-top: 20px;
+        font-size: 14px;
+        text-decoration: underline;
+      }
+    }
+  }
+}

@@ -1,20 +1,21 @@
 header
-  h1.section-title SRMs
+  h1.section-title Single Round Matches
 
-  p.viewSRMs()
-    a(ui-sref="my-srms") View All Past SRMs
+  //- a.viewSRMs(ui-sref="my-srms") View All Past SRMs
 
 .section-loading(ng-show="vm.loading")
 
-section.srm-tiles(ng-hide="vm.loading")
-  srm-tile.srm-tile(ng-repeat="srm in vm.srms", srm="srm", view="'tile'", ng-class="'tile-view'")
+section(ng-hide="vm.loading")
+  .srm-tiles
+    srm-tile(ng-repeat="srm in vm.srms", srm="srm", view="'tile'", ng-class="'tile-view'")
 
-.section-links
-  .link
-    a(href="https://community.{{DOMAIN}}/tc?module=ProblemArchive") Problem Archives
+    .srm-links-card
+      .flex-wrapper
+        h2 Show us you can #[span code!]
 
-  .link
-    a(href="https://community.{{DOMAIN}}/wiki/display/tc/Algorithm+Problem+Set+Analysis") Match Editorials
+        a(href="https://community.{{DOMAIN}}/tc?module=ProblemArchive") Problem Archives
 
-  .link
-    a(href="https://arena.{{DOMAIN}}/") Launch Topcoder Arena
+        a(href="https://community.{{DOMAIN}}/wiki/display/tc/Algorithm+Problem+Set+Analysis") Match Editorials
+
+  //- .link
+  //-   a(href="https://arena.{{DOMAIN}}/") Launch Topcoder Arena

@@ -99,6 +99,7 @@
       local-data="vm.tags",
       search-fields="name",
       title-field="name",
+      clear-selected=true,
       match-class="angucomplete-highlight",
       minlength="1"
     )
@@ -111,3 +112,6 @@
 
   .field-section
     h4.field-title Links to Work
+      p Add links to your existing work
+
+      external-accounts.external-account-container(linked-accounts="vm.linkedExternalAccounts")

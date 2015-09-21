@@ -1,0 +1,80 @@
+.external-link-list
+  div.external-link-tile(ng-repeat="account in linkedAccounts")
+    div.logo
+      i.fa(ng-class="(account|providerData:'className') || 'fa-globe'")
+    h2 {{account|providerData:"displayName"}}
+
+    div(ng-switch="account.provider")
+
+      div(ng-switch-when="github")
+        .handle {{account.data.handle}}
+        ul
+          li 
+            .value {{(account.data.followers|number:0) || 0}}
+            .key followers
+          li 
+            .value {{(account.data.publicRepos|number:0) || 0}}
+            .key repositories
+
+      div(ng-switch-when="stackoverflow")
+        .handle {{account.data.handle}}
+        ul
+          li 
+            .value {{(account.data.reputation|number:0) || 0}}
+            .key reputation
+          li 
+            .value {{(account.data.answers|number:0) || 0}}  
+            .key answers
+
+      div(ng-switch-when="behance")
+        .handle {{account.data.name}}
+        ul
+          li 
+            .value {{(account.data.projectViews|number:0) || 0}}
+            .key views
+          li 
+            .value {{(account.data.projectAppreciations|number:0) || 0}}
+            .key likes
+
+
+      div(ng-switch-when="dribble")
+        .handle {{account.data.handle}}
+        ul
+          li 
+            .value {{(account.data.followers|number:0) || 0}}
+            .key followers
+          li 
+            .value {{(account.data.likes|number:0) || 0}}
+            .key likes
+
+      div(ng-switch-when="bitbucket")
+        .handle {{account.data.username}}
+        ul
+          li 
+            .value {{(account.data.followers|number:0) || 0}}
+            .key followers
+          li 
+            //- {{(account.data.repositories|number:0) || 0}}
+            .value TBD
+            .key repositories
+
+      div(ng-switch-when="twitter")
+        .handle @{{account.data.handle}}
+        ul
+          li 
+            .value {{(account.data.noOfTweets|number:0) || 0}}
+            .key tweets
+          li 
+            //- {{(account.data.followers|number:0) || 0}}
+            .value TBD 
+            .key followers      
+      
+      div(ng-switch-when="linkedin")
+        .handle {{account.data.name}}
+        
+        .title {{account.data.title}}
+
+      div(ng-switch-default)
+        .handle My Portfoilo
+
+        .title www.TBD.com

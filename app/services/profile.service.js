@@ -63,14 +63,12 @@
     }
 
     function getUserStats(username) {
-      var deferred = $q.defer();
-      restangular.one('members', username).one('stats').get().then(function(data) {
+      return restangular.one('members', username).one('stats').get().then(function(data) {
         if (!data.DEVELOP) data.DEVELOP = {challenges: 0, wins: 0, subTracks: []};
         if (!data.DESIGN) data.DESIGN = {challenges: 0, wins: 0, subTracks: []};
-        if (!data.DATA_SCIENCE) data.DATA_SCIENCE = {challenges: 0, wins: 0, srm: {}, marathonMatch: {}};
-        deferred.resolve(data);
+        if (!data.DATA_SCIENCE) data.DATA_SCIENCE = {challenges: 0, wins: 0, SRM: {}, MARATHON_MATCH: {}};
+        return data;
       });
-      return deferred.promise;
     }
 
     function getDistributionStats(track, subTrack) {
@@ -109,33 +107,40 @@
           };
         });
       }
-      if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.srm && stats.DATA_SCIENCE.srm.rank) {
-        var srmStats = stats.DATA_SCIENCE.srm;
+      if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.SRM && stats.DATA_SCIENCE.SRM.rank) {
+        var srmStats = stats.DATA_SCIENCE.SRM;
         srm = {
           'track': 'DATA_SCIENCE',
           'subTrack': 'SRM',
-          'rank': srmStats.rank.rank
+          'rank': srmStats.rank.rating
         };
       }
-      if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.marathonMatch && stats.DATA_SCIENCE.marathonMatch.rank) {
-        var marathonStats = stats.DATA_SCIENCE.marathonMatch;
+      if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.MARATHON_MATCH && stats.DATA_SCIENCE.MARATHON_MATCH.rank) {
+        var marathonStats = stats.DATA_SCIENCE.MARATHON_MATCH;
         marathon = {
-          'track': 'Data Science',
-          'subTrack': 'Marathon',
-          'rank': marathonStats.rank.rank
+          'track': 'DATA_SCIENCE',
+          'subTrack': 'MARATHON',
+          'rank': marathonStats.rank.rating
         };
       }
       if (stats.COPILOT) {
         copilot = stats.COPILOT;
         copilot.track = 'Co-Pilot';
       }
-      var ans = dev.concat(design)
-        .concat(srm)
-        .concat(marathon)
-        .concat(copilot)
-        .filter(function(subTrack) {
-          return subTrack && (subTrack.rank || subTrack.wins || subTrack.fulfillment);
-        });
+      var ans = {
+        'DEVELOP': removeRankless(dev),
+        'DESIGN': removeRankless(design),
+        'MARATHON': marathon,
+        'SRM': srm,
+        'CO_PILOT': copilot
+      };
+
+      function removeRankless(arr) {
+        return arr
+          .filter(function(subTrack) {
+            return subTrack && (subTrack.rank || subTrack.wins || subTrack.fulfillment);
+          });
+      }
       return ans;
     }
 
@@ -149,7 +154,7 @@
           return type === subTrack.name;
         });
         return ans[0];
-      } else if (track == 'DESIGN') {
+      } else if (track == 'DESIGN' && !_.isUndefined(stats.DESIGN) ) {
         var ans = stats.DESIGN.subTracks.filter(function(subTrack) {
           return type === subTrack.name;
         });
@@ -158,9 +163,9 @@
         var ans = stats.COPILOT;
         return ans;
       } else if (type == 'SRM') {
-        return stats.DATA_SCIENCE.srm;
+        return stats.DATA_SCIENCE.SRM;
       } else {
-        return stats.DATA_SCIENCE.marathonMatch;
+        return stats.DATA_SCIENCE.MARATHON_MATCH;
       }
     }
 

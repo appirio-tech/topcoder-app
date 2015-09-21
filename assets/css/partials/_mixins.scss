@@ -44,7 +44,7 @@
   font-weight: 300;
 }
 
-@mixin source-sans {
+@mixin source-sans-regular {
   font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
@@ -63,6 +63,31 @@
 @mixin source-sans-bold {
   font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
   font-weight: 700;
+}
+
+@mixin sofia-pro-extra-light {
+  font-family: 'Sofia Pro', Arial;
+  font-weight: 200;
+}
+
+@mixin sofia-pro-light {
+  font-family: 'Sofia Pro', Arial;
+  font-weight: 300;
+}
+
+@mixin sofia-pro-regular {
+  font-family: 'Sofia Pro', Arial;
+  font-weight: 400;
+}
+
+@mixin sofia-pro-medium {
+  font-family: 'Sofia Pro', Arial;
+  font-weight: 500;
+}
+
+@mixin sofia-pro-bold {
+  font-family: 'Sofia Pro', Arial;
+  font-weight: bold;
 }
 
 @mixin glyphicons-halflings {
@@ -95,12 +120,106 @@
   }
 }
 
-@mixin padding-reset {
-  padding: 0px;
+// Replace with classes from style guide, when it's finished
+@mixin button-s {
+  height: 20px;
+  line-height: 20px;
+  padding: 0 8px;
+  border: none;
+  border-radius: 3px;
+  color: $white;
+  background-color: $primary-color;
+  @include sofia-pro-regular;
+  font-size: 11px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  outline: 0;
+}
+@mixin button-m {
+  @include button-s;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 15px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+@mixin button-l {
+  @include button-s;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 15px;
+  @include sofia-pro-bold;
+  font-size: 18px;
+  border-radius: 4px;
+
+}
+@mixin button-xl {
+  @include button-s;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 15px;
+  @include sofia-pro-bold;
+  font-size: 24px;
+  border-radius: 4px;
+
+}
+@mixin button-m-wide {
+  @include button-m;
+  padding: 0 30px;
 }
 
-@mixin center-aligned-text {
-  text-align : center;
+@mixin module-s {
+  margin-top: 6px;
+  background-color: $white;
+}
+
+@mixin module-l {
+  @include module-s;
+  max-width: 1242px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 30px;
+  @media only screen and (min-width: 900px) {
+    padding: 90px 0 30px;
+  }
+}
+
+@mixin module-full-width {
+  width: 100%;
+}
+
+@mixin horizontal-scroll {
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+@mixin background-image-size($width, $height) {
+  width: $width;
+  height: $height;
+  background-size: $width, $height;
+}
+
+@mixin develop-icon-outline {
+  background-image: url(/images/ico-track-develop-outline.svg);
+  background-repeat: no-repeat;
+}
+
+@mixin design-icon-outline {
+  background-image: url(/images/ico-track-design-outline.svg);
+  background-repeat: no-repeat;
+}
+
+@mixin data-icon-outline {
+  background-image: url(/images/ico-track-data-outline.svg);
+  background-repeat: no-repeat;
+}
+
+@mixin copilot-icon-outline {
+  background-image: url(/images/ico-track-co_pilot-outline.svg);
+  background-repeat: no-repeat;
 }
 
 // UI REFRESH STYLES
@@ -128,7 +247,7 @@
   padding: 0;
   padding-left: 15px;
   border: 0;
-  @include source-sans;
+  @include source-sans-regular;
   font-size: 16px;
   color: #231F20;
 }

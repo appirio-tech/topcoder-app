@@ -17,6 +17,12 @@ describe('Edit Profile Controller', function() {
       }
     };
 
+    var externalAccountService = {
+      getLinkedExternalAccounts: function() {
+        return $q.when({});
+      }
+    };
+
     var profileService = {
       getUserSkills: function() {
         return $q.when({});
@@ -27,7 +33,8 @@ describe('Edit Profile Controller', function() {
       userData: mockProfile,
       userHandle: 'albertwang',
       TagsService: tagsService,
-      ProfileService: profileService
+      ProfileService: profileService,
+      ExternalAccountService: externalAccountService
     });
   });
 

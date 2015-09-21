@@ -13,6 +13,7 @@ html
     //- bower:css
     link(rel='stylesheet', href='../bower_components/angucomplete-alt/angucomplete-alt.css')
     link(rel='stylesheet', href='../bower_components/angular-dropdowns/dist/angular-dropdowns.css')
+    link(rel='stylesheet', href='../bower_components/angularjs-toaster/toaster.css')
     link(rel='stylesheet', href='../bower_components/devicon/devicon.min.css')
     link(rel='stylesheet', href='../bower_components/fontawesome/css/font-awesome.css')
     link(rel='stylesheet', href='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.css')
@@ -32,6 +33,7 @@ html
     link(rel="stylesheet", href="assets/css/settings/edit-profile.css")
     link(rel="stylesheet", href="assets/css/settings/account-info.css")
     link(rel="stylesheet", href="assets/css/profile/subtrack.css")
+    link(rel="stylesheet", href="assets/css/profile/icons.css")
     link(rel="stylesheet", href="assets/css/profile/header.css")
     link(rel="stylesheet", href="assets/css/profile/badges.css")
     link(rel="stylesheet", href="assets/css/profile/about.css")
@@ -41,13 +43,14 @@ html
     link(rel="stylesheet", href="assets/css/peer-review/edit.css")
     link(rel="stylesheet", href="assets/css/peer-review/completed.css")
     link(rel="stylesheet", href="assets/css/my-srms/my-srms.css")
+    link(rel="stylesheet", href="assets/css/my-dashboard/subtrack-stats.css")
+    link(rel="stylesheet", href="assets/css/my-dashboard/srms.css")
+    link(rel="stylesheet", href="assets/css/my-dashboard/programs.css")
+    link(rel="stylesheet", href="assets/css/my-dashboard/my-dashboard.css")
+    link(rel="stylesheet", href="assets/css/my-dashboard/my-challenges.css")
+    link(rel="stylesheet", href="assets/css/my-dashboard/header-dashboard.css")
+    link(rel="stylesheet", href="assets/css/my-dashboard/community-updates.css")
     link(rel="stylesheet", href="assets/css/my-challenges/my-challenges.css")
-    link(rel="stylesheet", href="assets/css/member-dashboard/srms.css")
-    link(rel="stylesheet", href="assets/css/member-dashboard/programs.css")
-    link(rel="stylesheet", href="assets/css/member-dashboard/my-dashboard.css")
-    link(rel="stylesheet", href="assets/css/member-dashboard/my-challenges.css")
-    link(rel="stylesheet", href="assets/css/member-dashboard/header-dashboard.css")
-    link(rel="stylesheet", href="assets/css/member-dashboard/community-updates.css")
     link(rel="stylesheet", href="assets/css/layout/header.css")
     link(rel="stylesheet", href="assets/css/layout/footer.css")
     link(rel="stylesheet", href="assets/css/directives/toggle-password-with-tips.css")
@@ -55,8 +58,11 @@ html
     link(rel="stylesheet", href="assets/css/directives/tc-section.css")
     link(rel="stylesheet", href="assets/css/directives/tc-paginator.css")
     link(rel="stylesheet", href="assets/css/directives/srm-tile.css")
+    link(rel="stylesheet", href="assets/css/directives/skill-tile.css")
     link(rel="stylesheet", href="assets/css/directives/profile-widget.css")
     link(rel="stylesheet", href="assets/css/directives/history-graph.css")
+    link(rel="stylesheet", href="assets/css/directives/external-link-data.css")
+    link(rel="stylesheet", href="assets/css/directives/external-account.css")
     link(rel="stylesheet", href="assets/css/directives/distribution-graph.css")
     link(rel="stylesheet", href="assets/css/directives/challenge-tiles.css")
     link(rel="stylesheet", href="assets/css/directives/badge-tooltip.css")
@@ -67,17 +73,16 @@ html
     //- endinject
     // endbuild
 
-  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'ui-refresh': $state.current.data.UIRefresh, 'menu-visible': main.menuVisible}", ng-strict-di)
+  body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'menu-visible': main.menuVisible}", ng-strict-di)
 
-    //- include ./layout/header/header.jade
     #header(ui-view="header")
 
     notifications-bar.notifications(closeIcon="fa fa-times-circle")
 
-    .view-container
-      div(ui-view="container")
+    toaster-container(toaster-options="{{main.globalToasterConfig}}")
 
-    //- include ./layout/footer/footer.jade
+    .view-container(ui-view="container")
+
     div(ui-view="footer")
 
     // build:js /js/vendor.js
@@ -94,16 +99,20 @@ html
     script(src='../bower_components/angular-ui-router/release/angular-ui-router.js')
     script(src='../bower_components/x2js/xml2json.min.js')
     script(src='../bower_components/angular-xml/angular-xml.js')
+    script(src='../bower_components/angular-animate/angular-animate.js')
+    script(src='../bower_components/angularjs-toaster/toaster.js')
     script(src='../bower_components/appirio-tech-ng-iso-constants/dist/ng-iso-constants.js')
     script(src='../bower_components/d3/d3.js')
     script(src='../bower_components/jstzdetect/jstz.min.js')
     script(src='../bower_components/moment/moment.js')
+    script(src='../bower_components/ng-busy/build/angular-busy.js')
     script(src='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.js')
     script(src='../bower_components/ngDialog/js/ngDialog.js')
     script(src='../bower_components/lodash/lodash.js')
     script(src='../bower_components/restangular/dist/restangular.js')
     //- endbower
     //- inject:nonBowerScripts
+    script(src="/scripts/auth0-angular.js")
     script(src="/scripts/auth0.js")
     script(src="/scripts/moment-timezone-with-data-2010-2020.js")
     //- endinject
@@ -130,6 +139,7 @@ html
     script(src="directives/badges/badge-tooltip.directive.js")
     script(src="directives/challenge-tiles/challenge-tile.directive.js")
     script(src="directives/distribution-graph/distribution-graph.directive.js")
+    script(src="directives/external-account/external-account.directive.js")
     script(src="directives/focus-on.directive.js")
     script(src="directives/history-graph/history-graph.directive.js")
     script(src="directives/on-file-change.directive.js")
@@ -164,6 +174,7 @@ html
     script(src="my-dashboard/my-dashboard.routes.js")
     script(src="my-dashboard/programs/programs.controller.js")
     script(src="my-dashboard/srms/srms.controller.js")
+    script(src="my-dashboard/subtrack-stats/subtrack-stats.controller.js")
     script(src="my-srms/my-srms.controller.js")
     script(src="my-srms/my-srms.module.js")
     script(src="my-srms/my-srms.routes.js")
@@ -188,6 +199,7 @@ html
     script(src="services/authtoken.service.js")
     script(src="services/blog.service.js")
     script(src="services/challenge.service.js")
+    script(src="services/externalAccounts.service.js")
     script(src="services/helpers.service.js")
     script(src="services/image.service.js")
     script(src="services/jwtInterceptor.service.js")

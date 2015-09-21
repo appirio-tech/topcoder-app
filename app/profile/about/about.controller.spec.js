@@ -16,6 +16,7 @@ describe('Profile About Controller', function() {
       $scope: {$parent: {profileVm: {
         statsPromise: deferred.promise,
         skillsPromise: deferred.promise,
+        externalLinksPromise: deferred.promise,
         categories: [{}, {}, {}, {}, {}],
         skills: [{}, {}, {}, {}, {}]
       }}},
@@ -29,6 +30,7 @@ describe('Profile About Controller', function() {
     controller.skills = [{}, {}, {}, {}, {}, {}];
     controller.categoryIndex = 0;
     controller.skillIndex = 0;
+    controller.linkedExternalAccountsData = {};
 
   });
 
@@ -37,23 +39,7 @@ describe('Profile About Controller', function() {
     expect(controller.skills).to.be.defined;
     expect(controller.categoryIndex).to.be.defined;
     expect(controller.skillIndex).to.be.defined;
+    expect(controller.linkedExternalAccountsData).to.be.defined;
   });
-
-  describe('paging', function() {
-    it('should be able to page categories', function() {
-      controller.shiftCategories(-1);
-      expect(controller.categoryIndex).to.equal(0);
-      controller.shiftCategories(1);
-      expect(controller.categoryIndex).to.equal(1);
-    });
-
-    it('should be able to page skills', function() {
-      controller.shiftSkills(-1);
-      expect(controller.skillIndex).to.equal(0);
-      controller.shiftSkills(1);
-      expect(controller.skillIndex).to.equal(1);
-    });
-  });
-
 
 });

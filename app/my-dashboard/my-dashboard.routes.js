@@ -19,6 +19,11 @@
         data: {
           authRequired: true,
           title: 'Dashboard'
+        },
+        resolve: {
+          userIdentity: ['UserService', function(UserService) {
+            return UserService.getUserIdentity();
+          }]
         }
       },
       'dashboard': {
@@ -30,6 +35,11 @@
             templateUrl: 'my-dashboard/header-dashboard/header-dashboard.html',
             controller: 'HeaderDashboardController',
             controllerAs: 'vm'
+          },
+          'subtrack-stats': {
+              templateUrl: "my-dashboard/subtrack-stats/subtrack-stats.html",
+              controller: 'SubtrackStatsController',
+              controllerAs: 'vm'
           },
           'my-challenges': {
             templateUrl: "my-dashboard/my-challenges/my-challenges.html",

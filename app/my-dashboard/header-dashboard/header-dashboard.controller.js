@@ -8,10 +8,11 @@
     'NotificationService',
     'UserService',
     'ProfileService',
-    'CONSTANTS'
+    'CONSTANTS',
+    'userIdentity'
   ];
 
-  function HeaderDashboardController($stateParams, NotificationService, UserService, ProfileService, CONSTANTS) {
+  function HeaderDashboardController($stateParams, NotificationService, UserService, ProfileService, CONSTANTS, userIdentity) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.defaultPhotoUrl = CONSTANTS.ASSET_PREFIX + "images/avatarPlaceholder.png";
@@ -27,7 +28,7 @@
     activate();
 
     function activate() {
-      var handle = UserService.getUserIdentity().handle;
+      var handle = userIdentity.handle;
 
       ProfileService.getUserProfile(handle)
       .then(function(profile) {
@@ -36,6 +37,12 @@
 
       ProfileService.getUserStats(handle)
       .then(function(stats) {
+        if (stats.COPILOT != null) {
+          vm.numCopilotActiveContests = stats.COPILOT.activeContests;
+        } else {
+          vm.numCopilotActiveContests = 0;
+        }
+
         vm.rankStats = ProfileService.getRanks(stats);
 
         if (vm.rankStats.length === 0) {
@@ -52,44 +59,8 @@
 
       ProfileService.getUserFinancials(handle)
       .then(function(financials) {
-        vm.moneyEarned = financials.overallEarning;
+        vm.moneyEarned = _.sum(_.pluck(financials, 'amount'));
       });
-
-      // Can this be deleted now?
-      // TODO - challenges
-
-      // Get active challenges in ordor to populate user's active challenges and review opportunities
-      // ChallengeService.getMyActiveChallenges()
-      // .then(function(data) {
-
-      //   vm.myActiveChallenges = data;
-
-      //   var ctOpenChallenges = 0;
-      //   var ctReviewChallenges = 0;
-      //   var ctCopilotChallenges = 0;
-
-      //   angular.forEach(vm.myActiveChallenges, function(challenge) {
-      //     if (!challenge.roles) {
-      //       return;
-      //     }
-      //     angular.forEach(challenge.roles, function(role) {
-      //       var r = role.toLowerCase();
-      //       if(r == "submitter") {
-      //         ctOpenChallenges++
-      //       }
-      //       if(r == "reviewer") {
-      //         ctReviewChallenges++
-      //       }
-      //       if(r == "copilot") {
-      //         ctCopilotChallenges++
-      //       }
-      //     });
-      //   });
-
-      //   vm.myOpenChallengesCount = ctOpenChallenges;
-      //   vm.reviewOpportunities = ctReviewChallenges;
-      //   vm.copilotChallengesCount = ctCopilotChallenges;
-      // });
     }
   }
 })();

@@ -1,0 +1,91 @@
+@import '../partials/combined';
+
+.srms {
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+
+   > header {
+    position: relative;
+    margin-bottom: 35px;
+
+    a.viewSRMs {
+      position: absolute;
+      top: 3px;
+      right: 10px;
+      text-decoration: underline;
+    }
+  }
+
+  section {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #FCFCFC;
+
+    .srm-tiles {
+      width: 100%;
+      @include horizontal-scroll;
+      @media only screen and (min-width: 1125px) {
+        display: flex;
+        flex-flow: row wrap;
+        width: 1125px;
+      }
+
+      srm-tile{
+        display: inline-block;
+        margin-left: 15px;
+        margin-bottom: 15px;
+        @media only screen and (min-width: 1125px) {
+          display: block;
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
+
+      .srm-links-card {
+        display: inline-block;
+        width: 270px;
+        height: 319px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        padding: 0 21px;
+        border: 1px solid #DCDCDC;
+        border-radius: 4px;
+        @media only screen and (min-width: 1125px) {
+          margin-right: 0;
+          display: block;
+          margin-left: 15px;
+        }
+      }
+
+      .flex-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+          margin-top: 70px;
+          margin-bottom: 48px;
+          @include sofia-pro-light;
+          font-size: 24px;
+          text-align: center;
+          color: #3D3D3D;
+          text-transform: uppercase;
+          white-space: normal;
+
+          span {
+            @include sofia-pro-bold;
+          }
+        }
+
+        a {
+          margin-bottom: 21px;
+          @include button-m-wide;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

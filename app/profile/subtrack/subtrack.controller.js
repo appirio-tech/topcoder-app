@@ -4,7 +4,7 @@
     .module('tc.profile')
     .controller('ProfileSubtrackController', ProfileSubtrackController);
 
-  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window'];
+  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window', 'userHandle'];
 
   function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window) {
     var vm = this;
@@ -15,6 +15,7 @@
     vm.domain = CONSTANTS.domain;
     vm.challenges = [];
     var profileVm = $scope.$parent.profileVm;
+    vm.userHandle = profileVm.profile.handle;
     vm.dropdown = [];
     vm.ddSelected = {};
     vm.distribution = {};
@@ -26,7 +27,7 @@
     // paging params, these are updated by tc-pager
     vm.pageParams = {
       offset : 0,
-      limit: 5,
+      limit: 10,
       count: 0,
       totalCount: 0,
       // counter used to indicate page change

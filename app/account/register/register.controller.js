@@ -13,50 +13,7 @@
 
     // Set default for toggle password directive
     vm.defaultPlaceholder = 'Create Password';
-
-    // Social Registeration callback
-    var params = {}, callbackUrl;
-    if ($stateParams.next) {
-      params = {next: $stateParams.next};
-    }
-    callbackUrl = $state.href('register', params, {absolute: true});
-    var auth0Register = new Auth0({
-      domain: CONSTANTS.auth0Domain,
-      clientID: CONSTANTS.clientId,
-      callbackURL: callbackUrl
-    });
-    vm.socialProvider = null;
-    vm.socialUserId = null;
-    vm.socialProfile = null;
-
-    if (window.location.hash) {
-      $log.debug("LocHash found, calling socialRegisterCallbackHandler");
-      TcAuthService.socialRegisterCallbackHandler(auth0Register, window.location.hash)
-      .then(function(result) {
-        $log.debug(JSON.stringify(result));
-        vm.socialUserId = result.data.socialUserId;
-        vm.username = result.data.username;
-        vm.firstname = result.data.firstname;
-        vm.lastname = result.data.lastname;
-        vm.email = result.data.email;
-        vm.isSocialRegistration = true;
-        vm.socialProfile = result.data.socialProfile;
-        vm.socialProvider = result.data.socialProvider;
-      })
-    .catch(function(result) {
-        $log.warn(JSON.stringify(result));
-        switch (result.status) {
-          case "SOCIAL_PROFILE_ALREADY_EXISTS":
-            vm.errMsg = "An account with that profile already exists. Please login to access your account.";
-            break;
-          case "INVALID_HASH":
-          default:
-            vm.errMsg = "Whoops! Something went wrong. Please try again later.";
-            break;
-        }
-        vm.isSocialRegistration = false;
-      });
-    }
+    vm.busyDisabled = true;
 
     // lookup users country
     Helpers.getCountyObjFromIP()
@@ -95,7 +52,11 @@
           name: vm.firstname + " " + vm.lastname,
           email: vm.socialProfile.email,
           emailVerified: vm.socialProfile.email_verified,
-          providerType: vm.socialProvider
+          providerType: vm.socialProvider,
+          context: {
+            handle: vm.username,
+            accessToken: vm.socialContext.accessToken
+          }
         }
       }
 
@@ -118,14 +79,31 @@
       });
     };
 
-    vm.socialRegister = function(backend) {
-      auth0Register.login({
-          scope: "openid profile offline_access",
-          state: callbackUrl,
-          connection: backend,
-          response_type: 'token',
-          callbackURL: callbackUrl
-        });
+    vm.socialRegister = function(provider) {
+      TcAuthService.socialRegistration(provider, null)
+      .then(function(socialData) {
+        vm.socialUserId = socialData.socialUserId;
+        vm.username = socialData.username;
+        vm.firstname = socialData.firstname;
+        vm.lastname = socialData.lastname;
+        vm.email = socialData.email;
+        vm.isSocialRegistration = true;
+        vm.socialProfile = socialData.socialProfile;
+        vm.socialProvider = socialData.socialProvider;
+        vm.socialContext.accessToken = socialData.socialaccessToken;
+      })
+    .catch(function(result) {
+        switch (result.status) {
+          case "SOCIAL_PROFILE_ALREADY_EXISTS":
+            vm.errMsg = "An account with that profile already exists. Please login to access your account.";
+            break;
+          default:
+            vm.errMsg = "Whoops! Something went wrong. Please try again later.";
+            break;
+        }
+        vm.isSocialRegistration = false;
+      });
+
     }
 
     vm.$stateParams = $stateParams;

@@ -1,15 +1,17 @@
 .profile-subtrack-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
-  hr
-  .nav
-    .backButton
-      a(ng-click="vm.back()") &#9664;
 
-    .dropdown(
-      dropdown-select="vm.dropdown",
-      dropdown-model="vm.ddSelected",
-      dropdown-item-label="text",
-      dropdown-onchange="vm.selectSubTrack(vm.ddSelected.value)"
-    )
+  .nav
+    a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
+      img.arrow(src="/images/ico-arrow-big-left.svg")
+
+    .breadcrumbs
+      .handle
+        img.profile-circle(fallback-img="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
+        | {{vm.userHandle}} /
+      .track {{vm.track | track}}
+      .subtrack // {{vm.subTrack | track}}
+
+    .right
 
   hr
 

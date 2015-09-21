@@ -1,0 +1,30 @@
+
+.ext-tile {
+  width: 100px;
+  text-align: center;
+  margin: 5px;
+}
+
+.linked {
+  background-color: #27a9e1;
+  cursor: default;
+}
+.read-only{
+  cursor: default;
+  pointer-events: none;
+}
+
+.disconnected {
+  cursor: pointer;
+}
+
+.external-account-icon-box {
+  border: 1px solid;
+  width: 75px;
+  height: 75px;
+  font-size: 30px;
+}
+
+.name {
+  font-weight: bold;
+}

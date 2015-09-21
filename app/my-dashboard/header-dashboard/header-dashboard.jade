@@ -1,32 +1,16 @@
 header
-  profile-widget(profile="vm.profile", edit-profile-link="true")
+  h1 Dashboard
 
   .user-stats
+    .copilot-challenges(ng-show="dashboard.isCopilot")
+      p.number(ng-bind='vm.numCopilotActiveContests')
+
+      p Active Challenges
+
+    .slash(ng-show="dashboard.isCopilot")
+
     .money-earned
-      p(ng-bind='vm.moneyEarned || 0 | currency:undefined:0')
+      p.number(ng-bind='vm.moneyEarned || 0 | currency:undefined:0')
 
-      p Money Earned
+      p Won in prizes
 
-    .copilot-challenges(ng-show="vm.isCopilot")
-      p(ng-bind='vm.copilotChallengesCount || 0')
-
-      p Co-Pilot #[span Challenges]
-
-hr
-
-.loading(ng-show="vm.loading")
-  .section-loading
-
-  hr
-
-.ratings(ng-if="vm.showRanks && vm.hasRatings && !vm.loading")
-  h1.section-title My Ranks
-
-  .tracks
-    .track(ng-repeat="r in vm.rankStats | orderBy: ['track', 'rank']", ui-sref="profile.develop({userHandle: vm.profile.handle, track: r.track, subTrack: r.subTrack})")
-      p(ng-bind="r.rank")
-
-      p {{r.track}}:
-      p {{r.subTrack}}
-
-  hr

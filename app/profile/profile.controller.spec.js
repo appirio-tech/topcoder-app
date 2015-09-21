@@ -5,10 +5,11 @@ describe('Profile Controller', function() {
   var mockProfile = mockData.getMockProfile();
   var mockStats = mockData.getMockStats();
   var mockSkills = mockData.getMockSkills();
+  var mockExternalLinks = mockData.getMockLinkedExternalAccounts();
 
   beforeEach(function() {
     bard.appModule('tc.profile');
-    bard.inject(this, '$controller', 'CONSTANTS', '$rootScope', '$q', 'ProfileService');
+    bard.inject(this, '$controller', 'CONSTANTS', '$rootScope', '$q', 'ProfileService', 'ExternalAccountService');
 
     apiUrl = CONSTANTS.API_URL;
 
@@ -22,10 +23,16 @@ describe('Profile Controller', function() {
       getRanks: ProfileService.getRanks
     };
 
+    var externalAccountService = {
+      getLinkedExternalLinksData: function() {
+        return $q.when(mockExternalLinks);
+      }
+    }
     controller = $controller('ProfileCtrl', {
       userHandle: 'rakesh',
       profile: mockProfile,
-      ProfileService: profileService
+      ProfileService: profileService,
+      ExternalAccountService: externalAccountService
     });
   });
 
@@ -45,13 +52,12 @@ describe('Profile Controller', function() {
       expect(controller.status).to.be.defined;
       expect(controller.statsPromise).to.be.defined;
       expect(controller.skillsPromise).to.be.defined;
-    });
-
-    it('should have tenure', function() {
-      expect(controller.tenure).to.equal(5);
+      expect(controller.externalLinksPromise).to.be.defined;
     });
 
     it('should have default status', function() {
+      expect(controller.status.stats).to.equal(CONSTANTS.STATE_READY);
+      expect(controller.status.skills).to.equal(CONSTANTS.STATE_READY);
       expect(controller.status.externalLinks).to.equal(CONSTANTS.STATE_READY);
     });
   });

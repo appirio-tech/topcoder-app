@@ -51,7 +51,7 @@
     <script src="../bower_components/angucomplete-alt/angucomplete-alt.js"></script>
     <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="../bower_components/angular-dropdowns/dist/angular-dropdowns.js"></script>
-    <script src="../bower_components/angular-filter/dist/angular-filter.min.js"></script>
+    <script src="../bower_components/angular-filter/dist/angular-filter.js"></script>
     <script src="../bower_components/angular-img-fallback/angular.dcb-img-fallback.js"></script>
     <script src="../bower_components/angular-jwt/dist/angular-jwt.js"></script>
     <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -66,6 +66,8 @@
     <script src="../bower_components/ngDialog/js/ngDialog.js"></script>
     <script src="../bower_components/lodash/lodash.js"></script>
     <script src="../bower_components/restangular/dist/restangular.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/angularjs-toaster/toaster.js"></script>
     <script src="../bower_components/angular-mocks/angular-mocks.js"></script>
     <script src="../bower_components/sinon/index.js"></script>
     <script src="../bower_components/bardjs/dist/bard.js"></script>
@@ -73,6 +75,7 @@
     <!-- endbower -->
 
     <!-- inject:nonBowerScripts:js -->
+    <script src="/assets/scripts/auth0-angular.js"></script>
     <script src="/assets/scripts/auth0.js"></script>
     <script src="/assets/scripts/moment-timezone-with-data-2010-2020.js"></script>
     <!-- endinject -->
@@ -106,6 +109,7 @@
     <script src="/app/services/jwtInterceptor.service.js"></script>
     <script src="/app/services/image.service.js"></script>
     <script src="/app/services/helpers.service.js"></script>
+    <script src="/app/services/externalAccounts.service.js"></script>
     <script src="/app/services/challenge.service.js"></script>
     <script src="/app/services/blog.service.js"></script>
     <script src="/app/services/authtoken.service.js"></script>
@@ -163,16 +167,17 @@
     <script src="/app/directives/on-file-change.directive.js"></script>
     <script src="/app/directives/history-graph/history-graph.directive.js"></script>
     <script src="/app/directives/focus-on.directive.js"></script>
+    <script src="/app/directives/external-account/external-account.directive.js"></script>
     <script src="/app/directives/distribution-graph/distribution-graph.directive.js"></script>
     <script src="/app/directives/challenge-tiles/challenge-tile.directive.js"></script>
     <script src="/app/directives/badges/badge-tooltip.directive.js"></script>
     <script src="/app/directives/account/validate-register.directive.js"></script>
-    <script src="/app/directives/account/validate-login.directive.js"></script>
     <script src="/app/directives/account/validate-email.directive.js"></script>
     <script src="/app/directives/account/toggle-password-with-tips/toggle-password-with-tips.directive.js"></script>
     <script src="/app/directives/account/toggle-password/toggle-password.directive.js"></script>
     <script src="/app/blocks/logger/logger.module.js"></script>
     <script src="/app/blocks/logger/logger.js"></script>
+    <script src="/app/blocks/logger/logEnhancer.js"></script>
     <script src="/app/blocks/exception/exception.module.js"></script>
     <script src="/app/blocks/exception/exception-handler.provider.js"></script>
     <script src="/app/blocks/exception/exception.js"></script>
@@ -203,16 +208,17 @@
     <script src="/app/services/user.service.spec.js"></script>
     <script src="/app/settings/settings.spec.js"></script>
     <script src="/app/skill-picker/skill-picker.spec.js"></script>
+    <script src="/app/blocks/exception/exception-handler.provider.spec.js"></script>
     <script src="/app/account/login/login.spec.js"></script>
     <script src="/app/account/register/register.spec.js"></script>
     <script src="/app/account/reset-password/reset-password.spec.js"></script>
-    <script src="/app/blocks/exception/exception-handler.provider.spec.js"></script>
     <script src="/app/directives/badges/badge-tooltip.spec.js"></script>
     <script src="/app/directives/challenge-tiles/challenge-tile.spec.js"></script>
+    <script src="/app/directives/external-account/external-account.directive.spec.js"></script>
     <script src="/app/directives/tc-paginator/tc-paginator.spec.js"></script>
     <script src="/app/my-dashboard/community-updates/community-updates.spec.js"></script>
-    <script src="/app/my-dashboard/my-challenges/my-challenges.spec.js"></script>
     <script src="/app/my-dashboard/header-dashboard/header-dashboard.spec.js"></script>
+    <script src="/app/my-dashboard/my-challenges/my-challenges.spec.js"></script>
     <script src="/app/my-dashboard/programs/programs.spec.js"></script>
     <script src="/app/my-dashboard/srms/srms.spec.js"></script>
     <script src="/app/peer-review/completed-review/completed-review.spec.js"></script>
@@ -222,9 +228,9 @@
     <script src="/app/profile/about/about.controller.spec.js"></script>
     <script src="/app/profile/badges/badges.spec.js"></script>
     <script src="/app/profile/subtrack/subtrack.spec.js"></script>
+    <script src="/app/settings/account-info/account-info.spec.js"></script>
     <script src="/app/settings/edit-profile/edit-profile.spec.js"></script>
     <script src="/app/settings/preferences/preferences.spec.js"></script>
-    <script src="/app/settings/account-info/account-info.spec.js"></script>
     <script src="/app/settings/update-password/update-password.spec.js"></script>
     <script src="/app/directives/account/toggle-password/toggle-password.spec.js"></script>
     <script src="/app/directives/account/toggle-password-with-tips/toggle-password-with-tips.spec.js"></script>
