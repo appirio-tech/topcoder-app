@@ -4,7 +4,7 @@ var ResetPasswordData = function() {
     this.userNameList = [
                             	{	'username' :'abdul.mansoori@appirio.com'
                             	},
-                            	{	'username' : 'DhananjayKumar1'
+                            	{	'username' : 'DhananjayKumar1@appirio.com'
                             	}
                            ],
                            
@@ -15,7 +15,7 @@ var ResetPasswordData = function() {
     							{
     								'username' : 'aqmansuri334@gmail.com'
     							}
-                             ]
+                             ],
     this.passwordAlreadySentUserList = [ 	
                               	{
                               		'username' : 'abdul.mansoori@appirio.com'
@@ -23,10 +23,19 @@ var ResetPasswordData = function() {
     							{
     								'username' : 'abdul.mansoori@appirio.com'
     							}*/
-                             ]
+                             ],
+                             
+  this.invalidEmailList = [
+                           {
+                        	   'username' : 'DhananjayKumar1'
+                           },
+                           {
+                        	   'username' : 'aqmansuri'
+                           }
+                           ],                             
     this.notExistingUserMessage = 'We couldn\'t find a member with that email address. Please check that you entered it correctly. If you continue to have trouble, please contact',
     this.passwordAlreadySent='You already requested a reset link recently. Please check your inbox or spam folder. If you have any trouble, please contact',
-                           
+    this.invalidEmailAddress = 'Please enter a valid email address.'
     this.twitterCredentials = [ {
     								'username' : 'ChristinoBolder',
     								'password' : 'Appirio123'
@@ -54,7 +63,7 @@ var ResetPasswordData = function() {
   						  	
     						  
     						  
-    this.baseUrl = 'http://app.topcoder-dev.com/login';
+    this.baseUrl = 'http://local.topcoder-dev.com:3000/login';
     
 };
 module.exports = new ResetPasswordData;

@@ -89,6 +89,45 @@ var ResetPasswordPage = function() {
   
   
   
+  this.clickInvalidEmailForgotPassword = function(userName, errMsg) {
+	  console.log('click forgot password link');
+//	  this.get(loginUrl);
+	  var EC = protractor.ExpectedConditions;
+	  
+	  var userInput = element(by.model('vm.username'));
+	  var isClickable = EC.elementToBeClickable(userInput);
+	  browser.wait(isClickable, 30000);
+	  
+	  var forgotPasswordBtn = element(by.css('.forgot-password'));
+	  var isClickable = EC.elementToBeClickable(forgotPasswordBtn);
+	  browser.wait(isClickable, 30000);
+	  
+	  forgotPasswordBtn.click().then(function(){
+		  var emailTextField = element(by.model('vm.email'));
+		  var isClickable = EC.elementToBeClickable(emailTextField);
+		  browser.wait(isClickable, 30000);
+		  
+		  console.log('username '+userName);
+		  emailTextField.sendKeys(userName);
+		  var emailTips = element(by.css('.email-tips'));
+//		  expect(emailTips.isVisible()).toEqual(true);
+		  
+		  var resetButton = element(by.css('.reset-form button'));
+		  expect(resetButton.isEnabled()).toEqual(false);
+		  var formError = element(by.css('.form-errors')).all(by.css('.form-error')).get(0);
+		  isClickable = EC.elementToBeClickable(formError);
+		  browser.wait(isClickable, 30000);
+		  console.log('text '+formError.getInnerHtml());
+		  expect(formError.getInnerHtml()).toEqual(errMsg);
+		  
+		   
+	  });
+	  
+	  
+  };
+  
+  
+  
   this.clickAgainForgotPassword = function(userName, errMsg) {
 	  console.log('click forgot password link');
 //	  this.get(loginUrl);

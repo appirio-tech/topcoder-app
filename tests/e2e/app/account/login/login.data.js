@@ -54,14 +54,25 @@ var LoginData = function() {
   								'username' : 'auto-user9',
   								'password' : 'appirio123$'
   								}
-  							],					 
+  							],	
+  							
+  this.spaceUserCredentials = [ {
+	  							'username' : 'aq mansuri',
+	  							'password' : 'appirio123'
+  						},
+  						{
+  							    'username' :'Dhananjay Kumar1',
+  							    'password' : 'appirio123'
+  						}
+  						],							
   						  	
   						  	
     						  
     						  
-    this.baseUrl = 'http://app.topcoder-dev.com/login';
+    this.baseUrl = 'http://local.topcoder-dev.com:3000/login';
     this.invalidPasswordMessage = 'That password doesn\'t match the one we have on file. Please try again.';
     this.invalidHandle = 'This user does not exist.'
+    this.invalidSpaceHandle = 'That password doesn\'t match the one we have on file. Please try again.'	
     
 };
 module.exports = new LoginData;
