@@ -1,29 +1,21 @@
-footer
-  .container
-    section.connected
-      .social
-        h4 Get Connected
-
-        ul
-          li #[a.fb(href='https://www.facebook.com/topcoder') FB]
-          li #[a.tw(href='http://www.twitter.com/topcoder') TW]
-          li #[a.gp(href='https://plus.google.com/u/0/b/104268008777050019973/104268008777050019973/posts') GP]
-          li #[a.in(href='https://www.linkedin.com/company/topcoder') IN]
-
-      .updates
-        form
-          input.email(type='email', name='EMAIL', placeholder='Your email address', maxlength='64')
-
-          input.btnSubmitFooter(type='button', value='Submit')
-
-    section.copyright
-      p &copy; 2014 topcoder. All Rights Reserved.
-
-      ul
-        li
-          a(href='http://topcoder.com/community/how-it-works/privacy-policy/') Privacy Policy
-
-        li |
-
-        li
-          a(href='http://topcoder.com/community/how-it-works/terms/') Terms
+footer.bottom-footer
+  // Footer links
+  nav.menu-item
+    .menu-item-header.show-small OTHERS
+    ul.submenu
+        li.submenu-item #[a.menu-link(href="javascript:;") SITEMAP]
+        li.submenu-item #[a.menu-link(href="javascript:;") ABOUT US]
+        li.submenu-item #[a.menu-link(href="javascript:;") CONTACT US]
+        li.submenu-item #[a.menu-link(href="javascript:;") HELP CENTER]
+        li.submenu-item #[a.menu-link(href="http://topcoder.com/community/how-it-works/privacy-policy/") PRIVACY POLICY]
+        li.submenu-item #[a.menu-link(href="http://topcoder.com/community/how-it-works/terms/") TERMS]
+        
+    // Social links
+  .social-links
+    p topcoder is also on
+    a.fb-link(href="https://www.facebook.com/topcoder" target="fbwindow")
+    a.twitter-link(href="http://www.twitter.com/topcoder" target="twwindow")
+    a.linkedin-link(href="https://www.linkedin.com/company/topcoder" target="liwindow")
+    a.google-link(href="https://plus.google.com/u/0/b/104268008777050019973/104268008777050019973/posts" target="gpwindow")
+    
+  p.copyright-notice © 2015 topcoder. All Rights Reserved
