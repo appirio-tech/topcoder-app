@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #3D3D3D;
+    color: $primary-text;
     padding-left: 20px;
     padding-right: 20px;
 
@@ -44,7 +44,7 @@
       .track {
         div:first-child {
           margin: 0 auto 10px;
-          @include background-image-size(44px, 43px);
+          @include background-image-size(44px, 44px);
         }
 
         &:last-child {
@@ -144,6 +144,19 @@
         &.list-view {
           width: 100%;
         }
+      }
+    }
+  }
+
+  .my-challenges-links {
+    @include module-links;
+
+    a {
+      @include button-m;
+      @include button-secondary;
+
+      &:not(:first-child) {
+        margin-left: 10px;
       }
     }
   }

@@ -30,29 +30,11 @@
   .section-title {
     @include sofia-pro-bold;
     font-size: 22px;
-    color: #3D3D3D;
+    color: $primary-text;
     text-align: center;
     text-transform: uppercase;
     @media only screen and (min-width: 450) {
       font-size: 28px;
-    }
-  }
-
-  .section-links {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    .link {
-      border-radius: 5px;
-      padding: 10px;
-      background-color: $dark-gray;
-      margin: 10px;
-
-      a {
-        color: $white;
-        text-decoration: none;
-      }
     }
   }
 }

@@ -28,7 +28,7 @@
       @include sofia-pro-medium;
       font-size: 14px;
       line-height: 49px;
-      color: #3D3D3D;
+      color: $primary-text;
       text-decoration: none;
       @include ellipsis;
     }
@@ -69,7 +69,7 @@
       &.day {
         margin-top: 2px;
         font-size: 24px;
-        color: #3D3D3D;
+        color: $primary-text;
       }
       &.month, &.time-zone {
         letter-spacing: 1.6px;
@@ -88,7 +88,7 @@
         margin-left: 3px;
         @include sofia-pro-regular;
         font-size: 12px;
-        color: #3D3D3D;
+        color: $primary-text;
       }
     }
   }
