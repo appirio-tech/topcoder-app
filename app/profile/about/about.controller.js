@@ -13,6 +13,11 @@
     vm.categoryIndex = 0;
     vm.skillIndex = 0;
     vm.displaySection = {};
+    vm.sampleSkills = [
+      {"tagName":"VisualForce","hidden":false,"score":0,"sources":[]},
+      {"tagName":"MongoDB","hidden":false,"score":0,"sources":[]},
+      {"tagName":"Heroku","hidden":false,"score":0,"sources":[]}
+    ];
 
     activate();
 

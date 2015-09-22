@@ -12,14 +12,15 @@
 
     button.more(ng-show="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW MORE
 
-    .empty-state(ng-show="profileVm.skills && profileVm.skills.length == 0")
+    .empty-state(ng-show="!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)")
       .action-text show us your skills &amp; tools, we'd love that!
       
+      .list
         .skill(ng-repeat="skill in vm.sampleSkills")
           skill-tile(skill="skill")
       
-      .description The more the better. Skills are important for all challenge organizers and <br>
-        the community at large. So, go ahead and tell us more about you.
+      .description The more the better. Skills are important for all challenge organizers and
+        | the community at large. So, go ahead and tell us more about you.
       
       button.link-button(ui-sref="settings.profile") ADD YOUR SKILLS
 

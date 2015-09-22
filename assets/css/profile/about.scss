@@ -104,6 +104,7 @@
 
   .skills {
     @include module-l;
+    width: 100%;
     align-self: center;
     padding-bottom: 30px;
     background: white;
@@ -158,10 +159,33 @@
       }
     }
     .empty-state {
-      text-align: center;
+      width: 100%;
+      padding: 30px;
+      padding-top: 5px;
       .action-text {
         text-transform: uppercase;
-        margin: 30px 0 30px 0;
+        margin-top: 32px;
+        font-family: 'Sofia Pro';
+        font-weight: 200;
+        font-size: 18px;
+        line-height: 24px;
+      }
+      .description {
+        font-family: 'Source Sans Pro';
+        font-weight: 300;
+        font-size: 15px;
+        line-height: 22px;
+      }
+      button.link-button {
+        @include button-l;
+        margin-top: 30px;
+      }
+      .list {
+        .skill {
+          width: 130px;
+        }
+        padding: 10px;
+        margin: 20px auto;
       }
     }
   }
@@ -290,6 +314,33 @@
         }
       }
     }
+    .empty-state {
+      .action-text {
+        font-size: 28px;
+        line-height: 34px;
+      }
+      .description {
+        font-family: 'Source Sans Pro';
+        font-weight: 300;
+        font-size: 22px;
+        line-height: 32px;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      button.link-button {
+        @include button-l;
+        margin-top: 30px;
+      }
+      .list {
+        .skill {
+          width: 130px;
+        }
+        padding: 10px;
+        margin: 20px auto;
+      }
+    }
+
   }
   .links {
     h1 {
