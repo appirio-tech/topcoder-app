@@ -42,7 +42,7 @@
           p.required-message(ng-show="editForm.$submitted && optionForm.select.$error.required") Required
         .comment
           .label Comment
-          textarea.text(ng-model="q.comment")
+          textarea.text(ng-init="q.comment = ''", ng-model="q.comment")
 
 
       button(type="submit") Save and Mark Complete

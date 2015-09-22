@@ -103,7 +103,6 @@
         if (answerObject.comments && answerObject.comments.length > 0) {
           // pick first comment for peer review challenges
           questions[questionId].comment = answerObject.comments[0].content;
-          questions[questionId].comments = answerObject.comments;
         }
 
         if (answerObject.answer !== '') {
@@ -124,18 +123,17 @@
           reviewId: review.id,
           scorecardQuestionId: parseInt(qId),
           uploadId: review.uploadId,
-          answer: '' + q.answer,
-          comments: q.comments
+          answer: '' + q.answer
         };
 
-        if (reviewItem.comments && reviewItem.comments.length > 0) {
-          reviewItem.comments[0].content = q.comment;
-        } else {
-          reviewItem.comments = [{                               
-            content: '' + q.comment,
-            resourceId: review.resourceId,
-            commentTypeId: 1
-          }];
+        if (q.comment.length > 0) {
+          reviewItem.comments = [
+            {
+              content: '' + q.comment
+              resourceId: review.resourceId
+              commentTypeId: 1
+            }
+          ];
         }
 
         if (updating) {
