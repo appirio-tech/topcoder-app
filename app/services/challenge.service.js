@@ -159,7 +159,7 @@
     }
 
     function getReviewEndDate(challengeId) {
-      var url = CONSTANTS.API_URL + '/phases/?filter=' + encodeURIComponent('challengeId=' + challengeId + ' & phaseType=4');
+      var url = CONSTANTS.API_URL + '/phases/?challengeId=' + challengeId;
       return ApiService.requestHandler('GET', url);
     }
 
