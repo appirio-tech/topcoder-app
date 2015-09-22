@@ -100,6 +100,40 @@
       }
 
     }
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .action-text {
+        margin-top: 32px;
+        font-family: 'Sofia Pro';
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 200;
+      }
+      .tracks {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 50%;
+        margin-top: 20px;
+        .track {
+
+        }
+      }
+      .description {
+        margin-top: 50px;
+        font-family: 'Source Sans Pro';
+        font-size: 15px;
+        line-height: 22px;
+        width: 60%;
+      }
+      button.link-button {
+        @include button-l;
+        margin-top: 20px;
+      }
+      padding-bottom: 40px;
+    }
   }
 
   .skills {
@@ -190,19 +224,44 @@
     }
   }
   .external-links {
+    @include module-l;
+    width: 100%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
 
+
     .empty-state {
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       .action-text {
         text-transform: uppercase;
+        margin-top: 32px;
+        font-family: 'Sofia Pro';
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 200;
       }
-
+      .description {
+        margin-top: 50px;
+        font-family: 'Source Sans Pro';
+        font-size: 15px;
+        line-height: 22px;
+        width: 60%;
+      }
+      button.link-button {
+        @include button-l;
+        margin-top: 20px;
+      }
       .external-account-container {
         display: flex;
         flex-direction: row;
         margin: 20px;
       }
+      padding-bottom: 40px;
     }
   }
 }
@@ -278,6 +337,33 @@
       }
 
     }
+    .empty-state {
+      .action-text {
+        font-size: 28px;
+        line-height: 34px;
+      }
+      .description {
+        font-family: 'Source Sans Pro';
+        font-weight: 300;
+        font-size: 22px;
+        line-height: 32px;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      button.link-button {
+        @include button-l;
+        margin-top: 30px;
+      }
+      .list {
+        .skill {
+          width: 130px;
+        }
+        padding: 10px;
+        margin: 20px auto;
+      }
+    }
+
   }
   .skills {
     display: flex;
@@ -389,6 +475,37 @@
       }
     }
   }
+  .external-links {
+   .empty-state {
+    .action-text {
+      font-size: 28px;
+      line-height: 34px;
+    }
+    .description {
+      font-family: 'Source Sans Pro';
+      font-weight: 300;
+      font-size: 22px;
+      line-height: 32px;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    button.link-button {
+      @include button-l;
+      margin-top: 30px;
+    }
+    .list {
+      .skill {
+        width: 130px;
+      }
+      padding: 10px;
+      margin: 20px auto;
+    }
+  } 
+  }
+
+
 }
+
 
 }

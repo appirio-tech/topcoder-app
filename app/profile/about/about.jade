@@ -30,6 +30,16 @@
 
       h3.activity Topcoder Activity
 
+      .empty-state(ng-if="!profileVm.numProjects")
+        .action-text SHOW US YOU'RE A NINJA!
+        .tracks
+          .track(ng-repeat="track in ['DEVELOP', 'DESIGN', 'DATA_SCIENCE']")
+            div(class="{{profileVm.imgMap[track]}}-icon")
+              div
+            .text {{track | track}}
+        .description Hey, whatever your like might be—Design, Development, or Data Science—we have it! Explore the Challenges section and show us what you’re made of!
+        button.link-button(ui-sref="settings.profile") CHALLENGE ME!
+
       .track(ng-if="profileVm.categories['MARATHON'].rank || profileVm.categories['SRM'].rank")
         .name DATA SCIENCE
 
