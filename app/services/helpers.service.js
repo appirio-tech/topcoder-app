@@ -129,8 +129,8 @@
         if (q.comment.length > 0) {
           reviewItem.comments = [
             {
-              content: '' + q.comment
-              resourceId: review.resourceId
+              content: '' + q.comment,
+              resourceId: review.resourceId,
               commentTypeId: 1
             }
           ];
