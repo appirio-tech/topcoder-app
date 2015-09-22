@@ -30,16 +30,14 @@
       h3.activity Topcoder Activity
 
       .track(ng-if="profileVm.categories['MARATHON'].rank || profileVm.categories['SRM'].rank")
-        .name Data Science
+        .name DATA SCIENCE
 
       .track(
         ng-repeat="track in profileVm.profile.tracks",
         ng-if="profileVm.categories[track].length > 0"
       )
 
-        .name
-          | {{track}}
-          div(class="{{profileVm.imgMap[track]}}-icon")
+        div(class="{{profileVm.imgMap[track]}}-icon name") {{track}}
 
         .subtrack(
           ng-repeat="subtrack in profileVm.categories[track]",

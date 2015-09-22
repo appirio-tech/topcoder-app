@@ -1,6 +1,6 @@
 @import '../partials/combined';
 .profile-about-container {
-  margin-top: 80px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
 
@@ -36,6 +36,11 @@
           margin-right: 5.5px;
           margin-bottom: -3px;
         }
+        width: 200px;
+        text-align: center;
+        padding-left: 30px;
+        background-position: 40px 2px;
+        background-size: 21px;
         margin: auto;
         font-family: 'Sofia Pro';
         font-weight: 200;
@@ -100,6 +105,7 @@
   .skills {
     @include module-l;
     align-self: center;
+    padding-bottom: 30px;
     background: white;
     text-align: center;
     display: flex;
@@ -112,7 +118,9 @@
     }
     .more {
       margin-top: 20px;
-      @include button-m;
+      margin-left: auto;
+      margin-right: auto;
+      @include button-l;
     }
     .list {
       display: flex;
@@ -122,6 +130,8 @@
       width: 90%;
       margin-top: 22px;
       margin-bottom: 10px;
+      margin-left: auto;
+      margin-right: auto;
       .skill {
         display: flex;
         flex-direction: column;
@@ -175,7 +185,7 @@
 @media (min-width: 768px) {
 
 .profile-about-container {
-  margin-top: 90px;
+  margin-top: 80px;
 
  .activity {
     font-size: 28px;
@@ -200,16 +210,8 @@
       cursor: pointer;
 
       .name {
-        div {
-          background-size: 30px;
-          margin-right: 6px;
-          margin-bottom: -5px;
-          height: 30px;
-          width: 30px;
-          margin: auto;
-          margin-top: 10px;
-        }
-        margin: auto;
+        background-size: 30px;
+        background-position: 16px 4px;
         font-weight: 200;
         font-size: 28px;
         line-height: 34px;
