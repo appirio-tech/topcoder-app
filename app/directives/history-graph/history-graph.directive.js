@@ -73,7 +73,7 @@
       padding: {
         top: 10,
         right: 30,
-        bottom: 100,
+        bottom: 50,
         left: 30
       }
     };
