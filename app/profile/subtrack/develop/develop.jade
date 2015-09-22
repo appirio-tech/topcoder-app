@@ -1,53 +1,53 @@
 .develop(ng-if="vm.track == 'DEVELOP'")
-  ul.horizontal-stats
-    li.stat
-      .value {{vm.typeStats.rank.overallRank}}
-      .name RANK
+  .top
+    ul.horizontal-stats
+      li.stat
+        .value {{vm.typeStats.rank.overallRank}}
+        .name RANK
 
-    li.stat
-      .value {{vm.typeStats.rank.rating}}
-      .name RATING
+      li.stat
+        .value {{vm.typeStats.rank.rating}}
+        .name RATING
 
-    li.stat
-      .value {{vm.typeStats.challenges}}
-      .name PROJECTS
+      li.stat
+        .value {{vm.typeStats.challenges}}
+        .name PROJECTS
 
-    li.stat
-      .value {{vm.typeStats.rank.overallCountryRank}}
-      .name COUNTRY RANK
+      li.stat
+        .value {{vm.typeStats.rank.overallCountryRank}}
+        .name COUNTRY RANK
 
-    li.stat
-      .value {{vm.typeStats.rank.reliability | percentage}}
-      .name RELIABILITY
+      li.stat
+        .value {{vm.typeStats.rank.reliability | percentage}}
+        .name RELIABILITY
 
-  .tabs
-    a.left(ng-click="vm.viewing = 'challenges'",
-      ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
-    ) Challenges
+    .tabs
+      a.left(ng-click="vm.viewing = 'challenges'",
+        ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
+      ) Challenges
 
-    a.right(ng-click="vm.viewing = 'stats'",
-      ng-class="vm.viewing == 'stats' ? 'selected' : ''"
-    ) Stats
+      a.right(ng-click="vm.viewing = 'stats'",
+        ng-class="vm.viewing == 'stats' ? 'selected' : ''"
+      ) Stats
 
-  hr
+    tc-section(
+      ng-show="vm.viewing == 'challenges'",
+      state="vm.status.challenges"
+    )
+      tc-paginator(data="vm.challenges", page-params="vm.pageparams")
+      .challenges
+        .challenge.tile(ng-repeat="challenge in vm.challenges")
+          challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
+        .div(ng-show="!vm.challenges || vm.challenges.length == 0")
+          | no past challenges available for this user
 
-  tc-section(
-    ng-show="vm.viewing == 'challenges'",
-    state="vm.status.challenges"
-  )
-    tc-paginator(data="vm.challenges", page-params="vm.pageParams")
-    .challenges
-      .challenge.tile(ng-repeat="challenge in vm.challenges")
-        challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
-      .div(ng-show="!vm.challenges || vm.challenges.length == 0")
-        | No past challenges available for this user
+    .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
+      .graphs
+        distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
-  .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
-    .graphs
-      distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
+        history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
-      history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
-
+  .bottom(ng-show="vm.viewing == 'stats'")
     h2.detailed Details
 
     ul.vertical-stats

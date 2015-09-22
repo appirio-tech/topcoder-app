@@ -23,8 +23,15 @@
   width: 75px;
   height: 75px;
   font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .name {
-  font-weight: bold;
+  font-family: 'Sofia Pro';
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
 }

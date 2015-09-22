@@ -8,7 +8,9 @@
     h3.tenure(ng-if="profile.startMonth")
       | Member Since {{profile.startMonth}}
 
-    h3.location-challenges {{profile.homeCountryCode | isoCountry}} | {{numChallenges}} Challenges
+    h3.location-challenges {{profile.homeCountryCode | isoCountry}}
+      span.bar(ng-show="profile.homeCountryCode && numChallenges")  | 
+      span(ng-show="numChallenges") {{numChallenges}} Challenges
 
     p.description {{profile.quote}}
 

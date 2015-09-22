@@ -5,9 +5,15 @@
   flex-direction: column;
   
   .nav {
+    @include module-full-width;
+    background: white;
+    height: 100px;
+    padding-left: 60px;
+    padding-right: 60px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 8px;
     .arrow {
       width: 15px;
@@ -27,14 +33,33 @@
         display: block;
         color: #a3a3ae;
         text-align: center;
+        text-transform: uppercase;
       }
       .subtrack {
         display: block;
         color: #00aeff;
         font-weight: 700;
         text-align: center;
+        text-transform: uppercase;
       }
     }
+  }
+  .top {
+    @include module-l;
+    background: white;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    padding-top: 10px;
+  }
+  .bottom {
+    @include module-l;
+    background: white;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
   }
   .horizontal-stats {
     display: flex;
@@ -78,36 +103,34 @@
   }
   .develop, .design {
 
-    .stats {
-      .graphs {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      h2.detailed {
-        margin: 50px auto 25px auto;
-        text-align: center;
-        font-family: 'Lucida Grande';
-        font-size: 18px;
-        line-height: 21px;
-        font-weight: bold;
-        text-transform: uppercase;
-      }
-      ul.vertical-stats {
-        width: 90%;
-        margin: 0 auto;
-        li {
-          font-family: 'Sofia Pro';
-          font-size: 15px;
-          line-height: 18px;
-          padding: 14px;
-          border-bottom: 1px solid #f6f6f6;
-          .right {
-            color: #00aeff;
-          }
-          &.first {
-            border-top: 1px solid #f6f6f6;
-          }
+    .graphs {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    h2.detailed {
+      margin: 50px auto 25px auto;
+      text-align: center;
+      font-family: 'Lucida Grande';
+      font-size: 18px;
+      line-height: 21px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    ul.vertical-stats {
+      width: 90%;
+      margin: 0 auto;
+      li {
+        font-family: 'Sofia Pro';
+        font-size: 15px;
+        line-height: 18px;
+        padding: 14px;
+        border-bottom: 1px solid #f6f6f6;
+        .right {
+          color: #00aeff;
+        }
+        &.first {
+          border-top: 1px solid #f6f6f6;
         }
       }
     }
@@ -116,28 +139,26 @@
       display: flex;
       flex-direction: row;
       justify-content: center;
-      margin: 30px 0 0 0;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      border-bottom: solid 1px #a3a3ae;
       a {
-        width: 100px;
-        border: 1px solid #00aeff;
-        color: #00aeff;
+        color: #a3a3ae;
         width: 140px;
         height: 30px;
         padding-top: 6px;
         text-align: center;
         font-family: 'Sofia Pro';
-        font-weight: 700;
-        font-size: 14px;
+        font-weight: bold;
+        font-size: 16px;
         text-transform: uppercase;
         &.left {
-          border-radius: 5px 0 0 5px;
         }
         &.right {
-          border-radius: 0 5px 5px 0;
         }
         &.selected {
-          background: #00aeff;
-          color: white;
+          color: black;
+          border-bottom: solid 3px #0096ff;
         }
       }
     }
@@ -164,11 +185,13 @@
     margin-bottom: 8px;
     .arrow {
       width: 15px;
+      display: none;
     }
     .right {
       width: 15px;
     }
     .breadcrumbs {
+      margin-left: -30%;
       font-size: 28px;
       line-height: 34px;
       .handle {
@@ -187,6 +210,13 @@
         display: inline;
       }
     }
+  }
+  .top {
+    margin-top: 60px;
+    padding-top: 10px;
+  }
+  .bottom {
+    padding-top: 30px;
   }
   .horizontal-stats {
     display: flex;
@@ -219,71 +249,50 @@
   }
   .develop, .design {
 
-    .stats {
-      .graphs {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      h2.detailed {
-        margin: 50px auto 25px auto;
+    .graphs {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    h2.detailed {
+      margin: 50px auto 25px auto;
+      font-family: 'Sofia Pro';
+      font-size: 28px;
+      line-height: 34px;
+    }
+    ul.vertical-stats {
+      margin-top: 50px;
+      width: 95%;
+      align-content: space-between;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      li {
+        width: 28%;
         font-family: 'Sofia Pro';
-        font-size: 28px;
-        line-height: 34px;
-      }
-      ul.vertical-stats {
-        margin-top: 50px;
-        width: 95%;
-        align-content: space-between;
-        height: 300px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        li {
-          width: 28%;
-          font-family: 'Sofia Pro';
-          font-size: 15px;
-          line-height: 18px;
-          padding: 14px;
-          border-bottom: 1px solid #f6f6f6;
-          .right {
-            color: #00aeff;
-          }
-          &.first {
-            border-top: 1px solid #f6f6f6;
-          }
+        font-size: 15px;
+        line-height: 18px;
+        padding: 14px;
+        border-bottom: 1px solid #f6f6f6;
+        .right {
+          color: #00aeff;
+        }
+        &.first {
+          border-top: 1px solid #f6f6f6;
         }
       }
     }
 
     .tabs {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      margin: 30px 0 0 0;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
       a {
-        width: 100px;
-        border: 1px solid #00aeff;
-        color: #00aeff;
-        width: 140px;
-        height: 30px;
-        padding-top: 6px;
-        text-align: center;
-        font-family: 'Sofia Pro';
-        font-weight: 700;
-        font-size: 14px;
-        text-transform: uppercase;
-        &.left {
-          border-radius: 5px 0 0 5px;
-        }
-        &.right {
-          border-radius: 0 5px 5px 0;
-        }
-        &.selected {
-          background: #00aeff;
-          color: white;
-        }
+        font-size: 24px;
+        height: 40px;
+        width: 170px;
       }
     }
 
