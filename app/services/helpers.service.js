@@ -102,7 +102,8 @@
 
         if (answerObject.comments && answerObject.comments.length > 0) {
           // pick first comment for peer review challenges
-          questions[questionId].comment = answerObject.comments[0];
+          questions[questionId].comment = answerObject.comments[0].content;
+          questions[questionId].comments = answerObject.comments;
         }
         // TODO remove following line once api has the support
         questions[questionId].comment = 'mock comment';
@@ -126,8 +127,18 @@
           scorecardQuestionId: parseInt(qId),
           uploadId: review.uploadId,
           answer: '' + q.answer,
-          comments: [q.comment]
+          comments: q.comments
         };
+        
+        if (reviewItem.comments && reviewItem.comments.length > 0) {
+          reviewItem.comments[0].content = q.comment;
+        } else {
+          reviewItem.comments = [{                               
+            content: '' + q.comment,
+            resourceId: review.resourceId,
+            commentTypeId: 1
+          }];
+        }
 
         if (updating) {
           reviewItem.id = q.reviewItemId;
