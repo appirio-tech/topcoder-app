@@ -11,8 +11,6 @@
   function SubtrackStatsController(ProfileService, userIdentity) {
     var vm = this;
     vm.loading = true;
-    vm.hasRatings = true;
-    vm.rankStats = [];
 
     activate();
 
@@ -21,25 +19,23 @@
 
       ProfileService.getUserStats(handle)
       .then(function(stats) {
-        if (!_.isUndefined(stats.COPILOT)) {
-          vm.numCopilotActiveContests = stats.COPILOT.activeContests;
-        } else {
-          vm.numCopilotActiveContests = 0;
-        }
+        var subtrackRanks = [];
 
-        vm.rankStats = ProfileService.getRanks(stats);
+        var trackRanks = ProfileService.getRanks(stats);
+        angular.forEach(trackRanks, function(subtracks, track) {
+          if (Array.isArray(subtracks) && subtracks.length) {
+            subtrackRanks = subtrackRanks.concat(subtracks);
+          }
+        });
 
-        if (vm.rankStats.length === 0) {
-          vm.hasRatings = false;
-        }
-
+        vm.subtrackRanks = subtrackRanks;
+        vm.hasRanks = !!vm.subtrackRanks.length;
         vm.loading = false;
       })
       .catch(function(err) {
-        vm.hasRatings = false;
+        vm.hasRanks = false;
         vm.loading = false;
-        // todo handle error
-      })
+      });
     }
   }
 })();

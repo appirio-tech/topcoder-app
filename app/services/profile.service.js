@@ -85,13 +85,15 @@
       if (!stats) {
         return [];
       }
-      var dev = [], design = [], srm = [], marathon = [], copilot = [];
+      var dev = [], design = [], dataScience = [], copilot = [];
+
       if (stats.DEVELOP && stats.DEVELOP.subTracks) {
         dev = stats.DEVELOP.subTracks.map(function(subTrack) {
           return {
             'track': 'DEVELOP',
             'subTrack': subTrack.name,
             'rank': subTrack.rank ? subTrack.rank.overallRank : 0,
+            'rating': subTrack.rank.rating || 0,
             'wins': subTrack.wins
           };
         });
@@ -109,19 +111,21 @@
       }
       if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.SRM && stats.DATA_SCIENCE.SRM.rank) {
         var srmStats = stats.DATA_SCIENCE.SRM;
-        srm = {
+        dataScience.push({
           'track': 'DATA_SCIENCE',
           'subTrack': 'SRM',
-          'rank': srmStats.rank.rating
-        };
+          'rank': srmStats.rank.rank,
+          'rating': srmStats.rank.rating
+        });
       }
       if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.MARATHON_MATCH && stats.DATA_SCIENCE.MARATHON_MATCH.rank) {
         var marathonStats = stats.DATA_SCIENCE.MARATHON_MATCH;
-        marathon = {
+        dataScience.push({
           'track': 'DATA_SCIENCE',
           'subTrack': 'MARATHON',
-          'rank': marathonStats.rank.rating
-        };
+          'rank': marathonStats.rank.rank,
+          'rating': marathonStats.rank.rating
+        });
       }
       if (stats.COPILOT) {
         copilot = stats.COPILOT;
@@ -130,15 +134,14 @@
       var ans = {
         'DEVELOP': removeRankless(dev),
         'DESIGN': removeRankless(design),
-        'MARATHON': marathon,
-        'SRM': srm,
+        'DATA_SCIENCE': removeRankless(dataScience),
         'CO_PILOT': copilot
       };
 
       function removeRankless(arr) {
         return arr
           .filter(function(subTrack) {
-            return subTrack && (subTrack.rank || subTrack.wins || subTrack.fulfillment);
+            return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment);
           });
       }
       return ans;

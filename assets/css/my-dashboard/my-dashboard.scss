@@ -5,7 +5,16 @@
   flex-direction: column;
   align-items: center;
 
-  .subtrack-stats, .my-challenges, .srms, .programs {
+  .subtrack-stats {
+    width: 100%;
+    max-width: 1242px;
+    margin-top: 60px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    background-color: $white;
+  }
+
+  .my-challenges, .srms, .programs {
     @include module-l;
     width: 100%;
   }
