@@ -13,6 +13,7 @@
 
     // Set default for toggle password directive
     vm.defaultPlaceholder = 'Create Password';
+    vm.busyMessage = CONSTANTS.BUSY_PROGRESS_MESSAGE;
 
     // lookup users country
     Helpers.getCountyObjFromIP()
@@ -66,15 +67,18 @@
         }
       }
       $log.debug('attempting to register user');
+      vm.busyMessage = "Registering..";
       TcAuthService.register(body)
       .then(function(data) {
         $log.debug('registered successfully');
+        vm.busyMessage = CONSTANTS.BUSY_PROGRESS_MESSAGE;
 
         // In the future, go to dashboard
         $state.go('registeredSuccessfully');
       })
       .catch(function(err) {
         $log.error('Error in registering new user: ', err);
+        vm.busyMessage = CONSTANTS.BUSY_PROGRESS_MESSAGE;
       });
     };
 
