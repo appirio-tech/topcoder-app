@@ -3,7 +3,7 @@
 .community-updates {
   display: flex;
   flex-direction: column;
-  color: #3D3D3D;
+  color: $primary-text;
 
   header {
     margin-top: 6px;
@@ -22,10 +22,14 @@
   }
 
   .posts {
+    padding-left: 10px;
+    padding-right: 10px;
     @media only screen and (min-width: 570px) {
       display: flex;
       flex-flow: row wrap;
       margin: 0 auto;
+      padding-left: 0;
+      padding-right: 0;
       width: 550px;
     }
     @media only screen and (min-width: 850px) {

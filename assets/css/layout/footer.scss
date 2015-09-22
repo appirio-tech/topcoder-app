@@ -1,149 +1,123 @@
 @import '../partials/combined';
 
-footer {
-  @include source-sans-regular;
-  background-color: $light-black;
-  color: $light-gray;
-  min-height: 150px;
-  position: relative;
+.bottom-footer {
+	background-color: $primary-text;
+	padding: 1px 20px 30px 20px;
+}
 
-  .container {
-    padding-top: 26px;
-    width: 1010px;
-    margin: 0 auto;
-    position: relative;
-    @media only screen and (max-width: 1020px) {
-      min-height: 175px;
-      width: auto;
-      margin: 0 10px;
-      padding-top: 0;
-    }
+.social-links {
+    font-size: 13px;
+    line-height: 1.2em;
+    text-align: center;
+    font-weight: normal;
+  	margin: 35px 0;
+  	color: #fff;
 
-    section.connected {
-      float: right;
-      @media only screen and (max-width: 1020px) {
-        margin-top: 20px;
-        width: 100%;
-        float: right;
-      }
+	a {
+		display: inline-block;
+		background-size: contain;
+		background-repeat: no-repeat;
+		margin: 23px 0;
 
-      h4 {
-        display: inline-block;
-        color: $white-gray;
-        font-size: 20px;
-        vertical-align: middle;
-        margin-right: 15px;
-      }
+		+ a {
+			margin-left: 30px;
+		}
+	}
+}
 
-      ul {
-        display: inline-block;
-        vertical-align: middle;
+.copyright-notice {
+	text-align: center;
+    font-size: 12px;
+    line-height: 14px;
+    color: #656565;
+}
 
-        li {
-          display: inline-block;
 
-          a {
-            display: block;
-            text-align: left;
-            text-indent: -100px;
-            overflow: hidden;
-            height: 27px;
-            width: 24px;
-            background: url('/images/ico-social.png') no-repeat;
-            background-position: 0 0;
+@media only screen and (max-width : 991px) {
+	.bottom-footer .menu-item {
+		display: none;
+		margin-top: 30px;
+	}
 
-            &:hover {
-              background-position: -45px 0;
-            }
-          }
+	.menu-visible .bottom-footer .menu-item {
+		display: block;
+	}
 
-          .tw {
-            background-position: 0 -29px;
+	.social-links {
+		.fb-link {
+			background-image: url('/images/ico-facebook.svg');
+			width: 27px;
+			height: 27px;
+		}
 
-            &:hover {
-              background-position: -45px -29px;
-            }
-          }
+		.twitter-link {
+			background-image: url('/images/ico-twitter.svg');
+			width: 28px;
+			height: 24px;
+		}
 
-          .gp {
-            background-position: 0 -57px;
+		.linkedin-link {
+			background-image: url('/images/ico-linkedin.svg');
+			width: 27px;
+			height: 27px;
+		}
 
-            &:hover {
-              background-position: -45px -57px;
-            }
-          }
+		.google-link {
+			background-image: url('/images/ico-google.svg');
+			width: 27px;
+			height: 27px;
+		}
+	}
+}
 
-          .in {
-            background-position: 0 -86px;
+@media only screen and (min-width : 992px) {
+	.bottom-footer {
+		padding-top: 40px;
 
-            &:hover {
-              background-position: -45px -86px;
-            }
-          }
-        }
-      }
+		.submenu-item  + .submenu-item  {
+			margin-left: 50px;
+		}
 
-      .updates {
-        margin-top: 15px;
-        width: 350px;
-        @media only screen and (max-width: 1020px) {
-          width: 300px;
-        }
+		.menu-item {
+			text-align: center;
+			font-weight: normal;
 
-        form {
-          .email {
-            @include source-sans-light;
-            border: none;
-            border-radius: 4px 0 0 4px;
-            background-color: $input-background;
-            outline: 0;
-            color: $light-gray;
-            float: left;
-            width: 67%;
-            height: 20px;
-            padding: 6px;
-            font-size: 15px;
-          }
+			.menu-link {
+				color: #fff;
+				font-size: 16px;
+				line-height: 21px;
+			}
+		}
+	}
 
-          .btnSubmitFooter {
-            @include source-sans-light;
-            float: left;
-            border: 0;
-            border-bottom: 4px solid $tc-btn-dark-orange;
-            border-radius: 0 4px 4px 0;
-            background-color: $tc-btn-light-orange;
-            color: $white;
-            width: 29%;
-            padding-top: 4px;
-            padding-bottom: 5px;
-            font-size: 15px;
-            cursor: pointer;
+	.copyright-notice {
+		font-size: 15px;
+    	color: #fff;
+	}
 
-            &:hover {
-              background-color: $tc-btn-dark-orange;
-            }
-          }
-        }
-      }
-    }
+	.social-links {
+		margin-bottom: 3px;
 
-    section.copyright {
-      margin-top: 20px;
-      float: left;
-      font-size: 16px;
+		a {
+			width: 20px;
+			height: 20px;
+			margin-top: 13px;
+		}
 
-      p {
-        margin-bottom: 5px;
-      }
+		.fb-link {
+			background-image: url('/images/ico-facebook_desktop.svg');
+		}
 
-      ul li {
-        display: inline-block;
-        margin-right: 5px;
+		.twitter-link {
+			background-image: url('/images/ico-twitter_desktop.svg');
+		}
 
-        a {
-          color: $light-gray;
-        }
-      }
-    }
-  }
+		.linkedin-link {
+			background-image: url('/images/ico-linkedin_desktop.svg');
+		}
+
+		.google-link {
+			background-image: url('/images/ico-google_desktop.svg');
+		}
+	}
 }

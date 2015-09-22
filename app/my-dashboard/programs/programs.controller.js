@@ -8,10 +8,11 @@
     'MemberCertService',
     'CONSTANTS',
     '$log',
-    'ChallengeService'
+    'ChallengeService',
+    '$q'
   ];
 
-  function ProgramsController (UserService, MemberCertService, CONSTANTS, $log, ChallengeService) {
+  function ProgramsController (UserService, MemberCertService, CONSTANTS, $log, ChallengeService, $q) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.registered = false;
@@ -54,15 +55,33 @@
     }
 
     function loadChallenges() {
-      return ChallengeService.getiOSChallenges()
-      .then(function(challenges) {
-        // When filtering by reviewType is fixed on the backend,
-        // we can show both types of challenges. For now, it's showing internal
-        // challenges
+      var challengePromises = [
+        ChallengeService.getiOSChallenges({
+          filter: "reviewType=peer&status=active",
+          limit: 3,
+          offset: 0,
+          orderBy: 'submissionEndDate'
+        }),
+        ChallengeService.getiOSChallenges({
+          filter: "technologies=ios,swift&status=active",
+          limit: 3,
+          offset: 0,
+          orderBy: 'submissionEndDate'
+        })
+      ];
 
-        // var peerChallenges = challenges[0];
-        // var iOSChallenges = challenges[1];
-        // vm.challenges = [peerChallenges[0], iOSChallenges[0], iOSChallenges[1]];
+      return $q.all(challengePromises)
+      .then(function(challenges) {
+        var peerChallenges = challenges[0];
+        var iOSChallenges = challenges[1];
+        var challenges = [];
+
+        if (peerChallenges.length === 0) {
+          challenges = challenges.concat(iOSChallenges);
+        } else if (peerChallenges.length > 0) {
+          challenges = challenges.concat(peerChallenges[0]).concat(iOSChallenges.slice(0, iOSChallenges.length - 1));
+        }
+
         vm.challenges = challenges;
         vm.loading = false;
       })

@@ -24,24 +24,6 @@
     text-align: center;
   }
 
-  .section-links {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    .link {
-      border-radius: 5px;
-      padding: 10px;
-      background-color: $dark-gray;
-      margin: 10px;
-
-      a {
-        color: $white;
-        text-decoration: none;
-      }
-    }
-  }
-
   .my-challenges {
     min-height: 50px;
     display: flex;

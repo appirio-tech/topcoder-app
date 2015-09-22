@@ -80,6 +80,12 @@
               },
               function(resp) {
                 $log.debug(JSON.stringify(resp));
+                // 401 status here implies user is not registered
+                if (resp.status === 401) {
+                  reject({
+                    status: "USER_NOT_REGISTERED"
+                  });
+                }
                 if (resp.data.result.content.toLowerCase() === 'account inactive') {
                   reject({
                     status: "ACCOUNT_INACTIVE"

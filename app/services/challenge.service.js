@@ -60,14 +60,8 @@
       return deferred.promise;
     }
 
-    function getiOSChallenges() {
-      var iOSParams = {
-        filter: "technologies=ios&status=active",
-        limit: 3,
-        offset: 0,
-        orderBy: 'submissionEndDate'
-      };
-      return api.all('challenges').getList(iOSParams);
+    function getiOSChallenges(params) {
+      return api.all('challenges').getList(params);
     }
 
     /** NOT USED NEEDS TO BE REFACTORED **/
