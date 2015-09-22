@@ -100,6 +100,13 @@
         questions[questionId].answer = answerObject.answer;
         questions[questionId].reviewItemId = answerObject.id;
 
+        if (answerObject.comments && answerObject.comments.length > 0) {
+          // pick first comment for peer review challenges
+          questions[questionId].comment = answerObject.comments[0];
+        }
+        // TODO remove following line once api has the support
+        questions[questionId].comment = 'mock comment';
+
         if (answerObject.answer !== '') {
           saved = true;
         }
@@ -118,7 +125,8 @@
           reviewId: review.id,
           scorecardQuestionId: parseInt(qId),
           uploadId: review.uploadId,
-          answer: '' + q.answer
+          answer: '' + q.answer,
+          comments: [q.comment]
         };
 
         if (updating) {

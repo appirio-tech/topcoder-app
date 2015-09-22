@@ -40,6 +40,10 @@
             ng-class="{required: editForm.$submitted && optionForm.select.$error.required}")
 
           p.required-message(ng-show="editForm.$submitted && optionForm.select.$error.required") Required
+        .comment
+          .label Comment
+          textarea.text(ng-bind="q.comment")
+
 
       button(type="submit") Save and Mark Complete
 

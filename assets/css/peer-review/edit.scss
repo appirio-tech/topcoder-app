@@ -18,6 +18,17 @@
 
       .required-message {
         color: red;
+      }
+    }
+
+    .scorecard .comment {
+      margin-top: 15px;
+      margin-bottom: 20px;
+      .label {
+        margin: 10px 30px;
+      }
+      .text {
+        width: 60%;
         margin-left: 30px;
       }
     }
