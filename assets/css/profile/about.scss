@@ -30,15 +30,12 @@
       cursor: pointer;
 
       .name {
-        img {
-          height: 21px;
-          width: 21px;
-          margin-right: 5.5px;
-          margin-bottom: -3px;
+        span {
+          text-align: left;
+          float: left;
+          margin-left: 55px;
         }
-        width: 200px;
-        text-align: center;
-        padding-left: 30px;
+        width: 300px;
         background-position: 40px 2px;
         background-size: 21px;
         margin: auto;

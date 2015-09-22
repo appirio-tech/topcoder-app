@@ -40,15 +40,37 @@
         .description Hey, whatever your like might be—Design, Development, or Data Science—we have it! Explore the Challenges section and show us what you’re made of!
         button.link-button(ui-sref="settings.profile") CHALLENGE ME!
 
-      .track(ng-if="profileVm.categories['MARATHON'].rank || profileVm.categories['SRM'].rank")
-        .name DATA SCIENCE
+      .track(ng-if="vm.marathonRating || vm.SRMRating")
+        .name.data-icon
+          span DATA SCIENCE
+
+        .subtrack(ng-if="vm.marathonRating")
+          .name Marathon
+
+          .ranking
+            .number {{vm.marathonRating}}
+
+            .tag Rating
+
+          img.arrow(src="/images/ico-arrow-big-right.svg")
+
+        .subtrack(ng-if="vm.SRMRating")
+          .name SRM
+
+          .ranking
+            .number {{vm.SRMRating}}
+
+            .tag Rating
+
+          img.arrow(src="/images/ico-arrow-big-right.svg")
 
       .track(
         ng-repeat="track in profileVm.profile.tracks",
         ng-if="profileVm.categories[track].length > 0"
       )
 
-        div(class="{{profileVm.imgMap[track]}}-icon name") {{track}}
+        div(class="{{profileVm.imgMap[track]}}-icon name")
+          span {{track}}
 
         .subtrack(
           ng-repeat="subtrack in profileVm.categories[track]",

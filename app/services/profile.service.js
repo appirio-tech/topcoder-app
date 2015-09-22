@@ -112,7 +112,7 @@
         srm = {
           'track': 'DATA_SCIENCE',
           'subTrack': 'SRM',
-          'rank': srmStats.rank.rating
+          'rating': srmStats.rank.rating
         };
       }
       if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.MARATHON_MATCH && stats.DATA_SCIENCE.MARATHON_MATCH.rank) {
@@ -120,7 +120,7 @@
         marathon = {
           'track': 'DATA_SCIENCE',
           'subTrack': 'MARATHON',
-          'rank': marathonStats.rank.rating
+          'rating': marathonStats.rank.rating
         };
       }
       if (stats.COPILOT) {
@@ -138,7 +138,7 @@
       function removeRankless(arr) {
         return arr
           .filter(function(subTrack) {
-            return subTrack && (subTrack.rank || subTrack.wins || subTrack.fulfillment);
+            return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment);
           });
       }
       return ans;
