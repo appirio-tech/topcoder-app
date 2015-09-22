@@ -32,8 +32,8 @@
 
       profileVm.statsPromise.then(function() {
         vm.categories = profileVm.categories;
-        vm.marathonRating = profileVm.categories['MARATHON'].rating;
-        vm.SRMRating = profileVm.categories['SRM'].rating;
+        vm.marathonRating = profileVm.categories['MARATHON'] && profileVm.categories['MARATHON'].rating;
+        vm.SRMRating = profileVm.categories['SRM'] && profileVm.categories['SRM'].rating;
         console.log(vm.marathonRating + ' ' + vm.SRMRating)
       });
 
