@@ -1,6 +1,6 @@
 @import '../partials/combined';
 .profile-about-container {
-  margin-top: 30px;
+  margin-top: 80px;
   display: flex;
   flex-direction: column;
 
@@ -13,18 +13,15 @@
   }
 
   .categories {
-    .activity {
-      font-size: 18px;
-      line-height: 21px;
-      font-weight: bold;
-      font-family: 'Lucida Grande';
-      text-transform: uppercase;
-    }
+    @include module-l;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    background: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
     .track {
       margin-top: 22.4px;
       display: flex;
@@ -101,12 +98,14 @@
   }
 
   .skills {
+    @include module-l;
+    align-self: center;
+    background: white;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 15px 0;
     h1 {
       font-size: 25px;
       margin: auto;
@@ -178,6 +177,14 @@
 .profile-about-container {
   margin-top: 90px;
 
+ .activity {
+    font-size: 28px;
+    line-height: 34px;
+    font-weight: bold;
+    font-family: 'Sofia Pro';
+    text-transform: uppercase;
+  }
+    
   .categories {
     .activity {
       font-size: 28px;
@@ -249,7 +256,6 @@
   .skills {
     display: flex;
     flex-direction: column;
-    margin: 15px 0;
     h1 {
       font-size: 25px;
       margin: auto;

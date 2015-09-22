@@ -1,11 +1,9 @@
-
 .profile-header-container(ng-cloak)
   profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-challenges="profileVm.numProjects", profile-vm="profileVm")
 
 .profile-about-container
 
   tc-section(ng-show="vm.displaySection.skills" state="profileVm.status.skills" class="skills")
-    hr
     h3.activity Skills &amp; Technologies  
     .list(ng-show="profileVm.skills && profileVm.skills.length > 0")
 
@@ -25,8 +23,6 @@
       
       button.link-button(ui-sref="settings.profile") ADD YOUR SKILLS
 
-  hr
-  
   tc-section(state="profileVm.status.stats")
 
     .categories
@@ -69,7 +65,6 @@
           img.arrow(src="/images/ico-arrow-big-right.svg")
 
   tc-section(ng-show="vm.displaySection.externalLinks" state="profileVm.status.externalLinks" class="external-links")
-    hr
     h3.activity Links
     external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccountsData")
 
