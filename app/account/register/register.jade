@@ -79,7 +79,7 @@
 
     button(type="submit", busy, busy-disabled="true", ng-disabled="vm.registerForm.$invalid", ng-class="{'enabled-button': vm.registerForm.$valid}") Join Now
       busy-message
-        i.fa.fa-spinner(ng-bind="busyMessage")
+        i.fa.fa-spinner(ng-bind="vm.busyMessage")
 
   section.terms
     p By clicking "JOIN NOW" you agree to Topcoder's
