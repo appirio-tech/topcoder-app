@@ -105,8 +105,6 @@
           questions[questionId].comment = answerObject.comments[0].content;
           questions[questionId].comments = answerObject.comments;
         }
-        // TODO remove following line once api has the support
-        questions[questionId].comment = 'mock comment';
 
         if (answerObject.answer !== '') {
           saved = true;
@@ -129,7 +127,7 @@
           answer: '' + q.answer,
           comments: q.comments
         };
-        
+
         if (reviewItem.comments && reviewItem.comments.length > 0) {
           reviewItem.comments[0].content = q.comment;
         } else {
