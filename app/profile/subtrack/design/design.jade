@@ -6,8 +6,8 @@
         .name WINS
 
       li.stat
-        .value {{vm.typeStats.submissions.submission}}
-        .name SUBMISSIONS
+        .value {{vm.typeStats.wins}}
+        .name CHALLENGES
 
     .tabs
       a.left(ng-click="vm.viewing = 'challenges'",
@@ -30,17 +30,13 @@
         .div(ng-show="!vm.challenges || vm.challenges.length == 0")
           | No past challenges available for this user
 
-  .bottom
+  .bottom(ng-show="vm.viewing == 'stats'")
     h2.detailed Detailed Stats
 
     ul.vertical-stats
       li.first
-        .left Submissions
-        .right {{vm.typeStats.submissions.submissions}}
-
-      li
-        .left Passed Screening
-        .right {{vm.typeStats.submissions.passedScreening}}
+        .left Challenges
+        .right {{vm.typeStats.challenges}}
 
       li
         .left Wins
