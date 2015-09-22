@@ -13,7 +13,6 @@
 
     // Set default for toggle password directive
     vm.defaultPlaceholder = 'Create Password';
-    vm.busyDisabled = true;
 
     // lookup users country
     Helpers.getCountyObjFromIP()
