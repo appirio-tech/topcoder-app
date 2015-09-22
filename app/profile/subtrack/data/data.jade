@@ -1,0 +1,65 @@
+.develop(ng-if="vm.track == 'DATA_SCIENCE'")
+  .top
+    ul.horizontal-stats
+      li.stat
+        .value {{vm.typeStats.rank.rank}}
+        .name RANK
+
+      li.stat
+        .value {{vm.typeStats.rank.countryRank}}
+        .name COUNTRY RANK
+
+      li.stat
+        .value {{vm.typeStats.rank.rating}}
+        .name RATING
+
+      li.stat
+        .value {{vm.typeStats.rank.percentile / 100 | percentage}}
+        .name PERCENTILE
+
+    .tabs
+      a.left(ng-click="vm.viewing = 'challenges'",
+        ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
+      ) Challenges
+
+      a.right(ng-click="vm.viewing = 'stats'",
+        ng-class="vm.viewing == 'stats' ? 'selected' : ''"
+      ) Stats
+
+    tc-section(
+      ng-show="vm.viewing == 'challenges'",
+      state="vm.status.challenges"
+    )
+      tc-paginator(data="vm.challenges", page-params="vm.pageparams")
+      .challenges
+        .challenge.tile(ng-repeat="challenge in vm.challenges")
+          challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
+        .div(ng-show="!vm.challenges || vm.challenges.length == 0")
+          | no past challenges available for this user
+
+    .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
+      .graphs
+        distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
+
+        history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
+
+  .bottom(ng-show="vm.viewing == 'stats'")
+    h2.detailed Details
+
+    ul.vertical-stats
+      li.first
+        .left Rank
+        .right {{vm.typeStats.rank.rank}}
+
+      li
+        .left Country Rank
+        .right {{vm.typeStats.rank.countryRank}}
+
+      li
+        .left Rating
+        .right {{vm.typeStats.rank.rating}}
+
+      li
+        .left Percentile
+        .right {{vm.typeStats.rank.percentile / 100 | percentage}}
+

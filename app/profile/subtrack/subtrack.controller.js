@@ -37,7 +37,7 @@
     activate();
 
     function activate() {
-      if (vm.track == 'DEVELOP') {
+      if (vm.track == 'DEVELOP' || vm.track == 'DATA_SCIENCE') {
         vm.distributionPromise = ProfileService.getDistributionStats(vm.track, vm.subTrack);
         vm.distributionPromise.then(function(data) {
           vm.distribution = data.distribution;
