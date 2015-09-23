@@ -36,35 +36,4 @@ describe('Challenge Tile Directive', function() {
       expect(element.isolateScope().DOMAIN).to.equal(domain);
     });
   });
-
-  describe('Spotlight Challenges', function() {
-    var spotlightTile;
-
-    beforeEach(function() {
-      scope.challenge = spotlightChallenge;
-      element = angular.element('<challenge-tile class="tile spotlight" spotlight="spotlight" challenge="challenge"></challenge-tile>');
-      spotlightTile = $compile(element)(scope);
-      scope.$digest();
-    });
-
-    it('should have spotlight challenge related html', function() {
-      var spotlightHtml = spotlightTile.html();
-
-      expect(spotlightHtml).to.include('Spotlight Challenge');
-    });
-
-    it('should not show the number of registrants if there are 0', function() {
-      scope.challenge.numRegistrants = 0;
-      scope.$digest();
-
-      expect(spotlightTile.find('.registrants')[0].className).to.include('ng-hide');
-    });
-
-    it('should not show the number of submissions if there are 0', function() {
-      scope.challenge.numSubmissions = 0;
-      scope.$digest();
-
-      expect(spotlightTile.find('.submissions')[0].className).to.include('ng-hide');
-    });
-  });
 });

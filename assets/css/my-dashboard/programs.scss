@@ -1,12 +1,18 @@
 @import '../partials/combined';
 
 .programs {
+  padding-top: 30px;
+
   .section-loading {
     min-height: 200px;
   }
 
   h1.section-title {
-    span { text-transform: none; }
+    margin-bottom: 30px;
+
+    span {
+      text-transform: none;
+    }
   }
 
   .unregistered {
@@ -57,7 +63,7 @@
       @include sofia-pro-light;
       font-size: 23px;
       text-transform: uppercase;
-      color: #3D3D3D;
+      color: $primary-text;
       @media only screen and (min-width: 900px) {
         margin-top: 0;
       }
@@ -106,112 +112,91 @@
 
   .registered {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 350px;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 15px;
+    background-color: #FCFCFC;
 
-    .registered-badge, .challenge {
-      margin-right: 25px;
-      background-color: #e7e7e7;
+    .badge-and-challenges {
+      width: 100%;
+      @include horizontal-scroll;
+      @media only screen and (min-width: 1125px) {
+        display: flex;
+        flex-flow: row wrap;
+        width: 1125px;
+        overflow: visible;
+      }
     }
 
     .registered-badge {
-      max-width: 25%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      flex: 25%;
-      text-align: center;
-
-      img {
+      display: inline-block;
+      height: 370px;
+      width: 270px;
+      margin-left: 15px;
+      margin-right: 15px;
+      border: 1px solid #DCDCDC;
+      border-radius: 4px;
+      background-color: $white;
+      @media only screen and (min-width: 1125px) {
         display: block;
-        margin: 25px auto;
-        width: 22%;
+        margin-left: 0;
+      }
+
+      .flex-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       p {
-        margin-top: 10px;
-        text-transform: uppercase;
-        @include source-sans-bold;
-        font-size: 16px;
-        color: #727272;
+        margin-top: 60px;
+        margin-bottom: 37px;
+        @include sofia-pro-light;
+        font-size: 20px;
+        color: $primary-text;
+      }
+
+      .badge-timeline {
+        width: 120px;
       }
 
       a {
-        margin-top: 10px;
-        text-decoration: underline;
+        display: block;
+        margin-top: 37px;
+        @include button-m-wide;
+        text-decoration: none;
       }
     }
 
-    .challenge {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      flex: 25%;
+    ios-card {
+      display: inline-block;
+      margin-right: 15px;
+      @media only screen and (min-width: 1125px) {
+        display: block;
 
-      &:last-child {
-        margin-right: 0;
-      }
-
-      p {
-        color: #727272;
-      }
-
-      .title {
-        min-height: 60px;
-        margin-top: 10px;
-        @include source-sans-semi-bold;
-      }
-
-      .technologies {
-        margin-top: 10px;
-        min-height: 32px;
-      }
-
-      .prize {
-        padding-top: 10px;
-        min-height: 25px;
-        font-size: 20px;
-      }
-
-      .hidden {
-        visibility: hidden;
-      }
-
-      .days-remaining {
-        margin-top: 15px;
-        font-size: 20px;
-
-        span {
-          display: block;
-          margin-top: 5px;
-          @include source-sans-semi-bold;
-          font-size: 12px;
-          text-transform: uppercase;
+        &:last-child {
+          margin-right: 0;
         }
       }
+    }
+  }
 
-      .stats {
-        margin-top: 15px;
-        font-size: 18px;
+  .ios-links {
+    @include module-links;
 
-        i {
-          margin-right: 5px;
-        }
-
-        span {
-          margin-right: 10px;
-
-          &:last-child {
-            margin-right: 0;
-          }
-        }
+    p {
+      @include source-sans-regular;
+      font-size: 14px;
+      line-height: 20px;
+      color: $primary-text;
+      @media only screen and (min-width: 900px) {
+        font-size: 16px;
       }
 
       a {
-        margin-top: 20px;
-        font-size: 14px;
-        text-decoration: underline;
+        color: $primary-color;
+        cursor: pointer;
+        text-decoration: none;
       }
     }
   }

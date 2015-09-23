@@ -1,3 +1,5 @@
+@import '../partials/combined';
+
 .graph-viewer {
   display: flex;
   flex-direction: column;
@@ -94,14 +96,7 @@
     }
 
     .compare {
-      color: #00aeff;
-      background: white;
-      border: 1px solid #00aeff;
-      border-radius: 5px;
-      font-family: 'Sofia Pro';
-      font-size: 14px;
-      line-height: 20px;
-      padding: 5px;
+      @include button-l;
     }
   }
 }
@@ -110,9 +105,9 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  justify-content: center;
 
   .distribution-graph {
-
     display: flex;
     flex-direction: row;
     justify-content: center;

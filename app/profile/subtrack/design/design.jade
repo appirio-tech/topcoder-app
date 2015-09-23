@@ -1,50 +1,42 @@
 .design(ng-if="vm.track == 'DESIGN'")
-  ul.horizontal-stats
-    li.stat
-      .value {{vm.typeStats.wins}}
-      .name WINS
+  .top
+    ul.horizontal-stats
+      li.stat
+        .value {{vm.typeStats.wins}}
+        .name WINS
 
-    li.stat
-      .value {{vm.typeStats.submissions.submissions}}
-      .name SUBMISSIONS
+      li.stat
+        .value {{vm.typeStats.wins}}
+        .name CHALLENGES
 
-  .tabs
-    a(ng-click="vm.viewing = 'challenges'",
-      ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
-    ) Challenges
+    .tabs
+      a.left(ng-click="vm.viewing = 'challenges'",
+        ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
+      ) Challenges
 
-    a(ng-click="vm.viewing = 'stats'",
-      ng-class="vm.viewing == 'stats' ? 'selected' : ''"
-    ) Stats
+      a.right(ng-click="vm.viewing = 'stats'",
+        ng-class="vm.viewing == 'stats' ? 'selected' : ''"
+      ) Stats
 
-  hr
+    tc-section(
+      ng-show="vm.viewing == 'challenges'",
+      state="vm.status.challenges"
+    )
+      tc-paginator(data="vm.challenges", page-params="vm.pageParams")
+      .challenges
+        .challenge.tile(ng-repeat="challenge in vm.challenges")
+          challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
 
-  tc-section(
-    ng-show="vm.viewing == 'challenges'",
-    state="vm.status.challenges"
-  )
-    tc-paginator(data="vm.challenges", page-params="vm.pageParams")
-    .challenges
-      .challenge.tile(ng-repeat="challenge in vm.challenges")
-        challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
+        .div(ng-show="!vm.challenges || vm.challenges.length == 0")
+          | No past challenges available for this user
 
-      .div(ng-show="!vm.challenges || vm.challenges.length == 0")
-        | No past challenges available for this user
-
-  .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
-    .graphs
-      img(src="/images/graph.png")
-
+  .bottom(ng-show="vm.viewing == 'stats'")
     h2.detailed Detailed Stats
 
     ul.vertical-stats
-      li
-        .left Submissions
-        .right {{vm.typeStats.submissions.submissions}}
-
-      li
-        .left Passed Screening
-        .right {{vm.typeStats.submissions.passedScreening}}
+      li.first
+        .left Challenges
+        .right {{vm.typeStats.challenges}}
 
       li
         .left Wins

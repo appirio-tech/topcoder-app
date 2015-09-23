@@ -1,3 +1,5 @@
+@import '../partials/combined';
+
 .profile-widget-directive {
   display: flex;
   flex-direction: column;
@@ -28,6 +30,7 @@
     font-family: 'Sofia Pro';
     font-weight: light;
     color: #d1d3d4;
+    text-align: center;
     text-transform: uppercase;
   }
 
@@ -46,6 +49,7 @@
     font-size: 18px;
     font-family: 'Sofia Pro';
     font-weight: 500;
+    text-align: center;
     text-transform: uppercase;
   }
 
@@ -91,17 +95,11 @@
       flex-direction: row;
       align-items: center;
       .link {
-        background: #00aeff;
-        border-radius: 5px;
-        padding: 7px 12px;
+        @include button-m;
         text-decoration: none;
-        color: white;
         text-transform: uppercase;
         margin-left: 5px;
         margin-right: 5px;
-        font-size: 14px;
-        font-family: 'Sofia Pro';
-        line-height: 20px;
       }
     }
 
@@ -134,10 +132,12 @@
 
     h3.tenure {
       margin-top: 3px;
+      text-align: left;
     }
 
     h3.location-challenges {
       margin-top: 36px;
+      text-align: left;
     }
 
     p.description {

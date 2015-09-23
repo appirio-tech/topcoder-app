@@ -35,6 +35,7 @@
           ul.submenu
             li.submenu-item #[a.menu-link(ui-sref="dashboard") DASHBOARD]
             li.submenu-item #[a.menu-link(ui-sref="profile.about({userHandle: vm.userHandle})") MY PROFILE]
+            li.submenu-item #[a.menu-link(href="{{main.constants.COMMUNITY_URL}}/PactsMemberServlet?module=PaymentHistory&full_list=false") PAYMENTS]
             li.submenu-item #[a.menu-link(ui-sref="settings.profile") SETTINGS]
             li.submenu-item #[a.menu-link(ng-click="vm.logout(); main.menuVisible = vm.isAuth = false") LOG OUT]
         // links for anonymous user

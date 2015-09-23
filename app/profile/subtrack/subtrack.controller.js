@@ -37,24 +37,28 @@
     activate();
 
     function activate() {
-      vm.distributionPromise = ProfileService.getDistributionStats(vm.track, vm.subTrack);
-      vm.distributionPromise.then(function(data) {
-        vm.distribution = data.distribution;
-      });
-      var historyDeferred = $q.defer();
-      vm.historyPromise = historyDeferred.promise;
-      ProfileService.getHistoryStats(profileVm.profile.handle).then(function(data) {
-        if (data.handle) {
-          vm.history = ProfileService.getChallengeTypeStats(data, vm.track, vm.subTrack).history;
-          historyDeferred.resolve(vm.history);
-        }
-      });
+      if (vm.track == 'DEVELOP' || vm.track == 'DATA_SCIENCE') {
+        vm.distributionPromise = ProfileService.getDistributionStats(vm.track, vm.subTrack);
+        vm.distributionPromise.then(function(data) {
+          vm.distribution = data.distribution;
+        });
+        var historyDeferred = $q.defer();
+        vm.historyPromise = historyDeferred.promise;
+        ProfileService.getHistoryStats(profileVm.profile.handle).then(function(data) {
+          if (data.handle) {
+            vm.history = ProfileService.getChallengeTypeStats(data, vm.track, vm.subTrack).history;
+            historyDeferred.resolve(vm.history);
+          }
+        });
+      }
+
       profileVm.statsPromise.then(function(data) {
         vm.typeStats = ProfileService.getChallengeTypeStats(
           profileVm.stats,
           vm.track,
           vm.subTrack.toLowerCase().replace(/ /g, '')
         );
+        console.log(vm.typeStats);
         if (vm.subTrack) {
           vm.dropdown = ProfileService.getSubTracks(profileVm.stats, vm.track.toLowerCase())
           .map(function(subtrack) {

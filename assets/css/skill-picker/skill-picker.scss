@@ -73,7 +73,7 @@
           cursor: pointer;
         }
         &.checked-track {
-          color: #3d3d3d;
+          color: $primary-text;
 
           span {
             background: url(/images/checkbox-sprite.png) left top no-repeat;

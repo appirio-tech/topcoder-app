@@ -7,6 +7,7 @@ var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
 var merge        = require('merge-stream');
 var RevAll       = require('gulp-rev-all');
+var awspublishRouter = require('gulp-awspublish-router');
 var rename       = require('gulp-rename');
 
 var envFile = require('./config.js')();
@@ -359,16 +360,17 @@ gulp.task('serve-build', ['build'], function() {
 });
 
 gulp.task('e2eDataFilesRename', function() {
-	  log('Copying environment specific files');
+	  log('Copying environment specific files'+config.e2eTestsDataFiles);
 	  
-	  return gulp.src(config.e2eTestsData)
+	  return gulp.src(config.e2eTestsDataFiles)
 	  .pipe(rename(function (path) {
+		  log('path '+path);
 		  path.basename = path.basename.replace('.'+process.env.ENVIRONMENT, '');
 	  }))
-	  .pipe(gulp.dest(config.e2e));
+	  .pipe(gulp.dest(config.e2eApp));
 	});
 
-gulp.task('e2eReplacer', function() {
+gulp.task('e2eCopy', function() {
 	  log('Copying environment specific files');
 	  
 	  return gulp
@@ -377,9 +379,9 @@ gulp.task('e2eReplacer', function() {
 	});
 
 gulp.task('e2e', [], function(done) {
-  gulp.src(['.tmp/tests/e2e/app/*.js'])
+  gulp.src(config.e2eTempFiles)
     .pipe($.angularProtractor({
-        'configFile': 'tests/e2e/conf.js',
+        'configFile': config.e2eTemp + '/conf.js',
         'args': ['--baseUrl', 'http://127.0.0.1:8000'],
         'autoStartStopServer': true,
         'debug': true
