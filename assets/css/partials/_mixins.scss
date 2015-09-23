@@ -294,6 +294,11 @@
   cursor: pointer;
 }
 
+@mixin ui-disabled-button {
+  background-color: $ui-disabled-button-blue;
+  cursor: default;
+}
+
 @mixin ui-track-button {
   border: 2px solid $ui-enabled-button-blue;
   color: $ui-enabled-button-blue;
