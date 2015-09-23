@@ -98,7 +98,7 @@ var RegistrationPage = function() {
 	  userPassword.sendKeys(userInfo.password);
 	  
 	  var registerButton =element(by.partialButtonText('Join Now'));
-	  expect(registerButton.isEnabled()).toEqual(false);
+	  expect(registerButton.isEnabled()).toEqual(true);
   };
   
   

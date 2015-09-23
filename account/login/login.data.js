@@ -2,7 +2,7 @@
 // store user data in maps for ease of use and readability...
 var LoginData = function() {
     this.userCredentials = [
-                            	{	'username1' :'aqmansuri',
+                            	{	'username' :'aqmansuri',
                             		'password' :'appirio123' 
                             	},
                             	{	'username' : 'DhananjayKumar1',

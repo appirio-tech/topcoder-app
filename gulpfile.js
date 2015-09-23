@@ -7,6 +7,7 @@ var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
 var merge        = require('merge-stream');
 var RevAll       = require('gulp-rev-all');
+var rename       = require('gulp-rename');
 
 var envFile = require('./config.js')();
 var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
@@ -357,8 +358,26 @@ gulp.task('serve-build', ['build'], function() {
 
 });
 
+gulp.task('e2eDataFilesRename', function() {
+	  log('Copying environment specific files');
+	  
+	  return gulp.src(config.e2eTestsData)
+	  .pipe(rename(function (path) {
+		  path.basename = path.basename.replace('.'+process.env.ENVIRONMENT, '');
+	  }))
+	  .pipe(gulp.dest(config.e2e));
+	});
+
+gulp.task('e2eReplacer', function() {
+	  log('Copying environment specific files');
+	  
+	  return gulp
+	    .src(config.e2eTests)
+	    .pipe(gulp.dest(config.e2eTemp));
+	});
+
 gulp.task('e2e', [], function(done) {
-  gulp.src(['./tests/e2e/app/*.js'])
+  gulp.src(['.tmp/tests/e2e/app/*.js'])
     .pipe($.angularProtractor({
         'configFile': 'tests/e2e/conf.js',
         'args': ['--baseUrl', 'http://127.0.0.1:8000'],
