@@ -28,7 +28,7 @@ angular.module("CONSTANTS", [])
 	"STATE_LOADING": "loading",
 	"STATE_ERROR": "error",
 	"STATE_READY": "ready",
-	"BUSY_PROGRESS_MESSAGE" : "Processing.."
+	"BUSY_PROGRESS_MESSAGE": "Processing.."
 })
 
 ;
