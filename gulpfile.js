@@ -7,6 +7,8 @@ var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
 var merge        = require('merge-stream');
 var RevAll       = require('gulp-rev-all');
+var awspublishRouter = require('gulp-awspublish-router');
+
 
 var envFile = require('./config.js')();
 var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
@@ -389,19 +391,38 @@ gulp.task('deploy', ['build'], function() {
   // create a new publisher
   var publisher = $.awspublish.create(awsConfig);
 
-  // define custom headers
-  var headers = {
-    'Cache-Control': 'max-age=94608000, no-transform, public'
-  };
-
   log('Deploying to S3');
 
-  var gzip = gulp.src(['build/**/*.js', 'build/**/*.css']).pipe($.awspublish.gzip());
-  var plain = gulp.src([ 'build/**/*', '!build/**/*.js' ]);
+  var gzip = gulp.src(['build/**/*.js', 'build/**/*.css']).pipe($.awspublish.gzip())
+    .pipe(awspublishRouter({
+      cache: {
+        cacheTime: 94608000,
+        allowTransform: false,
+        public: true
+      },
+      routes: {
+        "^.+$": "$&"
+      }
+    }));
+
+  var plain = gulp.src([ 'build/**/*', '!build/**/*.js' ])
+    .pipe(awspublishRouter({
+      cache: {
+        cacheTime: 94608000,
+        allowTransform: false,
+        public: true
+      },
+      routes: {
+        "^.+\\.html": {
+          cacheTime: 0
+        },
+        "^.+$": "$&"
+      }
+    }));
 
   return merge(gzip, plain)
     .pipe(publisher.cache())
-    .pipe(publisher.publish(headers, {force:true}))
+    .pipe(publisher.publish())
     .pipe(publisher.sync())
     .pipe($.awspublish.reporter());
 });
