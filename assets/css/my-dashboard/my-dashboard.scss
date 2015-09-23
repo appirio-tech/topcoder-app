@@ -9,8 +9,6 @@
     width: 100%;
     max-width: 1242px;
     margin-top: 60px;
-    padding-top: 30px;
-    padding-bottom: 20px;
     background-color: $white;
   }
 
@@ -42,7 +40,7 @@
     color: $primary-text;
     text-align: center;
     text-transform: uppercase;
-    @media only screen and (min-width: 450) {
+    @media only screen and (min-width: 450px) {
       font-size: 28px;
     }
   }

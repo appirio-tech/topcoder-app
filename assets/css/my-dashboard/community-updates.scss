@@ -4,6 +4,9 @@
   display: flex;
   flex-direction: column;
   color: $primary-text;
+  @media only screen and (min-width: 1132px) {
+    padding-bottom: 60px;
+  }
 
   header {
     margin-top: 6px;

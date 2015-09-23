@@ -3,6 +3,7 @@
 .header-dashboard {
   @include module-full-width;
   background-color: $white;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, .3);
 
   header {
     display: flex;
@@ -45,30 +46,27 @@
       }
 
       .slash {
-        width: 20px;
-        height: 35px;
-        margin-right: 15px;
+        @include forward-slash(1px, 40px, 0, 2px, 30deg);
+        margin-right: 8px;
         background-color: #D1D3D4;
+        @media only screen and (min-width: 600px) {
+          @include forward-slash(1px, 45px, 0, 2px, 30deg);
+          margin-right: 10px;
+        }
       }
 
       .money-earned, .copilot-challenges {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        text-align: center;
-
-        p {
-          text-transform: uppercase;
-        }
+        text-align: right;
 
         .number {
+          margin-bottom: 4px;
           @include sofia-pro-bold;
           font-size: 18px;
           line-height: 23px;
           color: $primary-text;
-          text-align: right;
           @media only screen and (min-width: 600px) {
-            text-align: center;
             font-size: 22px;
             line-height: 28px;
           }
@@ -78,6 +76,7 @@
           @include sofia-pro-regular;
           font-size: 10px;
           line-height: 13px;
+          text-transform: uppercase;
           color: #A3A3AE;
           @media only screen and (min-width: 600px) {
             font-size: 12px;
@@ -87,16 +86,16 @@
       }
 
       .money-earned {
+        padding-left: 15px;
         @media only screen and (min-width: 600px) {
           padding-left: 10px;
-          padding-right: 10px;
         }
       }
 
       .copilot-challenges {
-        margin-right: 15px;
+        margin-right: 10px;
+        padding-right: 15px;
         @media only screen and (min-width: 600px) {
-          padding-left: 10px;
           padding-right: 10px;
         }
       }

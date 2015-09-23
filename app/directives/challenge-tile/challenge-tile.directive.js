@@ -17,7 +17,8 @@
         activate();
 
         function activate() {
-          processChallenge($scope.challenge);
+          console.log($scope.challenge.plain());
+          // processChallenge($scope.challenge);
         }
 
         function processChallenge(challenge) {

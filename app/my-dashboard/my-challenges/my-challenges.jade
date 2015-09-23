@@ -1,10 +1,10 @@
 header(ng-hide="vm.loading")
-  h1.section-title(ng-bind="vm.userHasChallenges ? 'Active Challenges' : 'Challenges'")
+  h1.section-title(ng-bind="vm.userHasChallenges ? 'My Challenges' : 'Challenges'")
 
 .section-loading(ng-show="vm.loading")
 
 section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
-  h3 Prove your skills!
+  h3 Win prize money and expand your knowledge
 
   .tracks
     .track
@@ -23,15 +23,17 @@ section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
       .copilot-icon-outline
       p Co-Pilot
 
-  p.info Hey, whatever your like might be—Design, Development, or Data Science—we have it! Explore the Challenges section and show us what you’re made of!
+  p.info Compete in challenges to win money, test yourself against the world's best, and learn new skills
 
-  a(ng-href="https://www.{{DOMAIN}}/challenges/") View Challenges
+  a(ng-href="https://www.{{DOMAIN}}/challenges/") Find Challenges
+
+  a(href="") Learn More
 
 section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading")
   .challenges
     challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="'tile'", ng-class="'tile-view'")
 
 .my-challenges-links(ng-if="vm.userHasChallenges && !vm.loading")
-    a(ui-sref="my-challenges") View All
+    a(ui-sref="my-challenges") View All Active Challenges
 
-    a(ui-sref="my-challenges") Past Challenges
+    a(ui-sref="my-challenges") View All Past Challenges
