@@ -6,12 +6,8 @@
 
     p {{subTrack}}
 
-  .challenge-details
-    //- .thumbnail(ng-if="challenge.track === 'DESIGN'")
-    //-   img(ng-src="http://studio.topcoder.com/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=thumb", fallback-src="/images/lock-icon-small.png")
-
+  .challenge-details(ng-hide="challenge.isPastDesignChallenge")
     p.currentPhase {{challenge.currentPhases[0].phaseType}}
-
 
     .challenge-calendar
       p.starts-in Ends In
@@ -38,6 +34,9 @@
         .forum-icon
 
         p Forum
+
+  .past-design-details(ng-show="challenge.isPastDesignChallenge")
+    img(ng-src="http://studio.topcoder.com/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=thumb", fallback-src="/images/lock-icon-small.png")
 
 .challenge.list-view(ng-show="view=='list'")
   .challenge-icons

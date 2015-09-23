@@ -121,6 +121,14 @@
 }
 
 // Replace with classes from style guide, when it's finished
+@mixin link {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 @mixin button-s {
   height: 20px;
   line-height: 20px;

@@ -24,16 +24,3 @@
       tc-paginator(data="vm.myChallenges", page-params="vm.pageParams")
       .data(ng-class="vm.view + '-view'")
         challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.view", ng-class="vm.view + '-view'")
-
-    .section-links
-      .link
-        a(href="https://www.{{vm.domain}}/challenges/?pageIndex=1") Find New Challenges
-
-      .link(ng-show="vm.isCopilot")
-        a(href="https://www.{{vm.domain}}/direct") Launch Topcoder Direct
-
-      .link(ng-hide="vm.userHasChallenges")
-        a(href="https://community.{{vm.domain}}/", target="_blank") View Help Library
-
-    hr
-

@@ -64,7 +64,6 @@
       }
     };
 
-    // get ACTIVE challenges and spotlight challenges
     function _getChallenges() {
       var params = {
         limit: vm.pageParams.limit,
@@ -77,9 +76,8 @@
       vm.loading = true;
       return ChallengeService.getUserChallenges(handle, params)
       .then(function(challenges){
+        console.log(challenges.plain());
         if (challenges.length > 0) {
-          // FIXME until we figure out the correct sort order param
-
           vm.myChallenges = challenges;
           vm.userHasChallenges = true;
           vm.loading = false;
