@@ -49,7 +49,7 @@ module.exports = function() {
                '!' + e2e + 'app/**/*.qa.data.js',
                '!' + e2e + 'app/**/*.production.data.js'
                ],
-    e2eTestsDataFiles : e2e +'app/**/*.'+process.env.ENVIRONMENT+'.data.js',
+    e2eTestsDataFiles : e2e +'app/**/*.'+process.env.ENVIRONMENT || 'development' +'.data.js',
     e2eTemp : temp + 'tests/e2e',
     e2eTempFiles : ['.tmp/tests/e2e/app/*.js'],
 
