@@ -74,8 +74,14 @@
     });
 
     $urlRouterProvider.otherwise(function($injector) {
-      $injector.invoke(['$log', '$state', function($log, $state) {
-        $state.go('404');
+      $injector.invoke(['$state', 'CONSTANTS', '$location', function($state, CONSTANTS, $location) {
+        if ($location.host().indexOf('local') == -1) {
+          var absUrl = CONSTANTS.MAIN_URL + $location.path() + $location.search() + $location.hash();
+          window.location.replace(absUrl);
+        } else {
+          // locally redirect to 404
+          $state.go('404');
+        }
       }]);
 
     });
