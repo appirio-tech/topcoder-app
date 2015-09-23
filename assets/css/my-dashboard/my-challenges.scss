@@ -4,7 +4,6 @@
   .section-title {
     margin-bottom: 27px;
     @media only screen and (min-width: 900px) {
-      font-size: 28px;
       margin-bottom: 30px;
     }
   }
@@ -106,6 +105,8 @@
     display: flex;
     justify-content: center;
     padding-top: 20px;
+    border-top: 1px solid #F0F0F0;
+    border-bottom: 1px solid #F0F0F0;
     background-color: #FCFCFC;
 
     .challenges {

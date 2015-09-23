@@ -1,7 +1,6 @@
 header
-  h1.section-title Single Round Matches
+  h1.section-title Competitive Programming
 
-  //- a.viewSRMs(ui-sref="my-srms") View All Past SRMs
 
 .section-loading(ng-show="vm.loading")
 
@@ -11,11 +10,13 @@ section(ng-hide="vm.loading")
 
     .srm-links-card
       .flex-wrapper
-        h2 Show us you can #[span code!]
+        h2 Practice on past problems
 
         a(href="https://community.{{DOMAIN}}/tc?module=ProblemArchive") Problem Archives
 
         a(href="https://community.{{DOMAIN}}/wiki/display/tc/Algorithm+Problem+Set+Analysis") Match Editorials
+
+        a(ui-sref="my-srms") View Past SRMs
 
 .srms-links(ng-hide="vm.loading")
   p Want to compete right now? Try your skills in the #[a(ng-href="https://arena.{{DOMAIN}}/") Topcoder ARENA]!

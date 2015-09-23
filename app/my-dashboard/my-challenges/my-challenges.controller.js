@@ -36,25 +36,17 @@
         }
       };
 
-      $q.all([
-        ChallengeService.getUserChallenges(handle, params),
-        ChallengeService.getSpotlightChallenges()
-      ])
-      .then(function(data){
-        var challenges = data[0];
-        var spotlightChallenges = data[1];
-
+      ChallengeService.getUserChallenges(handle, params)
+      .then(function(challenges){
+        console.log(challenges);
         if (challenges.length > 0) {
           // FIXME until we figure out the correct sort order param
 
           vm.myChallenges = challenges;
-          vm.spotlightChallenge = spotlightChallenges[0];
-
           vm.userHasChallenges = true;
           vm.loading = false;
         } else {
           vm.userHasChallenges = false;
-          vm.spotlightChallenges = spotlightChallenges.slice(0, 2);
           vm.loading = false;
         }
       })

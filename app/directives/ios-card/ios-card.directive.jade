@@ -4,7 +4,7 @@
   header
     a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
 
-    p #[span iOS] {{challenge.track}}
+    p {{challenge.subTrack | underscoreStrip}}
 
   .challenge-details
     p.prize-money(ng-show="challenge.reviewType === 'PEER'") Peer Review Challenge

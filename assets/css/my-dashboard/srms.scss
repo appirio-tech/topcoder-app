@@ -21,6 +21,8 @@
     display: flex;
     justify-content: center;
     padding: 20px 0;
+    border-top: 1px solid #F0F0F0;
+    border-bottom: 1px solid #F0F0F0;
     background-color: #FCFCFC;
 
     .srm-tiles {
@@ -33,7 +35,7 @@
         overflow: visible;
       }
 
-      srm-tile{
+      srm-tile {
         display: inline-block;
         margin-left: 15px;
         margin-bottom: 15px;
@@ -67,23 +69,20 @@
         align-items: center;
 
         h2 {
-          margin-top: 70px;
-          margin-bottom: 48px;
+          margin-top: 60px;
+          margin-bottom: 30px;
           @include sofia-pro-light;
           font-size: 24px;
           text-align: center;
           color: $primary-text;
           text-transform: uppercase;
           white-space: normal;
-
-          span {
-            @include sofia-pro-bold;
-          }
         }
 
         a {
           margin-bottom: 21px;
           @include button-m-wide;
+          @include button-ghost;
           text-decoration: none;
         }
       }
