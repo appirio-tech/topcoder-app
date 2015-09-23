@@ -74,9 +74,13 @@
     });
 
     $urlRouterProvider.otherwise(function($injector) {
-      $injector.invoke(['$state', 'CONSTANTS', '$location', function($state, CONSTANTS, $location) {
+      $injector.invoke(['$state', 'CONSTANTS', function($state, CONSTANTS) {
         if ($location.host().indexOf('local') == -1) {
-          var absUrl = CONSTANTS.MAIN_URL + $location.path() + $location.search() + $location.hash();
+          var absUrl = CONSTANTS.MAIN_URL + window.location.pathname;
+          if (window.location.search)
+            absUrl += window.location.search;
+          if (window.location.hash)
+            absUrl += window.location.hash;
           window.location.replace(absUrl);
         } else {
           // locally redirect to 404
