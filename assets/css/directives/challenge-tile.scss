@@ -97,9 +97,45 @@
     }
   }
 
+  .stalled-challenge {
+    min-height: 83px;
+    padding-top: 21px;
+  }
+
   .phase-action {
-    margin-bottom: 25px;
-    @include button-m-wide;
+    min-height: 55px;
+
+    .submit {
+      margin-bottom: 25px;
+      @include button-m-wide;
+    }
+
+    .submitted {
+      position: relative;
+      height: 30px;
+      line-height: 30px;
+      margin-bottom: 25px;
+      padding-left: 35px;
+      padding-right: 20px;
+      border: 1px solid #F0F0F0;
+      border-radius: 4px;
+      background-color: $white;
+      @include sofia-pro-regular;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: $primary-text;
+
+      &:before {
+        content: '';
+        width: 15px;
+        height: 15px;
+        background: url(/images/ico-checkmark.svg);
+        background-size: 15px 15px;
+        position: absolute;
+        bottom: 6px;
+        left: 14px;
+      }
+    }
   }
 
   .roles {
