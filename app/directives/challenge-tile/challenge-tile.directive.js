@@ -18,11 +18,6 @@
 
         function activate() {
           // console.log($scope.challenge.plain());
-          processChallenge($scope.challenge);
-        }
-
-        function processChallenge(challenge) {
-          $scope.subTrack = challenge.subTrack.replace(/_/g, ' ');
           // if (challenge.track == 'DESIGN' && challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
           //   challenge.thumbnailId = challenge.userDetails.submissions[0].id;
           // }
