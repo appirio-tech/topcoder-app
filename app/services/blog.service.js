@@ -19,7 +19,7 @@
       $http.get(CONSTANTS.BLOG_LOCATION)
         .success(function(data) {
           // parse the blog rss feed using x2js
-          var rss = x2js.xml_str2json(data).rss;
+          var rss = x2js.xml_str2json(data.trim()).rss;
 
           var result = rss.channel.item;
 
