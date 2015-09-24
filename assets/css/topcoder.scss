@@ -14,12 +14,13 @@ html {
 body {
   @include source-sans-regular;
   background-color: $ui-page-gray;
-  @media screen and (min-device-width: 768px) {
-    min-width: 768px;
-  }
 }
 
 .notifications {
+  @media screen and (min-device-width: 768px) {
+    min-width: 768px;
+  }
+
   .notifications-container {
     position: static;
     z-index: 0;
@@ -34,6 +35,9 @@ body {
 .view-container {
   padding-bottom: 60px;
   min-height: 480px;
+  @media screen and (min-device-width: 768px) {
+    min-width: 768px;
+  }
 }
 
 .notifications {

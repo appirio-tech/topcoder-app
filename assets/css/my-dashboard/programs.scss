@@ -115,6 +115,8 @@
     justify-content: center;
     padding-top: 20px;
     padding-bottom: 15px;
+    border-top: 1px solid #F0F0F0;
+    border-bottom: 1px solid #F0F0F0;
     background-color: #FCFCFC;
 
     .badge-and-challenges {
@@ -164,6 +166,7 @@
         display: block;
         margin-top: 37px;
         @include button-m-wide;
+        @include button-ghost;
         text-decoration: none;
       }
     }

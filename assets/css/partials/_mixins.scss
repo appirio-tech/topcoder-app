@@ -219,6 +219,14 @@
   -webkit-overflow-scrolling: touch;
 }
 
+@mixin forward-slash($width, $height, $x, $y, $deg) {
+  width: $width;
+  height: $height;
+  -ms-transform: translateX($x) translateY($y) rotate($deg);
+  -webkit-transform: translateX($x) translateY($y) rotate($deg);
+  transform: translateX($x) translateY($y) rotate($deg);
+}
+
 @mixin background-image-size($width, $height) {
   width: $width;
   height: $height;
