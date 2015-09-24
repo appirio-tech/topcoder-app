@@ -22,6 +22,10 @@
 
       .submitted(ng-switch-when="Submitted") Submitted
 
+      // Need styling and JS logic for this one
+      .registered(ng-switch-when="Registered") Registered
+
+    // Only show if not data science track
     p.roles {{challenge.userDetails.roles | listRoles}}
 
     .challenge-links
@@ -31,7 +35,7 @@
 
           p {{challenge.numRegistrants}}
 
-        a.submissions(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+        a.submissions(ng-hide="challenge.track === 'DATA SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
           .submissions-icon
 
           p {{challenge.numSubmissions}}
