@@ -37,8 +37,8 @@
 
       ChallengeService.getUserChallenges(handle, params)
       .then(function(challenges){
-        ChallengeService.processChallenges(challenges);
-        console.log(challenges.plain());
+        ChallengeService.processActiveDevDesignChallenges(challenges);
+        // console.log(challenges.plain());
 
         if (challenges.length > 0) {
           vm.myChallenges = challenges;

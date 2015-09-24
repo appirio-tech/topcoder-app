@@ -16,7 +16,7 @@
       getiOSChallenges: getiOSChallenges,
       getReviewEndDate: getReviewEndDate,
       getChallengeDetails: getChallengeDetails,
-      processChallenges: processChallenges
+      processActiveDevDesignChallenges: processActiveDevDesignChallenges
     };
     return service;
 
@@ -44,7 +44,7 @@
       return ApiService.requestHandler('GET', url, {}, true);
     }
 
-    function processChallenges(challenges) {
+    function processActiveDevDesignChallenges(challenges) {
       angular.forEach(challenges, function(challenge) {
         var phases = challenge.currentPhases;
         var hasCurrentPhase = false;
