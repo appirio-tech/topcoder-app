@@ -255,7 +255,6 @@
 
     function setupLoginEventMetrices (usernameOrEmail) {
       if (_kmq) {
-        console.log(_kmq);
         _kmq.push(['identify', usernameOrEmail ]);
       }
     }
