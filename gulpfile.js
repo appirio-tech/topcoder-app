@@ -364,8 +364,9 @@ gulp.task('e2eDataFilesRename', function() {
 	  
 	  return gulp.src(config.e2eTestsDataFiles)
 	  .pipe(rename(function (path) {
-		  log('path '+path);
-		  path.basename = path.basename.replace('.'+process.env.ENVIRONMENT, '');
+		  log('path '+path.basename);
+		  log('curEnv '+config.curEnv);
+		  path.basename = path.basename.replace('.'+config.curEnv, '');
 	  }))
 	  .pipe(gulp.dest(config.e2eApp));
 	});
