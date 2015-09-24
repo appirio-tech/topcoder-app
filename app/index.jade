@@ -234,12 +234,13 @@ html
     // endinject
     // endbuild
 
+    // tracking code for Marketo
     script(type='text/javascript').
       document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
     script.
       Munchkin.init('921-UOU-112', {"wsInfo":"jFRS"}
       );
-
+    // tracking code for Kissmetrics
     script(type='text/javascript').
       var _kmq = _kmq || [];
       var _kmk = _kmk || 'aa23cd43c455ef33b6a0df3de81a79af9ea30f75';
