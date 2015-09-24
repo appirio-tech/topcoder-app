@@ -9,6 +9,13 @@
     var vm = this;
     vm.menuVisible = false;
     vm.constants = CONSTANTS;
+    vm.searchTerm = '';
+    
+    vm.checkSubmit = function(ev) {
+      if (ev.keyCode === 13)
+        window.location.replace(vm.constants.MAIN_URL + '/search?s=' + vm.searchTerm + '&scope=member');
+    } 
+    
     // set some $rootScope constants here
     $rootScope.DOMAIN = CONSTANTS.domain;
 
