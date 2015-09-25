@@ -6,7 +6,7 @@
 
     .breadcrumbs
       .handle
-        img.profile-circle(fallback-img="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
+        img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
         | {{vm.userHandle}} /
       .track {{vm.track | track}}
       .subtrack // {{vm.subTrack | track}}
