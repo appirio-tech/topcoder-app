@@ -34,6 +34,9 @@
 
 
 @media only screen and (max-width : 991px) {
+	.bottom-footer, .fold-pusher {
+		height: 200px;
+	}
 	.bottom-footer .menu-item {
 		display: none;
 		margin-top: 30px;
@@ -71,6 +74,9 @@
 }
 
 @media only screen and (min-width : 992px) {
+	.bottom-footer, .fold-pusher {
+		height: 270px;
+	}
 	.bottom-footer {
 		padding-top: 40px;
 

@@ -83,7 +83,9 @@ html
 
     toaster-container(toaster-options="{{main.globalToasterConfig}}")
 
-    .view-container(ui-view="container")
+    .fold-wrapper
+      .view-container(ui-view="container")
+      .fold-pusher
 
     div(ui-view="footer")
 
