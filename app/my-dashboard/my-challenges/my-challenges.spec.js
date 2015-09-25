@@ -53,7 +53,7 @@ describe('Challenges Widget Controller', function() {
 
   bard.verifyNoOutstandingHttpRequests();
 
-  describe('inialization', function() {
+  xdescribe('inialization', function() {
     var myChallenges = null;
     beforeEach( function(){
       $scope = $rootScope.$new();

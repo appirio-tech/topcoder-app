@@ -41,7 +41,7 @@
         });
       }
     }
-    
+
     function inform(message) {
       notifier.showSuccess({message:message});
     }
