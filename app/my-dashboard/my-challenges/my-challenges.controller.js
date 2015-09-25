@@ -3,16 +3,16 @@
 
   angular.module('tc.myDashboard').controller('MyChallengesWidgetController', MyChallengesWidgetController);
 
-  MyChallengesWidgetController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers'];
+  MyChallengesWidgetController.$inject = ['ChallengeService', 'UserService', '$log', 'CONSTANTS', 'userIdentity'];
 
-  function MyChallengesWidgetController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers) {
+  function MyChallengesWidgetController(ChallengeService, UserService, $log, CONSTANTS, userIdentity) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
     vm.myChallenges = [];
     vm.userHasChallenges = true;
 
-    var handle = UserService.getUserIdentity().handle;
+    var handle = userIdentity.handle;
 
     activate();
 
@@ -25,7 +25,6 @@
       getChallenges('active', 'submissionEndDate');
     }
 
-    // get ACTIVE challenges and spotlight challenges
     function getChallenges(status, orderBy) {
       var params = {
         limit: 8,
@@ -38,10 +37,10 @@
 
       ChallengeService.getUserChallenges(handle, params)
       .then(function(challenges){
-        console.log(challenges);
-        if (challenges.length > 0) {
-          // FIXME until we figure out the correct sort order param
+        ChallengeService.processActiveDevDesignChallenges(challenges);
+        // console.log(challenges.plain());
 
+        if (challenges.length > 0) {
           vm.myChallenges = challenges;
           vm.userHasChallenges = true;
           vm.loading = false;
@@ -54,7 +53,6 @@
         $log.error(err);
         vm.userHasChallenges = true;
         vm.loading = false;
-        // TODO - handle error
       });
     }
   }

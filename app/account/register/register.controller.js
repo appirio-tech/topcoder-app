@@ -24,9 +24,10 @@
     vm.countries = ISO3166.getAllCountryObjects();
 
     vm.updateCountry = function (angucompleteCountryObj) {
-      var countryCode = _.get(angucompleteCountryObj, 'originalObject.alpha3', undefined);
+      var countryCode = _.get(angucompleteCountryObj, 'originalObject.code', undefined);
 
       var isValidCountry = _.isUndefined(countryCode) ? false : true;
+      vm.country = countryCode;
       vm.registerForm.country.$setValidity('required', isValidCountry);
     };
 
@@ -37,7 +38,7 @@
         lastName: vm.lastname,
         email: vm.email,
         country: {
-          name: vm.country
+          code: vm.country
         },
         utmSource: '',
         utmMedium: '',
@@ -63,9 +64,10 @@
       var body = {
         param: userInfo,
         options: {
-          afterActivationURL: CONSTANTS.MAIN_URL + '/my-dashboard/'
+          afterActivationURL: CONSTANTS.MAIN_URL + '/skillpicker/'
         }
       }
+
       $log.debug('attempting to register user');
       TcAuthService.register(body)
       .then(function(data) {

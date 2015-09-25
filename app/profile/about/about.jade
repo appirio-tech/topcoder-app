@@ -3,7 +3,7 @@
 
 .profile-about-container
 
-  tc-section(ng-show="vm.displaySection.skills" state="profileVm.status.skills" class="skills")
+  tc-section(id="skills", ng-show="vm.displaySection.skills" state="profileVm.status.skills" class="skills")
     h3.activity Skills &amp; Technologies  
     .list(ng-show="profileVm.skills && profileVm.skills.length > 0")
 
@@ -24,7 +24,7 @@
       
       button.link-button(ui-sref="settings.profile") ADD YOUR SKILLS
 
-  tc-section(state="profileVm.status.stats")
+  tc-section(id="tcActivity", state="profileVm.status.stats")
 
     .categories
 
@@ -82,7 +82,7 @@
 
           img.arrow(src="/images/ico-arrow-big-right.svg")
 
-  tc-section(ng-show="vm.displaySection.externalLinks" state="profileVm.status.externalLinks" class="external-links")
+  tc-section(id="externalLinks", ng-show="vm.displaySection.externalLinks" state="profileVm.status.externalLinks" class="external-links")
     h3.activity Links
     external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccountsData")
 

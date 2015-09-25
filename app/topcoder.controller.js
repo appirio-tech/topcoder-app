@@ -8,7 +8,7 @@
   function TopcoderController(NotificationService, $rootScope, CONSTANTS) {
     var vm = this;
     vm.menuVisible = false;
-    vm.constants = CONSTANTS;
+    
     // set some $rootScope constants here
     $rootScope.DOMAIN = CONSTANTS.domain;
 

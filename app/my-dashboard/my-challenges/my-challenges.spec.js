@@ -58,8 +58,9 @@ describe('Challenges Widget Controller', function() {
     beforeEach( function(){
       $scope = $rootScope.$new();
       myChallenges = $controller('MyChallengesWidgetController', {
-        ChallengeService : challengeService,
-        UserService : userService
+        ChallengeService: challengeService,
+        UserService: userService,
+        userIdentity: {handle: 'username'}
       });
       $rootScope.$apply();
     });
