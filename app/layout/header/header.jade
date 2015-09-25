@@ -9,7 +9,7 @@
       button.btn-close-menu(type="button", ng-if="main.menuVisible", ng-click="main.menuVisible = false")
       // User link (profile or join)
       a(ui-sref="profile.about({userHandle: vm.userHandle})", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
-        img(ng-switch-when="true", class="user-avatar", ng-src="{{vm.profile.photoURL}}") 
+        img(ng-switch-when="true", class="user-avatar", ng-src="{{vm.profile.photoURL}}")
         span(ng-switch-when="false" class="btn-link") JOIN
         
     // main menu 
@@ -18,7 +18,7 @@
       li.menu-item.search-wrapper
         .menu-item-header.show-large #[button.btn-expand-search.search-icon(type="button")]
         .submenu
-          input(type="text" placeholder="find people" ng-model="main.searchTerm" ng-keyup="main.checkSubmit($event)")
+          input(type="text" placeholder="find people" ng-model="vm.searchTerm" ng-keyup="vm.checkSubmit($event)")
           // Suggestion list container
           // ul.suggestion-list(ng-if="main.searchTerm.length > 0")
           //   li(ng-repeat="suggestion in main.suggestions | filter:main.searchTerm | limitTo:5") 
@@ -29,7 +29,7 @@
         // links for logged in user
         div(ng-switch-when="true")
           .menu-item-header
-            img(class="user-avatar", ng-src="{{vm.profile.photoURL}}") 
+            img(class="user-avatar", ng-src="{{vm.profile.photoURL}}")
             span.username {{vm.userHandle}}
           a.btn-link.btn-edit-profile.show-small(ui-sref="settings.profile") EDIT
           ul.submenu

@@ -12,6 +12,9 @@
     vm.domain = CONSTANTS.domain;
     vm.login = TcAuthService.login;
     vm.logout = logout;
+    vm.checkSubmit = checkSubmit;
+    vm.searchTerm = '';
+    
     vm.menuLinks = 
     {
       'compete': [        
@@ -35,6 +38,11 @@
           { 'href': '/blog/', 'text': 'BLOG' }
       ]
     };
+    
+    function checkSubmit(ev) {
+      if (ev.keyCode === 13)
+        window.location.replace(vm.constants.MAIN_URL + '/search?s=' + vm.searchTerm + '&scope=member');
+    }
 
     function initHeaderProps(event) {
       $log.debug(event + ' triggered header update.');
