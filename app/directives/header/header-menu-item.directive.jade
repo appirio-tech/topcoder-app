@@ -7,6 +7,5 @@ li.submenu-item(ng-if="item.href && !item.srefParams")
   a.menu-link(ng-click="$event.stopPropagation();" ng-href="{{item.href}}" ng-class="{ 'active': isActive() }" target="_blank") {{item.text}}
 
 // srefs with params 
-// I believe I have to hack this because of https://github.com/angular-ui/ui-router/issues/395, I tried ui-state
 li.submenu-item(ng-if="item.srefParams")
   a.menu-link(ng-href="{{wtfhref}}" ng-class="{ 'active': isActive() }" ) {{item.text}}
