@@ -40,20 +40,7 @@
           a.btn-link(ui-sref="register") REGISTER
           a.btn-link.secondary-link(ui-sref="login") LOGIN
           
-      // 'COMPETE' link group
-      li.menu-item.link-group
-        .menu-item-header COMPETE
+      li.menu-item.link-group(ng-repeat="(menu, items) in vm.menuLinks")
+        .menu-item-header {{menu}}
         ul.submenu
-          header-menu-item(ng-repeat="item in vm.menuLinks['compete']" item="item")
-            
-      // 'LEARN' link group
-      li.menu-item.link-group
-        .menu-item-header LEARN
-        ul.submenu
-          header-menu-item(ng-repeat="item in vm.menuLinks['learn']" item="item")
-          
-      // 'COMMUNITY' link group
-      li.menu-item.link-group
-        .menu-item-header COMMUNITY
-        ul.submenu
-          header-menu-item(ng-repeat="item in vm.menuLinks['community']" item="item")
+          header-menu-item(ng-repeat="item in items" item="item")
