@@ -10,7 +10,8 @@
         .name COUNTRY RANK
 
       li.stat
-        .value {{vm.typeStats.rank.rating}}
+        .value.rating {{vm.typeStats.rank.rating}}
+          span.square(style="background-color: {{vm.typeStats.rank.rating | ratingColor}}")
         .name RATING
 
       li.stat

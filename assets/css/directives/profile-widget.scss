@@ -28,7 +28,7 @@
     font-size: 18px;
     line-height: 23px;
     font-family: 'Sofia Pro';
-    font-weight: light;
+    font-weight: 300;
     color: #d1d3d4;
     text-align: center;
     text-transform: uppercase;
@@ -58,9 +58,16 @@
     font-size: 14px;
     line-height: 24px;
     font-family: 'Source Sans Pro';
-    width: 254px;
+    max-width: 254px;
     text-align: center;
   }
+
+  button.edit {
+    @include button-1-m;
+    width: 200px;
+    margin-top: 10px;
+  }
+
   .tracks-links {
     display: flex;
     flex-direction: column;
@@ -72,7 +79,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 15px 8px 0 8px;
+        margin: 15px 0 0 0;
+        width: 90px;
         .text {
           font-family: 'Sofia Pro';
           font-weight: 500;
@@ -95,7 +103,7 @@
       flex-direction: row;
       align-items: center;
       .link {
-        @include button-m;
+        @include button-2-m;
         text-decoration: none;
         text-transform: uppercase;
         margin-left: 5px;
@@ -142,7 +150,7 @@
 
     p.description {
       margin-top: 12px;
-      width: 361px;
+      max-width: 600px;
       text-align: left;
     }
 

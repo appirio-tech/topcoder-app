@@ -40,50 +40,37 @@
         .description Hey, whatever your like might be—Design, Development, or Data Science—we have it! Explore the Challenges section and show us what you’re made of!
         button.link-button(ui-sref="settings.profile") CHALLENGE ME!
 
-      .track(ng-if="vm.marathonRating || vm.SRMRating")
-        .name.data-icon
-          span DATA SCIENCE
-
-        .subtrack(ng-if="vm.marathonRating")
-          .name Marathon
-
-          .ranking
-            .number {{vm.marathonRating}}
-
-            .tag Rating
-
-          img.arrow(src="/images/ico-arrow-big-right.svg")
-
-        .subtrack(ng-if="vm.SRMRating")
-          .name SRM
-
-          .ranking
-            .number {{vm.SRMRating}}
-
-            .tag Rating
-
-          img.arrow(src="/images/ico-arrow-big-right.svg")
-
       .track(
         ng-repeat="track in profileVm.profile.tracks",
         ng-if="profileVm.categories[track].length > 0"
       )
 
-        div(class="{{profileVm.imgMap[track]}}-icon name")
-          span {{track}}
+        div(class="name")
+          img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data-outline.svg")
+          img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop-outline.svg")
+          img(ng-if="track == 'DESIGN'", src="/images/ico-track-design-outline.svg")
+          span {{track | track | uppercase}}
 
         .subtrack(
           ng-repeat="subtrack in profileVm.categories[track]",
-          ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})"
+          ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})",
+          class="{{$index == 0 && 'first'}}"
         )
           .name {{subtrack.subTrack | track}}
 
-          .ranking(ng-if="subtrack.rank")
+          .ranking(ng-if="subtrack.rating")
+            .number.rating
+              | {{subtrack.rating}}
+              span.square(style="background-color: {{subtrack.rating | ratingColor}}") 
+
+            .tag Rating
+
+          .ranking(ng-if="subtrack.rank && !subtrack.rating")
             .number {{subtrack.rank | ordinal}}
 
             .tag Ranking
 
-          .ranking(ng-if="subtrack.wins && !subtrack.rank")
+          .ranking(ng-if="subtrack.wins && !subtrack.rank && !subtrack.rating")
             .number {{subtrack.wins}}
 
             .tag Wins

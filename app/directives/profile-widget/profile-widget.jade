@@ -14,7 +14,7 @@
 
     p.description {{profile.quote}}
 
-    a(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
+    button.edit(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
 
   .tracks-links
     .tracks
@@ -26,7 +26,7 @@
     hr
     
     .links
-      a.forums.link(href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
+      button.forums.link(href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
         | Forum Posts
-      a.badges.link(ng-click="profileVm.showBadges()")
+      button.badges.link(ng-click="profileVm.showBadges()")
         | Badges
