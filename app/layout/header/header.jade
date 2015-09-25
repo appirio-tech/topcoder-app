@@ -33,10 +33,7 @@
             span.username {{vm.userHandle}}
           a.btn-link.btn-edit-profile.show-small(ui-sref="settings.profile") EDIT
           ul.submenu
-            li.submenu-item #[a.menu-link(ui-sref="dashboard") DASHBOARD]
-            header-menu-item(item="{ 'sref': 'profile.about', 'srefParams': {userHandle: vm.userHandle}, 'text': 'MY PROFILE' }")
-            li.submenu-item #[a.menu-link(href="{{main.constants.COMMUNITY_URL}}/PactsMemberServlet?module=PaymentHistory&full_list=false") PAYMENTS]
-            header-menu-item(item="{ 'sref': 'settings.profile', 'text': 'SETTINGS' }")
+            header-menu-item(ng-repeat="item in vm.userMenu" item="item")
             li.submenu-item #[a.menu-link(ng-click="vm.logout(); main.menuVisible = vm.isAuth = false") LOG OUT]
         // links for anonymous user
         .menu-item-header(ng-switch-when="false")
@@ -47,32 +44,16 @@
       li.menu-item.link-group
         .menu-item-header COMPETE
         ul.submenu
-          //li.submenu-item #[a.menu-link(href="javascript:;") START HERE]
-          li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/challenges/design/active/") DESIGN CHALLENGES]
-          li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/challenges/develop/active") DEVELOPMENT CHALLENGES]
-          li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/challenges/data/active") DATA SCIENCE CHALLENGES]
-          li.submenu-item #[a.menu-link(ng-href="{{main.constants.ARENA_URL}}" target="_blank") COMPETITIVE PROGRAMMING (ARENA)]
+          header-menu-item(ng-repeat="item in vm.menuLinks['compete']" item="item")
             
       // 'LEARN' link group
       li.menu-item.link-group
         .menu-item-header LEARN
         ul.submenu
-          //li.submenu-item #[a.menu-link(href="javascript:;") START HERE]
-          li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/community/design/") DESIGN]
-          header-menu-item(item="{ 'href': '/community/development/', 'text': 'DEVELOPMENT' }")
-          li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/community/data-science/") DATA SCIENCE]
-          li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/community/data-science/") COMPETITIVE PROGRAMMING]
-          //li.submenu-item #[a.menu-link(href="javascript:;") TUTORIALS]
-          //li.submenu-item #[a.menu-link(href="javascript:;") EDITORIALS]
+          header-menu-item(ng-repeat="item in vm.menuLinks['learn']" item="item")
           
       // 'COMMUNITY' link group
       li.menu-item.link-group
         .menu-item-header COMMUNITY
         ul.submenu
-          //li.submenu-item #[a.menu-link(href="javascript:;") HOME]
-          li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/community/members/") MEMBERS]
-          li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/community/member-programs/") PROGRAMS]
-          li.submenu-item #[a.menu-link(href="{{main.constants.FORUMS_APP_URL}}" target="_blank") FORUMS]
-          li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/community/statistics/") STATISTICS]
-          li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/community/events/") EVENTS]
-          li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/blog/") BLOG]
+          header-menu-item(ng-repeat="item in vm.menuLinks['community']" item="item")
