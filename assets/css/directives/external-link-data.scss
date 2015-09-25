@@ -12,7 +12,7 @@ external-accounts {
   padding: 20px;
 
   .external-link-tile {
-    background: #dddddd;
+    border: 1px solid #f0f0f0;
     width: 200px;
     height: 240px;
     padding: 15px;
@@ -21,18 +21,38 @@ external-accounts {
     justify-content: space-between;
     text-align: center;
     margin: 10px;
+    font-family: 'Sofia Pro';
+    &:hover {
+      cursor: pointer;
+      background-color: #fbfbfb;
+      i {
+        color: black;
+      }
+    }
+
+    i {
+      color: #7f7f7f;
+    }
 
     h2 {
-      font-weight: bold;
+      flex-basis: 40px;
+      font-weight: normal;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #a3a3ae;
+      font-size: 10px;
     }
     .handle {
-     font-weight: bold;
+     font-weight: normal;
+     margin-bottom: 40px;
     }
     .title {
       // placeholder
+      height: 40px;
     }
 
     ul {
+      height: 40px;
       display: flex;
       flex-direction: row;
       li {
