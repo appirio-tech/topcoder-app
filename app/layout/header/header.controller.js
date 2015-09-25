@@ -3,9 +3,9 @@
 
   angular.module('tc.layout').controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$window', '$state', '$stateParams', 'TcAuthService', 'CONSTANTS', '$log', '$rootScope', 'UserService', 'ProfileService'];
+  HeaderController.$inject = ['$state', 'TcAuthService', 'CONSTANTS', '$log', '$rootScope', 'UserService', 'ProfileService', 'IntroService'];
 
-  function HeaderController($window, $state, $stateParams, TcAuthService, CONSTANTS, $log, $rootScope, UserService, ProfileService) {
+  function HeaderController($state, TcAuthService, CONSTANTS, $log, $rootScope, UserService, ProfileService, IntroService) {
     var vm = this;
     
     vm.constants = CONSTANTS;
@@ -44,6 +44,22 @@
         window.location.replace(vm.constants.MAIN_URL + '/search?s=' + vm.searchTerm + '&scope=member');
     }
 
+    activate();
+
+    function activate() {
+      initHeaderProps('default');
+
+      // List of events that might force header update
+      angular.forEach([
+        CONSTANTS.EVENT_USER_LOGGED_IN,
+        CONSTANTS.EVENT_USER_LOGGED_OUT,
+      ], function(event) {
+        $rootScope.$on(event, function() {
+          initHeaderProps(event);
+        });
+      });
+    }
+
     function initHeaderProps(event) {
       $log.debug(event + ' triggered header update.');
       vm.isAuth = TcAuthService.isAuthenticated();
@@ -56,35 +72,26 @@
           { 'sref': 'settings.profile', 'text': 'SETTINGS' },
         ];
 
-        ProfileService.getUserProfile(vm.userHandle).then(function(data) {
+        ProfileService.getUserProfile(vm.userHandle)
+        .then(function(data) {
           vm.profile = data;
         })
-        .catch(function(resp) {
+        .catch(function(err) {
           $log.error("Unable to get user data");
           // todo handle error
-        })
+        });
       }
     }
-    // init props default
-    initHeaderProps('default');
 
     function logout() {
-      TcAuthService.logout().then(
-        function() {
-          // success
-          $state.go('home');
-        });
+      TcAuthService.logout()
+      .then(function() {
+        $state.go('home');
+      });
     };
 
-    // List of events that might force header update
-    angular.forEach([
-      CONSTANTS.EVENT_USER_LOGGED_IN,
-      CONSTANTS.EVENT_USER_LOGGED_OUT,
-    ], function(event) {
-      $rootScope.$on(event, function() {
-        initHeaderProps(event);
-      });
-    });
+    // Intro data
+    vm.introOptions = IntroService.getIntroData($state.$current.name);
+    console.log(vm.introOptions);
   }
-
 })();

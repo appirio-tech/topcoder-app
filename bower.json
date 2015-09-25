@@ -30,6 +30,7 @@
     "angular-dropdowns": "1.1.0",
     "angular-filter": "~0.5.4",
     "angular-img-fallback": "~0.1.3",
+    "angular-intro.js": "~1.3.0",
     "angular-jwt": "~0.0.9",
     "angular-sanitize": "1.4.x",
     "angular-ui-router": "~0.2.15",
