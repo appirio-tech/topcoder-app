@@ -11,7 +11,7 @@
     var service = {
       getChallenges: getChallenges,
       getUserChallenges: getUserChallenges,
-      getiOSChallenges: getiOSChallenges,
+      getUserMarathonMatches: getUserMarathonMatches,
       getReviewEndDate: getReviewEndDate,
       getChallengeDetails: getChallengeDetails,
       processActiveDevDesignChallenges: processActiveDevDesignChallenges,
@@ -21,21 +21,15 @@
     return service;
 
     function getChallenges(params) {
-      params.filter = _parseFilterParam(params);
       return api.all('challenges').getList(params);
     }
 
     function getUserChallenges(handle, params) {
-      params.filter = _parseFilterParam(params);
-      return api.one('members', handle).all('challenges').getList(params);
+      return api.one('members', handle.toLowerCase()).all('challenges').getList(params);
     }
 
     function getUserMarathonMatches(handle, params) {
-      return api.all('members', handle).all('mms').getList(params);
-    }
-
-    function getiOSChallenges(params) {
-      return api.all('challenges').getList(params);
+      return api.one('members', handle.toLowerCase()).all('mms').getList(params);
     }
 
     function getReviewEndDate(challengeId) {
@@ -136,22 +130,5 @@
         }
       });
     }
-
-    /**
-     * Helper method to parse the filter param as required by v3 API from JSON format
-     */
-    function _parseFilterParam(params) {
-      var filter = [];
-      if (params.filter) {
-        for(var filterKey in params.filter) {
-          var filterValue = params.filter[filterKey];
-          filter.push(filterKey + '=' + filterValue);
-        }
-        return filter.join('&');
-      }
-      return null;
-    }
-
   };
-
 })();
