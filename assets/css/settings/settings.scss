@@ -38,10 +38,6 @@
   @include module-l;
   margin-left: auto;
   margin-right: auto;
-  margin: 6px;
-  @media only screen and (min-width: 600px) {
-    margin: 60px;
-  }
   nav {
     display: flex;
     flex-direction: column;
@@ -119,6 +115,7 @@
       @media only screen and (min-width: 768px) {
         border-left: 6px solid #F6F6F6;
         padding-left: 60px;
+        width: 65%;
       }
       .form-label {
         @include sofia-pro-regular;

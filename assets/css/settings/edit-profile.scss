@@ -9,8 +9,7 @@
     .profile-circle {
       border-radius: 50%;
       margin-right: 20px;
-      width: 65px;
-      height: 65px;
+      width: 100px;
     }
 
     .upload-image {
@@ -108,14 +107,14 @@
 
     }
   }
-  
+
   .edit-skills {
     input {
       width: 790px;
       margin: 16px 0 16px 0;
     }
   }
-  
+
   .skills {
     .skill {
       margin: 10px 10px 0 0;
@@ -134,7 +133,7 @@
       }
     }
   }
-  
+
   .clearfix {
      @include clearfix;
      margin-bottom: 40px;
