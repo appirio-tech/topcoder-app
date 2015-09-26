@@ -1,0 +1,32 @@
+.login-container
+  h1 Login
+
+  form(name="vm.loginForm", role="form", ng-submit="vm.loginForm.$valid && vm.login()", novalidate)
+    .form-errors
+      p.form-error(ng-hide="vm.usernameExists") We couldn't find a member with that {{vm.emailOrUsername || "username"}}. Please check that you entered it correctly.
+
+      p.form-error(ng-show="vm.wrongPassword") That password is incorrect. Please check that you entered the right one.
+
+      p.form-error(ng-show="vm.socialLoginError === 401") User with that profile is not registered.
+
+    div.validation-bar(ng-class="{'error-bar': !vm.usernameExists}")
+      input(ng-model="vm.username", name="username", placeholder="Username or Email", type="text", required)
+
+    toggle-password
+
+    button(type="submit", ng-disabled="vm.loginForm.$invalid", ng-class="{'enabled-button': vm.loginForm.$valid}") Log In
+
+  section.social
+    p Log in with another account
+
+    .social-icons
+      i.fa.fa-github-square(ng-click="vm.socialLogin('github')")
+      i.fa.fa-facebook-square(ng-click="vm.socialLogin('facebook')")
+      i.fa.fa-google-plus-square(ng-click="vm.socialLogin('google-oauth2')")
+      i.fa.fa-twitter-square(ng-click="vm.socialLogin('twitter')")
+
+  a.forgot-password(ui-sref="resetPassword") Forgot your password?
+
+  p.redirect Not a member yet? 
+    a(ui-sref="register(vm.$stateParams)") Join now.
+

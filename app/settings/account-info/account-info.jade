@@ -1,0 +1,59 @@
+.account-info-container
+  h1.tab-title Account Info
+
+  .fields
+    .field-section
+      h4.field-title Username
+
+      p {{vm.userData.handle}}
+
+    .field-section
+      h4.field-title Email
+
+      p {{vm.userData.email}}
+
+    .field-section.update-account-info
+      form(name="vm.updateAccountInfo", role="form", ng-submit="vm.updateAccountInfo.$valid && vm.saveAccountInfo()", novalidate, autocomplete="off")
+        // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
+        input(autocomplete="false", name="hidden", type="text", style="display:none;")
+
+        .address-fields
+          label *First name (Given name)
+            input(name="firstname", type="text", value="{{vm.userData.firstName}}", ng-model="vm.userData.firstName", maxlength="64", required)
+
+          label *Last name (Surname)
+            input(name="lastname", type="text", value="{{vm.userData.lastName}}", ng-model="vm.userData.lastName", maxlength="64", required)
+
+          label Address
+            input(name="address", type="text", value="{{vm.homeAddress.streetAddr1}}", ng-model="vm.homeAddress.streetAddr1")
+
+          label Address 2 (apartment, suite, etc.)
+            input(name="address2", type="text", value="{{vm.homeAddress.streetAddr2}}", ng-model="vm.homeAddress.streetAddr2")
+
+          label City
+            input(name="city", type="text", value="{{vm.homeAddress.city}}", ng-model="vm.homeAddress.city")
+
+          label State/Province
+            input(name="state", type="text", value="{{vm.homeAddress.stateCode}}", ng-model="vm.homeAddress.stateCode")
+
+          label Zip code/Post code
+            input(name="zipcode", type="text", value="{{vm.homeAddress.zip}}", ng-model="vm.homeAddress.zip")
+
+          label *Country
+            angucomplete-alt(
+              input-name="country",
+              pause="100",
+              selected-object="vm.updateCountry",
+              local-data="vm.countries",
+              initial-value="vm.countryObj",
+              search-fields="name",
+              title-field="name",
+              match-class="angucomplete-highlight",
+              minlength="1"
+            )
+
+            .account-info-error
+              p.form-error(ng-show="vm.updateAccountInfo.country.$error.required") Please choose a country from the list.
+
+
+        button(type="submit", ng-disabled="vm.updateAccountInfo.$invalid", ng-class="{'enabled-button': vm.updateAccountInfo.$valid}") Save

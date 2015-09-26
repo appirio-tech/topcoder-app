@@ -1,0 +1,104 @@
+@import '../partials/combined';
+
+.header-dashboard {
+  @include module-full-width;
+  background-color: $white;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, .3);
+
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1242px;
+    margin: 0 auto;
+    padding-top: 20px;
+    @media only screen and (min-width: 600px) {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 25px 25px 23px;
+    }
+    @media only screen and (min-width: 900px) {
+      padding: 40px 50px 33px;
+    }
+
+
+    h1 {
+      margin-bottom: 10px;
+      @include sofia-pro-bold;
+      font-size: 22px;
+      line-height: 26px;
+      color: $primary-text;
+      text-transform: uppercase;
+      @media only screen and (min-width: 600px) {
+        margin-bottom: 0;
+        font-size: 32px;
+        line-height: 38px;
+      }
+    }
+
+    .user-stats {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 12px;
+      @media only screen and (min-width: 600px) {
+        margin-bottom: 0;
+      }
+
+      .slash {
+        @include forward-slash(1px, 40px, 0, 2px, 30deg);
+        margin-right: 8px;
+        background-color: #D1D3D4;
+        @media only screen and (min-width: 600px) {
+          @include forward-slash(1px, 45px, 0, 2px, 30deg);
+          margin-right: 10px;
+        }
+      }
+
+      .money-earned, .copilot-challenges {
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+
+        .number {
+          margin-bottom: 4px;
+          @include sofia-pro-bold;
+          font-size: 18px;
+          line-height: 23px;
+          color: $primary-text;
+          @media only screen and (min-width: 600px) {
+            font-size: 22px;
+            line-height: 28px;
+          }
+        }
+
+        p:not(.number) {
+          @include sofia-pro-regular;
+          font-size: 10px;
+          line-height: 13px;
+          text-transform: uppercase;
+          color: #A3A3AE;
+          @media only screen and (min-width: 600px) {
+            font-size: 12px;
+            line-height: 14px;
+          }
+        }
+      }
+
+      .money-earned {
+        padding-left: 15px;
+        @media only screen and (min-width: 600px) {
+          padding-left: 10px;
+        }
+      }
+
+      .copilot-challenges {
+        margin-right: 10px;
+        padding-right: 15px;
+        @media only screen and (min-width: 600px) {
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+}

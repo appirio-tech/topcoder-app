@@ -1,0 +1,97 @@
+@import '../partials/combined';
+
+.login-container, .register-container, .reset-password-container {
+  width: 300px;
+  margin: 0 auto;
+  padding-top: 25px;
+  padding-bottom: 45px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  @include source-sans-regular;
+
+  // Basic element stylings
+  h1 {
+    margin-bottom: 30px;
+    @include ui-h1;
+    color: $ui-dark-gray;
+  }
+
+  a {
+    @include login-link;
+  }
+
+  input:not([type="checkbox"]), button {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input:not([type="checkbox"]) {
+    height: 40px;
+    width: 300px;
+    padding: 0;
+    padding-left: 15px;
+    border: 0;
+    @include source-sans-regular;
+    font-size: 16px;
+    color: #231F20;
+  }
+
+  button {
+    @include ui-submit-button;
+
+    &.enabled-button {
+      @include ui-enabled-button;
+    }
+
+    &[disabled] {
+      @include ui-disabled-button;
+    }
+  }
+
+  // Form stylings
+  @include ui-form-placeholder;
+
+  // Social section
+  .social {
+    margin-top: 15px;
+
+    p {
+      font-size: 21px;
+      line-height: 32px;
+      color: #231F20;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+
+      i {
+        margin: 7px;
+      }
+
+      .fa-github-square {
+        font-size: 45px;
+        color: #404041;
+      }
+      .fa-facebook-square {
+        font-size: 45px;
+        color: #0D72B9;
+      }
+      .fa-google-plus-square {
+        font-size: 45px;
+        color: #EE4036;
+      }
+      .fa-twitter-square {
+        font-size: 45px;
+        color: #26A9E0;
+      }
+    }
+  }
+
+  .redirect {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+}

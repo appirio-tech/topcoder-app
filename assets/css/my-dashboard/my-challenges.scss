@@ -1,0 +1,174 @@
+@import '../partials/combined';
+
+.my-challenges {
+  .section-title {
+    margin-bottom: 27px;
+    @media only screen and (min-width: 900px) {
+      margin-bottom: 30px;
+    }
+  }
+
+  .section-loading {
+    min-height: 500px;
+  }
+
+  .noChallenges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $primary-text;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    h3 {
+      margin-bottom: 20px;
+      @include sofia-pro-extra-light;
+      font-size: 18px;
+      text-transform: uppercase;
+      @media only screen and (min-width: 900px) {
+        font-size: 28px;
+        margin-bottom: 30px;
+      }
+    }
+
+    .tracks {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      min-width: 260px;
+      @media only screen and (min-width: 450px) {
+        min-width: 350px;
+      }
+
+      .track {
+        div:first-child {
+          margin: 0 auto 10px;
+          @include background-image-size(44px, 44px);
+        }
+
+        &:last-child {
+          display: none;
+          @media only screen and (min-width: 450px) {
+            display: block;
+          }
+        }
+
+        p {
+          @include sofia-pro-medium;
+          font-size: 12px;
+          text-transform: uppercase;
+        }
+      }
+      .develop-icon-outline {
+        @include develop-icon-outline;
+      }
+      .design-icon-outline {
+        @include design-icon-outline;
+      }
+      .data-science-icon-outline {
+        @include data-icon-outline;
+      }
+      .copilot-icon-outline {
+        @include copilot-icon-outline;
+      }
+    }
+
+    .info {
+      max-width: 650px;
+      margin-top: 50px;
+      @include sofia-pro-light;
+      font-size: 15px;
+      line-height: 22.4px;
+      text-align: center;
+      @media only screen and (min-width: 900px) {
+        max-width: 856px;
+        margin-top: 90px;
+        font-size: 22px;
+        line-height: 32px;
+      }
+    }
+
+    a {
+      margin-top: 20px;
+      margin-bottom: 40px;
+      @include button-l;
+      text-decoration: none;
+      @media only screen and (min-width: 900px) {
+        @include button-xl;
+        margin-top: 30px;
+        margin-bottom: 90px;
+      }
+    }
+  }
+
+  .hasChallenges {
+    padding: 15px;
+    border-top: 1px solid #F0F0F0;
+    border-bottom: 1px solid #F0F0F0;
+    background-color: #FCFCFC;
+
+    .challenges {
+      @include horizontal-scroll;
+      @media only screen and (min-width: 768px) {
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0 auto;
+        overflow: visible;
+        white-space: normal;
+        width: 555px;
+      }
+      @media only screen and (min-width: 870px) {
+        width: 840px;
+      }
+      @media only screen and (min-width: 1155px) {
+        width: 1125px;
+      }
+    }
+
+    challenge-tile {
+      display: inline;
+      margin-bottom: 15px;
+      @media only screen and (max-width: 767px) {
+        display: inline-block;
+        margin-left: 15px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+      @media only screen and (min-width: 768px) {
+        &:nth-child(2n + 1) {
+          margin-right: 15px;
+        }
+      }
+      @media only screen and (min-width: 870px) {
+        margin-right: 15px;
+
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+      @media only screen and (min-width: 1155px) {
+        &:nth-child(3n) {
+          margin-right: 15px;
+        }
+        &:nth-child(4n) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .my-challenges-links {
+    @include module-links;
+
+    a {
+      @include button-m;
+      @include button-secondary;
+
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+    }
+  }
+}

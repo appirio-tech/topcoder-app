@@ -1,0 +1,567 @@
+@import '../partials/combined';
+
+#header {
+  @include clearfix;
+}
+
+.header-wrapper {
+  box-sizing: content-box;
+  z-index: 1000;
+  border-bottom: 1px solid #D1D3D4;
+}
+
+.search-icon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url('/images/magnifying_glass.svg');
+  background-size: contain;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+
+.tc-text-logo {
+  color: #B7B7B7;
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 2px;
+  padding-left: 7px;
+}
+
+.btn-close-menu {
+  display: inline-block;
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  right: 0;
+  top: 0;
+  background: transparent;
+  border: none;
+
+  &:before, &:after {
+    position: absolute;
+    left: 32px;
+    top: 14px;
+    content: ' ';
+    height: 20px;
+    width: 1px;
+    background-color: #fff;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+}
+
+.top-header {
+  text-align: center;
+  background-color: #fff;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 49px;
+    height: 19px;
+    left: 13px;
+    top: 14px;
+    background: url('/images/logo_mobile.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+.user-link {
+  position: absolute;
+  display: inline-block;
+  line-height: 55px;
+  right: 10px;
+  top: 0;
+  text-decoration: none;
+}
+
+.btn-link {
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.2em;
+  border-radius: 4px;
+  background-color: #00AEFf;
+  display: inline-block;
+  padding: 8px 20px;
+  text-decoration: none;
+
+  &.secondary-link {
+    background-color: #d1d3d4;
+  }
+}
+
+.user-link .user-avatar, .user-link .btn-join {
+  vertical-align: middle;
+  border-radius: 50%;
+  width:31px;
+}
+
+.btn-open-menu {
+  color: $primary-text;
+  font-size: 15px;
+  line-height: 55px;
+  font-family: inherit;
+  text-transform: uppercase;
+  border: none;
+  background-color: transparent;
+  display: inline-block;
+  font-weight: bold;
+  position: relative;
+
+  &:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -3px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 5px 0 5px;
+    border-color: #b7b7b7 transparent transparent transparent;
+    background-color: transparent;
+  }
+}
+
+// Menu
+.menu-item {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.search-wrapper {
+  input {
+    font-weight: bold;
+    border: 1px solid #7f7f7f;
+    color: #fff;
+    border-radius: 4px;
+    display: block;
+    height: 32px;
+    width: 100%;
+    padding: 0 15px 0 37px;
+    background: transparent;
+    outline: none;
+  }
+
+  ::-webkit-input-placeholder {
+      color: #7f7f7f;
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+     color: #7f7f7f;
+  }
+
+  :-ms-input-placeholder {
+     color: #7f7f7f;
+  }
+
+  .submenu:before {
+    content: '';
+    @extend .search-icon;
+    position: absolute;
+    top: 8px;
+    left: 6px;
+  }
+}
+
+.user-menu {
+  .user-avatar {
+    height: 31px;
+    vertical-align: middle;
+    border-radius: 50%;
+  }
+
+  .username {
+    padding-left: 10px;
+    vertical-align: middle;
+  }
+}
+
+.submenu {
+  font-size: 14px;
+}
+
+.suggestion-list {
+  margin-top: 25px;
+  font-weight: 600;
+}
+
+.menu-link {
+  color: #B7B7B7;
+  text-decoration: none;
+  line-height: 30px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width : 991px) {
+  .header-wrapper {
+    // When autocomplete list is displayed, hide all menu items and footer (except copyright notice)
+    &.autocomplete .menu-item:not(.search-wrapper),
+    &.autocomplete ~ .bottom-footer > *:not(.copyright-notice) {
+      display: none;
+    }
+
+    &.autocomplete .search-wrapper {
+      margin-bottom: 0;
+    }
+  }
+
+  .main-menu {
+    display: none;
+  }
+
+  .anonymous-menu a {
+    display: block;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+      padding: 4px 0;
+
+    + a {
+      margin-top: 12px;
+    }
+  }
+
+  .mobile-heading {
+    line-height: 52px;
+  }
+
+  .menu-visible {
+    .main-menu {
+      display: block;
+    }
+
+    .top-header {
+      background-color: $primary-text;
+    }
+  }
+
+  .menu-link {
+    display: block;
+
+    &.active {
+      background-color: rgba(0, 150, 255, 0.2);
+      border-left: 5px solid #0096ff;
+      color: #fff;
+      margin: 0 -20px;
+        padding-left: 15px;
+    }
+  }
+
+  .nav-categories, .show-large {
+    display: none;
+  }
+
+  .top-header {
+    padding: 0 20px;
+  }
+
+  .menu-item {
+    line-height: 30px;
+    text-align: left;
+
+    &:not(:last-child) {
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+  }
+
+  .search-wrapper {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 28px;
+  }
+
+  .user-menu {
+    border-bottom: 1px solid #7F7F7F;
+    position: relative;
+
+    .btn-edit-profile {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}
+
+@media only screen and (min-width : 992px) {
+  .header-wrapper {
+    background: #fff;
+    position: relative;
+    padding: 0 20px;
+  }
+
+  // Hide mobile-only elements
+  .show-small {
+    display: none;
+  }
+
+  .menu-link {
+    display: inline-block;
+    color: #fff;
+  }
+
+  .search-wrapper .submenu {
+    padding: 38px 54px 28px 54px;
+
+    &:before {
+      display: none;
+    }
+
+    input {
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid #fff;
+      font-size: 22px;
+      height: 53px;
+      padding: 0;
+      font-weight: normal;
+    }
+
+    ::-webkit-input-placeholder {
+         color: #d1d3d4;
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+      color: #d1d3d4;
+    }
+
+    :-ms-input-placeholder {
+      color: #d1d3d4;
+    }
+  }
+
+  // Page header
+  .top-header {
+    height: 54px;
+    max-width: 1376px;
+    margin: 0 auto;
+
+    .main-menu {
+      line-height: 54px;
+    }
+
+    // Expand the submenu only when hovering on header or submenu itself or if submenu is marked with .expanded
+    .menu-item:not(:hover) .submenu:not(.expanded):not(:hover) {
+      display: none;
+    }
+
+    .menu-link:hover {
+      background-color: #0096ff;
+    }
+
+    .menu-link.active {
+      background-color: rgba(0, 150, 255, 0.1);
+    }
+
+    .menu-item:not(.anonymous-menu):hover .menu-item-header {
+      position: relative;
+      cursor: pointer;
+      color: #0096ff;
+
+      &:after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 6px 6px 0 6px;
+        border-color: #0095ff transparent transparent transparent;
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        margin-left: -6px;
+        background-color: transparent;
+      }
+    }
+
+    // Topcoder logo
+    &:before {
+      background: url('/images/logo_topcoder.svg');
+      width: 156px;
+      height: 54px;
+      margin: 0;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      float: left;
+      position: static;
+    }
+
+    @include clearfix;
+
+    .submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: rgba(61, 61, 61, 0.95);
+    }
+
+    .suggestion-list {
+      text-align: left;
+      font-size: 16px;
+      line-height: 32px;
+      color: #bababa;
+    }
+
+    .link-group .menu-link {
+      width: 130px;
+      height: 122px;
+      font-size: 12px;
+      line-height: 1.2em;
+
+      &:before {
+        content: '';
+        display: block;
+        height: 44px;
+        width: 44px;
+        background-image: url("/images/menu_item_placeholder.svg");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin: 20px auto 10px auto;
+      }
+    }
+
+    // Right-hand menu items
+    .user-menu, .search-wrapper {
+      float: right;
+      color: #a3a3a3;
+      font-size: 15px;
+
+      + .menu-item:not(.link-group) {
+        margin-right: 54px;
+      }
+    }
+
+    .anonymous-menu  {
+      margin-right: 20px;
+
+      .menu-item-header {
+        padding-right: 0;
+      }
+
+      a {
+        font-weight: normal;
+        padding: 8px 15px;
+
+        &:not(:last-child) {
+          margin-right: 12px;
+        }
+      }
+    }
+  }
+
+  .menu-item-header {
+    color: #a3a3a3;
+    text-transform: uppercase;
+  }
+
+  // Change source ordering for user logo and username
+  .user-menu .menu-item-header {
+    position: relative;
+    padding-right: 40px;
+    text-transform: none;
+
+    .user-avatar {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      margin-top: -16px;
+    }
+  }
+
+  .submenu-item {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+  .link-group {
+    display: inline-block;
+    color: #a3a3a3;
+    font-size: 16px;
+  }
+
+  .search-wrapper .menu-item-header:before {
+    content: '';
+    display: inline-block;
+    height: 22px;
+    width: 1px;
+    background-color: #a3a3a3;
+    margin: 0px 12px 0px 12px;
+    vertical-align: middle;
+  }
+
+  .user-menu + .link-group {
+    padding: 0px 40px 0px 40px;
+
+    ~ .link-group {
+      padding: 0px 40px 0px 40px;
+    }
+  }
+
+  .nav-categories {
+    position: relative;
+  }
+
+  .nav-category {
+    display: inline-block;
+
+    button {
+      font-size: 16px;
+      line-height: 1.2em;
+      color: #a3a3a3;
+      font-weight: 600;
+      padding: 0;
+    }
+
+    &.btn-search, &.btn-user {
+      position: absolute;
+      top: 50%;
+      line-height: normal;
+    }
+
+    &.btn-search {
+      width: 17px;
+      height: 17px;
+      margin-top: -9px;
+      right: 10px;
+    }
+
+    &.btn-user {
+      height: 30px;
+      margin-top: -15px;
+      right: 50px;
+
+      button {
+        line-height: 30px;
+      }
+
+      .username, .user-avatar {
+        vertical-align: middle;
+      }
+
+      .user-avatar  {
+        margin-left: 10px;
+      }
+    }
+
+    + .nav-category {
+      margin-left: 80px;
+    }
+  }
+}

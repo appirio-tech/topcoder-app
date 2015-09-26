@@ -1,0 +1,12 @@
+.loading(ng-show="vm.loading")
+  .section-loading
+
+.ratings(ng-if="vm.hasRanks && !vm.loading")
+  .tracks
+    .track(ng-repeat="subtrack in vm.subtrackRanks | orderBy: ['track', 'rank']", ui-sref="profile.develop({userHandle: vm.profile.handle, track: subtrack.track, subTrack: subtrack.subTrack})")
+      p.subtrack {{subtrack.subTrack | underscoreStrip}}
+
+      p.rating {{subtrack.rating | number}}
+        span
+
+      p Rating

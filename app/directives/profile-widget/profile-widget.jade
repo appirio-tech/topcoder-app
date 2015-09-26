@@ -1,0 +1,32 @@
+.profile-widget-directive
+  a(ui-sref="profile.about({userHandle: profile.handle})")
+    img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profile.photoURL}}")
+
+  .info
+    h1.handle {{profile.handle}}
+
+    h3.tenure(ng-if="profile.startMonth")
+      | Member Since {{profile.startMonth}}
+
+    h3.location-challenges {{profile.homeCountryCode | isoCountry}}
+      span.bar(ng-show="profile.homeCountryCode && numChallenges")  | 
+      span(ng-show="numChallenges") {{numChallenges}} Challenges
+
+    p.description {{profile.quote}}
+
+    button.edit(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
+
+  .tracks-links
+    .tracks
+      .track(ng-repeat="track in (profile.tracks)")
+        div(class="{{profileVm.imgMap[track]}}-icon")
+          div
+        .text {{track | track}}
+
+    hr
+    
+    .links
+      button.forums.link(href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
+        | Forum Posts
+      button.badges.link(ng-click="profileVm.showBadges()")
+        | Badges

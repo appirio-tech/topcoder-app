@@ -1,0 +1,37 @@
+
+.ext-tile {
+  width: 100px;
+  text-align: center;
+  margin: 5px;
+}
+
+.linked {
+  background-color: #27a9e1;
+  cursor: default;
+}
+.read-only{
+  cursor: default;
+  pointer-events: none;
+}
+
+.disconnected {
+  cursor: pointer;
+}
+
+.external-account-icon-box {
+  border: 1px solid;
+  width: 75px;
+  height: 75px;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.name {
+  font-family: 'Sofia Pro';
+  font-size: 10px;
+  font-weight: 600;
+  text-align: center;
+}

@@ -1,0 +1,20 @@
+@import '../partials/combined';
+
+
+.tc-paginator {
+	display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  margin-right: 10px;
+  margin-bottom: 10px;
+
+  a {
+    text-decoration: underline;
+
+    &.disabled {
+      text-decoration: none;
+      color: $dark-gray;
+      cursor: default;
+    }
+  }
+}

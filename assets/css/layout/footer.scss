@@ -1,0 +1,123 @@
+@import '../partials/combined';
+
+.bottom-footer {
+	background-color: $primary-text;
+	padding: 1px 20px 30px 20px;
+}
+
+.social-links {
+    font-size: 13px;
+    line-height: 1.2em;
+    text-align: center;
+    font-weight: normal;
+  	margin: 35px 0;
+  	color: #fff;
+
+	a {
+		display: inline-block;
+		background-size: contain;
+		background-repeat: no-repeat;
+		margin: 23px 0;
+
+		+ a {
+			margin-left: 30px;
+		}
+	}
+}
+
+.copyright-notice {
+	text-align: center;
+    font-size: 12px;
+    line-height: 14px;
+    color: #656565;
+}
+
+
+@media only screen and (max-width : 991px) {
+	.bottom-footer .menu-item {
+		display: none;
+		margin-top: 30px;
+	}
+
+	.menu-visible .bottom-footer .menu-item {
+		display: block;
+	}
+
+	.social-links {
+		.fb-link {
+			background-image: url('/images/ico-facebook.svg');
+			width: 27px;
+			height: 27px;
+		}
+
+		.twitter-link {
+			background-image: url('/images/ico-twitter.svg');
+			width: 28px;
+			height: 24px;
+		}
+
+		.linkedin-link {
+			background-image: url('/images/ico-linkedin.svg');
+			width: 27px;
+			height: 27px;
+		}
+
+		.google-link {
+			background-image: url('/images/ico-google.svg');
+			width: 27px;
+			height: 27px;
+		}
+	}
+}
+
+@media only screen and (min-width : 992px) {
+	.bottom-footer {
+		padding-top: 40px;
+
+		.submenu-item  + .submenu-item  {
+			margin-left: 50px;
+		}
+
+		.menu-item {
+			text-align: center;
+			font-weight: normal;
+
+			.menu-link {
+				color: #fff;
+				font-size: 16px;
+				line-height: 21px;
+			}
+		}
+	}
+
+	.copyright-notice {
+		font-size: 15px;
+    	color: #fff;
+	}
+
+	.social-links {
+		margin-bottom: 3px;
+
+		a {
+			width: 20px;
+			height: 20px;
+			margin-top: 13px;
+		}
+
+		.fb-link {
+			background-image: url('/images/ico-facebook_desktop.svg');
+		}
+
+		.twitter-link {
+			background-image: url('/images/ico-twitter_desktop.svg');
+		}
+
+		.linkedin-link {
+			background-image: url('/images/ico-linkedin_desktop.svg');
+		}
+
+		.google-link {
+			background-image: url('/images/ico-google_desktop.svg');
+		}
+	}
+}

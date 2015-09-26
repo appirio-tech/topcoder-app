@@ -1,0 +1,6 @@
+section(ng-switch="state")
+  .section-loading(ng-switch-when="loading")
+
+  p(ng-switch-when="error") {{errMsg}}
+
+  div(ng-transclude, ng-switch-when="ready")

@@ -1,0 +1,16 @@
+header
+  h1 My Dashboard
+
+  .user-stats(id="metrics")
+    .copilot-challenges(ng-show="dashboard.isCopilot")
+      p.number(ng-bind='vm.numCopilotActiveContests')
+
+      p Active Challenges
+
+    .slash(ng-show="dashboard.isCopilot")
+
+    .money-earned
+      p.number(ng-bind='vm.moneyEarned || 0 | currency:undefined:0')
+
+      p Won
+

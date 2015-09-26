@@ -1,0 +1,10 @@
+node_modules
+bower_components
+.DS_Store
+.tmp
+build
+dist
+report
+.idea
+.settings
+.vscode

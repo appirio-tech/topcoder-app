@@ -1,0 +1,207 @@
+@import '../partials/combined';
+
+.graph-viewer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .distribution-graph {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: none;
+      shape-rendering: crispEdges;
+    }
+
+
+    .grid .tick {
+      stroke: white;
+      opacity: 0.7;
+    }
+
+    .grid path {
+      stroke-width: 0;
+    }
+
+    .axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+
+    rect.bar:hover {
+      //fill: black;
+    }
+
+    line.my-rating {
+      pointer-effects: none;
+    }
+
+    text.label {
+      text-anchor: middle;
+      font-family: sans-serif;
+      font-size: 12px;
+      fill: white;
+      pointer-events: none;
+    }
+
+    text.countryLabel {
+      text-anchor: middle;
+      font-family: sans-serif;
+      font-size: 12px;
+      fill: black;
+      pointer-events: none;
+    }
+
+  }
+  .info-port {
+    margin-left: 2px;
+    margin-top: 20px;
+    background: white;
+    height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .coders, .rating {
+      width: 130px;
+      height: 130px;
+      background: #09affe;
+      -moz-border-radius: 65px;
+      -webkit-border-radius: 65px;
+      border-radius: 65px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .num {
+        color: white;
+        font-family: 'Sofia Pro';
+        font-size: 35px;
+        font-weight: bold;
+        margin-bottom: 2px;
+      }
+      .label {
+        font-family: 'Sofia Pro';
+        font-size: 14px;
+        font-weight: 200;
+        color: white;
+      }
+      margin-bottom: 20px;
+    }
+
+    .compare {
+      @include button-l;
+    }
+  }
+}
+@media (min-width: 768px) {
+.graph-viewer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+
+  .distribution-graph {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: none;
+      shape-rendering: crispEdges;
+    }
+
+
+    .grid .tick {
+      stroke: white;
+      opacity: 0.7;
+    }
+
+    .grid path {
+      stroke-width: 0;
+    }
+
+    .axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+
+    rect.bar:hover {
+      //fill: black;
+    }
+
+    line.my-rating {
+      pointer-effects: none;
+    }
+
+    text.label {
+      text-anchor: middle;
+      font-family: sans-serif;
+      font-size: 12px;
+      fill: white;
+      pointer-events: none;
+    }
+
+    text.countryLabel {
+      text-anchor: middle;
+      font-family: sans-serif;
+      font-size: 12px;
+      fill: black;
+      pointer-events: none;
+    }
+
+  }
+  .info-port {
+    margin-left: 0px;
+    background: #f6f6f6;
+    height: 400px;
+    width: 300px;
+    .coders, .rating {
+      width: 130px;
+      height: 130px;
+      background: #09affe;
+      -moz-border-radius: 65px;
+      -webkit-border-radius: 65px;
+      border-radius: 65px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .num {
+        color: white;
+        font-family: 'Sofia Pro';
+        font-size: 35px;
+        font-weight: bold;
+        margin-bottom: 2px;
+      }
+      .label {
+        font-family: 'Sofia Pro';
+        font-size: 14px;
+        font-weight: 200;
+        color: white;
+      }
+      margin-bottom: 20px;
+    }
+
+    .compare {
+      color: #00aeff;
+      background: #f6f6f6;
+      border: 1px solid #00aeff;
+      border-radius: 5px;
+      font-family: 'Sofia Pro';
+      font-size: 20px;
+      line-height: 24px;
+      padding: 8px;
+    }
+  }
+}
+}

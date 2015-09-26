@@ -1,0 +1,76 @@
+external-accounts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.external-link-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+
+  .external-link-tile {
+    border: 1px solid #f0f0f0;
+    width: 200px;
+    height: 240px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    margin: 10px;
+    font-family: 'Sofia Pro';
+    &:hover {
+      cursor: pointer;
+      background-color: #fbfbfb;
+      i {
+        color: black;
+      }
+    }
+
+    i {
+      color: #7f7f7f;
+    }
+
+    h2 {
+      flex-basis: 40px;
+      font-weight: normal;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #a3a3ae;
+      font-size: 10px;
+    }
+    .handle {
+     font-weight: normal;
+     margin-bottom: 40px;
+    }
+    .title {
+      // placeholder
+      height: 40px;
+    }
+
+    ul {
+      height: 40px;
+      display: flex;
+      flex-direction: row;
+      li {
+        justify-content: space-between;
+        margin: 10px 0 10px 0;
+        width: 90px;
+        font-size: 90%;
+        .key {
+            text-transform: capitalize;
+        }
+        .value {
+            // placeholder
+        }
+      }
+    }
+    .logo {
+      padding: 10px;
+      font-size: 50px;
+    }
+  }
+}

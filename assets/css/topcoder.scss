@@ -1,0 +1,229 @@
+@import 'partials/combined';
+@include glyphicons-halflings;
+
+// Resets and top level container stylings
+html {
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  @include source-sans-regular;
+  background-color: $ui-page-gray;
+}
+
+.notifications {
+  @media screen and (min-device-width: 768px) {
+    min-width: 768px;
+  }
+
+  .notifications-container {
+    position: static;
+    z-index: 0;
+  }
+  .error {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+  }
+}
+
+.view-container {
+  padding-bottom: 60px;
+  min-height: 480px;
+  @media screen and (min-device-width: 768px) {
+    min-width: 768px;
+  }
+}
+
+.notifications {
+  .close-click {
+    font-size: inherit;
+  }
+}
+
+// Styles for elements used across modules
+a {
+  cursor: pointer;
+}
+
+// Country dropdown styles
+.angucomplete-highlight {
+  color: $black;
+  font-weight: bold;
+}
+
+.angucomplete-dropdown {
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+
+// Section loading and form styles
+.section-loading {
+  width: 100%;
+  min-height: 50px;
+  background: $loading no-repeat center center;
+}
+
+.form-errors {
+  width: 300px;
+}
+
+.form-notice {
+  font-size: 13px;
+  color: #58595B;
+}
+
+.form-error {
+  @extend .form-notice;
+  color: #ed5d5d;
+}
+
+.focused-placeholder[placeholder]:focus::-webkit-input-placeholder {
+  padding-right: 10px;
+  padding-top: 7px;
+  line-height: normal;
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #808285;
+}
+
+.focused-placeholder[placeholder]:focus:-moz-placeholder {
+  padding-right: 10px;
+  padding-top: 7px;
+  line-height: normal;
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #808285;
+}
+
+.focused-placeholder[placeholder]:focus::-moz-placeholder {
+  padding-right: 10px;
+  padding-top: 7px;
+  line-height: normal;
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #808285;
+}
+
+.focused-placeholder[placeholder]:focus:-ms-input-placeholder {
+  padding-right: 10px;
+  padding-top: 7px;
+  line-height: normal;
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #808285;
+}
+
+.validation-bar {
+  position: relative;
+
+  &:before {
+    content: '';
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 42px;
+    width: 5px;
+  }
+
+  &.error-bar:before {
+    display: block;
+    background-color: #ed5d5d;
+  }
+
+  &.success-bar:before {
+    display: block;
+    background-color: #7ece95;
+  }
+}
+
+// Sidebar form field tips (e.g. username, email, password)
+.tips {
+  position: absolute;
+  width: 320px;
+  text-align: left;
+  top: 13px;
+  @media only screen and (max-width: 915px) {
+    position: initial;
+    margin-left: 5px;
+    width: 300px;
+  }
+
+  h3, p {
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    @include source-sans-semi-bold;
+    font-size: 18px;
+    @media only screen and (max-width: 915px) {
+      font-size: 15px;
+    }
+  }
+
+  h3:before {
+    font-family: 'FontAwesome';
+    content: '\f053';
+    display: inline-block;
+    width: 20px;
+    @media only screen and (max-width: 915px) {
+      display: none;
+    }
+  }
+
+  p {
+    font-size: 14px;
+    color: #808285;
+    padding-left: 20px;
+    line-height: 1.2;
+    position: relative;
+  }
+  p:before {
+    font-family: 'FontAwesome';
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+  }
+}
+
+.username-tips {
+  left: 330px;
+}
+
+.email-tips {
+  left: 330px;
+
+  p:last-child {
+    line-height: 1.5;
+  }
+}
+
+.password-tips {
+  left: 330px;
+
+  p:before {
+    content: '\f05d';
+    color: #7ece95;
+    display: none;
+  }
+
+  .has-length-between-range:before,
+  .has-letter:before,
+  .has-symbol-or-number:before,
+  .has-number:before {
+    display: block;
+  }
+}

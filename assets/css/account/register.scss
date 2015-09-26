@@ -1,0 +1,56 @@
+@import '../partials/combined';
+
+.register-container {
+  position: relative;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+
+    input[name="firstname"], input[name="lastname"] {
+      width: 146px;
+    }
+  }
+
+  .form-errors {
+    text-align: left;
+
+    p {
+      margin: 2px 0 12px 5px;
+    }
+  }
+
+  .first-last-names {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 300px;
+  }
+
+  .terms {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    p {
+      font-size: 13px;
+      color: #808285;
+    }
+
+    p:first-child {
+      margin-bottom: 10px;
+    }
+  }
+
+  // Social section
+  .social {
+
+    .social-icons {
+
+      i {
+        cursor: pointer;
+      }
+    }
+  }
+}

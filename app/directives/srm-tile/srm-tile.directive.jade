@@ -1,0 +1,37 @@
+.srm.tile-view(ng-show="view=='tile'")
+  .challenge-track
+
+  header
+    a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
+
+  .srm-details
+    p.starts-in Starts in #[span 3 days]
+
+    .srm-calendar
+      span.day 1
+      span.month October
+      span.hour 1:00am
+      span.time-zone PST
+
+    button.srm-action Register
+
+
+.srm.list-view(ng-show="view=='list'")
+  .srm-name
+    a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
+    .phase-status
+      i.fa.fa-check-circle-o
+      p You are registered!
+      //- p {{srm.memberStatusMsg}}
+
+  .days-remaining {{srm.startDate | timeDiff}}
+    span Registration Ends
+    //- span(ng-bind='srm.startDate | deadlineStartMsg')
+
+  .division(ng-show="showResults") {{srm.result.division || 'N/A'}}
+    span Division
+
+  .rank(ng-show="showResults") {{srm.result.roomPlacement || 'N/A'}}
+    span Rank
+
+

@@ -1,0 +1,11 @@
+header
+  h1.section-title From the Community Blog
+
+.section-loading(ng-show="vm.loading")
+
+.posts(ng-hide="vm.loading")
+  .post(ng-repeat='blog in vm.blogPosts | orderBy : pubDate | limitTo : 4')
+    .blog-link
+      a(ng-href='{{blog.link}}', target='_blank') {{blog.title}}
+
+    .description(ng-bind-html="blog.description")

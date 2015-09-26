@@ -1,0 +1,35 @@
+.review-status-container(ng-show="vm.loaded")
+  .back-link
+    .arrow
+    p #[a.back(href="https://www.{{vm.domain}}/challenge-details/{{vm.challengeId}}/?type=develop") Back to Challenge]
+
+  h1(ng-bind="vm.challenge.challengeName")
+
+  p.help-center Remember to uphold honesty and fair judging principles as described in the&#32; #[a(href="http://help.topcoder.com") help center].
+
+  hgroup
+    h2 Your Reviews ({{vm.completed}} of 5 completed)
+
+    h4 All Reviews Due: {{reviewsDue | localTime}}
+
+  table.peer-reviews
+    thead
+      tr
+        th Reviews
+        th Status
+        th Submission
+
+    tbody
+      tr(ng-repeat="review in vm.reviews | orderBy: 'id'", ng-class-even="'even-rows'")
+        td Review {{$index + 1}}
+
+        td(ng-if="review.committed === 1")
+          a.status(ui-sref="review.completed({challengeId: vm.challengeId, reviewId: review.id})") {{review.committed | reviewStatus}}
+        td(ng-if="review.committed === 0")
+          a.status(ui-sref="review.edit({challengeId: vm.challengeId, reviewId: review.id})") {{review.committed | reviewStatus}}
+
+        td
+          a(ng-href="https://software.{{vm.domain}}{{vm.submissionDownloadPath}}{{review.uploadId}}")
+            span.glyphicon.glyphicon-download-alt
+
+  button.start-review(type="button", ng-click="vm.getNextReview()") Start another review

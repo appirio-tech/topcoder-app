@@ -1,0 +1,225 @@
+@import '../partials/combined';
+
+.programs {
+  padding-top: 30px;
+
+  .section-loading {
+    min-height: 200px;
+  }
+
+  h1.section-title {
+    margin-bottom: 30px;
+
+    span {
+      text-transform: none;
+    }
+  }
+
+  .unregistered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 300px;
+    margin: 0 auto;
+    @media only screen and (min-width: 800px) {
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 750px;
+    }
+    @media only screen and (min-width: 900px) {
+      padding-left: 90px;
+      padding-right: 90px;
+      max-width: none;
+    }
+
+    img {
+      width: 300px;
+      @media only screen and (min-width: 800px) {
+        order: 2;
+      }
+      @media only screen and (min-width: 1030px) {
+        width: 335px;
+      }
+      @media only screen and (min-width: 1100px) {
+        width: 400px;
+      }
+      @media only screen and (min-width: 1200px) {
+        width: 508px;
+      }
+    }
+  }
+
+  .join-program {
+    max-width: 451px;
+    padding: 0 20px 40px;
+    @media only screen and (min-width: 800px) {
+      order: 1;
+      padding: 0;
+      margin-bottom: 30px;
+    }
+
+    h3 {
+      margin-top: 30px;
+      @include sofia-pro-light;
+      font-size: 23px;
+      text-transform: uppercase;
+      color: $primary-text;
+      @media only screen and (min-width: 900px) {
+        margin-top: 0;
+      }
+      @media only screen and (min-width: 1000px) {
+        font-size: 40px;
+      }
+
+      span { text-transform: none; }
+    }
+
+    h4 {
+      margin-top: 10px;
+      @include source-sans-light;
+      font-size: 18px;
+      line-height: 24px;
+      color: #A3A3AE;
+      @media only screen and (min-width: 1000px) {
+        font-size: 22px;
+        margin-top: 6px;
+      }
+    }
+
+    p {
+      margin-top: 20px;
+      @include source-sans-regular;
+      font-size: 13px;
+      line-height: 26px;
+      @media only screen and (min-width: 1000px) {
+        font-size: 16px;
+        margin-top: 60px;
+      }
+    }
+
+    a {
+      display: block;
+      margin-top: 30px;
+      font-size: 13px;
+      color: $primary-color;
+      text-decoration: none;
+      text-transform: uppercase;
+      @media only screen and (min-width: 1000px) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .registered {
+    padding: 15px;
+    border-top: 1px solid #F0F0F0;
+    border-bottom: 1px solid #F0F0F0;
+    background-color: #FCFCFC;
+
+    .badge-and-challenges {
+      @include horizontal-scroll;
+      @media only screen and (min-width: 768px) {
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0 auto;
+        overflow: visible;
+        white-space: normal;
+        width: 555px;
+      }
+      @media only screen and (min-width: 870px) {
+        width: 840px;
+      }
+      @media only screen and (min-width: 1155px) {
+        width: 1125px;
+      }
+    }
+
+    .registered-badge {
+      display: inline;
+      height: 370px;
+      width: 270px;
+      border: 1px solid #DCDCDC;
+      border-radius: 4px;
+      background-color: $white;
+      @media only screen and (max-width: 767px) {
+        display: inline-block;
+      }
+
+      .flex-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      p {
+        margin-top: 60px;
+        margin-bottom: 37px;
+        @include sofia-pro-light;
+        font-size: 20px;
+        color: $primary-text;
+      }
+
+      .badge-timeline {
+        width: 120px;
+      }
+
+      a {
+        display: block;
+        margin-top: 37px;
+        @include button-m-wide;
+        @include button-ghost;
+        text-decoration: none;
+      }
+    }
+
+    ios-card {
+      display: inline;
+      margin-bottom: 15px;
+      @media only screen and (max-width: 767px) {
+        display: inline-block;
+        margin-left: 15px;
+
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+      @media only screen and (min-width: 768px) {
+        &:nth-child(2n) {
+          margin-left: 15px;
+        }
+      }
+      @media only screen and (min-width: 870px) {
+        margin-left: 15px;
+
+        &:nth-child(4n) {
+          margin-left: 0;
+        }
+      }
+      @media only screen and (min-width: 1155px) {
+        &:nth-child(4n) {
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+
+  .ios-links {
+    @include module-links;
+
+    p {
+      @include source-sans-regular;
+      font-size: 14px;
+      line-height: 20px;
+      color: $primary-text;
+      @media only screen and (min-width: 900px) {
+        font-size: 16px;
+      }
+
+      a {
+        color: $primary-color;
+        cursor: pointer;
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+@import '../partials/combined';
+
+.edit-review-container {
+  #review-form {
+    .scorecard .select-options {
+      margin-top: 15px;
+      margin-bottom: 20px;
+
+      .required {
+        border: 1px solid red;
+      }
+
+      select {
+        margin: 10px 30px;
+        width: 100px;
+        font-size: 16px;
+      }
+
+      .required-message {
+        color: red;
+        margin-left: 30px;
+      }
+    }
+
+    button {
+      float: right;
+      margin-top: 15px;
+      padding: 5px 17px;
+      border: 0;
+      @include source-sans-light;
+      font-size: 15px;
+      @media only screen and (max-width: 380px) {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+
+      &[type="submit"] {
+        background-color: $tc-btn-light-orange;
+        border-bottom: 4px solid $tc-btn-dark-orange;
+        border-radius: 4px;
+        color: $white;
+        text-transform: uppercase;
+
+        &:hover {
+          background-color: $tc-btn-dark-orange;
+          text-decoration: none;
+        }
+      }
+
+      &[type="button"] {
+        margin-right: 18px;
+        background-color: $white;
+        color: $tc-btn-light-orange;
+        @media only screen and (max-width: 380px) {
+          margin-right: 2px;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

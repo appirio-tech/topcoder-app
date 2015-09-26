@@ -1,0 +1,39 @@
+.my-challenges-container
+  .my-challenges
+    header
+      h1.section-title My Challenges
+
+      p.viewDashboard
+        a(ui-sref="dashboard") View Dashboard
+
+      p.noChallenges(ng-hide="vm.userHasChallenges") You have not participated in any challenges yet.
+
+      p.viewOptions
+        a(ng-click="vm.changeView('list')", ng-class="{disabled: vm.view == 'list'}") List
+        span &nbsp; | &nbsp;
+        a(ng-click="vm.changeView('tile')", ng-class="{disabled: vm.view == 'tile'}") Tile
+
+      p.filters
+        a(ng-click="vm.viewActiveChallenges()", ng-class="{disabled: vm.statusFilter == 'active'}") Active
+        span &nbsp; | &nbsp;
+        a(ng-click="vm.viewPastChallenges()", ng-class="{disabled: vm.statusFilter == 'completed'}") Past
+
+    .section-loading(ng-show="vm.loading")
+
+    section.challenges(ng-show="vm.userHasChallenges && !vm.loading")
+      tc-paginator(data="vm.myChallenges", page-params="vm.pageParams")
+      .data(ng-class="vm.view + '-view'")
+        challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.view", ng-class="vm.view + '-view'")
+
+    .section-links
+      .link
+        a(href="https://www.{{vm.domain}}/challenges/?pageIndex=1") Find New Challenges
+
+      .link(ng-show="vm.isCopilot")
+        a(href="https://www.{{vm.domain}}/direct") Launch Topcoder Direct
+
+      .link(ng-hide="vm.userHasChallenges")
+        a(href="https://community.{{vm.domain}}/", target="_blank") View Help Library
+
+    hr
+

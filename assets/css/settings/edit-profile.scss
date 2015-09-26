@@ -1,0 +1,172 @@
+@import '../partials/combined';
+
+.edit-profile-container {
+  .edit-image {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .profile-circle {
+      border-radius: 50%;
+      margin-right: 20px;
+      width: 65px;
+      height: 65px;
+    }
+
+    .upload-image {
+      display: flex;
+      flex-direction: column;
+
+      p {
+        margin-top: 15px;
+        margin-bottom: 10px;
+      }
+
+      input {
+        padding: 0;
+      }
+    }
+  }
+
+  .description {
+
+    input[name="description"] {
+      margin-bottom: 5px;
+
+      @media only screen and (min-width: 550px) {
+        margin-right: 10px;
+      }
+    }
+
+    span {
+      max-width: 300px;
+      display: block;
+      text-align: right;
+      margin-right: 5px;
+
+      @media only screen and (min-width: 550px) {
+        display: inline;
+        text-align: left;
+        margin-left: 0;
+      }
+    }
+  }
+
+  .my-tracks {
+    .field-subtitle {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .select-tracks {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+
+    .track-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border-top: 1px solid $horizontal-rule;
+
+      &:last-child {
+        border-bottom: 1px solid $horizontal-rule;
+      }
+
+      .track-checkbox {
+        input[type="checkbox"] {
+          display: none;
+        }
+
+        span {
+          display: block;
+          width: 17px;
+          height: 19px;
+          background: url(/images/checkbox-sprite.png) -17px top no-repeat;
+          cursor: pointer;
+
+          &.checked-track {
+            background: url(/images/checkbox-sprite.png) left top no-repeat;
+          }
+        }
+      }
+
+      .track-info {
+        margin-left: 15px;
+
+        h4 {
+          text-transform: uppercase;
+          font-size: 18px;
+        }
+
+        p {
+          margin-top: 5px;
+        }
+      }
+
+    }
+  }
+  
+  .edit-skills {
+    input {
+      width: 790px;
+      margin: 16px 0 16px 0;
+    }
+  }
+  
+  .skills {
+    .skill {
+      margin: 10px 10px 0 0;
+      padding: 26px 0px 10px 4px;
+      cursor: pointer;
+      width: 150px;
+      text-align: center;
+      float: left;
+      background-color: #d1d3d4;
+      i {
+        font-size: 50px;
+      }
+      .name {
+        text-align: center;
+        margin: 14px auto;
+      }
+    }
+  }
+  
+  .clearfix {
+     @include clearfix;
+     margin-bottom: 40px;
+  }
+
+  button {
+    width: 200px;
+    font-size: 18px;
+    margin-bottom: 40px;
+
+    &.enabled-button {
+      @include ui-enabled-button;
+    }
+  }
+
+  .field-section {
+    position: relative;
+  }
+
+  .form-errors {
+    position: absolute;
+    top: 70px;
+    left: 3px;
+  }
+
+  .external-account-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .external-account-tile {
+    width: 100px;
+    height: 100px;
+  }
+}

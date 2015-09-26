@@ -1,0 +1,129 @@
+@import '../partials/combined';
+@include glyphicons-halflings;
+
+// Shared (review-status.html, edit-review.html, completed-review.html)
+.review-status-container, .completed-review-container, .edit-review-container, .read-only-scorecard-container {
+  @include clearfix;
+  padding-bottom: 30px;
+
+  .back-link {
+
+    .arrow, p {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .arrow {
+      background: url('/images/arrow-prev.png') no-repeat;
+      background-position: 0 0;
+      height: 13px;
+      width: 8px;
+    }
+    p {
+      @include source-sans-light;
+      font-size: 18px;
+    }
+
+    @include clearfix;
+  }
+
+  .back {
+    color: #FF8A00;
+    text-decoration: none;
+
+    &:hover,
+    &:active {
+      color: #FFB800;
+      text-decoration: none;
+    }
+  }
+}
+
+// Shared (edit-review.html, completed-review.html, readOnlyScorecard.html)
+.scorecard-container {
+  margin-top: 20px;
+  padding-bottom: 25px;
+
+  .challenge-info {
+    img {
+      height: 48px;
+      width: 48px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 20px;
+      @media only screen and (max-width: 415px) {
+        margin-right: 10px;
+      }
+    }
+
+    h1 {
+      @include ellipsis;
+      @include source-sans-regular;
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 38px;
+      width: 75%;
+      @media only screen and (max-width: 415px) {
+        font-size: 18px;
+      }
+    }
+  }
+
+  table.review-info {
+    @include source-sans-regular;
+    margin-top: 15px;
+    margin-left: 5px;
+
+    tr {
+      td {
+        padding-bottom: 5px;
+
+        &.info {
+          @include source-sans-semi-bold;
+          font-size: 16px;
+          width: 195px;
+          @media only screen and (max-width: 380px) {
+            width: 135px;
+          }
+        }
+
+        a.subLink {
+          @include bluelink;
+        }
+      }
+    }
+  }
+
+  hr {
+    @include horizontal-rule;
+  }
+
+  form {
+    margin-top: 20px;
+    border-left: 1px solid $review-border;
+    border-right: 1px solid $review-border;
+    border-bottom: 1px solid $review-border;
+    background-color: $white;
+
+    .scorecard {
+      @include source-sans-regular;
+      color: $dark-gray;
+
+      h5.description {
+        border-top: 1px solid $review-border;
+        border-bottom: 1px solid $review-border;
+        background-color: $table-rows-gray;
+        @include source-sans-semi-bold;
+        padding: 12px 0 12px 20px;
+        margin-bottom: 32px;
+        line-height: 1.2;
+      }
+
+      .guidelines {
+        padding-bottom: 7px;
+        padding-left: 30px;
+        line-height: 1.2;
+      }
+    }
+  }
+}

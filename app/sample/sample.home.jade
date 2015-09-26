@@ -1,0 +1,18 @@
+
+br
+br
+
+h1 Ugly landing page
+
+p This page will be replaced by "dashboard", until then...
+
+hr
+
+
+div(ng-show="vm.loggedIn") User Information:
+  pre {{vm.user|json}}
+
+div(ng-hide="vm.loggedIn")
+  a(ui-sref="login") Login
+
+br

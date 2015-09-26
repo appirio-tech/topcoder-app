@@ -1,0 +1,10 @@
+.tooltip(ng-hide="hide")
+  .inner
+    header(ng-bind="badge.name")
+    .data
+      p.earnedOn(ng-bind="'Earned on ' + badge.date", ng-show="badge.date")
+      p.earnedOn(ng-hide="badge.date") Not Earned Yet
+    .data(ng-show="badge.currentlyEarned > 0")
+      p.currentlyEarned
+        span(ng-bind="badge.currentlyEarned")
+    .arrow

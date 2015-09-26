@@ -1,0 +1,135 @@
+@import '../partials/combined';
+
+.review-status-container {
+  h1 {
+    @include source-sans-regular;
+    font-size: 38px;
+    color: $light-black;
+    margin-top: 11px;
+    padding-bottom: 11px;
+    border-bottom: 1px solid $horizontal-rule;
+    @media only screen and (max-width: 1020px) {
+      font-size: 19px;
+      margin-top: 15px;
+    }
+  }
+
+  .help-center {
+    margin-top: 13px;
+    @include source-sans-light;
+    font-size: 15px;
+    color: $light-gray;
+    @media only screen and (max-width: 1020px) {
+      font-size: 13px;
+      line-height: 1.3;
+      margin-top: 9px;
+    }
+
+    a {
+      color: $dark-orange;
+      text-decoration: none;
+
+      &:hover {
+        color: $light-orange;
+        text-decoration: none;
+      }
+    }
+  }
+
+  hgroup {
+    margin-top: 38px;
+    @include source-sans-light;
+
+    h2 {
+      font-size: 24px;
+      color: $light-blue;
+      @media only screen and (max-width: 1020px) {
+        font-size: 18px;
+      }
+    }
+
+    h4 {
+      margin-top: 8px;
+      font-size: 16px;
+      color: $light-gray;
+      @media only screen and (max-width: 1020px) {
+        margin-top: 5px;
+      }
+    }
+  }
+
+  table, th, td {
+    border-top: 1px solid $review-border;
+    border-bottom: 1px solid $review-border;
+  }
+
+  table.peer-reviews {
+    table-layout: fixed;
+    margin-top: 30px;
+    width: 100%;
+    color: $dark-gray;
+    text-align: center;
+    @include source-sans-regular;
+
+    thead {
+      background-color: $table-head-gray;
+      font-weight: bold;
+      font-size: 14px;
+
+      th {
+        vertical-align: middle;
+        height: 42px;
+      }
+    }
+
+    tbody {
+      font-size: 14px;
+
+      .even-rows {
+        background-color: $table-rows-gray;
+      }
+
+      td {
+        vertical-align: middle;
+        height: 48px;
+        font-size: 15px;
+
+        .status {
+          @include bluelink;
+        }
+
+        span {
+          @include glyphicon-download-alt;
+          font-size: 24px;
+          color: $review-blue;
+        }
+      }
+    }
+  }
+
+  button.start-review {
+    margin-top: 30px;
+    padding: 6px 13px;
+    background-color: $tc-btn-light-orange;
+    border: 0;
+    border-bottom: 4px solid $tc-btn-dark-orange;
+    border-radius: 4px;
+    color: $white;
+    @include source-sans-light;
+    font-size: 19px;
+    text-transform: uppercase;
+    float: right;
+    @media only screen and (max-width: 1020px) {
+      margin-top: 15px;
+      margin-right: 10px;
+      padding-top: 4px;
+      padding-bottom: 3px;
+      font-size: 13px;
+    }
+
+    &:hover {
+      background-color: $tc-btn-dark-orange;
+      text-decoration: none;
+    }
+  }
+}

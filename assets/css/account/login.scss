@@ -1,0 +1,22 @@
+@import '../partials/combined';
+
+.login-container {
+  form {
+    display: flex;
+    flex-flow: row wrap;
+    width: 300px;
+    justify-content: space-between;
+  }
+
+  .form-errors {
+    p {
+      margin-bottom: 20px;
+    }
+  }
+
+  .forgot-password {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 12px;
+  }
+}

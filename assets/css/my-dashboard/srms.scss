@@ -1,0 +1,135 @@
+@import '../partials/combined';
+
+.srms {
+  min-height: 50px;
+  display: flex;
+  flex-direction: column;
+
+   > header {
+    position: relative;
+    margin-bottom: 35px;
+
+    a.viewSRMs {
+      position: absolute;
+      top: 3px;
+      right: 10px;
+      text-decoration: underline;
+    }
+  }
+
+  section {
+    padding: 15px;
+    border-top: 1px solid #F0F0F0;
+    border-bottom: 1px solid #F0F0F0;
+    background-color: #FCFCFC;
+
+    .srm-tiles {
+      @include horizontal-scroll;
+      @media only screen and (min-width: 768px) {
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0 auto;
+        overflow: visible;
+        white-space: normal;
+        width: 555px;
+      }
+      @media only screen and (min-width: 870px) {
+        width: 840px;
+      }
+      @media only screen and (min-width: 1155px) {
+        width: 1125px;
+      }
+
+      srm-tile {
+        display: inline;
+        margin-bottom: 15px;
+        @media only screen and (max-width: 767px) {
+          display: inline-block;
+          margin-left: 15px;
+
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+        @media only screen and (min-width: 768px) {
+          &:nth-child(2n + 1) {
+            margin-right: 15px;
+          }
+        }
+        @media only screen and (min-width: 870px) {
+          margin-right: 15px;
+
+          &:nth-child(3n) {
+            margin-right: 0;
+          }
+        }
+        @media only screen and (min-width: 1155px) {
+          &:nth-child(3n) {
+            margin-right: 15px;
+          }
+          &:nth-child(4n) {
+            margin-right: 0;
+          }
+        }
+      }
+
+      .srm-links-card {
+        display: inline;
+        width: 270px;
+        height: 319px;
+        margin-bottom: 15px;
+        padding: 0 21px;
+        border: 1px solid #DCDCDC;
+        border-radius: 4px;
+        @media only screen and (max-width: 767px) {
+          display: inline-block;
+          margin-left: 15px;
+        }
+      }
+
+      .flex-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+          margin-top: 60px;
+          margin-bottom: 30px;
+          @include sofia-pro-light;
+          font-size: 24px;
+          text-align: center;
+          color: $primary-text;
+          text-transform: uppercase;
+          white-space: normal;
+        }
+
+        a {
+          margin-bottom: 21px;
+          @include button-m-wide;
+          @include button-ghost;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .srms-links {
+    @include module-links;
+
+    p {
+      @include source-sans-regular;
+      font-size: 14px;
+      line-height: 20px;
+      color: $primary-text;
+      @media only screen and (min-width: 900px) {
+        font-size: 16px;
+      }
+
+      a {
+        color: $primary-color;
+        cursor: pointer;
+        text-decoration: none;
+      }
+    }
+  }
+}
