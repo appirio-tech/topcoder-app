@@ -102,48 +102,58 @@
   }
 
   .hasChallenges {
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
+    padding: 15px;
     border-top: 1px solid #F0F0F0;
     border-bottom: 1px solid #F0F0F0;
     background-color: #FCFCFC;
 
     .challenges {
-      width: 100%;
       @include horizontal-scroll;
-      @media only screen and (min-width: 1125px) {
+      @media only screen and (min-width: 768px) {
         display: flex;
         flex-flow: row wrap;
-        width: 1125px;
+        margin: 0 auto;
         overflow: visible;
+        white-space: normal;
+        width: 555px;
       }
+      @media only screen and (min-width: 870px) {
+        width: 840px;
+      }
+      @media only screen and (min-width: 1155px) {
+        width: 1125px;
+      }
+    }
 
-      challenge-tile {
+    challenge-tile {
+      display: inline;
+      margin-bottom: 15px;
+      @media only screen and (max-width: 767px) {
         display: inline-block;
-        @media only screen and (min-width: 1125px) {
-          display: block;
+        margin-left: 15px;
+
+        &:first-child {
+          margin-left: 0;
         }
-
-        &.tile-view {
-          margin-left: 15px;
-          margin-bottom: 15px;
-          @media only screen and (min-width: 1125px) {
-            &:nth-child(4n + 1) {
-              margin-left: 0;
-            }
-          }
-
-          &:last-child {
-            margin-right: 15px;
-            @media only screen and (min-width: 1125px) {
-              margin-right: 0;
-            }
-          }
+      }
+      @media only screen and (min-width: 768px) {
+        &:nth-child(2n + 1) {
+          margin-right: 15px;
         }
+      }
+      @media only screen and (min-width: 870px) {
+        margin-right: 15px;
 
-        &.list-view {
-          width: 100%;
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+      }
+      @media only screen and (min-width: 1155px) {
+        &:nth-child(3n) {
+          margin-right: 15px;
+        }
+        &:nth-child(4n) {
+          margin-right: 0;
         }
       }
     }
