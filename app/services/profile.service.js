@@ -27,6 +27,7 @@
       getChallengeTypeStats: getChallengeTypeStats,
       getTracks: getTracks,
       getSubTracks: getSubTracks,
+      getDivisions: getDivisions,
       // for profile - to be deprecated
       getMockMemberProfile: getMockMemberProfile
     };
@@ -210,6 +211,37 @@
         return track.name;
       });
       return tracks;
+    }
+
+    function getDivisions(stats) {
+      stats = stats.DATA_SCIENCE.SRM;
+      function toObject(array) {
+        var ans = {};
+        ans.total = {
+          problemsSuccessful: 0,
+          problemsFailed: 0,
+          problemsSubmitted: 0,
+          problemsSysByTest: 0
+        };
+        array.forEach(function(level) {
+          level.problemsSuccessful = level.problemsSubmitted - level.problemsFailed;
+          ans.total.problemsSuccessful += level.problemsSuccessful;
+          ans.total.problemsFailed += level.problemsFailed;
+          ans.total.problemsSubmitted += level.problemsSubmitted;
+          ans.total.problemsSysByTest += level.problemsSysByTest;
+          ans[level.levelName] = level;
+        });
+        ans.levels = [];
+        if (ans['Level One']) ans.levels.push(ans['Level One']);
+        if (ans['Level Two']) ans.levels.push(ans['Level Two']);
+        if (ans['Level Three']) ans.levels.push(ans['Level Three']);
+        return ans;
+      }
+      return {
+        division1: toObject(stats.division1),
+        division2: toObject(stats.division2),
+        challenges: toObject(stats.challengeDetails)
+      };
     }
 
     function getMockMemberProfile() {

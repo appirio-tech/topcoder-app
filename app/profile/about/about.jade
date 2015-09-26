@@ -10,7 +10,8 @@
       .skill(ng-repeat="skill in vm.skills")
         skill-tile(skill="skill")
 
-    button.more(ng-show="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW MORE
+    button.more(ng-if="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW MORE
+    button.more(ng-if="vm.skills.length > 6", ng-click="vm.skills = vm.someSkills") VIEW LESS
 
     .empty-state(ng-show="!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)")
       .action-text show us your skills &amp; tools, we'd love that!
