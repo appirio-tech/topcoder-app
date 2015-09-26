@@ -1,85 +1,155 @@
 @import '../partials/combined';
+.settings-header {
+  @include module-full-width;
+    background-color: $white;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .3);
+    header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 1242px;
+      margin: 0 auto;
+      padding-top: 20px;
+      @media only screen and (min-width: 600px) {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 25px 25px 23px;
+      }
+      @media only screen and (min-width: 900px) {
+        padding: 40px 50px 33px;
+      }
+      h1 {
+        margin-bottom: 10px;
+        @include sofia-pro-bold;
+        font-size: 22px;
+        line-height: 26px;
+        color: $primary-text;
+        text-transform: uppercase;
+        @media only screen and (min-width: 600px) {
+          margin-bottom: 0;
+          font-size: 32px;
+          line-height: 38px;
+        }
+      }
+    }
+}
 
 .settings-container {
-
-  header {
+  @include module-l;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 6px;
+  @media only screen and (min-width: 600px) {
+    margin: 60px;
+  }
+  nav {
     display: flex;
     flex-direction: column;
-    padding-bottom: 10px;
-
     @media only screen and (min-width: 550px) {
       display: flex;
       flex-direction: row;
-      align-items: baseline;
-      padding: 20px 0 7px 100px;
+      justify-content: center;
     }
-
-    h1 {
-      @include ui-h1;
-      color: $ui-blue;
+    li {
+      display: block;
+      margin-top: 10px;
       @media only screen and (min-width: 550px) {
-        margin-right: 75px;
+        display: inline-block;
+        margin-right: 30px;
       }
     }
-
-    nav {
-      display: flex;
-      flex-direction: column;
-
-      @media only screen and (min-width: 550px) {
-        display: flex;
-        flex-direction: row;
-      }
-
-      li {
-        display: block;
-        margin-top: 10px;
-
-        @media only screen and (min-width: 550px) {
-          display: inline-block;
-          margin-right: 30px;
-        }
-      }
-
-      a {
-        @include source-sans-light;
-        font-size: 18px;
-        color: $ui-blue;
-        text-decoration: underline;
-        cursor: pointer;
-      }
+    a {
+      @include sofia-pro-medium;
+      font-size: 16px;
+      color: #A3A3AE;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
     }
   }
-
   .active-tab {
-    color: $ui-gray;
-    text-decoration: none;
-    cursor: default;
+    padding-bottom: 6px;
+    border-bottom: 4px #0096FF solid;
   }
 
   hr {
     border-width: 1px 0 0 0;
   }
-
-
   // Common element stylings
-  button {
-    @include ui-submit-button;
+  .button-l {
+    @include button-l;
   }
 
   @include ui-form-placeholder;
-
   input:not([type="checkbox"]) {
     @include ui-form-field;
+  }
+  .settings-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media only screen and (min-width: 768px) {
+            flex-direction: row;
+    }
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid;
+    border-color: #F0F0F0;
+    .section-info {
+      @media only screen and (min-width: 768px) {
+        width: 320px;
+        padding-right: 30px;
+      }
+      h2 {
+        text-transform: uppercase;
+        @include sofia-pro-light;
+        font-size: 16px;
+      }
+      .description {
+        font-size: 13px;
+        line-height: 20px;
+        color: #A3A3AE;
+        // TODO - change font
+        @include sofia-pro-light;
+      }
+    }
+    .section-fields {
+      display: flex;
+      flex-direction: column;
+      @media only screen and (min-width: 768px) {
+        border-left: 6px solid #F6F6F6;
+        padding-left: 60px;
+      }
+      .form-label {
+        @include sofia-pro-regular;
+        font-size: 12px;
+        color: $primary-text;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        margin-top: 5px;
+      }
+      .form-field {
+        @include form-field;
+        @include ui-form-placeholder;
+        &:disabled {
+          color: #B7B7B7;
+        }
+      }
+      .form-field-focused {
+        @include form-field-focused;
+      }
+    }
   }
 }
 
 // Tab content
-.edit-profile-container, .account-info-container, .update-password-container, .preferences-container {
+.edit-profile-container,
+.account-info-container,
+.update-password-container,
+.preferences-container {
   @media only screen and (min-width: 550px) {
     padding-left: 100px;
   }
-
   .tab-title {
     margin-bottom: 35px;
     font-size: 32px;
@@ -89,22 +159,18 @@
       margin-top: 50px;
     }
   }
-
   .fields {
     @media only screen and (min-width: 550px) {
       margin-left: 3px;
     }
   }
-
   .field-section {
     margin-bottom: 40px;
-
     h4 {
       margin-bottom: 10px;
       font-size: 18px;
       color: $ui-dark-gray;
     }
-
     p:not(.form-error) {
       font-size: 14px;
       color: $ui-light-gray;

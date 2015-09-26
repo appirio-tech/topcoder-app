@@ -348,6 +348,21 @@
   }
 }
 
+@mixin form-field {
+  padding-left: 10px;
+  margin-bottom: 5px;
+  background-color: #FCFCFC;
+  border: 1px solid #F0F0F0;
+  border-radius: 2px;
+  height: 40px;
+}
+
+@mixin form-field-focused {
+  background-color: $white;
+  border: 1px solid #D1D3D4;
+  // TODO shadow?
+}
+
 @mixin horizontal-scroll {
   white-space: nowrap;
   overflow-y: hidden;
@@ -421,15 +436,16 @@
 
 @mixin ui-form-placeholder {
   ::-webkit-input-placeholder {
-    color: #231F20;
+    color: #B7B7B7;
   }
-
-  ::-moz-placeholder {
-    color: #231F20;
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #B7B7B7;
   }
-
   :-ms-input-placeholder {
-    color: #231F20;
+    color: #B7B7B7;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: #B7B7B7;
   }
 }
 
