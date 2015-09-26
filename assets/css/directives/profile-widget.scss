@@ -74,7 +74,9 @@
     align-items: center;
     .tracks {
       display: flex;
-      justify-content: center;
+      flex-direction: row;
+      justify-content: flex-end;
+      width: 100%;
       .track {
         display: flex;
         flex-direction: column;
@@ -99,9 +101,11 @@
 
     .links {
       margin-top: 15px;
+      width: 100%;
       display: flex;
       flex-direction: row;
       align-items: center;
+      justify-content: flex-end;
       .link {
         @include button-2-m;
         text-decoration: none;
