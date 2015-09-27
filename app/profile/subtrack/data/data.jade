@@ -25,11 +25,13 @@
     .tabs
       a.left(id="challenges", ng-click="vm.viewing = 'challenges'",
         ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
-      ) Challenges
+      )
+        span(ng-show="vm.subTrack == 'SRM'") Past SRMs
+        span(ng-show="vm.subTrack != 'SRM'") Challenges
 
       a.right(id="stats", ng-click="vm.viewing = 'stats'",
         ng-class="vm.viewing == 'stats' ? 'selected' : ''"
-      ) Stats
+      ) Statistics
 
     hr
 

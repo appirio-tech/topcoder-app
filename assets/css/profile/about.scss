@@ -159,10 +159,9 @@
 
   .skills {
     .dimmed {
-      position:absolute;
-      width:50%; height:20%;
-      margin-right: 20px;
-      bottom: -0px;
+      width:100%;
+      margin-top: -70px;
+      height:100px;
       background:rgba(0,0,0,0.6);
       opacity:1;
       transition: all 0.5s;

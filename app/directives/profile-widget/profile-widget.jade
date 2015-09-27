@@ -9,7 +9,7 @@
       | Member Since {{profile.startMonth}}
 
     h3.location-challenges {{profile.homeCountryCode | isoCountry}}
-      span.bar(ng-show="profile.homeCountryCode && numChallenges")  | 
+      span.bar(ng-show="profile.homeCountryCode && numChallenges") &nbsp;|&nbsp;
       span(ng-show="numChallenges") {{numChallenges}} Challenges
 
     p.description {{profile.quote}}
@@ -21,7 +21,7 @@
       .track(ng-repeat="track in (profile.tracks)")
         div(class="{{profileVm.imgMap[track]}}-icon")
           div
-        .text {{track | track}}
+        .text {{track | role}}
 
     hr
     
