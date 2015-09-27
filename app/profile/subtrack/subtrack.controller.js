@@ -112,11 +112,7 @@
       return ChallengeService.getUserChallenges(
         profileVm.profile.handle,
         {
-          filter: {
-            status: 'completed',
-            track: vm.track,
-            subTrack: vm.subTrack
-          },
+          filter: 'status=completed&track=' + vm.track + '&subTrack=' + vm.subTrack,
           limit: vm.pageParams.limit,
           offset: vm.pageParams.offset,
           orderBy: 'submissionEndDate desc'
