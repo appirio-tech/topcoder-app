@@ -25,6 +25,7 @@
       background-color: $white;
       @include sofia-pro-light;
       font-size: 11px;
+      line-height: 16px;
       text-transform: uppercase;
       color: $black;
 
@@ -35,16 +36,17 @@
       &:before {
         content: '';
         display: inline-block;
-        margin-right: 5px;
+        margin-bottom: 2px;
+        margin-right: 4px;
         vertical-align: middle;
-        @include background-image-size(20px, 20px);
+        @include background-image-size(16px, 16px);
       }
 
       &.grid:before {
-        background: url(/images/ico-posts.svg);
+        background: url(/images/ico-grid.svg);
       }
       &.list:before {
-        background: url(/images/ico-submissions.svg);
+        background: url(/images/ico-list.svg);
       }
 
     }
