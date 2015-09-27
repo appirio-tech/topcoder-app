@@ -37,7 +37,7 @@
     vm.statsPromise = ProfileService.getUserStats(vm.userHandle).then(function(stats) {
       vm.stats = stats;
       vm.profile.tracks = vm.profile.tracks || ProfileService.getTracks(vm.stats) || [];
-      if (stats.COPILOT && stats.COPILOT.contests) {
+      if (stats.COPILOT && stats.COPILOT.contests && vm.profile.tracks.indexOf('COPILOT') == -1) {
         vm.profile.tracks.push('COPILOT');
       }
       vm.numProjects = vm.stats.challenges;

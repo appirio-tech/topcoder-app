@@ -4,9 +4,9 @@
     .module('tc.profile')
     .controller('ProfileSubtrackController', ProfileSubtrackController);
 
-  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window', 'userHandle'];
+  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window', 'ngDialog'];
 
-  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window) {
+  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window, ngDialog) {
     var vm = this;
     vm.graphState = { show: 'history' };
     vm.subTrack = decodeURIComponent($stateParams.subTrack || '') || '';
@@ -20,6 +20,7 @@
     vm.ddSelected = {};
     vm.distribution = {};
     vm.selectSubTrack = selectSubTrack;
+    vm.showNav = showNav;
     vm.back = back;
     vm.status = {
       'challenges': CONSTANTS.STATE_LOADING
@@ -128,6 +129,25 @@
         return data;
       }).catch(function(err) {
         vm.status.challenges = CONSTANTS.STATE_ERROR;
+      });
+    }
+
+    function showNav() {
+      console.log('dialog')
+      console.log(ngDialog)
+      ngDialog.open({
+        template: 'profile/subtrack/nav.html',
+        controller: 'ProfileCtrl',
+        controllerAs: 'vm',
+        className: 'ngdialog-theme-default',
+        resolve: {
+          userHandle: function() {
+            return vm.userHandle;
+          },
+          profile: function() {
+            return profileVm.profile;
+          }
+        }
       });
     }
 
