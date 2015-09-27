@@ -129,14 +129,17 @@
         });
       }
       if (stats.COPILOT) {
-        copilot = stats.COPILOT;
-        copilot.track = 'Co-Pilot';
+        copilot =  [
+          stats.COPILOT
+        ];
+        stats.COPILOT.track = 'COPILOT';
+        stats.COPILOT.subTrack = 'COPILOT';
       }
       var ans = {
         'DEVELOP': removeRankless(dev),
         'DESIGN': removeRankless(design),
         'DATA_SCIENCE': removeRankless(dataScience),
-        'CO_PILOT': copilot
+        'COPILOT': copilot
       };
 
       function removeRankless(arr) {

@@ -1,27 +1,23 @@
-.design(ng-if="vm.track == 'Co-Pilot'")
-  ul.horizontal-stats
-    li.stat
-      .value {{vm.typeStats.contests}}
-      .name CONTESTS
+.copilot.design(ng-if="vm.track == 'COPILOT'")
+  .top
+    ul.horizontal-stats
+      li.stat
+        .value {{vm.typeStats.contests}}
+        .name CONTESTS
 
-    li.stat
-      .value {{vm.typeStats.projects}}
-      .name PROJECTS
+      li.stat
+        .value {{vm.typeStats.projects}}
+        .name PROJECTS
 
-    li.stat
-      .value {{vm.typeStats.fulfillment + '%'}}
-      .name FULFILLMENT
+      li.stat
+        .value {{vm.typeStats.fulfillment + '%'}}
+        .name FULFILLMENT
 
-  hr
-
-  .stats
-    .graphs
-      img(src="/images/graph.png")
-
+  .top
     h2.detailed Detailed Stats
 
     ul.vertical-stats
-      li
+      li.first
         .left Contests
         .right {{vm.typeStats.contests}}
 
