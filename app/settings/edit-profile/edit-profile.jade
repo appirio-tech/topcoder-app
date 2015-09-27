@@ -42,9 +42,9 @@
         .description Topcoder's three categories of challenges... please pick at least one on your skills and interests
 
       .section-fields
+        p todo 
         
-        
-      button(type="submit", ng-disabled="vm.editProfile.$invalid", ng-class="{'enabled-button': vm.editProfile.$valid}") Save
+      button(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid", ng-class="{'enabled-button': vm.editProfile.$valid}") Save
 
   .settings-section
     .section-info

@@ -17,6 +17,7 @@
     vm.skills = false;
     vm.addSkill = addSkill;
     vm.tags = [];
+    vm.profileFormProcessing = false;
 
     activate();
 
@@ -80,6 +81,7 @@
     }
 
     function updateProfile() {
+      vm.profileFormProcessing = true;
       vm.userData.tracks = _.reduce(vm.tracks, function(result, isInterested, trackName) {
         if (isInterested) {
           result.push(trackName);
@@ -89,9 +91,11 @@
 
       ProfileService.updateUserProfile(vm.userData)
       .then(function() {
+        vm.profileFormProcessing = false;
         $log.info('Saved successfully');
       })
       .catch(function(err) {
+        vm.profileFormProcessing = false;
         $log.error(err);
       });
     }

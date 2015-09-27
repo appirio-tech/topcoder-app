@@ -11,41 +11,41 @@
       .form-label email
       input.form-field(name="email", value="{{vm.userData.email}}", disabled=true)
 
-      form(name="vm.newPasswordForm", role="form", ng-submit="vm.newPasswordForm.$valid && vm.submitNewPassword()", novalidate)
-        .form-label Current passoword
-        input.form-field(
-          name="password1", type="password", 
-          placeholder="First",
-          ng-model="vm.newPasswordForm.password1", 
-          maxlength="64", required, 
-          ng-class="{'form-field-focused': hasFocus==true}"
-        )
+      div(ng-hide="vm.isSocialRegistration")
+        form(name="vm.newPasswordForm", role="form", ng-submit="vm.newPasswordForm.$valid && vm.submitNewPassword()", novalidate)
+          .form-label Current passoword
+          .validation-bar(ng-class="{ 'success-bar': (vm.newPasswordForm.newPassword.$valid) }")
+            toggle-password.form-field(ng-model="vm.currentPassword")
+          //- input.form-field(
+          //-   name="currentPassword", type="text", 
+          //-   placeholder="First",
+          //-   ng-model="vm.currentPassword", 
+          //-   maxlength="64", required, 
+          //-   ng-class="{'form-field-focused': hasFocus==true}"
+          //- )
 
-        .form-label New Password
-        input.form-field(
-          name="password2", type="password", 
-          placeholder="New Password",
-          ng-model="vm.newPasswordForm.password2", 
-          maxlength="64", required, 
-          ng-class="{'form-field-focused': hasFocus==true}"
-        )
-        //- .validation-bar(ng-class="{ 'success-bar': (vm.newPasswordForm.password.$valid) }")
-        //-   toggle-password-with-tips(ng-if="!vm.isSocialRegistration")
+          .form-label New Password
+          .validation-bar(ng-class="{ 'success-bar': (vm.newPasswordForm.newPassword.$valid) }")
+            toggle-password-with-tips.form-field(placeholder="Pick a new password")
+            .tips.password-tips(ng-show="vm.passwordFocus")
+              h3 Password Tips:
 
-        //-   .tips.password-tips(ng-show="vm.passwordFocus")
-        //-     h3 Password Tips:
+              p Your password must have:
 
-        //-     p Your password must have:
+              p(ng-class="{ 'has-length-between-range': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.minlength && !vm.newPasswordForm.password.$error.maxlength && !vm.newPasswordForm.password.$error.required) }") At least 8 characters
 
-        //-     p(ng-class="{ 'has-length-between-range': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.minlength && !vm.newPasswordForm.password.$error.maxlength && !vm.newPasswordForm.password.$error.required) }") At least 8 characters
+              p(ng-class="{ 'has-letter': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasLetter) }") At least one letter
 
-        //-     p(ng-class="{ 'has-letter': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasLetter) }") At least one letter
+              p(ng-class="{ 'has-symbol-or-number': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
+        
+          button.button-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid") Save
+            
 
-        //-     p(ng-class="{ 'has-symbol-or-number': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
-      button.button-l(type="submit", ng-disabled="vm.newPasswordForm.$invalid") Save
+      div(ng-show="vm.isSocialRegistration")
+        p You joined Topcoder by using an external account, so we don't have a password for you.
     
 
-  form(name="vm.updateAccountInfo", role="form", ng-submit="vm.updateAccountInfo.$valid && vm.saveAccountInfo()", novalidate, autocomplete="off")
+  form(name="vm.accountInfoForm", role="form", ng-submit="vm.accountInfoForm.$valid && vm.saveAccountInfo()", novalidate, autocomplete="off")
 
     .settings-section
       .section-info
@@ -58,25 +58,30 @@
           input(autocomplete="false", name="hidden", type="text", style="display:none;")
           .form-label First name 
             span(style="text-transform: none;") &nbsp;(Given name)
-          input.form-field(
-            name="firstname", type="text", 
-            placeholder="First",
-            value="{{vm.userData.firstName}}", 
-            ng-model="vm.userData.firstName", 
-            maxlength="64", required, 
-            ng-class="{'form-field-focused': hasFocus==true}"
-          )
+          .validation-bar(ng-class="{ 'error-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.firstname.$invalid), 'success-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.firstname.$valid)}")
+            input.form-field(
+              name="firstname", type="text",
+              placeholder="First",
+              ng-model="vm.userData.firstName", 
+              maxlength="64", required, 
+              ng-class="{'form-field-focused': hasFocus==true}"
+            )
+            .form-input-error(ng-show="vm.accountInfoForm.firstname.$invalid")
+              p(ng-show="vm.accountInfoForm.firstname.$error.required") This is a required field.
 
           .form-label Last name
             span(style="text-transform: none;") &nbsp;(Surname)
-          input.form-field(
-            name="lastname", type="text", 
-            placeholder="Last",
-            value="{{vm.userData.lastName}}", 
-            ng-model="vm.userData.lastName", 
-            maxlength="64", required,
-            ng-class="{'form-field-focused': hasFocus==true}"
-          )
+          .validation-bar(ng-class="{ 'error-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.lastname.$invalid), 'success-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.lastname.$valid)}")
+            input.form-field(
+              name="lastname", type="text", 
+              placeholder="Last",
+              ng-model="vm.userData.lastName", 
+              maxlength="64", required,
+              ng-class="{'form-field-focused': hasFocus==true}"
+            )
+            .form-input-error(ng-show="vm.accountInfoForm.lastname.$invalid")
+              p(ng-show="vm.accountInfoForm.lastname.$error.required") This is a required field.
+
     
     .settings-section
       .section-info
@@ -145,9 +150,8 @@
             minlength="1",
             ng-class="{'form-field-focused': hasFocus==true}"
           )
+          .account-info-error(ng-show="vm.accountInfoForm.country.$invalid")
+            p(ng-show="vm.accountInfoForm.country.$error.required") Please choose a country from the list.
 
-          //-         .account-info-error
-          //-           p.form-error(ng-show="vm.updateAccountInfo.country.$error.required") Please choose a country from the list.
 
-
-          button.button-l(type="submit", ng-disabled="vm.updateAccountInfo.$invalid", ng-class="{'enabled-button': vm.updateAccountInfo.$valid}") Save
+          button.button-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid", ng-class="{'enabled-button': vm.accountInfoForm.$valid}") Save
