@@ -1,10 +1,52 @@
 @import '../partials/combined';
 
 .my-challenges {
+  header {
+    position: relative;
+  }
+
   .section-title {
     margin-bottom: 27px;
     @media only screen and (min-width: 900px) {
       margin-bottom: 30px;
+    }
+  }
+
+  .challenge-view-toggle {
+    position: absolute;
+    bottom: 0;
+    right: 55px;
+
+    button {
+      margin-right: 17px;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      background-color: $white;
+      @include sofia-pro-light;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: $black;
+
+      &.disabled {
+        color: #A3A3AE;
+      }
+
+      &:before {
+        content: '';
+        display: inline-block;
+        margin-right: 5px;
+        vertical-align: middle;
+        @include background-image-size(20px, 20px);
+      }
+
+      &.grid:before {
+        background: url(/images/ico-posts.svg);
+      }
+      &.list:before {
+        background: url(/images/ico-submissions.svg);
+      }
+
     }
   }
 
@@ -107,54 +149,112 @@
     border-bottom: 1px solid #F0F0F0;
     background-color: #FCFCFC;
 
+    &.list-view-active {
+      padding-top: 0;
+      border: 0;
+      background-color: $white;
+
+      .section-titles {
+        display: flex;
+        max-width: 1122px;
+        margin: 0 auto;
+        border: 1px solid $white;
+        padding-left: 5px;
+
+        div {
+          display: inline-block;
+          flex: 2;
+          align-self: flex-end;
+          padding-left: 15px;
+          padding-right: 15px;
+          padding-bottom: 15px;
+          @include sofia-pro-regular;
+          color: #7F7F7F;
+          font-size: 12px;
+          text-transform: uppercase;
+          @media only screen and (min-width: 1000px) {
+            padding-left: 30px;
+          }
+        }
+
+        .challenge-title, .phase-title {
+          border-right: 1px solid $white;
+        }
+
+        .regs-subs-title {
+          flex: 1;
+        }
+      }
+    }
+
     .challenges {
       @include horizontal-scroll;
-      @media only screen and (min-width: 768px) {
-        display: flex;
-        flex-flow: row wrap;
-        margin: 0 auto;
-        overflow: visible;
-        white-space: normal;
-        width: 555px;
+
+      &.tile-view, &.list-view {
+        @media only screen and (min-width: 768px) {
+          display: flex;
+          margin: 0 auto;
+          overflow: visible;
+          white-space: normal;
+        }
       }
-      @media only screen and (min-width: 870px) {
-        width: 840px;
+
+      &.tile-view {
+        @media only screen and (min-width: 768px) {
+          flex-flow: row wrap;
+          width: 555px;
+        }
+        @media only screen and (min-width: 870px) {
+          width: 840px;
+        }
+        @media only screen and (min-width: 1155px) {
+          width: 1125px;
+        }
       }
-      @media only screen and (min-width: 1155px) {
-        width: 1125px;
+
+      &.list-view {
+        flex-flow: column nowrap;
+        align-items: center;
+        max-width: 1122px;
       }
     }
 
     challenge-tile {
-      display: inline;
-      margin-bottom: 15px;
-      @media only screen and (max-width: 767px) {
-        display: inline-block;
-        margin-left: 15px;
+      &.tile-view {
+        display: inline;
+        margin-bottom: 15px;
+        @media only screen and (max-width: 767px) {
+          display: inline-block;
+          margin-left: 15px;
 
-        &:first-child {
-          margin-left: 0;
+          &:first-child {
+            margin-left: 0;
+          }
         }
-      }
-      @media only screen and (min-width: 768px) {
-        &:nth-child(2n + 1) {
+        @media only screen and (min-width: 768px) {
+          &:nth-child(2n + 1) {
+            margin-right: 15px;
+          }
+        }
+        @media only screen and (min-width: 870px) {
           margin-right: 15px;
-        }
-      }
-      @media only screen and (min-width: 870px) {
-        margin-right: 15px;
 
-        &:nth-child(3n) {
-          margin-right: 0;
+          &:nth-child(3n) {
+            margin-right: 0;
+          }
+        }
+        @media only screen and (min-width: 1155px) {
+          &:nth-child(3n) {
+            margin-right: 15px;
+          }
+          &:nth-child(4n) {
+            margin-right: 0;
+          }
         }
       }
-      @media only screen and (min-width: 1155px) {
-        &:nth-child(3n) {
-          margin-right: 15px;
-        }
-        &:nth-child(4n) {
-          margin-right: 0;
-        }
+
+      &.list-view {
+        width: 100%;
       }
     }
   }
