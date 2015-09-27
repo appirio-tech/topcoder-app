@@ -78,13 +78,17 @@
         }
 
         if (challenge.userCurrentPhaseEndTime) {
-          var timeAndUnit = moment(challenge.userCurrentPhaseEndTime).fromNow(true);
-          // Split into components: ['an', 'hour'] || ['2', months]
+          var fullTime = challenge.userCurrentPhaseEndTime;
+          var timeAndUnit = moment(fullTime).fromNow(true);
+          // Split into components: ['an', 'hour'] || ['2', 'months']
           timeAndUnit = timeAndUnit.split(' ');
 
           if (timeAndUnit[0] === 'a' || timeAndUnit[0] === 'an') {
             timeAndUnit[0] = '1';
           }
+
+          // Add actual time ['2', 'months', actual date]
+          timeAndUnit.push(fullTime);
           challenge.userCurrentPhaseEndTime = timeAndUnit;
         }
       });
@@ -119,13 +123,17 @@
         }
 
         if (challenge.userCurrentPhaseEndTime) {
-          var timeAndUnit = moment(challenge.userCurrentPhaseEndTime).fromNow(true);
-          // Split into components: ['an', 'hour'] || ['2', months]
+          var fullTime = challenge.userCurrentPhaseEndTime;
+          var timeAndUnit = moment(fullTime).fromNow(true);
+          // Split into components: ['an', 'hour'] || ['2', 'months']
           timeAndUnit = timeAndUnit.split(' ');
 
           if (timeAndUnit[0] === 'a' || timeAndUnit[0] === 'an') {
             timeAndUnit[0] = '1';
           }
+
+          // Add actual time ['2', 'months', actual date]
+          timeAndUnit.push(fullTime);
           challenge.userCurrentPhaseEndTime = timeAndUnit;
         }
       });

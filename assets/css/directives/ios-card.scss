@@ -177,22 +177,24 @@ ios-card .challenge.tile-view {
     height: 17px;
     background-image: url(/images/ico-posts.svg);
   }
+
+  // Dynamic colors based on track
+  &.DESIGN {
+    .challenge-track { background-color: $accent-color; }
+    header p { color: $accent-color; }
+  }
+  &.DEVELOP {
+    .challenge-track { background-color: $success-color; }
+    header p { color: $success-color; }
+  }
+  &.DATA_SCIENCE {
+    .challenge-track { background-color: #F39426; }
+    header p { color: #F39426; }
+  }
+  &.COPILOT {
+    .challenge-track { background-color: #7F7F7F; }
+    header p { color: #7F7F7F; }
+  }
 }
 
-// Dynamic colors based on track
-.DESIGN {
-  .challenge-track { background-color: $accent-color; }
-  header p { color: $accent-color; }
-}
-.DEVELOP {
-  .challenge-track { background-color: $success-color; }
-  header p { color: $success-color; }
-}
-.DATA_SCIENCE {
-  .challenge-track { background-color: #F39426; }
-  header p { color: #F39426; }
-}
-.COPILOT {
-  .challenge-track { background-color: #7F7F7F; }
-  header p { color: #7F7F7F; }
-}
+

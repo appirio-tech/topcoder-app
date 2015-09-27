@@ -10,7 +10,9 @@
 
       p.viewOptions
         a(ng-click="vm.changeView('list')", ng-class="{disabled: vm.view == 'list'}") List
+
         span &nbsp; | &nbsp;
+
         a(ng-click="vm.changeView('tile')", ng-class="{disabled: vm.view == 'tile'}") Tile
 
       p.filters
@@ -22,6 +24,7 @@
 
     section.challenges(ng-show="vm.userHasChallenges && !vm.loading")
       tc-paginator(data="vm.myChallenges", page-params="vm.pageParams")
+
       .data(ng-class="vm.view + '-view'")
         challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.view", ng-class="vm.view + '-view'")
 

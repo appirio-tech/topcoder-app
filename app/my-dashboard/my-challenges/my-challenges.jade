@@ -1,6 +1,11 @@
 header(ng-hide="vm.loading")
   h1.section-title(ng-bind="vm.userHasChallenges ? 'My Challenges' : 'Challenges'")
 
+  .challenge-view-toggle
+    button.grid(ng-click="vm.toggleView('tile')", ng-class="{ disabled: vm.challengeView === 'tile' }") Grid
+
+    button.list(ng-click="vm.toggleView('list')", ng-class="{ disabled: vm.challengeView === 'list' }") List
+
 .section-loading(ng-show="vm.loading")
 
 section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
@@ -29,9 +34,15 @@ section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
 
   a(href="") Learn More
 
-section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading")
-  .challenges
-    challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="'tile'", ng-class="'tile-view'")
+section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading", ng-class="{ 'list-view-active': vm.challengeView === 'list' }")
+  .section-titles(ng-show="vm.challengeView === 'list'")
+    .challenge-title Challenges
+    .phase-title Phase
+    .regs-subs-title Registrations & Submissions
+
+  .challenges(ng-class="vm.challengeView + '-view'")
+
+    challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.challengeView", ng-class="vm.challengeView + '-view'")
 
 .my-challenges-links(ng-if="vm.userHasChallenges && !vm.loading")
     a(ui-sref="my-challenges") View All Active Challenges
