@@ -4,9 +4,10 @@
 .ratings(ng-if="vm.hasRanks && !vm.loading")
   .tracks
     .track(ng-repeat="subtrack in vm.subtrackRanks | orderBy: ['track', 'rank']", ui-sref="profile.develop({userHandle: vm.profile.handle, track: subtrack.track, subTrack: subtrack.subTrack})")
-      p.subtrack {{subtrack.subTrack | underscoreStrip}}
+      .flex-wrapper
+        p.subtrack {{subtrack.subTrack | underscoreStrip}}
 
-      p.rating {{subtrack.rating | number}}
-        span
+        p.rating {{subtrack.stat | number}}
+          span(style="background-color: {{subtrack.stat | ratingColor}}", ng-if="subtrack.track === 'DEVELOP' || subtrack.track === 'DATA_SCIENCE'")
 
-      p Rating
+        p {{subtrack.statType}}
