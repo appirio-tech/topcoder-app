@@ -27,6 +27,7 @@
       getChallengeTypeStats: getChallengeTypeStats,
       getTracks: getTracks,
       getSubTracks: getSubTracks,
+      getDivisions: getDivisions,
       // for profile - to be deprecated
       getMockMemberProfile: getMockMemberProfile
     };
@@ -128,23 +129,26 @@
         });
       }
       if (stats.COPILOT) {
-        copilot = stats.COPILOT;
-        copilot.track = 'Co-Pilot';
+        copilot =  [
+          stats.COPILOT
+        ];
+        stats.COPILOT.track = 'COPILOT';
+        stats.COPILOT.subTrack = 'COPILOT';
       }
-      var ans = {
+      var compiledStats = {
         'DEVELOP': removeRankless(dev),
         'DESIGN': removeRankless(design),
         'DATA_SCIENCE': removeRankless(dataScience),
-        'CO_PILOT': copilot
+        'COPILOT': copilot
       };
 
       function removeRankless(arr) {
-        return arr
-          .filter(function(subTrack) {
-            return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment);
-          });
+        return arr.filter(function(subTrack) {
+          return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment);
+        });
       }
-      return ans;
+
+      return compiledStats;
     }
 
     function getChallengeTypeStats(stats, track, type) {
@@ -210,6 +214,37 @@
         return track.name;
       });
       return tracks;
+    }
+
+    function getDivisions(stats) {
+      stats = stats.DATA_SCIENCE.SRM;
+      function toObject(array) {
+        var ans = {};
+        ans.total = {
+          problemsSuccessful: 0,
+          problemsFailed: 0,
+          problemsSubmitted: 0,
+          problemsSysByTest: 0
+        };
+        array.forEach(function(level) {
+          level.problemsSuccessful = level.problemsSubmitted - level.problemsFailed;
+          ans.total.problemsSuccessful += level.problemsSuccessful;
+          ans.total.problemsFailed += level.problemsFailed;
+          ans.total.problemsSubmitted += level.problemsSubmitted;
+          ans.total.problemsSysByTest += level.problemsSysByTest;
+          ans[level.levelName] = level;
+        });
+        ans.levels = [];
+        if (ans['Level One']) ans.levels.push(ans['Level One']);
+        if (ans['Level Two']) ans.levels.push(ans['Level Two']);
+        if (ans['Level Three']) ans.levels.push(ans['Level Three']);
+        return ans;
+      }
+      return {
+        division1: toObject(stats.division1),
+        division2: toObject(stats.division2),
+        challenges: toObject(stats.challengeDetails)
+      };
     }
 
     function getMockMemberProfile() {

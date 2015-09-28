@@ -10,6 +10,8 @@
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
     vm.userHasChallenges = true;
+    vm.challengeView = 'tile';
+    vm.toggleView = toggleView;
 
     var handle = userIdentity.handle;
 
@@ -64,6 +66,12 @@
         vm.userHasChallenges = true;
         vm.loading = false;
       });
+    }
+
+    function toggleView(view) {
+      if (vm.challengeView !== view) {
+        vm.challengeView = view;
+      }
     }
   }
 })();

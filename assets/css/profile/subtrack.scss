@@ -20,6 +20,15 @@
     }
     .right {
       width: 15px;
+      margin-right: 50px;
+      i {
+        color: #a3a3ae;
+        font-size: 19px;
+        cursor: pointer;
+        &:hover {
+          color: black;
+        }
+      }
     }
     .breadcrumbs {
       font-family: 'Sofia Pro';
@@ -32,7 +41,7 @@
           text-decoration: none;
           color: black;
           &:hover {
-            font-weight: 300;
+            color: $accent-color;
           }
         }
       }
@@ -67,6 +76,7 @@
     align-self: center;
     margin-left: auto;
     margin-right: auto;
+    padding-bottom: 30px;
   }
   .horizontal-stats {
     display: flex;
@@ -98,10 +108,9 @@
       }
       .name {
         font-weight: 500;
-        margin-top: 8px;
         text-align: center;
         text-transform: uppercase;
-        font-weight: bold;
+        font-weight: 500;
         font-size: 9px;
         color: #a3a3ae;
       }
@@ -143,10 +152,95 @@
         padding: 14px;
         border-bottom: 1px solid #f6f6f6;
         .right {
-          color: #00aeff;
+          color: $accent-color;
         }
         &.first {
           border-top: 1px solid #f6f6f6;
+        }
+      }
+    }
+
+    ul.divisions {
+      font-family: 'Sofia Pro';
+
+      li.division {
+        border-bottom: 1px solid #f0f0f0;
+        padding-bottom: 15px;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        ul {
+          li.totals, li.level {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            ul.row {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              width: 250px;
+              li {
+                height: 100px;
+                width: 100px;
+                display: flex;
+                margin-left: 10px;
+                margin-bottom: 10px;
+                background-color: #f6f6f6;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                h3 {
+                  font-size: 22px;
+                  font-weight: bold;
+                  color: #a3a3ae;
+                }
+                span {
+                  margin-top: 4px;
+                  font-size: 11px;
+                  color: #a3a3ae;
+                  text-align: center;
+                  width: 85px;
+                }
+                &.left {
+                  background-color: white;
+                  height: 60px;
+                  width: 210px;
+                  h2 {
+                    font-size: 22px;
+                    font-weight: bold;
+                  }
+                  h3 {
+                    font-size: 20px;
+                    font-weight: 200;
+                    text-transform: uppercase;
+                  }
+                  span {
+                    font-size: 11px;
+                    color: #a3a3ae;
+                    margin-top: 7px;
+                    font-weight: bold;
+                  }
+                }
+              }
+            }
+          }
+          li.totals {
+            ul.row {
+              li {
+                background-color: white;
+                border: solid 1px #d1d3d4;
+                h2 {
+                  font-weight: bold;
+                }
+                h3 {
+                  color: black;
+                }
+                &.left {
+                  border: none;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -156,8 +250,6 @@
       flex-direction: row;
       justify-content: center;
       margin-top: 30px;
-      margin-bottom: 15px;
-      border-bottom: solid 1px #a3a3ae;
       a {
         color: #a3a3ae;
         width: 140px;
@@ -178,6 +270,13 @@
         }
       }
     }
+    hr {
+      margin-bottom: 15px;
+      margin-top: -3px;
+      width: 90%;
+      border: 0;
+      border-top: 1px solid #d1d3d4;
+    }
 
     tc-section,.tc-section {
       padding: 30px;
@@ -187,8 +286,9 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      justify-content: center;
       .challenge.tile {
-        width: 250px;
+        width: 325px;
         padding: 15px;
       }
     }
@@ -267,7 +367,7 @@
       justify-content: space-between;
     }
   }
-  .develop, .design {
+  .develop, .design, .data {
 
     .graphs {
       display: flex;
@@ -288,9 +388,11 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      align-content: center;
       flex-wrap: wrap;
       li {
         width: 28%;
+        margin: 0 15px;
         font-family: 'Sofia Pro';
         font-size: 15px;
         line-height: 18px;
@@ -301,6 +403,77 @@
         }
         &.first {
           border-top: 1px solid #f6f6f6;
+        }
+      }
+    }
+
+    ul.divisions {
+      li.division {
+        ul {
+          li.totals, li.level {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            ul.row {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: wrap;
+              width: 800px;
+              li {
+                height: 100px;
+                width: 100px;
+                display: flex;
+                margin-left: 10px;
+                margin-bottom: 10px;
+                background-color: #f6f6f6;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                h3 {
+                  font-size: 22px;
+                  font-weight: bold;
+                }
+                span {
+                  margin-top: 4px;
+                  font-size: 11px;
+                  color: #a3a3ae;
+                  text-align: center;
+                  width: 85px;
+                }
+                &.left {
+                  background-color: white;
+                  height: 100px;
+                  width: 210px;
+                  h2 {
+                    font-size: 22px;
+                    font-weight: bold;
+                  }
+                  h3 {
+                    font-size: 20px;
+                    font-weight: 200;
+                    text-transform: uppercase;
+                  }
+                  span {
+                    font-size: 11px;
+                    color: #a3a3ae;
+                    margin-top: 7px;
+                    font-weight: bold;
+                  }
+                }
+              }
+            }
+          }
+          li.totals {
+            ul.row {
+              li {
+                background-color: white;
+                border: none;
+                &.left {
+                  background-color: none;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -321,11 +494,154 @@
       flex-direction: row;
       flex-wrap: wrap;
       .challenge.tile {
-        width: 250px;
-        padding: 15px;
       }
     }
 
   }
 }
+}
+.categoryNav {
+  background: white;
+  @include module-l;
+  margin-left: auto;
+  margin-right: auto;
+  align-self: center;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  .track {
+    margin-top: 22.4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+
+    .name {
+      span {
+      }
+      margin: auto;
+      font-family: 'Sofia Pro';
+      font-weight: 200;
+      font-size: 20px;
+      line-height: 24px;
+      margin-bottom: 10.6px;
+    }
+    img {
+      height: 20px;
+      width: 20px;
+      margin-right: 7px;
+      margin-bottom: -2px;
+    }
+    .subtrack {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 300px;
+      height: 52px;
+      border-bottom: 1px solid #f0f0f0;
+      &.first {
+        border-top: 1px solid #f0f0f0;
+      }
+      &:hover {
+        background-color: #f0f0f0;
+      }
+      .name {
+        margin-left: 25px;
+        align-self: center;
+        flex-basis: 250px;
+        align-text: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-family: 'Sofia Pro';
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 300;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-top: 12px;
+        span {
+        }
+      }
+      .ranking {
+        margin: auto;
+        margin-right: 15px;
+        color: #7f7f7f;
+        .number {
+          text-align: center;
+          font-family: 'Sofia Pro';
+          font-size: 13.4px;
+          line-height: 16px;
+          font-weight: 600;
+          span.square {
+            position: absolute;
+            margin-left: 5px;
+            width: 6px;
+            height: 6px;
+          }
+        }
+        .tag {
+          text-transform: uppercase;
+          margin: 10px auto 0px auto;
+          font-family: 'Sofia Pro';
+          font-size: 8.4px;
+          line-height: 10px;
+          color: #7f7f7f;
+          font-weight: normal;
+        }
+      }
+      .arrow {
+        font-family: 'Sofia Pro';
+        font-weight: 200;
+        color: #cccccc;
+        font-size: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+    .icon {
+      width: 80px;
+      height: 80px;
+      margin: auto;
+    }
+
+  }
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .action-text {
+      margin-top: 32px;
+      font-family: 'Sofia Pro';
+      font-size: 18px;
+      line-height: 24px;
+      font-weight: 200;
+    }
+    .tracks {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 50%;
+      .track {
+      }
+    }
+    .description {
+      margin-top: 50px;
+      font-family: 'Source Sans Pro';
+      font-size: 15px;
+      line-height: 22px;
+      width: 60%;
+    }
+    button.link-button {
+      @include button-1-l;
+      margin-top: 20px;
+    }
+    padding-bottom: 40px;
+  }
 }
