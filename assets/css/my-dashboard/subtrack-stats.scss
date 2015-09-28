@@ -3,29 +3,67 @@
 .subtrack-stats {
   .ratings {
     .tracks {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
+      @media only screen and (max-width: 767px) {
+        @include horizontal-scroll;
+      }
+      @media only screen and (min-width: 768px) {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+      }
 
       .track {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-right: 30px;
-        padding: 30px 20px;
-        cursor: pointer;
+        @media only screen and (max-width: 767px) {
+          position: relative;
+          display: inline-block;
+          margin-right: 65px;
+          padding: 20px 0;
 
-        &:hover {
-          background-color: #F5FAE5;
-
-          .subtrack {
-            color: #99CC00;
-            border-bottom-color: #99CC00;
+          &:first-child {
+            margin-left: 20px;
           }
 
-          p:last-child {
-            color: #5E9EF1;
+          &:last-child {
+            margin-right: 20px;
           }
+
+          .flex-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+        }
+
+        @media only screen and (min-width: 768px) {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-right: 30px;
+          padding: 30px 20px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #F5FAE5;
+
+            .subtrack {
+              color: #99CC00;
+              border-bottom-color: #99CC00;
+            }
+
+            p:last-child {
+              color: #5E9EF1;
+            }
+          }
+        }
+
+        &:not(:first-child):before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 32px;
+          left: -30px;
+          @include forward-slash(1px, 60px, 0, 2px, 30deg);
+          background-color: #D1D3D4;
         }
 
         p {
@@ -49,6 +87,9 @@
           margin-bottom: 7px;
           font-size: 32px;
           color: $primary-text;
+          @media only screen and (max-width: 767px) {
+            margin-top: 10px;
+          }
 
           span {
             position: absolute;

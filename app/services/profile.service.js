@@ -135,7 +135,7 @@
         stats.COPILOT.track = 'COPILOT';
         stats.COPILOT.subTrack = 'COPILOT';
       }
-      var ans = {
+      var compiledStats = {
         'DEVELOP': removeRankless(dev),
         'DESIGN': removeRankless(design),
         'DATA_SCIENCE': removeRankless(dataScience),
@@ -143,12 +143,12 @@
       };
 
       function removeRankless(arr) {
-        return arr
-          .filter(function(subTrack) {
-            return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment);
-          });
+        return arr.filter(function(subTrack) {
+          return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment);
+        });
       }
-      return ans;
+
+      return compiledStats;
     }
 
     function getChallengeTypeStats(stats, track, type) {
