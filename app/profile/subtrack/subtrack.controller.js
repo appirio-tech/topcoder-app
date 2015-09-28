@@ -120,7 +120,10 @@
         }
       )
       .then(function(data) {
-        vm.challenges = data;
+        ChallengeService.processPastChallenges(data);
+        vm.challenges = data.filter(function(challenge) {
+          return challenge.userDetails.hasUserSubmittedForReview;
+        });
         vm.status.challenges = CONSTANTS.STATE_READY;
         return data;
       }).catch(function(err) {

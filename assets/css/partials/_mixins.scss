@@ -12,6 +12,12 @@
   overflow: hidden;
 }
 
+@mixin superscript {
+  position: relative;
+  top: -0.25em;
+  font-size: 80%;
+}
+
 @mixin bluelink {
   color: $light-blue;
   text-decoration: none;
