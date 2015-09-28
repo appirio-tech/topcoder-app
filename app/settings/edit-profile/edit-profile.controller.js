@@ -18,6 +18,7 @@
     vm.addSkill = addSkill;
     vm.tags = [];
     vm.profileFormProcessing = false;
+    vm.tracks = {};
 
     activate();
 
@@ -106,9 +107,9 @@
 
     function processData(userInfo) {
       vm.tracks = {
-        design: _.contains(userData.tracks, 'DESIGN'),
-        develop: _.contains(userData.tracks, 'DEVELOP'),
-        data_science: _.contains(userData.tracks, 'DATA_SCIENCE'),
+        DESIGN: _.contains(userData.tracks, 'DESIGN'),
+        DEVELOP: _.contains(userData.tracks, 'DEVELOP'),
+        DATA_SCIENCE: _.contains(userData.tracks, 'DATA_SCIENCE'),
       };
     }
   }
