@@ -3,37 +3,20 @@
 .subtrack-stats {
   .ratings {
     .tracks {
-      @media only screen and (max-width: 767px) {
-        @include horizontal-scroll;
-      }
+      @include horizontal-scroll;
       @media only screen and (min-width: 768px) {
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
+        overflow: visible;
+        white-space: normal;
       }
 
       .track {
-        @media only screen and (max-width: 767px) {
-          position: relative;
-          display: inline-block;
-          margin-right: 65px;
-          padding: 20px 0;
-
-          &:first-child {
-            margin-left: 20px;
-          }
-
-          &:last-child {
-            margin-right: 20px;
-          }
-
-          .flex-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-          }
-        }
-
+        position: relative;
+        display: inline-block;
+        margin-right: 65px;
+        padding: 20px 0;
         @media only screen and (min-width: 768px) {
           display: flex;
           flex-direction: column;
@@ -54,7 +37,24 @@
               color: #5E9EF1;
             }
           }
+
+
         }
+
+        &:first-child {
+          margin-left: 20px;
+        }
+
+        &:last-child {
+          margin-right: 20px;
+        }
+
+        .flex-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
 
         &:not(:first-child):before {
           content: '';

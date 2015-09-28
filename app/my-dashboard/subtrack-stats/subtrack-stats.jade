@@ -8,6 +8,6 @@
         p.subtrack {{subtrack.subTrack | underscoreStrip}}
 
         p.rating {{subtrack.stat | number}}
-          span
+          span(style="background-color: {{subtrack.stat | ratingColor}}", ng-if="subtrack.track === 'DEVELOP' || subtrack.track === 'DATA_SCIENCE'")
 
         p {{subtrack.statType}}

@@ -26,6 +26,7 @@
     "a0-angular-storage": "~0.0.11",
     "angucomplete-alt": "~1.1.0",
     "angular": "1.4.x",
+    "angular-carousel": "~0.3.13",
     "angular-cookies": "1.4.x",
     "angular-dropdowns": "1.1.0",
     "angular-filter": "~0.5.4",
