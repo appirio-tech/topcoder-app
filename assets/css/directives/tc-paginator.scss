@@ -4,7 +4,7 @@
 .tc-paginator {
 	display: flex;
   flex-flow: row wrap;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-right: 10px;
   margin-bottom: 10px;
 
@@ -15,6 +15,13 @@
       text-decoration: none;
       color: $dark-gray;
       cursor: default;
+    }
+
+    &.prev {
+      text-transform: uppercase;
+    }
+    &.next {
+      text-transform: uppercase;
     }
   }
 }

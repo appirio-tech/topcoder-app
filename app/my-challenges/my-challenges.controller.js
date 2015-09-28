@@ -70,9 +70,7 @@
         limit: vm.pageParams.limit,
         offset: vm.pageParams.offset,
         orderBy: vm.orderBy, // TODO verify if this is the correct sort order clause,
-        filter: {
-          status : vm.statusFilter
-        }
+        filter: "status=" + vm.statusFilter
       };
       vm.loading = true;
       return ChallengeService.getUserChallenges(handle, params)
