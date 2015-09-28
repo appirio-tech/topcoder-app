@@ -143,7 +143,8 @@
     function processPastChallenges(challenges) {
       angular.forEach(challenges, function(challenge) {
         if (challenge.userDetails && Array.isArray(challenge.userDetails.winningPlacements)) {
-          challenge.wonFirst = challenge.userDetails.winningPlacements[0] == 1;
+          challenge.highestPlacement = _.max(challenge.userDetails.winningPlacements);
+          challenge.wonFirst = challenge.highestPlacement == 1;
         }
       });
     }

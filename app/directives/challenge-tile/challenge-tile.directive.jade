@@ -54,7 +54,7 @@
       .winner-ribbon(ng-show="challenge.wonFirst")
 
     .challenge-details
-      p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.userDetails.winningPlacements[0]}}#[span {{challenge.userDetails.winningPlacements[0] | ordinal:true}}] Place
+      p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
 
       .challenge-score
         p.score {{challenge.userDetails.submissionReviewScore/100 | percentage}}
