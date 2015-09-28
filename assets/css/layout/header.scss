@@ -188,6 +188,14 @@
     padding-left: 10px;
     vertical-align: middle;
   }
+  
+  .menu-item-header {
+    text-transform: none;
+  }
+}
+
+.menu-item-header {
+  text-transform: uppercase;
 }
 
 .submenu {
@@ -468,14 +476,12 @@
 
   .menu-item-header {
     color: #a3a3a3;
-    text-transform: uppercase;
   }
 
   // Change source ordering for user logo and username
   .user-menu .menu-item-header {
     position: relative;
     padding-right: 40px;
-    text-transform: none;
 
     .user-avatar {
       position: absolute;
