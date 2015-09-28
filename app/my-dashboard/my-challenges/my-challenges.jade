@@ -2,7 +2,7 @@ header(ng-hide="vm.loading")
   h1.section-title(ng-bind="vm.userHasChallenges ? 'My Challenges' : 'Challenges'")
 
   .challenge-view-toggle
-    button.grid(ng-click="vm.toggleView('tile')", ng-class="{ disabled: vm.challengeView === 'tile' }") Grid
+    button.tile(ng-click="vm.toggleView('tile')", ng-class="{ disabled: vm.challengeView === 'tile' }") Grid
 
     button.list(ng-click="vm.toggleView('list')", ng-class="{ disabled: vm.challengeView === 'list' }") List
 

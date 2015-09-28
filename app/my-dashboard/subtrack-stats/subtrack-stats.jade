@@ -3,7 +3,7 @@
 
 .ratings(ng-if="vm.hasRanks && !vm.loading")
   .tracks
-    .track(ng-repeat="subtrack in vm.subtrackRanks | orderBy: ['track', 'rank']", ui-sref="profile.develop({userHandle: vm.profile.handle, track: subtrack.track, subTrack: subtrack.subTrack})")
+    .track(ng-repeat="subtrack in vm.subtrackRanks | orderBy: ['track', 'rank']", ui-sref="profile.subtrack({userHandle: vm.handle, track: subtrack.track, subTrack: subtrack.subTrack})")
       .flex-wrapper
         p.subtrack {{subtrack.subTrack | underscoreStrip}}
 

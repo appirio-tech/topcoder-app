@@ -15,9 +15,9 @@
     activate();
 
     function activate() {
-      var handle = userIdentity.handle;
+      vm.handle = userIdentity.handle;
 
-      ProfileService.getUserStats(handle)
+      ProfileService.getUserStats(vm.handle)
       .then(function(stats) {
         var subtrackRanks = [];
 

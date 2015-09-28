@@ -21,7 +21,7 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-right: 30px;
+          margin-right: 35px;
           padding: 30px 20px;
           cursor: pointer;
 
@@ -64,6 +64,10 @@
           left: -30px;
           @include forward-slash(1px, 60px, 0, 2px, 30deg);
           background-color: #D1D3D4;
+          @media only screen and (min-width: 768px) {
+            top: 42px;
+            left: -18px;
+          }
         }
 
         p {

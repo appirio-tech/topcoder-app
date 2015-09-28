@@ -10,7 +10,7 @@
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
     vm.userHasChallenges = true;
-    vm.challengeView = 'list';
+    vm.challengeView = 'tile';
     vm.toggleView = toggleView;
 
     var handle = userIdentity.handle;

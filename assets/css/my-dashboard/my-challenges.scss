@@ -42,7 +42,7 @@
         @include background-image-size(16px, 16px);
       }
 
-      &.grid:before {
+      &.tile:before {
         background: url(/images/ico-grid.svg);
       }
       &.list:before {
