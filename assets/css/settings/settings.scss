@@ -172,8 +172,10 @@
     }
   }
   .tracks {
+    padding-bottom: 0px;
     button {
       @include button-2-l;
+      margin-bottom: 20px;
     }
     hr {
       margin-top: 10px;
@@ -189,6 +191,9 @@
         flex-direction: row;
         justify-content: space-between;
         .title {
+          &.disabled {
+            color: #b7b7b7;
+          }
           img {
             height: 25px;
             width: 25px;
@@ -208,8 +213,62 @@
         }
       }
     }
-    button + hr {
+  }
+  .skills {
+    .section-info {
+
+    }
+    .section-fields {
       margin-top: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      .field-label, angucomplete-alt {
+        align-self: flex-start;
+      }
+      .field-label {
+        font-family: 'Sofia Pro';
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+      angucomplete-alt {
+        margin-top: 6px;
+      }
+    .list {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 90%;
+      margin-top: 22px;
+      margin-bottom: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      .skill {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 130px;
+        .skill-icon {
+          margin: auto;
+          padding: 10px;
+          border: 1px solid #f0f0f0;
+          height: 80px;
+          width: 80px;
+          img, i {
+            font-size: 50px;
+          }
+        }
+        .name {
+          font-family: 'Sofia Pro';
+          font-weight: 300;
+          text-align: center;
+          margin-top: 10px;
+        }
+      }
+    }
     }
   }
 }
@@ -259,7 +318,7 @@
 }
 .onoffswitch-label {
     display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #CCCCCC; border-radius: 36px;
+    border-radius: 36px;
 }
 .onoffswitch-inner {
     display: block; width: 200%; margin-left: -100%;
@@ -273,20 +332,25 @@
 .onoffswitch-inner:before {
     content: "";
     padding-left: 10px;
-    background-color: #467AEB; color: #FFFFFF;
+    background-color: #0096ff;
+    color: #0096ff;
 }
 .onoffswitch-inner:after {
     content: "";
     padding-right: 10px;
-    background-color: #DBDBDB; color: #666666;
+    background-color: #d1d3d4;
+    color: #d1d3d4;
     text-align: right;
 }
 .onoffswitch-switch {
     display: block; width: 19px; margin: 3.5px;
+    height: 19px;
     background: #FFFFFF;
     position: absolute; top: 0; bottom: 0;
+    margin-top: 3.45px;
     right: 30px;
-    border: 2px solid #CCCCCC; border-radius: 36px;
+    border: none;
+    border-radius: 36px;
     transition: all 0.3s ease-in 0s; 
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {

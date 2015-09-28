@@ -6,12 +6,15 @@
 
     .breadcrumbs
       .handle
-        img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
-        | {{vm.userHandle}} /
+        img.profile-circle(fallback-img="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
+        a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
+          | {{vm.userHandle}}
+        |  /
       .track {{vm.track | track}}
       .subtrack // {{vm.subTrack | track}}
 
     .right
+      i(class="fa fa-th", ng-click="vm.showNav()")
 
   include ./develop/develop.jade
   include ./design/design.jade

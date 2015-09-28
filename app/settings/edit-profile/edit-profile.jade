@@ -49,14 +49,14 @@
         hr
 
         .top
-          .title
+          .title(ng-class="{'disabled': !vm.tracks[track]}")
             img(src="/images/ico-track-design.png")
 
             span {{track | track}}
 
           .onoffswitch
-            input#myonoffswitch.onoffswitch-checkbox(type='checkbox', name='onoffswitch', checked='', ng-model="vm.tracks[track]")
-            label.onoffswitch-label(for='myonoffswitch')
+            input.onoffswitch-checkbox(type='checkbox', name='onoffswitch', checked='', ng-model="vm.tracks[track]", id="{{track}}-onoffswitch")
+            label.onoffswitch-label(for='{{track}}-onoffswitch')
               span.onoffswitch-inner
               span.onoffswitch-switch
 
@@ -69,9 +69,7 @@
         
       button(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid", ng-class="{' ': vm.editProfile.$valid}") Save Changes
 
-      hr
-
-  .settings-section
+  .settings-section.skills
     .section-info
       h2 skills
       .description Languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well
@@ -94,7 +92,7 @@
         ng-class="{'form-field-focused': hasFocus==true}"
       )
     
-      .skills
+      .list
         .skill(ng-repeat="skill in vm.skills | orderBy:'-score'")
           skill-tile(skill="skill" enable-hide="true")
 
