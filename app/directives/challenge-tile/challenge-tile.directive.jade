@@ -1,4 +1,3 @@
-// TILE VIEW
 .challenge.tile-view(ng-show="view === 'tile'", ng-class="challenge.track")
   .challenge-track
 
@@ -11,7 +10,7 @@
     p.currentPhase {{challenge.userCurrentPhase}}
 
     .challenge-calendar(ng-show="challenge.userCurrentPhaseEndTime")
-      p.starts-in Ends In
+      p.ends-in Ends In
       p.time-remaining {{challenge.userCurrentPhaseEndTime[0]}}
       p.unit-of-time {{challenge.userCurrentPhaseEndTime[1]}}
 
@@ -22,6 +21,10 @@
 
       .submitted(ng-switch-when="Submitted") Submitted
 
+      // Need styling and JS logic for this one
+      .registered(ng-switch-when="Registered") Registered
+
+    // Only show if not data science track
     p.roles {{challenge.userDetails.roles | listRoles}}
 
     .challenge-links
@@ -31,7 +34,7 @@
 
           p {{challenge.numRegistrants}}
 
-        a.submissions(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+        a.submissions(ng-hide="challenge.track === 'DATA SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
           .submissions-icon
 
           p {{challenge.numSubmissions}}
@@ -41,36 +44,46 @@
 
         p Forum
 
-// LIST VIEW
-.challenge.list-view(ng-show="view=='list'")
-  .challenge-icons
-    img(ng-show="challenge.track === 'DEVELOP'", src="/images/member-program/svg/development-generic.svg")
-    img(ng-show="challenge.track === 'DESIGN' || challenge.track === 'Data Science'", src="/images/member-program/svg/design-generic.svg")
+.challenge.list-view(ng-show="view=='list'", ng-class="challenge.track")
+  .challenge-track
 
-  .challenge-name
+  header
     a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
-    .phase-status(ng-show="challenge.status === 'Active'")
-      i.fa.fa-check-circle-o
 
-      p {{challenge.memberStatusMsg}}
+    p.subtrack {{challenge.subTrack | underscoreStrip}}
 
-  .roles
-    p Roles : {{challenge.userDetails.roles | listRoles}}
+    // Only show if not data science track
+    p.roles(ng-hide="challenge.track === 'DATA SCIENCE'") #[span Role:] {{challenge.userDetails.roles | listRoles}}
 
-  p.days-remaining(ng-show="challenge.status === 'Active'") {{challenge.registrationEndDate | timeDiff}}
-    span Registration Ends
-  p.completion-date(ng-show="challenge.status === 'Completed'")
-    span Ended {{challenge.submissionEndDate | date: "mediumDate"}}
+  .challenge-details
+    .challenge-info
+      p.currentPhase {{challenge.userCurrentPhase}}
 
-  .stats
-    .registrants(ng-show="challenge.numRegistrants > 0")
-      i.fa.fa-user
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant") {{challenge.numRegistrants}}
-    .submissions(ng-show="challenge.numSubmissions > 0")
-      i.fa.fa-files-o
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant") {{challenge.numSubmissions}}
+      p.ends-in(ng-show="challenge.userCurrentPhaseEndTime") Ends: {{challenge.userCurrentPhaseEndTime[2] | localTime}}
 
+      p.ends-in(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
+
+    .phase-action(ng-switch="challenge.userAction")
+      .submit(ng-switch-when="Submit") Submit
+
+      .submitted(ng-switch-when="Submitted") Submitted
+
+      // Need styling and JS logic for this one
+      .registered(ng-switch-when="Registered") Registered
 
   .challenge-links
-    a(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
-      i.fa.fa-comment
+    a.registrants(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+      p {{challenge.numRegistrants}}
+
+      .registrants-icon
+
+    a.submissions(ng-hide="challenge.track === 'DATA SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+      p {{challenge.numSubmissions}}
+
+      .submissions-icon
+
+    a.forum(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
+      .forum-icon
+
+      p Forum
+

@@ -3,35 +3,33 @@
 
   angular.module('tc.services').factory('ChallengeService', ChallengeService);
 
-  ChallengeService.$inject = ['CONSTANTS', 'ApiService', '$q'];
+  ChallengeService.$inject = ['CONSTANTS', 'ApiService'];
 
-  function ChallengeService(CONSTANTS, ApiService, $q) {
-
-    var rApi = ApiService.restangularV3;
+  function ChallengeService(CONSTANTS, ApiService) {
     var api = ApiService.restangularV3;
 
     var service = {
       getChallenges: getChallenges,
       getUserChallenges: getUserChallenges,
-      getiOSChallenges: getiOSChallenges,
+      getUserMarathonMatches: getUserMarathonMatches,
       getReviewEndDate: getReviewEndDate,
       getChallengeDetails: getChallengeDetails,
-      processActiveDevDesignChallenges: processActiveDevDesignChallenges
+      processActiveDevDesignChallenges: processActiveDevDesignChallenges,
+      processActiveMarathonMatches: processActiveMarathonMatches
     };
+
     return service;
 
     function getChallenges(params) {
-      params.filter = _parseFilterParam(params);
       return api.all('challenges').getList(params);
     }
 
     function getUserChallenges(handle, params) {
-      params.filter = _parseFilterParam(params);
-      return api.one('members', handle).all('challenges').getList(params);
+      return api.one('members', handle.toLowerCase()).all('challenges').getList(params);
     }
 
-    function getiOSChallenges(params) {
-      return api.all('challenges').getList(params);
+    function getUserMarathonMatches(handle, params) {
+      return api.one('members', handle.toLowerCase()).all('mms').getList(params);
     }
 
     function getReviewEndDate(challengeId) {
@@ -80,31 +78,65 @@
         }
 
         if (challenge.userCurrentPhaseEndTime) {
-          var timeAndUnit = moment(challenge.userCurrentPhaseEndTime).fromNow(true);
+          var fullTime = challenge.userCurrentPhaseEndTime;
+          var timeAndUnit = moment(fullTime).fromNow(true);
+          // Split into components: ['an', 'hour'] || ['2', 'months']
           timeAndUnit = timeAndUnit.split(' ');
+
           if (timeAndUnit[0] === 'a' || timeAndUnit[0] === 'an') {
             timeAndUnit[0] = '1';
           }
+
+          // Add actual time ['2', 'months', actual date]
+          timeAndUnit.push(fullTime);
           challenge.userCurrentPhaseEndTime = timeAndUnit;
         }
       });
     }
 
-    /**
-     * Helper method to parse the filter param as required by v3 API from JSON format
-     */
-    function _parseFilterParam(params) {
-      var filter = [];
-      if (params.filter) {
-        for(var filterKey in params.filter) {
-          var filterValue = params.filter[filterKey];
-          filter.push(filterKey + '=' + filterValue);
+    function processActiveMarathonMatches(marathonMatches) {
+      angular.forEach(marathonMatches, function(match) {
+        var rounds = match.rounds;
+        var hasCurrentRound = false;
+
+        match.userCurrentPhase = 'Stalled';
+        match.userCurrentPhaseEndTime = null;
+        match.userAction = null;
+
+        if (rounds && rounds.length) {
+          hasCurrentRound = true;
+          match.userCurrentPhase = 'Registration';
+          match.userCurrentPhaseEndTime = rounds[0].registrationEndAt;
+          match.userAction = 'Registered';
+
+          if (moment().isAfter(rounds[0].codingStartAt)) {
+            match.userCurrentPhase = 'Coding';
+            match.userCurrentPhaseEndTime = rounds[0].codingEndAt;
+            match.userAction = 'Submit';
+          }
+
+          if (moment().isAfter(rounds[0].systemTestStartAt)) {
+            match.userCurrentPhase = 'System Test Phase';
+            match.userCurrentPhaseEndTime = rounds[0].systemTestEndAt;
+            match.userAction = null;
+          }
         }
-        return filter.join('&');
-      }
-      return null;
+
+        if (challenge.userCurrentPhaseEndTime) {
+          var fullTime = challenge.userCurrentPhaseEndTime;
+          var timeAndUnit = moment(fullTime).fromNow(true);
+          // Split into components: ['an', 'hour'] || ['2', 'months']
+          timeAndUnit = timeAndUnit.split(' ');
+
+          if (timeAndUnit[0] === 'a' || timeAndUnit[0] === 'an') {
+            timeAndUnit[0] = '1';
+          }
+
+          // Add actual time ['2', 'months', actual date]
+          timeAndUnit.push(fullTime);
+          challenge.userCurrentPhaseEndTime = timeAndUnit;
+        }
+      });
     }
-
   };
-
 })();

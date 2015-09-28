@@ -111,37 +111,38 @@
   }
 
   .registered {
-    display: flex;
-    justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 15px;
+    padding: 15px;
     border-top: 1px solid #F0F0F0;
     border-bottom: 1px solid #F0F0F0;
     background-color: #FCFCFC;
 
     .badge-and-challenges {
-      width: 100%;
       @include horizontal-scroll;
-      @media only screen and (min-width: 1125px) {
+      @media only screen and (min-width: 768px) {
         display: flex;
         flex-flow: row wrap;
-        width: 1125px;
+        margin: 0 auto;
         overflow: visible;
+        white-space: normal;
+        width: 555px;
+      }
+      @media only screen and (min-width: 870px) {
+        width: 840px;
+      }
+      @media only screen and (min-width: 1155px) {
+        width: 1125px;
       }
     }
 
     .registered-badge {
-      display: inline-block;
+      display: inline;
       height: 370px;
       width: 270px;
-      margin-left: 15px;
-      margin-right: 15px;
       border: 1px solid #DCDCDC;
       border-radius: 4px;
       background-color: $white;
-      @media only screen and (min-width: 1125px) {
-        display: block;
-        margin-left: 0;
+      @media only screen and (max-width: 767px) {
+        display: inline-block;
       }
 
       .flex-wrapper {
@@ -172,13 +173,31 @@
     }
 
     ios-card {
-      display: inline-block;
-      margin-right: 15px;
-      @media only screen and (min-width: 1125px) {
-        display: block;
+      display: inline;
+      margin-bottom: 15px;
+      @media only screen and (max-width: 767px) {
+        display: inline-block;
+        margin-left: 15px;
 
-        &:last-child {
-          margin-right: 0;
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+      @media only screen and (min-width: 768px) {
+        &:nth-child(2n) {
+          margin-left: 15px;
+        }
+      }
+      @media only screen and (min-width: 870px) {
+        margin-left: 15px;
+
+        &:nth-child(4n) {
+          margin-left: 0;
+        }
+      }
+      @media only screen and (min-width: 1155px) {
+        &:nth-child(4n) {
+          margin-left: 15px;
         }
       }
     }

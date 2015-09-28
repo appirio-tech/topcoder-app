@@ -18,7 +18,8 @@
     vm.imgMap = {
       'DEVELOP': 'develop',
       'DESIGN': 'design',
-      'DATA_SCIENCE': 'data'
+      'DATA_SCIENCE': 'data',
+      'COPILOT': 'copilot'
     };
 
     // spinnerssss
@@ -36,6 +37,9 @@
     vm.statsPromise = ProfileService.getUserStats(vm.userHandle).then(function(stats) {
       vm.stats = stats;
       vm.profile.tracks = vm.profile.tracks || ProfileService.getTracks(vm.stats) || [];
+      if (stats.COPILOT && stats.COPILOT.contests && vm.profile.tracks.indexOf('COPILOT') == -1) {
+        vm.profile.tracks.push('COPILOT');
+      }
       vm.numProjects = vm.stats.challenges;
       vm.numWins = vm.stats.wins;
       vm.categories = ProfileService.getRanks(vm.stats);
@@ -66,10 +70,11 @@
       $log.debug('Calling ProfileController activate()');
       // show edit profile link if user is authenticated and is viewing their own profile
       vm.showEditProfileLink = TcAuthService.isAuthenticated() && UserService.getUserIdentity().handle.toLowerCase() === vm.userHandle.toLowerCase();
+      vm.isUser = vm.showEditProfileLink;
       if (profile.createdAt) {
-        profile.startMonth = moment(profile.createdAt).format('MMMM YYYY');
+        profile.startMonth = moment(profile.createdAt).format('MMMM, YYYY');
       } else {
-        profile.startMonth = moment().format('MMMM YYYY')// false;
+        profile.startMonth = moment().format('MMMM, YYYY')// false;
       }
 
     }

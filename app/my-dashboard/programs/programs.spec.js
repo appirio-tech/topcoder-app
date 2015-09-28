@@ -43,7 +43,7 @@ describe('Programs Controller', function() {
     });
 
     // mock challenges api
-    sinon.stub(challengeService, 'getiOSChallenges', function() {
+    sinon.stub(challengeService, 'getChallenges', function() {
       var deferred = $q.defer();
       var resp = JSON.parse(JSON.stringify(challenges));
       resp.pagination = {

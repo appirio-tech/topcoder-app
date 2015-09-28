@@ -1,30 +1,39 @@
-.develop(ng-if="vm.track == 'DATA_SCIENCE'")
+.data.develop(ng-if="vm.track == 'DATA_SCIENCE'")
   .top
     ul.horizontal-stats
+      li.stat
+        .value.rating {{vm.typeStats.rank.rating}}
+          span.square(style="background-color: {{vm.typeStats.rank.rating | ratingColor}}")
+        .name RATING
+
       li.stat
         .value {{vm.typeStats.rank.rank}}
         .name RANK
 
       li.stat
-        .value {{vm.typeStats.rank.countryRank}}
-        .name COUNTRY RANK
-
-      li.stat
-        .value {{vm.typeStats.rank.rating}}
-        .name RATING
-
-      li.stat
         .value {{vm.typeStats.rank.percentile / 100 | percentage}}
         .name PERCENTILE
+
+      li.stat(ng-if="vm.subTrack == 'SRM'")
+        .value {{vm.typeStats.challenges}}
+        .name COMPETITIONS
+
+      li.stat(ng-if="vm.subTrack == 'MARATHON_MATCH' || vm.subTrack == 'MARATHON'")
+        .value {{vm.typeStats.wins}}
+        .name WINS
 
     .tabs
       a.left(id="challenges", ng-click="vm.viewing = 'challenges'",
         ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
-      ) Challenges
+      )
+        span(ng-show="vm.subTrack == 'SRM'") Past SRMs
+        span(ng-show="vm.subTrack != 'SRM'") Challenges
 
       a.right(id="stats", ng-click="vm.viewing = 'stats'",
         ng-class="vm.viewing == 'stats' ? 'selected' : ''"
-      ) Stats
+      ) Statistics
+
+    hr
 
     tc-section(
       ng-show="vm.viewing == 'challenges'",
@@ -38,7 +47,7 @@
           | no past challenges available for this user
 
     .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
-      .graphs
+      .graphs(ng-if="vm.subTrack == 'SRM'")
         distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
         history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
@@ -46,20 +55,92 @@
   .bottom(ng-show="vm.viewing == 'stats'")
     h2.detailed Details
 
-    ul.vertical-stats
-      li.first
-        .left Rank
-        .right {{vm.typeStats.rank.rank}}
-
+    ul.vertical-stats(ng-show="vm.subTrack == 'MARATHON_MATCH' || vm.subTrack == 'MARATHON'")
       li
         .left Country Rank
         .right {{vm.typeStats.rank.countryRank}}
 
       li
-        .left Rating
-        .right {{vm.typeStats.rank.rating}}
+        .left Volatility
+        .right {{vm.typeStats.rank.volatility}}
 
       li
-        .left Percentile
-        .right {{vm.typeStats.rank.percentile / 100 | percentage}}
+        .left Maximum Rating
+        .right {{vm.typeStats.rank.maximumRating}}
 
+      li
+        .left Best Rank
+        .right {{vm.typeStats.rank.bestRank}}
+
+      li.first
+        .left Wins
+        .right {{vm.typeStats.wins}}
+
+      li.first
+        .left Top Five Finishes
+        .right {{vm.typeStats.rank.topFiveFinishes}}
+
+      li.first
+        .left Top Ten Finishes
+        .right {{vm.typeStats.rank.topTenFinishes}}
+
+      li.first
+        .left Average Rank
+        .right {{vm.typeStats.rank.avgRank}}
+
+      li.first
+        .left Average # Submissions
+        .right {{vm.typeStats.rank.avgNumSubmissions}}
+
+      li.first
+        .left Competitions
+        .right {{vm.typeStats.challenges}}
+
+      li
+        .left Most Recent Event
+        .right {{vm.typeStats.mostRecentEventDate | date}}
+
+    ul.divisions(ng-show="vm.subTrack == 'SRM'")
+      li.division(ng-repeat="division in vm.divisionList")
+        ul(class="{{division.levelName}}")
+          li.totals
+            ul.row
+              li.left
+                h2 DIVISION {{$index + 1}}
+                span TOTAL
+              li.success
+                h3 {{division.total.problemsSuccessful / division.total.problemsSubmitted | percentage }}
+                span SUCCESS
+
+              li.submitted
+                h3 {{division.total.problemsSubmitted}}
+                span SUBMITTED
+
+              li.failed
+                h3 {{division.total.problemsFailed}}
+                span FAILED CHALLENGES
+
+              li.failed-sys
+                h3 {{division.total.problemsSysByTest}}
+                span FAILED SYS. TEST
+
+          li.level(ng-repeat="level in division.levels")
+            ul.row
+              li.left
+                h3 {{level.levelName}}
+
+              li.success
+                h3 {{level.problemsSuccessful / level.problemsSubmitted | percentage }}
+                span SUCCESS
+
+              li.submitted
+                h3 {{level.problemsSubmitted}}
+                span SUBMITTED
+
+              li.failed
+                h3 {{level.problemsFailed}}
+                span FAILED CHALLENGES
+
+              li.failed-sys
+                h3 {{level.problemsSysByTest}}
+                span FAILED SYS. TEST

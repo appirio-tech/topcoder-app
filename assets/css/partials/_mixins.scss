@@ -382,26 +382,23 @@
   width: $width;
   height: $height;
   background-size: $width, $height;
+  background-repeat: no-repeat;
 }
 
 @mixin develop-icon-outline {
   background-image: url(/images/ico-track-develop-outline.svg);
-  background-repeat: no-repeat;
 }
 
 @mixin design-icon-outline {
   background-image: url(/images/ico-track-design-outline.svg);
-  background-repeat: no-repeat;
 }
 
 @mixin data-icon-outline {
   background-image: url(/images/ico-track-data-outline.svg);
-  background-repeat: no-repeat;
 }
 
 @mixin copilot-icon-outline {
   background-image: url(/images/ico-track-co_pilot-outline.svg);
-  background-repeat: no-repeat;
 }
 
 // UI REFRESH STYLES

@@ -2,20 +2,25 @@
   .top
     ul.horizontal-stats
       li.stat
+        .value.rating {{vm.typeStats.rank.rating}}
+          span.square(style="background-color: {{vm.typeStats.rank.rating | ratingColor}}")
+        .name RATING
+
+      li.stat
         .value {{vm.typeStats.rank.overallRank}}
         .name RANK
 
       li.stat
-        .value {{vm.typeStats.rank.rating}}
-        .name RATING
+        .value {{vm.typeStats.rank.overallPercentile / 100 | percentage}}
+        .name PERCENTILE
 
       li.stat
         .value {{vm.typeStats.challenges}}
-        .name PROJECTS
+        .name CHALLENGES
 
       li.stat
-        .value {{vm.typeStats.rank.overallCountryRank}}
-        .name COUNTRY RANK
+        .value {{vm.typeStats.wins}}
+        .name WINS
 
       li.stat
         .value {{vm.typeStats.rank.reliability | percentage}}
@@ -28,7 +33,9 @@
 
       a.right(id="stats", ng-click="vm.viewing = 'stats'",
         ng-class="vm.viewing == 'stats' ? 'selected' : ''"
-      ) Stats
+      ) Statistics
+
+    hr
 
     tc-section(
       ng-show="vm.viewing == 'challenges'",
@@ -52,14 +59,34 @@
 
     ul.vertical-stats
       li.first
+        .left Win Percentage
+        .right {{vm.typeStats.submissions.winPercent | percentage}}
+
+      li
+        .left Country Rank
+        .right {{vm.typeStats.rank.overallCountryRank}}
+
+      li
+        .left Volatility
+        .right {{vm.typeStats.rank.volatility}}
+
+      li
+        .left Maximum Rating
+        .right {{vm.typeStats.rank.maxRating}}
+
+      li(ng-if="profileVm.isUser")
+        .left Inquiries
+        .right {{vm.typeStats.submissions.numInquiries}}
+
+      li(ng-if="profileVm.isUser")
         .left Submissions
         .right {{vm.typeStats.submissions.submissions}}
 
       li
         .left Submission Rate
         .right {{vm.typeStats.submissions.submissionRate | percentage}}
-
-      li
+        
+      li(ng-if="profileVm.isUser")
         .left Passed Screening
         .right {{vm.typeStats.submissions.passedScreening}}
 
@@ -67,7 +94,7 @@
         .left Screening Success Rate
         .right {{vm.typeStats.submissions.screeningSuccessRate | percentage}}
 
-      li
+      li(ng-if="profileVm.isUser")
         .left Passed Review
         .right {{vm.typeStats.submissions.passedReview}}
 
@@ -75,15 +102,7 @@
         .left Review Success Rate
         .right {{vm.typeStats.submissions.reviewSuccessRate | percentage}}
 
-      li
-        .left Maximum Score
-        .right {{vm.typeStats.submissions.maxScore}}
-
-      li
-        .left Minimum Score
-        .right {{vm.typeStats.submissions.minScore}}
-
-      li
+      li(ng-if="profileVm.isUser")
         .left Appeals
         .right {{vm.typeStats.submissions.appeals}}
 
@@ -91,18 +110,18 @@
         .left Appeals Success Rate
         .right {{vm.typeStats.submissions.appealSuccessRate | percentage}}
 
-      li
+      li(ng-if="profileVm.isUser")
+        .left Maximum Score
+        .right {{vm.typeStats.submissions.maxScore}}
+
+      li(ng-if="profileVm.isUser")
+        .left Minimum Score
+        .right {{vm.typeStats.submissions.minScore}}
+
+      li(ng-if="profileVm.isUser")
         .left Average Score
         .right {{vm.typeStats.submissions.avgScore | number: 2}}
 
       li
         .left Average Placement
         .right {{vm.typeStats.submissions.avgPlacement | number: 2}}
-
-      li
-        .left Wins
-        .right {{vm.typeStats.wins}}
-
-      li
-        .left Win Percentage
-        .right {{vm.typeStats.submissions.winPercent | percentage}}
