@@ -9,6 +9,7 @@ var merge        = require('merge-stream');
 var RevAll       = require('gulp-rev-all');
 var awspublishRouter = require('gulp-awspublish-router');
 var rename       = require('gulp-rename');
+var gulpFilter   = require('gulp-filter');
 
 var envFile = require('./config.js')();
 var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
@@ -379,7 +380,7 @@ gulp.task('e2eCopy', function() {
 	    .pipe(gulp.dest(config.e2eTemp));
 	});
 
-gulp.task('e2e', [], function(done) {
+gulp.task('e2e', ['e2eDataFilesRename', 'e2eCopy'], function(done) {
   gulp.src(config.e2eTempFiles)
     .pipe($.angularProtractor({
         'configFile': config.e2eTemp + '/conf.js',
