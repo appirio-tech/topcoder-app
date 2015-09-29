@@ -432,15 +432,10 @@
       font-size: 12px;
       line-height: 1.2em;
 
-      &:before {
-        content: '';
+      img {
         display: block;
         height: 44px;
         width: 44px;
-        background-image: url("/images/menu_item_placeholder.svg");
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: contain;
         margin: 20px auto 10px auto;
       }
     }
