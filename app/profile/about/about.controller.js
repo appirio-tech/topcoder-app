@@ -8,7 +8,6 @@
   function ProfileAboutController($log, $scope, ProfileService, ExternalAccountService, UserService) {
     var vm = this;
     $log = $log.getInstance("ProfileAboutController");
-
     var profileVm = $scope.$parent.profileVm;
     vm.categoryIndex = 0;
     vm.skillIndex = 0;
