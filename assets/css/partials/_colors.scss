@@ -1,8 +1,4 @@
-$white      : #fff;
-$off-white  : #fffffe;
-$white-gray : #d8d8d8;
 $light-black: #333;
-$black      : #000;
 
 // grays
 $light-gray      : #929292;
@@ -26,25 +22,42 @@ $dark-blue  : #0096ff;
 $review-blue: #0071bc;
 $login-blue : #26A9E0;
 
-//dashboard ported colors
-$color_storm_dust_approx: #666;
-$color_celeste_approx: rgb(207,207,207);
-$color_selective_yellow_approx: #ffb800;
-$color_wild_sand_approx: #f5f5f5;
-$color_mine_shaft_approx: #333;
-$alabaster: #fafafa;
-$color_bon_jour_approx: #e1e1e1;
-$color_california_approx: #ff9900;
-$color_flush_orange_approx: #ff7a00;
-
 // UI REFRESH COLORS
-$primary-text: #3D3D3D;
 $primary-color: #00aeff;
-$accent-color: #0096ff;
+$accent-color: #21B2F1;
 $success-color: #99cc00;
 $danger-color: #ff0066;
 $warning-color: #DAD714;
 
+$accent: #0096FF;
+$error: #F31D3D;
+$success: #5BC921;
+
+$level-5: #EF3A3A;
+$level-4: #FCB816;
+$level-3: #616BD5;
+$level-2: #69C329;
+$level-1: #9D9FA0;
+
+$design: #21B2F1;
+$data_science: #FC9A00;
+$develop: #05C14F;
+$copilot: #7D939E;
+
+$system-dark-gray: #394146;
+$system-gray: #A3A3AE;
+
+$white: #fff;
+$black: #000;
+$gray-darkest: #3D3D3D;
+$gray-darker: #7F7F7F;
+$gray-dark: #B7B7B7;
+$gray: #D1D3D4;
+$gray-light: #F0F0F0;
+$gray-lighter: #F6F6F6;
+$gray-lightest: #FCFCFC;
+
+// Refactor and get rid of these:
 $ui-page-gray: #f1f2f2;
 
 $ui-dark-gray: #231F20;
