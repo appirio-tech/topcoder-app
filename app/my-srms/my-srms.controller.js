@@ -10,20 +10,11 @@
     vm.srms = [];
     vm.srmResults = [];
     vm.loading = true;
-    vm.view = 'tile';
+    vm.view = 'list';
     vm.changeView = changeView;
     vm.listType = 'future';
     vm.viewUpcomingSRMs = viewUpcomingSRMs;
     vm.viewPastSRMs = viewPastSRMs;
-    // paging params, these are updated by tc-pager
-    vm.pageParams = {
-      offset : 0,
-      limit: 16,
-      count: 0,
-      totalCount: 0,
-      // counter used to indicate page change
-      updated: 0
-    };
 
     var userId = UserService.getUserIdentity().userId;
 
@@ -70,12 +61,10 @@
 
     function getSRMs() {
       var params = {
-        limit: vm.pageParams.limit,
-        offset: vm.pageParams.offset,
-        filter: 'status=' + vm.listType
+        filter: 'listType=' + vm.listType
       };
       if (vm.listType == 'past') {
-        params.filter += '&userIds=' + userId;
+        params.filter += '&userId=' + userId;
       }
 
       return SRMService.getSRMs(params)
