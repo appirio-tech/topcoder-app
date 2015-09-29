@@ -3,9 +3,9 @@
 
   angular.module('tc.myChallenges').controller('MyChallengesController', MyChallengesController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity'];
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity', 'statusFilter'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope, userIdentity) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope, userIdentity, statusFilter) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
@@ -15,7 +15,8 @@
     vm.viewPastChallenges = viewPastChallenges;
     vm.view = 'list';
     vm.changeView = changeView;
-    vm.statusFilter = 'active';
+    vm.statusFilter = statusFilter ? statusFilter : 'active';
+
     // paging params, these are updated by tc-pager
     vm.pageParams = {
       offset : 0,
@@ -27,8 +28,8 @@
     };
     vm.orderBy = 'submissionEndDate';
 
-    var userId = UserService.getUserIdentity().userId;
-    var handle = UserService.getUserIdentity().handle;
+    var userId = userIdentity.userId;
+    var handle = userIdentity.handle;
 
     activate();
 
@@ -39,7 +40,11 @@
       $scope.$watch('vm.pageParams.updated', function(updatedParams) {
         _getChallenges();
       });
-      viewActiveChallenges();
+      if (vm.statusFilter == 'completed') {
+        viewPastChallenges();
+      } else {
+        viewActiveChallenges();
+      } 
     }
 
     function changeView(view) {
@@ -70,9 +75,7 @@
         limit: vm.pageParams.limit,
         offset: vm.pageParams.offset,
         orderBy: vm.orderBy, // TODO verify if this is the correct sort order clause,
-        filter: {
-          status : vm.statusFilter
-        }
+        filter: "status=" + vm.statusFilter
       };
       vm.loading = true;
       return ChallengeService.getUserChallenges(handle, params)
