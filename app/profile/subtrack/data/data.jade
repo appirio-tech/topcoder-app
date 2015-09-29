@@ -18,7 +18,7 @@
         .value {{vm.typeStats.challenges}}
         .name COMPETITIONS
 
-      li.stat(ng-if="vm.subTrack == 'MARATHON_MATCH' || vm.subTrack == 'MARATHON'")
+      li.stat(ng-if="vm.subTrack == 'MARATHON_MATCH'")
         .value {{vm.typeStats.wins}}
         .name WINS
 
@@ -55,7 +55,7 @@
   .bottom(ng-show="vm.viewing == 'stats'")
     h2.detailed Details
 
-    ul.vertical-stats(ng-show="vm.subTrack == 'MARATHON_MATCH' || vm.subTrack == 'MARATHON'")
+    ul.vertical-stats(ng-show="vm.subTrack == 'MARATHON_MATCH'")
       li
         .left Country Rank
         .right {{vm.typeStats.rank.countryRank}}

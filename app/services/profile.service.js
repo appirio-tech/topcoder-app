@@ -129,7 +129,7 @@
         var marathonStats = stats.DATA_SCIENCE.MARATHON_MATCH;
         dataScience.push({
           'track': 'DATA_SCIENCE',
-          'subTrack': 'MARATHON',
+          'subTrack': 'MARATHON_MATCH',
           'rank': marathonStats.rank.rank,
           'rating': marathonStats.rank.rating
         });
