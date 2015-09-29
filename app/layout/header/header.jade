@@ -30,8 +30,9 @@
         // links for logged in user
         div(ng-switch-when="true")
           .menu-item-header
-            img(class="user-avatar", ng-src="{{vm.profile.photoURL}}")
-            span.username {{vm.userHandle}}
+            span(ui-sref="profile.about({userHandle: vm.userHandle})")
+              img(class="user-avatar", ng-src="{{vm.profile.photoURL}}")
+              span.username {{vm.userHandle}}
           a.btn-link.btn-edit-profile.show-small(ui-sref="settings.profile") EDIT
           ul.submenu
             header-menu-item(ng-repeat="item in vm.userMenu" item="item")
