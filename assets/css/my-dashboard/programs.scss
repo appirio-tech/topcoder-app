@@ -63,7 +63,7 @@
       @include sofia-pro-light;
       font-size: 23px;
       text-transform: uppercase;
-      color: $primary-text;
+      color: $gray-darkest;
       @media only screen and (min-width: 900px) {
         margin-top: 0;
       }
@@ -97,17 +97,26 @@
       }
     }
 
-    a {
-      display: block;
-      margin-top: 30px;
-      font-size: 13px;
-      color: $primary-color;
-      text-decoration: none;
-      text-transform: uppercase;
-      @media only screen and (min-width: 1000px) {
-        font-size: 16px;
+    .info-links {
+      a {
+        @include button-m;
+        display: inline-block;
+        margin-top: 30px;
+        font-size: 13px;
+        color: $white;
+        text-decoration: none;
+        text-transform: uppercase;
+        @media only screen and (min-width: 1000px) {
+          font-size: 16px;
+        }
+
+        &:last-child {
+          @include button-ghost;
+          margin-left: 30px;
+        }
       }
     }
+
   }
 
   .registered {
@@ -156,7 +165,7 @@
         margin-bottom: 37px;
         @include sofia-pro-light;
         font-size: 20px;
-        color: $primary-text;
+        color: $gray-darkest;
       }
 
       .badge-timeline {
@@ -199,26 +208,6 @@
         &:nth-child(4n) {
           margin-left: 15px;
         }
-      }
-    }
-  }
-
-  .ios-links {
-    @include module-links;
-
-    p {
-      @include source-sans-regular;
-      font-size: 14px;
-      line-height: 20px;
-      color: $primary-text;
-      @media only screen and (min-width: 900px) {
-        font-size: 16px;
-      }
-
-      a {
-        color: $primary-color;
-        cursor: pointer;
-        text-decoration: none;
       }
     }
   }

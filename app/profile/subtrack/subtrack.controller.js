@@ -132,8 +132,6 @@
     }
 
     function showNav() {
-      console.log('dialog')
-      console.log(ngDialog)
       ngDialog.open({
         template: 'profile/subtrack/nav.html',
         controller: 'ProfileCtrl',

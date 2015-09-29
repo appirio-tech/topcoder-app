@@ -16,6 +16,7 @@
 
       getUserSkills: getUserSkills,
       addUserSkill: addUserSkill,
+      updateUserSkills: updateUserSkills,
       hideUserSkill: hideUserSkill,
 
       getUserFinancials: getUserFinancials,
@@ -50,6 +51,11 @@
     function addUserSkill(username, skillTagId) {
       var body = { skills: {} };
       body['skills'][skillTagId] = { 'hidden': false };
+      return restangular.one('members', username).one('skills').patch(body);
+    }
+
+    function updateUserSkills(username, skills) {
+      var body = { "skills": skills };
       return restangular.one('members', username).one('skills').patch(body);
     }
 

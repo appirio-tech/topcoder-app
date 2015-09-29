@@ -1,21 +1,20 @@
-.settings-container
+.settings-header
   header
     h1 Settings
 
-    nav
-      ul
-        li
-          a(ui-sref="settings.profile", ui-sref-active="active-tab") Profile
+.settings-container
+  
+  nav
+    ul
+      li
+        a(ui-sref="settings.profile", ui-sref-active="active-tab") Profile
 
-        li
-          a(ui-sref="settings.account", ui-sref-active="active-tab") Account Info
+      li
+        a(ui-sref="settings.account", ui-sref-active="active-tab") Account Info
 
-        li
-          a(ui-sref="settings.password", ui-sref-active="active-tab") Password
+      li
+        a(ui-sref="settings.preferences", ui-sref-active="active-tab") Preferences
 
-        li
-          a(ui-sref="settings.preferences", ui-sref-active="active-tab") Preferences & more
-
-  hr
+  hr.nav-line
 
   ui-view

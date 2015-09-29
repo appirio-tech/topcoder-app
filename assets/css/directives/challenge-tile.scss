@@ -11,7 +11,7 @@ challenge-tile .challenge.tile-view {
     background-color: $white;
 
     &:hover {
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4)
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
     }
 
     .challenge-track {
@@ -36,13 +36,9 @@ challenge-tile .challenge.tile-view {
         @include sofia-pro-medium;
         font-size: 14px;
         line-height: 18px;
-        color: $primary-text;
-        text-decoration: none;
+        color: $gray-darkest;
         @include ellipsis;
-
-        &:hover {
-          text-decoration: underline;
-        }
+        @include link;
       }
 
       p {
@@ -91,7 +87,7 @@ challenge-tile .challenge.tile-view {
       .time-remaining {
         margin-top: 5px;
         font-size: 24px;
-        color: $primary-text;
+        color: $gray-darkest;
       }
 
       .unit-of-time {
@@ -128,7 +124,7 @@ challenge-tile .challenge.tile-view {
         @include sofia-pro-regular;
         font-size: 12px;
         text-transform: uppercase;
-        color: $primary-text;
+        color: $gray-darkest;
 
         &:before {
           content: '';
@@ -146,7 +142,7 @@ challenge-tile .challenge.tile-view {
     .roles {
       min-height: 36px;
       margin-bottom: 25px;
-      color: $primary-text;
+      color: $gray-darkest;
       @include source-sans-regular;
       font-size: 13px;
       line-height: 18px;
@@ -185,7 +181,7 @@ challenge-tile .challenge.tile-view {
       p {
         @include sofia-pro-medium;
         font-size: 12px;
-        color: $primary-text;
+        color: $gray-darkest;
       }
 
       .forum p {
@@ -243,12 +239,8 @@ challenge-tile .challenge.tile-view {
         @include sofia-pro-medium;
         font-size: 14px;
         line-height: 18px;
-        color: $primary-text;
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
+        color: $gray-darkest;
+        @include link;
       }
 
       .date-completed {
@@ -277,7 +269,8 @@ challenge-tile .challenge.tile-view {
         margin-bottom: 30px;
         @include sofia-pro-regular;
         font-size: 20px;
-        color: $primary-text;
+        color: $gray-darkest;
+        text-transform: uppercase;
 
         &.first-place {
           font-weight: bold;
@@ -286,6 +279,7 @@ challenge-tile .challenge.tile-view {
 
         span {
           @include superscript;
+          text-transform: lowercase;
         }
       }
 
@@ -303,7 +297,7 @@ challenge-tile .challenge.tile-view {
           margin-bottom: 5px;
           @include sofia-pro-bold;
           font-size: 18px;
-          color: $primary-text;
+          color: $gray-darkest;
         }
 
         p:last-child {
@@ -313,6 +307,52 @@ challenge-tile .challenge.tile-view {
           text-transform: uppercase;
         }
       }
+
+      .thumbnail {
+        position: relative;
+        width: 268px;
+        height: 200px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: auto;
+          overflow: hidden;
+        }
+
+        .thumbnail-gallery {
+          position: absolute;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          width: 270px;
+          height: 32px;
+          bottom: 0;
+          left: 0;
+          background-color: rgba(0, 0, 0, 0.4);
+          cursor: pointer;
+
+          .gallery-icon {
+            margin-left: 10px;
+            @include background-image-size(21px, 17px);
+            background: url(/images/ico-gallery.svg);
+          }
+
+          .num-images {
+            margin-left: 8px;
+            @include sofia-pro-regular;
+            font-size: 10px;
+            color: $gray-lighter;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+
+  .past-design-details {
+    img {
+      height: 200px;
     }
   }
 }
@@ -360,13 +400,9 @@ challenge-tile .challenge.list-view {
       display: block;
       @include sofia-pro-medium;
       font-size: 18px;
-      color: $primary-text;
-      text-decoration: none;
+      color: $gray-darkest;
       @include ellipsis;
-
-      &:hover {
-        text-decoration: underline;
-      }
+      @include link;
     }
 
     .subtrack {
@@ -381,7 +417,7 @@ challenge-tile .challenge.list-view {
       max-width: 362px;
       @include source-sans-regular;
       font-size: 13px;
-      color: $primary-text;
+      color: $gray-darkest;
       @include ellipsis;
 
       .role {
@@ -407,7 +443,7 @@ challenge-tile .challenge.list-view {
         margin-bottom: 10px;
         @include sofia-pro-light;
         font-size: 18px;
-        color: $primary-text;
+        color: $gray-darkest;
         text-transform: uppercase;
       }
 
@@ -436,7 +472,7 @@ challenge-tile .challenge.list-view {
         @include sofia-pro-regular;
         font-size: 12px;
         text-transform: uppercase;
-        color: $primary-text;
+        color: $gray-darkest;
 
         &:before {
           content: '';
@@ -478,7 +514,7 @@ challenge-tile .challenge.list-view {
     p {
       @include sofia-pro-light;
       font-size: 24px;
-      color: $primary-text;
+      color: $gray-darkest;
     }
 
     .forum p {
@@ -512,30 +548,30 @@ challenge-tile .challenge.list-view {
 
 // Dynamic colors based on track
 .DESIGN {
-  .challenge-track { background-color: $accent-color; }
+  .challenge-track { background-color: $design; }
 
   &.tile-view {
-    header .subtrack-color { color: $accent-color; }
+    header .subtrack-color { color: $design; }
   }
 }
 .DEVELOP {
-  .challenge-track { background-color: $success-color; }
+  .challenge-track { background-color: $develop; }
 
   &.tile-view {
-    header .subtrack-color { color: $success-color; }
+    header .subtrack-color { color: $develop; }
   }
 }
 .DATA_SCIENCE {
-  .challenge-track { background-color: #F39426; }
+  .challenge-track { background-color: $data_science; }
 
   &.tile-view {
-    header .subtrack-color { color: #F39426; }
+    header .subtrack-color { color: $data_science; }
   }
 }
 .COPILOT {
-  .challenge-track { background-color: #7F7F7F; }
+  .challenge-track { background-color: $copilot; }
 
   &.tile-view {
-    header .subtrack-color { color: #7F7F7F; }
+    header .subtrack-color { color: $copilot; }
   }
 }
