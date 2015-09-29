@@ -20,7 +20,7 @@
     // paging params, these are updated by tc-pager
     vm.pageParams = {
       offset : 0,
-      limit: 5,
+      limit: 16,
       count: 0,
       totalCount: 0,
       // counter used to indicate page change
