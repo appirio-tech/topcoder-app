@@ -11,6 +11,8 @@
       },
       controller: ['$scope', 'CONSTANTS', function($scope, CONSTANTS) {
         $scope.DOMAIN = CONSTANTS.domain;
+        // TODO removed hard coded value
+        $scope.registered = false;
       }]
     };
   });

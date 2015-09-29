@@ -11,6 +11,13 @@
   &:hover {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4)
   }
+  .past-srm {
+    header {
+      a {
+        line-height: 29px;
+      }
+    }
+  }
 
   .challenge-track {
     width: 5px;
@@ -26,6 +33,8 @@
     padding: 0 20px;
     height: 52px;
     border-bottom: 1px solid #F0F0F0;
+    display: flex;
+    flex-flow: column wrap;
 
     a {
       display: block;
@@ -37,23 +46,91 @@
       text-decoration: none;
       @include ellipsis;
     }
+
+    .ended-on {
+      @include sofia-pro-medium;
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #A3A3AE;
+    }
   }
 
   .srm-details {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .starts-in,
+    .ended-on {
+      margin-top: 40px;
+      margin-bottom: 20px;
+      @include sofia-pro-light;
+      font-size: 20px;
+      line-height: 24px;
+
+      span {
+        @include sofia-pro-bold;
+      }
+    }
   }
 
-  .starts-in {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    @include sofia-pro-light;
-    font-size: 20px;
-    line-height: 24px;
+  .member-stats {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    .points {
+      margin-top: 40px;
+      margin-bottom: 20px;
+      @include sofia-pro-light;
+      font-size: 20px;
+      line-height: 24px;
 
-    span {
-      @include sofia-pro-bold;
+      span {
+        @include sofia-pro-bold;
+      }
+    }
+    .ranks {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: 70px;
+      .division {
+        width: 84px;
+        height: 84px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        background-color: #F6F6F6;
+        @include sofia-pro-bold;
+        color: $gray-darkest;
+
+        p:last-child {
+          @include sofia-pro-medium;
+          font-size: 9px;
+          color: #A3A3AE;
+          text-transform: uppercase;
+        }
+      }
+      .room {
+        width: 84px;
+        height: 84px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        background-color: #F6F6F6;
+        @include sofia-pro-bold;
+        color: $gray-darkest;
+        margin-left: 15px;
+
+        p:last-child {
+          @include sofia-pro-medium;
+          font-size: 9px;
+          color: #A3A3AE;
+          text-transform: uppercase;
+        }
+      }
     }
   }
 
@@ -102,76 +179,170 @@
     margin-bottom: 40px;
     @include button-m-wide;
   }
-}
-
-.srm.list-view {
-  border-bottom: 1px solid $medium-gray;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px;
-
-  .srm-name {
-    flex: 1;
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-    text-align: center;
-    a {
-      font-weight: bold;
-      color: #4f4f4f;
-      display: block;
-      text-decoration: none;
-      @include ellipsis;
-    }
-  }
-
-
-  color: $dark-gray;
-  padding-top: 10px;
-
-  .days-remaining {
-    flex: 1;
-    text-align: center;
-    font-size: 20px;
-
-    span {
-      display: block;
-      @include source-sans-semi-bold;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
-  }
-
-  .division {
-    flex: 1;
-    text-align: center;
-    span {
-      display: block;
-      @include source-sans-semi-bold;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
-  }
-
-  .rank {
-    flex: 1;
-    text-align: center;
-    span {
-      display: block;
-      @include source-sans-semi-bold;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
-  }
 
   .phase-status {
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+}
 
-    i {
-      color: #7ece95;
-      margin-right: 5px;
+.srm.list-view {
+  position: relative;
+  margin-bottom: 10px;
+  padding: 20px 0;
+  padding-left: 5px;
+  height: 110px;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+  background-color: $white;
+
+  .upcoming-srm {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+  }
+
+  .past-srm {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+  }
+
+  &:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4)
+  }
+
+  .challenge-track {
+    width: 5px;
+    height: 110px;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    background-color: #F39426;
+  }
+
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 2;
+    max-width: 470px;
+    padding: 0 15px;
+    border-right: 1px solid #F0F0F0;
+    @media only screen and (min-width: 1000px) {
+      padding: 0 30px;
     }
+
+    a {
+      display: block;
+      @include sofia-pro-medium;
+      font-size: 18px;
+      color:  $gray-darkest;
+      text-decoration: none;
+      @include ellipsis;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .subtrack {
+      margin-bottom: 12px;
+      @include sofia-pro-regular;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #B7B7B7;
+    }
+  }
+
+  .srm-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 2;
+    padding: 0 15px;
+    border-right: 1px solid #F0F0F0;
+    @media only screen and (min-width: 1000px) {
+      padding: 0 30px;
+    }
+
+    .starts-in, .ended-on {
+      @include sofia-pro-light;
+      font-size: 20px;
+      line-height: 24px;
+
+      span {
+        @include sofia-pro-bold;
+      }
+    }
+  }
+
+  .member-stats {
+    flex: 2;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-around;
+    .points {
+      @include sofia-pro-light;
+      font-size: 20px;
+      line-height: 24px;
+
+      span {
+        @include sofia-pro-bold;
+      }
+    }
+    .ranks {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      .division {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        @include sofia-pro-bold;
+        color: $gray-darkest;
+
+        p:last-child {
+          @include sofia-pro-medium;
+          font-size: 9px;
+          color: #A3A3AE;
+          text-transform: uppercase;
+        }
+      }
+      .room {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        @include sofia-pro-bold;
+        color: $gray-darkest;
+        margin-left: 15px;
+
+        p:last-child {
+          @include sofia-pro-medium;
+          font-size: 9px;
+          color: #A3A3AE;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+  .srm-action {
+    @include button-m-wide;
+  }
+
+  .phase-status {
+    flex : 1;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
   }
 }
