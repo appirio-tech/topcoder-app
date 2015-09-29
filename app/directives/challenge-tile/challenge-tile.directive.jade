@@ -53,13 +53,26 @@
 
       .winner-ribbon(ng-show="challenge.wonFirst")
 
-    .challenge-details
+    .challenge-details(ng-hide="challenge.track === 'DESIGN'")
       p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
 
       .challenge-score
         p.score {{challenge.userDetails.submissionReviewScore/100 | percentage}}
 
         p Review Score
+
+    .challenge-details(ng-show="challenge.track === 'DESIGN'")
+      p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
+
+      .thumbnail
+        img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=thumb", fallback-src="/images/ico-picture.svg")
+
+        .thumbnail-gallery(ng-click="challenge.showLightbox()")
+          .gallery-icon
+
+          .num-images {{3}} images
+
+
 
 .challenge.list-view(ng-show="view=='list'", ng-class="challenge.track")
   .challenge-track
