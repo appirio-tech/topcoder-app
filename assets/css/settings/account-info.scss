@@ -3,6 +3,66 @@
 .account-info-container {
   padding-bottom: 75px;
 
+  .credentials {
+    .section-fields {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      .form-label {
+        margin-top: 30px;
+        &.username {
+          margin-top: 0px;
+        }
+      }
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        button.save {
+          margin-top: 20px;
+          @include button-2-l;
+        }
+      }
+    }
+  }
+  
+  .name {
+    .section-fields {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 20px;
+      .form-label {
+        margin-top: 30px;
+        &.first {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  .address {
+    .section-fields {
+      margin-top: 20px;
+      .form-label {
+        margin-top: 30px;
+        &.address {
+          margin-top: 0px;
+        }
+      }
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        margin-top: 30px;
+        button {
+          @include button-2-l;
+        }
+      }
+    }
+  }
+
   .update-account-info {
     width: 630px;
 
@@ -33,6 +93,19 @@
 
     button.enabled-button {
       @include ui-enabled-button;
+    }
+  }
+}
+
+@media only screen and (min-width: 760px) {
+  .account-info-container {
+    .section-info {
+      h2 {
+        font-size: 18px;
+      }
+      .description {
+        margin-top: 10px;
+      }
     }
   }
 }

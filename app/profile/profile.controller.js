@@ -61,6 +61,8 @@
     // externalLinks
     vm.externalLinksPromise = ExternalAccountService.getLinkedExternalLinksData(vm.userHandle).then(function(data) {
       vm.linkedExternalAccountsData = data.plain();
+      console.log('EXT')
+      console.log(vm.linkedExternalAccountsData)
       vm.status.externalLinks = CONSTANTS.STATE_READY;
     }).catch(function(err) {
       vm.status.externalLinks = CONSTANTS.STATE_ERROR;

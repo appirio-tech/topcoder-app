@@ -1,59 +1,159 @@
 .account-info-container
-  h1.tab-title Account Info
+  .settings-section.credentials
+    .section-info
+      h2 credentials
+      .description Used to log in to your account and cannot be edited. Please contact support@topcoder.com if you need to make changes.
 
-  .fields
-    .field-section
-      h4.field-title Username
+    .section-fields
+      .form-label.username Username
+      input.form-field(name="username", value="{{vm.userData.handle}}", disabled=true)
 
-      p {{vm.userData.handle}}
+      .form-label email
+      input.form-field(name="email", value="{{vm.userData.email}}", disabled=true)
 
-    .field-section
-      h4.field-title Email
+      div(ng-hide="vm.isSocialRegistration")
+        form(name="vm.newPasswordForm", role="form", ng-submit="vm.newPasswordForm.$valid && vm.submitNewPassword()", novalidate)
+          .form-label Current password
+          .validation-bar(ng-class="{ 'success-bar': (vm.newPasswordForm.newPassword.$valid) }")
+            toggle-password.form-field(ng-model="vm.currentPassword")
+          //- input.form-field(
+          //-   name="currentPassword", type="text", 
+          //-   placeholder="First",
+          //-   ng-model="vm.currentPassword", 
+          //-   maxlength="64", required, 
+          //-   ng-class="{'form-field-focused': hasFocus==true}"
+          //- )
 
-      p {{vm.userData.email}}
+          .form-label New Password
+          .validation-bar(ng-class="{ 'success-bar': (vm.newPasswordForm.newPassword.$valid) }")
+            toggle-password-with-tips.form-field(placeholder="Pick a new password")
+            .tips.password-tips(ng-show="vm.passwordFocus")
+              h3 Password Tips:
 
-    .field-section.update-account-info
-      form(name="vm.updateAccountInfo", role="form", ng-submit="vm.updateAccountInfo.$valid && vm.saveAccountInfo()", novalidate, autocomplete="off")
-        // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
-        input(autocomplete="false", name="hidden", type="text", style="display:none;")
+              p Your password must have:
 
-        .address-fields
-          label *First name (Given name)
-            input(name="firstname", type="text", value="{{vm.userData.firstName}}", ng-model="vm.userData.firstName", maxlength="64", required)
+              p(ng-class="{ 'has-length-between-range': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.minlength && !vm.newPasswordForm.password.$error.maxlength && !vm.newPasswordForm.password.$error.required) }") At least 8 characters
 
-          label *Last name (Surname)
-            input(name="lastname", type="text", value="{{vm.userData.lastName}}", ng-model="vm.userData.lastName", maxlength="64", required)
+              p(ng-class="{ 'has-letter': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasLetter) }") At least one letter
 
-          label Address
-            input(name="address", type="text", value="{{vm.homeAddress.streetAddr1}}", ng-model="vm.homeAddress.streetAddr1")
+              p(ng-class="{ 'has-symbol-or-number': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
+        
+          .button-container
+            button.button-l.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid") Save
+            
 
-          label Address 2 (apartment, suite, etc.)
-            input(name="address2", type="text", value="{{vm.homeAddress.streetAddr2}}", ng-model="vm.homeAddress.streetAddr2")
+      div(ng-show="vm.isSocialRegistration")
+        p You joined Topcoder by using an external account, so we don't have a password for you.
+    
 
-          label City
-            input(name="city", type="text", value="{{vm.homeAddress.city}}", ng-model="vm.homeAddress.city")
+  form(name="vm.accountInfoForm", role="form", ng-submit="vm.accountInfoForm.$valid && vm.saveAccountInfo()", novalidate, autocomplete="off")
 
-          label State/Province
-            input(name="state", type="text", value="{{vm.homeAddress.stateCode}}", ng-model="vm.homeAddress.stateCode")
+    .settings-section.name
+      .section-info
+        h2  Name
+        .description Required for legal purposes; will be kept private and not shared with anyone.
 
-          label Zip code/Post code
-            input(name="zipcode", type="text", value="{{vm.homeAddress.zip}}", ng-model="vm.homeAddress.zip")
-
-          label *Country
-            angucomplete-alt(
-              input-name="country",
-              pause="100",
-              selected-object="vm.updateCountry",
-              local-data="vm.countries",
-              initial-value="vm.countryObj",
-              search-fields="name",
-              title-field="name",
-              match-class="angucomplete-highlight",
-              minlength="1"
+      .section-fields
+        
+          // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
+          input(autocomplete="false", name="hidden", type="text", style="display:none;")
+          .form-label.first First name 
+            span(style="text-transform: none;") &nbsp;(Given name)
+          .validation-bar(ng-class="{ 'error-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.firstname.$invalid), 'success-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.firstname.$valid)}")
+            input.form-field(
+              name="firstname", type="text",
+              placeholder="First",
+              ng-model="vm.userData.firstName", 
+              maxlength="64", required, 
+              ng-class="{'form-field-focused': hasFocus==true}"
             )
+            .form-input-error(ng-show="vm.accountInfoForm.firstname.$invalid")
+              p(ng-show="vm.accountInfoForm.firstname.$error.required") This is a required field.
 
-            .account-info-error
-              p.form-error(ng-show="vm.updateAccountInfo.country.$error.required") Please choose a country from the list.
+          .form-label Last name
+            span(style="text-transform: none;") &nbsp;(Surname)
+          .validation-bar(ng-class="{ 'error-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.lastname.$invalid), 'success-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.lastname.$valid)}")
+            input.form-field(
+              name="lastname", type="text", 
+              placeholder="Last",
+              ng-model="vm.userData.lastName", 
+              maxlength="64", required,
+              ng-class="{'form-field-focused': hasFocus==true}"
+            )
+            .form-input-error(ng-show="vm.accountInfoForm.lastname.$invalid")
+              p(ng-show="vm.accountInfoForm.lastname.$error.required") This is a required field.
+
+    
+    .settings-section.address
+      .section-info
+        h2  address
+        .description Required for payments and in case we need to mail you something. Will be kept private and not shared with anyone.
+
+      .section-fields          
+          .form-label.address Address
+          input.form-field(
+            name="address", type="text",
+            placeholder="123 Topcoder Ave.",
+            value="{{vm.homeAddress.streetAddr1}}",
+            ng-model="vm.homeAddress.streetAddr1",
+            ng-class="{'form-field-focused': hasFocus==true}"
+          )
+
+          .form-label Address 2 
+            span(style="text-transform: none;") &nbsp;(opt., suite, etc.)
+          input.form-field(
+            name="address2",
+            type="text",
+            placeholder="Suite 42",
+            value="{{vm.homeAddress.streetAddr2}}",
+            ng-model="vm.homeAddress.streetAddr2",
+            ng-class="{'form-field-focused': hasFocus==true}"
+          )
+
+          .form-label City
+          input.form-field(
+            name="city", type="text",
+            value="{{vm.homeAddress.city}}",
+            placeholder="Best City in the World",
+            ng-model="vm.homeAddress.city",
+            ng-class="{'form-field-focused': hasFocus==true}"
+          )
+
+          .form-label State/Province
+          input.form-field(
+            name="state", type="text",
+            value="{{vm.homeAddress.stateCode}}",
+            placeholder="California",
+            ng-model="vm.homeAddress.stateCode",
+            ng-class="{'form-field-focused': hasFocus==true}"
+          )
+
+          .form-label Zip
+          input.form-field(
+            name="zipcode", type="text",
+            placeholder="Zip"
+            value="{{vm.homeAddress.zip}}",
+            ng-model="vm.homeAddress.zip",
+            ng-class="{'form-field-focused': hasFocus==true}"
+          )
+
+          .form-label Country
+          angucomplete-alt(
+            input-name="country",
+            input-class="form-field",
+            pause="100",
+            selected-object="vm.updateCountry",
+            local-data="vm.countries",
+            initial-value="vm.countryObj",
+            search-fields="name",
+            title-field="name",
+            match-class="angucomplete-highlight",
+            minlength="1",
+            ng-class="{'form-field-focused': hasFocus==true}"
+          )
+          .account-info-error(ng-show="vm.accountInfoForm.country.$invalid")
+            p(ng-show="vm.accountInfoForm.country.$error.required") Please choose a country from the list.
 
 
-        button(type="submit", ng-disabled="vm.updateAccountInfo.$invalid", ng-class="{'enabled-button': vm.updateAccountInfo.$valid}") Save
+          .button-container
+            button.button-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid", ng-class="{'enabled-button': vm.accountInfoForm.$valid}") Save
