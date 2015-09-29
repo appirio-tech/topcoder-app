@@ -3,35 +3,77 @@
 .subtrack-stats {
   .ratings {
     .tracks {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: center;
+      @include horizontal-scroll;
+      @media only screen and (min-width: 768px) {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        overflow: visible;
+        white-space: normal;
+      }
 
       .track {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-right: 30px;
-        padding: 30px 20px;
-        cursor: pointer;
+        position: relative;
+        display: inline-block;
+        margin-right: 65px;
+        padding: 20px 0;
+        @media only screen and (min-width: 768px) {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-right: 35px;
+          padding: 30px 20px;
+          cursor: pointer;
 
-        &:hover {
-          background-color: #F5FAE5;
+          &:hover {
+            background-color: $gray-lightest;
 
-          .subtrack {
-            color: #99CC00;
-            border-bottom-color: #99CC00;
+            .subtrack {
+              color: $gray-darkest;
+              border-bottom-color: $gray-darkest;
+            }
+
+            p:last-child {
+              color: $gray-darkest;
+            }
           }
 
-          p:last-child {
-            color: #5E9EF1;
+
+        }
+
+        &:first-child {
+          margin-left: 20px;
+        }
+
+        &:last-child {
+          margin-right: 20px;
+        }
+
+        .flex-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+
+        &:not(:first-child):before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 32px;
+          left: -30px;
+          @include forward-slash(1px, 60px, 0, 2px, 30deg);
+          background-color: #D1D3D4;
+          @media only screen and (min-width: 768px) {
+            top: 42px;
+            left: -18px;
           }
         }
 
         p {
           @include sofia-pro-regular;
           font-size: 12px;
-          color: #A3A3AE;
+          color: $system-gray;
 
           &:last-child {
             text-transform: uppercase;
@@ -48,7 +90,9 @@
           margin-top: 17px;
           margin-bottom: 7px;
           font-size: 32px;
-          color: $primary-text;
+          @media only screen and (max-width: 767px) {
+            margin-top: 10px;
+          }
 
           span {
             position: absolute;

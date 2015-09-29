@@ -288,7 +288,7 @@ gulp.task('serve', ['inject', 'ngConstants'], function() {
       scroll: true
     },
     logPrefix: 'Topcoder-Account',
-    notify: true,
+    notify: false,
     port: 3000,
     reloadDelay: 1000
   };
@@ -351,7 +351,7 @@ gulp.task('serve-build', ['build'], function() {
       scroll: true
     },
     logPrefix: 'Topcoder-Account',
-    notify: true,
+    notify: false,
     reloadDelay: 1000
   };
 

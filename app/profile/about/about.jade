@@ -3,87 +3,76 @@
 
 .profile-about-container
 
-  tc-section(ng-show="vm.displaySection.skills" state="profileVm.status.skills" class="skills")
-    h3.activity Skills &amp; Technologies  
+  tc-section(id="skills", ng-show="vm.displaySection.skills" state="profileVm.status.skills" class="skills")
+    h3.activity Skills
+
     .list(ng-show="profileVm.skills && profileVm.skills.length > 0")
 
       .skill(ng-repeat="skill in vm.skills")
         skill-tile(skill="skill")
 
-    button.more(ng-show="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW MORE
+    button.more(ng-if="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW ALL
+    button.more(ng-if="vm.skills.length > 6", ng-click="vm.skills = vm.someSkills") VIEW LESS
 
     .empty-state(ng-show="!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)")
-      .action-text show us your skills &amp; tools, we'd love that!
+      .action-text Tell everyone what you know
       
       .list
         .skill(ng-repeat="skill in vm.sampleSkills")
           skill-tile(skill="skill")
       
-      .description The more the better. Skills are important for all challenge organizers and
-        | the community at large. So, go ahead and tell us more about you.
+      .description You can add languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.
       
-      button.link-button(ui-sref="settings.profile") ADD YOUR SKILLS
+      button.link-button(ui-sref="settings.profile") ADD SKILLS
 
-  tc-section(state="profileVm.status.stats")
+  tc-section(id="tcActivity", state="profileVm.status.stats")
 
     .categories
 
-      h3.activity Topcoder Activity
+      h3.activity Activity on Topcoder
 
       .empty-state(ng-if="!profileVm.numProjects")
-        .action-text SHOW US YOU'RE A NINJA!
+        .action-text Start competing within the community
         .tracks
           .track(ng-repeat="track in ['DEVELOP', 'DESIGN', 'DATA_SCIENCE']")
             div(class="{{profileVm.imgMap[track]}}-icon")
               div
             .text {{track | track}}
-        .description Hey, whatever your like might be—Design, Development, or Data Science—we have it! Explore the Challenges section and show us what you’re made of!
-        button.link-button(ui-sref="settings.profile") CHALLENGE ME!
-
-      .track(ng-if="vm.marathonRating || vm.SRMRating")
-        .name.data-icon
-          span DATA SCIENCE
-
-        .subtrack(ng-if="vm.marathonRating")
-          .name Marathon
-
-          .ranking
-            .number {{vm.marathonRating}}
-
-            .tag Rating
-
-          img.arrow(src="/images/ico-arrow-big-right.svg")
-
-        .subtrack(ng-if="vm.SRMRating")
-          .name SRM
-
-          .ranking
-            .number {{vm.SRMRating}}
-
-            .tag Rating
-
-          img.arrow(src="/images/ico-arrow-big-right.svg")
+        .description Compete in challenges to win money, test yourself against the world's best, and learn new skills. Your performance rating will show up here.
+        button.link-button(ui-sref="settings.profile") FIND CHALLENGES
 
       .track(
         ng-repeat="track in profileVm.profile.tracks",
         ng-if="profileVm.categories[track].length > 0"
       )
 
-        div(class="{{profileVm.imgMap[track]}}-icon name")
-          span {{track}}
+        div(class="name")
+          img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data-outline.svg")
+          img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop-outline.svg")
+          img(ng-if="track == 'DESIGN'", src="/images/ico-track-design-outline.svg")
+          img(ng-if="track == 'COPILOT'", src="/images/ico-track-co_pilot-outline.svg")
+          span {{track | track | uppercase}}
 
         .subtrack(
           ng-repeat="subtrack in profileVm.categories[track]",
-          ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})"
+          ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})",
+          class="{{$index == 0 && 'first'}}"
         )
           .name {{subtrack.subTrack | track}}
 
-          .ranking(ng-if="subtrack.rank")
+          .ranking(ng-if="subtrack.rating")
+            .number.rating
+              | {{subtrack.rating}}
+              span.square(style="background-color: {{subtrack.rating | ratingColor}}") 
+
+            .tag Rating
+
+          .ranking(ng-if="subtrack.rank && !subtrack.rating")
             .number {{subtrack.rank | ordinal}}
 
             .tag Ranking
 
-          .ranking(ng-if="subtrack.wins && !subtrack.rank")
+          .ranking(ng-if="subtrack.wins && !subtrack.rank && !subtrack.rating")
             .number {{subtrack.wins}}
 
             .tag Wins
@@ -95,15 +84,15 @@
 
           img.arrow(src="/images/ico-arrow-big-right.svg")
 
-  tc-section(ng-show="vm.displaySection.externalLinks" state="profileVm.status.externalLinks" class="external-links")
-    h3.activity Links
+  tc-section(id="externalLinks", ng-show="vm.displaySection.externalLinks" state="profileVm.status.externalLinks" class="external-links")
+    h3.activity Activity across the web
     external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccountsData")
 
     .empty-state(ng-hide="vm.hasLinks")
-      .action-text you are connected, be proud of it
+      .action-text Showcase your work from around the web
 
       external-accounts.external-account-container(linked-accounts="[]" read-only="true")
 
-      .description Adding your links to your profile will allow you to build your reputation, and show the other members how you're connected.
+      .description Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.
 
-      button.link-button(ui-sref="settings.profile") ADD YOUR LINKS
+      button.link-button(ui-sref="settings.profile") CONNECT ACCOUNTS

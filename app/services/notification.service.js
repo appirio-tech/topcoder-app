@@ -16,7 +16,8 @@
 
     $rootScope.$on(CONSTANTS.EVENT_USER_LOGGED_OUT, function() {
       showing = false;
-      getNotifications();
+      // Not using notifications for anything at the moment
+      // getNotifications();
     });
 
     function getNotifications() {
@@ -41,7 +42,7 @@
         });
       }
     }
-    
+
     function inform(message) {
       notifier.showSuccess({message:message});
     }

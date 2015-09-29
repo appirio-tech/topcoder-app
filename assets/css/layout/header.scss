@@ -108,7 +108,7 @@
 }
 
 .btn-open-menu {
-  color: $primary-text;
+  color: $gray-darkest;
   font-size: 15px;
   line-height: 55px;
   font-family: inherit;
@@ -188,6 +188,14 @@
     padding-left: 10px;
     vertical-align: middle;
   }
+  
+  .menu-item-header {
+    text-transform: none;
+  }
+}
+
+.menu-item-header {
+  text-transform: uppercase;
 }
 
 .submenu {
@@ -246,7 +254,7 @@
     }
 
     .top-header {
-      background-color: $primary-text;
+      background-color: $gray-darkest;
     }
   }
 

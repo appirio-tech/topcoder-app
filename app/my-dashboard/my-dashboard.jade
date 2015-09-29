@@ -1,12 +1,12 @@
 .header-dashboard(ui-view="header-dashboard")
 
 .my-dashboard-container
-  .subtrack-stats(ui-view="subtrack-stats")
+  .subtrack-stats(id="stats", ui-view="subtrack-stats")
 
-  .my-challenges(ui-view="my-challenges")
+  .my-challenges(id="challenges", ui-view="my-challenges")
 
-  .srms(ui-view="srms")
+  .srms(id="srms", ui-view="srms")
 
-  .programs(ui-view="programs")
+  .programs(id="community", ui-view="programs")
 
   .community-updates(ui-view="community-updates")

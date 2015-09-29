@@ -18,47 +18,71 @@
   }
 
   section {
-    display: flex;
-    justify-content: center;
-    padding: 20px 0;
+    padding: 15px;
     border-top: 1px solid #F0F0F0;
     border-bottom: 1px solid #F0F0F0;
     background-color: #FCFCFC;
 
     .srm-tiles {
-      width: 100%;
       @include horizontal-scroll;
-      @media only screen and (min-width: 1125px) {
+      @media only screen and (min-width: 768px) {
         display: flex;
         flex-flow: row wrap;
-        width: 1125px;
+        margin: 0 auto;
         overflow: visible;
+        white-space: normal;
+        width: 555px;
+      }
+      @media only screen and (min-width: 870px) {
+        width: 840px;
+      }
+      @media only screen and (min-width: 1155px) {
+        width: 1125px;
       }
 
       srm-tile {
-        display: inline-block;
-        margin-left: 15px;
+        display: inline;
         margin-bottom: 15px;
-        @media only screen and (min-width: 1125px) {
-          display: block;
+        @media only screen and (max-width: 767px) {
+          display: inline-block;
+          margin-left: 15px;
+
           &:first-child {
             margin-left: 0;
+          }
+        }
+        @media only screen and (min-width: 768px) {
+          &:nth-child(2n + 1) {
+            margin-right: 15px;
+          }
+        }
+        @media only screen and (min-width: 870px) {
+          margin-right: 15px;
+
+          &:nth-child(3n) {
+            margin-right: 0;
+          }
+        }
+        @media only screen and (min-width: 1155px) {
+          &:nth-child(3n) {
+            margin-right: 15px;
+          }
+          &:nth-child(4n) {
+            margin-right: 0;
           }
         }
       }
 
       .srm-links-card {
-        display: inline-block;
+        display: inline;
         width: 270px;
         height: 319px;
-        margin-right: 15px;
         margin-bottom: 15px;
         padding: 0 21px;
         border: 1px solid #DCDCDC;
         border-radius: 4px;
-        @media only screen and (min-width: 1125px) {
-          margin-right: 0;
-          display: block;
+        @media only screen and (max-width: 767px) {
+          display: inline-block;
           margin-left: 15px;
         }
       }
@@ -70,11 +94,11 @@
 
         h2 {
           margin-top: 60px;
-          margin-bottom: 30px;
+          margin-bottom: 55px;
           @include sofia-pro-light;
           font-size: 24px;
           text-align: center;
-          color: $primary-text;
+          color: $gray-darkest;
           text-transform: uppercase;
           white-space: normal;
         }
@@ -82,8 +106,11 @@
         a {
           margin-bottom: 21px;
           @include button-m-wide;
-          @include button-ghost;
           text-decoration: none;
+
+          &:last-child {
+            @include button-ghost;
+          }
         }
       }
     }
@@ -92,19 +119,12 @@
   .srms-links {
     @include module-links;
 
-    p {
-      @include source-sans-regular;
-      font-size: 14px;
-      line-height: 20px;
-      color: $primary-text;
-      @media only screen and (min-width: 900px) {
-        font-size: 16px;
-      }
+    a {
+      @include button-m;
+      @include button-secondary;
 
-      a {
-        color: $primary-color;
-        cursor: pointer;
-        text-decoration: none;
+      &:not(:first-child) {
+        margin-left: 10px;
       }
     }
   }
