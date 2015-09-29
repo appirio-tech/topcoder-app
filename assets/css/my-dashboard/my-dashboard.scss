@@ -37,7 +37,7 @@
   .section-title {
     @include sofia-pro-bold;
     font-size: 22px;
-    color: $primary-text;
+    color: $gray-darkest;
     text-align: center;
     text-transform: uppercase;
     @media only screen and (min-width: 450px) {

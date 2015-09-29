@@ -26,15 +26,15 @@
           cursor: pointer;
 
           &:hover {
-            background-color: #F5FAE5;
+            background-color: $gray-lightest;
 
             .subtrack {
-              color: #99CC00;
-              border-bottom-color: #99CC00;
+              color: $gray-darkest;
+              border-bottom-color: $gray-darkest;
             }
 
             p:last-child {
-              color: #5E9EF1;
+              color: $gray-darkest;
             }
           }
 
@@ -73,7 +73,7 @@
         p {
           @include sofia-pro-regular;
           font-size: 12px;
-          color: #A3A3AE;
+          color: $system-gray;
 
           &:last-child {
             text-transform: uppercase;
@@ -90,7 +90,6 @@
           margin-top: 17px;
           margin-bottom: 7px;
           font-size: 32px;
-          color: $primary-text;
           @media only screen and (max-width: 767px) {
             margin-top: 10px;
           }

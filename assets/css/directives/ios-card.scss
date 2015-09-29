@@ -30,7 +30,7 @@ ios-card .challenge.tile-view {
       @include sofia-pro-medium;
       font-size: 14px;
       line-height: 18px;
-      color: $primary-text;
+      color: $gray-darkest;
       text-decoration: none;
       @include ellipsis;
     }
@@ -88,7 +88,7 @@ ios-card .challenge.tile-view {
     .time-remaining {
       margin-top: 5px;
       font-size: 24px;
-      color: $primary-text;
+      color: $gray-darkest;
     }
 
     .unit-of-time {
@@ -107,7 +107,7 @@ ios-card .challenge.tile-view {
   .roles {
     min-height: 36px;
     margin-bottom: 25px;
-    color: $primary-text;
+    color: $gray-darkest;
     @include source-sans-regular;
     font-size: 13px;
     line-height: 18px;
@@ -146,7 +146,7 @@ ios-card .challenge.tile-view {
     p {
       @include sofia-pro-bold;
       font-size: 11px;
-      color: $primary-text;
+      color: $gray-darkest;
     }
 
     .forum p {
@@ -180,20 +180,20 @@ ios-card .challenge.tile-view {
 
   // Dynamic colors based on track
   &.DESIGN {
-    .challenge-track { background-color: $accent-color; }
-    header p { color: $accent-color; }
+    .challenge-track { background-color: $design; }
+    header p { color: $design; }
   }
   &.DEVELOP {
-    .challenge-track { background-color: $success-color; }
-    header p { color: $success-color; }
+    .challenge-track { background-color: $develop; }
+    header p { color: $develop; }
   }
   &.DATA_SCIENCE {
-    .challenge-track { background-color: #F39426; }
-    header p { color: #F39426; }
+    .challenge-track { background-color: $data_science; }
+    header p { color: $data_science; }
   }
   &.COPILOT {
-    .challenge-track { background-color: #7F7F7F; }
-    header p { color: #7F7F7F; }
+    .challenge-track { background-color: $copilot; }
+    header p { color: $copilot; }
   }
 }
 
