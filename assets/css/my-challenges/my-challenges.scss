@@ -18,7 +18,9 @@
   }
 
   .my-challenges {
-    @include module-l;
+    min-height: 50px;
+    display: flex;
+    flex-direction: columdn;
 
     .nav {
       @include module-full-width;
