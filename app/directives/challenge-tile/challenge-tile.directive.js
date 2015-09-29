@@ -17,10 +17,16 @@
         activate();
 
         function activate() {
-          // console.log($scope.challenge.plain());
-          // if (challenge.track == 'DESIGN' && challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
-          //   challenge.thumbnailId = challenge.userDetails.submissions[0].id;
-          // }
+          // move to service helper, called from controller
+          if ($scope.challenge.track == 'DESIGN' && $scope.challenge.userDetails.submissions && $scope.challenge.userDetails.submissions.length > 0) {
+            $scope.challenge.thumbnailId = $scope.challenge.userDetails.submissions[0].id;
+
+            $scope.challenge.highestPlacement = _.max($scope.challenge.userDetails.submissions, 'placement').placement;
+
+            if ($scope.challenge.highestPlacement == 1) {
+              $scope.challenge.wonFirst = true;
+            }
+          }
         }
       }]
     };
