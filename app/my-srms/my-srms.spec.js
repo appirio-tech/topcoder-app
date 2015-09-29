@@ -34,12 +34,23 @@ describe('My SRMs Controller', function() {
     sinon.stub(srmService, 'getSRMs', function(data) {
       var deferred = $q.defer();
       var resp = null;
-      console.log(data.filter);
       if (data.filter.indexOf('status=future') != -1) {
         resp = JSON.parse(JSON.stringify(srms));
       } else {
         resp = JSON.parse(JSON.stringify(srms.slice(1)));
       }
+      resp.pagination = {
+        total: resp.length,
+        pageIndex: 1,
+        pageSize: 10
+      };
+      deferred.resolve(resp);
+      return deferred.promise;
+    });
+
+    sinon.stub(srmService, 'getPastSRMs', function(data) {
+      var deferred = $q.defer();
+      var resp = JSON.parse(JSON.stringify(srms.slice(1)));
       resp.pagination = {
         total: resp.length,
         pageIndex: 1,
