@@ -28,14 +28,14 @@
       .ended-on #[span {{srm.startDate | localTime:"MMM DD, YYYY" }}]
 
     .member-stats
-      p.points #[span {{srm.result.finalPoints }}]
+      p.points #[span {{srm.result.finalPoints }}] #[span Points]
       .ranks
         .division
           p.rank #[{{srm.result.divisionPlacement}}]
-          p.div Div #[span {{srm.result.division}}]
+          p.label  #[span Div {{srm.result.division}}] #[span Placement]
         .room
           p.rank #[span {{srm.result.roomPlacement}}]
-          p Room
+          p.label #[span Room] #[span Placement]
 
 .srm.list-view(ng-show="view=='list'")
   .upcoming-srm(ng-show="srm.status === 'FUTURE'")
@@ -69,9 +69,9 @@
       .ranks
         .division
           p.rank #[{{srm.result.divisionPlacement}}]
-          p.div Div #[span {{srm.result.division}}]
+          p.label #[span Div {{srm.result.division}}] #[span Placement]
         .room
           p.rank #[span {{srm.result.roomPlacement}}]
-          p Room
+          p.label #[span Room] #[span Placement]
 
 
