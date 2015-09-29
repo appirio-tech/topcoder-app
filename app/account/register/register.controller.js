@@ -64,7 +64,7 @@
       var body = {
         param: userInfo,
         options: {
-          afterActivationURL: CONSTANTS.MAIN_URL + '/skillpicker/'
+          afterActivationURL: $state.href('skillPicker', {}, {absolute: true})
         }
       }
 

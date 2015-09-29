@@ -1,15 +1,114 @@
 @import '../partials/combined';
 
 .skill-picker-container {
+  @include module-l;
+  margin: 0 auto;
+  padding: 0 10px;
+  @media only screen and (min-width: 768px) {
+    width: 768px;
+    padding: 0 80px;
+  }
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  hr {
+    color: #F6F6F6;
+  }
   h1 {
-    margin-bottom: 20px;
+    margin: 20px;
+    font-size: 28px;
+    @include sofia-pro-bold;
+  }
+  .instruction {
+    margin-bottom: 25px;
     font-size: 18px;
-    font-weight: bold;
+    @include sofia-pro-light;
+    color: #A3A3AE;
+  }
+
+  .skills-container {
+    .title {
+      @include sofia-pro-regular;
+      text-transform: uppercase;
+      font-size: 18px;
+    }
+    .description {
+      @include source-sans-italic;
+      color: #A3A3AE;
+      font-size: 13px;
+      border-bottom: 1px solid #A3A3AE;
+      padding-bottom: 5px;
+    }
+
+    .skills-section {
+      .track-title {
+        margin-top: 25px;
+        margin-bottom: 5px;
+        text-align: center;
+        @include sofia-pro-regular;
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+
+      .skills {
+        display: flex;
+        flex-flow: row wrap;
+        padding-bottom: 30px;
+        border-bottom: 2px #F0F0F0 solid;
+        .skill {
+          margin: 10px;
+          @media only screen and (min-width: 768px) {
+            background-color: $white;
+            border: none;
+            width: 100px;
+          }
+          .icon {
+            display: none;
+            @media only screen and (min-width: 768px) {
+              display: block;
+              background-color: #FBFBFB;
+              border: 1px solid #F0F0F0;
+              width: 100px;
+              height: 100px;
+              padding: 20px;
+              margin-bottom: 10px;
+            }
+          }
+          .name {
+            background-color: #FBFBFB;
+            border: 1px solid #F0F0F0;
+            @media only screen and (min-width: 768px) {
+              background-color: $white;
+              border: none;
+            }
+            @include source-sans-regular;
+            font-size: 14px;
+            padding: 5px;
+            color: $black;
+            height: 28px;
+          }
+        }
+        .selected-skill {
+          .name {
+            background-color: #F2FAFF;
+            border: 1px solid #85CCFF;
+          }
+          @media only screen and (min-width: 768px) {
+            .icon {
+              background-color: #F2FAFF;
+              border: 1px solid #85CCFF;
+            }
+            .name {
+              background-color: $white;
+              border: none;
+            }
+          }
+
+        }
+      }
+
+    }
   }
 
   p {
@@ -20,173 +119,8 @@
       max-width: 440px;
     }
   }
-
-  .track-picker {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    h1 {
-      margin-top: 15px;
-      margin-bottom: 10px;
-    }
-
-    .track-button {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-top: 5px;
-      width: 300px;
-      height: 55px;
-      background-color: $white;
-      border-radius: 5px;
-
-      @media only screen and (min-width: 960px) {
-        margin-right: 10px;
-
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-    }
-
-    .track-checkbox {
-      margin-left:  15px;
-
-      input[type="checkbox"] {
-        display: none;
-      }
-
-      .checkbox-toggle {
-        font-size: 18px;
-        text-transform: uppercase;
-        color: #b7b7b7;
-        cursor: pointer;
-
-        span {
-          display: inline-block;
-          margin-right: 5px;
-          vertical-align: middle;
-          width: 17px;
-          height: 19px;
-          background: url(/images/checkbox-sprite.png) -17px top no-repeat;
-          cursor: pointer;
-        }
-        &.checked-track {
-          color: $primary-text;
-
-          span {
-            background: url(/images/checkbox-sprite.png) left top no-repeat;
-          }
-        }
-      }
-    }
-
-    .mobile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      @media only screen and (min-width: 960px) {
-        display: none;
-      }
-
-      .skills-container {
-        margin-top: 10px;
-        width: 300px;
-      }
-
-      .skills-section {
-        margin-bottom: 10px;
-        background-color: $white;
-        border-radius: 5px;
-
-        p {
-          padding-top: 10px;
-          padding-bottom: 10px;
-          border-bottom: 1px solid #b7b7b7;
-        }
-
-        .track-skills {
-          display: flex;
-          flex-flow: row wrap;
-          padding: 10px 15px;
-        }
-
-        .track-skill {
-          margin-right: 5px;
-          margin-bottom: 5px;
-          border-radius: 5px;
-          background-color: #f0f0f0;
-          padding: 5px 10px;
-        }
-
-        .skill-selected {
-          background-color: #0096ff;
-          color: $white;
-        }
-      }
-
-      .reminder {
-        margin-top: 5px;
-      }
-    }
-
-    .desktop {
-      @media only screen and (max-width: 959px) {
-        display: none;
-      }
-
-      .track-buttons {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-
-        .track-button {
-          width: 300px;
-        }
-      }
-
-      .skills-tab {
-        max-width: 920px;
-        padding: 30px;
-        padding-bottom: 0;
-        margin-top: 10px;
-        background-color: #d1d3d4;
-
-        .choose-prompt {
-          padding: 30px 0;
-          text-align: center;
-        }
-
-        .track-skills {
-          display: flex;
-          flex-flow: row wrap;
-          justify-content: space-between;
-
-          .track-skill {
-            width: 150px;
-            height: 150px;
-            line-height: 150px;
-            margin-bottom: 30px;
-            background-color: $white;
-            text-align: center;
-            cursor: pointer;
-
-            &.skill-selected {
-              background-color: $ui-enabled-button-blue;
-              color: $white;
-            }
-          }
-        }
-      }
-    }
-
-    button {
-      @include ui-submit-button;
-
-      &.enabled-button {
-        @include ui-enabled-button;
-      }
-    }
+  .button-l{
+    margin: 30px;
+    @include button-l;
   }
 }

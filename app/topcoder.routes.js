@@ -13,7 +13,8 @@
     // ensure we have a trailing slash
     $urlMatcherFactoryProvider.strictMode(true);
     // rule to add trailing slash
-    $urlRouterProvider.rule(function($injector, $location) {
+    $urlRouterProvider.rule(function($injector) {
+      var $location = $injector.get('$location');
       var path = $location.url();
       // check to see if the path already has a slash where it should be
       if (path[path.length - 1] === '/' || path.indexOf('/?') > -1 || path.indexOf('/#') > -1) {
@@ -74,7 +75,7 @@
     });
 
     $urlRouterProvider.otherwise(function($injector) {
-      $injector.invoke(['$state', 'CONSTANTS', function($state, CONSTANTS) {
+      $injector.invoke(['$state', 'CONSTANTS', '$location', function($state, CONSTANTS, $location) {
         if ($location.host().indexOf('local') == -1) {
           var absUrl = CONSTANTS.MAIN_URL + window.location.pathname;
           if (window.location.search)
