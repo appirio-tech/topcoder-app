@@ -97,17 +97,26 @@
       }
     }
 
-    a {
-      display: block;
-      margin-top: 30px;
-      font-size: 13px;
-      color: $primary-color;
-      text-decoration: none;
-      text-transform: uppercase;
-      @media only screen and (min-width: 1000px) {
-        font-size: 16px;
+    .info-links {
+      a {
+        @include button-m;
+        display: inline-block;
+        margin-top: 30px;
+        font-size: 13px;
+        color: $white;
+        text-decoration: none;
+        text-transform: uppercase;
+        @media only screen and (min-width: 1000px) {
+          font-size: 16px;
+        }
+
+        &:last-child {
+          @include button-ghost;
+          margin-left: 30px;
+        }
       }
     }
+
   }
 
   .registered {
@@ -199,26 +208,6 @@
         &:nth-child(4n) {
           margin-left: 15px;
         }
-      }
-    }
-  }
-
-  .ios-links {
-    @include module-links;
-
-    p {
-      @include source-sans-regular;
-      font-size: 14px;
-      line-height: 20px;
-      color: $gray-darkest;
-      @media only screen and (min-width: 900px) {
-        font-size: 16px;
-      }
-
-      a {
-        color: $primary-color;
-        cursor: pointer;
-        text-decoration: none;
       }
     }
   }
