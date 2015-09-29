@@ -22,6 +22,8 @@
       function(data) {
         // success
         $log.debug('logged in');
+        // setup login event for analytics tracking
+        Helpers.setupLoginEventMetrices(usernameOrEmail);
         return Helpers.redirectPostLogin($stateParams.next);
       })
      .catch(function(resp) {

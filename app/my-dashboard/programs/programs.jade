@@ -14,10 +14,10 @@ section.ios(ng-hide="vm.loading")
 
       p Experienced and proven iOS developers are in high-demand. Prove your skills by earning these iOS topcoder badges and gain exclusive access to iOS challenges and prize accelerators, special previews into content and releases, and special community-related events and info.
 
-      a View all the Details
+      .info-links
+        a(ng-click="vm.registerUser()") Participate
 
-      //- .call-to-action(ng-click="vm.registerUser()")
-      //-   p Join Us
+        a(ng-href="ios.{{DOMAIN}}") Learn More
 
   .registered(ng-show="vm.registered")
     .badge-and-challenges
@@ -31,6 +31,3 @@ section.ios(ng-hide="vm.loading")
           a(href="http://ios.{{vm.domain}}", title="topcoder iOS Member Program") View Challenges
 
       ios-card(ng-repeat="challenge in vm.challenges | orderBy:reviewType:true| orderBy:registrationEndDate:true", challenge="challenge", view="'tile'")
-
-.ios-links(ng-hide="vm.loading")
-  p Want to get better at Swift? Learn about the FREE Topcoder #[a(ng-href="https://swift.{{DOMAIN}}/") Swift Course 101]

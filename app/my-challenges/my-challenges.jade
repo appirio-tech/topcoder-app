@@ -1,42 +1,35 @@
 .my-challenges-container
   .my-challenges
-    header
-      h1.section-title My Challenges
 
-      p.viewDashboard
-        a(ui-sref="dashboard") View Dashboard
-
-      p.noChallenges(ng-hide="vm.userHasChallenges") You have not participated in any challenges yet.
-
-      p.viewOptions
-        a(ng-click="vm.changeView('list')", ng-class="{disabled: vm.view == 'list'}") List
-
-        span &nbsp; | &nbsp;
-
-        a(ng-click="vm.changeView('tile')", ng-class="{disabled: vm.view == 'tile'}") Tile
-
-      p.filters
-        a(ng-click="vm.viewActiveChallenges()", ng-class="{disabled: vm.statusFilter == 'active'}") Active
-        span &nbsp; | &nbsp;
-        a(ng-click="vm.viewPastChallenges()", ng-class="{disabled: vm.statusFilter == 'completed'}") Past
+    .nav
+      .breadcrumbs
+        .dashboard
+          a(ui-sref="dashboard") Dashboard
+        .my-challenges // My Challenges
 
     .section-loading(ng-show="vm.loading")
 
-    section.challenges(ng-show="vm.userHasChallenges && !vm.loading")
-      tc-paginator(data="vm.myChallenges", page-params="vm.pageParams")
+    section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
+      You have not participated in any challenges yet.
 
-      .data(ng-class="vm.view + '-view'")
-        challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.view", ng-class="vm.view + '-view'")
+    .content
+      section.challenges(ng-show="vm.userHasChallenges && !vm.loading")
+        .top
+          .filters
+            a(ng-click="vm.viewActiveChallenges()", ng-class="{disabled: vm.statusFilter == 'active'}") Active
+            span &nbsp; | &nbsp;
+            a(ng-click="vm.viewPastChallenges()", ng-class="{disabled: vm.statusFilter == 'completed'}") Past
 
-    .section-links
-      .link
-        a(href="https://www.{{vm.domain}}/challenges/?pageIndex=1") Find New Challenges
+          .challenge-view-toggle
+            button.tile(ng-click="vm.changeView('tile')", ng-class="{ disabled: vm.view === 'tile' }") Grid
 
-      .link(ng-show="vm.isCopilot")
-        a(href="https://www.{{vm.domain}}/direct") Launch Topcoder Direct
+            button.list(ng-click="vm.changeView('list')", ng-class="{ disabled: vm.view === 'list' }") List
 
-      .link(ng-hide="vm.userHasChallenges")
-        a(href="https://community.{{vm.domain}}/", target="_blank") View Help Library
+        .data(ng-class="vm.view + '-view'")
+          challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.view", ng-class="vm.view + '-view'")
+
+        .bottom
+          tc-paginator(data="vm.myChallenges", page-params="vm.pageParams")
 
     hr
 
