@@ -12,7 +12,7 @@
     vm.loading = true;
     vm.view = 'tile';
     vm.changeView = changeView;
-    vm.listType = 'future';
+    vm.listType = 'past';
     vm.viewUpcomingSRMs = viewUpcomingSRMs;
     vm.viewPastSRMs = viewPastSRMs;
     // paging params, these are updated by tc-pager
