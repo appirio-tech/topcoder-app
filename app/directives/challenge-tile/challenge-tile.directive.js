@@ -11,8 +11,9 @@
         challenge: '=',
         view: '='
       },
-      controller: ['$scope', 'CONSTANTS', '$attrs', function($scope, CONSTANTS, $attrs) {
+      controller: ['$scope', 'CONSTANTS', '$attrs', 'ngDialog', function($scope, CONSTANTS, $attrs, ngDialog) {
         $scope.DOMAIN = CONSTANTS.domain;
+        $scope.openLightbox = openLightbox;
 
         activate();
 
@@ -27,6 +28,14 @@
               $scope.challenge.wonFirst = true;
             }
           }
+        }
+
+        function openLightbox() {
+          ngDialog.open({
+            template: 'directives/challenge-tile/design-lightbox/design-lightbox.html',
+            className: 'ngdialog-theme-default',
+            scope: $scope
+          });
         }
       }]
     };
