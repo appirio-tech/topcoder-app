@@ -23,7 +23,7 @@
         @include sofia-pro-bold;
         font-size: 22px;
         line-height: 26px;
-        color: $primary-text;
+        color: black;
         text-transform: uppercase;
         @media only screen and (min-width: 600px) {
           margin-bottom: 0;
@@ -133,7 +133,7 @@
       .form-label {
         @include sofia-pro-regular;
         font-size: 12px;
-        color: $primary-text;
+        color: black;
         text-transform: uppercase;
         margin-bottom: 5px;
         margin-top: 5px;
