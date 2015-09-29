@@ -63,7 +63,7 @@
   text-align: center;
   background-color: #fff;
 
-  &:before {
+  .logo-link {
     content: '';
     display: block;
     position: absolute;
@@ -398,7 +398,7 @@
     }
 
     // Topcoder logo
-    &:before {
+    .logo-link {
       background: url('/images/logo_topcoder.svg');
       width: 156px;
       height: 54px;
