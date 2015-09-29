@@ -4,9 +4,9 @@
     .module('tc.profile')
     .controller('ProfileSubtrackController', ProfileSubtrackController);
 
-  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window', 'userHandle'];
+  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window', 'ngDialog'];
 
-  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window) {
+  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window, ngDialog) {
     var vm = this;
     vm.graphState = { show: 'history' };
     vm.subTrack = decodeURIComponent($stateParams.subTrack || '') || '';
@@ -20,6 +20,7 @@
     vm.ddSelected = {};
     vm.distribution = {};
     vm.selectSubTrack = selectSubTrack;
+    vm.showNav = showNav;
     vm.back = back;
     vm.status = {
       'challenges': CONSTANTS.STATE_LOADING
@@ -37,6 +38,9 @@
     activate();
 
     function activate() {
+      if (vm.subTrack == 'SRM') {
+        vm.graphState = { show: 'distribution' };
+      }
       if (vm.track == 'DEVELOP' || vm.track == 'DATA_SCIENCE') {
         vm.distributionPromise = ProfileService.getDistributionStats(vm.track, vm.subTrack);
         vm.distributionPromise.then(function(data) {
@@ -53,6 +57,16 @@
       }
 
       profileVm.statsPromise.then(function(data) {
+        if (vm.subTrack == 'SRM') {
+          vm.divisions = ProfileService.getDivisions(profileVm.stats);
+          vm.divisionList = [
+            vm.divisions.division1,
+            vm.divisions.division2,
+            vm.divisions.challenges
+          ];
+          console.log('diviviv');
+          console.log(vm.divisionList);
+        }
         vm.typeStats = ProfileService.getChallengeTypeStats(
           profileVm.stats,
           vm.track,
@@ -99,22 +113,40 @@
       return ChallengeService.getUserChallenges(
         profileVm.profile.handle,
         {
-          filter: {
-            status: 'completed',
-            track: vm.track,
-            subTrack: vm.subTrack
-          },
+          filter: 'status=completed&track=' + vm.track + '&subTrack=' + vm.subTrack,
           limit: vm.pageParams.limit,
           offset: vm.pageParams.offset,
           orderBy: 'submissionEndDate desc'
         }
       )
       .then(function(data) {
-        vm.challenges = data;
+        ChallengeService.processPastChallenges(data);
+        vm.challenges = data.filter(function(challenge) {
+          return challenge.userDetails.hasUserSubmittedForReview;
+        });
         vm.status.challenges = CONSTANTS.STATE_READY;
         return data;
       }).catch(function(err) {
         vm.status.challenges = CONSTANTS.STATE_ERROR;
+      });
+    }
+
+    function showNav() {
+      console.log('dialog')
+      console.log(ngDialog)
+      ngDialog.open({
+        template: 'profile/subtrack/nav.html',
+        controller: 'ProfileCtrl',
+        controllerAs: 'vm',
+        className: 'ngdialog-theme-default',
+        resolve: {
+          userHandle: function() {
+            return vm.userHandle;
+          },
+          profile: function() {
+            return profileVm.profile;
+          }
+        }
       });
     }
 

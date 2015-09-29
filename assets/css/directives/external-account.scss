@@ -1,37 +1,51 @@
 
 .ext-tile {
-  width: 100px;
-  text-align: center;
-  margin: 5px;
-}
-
-.linked {
-  background-color: #27a9e1;
-  cursor: default;
-}
-.read-only{
-  cursor: default;
-  pointer-events: none;
-}
-
-.disconnected {
-  cursor: pointer;
-}
-
-.external-account-icon-box {
-  border: 1px solid;
-  width: 75px;
-  height: 75px;
-  font-size: 30px;
+  width: 90px;
+  height: 90px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.name {
-  font-family: 'Sofia Pro';
-  font-size: 10px;
-  font-weight: 600;
+  flex-direction: column;
   text-align: center;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #f0f0f0;
+  margin: 5px;
+
+  .linked {
+    background-color: #27a9e1;
+    cursor: default;
+  }
+
+  .read-only{
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .disconnected, .inactive {
+    cursor: pointer;
+  }
+
+  .external-account-icon-box {
+    font-size: 45px;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    i {
+      &.inactive {
+        color: #d1d3d4;
+      }
+    }
+  }
+
+  .name {
+    margin-top: 8px;
+    font-family: 'Sofia Pro';
+    font-size: 10px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    &.inactive {
+      color: #d1d3d4;
+    }
+  }
 }

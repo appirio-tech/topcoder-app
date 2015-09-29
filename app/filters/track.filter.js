@@ -18,7 +18,8 @@
         'WIDGET_OR_MOBILE_SCREEN_DESIGN': 'Widget or Mobile Screen Design',
         'FRONT_END_FLASH': 'Front-End Flash',
         'APPLICATION_FRONT_END_DESIGN': 'Application Front-End Design',
-        'DESIGN_FIRST_2_FINISH': 'Design First2Finish'
+        'DESIGN_FIRST_2_FINISH': 'Design First2Finish',
+        'DEVELOP': 'Development'
       };
 
       function capitalized(str) {

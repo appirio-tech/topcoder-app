@@ -17,6 +17,8 @@
     vm.skills = false;
     vm.addSkill = addSkill;
     vm.tags = [];
+    vm.profileFormProcessing = false;
+    vm.tracks = {};
 
     activate();
 
@@ -27,9 +29,13 @@
       processData(userData);
       vm.userData = userData;
 
-      ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId)
-      .then(function(data) {
-        vm.linkedExternalAccounts = data;
+      ExternalAccountService.getLinkedExternalLinksData(userHandle).then(function(data) {
+        vm.linkedExternalAccounts = data.plain();
+        vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccounts, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
+
+        console.log('ext');
+        console.log(vm.hasLinks);
+        console.log(vm.linkedExternalAccounts)
       })
       .catch(function(err) {
         $log.error(JSON.stringify(err));
@@ -80,6 +86,7 @@
     }
 
     function updateProfile() {
+      vm.profileFormProcessing = true;
       vm.userData.tracks = _.reduce(vm.tracks, function(result, isInterested, trackName) {
         if (isInterested) {
           result.push(trackName);
@@ -89,9 +96,11 @@
 
       ProfileService.updateUserProfile(vm.userData)
       .then(function() {
+        vm.profileFormProcessing = false;
         $log.info('Saved successfully');
       })
       .catch(function(err) {
+        vm.profileFormProcessing = false;
         $log.error(err);
       });
     }
@@ -102,9 +111,9 @@
 
     function processData(userInfo) {
       vm.tracks = {
-        design: _.contains(userData.tracks, 'DESIGN'),
-        develop: _.contains(userData.tracks, 'DEVELOP'),
-        data_science: _.contains(userData.tracks, 'DATA_SCIENCE'),
+        DESIGN: _.contains(userData.tracks, 'DESIGN'),
+        DEVELOP: _.contains(userData.tracks, 'DEVELOP'),
+        DATA_SCIENCE: _.contains(userData.tracks, 'DATA_SCIENCE'),
       };
     }
   }

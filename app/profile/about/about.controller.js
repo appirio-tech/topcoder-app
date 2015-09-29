@@ -40,7 +40,7 @@
       profileVm.skillsPromise.then(function() {
         // show section if user is viewing his/her own profile OR if we have data
         vm.fullSkills = profileVm.skills;
-        vm.someSkills = profileVm.skills.slice(0, 9);
+        vm.someSkills = profileVm.skills.slice(0, 6);
         vm.skills = vm.someSkills;
         vm.displaySection.skills = profileVm.showEditProfileLink || !!vm.skills.length;
       });

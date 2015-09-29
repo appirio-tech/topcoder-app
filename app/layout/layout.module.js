@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  var dependencies = [];
+  var dependencies = ['angular-intro'];
 
   angular.module('tc.layout', dependencies);
 

@@ -12,11 +12,9 @@ section(ng-hide="vm.loading")
       .flex-wrapper
         h2 Practice on past problems
 
-        a(href="https://community.{{DOMAIN}}/tc?module=ProblemArchive") Problem Archives
+        a(href="https://arena.{{DOMAIN}}") Launch Arena
 
-        a(href="https://community.{{DOMAIN}}/wiki/display/tc/Algorithm+Problem+Set+Analysis") Match Editorials
-
-        a(ui-sref="my-srms") View Past SRMs
+        a(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
 
 .srms-links(ng-hide="vm.loading")
-  p Want to compete right now? Try your skills in the #[a(ng-href="https://arena.{{DOMAIN}}/") Topcoder ARENA]!
+  a(ui-sref="my-srms") View Past SRMs

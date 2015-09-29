@@ -1,179 +1,311 @@
 @import '../partials/combined';
 
 // Default Challenge Tile Stylings
-.challenge.tile-view {
-  position: relative;
-  width: 270px;
-  border: 1px solid #E0E0E0;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-  background-color: $white;
+challenge-tile .challenge.tile-view {
+  .active-challenge {
+    position: relative;
+    width: 270px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    background-color: $white;
 
-  &:hover {
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4)
-  }
-
-  .challenge-track {
-    width: 5px;
-    height: 52px;
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    border-top-left-radius: 4px;
-  }
-
-  header {
-    padding: 0 20px;
-    height: 52px;
-    border-bottom: 1px solid #F0F0F0;
-
-    a {
-      display: block;
-      width: 210px;
-      padding-top: 8px;
-      padding-bottom: 2px;
-      @include sofia-pro-medium;
-      font-size: 14px;
-      line-height: 18px;
-      color: $primary-text;
-      @include link;
-      @include ellipsis;
+    &:hover {
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
     }
 
-    p {
-      @include sofia-pro-light;
-      font-size: 11px;
-      line-height: 13px;
-      text-transform: uppercase;
-    }
-  }
-
-  .challenge-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .currentPhase {
-    margin-top: 40px;
-    margin-bottom: 20px;
-    @include sofia-pro-light;
-    font-size: 20px;
-    line-height: 24px;
-  }
-
-  .challenge-calendar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 75px;
-    height: 63px;
-    margin-bottom: 20px;
-    background-image: url(/images/ico-calendar.svg);
-
-    > p {
-      @include sofia-pro-bold;
+    .challenge-track {
+      width: 5px;
+      height: 52px;
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      border-top-left-radius: 4px;
     }
 
-    .starts-in {
-      margin-top: 3px;
-      font-size: 10px;
-      line-height: 13px;
-      text-transform: uppercase;
-      color: #7F7F7F;
+    header {
+      padding: 0 20px;
+      height: 52px;
+      border-bottom: 1px solid #F0F0F0;
+
+      a {
+        display: block;
+        width: 210px;
+        padding-top: 8px;
+        padding-bottom: 2px;
+        @include sofia-pro-medium;
+        font-size: 14px;
+        line-height: 18px;
+        color: $gray-darkest;
+        @include ellipsis;
+        @include link;
+      }
+
+      p {
+        @include sofia-pro-light;
+        font-size: 11px;
+        line-height: 13px;
+        text-transform: uppercase;
+      }
     }
 
-    .time-remaining {
-      margin-top: 5px;
-      font-size: 24px;
-      color: $primary-text;
-    }
-
-    .unit-of-time {
-      margin-top: 1px;
-      font-size: 10px;
-      text-transform: lowercase;
-      color: #7F7F7F;
-    }
-  }
-
-  .phase-action {
-    margin-bottom: 25px;
-    @include button-m-wide;
-  }
-
-  .roles {
-    min-height: 36px;
-    margin-bottom: 25px;
-    color: $primary-text;
-    @include source-sans-regular;
-    font-size: 13px;
-    line-height: 18px;
-  }
-
-  .challenge-links {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    height: 38px;
-    width: 100%;
-    padding: 0 20px;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    background-color: #FCFCFC;
-
-    a {
-      text-decoration: none;
-    }
-
-    .stats, .registrants, .submissions, .forum {
+    .challenge-details {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       align-items: center;
     }
 
-    .registrants, .submissions, .form {
-      cursor: pointer;
+    .currentPhase {
+      margin-top: 40px;
+      margin-bottom: 20px;
+      @include sofia-pro-light;
+      font-size: 20px;
+      line-height: 24px;
     }
 
-    .registrants {
-      margin-right: 15px;
+    .challenge-calendar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 75px;
+      height: 63px;
+      margin-bottom: 20px;
+      background-image: url(/images/ico-calendar.svg);
+
+      > p {
+        @include sofia-pro-bold;
+      }
+
+      .ends-in {
+        margin-top: 3px;
+        font-size: 10px;
+        line-height: 13px;
+        text-transform: uppercase;
+        color: #7F7F7F;
+      }
+
+      .time-remaining {
+        margin-top: 5px;
+        font-size: 24px;
+        color: $gray-darkest;
+      }
+
+      .unit-of-time {
+        margin-top: 1px;
+        font-size: 10px;
+        text-transform: lowercase;
+        color: #7F7F7F;
+      }
     }
 
-    p {
-      @include sofia-pro-medium;
-      font-size: 12px;
-      color: $primary-text;
+    .stalled-challenge {
+      min-height: 83px;
+      padding-top: 21px;
     }
 
-    .forum p {
-      @include sofia-pro-regular;
-      text-transform: uppercase;
+    .phase-action {
+      min-height: 55px;
+
+      .submit {
+        margin-bottom: 25px;
+        @include button-m-wide;
+      }
+
+      .submitted {
+        position: relative;
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 25px;
+        padding-left: 35px;
+        padding-right: 20px;
+        border: 1px solid #F0F0F0;
+        border-radius: 4px;
+        background-color: $white;
+        @include sofia-pro-regular;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: $gray-darkest;
+
+        &:before {
+          content: '';
+          width: 15px;
+          height: 15px;
+          background: url(/images/ico-checkmark.svg);
+          background-size: 15px 15px;
+          position: absolute;
+          bottom: 6px;
+          left: 14px;
+        }
+      }
+    }
+
+    .roles {
+      min-height: 36px;
+      margin-bottom: 25px;
+      color: $gray-darkest;
+      @include source-sans-regular;
+      font-size: 13px;
+      line-height: 18px;
+    }
+
+    .challenge-links {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      height: 38px;
+      width: 100%;
+      padding: 0 20px;
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px;
+      background-color: #FCFCFC;
+
+      a {
+        text-decoration: none;
+      }
+
+      .stats, .registrants, .submissions, .forum {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .registrants, .submissions, .form {
+        cursor: pointer;
+      }
+
+      .registrants {
+        margin-right: 15px;
+      }
+
+      p {
+        @include sofia-pro-medium;
+        font-size: 12px;
+        color: $gray-darkest;
+      }
+
+      .forum p {
+        @include sofia-pro-regular;
+        text-transform: uppercase;
+      }
+    }
+
+    div[class$="-icon"] {
+      margin-right: 3px;
+    }
+
+    .registrants-icon {
+      @include background-image-size(15px, 16px);
+      background-image: url(/images/ico-users.svg);
+    }
+
+    .submissions-icon {
+      @include background-image-size(22px, 14px);
+      background-image: url(/images/ico-submissions.svg);
+    }
+
+    .forum-icon {
+      @include background-image-size(20px, 17px);
+      background-image: url(/images/ico-posts.svg);
     }
   }
 
-  div[class$="-icon"] {
-    margin-right: 3px;
-  }
 
-  .registrants-icon {
-    width: 15px;
-    height: 16px;
-    background-image: url(/images/ico-users.svg);
-    background-size: 15px 16px;
-  }
+  .completed-challenge {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 270px;
+    height: 340px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    background-color: $white;
 
-  .submissions-icon {
-    width: 22px;
-    height: 14px;
-    background-image: url(/images/ico-submissions.svg);
-  }
+    &:hover {
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4)
+    }
 
-  .forum-icon {
-    width: 20px;
-    height: 17px;
-    background-image: url(/images/ico-posts.svg);
+    header {
+      position: relative;
+      padding: 0 20px;
+
+      a {
+        display: block;
+        width: 210px;
+        padding-top: 8px;
+        padding-bottom: 2px;
+        @include sofia-pro-medium;
+        font-size: 14px;
+        line-height: 18px;
+        color: $gray-darkest;
+        @include link;
+      }
+
+      .date-completed {
+        @include sofia-pro-medium;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: #A3A3AE;
+      }
+
+      .winner-ribbon {
+        position: absolute;
+        bottom: -40px;
+        left: -12px;
+        @include background-image-size(73px, 26px);
+        background: url(/images/ico-winner-ribbon.svg);
+      }
+    }
+
+    .challenge-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      .place {
+        margin-bottom: 30px;
+        @include sofia-pro-regular;
+        font-size: 20px;
+        color: $gray-darkest;
+
+        &.first-place {
+          font-weight: bold;
+          color: $black;
+        }
+
+        span {
+          @include superscript;
+        }
+      }
+
+      .challenge-score {
+        width: 84px;
+        height: 84px;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 70px;
+        text-align: center;
+        background-color: #F6F6F6;
+
+        .score {
+          margin-top: 28px;
+          margin-bottom: 5px;
+          @include sofia-pro-bold;
+          font-size: 18px;
+          color: $gray-darkest;
+        }
+
+        p:last-child {
+          @include sofia-pro-medium;
+          font-size: 9px;
+          color: #A3A3AE;
+          text-transform: uppercase;
+        }
+      }
+    }
   }
 
   .past-design-details {
@@ -183,130 +315,221 @@
   }
 }
 
-
-
-/* ///////////////////////// */
-.challenge.list-view {
-  width: 100%;
-  border-bottom: 1px solid $medium-gray;
-  padding: 10px;
+challenge-tile .challenge.list-view {
+  position: relative;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+  flex-direction: row;
+  margin-bottom: 10px;
+  padding: 20px 0;
+  padding-left: 5px;
+  height: 110px;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+  background-color: $white;
 
-  .challenge-name {
-    flex: 3;
+  &:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4)
+  }
+
+  .challenge-track {
+    width: 5px;
+    height: 110px;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+
+  header {
     display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    margin: 10px 0px;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 2;
+    max-width: 470px;
+    padding: 0 15px;
+    border-right: 1px solid #F0F0F0;
+    @media only screen and (min-width: 1000px) {
+      padding: 0 30px;
+    }
+
     a {
-      font-weight: bold;
-      color: #4f4f4f;
-      text-decoration: none;
+      display: block;
+      @include sofia-pro-medium;
+      font-size: 18px;
+      color: $gray-darkest;
       @include ellipsis;
+      @include link;
+    }
+
+    .subtrack {
+      margin-bottom: 12px;
+      @include sofia-pro-regular;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #B7B7B7;
+    }
+
+    .roles {
+      max-width: 362px;
+      @include source-sans-regular;
+      font-size: 13px;
+      color: $gray-darkest;
+      @include ellipsis;
+
+      .role {
+        color: #B7B7B7;
+      }
+    }
+  }
+
+  .challenge-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 2;
+    padding: 0 15px;
+    border-right: 1px solid #F0F0F0;
+    @media only screen and (min-width: 1000px) {
+      padding: 0 30px;
+    }
+
+    .challenge-info {
+      .currentPhase {
+        margin-bottom: 10px;
+        @include sofia-pro-light;
+        font-size: 18px;
+        color: $gray-darkest;
+        text-transform: uppercase;
+      }
+
+      .ends-in {
+        @include sofia-pro-regular;
+        font-size: 14px;
+        color: #A3A3AE;
+      }
+    }
+
+    .phase-action {
+      .submit {
+        display: inline-block;
+        @include button-m;
+      }
+
+      .submitted {
+        position: relative;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 35px;
+        padding-right: 20px;
+        border: 1px solid #F0F0F0;
+        border-radius: 4px;
+        background-color: $white;
+        @include sofia-pro-regular;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: $gray-darkest;
+
+        &:before {
+          content: '';
+          width: 15px;
+          height: 15px;
+          background: url(/images/ico-checkmark.svg);
+          background-size: 15px 15px;
+          position: absolute;
+          bottom: 6px;
+          left: 14px;
+        }
+      }
     }
   }
 
   .challenge-links {
-    flex: 1;
-    margin: 10px 0px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-
-    img {
-      width: 25px;
-      height: 25px;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    padding: 0 15px;
+    @media only screen and (min-width: 1000px) {
+      padding: 0 30px;
     }
 
     a {
-      color: $dark-gray;
-      line-height: 25px;
+      width: 35px;
+      height: 48px;
+      text-align: center;
+      text-decoration: none;
+
+      &.registrants, &.submissions, &.forum {
+        display: flex;
+        flex-direction: column;
+      }
     }
-  }
 
-  .roles {
-    flex: 2;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0px;
-    color: $dark-gray;
-    font-size: 14px;
-  }
+    p {
+      @include sofia-pro-light;
+      font-size: 24px;
+      color: $gray-darkest;
+    }
 
-  .days-remaining {
-    flex: 1;
-    font-size: 20px;
-    color: $dark-gray;
-    margin: 10px 0px;
-
-    span {
-      display: block;
-      @include source-sans-semi-bold;
-      font-size: 14px;
+    .forum p {
+      @include sofia-pro-regular;
+      font-size: 10px;
+      color: #A3A3AE;
       text-transform: uppercase;
     }
-  }
 
-  .completion-date {
-    flex: 1;
-  }
-
-  .stats {
-    flex: 2;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    font-size: 22px;
-    color: #4f4f4f;
-    margin: 10px 0px;
-
-    .registrants, .submissions {
-      display: inline-block;
-      margin-right: 10px;
+    .registrants-icon, .submissions-icon {
+      margin: 5px auto 0;
     }
 
-    i {
-      margin-right: 5px;
+    .registrants-icon {
+      @include background-image-size(14px, 19px);
+      background-image: url(/images/ico-users.svg);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    .submissions-icon {
+      @include background-image-size(24px, 17px);
+      background-image: url(/images/ico-submissions.svg);
     }
-  }
 
-  .phase-status {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    color: $dark-gray;
-    margin: 10px 0px;
-
-    i {
-      color: #7ece95;
-      margin-right: 5px;
+    .forum-icon {
+      margin: 3px auto 2px;
+      @include background-image-size(30px, 27px);
+      background-image: url(/images/ico-posts.svg);
     }
   }
 }
 
 // Dynamic colors based on track
 .DESIGN {
-  .challenge-track { background-color: $accent-color; }
-  header p { color: $accent-color; }
+  .challenge-track { background-color: $design; }
+
+  &.tile-view {
+    header .subtrack-color { color: $design; }
+  }
 }
 .DEVELOP {
-  .challenge-track { background-color: $success-color; }
-  header p { color: $success-color; }
+  .challenge-track { background-color: $develop; }
+
+  &.tile-view {
+    header .subtrack-color { color: $develop; }
+  }
 }
 .DATA_SCIENCE {
-  .challenge-track { background-color: #F39426; }
-  header p { color: #F39426; }
+  .challenge-track { background-color: $data_science; }
+
+  &.tile-view {
+    header .subtrack-color { color: $data_science; }
+  }
 }
 .COPILOT {
-  .challenge-track { background-color: #7F7F7F; }
-  header p { color: #7F7F7F; }
+  .challenge-track { background-color: $copilot; }
+
+  &.tile-view {
+    header .subtrack-color { color: $copilot; }
+  }
 }
