@@ -20,7 +20,7 @@
   .my-challenges {
     min-height: 50px;
     display: flex;
-    flex-direction: columdn;
+    flex-direction: column;
 
     .nav {
       @include module-full-width;
