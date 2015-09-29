@@ -44,16 +44,9 @@
         vm.srms = [];
         vm.listType = 'past';
         vm.loading = true;
-        getSRMs().then(function() {
-          getSRMResults().then(function() {
-            angular.forEach(vm.srms, function(srm) {
-              if (vm.srmResults[srm.id]) {
-                srm.result = vm.srmResults[srm.id];
-              }
-              vm.loading = false;
-            });
-          });
-        });
+        getSRMs().then(function(data) {
+          vm.loading = false;
+        })
       }
     }
 
@@ -76,15 +69,20 @@
       };
       if (vm.listType == 'past') {
         params.filter += '&userIds=' + userId;
+        return SRMService.getPastSRMs(params, userId)
+          .then(handleSRMsLoad, handleSRMsFailure);
+      } else {
+        return SRMService.getSRMs(params)
+        .then(handleSRMsLoad, handleSRMsFailure);
       }
+    }
 
-      return SRMService.getSRMs(params)
-      .then(function(data){
-        vm.srms = data;
-      }, function(resp) {
-        // TODO - handle error
-        $log.error(resp);
-      });
+    function handleSRMsLoad(data) {
+      vm.srms = data;
+    }
+
+    function handleSRMsFailure(data) {
+      $log.error(resp);
     }
 
     function getSRMResults() {
