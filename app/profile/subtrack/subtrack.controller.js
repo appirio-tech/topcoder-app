@@ -113,15 +113,23 @@
         limit: vm.pageParams.limit,
         offset: vm.pageParams.offset,
       };
-      var _challengePromise;
       if (vm.track.toUpperCase() === 'DATA_SCIENCE') {
         if (vm.subTrack.toUpperCase() === 'SRM') {
           // _challengePromise = SRMService.getSRMs()
+          params['filter'] = "status=past";
+          return SRMService.getPastSRMs(profileVm.profile.handle, params)
+          .then(function(data) {
+            vm.challenges = data;
+            vm.status.challenges = CONSTANTS.STATE_READY;
+          })
+          .catch(function(resp) {
+            vm.status.challenges = CONSTANTS.STATE_ERROR;
+          });
         } else {
           params['filter'] = "status=past";
           // params['orderBy'] ='submissionEndDate desc';
-          _challengePromise = ChallengeService.getUserMarathonMatches(profileVm.profile.handle, params);
-          return _challengePromise.then(function(data) {
+          return ChallengeService.getUserMarathonMatches(profileVm.profile.handle, params)
+          .then(function(data) {
             vm.challenges = data;
             vm.status.challenges = CONSTANTS.STATE_READY;
           })
@@ -132,8 +140,8 @@
       } else {
         params['filter']= 'status=completed&track=' + vm.track + '&subTrack=' + vm.subTrack;
         params['orderBy'] ='submissionEndDate desc';
-        _challengePromise = ChallengeService.getUserChallenges(profileVm.profile.handle, params);
-        return _challengePromise.then(function(data) {
+        return ChallengeService.getUserChallenges(profileVm.profile.handle, params)
+        .then(function(data) {
           ChallengeService.processPastChallenges(data);
           vm.challenges = data.filter(function(challenge) {
             return challenge.userDetails.hasUserSubmittedForReview;

@@ -35,7 +35,7 @@
 
             p {{challenge.numRegistrants}}
 
-          a.submissions(ng-hide="challenge.track === 'DATA SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+          a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
             .submissions-icon
 
             p {{challenge.numSubmissions}}
@@ -55,7 +55,7 @@
 
       .winner-ribbon(ng-show="challenge.wonFirst")
 
-    .challenge-details(ng-switch-when="DATA SCIENCE", ng-switch="challenge.subTrack")
+    .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack")
 
       div(ng-switch-when="MARATHON_MATCH")
         .challenge-score
@@ -64,12 +64,7 @@
           p Total Points
 
       div(ng-switch-when="SRM")
-        p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
-
-        .challenge-score
-          p.score {{challenge.userDetails.submissionReviewScore/100 | percentage}}
-
-          p Review Score
+        p BLAH
 
     .challenge-details(ng-switch-when="DEVELOP")
       p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
@@ -82,15 +77,13 @@
     .challenge-details(ng-switch-when="DESIGN")
       p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
 
-      .thumbnail
+      .thumbnail(ng-click="openLightbox()")
         img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=thumb", fallback-src="/images/ico-picture.svg")
 
         .thumbnail-gallery(ng-click="challenge.showLightbox()")
           .gallery-icon
 
-          .num-images {{3}} images
-
-
+          .num-images 1 image
 
 .challenge.list-view(ng-show="view=='list'", ng-class="challenge.track")
   .challenge-track
@@ -100,7 +93,7 @@
 
     p.subtrack {{challenge.subTrack | underscoreStrip}}
 
-    p.roles(ng-hide="challenge.track === 'DATA SCIENCE'") #[span Role:] {{challenge.userDetails.roles | listRoles}}
+    p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:] {{challenge.userDetails.roles | listRoles}}
 
   .challenge-details
     .challenge-info
@@ -124,7 +117,7 @@
 
       .registrants-icon
 
-    a.submissions(ng-hide="challenge.track === 'DATA SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+    a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
       p {{challenge.numSubmissions}}
 
       .submissions-icon

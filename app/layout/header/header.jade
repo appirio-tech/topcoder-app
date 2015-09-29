@@ -3,6 +3,7 @@
   // Main header element
   div(ng-intro-options="vm.introOptions", ng-intro-method="launchIntro")
   header.top-header
+    a.logo-link(href="/")
     // Header content visible on small screens
     .show-small.mobile-heading
       span.tc-text-logo(ng-if="main.menuVisible") [ topcoder ]
@@ -30,12 +31,16 @@
         // links for logged in user
         div(ng-switch-when="true")
           .menu-item-header
-            img(class="user-avatar", ng-src="{{vm.profile.photoURL}}")
-            span.username {{vm.userHandle}}
+            span(ui-sref="profile.about({userHandle: vm.userHandle})")
+              img(class="user-avatar", ng-src="{{vm.profile.photoURL}}")
+              span.username {{vm.userHandle}}
           a.btn-link.btn-edit-profile.show-small(ui-sref="settings.profile") EDIT
           ul.submenu
             header-menu-item(ng-repeat="item in vm.userMenu" item="item")
-            li.submenu-item #[a.menu-link(ng-click="vm.logout(); main.menuVisible = vm.isAuth = false") LOG OUT]
+            li.submenu-item
+              a.menu-link(ng-click="vm.logout(); main.menuVisible = vm.isAuth = false")
+                img.menu-icon(src="/images/nav/logout.svg")
+                .menu-text LOG OUT
         // links for anonymous user
         .menu-item-header(ng-switch-when="false")
           a.btn-link(ui-sref="register") REGISTER

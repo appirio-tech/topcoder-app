@@ -85,10 +85,9 @@
     .section-fields
       .field-label Link your accounts
       .external-links
-        external-accounts.external-account-container
-        //(linked-accounts-data="vm.linkedExternalAccounts")
+        external-accounts.external-account-container(linked-accounts="vm.linkedExternalAccounts", read-only="false")
 
-      .field-label Link your accounts
+      .field-label your accounts
 
       .existing-links
         external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccounts")

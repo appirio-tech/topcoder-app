@@ -63,7 +63,7 @@
   text-align: center;
   background-color: #fff;
 
-  &:before {
+  .logo-link {
     content: '';
     display: block;
     position: absolute;
@@ -270,7 +270,7 @@
     }
   }
 
-  .nav-categories, .show-large {
+  .nav-categories, .show-large, .menu-icon {
     display: none;
   }
 
@@ -398,7 +398,7 @@
     }
 
     // Topcoder logo
-    &:before {
+    .logo-link {
       background: url('/images/logo_topcoder.svg');
       width: 156px;
       height: 54px;
@@ -432,15 +432,10 @@
       font-size: 12px;
       line-height: 1.2em;
 
-      &:before {
-        content: '';
+      img {
         display: block;
         height: 44px;
         width: 44px;
-        background-image: url("/images/menu_item_placeholder.svg");
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: contain;
         margin: 20px auto 10px auto;
       }
     }
