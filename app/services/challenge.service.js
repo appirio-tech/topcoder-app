@@ -16,6 +16,8 @@
       getChallengeDetails: getChallengeDetails,
       processActiveDevDesignChallenges: processActiveDevDesignChallenges,
       processActiveMarathonMatches: processActiveMarathonMatches,
+      processPastMarathonMatch: processPastMarathonMatch,
+      processPastSRM: processPastSRM,
       processPastChallenges: processPastChallenges
     };
 
@@ -138,6 +140,24 @@
           challenge.userCurrentPhaseEndTime = timeAndUnit;
         }
       });
+    }
+
+    function processPastMarathonMatch(challenge) {
+      challenge.status = challenge.status.trim();
+      if (Array.isArray(challenge.rounds) && challenge.rounds.length
+        && challenge.rounds[0].userMMDetails && challenge.rounds[0].userMMDetails.rated) {
+        challenge.submissionEndDate = challenge.rounds[0].systemTestEndAt;
+        challenge.newRating = challenge.rounds[0].userMMDetails.newRating;
+        challenge.pointTotal = challenge.rounds[0].userMMDetails.pointTotal;
+      }
+    }
+
+    function processPastSRM(challenge) {
+      if (Array.isArray(challenge.rounds) && challenge.rounds.length
+        && challenge.rounds[0].userSRMDetails) {
+        challenge.newRating = challenge.rounds[0].userMMDetails.newRating;
+        challenge.pointTotal = challenge.rounds[0].userMMDetails.pointTotal;
+      }
     }
 
     function processPastChallenges(challenges) {

@@ -4,9 +4,9 @@
     .module('tc.profile')
     .controller('ProfileSubtrackController', ProfileSubtrackController);
 
-  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'CONSTANTS', '$state', '$window', 'ngDialog'];
+  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'SRMService', 'CONSTANTS', '$state', '$window', 'ngDialog'];
 
-  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, CONSTANTS, $state, $window, ngDialog) {
+  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, SRMService, CONSTANTS, $state, $window, ngDialog) {
     var vm = this;
     vm.graphState = { show: 'history' };
     vm.subTrack = decodeURIComponent($stateParams.subTrack || '') || '';
@@ -64,7 +64,6 @@
             vm.divisions.division2,
             vm.divisions.challenges
           ];
-          console.log('diviviv');
           console.log(vm.divisionList);
         }
         vm.typeStats = ProfileService.getChallengeTypeStats(
@@ -110,25 +109,41 @@
 
     function _getChallenges() {
       vm.status.challenges = CONSTANTS.STATE_LOADING;
-      return ChallengeService.getUserChallenges(
-        profileVm.profile.handle,
-        {
-          filter: 'status=completed&track=' + vm.track + '&subTrack=' + vm.subTrack,
-          limit: vm.pageParams.limit,
-          offset: vm.pageParams.offset,
-          orderBy: 'submissionEndDate desc'
+      var params = {
+        limit: vm.pageParams.limit,
+        offset: vm.pageParams.offset,
+      };
+      var _challengePromise;
+      if (vm.track.toUpperCase() === 'DATA_SCIENCE') {
+        if (vm.subTrack.toUpperCase() === 'SRM') {
+          // _challengePromise = SRMService.getSRMs()
+        } else {
+          params['filter'] = "status=past";
+          // params['orderBy'] ='submissionEndDate desc';
+          _challengePromise = ChallengeService.getUserMarathonMatches(profileVm.profile.handle, params);
+          return _challengePromise.then(function(data) {
+            vm.challenges = data;
+            vm.status.challenges = CONSTANTS.STATE_READY;
+          })
+          .catch(function(resp) {
+            vm.status.challenges = CONSTANTS.STATE_ERROR;
+          });
         }
-      )
-      .then(function(data) {
-        ChallengeService.processPastChallenges(data);
-        vm.challenges = data.filter(function(challenge) {
-          return challenge.userDetails.hasUserSubmittedForReview;
+      } else {
+        params['filter']= 'status=completed&track=' + vm.track + '&subTrack=' + vm.subTrack;
+        params['orderBy'] ='submissionEndDate desc';
+        _challengePromise = ChallengeService.getUserChallenges(profileVm.profile.handle, params);
+        return _challengePromise.then(function(data) {
+          ChallengeService.processPastChallenges(data);
+          vm.challenges = data.filter(function(challenge) {
+            return challenge.userDetails.hasUserSubmittedForReview;
+          });
+          vm.status.challenges = CONSTANTS.STATE_READY;
+          return data;
+        }).catch(function(err) {
+          vm.status.challenges = CONSTANTS.STATE_ERROR;
         });
-        vm.status.challenges = CONSTANTS.STATE_READY;
-        return data;
-      }).catch(function(err) {
-        vm.status.challenges = CONSTANTS.STATE_ERROR;
-      });
+      }
     }
 
     function showNav() {

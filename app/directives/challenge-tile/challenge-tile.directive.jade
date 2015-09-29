@@ -45,7 +45,9 @@
 
           p Forum
 
-  .completed-challenge(ng-show="challenge.status === 'COMPLETED'")
+  .completed-challenge(
+    ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
+    ng-switch="challenge.track")
     header
       a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
 
@@ -53,7 +55,23 @@
 
       .winner-ribbon(ng-show="challenge.wonFirst")
 
-    .challenge-details(ng-hide="challenge.track === 'DESIGN'")
+    .challenge-details(ng-switch-when="DATA SCIENCE", ng-switch="challenge.subTrack")
+
+      div(ng-switch-when="MARATHON_MATCH")
+        .challenge-score
+          p.score {{challenge.pointTotal}}
+
+          p Total Points
+
+      div(ng-switch-when="SRM")
+        p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
+
+        .challenge-score
+          p.score {{challenge.userDetails.submissionReviewScore/100 | percentage}}
+
+          p Review Score
+
+    .challenge-details(ng-switch-when="DEVELOP")
       p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
 
       .challenge-score
@@ -61,7 +79,7 @@
 
         p Review Score
 
-    .challenge-details(ng-show="challenge.track === 'DESIGN'")
+    .challenge-details(ng-switch-when="DESIGN")
       p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
 
       .thumbnail
