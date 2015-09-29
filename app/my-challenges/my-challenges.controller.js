@@ -3,9 +3,9 @@
 
   angular.module('tc.myChallenges').controller('MyChallengesController', MyChallengesController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity', 'statusFilter'];
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity', '$stateParams'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope, userIdentity, statusFilter) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope, userIdentity, $stateParams) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
@@ -15,7 +15,7 @@
     vm.viewPastChallenges = viewPastChallenges;
     vm.view = 'list';
     vm.changeView = changeView;
-    vm.statusFilter = statusFilter ? statusFilter : 'active';
+    vm.statusFilter = _.get($stateParams, 'status','active');
 
     // paging params, these are updated by tc-pager
     vm.pageParams = {
@@ -44,7 +44,7 @@
         viewPastChallenges();
       } else {
         viewActiveChallenges();
-      } 
+      }
     }
 
     function changeView(view) {
