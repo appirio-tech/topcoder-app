@@ -197,6 +197,8 @@
           img {
             height: 25px;
             width: 25px;
+            margin-bottom: -4px;
+            margin-right: 3px;
           }
           span {
             font-family: 'Sofia Pro';
@@ -233,42 +235,43 @@
       }
       angucomplete-alt {
         margin-top: 6px;
+        input {
+          font-family: 'Source Sans Pro';
+          font-style: italic;
+          color: #7f7f7f;
+        }
       }
-    .list {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      flex-wrap: wrap;
-      width: 90%;
-      margin-top: 22px;
-      margin-bottom: 10px;
-      margin-left: auto;
-      margin-right: auto;
-      .skill {
+
+      .list {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
         justify-content: center;
-        width: 100px;
-        height: 130px;
-        .skill-icon {
-          margin: auto;
-          padding: 10px;
-          border: 1px solid #f0f0f0;
-          height: 80px;
-          width: 80px;
-          img, i {
-            font-size: 50px;
-          }
+        flex-wrap: wrap;
+        margin-top: 20px;
+        .skill {
+          margin: 0 20px 10px 20px;
         }
-        .name {
-          font-family: 'Sofia Pro';
-          font-weight: 300;
-          text-align: center;
-          margin-top: 10px;
-        }
+ 
       }
+
+
+
     }
+  }
+  .links {
+    .field-label {
+      font-family: 'Sofia Pro';
+      font-size: 12px;
+      text-transform: uppercase;
+      margin-top: 15px;
+    }
+    .external-links {
+      margin-top: 10px;
+    }
+    .existing-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 }

@@ -29,9 +29,13 @@
       processData(userData);
       vm.userData = userData;
 
-      ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId)
-      .then(function(data) {
-        vm.linkedExternalAccounts = data;
+      ExternalAccountService.getLinkedExternalLinksData(userHandle).then(function(data) {
+        vm.linkedExternalAccounts = data.plain();
+        vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccounts, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
+
+        console.log('ext');
+        console.log(vm.hasLinks);
+        console.log(vm.linkedExternalAccounts)
       })
       .catch(function(err) {
         $log.error(JSON.stringify(err));

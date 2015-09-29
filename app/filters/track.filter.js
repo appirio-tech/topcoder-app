@@ -19,7 +19,7 @@
         'FRONT_END_FLASH': 'Front-End Flash',
         'APPLICATION_FRONT_END_DESIGN': 'Application Front-End Design',
         'DESIGN_FIRST_2_FINISH': 'Design First2Finish',
-        'DEVELOP': 'DEVELOPMENT'
+        'DEVELOP': 'Development'
       };
 
       function capitalized(str) {

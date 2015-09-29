@@ -4,17 +4,48 @@
   padding-bottom: 25px;
 
   ul {
-    width: 175px;
-    margin-top: 25px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   li {
     font-size: 16px;
-  }
+    width: 130px;
+    height: 160px;
+    margin: 10px 20px;
+    background-color: #fbfbfb;
+    border: 1px solid #f0f0f0;
+    font-family: 'Sofia Pro';
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    a {
+      text-decoration: none;
+      .icon {
+        i {
+          font-size: 40px;
+          color: #d1d3d4;
+        }
+      }
+      &:hover {
+        i { color: #85ccff; }
+      }
+    }
 
-  a {
-    @include bluelink;
-    color: $ui-blue;
+    span {
+      text-decoration: none;
+      color: black;
+      font-size: 14px;
+    }
+    .description {
+      color: #a3a3ae;
+      font-size: 12px;
+    }
   }
 
   hr {

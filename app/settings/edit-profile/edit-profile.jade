@@ -50,7 +50,9 @@
 
         .top
           .title(ng-class="{'disabled': !vm.tracks[track]}")
-            img(src="/images/ico-track-design.png")
+            img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data-outline.svg")
+            img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop-outline.svg")
+            img(ng-if="track == 'DESIGN'", src="/images/ico-track-design-outline.svg")
 
             span {{track | track}}
 
@@ -96,15 +98,22 @@
         .skill(ng-repeat="skill in vm.skills | orderBy:'-score'")
           skill-tile(skill="skill" enable-hide="true")
 
-  .settings-section
+  .settings-section.links
     .section-info
       h2 external links
       .description Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.
 
     .section-fields
-      .field-label link your accounts
+      .field-label Link your accounts
       .external-links
-        external-accounts.external-account-container(linked-accounts="vm.linkedExternalAccounts")
+        external-accounts.external-account-container
+        //(linked-accounts-data="vm.linkedExternalAccounts")
+
+      .field-label Link your accounts
+
+      .existing-links
+        external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccounts")
+
 
 
   //- h1.tab-title Profile
