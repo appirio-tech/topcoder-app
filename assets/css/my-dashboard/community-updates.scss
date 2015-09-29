@@ -10,13 +10,9 @@
 
   header {
     margin-top: 6px;
-    margin-bottom: -6px;
     padding-top: 30px;
     padding-bottom: 24px;
     background-color: $white;
-    @media only screen and (min-width: 570px) {
-      margin-bottom: 0;
-    }
     @media only screen and (min-width: 1132px) {
       margin-top: 0;
       padding-top: 0;
@@ -25,8 +21,7 @@
   }
 
   .posts {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0 10px 6px;
     @media only screen and (min-width: 570px) {
       display: flex;
       flex-flow: row wrap;
@@ -109,6 +104,15 @@
           }
         }
       }
+    }
+  }
+
+  .blog-links {
+    @include module-links;
+
+    a {
+      @include button-m;
+      @include button-secondary;
     }
   }
 }
