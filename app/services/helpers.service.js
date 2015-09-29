@@ -19,7 +19,8 @@
       isEmail: isEmail,
       getCountyObjFromIP: getCountyObjFromIP,
       redirectPostLogin: redirectPostLogin,
-      getSocialUserData: getSocialUserData
+      getSocialUserData: getSocialUserData,
+      setupLoginEventMetrices: setupLoginEventMetrices
 
     };
     return service;
@@ -249,6 +250,12 @@
         $location.url(nextParam);
       } else {
         $state.go('dashboard');
+      }
+    }
+
+    function setupLoginEventMetrices (usernameOrEmail) {
+      if (_kmq) {
+        _kmq.push(['identify', usernameOrEmail ]);
       }
     }
   }

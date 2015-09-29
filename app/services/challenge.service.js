@@ -15,7 +15,8 @@
       getReviewEndDate: getReviewEndDate,
       getChallengeDetails: getChallengeDetails,
       processActiveDevDesignChallenges: processActiveDevDesignChallenges,
-      processActiveMarathonMatches: processActiveMarathonMatches
+      processActiveMarathonMatches: processActiveMarathonMatches,
+      processPastChallenges: processPastChallenges
     };
 
     return service;
@@ -135,6 +136,15 @@
           // Add actual time ['2', 'months', actual date]
           timeAndUnit.push(fullTime);
           challenge.userCurrentPhaseEndTime = timeAndUnit;
+        }
+      });
+    }
+
+    function processPastChallenges(challenges) {
+      angular.forEach(challenges, function(challenge) {
+        if (challenge.userDetails && Array.isArray(challenge.userDetails.winningPlacements)) {
+          challenge.highestPlacement = _.max(challenge.userDetails.winningPlacements);
+          challenge.wonFirst = challenge.highestPlacement == 1;
         }
       });
     }

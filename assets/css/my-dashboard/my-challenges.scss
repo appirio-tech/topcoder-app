@@ -16,6 +16,9 @@
     position: absolute;
     bottom: 0;
     right: 55px;
+    @media only screen and (max-width: 767px) {
+      display: none;
+    }
 
     button {
       margin-right: 17px;
@@ -42,7 +45,7 @@
         @include background-image-size(16px, 16px);
       }
 
-      &.grid:before {
+      &.tile:before {
         background: url(/images/ico-grid.svg);
       }
       &.list:before {
@@ -60,7 +63,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: $primary-text;
+    color: $gray-darkest;
     padding-left: 20px;
     padding-right: 20px;
 
@@ -68,6 +71,9 @@
       margin-bottom: 20px;
       @include sofia-pro-extra-light;
       font-size: 18px;
+      line-height: 24px;
+      text-align: center;
+
       text-transform: uppercase;
       @media only screen and (min-width: 900px) {
         font-size: 28px;
@@ -132,15 +138,31 @@
       }
     }
 
-    a {
-      margin-top: 20px;
-      margin-bottom: 40px;
-      @include button-l;
-      text-decoration: none;
-      @media only screen and (min-width: 900px) {
-        @include button-xl;
-        margin-top: 30px;
-        margin-bottom: 90px;
+    .info-links {
+      text-align: center;
+
+      a {
+        display: block;
+        margin: 30px auto;
+        @include button-l;
+        text-decoration: none;
+        @media only screen and (min-width: 768px) {
+          display: inline-block;
+          margin-top: 20px;
+          margin-bottom: 40px;
+        }
+        @media only screen and (min-width: 900px) {
+          @include button-xl;
+          margin-top: 30px;
+          margin-bottom: 90px;
+        }
+
+        &:last-child {
+          @include button-ghost;
+          @media only screen and (min-width: 768px) {
+            margin-left: 30px;
+          }
+        }
       }
     }
   }
@@ -263,6 +285,10 @@
 
   .my-challenges-links {
     @include module-links;
+    @media only screen and (max-width: 767px) {
+      flex-direction: column;
+      padding: 15px 0;
+    }
 
     a {
       @include button-m;
@@ -270,6 +296,10 @@
 
       &:not(:first-child) {
         margin-left: 10px;
+        @media only screen and (max-width: 767px) {
+          margin-top: 10px;
+          margin-left: 0;
+        }
       }
     }
   }

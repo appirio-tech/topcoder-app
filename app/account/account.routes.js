@@ -29,7 +29,7 @@
       },
       'login': {
         parent: 'auth',
-        url: '/login/?next&code&state&status&userJWTToken',
+        url: '/login/?next&code&state&status&userJWTToken&utm_source&utm_medium&utm_campaign',
         params: { 'notifyReset': false },
         data: {
           title: 'Login'
@@ -51,7 +51,7 @@
       },
       'register': {
         parent: 'auth',
-        url: '/register/?next',
+        url: '/register/?next&utm_source&utm_medium&utm_campaign',
         data: {
           title: "Join"
         },

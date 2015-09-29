@@ -83,7 +83,9 @@ html
 
     toaster-container(toaster-options="{{main.globalToasterConfig}}")
 
-    .view-container(ui-view="container")
+    .fold-wrapper
+      .view-container(ui-view="container")
+      .fold-pusher
 
     div(ui-view="footer")
 
@@ -241,6 +243,27 @@ html
     // inject:templates.js
     // endinject
     // endbuild
+
+    // tracking code for Marketo
+    script(type='text/javascript').
+      document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+    script.
+      Munchkin.init('921-UOU-112', {"wsInfo":"jFRS"}
+      );
+    // tracking code for Kissmetrics
+    script(type='text/javascript').
+      var _kmq = _kmq || [];
+      var _kmk = _kmk || 'aa23cd43c455ef33b6a0df3de81a79af9ea30f75';
+      function _kms(u){
+      setTimeout(function(){
+      var d = document, f = d.getElementsByTagName('script')[0],
+      s = d.createElement('script');
+      s.type = 'text/javascript'; s.async = true; s.src = u;
+      f.parentNode.insertBefore(s, f);
+      }, 1);
+      }
+      _kms('//i.kissmetrics.com/i.js');
+      _kms('//scripts.kissmetrics.com/' + _kmk + '.2.js');
 
     script(type="text/javascript").
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
