@@ -18,24 +18,24 @@
     vm.menuLinks = 
     {
       'compete': [        
-          { 'href':  "/challenges/design/active/", 'text': 'DESIGN CHALLENGES' },
-          { 'href':  "/challenges/develop/active", 'text': 'DEVELOPMENT CHALLENGES' },
-          { 'href':  "/challenges/data/active", 'text': 'DATA SCIENCE CHALLENGES' },
-          { 'href':  vm.constants.ARENA_URL, 'text': 'THE ARENA' },
+          { 'href':  "/challenges/design/active/", 'text': 'DESIGN CHALLENGES', 'icon': 'design' },
+          { 'href':  "/challenges/develop/active", 'text': 'DEVELOPMENT CHALLENGES', 'icon': 'development' },
+          { 'href':  "/challenges/data/active", 'text': 'DATA SCIENCE CHALLENGES', 'icon': 'data-science' },
+          { 'href':  vm.constants.ARENA_URL, 'text': 'THE ARENA', 'icon': 'srms' },
       ],
       'learn': [
-          { 'href': '/community/design/', 'text': 'DESIGN' },
-          { 'href': '/community/development/', 'text': 'DEVELOPMENT' },
-          { 'href': '/community/data-science/', 'text': 'DATA SCIENCE' },
-          { 'href': '/community/data-science/', 'text': 'COMPETITIVE PROGRAMMING' },
+          { 'href': '/community/design/', 'text': 'DESIGN', 'icon': 'scroll-design' },
+          { 'href': '/community/development/', 'text': 'DEVELOPMENT', 'icon': 'scroll-develop' },
+          { 'href': '/community/data-science/', 'text': 'DATA SCIENCE', 'icon': 'scroll-data' },
+          { 'href': '/community/data-science/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': 'srms' },
       ],
       'community': [
-          { 'href': '/community/members/', 'text': 'MEMBERS' },
-          { 'href': '/community/member-programs/', 'text': 'PROGRAMS' },
-          { 'href': vm.constants.FORUMS_APP_URL, 'text': 'FORUMS' },
-          { 'href': '/community/statistics/', 'text': 'STATISTICS' },
-          { 'href': '/community/events/', 'text': 'EVENTS' },
-          { 'href': '/blog/', 'text': 'BLOG' }
+          { 'href': '/community/members/', 'text': 'MEMBERS', 'icon': 'users' },
+          { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': 'medal' },
+          { 'href': vm.constants.FORUMS_APP_URL, 'text': 'FORUMS', 'icon': 'forum' },
+          { 'href': '/community/statistics/', 'text': 'STATISTICS', 'icon': 'statistics' },
+          { 'href': '/community/events/', 'text': 'EVENTS', 'icon': 'calendar' },
+          { 'href': '/blog/', 'text': 'BLOG', 'icon': 'blog' }
       ]
     };
     
@@ -66,10 +66,10 @@
       if (vm.isAuth) {
         vm.userHandle = UserService.getUserIdentity().handle;
         vm.userMenu = [
-          { 'sref': 'dashboard', 'text': 'DASHBOARD' },
-          { 'sref': 'profile.about', 'srefParams': { 'userHandle': vm.userHandle }, 'text': 'MY PROFILE' },
-          { 'href':  vm.constants.COMMUNITY_URL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS' },
-          { 'sref': 'settings.profile', 'text': 'SETTINGS' },
+          { 'sref': 'dashboard', 'text': 'DASHBOARD', 'icon': 'dashboard' },
+          { 'sref': 'profile.about', 'srefParams': { 'userHandle': vm.userHandle }, 'text': 'MY PROFILE', 'icon': 'badge' },
+          { 'href':  vm.constants.COMMUNITY_URL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': 'money-bag' },
+          { 'sref': 'settings.profile', 'text': 'SETTINGS', 'icon': 'gear' },
         ];
 
         ProfileService.getUserProfile(vm.userHandle)
