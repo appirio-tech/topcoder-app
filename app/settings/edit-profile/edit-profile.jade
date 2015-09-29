@@ -3,7 +3,7 @@
     // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
     input(autocomplete="false", name="hidden", type="text", style="display:none;")
 
-    .settings-section
+    .settings-section.about
       .section-info
         h2 about me
         .description The most important information that other community members should know about you.
@@ -45,31 +45,32 @@
         .description Topcoder's three categories of challenges... please pick at least one on your skills and interests
 
       
-      .track(ng-repeat="track in ['DESIGN', 'DEVELOP', 'DATA_SCIENCE']")
+      .section-fields
+        .track(ng-repeat="track in ['DESIGN', 'DEVELOP', 'DATA_SCIENCE']")
+          hr
+
+          .top
+            .title(ng-class="{'disabled': !vm.tracks[track]}")
+              img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data-outline.svg")
+              img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop-outline.svg")
+              img(ng-if="track == 'DESIGN'", src="/images/ico-track-design-outline.svg")
+
+              span {{track | track}}
+
+            .onoffswitch
+              input.onoffswitch-checkbox(type='checkbox', name='onoffswitch', checked='', ng-model="vm.tracks[track]", id="{{track}}-onoffswitch")
+              label.onoffswitch-label(for='{{track}}-onoffswitch')
+                span.onoffswitch-inner
+                span.onoffswitch-switch
+
+
+          .bottom
+            .description
+              | Website, mobile, and product design; UI and UX
+
         hr
-
-        .top
-          .title(ng-class="{'disabled': !vm.tracks[track]}")
-            img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data-outline.svg")
-            img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop-outline.svg")
-            img(ng-if="track == 'DESIGN'", src="/images/ico-track-design-outline.svg")
-
-            span {{track | track}}
-
-          .onoffswitch
-            input.onoffswitch-checkbox(type='checkbox', name='onoffswitch', checked='', ng-model="vm.tracks[track]", id="{{track}}-onoffswitch")
-            label.onoffswitch-label(for='{{track}}-onoffswitch')
-              span.onoffswitch-inner
-              span.onoffswitch-switch
-
-
-        .bottom
-          .description
-            | Website, mobile, and product design; UI and UX
-
-      hr
-        
-      button(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid", ng-class="{' ': vm.editProfile.$valid}") Save Changes
+          
+        button(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid", ng-class="{' ': vm.editProfile.$valid}") Save Changes
 
   .settings-section.skills
     .section-info

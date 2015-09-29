@@ -13,7 +13,7 @@
 
       div(ng-hide="vm.isSocialRegistration")
         form(name="vm.newPasswordForm", role="form", ng-submit="vm.newPasswordForm.$valid && vm.submitNewPassword()", novalidate)
-          .form-label Current passoword
+          .form-label Current password
           .validation-bar(ng-class="{ 'success-bar': (vm.newPasswordForm.newPassword.$valid) }")
             toggle-password.form-field(ng-model="vm.currentPassword")
           //- input.form-field(

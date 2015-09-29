@@ -96,3 +96,16 @@
     }
   }
 }
+
+@media only screen and (min-width: 760px) {
+  .account-info-container {
+    .section-info {
+      h2 {
+        font-size: 18px;
+      }
+      .description {
+        margin-top: 10px;
+      }
+    }
+  }
+}

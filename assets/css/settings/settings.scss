@@ -61,6 +61,9 @@
       text-transform: uppercase;
       text-decoration: none;
       cursor: pointer;
+      @media only screen and (min-width: 760px) {
+        font-size: 16px;
+      }
     }
   }
   hr {
@@ -70,6 +73,7 @@
   .active-tab {
     padding-bottom: 6px;
     border-bottom: 4px #0096FF solid;
+    color: black;
   }
 
   hr {
@@ -361,4 +365,36 @@
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
+}
+
+.settings-section {
+  @media only screen and (min-width: 760px) {
+    .section-info {
+      h2 {
+        font-size: 18px;
+      }
+      .description {
+        margin-top: 10px;
+      }
+    }
+    &.tracks {
+      padding-bottom: 20px;
+      hr {
+        margin: 20px 0;
+      }
+      .section-fields {
+        .track {
+
+        }
+      }
+    }
+    &.skills {
+      input {
+        width: 600px;
+      }
+      .section-fields {
+        max-width: 760px;
+      }
+    }
+  }
 }
