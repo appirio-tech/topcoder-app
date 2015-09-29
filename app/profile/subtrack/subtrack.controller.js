@@ -21,7 +21,6 @@
     vm.distribution = {};
     vm.selectSubTrack = selectSubTrack;
     vm.showNav = showNav;
-    vm.closeNav = closeNav;
     vm.back = back;
     vm.status = {
       'challenges': CONSTANTS.STATE_LOADING
@@ -133,9 +132,7 @@
     }
 
     function showNav() {
-      console.log('dialog')
-      console.log(ngDialog)
-      vm.navDialog = ngDialog.open({
+      ngDialog.open({
         template: 'profile/subtrack/nav.html',
         controller: 'ProfileCtrl',
         controllerAs: 'vm',
@@ -149,10 +146,6 @@
           }
         }
       });
-    }
-
-    function closeNav() {
-      vm.navDialog.close();
     }
 
   }
