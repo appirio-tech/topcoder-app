@@ -14,6 +14,7 @@
     vm.profile = profile;
     vm.userHandle = userHandle;
     vm.showBadges = showBadges;
+    vm.closeDialog = closeDialog;
 
     vm.imgMap = {
       'DEVELOP': 'develop',
@@ -93,6 +94,10 @@
           }
         }
       });
+    }
+
+    function closeDialog() {
+      ngDialog.close();
     }
   }
 
