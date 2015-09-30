@@ -252,10 +252,12 @@
           problemsSysByTest: 0
         };
         array.forEach(function(level) {
+          level.problemsFailed = level.problemsFailed || level.failedChallenges || 0;
+          level.problemsSubmitted = level.problemsSubmitted || level.challenges || 0;
           level.problemsSuccessful = level.problemsSubmitted - level.problemsFailed;
-          ans.total.problemsSuccessful += level.problemsSuccessful;
-          ans.total.problemsFailed += level.problemsFailed;
-          ans.total.problemsSubmitted += level.problemsSubmitted;
+          ans.total.problemsSuccessful += level.problemsSuccessful || (level.challenges - level.failedChallenges);
+          ans.total.problemsFailed += level.problemsFailed || level.failedChallenges || 0;
+          ans.total.problemsSubmitted += level.problemsSubmitted || level.challenges || 0;
           ans.total.problemsSysByTest += level.problemsSysByTest;
           ans[level.levelName] = level;
         });
