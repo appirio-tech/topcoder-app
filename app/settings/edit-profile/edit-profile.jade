@@ -9,13 +9,13 @@
         .description The most important information that other community members should know about you.
 
       .section-fields
-        .image 
+        .image
           .form-label your profile image
           .edit-image
             img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photoURL}}")
 
             input(type="file", name="image", on-file-change)
-        
+
         .country
           .form-label country
           angucomplete-alt(
@@ -35,7 +35,7 @@
           )
 
         .bio
-          .form-label short bio 
+          .form-label short bio
             span(style="float:right;") {{vm.userData.description.length || 0}}/144
           textarea.form-field(name="description", ng-model="vm.userData.description" ng-maxlength="144")
 
@@ -44,10 +44,10 @@
         h2 Tracks
         .description Topcoder's three categories of challenges... please pick at least one on your skills and interests
 
-      
+
       .section-fields
         track-toggle(tracks="vm.tracks")
-          
+
         button(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid", ng-class="{' ': vm.editProfile.$valid}") Save Changes
 
   .settings-section.skills
@@ -55,7 +55,7 @@
       h2 skills
       .description Languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well
 
-    .section-fields  
+    .section-fields
       .field-label Add a new skill
       angucomplete-alt(
         id="tagId",
@@ -72,7 +72,7 @@
         minlength="1",
         ng-class="{'form-field-focused': hasFocus==true}"
       )
-    
+
       .list
         .skill(ng-repeat="skill in vm.skills | orderBy:'-score'")
           skill-tile(skill="skill" enable-hide="true")

@@ -15,9 +15,6 @@
         }
       }
       .button-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
         button.save {
           margin-top: 20px;
           @include button-2-l;
@@ -25,7 +22,7 @@
       }
     }
   }
-  
+
   .name {
     .section-fields {
       display: flex;

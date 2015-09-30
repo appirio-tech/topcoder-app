@@ -3,12 +3,13 @@
 
   angular.module('tc.settings').controller('AccountInfoController', AccountInfoController);
 
-  AccountInfoController.$inject = ['userData', 'UserService', 'ProfileService', '$log', 'ISO3166', 'toaster'];
+  AccountInfoController.$inject = ['userData', 'UserService', 'ProfileService', '$log', 'ISO3166', 'toaster', '$scope', '$timeout'];
 
-  function AccountInfoController(userData, UserService, ProfileService, $log, ISO3166, toaster) {
+  function AccountInfoController(userData, UserService, ProfileService, $log, ISO3166, toaster, $scope, $timeout) {
     var vm = this;
     vm.saveAccountInfo = saveAccountInfo;
     vm.updateCountry   = updateCountry;
+    vm.submitNewPassword = submitNewPassword;
     vm.isSocialRegistrant = false;
     vm.formProcessing = {
       accountInfoForm: false,
@@ -31,6 +32,19 @@
 
       vm.countries = ISO3166.getAllCountryObjects();
       vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.homeCountryCode);
+
+      // Timeout needed since newPasswordForm.currentPassword doesn't exist until later
+      $timeout(function(){
+        $scope.$watch('vm.currentPassword', function(newValue, oldValue) {
+          if (vm.newPasswordForm.currentPassword.$error.incorrect) {
+            // If the API returns "incorrect password",
+            // remove the error once the user types again.
+            if (newValue !== oldValue) {
+              vm.newPasswordForm.currentPassword.$setValidity('incorrect', true);
+            }
+          }
+        });
+      });
     }
 
     function updateCountry(angucompleteCountryObj) {
@@ -59,21 +73,20 @@
 
     function submitNewPassword() {
       vm.formProcessing.newPasswordForm = true;
-      UserService.updatePassword(vm.newPassword, vm.currentPassword)
-      .then(function() {
+      UserService.updatePassword(vm.password, vm.currentPassword)
+      .then(function(res) {
         vm.formProcessing.newPasswordForm = false;
-        vm.newPassword = '';
+        vm.password = '';
         vm.currentPassword = '';
         toaster.pop('success', "Success", "Password successfully updated");
         vm.newPasswordForm.$setPristine();
         vm.currentPasswordFocus = false;
-        // vm.placeholder = vm.defaultPlaceholder;
-        // vm.currentPasswordPlaceholder = vm.currentPasswordDefaultPlaceholder;
 
         $log.info('Your password has been updated.');
       })
       .catch(function(err) {
         vm.formProcessing.newPasswordForm = false;
+        vm.newPasswordForm.currentPassword.$setValidity('incorrect', false);
         $log.error(err);
       });
     }

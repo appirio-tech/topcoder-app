@@ -14,18 +14,17 @@
       div(ng-hide="vm.isSocialRegistration")
         form(name="vm.newPasswordForm", role="form", ng-submit="vm.newPasswordForm.$valid && vm.submitNewPassword()", novalidate)
           .form-label Current password
-          .validation-bar(ng-class="{ 'success-bar': (vm.newPasswordForm.newPassword.$valid) }")
+
+          .validation-bar(ng-class="{ 'error-bar': (vm.newPasswordForm.currentPassword.$dirty && vm.newPasswordForm.currentPassword.$invalid) }")
             toggle-password.form-field(ng-model="vm.currentPassword")
-          //- input.form-field(
-          //-   name="currentPassword", type="text", 
-          //-   placeholder="First",
-          //-   ng-model="vm.currentPassword", 
-          //-   maxlength="64", required, 
-          //-   ng-class="{'form-field-focused': hasFocus==true}"
-          //- )
+
+            .form-input-error(ng-show="vm.newPasswordForm.currentPassword.$dirty && vm.newPasswordForm.currentPassword.$invalid")
+              p(ng-show="vm.newPasswordForm.currentPassword.$error.required") This is a required field.
+
+              p(ng-show="vm.newPasswordForm.currentPassword.$error.incorrect") Your current password is incorrect. Please check that you entered the right one.
 
           .form-label New Password
-          .validation-bar(ng-class="{ 'success-bar': (vm.newPasswordForm.newPassword.$valid) }")
+          .validation-bar
             toggle-password-with-tips.form-field(placeholder="Pick a new password")
             .tips.password-tips(ng-show="vm.passwordFocus")
               h3 Password Tips:
@@ -37,14 +36,14 @@
               p(ng-class="{ 'has-letter': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasLetter) }") At least one letter
 
               p(ng-class="{ 'has-symbol-or-number': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
-        
+
           .button-container
-            button.button-l.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid") Save
-            
+            button.button-l.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid") Change Password
+
 
       div(ng-show="vm.isSocialRegistration")
         p You joined Topcoder by using an external account, so we don't have a password for you.
-    
+
 
   form(name="vm.accountInfoForm", role="form", ng-submit="vm.accountInfoForm.$valid && vm.saveAccountInfo()", novalidate, autocomplete="off")
 
@@ -54,7 +53,7 @@
         .description Required for legal purposes; will be kept private and not shared with anyone.
 
       .section-fields
-        
+
           // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
           input(autocomplete="false", name="hidden", type="text", style="display:none;")
           .form-label.first First name 

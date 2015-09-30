@@ -24,9 +24,9 @@
         .text {{track | role}}
 
     hr
-    
+
     .links
-      button.forums.link(href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
+      a.forums.link(ng-href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
         | Forum Posts
       button.badges.link(ng-click="profileVm.showBadges()")
         | Badges
