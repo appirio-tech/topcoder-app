@@ -8,6 +8,7 @@
 
   function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, SRMService, CONSTANTS, $state, $window, ngDialog) {
     var vm = this;
+    vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
     vm.graphState = { show: 'history' };
     vm.subTrack = decodeURIComponent($stateParams.subTrack || '') || '';
     vm.track = $stateParams.track;

@@ -8,7 +8,9 @@
         skill: '=',
         enableHide: "="
       },
-      controller: ['$scope', 'ProfileService', 'UserService', function($scope, ProfileService, UserService) {
+      controller: ['$scope', 'ProfileService', 'UserService', 'CONSTANTS', function($scope, ProfileService, UserService, CONSTANTS) {
+        $scope.skill.category = _.get($scope.skill, 'categories[0]', 'DEVELOP');
+        $scope.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
 
         $scope.toggle = function() {
           var skillTagId = $scope.skill.tagId;

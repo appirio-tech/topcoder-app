@@ -3,12 +3,12 @@
 
   angular.module('tc.skill-picker').controller('SkillPickerController', SkillPickerController);
 
-  SkillPickerController.$inject = ['ProfileService', '$state', 'userProfile', 'featuredSkills', '$log', 'toaster'];
+  SkillPickerController.$inject = ['CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', '$log', 'toaster'];
 
-  function SkillPickerController(ProfileService, $state, userProfile, featuredSkills, $log, toaster) {
+  function SkillPickerController(CONSTANTS, ProfileService, $state, userProfile, featuredSkills, $log, toaster) {
     var vm = this;
     $log = $log.getInstance("SkillPickerController");
-
+    vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
     vm.submitSkills = submitSkills;
     vm.featuredSkills = featuredSkills;
     vm.username = userProfile.handle;

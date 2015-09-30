@@ -15,6 +15,7 @@
       },
       link: function(scope, elem, attrs) {
         scope.DOMAIN = CONSTANTS.domain;
+        scope.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
 
         scope.$watch('editProfileLink', function(newValue, oldValue, scope) {
           if (newValue) {

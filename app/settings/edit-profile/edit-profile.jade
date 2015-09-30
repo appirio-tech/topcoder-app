@@ -12,7 +12,7 @@
         .image 
           .form-label your profile image
           .edit-image
-            img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photoURL}}")
+            img.profile-circle(fallback-src="{{vm.ASSET_PREFIX}}images/avatarPlaceholder.png", ng-src="{{vm.userData.photoURL}}")
 
             input(type="file", name="image", on-file-change)
         
