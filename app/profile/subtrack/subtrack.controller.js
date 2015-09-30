@@ -11,7 +11,7 @@
     vm.graphState = { show: 'history' };
     vm.subTrack = decodeURIComponent($stateParams.subTrack || '') || '';
     vm.track = $stateParams.track;
-    vm.viewing = 'challenges';
+    vm.viewing = 'stats';
     vm.domain = CONSTANTS.domain;
     vm.challenges = [];
     var profileVm = $scope.$parent.profileVm;
