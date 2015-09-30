@@ -73,11 +73,13 @@
      restrict: 'E',
       templateUrl: 'directives/external-account/external-link-data.directive.html',
       scope: {
-        linkedAccountsData: '='
+        linkedAccountsData: '=',
+        externalLinks: '='
       },
       controller: ['$log', '$scope', 'ExternalAccountService',
         function($log, $scope, ExternalAccountService) {
           $log = $log.getInstance('ExternalLinksDataDirective');
+
           $scope.$watch('linkedAccountsData', function(newValue, oldValue) {
             var linkedAccounts = [];
             for (var i=0;i<_supportedAccounts.length;i++) {
@@ -91,6 +93,26 @@
               }
             }
             $scope.linkedAccounts = linkedAccounts;
+          });
+
+          $scope.$watchCollection('externalLinks', function(newValue, oldValue) {
+            console.log("WATCH COLLECTION EXTERNAL LINKS: ");
+            console.log("New Value: ", newValue);
+            console.log("Old Value: ", oldValue);
+
+            angular.forEach(newValue, function(link) {
+              var provider = link.providerType;
+
+              if (!$scope.linkedAccountsData[provider]) {
+                $scope.linkedAccounts.push({
+                  provider: provider,
+                  data: {
+                    handle: link.name,
+                    status: 'PENDING'
+                  }
+                });
+              }
+            });
           });
         }
       ]
