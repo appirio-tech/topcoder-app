@@ -5,12 +5,34 @@
 
   form {
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
     justify-content: center;
-    width: 300px;
+    width: 380px;
+    margin-left: 90px;
+    margin-right: 90px;
+
+    input[type="text"],
+    input[type="email"],
+    toggle-password,
+    toggle-password-with-tips {
+      width: 380px;
+      height: 40px;
+      border-radius: 2px;
+      border: 1px solid #D1D3D4;
+    }
+
+    toggle-password,
+    toggle-password-with-tips {
+      input#password-input,
+      input#current-password-input {
+        width: 300px;
+        height: 20px;
+        border: none;
+      }
+    }
 
     input[name="firstname"], input[name="lastname"] {
-      width: 146px;
+      width: 185px;
     }
   }
 
@@ -26,7 +48,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 300px;
+    width: 380px;
   }
 
   .terms {
@@ -34,8 +56,9 @@
     margin-bottom: 10px;
 
     p {
-      font-size: 13px;
-      color: #808285;
+      font-size: 12px;
+      line-height: 15px;
+      color: #A3A3AE;
     }
 
     p:first-child {
@@ -52,5 +75,9 @@
         cursor: pointer;
       }
     }
+  }
+
+  .join-topcoder {
+    margin-bottom: 15px;
   }
 }

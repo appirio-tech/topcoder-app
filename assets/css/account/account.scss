@@ -1,21 +1,46 @@
 @import '../partials/combined';
 
+
 .login-container, .register-container, .reset-password-container {
-  width: 300px;
-  margin: 0 auto;
-  padding-top: 25px;
-  padding-bottom: 45px;
+  width: 560px;
+  margin: 120px auto 0 auto;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
   @include source-sans-regular;
+  background-color: white;
+
+  header {
+    height: 70px;
+    background-color: #2E2E2E;
+    display: flex;
+    justify-content: center;
+    /* TODO remove workarounds of -ve margin */
+    margin-top: -66px;
+    margin-bottom: 30px;
+
+    .arrow {
+      background-image: url(/images/ico-arrow.png);
+      background-repeat: no-repeat;
+      background-position: 0px -11px;
+      width: 16px;
+      /* TODO remove workarounds of -ve margin */
+      margin-left: -35px;
+      margin-top: 61px;
+    }
+  }
 
   // Basic element stylings
   h1 {
     margin-bottom: 30px;
     @include ui-h1;
-    color: $ui-dark-gray;
+    color: #3D3D3D;
+    line-height: 30px;
+    font-size: 20px;
+    @include sofia-pro-light;
+    width: 380px;
+    align-self: center;
   }
 
   a {
@@ -40,6 +65,9 @@
 
   button {
     @include ui-submit-button;
+    width: 180px;
+    border-radius: 4px;
+    align-self: center;
 
     &.enabled-button {
       @include ui-enabled-button;
@@ -58,40 +86,100 @@
     margin-top: 15px;
 
     p {
-      font-size: 21px;
-      line-height: 32px;
-      color: #231F20;
+      color: #A3A3AE;
+      font-size: 13px;
+      line-height: 22px;
+      @include sofia-pro-regular;
+      text-transform: uppercase;
     }
 
     .social-icons {
       display: flex;
       justify-content: center;
 
-      i {
-        margin: 7px;
+      p {
+        color: #A3A3AE;
+        font-size: 10px;
+        line-height: 13px;
+        @include sofia-pro-medium;
+        text-transform: uppercase;
+        cursor: pointer;
       }
 
-      .fa-github-square {
-        font-size: 45px;
-        color: #404041;
+      .ico {
+        margin: 7px;
+        margin-top: 22px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
       }
-      .fa-facebook-square {
-        font-size: 45px;
-        color: #0D72B9;
+
+      .github {
+        .ico {
+          color: #404041;
+          background-image: url(/images/svg/github.svg);
+          background-repeat: no-repeat;
+        }
       }
-      .fa-google-plus-square {
-        font-size: 45px;
-        color: #EE4036;
+      .facebook {
+        margin-left: 40px;
+        .ico {
+          color: #0D72B9;
+          background-image: url(/images/svg/facebook.svg);
+          background-repeat: no-repeat;
+        }
       }
-      .fa-twitter-square {
-        font-size: 45px;
-        color: #26A9E0;
+      .google-plus {
+        margin-left: 40px;
+        .ico {
+          border: 1px solid #D1D3D4;
+          border-radius: 4px;
+          color: #EE4036;
+          background-image: url(/images/svg/gplus.svg);
+          background-repeat: no-repeat;
+          background-position : center;
+        }
+      }
+      .twitter {
+        margin-left: 40px;
+        .ico {
+          color: #26A9E0;
+          background-image: url(/images/svg/twitter.svg);
+          background-repeat: no-repeat;
+        }
       }
     }
   }
 
-  .redirect {
+  .join-topcoder {
+    display: flex;
+    flex-flow: row wrap;
     margin-top: 10px;
-    font-size: 14px;
+    justify-content: center;
+
+    span {
+      display: flex;
+      align-items: center;
+    }
+
+    .redirect {
+      border: 1px solid #D1D3D4;
+      background-color: white;
+      border-radius : 4px;
+      width: 111px;
+      height: 30px;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include sofia-pro-light;
+      text-transform: uppercase;
+      font-size: 12px;
+      line-height: 14px;
+
+      a {
+        text-decoration: none;
+      }
+    }
   }
 }
