@@ -191,3 +191,10 @@
     }
   }
 }
+
+@media (max-width: 767px) {
+  .login-container, .register-container, .reset-password-container, .registered-successfully-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
