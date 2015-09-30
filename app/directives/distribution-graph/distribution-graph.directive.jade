@@ -1,6 +1,4 @@
 .distribution-graph-directive(ng-show="graphState.show == 'distribution'")
-  button.compare(ng-click="graphState.show = 'history'")
-    | BACK TO YOUR RATING
 
   .graph-viewer
     .distribution-graph
@@ -12,4 +10,6 @@
       .coders(ng-if="!displayCoders", style="background: {{rating | ratingColor}}")
         .num {{rating}}
         .label RATING
+      button.compare(ng-click="graphState.show = 'history'")
+        | BACK TO YOUR RATING
 

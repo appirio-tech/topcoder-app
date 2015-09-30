@@ -1,5 +1,4 @@
 .history-graph-directive(ng-show="graphState.show == 'history'")
-  button.compare(ng-click="graphState.show = 'distribution'") COMMUNITY RATINGS
   .history-graph-container
 
     br
@@ -10,6 +9,7 @@
       .rating(style="background: {{historyRating || rating | ratingColor}}")
         .num {{historyRating || rating}}
         .label RATING
-      .history-info(ng-if="historyRating")
-        .challenge {{historyChallenge}}
-        .date {{historyDate | date}}
+      .history-info
+        .challenge(ng-if="historyRating") {{historyChallenge}}
+        .date(ng-if="historyRating") {{historyDate | date}}
+      button.compare(ng-click="graphState.show = 'distribution'") COMMUNITY RATINGS
