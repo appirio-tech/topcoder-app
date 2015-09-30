@@ -1,6 +1,18 @@
 @import '../partials/combined';
 
+.distribution-graph-directive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  .compare {
+    @include button-1-m;
+  }
+
+}
+
 .graph-viewer {
+  margin-top: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,7 +82,7 @@
     .coders, .rating {
       width: 130px;
       height: 130px;
-      background: #09affe;
+      background: #199ae2;
       -moz-border-radius: 65px;
       -webkit-border-radius: 65px;
       border-radius: 65px;
@@ -95,9 +107,6 @@
       margin-bottom: 20px;
     }
 
-    .compare {
-      @include button-l;
-    }
   }
 }
 @media (min-width: 768px) {
@@ -192,16 +201,6 @@
       margin-bottom: 20px;
     }
 
-    .compare {
-      color: #00aeff;
-      background: #f6f6f6;
-      border: 1px solid #00aeff;
-      border-radius: 5px;
-      font-family: 'Sofia Pro';
-      font-size: 20px;
-      line-height: 24px;
-      padding: 8px;
-    }
   }
 }
 }

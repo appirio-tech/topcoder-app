@@ -38,9 +38,6 @@
     activate();
 
     function activate() {
-      if (vm.subTrack == 'SRM') {
-        vm.graphState = { show: 'distribution' };
-      }
       if (vm.track == 'DEVELOP' || vm.track == 'DATA_SCIENCE') {
         vm.distributionPromise = ProfileService.getDistributionStats(vm.track, vm.subTrack);
         vm.distributionPromise.then(function(data) {
