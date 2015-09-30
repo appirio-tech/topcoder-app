@@ -1,8 +1,9 @@
 a(ng-click="enableHide && toggle()")
 
   .skill-icon
-    i.colored(ng-show="icon", ng-class="icon") 
-    img.default(ng-hide="icon", src="/images/ico-code-c.svg")
+    //- i.colored(ng-show="icon", ng-class="icon") 
+    //- img.default(ng-hide="icon", src="/images/ico-code-c.svg")
+    img(ng-src="/images/skills/id-{{skill.tagId}}.svg", fallback-src="{{vm.getDefaultIcon()}}")
   .name {{skill.tagName}} [{{skill.score}}]
   span.hidden(ng-if="skill.hidden") (Hidden)
 
