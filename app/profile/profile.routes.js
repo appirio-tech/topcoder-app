@@ -3,6 +3,7 @@
 
   angular.module('tc.profile').config([
     '$stateProvider',
+    '$locationProvider',
     routes
   ]).run(['$rootScope', '$state', function($rootScope, $state) {
     // handle state change error
@@ -14,7 +15,8 @@
     });
   }]);
 
-  function routes($stateProvider) {
+  function routes($stateProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     var states = {
       'profile': {
         parent: 'root',

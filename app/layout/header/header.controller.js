@@ -92,7 +92,5 @@
 
     // Intro data
     vm.introOptions = IntroService.getIntroData($state.$current.name);
-    console.log("into");
-    console.log(vm.introOptions);
   }
 })();

@@ -3,10 +3,12 @@
 
   angular.module('tc.settings').config([
     '$stateProvider',
+    '$locationProvider',
     routes
   ]);
 
-  function routes($stateProvider) {
+  function routes($stateProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     var states = {
       'settings': {
         parent: 'root',

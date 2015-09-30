@@ -5,10 +5,12 @@
     '$stateProvider',
     '$urlRouterProvider',
     '$urlMatcherFactoryProvider',
+    '$locationProvider',
     routes
   ]);
 
-  function routes($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
+  function routes($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
 
     // ensure we have a trailing slash
     $urlMatcherFactoryProvider.strictMode(true);
