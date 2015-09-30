@@ -10,7 +10,7 @@
   ]);
 
   function routes($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true).hashPrefix('!');
 
     // ensure we have a trailing slash
     $urlMatcherFactoryProvider.strictMode(true);

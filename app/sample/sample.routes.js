@@ -9,7 +9,7 @@
   ]);
 
   function routes($stateProvider, $urlRouterProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true).hashPrefix('!');
     var states = {
       sample: {
         parent: 'root',

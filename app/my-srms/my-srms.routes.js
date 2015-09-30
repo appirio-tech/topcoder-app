@@ -10,7 +10,7 @@
   ]);
 
   function routes($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true).hashPrefix('!');
     var states = {
       'my-srms': {
         url: '/my-srms/',

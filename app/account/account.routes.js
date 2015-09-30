@@ -6,7 +6,7 @@
   routes.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
 
   function routes($locationProvider, $stateProvider, $urlRouterProvider) {
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true).hashPrefix('!');
 
     var states = {
       'auth': {

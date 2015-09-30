@@ -16,7 +16,7 @@
   }]);
 
   function routes($stateProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true).hashPrefix('!');
     var states = {
       'profile': {
         parent: 'root',
