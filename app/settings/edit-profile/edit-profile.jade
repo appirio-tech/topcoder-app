@@ -84,10 +84,12 @@
       .description Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.
 
     .section-fields
-      .field-label Link your accounts
-      .external-links
-        external-accounts(linked-accounts="vm.linkedExternalAccounts.length", read-only="false")
+      .field-label Link Your Accounts
 
-      .field-label(ng-show="vm.hasLinks") your accounts
+      .external-links
+        external-accounts(linked-accounts="vm.linkedExternalAccounts", read-only="false")
+
+      .field-label Linked Accounts
+
       .existing-links
-        external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccountsData")
+        external-links-data(external-links="vm.linkedExternalAccounts", linked-accounts-data="vm.linkedExternalAccountsData")

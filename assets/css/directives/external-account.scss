@@ -3,68 +3,51 @@
 .ext-tile {
   display: flex;
   flex-direction: column;
-  text-align: center;
   align-items: center;
-  justify-content: flex-start;
-  width: 90px;
-  height: 90px;
-  margin: 5px 5px 10px 5px;
+  margin: 5px 20px 15px 0;
 
-  .outer-box {
-    border: 1px solid #f0f0f0;
+  &.connected {
+
+
+    .status {
+      color: $gray-dark;
+    }
+  }
+
+  &.disabled {
+
+  }
+
+  .external-account-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 90px;
+    border: 1px solid $gray-light;
+    margin-top: 12px;
     cursor: pointer;
-    .read-only{
+
+    &.read-only{
       cursor: default;
       pointer-events: none;
     }
 
-    .external-account-icon-box {
+    i {
       font-size: 45px;
-      margin-top: 12px;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-
-      i {
-        &.inactive {
-          color: #d1d3d4;
-        }
-        &.connected {
-          cursor: default;
-          color: #0096FF;
-        }
-      }
+      color: #D1D3D4;
     }
 
-    .name {
+    .provider {
       margin-top: 8px;
-      width: 90px;
-      font-family: 'Sofia Pro';
+      @include sofia-pro-medium;
       font-size: 10px;
       line-height: 13px;
-      font-weight: 500;
       text-align: center;
       text-transform: uppercase;
-      color: #A3A3AE;
+      color: $system-gray;
     }
-    .disabled {
-      cursor: default;
-      pointer-events: none;
-    }
-    .connected {
-      cursor: default;
-      color: #0096FF;
-    }
-
-
-  }
-  .connected {
-    cursor: default;
-  }
-  .disabled {
-    cursor: default;
-    color: #D1D3D4;
-    pointer-events: none;
   }
 
   .status {
@@ -72,12 +55,6 @@
     @include sofia-pro-medium;
     margin-top: 10px;
     text-transform: uppercase;
-    text-align: center;
-    .connected {
-      font-color: #B7B7B7;
-    }
-    .disconnected {
-      font-color: #3D3D3D;
-    }
+    color: $gray-darkest;
   }
 }
