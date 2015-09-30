@@ -37,7 +37,8 @@
       $timeout(function(){
         $scope.$watch('vm.currentPassword', function(newValue, oldValue) {
           if (vm.newPasswordForm.currentPassword.$error.incorrect) {
-            // If the API returns "incorrect password", remove the error once the user types again.
+            // If the API returns "incorrect password",
+            // remove the error once the user types again.
             if (newValue !== oldValue) {
               vm.newPasswordForm.currentPassword.$setValidity('incorrect', true);
             }
@@ -74,20 +75,16 @@
       vm.formProcessing.newPasswordForm = true;
       UserService.updatePassword(vm.password, vm.currentPassword)
       .then(function(res) {
-        console.log('update password response: ', res);
         vm.formProcessing.newPasswordForm = false;
         vm.password = '';
         vm.currentPassword = '';
         toaster.pop('success', "Success", "Password successfully updated");
         vm.newPasswordForm.$setPristine();
         vm.currentPasswordFocus = false;
-        // vm.placeholder = vm.defaultPlaceholder;
-        // vm.currentPasswordPlaceholder = vm.currentPasswordDefaultPlaceholder;
 
         $log.info('Your password has been updated.');
       })
       .catch(function(err) {
-        console.log("ERR updating password: ", err.data.result.content);
         vm.formProcessing.newPasswordForm = false;
         vm.newPasswordForm.currentPassword.$setValidity('incorrect', false);
         $log.error(err);
