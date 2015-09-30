@@ -1,16 +1,9 @@
-
-@import '../partials/combined';
 @import '../partials/combined';
 
 .my-challenges-container {
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  hr {
-    @include horizontal-rule;
-    margin-bottom: 35px;
-  }
 
   .section-loading {
     width: 100%;
@@ -164,6 +157,7 @@
 
           &.list-view {
             flex-flow: column wrap;
+            width: 100%;
           }
         }
 

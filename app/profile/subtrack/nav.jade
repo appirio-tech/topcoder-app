@@ -14,12 +14,13 @@
     .subtrack(
       ng-repeat="subtrack in vm.categories[track]",
       ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})",
+      ng-click="vm.closeDialog()",
       class="{{$index == 0 && 'first'}}"
     )
       .name {{subtrack.subTrack | track}}
 
       .ranking(ng-if="subtrack.rating")
-        .number.rating
+        .number.rating(style="color: {{subtrack.rating | ratingColor}}")
           | {{subtrack.rating}}
           span.square(style="background-color: {{subtrack.rating | ratingColor}}") 
 
@@ -31,10 +32,10 @@
         .tag Ranking
 
       .ranking(ng-if="subtrack.wins && !subtrack.rank && !subtrack.rating")
-        .number {{subtrack.wins}}
+        .number(style="color: #21B2F1") {{subtrack.wins}}
 
         .tag Wins
-      
+
       .ranking(ng-if="subtrack.fulfillment")
         .number {{subtrack.fulfillment + '%'}}
 

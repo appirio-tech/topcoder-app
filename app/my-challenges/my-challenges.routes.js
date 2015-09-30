@@ -11,7 +11,7 @@
   function routes($stateProvider, $urlRouterProvider, $httpProvider) {
     var states = {
       'my-challenges': {
-        url: '/my-challenges/:status',
+        url: '/my-challenges/?:status',
         parent: 'root',
         templateUrl: 'my-challenges/my-challenges.html',
         controller: 'MyChallengesController',
@@ -24,9 +24,9 @@
           userIdentity: ['UserService', function(UserService) {
             return UserService.getUserIdentity();
           }],
-          statusFilter: ['$stateParams', function($stateParams) {
-            return $stateParams.status;
-          }],
+          // statusFilter: ['$stateParams', function($stateParams) {
+          //   return $stateParams.status;
+          // }],
         }
       }
     };

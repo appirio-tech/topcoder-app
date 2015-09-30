@@ -21,11 +21,12 @@
     vm.defaultPlaceholder = 'Create Password';
     vm.busyMessage = CONSTANTS.BUSY_PROGRESS_MESSAGE;
 
+    // FIXME - This needs to be setup with https
     // lookup users country
-    Helpers.getCountyObjFromIP()
-      .then(function(obj) {
-        vm.countryObj = obj;
-      });
+    // Helpers.getCountyObjFromIP()
+    //   .then(function(obj) {
+    //     vm.countryObj = obj;
+    //   });
 
     vm.countries = ISO3166.getAllCountryObjects();
 

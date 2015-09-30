@@ -8,13 +8,14 @@
   function TopcoderController(NotificationService, $rootScope, CONSTANTS) {
     var vm = this;
     vm.menuVisible = false;
-    
+
     // set some $rootScope constants here
     $rootScope.DOMAIN = CONSTANTS.domain;
 
-    $rootScope.$on(CONSTANTS.EVENT_USER_LOGGED_IN, function() {
-      NotificationService.getNotifications();
-    });
+    // TODO - enable this once we support notificaitons
+    // $rootScope.$on(CONSTANTS.EVENT_USER_LOGGED_IN, function() {
+    //   NotificationService.getNotifications();
+    // });
 
     vm.globalToasterConfig = {
       'close-button': {

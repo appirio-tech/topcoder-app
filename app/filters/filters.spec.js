@@ -19,12 +19,12 @@ describe('filters', function() {
   describe('track filter', function() {
     it('should handle strings', function() {
       expect(trackFilter('DATA_SCIENCE')).to.equal('Data Science');
-      expect(trackFilter('DEVELOP')).to.equal('DEVELOPMENT');
+      expect(trackFilter('DEVELOP')).to.equal('Development');
       expect(trackFilter('FIRST_2_FINISH')).to.equal('First2Finish');
     });
 
     it('should handle arrays', function() {
-      expect(trackFilter(['DATA_SCIENCE', 'DEVELOP'])).to.include('DEVELOPMENT');
+      expect(trackFilter(['DATA_SCIENCE', 'DEVELOP'])).to.include('Development');
     });
   });
 

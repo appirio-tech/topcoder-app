@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/skills/id 131</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="icons/skills/id-131" sketch:type="MSArtboardGroup">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(4.000000, 1.000000)">
+                <polygon id="Polygon-1" fill="#03599C" sketch:type="MSShapeGroup" points="26 -1 52 14 52 44 26 59 0 44 0 14 "></polygon>
+                <path d="M36.4354839,34.8548387 C34.4032258,38.4354839 30.5322581,40.8548387 26.1290323,40.8548387 C19.5967742,40.8548387 14.2741935,35.5322581 14.2741935,29 C14.2741935,22.4677419 19.5967742,17.1451613 26.1290323,17.1451613 C30.5322581,17.1451613 34.4032258,19.5645161 36.4354839,23.1935484 L42.7258065,19.5645161 C39.4354839,13.8064516 33.2419355,9.88709677 26.1290323,9.88709677 C15.5806452,9.88709677 7.01612903,18.4516129 7.01612903,29 C7.01612903,39.5483871 15.5806452,48.1129032 26.1290323,48.1129032 C33.1935484,48.1129032 39.3870968,44.2419355 42.6774194,38.5322581 L36.4354839,34.8548387 L36.4354839,34.8548387 Z" id="Shape" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

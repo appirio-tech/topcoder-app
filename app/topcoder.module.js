@@ -34,9 +34,9 @@
     .module('topcoder', dependencies)
     .run(appRun);
 
-  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log', 'NotificationService'];
+  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log', 'NotificationService', 'CONSTANTS'];
 
-  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log, NotificationService) {
+  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log, NotificationService, CONSTANTS) {
     // Attaching $state to the $rootScope allows us to access the
     // current state in index.html (see the body tag)
     $rootScope.$state = $state;

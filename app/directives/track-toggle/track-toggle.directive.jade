@@ -1,0 +1,25 @@
+.track(ng-repeat="track in ['DESIGN', 'DEVELOP', 'DATA_SCIENCE']")
+  hr(class="{{!$index  && 'first'}}")
+
+  .top
+    .title(ng-class="{'disabled': !tracks[track]}")
+      img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data-outline.svg")
+      img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop-outline.svg")
+      img(ng-if="track == 'DESIGN'", src="/images/ico-track-design-outline.svg")
+
+      span {{track | track}}
+
+    .onoffswitch
+      input.onoffswitch-checkbox(type='checkbox', name='onoffswitch', checked='', ng-model="tracks[track]", id="{{track}}-onoffswitch")
+      label.onoffswitch-label(for='{{track}}-onoffswitch')
+        span.onoffswitch-inner
+        span.onoffswitch-switch
+
+
+  .bottom
+    .description
+      span(ng-if="track == 'DESIGN'") Website, mobile, and product design; UI and UX
+      span(ng-if="track == 'DEVELOP'") Software architecture, component assembly, application developent, and bug hunting
+      span(ng-if="track == 'DATA_SCIENCE'") Algorithms and data structures, statistical analysis
+
+hr

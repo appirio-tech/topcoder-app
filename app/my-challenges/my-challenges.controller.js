@@ -3,9 +3,9 @@
 
   angular.module('tc.myChallenges').controller('MyChallengesController', MyChallengesController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity', 'statusFilter'];
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity', '$stateParams'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope, userIdentity, statusFilter) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope, userIdentity, $stateParams) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
@@ -15,12 +15,12 @@
     vm.viewPastChallenges = viewPastChallenges;
     vm.view = 'list';
     vm.changeView = changeView;
-    vm.statusFilter = statusFilter ? statusFilter : 'active';
+    vm.statusFilter = _.get($stateParams, 'status','active');
 
     // paging params, these are updated by tc-pager
     vm.pageParams = {
       offset : 0,
-      limit: 5,
+      limit: 16,
       count: 0,
       totalCount: 0,
       // counter used to indicate page change
@@ -44,7 +44,7 @@
         viewPastChallenges();
       } else {
         viewActiveChallenges();
-      } 
+      }
     }
 
     function changeView(view) {
@@ -69,7 +69,6 @@
       }
     };
 
-    // get ACTIVE challenges and spotlight challenges
     function _getChallenges() {
       var params = {
         limit: vm.pageParams.limit,
@@ -80,9 +79,8 @@
       vm.loading = true;
       return ChallengeService.getUserChallenges(handle, params)
       .then(function(challenges){
+        console.log(challenges.plain());
         if (challenges.length > 0) {
-          // FIXME until we figure out the correct sort order param
-
           vm.myChallenges = challenges;
           vm.userHasChallenges = true;
           vm.loading = false;

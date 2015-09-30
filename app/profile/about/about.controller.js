@@ -8,7 +8,6 @@
   function ProfileAboutController($log, $scope, ProfileService, ExternalAccountService, UserService) {
     var vm = this;
     $log = $log.getInstance("ProfileAboutController");
-
     var profileVm = $scope.$parent.profileVm;
     vm.categoryIndex = 0;
     vm.skillIndex = 0;
@@ -32,7 +31,7 @@
 
       profileVm.statsPromise.then(function() {
         vm.categories = profileVm.categories;
-        vm.marathonRating = profileVm.categories['MARATHON'] && profileVm.categories['MARATHON'].rating;
+        vm.marathonRating = profileVm.categories['MARATHON_MATCH'] && profileVm.categories['MARATHON_MATCH'].rating;
         vm.SRMRating = profileVm.categories['SRM'] && profileVm.categories['SRM'].rating;
         console.log(vm.marathonRating + ' ' + vm.SRMRating)
       });
