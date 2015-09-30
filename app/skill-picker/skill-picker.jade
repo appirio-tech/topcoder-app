@@ -21,7 +21,7 @@
           ng-class="{'selected-skill': vm.mySkills.indexOf(tag.id.toString()) > -1}")
           a(ng-click="vm.toggleSkill(tag.id.toString())")
             .icon 
-              img(ng-src="{{ASSET_PREFIX}}images/skills/id-{{tag.id}}.svg", fallback-src="{{ASSET_PREFIX}}images/skills/id-design.svg")
+              img(ng-src="{{vm.ASSET_PREFIX}}/images/skills/id-{{tag.id}}.svg", fallback-src="{{vm.ASSET_PREFIX}}/images/skills/id-design.svg")
             .name {{tag.name}}
           
 
@@ -33,7 +33,7 @@
           ng-class="{'selected-skill': vm.mySkills.indexOf(tag.id.toString()) > -1}")
           a(ng-click="vm.toggleSkill(tag.id.toString())")
             .icon 
-              img(ng-src="{{ASSET_PREFIX}}images/skills/id-{{tag.id}}.svg", fallback-src="{{ASSET_PREFIX}}images/skills/id-develop.svg")
+              img(ng-src="{{vm.ASSET_PREFIX}}/images/skills/id-{{tag.id}}.svg", fallback-src="{{vm.ASSET_PREFIX}}/images/skills/id-develop.svg")
             .name {{tag.name}}
 
     .skills-section(ng-show="vm.tracks.DATA_SCIENCE")
@@ -44,7 +44,7 @@
           ng-class="{'selected-skill': vm.mySkills.indexOf(tag.id.toString()) > -1}")
           a(ng-click="vm.toggleSkill(tag.id.toString())")
             .icon 
-              img(ng-src="{{ASSET_PREFIX}}images/skills/id-{{tag.id}}.svg", fallback-src="{{ASSET_PREFIX}}images/skills/id-data.svg")
+              img(ng-src="{{vm.ASSET_PREFIX}}/images/skills/id-{{tag.id}}.svg", fallback-src="{{vm.ASSET_PREFIX}}/images/skills/id-data.svg")
             .name {{tag.name}}
 
 

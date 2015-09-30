@@ -2,11 +2,11 @@
 
   .nav
     a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
-      img.arrow(src="/images/ico-arrow-big-left.svg")
+      img.arrow(ng-src="{{vm.ASSET_PREFIX}}/images/ico-arrow-big-left.svg")
 
     .breadcrumbs
       .handle
-        img.profile-circle(fallback-img="{{vm.ASSET_PREFIX}}images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
+        img.profile-circle(fallback-src="{{vm.ASSET_PREFIX}}/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
         a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
           | {{vm.userHandle}}
         |  /
