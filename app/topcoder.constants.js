@@ -3,7 +3,7 @@ angular.module("CONSTANTS", [])
 .constant("CONSTANTS", {
 	"API_URL": "https://api.topcoder-dev.com/v3",
 	"API_URL_V2": "https://api.topcoder-dev.com/v2",
-	"ASSET_PREFIX": "http://local.topcoder-dev.com:3000/",
+	"ASSET_PREFIX": "",
 	"auth0Callback": "https://api.topcoder-dev.com/pub/callback.html",
 	"auth0Domain": "topcoder-dev.auth0.com",
 	"BLOG_LOCATION": "https://www.topcoder-dev.com/feed/?post_type=blog",

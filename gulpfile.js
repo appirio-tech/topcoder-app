@@ -84,9 +84,16 @@ gulp.task('images', ['clean-images'], function() {
     .pipe(gulp.dest(config.temp + 'images'));
 });
 
-gulp.task('images-orig', ['build1'], function() {
-  log('Copying original images');
 
+gulp.task('images-orig-nav', ['build1'], function() {
+  log('Copying original images');
+  return gulp
+     .src(config.assets + 'images/nav/**.*')
+    .pipe(gulp.dest(config.build + 'images/nav'));
+});
+
+gulp.task('images-orig', ['images-orig-nav'], function() {
+  log('Copying original images');
   return gulp
      .src(config.assets + 'images/skills/**.*')
     .pipe(gulp.dest(config.build + 'images/skills'));
