@@ -65,8 +65,9 @@
       if (skill) {
         var skillTagId = _.get(skill, 'originalObject.id').toString();
         // verify if skill has already been added
-        var idx = _.find(vm.skills, function(s) { return s.tagId === skillTagId});
-        if (idx < 0) {
+        var idx = _.find(vm.skills, function(s) { return s.tagId == skillTagId});
+        // _.find returns undefined when skill isn't found
+        if (!idx) {
           // add the skill
           ProfileService.addUserSkill(vm.userData.handle, skillTagId).then(function(resp) {
             // find the new skill in response object and inject it into our existing list.
