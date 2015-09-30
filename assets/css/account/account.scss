@@ -16,6 +16,7 @@
     background-color: #2E2E2E;
     display: flex;
     justify-content: center;
+    align-items: center;
     /* TODO remove workarounds of -ve margin */
     margin-top: -66px;
     margin-bottom: 30px;
@@ -25,6 +26,7 @@
       background-repeat: no-repeat;
       background-position: 0px -11px;
       width: 16px;
+      height: 10px;
       /* TODO remove workarounds of -ve margin */
       margin-left: -35px;
       margin-top: 61px;
@@ -104,6 +106,7 @@
     .social-icons {
       display: flex;
       justify-content: center;
+      padding: 0px 10px;
 
       p {
         color: #A3A3AE;
@@ -188,6 +191,40 @@
       a {
         text-decoration: none;
       }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .login-container, .register-container, .reset-password-container, .registered-successfully-container {
+    width: 100%;
+    margin: 0 auto;
+
+    h1 {
+      width: 100%;
+    }
+
+    form {
+      margin-left: 10px;
+      margin-right: 10px;
+
+      input[type="text"],
+      input[type="email"],
+      toggle-password,
+      toggle-password-with-tips {
+        width: 100%;
+      }
+    }
+  }
+
+  .register-container {
+    margin: 66px auto;
+  }
+
+  .registered-successfully-container {
+    margin: 66px auto;
+    p.message {
+      padding: 34px 30px 124px 30px;
     }
   }
 }

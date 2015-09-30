@@ -3,15 +3,17 @@
 
   angular.module('tc.account').controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$log', '$state', '$stateParams', '$location', 'TcAuthService', 'AuthTokenService', 'UserService', 'NotificationService', 'Helpers', 'CONSTANTS'];
+  LoginController.$inject = ['$log', '$state', '$stateParams', '$location', '$scope', 'TcAuthService', 'AuthTokenService', 'UserService', 'NotificationService', 'Helpers', 'CONSTANTS'];
 
-  function LoginController($log, $state, $stateParams, $location, TcAuthService, AuthTokenService, UserService, NotificationService, Helpers, CONSTANTS) {
+  function LoginController($log, $state, $stateParams, $location, $scope, TcAuthService, AuthTokenService, UserService, NotificationService, Helpers, CONSTANTS) {
     $log = $log.getInstance("LoginController");
     var vm = this;
     vm.$stateParams = $stateParams;
     vm.passwordReset = false;
     vm.usernameExists = true;
     vm.currentPasswordDefaultPlaceholder = "Password";
+    // reference for main vm
+    var mainVm = $scope.$parent.main;
 
     if ($stateParams.notifyReset) {
       NotificationService.inform('Your new password has been set. Please log in. If you have any trouble, please contact support@topcoder.com.');
@@ -30,6 +32,7 @@
         $log.warn(resp);
         switch (resp.status) {
           case "ACCOUNT_INACTIVE":
+            $state.go('registeredSuccessfully');
             // user should already be redirected
             break;
           case "UNKNOWN_ERROR":
@@ -43,6 +46,8 @@
     vm.login = function() {
       vm.usernameExists = true;
       vm.wrongPassword = false;
+      // TODO ideally it should be done by dedicated directive to handle all outside clicks
+      mainVm.menuVisible = false;
 
       if (Helpers.isEmail(vm.username)) {
         vm.emailOrUsername = 'email';
