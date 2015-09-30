@@ -265,6 +265,11 @@ challenge-tile .challenge.tile-view {
       justify-content: space-between;
       align-items: center;
 
+      &.DATA_SCIENCE {
+        flex: 2;
+        justify-content: center;
+      }
+
       .place {
         margin-bottom: 30px;
         @include sofia-pro-regular;
@@ -303,6 +308,28 @@ challenge-tile .challenge.tile-view {
         p:last-child {
           @include sofia-pro-medium;
           font-size: 9px;
+          color: #A3A3AE;
+          text-transform: uppercase;
+        }
+      }
+
+      .marathon-score {
+        margin-bottom: 70px;
+        text-align: center;
+
+        .score {
+          margin-top: 28px;
+          margin-bottom: 5px;
+          @include sofia-pro-regular;
+          font-size: 32px;
+          line-height: 38px;
+          color: #3D3D3D;
+        }
+
+        p:last-child {
+          @include sofia-pro-regular;
+          font-size: 12px;
+          line-height: 14px;
           color: #A3A3AE;
           text-transform: uppercase;
         }
