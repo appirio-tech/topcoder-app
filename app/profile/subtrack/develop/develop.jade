@@ -2,7 +2,7 @@
   .top
     ul.horizontal-stats
       li.stat
-        .value.rating {{vm.typeStats.rank.rating}}
+        .value.rating(style="color: {{vm.typeStats.rank.rating | ratingColor}}") {{vm.typeStats.rank.rating}}
           span.square(style="background-color: {{vm.typeStats.rank.rating | ratingColor}}")
         .name RATING
 
@@ -27,13 +27,13 @@
         .name RELIABILITY
 
     .tabs
-      a.left(id="challenges", ng-click="vm.viewing = 'challenges'",
-        ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
-      ) Challenges
-
-      a.right(id="stats", ng-click="vm.viewing = 'stats'",
+      a.left(id="stats", ng-click="vm.viewing = 'stats'",
         ng-class="vm.viewing == 'stats' ? 'selected' : ''"
       ) Statistics
+
+      a.right(id="challenges", ng-click="vm.viewing = 'challenges'",
+        ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
+      ) Challenges
 
     hr
 
@@ -41,7 +41,7 @@
       ng-show="vm.viewing == 'challenges'",
       state="vm.status.challenges"
     )
-      tc-paginator(data="vm.challenges", page-params="vm.pageparams")
+      tc-paginator(data="vm.challenges", page-params="vm.pageParams")
       .challenges
         .challenge.tile(ng-repeat="challenge in vm.challenges")
           challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")

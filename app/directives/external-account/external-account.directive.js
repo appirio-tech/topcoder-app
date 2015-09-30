@@ -1,14 +1,14 @@
 (function() {
   'use strict';
   var _supportedAccounts = [
-    { provider: "dribble", className: "fa-dribbble", displayName: "Dribble"},
-    { provider: "linkedin", className: "fa-linkedin", displayName: "LinkedIn"},
-    { provider: "stackoverflow", className: "fa-stack-overflow", displayName: "StackOverflow"},
-    { provider: "behance", className: "fa-behance", displayName: "Behance"},
-    { provider: "google-oauth2", className: "fa-google-plus", displayName: "Google+"},
+    // { provider: "dribble", className: "fa-dribbble", displayName: "Dribble"},
+    // { provider: "linkedin", className: "fa-linkedin", displayName: "LinkedIn"},
+    // { provider: "stackoverflow", className: "fa-stack-overflow", displayName: "StackOverflow"},
+    // { provider: "behance", className: "fa-behance", displayName: "Behance"},
+    // { provider: "google-oauth2", className: "fa-google-plus", displayName: "Google+"},
     { provider: "github", className: "fa-github", displayName: "Github"},
-    { provider: "bitbucket", className: "fa-bitbucket", displayName: "Bitbucket"},
-    { provider: "twitter", className: "fa-twitter", displayName: "Twitter"},
+    // { provider: "bitbucket", className: "fa-bitbucket", displayName: "Bitbucket"},
+    // { provider: "twitter", className: "fa-twitter", displayName: "Twitter"},
     // TODO  add more
   ];
 
@@ -42,7 +42,7 @@
             ExternalAccountService.linkExternalAccount(provider, null)
             .then(function(resp) {
               $log.debug("Social account linked: " + JSON.stringify(resp));
-              linkedAccounts.push(resp.profile);
+              $scope.linkedAccounts.push(resp.profile);
               toaster.pop('success', "Success",
                 String.supplant(
                   "Your {provider} account has been linked. Data from your linked account will be visible on your profile shortly.",

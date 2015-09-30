@@ -26,6 +26,7 @@
     };
 
     var userId = UserService.getUserIdentity().userId;
+    var userHandle = UserService.getUserIdentity().handle;
 
     activate();
 
@@ -68,8 +69,7 @@
         filter: 'status=' + vm.listType
       };
       if (vm.listType == 'past') {
-        params.filter += '&userIds=' + userId;
-        return SRMService.getPastSRMs(params, userId)
+        return SRMService.getPastSRMs(userHandle, params)
           .then(handleSRMsLoad, handleSRMsFailure);
       } else {
         return SRMService.getSRMs(params)
@@ -85,20 +85,5 @@
       $log.error(resp);
     }
 
-    function getSRMResults() {
-      var params = {
-        filter: 'userId=' + userId
-      };
-
-      return SRMService.getSRMResults(params)
-      .then(function(data){
-        angular.forEach(data, function(srmResult) {
-          vm.srmResults[srmResult['contestId']] = srmResult;
-        });
-      }, function(resp) {
-        // TODO - handle error
-        $log.error(resp);
-      });
-    }
   }
 })();

@@ -1,4 +1,4 @@
-.srm.tile-view(ng-show="view=='tile'")
+.srm.tile-view(ng-show="view === 'tile'")
   .upcoming-srm(ng-show="srm.status === 'FUTURE'")
     .challenge-track
 
@@ -32,10 +32,11 @@
       .ranks
         .division
           p.rank #[{{srm.result.divisionPlacement}}]
-          p.label  #[span Div {{srm.result.division}}] #[span Placement]
+          p.label  #[span Division {{srm.result.division}}]
         .room
           p.rank #[span {{srm.result.roomPlacement}}]
-          p.label #[span Room] #[span Placement]
+          p.label #[span Room] 
+      p.placement Placement
 
 .srm.list-view(ng-show="view=='list'")
   .upcoming-srm(ng-show="srm.status === 'FUTURE'")

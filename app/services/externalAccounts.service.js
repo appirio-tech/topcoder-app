@@ -69,7 +69,7 @@
                 emailVerified: false,
                 providerType: socialData.socialProvider,
                 context: {
-                  handle: user.handle,
+                  handle: socialData.username,
                   accessToken: socialData.accessToken
                 }
               };

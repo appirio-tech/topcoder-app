@@ -9,13 +9,13 @@
         .description The most important information that other community members should know about you.
 
       .section-fields
-        .image 
+        .image
           .form-label your profile image
           .edit-image
             img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photoURL}}")
 
             input(type="file", name="image", on-file-change)
-        
+
         .country
           .form-label country
           angucomplete-alt(
@@ -36,7 +36,7 @@
           span.error-message(ng-if="vm.editProfile.$invalid") This is a required field
 
         .bio
-          .form-label short bio 
+          .form-label short bio
             span(style="float:right;") {{vm.userData.description.length || 0}}/144
           textarea.form-field(name="description", ng-model="vm.userData.description" ng-maxlength="144")
 
@@ -45,7 +45,7 @@
         h2 Tracks
         .description Topcoder's three categories of challenges... please pick at least one on your skills and interests
 
-      
+
       .section-fields
         track-toggle(tracks="vm.tracks")
           
@@ -56,7 +56,7 @@
       h2 skills
       .description Languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well
 
-    .section-fields  
+    .section-fields
       .field-label Add a new skill
       angucomplete-alt(
         id="tagId",
@@ -73,7 +73,7 @@
         minlength="1",
         ng-class="{'form-field-focused': hasFocus==true}"
       )
-    
+
       .list
         .skill(ng-repeat="skill in vm.skills | orderBy:'-score'")
           skill-tile(skill="skill" enable-hide="true")
@@ -86,10 +86,9 @@
     .section-fields
       .field-label Link your accounts
       .external-links
-        external-accounts.external-account-container
-        //(linked-accounts-data="vm.linkedExternalAccounts")
+        external-accounts.external-account-container(linked-accounts="vm.linkedExternalAccounts", read-only="false")
 
-      .field-label Link your accounts
+      .field-label your accounts
 
       .existing-links
         external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccounts")

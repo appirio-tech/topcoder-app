@@ -7,7 +7,9 @@
       .flex-wrapper
         p.subtrack {{subtrack.subTrack | underscoreStrip}}
 
-        p.rating(style="color: {{subtrack.stat | ratingColor}}") {{subtrack.stat | number}}
+        p.rating(ng-if="subtrack.track !== 'DESIGN'", style="color: {{subtrack.stat | ratingColor}}") {{subtrack.stat | number}}
           span(style="background-color: {{subtrack.stat | ratingColor}}", ng-if="subtrack.track === 'DEVELOP' || subtrack.track === 'DATA_SCIENCE'")
+
+        p.rating(ng-if="subtrack.track === 'DESIGN'", style="color: #21B2F1") {{subtrack.stat | number}}
 
         p {{subtrack.statType}}

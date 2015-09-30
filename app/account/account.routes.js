@@ -45,7 +45,7 @@
           },
           'footer@': {
             // no footer
-            template: ''
+            templateUrl: 'layout/footer/account-footer.html'
           }
         }
       },
@@ -63,6 +63,10 @@
             templateUrl: 'account/register/register.html',
             controller: 'RegisterController',
             controllerAs: 'vm'
+          },
+          'footer@': {
+            // no footer
+            templateUrl: 'layout/footer/account-footer.html'
           }
         }
       },
