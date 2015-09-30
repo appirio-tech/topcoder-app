@@ -10,7 +10,7 @@
   ]);
 
   function routes($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    $locationProvider.html5Mode(true).hashPrefix('!');
+    $locationProvider.html5Mode(true);
     var states = {
       'my-challenges': {
         url: '/my-challenges/?:status',

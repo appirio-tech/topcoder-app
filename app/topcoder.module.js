@@ -66,7 +66,7 @@
 
   angular.module('topcoder').config(['$httpProvider', 'RestangularProvider', '$locationProvider',
    function($httpProvider, RestangularProvider, $locationProvider) {
-    $locationProvider.html5Mode(true).hashPrefix('!');
+    $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('HeaderInterceptor');
     RestangularProvider.setRequestSuffix('/');
   }]);

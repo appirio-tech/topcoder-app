@@ -8,7 +8,7 @@
   ]);
 
   function routes($stateProvider, $locationProvider) {
-    $locationProvider.html5Mode(true).hashPrefix('!');
+    $locationProvider.html5Mode(true);
 
     var states = {
       'skillPicker': {
