@@ -87,6 +87,7 @@
   @include ui-form-placeholder;
   input:not([type="checkbox"]) {
     @include ui-form-field;
+    height: 38px;
   }
   .settings-section {
     display: flex;
@@ -217,7 +218,7 @@
         .skill {
           margin: 0 20px 10px 20px;
         }
- 
+
       }
 
 
@@ -320,13 +321,13 @@
     right: 30px;
     border: none;
     border-radius: 36px;
-    transition: all 0.3s ease-in 0s; 
+    transition: all 0.3s ease-in 0s;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
     margin-left: 0;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px; 
+    right: 0px;
 }
 
 .settings-section {
