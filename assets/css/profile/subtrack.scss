@@ -3,7 +3,7 @@
 .profile-subtrack-container {
   display: flex;
   flex-direction: column;
-  
+
   .nav {
     @include module-full-width;
     background: white;
@@ -291,13 +291,19 @@
         width: 325px;
         padding: 15px;
       }
+      .no-challenges {
+        margin: 30px;
+        @include sofia-pro-regular;
+        font-size: 16px;
+        color: #a3a3ae;
+      }
     }
 
   }
 }
 @media (min-width: 768px) {
 .profile-subtrack-container {
-  
+
   .nav {
     display: flex;
     flex-direction: row;

@@ -59,7 +59,7 @@
 
       div(ng-switch-when="MARATHON_MATCH")
         .marathon-score
-          p.score {{challenge.pointTotal}}
+          p.score {{challenge.pointTotal || 0 }
 
           p Total Points
 
