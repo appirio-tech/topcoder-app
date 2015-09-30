@@ -112,7 +112,7 @@
           li.totals
             ul.row
               li.left
-                h2 DIVISION {{$index + 1}}
+                h2 {{vm.divisionName[$index]}}
                 span TOTAL
               li.success
                 h3 {{division.total.problemsSuccessful / division.total.problemsSubmitted | percentage }}
@@ -150,3 +150,39 @@
               li.failed-sys
                 h3 {{level.problemsSysByTest}}
                 span FAILED SYS. TEST
+
+      li.division
+        ul(class="{{vm.challengesSRM.levelName}}")
+          li.totals
+            ul.row
+              li.left
+                h2 CHALLENGES
+                span TOTAL
+              li.success
+                h3 {{vm.challengesSRM.total.problemsSuccessful / vm.challengesSRM.total.problemsSubmitted | percentage }}
+                span SUCCESS
+
+              li.submitted
+                h3 {{vm.challengesSRM.total.problemsSubmitted}}
+                span CREATED
+
+              li.failed
+                h3 {{vm.challengesSRM.total.problemsFailed}}
+                span FAILED
+
+          li.level(ng-repeat="level in vm.challengesSRM.levels")
+            ul.row
+              li.left
+                h3 {{level.levelName}}
+
+              li.success
+                h3 {{level.problemsSuccessful / level.problemsSubmitted | percentage }}
+                span SUCCESS
+
+              li.submitted
+                h3 {{level.problemsSubmitted}}
+                span CREATED
+
+              li.failed
+                h3 {{level.problemsFailed}}
+                span FAILED
