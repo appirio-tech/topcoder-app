@@ -25,7 +25,7 @@
         line-height: 26px;
         color: black;
         text-transform: uppercase;
-        @media only screen and (min-width: 600px) {
+        @media only screen and (min-width: 760px) {
           margin-bottom: 0;
           font-size: 32px;
           line-height: 38px;
@@ -36,13 +36,19 @@
 
 .settings-container {
   @include module-l;
+  @media only screen and (min-width: 760px) {
+    margin-top: 80px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
   margin-left: auto;
   margin-right: auto;
+  margin-top: 30px;
   nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    @media only screen and (min-width: 550px) {
+    @media only screen and (min-width: 760px) {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -51,7 +57,7 @@
       margin-top: 10px;
       display: inline-block;
       margin-right: 30px;
-      @media only screen and (min-width: 550px) {
+      @media only screen and (min-width: 760px) {
       }
     }
     a {
@@ -77,6 +83,8 @@
     &.nav-line {
       width: 95%;
       margin-top: 7px;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
   // Common element stylings
@@ -92,21 +100,27 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    @media only screen and (min-width: 768px) {
-            flex-direction: row;
-    }
     margin-top: 30px;
     margin-bottom: 20px;
     padding-bottom: 20px;
+    @media only screen and (min-width: 768px) {
+      flex-direction: row;
+      padding-bottom: 40px;
+    }
     border-bottom: 1px solid;
     border-color: #F0F0F0;
     width: 95%;
     margin-left: auto;
     margin-right: auto;
     .section-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-self: flex-start;
       @media only screen and (min-width: 768px) {
         width: 320px;
         padding-right: 30px;
+        margin-right: 35px;
       }
       h2 {
         text-transform: uppercase;
@@ -163,6 +177,13 @@
         input {
           background-color: white;
         }
+        span.error-message {
+          color: #EF3A3A;
+          font-family: 'Sofia Pro';
+          font-size: 10px;
+          text-transform: uppercase;
+        }
+
       }
 
       .bio {
@@ -180,6 +201,8 @@
     button {
       @include button-2-l;
       margin-bottom: 20px;
+      align-self: center;
+      margin-top: 20px;
     }
   }
   .skills {
@@ -247,20 +270,19 @@
 .account-info-container,
 .update-password-container,
 .preferences-container {
-  @media only screen and (min-width: 550px) {
-    padding-left: 100px;
+  @media only screen and (min-width: 760px) {
   }
   .tab-title {
     margin-bottom: 35px;
     font-size: 32px;
     @include source-sans-light;
     color: $ui-light-gray;
-    @media only screen and (min-width: 550px) {
+    @media only screen and (min-width: 760px) {
       margin-top: 50px;
     }
   }
   .fields {
-    @media only screen and (min-width: 550px) {
+    @media only screen and (min-width: 760px) {
       margin-left: 3px;
     }
   }
@@ -331,6 +353,8 @@
 
 .settings-section {
   @media only screen and (min-width: 760px) {
+    padding-top: 40px;
+    padding-bottom: 40px;
     .section-info {
       h2 {
         font-size: 18px;
@@ -340,7 +364,7 @@
       }
     }
     &.tracks {
-      padding-bottom: 20px;
+      padding-bottom: 40px;
       .section-fields {
         .track {
 

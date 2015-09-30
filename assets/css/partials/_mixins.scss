@@ -197,11 +197,12 @@
 @mixin button-1($disabled: #b2e7fe, $normal: #1eaefc, $hover: #199ae2, $active: #1792d7) {
   @include button-s;
   background-color: $normal;
-  &.disabled {
-    background-color: $disabled;
-  }
   &:hover {
     background-color: $hover;
+  }
+  &.disabled {
+    background-color: $disabled;
+    cursor: default;
   }
   &:active {
     background-color: $active;
@@ -256,12 +257,13 @@
   background-color: white;
   color: $fill;
   border: 1px solid $normal;
-  &.disabled {
-    border: 1px solid $disabled;
-  }
   &:hover {
     border: 1px solid $hover;
     color: $hover-fill;
+  }
+  &.disabled {
+    border: 1px solid $disabled;
+    cursor: default;
   }
   &:active {
     color: white;

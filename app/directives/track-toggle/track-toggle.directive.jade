@@ -1,5 +1,5 @@
 .track(ng-repeat="track in ['DESIGN', 'DEVELOP', 'DATA_SCIENCE']")
-  hr
+  hr(class="{{!$index  && 'first'}}")
 
   .top
     .title(ng-class="{'disabled': !tracks[track]}")
@@ -18,6 +18,8 @@
 
   .bottom
     .description
-      | Website, mobile, and product design; UI and UX
+      span(ng-if="track == 'DESIGN'") Website, mobile, and product design; UI and UX
+      span(ng-if="track == 'DEVELOP'") Software architecture, component assembly, application developent, and bug hunting
+      span(ng-if="track == 'DATA_SCIENCE'") Algorithms and data structures, statistical analysis
 
 hr
