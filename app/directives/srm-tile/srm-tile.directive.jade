@@ -18,7 +18,7 @@
       .registered(ng-show="vm.registered")
         i.fa.fa-check-circle-o
         p You are registered!
-      .unregistered(ng-hide="vm.registered")
+      .unregistered(ng-hide="true")
         button.srm-action Register
   .past-srm(ng-show="srm.status === 'PAST'")
     .challenge-track
@@ -52,7 +52,7 @@
       .registered(ng-show="vm.registered")
         i.fa.fa-check-circle-o
         p You are registered!
-      .unregistered(ng-hide="vm.registered")
+      .unregistered(ng-hide="true")
         button.srm-action Register
 
   .past-srm(ng-show="srm.status === 'PAST'")
