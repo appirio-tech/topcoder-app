@@ -32,6 +32,7 @@
         $log.warn(resp);
         switch (resp.status) {
           case "ACCOUNT_INACTIVE":
+            $state.go('registeredSuccessfully');
             // user should already be redirected
             break;
           case "UNKNOWN_ERROR":
