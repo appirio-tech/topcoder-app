@@ -200,12 +200,12 @@
   &:hover {
     background-color: $hover;
   }
+  &:active {
+    background-color: $active;
+  }
   &.disabled {
     background-color: $disabled;
     cursor: default;
-  }
-  &:active {
-    background-color: $active;
   }
 }
 
@@ -261,12 +261,12 @@
     border: 1px solid $hover;
     color: $hover-fill;
   }
+  &:active {
+    color: white;
+  }
   &.disabled {
     border: 1px solid $disabled;
     cursor: default;
-  }
-  &:active {
-    color: white;
   }
 }
 

@@ -198,6 +198,9 @@
     }
   }
   .tracks {
+    .section-fields {
+      margin-top: 40px;
+    }
     padding-bottom: 0px;
     button {
       @include button-2-l;
@@ -208,7 +211,6 @@
   }
   .skills {
     .section-info {
-
     }
     .section-fields {
       margin-top: 20px;
@@ -356,6 +358,9 @@
   @media only screen and (min-width: 760px) {
     padding-top: 40px;
     padding-bottom: 40px;
+    .section-fields {
+      margin-top: 0px;
+    }
     .section-info {
       h2 {
         font-size: 18px;
@@ -367,9 +372,7 @@
     &.tracks {
       padding-bottom: 40px;
       .section-fields {
-        .track {
-
-        }
+        margin-top: 40px;
       }
     }
     &.skills {
@@ -378,6 +381,18 @@
       }
       .section-fields {
         max-width: 760px;
+      }
+    }
+  }
+}
+.settings-container {
+  @media only screen and (min-width: 760px) {
+    .links {
+      .existing-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
       }
     }
   }

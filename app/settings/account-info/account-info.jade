@@ -38,7 +38,7 @@
               p(ng-class="{ 'has-symbol-or-number': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
           .button-container
-            button.button-l.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid") Change Password
+            button.button-l.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine", ng-class="{'disabled': vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine}") Change Password
 
 
       div(ng-show="vm.isSocialRegistration")
