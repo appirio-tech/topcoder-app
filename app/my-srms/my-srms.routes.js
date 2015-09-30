@@ -5,10 +5,12 @@
     '$stateProvider',
     '$urlRouterProvider',
     '$httpProvider',
+    '$locationProvider',
     routes
   ]);
 
-  function routes($stateProvider, $urlRouterProvider, $httpProvider) {
+  function routes($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     var states = {
       'my-srms': {
         url: '/my-srms/',

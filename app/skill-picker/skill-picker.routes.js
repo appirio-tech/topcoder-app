@@ -3,10 +3,13 @@
 
   angular.module('tc.skill-picker').config([
     '$stateProvider',
+    '$locationProvider',
     routes
   ]);
 
-  function routes($stateProvider) {
+  function routes($stateProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
+
     var states = {
       'skillPicker': {
         parent: 'root',

@@ -4,10 +4,12 @@
   angular.module('tc.sample').config([
     '$stateProvider',
     '$urlRouterProvider',
+    '$locationProvider',
     routes
   ]);
 
-  function routes($stateProvider, $urlRouterProvider) {
+  function routes($stateProvider, $urlRouterProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     var states = {
       sample: {
         parent: 'root',
