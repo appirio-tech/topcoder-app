@@ -11,6 +11,10 @@
 
     // set some $rootScope constants here
     $rootScope.DOMAIN = CONSTANTS.domain;
+    
+    $rootScope.$on('$stateChangeStart', function() {
+      vm.menuVisible = false;
+    });
 
     // TODO - enable this once we support notificaitons
     // $rootScope.$on(CONSTANTS.EVENT_USER_LOGGED_IN, function() {
