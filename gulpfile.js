@@ -84,6 +84,21 @@ gulp.task('images', ['clean-images'], function() {
     .pipe(gulp.dest(config.temp + 'images'));
 });
 
+
+gulp.task('images-orig-nav', ['build1'], function() {
+  log('Copying original images');
+  return gulp
+     .src(config.assets + 'images/nav/**.*')
+    .pipe(gulp.dest(config.build + 'images/nav'));
+});
+
+gulp.task('images-orig', ['images-orig-nav'], function() {
+  log('Copying original images');
+  return gulp
+     .src(config.assets + 'images/skills/**.*')
+    .pipe(gulp.dest(config.build + 'images/skills'));
+});
+
 gulp.task('clean', function(done) {
   var delconfig = [].concat(config.build, config.temp);
   log('Cleaning: ' + $.util.colors.blue(delconfig));
@@ -223,7 +238,7 @@ gulp.task('optimize', ['inject', 'test', 'ngConstants', 'images'], function() {
     .pipe(gulp.dest(config.build));
 });
 
-gulp.task('build', ['optimize', 'dev-fonts'], function() {
+gulp.task('build1', ['optimize', 'dev-fonts'], function() {
   log('Building everything');
 
   var msg = {
@@ -234,6 +249,8 @@ gulp.task('build', ['optimize', 'dev-fonts'], function() {
   del(config.temp);
   log(msg);
 });
+
+gulp.task('build', ['images-orig']);
 
 gulp.task('build-specs', ['templatecache', 'ngConstants'], function() {
   log('Building the spec runner');

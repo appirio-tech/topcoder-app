@@ -19,7 +19,7 @@
     vm.tags = [];
     vm.profileFormProcessing = false;
     vm.tracks = {};
-
+    vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
     activate();
 
     function activate() {

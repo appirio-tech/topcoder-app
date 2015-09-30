@@ -3,12 +3,17 @@
 
   p.instruction Hi {{vm.username}}! Your account is now active. To Help other members get to know you, select the tracks in which you're interested, and specify some of your skills. You can edit this information later on your Profile.
 
-  
+  .tracks-container
+    .title tracks
+    .description Topcoder’s three categories of challenges… please pick at least one based on your skills and interests.
+    .tracks
+      track-toggle(tracks="vm.tracks")
+
   .skills-container
     .title skills
     .description Languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well. Please select from some popular skills. You can add others later on you Profile.
 
-    .skills-section(ng-show="vm.tracks.design")
+    .skills-section(ng-show="vm.tracks.DESIGN")
       .track-title select design skills
 
       .skills
@@ -16,11 +21,11 @@
           ng-class="{'selected-skill': vm.mySkills.indexOf(tag.id.toString()) > -1}")
           a(ng-click="vm.toggleSkill(tag.id.toString())")
             .icon 
-              i.fa.fa-github
+              img(ng-src="{{vm.ASSET_PREFIX}}/images/skills/id-{{tag.id}}.svg", fallback-src="{{vm.ASSET_PREFIX}}/images/skills/id-design.svg")
             .name {{tag.name}}
           
 
-    .skills-section(ng-show="vm.tracks.develop")
+    .skills-section(ng-show="vm.tracks.DEVELOP")
       .track-title select development skills
 
       .skills
@@ -28,10 +33,10 @@
           ng-class="{'selected-skill': vm.mySkills.indexOf(tag.id.toString()) > -1}")
           a(ng-click="vm.toggleSkill(tag.id.toString())")
             .icon 
-              i.fa.fa-github
+              img(ng-src="{{vm.ASSET_PREFIX}}/images/skills/id-{{tag.id}}.svg", fallback-src="{{vm.ASSET_PREFIX}}/images/skills/id-develop.svg")
             .name {{tag.name}}
 
-    .skills-section(ng-show="vm.tracks.dataScience")
+    .skills-section(ng-show="vm.tracks.DATA_SCIENCE")
       .track-title select data science skills
 
       .skills
@@ -39,8 +44,12 @@
           ng-class="{'selected-skill': vm.mySkills.indexOf(tag.id.toString()) > -1}")
           a(ng-click="vm.toggleSkill(tag.id.toString())")
             .icon 
-              i.fa.fa-github
+              img(ng-src="{{vm.ASSET_PREFIX}}/images/skills/id-{{tag.id}}.svg", fallback-src="{{vm.ASSET_PREFIX}}/images/skills/id-data.svg")
             .name {{tag.name}}
 
 
-  button.button-l(type="button", ng-click="vm.submitSkills()", ng-class="{'enabled-button': vm.tracks.design || vm.tracks.develop || vm.tracks.data_science}") Done
+  button.button-l(
+    type="button", 
+    tc-busy-button, tc-busy-when="vm.saving",
+    ng-click="vm.submitSkills()",
+    ng-class="{'enabled-button': vm.tracks.design || vm.tracks.develop || vm.tracks.data_science}") Done
