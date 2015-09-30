@@ -33,6 +33,7 @@
             minlength="1",
             ng-class="{'form-field-focused': hasFocus==true}"
           )
+          span.error-message(ng-if="vm.editProfile.$invalid") This is a required field
 
         .bio
           .form-label short bio
@@ -47,8 +48,8 @@
 
       .section-fields
         track-toggle(tracks="vm.tracks")
-
-        button(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid", ng-class="{' ': vm.editProfile.$valid}") Save Changes
+          
+        button(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': vm.editProfile.$pristine || vm.editProfile.$invalid}") Save
 
   .settings-section.skills
     .section-info
@@ -87,7 +88,6 @@
       .external-links
         external-accounts(linked-accounts="vm.linkedExternalAccounts.length", read-only="false")
         
-      .field-label(ng-show="vm.linkedExternalAccountsData") your accounts
-
+      .field-label(ng-show="vm.hasLinks") your accounts
       .existing-links
         external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccountsData")
