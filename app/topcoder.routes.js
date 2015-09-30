@@ -65,7 +65,7 @@
         url: '/',
         // template: 'This is the home page',
         controller: ['$state', function($state) {
-          $state.go('dashboard')
+          $state.go('sample')
         }]
       }
     };

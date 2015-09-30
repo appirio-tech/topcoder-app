@@ -14,6 +14,7 @@
     vm.onFileChange   = onFileChange;
     vm.updateProfile  = updateProfile;
     vm.linkedExternalAccounts = [];
+    vm.linkedExternalAccountsData = {};
     vm.skills = false;
     vm.addSkill = addSkill;
     vm.tags = [];
@@ -28,14 +29,13 @@
 
       processData(userData);
       vm.userData = userData;
+      ExternalAccountService.getLinkedExternalAccounts(userData.userId).then(function(data) {
+        vm.linkedExternalAccounts = data;
+      })
 
       ExternalAccountService.getLinkedExternalLinksData(userHandle).then(function(data) {
-        vm.linkedExternalAccounts = data.plain();
-        vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccounts, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
-
-        console.log('ext');
-        console.log(vm.hasLinks);
-        console.log(vm.linkedExternalAccounts)
+        vm.linkedExternalAccountsData = data.plain();
+        vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
       })
       .catch(function(err) {
         $log.error(JSON.stringify(err));
