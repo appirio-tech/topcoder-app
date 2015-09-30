@@ -2,7 +2,7 @@
   .top
     ul.horizontal-stats
       li.stat
-        .value.rating {{vm.typeStats.rank.rating}}
+        .value.rating(style="color: {{vm.typeStats.rank.rating | ratingColor}}") {{vm.typeStats.rank.rating}}
           span.square(style="background-color: {{vm.typeStats.rank.rating | ratingColor}}")
         .name RATING
 
