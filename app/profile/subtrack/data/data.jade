@@ -2,7 +2,7 @@
   .top
     ul.horizontal-stats
       li.stat
-        .value.rating(style="color: {{vm.typeStats.rank.rating | ratingColor}}") {{vm.typeStats.rank.rating}}
+        .value.rating {{vm.typeStats.rank.rating}}
           span.square(style="background-color: {{vm.typeStats.rank.rating | ratingColor}}")
         .name RATING
 
@@ -23,15 +23,15 @@
         .name WINS
 
     .tabs
-      a.left(id="challenges", ng-click="vm.viewing = 'challenges'",
+      a.left(id="stats", ng-click="vm.viewing = 'stats'",
+        ng-class="vm.viewing == 'stats' ? 'selected' : ''"
+      ) Statistics
+
+      a.right(id="challenges", ng-click="vm.viewing = 'challenges'",
         ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
       )
         span(ng-show="vm.subTrack == 'SRM'") Past SRMs
         span(ng-show="vm.subTrack != 'SRM'") Challenges
-
-      a.right(id="stats", ng-click="vm.viewing = 'stats'",
-        ng-class="vm.viewing == 'stats' ? 'selected' : ''"
-      ) Statistics
 
     hr
 

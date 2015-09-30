@@ -27,13 +27,13 @@
         .name RELIABILITY
 
     .tabs
-      a.left(id="challenges", ng-click="vm.viewing = 'challenges'",
-        ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
-      ) Challenges
-
-      a.right(id="stats", ng-click="vm.viewing = 'stats'",
+      a.left(id="stats", ng-click="vm.viewing = 'stats'",
         ng-class="vm.viewing == 'stats' ? 'selected' : ''"
       ) Statistics
+
+      a.right(id="challenges", ng-click="vm.viewing = 'challenges'",
+        ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
+      ) Challenges
 
     hr
 
