@@ -1,5 +1,8 @@
 .login-container
-  h1 Login
+  header
+    img(src="/images/logo_mobile.svg", alt="Topcoder Logo")
+    .arrow
+  h1 Log in to topcoder
 
   form(name="vm.loginForm", role="form", ng-submit="vm.loginForm.$valid && vm.login()", novalidate)
     .form-errors
@@ -14,19 +17,30 @@
 
     toggle-password
 
+    p.problem-signin
+      a.forgot-password(ui-sref="resetPassword") Forgot your password?
+
     button(type="submit", ng-disabled="vm.loginForm.$invalid", ng-class="{'enabled-button': vm.loginForm.$valid}") Log In
 
   section.social
-    p Log in with another account
+    p ------------ Or Log in With ------------
 
     .social-icons
-      i.fa.fa-github-square(ng-click="vm.socialLogin('github')")
-      i.fa.fa-facebook-square(ng-click="vm.socialLogin('facebook')")
-      i.fa.fa-google-plus-square(ng-click="vm.socialLogin('google-oauth2')")
-      i.fa.fa-twitter-square(ng-click="vm.socialLogin('twitter')")
+      .github
+        .ico(ng-click="vm.socialLogin('github')")
+        p Github
+      .facebook
+        .ico(ng-click="vm.socialLogin('facebook')")
+        p Facebook
+      .google-plus
+        .ico(ng-click="vm.socialLogin('google-oauth2')")
+        p Google
+      .twitter
+        .ico(ng-click="vm.socialLogin('twitter')")
+        p Twitter
 
-  a.forgot-password(ui-sref="resetPassword") Forgot your password?
-
-  p.redirect Not a member yet? 
-    a(ui-sref="register(vm.$stateParams)") Join now.
+  .join-topcoder
+    span Not a member yet? 
+    p.redirect
+      a(ui-sref="register(vm.$stateParams)") Join now
 

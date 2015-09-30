@@ -45,7 +45,7 @@
           },
           'footer@': {
             // no footer
-            template: ''
+            templateUrl: 'layout/footer/account-footer.html'
           }
         }
       },

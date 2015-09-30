@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="40px" height="40px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>facebook-blue</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="40" height="40" rx="3"></rect>
+    </defs>
+    <g id="Register-Web" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="LogIn-W-Empty" sketch:type="MSArtboardGroup" transform="translate(-535.000000, -587.000000)">
+            <g id="Log-In-Icons" sketch:type="MSLayerGroup" transform="translate(362.000000, 585.984000)">
+                <g id="Rectangle-19-+-Imported-Layers-+-FACEBOOK" transform="translate(166.000000, 0.500000)">
+                    <g id="facebook-blue" transform="translate(7.000000, 0.516000)">
+                        <g id="Rectangle-19">
+                            <use fill="#3B5998" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                            <use fill="none" xlink:href="#path-1"></use>
+                            <use fill="none" xlink:href="#path-1"></use>
+                            <use fill="none" xlink:href="#path-1"></use>
+                        </g>
+                        <path d="M27,40 L27,24 L32,24 L33,18 L27,18 L27,15 C26.683502,12.8379939 27.1788236,11.645509 30,12 L33,12 L33,6 C32.4353823,6.16461003 30.4987635,6 28,6 C23.5411621,6 20.3205007,8.81667726 20,14 L20,18 L15,18 L15,24 L20,24 L20,40 L27,40" id="Imported-Layers" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
