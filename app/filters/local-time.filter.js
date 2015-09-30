@@ -5,8 +5,9 @@
 
   function localTime() {
     var timezone = jstz.determine().name();
-    return function(input) {
-      return moment(input).tz(timezone).format('MM/DD/YY hh:mm A z');
+    return function(input, format) {
+	    format = format ? format : 'MM/DD/YY hh:mm a z';
+      return moment(input).tz(timezone).format(format);
     };
   };
 

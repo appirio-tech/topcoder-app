@@ -1,81 +1,80 @@
-(function () {
+(function() {
   'use strict';
 
   angular.module('tc.skill-picker').controller('SkillPickerController', SkillPickerController);
 
-  SkillPickerController.$inject = ['ProfileService', '$state', 'TagsService', '$log'];
+  SkillPickerController.$inject = ['CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', '$log', 'toaster'];
 
-  function SkillPickerController(ProfileService, $state, TagsService, $log) {
+  function SkillPickerController(CONSTANTS, ProfileService, $state, userProfile, featuredSkills, $log, toaster) {
     var vm = this;
-    vm.toggleSkill = toggleSkill;
-    vm.selectTrack = selectTrack;
+    $log = $log.getInstance("SkillPickerController");
+    vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
     vm.submitSkills = submitSkills;
-
+    vm.featuredSkills = featuredSkills;
+    vm.username = userProfile.handle;
+    vm.toggleSkill = toggleSkill;
+    vm.tracks = {};
+    vm.mySkills = [];
+    ///////
     activate();
 
     function activate() {
-      // TagsService.getApprovedSkillTags()
-      // .then(function(res) {
-      //   // console.log('tags: ', res);
-      // })
-      // .catch(function(err) {
-      //   $log.error(err);
-      // });
-
-      vm.noTrackSelected = true;
-
-      vm.tracks = {
-        design: false,
-        develop: false,
-        data_science: false
-      };
-
-      vm.skills = {
-        design: ['Photoshop', 'Illustrator', 'InDesign', 'UX', 'UI', 'Sketch'],
-        develop: ['Java', 'JavaScript', 'Ruby', 'Objective C', 'Python', 'SASS', 'HTML', 'CSS', 'LESS', 'C#', 'iOS', 'C++', 'PHP', 'MySQL', 'MongoDB'],
-        data_science: ['Java', 'Algorithms', 'Ruby', 'Objective C', 'Python', 'SASS', 'HTML', 'CSS', 'LESS', 'C#', 'iOS', 'C++', 'PHP', 'MySQL', 'MongoDB']
-      };
-
-      vm.selectedSkills = {
-        design: {numSkills: 0},
-        develop: {numSkills: 0},
-        data_science: {numSkills: 0}
-      };
-
-      vm.dropdown = {
-        design: false,
-        develop: false,
-        data_science: false
-      };
+      $log.debug("init")
     }
 
-    function toggleSkill(track, skill) {
-      var track = vm.selectedSkills[track];
-
-      if (!track[skill]) {
-        track[skill] = true;
-        track.numSkills += 1;
-
+    function toggleSkill(tagId) {
+      var _idx = vm.mySkills.indexOf(tagId.toString());
+      if (_idx > -1) {
+        // remove
+        vm.mySkills.splice(_idx, 1);
       } else {
-        track[skill] = false;
-        track.numSkills -= 1;
+        // add
+        vm.mySkills.push(tagId.toString());
       }
     }
 
-    function selectTrack(track) {
-      vm.tracks[track] = !vm.tracks[track];
-    }
-
     function submitSkills() {
-      ProfileService.updateUserSkills({id: 247, "hidden": false})
-      .then(function(res) {
-        $log.info("res: ");
-        $log.info(res);
-        // $state.go('dashboard');
-      })
-      .catch(function(err) {
-        $log.error(err);
-      });
+
+      vm.saving = true;
+      // save tracks
+      userProfile.tracks = _.reduce(vm.tracks, function(result, isInterested, trackName) {
+        if (isInterested) {
+          result.push(trackName);
+        }
+        return result;
+      }, []);
+
+      userProfile.save().then(function(data) {
+          if (vm.mySkills.length > 0) {
+            // save skills
+            var data = {};
+            for (var i = 0; i < vm.mySkills.length; i++) {
+              data[vm.mySkills[i]] = {
+                hidden: false
+              };
+            }
+            ProfileService.updateUserSkills(vm.username, data)
+              .then(function(resp) {
+                vm.saving = false;
+                toaster.pop('success', "Success!", "Your skills have been updated.");
+                $state.go('dashboard');
+              })
+              .catch(function(data) {
+                vm.saving = false;
+                toaster.pop('error', "Whoops", "Something went wrong. Please try again later.");
+              })
+          } else {
+            vm.saving = false;
+            toaster.pop('success', "Success!", "Your skills have been updated.");
+            $state.go('dashboard');
+          }
+
+        })
+        .catch(function(resp) {
+          vm.saving = false;
+          toaster.pop('error', "Whoops", "Something went wrong. Please try again later.");
+        })
+
     }
   }
 })();

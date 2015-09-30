@@ -1,0 +1,46 @@
+.categoryNav
+  .track(
+    ng-repeat="track in vm.profile.tracks",
+    ng-if="vm.categories[track].length > 0"
+  )
+
+    div(class="name")
+      img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data-outline.svg")
+      img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop-outline.svg")
+      img(ng-if="track == 'DESIGN'", src="/images/ico-track-design-outline.svg")
+      img(ng-if="track == 'COPILOT'", src="/images/ico-track-co_pilot-outline.svg")
+      span {{track | track | uppercase}}
+
+    .subtrack(
+      ng-repeat="subtrack in vm.categories[track]",
+      ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})",
+      ng-click="vm.closeDialog()",
+      class="{{$index == 0 && 'first'}}"
+    )
+      .name {{subtrack.subTrack | track}}
+
+      .ranking(ng-if="subtrack.rating")
+        .number.rating(style="color: {{subtrack.rating | ratingColor}}")
+          | {{subtrack.rating}}
+          span.square(style="background-color: {{subtrack.rating | ratingColor}}") 
+
+        .tag Rating
+
+      .ranking(ng-if="subtrack.rank && !subtrack.rating")
+        .number {{subtrack.rank | ordinal}}
+
+        .tag Ranking
+
+      .ranking(ng-if="subtrack.wins && !subtrack.rank && !subtrack.rating")
+        .number(style="color: #21B2F1") {{subtrack.wins}}
+
+        .tag Wins
+
+      .ranking(ng-if="subtrack.fulfillment")
+        .number {{subtrack.fulfillment + '%'}}
+
+        .tag Fulfillment
+
+      img.arrow(src="/images/ico-arrow-big-right.svg")
+
+

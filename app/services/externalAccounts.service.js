@@ -49,7 +49,7 @@
     function linkExternalAccount(provider, callbackUrl) {
       return $q(function(resolve, reject) {
         // supported backends
-        var backends = ['facebook', 'google-oauth2', 'bitbucket', 'github'];
+        var backends = ['facebook', 'google-oauth2', 'bitbucket', 'github', 'linkedin'];
         if (backends.indexOf(provider) > -1) {
           auth0.signin({
               popup: true,
@@ -69,7 +69,7 @@
                 emailVerified: false,
                 providerType: socialData.socialProvider,
                 context: {
-                  handle: user.handle,
+                  handle: socialData.username,
                   accessToken: socialData.accessToken
                 }
               };

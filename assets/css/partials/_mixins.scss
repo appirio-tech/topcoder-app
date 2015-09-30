@@ -12,13 +12,15 @@
   overflow: hidden;
 }
 
+@mixin superscript {
+  position: relative;
+  top: -0.25em;
+  font-size: 80%;
+}
+
 @mixin bluelink {
   color: $light-blue;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
+  @include link;
 
   &:visited {
     text-decoration: none;
@@ -121,6 +123,14 @@
 }
 
 // Replace with classes from style guide, when it's finished
+@mixin link {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 @mixin button-s($background: $primary-color) {
   height: 20px;
   line-height: 20px;
@@ -187,14 +197,15 @@
 @mixin button-1($disabled: #b2e7fe, $normal: #1eaefc, $hover: #199ae2, $active: #1792d7) {
   @include button-s;
   background-color: $normal;
-  &.disabled {
-    background-color: $disabled;
-  }
   &:hover {
     background-color: $hover;
   }
   &:active {
     background-color: $active;
+  }
+  &.disabled {
+    background-color: $disabled;
+    cursor: default;
   }
 }
 
@@ -246,15 +257,16 @@
   background-color: white;
   color: $fill;
   border: 1px solid $normal;
-  &.disabled {
-    border: 1px solid $disabled;
-  }
   &:hover {
     border: 1px solid $hover;
     color: $hover-fill;
   }
   &:active {
     color: white;
+  }
+  &.disabled {
+    border: 1px solid $disabled;
+    cursor: default;
   }
 }
 
@@ -348,6 +360,21 @@
   }
 }
 
+@mixin form-field {
+  padding-left: 10px;
+  margin-bottom: 5px;
+  background-color: #FCFCFC;
+  border: 1px solid #F0F0F0;
+  border-radius: 2px;
+  height: 40px;
+}
+
+@mixin form-field-focused {
+  background-color: $white;
+  border: 1px solid #D1D3D4;
+  // TODO shadow?
+}
+
 @mixin horizontal-scroll {
   white-space: nowrap;
   overflow-y: hidden;
@@ -367,26 +394,23 @@
   width: $width;
   height: $height;
   background-size: $width, $height;
+  background-repeat: no-repeat;
 }
 
 @mixin develop-icon-outline {
   background-image: url(/images/ico-track-develop-outline.svg);
-  background-repeat: no-repeat;
 }
 
 @mixin design-icon-outline {
   background-image: url(/images/ico-track-design-outline.svg);
-  background-repeat: no-repeat;
 }
 
 @mixin data-icon-outline {
   background-image: url(/images/ico-track-data-outline.svg);
-  background-repeat: no-repeat;
 }
 
 @mixin copilot-icon-outline {
   background-image: url(/images/ico-track-co_pilot-outline.svg);
-  background-repeat: no-repeat;
 }
 
 // UI REFRESH STYLES
@@ -394,7 +418,7 @@
   width: 300px;
   height: 50px;
   margin-top: 20px;
-  background-color: $ui-disabled-button-blue;
+  background-color: $button-gray;
   color: $white;
   text-transform: uppercase;
   border: 0;
@@ -414,6 +438,7 @@
   padding: 0;
   padding-left: 15px;
   border: 0;
+  background-color: $gray-lightest;
   @include source-sans-regular;
   font-size: 16px;
   color: #231F20;
@@ -421,15 +446,16 @@
 
 @mixin ui-form-placeholder {
   ::-webkit-input-placeholder {
-    color: #231F20;
+    color: #B7B7B7;
   }
-
-  ::-moz-placeholder {
-    color: #231F20;
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #B7B7B7;
   }
-
   :-ms-input-placeholder {
-    color: #231F20;
+    color: #B7B7B7;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: #B7B7B7;
   }
 }
 
@@ -439,7 +465,7 @@
 }
 
 @mixin ui-disabled-button {
-  background-color: $ui-disabled-button-blue;
+  background-color: $button-gray;
   cursor: default;
 }
 
@@ -455,4 +481,8 @@
 @mixin ui-track-button-selected {
   background-color: $ui-enabled-button-blue;
   color: $ui-page-gray;
+}
+
+@mixin ui-toggle-switch {
+
 }

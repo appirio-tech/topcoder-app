@@ -1,4 +1,62 @@
+@import '../partials/combined';
 skill-tile {
-  a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  height: 130px;
+  width: 100px;
+  .skill-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fbfbfb;
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    height: 80px;
+    width: 80px;
+    img, i {
+      font-size: 45px;
+      height: 45px;
+      width: 45px;
+    }
+    &.new {
+      background-color: #85CCFF;
+      border: 1px solid #F2FAFF;
+    }
+  }
+  .name {
+    font-family: 'Sofia Pro';
+    font-weight: 300;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12px;
+    &.hidden {
+      @include sofia-pro-light;
+      text-decoration: line-through;
+    }
+  }
+  @media (min-width: 768px) {
+    width: 100px;
+    height: 180px;
+    margin: 0 30px;
+    width: 100px;
+    .skill-icon {
+      height: 100px;
+      width: 100px;
+      i {
+        font-size: 60px;
+        height: 60px;
+        width: 60px;
+      }
+    }
+    .name {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 18px;
+    }
   }
 }

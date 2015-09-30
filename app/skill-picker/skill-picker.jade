@@ -1,102 +1,55 @@
 .skill-picker-container
   h1 Welcome to Topcoder!
 
-  p.instruction Pick your tracks and select relevant skills. This helps to get you into the community and find appropriate competitions.
+  p.instruction Hi {{vm.username}}! Your account is now active. To Help other members get to know you, select the tracks in which you're interested, and specify some of your skills. You can edit this information later on your Profile.
 
-  .track-picker
-    h1 Tell us who you are
+  .tracks-container
+    .title tracks
+    .description Topcoder’s three categories of challenges… please pick at least one based on your skills and interests.
+    .tracks
+      track-toggle(tracks="vm.tracks")
 
-    .mobile
-      .track-button(ng-click="vm.selectTrack('design')")
-        .track-checkbox
-          input(type="checkbox", ng-checked="vm.tracks.design")
+  .skills-container
+    .title skills
+    .description Languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well. Please select from some popular skills. You can add others later on you Profile.
 
-          .checkbox-toggle(ng-class="{ 'checked-track': vm.tracks.design }") #[span] Design
+    .skills-section(ng-show="vm.tracks.DESIGN")
+      .track-title select design skills
 
-      .track-button(ng-click="vm.selectTrack('develop')")
-        .track-checkbox
-          input(type="checkbox", ng-checked="vm.tracks.develop")
+      .skills
+        .skill(ng-repeat="tag in vm.featuredSkills | filter:{categories: 'DESIGN'} | orderBy:'priority':true", 
+          ng-class="{'selected-skill': vm.mySkills.indexOf(tag.id.toString()) > -1}")
+          a(ng-click="vm.toggleSkill(tag.id.toString())")
+            .icon 
+              img(ng-src="{{vm.ASSET_PREFIX}}images/skills/id-{{tag.id}}.svg", fallback-src="/images/skills/id-design.svg")
+            .name {{tag.name}}
+          
 
-          .checkbox-toggle(ng-class="{ 'checked-track': vm.tracks.develop }") #[span] Development
+    .skills-section(ng-show="vm.tracks.DEVELOP")
+      .track-title select development skills
 
-      .track-button(ng-click="vm.selectTrack('data_science')")
-        .track-checkbox
-          input(type="checkbox", ng-checked="vm.tracks.data_science")
+      .skills
+        .skill(ng-repeat="tag in vm.featuredSkills | filter:{categories: 'DEVELOP'} | orderBy:'priority':true", 
+          ng-class="{'selected-skill': vm.mySkills.indexOf(tag.id.toString()) > -1}")
+          a(ng-click="vm.toggleSkill(tag.id.toString())")
+            .icon 
+              img(ng-src="{{vm.ASSET_PREFIX}}images/skills/id-{{tag.id}}.svg", fallback-src="/images/skills/id-develop.svg")
+            .name {{tag.name}}
 
-          .checkbox-toggle(ng-class="{ 'checked-track': vm.tracks.data_science }") #[span] Data Science
+    .skills-section(ng-show="vm.tracks.DATA_SCIENCE")
+      .track-title select data science skills
 
-      p.reminder(ng-show="!vm.tracks.design && !vm.tracks.develop && !vm.tracks.data_science") Please pick at least one track, you can always change it later.
-
-      p.reminder(ng-show="vm.tracks.design || vm.tracks.develop || vm.tracks.data_science") Select your skills
-
-      .skills-container
-        .skills-section(ng-show="vm.tracks.design")
-          p Design
-
-          .track-skills
-            .track-skill(ng-repeat="skill in vm.skills.design", ng-click="vm.toggleSkill('design', skill)", ng-class="{'skill-selected': vm.selectedSkills.design[skill]}") {{skill}}
-
-        .skills-section(ng-show="vm.tracks.develop")
-          p Development
-
-          .track-skills
-            .track-skill(ng-repeat="skill in vm.skills.develop", ng-click="vm.toggleSkill('develop', skill)", ng-class="{'skill-selected': vm.selectedSkills.develop[skill]}") {{skill}}
-
-        .skills-section(ng-show="vm.tracks.data_science")
-          p Data Science
-
-          .track-skills
-            .track-skill(ng-repeat="skill in vm.skills.data_science", ng-click="vm.toggleSkill('data_science', skill)", ng-class="{'skill-selected': vm.selectedSkills.data_science[skill]}") {{skill}}
-
+      .skills
+        .skill(ng-repeat="tag in vm.featuredSkills | filter:{categories: 'DATA_SCIENCE'} | orderBy:'priority':true", 
+          ng-class="{'selected-skill': vm.mySkills.indexOf(tag.id.toString()) > -1}")
+          a(ng-click="vm.toggleSkill(tag.id.toString())")
+            .icon 
+              img(ng-src="{{vm.ASSET_PREFIX}}images/skills/id-{{tag.id}}.svg", fallback-src="/images/skills/id-data.svg")
+            .name {{tag.name}}
 
 
-
-
-
-
-
-
-
-    .desktop
-      .track-buttons
-        .track-button(ng-click="vm.selectTrack('design')")
-          .track-checkbox
-            input(type="checkbox", id="checkbox-design-mobile", ng-checked="vm.tracks.design")
-
-            label(for="checkbox-design-mobile", ng-class="{ 'checked-track': vm.tracks.design }") #[span] Design
-
-            //- span.subscript [{{vm.selectedSkills.design.numSkills}}]
-
-          .dropdown
-            i.fa(ng-class="{'fa-caret-down': vm.dropdown.design}")
-
-        .track-button(ng-click="vm.selectTrack('develop')")
-          .track-checkbox
-            input(type="checkbox", id="checkbox-develop-mobile", ng-checked="vm.tracks.develop")
-
-            label(for="checkbox-develop-mobile", ng-class="{ 'checked-track': vm.tracks.develop }") #[span] Development
-
-            //- span.subscript [{{vm.selectedSkills.develop.numSkills}}]
-
-          .dropdown
-            i.fa(ng-class="{'fa-caret-down': vm.dropdown.develop}")
-
-        .track-button(ng-click="vm.selectTrack('data_science')")
-          .track-checkbox
-            input(type="checkbox", id="checkbox-data-science-mobile", ng-checked="vm.tracks.data_science")
-
-            label(for="checkbox-data-science-mobile", ng-class="{ 'checked-track': vm.tracks.data_science }") #[span] Data Science
-
-            //- span.subscript [{{vm.selectedSkills.data_science.numSkills}}]
-
-          .dropdown
-            i.fa(ng-class="{'fa-caret-down': vm.dropdown.data_science}")
-
-      .skills-tab
-        .choose-prompt(ng-show="false") Please pick at least one track, you can always change it later.
-
-        .track-skills
-          .track-skill(ng-hide="false", ng-repeat="skill in vm.skills.data_science", ng-click="vm.toggleSkill('data_science', skill)", ng-class="{'skill-selected': vm.selectedSkills.data_science[skill]}") {{skill}}
-
-
-    button(type="button", ng-click="vm.submitSkills()", ng-class="{'enabled-button': vm.tracks.design || vm.tracks.develop || vm.tracks.data_science}") Done
+  button.button-l(
+    type="button", 
+    tc-busy-button, tc-busy-when="vm.saving",
+    ng-click="vm.submitSkills()",
+    ng-class="{'enabled-button': vm.tracks.design || vm.tracks.develop || vm.tracks.data_science}") Done

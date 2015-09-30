@@ -7,7 +7,7 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
 
     // favicon
-    link(rel="shortcut icon", type="image/png", href="images/favicon.ico")
+    link(rel="shortcut icon", type="image/png", href="{{ASSET_PREFIX}}images/favicon.ico")
 
     // build:css /styles/vendor.css
     //- bower:css
@@ -54,6 +54,7 @@ html
     link(rel="stylesheet", href="assets/css/my-challenges/my-challenges.css")
     link(rel="stylesheet", href="assets/css/layout/header.css")
     link(rel="stylesheet", href="assets/css/layout/footer.css")
+    link(rel="stylesheet", href="assets/css/directives/track-toggle.css")
     link(rel="stylesheet", href="assets/css/directives/toggle-password-with-tips.css")
     link(rel="stylesheet", href="assets/css/directives/toggle-password.css")
     link(rel="stylesheet", href="assets/css/directives/tc-section.css")
@@ -66,9 +67,11 @@ html
     link(rel="stylesheet", href="assets/css/directives/external-link-data.css")
     link(rel="stylesheet", href="assets/css/directives/external-account.css")
     link(rel="stylesheet", href="assets/css/directives/distribution-graph.css")
+    link(rel="stylesheet", href="assets/css/directives/design-lightbox.css")
     link(rel="stylesheet", href="assets/css/directives/challenge-tile.css")
     link(rel="stylesheet", href="assets/css/directives/badge-tooltip.css")
     link(rel="stylesheet", href="assets/css/account/reset-password.css")
+    link(rel="stylesheet", href="assets/css/account/registered-successfully.css")
     link(rel="stylesheet", href="assets/css/account/register.css")
     link(rel="stylesheet", href="assets/css/account/login.css")
     link(rel="stylesheet", href="assets/css/account/account.css")
@@ -83,7 +86,9 @@ html
 
     toaster-container(toaster-options="{{main.globalToasterConfig}}")
 
-    .view-container(ui-view="container")
+    .fold-wrapper
+      .view-container(ui-view="container")
+      .fold-pusher
 
     div(ui-view="footer")
 
@@ -141,6 +146,7 @@ html
     script(src="directives/account/validate-email.directive.js")
     script(src="directives/account/validate-register.directive.js")
     script(src="directives/badges/badge-tooltip.directive.js")
+    script(src="directives/busy-button/busy-button.directive.js")
     script(src="directives/challenge-tile/challenge-tile.directive.js")
     script(src="directives/distribution-graph/distribution-graph.directive.js")
     script(src="directives/external-account/external-account.directive.js")
@@ -156,6 +162,7 @@ html
     script(src="directives/srm-tile/srm-tile.directive.js")
     script(src="directives/tc-paginator/tc-paginator.directive.js")
     script(src="directives/tc-section/tc-section.directive.js")
+    script(src="directives/track-toggle/track-toggle.directive.js")
     script(src="topcoder.module.js")
     script(src="filters/deadline-msg.filter.js")
     script(src="filters/iif.filter.js")
@@ -241,6 +248,27 @@ html
     // endinject
     // endbuild
 
+    // tracking code for Marketo
+    script(type='text/javascript').
+      document.write(unescape("%3Cscript src='//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+    script.
+      Munchkin.init('921-UOU-112', {"wsInfo":"jFRS"}
+      );
+    // tracking code for Kissmetrics
+    script(type='text/javascript').
+      var _kmq = _kmq || [];
+      var _kmk = _kmk || 'aa23cd43c455ef33b6a0df3de81a79af9ea30f75';
+      function _kms(u){
+      setTimeout(function(){
+      var d = document, f = d.getElementsByTagName('script')[0],
+      s = d.createElement('script');
+      s.type = 'text/javascript'; s.async = true; s.src = u;
+      f.parentNode.insertBefore(s, f);
+      }, 1);
+      }
+      _kms('//i.kissmetrics.com/i.js');
+      _kms('//scripts.kissmetrics.com/' + _kmk + '.2.js');
+
     script(type="text/javascript").
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -269,7 +297,10 @@ html
         strings: {
           post_suggestion_title: 'Your Feedback',
           post_suggestion_body: 'Please tell us what you think of the new Topcoder experience.',
-          post_suggestion_message_placeholder: '... things you liked or bugs/issues.'
+          post_suggestion_message_placeholder: '... things you liked or bugs/issues.',
+          suggestion_title_label: 'Feedback title',
+          suggestion_title_placeholder: 'Summarize your feedback',
+          post_suggestion_submit_button: 'Submit feedback'
         }
       }]);
 

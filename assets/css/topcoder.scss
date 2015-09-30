@@ -4,16 +4,30 @@
 // Resets and top level container stylings
 html {
   min-height: 100%;
+  height: 100%;
   box-sizing: border-box;
 }
 
 *, *:before, *:after {
+  margin: 0;
   box-sizing: inherit;
 }
 
 body {
   @include source-sans-regular;
   background-color: $ui-page-gray;
+  height: 100%;
+}
+
+
+.fold-wrapper {
+  min-height: 100%;
+  @media only screen and (min-width : 992px) {
+    margin: 0 auto -270px;
+  }
+  @media only screen and (max-width : 991px) {
+    margin: 0 auto -200px;
+  }
 }
 
 .notifications {
@@ -71,7 +85,7 @@ a {
 }
 
 .form-errors {
-  width: 300px;
+  width: 380px;
 }
 
 .form-notice {
@@ -146,6 +160,15 @@ a {
     display: block;
     background-color: #7ece95;
   }
+}
+.form-input-error {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #FFCCE1;
+  border: 1px solid #FF99C2;
+  color: #FF0066;
+  // TODO change to italic
+  @include sofia-pro-regular;
 }
 
 // Sidebar form field tips (e.g. username, email, password)

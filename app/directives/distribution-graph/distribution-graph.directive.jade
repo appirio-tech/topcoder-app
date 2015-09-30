@@ -1,13 +1,15 @@
-.graph-viewer(ng-show="graphState.show == 'distribution'")
-  .distribution-graph
+.distribution-graph-directive(ng-show="graphState.show == 'distribution'")
 
-  .info-port
-    .coders(ng-if="displayCoders")
-      .num {{numCoders}}
-      .label CODERS
-    .rating(ng-if="!displayCoders")
-      .num {{rating}}
-      .label RATING
+  .graph-viewer
+    .distribution-graph
 
-    button.compare(ng-click="graphState.show = 'history'")
-      | COMPARE
+    .info-port
+      .coders(ng-if="displayCoders", style="background: {{highlightedRating || rating | ratingColor}}")
+        .num {{numCoders}}
+        .label CODERS
+      .coders(ng-if="!displayCoders", style="background: {{rating | ratingColor}}")
+        .num {{rating}}
+        .label RATING
+      button.compare(ng-click="graphState.show = 'history'")
+        | BACK TO YOUR RATING
+

@@ -94,11 +94,11 @@
 
         h2 {
           margin-top: 60px;
-          margin-bottom: 30px;
+          margin-bottom: 55px;
           @include sofia-pro-light;
           font-size: 24px;
           text-align: center;
-          color: $primary-text;
+          color: $gray-darkest;
           text-transform: uppercase;
           white-space: normal;
         }
@@ -106,8 +106,11 @@
         a {
           margin-bottom: 21px;
           @include button-m-wide;
-          @include button-ghost;
           text-decoration: none;
+
+          &:last-child {
+            @include button-ghost;
+          }
         }
       }
     }
@@ -116,19 +119,12 @@
   .srms-links {
     @include module-links;
 
-    p {
-      @include source-sans-regular;
-      font-size: 14px;
-      line-height: 20px;
-      color: $primary-text;
-      @media only screen and (min-width: 900px) {
-        font-size: 16px;
-      }
+    a {
+      @include button-m;
+      @include button-secondary;
 
-      a {
-        color: $primary-color;
-        cursor: pointer;
-        text-decoration: none;
+      &:not(:first-child) {
+        margin-left: 10px;
       }
     }
   }

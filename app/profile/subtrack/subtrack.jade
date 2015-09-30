@@ -2,11 +2,11 @@
 
   .nav
     a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
-      img.arrow(src="/images/ico-arrow-big-left.svg")
+      img.arrow(ng-src="/images/ico-arrow-big-left.svg")
 
     .breadcrumbs
       .handle
-        img.profile-circle(fallback-img="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
+        img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
         a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
           | {{vm.userHandle}}
         |  /
@@ -14,6 +14,7 @@
       .subtrack // {{vm.subTrack | track}}
 
     .right
+      i(class="fa fa-th", ng-click="vm.showNav()")
 
   include ./develop/develop.jade
   include ./design/design.jade

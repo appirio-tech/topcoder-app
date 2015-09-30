@@ -18,18 +18,20 @@
         .value {{vm.typeStats.challenges}}
         .name COMPETITIONS
 
-      li.stat(ng-if="vm.subTrack == 'MARATHON_MATCH' || vm.subTrack == 'MARATHON'")
+      li.stat(ng-if="vm.subTrack == 'MARATHON_MATCH'")
         .value {{vm.typeStats.wins}}
         .name WINS
 
     .tabs
-      a.left(id="challenges", ng-click="vm.viewing = 'challenges'",
-        ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
-      ) Challenges
-
-      a.right(id="stats", ng-click="vm.viewing = 'stats'",
+      a.left(id="stats", ng-click="vm.viewing = 'stats'",
         ng-class="vm.viewing == 'stats' ? 'selected' : ''"
-      ) Stats
+      ) Statistics
+
+      a.right(id="challenges", ng-click="vm.viewing = 'challenges'",
+        ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
+      )
+        span(ng-show="vm.subTrack == 'SRM'") Past SRMs
+        span(ng-show="vm.subTrack != 'SRM'") Challenges
 
     hr
 
@@ -37,15 +39,21 @@
       ng-show="vm.viewing == 'challenges'",
       state="vm.status.challenges"
     )
-      tc-paginator(data="vm.challenges", page-params="vm.pageparams")
-      .challenges
+      tc-paginator(data="vm.challenges", page-params="vm.pageParams")
+      .challenges(ng-hide="vm.subTrack === 'SRM'")
         .challenge.tile(ng-repeat="challenge in vm.challenges")
           challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
         .div(ng-show="!vm.challenges || vm.challenges.length == 0")
-          | no past challenges available for this user
+          | No past challenges available for this user
+
+      .challenges(ng-show="vm.subTrack == 'SRM'")
+        .challenge.tile(ng-repeat="challenge in vm.challenges")
+          srm-tile(srm="challenge", domain="vm.domain", view="'tile'")
+        .div(ng-show="!vm.challenges || vm.challenges.length == 0")
+          | No past SRMs available for this user
 
     .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
-      .graphs(ng-if="vm.subTrack == 'SRM'")
+      .graphs()
         distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
         history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
@@ -53,7 +61,7 @@
   .bottom(ng-show="vm.viewing == 'stats'")
     h2.detailed Details
 
-    ul.vertical-stats(ng-show="vm.subTrack == 'MARATHON_MATCH' || vm.subTrack == 'MARATHON'")
+    ul.vertical-stats(ng-show="vm.subTrack == 'MARATHON_MATCH'")
       li
         .left Country Rank
         .right {{vm.typeStats.rank.countryRank}}
@@ -104,7 +112,7 @@
           li.totals
             ul.row
               li.left
-                h2 DIVISION {{$index + 1}}
+                h2 {{vm.divisionName[$index]}}
                 span TOTAL
               li.success
                 h3 {{division.total.problemsSuccessful / division.total.problemsSubmitted | percentage }}
@@ -142,3 +150,39 @@
               li.failed-sys
                 h3 {{level.problemsSysByTest}}
                 span FAILED SYS. TEST
+
+      li.division
+        ul(class="{{vm.challengesSRM.levelName}}")
+          li.totals
+            ul.row
+              li.left
+                h2 CHALLENGES
+                span TOTAL
+              li.success
+                h3 {{vm.challengesSRM.total.problemsSuccessful / vm.challengesSRM.total.problemsSubmitted | percentage }}
+                span SUCCESS
+
+              li.submitted
+                h3 {{vm.challengesSRM.total.problemsSubmitted}}
+                span CREATED
+
+              li.failed
+                h3 {{vm.challengesSRM.total.problemsFailed}}
+                span FAILED
+
+          li.level(ng-repeat="level in vm.challengesSRM.levels")
+            ul.row
+              li.left
+                h3 {{level.levelName}}
+
+              li.success
+                h3 {{level.problemsSuccessful / level.problemsSubmitted | percentage }}
+                span SUCCESS
+
+              li.submitted
+                h3 {{level.problemsSubmitted}}
+                span CREATED
+
+              li.failed
+                h3 {{level.problemsFailed}}
+                span FAILED

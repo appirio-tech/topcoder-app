@@ -15,7 +15,10 @@
       getReviewEndDate: getReviewEndDate,
       getChallengeDetails: getChallengeDetails,
       processActiveDevDesignChallenges: processActiveDevDesignChallenges,
-      processActiveMarathonMatches: processActiveMarathonMatches
+      processActiveMarathonMatches: processActiveMarathonMatches,
+      processPastMarathonMatch: processPastMarathonMatch,
+      processPastSRM: processPastSRM,
+      processPastChallenges: processPastChallenges
     };
 
     return service;
@@ -78,13 +81,17 @@
         }
 
         if (challenge.userCurrentPhaseEndTime) {
-          var timeAndUnit = moment(challenge.userCurrentPhaseEndTime).fromNow(true);
-          // Split into components: ['an', 'hour'] || ['2', months]
+          var fullTime = challenge.userCurrentPhaseEndTime;
+          var timeAndUnit = moment(fullTime).fromNow(true);
+          // Split into components: ['an', 'hour'] || ['2', 'months']
           timeAndUnit = timeAndUnit.split(' ');
 
           if (timeAndUnit[0] === 'a' || timeAndUnit[0] === 'an') {
             timeAndUnit[0] = '1';
           }
+
+          // Add actual time ['2', 'months', actual date]
+          timeAndUnit.push(fullTime);
           challenge.userCurrentPhaseEndTime = timeAndUnit;
         }
       });
@@ -119,14 +126,45 @@
         }
 
         if (challenge.userCurrentPhaseEndTime) {
-          var timeAndUnit = moment(challenge.userCurrentPhaseEndTime).fromNow(true);
-          // Split into components: ['an', 'hour'] || ['2', months]
+          var fullTime = challenge.userCurrentPhaseEndTime;
+          var timeAndUnit = moment(fullTime).fromNow(true);
+          // Split into components: ['an', 'hour'] || ['2', 'months']
           timeAndUnit = timeAndUnit.split(' ');
 
           if (timeAndUnit[0] === 'a' || timeAndUnit[0] === 'an') {
             timeAndUnit[0] = '1';
           }
+
+          // Add actual time ['2', 'months', actual date]
+          timeAndUnit.push(fullTime);
           challenge.userCurrentPhaseEndTime = timeAndUnit;
+        }
+      });
+    }
+
+    function processPastMarathonMatch(challenge) {
+      challenge.status = challenge.status.trim();
+      if (Array.isArray(challenge.rounds) && challenge.rounds.length
+        && challenge.rounds[0].userMMDetails && challenge.rounds[0].userMMDetails.rated) {
+        challenge.submissionEndDate = challenge.rounds[0].systemTestEndAt;
+        challenge.newRating = challenge.rounds[0].userMMDetails.newRating;
+        challenge.pointTotal = challenge.rounds[0].userMMDetails.pointTotal;
+      }
+    }
+
+    function processPastSRM(challenge) {
+      if (Array.isArray(challenge.rounds) && challenge.rounds.length
+        && challenge.rounds[0].userSRMDetails) {
+        challenge.newRating = challenge.rounds[0].userMMDetails.newRating;
+        challenge.pointTotal = challenge.rounds[0].userMMDetails.pointTotal;
+      }
+    }
+
+    function processPastChallenges(challenges) {
+      angular.forEach(challenges, function(challenge) {
+        if (challenge.userDetails && Array.isArray(challenge.userDetails.winningPlacements)) {
+          challenge.highestPlacement = _.max(challenge.userDetails.winningPlacements);
+          challenge.wonFirst = challenge.highestPlacement == 1;
         }
       });
     }

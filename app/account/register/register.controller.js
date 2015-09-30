@@ -9,17 +9,24 @@
     $log = $log.getInstance("RegisterController");
     $log.debug("-init");
     var vm = this;
+    // prepares utm params, if available
+    var utm = {
+      source : $stateParams && $stateParams.utm_source ? $stateParams.utm_source : '',
+      medium : $stateParams && $stateParams.utm_medium ? $stateParams.utm_medium : '',
+      campaign : $stateParams && $stateParams.utm_campaign ? $stateParams.utm_campaign : ''
+    };
 
 
     // Set default for toggle password directive
     vm.defaultPlaceholder = 'Create Password';
     vm.busyMessage = CONSTANTS.BUSY_PROGRESS_MESSAGE;
 
+    // FIXME - This needs to be setup with https
     // lookup users country
-    Helpers.getCountyObjFromIP()
-      .then(function(obj) {
-        vm.countryObj = obj;
-      });
+    // Helpers.getCountyObjFromIP()
+    //   .then(function(obj) {
+    //     vm.countryObj = obj;
+    //   });
 
     vm.countries = ISO3166.getAllCountryObjects();
 
@@ -40,9 +47,9 @@
         country: {
           code: vm.country
         },
-        utmSource: '',
-        utmMedium: '',
-        utmCampaign: ''
+        utmSource: utm.source,
+        utmMedium: utm.medium,
+        utmCampaign: utm.campaign
       };
 
       if (!vm.isSocialRegistration) {
@@ -64,7 +71,7 @@
       var body = {
         param: userInfo,
         options: {
-          afterActivationURL: CONSTANTS.MAIN_URL + '/skillpicker/'
+          afterActivationURL: $state.href('skillPicker', {}, {absolute: true})
         }
       }
 

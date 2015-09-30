@@ -11,13 +11,13 @@
     var states = {
       sample: {
         parent: 'root',
-        url: '/sample/',
+        url: '/its-coming/',
         templateUrl: 'sample/sample.home.html',
         controller: 'SampleController',
         controllerAs: 'vm',
         data: {
           authRequired: false,
-          title: 'Temp Home'
+          title: 'It\'s Coming'
         }
       }
     };

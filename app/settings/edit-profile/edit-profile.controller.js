@@ -4,9 +4,9 @@
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
 
-  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS', 'TagsService'];
+  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS', 'TagsService', 'toaster'];
 
-  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, $rootScope, CONSTANTS, TagsService) {
+  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, $rootScope, CONSTANTS, TagsService, toaster) {
     $log = $log.getInstance("EditProfileCtrl");
     var vm = this;
     vm.toggleTrack    = toggleTrack;
@@ -14,10 +14,13 @@
     vm.onFileChange   = onFileChange;
     vm.updateProfile  = updateProfile;
     vm.linkedExternalAccounts = [];
+    vm.linkedExternalAccountsData = {};
     vm.skills = false;
     vm.addSkill = addSkill;
     vm.tags = [];
-
+    vm.profileFormProcessing = false;
+    vm.tracks = {};
+    vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
     activate();
 
     function activate() {
@@ -26,10 +29,13 @@
 
       processData(userData);
       vm.userData = userData;
-
-      ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId)
-      .then(function(data) {
+      ExternalAccountService.getLinkedExternalAccounts(userData.userId).then(function(data) {
         vm.linkedExternalAccounts = data;
+      })
+
+      ExternalAccountService.getLinkedExternalLinksData(userHandle).then(function(data) {
+        vm.linkedExternalAccountsData = data.plain();
+        vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
       })
       .catch(function(err) {
         $log.error(JSON.stringify(err));
@@ -46,7 +52,9 @@
 
       ProfileService.getUserSkills(vm.userData.handle)
       .then(function(skills) {
-        vm.skills = skills.skills;
+        vm.skills = _.map(skills.skills, function(el) {
+          return _.extend({}, el, {isNew: 0});
+        });
       })
       .catch(function(err) {
         $log.error(JSON.stringify(err));
@@ -60,7 +68,9 @@
           // find the new skill in response object and inject it into our existing list.
           // we dont want to replace the entire object / map  because we will lose hidden tags
           var newSkill = _.find(resp.skills, {tagId: skillTagId});
+          newSkill.isNew = new Date().getTime();
           vm.skills.push(newSkill);
+          toaster.pop("success", "Success!", "Skill added.");
         });
       }
     }
@@ -80,6 +90,7 @@
     }
 
     function updateProfile() {
+      vm.profileFormProcessing = true;
       vm.userData.tracks = _.reduce(vm.tracks, function(result, isInterested, trackName) {
         if (isInterested) {
           result.push(trackName);
@@ -89,9 +100,11 @@
 
       ProfileService.updateUserProfile(vm.userData)
       .then(function() {
+        vm.profileFormProcessing = false;
         $log.info('Saved successfully');
       })
       .catch(function(err) {
+        vm.profileFormProcessing = false;
         $log.error(err);
       });
     }
@@ -102,9 +115,9 @@
 
     function processData(userInfo) {
       vm.tracks = {
-        design: _.contains(userData.tracks, 'DESIGN'),
-        develop: _.contains(userData.tracks, 'DEVELOP'),
-        data_science: _.contains(userData.tracks, 'DATA_SCIENCE'),
+        DESIGN: _.contains(userData.tracks, 'DESIGN'),
+        DEVELOP: _.contains(userData.tracks, 'DEVELOP'),
+        DATA_SCIENCE: _.contains(userData.tracks, 'DATA_SCIENCE'),
       };
     }
   }
