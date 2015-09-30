@@ -15,7 +15,6 @@
   function HeaderDashboardController($stateParams, NotificationService, ProfileService, CONSTANTS, userIdentity, $q) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
-    vm.defaultPhotoUrl = CONSTANTS.ASSET_PREFIX + "images/avatarPlaceholder.png";
     vm.isCopilot = false;
     vm.loading = true;
     vm.hasRatings = true;

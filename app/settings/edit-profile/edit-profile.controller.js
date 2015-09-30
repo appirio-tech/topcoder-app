@@ -64,14 +64,20 @@
     function addSkill(skill) {
       if (skill) {
         var skillTagId = _.get(skill, 'originalObject.id').toString();
-        ProfileService.addUserSkill(vm.userData.handle, skillTagId).then(function(resp) {
-          // find the new skill in response object and inject it into our existing list.
-          // we dont want to replace the entire object / map  because we will lose hidden tags
-          var newSkill = _.find(resp.skills, {tagId: skillTagId});
-          newSkill.isNew = new Date().getTime();
-          vm.skills.push(newSkill);
-          toaster.pop("success", "Success!", "Skill added.");
-        });
+        // verify if skill has already been added
+        var idx = _.find(vm.skills, function(s) { return s.tagId == skillTagId});
+        // _.find returns undefined when skill isn't found
+        if (!idx) {
+          // add the skill
+          ProfileService.addUserSkill(vm.userData.handle, skillTagId).then(function(resp) {
+            // find the new skill in response object and inject it into our existing list.
+            // we dont want to replace the entire object / map  because we will lose hidden tags
+            var newSkill = _.find(resp.skills, {tagId: skillTagId});
+            newSkill.isNew = new Date().getTime();
+            vm.skills.push(newSkill);
+            toaster.pop("success", "Success!", "Skill added.");
+          });
+        }
       }
     }
 

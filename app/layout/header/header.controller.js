@@ -27,7 +27,7 @@
           { 'href': '/community/design/', 'text': 'DESIGN', 'icon': '/images/nav/scroll-design.svg' },
           { 'href': '/community/development/', 'text': 'DEVELOPMENT', 'icon': '/images/nav/scroll-develop.svg' },
           { 'href': '/community/data-science/', 'text': 'DATA SCIENCE', 'icon': '/images/nav/scroll-data.svg' },
-          { 'href': '/community/data-science/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/images/nav/srms.svg' },
+          { 'href': '/community/competitive%20programming/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/images/nav/srms.svg' },
       ],
       'community': [
           { 'href': '/community/members/', 'text': 'MEMBERS', 'icon': '/images/nav/users.svg' },
@@ -92,7 +92,5 @@
 
     // Intro data
     vm.introOptions = IntroService.getIntroData($state.$current.name);
-    console.log("into");
-    console.log(vm.introOptions);
   }
 })();

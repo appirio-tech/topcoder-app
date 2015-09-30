@@ -55,11 +55,11 @@
 
       .winner-ribbon(ng-show="challenge.wonFirst")
 
-    .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack")
+    .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack", ng-class="challenge.track")
 
       div(ng-switch-when="MARATHON_MATCH")
-        .challenge-score
-          p.score {{challenge.pointTotal}}
+        .marathon-score
+          p.score {{challenge.pointTotal || 0 }
 
           p Total Points
 

@@ -63,6 +63,13 @@
           ];
           vm.divisionName = ['DIVISION 1', 'DIVISION 2'];
           vm.challengesSRM = vm.divisions.challenges;
+          if (
+            (vm.divisions.division1.levels && vm.divisions.division1.levels.length) ||
+            (vm.divisions.division2.levels && vm.divisions.division2.levels.length) ||
+            (vm.divisions.challenges.levels && vm.divisions.challenges.levels.length)
+          ) vm.SRMDetailDisplay = true;
+          console.log('DD')
+          console.log(vm.SRMDetailDisplay)
         }
         vm.typeStats = ProfileService.getChallengeTypeStats(
           profileVm.stats,

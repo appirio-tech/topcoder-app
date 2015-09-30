@@ -5,10 +5,12 @@
     '$stateProvider',
     '$urlRouterProvider',
     '$urlMatcherFactoryProvider',
+    '$locationProvider',
     routes
   ]);
 
-  function routes($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
+  function routes($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
 
     // ensure we have a trailing slash
     $urlMatcherFactoryProvider.strictMode(true);
@@ -30,10 +32,15 @@
       '404': {
         parent: 'root',
         url: '/404/',
-        template: '<div><img ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8J45Krm40FLDAiD7_muHh081I1o4s2gPcl-uAVu5JvSL1Qqx5"></div>',
+        template: '',
+        // template: '<div><img ng-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8J45Krm40FLDAiD7_muHh081I1o4s2gPcl-uAVu5JvSL1Qqx5"></div>',
         data: {
+          authRequired: false,
           title: 'Page Not Found',
-        }
+        },
+        controller: ['CONSTANTS', function(CONSTANTS) {
+          window.location.href = CONSTANTS.MAIN_URL + '/404/';
+        }]
       },
       /**
        * Base state that all other routes should inherit from.
@@ -65,7 +72,7 @@
         url: '/',
         // template: 'This is the home page',
         controller: ['$state', function($state) {
-          $state.go('sample')
+          $state.go('dashboard');
         }]
       }
     };
