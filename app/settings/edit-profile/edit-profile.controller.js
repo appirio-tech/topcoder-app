@@ -4,9 +4,9 @@
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
 
-  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS', 'TagsService'];
+  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS', 'TagsService', 'toaster'];
 
-  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, $rootScope, CONSTANTS, TagsService) {
+  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, $rootScope, CONSTANTS, TagsService, toaster) {
     $log = $log.getInstance("EditProfileCtrl");
     var vm = this;
     vm.toggleTrack    = toggleTrack;
@@ -52,7 +52,9 @@
 
       ProfileService.getUserSkills(vm.userData.handle)
       .then(function(skills) {
-        vm.skills = skills.skills;
+        vm.skills = _.map(skills.skills, function(el) {
+          return _.extend({}, el, {isNew: 0});
+        });
       })
       .catch(function(err) {
         $log.error(JSON.stringify(err));
@@ -66,7 +68,9 @@
           // find the new skill in response object and inject it into our existing list.
           // we dont want to replace the entire object / map  because we will lose hidden tags
           var newSkill = _.find(resp.skills, {tagId: skillTagId});
+          newSkill.isNew = new Date().getTime();
           vm.skills.push(newSkill);
+          toaster.pop("success", "Success!", "Skill added.");
         });
       }
     }

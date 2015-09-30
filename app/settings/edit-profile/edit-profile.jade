@@ -75,7 +75,7 @@
       )
 
       .list
-        .skill(ng-repeat="skill in vm.skills | orderBy:'-score'")
+        .skill(ng-repeat="skill in vm.skills | orderBy:'-score' | orderBy:'-isNew'")
           skill-tile(skill="skill" enable-hide="true")
 
   .settings-section.links

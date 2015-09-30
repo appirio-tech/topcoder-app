@@ -1,11 +1,12 @@
+@import '../partials/combined';
 skill-tile {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-  height: 120px;
-  width: 80px;
+  height: 130px;
+  width: 100px;
   .skill-icon {
     display: flex;
     flex-direction: column;
@@ -21,6 +22,10 @@ skill-tile {
       height: 45px;
       width: 45px;
     }
+    &.new {
+      background-color: #85CCFF;
+      border: 1px solid #F2FAFF;
+    }
   }
   .name {
     font-family: 'Sofia Pro';
@@ -28,11 +33,10 @@ skill-tile {
     text-align: center;
     margin-top: 10px;
     font-size: 12px;
-  }
-  .hidden {
-    font-family: 'Sofia Pro';
-    font-size: 10px;
-    text-transform: uppercase;
+    &.hidden {
+      @include sofia-pro-light;
+      text-decoration: line-through;
+    }
   }
   @media (min-width: 768px) {
     width: 100px;
