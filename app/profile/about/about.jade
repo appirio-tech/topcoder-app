@@ -3,7 +3,7 @@
 
 .profile-about-container
 
-  tc-section(id="skills", ng-show="vm.displaySection.skills" state="profileVm.status.skills" class="skills")
+  tc-section(id="skills", ng-show="vm.displaySection.skills", state="profileVm.status.skills" class="skills")
 
     h3.activity Skills
 
@@ -26,7 +26,7 @@
 
       button.link-button(ui-sref="settings.profile") ADD SKILLS
 
-  tc-section(id="tcActivity", state="profileVm.status.stats")
+  tc-section(id="tcActivity", ng-show="vm.displaySection.tcActivity", state="profileVm.status.stats")
 
     .categories
 
