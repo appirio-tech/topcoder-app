@@ -39,7 +39,6 @@
     line-height: 30px;
     font-size: 20px;
     @include sofia-pro-light;
-    text-transform: uppercase;
   }
 
   a {
@@ -66,6 +65,7 @@
     @include ui-submit-button;
     width: 180px;
     border-radius: 4px;
+    align-self: center;
 
     &.enabled-button {
       @include ui-enabled-button;
