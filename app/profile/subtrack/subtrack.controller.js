@@ -38,9 +38,6 @@
     activate();
 
     function activate() {
-      if (vm.subTrack == 'SRM') {
-        vm.graphState = { show: 'distribution' };
-      }
       if (vm.track == 'DEVELOP' || vm.track == 'DATA_SCIENCE') {
         vm.distributionPromise = ProfileService.getDistributionStats(vm.track, vm.subTrack);
         vm.distributionPromise.then(function(data) {
@@ -51,6 +48,8 @@
         ProfileService.getHistoryStats(profileVm.profile.handle).then(function(data) {
           if (data.handle) {
             vm.history = ProfileService.getChallengeTypeStats(data, vm.track, vm.subTrack).history;
+            console.log('the HISTORY')
+            console.log(vm.history)
             historyDeferred.resolve(vm.history);
           }
         });
