@@ -58,7 +58,7 @@
 
         history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
-  .bottom(ng-show="vm.viewing == 'stats'")
+  .bottom(ng-show="vm.viewing == 'stats' && (vm.subTrack == 'MARATHON_MATCH' || vm.SRMDetailDisplay)")
     h2.detailed Details
 
     ul.vertical-stats(ng-show="vm.subTrack == 'MARATHON_MATCH'")
@@ -107,7 +107,7 @@
         .right {{vm.typeStats.mostRecentEventDate | date}}
 
     ul.divisions(ng-show="vm.subTrack == 'SRM'")
-      li.division(ng-repeat="division in vm.divisionList")
+      li.division(ng-repeat="division in vm.divisionList", ng-if="division.levels && division.levels.length")
         ul(class="{{division.levelName}}")
           li.totals
             ul.row
@@ -151,7 +151,7 @@
                 h3 {{level.problemsSysByTest}}
                 span FAILED SYS. TEST
 
-      li.division
+      li.division(ng-if="vm.challengesSRM.levels && vm.challengesSRM.levels.length")
         ul(class="{{vm.challengesSRM.levelName}}")
           li.totals
             ul.row

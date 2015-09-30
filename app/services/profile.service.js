@@ -244,6 +244,7 @@
     function getDivisions(stats) {
       stats = stats.DATA_SCIENCE.SRM;
       function toObject(array) {
+        array = array || [];
         var ans = {};
         ans.total = {
           problemsSuccessful: 0,
