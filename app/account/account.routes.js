@@ -44,7 +44,6 @@
             controllerAs: 'vm'
           },
           'footer@': {
-            // no footer
             templateUrl: 'layout/footer/account-footer.html'
           }
         }
@@ -65,7 +64,6 @@
             controllerAs: 'vm'
           },
           'footer@': {
-            // no footer
             templateUrl: 'layout/footer/account-footer.html'
           }
         }
@@ -82,6 +80,9 @@
           },
           'container@': {
             templateUrl: 'account/register/registered-successfully.html'
+          },
+          'footer@': {
+            templateUrl: 'layout/footer/account-footer.html'
           }
         }
       },
@@ -99,6 +100,9 @@
             templateUrl: 'account/reset-password/reset-password.html',
             controller: 'ResetPasswordController',
             controllerAs: 'vm'
+          },
+          'footer@': {
+            templateUrl: 'layout/footer/account-footer.html'
           }
         }
       },
