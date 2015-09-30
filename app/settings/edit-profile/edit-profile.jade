@@ -48,7 +48,7 @@
 
       .section-fields
         track-toggle(tracks="vm.tracks")
-          
+
         button(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': vm.editProfile.$pristine || vm.editProfile.$invalid}") Save
 
   .settings-section.skills
@@ -87,7 +87,7 @@
       .field-label Link your accounts
       .external-links
         external-accounts(linked-accounts="vm.linkedExternalAccounts.length", read-only="false")
-        
+
       .field-label(ng-show="vm.hasLinks") your accounts
       .existing-links
         external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccountsData")
