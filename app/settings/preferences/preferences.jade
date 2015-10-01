@@ -1,31 +1,36 @@
 .preferences-container
-  h1.tab-title Preferences
     ul
       li
-        a(href="http://thecloud.appirio.com/email_prefs_request.html", target="_blank") Email notifications
-
-      hr
-
-      li
-        a(href="https://apps.{{DOMAIN}}/forums/", target="_blank") Forums
-
-      hr
+        a(href="http://thecloud.appirio.com/email_prefs_request.html", target="_blank")
+          .icon
+            i.fa.fa-envelope
+          span Email Preferences
+          .description Specify what kind of email you would like to receive from us
 
       li
-        a(href="https://community.{{DOMAIN}}/tc?module=EditPaymentPreferences", target="_blank") Payments
-
-  h1.tab-title Documentation
-    ul
-      li
-        a(href="https://community.{{DOMAIN}}/PactsMemberServlet?module=PaymentHistory", target="_blank") Payment history
-
-      hr
+        a(href="https://apps.{{DOMAIN}}/forums/", target="_blank")
+          .icon
+            i.fa.fa-comment
+          span Forum Preferences
+          .description Change how forums are displayed and when you're notified regarding activity
 
       li
-        a(href="https://community.{{DOMAIN}}/tc?module=VisaSelection", target="_blank") Visa letter status
+        a(href="https://community.{{DOMAIN}}/tc?module=EditPaymentPreferences", target="_blank")
+          .icon
+            i.fa.fa-credit-card
+          span Payment Preferences
+          .description Select your preferred payment method and set accrual limits
 
-  h1.tab-title Community
-
-    ul
       li
-        a(href="https://community.{{DOMAIN}}/tc?module=ViewReferrals", target="_blank") Referrals
+        a(href="https://community.{{DOMAIN}}/tc?module=VisaSelection", target="_blank")
+          .icon
+            i.fa.fa-user
+          span Invitation Letter
+          .description Need a visa letter for a Topcoder event? Get one here.
+
+      li
+        a(href="https://community.{{DOMAIN}}/tc?module=ViewReferrals", target="_blank")
+          .icon
+            i.fa.fa-users
+          span Referrals
+          .description If you participated in our past referral program, see who registered using your invitation link

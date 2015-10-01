@@ -3,17 +3,33 @@
 
   angular.module('tc.skill-picker').config([
     '$stateProvider',
+    '$locationProvider',
     routes
   ]);
 
-  function routes($stateProvider) {
+  function routes($stateProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
+
     var states = {
       'skillPicker': {
         parent: 'root',
-        url: '/skillpicker/',
+        url: '/skill-picker/',
         data: {
           authRequired: true,
           title: 'Skill Picker'
+        },
+        resolve: {
+          userIdentity: ['UserService', function(UserService) {
+            return UserService.getUserIdentity();
+          }],
+          userProfile: ['userIdentity', 'ProfileService', function(userIdentity, ProfileService) {
+            return ProfileService.getUserProfile(userIdentity.handle.toLowerCase());
+          }],
+          featuredSkills: ['TagsService', function(TagsService) {
+            return TagsService.getApprovedSkillTags().then(function(res) {
+              return _.filter(res, function(s) { return s.priority > 0});
+            });
+          }]
         },
         views: {
           'header@': {

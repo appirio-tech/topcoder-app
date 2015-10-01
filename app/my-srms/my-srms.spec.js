@@ -34,11 +34,23 @@ describe('My SRMs Controller', function() {
     sinon.stub(srmService, 'getSRMs', function(data) {
       var deferred = $q.defer();
       var resp = null;
-      if (data.filter.indexOf('listType=past') != -1) {
+      if (data.filter.indexOf('status=future') != -1) {
         resp = JSON.parse(JSON.stringify(srms));
       } else {
         resp = JSON.parse(JSON.stringify(srms.slice(1)));
       }
+      resp.pagination = {
+        total: resp.length,
+        pageIndex: 1,
+        pageSize: 10
+      };
+      deferred.resolve(resp);
+      return deferred.promise;
+    });
+
+    sinon.stub(srmService, 'getPastSRMs', function(data) {
+      var deferred = $q.defer();
+      var resp = JSON.parse(JSON.stringify(srms.slice(1)));
       resp.pagination = {
         total: resp.length,
         pageIndex: 1,
@@ -81,7 +93,7 @@ describe('My SRMs Controller', function() {
 
     it('mySRMs.srms should be initialized', function() {
       // by default it should load upcoming SRMs
-      expect(mySRMs.listType).to.equal('future');
+      expect(mySRMs.listType).to.equal('past');
       expect(mySRMs.srms).to.exist;
       expect(mySRMs.srms.length).to.equal(srms.length - 1);
     });
@@ -102,24 +114,24 @@ describe('My SRMs Controller', function() {
       expect(mySRMs).to.exist;
     });
 
-    it('past SRMs should be fetched', function() {
-      expect(mySRMs.listType).to.equal('future');
-      expect(mySRMs.srms).to.exist;
-      // should have one less srm for upcoming filter as per mocked method
-      expect(mySRMs.srms.length).to.equal(srms.length - 1);
-      // apply past filter
-      mySRMs.viewPastSRMs();
-      $rootScope.$apply();
+    it('upcoming SRMs should be fetched', function() {
       expect(mySRMs.listType).to.equal('past');
+      expect(mySRMs.srms).to.exist;
+      // should have one less srm for past filter as per mocked method
+      expect(mySRMs.srms.length).to.equal(srms.length - 1);
+      // apply upcoming filter
+      mySRMs.viewUpcomingSRMs();
+      $rootScope.$apply();
+      expect(mySRMs.listType).to.equal('future');
       expect(mySRMs.srms).to.exist;
       // should have one extra srm for past filter as per mocked method
       expect(mySRMs.srms.length).to.equal(srms.length);
     });
 
-    it('upcoming SRMs should be fetched', function() {
-      // apply upcoming filter
-      mySRMs.viewUpcomingSRMs();
-      expect(mySRMs.listType).to.equal('future');
+    it('past SRMs should be fetched', function() {
+      // apply past filter
+      mySRMs.viewPastSRMs();
+      expect(mySRMs.listType).to.equal('past');
       $rootScope.$apply();
       expect(mySRMs.srms).to.exist;
       // should have one less srm for upcoming filter as per mocked method

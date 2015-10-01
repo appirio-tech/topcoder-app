@@ -56,13 +56,13 @@
 
     function loadChallenges() {
       var challengePromises = [
-        ChallengeService.getiOSChallenges({
+        ChallengeService.getChallenges({
           filter: "reviewType=peer&status=active",
           limit: 3,
           offset: 0,
           orderBy: 'submissionEndDate'
         }),
-        ChallengeService.getiOSChallenges({
+        ChallengeService.getChallenges({
           filter: "technologies=ios,swift&status=active",
           limit: 3,
           offset: 0,

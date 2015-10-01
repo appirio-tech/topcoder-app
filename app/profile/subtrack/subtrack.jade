@@ -2,19 +2,21 @@
 
   .nav
     a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
-      img.arrow(src="/images/ico-arrow-big-left.svg")
+      img.arrow(ng-src="/images/ico-arrow-big-left.svg")
 
     .breadcrumbs
       .handle
-        img.profile-circle(fallback-img="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
-        | {{vm.userHandle}} /
+        img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
+        a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
+          | {{vm.userHandle}}
+        |  /&nbsp;
       .track {{vm.track | track}}
-      .subtrack // {{vm.subTrack | track}}
+      .subtrack &nbsp;// {{vm.subTrack | track}}
 
     .right
-
-  hr
+      i(class="fa fa-th", ng-click="vm.showNav()")
 
   include ./develop/develop.jade
   include ./design/design.jade
+  include ./data/data.jade
   include ./copilot/copilot.jade

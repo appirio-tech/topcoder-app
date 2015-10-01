@@ -1,113 +1,403 @@
 @import '../partials/combined';
-
-.settings-container {
+.settings-header {
+  @include module-full-width;
+  background-color: $white;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, .3);
 
   header {
     display: flex;
     flex-direction: column;
-    padding-bottom: 10px;
-
-    @media only screen and (min-width: 550px) {
-      display: flex;
+    align-items: center;
+    max-width: 1242px;
+    margin: 0 auto;
+    padding-top: 20px;
+    @media only screen and (min-width: 600px) {
       flex-direction: row;
-      align-items: baseline;
-      padding: 20px 0 7px 100px;
+      justify-content: space-between;
+      padding: 25px 25px 23px;
     }
-
+    @media only screen and (min-width: 900px) {
+      padding: 40px 50px 33px;
+    }
     h1 {
-      @include ui-h1;
-      color: $ui-blue;
-      @media only screen and (min-width: 550px) {
-        margin-right: 75px;
-      }
-    }
-
-    nav {
-      display: flex;
-      flex-direction: column;
-
-      @media only screen and (min-width: 550px) {
-        display: flex;
-        flex-direction: row;
-      }
-
-      li {
-        display: block;
-        margin-top: 10px;
-
-        @media only screen and (min-width: 550px) {
-          display: inline-block;
-          margin-right: 30px;
-        }
-      }
-
-      a {
-        @include source-sans-light;
-        font-size: 18px;
-        color: $ui-blue;
-        text-decoration: underline;
-        cursor: pointer;
+      margin-bottom: 10px;
+      @include sofia-pro-bold;
+      font-size: 22px;
+      line-height: 26px;
+      color: black;
+      text-transform: uppercase;
+      @media only screen and (min-width: 768px) {
+        margin-bottom: 0;
+        font-size: 32px;
+        line-height: 38px;
       }
     }
   }
+}
 
+.settings-container {
+  @include module-l;
+  @media only screen and (min-width: 768px) {
+    margin-top: 80px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    @media only screen and (min-width: 768px) {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+    }
+    li {
+      display: inline-block;
+      margin-right: 35px;
+      @media only screen and (min-width: 768px) {
+      }
+    }
+    a {
+      @include sofia-pro-medium;
+      font-size: 14px;
+      color: #A3A3AE;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      @media only screen and (min-width: 768px) {
+        font-size: 16px;
+      }
+    }
+  }
   .active-tab {
-    color: $ui-gray;
-    text-decoration: none;
-    cursor: default;
+    padding: 0 5px 6px;
+    border-bottom: 4px #0096FF solid;
+    color: black;
   }
 
   hr {
     border-width: 1px 0 0 0;
+    &.nav-line {
+      width: 95%;
+      margin-top: 7px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
-
-
   // Common element stylings
-  button {
-    @include ui-submit-button;
+  .button-l {
+    @include button-l;
   }
 
   @include ui-form-placeholder;
-
   input:not([type="checkbox"]) {
     @include ui-form-field;
+    height: 38px;
+  }
+  .settings-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    @media only screen and (min-width: 768px) {
+      flex-direction: row;
+      padding-bottom: 40px;
+    }
+    border-bottom: 1px solid;
+    border-color: #F0F0F0;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    .section-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-self: flex-start;
+      @media only screen and (min-width: 768px) {
+        width: 270px;
+        margin-right: 33px;
+      }
+
+      h2 {
+        text-transform: uppercase;
+        @include sofia-pro-light;
+        font-size: 16px;
+      }
+
+      .description {
+        font-size: 13px;
+        line-height: 20px;
+        color: #A3A3AE;
+        font-family: 'Source Sans Pro';
+        font-style: italic;
+        margin-top: 5px;
+      }
+    }
+    .section-fields {
+      display: flex;
+      flex-direction: column;
+      @media only screen and (min-width: 768px) {
+        border-left: 6px solid #F6F6F6;
+        padding-left: 60px;
+        width: 65%;
+      }
+      .form-label {
+        @include sofia-pro-regular;
+        font-size: 12px;
+        color: black;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        margin-top: 5px;
+      }
+      .form-field {
+        @include form-field;
+        @include ui-form-placeholder;
+        &:disabled {
+          color: #B7B7B7;
+        }
+      }
+      .form-field-focused {
+        @include form-field-focused;
+      }
+      .image {
+        .edit-image {
+          img.profile-circle {
+            margin-top: 10px;
+          }
+        }
+      }
+      .country {
+        margin-top: 30px;
+
+        input {
+          background-color: white;
+        }
+
+        span.error-message {
+          color: #EF3A3A;
+          font-family: 'Sofia Pro';
+          font-size: 10px;
+          text-transform: uppercase;
+        }
+
+      }
+
+      .bio {
+        margin-top: 30px;
+
+        textarea {
+          background: white;
+          width: 100%;
+          height: 80px;
+        }
+      }
+    }
+  }
+  .tracks {
+    padding-bottom: 0px;
+
+    .section-fields {
+      margin-top: 40px;
+    }
+
+    button {
+      @include button-2-l;
+      margin-bottom: 20px;
+      align-self: center;
+      margin-top: 20px;
+    }
+  }
+  .skills {
+    .section-fields {
+      margin-top: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .field-label, angucomplete-alt {
+        align-self: flex-start;
+      }
+
+      .field-label {
+        font-family: 'Sofia Pro';
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+
+      angucomplete-alt {
+        width: 100%;
+        margin-top: 6px;
+
+        input {
+          font-family: 'Source Sans Pro';
+          font-style: italic;
+          color: #7f7f7f;
+        }
+      }
+
+      .list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 20px;
+
+        .skill {
+          margin: 0 20px 10px;
+          @media only screen and (min-width: 768px) {
+            margin: 0;
+            margin-right: 30px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+  }
+  .links {
+    .field-label {
+      font-family: 'Sofia Pro';
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    .existing-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
   }
 }
 
 // Tab content
-.edit-profile-container, .account-info-container, .update-password-container, .preferences-container {
-  @media only screen and (min-width: 550px) {
-    padding-left: 100px;
+.edit-profile-container,
+.account-info-container,
+.update-password-container,
+.preferences-container {
+  @media only screen and (min-width: 768px) {
   }
-
   .tab-title {
     margin-bottom: 35px;
     font-size: 32px;
     @include source-sans-light;
     color: $ui-light-gray;
-    @media only screen and (min-width: 550px) {
+    @media only screen and (min-width: 768px) {
       margin-top: 50px;
     }
   }
-
   .fields {
-    @media only screen and (min-width: 550px) {
+    @media only screen and (min-width: 768px) {
       margin-left: 3px;
     }
   }
-
   .field-section {
     margin-bottom: 40px;
-
     h4 {
       margin-bottom: 10px;
       font-size: 18px;
       color: $ui-dark-gray;
     }
-
     p:not(.form-error) {
       font-size: 14px;
       color: $ui-light-gray;
+    }
+  }
+}
+
+.onoffswitch {
+    position: relative; width: 60px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border-radius: 36px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 26px; padding: 0; line-height: 26px;
+    font-size: 15px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "";
+    padding-left: 10px;
+    background-color: #0096ff;
+    color: #0096ff;
+}
+.onoffswitch-inner:after {
+    content: "";
+    padding-right: 10px;
+    background-color: #d1d3d4;
+    color: #d1d3d4;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 19px; margin: 3.5px;
+    height: 19px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    margin-top: 3.45px;
+    right: 30px;
+    border: none;
+    border-radius: 36px;
+    transition: all 0.3s ease-in 0s;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+
+.settings-section {
+  @media only screen and (min-width: 768px) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    .section-fields {
+      // Remove !important during refactor
+      margin-top: 0px !important;
+    }
+    .section-info {
+      h2 {
+        font-size: 18px;
+      }
+      .description {
+        margin-top: 10px;
+      }
+    }
+    &.tracks {
+      padding-bottom: 40px;
+      .section-fields {
+        margin-top: 40px;
+      }
+    }
+    &.skills {
+      input {
+        width: 100%;
+      }
+      .section-fields {
+        max-width: 768px;
+      }
+    }
+  }
+}
+.settings-container {
+  @media only screen and (min-width: 768px) {
+    .links {
+      .existing-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
     }
   }
 }

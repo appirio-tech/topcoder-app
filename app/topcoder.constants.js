@@ -27,7 +27,8 @@ angular.module("CONSTANTS", [])
 	"EVENT_PROFILE_UPDATED": "profile_updated",
 	"STATE_LOADING": "loading",
 	"STATE_ERROR": "error",
-	"STATE_READY": "ready"
+	"STATE_READY": "ready",
+	"BUSY_PROGRESS_MESSAGE": "Processing.."
 })
 
 ;

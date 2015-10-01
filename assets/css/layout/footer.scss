@@ -1,7 +1,7 @@
 @import '../partials/combined';
 
 .bottom-footer {
-	background-color: $primary-text;
+	background-color: $gray-darkest;
 	padding: 1px 20px 30px 20px;
 }
 
@@ -34,6 +34,9 @@
 
 
 @media only screen and (max-width : 991px) {
+	.bottom-footer, .fold-pusher {
+		height: 200px;
+	}
 	.bottom-footer .menu-item {
 		display: none;
 		margin-top: 30px;
@@ -71,6 +74,9 @@
 }
 
 @media only screen and (min-width : 992px) {
+	.bottom-footer, .fold-pusher {
+		height: 270px;
+	}
 	.bottom-footer {
 		padding-top: 40px;
 
@@ -87,12 +93,22 @@
 				font-size: 16px;
 				line-height: 21px;
 			}
+			.menu-link:hover {
+			    color: #0096ff;
+			}
 		}
 	}
 
 	.copyright-notice {
 		font-size: 15px;
     	color: #fff;
+	}
+
+	.account-footer {
+		.copyright-notice {
+		    font-size: 12px;
+		    color: #656565;
+		}
 	}
 
 	.social-links {

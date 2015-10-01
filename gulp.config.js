@@ -74,7 +74,7 @@ module.exports = function() {
     specs: [app + '**/*.spec.js'],
 
     // Karma and testing settings
-    specHelpers: ['tests/test-helpers/*.js', 'app/blocks/loggers/logEnhaner.js'],
+    specHelpers: ['tests/test-helpers/*.js', 'app/blocks/logger/logEnhaner.js'],
     serverIntegrationSpecs: ['tests/server-integration/**/*.spec.js'],
 
     // AWS settings

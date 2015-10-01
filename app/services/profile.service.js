@@ -16,6 +16,7 @@
 
       getUserSkills: getUserSkills,
       addUserSkill: addUserSkill,
+      updateUserSkills: updateUserSkills,
       hideUserSkill: hideUserSkill,
 
       getUserFinancials: getUserFinancials,
@@ -27,6 +28,7 @@
       getChallengeTypeStats: getChallengeTypeStats,
       getTracks: getTracks,
       getSubTracks: getSubTracks,
+      getDivisions: getDivisions,
       // for profile - to be deprecated
       getMockMemberProfile: getMockMemberProfile
     };
@@ -49,6 +51,11 @@
     function addUserSkill(username, skillTagId) {
       var body = { skills: {} };
       body['skills'][skillTagId] = { 'hidden': false };
+      return restangular.one('members', username).one('skills').patch(body);
+    }
+
+    function updateUserSkills(username, skills) {
+      var body = { "skills": skills };
       return restangular.one('members', username).one('skills').patch(body);
     }
 
@@ -85,13 +92,15 @@
       if (!stats) {
         return [];
       }
-      var dev = [], design = [], srm = [], marathon = [], copilot = [];
+      var dev = [], design = [], dataScience = [], copilot = [];
+
       if (stats.DEVELOP && stats.DEVELOP.subTracks) {
         dev = stats.DEVELOP.subTracks.map(function(subTrack) {
           return {
             'track': 'DEVELOP',
             'subTrack': subTrack.name,
             'rank': subTrack.rank ? subTrack.rank.overallRank : 0,
+            'rating': subTrack.rank.rating || 0,
             'wins': subTrack.wins
           };
         });
@@ -109,39 +118,43 @@
       }
       if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.SRM && stats.DATA_SCIENCE.SRM.rank) {
         var srmStats = stats.DATA_SCIENCE.SRM;
-        srm = {
+        dataScience.push({
           'track': 'DATA_SCIENCE',
           'subTrack': 'SRM',
-          'rank': srmStats.rank.rating
-        };
+          'rank': srmStats.rank.rank,
+          'rating': srmStats.rank.rating
+        });
       }
       if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.MARATHON_MATCH && stats.DATA_SCIENCE.MARATHON_MATCH.rank) {
         var marathonStats = stats.DATA_SCIENCE.MARATHON_MATCH;
-        marathon = {
+        dataScience.push({
           'track': 'DATA_SCIENCE',
-          'subTrack': 'MARATHON',
-          'rank': marathonStats.rank.rating
-        };
+          'subTrack': 'MARATHON_MATCH',
+          'rank': marathonStats.rank.rank,
+          'rating': marathonStats.rank.rating
+        });
       }
       if (stats.COPILOT) {
-        copilot = stats.COPILOT;
-        copilot.track = 'Co-Pilot';
+        copilot =  [
+          stats.COPILOT
+        ];
+        stats.COPILOT.track = 'COPILOT';
+        stats.COPILOT.subTrack = 'COPILOT';
       }
-      var ans = {
+      var compiledStats = {
         'DEVELOP': removeRankless(dev),
         'DESIGN': removeRankless(design),
-        'MARATHON': marathon,
-        'SRM': srm,
-        'CO_PILOT': copilot
+        'DATA_SCIENCE': removeRankless(dataScience),
+        'COPILOT': copilot
       };
 
       function removeRankless(arr) {
-        return arr
-          .filter(function(subTrack) {
-            return subTrack && (subTrack.rank || subTrack.wins || subTrack.fulfillment);
-          });
+        return arr.filter(function(subTrack) {
+          return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment);
+        });
       }
-      return ans;
+
+      return compiledStats;
     }
 
     function getChallengeTypeStats(stats, track, type) {
@@ -163,8 +176,27 @@
         var ans = stats.COPILOT;
         return ans;
       } else if (type == 'SRM') {
+        if (stats.DATA_SCIENCE.SRM.history) {
+          stats.DATA_SCIENCE.SRM.history.map(function(point) {
+            point.ratingDate = point.date;
+            point.newRating = point.rating;
+          });
+          stats.DATA_SCIENCE.SRM.history.sort(function(x, y) {
+            return moment(x.date).toDate() - moment(y.date).toDate();
+          });
+        }
         return stats.DATA_SCIENCE.SRM;
       } else {
+        if (stats.DATA_SCIENCE.MARATHON_MATCH.history) {
+          stats.DATA_SCIENCE.MARATHON_MATCH.history.map(function(point) {
+            point.ratingDate = point.date;
+            point.newRating = point.rating;
+          });
+          stats.DATA_SCIENCE.MARATHON_MATCH.history.sort(function(x, y) {
+            return moment(x.date).toDate() - moment(y.date).toDate();
+          });
+        }
+
         return stats.DATA_SCIENCE.MARATHON_MATCH;
       }
     }
@@ -207,6 +239,42 @@
         return track.name;
       });
       return tracks;
+    }
+
+    function getDivisions(stats) {
+      stats = stats.DATA_SCIENCE.SRM;
+      function toObject(array) {
+        array = array || [];
+        var ans = {};
+        ans.total = {
+          problemsSuccessful: 0,
+          problemsFailed: 0,
+          problemsSubmitted: 0,
+          problemsSysByTest: 0
+        };
+        array.forEach(function(level) {
+          level.problemsFailed = level.problemsFailed || level.failedChallenges || 0;
+          level.problemsSubmitted = level.problemsSubmitted || level.challenges || 0;
+          level.problemsSuccessful = (level.problemsSubmitted - level.problemsFailed) || 0;
+          level.percentSuccessful = (level.problemsSuccessful / (level.problemsSubmitted || 1)) || 0;
+          ans.total.problemsSuccessful += level.problemsSuccessful || (level.challenges - level.failedChallenges) || 0;
+          ans.total.problemsFailed += level.problemsFailed || level.failedChallenges || 0;
+          ans.total.problemsSubmitted += level.problemsSubmitted || level.challenges || 0;
+          ans.total.problemsSysByTest += level.problemsSysByTest || 0;
+          ans[level.levelName] = level;
+        });
+        ans.total.percentSuccessful = (ans.total.problemsSuccessful / (ans.total.problemsSubmitted || 1)) || 0;
+        ans.levels = [];
+        if (ans['Level One']) ans.levels.push(ans['Level One']);
+        if (ans['Level Two']) ans.levels.push(ans['Level Two']);
+        if (ans['Level Three']) ans.levels.push(ans['Level Three']);
+        return ans;
+      }
+      return {
+        division1: toObject(stats.division1),
+        division2: toObject(stats.division2),
+        challenges: toObject(stats.challengeDetails)
+      };
     }
 
     function getMockMemberProfile() {

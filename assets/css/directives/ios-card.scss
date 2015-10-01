@@ -1,7 +1,7 @@
 @import '../partials/combined';
 
 // Default Challenge Tile Stylings
-.challenge.tile-view {
+ios-card .challenge.tile-view {
   position: relative;
   width: 270px;
   border: 1px solid #DCDCDC;
@@ -30,7 +30,7 @@
       @include sofia-pro-medium;
       font-size: 14px;
       line-height: 18px;
-      color: $primary-text;
+      color: $gray-darkest;
       text-decoration: none;
       @include ellipsis;
     }
@@ -40,10 +40,6 @@
       font-size: 11px;
       line-height: 13px;
       text-transform: uppercase;
-
-      span {
-        text-transform: none;
-      }
     }
   }
 
@@ -92,7 +88,7 @@
     .time-remaining {
       margin-top: 5px;
       font-size: 24px;
-      color: $primary-text;
+      color: $gray-darkest;
     }
 
     .unit-of-time {
@@ -111,7 +107,7 @@
   .roles {
     min-height: 36px;
     margin-bottom: 25px;
-    color: $primary-text;
+    color: $gray-darkest;
     @include source-sans-regular;
     font-size: 13px;
     line-height: 18px;
@@ -150,7 +146,7 @@
     p {
       @include sofia-pro-bold;
       font-size: 11px;
-      color: $primary-text;
+      color: $gray-darkest;
     }
 
     .forum p {
@@ -181,22 +177,24 @@
     height: 17px;
     background-image: url(/images/ico-posts.svg);
   }
+
+  // Dynamic colors based on track
+  &.DESIGN {
+    .challenge-track { background-color: $design; }
+    header p { color: $design; }
+  }
+  &.DEVELOP {
+    .challenge-track { background-color: $develop; }
+    header p { color: $develop; }
+  }
+  &.DATA_SCIENCE {
+    .challenge-track { background-color: $data_science; }
+    header p { color: $data_science; }
+  }
+  &.COPILOT {
+    .challenge-track { background-color: $copilot; }
+    header p { color: $copilot; }
+  }
 }
 
-// Dynamic colors based on track
-.DESIGN {
-  .challenge-track { background-color: $accent-color; }
-  header p { color: $accent-color; }
-}
-.DEVELOP {
-  .challenge-track { background-color: $success-color; }
-  header p { color: $success-color; }
-}
-.DATA_SCIENCE {
-  .challenge-track { background-color: #F39426; }
-  header p { color: #F39426; }
-}
-.COPILOT {
-  .challenge-track { background-color: #7F7F7F; }
-  header p { color: #7F7F7F; }
-}
+

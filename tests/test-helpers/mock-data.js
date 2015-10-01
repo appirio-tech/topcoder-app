@@ -902,7 +902,7 @@ var mockData = (function() {
       technologies: ['iOS'],
       platforms: ['iOS'],
       reviewType: 'PEER',
-      status: 'Active',
+      status: 'active',
       registrationEndDate: '2015-06-11T03:16:00.000-0400',
       numRegistrants: 1058,
       numSubmissions: 1034,
@@ -915,7 +915,7 @@ var mockData = (function() {
       platforms: [],
       totalPrize: 200,
       reviewType: 'INTERNAL',
-      status: 'Active',
+      status: 'active',
       registrationEndDate: '2015-06-27T11:01:00.000-0400',
       numRegistrants: 5,
       numSubmissions: 5,
@@ -928,7 +928,7 @@ var mockData = (function() {
       platforms: ['iOS'],
       totalPrize: 1950,
       reviewType: 'COMMUNITY',
-      status: 'Active',
+      status: 'active',
       registrationEndDate: '2015-03-25T11:49:18.335-0400',
       numRegistrants: 28,
       numSubmissions: 0,
@@ -1283,7 +1283,8 @@ var mockData = (function() {
             "overallCountryRank": 8,
             "overallSchoolRank": 0,
             "volatility": 446,
-            "reliability": 0.6667
+            "reliability": 0.6667,
+            "rating": 0
           },
           "submissions": {
             "numRatings": 51,
@@ -1321,7 +1322,8 @@ var mockData = (function() {
             "overallCountryRank": 167,
             "overallSchoolRank": 0,
             "volatility": 251,
-            "reliability": 0.4667
+            "reliability": 0.4667,
+            "rating": 0
           },
           "submissions": {
             "numRatings": 86,
@@ -1359,7 +1361,8 @@ var mockData = (function() {
             "overallCountryRank": 5,
             "overallSchoolRank": 0,
             "volatility": 385,
-            "reliability": 1
+            "reliability": 1,
+            "rating": 0
           },
           "submissions": {
             "numRatings": 4,
@@ -1397,7 +1400,8 @@ var mockData = (function() {
             "overallCountryRank": 1,
             "overallSchoolRank": 0,
             "volatility": 155,
-            "reliability": 0.9333
+            "reliability": 0.9333,
+            "rating": 0
           },
           "submissions": {
             "numRatings": 158,
@@ -1461,7 +1465,8 @@ var mockData = (function() {
             "overallCountryRank": 16,
             "overallSchoolRank": 0,
             "volatility": 416,
-            "reliability": 0.8
+            "reliability": 0.8,
+            "rating": 0
           },
           "submissions": {
             "numRatings": 19,

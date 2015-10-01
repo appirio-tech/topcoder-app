@@ -1,26 +1,27 @@
 .edit-profile-container
-  h1.tab-title Profile
-
   form(name="vm.editProfile", ng-submit="vm.editProfile.$valid && vm.updateProfile()", autocomplete="off")
     // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
     input(autocomplete="false", name="hidden", type="text", style="display:none;")
 
-    .fields
-      .field-section.edit-image
-        img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photoURL}}")
+    .settings-section.about
+      .section-info
+        h2 about me
+        .description The most important information that other community members should know about you.
 
-        .upload-image
-          p Edit Image
+      .section-fields
+        .image
+          .form-label your profile image
+          .edit-image
+            img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photoURL}}")
 
-          input(type="file", name="image", on-file-change)
+            input(type="file", name="image", on-file-change)
 
-      .field-section
-        h4.field-title Location
-
-        .country-dropdown
+        .country
+          .form-label country
           angucomplete-alt(
             id="countryId",
             input-name="location",
+            input-class="form-field",
             placeholder="Country",
             pause="100",
             selected-object="vm.updateCountry",
@@ -29,89 +30,66 @@
             search-fields="name",
             title-field="name",
             match-class="angucomplete-highlight",
-            minlength="1"
+            minlength="1",
+            ng-class="{'form-field-focused': hasFocus==true}"
           )
+          span.error-message(ng-if="vm.editProfile.$invalid") This is a required field
 
-        .form-errors
-          p.form-error(ng-show="vm.editProfile.location.$error.required") Please choose a country from the list.
+        .bio
+          .form-label short bio
+            span(style="float:right;") {{vm.userData.description.length || 0}}/144
+          textarea.form-field(name="description", ng-model="vm.userData.description" ng-maxlength="144")
 
-      .field-section.description
-        h4.field-title About Me
+    .settings-section.tracks
+      .section-info
+        h2 Tracks
+        .description Topcoder's three categories of challenges... please pick at least one on your skills and interests
 
-        input(name="description", type="text", value="{{vm.userData.description}}", ng-model="vm.userData.description", maxlength="144")
 
-        span {{vm.userData.description.length || 0}}/144
+      .section-fields
+        track-toggle(tracks="vm.tracks")
 
-      .field-section.my-tracks
-        h4.field-title My Tracks
+        button(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': vm.editProfile.$pristine || vm.editProfile.$invalid}") Save
 
-        h6.field-subtitle These are the main categories that help us select the best challenges for you
+  .settings-section.skills
+    .section-info
+      h2 skills
+      .description Languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well
 
-        .select-tracks
-          .track-section
-            .track-checkbox
-              input(type="checkbox", id="checkbox-design", ng-checked="vm.tracks.design")
+    .section-fields
+      .field-label Add a new skill
+      angucomplete-alt(
+        id="tagId",
+        input-name="skill-input",
+        input-class="form-field",
+        placeholder='Type skill name here and press "Enter" to add it',
+        pause="100",
+        selected-object="vm.addSkill",
+        local-data="vm.tags",
+        search-fields="name",
+        title-field="name",
+        clear-selected=true,
+        match-class="angucomplete-highlight",
+        minlength="1",
+        ng-class="{'form-field-focused': hasFocus==true}"
+      )
 
-              label(for="checkbox-design")
-                span(ng-class="{ 'checked-track': vm.tracks.design }", ng-click="vm.toggleTrack('design')")
+      .list
+        .skill(ng-repeat="skill in vm.skills | orderBy:'-score' | orderBy:'-isNew'")
+          skill-tile(skill="skill" enable-hide="true")
 
-            .track-info
-              h4 Design
+  .settings-section.links
+    .section-info
+      h2 external links
+      .description Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.
 
-              p Find challenges about Brand, Logo, Web UI, Mobile UI, UX. You know and use tools like Photoshop, Illustrator, Sketch, OmniGraffle.
+    .section-fields
+      .field-label Link Your Accounts
 
-          .track-section
-            .track-checkbox
-              input(type="checkbox", id="checkbox-develop", ng-checked="vm.tracks.develop")
+      .external-links
+        external-accounts(linked-accounts="vm.linkedExternalAccounts", read-only="false")
 
-              label(for="checkbox-develop")
-                span(ng-class="{ 'checked-track': vm.tracks.develop }", ng-click="vm.toggleTrack('develop')")
+      .field-label Linked Accounts
 
-            .track-info
-              h4 Development
-
-              p Find challenges about coding and development. You know languages like PHP, Python, Ruby, Objective-C, C#, MySQL, JavaScript, Java.
-
-          .track-section
-            .track-checkbox
-              input(type="checkbox", id="checkbox-datascience", ng-checked="vm.tracks.data_science")
-
-              label(for="checkbox-datascience")
-                span(ng-class="{ 'checked-track': vm.tracks.data_science }", ng-click="vm.toggleTrack('data_science')")
-
-            .track-info
-              h4 Data Science
-
-              p Find challenges about data and algorithms. You know data sets, algorithms, DB structures, statistics, data analysis.
-
-      button(type="submit", ng-disabled="vm.editProfile.$invalid", ng-class="{'enabled-button': vm.editProfile.$valid}") Save
-    
-  .field-section.edit-skills
-    h4.field-title My Skills
-    h5 This skills are shown on the
-    
-    angucomplete-alt(
-      id="tagId",
-      input-name="skill-input",
-      placeholder='Type skill name here and press "Enter" to add it',
-      pause="100",
-      selected-object="vm.addSkill",
-      local-data="vm.tags",
-      search-fields="name",
-      title-field="name",
-      clear-selected=true,
-      match-class="angucomplete-highlight",
-      minlength="1"
-    )
-    
-    .skills
-      .skill(ng-repeat="skill in vm.skills | orderBy:'-score'")
-        skill-tile(skill="skill" enable-hide="true")
-
-  .clearfix
-
-  .field-section
-    h4.field-title Links to Work
-      p Add links to your existing work
-
-      external-accounts.external-account-container(linked-accounts="vm.linkedExternalAccounts")
+      .existing-links
+        external-links-data(external-links="vm.linkedExternalAccounts", linked-accounts-data="vm.linkedExternalAccountsData")

@@ -3,9 +3,9 @@
 
   angular.module('tc.myChallenges').controller('MyChallengesController', MyChallengesController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity'];
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity', '$stateParams'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope, userIdentity) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope, userIdentity, $stateParams) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
@@ -15,11 +15,12 @@
     vm.viewPastChallenges = viewPastChallenges;
     vm.view = 'list';
     vm.changeView = changeView;
-    vm.statusFilter = 'active';
+    vm.statusFilter = _.get($stateParams, 'status','active');
+
     // paging params, these are updated by tc-pager
     vm.pageParams = {
       offset : 0,
-      limit: 5,
+      limit: 16,
       count: 0,
       totalCount: 0,
       // counter used to indicate page change
@@ -27,8 +28,8 @@
     };
     vm.orderBy = 'submissionEndDate';
 
-    var userId = UserService.getUserIdentity().userId;
-    var handle = UserService.getUserIdentity().handle;
+    var userId = userIdentity.userId;
+    var handle = userIdentity.handle;
 
     activate();
 
@@ -39,7 +40,11 @@
       $scope.$watch('vm.pageParams.updated', function(updatedParams) {
         _getChallenges();
       });
-      viewActiveChallenges();
+      if (vm.statusFilter == 'completed') {
+        viewPastChallenges();
+      } else {
+        viewActiveChallenges();
+      }
     }
 
     function changeView(view) {
@@ -64,36 +69,23 @@
       }
     };
 
-    // get ACTIVE challenges and spotlight challenges
     function _getChallenges() {
       var params = {
         limit: vm.pageParams.limit,
         offset: vm.pageParams.offset,
         orderBy: vm.orderBy, // TODO verify if this is the correct sort order clause,
-        filter: {
-          status : vm.statusFilter
-        }
+        filter: "status=" + vm.statusFilter
       };
       vm.loading = true;
-      return $q.all([
-        ChallengeService.getUserChallenges(handle, params),
-        ChallengeService.getSpotlightChallenges()
-      ])
-      .then(function(data){
-        var challenges = data[0];
-        var spotlightChallenges = data[1];
-
+      return ChallengeService.getUserChallenges(handle, params)
+      .then(function(challenges){
+        console.log(challenges.plain());
         if (challenges.length > 0) {
-          // FIXME until we figure out the correct sort order param
-
           vm.myChallenges = challenges;
-          vm.spotlightChallenge = spotlightChallenges[0];
-
           vm.userHasChallenges = true;
           vm.loading = false;
         } else {
           vm.userHasChallenges = false;
-          vm.spotlightChallenges = spotlightChallenges.slice(0, 2);
           vm.loading = false;
         }
       })

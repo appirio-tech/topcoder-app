@@ -1,5 +1,15 @@
-div.ext-tile(ng-repeat="account in accountList")
-  a(ng-click="!readOnly && !account.linked && link(account.provider)", ng-class="{'linked': account.linked, 'read-only': readOnly}")
-    .external-account-icon-box(ng-class="{'linked': account.linked}")
-      i.fa(ng-class="account.className")
-    .name {{account.displayName}}
+.ext-tile(ng-repeat="account in accountList | orderBy:'order'", ng-click="!account.disabled && !readOnly && !account.linked && link(account.provider)", ng-class="{'connected': account.linked, 'disabled': account.disabled, 'read-only': readOnly}")
+  .external-account-box(ng-class="account.colorClass")
+    i.fa(ng-if="readOnly || account.linked", ng-class="account.className", style="color: {{account.colorClass | externalLinkColor}}")
+
+    i.fa(ng-if="!readOnly && account.disabled", ng-class="account.className")
+
+    .provider {{account.displayName}}
+
+  .status.already-connected(ng-if="account.linked") Connected
+
+  .status.disconnect Disconnect
+
+  .status(ng-if="!account.linked && !account.disabled") Connect
+
+  .status(ng-if="account.disabled") Coming Soon

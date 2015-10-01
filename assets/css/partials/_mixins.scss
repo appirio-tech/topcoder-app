@@ -12,13 +12,15 @@
   overflow: hidden;
 }
 
+@mixin superscript {
+  position: relative;
+  top: -0.25em;
+  font-size: 80%;
+}
+
 @mixin bluelink {
   color: $light-blue;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
+  @include link;
 
   &:visited {
     text-decoration: none;
@@ -121,14 +123,22 @@
 }
 
 // Replace with classes from style guide, when it's finished
-@mixin button-s {
+@mixin link {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin button-s($background: $primary-color) {
   height: 20px;
   line-height: 20px;
   padding: 0 8px;
   border: none;
   border-radius: 3px;
   color: $white;
-  background-color: $primary-color;
+  background-color: $background;
   @include sofia-pro-regular;
   font-size: 11px;
   text-transform: uppercase;
@@ -137,16 +147,18 @@
   cursor: pointer;
   outline: 0;
 }
-@mixin button-m {
-  @include button-s;
+
+@mixin button-m($background: $primary-color) {
+  @include button-s($background);
   height: 30px;
   line-height: 30px;
   padding: 0 15px;
   font-size: 14px;
   border-radius: 4px;
 }
-@mixin button-l {
-  @include button-s;
+
+@mixin button-l($background: $primary-color) {
+  @include button-s($background);
   height: 50px;
   line-height: 50px;
   padding: 0 15px;
@@ -155,8 +167,9 @@
   border-radius: 4px;
 
 }
-@mixin button-xl {
-  @include button-s;
+
+@mixin button-xl($background: $primary-color) {
+  @include button-s($background);
   height: 60px;
   line-height: 60px;
   padding: 0 15px;
@@ -165,8 +178,9 @@
   border-radius: 4px;
 
 }
-@mixin button-m-wide {
-  @include button-m;
+
+@mixin button-m-wide($background: $primary-color) {
+  @include button-m($background);
   padding: 0 30px;
 }
 
@@ -178,6 +192,140 @@
   background-color: $white;
   color: $primary-color;
   border: 1px solid $primary-color;
+}
+
+@mixin button-1($disabled: #b2e7fe, $normal: #1eaefc, $hover: #199ae2, $active: #1792d7) {
+  @include button-s;
+  background-color: $normal;
+  &:hover {
+    background-color: $hover;
+  }
+  &:active {
+    background-color: $active;
+  }
+  &.disabled {
+    background-color: $disabled;
+    cursor: default;
+  }
+}
+
+@mixin button-1-m {
+  @include button-1;
+  @include button-m(#1eaefc);
+}
+
+@mixin button-1-m-wide {
+  @include button-1;
+  @include button-m-wide(#1eaefc);
+}
+
+@mixin button-1-l {
+  @include button-1;
+  @include button-l(#1eaefc);
+}
+
+@mixin button-1-xl {
+  @include button-1;
+  @include button-xl(#1eaefc);
+}
+
+@mixin button-2 {
+  @include button-1(#edeeee, #d1d3d4, #1eaefc)
+}
+
+@mixin button-2-m {
+  @include button-2;
+  @include button-m(#d1d3d4);
+}
+
+@mixin button-2-m-wide {
+  @include button-2;
+  @include button-m-wide(#d1d3d4);
+}
+
+@mixin button-2-l {
+  @include button-2;
+  @include button-l(#d1d3d4);
+}
+
+@mixin button-2-xl {
+  @include button-2;
+  @include button-xl(#d1d3d4);
+}
+
+@mixin button-border($disabled, $normal, $hover, $hover-fill: white, $fill: $normal) {
+  background-color: white;
+  color: $fill;
+  border: 1px solid $normal;
+  &:hover {
+    border: 1px solid $hover;
+    color: $hover-fill;
+  }
+  &:active {
+    color: white;
+  }
+  &.disabled {
+    border: 1px solid $disabled;
+    cursor: default;
+  }
+}
+
+@mixin button-3 {
+  @include button-1(white, white, #1eaefc, #1893d8);
+  @include button-border(#dedede, #1eaefc, #1eaefc);
+}
+
+@mixin button-3-m {
+  @include button-3;
+  @include button-m(#edeeee);
+  @include button-border(#dedede, #1eaefc, #1eaefc);
+}
+
+@mixin button-3-m-wide {
+  @include button-3;
+  @include button-m-wide(#edeeee);
+  @include button-border(#dedede, #1eaefc, #1eaefc);
+}
+
+@mixin button-3-l {
+  @include button-3;
+  @include button-l(white);
+  @include button-border(#dedede, #1eaefc, #1eaefc);
+}
+
+@mixin button-3-xl {
+  @include button-3;
+  @include button-xl(#edeeee);
+  @include button-border(#dedede, #1eaefc, #1eaefc);
+}
+
+@mixin button-4 {
+  @include button-1(white, white, white, #1893d8);
+  @include button-border(#dedede, #dedede, #1eaefc, #1eaefc, #83d7fc);
+}
+
+@mixin button-4-m {
+  @include button-4;
+  @include button-m(#edeeee);
+  @include button-border(#dedede, #dedede, #1eaefc, #1eaefc, #83d7fc);
+}
+
+@mixin button-4-m-wide {
+  @include button-4;
+  @include button-m-wide(#edeeee);
+  @include button-border(#dedede, #dedede, #1eaefc, #1eaefc, #83d7fc);
+}
+
+@mixin button-4-l {
+  @include button-4;
+  @include button-l(#edeeee);
+  @include button-border(#dedede, #dedede, #1eaefc, #1eaefc, #83d7fc);
+}
+
+@mixin button-4-xl {
+  @include button-4;
+  @include button-xl(#edeeee);
+  @include button-border(#dedede, #dedede, #1eaefc, #1eaefc, #83d7fc);
 }
 
 @mixin module-s {
@@ -192,7 +340,7 @@
   margin-right: 10px;
   padding-top: 30px;
   @media only screen and (min-width: 900px) {
-    padding-top: 90px
+    padding-top: 90px;
   }
 }
 
@@ -212,6 +360,21 @@
   }
 }
 
+@mixin form-field {
+  padding-left: 10px;
+  margin-bottom: 5px;
+  background-color: #FCFCFC;
+  border: 1px solid #F0F0F0;
+  border-radius: 2px;
+  height: 40px;
+}
+
+@mixin form-field-focused {
+  background-color: $white;
+  border: 1px solid #D1D3D4;
+  // TODO shadow?
+}
+
 @mixin horizontal-scroll {
   white-space: nowrap;
   overflow-y: hidden;
@@ -219,30 +382,35 @@
   -webkit-overflow-scrolling: touch;
 }
 
+@mixin forward-slash($width, $height, $x, $y, $deg) {
+  width: $width;
+  height: $height;
+  -ms-transform: translateX($x) translateY($y) rotate($deg);
+  -webkit-transform: translateX($x) translateY($y) rotate($deg);
+  transform: translateX($x) translateY($y) rotate($deg);
+}
+
 @mixin background-image-size($width, $height) {
   width: $width;
   height: $height;
   background-size: $width, $height;
+  background-repeat: no-repeat;
 }
 
 @mixin develop-icon-outline {
   background-image: url(/images/ico-track-develop-outline.svg);
-  background-repeat: no-repeat;
 }
 
 @mixin design-icon-outline {
   background-image: url(/images/ico-track-design-outline.svg);
-  background-repeat: no-repeat;
 }
 
 @mixin data-icon-outline {
   background-image: url(/images/ico-track-data-outline.svg);
-  background-repeat: no-repeat;
 }
 
 @mixin copilot-icon-outline {
   background-image: url(/images/ico-track-co_pilot-outline.svg);
-  background-repeat: no-repeat;
 }
 
 // UI REFRESH STYLES
@@ -250,7 +418,7 @@
   width: 300px;
   height: 50px;
   margin-top: 20px;
-  background-color: $ui-disabled-button-blue;
+  background-color: $button-gray;
   color: $white;
   text-transform: uppercase;
   border: 0;
@@ -270,6 +438,7 @@
   padding: 0;
   padding-left: 15px;
   border: 0;
+  background-color: $gray-lightest;
   @include source-sans-regular;
   font-size: 16px;
   color: #231F20;
@@ -277,21 +446,27 @@
 
 @mixin ui-form-placeholder {
   ::-webkit-input-placeholder {
-    color: #231F20;
+    color: #B7B7B7;
   }
-
-  ::-moz-placeholder {
-    color: #231F20;
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #B7B7B7;
   }
-
   :-ms-input-placeholder {
-    color: #231F20;
+    color: #B7B7B7;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: #B7B7B7;
   }
 }
 
 @mixin ui-enabled-button {
   background-color: $ui-enabled-button-blue;
   cursor: pointer;
+}
+
+@mixin ui-disabled-button {
+  background-color: $button-gray;
+  cursor: default;
 }
 
 @mixin ui-track-button {
@@ -306,4 +481,8 @@
 @mixin ui-track-button-selected {
   background-color: $ui-enabled-button-blue;
   color: $ui-page-gray;
+}
+
+@mixin ui-toggle-switch {
+
 }

@@ -6,16 +6,15 @@
   HeaderDashboardController.$inject = [
     '$stateParams',
     'NotificationService',
-    'UserService',
     'ProfileService',
     'CONSTANTS',
-    'userIdentity'
+    'userIdentity',
+    '$q'
   ];
 
-  function HeaderDashboardController($stateParams, NotificationService, UserService, ProfileService, CONSTANTS, userIdentity) {
+  function HeaderDashboardController($stateParams, NotificationService, ProfileService, CONSTANTS, userIdentity, $q) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
-    vm.defaultPhotoUrl = CONSTANTS.ASSET_PREFIX + "images/avatarPlaceholder.png";
     vm.isCopilot = false;
     vm.loading = true;
     vm.hasRatings = true;
@@ -30,23 +29,19 @@
     function activate() {
       var handle = userIdentity.handle;
 
-      ProfileService.getUserProfile(handle)
-      .then(function(profile) {
-        vm.profile = profile;
-      });
+      $q.all([
+        ProfileService.getUserStats(handle),
+        ProfileService.getUserFinancials(handle)
+      ]).then(function(data) {
+        var stats = data[0];
+        var financials = data[1];
 
-      ProfileService.getUserStats(handle)
-      .then(function(stats) {
+        vm.moneyEarned = _.sum(_.pluck(financials, 'amount'));
+
         if (stats.COPILOT != null) {
           vm.numCopilotActiveContests = stats.COPILOT.activeContests;
         } else {
           vm.numCopilotActiveContests = 0;
-        }
-
-        vm.rankStats = ProfileService.getRanks(stats);
-
-        if (vm.rankStats.length === 0) {
-          vm.hasRatings = false;
         }
 
         vm.loading = false;
@@ -54,12 +49,6 @@
       .catch(function(err) {
         vm.hasRatings = false;
         vm.loading = false;
-        // todo handle error
-      })
-
-      ProfileService.getUserFinancials(handle)
-      .then(function(financials) {
-        vm.moneyEarned = _.sum(_.pluck(financials, 'amount'));
       });
     }
   }

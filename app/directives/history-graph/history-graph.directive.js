@@ -22,35 +22,35 @@
     $scope.colors = [
       // grey
       {
-        'color': '#7f7f7f',
+        'color': '#9D9FA0',
         'darkerColor': '#656565',
         'start': 0,
         'end': 899
       },
       // green
       {
-        'color': '#99cc09',
+        'color': '#69C329',
         'darkerColor': '#7aa307',
         'start': 900,
         'end': 1199
       },
       // blue
       {
-        'color': '#09affe',
+        'color': '#616BD5',
         'darkerColor': '#078ccb',
         'start': 1200,
         'end': 1499
       },
       // yellow
       {
-        'color': '#f39426',
+        'color': '#FCB816',
         'darkerColor': '#c2761e',
         'start': 1500,
         'end': 2199
       },
       // red
       {
-        'color': '#fe0866',
+        'color': '#EF3A3A',
         'darkerColor': '#cb0651',
         'start': 2200,
         'end': Infinity
@@ -63,7 +63,7 @@
         top: 20,
         right: 5,
         bottom: 100,
-        left: 50
+        left: 60
       }
     };
 
@@ -73,8 +73,8 @@
       padding: {
         top: 10,
         right: 30,
-        bottom: 100,
-        left: 30
+        bottom: 50,
+        left: 60
       }
     };
 
@@ -140,7 +140,7 @@
       }
 
       var line = d3.svg.line()
-                   .interpolate('cardinal')
+                   //.interpolate('cardinal')
                    .x(function(d) { return x(d.ratingDate); })
                    .y(function(d) { return y(d.newRating); })
 
@@ -161,33 +161,43 @@
       svg.append('g')
          .attr('class', 'x axis')
          .attr('transform', 'translate(0,' + (h + padding.top) +')')
-         .call(xAxis());
+         .call(xAxis().tickFormat(function(d) {
+           var m = moment(d);
+           if (m.format('MM') == '01') return m.format('YYYY');
+           else return m.format('MMM').toUpperCase();
+         }));
 
       svg.selectAll('g.x.axis .tick text')
+         .attr('font-weight', function(d) {
+           return moment(d).format('MM') == '01' ? 'bold' : 'normal';
+         })
+         .attr('fill', function(d) {
+           return moment(d).format('MM') == '01' ? 'black' : '#a3a3ae';
+         })
          .attr('font-size', function(d) {
-           return moment(d).format('MM') == '01' ? 12 : 10;
+           return 11;
          });
 
 
       svg.append('g')
           .attr('class', 'y axis')
-          .attr('transform', 'translate(' + padding.left + ')')
-          .call(yAxis().tickFormat(function(d) { return parseInt(d) })
+          .attr('transform', 'translate(' + (padding.left - 25) + ')')
+          .call(yAxis().tickFormat(function(d) { return parseInt(d) + '' })
            )
 
       svg.append('g')
-         .attr('class', 'grid')
+         .attr('class', 'grid x')
          .attr('transform', 'translate(0, ' + (h + padding.top) + ')')
          .call(
-           xAxis(Math.round(w / 35)).tickSize(-h, 0, 0)
+           xAxis(/*Math.round(w / 35)*/).tickSize(-h, 0, 0)
                    .tickFormat('')
          )
 
       svg.append('g')
-         .attr('class', 'grid')
+         .attr('class', 'grid y')
          .attr('transform', 'translate(' + padding.left + ',0)')
          .call(
-           yAxis(Math.round(h / 30)).tickSize(-w, 0, 0)
+           yAxis(/*Math.round(h / 30)*/).tickSize(-w, 0, 0)
                   .tickFormat('')
          )
 
@@ -198,31 +208,32 @@
          .attr('d', line)
 
 
-         // FIXME !!!
-//        svg.append('g')
-//           .selectAll('line')
-//           .data($scope.colors)
-//           .enter()
-//           .append('line')
-//           .attr('x1', totalW - 3)
-//           .attr('x2', totalW - 3)
-//           .attr('y1', function(d) {
-//             return processRatingStripePoint(y(d.start));
-//           })
-//           .attr('y2', function(d) {
-//             return processRatingStripePoint(y(d.end));
-//           })
-//           .attr('stroke', function(d) {
-//             return d.color;
-//           })
-//           .attr('stroke-width', 3)
+        // FIXME !!!
+        svg.append('g')
+           .selectAll('line')
+           .data($scope.colors)
+           .enter()
+           .append('line')
+           .attr('x1', padding.left - 18)
+           .attr('x2', padding.left - 18)
+           .attr('y1', function(d) {
+             return processRatingStripePoint(y(d.start));
+           })
+           .attr('y2', function(d) {
+             return processRatingStripePoint(y(d.end));
+           })
+           .attr('stroke', function(d) {
+             return d.color;
+           })
+           .attr('stroke-width', 3)
 
       function processRatingStripePoint(y) {
         console.log('y:' + y)
-        if (y < padding.top) {
+        if (y < padding.top || isNaN(y)) {
           return padding.top;
         } else if (y > totalH - padding.bottom) {
-          return padding.bottom;
+          console.log('y & ' + padding.bottom);
+          return totalH - padding.bottom;
         } else {
           return y;
         }
@@ -247,19 +258,17 @@
            $scope.historyChallenge = d.challengeName;
            $scope.$digest();
            d3.select(this)
-             .attr('r', 4.0)
-             .attr('stroke', 'black')
-             .attr('stroke-width', '.5px');
+             .attr('r', 6.0)
          })
          .on('mouseout', function(d) {
            $scope.historyRating = undefined;
            $scope.$digest();
            d3.select(this)
-             .attr('r', 3.0)
+             .attr('r', 4.5)
              .attr('stroke', 'none')
              .attr('stroke-width', '0px');
          })
-         .attr('r', 3.0)
+         .attr('r', 4.5)
 
 
     }

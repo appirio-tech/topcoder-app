@@ -18,11 +18,11 @@
         return null;
 
       var haveItAddItEndpoints = [
-        { method: 'GET', url: '\/v3\/challenges'},
+        { method: 'GET', url: '\/v3[\\d\\.\\-A-Za-z]*\/challenges'},
         { method: 'GET', url: '\/v2\/challenges'},
 
         // matchs everything besides /v3/members/{handle}/financial
-        { method: 'GET', url: '\/v3\/members\/\\w+\/(?!financial)\\w*'}
+        { method: 'GET', url: '\/v3[\\d\\.\\-A-Za-z]*\/members\/\\w+\/(?!financial)\\w*'}
       ];
       // list here all endpoints which are v3 but require v2 token for backward compatability
       var v3EndpointsWithV2Token = [

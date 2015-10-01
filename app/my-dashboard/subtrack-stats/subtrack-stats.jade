@@ -1,13 +1,15 @@
 .loading(ng-show="vm.loading")
   .section-loading
 
-
-.ratings(ng-if="vm.showRanks && vm.hasRatings && !vm.loading")
-  h1.section-title My Ranks
-
+.ratings(ng-if="vm.hasRanks && !vm.loading")
   .tracks
-    .track(ng-repeat="r in vm.rankStats | orderBy: ['track', 'rank']", ui-sref="profile.develop({userHandle: vm.profile.handle, track: r.track, subTrack: r.subTrack})")
-      p(ng-bind="r.rank")
+    .track(ng-repeat="subtrack in vm.subtrackRanks | orderBy: ['track', 'rank']", ui-sref="profile.subtrack({userHandle: vm.handle, track: subtrack.track, subTrack: subtrack.subTrack})")
+      .flex-wrapper
+        p.subtrack {{subtrack.subTrack | underscoreStrip}}
 
-      p {{r.track}}:
-      p {{r.subTrack}}
+        p.rating(ng-if="subtrack.track !== 'DESIGN'", style="color: {{subtrack.stat | ratingColor}}") {{subtrack.stat | number}}
+          span(style="background-color: {{subtrack.stat | ratingColor}}", ng-if="subtrack.track === 'DEVELOP' || subtrack.track === 'DATA_SCIENCE'")
+
+        p.rating(ng-if="subtrack.track === 'DESIGN'", style="color: #21B2F1") {{subtrack.stat | number}}
+
+        p {{subtrack.statType}}

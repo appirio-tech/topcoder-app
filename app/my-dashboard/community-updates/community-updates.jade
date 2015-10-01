@@ -1,5 +1,5 @@
 header
-  h1.section-title Community Updates
+  h1.section-title From the Community Blog
 
 .section-loading(ng-show="vm.loading")
 
@@ -9,3 +9,6 @@ header
       a(ng-href='{{blog.link}}', target='_blank') {{blog.title}}
 
     .description(ng-bind-html="blog.description")
+
+.blog-links(ng-hide="vm.loading")
+  a(ng-href="https://www.{{DOMAIN}}/blog/") View More

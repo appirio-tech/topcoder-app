@@ -3,58 +3,61 @@
 
   angular.module('tc.myDashboard').controller('MyChallengesWidgetController', MyChallengesWidgetController);
 
-  MyChallengesWidgetController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers'];
+  MyChallengesWidgetController.$inject = ['ChallengeService', 'UserService', '$log', 'CONSTANTS', 'userIdentity', '$q'];
 
-  function MyChallengesWidgetController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers) {
+  function MyChallengesWidgetController(ChallengeService, UserService, $log, CONSTANTS, userIdentity, $q) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.loading = true;
-    vm.myChallenges = [];
     vm.userHasChallenges = true;
+    vm.challengeView = 'tile';
+    vm.toggleView = toggleView;
 
-    var handle = UserService.getUserIdentity().handle;
+    var handle = userIdentity.handle;
 
     activate();
 
     function activate() {
-      viewActiveChallenges();
-    }
-
-    function viewActiveChallenges() {
       vm.myChallenges = [];
-      getChallenges('active', 'submissionEndDate');
+      getChallenges();
     }
 
-    // get ACTIVE challenges and spotlight challenges
-    function getChallenges(status, orderBy) {
-      var params = {
+    function getChallenges() {
+      var marathonMatchParams = {
         limit: 8,
-        offset: 0,
-        orderBy: orderBy, // TODO verify if this is the correct sort order clause,
-        filter: {
-          status : status
-        }
+        filter: 'status=active'
+      };
+
+      var challengeParams = {
+        limit: 8,
+        orderBy: 'submissionEndDate',
+        filter: 'status=active'
       };
 
       $q.all([
-        ChallengeService.getUserChallenges(handle, params),
-        ChallengeService.getSpotlightChallenges()
-      ])
-      .then(function(data){
-        var challenges = data[0];
-        var spotlightChallenges = data[1];
+        ChallengeService.getUserMarathonMatches(handle, marathonMatchParams),
+        ChallengeService.getUserChallenges(handle, challengeParams)
+      ]).then(function(challenges){
+        console.log('challenges: ', challenges);
+        var marathonMatches = challenges[0];
+        var devDesignChallenges = challenges[1];
 
-        if (challenges.length > 0) {
-          // FIXME until we figure out the correct sort order param
+        // console.log('MMs: ', marathonMatches.plain());
+        // console.log('dev design challenges: ', devDesignChallenges.plain());
 
-          vm.myChallenges = challenges;
-          vm.spotlightChallenge = spotlightChallenges[0];
-
-          vm.userHasChallenges = true;
-          vm.loading = false;
-        } else {
+        if (!marathonMatches.length && !devDesignChallenges.length) {
           vm.userHasChallenges = false;
-          vm.spotlightChallenges = spotlightChallenges.slice(0, 2);
+          vm.loading = false;
+
+        } else {
+          ChallengeService.processActiveDevDesignChallenges(devDesignChallenges);
+          ChallengeService.processActiveMarathonMatches(marathonMatches);
+          var userChallenges = marathonMatches.concat(devDesignChallenges);
+          // sort by closest deadline? .sort(function)
+          // limit to 8 .slice(0, 8);
+
+          vm.myChallenges = userChallenges;
+          vm.userHasChallenges = true;
           vm.loading = false;
         }
       })
@@ -62,8 +65,13 @@
         $log.error(err);
         vm.userHasChallenges = true;
         vm.loading = false;
-        // TODO - handle error
       });
+    }
+
+    function toggleView(view) {
+      if (vm.challengeView !== view) {
+        vm.challengeView = view;
+      }
     }
   }
 })();

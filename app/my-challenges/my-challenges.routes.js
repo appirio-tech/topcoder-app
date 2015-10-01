@@ -5,13 +5,15 @@
     '$stateProvider',
     '$urlRouterProvider',
     '$httpProvider',
+    '$locationProvider',
     routes
   ]);
 
-  function routes($stateProvider, $urlRouterProvider, $httpProvider) {
+  function routes($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     var states = {
       'my-challenges': {
-        url: '/my-challenges/',
+        url: '/my-challenges/?:status',
         parent: 'root',
         templateUrl: 'my-challenges/my-challenges.html',
         controller: 'MyChallengesController',
@@ -23,7 +25,10 @@
         resolve: {
           userIdentity: ['UserService', function(UserService) {
             return UserService.getUserIdentity();
-          }]
+          }],
+          // statusFilter: ['$stateParams', function($stateParams) {
+          //   return $stateParams.status;
+          // }],
         }
       }
     };

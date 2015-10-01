@@ -20,7 +20,7 @@
 
     function getSRMs() {
       var params = {
-        filter: 'listType=future',
+        filter: 'status=future',
         limit: 3
       };
 

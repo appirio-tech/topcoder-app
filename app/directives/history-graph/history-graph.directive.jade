@@ -1,11 +1,15 @@
-.history-graph-container(ng-show="graphState.show == 'history'")
-  .history-graph
+.history-graph-directive(ng-show="graphState.show == 'history'")
+  .history-graph-container
 
-  .info-port
-    .rating
-      .num {{historyRating || rating}}
-      .label RATING
-    .history-info(ng-if="historyRating")
-      | Attained on {{historyDate}} in challenge "{{historyChallenge}}"
-    .lower
-      a.compare(ng-click="graphState.show = 'distribution'") COMPARE
+    br
+
+    .history-graph
+
+    .info-port
+      .rating(style="background: {{historyRating || rating | ratingColor}}")
+        .num {{historyRating || rating}}
+        .label RATING
+      .history-info
+        .challenge(ng-if="historyRating") {{historyChallenge}}
+        .date(ng-if="historyRating") {{historyDate | date}}
+      button.compare(ng-click="graphState.show = 'distribution'") COMMUNITY RATINGS

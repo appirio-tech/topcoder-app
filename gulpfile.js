@@ -7,6 +7,8 @@ var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
 var merge        = require('merge-stream');
 var RevAll       = require('gulp-rev-all');
+var awspublishRouter = require('gulp-awspublish-router');
+
 
 var envFile = require('./config.js')();
 var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
@@ -80,6 +82,21 @@ gulp.task('images', ['clean-images'], function() {
     .src(config.images)
     .pipe($.imagemin({optimizationLevel: 4}))
     .pipe(gulp.dest(config.temp + 'images'));
+});
+
+
+gulp.task('images-orig-nav', ['build1'], function() {
+  log('Copying original images');
+  return gulp
+     .src(config.assets + 'images/nav/**.*')
+    .pipe(gulp.dest(config.build + 'images/nav'));
+});
+
+gulp.task('images-orig', ['images-orig-nav'], function() {
+  log('Copying original images');
+  return gulp
+     .src(config.assets + 'images/skills/**.*')
+    .pipe(gulp.dest(config.build + 'images/skills'));
 });
 
 gulp.task('clean', function(done) {
@@ -221,7 +238,7 @@ gulp.task('optimize', ['inject', 'test', 'ngConstants', 'images'], function() {
     .pipe(gulp.dest(config.build));
 });
 
-gulp.task('build', ['optimize', 'dev-fonts'], function() {
+gulp.task('build1', ['optimize', 'dev-fonts'], function() {
   log('Building everything');
 
   var msg = {
@@ -232,6 +249,8 @@ gulp.task('build', ['optimize', 'dev-fonts'], function() {
   del(config.temp);
   log(msg);
 });
+
+gulp.task('build', ['images-orig']);
 
 gulp.task('build-specs', ['templatecache', 'ngConstants'], function() {
   log('Building the spec runner');
@@ -286,7 +305,7 @@ gulp.task('serve', ['inject', 'ngConstants'], function() {
       scroll: true
     },
     logPrefix: 'Topcoder-Account',
-    notify: true,
+    notify: false,
     port: 3000,
     reloadDelay: 1000
   };
@@ -349,7 +368,7 @@ gulp.task('serve-build', ['build'], function() {
       scroll: true
     },
     logPrefix: 'Topcoder-Account',
-    notify: true,
+    notify: false,
     reloadDelay: 1000
   };
 
@@ -389,20 +408,39 @@ gulp.task('deploy', ['build'], function() {
   // create a new publisher
   var publisher = $.awspublish.create(awsConfig);
 
-  // define custom headers
-  var headers = {
-    'Cache-Control': 'max-age=94608000, no-transform, public'
-  };
-
   log('Deploying to S3');
 
-  var gzip = gulp.src(['build/**/*.js', 'build/**/*.css']).pipe($.awspublish.gzip());
-  var plain = gulp.src([ 'build/**/*', '!build/**/*.js' ]);
+  var gzip = gulp.src(['build/**/*.js', 'build/**/*.css']).pipe($.awspublish.gzip())
+    .pipe(awspublishRouter({
+      cache: {
+        cacheTime: 94608000,
+        allowTransform: false,
+        public: true
+      },
+      routes: {
+        "^.+$": "$&"
+      }
+    }));
+
+  var plain = gulp.src([ 'build/**/*', '!build/**/*.js' ])
+    .pipe(awspublishRouter({
+      cache: {
+        cacheTime: 94608000,
+        allowTransform: false,
+        public: true
+      },
+      routes: {
+        "^.+\\.html": {
+          cacheTime: 0
+        },
+        "^.+$": "$&"
+      }
+    }));
 
   return merge(gzip, plain)
     .pipe(publisher.cache())
-    .pipe(publisher.publish(headers, {force:true}))
-    .pipe(publisher.sync())
+    .pipe(publisher.publish())
+    //.pipe(publisher.sync())
     .pipe($.awspublish.reporter());
 });
 

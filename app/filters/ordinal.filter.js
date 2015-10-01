@@ -4,7 +4,7 @@
   angular.module('topcoder').filter('ordinal', ordinal);
 
   function ordinal() {
-    return function(x) {
+    return function(x, onlySuffix) {
       x += '';
       var y = x.charAt(x.length - 1);
       var suffix;
@@ -21,6 +21,11 @@
         default:
           suffix = 'th';
       }
+
+      if (onlySuffix) {
+        return suffix;
+      }
+
       return x + suffix;
     };
   }

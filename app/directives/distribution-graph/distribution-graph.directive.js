@@ -22,46 +22,47 @@
     $scope.colors = [
       // grey
       {
-        'color': '#7f7f7f',
-        'darkerColor': '#656565',
+        'color': '#9D9FA0',
+        'darkerColor': '#848687',
         'start': 0,
         'end': 899
       },
       // green
       {
-        'color': '#99cc09',
-        'darkerColor': '#7aa307',
+        'color': '#69C329',
+        'darkerColor': '#50AA10',
         'start': 900,
         'end': 1199
       },
       // blue
       {
-        'color': '#09affe',
-        'darkerColor': '#078ccb',
+        'color': '#616BD5',
+        'darkerColor': '#4852BC',
         'start': 1200,
         'end': 1499
       },
       // yellow
       {
-        'color': '#f39426',
-        'darkerColor': '#c2761e',
+        'color': '#FCB816',
+        'darkerColor': '#E39F00',
         'start': 1500,
         'end': 2199
       },
       // red
       {
-        'color': '#fe0866',
-        'darkerColor': '#cb0651',
+        'color': '#EF3A3A',
+        'darkerColor': '#D62121',
         'start': 2200,
         'end': Infinity
       }
     ];
+
     var measurements = {
       w: 600,
       h: 400,
       padding: {
         top: 20,
-        left: 50,
+        left: 60,
         bottom: 100,
         right: 5
       }
@@ -71,10 +72,10 @@
       w: 350,
       h: 200,
       padding: {
-        top: 10,
-        left: 30,
-        bottom: 100,
-        right: 30
+        top: 50,
+        left: 60,
+        bottom: 80,
+        right: 50
       }
     };
 
@@ -182,6 +183,7 @@
          .on('mouseover', function(d) {
            d3.select(this)
              .attr('fill', ratingToDarkerColor($scope.colors, d.start));
+           $scope.highlightedRating = d.start;
            $scope.displayCoders = true;
            $scope.numCoders = d.number;
            $scope.$digest();
@@ -190,6 +192,7 @@
            d3.select(this)
              .attr('fill', ratingToColor($scope.colors, d.start));
            $scope.displayCoders = false;
+           $scope.highlightedRating = false;
            $scope.$digest();
          })
 

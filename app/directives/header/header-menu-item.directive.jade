@@ -1,0 +1,17 @@
+// clean srefs
+li.submenu-item(ng-if="item.sref && !item.srefParams")
+  a.menu-link(ui-sref="{{item.sref}}" ng-class="{ 'active': isActive() }" )
+    img.menu-icon(ng-src="{{item.icon}}")
+    .menu-text {{item.text}}
+
+// external links
+li.submenu-item(ng-if="item.href && !item.srefParams")
+  a.menu-link(ng-click="$event.stopPropagation();" ng-href="{{item.href}}" ng-class="{ 'active': isActive() }" target="_blank")
+    img.menu-icon(ng-src="{{item.icon}}")
+    .menu-text {{item.text}}
+
+// srefs with params 
+li.submenu-item(ng-if="item.srefParams")
+  a.menu-link(ng-href="{{wtfhref}}" ng-class="{ 'active': isActive() }" )
+    img.menu-icon(ng-src="{{item.icon}}")
+    .menu-text {{item.text}}

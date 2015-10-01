@@ -1,6 +1,6 @@
 @import '../partials/combined';
 .profile-about-container {
-  margin-top: 30px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
 
@@ -13,18 +13,15 @@
   }
 
   .categories {
-    .activity {
-      font-size: 18px;
-      line-height: 21px;
-      font-weight: bold;
-      font-family: 'Lucida Grande';
-      text-transform: uppercase;
-    }
+    @include module-l;
+    margin-left: auto;
+    margin-right: auto;
+    align-self: center;
+    background: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
     .track {
       margin-top: 22.4px;
       display: flex;
@@ -33,43 +30,71 @@
       cursor: pointer;
 
       .name {
-        img {
-          height: 21px;
-          width: 21px;
-          margin-right: 5.5px;
-          margin-bottom: -3px;
+        span {
         }
         margin: auto;
         font-family: 'Sofia Pro';
         font-weight: 200;
-        font-size: 19.6px;
+        font-size: 20px;
         line-height: 24px;
         margin-bottom: 10.6px;
+      }
+      img {
+        height: 20px;
+        width: 20px;
+        margin-right: 7px;
+        margin-bottom: -2px;
       }
       .subtrack {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         width: 300px;
         height: 52px;
-        border-top: 1px solid #f0f0f0;
         border-bottom: 1px solid #f0f0f0;
+        &.first {
+          border-top: 1px solid #f0f0f0;
+        }
+        &:hover {
+          background-color: #f0f0f0;
+        }
         .name {
-          flex-basis: 150px;
+          margin-left: 25px;
+          align-self: center;
+          flex-basis: 250px;
+          align-text: left;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
           font-family: 'Sofia Pro';
           font-size: 14px;
           line-height: 18px;
           font-weight: 300;
           text-transform: uppercase;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          margin-top: 12px;
+          span {
+          }
         }
         .ranking {
           margin: auto;
+          margin-right: 15px;
+          color: #7f7f7f;
           .number {
             text-align: center;
             font-family: 'Sofia Pro';
             font-size: 13.4px;
             line-height: 16px;
             font-weight: 600;
+            span.square {
+              position: absolute;
+              margin-left: 5px;
+              width: 6px;
+              height: 6px;
+            }
           }
           .tag {
             text-transform: uppercase;
@@ -98,87 +123,184 @@
       }
 
     }
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .action-text {
+        margin-top: 32px;
+        font-family: 'Sofia Pro';
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 200;
+      }
+      .tracks {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 50%;
+        .track {
+        }
+      }
+      .description {
+        margin-top: 50px;
+        font-family: 'Source Sans Pro';
+        font-size: 15px;
+        line-height: 22px;
+        width: 60%;
+      }
+      button.link-button {
+        @include button-1-l;
+        margin-top: 20px;
+      }
+      padding-bottom: 40px;
+    }
   }
 
   .skills {
+    .dimmed {
+      width:100%;
+      margin-top: -70px;
+      height:100px;
+      background:rgba(0,0,0,0.6);
+      opacity:1;
+      transition: all 0.5s;
+      -webkit-transition: all 0.5s;
+    }
+    @include module-l;
+    width: 100%;
+    align-self: center;
+    padding-bottom: 30px;
+    background: white;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 15px 0;
     h1 {
       font-size: 25px;
       margin: auto;
     }
     .more {
       margin-top: 20px;
-      @include button-m;
+      margin-left: auto;
+      margin-right: auto;
+      @include button-2-l;
     }
     .list {
+      
       display: flex;
       flex-direction: row;
       justify-content: center;
       flex-wrap: wrap;
       width: 90%;
-      margin-top: 22px;
+      margin-top: 35px;
       margin-bottom: 10px;
+      margin-left: auto;
+      margin-right: auto;
+
       .skill {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100px;
-        height: 130px;
-        .skill-icon {
-          margin: auto;
-          padding: 10px;
-          border: 1px solid #f0f0f0;
-          height: 80px;
-          width: 80px;
-          img, i {
-            font-size: 50px;
-          }
-        }
-        .name {
-          font-family: 'Sofia Pro';
-          font-weight: 300;
-          text-align: center;
-          margin-top: 10px;
-        }
+        margin: 5px 7.5px;
       }
+
     }
     .empty-state {
-      text-align: center;
+      width: 100%;
+      padding: 30px;
+      padding-top: 5px;
       .action-text {
         text-transform: uppercase;
-        margin: 30px 0 30px 0;
+        margin-top: 32px;
+        font-family: 'Sofia Pro';
+        font-weight: 200;
+        font-size: 18px;
+        line-height: 24px;
+      }
+      .description {
+        font-family: 'Source Sans Pro';
+        font-weight: 300;
+        font-size: 15px;
+        line-height: 22px;
+      }
+      button.link-button {
+        @include button-1-l;
+        margin-top: 30px;
+      }
+      .list {
+        .skill {
+          width: 130px;
+        }
+        padding: 10px;
+        margin: 20px auto;
       }
     }
   }
+//  .skills:after {
+//  content:'\A';
+//  position:absolute;
+//  width:100%; height:100%;
+//  bottom: 0;
+//  right: 0;
+//  background:rgba(0,0,0,0.6);
+//  opacity:1;
+//  }
   .external-links {
+    @include module-l;
+    width: 100%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
 
+
     .empty-state {
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       .action-text {
         text-transform: uppercase;
+        margin-top: 32px;
+        font-family: 'Sofia Pro';
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 200;
       }
-
+      .description {
+        margin-top: 50px;
+        font-family: 'Source Sans Pro';
+        font-size: 15px;
+        line-height: 22px;
+        width: 60%;
+      }
+      button.link-button {
+        @include button-1-l;
+        margin-top: 20px;
+      }
       .external-account-container {
         display: flex;
         flex-direction: row;
         margin: 20px;
       }
+      padding-bottom: 40px;
     }
   }
 }
 @media (min-width: 768px) {
 
 .profile-about-container {
-  margin-top: 90px;
+  margin-top: 80px;
 
+ .activity {
+    font-size: 28px;
+    line-height: 34px;
+    font-weight: bold;
+    font-family: 'Sofia Pro';
+    text-transform: uppercase;
+  }
+    
   .categories {
+    padding-bottom: 90px;
     .activity {
       font-size: 28px;
       line-height: 34px;
@@ -189,20 +311,18 @@
 
     .track {
       width: 100%;
-      margin-top: 22.4px;
+      margin-top: 70px;
       cursor: pointer;
 
       .name {
-        div {
-          background-size: 30px;
-          margin-right: 6px;
-          margin-bottom: -5px;
+        img {
           height: 30px;
           width: 30px;
-          margin: auto;
-          margin-top: 10px;
+          margin-right: 7px;
+          margin-bottom: -4px;
         }
-        margin: auto;
+        background-size: 30px;
+        background-position: 16px 4px;
         font-weight: 200;
         font-size: 28px;
         line-height: 34px;
@@ -212,15 +332,14 @@
         align-items: center;
         width: 75%;
         height: 75px;
-        border-top: 1px solid #f0f0f0;
-        border-bottom: 1px solid #f0f0f0;
         .name {
           font-size: 20px;
+          flex-basis: 350px;
           line-height: 24px;
           margin-top: 35px;
         }
         .ranking {
-          margin: auto;
+          margin-right: 50px;
           .number {
             font-size: 18px;
             line-height: 23px;
@@ -245,11 +364,37 @@
       }
 
     }
+    .empty-state {
+      .action-text {
+        font-size: 28px;
+        line-height: 34px;
+      }
+      .description {
+        font-family: 'Source Sans Pro';
+        font-weight: 300;
+        font-size: 22px;
+        line-height: 32px;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      button.link-button {
+        @include button-1-l;
+        margin-top: 30px;
+      }
+      .list {
+        .skill {
+          width: 130px;
+        }
+        padding: 10px;
+        margin: 20px auto;
+      }
+    }
+
   }
   .skills {
     display: flex;
     flex-direction: column;
-    margin: 15px 0;
     h1 {
       font-size: 25px;
       margin: auto;
@@ -257,9 +402,12 @@
     .list {
       display: flex;
       flex-direction: row;
-      width: 70%;
+      width: 80%;
       overflow-x: auto;
-      margin: 40px auto 0 auto;
+      margin: 70px auto 0 auto;
+      .skill {
+        margin: 0 30px;
+      }
       .leftButton, .rightButton {
         height: 100px;
         display: flex;
@@ -269,19 +417,35 @@
           cursor: pointer;
         }
       }
-      .skill {
-        width: 150px;
-        text-align: center;
-        margin: 0 30px;
-        i {
-          font-size: 30px;
+
+    }
+    .empty-state {
+      .action-text {
+        font-size: 28px;
+        line-height: 34px;
+      }
+      .description {
+        font-family: 'Source Sans Pro';
+        font-weight: 300;
+        font-size: 22px;
+        line-height: 32px;
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      button.link-button {
+        @include button-1-l;
+        margin-top: 30px;
+      }
+      .list {
+        .skill {
+          width: 130px;
         }
-        .name {
-          text-align: center;
-          margin-top: 10px;
-        }
+        padding: 10px;
+        margin: 20px auto;
       }
     }
+
   }
   .links {
     h1 {
@@ -330,6 +494,37 @@
       }
     }
   }
+  .external-links {
+   .empty-state {
+    .action-text {
+      font-size: 28px;
+      line-height: 34px;
+    }
+    .description {
+      font-family: 'Source Sans Pro';
+      font-weight: 300;
+      font-size: 22px;
+      line-height: 32px;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    button.link-button {
+      @include button-1-l;
+      margin-top: 30px;
+    }
+    .list {
+      .skill {
+        width: 130px;
+      }
+      padding: 10px;
+      margin: 20px auto;
+    }
+  } 
+  }
+
+
 }
+
 
 }

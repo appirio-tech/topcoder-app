@@ -4,7 +4,7 @@
   header
     a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
 
-    p #[span iOS] {{challenge.track}}
+    p {{challenge.subTrack | underscoreStrip}}
 
   .challenge-details
     p.prize-money(ng-show="challenge.reviewType === 'PEER'") Peer Review Challenge
@@ -18,7 +18,7 @@
       p.time-remaining 3
       p.unit-of-time days
 
-    button.phase-action(ng-class="{'action-completed': challenge.currentPhaseActionCompleted}") Submit
+    //button.phase-action(ng-class="{'action-completed': challenge.currentPhaseActionCompleted}") Submit
 
     .challenge-links
       .stats

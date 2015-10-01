@@ -1,30 +1,86 @@
+@import '../partials/combined';
 
 .ext-tile {
-  width: 100px;
-  text-align: center;
-  margin: 5px;
-}
-
-.linked {
-  background-color: #27a9e1;
-  cursor: default;
-}
-.read-only{
-  cursor: default;
-  pointer-events: none;
-}
-
-.disconnected {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 20px 15px 0;
   cursor: pointer;
-}
 
-.external-account-icon-box {
-  border: 1px solid;
-  width: 75px;
-  height: 75px;
-  font-size: 30px;
-}
+  &.connected {
+    .status {
+      color: $gray-dark;
+    }
 
-.name {
-  font-weight: bold;
+    &:hover {
+      .external-account-box {
+        border: 1px solid #FF99C2;
+        background-color: #FFCCE1;
+      }
+
+      .already-connected {
+        display: none;
+      }
+
+      .disconnect {
+        display: block;
+      }
+    }
+  }
+
+  &.disabled {
+    &:hover {
+      .el-weblinks i {color: #82A0AA;}
+      .el-bitbucket i {color: #205081;}
+      .el-dribble i {color: #EA4C89;}
+      .el-linkedin i {color: #127CB5;}
+      .el-twitter i {color: #62AADC;}
+      .el-stackoverflow i {color: #E5712A;}
+      .el-behance i {color: #188CFC;}
+      .el-github i {color: #4B3D74;}
+    }
+  }
+
+  &.read-only {
+    cursor: default;
+  }
+
+  .external-account-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 90px;
+    border: 1px solid $gray-light;
+    margin-top: 12px;
+
+    i {
+      color: #D1D3D4;
+      font-size: 45px;
+    }
+
+    .provider {
+      margin-top: 8px;
+      @include sofia-pro-medium;
+      font-size: 10px;
+      line-height: 13px;
+      text-align: center;
+      text-transform: uppercase;
+      color: $system-gray;
+    }
+  }
+
+  .status {
+    font-size: 10px;
+    @include sofia-pro-medium;
+    margin-top: 10px;
+    text-transform: uppercase;
+    color: $gray-darkest;
+
+    &.disconnect {
+      display: none;
+      color: #FF0066;
+    }
+  }
 }
