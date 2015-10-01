@@ -115,7 +115,7 @@
                 h2 {{vm.divisionName[$index]}}
                 span TOTAL
               li.success
-                h3 {{division.total.problemsSuccessful / division.total.problemsSubmitted | percentage }}
+                h3 {{(division.total.problemsSuccessful || 0) / (division.total.problemsSubmitted || 1) | percentage }}
                 span SUCCESS
 
               li.submitted
@@ -136,7 +136,7 @@
                 h3 {{level.levelName}}
 
               li.success
-                h3 {{level.problemsSuccessful / level.problemsSubmitted | percentage }}
+                h3 {{(level.problemsSuccessful || 0) / (level.problemsSubmitted || 1) | percentage }}
                 span SUCCESS
 
               li.submitted
@@ -159,7 +159,7 @@
                 h2 CHALLENGES
                 span TOTAL
               li.success
-                h3 {{vm.challengesSRM.total.problemsSuccessful / vm.challengesSRM.total.problemsSubmitted | percentage }}
+                h3 {{(vm.challengesSRM.total.problemsSuccessful || 0) / (vm.challengesSRM.total.problemsSubmitted || 1) | percentage }}
                 span SUCCESS
 
               li.submitted
@@ -176,7 +176,7 @@
                 h3 {{level.levelName}}
 
               li.success
-                h3 {{level.problemsSuccessful / level.problemsSubmitted | percentage }}
+                h3 {{(level.problemsSuccessful || 0) / (level.problemsSubmitted || 1) | percentage }}
                 span SUCCESS
 
               li.submitted
