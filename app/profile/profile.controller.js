@@ -77,7 +77,7 @@
       if (profile.createdAt) {
         profile.startMonth = moment(profile.createdAt).format('MMMM, YYYY');
       } else {
-        profile.startMonth = moment().format('MMMM, YYYY')// false;
+        profile.startMonth = null;
       }
 
     }
