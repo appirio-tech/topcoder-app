@@ -97,11 +97,12 @@
             margin-left: 55px;
             align-self: flex-start;
             text-transform: uppercase;
+            color: #A3A3AE;
             a {
               text-decoration: none;
 
               &.disabled {
-                color: $dark-gray;
+                color: $black;
                 cursor: default;
               }
             }
@@ -123,10 +124,12 @@
               font-size: 11px;
               line-height: 16px;
               text-transform: uppercase;
-              color: $black;
+              color: #A3A3AE;
+              cursor: pointer;
 
               &.disabled {
-                color: #A3A3AE;
+                color: $black;
+                cursor: default;
               }
 
               &:before {
