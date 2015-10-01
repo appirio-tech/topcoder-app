@@ -5,17 +5,44 @@
   flex-direction: column;
   align-items: center;
   margin: 5px 20px 15px 0;
+  cursor: pointer;
 
   &.connected {
-
-
     .status {
       color: $gray-dark;
+    }
+
+    &:hover {
+      .external-account-box {
+        border: 1px solid #FF99C2;
+        background-color: #FFCCE1;
+      }
+
+      .already-connected {
+        display: none;
+      }
+
+      .disconnect {
+        display: block;
+      }
     }
   }
 
   &.disabled {
+    &:hover {
+      .el-weblinks i {color: #82A0AA;}
+      .el-bitbucket i {color: #205081;}
+      .el-dribble i {color: #EA4C89;}
+      .el-linkedin i {color: #127CB5;}
+      .el-twitter i {color: #62AADC;}
+      .el-stackoverflow i {color: #E5712A;}
+      .el-behance i {color: #188CFC;}
+      .el-github i {color: #4B3D74;}
+    }
+  }
 
+  &.read-only {
+    cursor: default;
   }
 
   .external-account-box {
@@ -27,16 +54,10 @@
     height: 90px;
     border: 1px solid $gray-light;
     margin-top: 12px;
-    cursor: pointer;
-
-    &.read-only{
-      cursor: default;
-      pointer-events: none;
-    }
 
     i {
-      font-size: 45px;
       color: #D1D3D4;
+      font-size: 45px;
     }
 
     .provider {
@@ -56,5 +77,10 @@
     margin-top: 10px;
     text-transform: uppercase;
     color: $gray-darkest;
+
+    &.disconnect {
+      display: none;
+      color: #FF0066;
+    }
   }
 }

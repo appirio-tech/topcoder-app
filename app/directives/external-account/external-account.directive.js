@@ -1,15 +1,15 @@
 (function() {
   'use strict';
   var _supportedAccounts = [
-    { provider: "dribble", className: "fa-dribbble", displayName: "Dribble", disabled: true, order: 6},
-    { provider: "linkedin", className: "fa-linkedin", displayName: "LinkedIn", disabled: true, order: 5},
-    { provider: "stackoverflow", className: "fa-stack-overflow", displayName: "Stack Overflow", disabled: true, order: 3},
-    { provider: "behance", className: "fa-behance", displayName: "Behance", disabled: true, order: 2},
-    // { provider: "google-oauth2", className: "fa-google-plus", displayName: "Google+", disabled: true, order: },
-    { provider: "github", className: "fa-github", displayName: "Github", disabled: false, order: 1},
-    { provider: "bitbucket", className: "fa-bitbucket", displayName: "Bitbucket", disabled: true, order: 7},
-    { provider: "twitter", className: "fa-twitter", displayName: "Twitter", disabled: true, order: 4},
-    { provider: "weblinks", className: "fa-globe", displayName: "Web Links", disabled: true, order: 8}
+    { provider: "dribble", className: "fa-dribbble", displayName: "Dribble", disabled: true, order: 6, colorClass: 'el-dribble'},
+    { provider: "linkedin", className: "fa-linkedin", displayName: "LinkedIn", disabled: true, order: 5, colorClass: 'el-linkedin'},
+    { provider: "stackoverflow", className: "fa-stack-overflow", displayName: "Stack Overflow", disabled: true, order: 3, colorClass: 'el-stackoverflow'},
+    { provider: "behance", className: "fa-behance", displayName: "Behance", disabled: true, order: 2, colorClass: 'el-behance'},
+    // { provider: "google-oauth2", className: "fa-google-plus", displayName: "Google+", disabled: true, order: }, colorClass: 'el-dribble',
+    { provider: "github", className: "fa-github", displayName: "Github", disabled: false, order: 1, colorClass: 'el-github'},
+    { provider: "bitbucket", className: "fa-bitbucket", displayName: "Bitbucket", disabled: true, order: 7, colorClass: 'el-bitbucket'},
+    { provider: "twitter", className: "fa-twitter", displayName: "Twitter", disabled: true, order: 4, colorClass: 'el-twitter'},
+    { provider: "weblinks", className: "fa-globe", displayName: "Web Links", disabled: true, order: 8, colorClass: 'el-weblinks'}
     // TODO  add more
   ];
 
