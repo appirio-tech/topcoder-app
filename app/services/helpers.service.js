@@ -63,7 +63,14 @@
         handle = profile.nickname;
         email = profile.email;
         socialProviderId = 4;
+      } else if (socialProvider === 'bitbucket') {
+        firstName = profile.first_name;
+        lastName = profile.last_name;
+        handle = profile.username;
+        email = profile.email;
+        socialProviderId = 4;
       }
+
       var socialUserId = profile.user_id.substring(profile.user_id.indexOf('|') + 1);
       return {
         socialUserId: socialUserId,

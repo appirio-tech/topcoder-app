@@ -3,7 +3,8 @@
 
 .profile-about-container
 
-  tc-section(id="skills", ng-show="vm.displaySection.skills" state="profileVm.status.skills" class="skills")
+  tc-section(id="skills", ng-show="vm.displaySection.skills", state="profileVm.status.skills" class="skills")
+
     h3.activity Skills
 
     .list(ng-show="profileVm.skills && profileVm.skills.length > 0")
@@ -16,16 +17,16 @@
 
     .empty-state(ng-show="!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)")
       .action-text Tell everyone what you know
-      
+
       .list
         .skill(ng-repeat="skill in vm.sampleSkills")
           skill-tile(skill="skill")
-      
-      .description You can add languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.
-      
-      button.link-button(ui-sref="settings.profile") ADD SKILLS
 
-  tc-section(id="tcActivity", state="profileVm.status.stats")
+      .description You can add languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.
+
+      button.link-button(ui-sref="settings.profile") ADD SKILLS
+  
+  tc-section(id="tcActivity", ng-show="vm.displaySection.stats", state="profileVm.status.stats")
 
     .categories
 
@@ -61,9 +62,9 @@
           .name {{subtrack.subTrack | track}}
 
           .ranking(ng-if="subtrack.rating")
-            .number.rating
+            .number.rating(style="color: {{subtrack.rating | ratingColor}}")
               | {{subtrack.rating}}
-              span.square(style="background-color: {{subtrack.rating | ratingColor}}") 
+              span.square(style="background-color: {{subtrack.rating | ratingColor}}")
 
             .tag Rating
 
@@ -73,10 +74,10 @@
             .tag Ranking
 
           .ranking(ng-if="subtrack.wins && !subtrack.rank && !subtrack.rating")
-            .number {{subtrack.wins}}
+            .number(style="color: #21B2F1") {{subtrack.wins}}
 
             .tag Wins
-          
+
           .ranking(ng-if="subtrack.fulfillment")
             .number {{subtrack.fulfillment + '%'}}
 

@@ -1,18 +1,6 @@
 
-br
-br
+div(style="text-align: center; background-color: white; padding: 60px; margin:60px;")
+  img(style="width: 400px;", ng-src="/images/keepcalm.png")
 
-h1 Ugly landing page
-
-p This page will be replaced by "dashboard", until then...
-
-hr
-
-
-div(ng-show="vm.loggedIn") User Information:
-  pre {{vm.user|json}}
-
-div(ng-hide="vm.loggedIn")
-  a(ui-sref="login") Login
-
-br
+  p(style="text-decoration: none;") ... while you wait - 
+    a(href="https://www.youtube.com/watch?v=LU8DDYz68kM") click me 

@@ -85,7 +85,7 @@ a {
 }
 
 .form-errors {
-  width: 300px;
+  width: 380px;
 }
 
 .form-notice {
@@ -248,5 +248,11 @@ a {
   .has-symbol-or-number:before,
   .has-number:before {
     display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .form-errors {
+    width: 100%;
   }
 }

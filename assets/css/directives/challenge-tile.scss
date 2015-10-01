@@ -11,7 +11,7 @@ challenge-tile .challenge.tile-view {
     background-color: $white;
 
     &:hover {
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4)
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
     }
 
     .challenge-track {
@@ -37,12 +37,8 @@ challenge-tile .challenge.tile-view {
         font-size: 14px;
         line-height: 18px;
         color: $gray-darkest;
-        text-decoration: none;
         @include ellipsis;
-
-        &:hover {
-          text-decoration: underline;
-        }
+        @include link;
       }
 
       p {
@@ -244,11 +240,7 @@ challenge-tile .challenge.tile-view {
         font-size: 14px;
         line-height: 18px;
         color: $gray-darkest;
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
+        @include link;
       }
 
       .date-completed {
@@ -273,11 +265,17 @@ challenge-tile .challenge.tile-view {
       justify-content: space-between;
       align-items: center;
 
+      &.DATA_SCIENCE {
+        flex: 2;
+        justify-content: center;
+      }
+
       .place {
         margin-bottom: 30px;
         @include sofia-pro-regular;
         font-size: 20px;
         color: $gray-darkest;
+        text-transform: uppercase;
 
         &.first-place {
           font-weight: bold;
@@ -286,6 +284,7 @@ challenge-tile .challenge.tile-view {
 
         span {
           @include superscript;
+          text-transform: lowercase;
         }
       }
 
@@ -313,6 +312,74 @@ challenge-tile .challenge.tile-view {
           text-transform: uppercase;
         }
       }
+
+      .marathon-score {
+        margin-bottom: 70px;
+        text-align: center;
+
+        .score {
+          margin-top: 28px;
+          margin-bottom: 5px;
+          @include sofia-pro-regular;
+          font-size: 32px;
+          line-height: 38px;
+          color: #3D3D3D;
+        }
+
+        p:last-child {
+          @include sofia-pro-regular;
+          font-size: 12px;
+          line-height: 14px;
+          color: #A3A3AE;
+          text-transform: uppercase;
+        }
+      }
+
+      .thumbnail {
+        position: relative;
+        width: 268px;
+        height: 200px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: auto;
+          overflow: hidden;
+        }
+
+        .thumbnail-gallery {
+          position: absolute;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          width: 270px;
+          height: 32px;
+          bottom: 0;
+          left: 0;
+          background-color: rgba(0, 0, 0, 0.4);
+          cursor: pointer;
+
+          .gallery-icon {
+            margin-left: 10px;
+            @include background-image-size(21px, 17px);
+            background: url(/images/ico-gallery.svg);
+          }
+
+          .num-images {
+            margin-left: 8px;
+            @include sofia-pro-regular;
+            font-size: 10px;
+            color: $gray-lighter;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+
+  .past-design-details {
+    img {
+      height: 200px;
     }
   }
 }
@@ -361,12 +428,8 @@ challenge-tile .challenge.list-view {
       @include sofia-pro-medium;
       font-size: 18px;
       color: $gray-darkest;
-      text-decoration: none;
       @include ellipsis;
-
-      &:hover {
-        text-decoration: underline;
-      }
+      @include link;
     }
 
     .subtrack {

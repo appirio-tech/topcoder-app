@@ -14,6 +14,7 @@
     vm.profile = profile;
     vm.userHandle = userHandle;
     vm.showBadges = showBadges;
+    vm.closeDialog = closeDialog;
 
     vm.imgMap = {
       'DEVELOP': 'develop',
@@ -76,7 +77,7 @@
       if (profile.createdAt) {
         profile.startMonth = moment(profile.createdAt).format('MMMM, YYYY');
       } else {
-        profile.startMonth = moment().format('MMMM, YYYY')// false;
+        profile.startMonth = null;
       }
 
     }
@@ -93,6 +94,10 @@
           }
         }
       });
+    }
+
+    function closeDialog() {
+      ngDialog.close();
     }
   }
 

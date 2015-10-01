@@ -9,13 +9,13 @@
         .description The most important information that other community members should know about you.
 
       .section-fields
-        .image 
+        .image
           .form-label your profile image
           .edit-image
             img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photoURL}}")
 
             input(type="file", name="image", on-file-change)
-        
+
         .country
           .form-label country
           angucomplete-alt(
@@ -33,9 +33,10 @@
             minlength="1",
             ng-class="{'form-field-focused': hasFocus==true}"
           )
+          span.error-message(ng-if="vm.editProfile.$invalid") This is a required field
 
         .bio
-          .form-label short bio 
+          .form-label short bio
             span(style="float:right;") {{vm.userData.description.length || 0}}/144
           textarea.form-field(name="description", ng-model="vm.userData.description" ng-maxlength="144")
 
@@ -44,40 +45,18 @@
         h2 Tracks
         .description Topcoder's three categories of challenges... please pick at least one on your skills and interests
 
-      
+
       .section-fields
-        .track(ng-repeat="track in ['DESIGN', 'DEVELOP', 'DATA_SCIENCE']")
-          hr
+        track-toggle(tracks="vm.tracks")
 
-          .top
-            .title(ng-class="{'disabled': !vm.tracks[track]}")
-              img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data-outline.svg")
-              img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop-outline.svg")
-              img(ng-if="track == 'DESIGN'", src="/images/ico-track-design-outline.svg")
-
-              span {{track | track}}
-
-            .onoffswitch
-              input.onoffswitch-checkbox(type='checkbox', name='onoffswitch', checked='', ng-model="vm.tracks[track]", id="{{track}}-onoffswitch")
-              label.onoffswitch-label(for='{{track}}-onoffswitch')
-                span.onoffswitch-inner
-                span.onoffswitch-switch
-
-
-          .bottom
-            .description
-              | Website, mobile, and product design; UI and UX
-
-        hr
-          
-        button(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid", ng-class="{' ': vm.editProfile.$valid}") Save Changes
+        button(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': vm.editProfile.$pristine || vm.editProfile.$invalid}") Save
 
   .settings-section.skills
     .section-info
       h2 skills
       .description Languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well
 
-    .section-fields  
+    .section-fields
       .field-label Add a new skill
       angucomplete-alt(
         id="tagId",
@@ -94,9 +73,9 @@
         minlength="1",
         ng-class="{'form-field-focused': hasFocus==true}"
       )
-    
+
       .list
-        .skill(ng-repeat="skill in vm.skills | orderBy:'-score'")
+        .skill(ng-repeat="skill in vm.skills | orderBy:'-score' | orderBy:'-isNew'")
           skill-tile(skill="skill" enable-hide="true")
 
   .settings-section.links
@@ -105,131 +84,12 @@
       .description Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.
 
     .section-fields
-      .field-label Link your accounts
-      .external-links
-        external-accounts.external-account-container
-        //(linked-accounts-data="vm.linkedExternalAccounts")
+      .field-label Link Your Accounts
 
-      .field-label Link your accounts
+      .external-links
+        external-accounts(linked-accounts="vm.linkedExternalAccounts", read-only="false")
+
+      .field-label Linked Accounts
 
       .existing-links
-        external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccounts")
-
-
-
-  //- h1.tab-title Profile
-
-  //- form(name="vm.editProfile", ng-submit="vm.editProfile.$valid && vm.updateProfile()", autocomplete="off")
-  //-   // Stops Chrome from autofilling and autocompleting (along with autocomplete="off" on the form)
-  //-   input(autocomplete="false", name="hidden", type="text", style="display:none;")
-
-  //-   .fields
-  //-     .field-section.edit-image
-  //-       img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photoURL}}")
-
-  //-       .upload-image
-  //-         p Edit Image
-
-  //-         input(type="file", name="image", on-file-change)
-
-  //-     .field-section
-  //-       h4.field-title Location
-
-  //-       .country-dropdown
-  //-         angucomplete-alt(
-  //-           id="countryId",
-  //-           input-name="location",
-  //-           placeholder="Country",
-  //-           pause="100",
-  //-           selected-object="vm.updateCountry",
-  //-           local-data="vm.countries",
-  //-           initial-value="vm.countryObj",
-  //-           search-fields="name",
-  //-           title-field="name",
-  //-           match-class="angucomplete-highlight",
-  //-           minlength="1"
-  //-         )
-
-  //-       .form-errors
-  //-         p.form-error(ng-show="vm.editProfile.location.$error.required") Please choose a country from the list.
-
-  //-     .field-section.description
-  //-       h4.field-title About Me
-
-  //-       input(name="description", type="text", value="{{vm.userData.description}}", ng-model="vm.userData.description", maxlength="144")
-
-  //-       span {{vm.userData.description.length || 0}}/144
-
-  //-     .field-section.my-tracks
-  //-       h4.field-title My Tracks
-
-  //-       h6.field-subtitle These are the main categories that help us select the best challenges for you
-
-  //-       .select-tracks
-  //-         .track-section
-  //-           .track-checkbox
-  //-             input(type="checkbox", id="checkbox-design", ng-checked="vm.tracks.design")
-
-  //-             label(for="checkbox-design")
-  //-               span(ng-class="{ 'checked-track': vm.tracks.design }", ng-click="vm.toggleTrack('design')")
-
-  //-           .track-info
-  //-             h4 Design
-
-  //-             p Find challenges about Brand, Logo, Web UI, Mobile UI, UX. You know and use tools like Photoshop, Illustrator, Sketch, OmniGraffle.
-
-  //-         .track-section
-  //-           .track-checkbox
-  //-             input(type="checkbox", id="checkbox-develop", ng-checked="vm.tracks.develop")
-
-  //-             label(for="checkbox-develop")
-  //-               span(ng-class="{ 'checked-track': vm.tracks.develop }", ng-click="vm.toggleTrack('develop')")
-
-  //-           .track-info
-  //-             h4 Development
-
-  //-             p Find challenges about coding and development. You know languages like PHP, Python, Ruby, Objective-C, C#, MySQL, JavaScript, Java.
-
-  //-         .track-section
-  //-           .track-checkbox
-  //-             input(type="checkbox", id="checkbox-datascience", ng-checked="vm.tracks.data_science")
-
-  //-             label(for="checkbox-datascience")
-  //-               span(ng-class="{ 'checked-track': vm.tracks.data_science }", ng-click="vm.toggleTrack('data_science')")
-
-  //-           .track-info
-  //-             h4 Data Science
-
-  //-             p Find challenges about data and algorithms. You know data sets, algorithms, DB structures, statistics, data analysis.
-
-  //-     button(type="submit", ng-disabled="vm.editProfile.$invalid", ng-class="{'enabled-button': vm.editProfile.$valid}") Save
-    
-  //- .field-section.edit-skills
-  //-   h4.field-title My Skills
-  //-   h5 This skills are shown on the
-    
-  //-   angucomplete-alt(
-  //-     id="tagId",
-  //-     input-name="skill-input",
-  //-     placeholder='Type skill name here and press "Enter" to add it',
-  //-     pause="100",
-  //-     selected-object="vm.addSkill",
-  //-     local-data="vm.tags",
-  //-     search-fields="name",
-  //-     title-field="name",
-  //-     clear-selected=true,
-  //-     match-class="angucomplete-highlight",
-  //-     minlength="1"
-  //-   )
-    
-  //-   .skills
-  //-     .skill(ng-repeat="skill in vm.skills | orderBy:'-score'")
-  //-       skill-tile(skill="skill" enable-hide="true")
-
-  //- .clearfix
-
-  //- .field-section
-  //-   h4.field-title Links to Work
-  //-     p Add links to your existing work
-
-  //-     external-accounts.external-account-container(linked-accounts="vm.linkedExternalAccounts")
+        external-links-data(external-links="vm.linkedExternalAccounts", linked-accounts-data="vm.linkedExternalAccountsData")

@@ -1,57 +1,63 @@
 @import '../partials/combined';
 .settings-header {
   @include module-full-width;
-    background-color: $white;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .3);
-    header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 1242px;
-      margin: 0 auto;
-      padding-top: 20px;
-      @media only screen and (min-width: 600px) {
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 25px 25px 23px;
-      }
-      @media only screen and (min-width: 900px) {
-        padding: 40px 50px 33px;
-      }
-      h1 {
-        margin-bottom: 10px;
-        @include sofia-pro-bold;
-        font-size: 22px;
-        line-height: 26px;
-        color: black;
-        text-transform: uppercase;
-        @media only screen and (min-width: 600px) {
-          margin-bottom: 0;
-          font-size: 32px;
-          line-height: 38px;
-        }
+  background-color: $white;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, .3);
+
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1242px;
+    margin: 0 auto;
+    padding-top: 20px;
+    @media only screen and (min-width: 600px) {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 25px 25px 23px;
+    }
+    @media only screen and (min-width: 900px) {
+      padding: 40px 50px 33px;
+    }
+    h1 {
+      margin-bottom: 10px;
+      @include sofia-pro-bold;
+      font-size: 22px;
+      line-height: 26px;
+      color: black;
+      text-transform: uppercase;
+      @media only screen and (min-width: 768px) {
+        margin-bottom: 0;
+        font-size: 32px;
+        line-height: 38px;
       }
     }
+  }
 }
 
 .settings-container {
   @include module-l;
+  @media only screen and (min-width: 768px) {
+    margin-top: 80px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
   margin-left: auto;
   margin-right: auto;
+  margin-top: 30px;
   nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    @media only screen and (min-width: 550px) {
+    @media only screen and (min-width: 768px) {
       display: flex;
       flex-direction: row;
       justify-content: center;
     }
     li {
-      margin-top: 10px;
       display: inline-block;
-      margin-right: 30px;
-      @media only screen and (min-width: 550px) {
+      margin-right: 35px;
+      @media only screen and (min-width: 768px) {
       }
     }
     a {
@@ -61,23 +67,25 @@
       text-transform: uppercase;
       text-decoration: none;
       cursor: pointer;
-      @media only screen and (min-width: 760px) {
+      @media only screen and (min-width: 768px) {
         font-size: 16px;
       }
     }
   }
-  hr {
-    width: 95%;
-    margin-top: 7px;
-  }
   .active-tab {
-    padding-bottom: 6px;
+    padding: 0 5px 6px;
     border-bottom: 4px #0096FF solid;
     color: black;
   }
 
   hr {
     border-width: 1px 0 0 0;
+    &.nav-line {
+      width: 95%;
+      margin-top: 7px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
   // Common element stylings
   .button-l {
@@ -87,32 +95,40 @@
   @include ui-form-placeholder;
   input:not([type="checkbox"]) {
     @include ui-form-field;
+    height: 38px;
   }
   .settings-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    @media only screen and (min-width: 768px) {
-            flex-direction: row;
-    }
     margin-top: 30px;
     margin-bottom: 20px;
     padding-bottom: 20px;
+    @media only screen and (min-width: 768px) {
+      flex-direction: row;
+      padding-bottom: 40px;
+    }
     border-bottom: 1px solid;
     border-color: #F0F0F0;
     width: 95%;
     margin-left: auto;
     margin-right: auto;
     .section-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-self: flex-start;
       @media only screen and (min-width: 768px) {
-        width: 320px;
-        padding-right: 30px;
+        width: 270px;
+        margin-right: 33px;
       }
+
       h2 {
         text-transform: uppercase;
         @include sofia-pro-light;
         font-size: 16px;
       }
+
       .description {
         font-size: 13px;
         line-height: 20px;
@@ -149,24 +165,31 @@
         @include form-field-focused;
       }
       .image {
-        margin-top: 20px;
         .edit-image {
           img.profile-circle {
             margin-top: 10px;
           }
         }
-        input {
-        }
       }
       .country {
         margin-top: 30px;
+
         input {
           background-color: white;
         }
+
+        span.error-message {
+          color: #EF3A3A;
+          font-family: 'Sofia Pro';
+          font-size: 10px;
+          text-transform: uppercase;
+        }
+
       }
 
       .bio {
         margin-top: 30px;
+
         textarea {
           background: white;
           width: 100%;
@@ -177,68 +200,39 @@
   }
   .tracks {
     padding-bottom: 0px;
+
+    .section-fields {
+      margin-top: 40px;
+    }
+
     button {
       @include button-2-l;
       margin-bottom: 20px;
-    }
-    hr {
-      margin-top: 10px;
-      width: 100%;
-    }
-    .track {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: left;
-      .top {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        .title {
-          &.disabled {
-            color: #b7b7b7;
-          }
-          img {
-            height: 25px;
-            width: 25px;
-            margin-bottom: -4px;
-            margin-right: 3px;
-          }
-          span {
-            font-family: 'Sofia Pro';
-            font-size: 22px;
-          }
-        }
-      }
-      .bottom {
-        margin-top: 10px;
-        .description {
-          font-family: 'Source Sans Pro';
-          font-size: 13px;
-          color: #b7b7b7;
-        }
-      }
+      align-self: center;
+      margin-top: 20px;
     }
   }
   .skills {
-    .section-info {
-
-    }
     .section-fields {
       margin-top: 20px;
       width: 100%;
       display: flex;
       flex-direction: column;
+
       .field-label, angucomplete-alt {
         align-self: flex-start;
       }
+
       .field-label {
         font-family: 'Sofia Pro';
         font-size: 12px;
         text-transform: uppercase;
       }
+
       angucomplete-alt {
+        width: 100%;
         margin-top: 6px;
+
         input {
           font-family: 'Source Sans Pro';
           font-style: italic;
@@ -249,17 +243,18 @@
       .list {
         display: flex;
         flex-direction: row;
-        justify-content: center;
         flex-wrap: wrap;
         margin-top: 20px;
+
         .skill {
-          margin: 0 20px 10px 20px;
+          margin: 0 20px 10px;
+          @media only screen and (min-width: 768px) {
+            margin: 0;
+            margin-right: 30px;
+            margin-bottom: 5px;
+          }
         }
- 
       }
-
-
-
     }
   }
   .links {
@@ -267,10 +262,6 @@
       font-family: 'Sofia Pro';
       font-size: 12px;
       text-transform: uppercase;
-      margin-top: 15px;
-    }
-    .external-links {
-      margin-top: 10px;
     }
     .existing-links {
       display: flex;
@@ -285,20 +276,19 @@
 .account-info-container,
 .update-password-container,
 .preferences-container {
-  @media only screen and (min-width: 550px) {
-    padding-left: 100px;
+  @media only screen and (min-width: 768px) {
   }
   .tab-title {
     margin-bottom: 35px;
     font-size: 32px;
     @include source-sans-light;
     color: $ui-light-gray;
-    @media only screen and (min-width: 550px) {
+    @media only screen and (min-width: 768px) {
       margin-top: 50px;
     }
   }
   .fields {
-    @media only screen and (min-width: 550px) {
+    @media only screen and (min-width: 768px) {
       margin-left: 3px;
     }
   }
@@ -358,17 +348,23 @@
     right: 30px;
     border: none;
     border-radius: 36px;
-    transition: all 0.3s ease-in 0s; 
+    transition: all 0.3s ease-in 0s;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
     margin-left: 0;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px; 
+    right: 0px;
 }
 
 .settings-section {
-  @media only screen and (min-width: 760px) {
+  @media only screen and (min-width: 768px) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    .section-fields {
+      // Remove !important during refactor
+      margin-top: 0px !important;
+    }
     .section-info {
       h2 {
         font-size: 18px;
@@ -378,22 +374,29 @@
       }
     }
     &.tracks {
-      padding-bottom: 20px;
-      hr {
-        margin: 20px 0;
-      }
+      padding-bottom: 40px;
       .section-fields {
-        .track {
-
-        }
+        margin-top: 40px;
       }
     }
     &.skills {
       input {
-        width: 600px;
+        width: 100%;
       }
       .section-fields {
-        max-width: 760px;
+        max-width: 768px;
+      }
+    }
+  }
+}
+.settings-container {
+  @media only screen and (min-width: 768px) {
+    .links {
+      .existing-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
       }
     }
   }

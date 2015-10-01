@@ -34,9 +34,9 @@
     .module('topcoder', dependencies)
     .run(appRun);
 
-  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log', 'NotificationService'];
+  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log', 'NotificationService', 'CONSTANTS'];
 
-  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log, NotificationService) {
+  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log, NotificationService, CONSTANTS) {
     // Attaching $state to the $rootScope allows us to access the
     // current state in index.html (see the body tag)
     $rootScope.$state = $state;
@@ -64,7 +64,9 @@
     // NotificationService.getNotifications();
   }
 
-  angular.module('topcoder').config(['$httpProvider', 'RestangularProvider', function($httpProvider, RestangularProvider) {
+  angular.module('topcoder').config(['$httpProvider', 'RestangularProvider', '$locationProvider',
+   function($httpProvider, RestangularProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('HeaderInterceptor');
     RestangularProvider.setRequestSuffix('/');
   }]);

@@ -7,7 +7,7 @@ html
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
 
     // favicon
-    link(rel="shortcut icon", type="image/png", href="images/favicon.ico")
+    link(rel="shortcut icon", type="image/png", href="/images/favicon.ico")
 
     // build:css /styles/vendor.css
     //- bower:css
@@ -54,6 +54,7 @@ html
     link(rel="stylesheet", href="assets/css/my-challenges/my-challenges.css")
     link(rel="stylesheet", href="assets/css/layout/header.css")
     link(rel="stylesheet", href="assets/css/layout/footer.css")
+    link(rel="stylesheet", href="assets/css/directives/track-toggle.css")
     link(rel="stylesheet", href="assets/css/directives/toggle-password-with-tips.css")
     link(rel="stylesheet", href="assets/css/directives/toggle-password.css")
     link(rel="stylesheet", href="assets/css/directives/tc-section.css")
@@ -66,9 +67,11 @@ html
     link(rel="stylesheet", href="assets/css/directives/external-link-data.css")
     link(rel="stylesheet", href="assets/css/directives/external-account.css")
     link(rel="stylesheet", href="assets/css/directives/distribution-graph.css")
+    link(rel="stylesheet", href="assets/css/directives/design-lightbox.css")
     link(rel="stylesheet", href="assets/css/directives/challenge-tile.css")
     link(rel="stylesheet", href="assets/css/directives/badge-tooltip.css")
     link(rel="stylesheet", href="assets/css/account/reset-password.css")
+    link(rel="stylesheet", href="assets/css/account/registered-successfully.css")
     link(rel="stylesheet", href="assets/css/account/register.css")
     link(rel="stylesheet", href="assets/css/account/login.css")
     link(rel="stylesheet", href="assets/css/account/account.css")
@@ -159,8 +162,10 @@ html
     script(src="directives/srm-tile/srm-tile.directive.js")
     script(src="directives/tc-paginator/tc-paginator.directive.js")
     script(src="directives/tc-section/tc-section.directive.js")
+    script(src="directives/track-toggle/track-toggle.directive.js")
     script(src="topcoder.module.js")
     script(src="filters/deadline-msg.filter.js")
+    script(src="filters/external-link-color.filter.js")
     script(src="filters/iif.filter.js")
     script(src="filters/listRoles.filter.js")
     script(src="filters/local-time.filter.js")
@@ -293,7 +298,10 @@ html
         strings: {
           post_suggestion_title: 'Your Feedback',
           post_suggestion_body: 'Please tell us what you think of the new Topcoder experience.',
-          post_suggestion_message_placeholder: '... things you liked or bugs/issues.'
+          post_suggestion_message_placeholder: '... things you liked or bugs/issues.',
+          suggestion_title_label: 'Feedback title',
+          suggestion_title_placeholder: 'Summarize your feedback',
+          post_suggestion_submit_button: 'Submit feedback'
         }
       }]);
 

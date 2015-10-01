@@ -129,7 +129,7 @@
         var marathonStats = stats.DATA_SCIENCE.MARATHON_MATCH;
         dataScience.push({
           'track': 'DATA_SCIENCE',
-          'subTrack': 'MARATHON',
+          'subTrack': 'MARATHON_MATCH',
           'rank': marathonStats.rank.rank,
           'rating': marathonStats.rank.rating
         });
@@ -176,8 +176,27 @@
         var ans = stats.COPILOT;
         return ans;
       } else if (type == 'SRM') {
+        if (stats.DATA_SCIENCE.SRM.history) {
+          stats.DATA_SCIENCE.SRM.history.map(function(point) {
+            point.ratingDate = point.date;
+            point.newRating = point.rating;
+          });
+          stats.DATA_SCIENCE.SRM.history.sort(function(x, y) {
+            return moment(x.date).toDate() - moment(y.date).toDate();
+          });
+        }
         return stats.DATA_SCIENCE.SRM;
       } else {
+        if (stats.DATA_SCIENCE.MARATHON_MATCH.history) {
+          stats.DATA_SCIENCE.MARATHON_MATCH.history.map(function(point) {
+            point.ratingDate = point.date;
+            point.newRating = point.rating;
+          });
+          stats.DATA_SCIENCE.MARATHON_MATCH.history.sort(function(x, y) {
+            return moment(x.date).toDate() - moment(y.date).toDate();
+          });
+        }
+
         return stats.DATA_SCIENCE.MARATHON_MATCH;
       }
     }
@@ -225,6 +244,7 @@
     function getDivisions(stats) {
       stats = stats.DATA_SCIENCE.SRM;
       function toObject(array) {
+        array = array || [];
         var ans = {};
         ans.total = {
           problemsSuccessful: 0,
@@ -233,10 +253,12 @@
           problemsSysByTest: 0
         };
         array.forEach(function(level) {
+          level.problemsFailed = level.problemsFailed || level.failedChallenges || 0;
+          level.problemsSubmitted = level.problemsSubmitted || level.challenges || 0;
           level.problemsSuccessful = level.problemsSubmitted - level.problemsFailed;
-          ans.total.problemsSuccessful += level.problemsSuccessful;
-          ans.total.problemsFailed += level.problemsFailed;
-          ans.total.problemsSubmitted += level.problemsSubmitted;
+          ans.total.problemsSuccessful += level.problemsSuccessful || (level.challenges - level.failedChallenges);
+          ans.total.problemsFailed += level.problemsFailed || level.failedChallenges || 0;
+          ans.total.problemsSubmitted += level.problemsSubmitted || level.challenges || 0;
           ans.total.problemsSysByTest += level.problemsSysByTest;
           ans[level.levelName] = level;
         });

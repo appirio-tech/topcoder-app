@@ -16,6 +16,8 @@
       getChallengeDetails: getChallengeDetails,
       processActiveDevDesignChallenges: processActiveDevDesignChallenges,
       processActiveMarathonMatches: processActiveMarathonMatches,
+      processPastMarathonMatch: processPastMarathonMatch,
+      processPastSRM: processPastSRM,
       processPastChallenges: processPastChallenges
     };
 
@@ -29,8 +31,17 @@
       return api.one('members', handle.toLowerCase()).all('challenges').getList(params);
     }
 
-    function getUserMarathonMatches(handle, params) {
-      return api.one('members', handle.toLowerCase()).all('mms').getList(params);
+    function getUserMarathonMatches(handle, params, filterUnRated) {
+      filterUnRated = filterUnRated || true;
+      return api.one('members', handle.toLowerCase()).all('mms').getList(params)
+      .then(function(mms) {
+        if (filterUnRated) {
+          mms = _.filter(mms, function(m) {
+            return _.isArray(m.rounds) && m.rounds.length && !_.isUndefined(m.rounds[0].userMMDetails) && m.rounds[0].userMMDetails.rated;
+          });
+        }
+        return mms;
+      });
     }
 
     function getReviewEndDate(challengeId) {
@@ -138,6 +149,24 @@
           challenge.userCurrentPhaseEndTime = timeAndUnit;
         }
       });
+    }
+
+    function processPastMarathonMatch(challenge) {
+      challenge.status = challenge.status.trim();
+      if (Array.isArray(challenge.rounds) && challenge.rounds.length
+        && challenge.rounds[0].userMMDetails && challenge.rounds[0].userMMDetails.rated) {
+        challenge.submissionEndDate = challenge.rounds[0].systemTestEndAt;
+        challenge.newRating = challenge.rounds[0].userMMDetails.newRating;
+        challenge.pointTotal = challenge.rounds[0].userMMDetails.pointTotal;
+      }
+    }
+
+    function processPastSRM(challenge) {
+      if (Array.isArray(challenge.rounds) && challenge.rounds.length
+        && challenge.rounds[0].userSRMDetails) {
+        challenge.newRating = challenge.rounds[0].userMMDetails.newRating;
+        challenge.pointTotal = challenge.rounds[0].userMMDetails.pointTotal;
+      }
     }
 
     function processPastChallenges(challenges) {

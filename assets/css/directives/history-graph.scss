@@ -1,5 +1,16 @@
 @import '../partials/combined';
 
+.history-graph-directive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  .compare {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    @include button-1-m;
+  }
+}
 .history-graph-container {
   display: flex;
   flex-direction: column;
@@ -31,13 +42,21 @@
       stroke-width: 2.3px;
     }
 
-    .grid .tick {
+    .grid.x .tick {
       stroke: white;
       opacity: 0.7;
     }
 
+    .grid.y .tick {
+      stroke: #d7d7d7;
+      stroke-dasharray: 5, 5;
+      opacity: 0.3;
+    }
+
     .y.axis .tick text {
       font-size: 10px;
+      width: 20px;
+      text-align: left;
     }
 
 
@@ -48,7 +67,7 @@
     width: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     .rating {
       width: 130px;
@@ -78,18 +97,19 @@
       margin-bottom: 20px;
     }
     .history-info {
+      height: 50px;
       margin-bottom: 15px;
       font-family: 'Sofia Pro';
-      font-size: 14px;
+      font-weight: 500;
+      font-size: 15px;
       padding: 0 5px;
       text-align: center;
-    }
-    .lower {
-    }
-    .compare {
-      margin-top: 5px;
-      margin-bottom: 15px;
-      @include button-l;
+      .challenge {
+      }
+      .date {
+        color: #a3a3ae;
+        margin-top: 5px;
+      }
     }
   }
 }
@@ -145,8 +165,9 @@
     width: 300px;
     display: flex;
     margin-top: 20px;
+    padding-top: 100px;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     .rating {
       width: 130px;
@@ -180,16 +201,7 @@
       padding: 0 5px;
       text-align: center;
     }
-    .lower {
-    }
     .compare {
-      color: #00aeff;
-      background: #f6f6f6;
-      border: 1px solid #00aeff;
-      border-radius: 5px;
-      font-size: 20px;
-      line-height: 24px;
-      padding: 8px;
     }
   }
 }

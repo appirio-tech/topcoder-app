@@ -1,14 +1,15 @@
 (function() {
   'use strict';
   var _supportedAccounts = [
-    { provider: "dribble", className: "fa-dribbble", displayName: "Dribble"},
-    { provider: "linkedin", className: "fa-linkedin", displayName: "LinkedIn"},
-    { provider: "stackoverflow", className: "fa-stack-overflow", displayName: "StackOverflow"},
-    { provider: "behance", className: "fa-behance", displayName: "Behance"},
-    { provider: "google-oauth2", className: "fa-google-plus", displayName: "Google+"},
-    { provider: "github", className: "fa-github", displayName: "Github"},
-    { provider: "bitbucket", className: "fa-bitbucket", displayName: "Bitbucket"},
-    { provider: "twitter", className: "fa-twitter", displayName: "Twitter"},
+    { provider: "dribble", className: "fa-dribbble", displayName: "Dribble", disabled: true, order: 6, colorClass: 'el-dribble'},
+    { provider: "linkedin", className: "fa-linkedin", displayName: "LinkedIn", disabled: true, order: 5, colorClass: 'el-linkedin'},
+    { provider: "stackoverflow", className: "fa-stack-overflow", displayName: "Stack Overflow", disabled: true, order: 3, colorClass: 'el-stackoverflow'},
+    { provider: "behance", className: "fa-behance", displayName: "Behance", disabled: true, order: 2, colorClass: 'el-behance'},
+    // { provider: "google-oauth2", className: "fa-google-plus", displayName: "Google+", disabled: true, order: }, colorClass: 'el-dribble',
+    { provider: "github", className: "fa-github", displayName: "Github", disabled: false, order: 1, colorClass: 'el-github'},
+    { provider: "bitbucket", className: "fa-bitbucket", displayName: "Bitbucket", disabled: true, order: 7, colorClass: 'el-bitbucket'},
+    { provider: "twitter", className: "fa-twitter", displayName: "Twitter", disabled: true, order: 4, colorClass: 'el-twitter'},
+    { provider: "weblinks", className: "fa-globe", displayName: "Web Links", disabled: true, order: 8, colorClass: 'el-weblinks'}
     // TODO  add more
   ];
 
@@ -42,7 +43,7 @@
             ExternalAccountService.linkExternalAccount(provider, null)
             .then(function(resp) {
               $log.debug("Social account linked: " + JSON.stringify(resp));
-              linkedAccounts.push(resp.profile);
+              $scope.linkedAccounts.push(resp.profile);
               toaster.pop('success', "Success",
                 String.supplant(
                   "Your {provider} account has been linked. Data from your linked account will be visible on your profile shortly.",
@@ -72,11 +73,13 @@
      restrict: 'E',
       templateUrl: 'directives/external-account/external-link-data.directive.html',
       scope: {
-        linkedAccountsData: '='
+        linkedAccountsData: '=',
+        externalLinks: '='
       },
       controller: ['$log', '$scope', 'ExternalAccountService',
         function($log, $scope, ExternalAccountService) {
           $log = $log.getInstance('ExternalLinksDataDirective');
+
           $scope.$watch('linkedAccountsData', function(newValue, oldValue) {
             var linkedAccounts = [];
             for (var i=0;i<_supportedAccounts.length;i++) {
@@ -90,6 +93,26 @@
               }
             }
             $scope.linkedAccounts = linkedAccounts;
+          });
+
+          $scope.$watchCollection('externalLinks', function(newValue, oldValue) {
+            console.log("WATCH COLLECTION EXTERNAL LINKS: ");
+            console.log("New Value: ", newValue);
+            console.log("Old Value: ", oldValue);
+
+            angular.forEach(newValue, function(link) {
+              var provider = link.providerType;
+
+              if (!$scope.linkedAccountsData[provider]) {
+                $scope.linkedAccounts.push({
+                  provider: provider,
+                  data: {
+                    handle: link.name,
+                    status: 'PENDING'
+                  }
+                });
+              }
+            });
           });
         }
       ]

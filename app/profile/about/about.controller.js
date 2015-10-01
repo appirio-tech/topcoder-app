@@ -8,15 +8,14 @@
   function ProfileAboutController($log, $scope, ProfileService, ExternalAccountService, UserService) {
     var vm = this;
     $log = $log.getInstance("ProfileAboutController");
-
     var profileVm = $scope.$parent.profileVm;
     vm.categoryIndex = 0;
     vm.skillIndex = 0;
     vm.displaySection = {};
     vm.sampleSkills = [
-      {"tagName":"VisualForce","hidden":false,"score":0,"sources":[]},
-      {"tagName":"MongoDB","hidden":false,"score":0,"sources":[]},
-      {"tagName":"Heroku","hidden":false,"score":0,"sources":[]}
+      {"tagName":"VisualForce","hidden":false,"score":0,"sources":[], "tagId": 385},
+      {"tagName":"MongoDB","hidden":false,"score":0,"sources":[], "tagId": 281},
+      {"tagName":"Heroku","hidden":false,"score":0,"sources":[], "tagId": 210}
     ];
 
     activate();
@@ -32,9 +31,9 @@
 
       profileVm.statsPromise.then(function() {
         vm.categories = profileVm.categories;
-        vm.marathonRating = profileVm.categories['MARATHON'] && profileVm.categories['MARATHON'].rating;
+        vm.marathonRating = profileVm.categories['MARATHON_MATCH'] && profileVm.categories['MARATHON_MATCH'].rating;
         vm.SRMRating = profileVm.categories['SRM'] && profileVm.categories['SRM'].rating;
-        console.log(vm.marathonRating + ' ' + vm.SRMRating)
+        vm.displaySection.stats = profileVm.showEditProfileLink || vm.categories.DESIGN.length || vm.categories.DEVELOP.length || vm.categories.DATA_SCIENCE.length || vm.categories.COPILOT.length;
       });
 
       profileVm.skillsPromise.then(function() {

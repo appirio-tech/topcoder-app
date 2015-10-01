@@ -4,20 +4,22 @@
   angular.module('tc.sample').config([
     '$stateProvider',
     '$urlRouterProvider',
+    '$locationProvider',
     routes
   ]);
 
-  function routes($stateProvider, $urlRouterProvider) {
+  function routes($stateProvider, $urlRouterProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     var states = {
       sample: {
         parent: 'root',
-        url: '/sample/',
+        url: '/its-coming/',
         templateUrl: 'sample/sample.home.html',
         controller: 'SampleController',
         controllerAs: 'vm',
         data: {
           authRequired: false,
-          title: 'Temp Home'
+          title: 'It\'s Coming'
         }
       }
     };

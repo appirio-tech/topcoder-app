@@ -3,11 +3,14 @@
 .account-info-container {
   padding-bottom: 75px;
 
+  .section-fields {
+    margin-top: 20px;
+  }
+
   .credentials {
     .section-fields {
       display: flex;
       flex-direction: column;
-      margin-top: 20px;
       .form-label {
         margin-top: 30px;
         &.username {
@@ -15,9 +18,6 @@
         }
       }
       .button-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
         button.save {
           margin-top: 20px;
           @include button-2-l;
@@ -25,13 +25,12 @@
       }
     }
   }
-  
+
   .name {
     .section-fields {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      margin-top: 20px;
       .form-label {
         margin-top: 30px;
         &.first {
@@ -43,7 +42,6 @@
 
   .address {
     .section-fields {
-      margin-top: 20px;
       .form-label {
         margin-top: 30px;
         &.address {
@@ -99,6 +97,9 @@
 
 @media only screen and (min-width: 760px) {
   .account-info-container {
+    .section-fields {
+      margin-top: 0px;
+    }
     .section-info {
       h2 {
         font-size: 18px;

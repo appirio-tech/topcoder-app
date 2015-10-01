@@ -4,9 +4,9 @@
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
 
-  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS', 'TagsService'];
+  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', '$rootScope', 'CONSTANTS', 'TagsService', 'toaster'];
 
-  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, $rootScope, CONSTANTS, TagsService) {
+  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, $rootScope, CONSTANTS, TagsService, toaster) {
     $log = $log.getInstance("EditProfileCtrl");
     var vm = this;
     vm.toggleTrack    = toggleTrack;
@@ -14,12 +14,13 @@
     vm.onFileChange   = onFileChange;
     vm.updateProfile  = updateProfile;
     vm.linkedExternalAccounts = [];
+    vm.linkedExternalAccountsData = {};
     vm.skills = false;
     vm.addSkill = addSkill;
     vm.tags = [];
     vm.profileFormProcessing = false;
     vm.tracks = {};
-
+    vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
     activate();
 
     function activate() {
@@ -28,14 +29,13 @@
 
       processData(userData);
       vm.userData = userData;
+      ExternalAccountService.getLinkedExternalAccounts(userData.userId).then(function(data) {
+        vm.linkedExternalAccounts = data;
+      })
 
       ExternalAccountService.getLinkedExternalLinksData(userHandle).then(function(data) {
-        vm.linkedExternalAccounts = data.plain();
-        vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccounts, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
-
-        console.log('ext');
-        console.log(vm.hasLinks);
-        console.log(vm.linkedExternalAccounts)
+        vm.linkedExternalAccountsData = data.plain();
+        vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
       })
       .catch(function(err) {
         $log.error(JSON.stringify(err));
@@ -52,7 +52,9 @@
 
       ProfileService.getUserSkills(vm.userData.handle)
       .then(function(skills) {
-        vm.skills = skills.skills;
+        vm.skills = _.map(skills.skills, function(el) {
+          return _.extend({}, el, {isNew: 0});
+        });
       })
       .catch(function(err) {
         $log.error(JSON.stringify(err));
@@ -62,12 +64,20 @@
     function addSkill(skill) {
       if (skill) {
         var skillTagId = _.get(skill, 'originalObject.id').toString();
-        ProfileService.addUserSkill(vm.userData.handle, skillTagId).then(function(resp) {
-          // find the new skill in response object and inject it into our existing list.
-          // we dont want to replace the entire object / map  because we will lose hidden tags
-          var newSkill = _.find(resp.skills, {tagId: skillTagId});
-          vm.skills.push(newSkill);
-        });
+        // verify if skill has already been added
+        var idx = _.find(vm.skills, function(s) { return s.tagId == skillTagId});
+        // _.find returns undefined when skill isn't found
+        if (!idx) {
+          // add the skill
+          ProfileService.addUserSkill(vm.userData.handle, skillTagId).then(function(resp) {
+            // find the new skill in response object and inject it into our existing list.
+            // we dont want to replace the entire object / map  because we will lose hidden tags
+            var newSkill = _.find(resp.skills, {tagId: skillTagId});
+            newSkill.isNew = new Date().getTime();
+            vm.skills.push(newSkill);
+            toaster.pop("success", "Success!", "Skill added.");
+          });
+        }
       }
     }
 
