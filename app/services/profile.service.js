@@ -103,6 +103,8 @@
             'rating': subTrack.rank.rating || 0,
             'wins': subTrack.wins
           };
+        }).filter(function(subTrack) {
+          return !(subTrack.subTrack == 'COPILOT_POSTING' && subTrack.track == 'DEVELOP');
         });
       }
       // show # of wins for design
