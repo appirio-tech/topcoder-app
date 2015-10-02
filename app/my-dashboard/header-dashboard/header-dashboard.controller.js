@@ -7,18 +7,12 @@
     '$stateParams',
     'NotificationService',
     'ProfileService',
-    'CONSTANTS',
-    'userIdentity',
-    '$q'
+    'userIdentity'
   ];
 
-  function HeaderDashboardController($stateParams, NotificationService, ProfileService, CONSTANTS, userIdentity, $q) {
+  function HeaderDashboardController($stateParams, NotificationService, ProfileService, userIdentity) {
     var vm = this;
-    vm.domain = CONSTANTS.domain;
-    vm.isCopilot = false;
     vm.loading = true;
-    vm.hasRatings = true;
-    vm.rankStats = [];
 
     if ($stateParams.notifyReset) {
       NotificationService.inform('Thanks. Your new password has been set.');
@@ -29,25 +23,13 @@
     function activate() {
       var handle = userIdentity.handle;
 
-      $q.all([
-        ProfileService.getUserStats(handle),
-        ProfileService.getUserFinancials(handle)
-      ]).then(function(data) {
-        var stats = data[0];
-        var financials = data[1];
-
+      ProfileService.getUserFinancials(handle)
+      .then(function(financials) {
         vm.moneyEarned = _.sum(_.pluck(financials, 'amount'));
-
-        if (stats.COPILOT != null) {
-          vm.numCopilotActiveContests = stats.COPILOT.activeContests;
-        } else {
-          vm.numCopilotActiveContests = 0;
-        }
-
         vm.loading = false;
+
       })
       .catch(function(err) {
-        vm.hasRatings = false;
         vm.loading = false;
       });
     }
