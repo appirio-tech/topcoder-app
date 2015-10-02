@@ -45,17 +45,7 @@
         margin-bottom: 0;
       }
 
-      .slash {
-        @include forward-slash(1px, 40px, 0, 2px, 30deg);
-        margin-right: 8px;
-        background-color: #D1D3D4;
-        @media only screen and (min-width: 600px) {
-          @include forward-slash(1px, 45px, 0, 2px, 30deg);
-          margin-right: 10px;
-        }
-      }
-
-      .money-earned, .copilot-challenges {
+      .money-earned {
         display: flex;
         flex-direction: column;
         text-align: right;
@@ -89,14 +79,6 @@
         padding-left: 15px;
         @media only screen and (min-width: 600px) {
           padding-left: 10px;
-        }
-      }
-
-      .copilot-challenges {
-        margin-right: 10px;
-        padding-right: 15px;
-        @media only screen and (min-width: 600px) {
-          padding-right: 10px;
         }
       }
     }

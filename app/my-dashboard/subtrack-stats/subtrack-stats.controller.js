@@ -35,7 +35,7 @@
 
     function compileSubtracks(trackRanks) {
       return _.reduce(trackRanks, function(result, subtracks, track) {
-        if (Array.isArray(subtracks) && subtracks.length && track !== 'COPILOT') {
+        if (Array.isArray(subtracks) && subtracks.length) {
           if (track === 'DEVELOP') {
             _.remove(subtracks, function(subtrackObj) {
               return subtrackObj.subTrack === 'COPILOT_POSTING';
@@ -56,6 +56,9 @@
         if (subtrack.track === 'DESIGN') {
           subtrack.stat = subtrack.wins;
           subtrack.statType = 'Wins';
+        } else if (subtrack.track === 'COPILOT') {
+          subtrack.stat = subtrack.activeContests;
+          subtrack.statType = 'Challenges';
         } else {
           subtrack.stat = subtrack.rating;
           subtrack.statType = 'Rating';
