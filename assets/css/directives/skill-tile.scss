@@ -97,18 +97,20 @@ skill-tile {
   }
 }
 .settings-container {
-  a:not(.hidden):hover {
-    div.skill-icon {
-      background-color: #FEE8EC;
-      border: 1px solid #FCBBC5;
-      box-shadow: none;
+  skill-tile {
+    a:not(.hidden):hover {
+      div.skill-icon {
+        background-color: #FEE8EC;
+        border: 1px solid #FCBBC5;
+        box-shadow: none;
 
-      .remove-indicator {
-        display: block;
+        .remove-indicator {
+          display: block;
+        }
       }
-    }
-    img {
-      opacity: .3;
+      img {
+        opacity: .3;
+      }
     }
   }
 }
