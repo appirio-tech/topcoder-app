@@ -34,6 +34,7 @@
     activate();
 
     function activate() {
+      vm.isError = false;
       vm.isCopilot = _.includes(userIdentity.roles, 'copilot');
 
       // watches page change counter to reload the data
@@ -90,10 +91,10 @@
         }
       })
       .catch(function(err) {
-        $log.error(err);
-        vm.userHasChallenges = true;
+        vm.userHasChallenges = false;
+        vm.isError = true;
         vm.loading = false;
-        // TODO - handle error
+        $log.error(err);
       });
     }
   }
