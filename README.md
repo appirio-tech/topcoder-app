@@ -1,4 +1,6 @@
 # Topcoder-App
+
+Supply rocks!
 This repository houses any new topcoder pages or refactored Angular apps/pages from the tc-site repository.
 
 The technologies used are Jade, SCSS, Angular, and Gulp.
