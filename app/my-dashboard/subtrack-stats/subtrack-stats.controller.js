@@ -24,16 +24,14 @@
         var trackRanks = ProfileService.getRanks(stats);
 
         angular.forEach(trackRanks, function(subtracks, track) {
-          if (Array.isArray(subtracks) && subtracks.length) {
+
+          if (Array.isArray(subtracks) && subtracks.length && track !== 'COPILOT') {
             subtrackRanks = subtrackRanks.concat(subtracks);
           }
         });
 
         angular.forEach(subtrackRanks, function(subtrack) {
-          if (subtrack.track === 'COPILOT') {
-            subtrack.stat = subtrack.activeContests;
-            subtrack.statType = 'Active Contests';
-          } else if (subtrack.track === 'DESIGN') {
+          if (subtrack.track === 'DESIGN') {
             subtrack.stat = subtrack.wins;
             subtrack.statType = 'Wins';
           } else {
@@ -41,7 +39,6 @@
             subtrack.statType = 'Rating';
           }
         });
-        console.log('subtrackRanks: ', subtrackRanks);
 
         vm.subtrackRanks = subtrackRanks;
         vm.hasRanks = !!vm.subtrackRanks.length;

@@ -64,7 +64,6 @@
           options.password = userCreds.password;
         }
 
-        // now attemp to login
         auth0.signin(options,
           function(profile, idToken, accessToken, state, refreshToken) {
             console.log(profile);
