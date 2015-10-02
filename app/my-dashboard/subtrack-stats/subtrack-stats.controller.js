@@ -19,26 +19,9 @@
 
       ProfileService.getUserStats(vm.handle)
       .then(function(stats) {
-        var subtrackRanks = [];
-
         var trackRanks = ProfileService.getRanks(stats);
-
-        angular.forEach(trackRanks, function(subtracks, track) {
-
-          if (Array.isArray(subtracks) && subtracks.length && track !== 'COPILOT') {
-            subtrackRanks = subtrackRanks.concat(subtracks);
-          }
-        });
-
-        angular.forEach(subtrackRanks, function(subtrack) {
-          if (subtrack.track === 'DESIGN') {
-            subtrack.stat = subtrack.wins;
-            subtrack.statType = 'Wins';
-          } else {
-            subtrack.stat = subtrack.rating;
-            subtrack.statType = 'Rating';
-          }
-        });
+        var subtrackRanks = compileSubtracks(trackRanks);
+        processStats(subtrackRanks);
 
         vm.subtrackRanks = subtrackRanks;
         vm.hasRanks = !!vm.subtrackRanks.length;
@@ -47,6 +30,36 @@
       .catch(function(err) {
         vm.hasRanks = false;
         vm.loading = false;
+      });
+    }
+
+    function compileSubtracks(trackRanks) {
+      return _.reduce(trackRanks, function(result, subtracks, track) {
+        if (Array.isArray(subtracks) && subtracks.length && track !== 'COPILOT') {
+          if (track === 'DEVELOP') {
+            _.remove(subtracks, function(subtrackObj) {
+              return subtrackObj.subTrack === 'COPILOT_POSTING';
+            });
+          }
+
+          return result.concat(subtracks);
+
+        } else {
+          return result;
+
+        }
+      }, []);
+    }
+
+    function processStats(subtrackRanks) {
+      angular.forEach(subtrackRanks, function(subtrack) {
+        if (subtrack.track === 'DESIGN') {
+          subtrack.stat = subtrack.wins;
+          subtrack.statType = 'Wins';
+        } else {
+          subtrack.stat = subtrack.rating;
+          subtrack.statType = 'Rating';
+        }
       });
     }
   }
