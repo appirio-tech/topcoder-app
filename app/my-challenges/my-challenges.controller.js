@@ -78,9 +78,9 @@
         filter: "status=" + vm.statusFilter
       };
       vm.loading = true;
+
       return ChallengeService.getUserChallenges(handle, params)
       .then(function(challenges){
-        console.log(challenges.plain());
         if (challenges.length > 0) {
           vm.myChallenges = challenges;
           vm.userHasChallenges = true;

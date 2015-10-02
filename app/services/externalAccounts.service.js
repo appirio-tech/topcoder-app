@@ -37,7 +37,6 @@
     function getLinkedExternalLinksData(userHandle) {
       return api.one('members', userHandle).withHttpConfig({skipAuthorization: true}).customGET('externalAccounts')
       .then(function(data) {
-        console.log(data.plain());
         return data;
       })
     }

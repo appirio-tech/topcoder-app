@@ -23,8 +23,7 @@
       'COPILOT': 'copilot'
     };
 
-    // spinnerssss
-    $log.debug()
+    $log.debug();
     vm.status = {
       'badges': CONSTANTS.STATE_LOADING,
       'stats': CONSTANTS.STATE_LOADING,
@@ -51,7 +50,6 @@
       vm.status.stats = CONSTANTS.STATE_ERROR;
     });
 
-    // skills
     vm.skillsPromise = ProfileService.getUserSkills(vm.userHandle).then(function(skills) {
       vm.skills = skills.skills;
       vm.status.skills = CONSTANTS.STATE_READY;
@@ -59,7 +57,6 @@
       vm.status.skills = CONSTANTS.STATE_ERROR;
     });
 
-    // externalLinks
     vm.externalLinksPromise = ExternalAccountService.getLinkedExternalLinksData(vm.userHandle).then(function(data) {
       vm.linkedExternalAccountsData = data.plain();
       console.log('EXT')
