@@ -19,29 +19,9 @@
 
       ProfileService.getUserStats(vm.handle)
       .then(function(stats) {
-        var subtrackRanks = [];
-
         var trackRanks = ProfileService.getRanks(stats);
-
-        angular.forEach(trackRanks, function(subtracks, track) {
-          if (Array.isArray(subtracks) && subtracks.length) {
-            subtrackRanks = subtrackRanks.concat(subtracks);
-          }
-        });
-
-        angular.forEach(subtrackRanks, function(subtrack) {
-          if (subtrack.track === 'COPILOT') {
-            subtrack.stat = subtrack.activeContests;
-            subtrack.statType = 'Active Contests';
-          } else if (subtrack.track === 'DESIGN') {
-            subtrack.stat = subtrack.wins;
-            subtrack.statType = 'Wins';
-          } else {
-            subtrack.stat = subtrack.rating;
-            subtrack.statType = 'Rating';
-          }
-        });
-        console.log('subtrackRanks: ', subtrackRanks);
+        var subtrackRanks = compileSubtracks(trackRanks);
+        processStats(subtrackRanks);
 
         vm.subtrackRanks = subtrackRanks;
         vm.hasRanks = !!vm.subtrackRanks.length;
@@ -50,6 +30,39 @@
       .catch(function(err) {
         vm.hasRanks = false;
         vm.loading = false;
+      });
+    }
+
+    function compileSubtracks(trackRanks) {
+      return _.reduce(trackRanks, function(result, subtracks, track) {
+        if (Array.isArray(subtracks) && subtracks.length) {
+          if (track === 'DEVELOP') {
+            _.remove(subtracks, function(subtrackObj) {
+              return subtrackObj.subTrack === 'COPILOT_POSTING';
+            });
+          }
+
+          return result.concat(subtracks);
+
+        } else {
+          return result;
+
+        }
+      }, []);
+    }
+
+    function processStats(subtrackRanks) {
+      angular.forEach(subtrackRanks, function(subtrack) {
+        if (subtrack.track === 'DESIGN') {
+          subtrack.stat = subtrack.wins;
+          subtrack.statType = 'Wins';
+        } else if (subtrack.track === 'COPILOT') {
+          subtrack.stat = subtrack.activeContests;
+          subtrack.statType = 'Challenges';
+        } else {
+          subtrack.stat = subtrack.rating;
+          subtrack.statType = 'Rating';
+        }
       });
     }
   }

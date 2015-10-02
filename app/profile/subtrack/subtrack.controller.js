@@ -68,14 +68,14 @@
             (vm.divisions.division2.levels && vm.divisions.division2.levels.length) ||
             (vm.divisions.challenges.levels && vm.divisions.challenges.levels.length)
           ) vm.SRMDetailDisplay = true;
-          console.log('DD')
-          console.log(vm.SRMDetailDisplay)
         }
+
         vm.typeStats = ProfileService.getChallengeTypeStats(
           profileVm.stats,
           vm.track,
           vm.subTrack.toLowerCase().replace(/ /g, '')
         );
+
         if (vm.subTrack) {
           vm.dropdown = ProfileService.getSubTracks(profileVm.stats, vm.track.toLowerCase())
           .map(function(subtrack) {
@@ -84,16 +84,17 @@
               value: subtrack
             };
           });
+
           vm.ddSelected = vm.dropdown.filter(function(selection) {
             return selection.value === vm.subTrack;
           })[0];
+
         } else {
           vm.ddSelected =  {
             text: 'Co-Pilot',
             value: 'Co-Pilot'
           };
         }
-
       });
 
       // watches page change counter to reload the data

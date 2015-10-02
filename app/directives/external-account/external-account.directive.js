@@ -96,10 +96,6 @@
           });
 
           $scope.$watchCollection('externalLinks', function(newValue, oldValue) {
-            console.log("WATCH COLLECTION EXTERNAL LINKS: ");
-            console.log("New Value: ", newValue);
-            console.log("Old Value: ", oldValue);
-
             angular.forEach(newValue, function(link) {
               var provider = link.providerType;
 

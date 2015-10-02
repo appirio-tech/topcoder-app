@@ -1,16 +1,18 @@
 .my-challenges-container
   .my-challenges
-
     .nav
       .breadcrumbs
         .dashboard
           a(ui-sref="dashboard") Dashboard
+
         .my-challenges // My Challenges
 
     .section-loading(ng-show="vm.loading")
 
     section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
-      You have not participated in any challenges yet.
+      p(ng-hide="vm.isError") You have not participated in any challenges yet.
+
+      p(ng-show="vm.isError") There was an error fetching challenges. Please try again later.
 
     .content
       section.challenges(ng-show="vm.userHasChallenges && !vm.loading")
@@ -30,5 +32,3 @@
 
         .bottom
           tc-paginator(data="vm.myChallenges", page-params="vm.pageParams")
-
-    hr

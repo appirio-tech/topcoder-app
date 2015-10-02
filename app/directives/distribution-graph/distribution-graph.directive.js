@@ -90,7 +90,6 @@
 
     function resize() {
       if (window.innerWidth < 900 && desktop) {
-        console.log('yo!')
         d3.select('.distribution-graph svg').remove();
         draw(mobileMeasurements, $scope.distribution);
         desktop = false;
@@ -151,7 +150,7 @@
 
 
       function logr(x) {
-        console.log(x); return x;
+        return x;
       }
       svg.append('line')
          .attr('x1', xScale2($scope.rating))
@@ -281,7 +280,7 @@
 
     function removeLeadingZeroes(ranges) {
       while(ranges[0].number == 0) {
-        ranges.shift(); 
+        ranges.shift();
       }
     }
 
@@ -304,7 +303,7 @@
       });
       return colors[0] && colors[0].darkerColor || 'black';
     }
-    
+
     // TODO: delete because this is probably unnecessary
     function ratingToRange(ranges, rating) {
       var ans =  ranges.filter(function(range) {
