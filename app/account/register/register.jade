@@ -13,7 +13,7 @@
     p.form-error(ng-show="vm.errMsg") {{vm.errMsg}}
 
     .first-last-names
-      input(right-placeholder, focused-placeholder="First", ng-model="vm.firstname", maxlength="64", name="firstname", placeholder="First Name", type="text", required)
+      input(input-sticky-placeholder, sticky-placeholder="First" ng-model="vm.firstname", maxlength="64", name="firstname", placeholder="First Name", type="text", required)
 
       input(right-placeholder, focused-placeholder="Last", ng-model="vm.lastname", maxlength="64", name="lastname", placeholder="Last Name", type="text", required)
 
