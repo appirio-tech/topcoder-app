@@ -85,7 +85,7 @@
         padding-bottom: 30px;
         border-bottom: 2px #F0F0F0 solid;
         .skill {
-          margin: 10px;
+          margin: 15px 10px 10px 10px;
           @media only screen and (min-width: 768px) {
             background-color: $white;
             border: none;
@@ -100,7 +100,7 @@
               width: 100px;
               height: 100px;
               padding: 20px;
-              margin-bottom: 10px;
+              margin-bottom: 5px;
             }
           }
           .name {
