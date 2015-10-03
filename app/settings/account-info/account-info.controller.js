@@ -20,7 +20,7 @@
 
     function activate() {
       processData();
-      vm.userData = _.clone(userData, true);
+      vm.userData = userData;
       UserService.getUserProfile({fields: 'credential'})
       .then(function(res) {
         vm.isSocialRegistrant = !res.credential.hasPassword;

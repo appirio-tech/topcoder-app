@@ -49,7 +49,7 @@
           | Sorry, no successful challenges found.
 
     .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
-      .graphs
+      .graphs(ng-if="vm.history")
         distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
         history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")

@@ -3,9 +3,9 @@
 
   angular.module('topcoder').controller('TopcoderController', TopcoderController);
 
-  TopcoderController.$inject = ['NotificationService', '$rootScope', 'CONSTANTS'];
+  TopcoderController.$inject = ['NotificationService', '$rootScope', '$document', 'CONSTANTS'];
 
-  function TopcoderController(NotificationService, $rootScope, CONSTANTS) {
+  function TopcoderController(NotificationService, $rootScope, $document, CONSTANTS) {
     var vm = this;
     vm.menuVisible = false;
 
@@ -14,6 +14,9 @@
     
     $rootScope.$on('$stateChangeStart', function() {
       vm.menuVisible = false;
+    });
+    $rootScope.$on('$stateChangeSuccess', function(evt, toState, toParams, fromState, fromParams) {
+      $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
     });
 
     // TODO - enable this once we support notificaitons
