@@ -113,10 +113,12 @@
       .then(function() {
         vm.profileFormProcessing = false;
         $log.info('Saved successfully');
+        toaster.pop('success', "Success!", "Your account information was updated.");
       })
       .catch(function(err) {
         vm.profileFormProcessing = false;
         $log.error(err);
+        toaster.pop('error', "Whoops!", "Something went wrong. Please try again later.");
       });
     }
 
