@@ -4,23 +4,38 @@
   angular.module('tcUIComponents').directive('inputStickyPlaceholder', inputStickyPlaceholder);
 
   /*
-   *  ****** Make sure to style the input tag so that the text entered does
-   *  not overlap with the sticky-placeholder ******
+   *  ******
+   *         Make sure to add padding-right to the input element
+   *         so that the text entered does not overlap with the
+   *         sticky-placeholder
+   *  ******
    *
    *  Example:
-   *  input(input-sticky-placeholder, sticky-placeholder="First",
-   *  placeholder="First Name")
+   *  input-sticky-placeholder(sticky-placeholder="First", ng-model="vm.firstname")
+   *    input(ng-model="vm.firstname", ...)
    *
    */
 
   function inputStickyPlaceholder() {
     return {
-      restrict: 'A',
+      restrict: 'E',
       transclude: true,
       replace: true,
       templateUrl: 'directives/input-sticky-placeholder/input-sticky-placeholder.html',
       link: function(scope, element, attrs) {
-        scope.stickyPlaceholder = attrs.stickyPlaceholder;
+        var span = angular.element(element[0].children[1]);
+        var input = angular.element(element[0].children[0].children[0]);
+        span.text('');
+
+        scope.$watch(function() {
+          return input.val();
+        }, function(newValue, oldValue) {
+          span.text('');
+
+          if (newValue && newValue.length) {
+            span.text(attrs.stickyPlaceholder);
+          }
+        });
       }
     };
   }
