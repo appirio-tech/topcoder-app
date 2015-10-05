@@ -5,10 +5,10 @@ exports.config = {
 	//specs: ['specs/regression/*Spec.js'],
 	suites: {
 //		regression0: 'app/auth/reg.spec.js'
-		regression1: 'app/account/login/login.spec.js'//,
+//		regression1: 'app/account/login/login.spec.js'//,
 //		regression2: 'app/manage/newproject.spec.js'//,
 //	    regression3: 'app/manage/manage.spec.js',
-//        regression4: 'app/account/register/register.spec.js'//,
+        regression4: 'app/account/register/register.spec.js'//,
 //        regression5: 'app/account/reset-password/reset-password.spec.js'
 	  },
     //baseUrl: 'http://qualityshepherd.com/angular',

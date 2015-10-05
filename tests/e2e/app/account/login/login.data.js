@@ -3,7 +3,7 @@
 var LoginData = function() {
     this.userCredentials = [
                             	{	'username' :'mightyfool',
-                            		'password' :'786Aq5311' 
+                            		'password' :'appirio123' 
                             	}/*,
                             	{	'username' : 'DhananjayKumar1',
                             		'password' : 'appirio123'

@@ -3,7 +3,7 @@ var regUser = require('./register.data');
 
 describe('registerUser', function(){
 	console.log(regUser.userList.length);
-	var i=0;
+	var i=0;/*
 	for(;i < regUser.userList.length; i++) {
 	 (function(regUserCred) {
 		 it('register new user', function() {
@@ -66,6 +66,18 @@ describe('registerUser', function(){
 				 console.log('right below');
 			 });
 		 })(regUser.alreadyTakenEmailUserNameList[i]);
+	 }
+	*/
+	i=0;
+	for(;i < regUser.githubUserList.length; i++) {
+		 (function(regUserCred) {
+			 it('register github users', function() {
+				 console.log('regUser.baseUrl'+regUser.baseUrl);
+				 regPage.get(regUser.baseUrl);
+				 regPage.registerGithubUsers(regUserCred);
+				 console.log('right below');
+			 });
+		 })(regUser.githubUserList[i]);
 	 }
 	
 });
