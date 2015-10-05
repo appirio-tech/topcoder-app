@@ -56,7 +56,7 @@
 
     function saveAccountInfo() {
       vm.formProcessing.accountInfoForm = true;
-      ProfileService.updateUserProfile(userData)
+      ProfileService.updateUserProfile(vm.userData)
       .then(function(data) {
         vm.formProcessing.accountInfoForm = false;
         toaster.pop('success', "Success!", "Your account information was updated.");
