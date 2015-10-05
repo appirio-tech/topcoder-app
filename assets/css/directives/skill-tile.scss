@@ -13,20 +13,7 @@ skill-tile {
     width: 100px;
   }
 
-  a:not(.hidden):hover {
-    div.skill-icon {
-      background-color: #FEE8EC;
-      border: 1px solid #FCBBC5;
-      box-shadow: none;
 
-      .remove-indicator {
-        display: block;
-      }
-    }
-    img {
-      opacity: .3;
-    }
-  }
 
   .new {
     .skill-icon {
@@ -106,6 +93,24 @@ skill-tile {
     text-align: center;
     @media (min-width: 768px) {
       font-size: 14px;
+    }
+  }
+}
+.settings-container {
+  skill-tile {
+    a:not(.hidden):hover {
+      div.skill-icon {
+        background-color: #FEE8EC;
+        border: 1px solid #FCBBC5;
+        box-shadow: none;
+
+        .remove-indicator {
+          display: block;
+        }
+      }
+      img {
+        opacity: .3;
+      }
     }
   }
 }
