@@ -20,6 +20,7 @@
     margin: 20px;
     font-size: 28px;
     @include sofia-pro-bold;
+    text-transform: uppercase;
   }
   .instruction {
     margin-bottom: 25px;
@@ -30,21 +31,23 @@
 
   .tracks-container {
     width: 100%;
-    .title {
+    >.title {
       @include sofia-pro-regular;
       text-transform: uppercase;
       font-size: 18px;
       padding-bottom: 10px;
     }
-    .description {
-      @include source-sans-italic;
+    >.description {
+      @include source-sans-regular;
       color: #A3A3AE;
       font-size: 13px;
+      line-height: 18px;
       // border-bottom: 1px solid #A3A3AE;
-      padding-bottom: 5px;
     }
     .tracks {
-      margin: 0 30px;
+      margin-top: 10px;
+      .track {
+      }
     }
   }
 
@@ -59,6 +62,7 @@
       @include source-sans-italic;
       color: #A3A3AE;
       font-size: 13px;
+      line-height: 20px;
       border-bottom: 1px solid #A3A3AE;
       padding-bottom: 5px;
     }
@@ -81,7 +85,7 @@
         padding-bottom: 30px;
         border-bottom: 2px #F0F0F0 solid;
         .skill {
-          margin: 10px;
+          margin: 15px 10px 10px 10px;
           @media only screen and (min-width: 768px) {
             background-color: $white;
             border: none;
@@ -96,7 +100,7 @@
               width: 100px;
               height: 100px;
               padding: 20px;
-              margin-bottom: 10px;
+              margin-bottom: 5px;
             }
           }
           .name {
@@ -137,11 +141,7 @@
 
   p {
     font-size: 15px;
-    padding: 5px 20px;
-
-    &.instruction {
-      max-width: 440px;
-    }
+    padding: 5px 0px;
   }
   .button-l{
     margin: 30px;

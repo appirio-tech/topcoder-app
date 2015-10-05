@@ -33,30 +33,59 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 8px;
+      @media (min-width: 768px) {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+
       .arrow {
         width: 15px;
       }
+
       .breadcrumbs {
         font-family: 'Sofia Pro';
         font-weight: 200;
         font-size: 14px;
         line-height: 16px;
+        @media (min-width: 768px) {
+          font-size: 28px;
+          line-height: 34px;
+          display: flex;
+          flex-direction: row;
+        }
+
         .dashboard {
           display: block;
           color: black;
           text-align: center;
           text-transform: uppercase;
+          @media (min-width: 768px) {
+            display: block;
+            color: black;
+            text-align: center;
+            text-transform: uppercase;
+          }
 
           a {
             text-decoration: none;
           }
         }
+
         .my-challenges {
           display: block;
           color: $accent-color;
           font-weight: 700;
           text-align: center;
           text-transform: uppercase;
+          @media (min-width: 768px) {
+            display: block;
+            color: $accent-color;
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+          }
         }
       }
     }
@@ -70,6 +99,7 @@
     .content {
       margin-left: 10px;
       margin-right: 10px;
+
       section.challenges {
         background: white;
         align-self: center;
@@ -97,11 +127,12 @@
             margin-left: 55px;
             align-self: flex-start;
             text-transform: uppercase;
+            color: #A3A3AE;
             a {
               text-decoration: none;
 
               &.disabled {
-                color: $dark-gray;
+                color: $black;
                 cursor: default;
               }
             }
@@ -123,10 +154,12 @@
               font-size: 11px;
               line-height: 16px;
               text-transform: uppercase;
-              color: $black;
+              color: #A3A3AE;
+              cursor: pointer;
 
               &.disabled {
-                color: #A3A3AE;
+                color: $black;
+                cursor: default;
               }
 
               &:before {
@@ -153,7 +186,13 @@
           display: flex;
           flex-flow: row wrap;
           padding: 15px 0px;
-          margin-left: 55px;
+          margin: 0 auto;
+          @media (min-width: 870px) {
+            max-width: 840px;
+          }
+          @media (min-width: 1155px) {
+            max-width: 1125px;
+          }
 
           &.list-view {
             flex-flow: column wrap;
@@ -201,63 +240,6 @@
           &.list-view {
             width: 100%;
           }
-        }
-      }
-    }
-  }
-}
-
-
-@media (min-width: 768px) {
-  .my-challenges-container {
-    .my-challenges {
-      .nav {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin-bottom: 8px;
-
-        .breadcrumbs {
-          font-size: 28px;
-          line-height: 34px;
-          display: flex;
-          flex-direction: row;
-          .dashboard {
-            display: block;
-            color: black;
-            text-align: center;
-            text-transform: uppercase;
-          }
-          .my-challenges {
-            display: block;
-            color: $accent-color;
-            font-weight: 700;
-            text-align: center;
-            text-transform: uppercase;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media (min-width: 870px) {
-  .my-challenges-container {
-    .my-challenges {
-      section.challenges {
-        .data {
-          max-width: 840px;
-        }
-      }
-    }
-  }
-}
-@media (min-width: 1155px) {
-  .my-challenges-container {
-    .my-challenges {
-      section.challenges {
-        .data {
-          max-width: 1125px;
         }
       }
     }

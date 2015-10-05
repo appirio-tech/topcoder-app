@@ -119,10 +119,12 @@
             font-size: 11px;
             line-height: 16px;
             text-transform: uppercase;
-            color: $black;
+            color: #A3A3AE;
+            cursor: pointer;
 
             &.disabled {
-              color: #A3A3AE;
+              color: $black;
+              cursor: default;
             }
 
             &:before {

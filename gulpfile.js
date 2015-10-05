@@ -440,7 +440,7 @@ gulp.task('deploy', ['build'], function() {
   return merge(gzip, plain)
     .pipe(publisher.cache())
     .pipe(publisher.publish())
-    .pipe(publisher.sync())
+    .pipe($.if(!config.production, publisher.sync()))
     .pipe($.awspublish.reporter());
 });
 

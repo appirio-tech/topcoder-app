@@ -228,11 +228,9 @@
            .attr('stroke-width', 3)
 
       function processRatingStripePoint(y) {
-        console.log('y:' + y)
         if (y < padding.top || isNaN(y)) {
           return padding.top;
         } else if (y > totalH - padding.bottom) {
-          console.log('y & ' + padding.bottom);
           return totalH - padding.bottom;
         } else {
           return y;
@@ -286,7 +284,7 @@
       });
       return colors[0] && colors[0].darkerColor || 'black';
     }
-    
+
   }
 
 })();

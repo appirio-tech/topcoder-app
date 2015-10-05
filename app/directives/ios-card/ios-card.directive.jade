@@ -7,16 +7,18 @@
     p {{challenge.subTrack | underscoreStrip}}
 
   .challenge-details
+
+    p.currentPhase {{challenge.userCurrentPhase}}
+    .challenge-calendar(ng-show="challenge.userCurrentPhaseEndTime")
+      p.ends-in Ends In
+      p.time-remaining {{challenge.userCurrentPhaseEndTime[0]}}
+      p.unit-of-time {{challenge.userCurrentPhaseEndTime[1]}}
+      
     p.prize-money(ng-show="challenge.reviewType === 'PEER'") Peer Review Challenge
 
     p.prize-money(ng-hide="challenge.reviewType === 'PEER'") {{challenge.totalCheckpointPrize || 0 | currency:undefined:0}}
 
     p.technologies {{challenge.technologies}}
-
-    .challenge-calendar
-      p.starts-in Starts In
-      p.time-remaining 3
-      p.unit-of-time days
 
     //button.phase-action(ng-class="{'action-completed': challenge.currentPhaseActionCompleted}") Submit
 

@@ -38,7 +38,7 @@
         .bio
           .form-label short bio
             span(style="float:right;") {{vm.userData.description.length || 0}}/144
-          textarea.form-field(name="description", ng-model="vm.userData.description" ng-maxlength="144")
+          textarea.form-field(name="description", ng-model="vm.userData.description", maxlength="144")
 
     .settings-section.tracks
       .section-info

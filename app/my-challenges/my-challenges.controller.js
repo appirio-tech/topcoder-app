@@ -34,6 +34,7 @@
     activate();
 
     function activate() {
+      vm.isError = false;
       vm.isCopilot = _.includes(userIdentity.roles, 'copilot');
 
       // watches page change counter to reload the data
@@ -77,9 +78,9 @@
         filter: "status=" + vm.statusFilter
       };
       vm.loading = true;
+
       return ChallengeService.getUserChallenges(handle, params)
       .then(function(challenges){
-        console.log(challenges.plain());
         if (challenges.length > 0) {
           vm.myChallenges = challenges;
           vm.userHasChallenges = true;
@@ -90,10 +91,10 @@
         }
       })
       .catch(function(err) {
-        $log.error(err);
-        vm.userHasChallenges = true;
+        vm.userHasChallenges = false;
+        vm.isError = true;
         vm.loading = false;
-        // TODO - handle error
+        $log.error(err);
       });
     }
   }

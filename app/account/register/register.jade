@@ -81,9 +81,7 @@
 
         p(ng-class="{ 'has-symbol-or-number': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
-    button(type="submit", busy, busy-disabled="true", ng-disabled="vm.registerForm.$invalid", ng-class="{'enabled-button': vm.registerForm.$valid}") Join
-      busy-message
-        i.fa.fa-spinner(ng-bind="vm.busyMessage")
+    button(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid", ng-class="{'enabled-button': vm.registerForm.$valid}") Join
 
   section.terms
     p By clicking "Join," you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms of Service] and #[a(href="http://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank") Privacy Policy]

@@ -9,6 +9,7 @@
     $log = $log.getInstance("RegisterController");
     $log.debug("-init");
     var vm = this;
+    vm.registering = false;
     // prepares utm params, if available
     var utm = {
       source : $stateParams && $stateParams.utm_source ? $stateParams.utm_source : '',
@@ -39,6 +40,7 @@
     };
 
     vm.register = function() {
+      vm.registering = true;
       var userInfo = {
         handle: vm.username,
         firstName: vm.firstname,
@@ -78,12 +80,14 @@
       $log.debug('attempting to register user');
       TcAuthService.register(body)
       .then(function(data) {
+        vm.registering = false;
         $log.debug('registered successfully');
 
         // In the future, go to dashboard
         $state.go('registeredSuccessfully');
       })
       .catch(function(err) {
+        vm.registering = false;
         $log.error('Error in registering new user: ', err);
       });
     };

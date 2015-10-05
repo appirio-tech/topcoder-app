@@ -42,9 +42,6 @@
         var marathonMatches = challenges[0];
         var devDesignChallenges = challenges[1];
 
-        // console.log('MMs: ', marathonMatches.plain());
-        // console.log('dev design challenges: ', devDesignChallenges.plain());
-
         if (!marathonMatches.length && !devDesignChallenges.length) {
           vm.userHasChallenges = false;
           vm.loading = false;
@@ -53,6 +50,7 @@
           ChallengeService.processActiveDevDesignChallenges(devDesignChallenges);
           ChallengeService.processActiveMarathonMatches(marathonMatches);
           var userChallenges = marathonMatches.concat(devDesignChallenges);
+          // FIX when working on marathon matches:
           // sort by closest deadline? .sort(function)
           // limit to 8 .slice(0, 8);
 
