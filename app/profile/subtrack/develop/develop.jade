@@ -1,29 +1,33 @@
 .develop(ng-if="vm.track == 'DEVELOP'")
   .top
     ul.horizontal-stats
-      li.stat
-        .value.rating(style="color: {{vm.typeStats.rank.rating | ratingColor}}") {{vm.typeStats.rank.rating}}
-          span.square(style="background-color: {{vm.typeStats.rank.rating | ratingColor}}")
+      li.stat(ng-if="vm.typeStats.rank.rating")
+        .value.rating(style="color: {{vm.typeStats.rank.rating | ratingColor}}") {{vm.typeStats.rank.rating | empty}}
+          span.square(ng-if="vm.typeStats.rank.rating", style="background-color: {{vm.typeStats.rank.rating | ratingColor}}")
         .name RATING
 
-      li.stat
-        .value {{vm.typeStats.rank.overallRank}}
+      li.stat(ng-if="!vm.typeStats.rank.rating")
+        .value -
         .name RANK
 
       li.stat
-        .value {{vm.typeStats.rank.overallPercentile / 100 | percentage}}
+        .value {{vm.typeStats.rank.overallRank | empty}}
+        .name RANK
+
+      li.stat
+        .value {{vm.typeStats.rank.overallPercentile / 100 | percentage | empty}}
         .name PERCENTILE
 
       li.stat
-        .value {{vm.typeStats.challenges}}
+        .value {{vm.typeStats.challenges | empty}}
         .name CHALLENGES
 
       li.stat
-        .value {{vm.typeStats.wins}}
+        .value {{vm.typeStats.wins | empty}}
         .name WINS
 
       li.stat
-        .value {{vm.typeStats.rank.reliability | percentage}}
+        .value {{vm.typeStats.rank.reliability | percentage | empty}}
         .name RELIABILITY
 
     .tabs
@@ -60,68 +64,68 @@
     ul.vertical-stats
       li.first
         .left Win Percentage
-        .right {{vm.typeStats.submissions.winPercent | percentage}}
+        .right {{vm.typeStats.submissions.winPercent | percentage | empty}}
 
       li
         .left Country Rank
-        .right {{vm.typeStats.rank.overallCountryRank}}
+        .right {{vm.typeStats.rank.overallCountryRank | empty}}
 
       li
         .left Volatility
-        .right {{vm.typeStats.rank.volatility}}
+        .right {{vm.typeStats.rank.volatility | empty}}
 
       li
         .left Maximum Rating
-        .right {{vm.typeStats.rank.maxRating}}
+        .right {{vm.typeStats.rank.maxRating | empty}}
 
       li(ng-if="profileVm.isUser")
         .left Inquiries
-        .right {{vm.typeStats.submissions.numInquiries}}
+        .right {{vm.typeStats.submissions.numInquiries | empty}}
 
       li(ng-if="profileVm.isUser")
         .left Submissions
-        .right {{vm.typeStats.submissions.submissions}}
+        .right {{vm.typeStats.submissions.submissions | empty}}
 
       li
         .left Submission Rate
-        .right {{vm.typeStats.submissions.submissionRate | percentage}}
+        .right {{vm.typeStats.submissions.submissionRate | percentage | empty}}
         
       li(ng-if="profileVm.isUser")
         .left Passed Screening
-        .right {{vm.typeStats.submissions.passedScreening}}
+        .right {{vm.typeStats.submissions.passedScreening | empty}}
 
       li
         .left Screening Success Rate
-        .right {{vm.typeStats.submissions.screeningSuccessRate | percentage}}
+        .right {{vm.typeStats.submissions.screeningSuccessRate | percentage | empty}}
 
       li(ng-if="profileVm.isUser")
         .left Passed Review
-        .right {{vm.typeStats.submissions.passedReview}}
+        .right {{vm.typeStats.submissions.passedReview | empty}}
 
       li
         .left Review Success Rate
-        .right {{vm.typeStats.submissions.reviewSuccessRate | percentage}}
+        .right {{vm.typeStats.submissions.reviewSuccessRate | percentage | empty}}
 
       li(ng-if="profileVm.isUser")
         .left Appeals
-        .right {{vm.typeStats.submissions.appeals}}
+        .right {{vm.typeStats.submissions.appeals | empty}}
 
       li
         .left Appeals Success Rate
-        .right {{vm.typeStats.submissions.appealSuccessRate | percentage}}
+        .right {{vm.typeStats.submissions.appealSuccessRate | percentage | empty}}
 
       li(ng-if="profileVm.isUser")
         .left Maximum Score
-        .right {{vm.typeStats.submissions.maxScore}}
+        .right {{vm.typeStats.submissions.maxScore | empty}}
 
       li(ng-if="profileVm.isUser")
         .left Minimum Score
-        .right {{vm.typeStats.submissions.minScore}}
+        .right {{vm.typeStats.submissions.minScore | empty}}
 
       li(ng-if="profileVm.isUser")
         .left Average Score
-        .right {{vm.typeStats.submissions.avgScore | number: 2}}
+        .right {{vm.typeStats.submissions.avgScore | number: 2 | empty}}
 
       li
         .left Average Placement
-        .right {{vm.typeStats.submissions.avgPlacement | number: 2}}
+        .right {{vm.typeStats.submissions.avgPlacement | number: 2 | empty}}
