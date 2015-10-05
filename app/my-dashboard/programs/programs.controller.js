@@ -83,6 +83,7 @@
         }
 
         vm.challenges = challenges;
+        ChallengeService.processActiveDevDesignChallenges(vm.challenges);
         vm.loading = false;
       })
       .catch(function(err) {

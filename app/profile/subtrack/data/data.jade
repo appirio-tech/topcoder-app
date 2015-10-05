@@ -53,7 +53,7 @@
           | Sorry, no rated SRMs found.
 
     .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
-      .graphs()
+      .graphs(ng-if="vm.history")
         distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
         history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
@@ -115,7 +115,7 @@
                 h2 {{vm.divisionName[$index]}}
                 span TOTAL
               li.success
-                h3 {{division.total.problemsSuccessful / division.total.problemsSubmitted | percentage }}
+                h3 {{division.total.percentSuccessful | percentage}}
                 span SUCCESS
 
               li.submitted
@@ -136,7 +136,7 @@
                 h3 {{level.levelName}}
 
               li.success
-                h3 {{level.problemsSuccessful / level.problemsSubmitted | percentage }}
+                h3 {{level.percentSuccessful | percentage}}
                 span SUCCESS
 
               li.submitted
@@ -159,7 +159,7 @@
                 h2 CHALLENGES
                 span TOTAL
               li.success
-                h3 {{vm.challengesSRM.total.problemsSuccessful / vm.challengesSRM.total.problemsSubmitted | percentage }}
+                h3 {{vm.challengesSRM.total.percentSuccessful | percentage}}
                 span SUCCESS
 
               li.submitted
@@ -176,7 +176,7 @@
                 h3 {{level.levelName}}
 
               li.success
-                h3 {{level.problemsSuccessful / level.problemsSubmitted | percentage }}
+                h3 {{level.percentSuccessful | percentage}}
                 span SUCCESS
 
               li.submitted

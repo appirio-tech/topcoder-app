@@ -16,7 +16,7 @@
 				 });
 		  
 				 it('welcomes the user for logout', function() {
-					 loginPage.logOut();
+					 loginPage.logOut(loginUser.dashBoardUrl);
 				 });
 		  
 				 afterEach(function() {  
@@ -149,7 +149,7 @@
 				 });
 		  
 				 it('Twitter user logout', function() {
-					 loginPage.logOut();
+					 loginPage.logOut(loginUser.dashBoardUrl);
 				 });
 
 				afterEach(function() {  
@@ -182,7 +182,7 @@
 				 });
 		  
 				 it('Facebook User logout', function() {
-					 loginPage.logOut();
+					 loginPage.logOut(loginUser.dashBoardUrl);
 				 });
 				 
 				 afterEach(function() {  
@@ -217,7 +217,7 @@
 				 });
 		  
 				 it('Google user logout', function() {
-					 loginPage.logOut();
+					 loginPage.logOut(loginUser.dashBoardUrl);
 				 });
 				 
 				 afterEach(function() {  
@@ -251,7 +251,7 @@
 				 });
 		  
 				 it('Git user logout', function() {
-					 loginPage.logOut();
+					 loginPage.logOut(loginUser.dashBoardUrl);
 				 });
 				 
 				 afterEach(function() {  

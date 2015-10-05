@@ -69,7 +69,8 @@ var LoginData = function() {
   						  	
     						  
     						  
-    this.baseUrl = 'http://app.topcoder-dev.com/login';
+    this.baseUrl = 'https://beta.topcoder.com/login';
+    this.dashBoardUrl = 'https://beta.topcoder.com/my-dashboard/';
     this.invalidPasswordMessage = 'That password doesn\'t match the one we have on file. Please try again.';
     this.invalidHandle = 'This user does not exist.'
     this.invalidSpaceHandle = 'That password doesn\'t match the one we have on file. Please try again.'	

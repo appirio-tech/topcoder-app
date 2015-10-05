@@ -5,6 +5,30 @@ var LoginPage = function() {
     browser.get(baseUrl);
   };
  
+  this.selectWindow = function(index) {
+	  // wait for handles[index] to exist
+	  browser.wait(function() {
+	    return browser.getAllWindowHandles().then(function(handles) {
+	      /**
+	       * Assume that handles.length >= 1 and index >=0.
+	       * So when calling selectWindow(index) return
+	       * true if handles contains that window.
+	       */
+	      if (handles.length > index) {
+	        return true;
+	      }
+	    });
+	  }, 30000);
+	  // here i know that the requested window exists
+
+	  // switch to the window
+	  return browser.getAllWindowHandles().then(function(handles) {
+	    return browser.switchTo().window(handles[index]);
+	  });
+  };
+  
+  
+  
   this.login = function(loginUser) {
 	  
 //	expect(browser.getTitle()).toContain('Login');
@@ -17,7 +41,7 @@ var LoginPage = function() {
 	  browser.wait(isClickable, 30000);
 	  userInput.sendKeys(loginUser.username);
   	
-	  var passwordInput = element(by.model('vm.password'));
+	  var passwordInput = element(by.model('vm.currentPassword'));
 	  isClickable = EC.elementToBeClickable(passwordInput);
 	  browser.wait(isClickable, 30000);
 	  passwordInput.sendKeys(loginUser.password);
@@ -32,14 +56,25 @@ var LoginPage = function() {
 //		  username = element(by.model('vm.username'));
 //		  var userNameAvail = username.isPresent();
 //		  console.log('user name status'+userNameAvail);
-    	element.all(by.css('.label')).each(function(element, index) {
-    		
-    	var isClickable = EC.elementToBeClickable(element);
-    	browser.wait(isClickable, 10000);
- 		element.getText().then(function (text) {
- 			console.log(index, text);
- 		});
-    });
+		  var headerDash = element(by.css('.header-dashboard header h1'));
+		  var isClickable = EC.elementToBeClickable(headerDash);
+		  browser.wait(isClickable, 30000);
+		  
+		  var menuItemHeaderList = element.all(by.css('.menu-item-header'));
+		  var menuItemHeader = menuItemHeaderList.get(1);
+		  var username = menuItemHeader.all(by.css('.username')).get(0);
+		  isClickable = EC.elementToBeClickable(username);
+		  browser.wait(isClickable, 30000);
+		  console.log('username '+username.getInnerHtml());
+		  expect(username.getInnerHtml()).toEqual(loginUser.username);
+//    	element(by.css('.menu-item-header .username')).each(function(element, index) {
+//    		
+//    	var isClickable = EC.elementToBeClickable(element);
+//    	browser.wait(isClickable, 10000);
+// 		element.getText().then(function (text) {
+// 			console.log(index, text);
+// 		});
+//    });
     	expect(true).toEqual(true);
    });
   };
@@ -54,7 +89,7 @@ var LoginPage = function() {
 	  browser.wait(isClickable, 30000);
 	  userInput.sendKeys(loginUser.username);
   	
-	  var passwordInput = element(by.model('vm.password'));
+	  var passwordInput = element(by.model('vm.currentPassword'));
 	  isClickable = EC.elementToBeClickable(passwordInput);
 	  browser.wait(isClickable, 30000);
 	  passwordInput.sendKeys(loginUser.password);
@@ -101,7 +136,7 @@ var LoginPage = function() {
 	  browser.wait(isClickable, 30000);
 	  userInput.sendKeys(loginUser.username);
   	
-	  var passwordInput = element(by.model('vm.password'));
+	  var passwordInput = element(by.model('vm.currentPassword'));
 	  isClickable = EC.elementToBeClickable(passwordInput);
 	  browser.wait(isClickable, 30000);
 	  passwordInput.sendKeys(loginUser.password);
@@ -149,7 +184,7 @@ var LoginPage = function() {
 	  browser.wait(isClickable, 30000);
 	  userInput.sendKeys(loginUser.username);
   	
-	  var passwordInput = element(by.model('vm.password'));
+	  var passwordInput = element(by.model('vm.currentPassword'));
 	  isClickable = EC.elementToBeClickable(passwordInput);
 	  browser.wait(isClickable, 30000);
 	  passwordInput.sendKeys(loginUser.password);
@@ -195,7 +230,7 @@ var LoginPage = function() {
 	  browser.wait(isClickable, 30000);
 	  userInput.sendKeys(loginUser.username);
   	
-	  var passwordInput = element(by.model('vm.password'));
+	  var passwordInput = element(by.model('vm.currentPassword'));
 	  isClickable = EC.elementToBeClickable(passwordInput);
 	  browser.wait(isClickable, 30000);
 	  passwordInput.sendKeys(loginUser.password);
@@ -244,8 +279,9 @@ var LoginPage = function() {
 	  var isClickable = EC.elementToBeClickable(userInput);
 	  browser.wait(isClickable, 30000);
 	  
-	  var twitterSquare = browser.driver.findElement(by.css('.social-icons .fa-twitter-square'));
+	  var twitterSquare = browser.driver.findElement(by.css('.social-icons .twitter .ico'));
 	  twitterSquare.click();
+	  this.selectWindow(1);
 	  browser.driver.wait(function() {
 		  var emailId = browser.driver.findElement(by.id('username_or_email'));
 		  console.log('twitter username');
@@ -268,31 +304,20 @@ var LoginPage = function() {
 	  
 	  
 	  
-	  /*
-	  browser.driver.wait(function() {
-		  browser.driver.findElement(by.css('.social-icons .fa-twitter-square')).then(function(elem) {   
-			  console.log('twitter login');
-			  elem.click();
-				  browser.driver.findElement(by.id('username_or_email')).then(function(elem1){
-					  elem1.sendKeys(loginUser1.username);
-					  console.log('usernameoremail');
-//					  return true;
-				  });
-				  browser.driver.findElement(by.id('password')).then(function(elem1){
-					  elem1.sendKeys(loginUser1.password);
-					  console.log('password');
-//					  return true;
-				  });
-				  browser.driver.findElement(by.css('.submit')).then(function(elem1){
-					  elem1.click();
-					  console.log('submit button');
-//					  return true;
-				  });
-				  
-			  console.log('twitter login click');
-			  return true;
-		  });
-	  },30000);*/
+	  browser.getAllWindowHandles().then(function (handles) {
+		  browser.switchTo().window(handles[0]);
+	  });
+	  
+	  var headerDash = element(by.css('.header-dashboard header h1'));
+	  var isClickable = EC.elementToBeClickable(headerDash);
+	  browser.wait(isClickable, 30000);
+	  
+	  
+	  var menuItemHeaderList = element.all(by.css('.menu-item-header'));
+	  var menuItemHeader = menuItemHeaderList.get(1);
+	  var username = menuItemHeader.all(by.css('.username')).get(0);
+	  isClickable = EC.elementToBeClickable(username);
+	  browser.wait(isClickable, 30000);
 	  
 	  console.log('out of twitter login');
 	  expect(true).toEqual(true);
@@ -314,9 +339,9 @@ var LoginPage = function() {
 	  var isClickable = EC.elementToBeClickable(userInput);
 	  browser.wait(isClickable, 30000);
 	  
-	  var fbSquare = browser.driver.findElement(by.css('.social-icons .fa-facebook-square'));
+	  var fbSquare = browser.driver.findElement(by.css('.social-icons .facebook .ico'));
 	  fbSquare.click();
-	  
+	  this.selectWindow(1);
 	  browser.driver.wait(function() {
 		  var emailId = browser.driver.findElement(by.id('email'));
 		  console.log('fb username');
@@ -339,7 +364,25 @@ var LoginPage = function() {
 		 
 	  },30000);
 	  
+	  browser.getAllWindowHandles().then(function (handles) {
+		  browser.switchTo().window(handles[0]);
+	  });
 	  
+	  var headerDash = element(by.css('.header-dashboard header h1'));
+	  var isClickable = EC.elementToBeClickable(headerDash);
+	  browser.wait(isClickable, 30000);
+	  
+	  
+	  var menuItemHeaderList = element.all(by.css('.menu-item-header'));
+	  var menuItemHeader = menuItemHeaderList.get(1);
+	  var username = menuItemHeader.all(by.css('.username')).get(0);
+	  isClickable = EC.elementToBeClickable(username);
+	  browser.wait(isClickable, 30000);
+	  
+	  
+	  
+	  
+//	  this.selectWindow(0);
 	  /*browser.driver.wait(function() {
 		  browser.driver.findElement(by.css('.social-icons .fa-facebook-square')).then(function(elem) {   
 			  console.log('fb login');
@@ -372,15 +415,6 @@ var LoginPage = function() {
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
   this.googleLogin = function(loginUser1) {
 	  browser.driver.ignoreSynchronization = true;
 	  
@@ -392,8 +426,9 @@ var LoginPage = function() {
 	  var isClickable = EC.elementToBeClickable(userInput);
 	  browser.wait(isClickable, 30000);
 	  
-	  var fbSquare = browser.driver.findElement(by.css('.social-icons .fa-google-plus-square'));
+	  var fbSquare = browser.driver.findElement(by.css('.social-icons .google-plus .ico'));
 	  fbSquare.click();
+	  this.selectWindow(1);
 	  browser.driver.wait(function() {
 		  var emailId = browser.driver.findElement(by.id('Email'));
 		  console.log('google username');
@@ -422,9 +457,25 @@ var LoginPage = function() {
 			 return true;
 	  },30000);
 	  
+	  browser.getAllWindowHandles().then(function (handles) {
+		  browser.switchTo().window(handles[0]);
+	  });
+	  
+	  var headerDash = element(by.css('.header-dashboard header h1'));
+	  var isClickable = EC.elementToBeClickable(headerDash);
+	  browser.wait(isClickable, 30000);
+	  
+	  
+	  var menuItemHeaderList = element.all(by.css('.menu-item-header'));
+	  var menuItemHeader = menuItemHeaderList.get(1);
+	  var username = menuItemHeader.all(by.css('.username')).get(0);
+	  isClickable = EC.elementToBeClickable(username);
+	  browser.wait(isClickable, 30000);
+	  
 	  console.log('out of google login');
 	  expect(true).toEqual(true);
   };
+  
   
   
   this.gitLogin = function(loginUser1) {
@@ -438,8 +489,9 @@ var LoginPage = function() {
 	  var isClickable = EC.elementToBeClickable(userInput);
 	  browser.wait(isClickable, 30000);
 	  
-	  var gitSquare = browser.driver.findElement(by.css('.social-icons .fa-github-square'));
+	  var gitSquare = browser.driver.findElement(by.css('.social-icons .github .ico'));
 	  gitSquare.click();
+	  this.selectWindow(1);
 	  browser.driver.wait(function() {
 		  var emailId = browser.driver.findElement(by.id('login_field'));
 		  console.log('git username');
@@ -461,26 +513,55 @@ var LoginPage = function() {
 			 return true;
 	  },30000);
 	  
+	  browser.getAllWindowHandles().then(function (handles) {
+		  browser.switchTo().window(handles[0]);
+	  });
+	  
+	  var headerDash = element(by.css('.header-dashboard header h1'));
+	  var isClickable = EC.elementToBeClickable(headerDash);
+	  browser.wait(isClickable, 30000);
+	  
+	  
+	  var menuItemHeaderList = element.all(by.css('.menu-item-header'));
+	  var menuItemHeader = menuItemHeaderList.get(1);
+	  var username = menuItemHeader.all(by.css('.username')).get(0);
+	  isClickable = EC.elementToBeClickable(username);
+	  browser.wait(isClickable, 30000);
+	  
 	  console.log('out of git login');
 	  expect(true).toEqual(true);
   };
   
   
   
-  
-  
-  
-  this.logOut = function () {
+  this.logOut = function (dashBoardUrl) {
+	  this.get(dashBoardUrl);
+//	  browser.get('https://beta.topcoder.com/my-dashboard/');
 	  var EC = protractor.ExpectedConditions;
-	  var elementLabel = element(by.css('.logout a'));
-	  var isClickable = EC.elementToBeClickable(elementLabel);
-	  browser.wait(isClickable, 10000);
+	  var menuItemHeaders = element.all(by.css('.menu-item-header'));
+	  var logoutHeader = menuItemHeaders.get(1);
+	  var isClickable = EC.elementToBeClickable(logoutHeader);
+	  browser.wait(isClickable, 30000);
+	  browser.actions().mouseMove(logoutHeader).perform();
+	  var mainMenuLiList = element.all(by.css('.main-menu li'));
+	  var submenuLi = mainMenuLiList.get(1);
+//	  var logoutLink = submenuLi.all(by.css('ul .submenu-item .menu-link')).get(0);
+	  var logoutLink = element(by.partialLinkText('LOG OUT'));
+	  
+//	  var submenuItems = element(by.css('.menu-item .submenu')).all(by.css('.submenu-item'));
+//	  var elementLabel = submenuItems.get(0);
+	  isClickable = EC.elementToBeClickable(logoutLink);
+	  browser.wait(isClickable, 30000);
 	
-	  elementLabel.click().then(function() {
+	  logoutLink.click().then(function() {
 		
 //		var label = element(by.css('.label'));
 //		var isClickable = EC.elementToBeClickable(label);
 //		browser.wait(isClickable, 20000);
+		  var userInput = element(by.model('vm.username'));
+		  var isClickable = EC.elementToBeClickable(userInput);
+		  browser.wait(isClickable, 30000);
+//		  userInput.sendKeys(loginUser.username);
 		  expect(true).toEqual(true);
 		
 	  });

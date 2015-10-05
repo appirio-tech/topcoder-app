@@ -31,7 +31,7 @@
       p.points #[span {{srm.result.finalPoints }}] #[span Points]
       .ranks
         .division
-          p.rank #[{{srm.result.divisionPlacement}}]
+          p.rank {{srm.result.divisionPlacement}}
           p.label  #[span Division {{srm.result.division}}]
         .room
           p.rank #[span {{srm.result.roomPlacement}}]
@@ -62,14 +62,14 @@
         a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
 
     .srm-details
-      p.ended-on Ended #[{{srm.endDate | timeDiff:"quantity"}} {{srm.endDate | timeDiff:'unit'}}] ago
+      p.ended-on Ended {{srm.endDate | timeDiff:"quantity"}} {{srm.endDate | timeDiff:'unit'}} ago
 
     .member-stats
       p.points #[span {{srm.result.finalPoints }}] Points
 
       .ranks
         .division
-          p.rank #[{{srm.result.divisionPlacement}}]
+          p.rank {{srm.result.divisionPlacement}}
           p.label #[span Div {{srm.result.division}}] #[span Placement]
         .room
           p.rank #[span {{srm.result.roomPlacement}}]

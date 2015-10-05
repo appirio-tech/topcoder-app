@@ -2,15 +2,8 @@ header
   h1 My Dashboard
 
   .user-stats(id="metrics", ng-hide="vm.loading")
-    .copilot-challenges(ng-show="dashboard.isCopilot")
-      p.number(ng-bind='vm.numCopilotActiveContests')
-
-      p Copilot Challenges
-
-    .slash(ng-show="dashboard.isCopilot")
-
     .money-earned
       p.number(ng-bind="vm.moneyEarned | currency:'$':0")
 
-      p Won
+      p Earned
 
