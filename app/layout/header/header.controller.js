@@ -90,7 +90,6 @@
       });
     };
 
-    // Intro data
     vm.introOptions = IntroService.getIntroData($state.$current.name);
   }
 })();

@@ -1,53 +1,62 @@
-// Header container
 .header-wrapper(ng-class="{'autocomplete': main.searchTerm.length > 0}")
-  // Main header element
-  div(ng-intro-options="vm.introOptions", ng-intro-method="launchIntro")
+  div(ng-intro-options="vm.introOptions", ng-intro-autostart="true")
+
   header.top-header
     a.logo-link(href="/")
     // Header content visible on small screens
     .show-small.mobile-heading
       span.tc-text-logo(ng-if="main.menuVisible") [ topcoder ]
+
       button.btn-open-menu(type="button", ng-if="!main.menuVisible", ng-click="main.menuVisible = true") Menu
+
       button.btn-close-menu(type="button", ng-if="main.menuVisible", ng-click="main.menuVisible = false")
+
       // User link (profile or join)
       a(ui-sref="profile.about({userHandle: vm.userHandle})", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
         img(ng-switch-when="true", class="user-avatar", ng-src="{{vm.profile.photoURL}}")
+
         span(ng-switch-when="false" class="btn-link") JOIN
 
-    // main menu 
     ul.main-menu
-      // search container
       li.menu-item.search-wrapper
         .menu-item-header.show-large #[button.btn-expand-search.search-icon(type="button")]
+
         .submenu
           input(type="text" placeholder="find people" ng-model="vm.searchTerm" ng-keyup="vm.checkSubmit($event)")
           // Suggestion list container
           // ul.suggestion-list(ng-if="main.searchTerm.length > 0")
-          //   li(ng-repeat="suggestion in main.suggestions | filter:main.searchTerm | limitTo:5") 
+          //   li(ng-repeat="suggestion in main.suggestions | filter:main.searchTerm | limitTo:5")
           //     a(href="javascript:;" class="menu-link") {{suggestion}}
 
-      // user menu
       li.menu-item.link-group.user-menu(ng-switch="vm.isAuth", ng-class="{'anonymous-menu': !vm.isAuth}")
         // links for logged in user
         div(ng-switch-when="true")
           .menu-item-header
             span(ui-sref="profile.about({userHandle: vm.userHandle})")
               img(class="user-avatar", ng-src="{{vm.profile.photoURL}}")
+
               span.username {{vm.userHandle}}
+
           a.btn-link.btn-edit-profile.show-small(ui-sref="settings.profile") EDIT
+
           ul.submenu
             header-menu-item(ng-repeat="item in vm.userMenu" item="item")
+
             li.submenu-item
               a.menu-link(ng-click="vm.logout(); main.menuVisible = vm.isAuth = false")
                 img.menu-icon(ng-src="/images/nav/logout.svg")
                 .menu-text LOG OUT
+
         // links for anonymous user
         .menu-item-header(ng-switch-when="false")
           a.btn-link(ui-sref="register") REGISTER
+
           a.btn-link.secondary-link(ui-sref="login") LOGIN
+
           a(ng-click="launchIntro();", ng-show="!!vm.introOptions") Intro
 
       li.menu-item.link-group(ng-repeat="(menu, items) in vm.menuLinks")
         .menu-item-header {{menu}}
+
         ul.submenu
           header-menu-item(ng-repeat="item in items" item="item")
