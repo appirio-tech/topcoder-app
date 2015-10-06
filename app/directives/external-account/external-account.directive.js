@@ -9,7 +9,7 @@
     { provider: "github", className: "fa-github", displayName: "Github", disabled: false, order: 1, colorClass: 'el-github'},
     { provider: "bitbucket", className: "fa-bitbucket", displayName: "Bitbucket", disabled: true, order: 7, colorClass: 'el-bitbucket'},
     { provider: "twitter", className: "fa-twitter", displayName: "Twitter", disabled: true, order: 4, colorClass: 'el-twitter'},
-    { provider: "weblinks", className: "fa-globe", displayName: "Web Links", disabled: true, order: 8, colorClass: 'el-weblinks'}
+    //{ provider: "weblinks", className: "fa-globe", displayName: "Web Links", disabled: true, order: 8, colorClass: 'el-weblinks'}
     // TODO  add more
   ];
 
@@ -26,6 +26,7 @@
         function($log, $scope, ExternalAccountService, toaster) {
           $log = $log.getInstance("ExtAccountDirectiveCtrl")
           $scope.accountList = _.clone(_supportedAccounts, true);
+
           $scope.$watch('linkedAccounts', function(newValue, oldValue) {
             for (var i=0;i<$scope.accountList.length;i++) {
               $scope.accountList[i].linked = !!_.find(newValue, function(a) {
@@ -110,6 +111,60 @@
               }
             });
           });
+        }
+      ]
+    }
+  })
+  .directive('externalWebLink', function() {
+    return {
+     restrict: 'E',
+      templateUrl: 'directives/external-account/external-web-link.directive.html',
+      scope: {
+        linkedAccounts: '=',
+        userData: "="
+      },
+      controller: ['$log', '$scope', 'ExternalAccountService',
+        function($log, $scope, ExternalAccountService) {
+          $log = $log.getInstance('ExternalWebLinkDirective');
+          $scope.addingWebLink = false;
+          $scope.errorMessage = null;
+
+          $log.debug("userData: " + $scope.userData.handle);
+
+          $scope.addWebLink = function() {
+            $log.debug("URL: " + $scope.url);
+            $scope.addingWebLink = true;
+            $scope.errorMessage = null;
+            ExternalAccountService.addWebLink($scope.userData.userId, $scope.userData.handle, $scope.url)
+              .then(function(resp) {
+                $scope.addingWebLink = false;
+                $log.debug("Web link added: " + JSON.stringify(resp));
+                $scope.linkedAccounts.push(resp.profile);
+                toaster.pop('success', "Success",
+                  String.supplant(
+                    "Your link has been added. Data from your link will be visible on your profile shortly.",
+                    {provider: extAccountProvider}
+                  )
+                );
+              })
+              .catch(function(resp) {
+                $scope.addingWebLink = false;
+                $log.debug(JSON.stringify(resp));
+                if (resp.status === 'SOCIAL_PROFILE_ALREADY_EXISTS') {
+                  $log.info("Social profile already linked to another account");
+                  toaster.pop('error', "Whoops!",
+                    String.supplant(
+                      "This {provider} account is linked to another account. \
+                      If you think this is an error please contact <a href=\"mailTo:support@.appirio.com\">support@apprio.com</a>.",
+                      {provider: extAccountProvider }
+                    )
+                  );
+                } else {
+                  $log.info("Server error:" + resp.content);
+                  $scope.errorMessage = "Sorry, we are unable add web link. If problem persist please contact support@topcoder.com";
+                }
+              });
+          };
         }
       ]
     }

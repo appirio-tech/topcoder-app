@@ -15,7 +15,8 @@
       getLinkedExternalAccounts: getLinkedExternalAccounts,
       getLinkedExternalLinksData: getLinkedExternalLinksData,
       linkExternalAccount: linkExternalAccount,
-      unlinkExternalAccount: unlinkExternalAccount
+      unlinkExternalAccount: unlinkExternalAccount,
+      addWebLink : addWebLink
     };
     return service;
 
@@ -43,6 +44,19 @@
 
     function unlinkExternalAccount(account) {
       throw new Error("not implemented");
+    }
+
+    function addWebLink(userId, userHandle, url) {
+      var provider = "url::" + url;
+      var postData = {
+        userId: userId,
+        providerType: provider,
+        context: {
+          handle: userHandle
+        }
+      };
+      // delegates to user service
+      return UserService.addSocialProfile(userId, postData);
     }
 
     function linkExternalAccount(provider, callbackUrl) {
