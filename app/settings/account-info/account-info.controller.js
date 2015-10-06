@@ -52,10 +52,14 @@
 
       var isValidCountry = _.isUndefined(countryCode) ? false : true;
       vm.accountInfoForm.country.$setValidity('required', isValidCountry);
+      if (isValidCountry) {
+        userData.homeCountryCode = countryCode;
+      }
     }
 
     function saveAccountInfo() {
       vm.formProcessing.accountInfoForm = true;
+      userData.addresses = [vm.homeAddress];
       ProfileService.updateUserProfile(userData)
       .then(function(data) {
         vm.formProcessing.accountInfoForm = false;
