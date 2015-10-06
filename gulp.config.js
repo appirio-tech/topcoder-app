@@ -86,8 +86,8 @@ module.exports = function() {
     },
 
     // Process.env variables
-    production: process.env.ENVIRONMENT === 'production',
-    qa: process.env.ENVIRONMENT === 'qa'
+    production: process.env.ENVIRONMENT.indexOf('production') > -1,
+    qa: process.env.ENVIRONMENT.indexOf('qa') > -1
   };
 
   config.getWiredepDefaultOptions = function () {
