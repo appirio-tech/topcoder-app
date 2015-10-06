@@ -3,7 +3,7 @@
     .challenge-track
 
     header
-      a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
+      a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") {{srm.name}}
 
     .srm-details
       p.starts-in Starts in #[span {{srm.startDate | timeDiff:"quantity"}} {{srm.startDate | timeDiff:'unit'}}]
@@ -24,7 +24,7 @@
     .challenge-track
 
     header
-      a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
+      a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") {{srm.name}}
       .ended-on #[span {{srm.startDate | localTime:"MMM DD, YYYY" }}]
 
     .member-stats
@@ -43,7 +43,7 @@
     .challenge-track
     header
       .srm-name
-        a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
+        a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") {{srm.name}}
 
     .srm-details
       p.starts-in Starts in #[span {{srm.startDate | timeDiff:"quantity"}} {{srm.startDate | timeDiff:'unit'}}]
@@ -59,7 +59,7 @@
     .challenge-track
     header
       .srm-name
-        a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.id}}") {{srm.name}}
+        a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") {{srm.name}}
 
     .srm-details
       p.ended-on Ended {{srm.endDate | timeDiff:"quantity"}} {{srm.endDate | timeDiff:'unit'}} ago
