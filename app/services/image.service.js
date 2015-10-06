@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('ImageService', ImageService);
 
-  ImageService.$inject = ['CONSTANTS', 'ApiService', '$q', '$log', '$rootScope'];
+  ImageService.$inject = ['CONSTANTS', 'ApiService', '$q', '$log', '$rootScope', 'toaster'];
 
-  function ImageService(CONSTANTS, ApiService, $q, $log, $rootScope) {
+  function ImageService(CONSTANTS, ApiService, $q, $log, $rootScope, toaster) {
     var api = ApiService.restangularV3;
 
     var service = {
@@ -17,15 +17,16 @@
 
     function createFileRecord(S3Response) {
       return api.one('members', S3Response.userHandle).customPUT(S3Response.body, 'photo')
-      .then(function() {
-        // Show notification that upload was successful
+      .then(function(newPhotoURL) {
         $rootScope.$broadcast(CONSTANTS.EVENT_PROFILE_UPDATED);
         $log.info('Successfully made file record');
-
+        toaster.pop('success', 'Success!', 'Your profile image has been updated.');
+        return newPhotoURL;
       })
       .catch(function(err) {
         $log.info('Error in creating file record');
         $log.error(err);
+        toaster.pop('error', 'Whoops!', 'There was an error uploading your profile image. Please try again later.');
       });
     }
 
@@ -43,6 +44,7 @@
       })
       .catch(function(err) {
         $log.info('Error getting presigned url');
+        toaster.pop('error', 'Whoops!', 'There was an error uploading your profile image. Please try again later.');
         deferred.reject(err);
       });
 
@@ -70,12 +72,14 @@
           });
         } else if (status >= 400) {
           $log.error('Error uploading to S3 with status: ' + status);
+          toaster.pop('error', 'Whoops!', 'There was an error uploading your profile image. Please try again later.');
           deferred.reject(err);
         }
       };
 
       xhr.onerror = function(err) {
         $log.info('Error uploading to s3');
+        toaster.pop('error', 'Whoops!', 'There was an error uploading your profile image. Please try again later.');
         deferred.reject(err);
       }
 

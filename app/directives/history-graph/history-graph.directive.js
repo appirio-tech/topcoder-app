@@ -6,9 +6,7 @@
   function historyGraph() {
     return {
       restrict: 'E',
-      templateUrl: function(elem, attrs) {
-        return 'directives/history-graph/history-graph.directive.html';
-      },
+      templateUrl: 'directives/history-graph/history-graph.directive.html',
       scope: {
         promise: '=',
         rating: '=',

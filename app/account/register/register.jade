@@ -13,9 +13,11 @@
     p.form-error(ng-show="vm.errMsg") {{vm.errMsg}}
 
     .first-last-names
-      input(right-placeholder, focused-placeholder="First", ng-model="vm.firstname", maxlength="64", name="firstname", placeholder="First Name", type="text", required)
+      input-sticky-placeholder(sticky-placeholder="First", ng-model="vm.firstname")
+        input(ng-model="vm.firstname", maxlength="64", name="firstname", placeholder="First Name", type="text", required)
 
-      input(right-placeholder, focused-placeholder="Last", ng-model="vm.lastname", maxlength="64", name="lastname", placeholder="Last Name", type="text", required)
+      input-sticky-placeholder(sticky-placeholder="Last", ng-model="vm.lastname")
+        input(ng-model="vm.lastname", maxlength="64", name="lastname", placeholder="Last Name", type="text", required)
 
     .country-dropdown
       angucomplete-alt(
@@ -36,7 +38,8 @@
         p.form-error(ng-show="vm.registerForm.country.$error.required") Please choose a country from the list.
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.username.$error.usernameIsFree || vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength), 'success-bar': (vm.registerForm.username.$valid && !vm.registerForm.username.$error.usernameIsFree) }")
-      input(right-placeholder, focused-placeholder="Username", ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)
+      input-sticky-placeholder(sticky-placeholder="Username", ng-model="vm.username")
+        input(ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)
 
       .tips.username-tips(ng-show="vm.usernameTips")
         h3 Username Tips:
@@ -53,7 +56,8 @@
       p.form-error(ng-show="vm.registerForm.username.$dirty && (vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength)") That username is not the correct length or format.
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.email.$dirty && vm.registerForm.email.$invalid), 'success-bar': (vm.registerForm.email.$valid) }")
-      input(right-placeholder, focused-placeholder="Email", ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required)
+      input-sticky-placeholder(sticky-placeholder="Email", ng-model="vm.email")
+        input(ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required)
 
       .tips.email-tips(ng-show="vm.emailTips")
         h3 Email Tips:

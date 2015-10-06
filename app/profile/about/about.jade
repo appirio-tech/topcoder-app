@@ -40,7 +40,7 @@
               div
             .text {{track | track}}
         .description Compete in challenges to win money, test yourself against the world's best, and learn new skills. Your performance rating will show up here.
-        button.link-button(ui-sref="settings.profile") FIND CHALLENGES
+        a.link-button(href="/challenges") FIND CHALLENGES
 
       .track(
         ng-repeat="track in profileVm.profile.tracks",
