@@ -22,7 +22,7 @@
             .key repositories
 
       div(ng-switch-when="stackoverflow")
-        .handle {{account.data.handle}}
+        .handle {{account.data.name}}
 
         .pending(ng-show="account.data.status === 'PENDING'")
           p Loading data. This will take a few minutes.

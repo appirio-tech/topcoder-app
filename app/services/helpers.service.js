@@ -35,6 +35,9 @@
         handle = "",
         email = "",
         socialProviderId = '';
+
+      var socialUserId = profile.user_id.substring(profile.user_id.lastIndexOf('|') + 1);
+
       if (socialProvider === 'google-oauth2') {
         firstName = profile.given_name;
         lastName = profile.family_name;
@@ -69,10 +72,15 @@
         lastName = profile.last_name;
         handle = profile.username;
         email = profile.email;
-        socialProviderId = 4;
+        socialProviderId = 5;
+      } else if (socialProvider === 'stackoverflow') {
+        firstName = profile.first_name;
+        lastName = profile.last_name;
+        handle = socialUserId;
+        email = profile.email;
+        socialProviderId = 6;
       }
 
-      var socialUserId = profile.user_id.substring(profile.user_id.indexOf('|') + 1);
       return {
         socialUserId: socialUserId,
         username: handle,
