@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('Helpers', Helpers);
 
-  Helpers.$inject = ['$window', '$location', '$state', '$http', 'ISO3166'];
+  Helpers.$inject = ['$window', '$location', '$state', '$http', '$filter', 'ISO3166'];
 
-  function Helpers($window, $location, $state, $http, ISO3166) {
+  function Helpers($window, $location, $state, $http, $filter, ISO3166) {
     // TODO: Separate helpers by submodule
 
     var service = {
@@ -20,7 +20,8 @@
       getCountyObjFromIP: getCountyObjFromIP,
       redirectPostLogin: redirectPostLogin,
       getSocialUserData: getSocialUserData,
-      setupLoginEventMetrices: setupLoginEventMetrices
+      setupLoginEventMetrices: setupLoginEventMetrices,
+      npad: npad
 
     };
     return service;
@@ -264,6 +265,10 @@
       if (_kmq) {
         _kmq.push(['identify', usernameOrEmail ]);
       }
+    }
+
+    function npad(toPad, n) {
+      return $filter('npad')(toPad, n);
     }
   }
 })();

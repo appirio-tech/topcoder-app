@@ -35,8 +35,10 @@
       var countryCode = _.get(angucompleteCountryObj, 'originalObject.code', undefined);
 
       var isValidCountry = _.isUndefined(countryCode) ? false : true;
-      vm.country = countryCode;
       vm.registerForm.country.$setValidity('required', isValidCountry);
+      if (isValidCountry) {
+        vm.country = angucompleteCountryObj.originalObject;
+      }
     };
 
     vm.register = function() {
@@ -47,7 +49,9 @@
         lastName: vm.lastname,
         email: vm.email,
         country: {
-          code: vm.country
+          code: Helpers.npad(vm.country.code, 3),
+          isoAlpha3Code: vm.country.alpha3,
+          isoAlpha2Code: vm.country.alpha2
         },
         utmSource: utm.source,
         utmMedium: utm.medium,
