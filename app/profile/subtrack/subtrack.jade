@@ -1,5 +1,4 @@
 .profile-subtrack-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
-
   .nav
     a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
       img.arrow(ng-src="/images/ico-arrow-big-left.svg")
@@ -7,14 +6,17 @@
     .breadcrumbs
       .handle
         img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
+
         a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
           | {{vm.userHandle}}
         |  /&nbsp;
+
       .track {{vm.track | track}}
+
       .subtrack &nbsp;// {{vm.subTrack | track}}
 
     .right
-      i(class="fa fa-th", ng-click="vm.showNav()")
+      i.fa.fa-th(ng-click="vm.showNav()")
 
   include ./develop/develop.jade
   include ./design/design.jade

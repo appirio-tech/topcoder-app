@@ -1,6 +1,6 @@
 .design(ng-if="vm.track == 'DESIGN'")
   .top
-    ul.horizontal-stats
+    ul.horizontal-stats(id="subtrack-stats")
       li.stat(ng-if="vm.typeStats.wins")
         .value(style="color: #21B2F1") {{vm.typeStats.wins}}
         .name WINS
@@ -14,20 +14,17 @@
         .name CHALLENGES
 
     .tabs
-      a.left(id="stats", ng-click="vm.viewing = 'stats'",
+      a.left(id="statistics-tab", ng-click="vm.viewing = 'stats'",
         ng-class="vm.viewing == 'stats' ? 'selected' : ''"
       ) Statistics
 
-      a.right(id="challenges", ng-click="vm.viewing = 'challenges'",
+      a.right(id="challenges-tab", ng-click="vm.viewing = 'challenges'",
         ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
       ) Challenges
 
     hr
 
-    tc-section(
-      ng-show="vm.viewing == 'challenges'",
-      state="vm.status.challenges"
-    )
+    tc-section(ng-show="vm.viewing == 'challenges'", state="vm.status.challenges")
       tc-paginator(data="vm.challenges", page-params="vm.pageParams")
       .challenges
         .challenge.tile(ng-repeat="challenge in vm.challenges")

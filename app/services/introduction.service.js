@@ -3,8 +3,67 @@
 
   angular.module('tc.services').factory('IntroService', IntroService);
 
-  IntroService.$inject = [];
-  var _data = {
+  IntroService.$inject = ['store', 'UserService', '$state', '$stateParams'];
+
+  function IntroService(store, UserService, $state, $stateParams) {
+    var service = {
+      getIntroData: getIntroData,
+      getCurrentPageOptions: getCurrentPageOptions
+    };
+
+    /////////////////
+
+    function getIntroData(stateName) {
+      // verfiy that state exists
+      var stateData = _.get(_introJSData, stateName, null);
+
+      if (!stateData) {
+        return null;
+      }
+
+      var mergedData = _.clone(_introJSData['default'], true);
+      mergedData = _.merge(mergedData, stateData);
+
+      return mergedData;
+    }
+
+    function getCurrentPageOptions() {
+      var userIdentity = UserService.getUserIdentity();
+
+      if (userIdentity) {
+        var userHandle = userIdentity.handle.toLowerCase();
+        var userId = userIdentity.userId;
+
+        var currentPage = $state.current.name;
+        var handleInParams = $stateParams.userHandle ? $stateParams.userHandle.toLowerCase() : null;
+        var userIntroJSStats = store.get(userId);
+
+        if (!userIntroJSStats.dashboardIntroComplete && _.contains(currentPage, 'dashboard')) {
+          userIntroJSStats.dashboardIntroComplete = true;
+          store.set(userId, userIntroJSStats);
+
+          return getIntroData(currentPage);
+        }
+
+        if (!userIntroJSStats.profileAboutIntroComplete && _.contains(currentPage, 'profile.about') && userHandle === handleInParams) {
+          userIntroJSStats.profileAboutIntroComplete = true;
+          store.set(userId, userIntroJSStats);
+
+          return getIntroData(currentPage);
+        }
+
+        if (!userIntroJSStats.profileSubtrackIntroComplete && _.contains(currentPage, 'profile.subtrack') && userHandle === handleInParams && $stateParams.subTrack.toLowerCase() !== 'copilot') {
+          userIntroJSStats.profileSubtrackIntroComplete = true;
+          store.set(userId, userIntroJSStats);
+
+          return getIntroData(currentPage);
+        }
+      }
+
+      return null;
+    }
+
+    var _introJSData = {
       'default': {
         steps:[],
         showStepNumbers: true,
@@ -38,31 +97,26 @@
             }
           ]
         },
-        subTrack: {
+        subtrack: {
           steps: [
             {
               intro: 'Welcome to the new Sub-track details page. This page contains activity in this track and in-depth metrics in an easy-to-understand way.'
             },
             {
-              element: '#metrics',
+              element: '#subtrack-stats',
               intro: 'Find the most important metrics here to understand performance in a glance.',
               position: 'top'
             },
             {
-              element: '#challenges',
-              intro: 'This sections contains all the completed challenges, in order of success.',
+              element: '#statistics-tab',
+              intro: 'This sections contains charts and more in-depth metrics to get a very granular understanding of the activity in this sub-track.',
               position: 'top'
             },
             {
-              element: '#stats',
-              intro: 'This sections contains charts and more in-depth metrics to get a very granular understanding of the activity in this sub-track.',
+              element: '#challenges-tab',
+              intro: 'This sections contains all the completed challenges, in order of success.',
               position: 'top'
             }
-            // {
-            //   element: '#navigation',
-            //   intro: 'And finally, go from one active sub-track to another by opening the profile navigation here',
-            //   position: 'bottom'
-            // }
           ]
         }
       },
@@ -105,27 +159,6 @@
       }
     };
 
-  function IntroService() {
-    var service = {
-      getIntroData: getIntroData
-    };
-
     return service;
-
-    /////////////////
-
-    function getIntroData(stateName) {
-      // verfiy that state exists
-      var stateData = _.get(_data, stateName, null);
-
-      if (!stateData) {
-        return null;
-      }
-
-      var mergedData = _.clone(_data['default'], true);
-      mergedData = _.merge(mergedData, stateData);
-
-      return mergedData;
-    }
   }
 })();

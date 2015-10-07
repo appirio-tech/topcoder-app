@@ -1,6 +1,6 @@
 .data.develop(ng-if="vm.track == 'DATA_SCIENCE'")
   .top
-    ul.horizontal-stats
+    ul.horizontal-stats(id="subtrack-stats")
       li.stat(ng-if="vm.typeStats.rank.rating")
         .value.rating(style="color: {{vm.typeStats.rank.rating | ratingColor}}") {{vm.typeStats.rank.rating}}
           span.square(style="background-color: {{vm.typeStats.rank.rating | ratingColor}}")
@@ -27,11 +27,11 @@
         .name WINS
 
     .tabs
-      a.left(id="stats", ng-click="vm.viewing = 'stats'",
+      a.left(id="statistics-tab", ng-click="vm.viewing = 'stats'",
         ng-class="vm.viewing == 'stats' ? 'selected' : ''"
       ) Statistics
 
-      a.right(id="challenges", ng-click="vm.viewing = 'challenges'",
+      a.right(id="challenges-tab", ng-click="vm.viewing = 'challenges'",
         ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
       )
         span(ng-show="vm.subTrack == 'SRM'") Past SRMs
