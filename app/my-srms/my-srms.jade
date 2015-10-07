@@ -19,6 +19,10 @@
           button.tile(ng-click="vm.changeView('tile')", ng-class="{ disabled: vm.view === 'tile' }") Grid
           button.list(ng-click="vm.changeView('list')", ng-class="{ disabled: vm.view === 'list' }") List
       .data(ng-class="vm.view + '-view'")
+        .no-srms(ng-if="!vm.userHasSrms && !vm.loading")
+          p(ng-hide="vm.isError") {{vm.noSrmsMessage}}
+
+          p(ng-show="vm.isError") There was an error fetching challenges. Please try again later.
         srm-tile.srm-tile(ng-repeat="srm in vm.srms", srm="srm", view="vm.view", ng-class="vm.view + '-view'", show-results="vm.listType == 'past'")
       .bottom
           tc-paginator(data="vm.srms", page-params="vm.pageParams")
