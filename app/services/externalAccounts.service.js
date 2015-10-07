@@ -48,7 +48,7 @@
     function linkExternalAccount(provider, callbackUrl) {
       return $q(function(resolve, reject) {
         // supported backends
-        var backends = ['facebook', 'google-oauth2', 'bitbucket', 'github', 'linkedin', 'stackoverflow'];
+        var backends = ['facebook', 'google-oauth2', 'bitbucket', 'github', 'linkedin', 'stackoverflow', 'dribbble'];
         if (backends.indexOf(provider) > -1) {
           auth0.signin({
               popup: true,
