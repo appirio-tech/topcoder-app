@@ -24,7 +24,8 @@
       resetPassword: resetPassword,
       updatePassword: updatePassword,
       getUserProfile: getUserProfile,
-      getV2UserProfile: getV2UserProfile
+      getV2UserProfile: getV2UserProfile,
+      removeSocialProfile: removeSocialProfile
     };
     return service;
 
@@ -97,6 +98,10 @@
     function getUserProfile(queryParams) {
       var userId = getUserIdentity().userId;
       return api.one('users', userId).get(queryParams);
+    }
+
+    function removeSocialProfile (userId, account) {
+      return api.one("users", userId).one("profiles", account).remove();
     }
 
     /**
