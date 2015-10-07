@@ -2,17 +2,21 @@
   .top
     ul.horizontal-stats
       li.stat
-        .value {{vm.typeStats.activeProjects}}
+        .value {{vm.typeStats.activeContests | empty}}
+        .name ACTIVE CHALLENGES
+
+      li.stat
+        .value {{vm.typeStats.activeProjects | empty}}
         .name ACTIVE PROJECTS
 
       li.stat
-        .value {{vm.typeStats.contests}}
+        .value {{vm.typeStats.contests | empty}}
         .name TOTAL CHALLENGES
 
       li.stat
-        .value {{vm.typeStats.projects}}
+        .value {{vm.typeStats.projects | empty}}
         .name TOTAL PROJECTS
 
       li.stat
-        .value {{vm.typeStats.fulfillment + '%'}}
+        .value {{vm.typeStats.fulfillment + '%' | empty}}
         .name FULFILLMENT
