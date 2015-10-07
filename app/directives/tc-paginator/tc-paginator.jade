@@ -1,4 +1,4 @@
-.pager
+.pager(ng-show="vm.pageParams.totalCount > 0")
   a.prev(ng-click="vm.prevPage()", ng-class="{disabled: !vm.prevPageAvailable}") Previous
   .status
     span Showing &nbsp;

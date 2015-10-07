@@ -4,6 +4,13 @@
   display: flex;
   flex-direction: column;
 
+  .empty-state {
+    a.link-button {
+      margin-top: 20px;
+      @include button-1-l;
+    }
+  }
+
   .activity {
     font-size: 18px;
     line-height: 21px;
@@ -495,6 +502,9 @@
     }
   }
   .external-links {
+    .activity {
+      margin-bottom: 20px;
+    }
    .empty-state {
     .action-text {
       font-size: 28px;

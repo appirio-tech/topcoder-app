@@ -14,7 +14,6 @@
     vm.onFileChange   = onFileChange;
     vm.updateProfile  = updateProfile;
     vm.addSkill = addSkill;
-    vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
 
     activate();
 
@@ -95,7 +94,10 @@
     function onFileChange(file) {
       ImageService.getPresignedUrl(userHandle, file)
       .then(ImageService.uploadFileToS3)
-      .then(ImageService.createFileRecord);
+      .then(ImageService.createFileRecord)
+      .then(function(newPhotoURL) {
+        vm.userData.photoURL = newPhotoURL;
+      });
     }
 
     function updateProfile() {
@@ -111,10 +113,12 @@
       .then(function() {
         vm.profileFormProcessing = false;
         $log.info('Saved successfully');
+        toaster.pop('success', "Success!", "Your account information was updated.");
       })
       .catch(function(err) {
         vm.profileFormProcessing = false;
         $log.error(err);
+        toaster.pop('error', "Whoops!", "Something went wrong. Please try again later.");
       });
     }
 

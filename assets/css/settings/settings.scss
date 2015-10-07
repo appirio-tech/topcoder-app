@@ -37,14 +37,13 @@
 
 .settings-container {
   @include module-l;
+  margin: 30px auto 0;
   @media only screen and (min-width: 768px) {
     margin-top: 80px;
     padding-left: 30px;
     padding-right: 30px;
   }
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
+
   nav {
     display: flex;
     flex-direction: row;
@@ -54,12 +53,16 @@
       flex-direction: row;
       justify-content: center;
     }
+
     li {
       display: inline-block;
       margin-right: 35px;
-      @media only screen and (min-width: 768px) {
+
+      &:last-child {
+        margin-right: 0;
       }
     }
+
     a {
       @include sofia-pro-medium;
       font-size: 14px;
@@ -72,6 +75,7 @@
       }
     }
   }
+
   .active-tab {
     padding: 0 5px 6px;
     border-bottom: 4px #0096FF solid;
@@ -80,13 +84,13 @@
 
   hr {
     border-width: 1px 0 0 0;
+
     &.nav-line {
       width: 95%;
-      margin-top: 7px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 7px auto 0;
     }
   }
+
   // Common element stylings
   .button-l {
     @include button-l;

@@ -33,6 +33,11 @@
 
     input[name="firstname"], input[name="lastname"] {
       width: 185px;
+      padding-right: 45px;
+    }
+
+    input[name="username"], input[name="email"] {
+      padding-right: 85px;
     }
   }
 
