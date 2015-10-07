@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   var _supportedAccounts = [
-    { provider: "dribble", className: "fa-dribbble", displayName: "Dribble", disabled: true, order: 6, colorClass: 'el-dribble'},
+    { provider: "dribbble", className: "fa-dribbble", displayName: "Dribbble", disabled: false, order: 6, colorClass: 'el-dribble'},
     { provider: "linkedin", className: "fa-linkedin", displayName: "LinkedIn", disabled: true, order: 5, colorClass: 'el-linkedin'},
     { provider: "stackoverflow", className: "fa-stack-overflow", displayName: "Stack Overflow", disabled: false, order: 3, colorClass: 'el-stackoverflow'},
     { provider: "behance", className: "fa-behance", displayName: "Behance", disabled: true, order: 2, colorClass: 'el-behance'},
