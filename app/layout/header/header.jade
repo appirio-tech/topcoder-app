@@ -1,6 +1,4 @@
 .header-wrapper(ng-class="{'autocomplete': main.searchTerm.length > 0}")
-  div(ng-intro-options="vm.introOptions", ng-intro-autostart="true")
-
   header.top-header
     a.logo-link(href="/")
     // Header content visible on small screens
@@ -53,7 +51,7 @@
 
           a.btn-link.secondary-link(ui-sref="login") LOGIN
 
-          a(ng-click="launchIntro();", ng-show="!!vm.introOptions") Intro
+          //- a(ng-click="launchIntro();", ng-show="!!vm.introOptions") Intro
 
       li.menu-item.link-group(ng-repeat="(menu, items) in vm.menuLinks")
         .menu-item-header {{menu}}

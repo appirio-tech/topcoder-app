@@ -3,9 +3,9 @@
 
   angular.module('tc.layout').controller('HeaderController', HeaderController);
 
-  HeaderController.$inject = ['$state', 'TcAuthService', 'CONSTANTS', '$log', '$rootScope', 'UserService', 'ProfileService', 'IntroService'];
+  HeaderController.$inject = ['$state', 'TcAuthService', 'CONSTANTS', '$log', '$rootScope', 'UserService', 'ProfileService'];
 
-  function HeaderController($state, TcAuthService, CONSTANTS, $log, $rootScope, UserService, ProfileService, IntroService) {
+  function HeaderController($state, TcAuthService, CONSTANTS, $log, $rootScope, UserService, ProfileService) {
     var vm = this;
 
     vm.constants = CONSTANTS;
@@ -89,7 +89,5 @@
         $state.go('home');
       });
     };
-
-    vm.introOptions = IntroService.getIntroData($state.$current.name);
   }
 })();

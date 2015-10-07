@@ -9,7 +9,7 @@
         steps:[],
         showStepNumbers: true,
         exitOnOverlayClick: true,
-        exitOnEsc:true,
+        exitOnEsc: true,
         nextLabel: 'Next',
         prevLabel: 'Back',
         skipLabel: 'Skip',
@@ -57,7 +57,7 @@
               element: '#stats',
               intro: 'This sections contains charts and more in-depth metrics to get a very granular understanding of the activity in this sub-track.',
               position: 'top'
-            },
+            }
             // {
             //   element: '#navigation',
             //   intro: 'And finally, go from one active sub-track to another by opening the profile navigation here',

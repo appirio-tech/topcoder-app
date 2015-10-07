@@ -83,6 +83,8 @@ html
 
     #header(ui-view="header")
 
+    .intro-js-container(ng-intro-options="main.introOptions", ng-intro-method="main.startIntro", ng-intro-onexit="main.markIntroCompleted", ng-intro-oncomplete="main.markIntroCompleted")
+
     notifications-bar.notifications(closeIcon="fa fa-times-circle")
 
     toaster-container(toaster-options="{{main.globalToasterConfig}}")
