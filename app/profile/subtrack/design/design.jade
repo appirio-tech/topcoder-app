@@ -1,12 +1,16 @@
 .design(ng-if="vm.track == 'DESIGN'")
   .top
     ul.horizontal-stats
-      li.stat
+      li.stat(ng-if="vm.typeStats.wins")
         .value(style="color: #21B2F1") {{vm.typeStats.wins}}
         .name WINS
 
+      li.stat(ng-if="!vm.typeStats.wins")
+        .value -
+        .name WINS
+
       li.stat
-        .value {{vm.typeStats.wins}}
+        .value {{vm.typeStats.challenges | empty}}
         .name CHALLENGES
 
     .tabs
@@ -38,8 +42,8 @@
     ul.vertical-stats
       li.first
         .left Challenges
-        .right {{vm.typeStats.challenges}}
+        .right {{vm.typeStats.challenges | empty}}
 
       li
         .left Wins
-        .right {{vm.typeStats.wins}}
+        .right {{vm.typeStats.wins | empty}}

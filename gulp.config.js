@@ -102,8 +102,8 @@ module.exports = function() {
     },
 
     // Process.env variables
-    production: process.env.ENVIRONMENT === 'production',
-    qa: process.env.ENVIRONMENT === 'qa'
+    production: isEnvironment('production'),
+    qa: isEnvironment('qa')
   };
 
   config.getWiredepDefaultOptions = function () {
@@ -148,5 +148,13 @@ module.exports = function() {
     };
     options.preprocessors[app + '**/!(*.spec)+(.js)'] = ['coverage'];
     return options;
+  }
+
+  function isEnvironment(env) {
+    if (process.env && process.env.ENVIRONMENT) {
+      return process.env.ENVIRONMENT.indexOf(env) > -1;
+    }
+
+    return false;
   }
 };

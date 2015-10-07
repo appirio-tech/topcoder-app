@@ -82,6 +82,11 @@
   font-weight: 400;
 }
 
+@mixin sofia-pro-italic {
+  @include sofia-pro-regular;
+  font-style: italic;
+}
+
 @mixin sofia-pro-medium {
   font-family: 'Sofia Pro', Arial;
   font-weight: 500;

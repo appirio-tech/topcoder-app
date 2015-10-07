@@ -80,6 +80,7 @@
         margin-bottom: 15px;
         padding: 0 21px;
         border: 1px solid #DCDCDC;
+        background-color: $white;
         border-radius: 4px;
         @media only screen and (max-width: 767px) {
           display: inline-block;
@@ -106,7 +107,6 @@
         a {
           margin-bottom: 21px;
           @include button-m-wide;
-          @include button-ghost;
           text-decoration: none;
         }
       }

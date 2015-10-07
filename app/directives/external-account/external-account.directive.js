@@ -3,7 +3,7 @@
   var _supportedAccounts = [
     { provider: "dribble", className: "fa-dribbble", displayName: "Dribble", disabled: true, order: 6, colorClass: 'el-dribble'},
     { provider: "linkedin", className: "fa-linkedin", displayName: "LinkedIn", disabled: true, order: 5, colorClass: 'el-linkedin'},
-    { provider: "stackoverflow", className: "fa-stack-overflow", displayName: "Stack Overflow", disabled: true, order: 3, colorClass: 'el-stackoverflow'},
+    { provider: "stackoverflow", className: "fa-stack-overflow", displayName: "Stack Overflow", disabled: false, order: 3, colorClass: 'el-stackoverflow'},
     { provider: "behance", className: "fa-behance", displayName: "Behance", disabled: true, order: 2, colorClass: 'el-behance'},
     // { provider: "google-oauth2", className: "fa-google-plus", displayName: "Google+", disabled: true, order: }, colorClass: 'el-dribble',
     { provider: "github", className: "fa-github", displayName: "Github", disabled: false, order: 1, colorClass: 'el-github'},

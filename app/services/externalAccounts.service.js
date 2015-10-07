@@ -48,7 +48,7 @@
     function linkExternalAccount(provider, callbackUrl) {
       return $q(function(resolve, reject) {
         // supported backends
-        var backends = ['facebook', 'google-oauth2', 'bitbucket', 'github', 'linkedin'];
+        var backends = ['facebook', 'google-oauth2', 'bitbucket', 'github', 'linkedin', 'stackoverflow'];
         if (backends.indexOf(provider) > -1) {
           auth0.signin({
               popup: true,
@@ -63,7 +63,7 @@
               var user = UserService.getUserIdentity();
               var postData = {
                 userId: socialData.socialUserId,
-                name: socialData.username,
+                name: socialData.username,// TODO it should be first+last Name
                 email: socialData.email,
                 emailVerified: false,
                 providerType: socialData.socialProvider,
