@@ -62,10 +62,11 @@ ios-card .challenge.tile-view {
   }
 
   .technologies {
+    margin-bottom: 40px;
+    padding: 0 20px;
     @include source-sans-regular;
     font-size: 13px;
     line-height: 18px;
-    margin-bottom: 40px;
   }
 
   .challenge-calendar {
