@@ -58,16 +58,12 @@
 
   .terms {
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
     p {
       font-size: 12px;
       line-height: 15px;
       color: #A3A3AE;
-    }
-
-    p:first-child {
-      margin-bottom: 10px;
     }
   }
 
@@ -82,7 +78,72 @@
     }
   }
 
+  .section-break {
+    display: none;
+  }
+}
+
+.join-topcoder {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 20px;
+  justify-content: center;
+  position: absolute;
+  top: 0px;
+  right: 20px;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+
+  .redirect {
+    border: 1px solid #D1D3D4;
+    background-color: white;
+    border-radius : 4px;
+    width: 66px;/* TODO as per design it should be 63px*/
+    height: 30px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include sofia-pro-light;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 14px;
+    padding: 8px 12px;
+
+    a {
+      text-decoration: none;
+    @include sofia-pro-light;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+
+  .register-container {
+
+    form {
+
+      .first-last-names {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .section-break {
+        display: block;
+
+        hr {
+          max-width: 180px;
+          margin: 10px auto 20px auto;
+        }
+      }
+    }
+  }
+
   .join-topcoder {
-    margin-bottom: 15px;
+    position: initial;
+    margin-top: 30px;
   }
 }
