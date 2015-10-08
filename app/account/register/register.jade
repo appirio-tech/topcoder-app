@@ -35,10 +35,7 @@
       )
 
       .form-errors
-        p.form-error(ng-show="vm.registerForm.country.$error.required") Please choose a country from the list
-
-    .section-break
-      hr
+        p.form-error(ng-show="vm.registerForm.country.$error.required") Please choose a country from the list.
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.username.$error.usernameIsFree || vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength), 'success-bar': (vm.registerForm.username.$valid && !vm.registerForm.username.$error.usernameIsFree) }")
       input-sticky-placeholder(sticky-placeholder="Username", ng-model="vm.username")
@@ -88,10 +85,10 @@
 
         p(ng-class="{ 'has-symbol-or-number': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
-    section.terms
-      p By clicking "Join," you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms of Service] and #[a(href="http://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank") Privacy Policy]
-
     button(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid", ng-class="{'enabled-button': vm.registerForm.$valid}") Join
+
+  section.terms
+    p By clicking "Join," you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms of Service] and #[a(href="http://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank") Privacy Policy]
 
   section.social
     p ------------ Or Register With ------------
@@ -107,7 +104,7 @@
         .ico(ng-click="vm.socialRegister('facebook')")
         p Facebook
 
-.join-topcoder
-  span Already a member?
-  p.redirect
-    a(ui-sref="login(vm.$stateParams)") Log in
+  .join-topcoder
+    span Already a member?
+    p.redirect
+      a(ui-sref="login(vm.$stateParams)") Log in
