@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  justify-content: center;
+  justify-content: flex-start;
   @include source-sans-regular;
   background-color: white;
 
@@ -16,7 +16,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
 
     .arrow {
       background-image: url(/images/ico-arrow.png);
@@ -32,7 +31,8 @@
 
   // Basic element stylings
   h1 {
-    margin-bottom: 30px;
+    margin-top: 39px;
+    margin-bottom: 40px;
     @include ui-h1;
     color: #3D3D3D;
     line-height: 30px;
@@ -106,21 +106,27 @@
       justify-content: center;
       padding: 0px 10px;
 
-      p {
-        color: #A3A3AE;
-        font-size: 10px;
-        line-height: 13px;
-        @include sofia-pro-medium;
-        text-transform: uppercase;
-        cursor: pointer;
-      }
+      .network {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-      .ico {
-        margin: 7px;
-        margin-top: 22px;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
+        p {
+          color: #A3A3AE;
+          font-size: 10px;
+          line-height: 13px;
+          @include sofia-pro-medium;
+          text-transform: uppercase;
+          cursor: pointer;
+          margin-top: 10px;
+        }
+
+        .ico {
+          margin-top: 22px;
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+        }
       }
 
       .github {
@@ -131,7 +137,7 @@
         }
       }
       .facebook {
-        margin-left: 40px;
+        margin-left: 41px;
         .ico {
           color: #0D72B9;
           background-image: url(/images/svg/facebook.svg);
@@ -139,7 +145,7 @@
         }
       }
       .google-plus {
-        margin-left: 40px;
+        margin-left: 43px;
         .ico {
           border: 1px solid #D1D3D4;
           border-radius: 4px;

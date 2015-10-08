@@ -75,6 +75,20 @@
       i {
         cursor: pointer;
       }
+
+      .network {
+        &.github {
+
+        }
+
+        &.facebook {
+          margin-left: 41px;
+        }
+
+        &.google-plus {
+          margin-left: 43px;
+        }
+      }
     }
   }
 
@@ -139,6 +153,10 @@
           margin: 10px auto 20px auto;
         }
       }
+    }
+
+    section.social {
+      margin-bottom: 41px;
     }
   }
 
