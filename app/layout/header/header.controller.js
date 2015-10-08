@@ -30,10 +30,10 @@
           { 'href': '/community/competitive%20programming/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/images/nav/srms.svg' },
       ],
       'community': [
-          { 'href': '/community/members/', 'text': 'MEMBERS', 'icon': '/images/nav/users.svg' },
+          { 'sref': 'community.members', 'text': 'MEMBERS', 'icon': '/images/nav/users.svg' },
           { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/images/nav/medal.svg' },
           { 'href': vm.constants.FORUMS_APP_URL, 'text': 'FORUMS', 'icon': '/images/nav/forum.svg' },
-          { 'href': '/community/statistics/', 'text': 'STATISTICS', 'icon': '/images/nav/statistics.svg' },
+          { 'sref': 'community.statistics', 'text': 'STATISTICS', 'icon': '/images/nav/statistics.svg' },
           { 'href': '/community/events/', 'text': 'EVENTS', 'icon': '/images/nav/calendar.svg' },
           { 'href': '/blog/', 'text': 'BLOG', 'icon': '/images/nav/blog.svg' }
       ]

@@ -13,6 +13,7 @@
     'tc.profile',
     'tc.settings',
     'tc.skill-picker',
+    'tc.community',
     'ui.router',
     'blocks.logger',
     'blocks.exception',
