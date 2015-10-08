@@ -14,18 +14,12 @@
         .name CHALLENGES
 
     .tabs
-      a.left(id="stats", ng-click="vm.viewing = 'stats'",
-        ng-class="vm.viewing == 'stats' ? 'selected' : ''"
-      ) Statistics
-
-      a.right(id="challenges", ng-click="vm.viewing = 'challenges'",
-        ng-class="vm.viewing == 'challenges' ? 'selected' : ''"
+      a.right.selected(
       ) Challenges
 
     hr
 
     tc-section(
-      ng-show="vm.viewing == 'challenges'",
       state="vm.status.challenges"
     )
       tc-paginator(data="vm.challenges", page-params="vm.pageParams")
@@ -35,15 +29,3 @@
 
         .no-challenges(ng-show="!vm.challenges || vm.challenges.length == 0")
           | Sorry, no successful challenges found.
-
-  .bottom(ng-show="vm.viewing == 'stats'")
-    h2.detailed Detailed Stats
-
-    ul.vertical-stats
-      li.first
-        .left Challenges
-        .right {{vm.typeStats.challenges | empty}}
-
-      li
-        .left Wins
-        .right {{vm.typeStats.wins | empty}}
