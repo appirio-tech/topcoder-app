@@ -88,6 +88,9 @@
         resolve: {
           userHandle: function() {
             return vm.userHandle;
+          },
+          profile: function() {
+            return vm.profile;
           }
         }
       });
