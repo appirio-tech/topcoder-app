@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 .profile-about-container {
   margin-top: 20px;
@@ -195,7 +196,7 @@
       @include button-2-l;
     }
     .list {
-      
+
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -305,7 +306,7 @@
     font-family: 'Sofia Pro';
     text-transform: uppercase;
   }
-    
+
   .categories {
     padding-bottom: 90px;
     .activity {
@@ -530,7 +531,7 @@
       padding: 10px;
       margin: 20px auto;
     }
-  } 
+  }
   }
 
 

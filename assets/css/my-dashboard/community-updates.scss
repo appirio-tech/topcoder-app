@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .community-updates {
@@ -94,7 +95,7 @@
         a {
           display: block;
           margin-top: 25px;
-          color: $primary-color;
+          color: $accent;
           text-decoration: none;
           @media only screen and (min-width: 1132px) {
             margin-top: 0;

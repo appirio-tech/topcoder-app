@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .profile-subtrack-container {
@@ -41,7 +42,7 @@
           text-decoration: none;
           color: black;
           &:hover {
-            color: $accent-color;
+            color: $accent;
           }
         }
       }
@@ -53,7 +54,7 @@
       }
       .subtrack {
         display: block;
-        color: $accent-color;
+        color: $accent;
         font-weight: 700;
         text-align: center;
         text-transform: uppercase;
@@ -152,7 +153,7 @@
         padding: 14px;
         border-bottom: 1px solid #f6f6f6;
         .right {
-          color: $accent-color;
+          color: $accent;
         }
         &.first {
           border-top: 1px solid #f6f6f6;
