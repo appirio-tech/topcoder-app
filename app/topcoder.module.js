@@ -27,12 +27,11 @@
     'angular.filter',
     'CONSTANTS',
     'dcbImgFallback',
-    'toaster'
+    'toaster',
+    'angular-intro'
   ];
 
-  angular
-    .module('topcoder', dependencies)
-    .run(appRun);
+  angular.module('topcoder', dependencies).run(appRun);
 
   appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log', 'NotificationService', 'CONSTANTS'];
 
