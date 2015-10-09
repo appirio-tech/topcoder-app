@@ -15,6 +15,8 @@
     vm.listType = 'past';
     vm.viewUpcomingSRMs = viewUpcomingSRMs;
     vm.viewPastSRMs = viewPastSRMs;
+    vm.userHasSrms = false;
+    vm.noSrmsMessage = null;
     // paging params, these are updated by tc-pager
     vm.pageParams = {
       offset : 0,
@@ -31,9 +33,10 @@
     activate();
 
     function activate() {
-      getSRMs().then(function() {
-        vm.loading = false;
-      });
+      // workaround to by pass the check, which is there to avoid duplicate calls
+      // otherwise viewPastSRMs would not work
+      vm.listType = 'future';
+      viewPastSRMs();
     }
 
     function changeView(view) {
@@ -45,7 +48,11 @@
         vm.srms = [];
         vm.listType = 'past';
         vm.loading = true;
-        getSRMs().then(function(data) {
+        vm.userHasSrms = false;
+        getSRMs().then(function() {
+          if (!vm.srms || vm.srms.length == 0) {
+            vm.noSrmsMessage = "You have not participated in any SRMs yet.";
+          }
           vm.loading = false;
         })
       }
@@ -56,13 +63,18 @@
         vm.srms = [];
         vm.listType = 'future';
         vm.loading = true;
+        vm.userHasSrms = false;
         getSRMs().then(function() {
+          if (!vm.srms || vm.srms.length == 0) {
+            vm.noSrmsMessage = "Sorry! There is no upcoming SRM as of now.";
+          }
           vm.loading = false;
         });
       }
     }
 
     function getSRMs() {
+      vm.isError = false;
       var params = {
         limit: vm.pageParams.limit,
         offset: vm.pageParams.offset,
@@ -78,11 +90,16 @@
     }
 
     function handleSRMsLoad(data) {
+      if (data.length > 0) {
+        vm.userHasSrms = true;
+      }
       vm.srms = data;
     }
 
     function handleSRMsFailure(data) {
       $log.error(resp);
+      vm.isError = true;
+      vm.userHasSrms = false;
     }
 
   }
