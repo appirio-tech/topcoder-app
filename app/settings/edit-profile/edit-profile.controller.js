@@ -32,10 +32,14 @@
       vm.userData = userData;
 
       ExternalAccountService.getLinkedExternalAccounts(userData.userId).then(function(data) {
+        console.log('ext1')
+        console.log(data);
         vm.linkedExternalAccounts = data;
       });
 
       ExternalAccountService.getLinkedExternalLinksData(userHandle).then(function(data) {
+        console.log('ext2')
+        console.log(data);
         vm.linkedExternalAccountsData = data.plain();
         vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
       })
