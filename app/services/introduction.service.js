@@ -104,13 +104,8 @@
             },
             {
               element: '#subtrack-stats',
-              intro: 'Find the most important metrics here to understand performance in a glance.',
-              position: 'top'
-            },
-            {
-              element: '#statistics-tab',
-              intro: 'This sections contains charts and more in-depth metrics to get a very granular understanding of the activity in this sub-track.',
-              position: 'top'
+              intro: 'Find the most important metrics here to understand performance in a glance. You can scroll below to see charts and more in-depth metrics to get a very granular understanding of the activity in this subtrack.',
+              position: 'bottom'
             },
             {
               element: '#challenges-tab',

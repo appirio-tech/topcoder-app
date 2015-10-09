@@ -1,4 +1,4 @@
-.ext-tile(ng-repeat="account in accountList | orderBy:'order'", ng-click="!account.disabled && !readOnly && !account.linked && link(account.provider)", ng-class="{'connected': account.linked, 'disabled': account.disabled, 'read-only': readOnly}")
+.ext-tile(ng-repeat="account in accountList | orderBy:'order'", ng-click="!account.disabled && !readOnly && handleClick(account.provider, account.linked)", ng-class="{'connected': account.linked, 'disabled': account.disabled, 'read-only': readOnly}")
   .external-account-box(ng-class="account.colorClass")
     i.fa(ng-if="readOnly || account.linked", ng-class="account.className", style="color: {{account.colorClass | externalLinkColor}}")
 

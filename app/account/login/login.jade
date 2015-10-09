@@ -27,21 +27,21 @@
     p ------------ Or Log in With ------------
 
     .social-icons
-      .github
+      .network.github
         .ico(ng-click="vm.socialLogin('github')")
         p Github
-      .google-plus
+      .network.google-plus
         .ico(ng-click="vm.socialLogin('google-oauth2')")
         p Google
-      .facebook
+      .network.facebook
         .ico(ng-click="vm.socialLogin('facebook')")
         p Facebook
-      .twitter
+      .network.twitter
         .ico(ng-click="vm.socialLogin('twitter')")
         p Twitter
 
-  .join-topcoder
-    span Not a member yet? 
-    p.redirect
-      a(ui-sref="register(vm.$stateParams)") Join now
+.join-topcoder
+  span Not a member yet? 
+  p.redirect
+    a(ui-sref="register(vm.$stateParams)") Join now
 

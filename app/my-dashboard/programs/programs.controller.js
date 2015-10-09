@@ -63,7 +63,7 @@
           orderBy: 'submissionEndDate'
         }),
         ChallengeService.getChallenges({
-          filter: "technologies=ios,swift&status=active",
+          filter: "platforms=ios&technologies=swift&status=active",
           limit: 3,
           offset: 0,
           orderBy: 'submissionEndDate'

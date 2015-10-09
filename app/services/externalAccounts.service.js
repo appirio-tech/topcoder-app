@@ -37,18 +37,45 @@
     function getLinkedExternalLinksData(userHandle) {
       return api.one('members', userHandle).withHttpConfig({skipAuthorization: true}).customGET('externalAccounts')
       .then(function(data) {
+        // TODO workaround for dribbble spelling mistake, remove once API is fixed
+        if (data.dribble) {
+          data.dribbble = data.dribble;
+        }
         return data;
       })
     }
 
     function unlinkExternalAccount(account) {
-      throw new Error("not implemented");
+      var user = UserService.getUserIdentity();
+      return $q(function($resolve, $reject) {
+        UserService.removeSocialProfile(user.userId, account)
+        .then(function(resp) {
+          $log.debug("Succesfully unlinked account: " + JSON.stringify(resp));
+          $resolve({
+            status: "SUCCESS"
+          });
+        })
+        .catch(function(resp) {
+          $log.error("Error unlinking account: " + resp.data.result.content);
+          var status = resp.status;
+          var msg = resp.data.result.content; 
+          if (resp.status = 404) {
+            status = "SOCIAL_PROFILE_NOT_EXIST";
+          } else {
+            status = "FATAL_ERROR"
+          }
+          $reject({
+            status: status,
+            msg: msg
+          });
+        });
+      });
     }
 
     function linkExternalAccount(provider, callbackUrl) {
       return $q(function(resolve, reject) {
         // supported backends
-        var backends = ['facebook', 'google-oauth2', 'bitbucket', 'github', 'linkedin', 'stackoverflow'];
+        var backends = ['facebook', 'google-oauth2', 'bitbucket', 'github', 'linkedin', 'stackoverflow', 'dribbble'];
         if (backends.indexOf(provider) > -1) {
           auth0.signin({
               popup: true,
@@ -96,10 +123,10 @@
             }
           );
         } else {
-          $log.error('Unsupported social login backend: ' + backend);
+          $log.error('Unsupported social login backend: ' + provider);
           $q.reject({
             status: "failed",
-            "error": "Unsupported social login backend '" + backend + "'"
+            "error": "Unsupported social login backend '" + provider + "'"
           });
         }
       });
