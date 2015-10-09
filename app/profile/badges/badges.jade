@@ -1,6 +1,16 @@
+header.head
+  .breadcrumbs
+    .handle
+      img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.profile.photoURL}}")
+
+      span.handle
+        | {{vm.userHandle}}
+
+      span.space &nbsp;//&nbsp;
+
+      span.title BADGES
+
 aside.badges
-  header.head
-    h4 Badges
   .content
     .badgeGroups
       .groupBadge(ng-repeat='ag in vm.achievementGroups', ng-class='ag.groupClass', ng-show='ag.specificAchievements[0].active')

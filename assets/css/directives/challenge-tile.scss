@@ -142,6 +142,7 @@ challenge-tile .challenge.tile-view {
     .roles {
       min-height: 36px;
       margin-bottom: 25px;
+      padding: 0 20px;
       color: $gray-darkest;
       @include source-sans-regular;
       font-size: 13px;
