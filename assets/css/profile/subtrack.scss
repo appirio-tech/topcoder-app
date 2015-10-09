@@ -42,7 +42,7 @@
           text-decoration: none;
           color: black;
           &:hover {
-            color: $accent;
+            color: $primary;
           }
         }
       }
@@ -54,7 +54,7 @@
       }
       .subtrack {
         display: block;
-        color: $accent;
+        color: $primary;
         font-weight: 700;
         text-align: center;
         text-transform: uppercase;
@@ -153,7 +153,7 @@
         padding: 14px;
         border-bottom: 1px solid #f6f6f6;
         .right {
-          color: $accent;
+          color: $primary;
         }
         &.first {
           border-top: 1px solid #f6f6f6;
