@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   var _supportedAccounts = [
-    { provider: "dribble", className: "fa-dribbble", displayName: "Dribble", disabled: true, order: 6, colorClass: 'el-dribble'},
+    { provider: "dribbble", className: "fa-dribbble", displayName: "Dribbble", disabled: false, order: 6, colorClass: 'el-dribble'},
     { provider: "linkedin", className: "fa-linkedin", displayName: "LinkedIn", disabled: true, order: 5, colorClass: 'el-linkedin'},
     { provider: "stackoverflow", className: "fa-stack-overflow", displayName: "Stack Overflow", disabled: false, order: 3, colorClass: 'el-stackoverflow'},
     { provider: "behance", className: "fa-behance", displayName: "Behance", disabled: true, order: 2, colorClass: 'el-behance'},
@@ -26,7 +26,7 @@
         function($log, $scope, ExternalAccountService, toaster) {
           $log = $log.getInstance("ExtAccountDirectiveCtrl")
           $scope.accountList = _.clone(_supportedAccounts, true);
-          $scope.$watch('linkedAccounts', function(newValue, oldValue) {
+          $scope.$watchCollection('linkedAccounts', function(newValue, oldValue) {
             for (var i=0;i<$scope.accountList.length;i++) {
               $scope.accountList[i].linked = !!_.find(newValue, function(a) {
                 return $scope.accountList[i].provider === a.providerType;
@@ -34,20 +34,28 @@
             }
           });
 
-          $scope.link = function(provider) {
-            $log.debug(String.supplant('connecting to ' + provider));
-            // var callbackUrl = $state.href('settings.profile', {}, {absolute: true});
-            var extAccountProvider = _.result(_.find(_supportedAccounts, function(s) {
+          $scope.handleClick = function(provider, unlink) {
+            var provider = _.find(_supportedAccounts, function(s) {
               return s.provider === provider;
-            }), 'displayName');
-            ExternalAccountService.linkExternalAccount(provider, null)
+            });
+            if (unlink) {
+              $log.debug(String.supplant('UnLinking to ' + provider.displayName));
+              _unlink(provider);
+            } else {
+              $log.debug(String.supplant('Linking to ' + provider.displayName));
+              _link(provider);
+            }
+          };
+
+          function _link(provider) {
+            ExternalAccountService.linkExternalAccount(provider.provider, null)
             .then(function(resp) {
               $log.debug("Social account linked: " + JSON.stringify(resp));
               $scope.linkedAccounts.push(resp.profile);
               toaster.pop('success', "Success",
                 String.supplant(
                   "Your {provider} account has been linked. Data from your linked account will be visible on your profile shortly.",
-                  {provider: extAccountProvider}
+                  {provider: provider.displayName}
                 )
               );
             })
@@ -58,12 +66,40 @@
                   String.supplant(
                     "This {provider} account is linked to another account. \
                     If you think this is an error please contact <a href=\"mailTo:support@.appirio.com\">support@apprio.com</a>.",
-                    {provider: extAccountProvider }
+                    {provider: provider.displayName }
                   )
                 );
               }
             });
-          };
+          }
+
+          function _unlink(provider) {
+            return ExternalAccountService.unlinkExternalAccount(provider.provider)
+            .then(function(resp) {
+              $log.debug("Social account unlinked: " + JSON.stringify(resp));
+              var toRemove = _.findIndex($scope.linkedAccounts, function(la) {
+                return la.providerType === provider;
+              });
+              $scope.linkedAccounts.splice(toRemove, 1);
+              toaster.pop('success', "Success",
+                String.supplant(
+                  "Your {provider} account has been unlinked.",
+                  {provider: provider.displayName}
+                )
+              );
+            })
+            .catch(function(resp) {
+              var msg = resp.msg;
+              if (resp.status === 'SOCIAL_PROFILE_NOT_EXIST') {
+                $log.info("Social profile not linked to account");
+                msg = "{provider} account is not linked to your account. If you think this is an error please contact <a href=\"mailTo:support@.appirio.com\">support@apprio.com</a>.";
+              } else {
+                $log.info("Fatal error: " + msg);
+                msg = "Sorry! We are unable to unlink your {provider} account. If problem persists, please contact <a href=\"mailTo:support@.appirio.com\">support@apprio.com</a>";
+              }
+              toaster.pop('error', "Whoops!", String.supplant(msg, {provider: provider.displayName }));
+            });
+          }
         }
       ]
     };

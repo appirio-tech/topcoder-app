@@ -4,12 +4,13 @@
   /**
    * The controller for badges section of member-profile page.
    */
-  var BadgeCtrl = function ($scope, CONSTANTS, ProfileService, UserService, userHandle) {
+  var BadgeCtrl = function ($scope, CONSTANTS, ProfileService, UserService, userHandle, profile) {
     var badgeCtrl = this;
     // use logged in user's handle for showing badges if not injected into the controller
     badgeCtrl.userHandle = userHandle ? userHandle : UserService.getUserIdentity().username;
     badgeCtrl.init($scope);
     badgeCtrl.mapBadges();
+    badgeCtrl.profile = profile;
 
     badgeCtrl.dealWithBadgeData($scope, ProfileService);
 
@@ -668,5 +669,5 @@
     .module('tc.profile')
     .controller('BadgesController', BadgeCtrl);
 
-  BadgeCtrl.$inject = ['$scope', 'CONSTANTS', 'ProfileService', 'UserService', 'userHandle'];
+  BadgeCtrl.$inject = ['$scope', 'CONSTANTS', 'ProfileService', 'UserService', 'userHandle', 'profile'];
 })();

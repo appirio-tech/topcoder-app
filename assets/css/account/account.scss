@@ -1,13 +1,12 @@
 @import '../partials/combined';
 
-
 .login-container, .register-container, .reset-password-container, .registered-successfully-container {
   width: 560px;
   margin: 120px auto 0 auto;
   display: flex;
   flex-direction: column;
   text-align: center;
-  justify-content: center;
+  justify-content: flex-start;
   @include source-sans-regular;
   background-color: white;
 
@@ -17,9 +16,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* TODO remove workarounds of -ve margin */
-    margin-top: -66px;
-    margin-bottom: 30px;
 
     .arrow {
       background-image: url(/images/ico-arrow.png);
@@ -35,7 +31,8 @@
 
   // Basic element stylings
   h1 {
-    margin-bottom: 30px;
+    margin-top: 39px;
+    margin-bottom: 40px;
     @include ui-h1;
     color: #3D3D3D;
     line-height: 30px;
@@ -94,6 +91,7 @@
   // Social section
   .social {
     margin-top: 15px;
+    margin-bottom: 40px;
 
     p {
       color: #A3A3AE;
@@ -108,21 +106,27 @@
       justify-content: center;
       padding: 0px 10px;
 
-      p {
-        color: #A3A3AE;
-        font-size: 10px;
-        line-height: 13px;
-        @include sofia-pro-medium;
-        text-transform: uppercase;
-        cursor: pointer;
-      }
+      .network {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
-      .ico {
-        margin: 7px;
-        margin-top: 22px;
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
+        p {
+          color: #A3A3AE;
+          font-size: 10px;
+          line-height: 13px;
+          @include sofia-pro-medium;
+          text-transform: uppercase;
+          cursor: pointer;
+          margin-top: 10px;
+        }
+
+        .ico {
+          margin-top: 22px;
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+        }
       }
 
       .github {
@@ -133,7 +137,7 @@
         }
       }
       .facebook {
-        margin-left: 40px;
+        margin-left: 41px;
         .ico {
           color: #0D72B9;
           background-image: url(/images/svg/facebook.svg);
@@ -141,7 +145,7 @@
         }
       }
       .google-plus {
-        margin-left: 40px;
+        margin-left: 43px;
         .ico {
           border: 1px solid #D1D3D4;
           border-radius: 4px;
@@ -161,41 +165,10 @@
       }
     }
   }
-
-  .join-topcoder {
-    display: flex;
-    flex-flow: row wrap;
-    margin-top: 10px;
-    justify-content: center;
-
-    span {
-      display: flex;
-      align-items: center;
-    }
-
-    .redirect {
-      border: 1px solid #D1D3D4;
-      background-color: white;
-      border-radius : 4px;
-      width: 111px;
-      height: 30px;
-      margin-left: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      @include sofia-pro-light;
-      text-transform: uppercase;
-      font-size: 12px;
-      line-height: 14px;
-
-      a {
-        text-decoration: none;
-      }
-    }
-  }
 }
 
 @media (max-width: 767px) {
+
   .login-container, .register-container, .reset-password-container, .registered-successfully-container {
     width: 100%;
     margin: 0 auto;
@@ -205,8 +178,9 @@
     }
 
     form {
-      margin-left: 10px;
-      margin-right: 10px;
+      margin-left: 0px;
+      padding: 0 20px;
+      width: 100%;
 
       input[type="text"],
       input[type="email"],
@@ -218,11 +192,11 @@
   }
 
   .register-container {
-    margin: 66px auto;
+    margin: 0 auto;
   }
 
   .registered-successfully-container {
-    margin: 66px auto;
+    margin: 0 auto;
     p.message {
       padding: 34px 30px 124px 30px;
     }

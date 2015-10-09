@@ -79,8 +79,18 @@
         handle = socialUserId;
         email = profile.email;
         socialProviderId = 6;
+      } else if (socialProvider === 'dribbble') {
+        firstName = profile.first_name;
+        lastName = profile.last_name;
+        handle = socialUserId;
+        email = profile.email;
+        socialProviderId = 7;
       }
 
+      var token = accessToken;
+      if (profile.identities && profile.identities.length > 0) {
+        token = profile.identities[0].access_token;
+      }
       return {
         socialUserId: socialUserId,
         username: handle,
@@ -89,8 +99,7 @@
         email: email,
         socialProfile: profile,
         socialProvider: socialProvider,
-        // TODO should this be refresh token or accessToken?
-        accessToken: accessToken
+        accessToken: token
       }
     }
 
