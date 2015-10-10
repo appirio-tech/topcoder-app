@@ -85,9 +85,9 @@
 
           img.arrow(src="/images/ico-arrow-big-right.svg")
 
-  tc-section(id="externalLinks", ng-show="vm.displaySection.externalLinks" state="profileVm.status.externalLinks" class="external-links")
+  tc-section(id="externalLinks", ng-show="vm.displaySection.externalLinks", state="profileVm.status.externalLinks" class="external-links")
     h3.activity Activity across the web
-    external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccountsData")
+    external-links-data(ng-show="vm.hasLinks", external-links="vm.linkedExternalAccounts", linked-accounts-data="vm.linkedExternalAccountsData")
 
     .empty-state(ng-hide="vm.hasLinks")
       .action-text Showcase your work from around the web
