@@ -10,7 +10,7 @@
       scope: {
         profile: '=profile',
         editProfileLink: '=editProfileLink',
-        numChallenges: '=numChallenges',
+        numWins: '=numWins',
         profileVm: '=profileVm'
       },
       link: function(scope, elem, attrs) {
