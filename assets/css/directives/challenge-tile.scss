@@ -505,11 +505,6 @@ challenge-tile .challenge.list-view {
       }
     }
 
-    &.DATA_SCIENCE {
-      flex: 2;
-      justify-content: center;
-    }
-
     .place-date {
       display: flex;
       flex-direction: column;
@@ -575,7 +570,6 @@ challenge-tile .challenge.list-view {
       text-align: center;
 
       .score {
-        margin-top: 28px;
         margin-bottom: 5px;
         @include sofia-pro-regular;
         font-size: 32px;
