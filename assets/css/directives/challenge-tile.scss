@@ -402,6 +402,32 @@ challenge-tile .challenge.list-view {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4)
   }
 
+  .active-challenge {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    header {
+      max-width: 470px;
+      flex: 1;
+    }
+    .challenge-details {
+      flex: 2;
+    }
+  }
+
+  .completed-challenge {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    header {
+      flex: 2;
+    }
+    .challenge-details {
+      flex: 1;
+    }
+  }
+
   .challenge-track {
     width: 5px;
     height: 110px;
@@ -416,8 +442,6 @@ challenge-tile .challenge.list-view {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex: 2;
-    max-width: 470px;
     padding: 0 15px;
     border-right: 1px solid #F0F0F0;
     @media only screen and (min-width: 1000px) {
@@ -459,11 +483,10 @@ challenge-tile .challenge.list-view {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    flex: 2;
     padding: 0 15px;
     border-right: 1px solid #F0F0F0;
     @media only screen and (min-width: 1000px) {
-      padding: 0 30px;
+      padding: 0 10px;
     }
 
     .challenge-info {
@@ -479,6 +502,113 @@ challenge-tile .challenge.list-view {
         @include sofia-pro-regular;
         font-size: 14px;
         color: #A3A3AE;
+      }
+    }
+
+    &.DATA_SCIENCE {
+      flex: 2;
+      justify-content: center;
+    }
+
+    .place {
+      @include sofia-pro-regular;
+      font-size: 20px;
+      color: $gray-darkest;
+      text-transform: uppercase;
+
+      &.first-place {
+        font-weight: bold;
+        color: $black;
+      }
+
+      span {
+        @include superscript;
+        text-transform: lowercase;
+      }
+    }
+
+    .challenge-score {
+      width: 84px;
+      height: 84px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      background-color: #F6F6F6;
+
+      .score {
+        margin-top: 28px;
+        margin-bottom: 5px;
+        @include sofia-pro-bold;
+        font-size: 18px;
+        color: $gray-darkest;
+      }
+
+      p:last-child {
+        @include sofia-pro-medium;
+        font-size: 9px;
+        color: #A3A3AE;
+        text-transform: uppercase;
+      }
+    }
+
+    .marathon-score {
+      text-align: center;
+
+      .score {
+        margin-top: 28px;
+        margin-bottom: 5px;
+        @include sofia-pro-regular;
+        font-size: 32px;
+        line-height: 38px;
+        color: #3D3D3D;
+      }
+
+      p:last-child {
+        @include sofia-pro-regular;
+        font-size: 12px;
+        line-height: 14px;
+        color: #A3A3AE;
+        text-transform: uppercase;
+      }
+    }
+
+    .thumbnail {
+      position: relative;
+      width: 84px;
+      height: 84px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+      }
+
+      .thumbnail-gallery {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 84px;
+        height: 32px;
+        bottom: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+
+        .gallery-icon {
+          margin-left: 10px;
+          @include background-image-size(21px, 17px);
+          background: url(/images/ico-gallery.svg);
+        }
+
+        .num-images {
+          margin-left: 8px;
+          @include sofia-pro-regular;
+          font-size: 10px;
+          color: $gray-lighter;
+          text-transform: uppercase;
+        }
       }
     }
 
