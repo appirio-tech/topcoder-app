@@ -76,6 +76,8 @@
           vm.subTrack.toLowerCase().replace(/ /g, '')
         );
 
+        vm.nonRated = !vm.typeStats.rank.rating && !vm.typeStats.rank.overallRank && !vm.typeStats.rank.reliability;
+
         if (vm.subTrack) {
           vm.dropdown = ProfileService.getSubTracks(profileVm.stats, vm.track.toLowerCase())
           .map(function(subtrack) {
