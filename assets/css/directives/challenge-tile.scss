@@ -510,21 +510,41 @@ challenge-tile .challenge.list-view {
       justify-content: center;
     }
 
-    .place {
-      @include sofia-pro-regular;
-      font-size: 20px;
-      color: $gray-darkest;
-      text-transform: uppercase;
+    .place-date {
+      display: flex;
+      flex-direction: column;
 
-      &.first-place {
-        font-weight: bold;
-        color: $black;
+      .place {
+        @include sofia-pro-regular;
+        font-size: 20px;
+        color: $gray-darkest;
+        text-transform: uppercase;
+
+        &.first-place {
+          font-weight: bold;
+          color: $black;
+        }
+
+        span {
+          @include superscript;
+          text-transform: lowercase;
+        }
       }
 
-      span {
-        @include superscript;
-        text-transform: lowercase;
+      .date-completed {
+        @include sofia-pro-regular;
+        font-size: 14px;
+        line-height: 18px;
+        text-transform: uppercase;
+        color: #A3A3AE;
+        margin-top: 9px;
       }
+    }
+
+    .winner-ribbon {
+      @include background-image-size(73px, 26px);
+      background: url(/images/ico-winner-ribbon.svg);
+      align-self: flex-start;
     }
 
     .challenge-score {

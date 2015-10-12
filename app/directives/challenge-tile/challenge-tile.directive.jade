@@ -148,7 +148,11 @@
           p Total Points
 
     .challenge-details(ng-switch-when="DEVELOP")
-      p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
+      .place-date
+        p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
+        p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
+
+      .winner-ribbon(ng-show="challenge.wonFirst")
 
       .challenge-score
         p.score {{challenge.userDetails.submissionReviewScore/100 | percentage}}
@@ -156,7 +160,11 @@
         p Review Score
 
     .challenge-details(ng-switch-when="DESIGN")
-      p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
+      .place-date
+        p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
+        p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
+
+      .winner-ribbon(ng-show="challenge.wonFirst")
 
       .thumbnail(ng-click="openLightbox()")
         img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
