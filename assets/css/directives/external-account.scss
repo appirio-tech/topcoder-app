@@ -28,17 +28,16 @@
     }
   }
 
-  &.disabled {
-    &:hover {
-      .el-weblinks i {color: #82A0AA;}
-      .el-bitbucket i {color: #205081;}
-      .el-dribble i {color: #EA4C89;}
-      .el-linkedin i {color: #127CB5;}
-      .el-twitter i {color: #62AADC;}
-      .el-stackoverflow i {color: #E5712A;}
-      .el-behance i {color: #188CFC;}
-      .el-github i {color: #4B3D74;}
-    }
+  &.connected,
+  &.enabled:hover {
+    .el-weblinks i {color: #82A0AA;}
+    .el-bitbucket i {color: #205081;}
+    .el-dribble i {color: #EA4C89;}
+    .el-linkedin i {color: #127CB5;}
+    .el-twitter i {color: #62AADC;}
+    .el-stackoverflow i {color: #E5712A;}
+    .el-behance i {color: #188CFC;}
+    .el-github i {color: #4B3D74;}
   }
 
   &.read-only {
