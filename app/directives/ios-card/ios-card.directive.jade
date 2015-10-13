@@ -9,10 +9,13 @@
   .challenge-details
 
     p.currentPhase {{challenge.userCurrentPhase}}
+
     .challenge-calendar(ng-show="challenge.userCurrentPhaseEndTime")
       p.ends-in Ends In
       p.time-remaining {{challenge.userCurrentPhaseEndTime[0]}}
       p.unit-of-time {{challenge.userCurrentPhaseEndTime[1]}}
+      
+    .stalled-challenge(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
       
     p.prize-money(ng-show="challenge.reviewType === 'PEER'") Peer Review Challenge
 
