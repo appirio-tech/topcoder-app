@@ -54,7 +54,7 @@
           img(ng-if="track == 'COPILOT'", src="/images/ico-track-co_pilot-outline.svg")
           span {{track | track | uppercase}}
 
-        .subtrack(
+        a.subtrack(
           ng-repeat="subtrack in profileVm.categories[track]",
           ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})",
           class="{{$index == 0 && 'first'}}"
