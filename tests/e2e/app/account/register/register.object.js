@@ -350,6 +350,13 @@ var RegistrationPage = function() {
 		 return true;
 	  },30000);
 	  
+	  browser.driver.wait(function() {
+			 var submitBtn = browser.driver.findElement(by.name('commit'));
+			 console.log(' Git submit btn');
+			 submitBtn.click();
+			 return true;
+		  },30000);
+	  
 	  
 	  
 	  

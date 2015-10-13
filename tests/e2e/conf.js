@@ -8,7 +8,8 @@ exports.config = {
 //		regression1: 'app/account/login/login.spec.js'//,
 //		regression2: 'app/manage/newproject.spec.js'//,
 //	    regression3: 'app/manage/manage.spec.js',
-        regression4: 'app/account/register/register.spec.js'//,
+//        regression4: 'app/account/register/register.spec.js',
+        regression6: 'app/account/profile/profile.spec.js'//,
 //        regression5: 'app/account/reset-password/reset-password.spec.js'
 	  },
     //baseUrl: 'http://qualityshepherd.com/angular',

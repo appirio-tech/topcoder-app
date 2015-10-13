@@ -74,8 +74,8 @@ var RegistrationData = function() {
 		 'username' : 'aq'+rand,
 		 'email' : 'abdul.mansoori@appirio.com',
 		 'password' : 'user_password_$$'+rand,
-		 'githubUsername' : 'abdu-qadir',
-		 'githubPassword' : '786Ulfat11'
+		 'githubUsername' : 'abdul-auto',
+		 'githubPassword' : 'appirio123$'
 	 }];	    
     
     

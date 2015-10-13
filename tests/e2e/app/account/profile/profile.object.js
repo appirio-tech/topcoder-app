@@ -1,4 +1,4 @@
-var LoginPage = function() {
+var ProfilePage = function() {
  
   this.get = function(baseUrl) {
 	  browser.ignoreSynchronization = true;
@@ -29,34 +29,28 @@ var LoginPage = function() {
   
   
   
-  this.login = function(loginUser) {
+  this.goToProfilePage = function(dashBoardUrl,loginUserCred) {
 	  
-//	expect(browser.getTitle()).toContain('Login');
 	  browser.driver.ignoreSynchronization = true;
 	
 	  var EC = protractor.ExpectedConditions;
 		
-	  var userInput = element(by.model('vm.username'));
-	  var isClickable = EC.elementToBeClickable(userInput);
+	  this.get(dashBoardUrl);
+	  var EC = protractor.ExpectedConditions;
+	  var menuItemHeaders = element.all(by.css('.menu-item-header'));
+	  var nameHeader = menuItemHeaders.get(1);
+	  var isClickable = EC.elementToBeClickable(nameHeader);
 	  browser.wait(isClickable, 30000);
-	  userInput.sendKeys(loginUser.username);
-  	
-	  var passwordInput = element(by.model('vm.currentPassword'));
-	  isClickable = EC.elementToBeClickable(passwordInput);
+	  browser.actions().mouseMove(nameHeader).perform();
+	  var profileHeader = element(by.repeater("item in vm.userMenu").row(1));
+	  var mainMenuLiList = element.all(by.css('.main-menu li'));
+	  var submenuLi = mainMenuLiList.get(1);
+	  var profileLink = element(by.partialLinkText('MY PROFILE'));
+	  
+	  isClickable = EC.elementToBeClickable(profileLink);
 	  browser.wait(isClickable, 30000);
-	  passwordInput.sendKeys(loginUser.password);
-	  
-	  var loginButton = browser.driver.findElement(By.css('.enabled-button'));
-//	  isClickable = EC.elementToBeClickable(loginButton);
-//	  browser.wait(isClickable, 30000);
-	  console.log('userInput'); 
-	  
-    
-	  loginButton.click().then(function(){
-//		  username = element(by.model('vm.username'));
-//		  var userNameAvail = username.isPresent();
-//		  console.log('user name status'+userNameAvail);
-//		  this.selectWindow(1);
+	
+	  profileLink.click().then(function() {
 		  var toolTip = element(by.css('.introjs-tooltip'));
 		  var isClickable = EC.elementToBeClickable(toolTip);
 		  browser.wait(isClickable, 30000);
@@ -64,37 +58,65 @@ var LoginPage = function() {
 		  isClickable = EC.elementToBeClickable(skipBtn);
 		  browser.wait(isClickable, 30000);
 		  skipBtn.click().then(function() {
-			  
+		  
+		  console.log('hii');
 		  
 		  
-		  
-		  var headerDash = element(by.css('.header-dashboard header h1'));
-		  isClickable = EC.elementToBeClickable(headerDash);
-		  browser.wait(isClickable, 30000);
-		  
-		  var menuItemHeaderList = element.all(by.css('.menu-item-header'));
-		  var menuItemHeader = menuItemHeaderList.get(1);
-		  var username = menuItemHeader.all(by.css('.username')).get(0);
-		  isClickable = EC.elementToBeClickable(username);
+		  var username = element(by.css('.info .handle'));
+		  var isClickable = EC.elementToBeClickable(username);
 		  browser.wait(isClickable, 30000);
 		  console.log('username '+username.getInnerHtml());
-		  expect(username.getInnerHtml()).toEqual(loginUser.username);
+		  expect(username.getInnerHtml()).toEqual(loginUserCred.username);
 		  
-		  
-//    	element(by.css('.menu-item-header .username')).each(function(element, index) {
-//    		
-//    	var isClickable = EC.elementToBeClickable(element);
-//    	browser.wait(isClickable, 10000);
-// 		element.getText().then(function (text) {
-// 			console.log(index, text);
-// 		});
-//    });
-    	expect(true).toEqual(true);
-    	
+		  var editProfile = element(by.partialButtonText('Edit Profile'));
+		  isClickable = EC.elementToBeClickable(editProfile);
+		  browser.wait(isClickable, 60000);
+		  editProfile.click().then(function() {
+//			  var profileTab = element(by.partialLinkText('Profile'));
+//			  var countryId = element(by.id('countryId_value'));
+//			  countryId.clear();
+//			  countryId.sendKeys(loginUserCred.country);
+			  var shortBio = element(by.model('vm.userData.description'));
+			  isClickable = EC.elementToBeClickable(shortBio);
+			  browser.wait(isClickable, 60000);
+			  shortBio.clear();
+			  shortBio.sendKeys(loginUserCred.shortBio);
+//			  var selRep = element.all(by.repeater('track in [\'DESIGN\', \'DEVELOP\', \'DATA_SCIENCE\']'));
+//			  var designRep = selRep.get(0);
+//			  var designSwitch = designRep.all(by.css('.onoffswitch .onoffswitch-checkbox')).get(0);
+			  
+//			  isClickable = EC.elementToBeClickable(designSwitch);
+//			  browser.wait(isClickable, 60000);
+//			  console.log('2 loginUserCred.design '+loginUserCred.design+' .. '+designSwitch.getAttribute('checked'));
+//			  console.log('selected '+designSwitch.isSelected());
+//			  designSwitch.getAttribute('checked').then(function(selected){
+//				  console.log('selecged '+selected);
+//				  console.log('loginUserCred.design '+loginUserCred.design);
+//				  if(selected){
+//					  if(loginUserCred.design != 'y'){
+//						  designSwitch.click();
+//					  }
+//				  } else {
+//					  if(loginUserCred.design == 'y'){
+//						  designSwitch.click();
+//					  }
+//				  }
+//			  });
+			  
+			  var submitBtn = element(by.css('.settings-container .tracks button'));
+			  isClickable = EC.elementToBeClickable(submitBtn);
+			  browser.wait(isClickable, 30000);
+			  browser.actions().mouseMove(submitBtn).perform();
+			  submitBtn.click();
+			  
+			  
 		  });
-   });
+		  });
+	  });
   };
+   
   
+  /*
   this.invalidPasswordLogin = function(loginUser, errMsg) {
 	  browser.driver.ignoreSynchronization = true;
 		
@@ -422,7 +444,7 @@ var LoginPage = function() {
 			  console.log('fb login click');
 			  return true;
 		  });
-	  },30000);*/
+	  },30000);
 	  
 	  console.log('out of fb login');
 	  expect(true).toEqual(true);
@@ -552,7 +574,6 @@ var LoginPage = function() {
   
   this.logOut = function (dashBoardUrl) {
 	  this.get(dashBoardUrl);
-//	  browser.get('https://beta.topcoder.com/my-dashboard/');
 	  var EC = protractor.ExpectedConditions;
 	  var menuItemHeaders = element.all(by.css('.menu-item-header'));
 	  var logoutHeader = menuItemHeaders.get(1);
@@ -561,19 +582,13 @@ var LoginPage = function() {
 	  browser.actions().mouseMove(logoutHeader).perform();
 	  var mainMenuLiList = element.all(by.css('.main-menu li'));
 	  var submenuLi = mainMenuLiList.get(1);
-//	  var logoutLink = submenuLi.all(by.css('ul .submenu-item .menu-link')).get(0);
 	  var logoutLink = element(by.partialLinkText('LOG OUT'));
 	  
-//	  var submenuItems = element(by.css('.menu-item .submenu')).all(by.css('.submenu-item'));
-//	  var elementLabel = submenuItems.get(0);
 	  isClickable = EC.elementToBeClickable(logoutLink);
 	  browser.wait(isClickable, 30000);
 	
 	  logoutLink.click().then(function() {
 		
-//		var label = element(by.css('.label'));
-//		var isClickable = EC.elementToBeClickable(label);
-//		browser.wait(isClickable, 20000);
 		  var userInput = element(by.model('vm.username'));
 		  var isClickable = EC.elementToBeClickable(userInput);
 		  browser.wait(isClickable, 30000);
@@ -581,7 +596,7 @@ var LoginPage = function() {
 		  expect(true).toEqual(true);
 		
 	  });
-  };
+  };*/
   
 };
-module.exports = new LoginPage();
+module.exports = new ProfilePage();
