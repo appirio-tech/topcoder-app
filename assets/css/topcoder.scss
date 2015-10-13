@@ -19,7 +19,6 @@ body {
   height: 100%;
 }
 
-
 .fold-wrapper {
   min-height: 100%;
   @media only screen and (min-width : 992px) {
@@ -47,7 +46,7 @@ body {
 }
 
 .view-container {
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   min-height: 480px;
   @media screen and (min-device-width: 768px) {
     min-width: 768px;
@@ -213,5 +212,105 @@ a {
 @media (max-width: 767px) {
   .form-errors {
     width: 100%;
+  }
+}
+
+
+// Intro JS
+.introjs-overlay {
+  background: rgba(239, 239, 239, 0.60);
+  background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
+}
+
+.introjs-tooltip {
+  max-width: 320px;
+  padding: 20px;
+}
+
+.introjs-tooltiptext {
+  @include source-sans-regular;
+  font-size: 14px;
+  line-height: 24px;
+  color: $gray-darker;
+}
+
+
+.introjs-helperLayer {
+  background: $white;
+  border: 1px solid #85CCFF;
+  box-shadow: 0px 0px 4px 0px rgba(0, 150, 255, 0.20);
+  border-radius: 6px;
+}
+
+.introjs-helperNumberLayer {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  line-height: 22px;
+  border: 3px solid $white;
+  background: $accent;
+  @include sofia-pro-medium;
+  font-size: 17px;
+  box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.20);
+}
+
+.introjs-tooltipbuttons {
+  width: 280px;
+  float: right;
+}
+
+// Refactor buttons when button mixins and/or style guide is done
+.introjs-button {
+  @include button-m;
+  padding: 0 10px;
+  background-color: $gray;
+  background-image: none;
+  color: $white;
+  text-shadow: none;
+
+  &:hover {
+    background-color: $accent;
+    color: $white;
+    box-shadow: none;
+  }
+
+  &.introjs-disabled {
+    background-color: $gray;
+  }
+
+  &:focus {
+    background-image: none;
+  }
+}
+
+.introjs-skipbutton {
+  float: left;
+  color: $gray-dark;
+  background-color: $white;
+  border: 1px solid $gray;
+
+  &:hover {
+    color: $gray-dark;
+    background-color: $white;
+  }
+}
+
+.introjs-prevbutton {
+  margin-right: 10px;
+}
+.introjs-nextbutton {}
+
+.introjs-bullets ul li {
+  margin-right: 3px;
+}
+
+.introjs-bullets ul li a {
+  width: 5px;
+  height: 5px;
+  border-radius: 0;
+  background-color: $gray;
+
+  &.active {
+    background-color: $accent;
   }
 }

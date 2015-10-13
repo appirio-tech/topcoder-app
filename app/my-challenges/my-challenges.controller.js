@@ -13,7 +13,7 @@
     vm.userHasChallenges = true;
     vm.viewActiveChallenges = viewActiveChallenges;
     vm.viewPastChallenges = viewPastChallenges;
-    vm.view = 'list';
+    vm.view = 'tile';
     vm.changeView = changeView;
     vm.statusFilter = _.get($stateParams, 'status','active');
 
@@ -81,6 +81,7 @@
 
       return ChallengeService.getUserChallenges(handle, params)
       .then(function(challenges){
+        ChallengeService.processActiveDevDesignChallenges(challenges);
         if (challenges.length > 0) {
           vm.myChallenges = challenges;
           vm.userHasChallenges = true;

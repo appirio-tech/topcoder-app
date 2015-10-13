@@ -86,43 +86,90 @@
           .num-images 1 image
 
 .challenge.list-view(ng-show="view=='list'", ng-class="challenge.track")
-  .challenge-track
+  .active-challenge(ng-show="challenge.status === 'ACTIVE'")
+    .challenge-track
 
-  header
-    a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+    header
+      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
 
-    p.subtrack {{challenge.subTrack | underscoreStrip}}
+      p.subtrack {{challenge.subTrack | underscoreStrip}}
 
-    p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:] {{challenge.userDetails.roles | listRoles}}
+      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:] {{challenge.userDetails.roles | listRoles}}
 
-  .challenge-details
-    .challenge-info
-      p.currentPhase {{challenge.userCurrentPhase}}
+    .challenge-details
+      .challenge-info
+        p.currentPhase {{challenge.userCurrentPhase}}
 
-      p.ends-in(ng-show="challenge.userCurrentPhaseEndTime") Ends: {{challenge.userCurrentPhaseEndTime[2] | localTime}}
+        p.ends-in(ng-show="challenge.userCurrentPhaseEndTime") Ends: {{challenge.userCurrentPhaseEndTime[2] | localTime}}
 
-      p.ends-in(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
+        p.ends-in(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
 
-    .phase-action(ng-switch="challenge.userAction")
-      .submit(ng-switch-when="Submit") Submit
+      .phase-action(ng-switch="challenge.userAction")
+        .submit(ng-switch-when="Submit") Submit
 
-      .submitted(ng-switch-when="Submitted") Submitted
+        .submitted(ng-switch-when="Submitted") Submitted
 
-      // Need styling and JS logic for this one
-      .registered(ng-switch-when="Registered") Registered
+        // Need styling and JS logic for this one
+        .registered(ng-switch-when="Registered") Registered
 
-  .challenge-links
-    a.registrants(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
-      p {{challenge.numRegistrants}}
+    .challenge-links
+      a.registrants(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+        p {{challenge.numRegistrants}}
 
-      .registrants-icon
+        .registrants-icon
 
-    a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
-      p {{challenge.numSubmissions}}
+      a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+        p {{challenge.numSubmissions}}
 
-      .submissions-icon
+        .submissions-icon
 
-    a.forum(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
-      .forum-icon
+      a.forum(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
+        .forum-icon
 
-      p Forum
+        p Forum
+  .completed-challenge(
+    ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
+    ng-switch="challenge.track")
+    .challenge-track
+
+    header
+      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+
+      p.subtrack {{challenge.subTrack | underscoreStrip}}
+
+      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:] {{challenge.userDetails.roles | listRoles}}
+
+    .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack", ng-class="challenge.track")
+
+      div(ng-switch-when="MARATHON_MATCH")
+        .marathon-score
+          p.score {{challenge.pointTotal || 0 }}
+
+          p Total Points
+
+    .challenge-details(ng-switch-when="DEVELOP")
+      .place-date
+        p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
+        p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
+
+      .winner-ribbon(ng-show="challenge.wonFirst")
+
+      .challenge-score
+        p.score {{challenge.userDetails.submissionReviewScore/100 | percentage}}
+
+        p Review Score
+
+    .challenge-details(ng-switch-when="DESIGN")
+      .place-date
+        p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
+        p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
+
+      .winner-ribbon(ng-show="challenge.wonFirst")
+
+      .thumbnail(ng-click="openLightbox()")
+        img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
+
+        .thumbnail-gallery(ng-click="challenge.showLightbox()")
+          .gallery-icon
+
+          .num-images 1 image

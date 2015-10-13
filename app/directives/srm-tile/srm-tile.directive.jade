@@ -6,13 +6,13 @@
       a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") {{srm.name}}
 
     .srm-details
-      p.starts-in Starts in #[span {{srm.startDate | timeDiff:"quantity"}} {{srm.startDate | timeDiff:'unit'}}]
+      p.starts-in Starts in #[span {{srm.codingStartAt | timeDiff:"quantity"}} {{srm.codingStartAt | timeDiff:'unit'}}]
 
       .srm-calendar
-        span.day {{srm.startDate | localTime:"DD" }}
-        span.month {{srm.startDate | localTime:"MMM" }}
-        span.hour {{srm.startDate | localTime:"hh:mm a" }}
-        span.time-zone {{srm.startDate | localTime:"z" }}
+        span.day {{srm.codingStartAt | localTime:"DD" }}
+        span.month {{srm.codingStartAt | localTime:"MMM" }}
+        span.hour {{srm.codingStartAt | localTime:"hh:mm a" }}
+        span.time-zone {{srm.codingStartAt | localTime:"z" }}
 
     .phase-status
       .registered(ng-show="vm.registered")
@@ -26,7 +26,7 @@
 
     header
       a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") {{srm.name}}
-      .ended-on #[span {{srm.startDate | localTime:"MMM DD, YYYY" }}]
+      .ended-on #[span {{srm.codingEndAt | localTime:"MMM DD, YYYY" }}]
 
     .member-stats
       p.points #[span {{srm.result.finalPoints }}] #[span Points]
@@ -47,7 +47,7 @@
         a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") {{srm.name}}
 
     .srm-details
-      p.starts-in Starts in #[span {{srm.startDate | timeDiff:"quantity"}} {{srm.startDate | timeDiff:'unit'}}]
+      p.starts-in Starts in #[span {{srm.codingStartAt | timeDiff:"quantity"}} {{srm.codingStartAt | timeDiff:'unit'}}]
 
     .phase-status
       .registered(ng-show="vm.registered")
@@ -63,7 +63,7 @@
         a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") {{srm.name}}
 
     .srm-details
-      p.ended-on Ended {{srm.endDate | timeDiff:"quantity"}} {{srm.endDate | timeDiff:'unit'}} ago
+      p.ended-on Ended {{srm.codingEndAt | timeDiff:"quantity"}} {{srm.codingEndAt | timeDiff:'unit'}} ago
 
     .member-stats
       p.points #[span {{srm.result.finalPoints }}] Points

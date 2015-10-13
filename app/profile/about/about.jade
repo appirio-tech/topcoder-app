@@ -25,12 +25,12 @@
       .description You can add languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.
 
       button.link-button(ui-sref="settings.profile") ADD SKILLS
-  
-  tc-section(id="tcActivity", ng-show="vm.displaySection.stats", state="profileVm.status.stats")
+
+  tc-section(ng-show="vm.displaySection.stats", state="profileVm.status.stats")
 
     .categories
 
-      h3.activity Activity on Topcoder
+      h3.activity(id="tcActivity") Activity on Topcoder
 
       .empty-state(ng-if="!profileVm.numProjects")
         .action-text Start competing within the community
@@ -85,14 +85,14 @@
 
           img.arrow(src="/images/ico-arrow-big-right.svg")
 
-  tc-section(id="externalLinks", ng-show="vm.displaySection.externalLinks" state="profileVm.status.externalLinks" class="external-links")
+  tc-section(id="externalLinks", ng-show="vm.displaySection.externalLinks", state="profileVm.status.externalLinks" class="external-links")
     h3.activity Activity across the web
-    external-links-data(ng-show="vm.hasLinks" linked-accounts-data="vm.linkedExternalAccountsData")
+    external-links-data(ng-show="vm.hasLinks", external-links="vm.linkedExternalAccounts", linked-accounts-data="vm.linkedExternalAccountsData")
 
     .empty-state(ng-hide="vm.hasLinks")
       .action-text Showcase your work from around the web
 
-      external-accounts.external-account-container(linked-accounts="[]" read-only="true")
+      external-accounts.external-account-container(linked-accounts="[]", links-data="{}", read-only="true")
 
       .description Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.
 

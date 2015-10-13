@@ -57,9 +57,19 @@
       }
     }
 
+    function getAddr() {
+      var add = vm.homeAddress;
+      if (add.streetAddr1 && add.city && add.zip) {
+        add.type = add.type || 'home';
+        return [add];
+      } else {
+        return [];
+      }
+    }
+
     function saveAccountInfo() {
       vm.formProcessing.accountInfoForm = true;
-      userData.addresses = [vm.homeAddress];
+      userData.addresses = getAddr();
       ProfileService.updateUserProfile(userData)
       .then(function(data) {
         vm.formProcessing.accountInfoForm = false;
