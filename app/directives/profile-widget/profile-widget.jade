@@ -10,8 +10,8 @@
       | Member Since {{profile.startMonth}}
 
     h3.location-challenges {{profile.homeCountryCode | isoCountry}}
-      span.bar(ng-show="profile.homeCountryCode && numChallenges") &nbsp;|&nbsp;
-      span(ng-show="numChallenges") {{numChallenges}} Challenges
+      span.bar(ng-show="profile.homeCountryCode && numWins") &nbsp;|&nbsp;
+      span(ng-show="numWins") {{numWins}} Wins
 
     p.description {{profile.description}}
 

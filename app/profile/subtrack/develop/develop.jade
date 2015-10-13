@@ -6,15 +6,15 @@
           span.square(ng-if="vm.typeStats.rank.rating", style="background-color: {{vm.typeStats.rank.rating | ratingColor}}")
         .name RATING
 
-      li.stat(ng-if="!vm.typeStats.rank.rating")
+      li.stat(ng-if="!vm.typeStats.rank.rating && !vm.nonRated")
         .value -
         .name RATING
 
-      li.stat
+      li.stat(ng-hide="vm.nonRated")
         .value {{vm.typeStats.rank.overallRank | empty}}
         .name RANK
 
-      li.stat
+      li.stat(ng-hide="vm.nonRated")
         .value {{vm.typeStats.rank.overallPercentile / 100 | percentage | empty}}
         .name PERCENTILE
 
@@ -26,7 +26,7 @@
         .value {{vm.typeStats.wins | empty}}
         .name WINS
 
-      li.stat
+      li.stat(ng-hide="vm.nonRated")
         .value {{vm.typeStats.rank.reliability | percentage | empty}}
         .name RELIABILITY
 
