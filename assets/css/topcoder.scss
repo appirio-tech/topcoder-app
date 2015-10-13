@@ -2,22 +2,9 @@
 @import 'topcoder-styles';
 @include glyphicons-halflings;
 
-// Resets and top level container stylings
-html {
-  min-height: 100%;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  margin: 0;
-  box-sizing: inherit;
-}
-
 body {
   @include source-sans-regular;
   background-color: $ui-page-gray;
-  height: 100%;
 
   > svg {
     display: none;
@@ -64,11 +51,6 @@ body {
   }
 }
 
-// Styles for elements used across modules
-a {
-  cursor: pointer;
-}
-
 // Country dropdown styles
 .angucomplete-highlight {
   color: $black;
@@ -79,7 +61,6 @@ a {
   overflow-y: auto;
   max-height: 250px;
 }
-
 
 // Section loading and form styles
 .section-loading {

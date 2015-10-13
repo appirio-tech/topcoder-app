@@ -76,19 +76,6 @@ gulp.task('dev-fonts', ['fonts'], function() {
     .pipe(gulp.dest(config.build + 'styles/fonts'));
 })
 
-gulp.task('svg-sprite', ['clean-images'], function() {
-  log('Compiling svgs into sprite');
-
-  return gulp
-    .src('node_modules/tc-ui-kit/icons/svg/*.svg')
-    .pipe($.plumber())
-    .pipe($.svgSprite({
-      log: 'verbose',
-      mode: { stack: true, inline: true }
-    }))
-    .pipe(gulp.dest(config.temp + 'images'));
-});
-
 gulp.task('images', ['clean-images'], function() {
   log('Copying and compressing the images');
 
@@ -204,23 +191,6 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
     .pipe(gulp.dest(config.app));
 });
 
-gulp.task('insert-svg-sprite', ['jade', 'svg-sprite'], function() {
-  log('Inserting svg sprite into index.html');
-
-  return gulp
-    .src(config.indexHtml)
-    .pipe($.replaceTask({
-      patterns: [
-        {
-          match: '<!-- SVG Sprite -->',
-          replacement: fs.readFileSync(config.temp + 'images/stack/svg/sprite.stack.svg', 'utf8')
-        }
-      ],
-      usePrefix: false
-    }))
-    .pipe(gulp.dest(config.temp))
-});
-
 gulp.task('optimize', ['inject', 'test', 'ngConstants', 'images'], function() {
   log('Optimizing the JavaScript, CSS, and HTML');
 
@@ -269,7 +239,7 @@ gulp.task('optimize', ['inject', 'test', 'ngConstants', 'images'], function() {
     .pipe(gulp.dest(config.build));
 });
 
-gulp.task('build1', ['optimize', 'dev-fonts', 'insert-svg-sprite'], function() {
+gulp.task('build1', ['optimize', 'dev-fonts'], function() {
   log('Building everything');
 
   var msg = {
@@ -311,7 +281,7 @@ gulp.task('build-specs', ['templatecache', 'ngConstants'], function() {
     .pipe(gulp.dest(config.app));
 });
 
-gulp.task('serve', ['inject', 'ngConstants', 'svg-sprite', 'insert-svg-sprite'], function() {
+gulp.task('serve', ['inject', 'ngConstants'], function() {
 
   gulp.watch(config.sass, ['styles'])
     .on('change', function(event) { changeEvent(event); });
