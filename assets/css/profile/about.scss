@@ -36,6 +36,10 @@
       align-items: center;
       cursor: pointer;
 
+      &.noclick {
+        cursor: default;
+      }
+
       .name {
         span {
         }
@@ -147,6 +151,10 @@
         justify-content: space-between;
         width: 50%;
         .track {
+          .text {
+            margin-top: 15px;
+            text-transform: uppercase;
+          }
         }
       }
       .description {
