@@ -28,7 +28,8 @@
     'CONSTANTS',
     'dcbImgFallback',
     'toaster',
-    'angular-intro'
+    'angular-intro',
+    'ngMessages'
   ];
 
   angular.module('topcoder', dependencies).run(appRun);
