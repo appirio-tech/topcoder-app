@@ -20,6 +20,7 @@
       templateUrl: 'directives/external-account/external-account.directive.html',
       scope: {
         linkedAccounts: '=',
+        linksData: '=',
         readOnly: '='
       },
       controller: ['$log', '$scope', 'ExternalAccountService', 'toaster',
@@ -28,20 +29,30 @@
           $scope.accountList = _.clone(_supportedAccounts, true);
           $scope.$watchCollection('linkedAccounts', function(newValue, oldValue) {
             for (var i=0;i<$scope.accountList.length;i++) {
-              $scope.accountList[i].linked = !!_.find(newValue, function(a) {
+              var _idx = _.findIndex(newValue, function(a) {
                 return $scope.accountList[i].provider === a.providerType;
               });
+              if (_idx == -1) {
+                $scope.accountList[i].status = 'unlinked';
+              } else {
+                // check if data 
+                if ($scope.linksData[$scope.accountList[i].provider]) {
+                  $scope.accountList[i].status = 'linked';
+                } else {
+                  $scope.accountList[i].status = 'pending';
+                }
+              }
             }
           });
 
-          $scope.handleClick = function(provider, unlink) {
+          $scope.handleClick = function(provider, status) {
             var provider = _.find(_supportedAccounts, function(s) {
               return s.provider === provider;
             });
-            if (unlink) {
+            if (status === 'linked') {
               $log.debug(String.supplant('UnLinking to ' + provider.displayName));
               _unlink(provider);
-            } else {
+            } else if (status === 'unlinked') {
               $log.debug(String.supplant('Linking to ' + provider.displayName));
               _link(provider);
             }
@@ -78,9 +89,11 @@
             .then(function(resp) {
               $log.debug("Social account unlinked: " + JSON.stringify(resp));
               var toRemove = _.findIndex($scope.linkedAccounts, function(la) {
-                return la.providerType === provider;
+                return la.providerType === provider.provider;
               });
+              // remove from both links array and links data array
               $scope.linkedAccounts.splice(toRemove, 1);
+              delete $scope.linksData[provider.provider];
               toaster.pop('success', "Success",
                 String.supplant(
                   "Your {provider} account has been unlinked.",
@@ -115,27 +128,12 @@
       controller: ['$log', '$scope', 'ExternalAccountService',
         function($log, $scope, ExternalAccountService) {
           $log = $log.getInstance('ExternalLinksDataDirective');
-
-          $scope.$watch('linkedAccountsData', function(newValue, oldValue) {
-            var linkedAccounts = [];
-            for (var i=0;i<_supportedAccounts.length;i++) {
-              var n = _supportedAccounts[i],
-                extObj = _.get(newValue, n.provider, null);
-              if (extObj) {
-                linkedAccounts.push({
-                  provider: n.provider,
-                  data: extObj
-                });
-              }
-            }
-            $scope.linkedAccounts = linkedAccounts;
-          });
-
-          $scope.$watchCollection('externalLinks', function(newValue, oldValue) {
-            angular.forEach(newValue, function(link) {
+          function reCalcData(links, data) {
+            $scope.linkedAccounts = [];
+            angular.forEach(links, function(link) {
               var provider = link.providerType;
 
-              if (!$scope.linkedAccountsData[provider]) {
+              if (!data[provider]) {
                 $scope.linkedAccounts.push({
                   provider: provider,
                   data: {
@@ -143,8 +141,23 @@
                     status: 'PENDING'
                   }
                 });
+              } else {
+                // add data 
+                $scope.linkedAccounts.push({
+                  provider: provider,
+                  data: data[provider]
+                });
               }
             });
+          }
+
+          
+          $scope.$watch('linkedAccountsData', function(newValue, oldValue) {
+            reCalcData($scope.externalLinks, newValue);
+          });
+
+          $scope.$watchCollection('externalLinks', function(newValue, oldValue) {
+            reCalcData(newValue, $scope.linkedAccountsData);
           });
         }
       ]

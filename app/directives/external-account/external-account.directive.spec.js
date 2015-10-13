@@ -21,11 +21,16 @@ describe.only('External Accounts Directive', function() {
         providerType: 'github'
       }
     ];
+    var linksData = {
+      'linkedin' : {provider: 'linkedin', name: 'name-linkedin'},
+      'github' : {provider: 'github', name: 'name-github'}
+    };
     var externalAccounts;
 
     beforeEach(function() {
       scope.linkedAccounts = linkedAccounts;
-      element = angular.element('<external-accounts linked-accounts="linkedAccounts"></external-accounts>)');
+      scope.linksData = linksData;
+      element = angular.element('<external-accounts linked-accounts="linkedAccounts", links-data="linksData"></external-accounts>)');
       externalAccounts = $compile(element)(scope);
       scope.$digest();
       // scope.$apply();
@@ -38,8 +43,8 @@ describe.only('External Accounts Directive', function() {
 
     it('should have "linked" property set for github & linkedin', function() {
       var githubAccount = _.find(element.isolateScope().accountList, function(a) { return a.provider === 'github'});
-      expect(githubAccount).to.have.property('linked')
-        .that.equals(true);
+      expect(githubAccount).to.have.property('status')
+        .that.equals('linked');
 
       // var linkeindAccount = _.find(element.isolateScope().accountList, function(a) { return a.provider === 'linkedin'});
       // expect(linkeindAccount).to.have.property('linked')
