@@ -81,7 +81,7 @@ html
 
   body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'menu-visible': main.menuVisible}", ng-strict-di)
 
-    #header(ui-view="header")
+    #header(ui-view="header", autoscroll="true")
 
     .intro-js-container(ng-intro-options="main.introOptions", ng-intro-method="main.startIntro")
 
