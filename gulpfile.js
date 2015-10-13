@@ -2,6 +2,7 @@ var gulp         = require('gulp');
 var args         = require('yargs').argv;
 var config       = require('./gulp.config')();
 var del          = require('del'); // rm -rf
+var fs           = require('fs');
 var $            = require('gulp-load-plugins')({lazy: true});
 var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
@@ -203,6 +204,23 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
     .pipe(gulp.dest(config.app));
 });
 
+gulp.task('insert-svg-sprite', ['jade', 'svg-sprite'], function() {
+  log('Inserting svg sprite into index.html');
+
+  return gulp
+    .src(config.indexHtml)
+    .pipe($.replaceTask({
+      patterns: [
+        {
+          match: '<!-- SVG Sprite -->',
+          replacement: fs.readFileSync(config.temp + 'images/stack/svg/sprite.stack.svg', 'utf8')
+        }
+      ],
+      usePrefix: false
+    }))
+    .pipe(gulp.dest(config.temp))
+});
+
 gulp.task('optimize', ['inject', 'test', 'ngConstants', 'images'], function() {
   log('Optimizing the JavaScript, CSS, and HTML');
 
@@ -251,7 +269,7 @@ gulp.task('optimize', ['inject', 'test', 'ngConstants', 'images'], function() {
     .pipe(gulp.dest(config.build));
 });
 
-gulp.task('build1', ['optimize', 'dev-fonts'], function() {
+gulp.task('build1', ['optimize', 'dev-fonts', 'insert-svg-sprite'], function() {
   log('Building everything');
 
   var msg = {
@@ -293,7 +311,7 @@ gulp.task('build-specs', ['templatecache', 'ngConstants'], function() {
     .pipe(gulp.dest(config.app));
 });
 
-gulp.task('serve', ['inject', 'ngConstants', 'svg-sprite'], function() {
+gulp.task('serve', ['inject', 'ngConstants', 'svg-sprite', 'insert-svg-sprite'], function() {
 
   gulp.watch(config.sass, ['styles'])
     .on('change', function(event) { changeEvent(event); });
