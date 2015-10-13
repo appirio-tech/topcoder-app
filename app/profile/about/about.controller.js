@@ -24,8 +24,10 @@
 
       profileVm.externalLinksPromise.then(function() {
         vm.linkedExternalAccountsData = profileVm.linkedExternalAccountsData;
+        vm.linkedExternalAccounts = profileVm.linkedExternalAccounts;
         // show section if user is viewing his/her own profile OR if we have data
-        vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
+        vm.hasLinks = vm.linkedExternalAccounts.length;
+        //vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
         vm.displaySection.externalLinks = profileVm.showEditProfileLink || vm.hasLinks;
       });
 

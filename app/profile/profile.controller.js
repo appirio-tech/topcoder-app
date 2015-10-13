@@ -57,13 +57,16 @@
       vm.status.skills = CONSTANTS.STATE_ERROR;
     });
 
-    vm.externalLinksPromise = ExternalAccountService.getLinkedExternalLinksData(vm.userHandle).then(function(data) {
-      vm.linkedExternalAccountsData = data.plain();
-      console.log('EXT')
-      console.log(vm.linkedExternalAccountsData)
+
+    vm.externalLinksPromise = ExternalAccountService.getLinkedExternalAccounts(profile.userId).then(function(data) {
+      vm.linkedExternalAccounts = data;
       vm.status.externalLinks = CONSTANTS.STATE_READY;
     }).catch(function(err) {
       vm.status.externalLinks = CONSTANTS.STATE_ERROR;
+    });
+
+    ExternalAccountService.getLinkedExternalLinksData(vm.userHandle).then(function(data) {
+      vm.linkedExternalAccountsData = data.plain();
     });
 
     function activate() {
