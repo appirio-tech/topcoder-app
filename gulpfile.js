@@ -75,6 +75,19 @@ gulp.task('dev-fonts', ['fonts'], function() {
     .pipe(gulp.dest(config.build + 'styles/fonts'));
 })
 
+gulp.task('svg-sprite', ['clean-images'], function() {
+  log('Compiling svgs into sprite');
+
+  return gulp
+    .src('node_modules/tc-ui-kit/icons/svg/*.svg')
+    .pipe($.plumber())
+    .pipe($.svgSprite({
+      log: 'verbose',
+      mode: { stack: true, inline: true }
+    }))
+    .pipe(gulp.dest(config.temp + 'images'));
+});
+
 gulp.task('images', ['clean-images'], function() {
   log('Copying and compressing the images');
 
@@ -280,7 +293,7 @@ gulp.task('build-specs', ['templatecache', 'ngConstants'], function() {
     .pipe(gulp.dest(config.app));
 });
 
-gulp.task('serve', ['inject', 'ngConstants'], function() {
+gulp.task('serve', ['inject', 'ngConstants', 'svg-sprite'], function() {
 
   gulp.watch(config.sass, ['styles'])
     .on('change', function(event) { changeEvent(event); });

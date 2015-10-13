@@ -18,6 +18,10 @@ body {
   @include source-sans-regular;
   background-color: $ui-page-gray;
   height: 100%;
+
+  > svg {
+    display: none;
+  }
 }
 
 .fold-wrapper {
