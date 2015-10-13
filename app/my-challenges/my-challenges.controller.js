@@ -13,7 +13,7 @@
     vm.userHasChallenges = true;
     vm.viewActiveChallenges = viewActiveChallenges;
     vm.viewPastChallenges = viewPastChallenges;
-    vm.view = 'list';
+    vm.view = 'tile';
     vm.changeView = changeView;
     vm.statusFilter = _.get($stateParams, 'status','active');
 
