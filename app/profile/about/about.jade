@@ -35,7 +35,7 @@
       .empty-state(ng-if="!profileVm.numProjects")
         .action-text Start competing within the community
         .tracks
-          .track(ng-repeat="track in ['DEVELOP', 'DESIGN', 'DATA_SCIENCE']")
+          .track.noclick(ng-repeat="track in ['DEVELOP', 'DESIGN', 'DATA_SCIENCE']")
             div(class="{{profileVm.imgMap[track]}}-icon")
               div
             .text {{track | track}}
