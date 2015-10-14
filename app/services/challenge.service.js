@@ -85,6 +85,18 @@
                   challenge.userAction = null;
                 }
               }
+
+              // if user has role of observer
+              var roles = challenge.userDetails.roles;
+              if (roles.length > 0) {
+                var submitterRole = _.findIndex(roles, function(role) {
+                  var lRole = role.toLowerCase();
+                  return lRole === 'submitter';
+                });
+                if (submitterRole === -1) {
+                  challenge.userAction = null;
+                }
+              }
             }
           });
         }
