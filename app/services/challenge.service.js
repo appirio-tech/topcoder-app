@@ -134,8 +134,8 @@
           }
         }
 
-        if (challenge.userCurrentPhaseEndTime) {
-          var fullTime = challenge.userCurrentPhaseEndTime;
+        if (match.userCurrentPhaseEndTime) {
+          var fullTime = match.userCurrentPhaseEndTime;
           var timeAndUnit = moment(fullTime).fromNow(true);
           // Split into components: ['an', 'hour'] || ['2', 'months']
           timeAndUnit = timeAndUnit.split(' ');
@@ -146,7 +146,7 @@
 
           // Add actual time ['2', 'months', actual date]
           timeAndUnit.push(fullTime);
-          challenge.userCurrentPhaseEndTime = timeAndUnit;
+          match.userCurrentPhaseEndTime = timeAndUnit;
         }
       });
     }
