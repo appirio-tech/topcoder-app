@@ -34,8 +34,8 @@
         minlength="1"
       )
 
-      .form-errors
-        p.form-error(ng-show="vm.registerForm.country.$error.required") Please choose a country from the list
+      .form-input-error(ng-show="vm.registerForm.country.$dirty && vm.registerForm.country.$invalid", ng-messages="vm.registerForm.country.$error")
+        p.form-error(ng-message="required") Please choose a country from the list
 
     .section-break
       hr
@@ -53,10 +53,13 @@
 
         p It can contain letters, numbers, and these characters: -_.{}[]
 
-    .form-errors
-      p.form-error(ng-show="vm.registerForm.username.$dirty && vm.registerForm.username.$error.usernameIsFree", ng-bind="vm.usernameErrorMessage")
+    .form-input-error(ng-if="vm.registerForm.username.$dirty && vm.registerForm.username.$invalid", ng-messages="vm.registerForm.username.$error")
+      p.form-error(ng-message="required") Please enter a username.
+      p.form-error(ng-message="usernameIsFree") {{vm.usernameErrorMessage}}
 
-      p.form-error(ng-show="vm.registerForm.username.$dirty && (vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength)") That username is not the correct length or format.
+      p.form-error(ng-message="minlength") That username is not the correct length or format.
+
+      p.form-error(ng-message="maxlength") That username is not the correct length or format.
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.email.$dirty && vm.registerForm.email.$invalid), 'success-bar': (vm.registerForm.email.$valid) }")
       input-sticky-placeholder(sticky-placeholder="Email", ng-model="vm.email")
@@ -69,10 +72,12 @@
 
         p We'll occasionally send you emails related to your activities or interests.
 
-    .form-errors
-      p.form-error(ng-show="vm.registerForm.email.$dirty && (vm.registerForm.email.$error.emailIsAvailable || vm.registerForm.email.$error.validEmail)", ng-bind="vm.emailErrorMessage")
+    .form-input-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$invalid", ng-messages="vm.registerForm.email.$error")
+      p.form-error(ng-message="emailIsAvailable") {{vm.emailErrorMessage}}
 
-      p.form-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$error.required") Please enter an email address.
+      p.form-error(ng-message="validEmail") {{vm.emailErrorMessage}}
+
+      p.form-error(ng-message="required") Please enter an email address.
 
     .validation-bar(ng-class="{ 'success-bar': (vm.registerForm.password.$valid) }")
       toggle-password-with-tips(ng-if="!vm.isSocialRegistration")

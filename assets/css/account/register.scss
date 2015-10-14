@@ -92,9 +92,12 @@
       }
     }
   }
-
   .section-break {
-    display: none;
+
+    hr {
+      max-width: 180px;
+      margin: 10px auto 20px auto;
+    }
   }
 }
 
@@ -128,14 +131,6 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-      }
-      .section-break {
-        display: block;
-
-        hr {
-          max-width: 180px;
-          margin: 10px auto 20px auto;
-        }
       }
     }
 
