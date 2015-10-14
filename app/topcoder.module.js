@@ -29,7 +29,8 @@
     'dcbImgFallback',
     'toaster',
     'angular-intro',
-    'ngMessages'
+    'ngMessages',
+    'angular-carousel'
   ];
 
   angular.module('topcoder', dependencies).run(appRun);
