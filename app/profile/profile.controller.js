@@ -3,12 +3,12 @@
 
   angular.module('tc.profile').controller('ProfileCtrl', ProfileCtrl);
 
-  ProfileCtrl.$inject = ['CONSTANTS', '$log',
+  ProfileCtrl.$inject = ['CONSTANTS', '$log', '$q',
     'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService', 'ExternalAccountService',
     'userHandle', 'profile', 'ngDialog'
   ];
 
-  function ProfileCtrl(CONSTANTS, $log, TcAuthService, UserService, ProfileService, ChallengeService, ExternalAccountService, userHandle, profile, ngDialog) {
+  function ProfileCtrl(CONSTANTS, $log, $q, TcAuthService, UserService, ProfileService, ChallengeService, ExternalAccountService, userHandle, profile, ngDialog) {
     var vm = this;
     // set profile to the object that was resolved
     vm.profile = profile;
@@ -58,15 +58,10 @@
     });
 
 
-    vm.externalLinksPromise = ExternalAccountService.getLinkedExternalAccounts(profile.userId).then(function(data) {
-      vm.linkedExternalAccounts = data;
-      vm.status.externalLinks = CONSTANTS.STATE_READY;
+    vm.externalLinksPromise = ExternalAccountService.getLinkedExternalLinksData(vm.userHandle).then(function(data) {
+      vm.linkedExternalAccountsData = data.plain();
     }).catch(function(err) {
       vm.status.externalLinks = CONSTANTS.STATE_ERROR;
-    });
-
-    ExternalAccountService.getLinkedExternalLinksData(vm.userHandle).then(function(data) {
-      vm.linkedExternalAccountsData = data.plain();
     });
 
     function activate() {
