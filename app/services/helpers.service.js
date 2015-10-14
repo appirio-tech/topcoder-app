@@ -89,9 +89,10 @@
       }
 
       var token = accessToken;
+      var tokenSecret = null;
       if (profile.identities && profile.identities.length > 0) {
         token = profile.identities[0].access_token;
-        console.log(profile.identities[0]);
+        tokenSecret = profile.identities[0].access_token_secret;
       }
       return {
         socialUserId: socialUserId,
@@ -102,7 +103,7 @@
         socialProfile: profile,
         socialProvider: socialProvider,
         accessToken: token,
-        refreshToken: refreshToken
+        accessTokenSecret : tokenSecret
       }
     }
 

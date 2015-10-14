@@ -99,6 +99,9 @@
                   accessToken: socialData.accessToken
                 }
               };
+              if (socialData.accessTokenSecret) {
+                postData.context.accessTokenSecret = socialData.accessTokenSecret;
+              }
               $log.debug("link API postdata: " + JSON.stringify(postData));
               var api = ApiService.restangularV3;
               api.one('users', user.userId).customPOST(postData, "profiles", {}, {})
