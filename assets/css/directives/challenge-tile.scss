@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 // Default Challenge Tile Stylings
@@ -108,7 +109,7 @@ challenge-tile .challenge.tile-view {
 
       .submit {
         margin-bottom: 25px;
-        @include button-m-wide;
+        display: inline-block;
       }
 
       .submitted {
@@ -629,7 +630,6 @@ challenge-tile .challenge.list-view {
     .phase-action {
       .submit {
         display: inline-block;
-        @include button-m;
       }
 
       .submitted {

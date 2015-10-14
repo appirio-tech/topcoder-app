@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .subtrack-stats {
@@ -73,7 +74,7 @@
         p {
           @include sofia-pro-regular;
           font-size: 12px;
-          color: $system-gray;
+          color: $accent-gray;
 
           &:last-child {
             text-transform: uppercase;

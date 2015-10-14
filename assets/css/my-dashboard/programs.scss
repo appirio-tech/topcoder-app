@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .programs {
@@ -99,7 +100,6 @@
 
     .info-links {
       a {
-        @include button-m;
         display: inline-block;
         margin-top: 30px;
         font-size: 13px;
@@ -111,7 +111,6 @@
         }
 
         &:last-child {
-          @include button-ghost;
           margin-left: 30px;
         }
       }
@@ -175,8 +174,6 @@
       a {
         display: block;
         margin-top: 37px;
-        @include button-m-wide;
-        @include button-ghost;
         text-decoration: none;
       }
     }

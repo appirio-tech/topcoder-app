@@ -23,7 +23,6 @@
             .icon 
               img(ng-src="{{vm.ASSET_PREFIX}}images/skills/id-{{tag.id}}.svg", fallback-src="/images/skills/id-design.svg")
             .name {{tag.name}}
-          
 
     .skills-section(ng-show="vm.tracks.DEVELOP")
       .track-title select development skills
@@ -48,8 +47,8 @@
             .name {{tag.name}}
 
 
-  button.button-l(
-    type="button", 
+  button.tc-btn.tc-btn-l.done-button(
+    type="button",
     tc-busy-button, tc-busy-when="vm.saving",
     ng-click="vm.submitSkills()",
     ng-class="{'enabled-button': vm.tracks.design || vm.tracks.develop || vm.tracks.data_science}") Done

@@ -12,8 +12,8 @@
       .skill(ng-repeat="skill in vm.skills")
         skill-tile(skill="skill")
 
-    button.more(ng-if="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW ALL
-    button.more(ng-if="vm.skills.length > 6", ng-click="vm.skills = vm.someSkills") VIEW LESS
+    button.tc-btn.tc-btn-secondary.tc-btn-l.more(ng-if="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW ALL
+    button.tc-btn.tc-btn-secondary.tc-btn-l.more(ng-if="vm.skills.length > 6", ng-click="vm.skills = vm.someSkills") VIEW LESS
 
     .empty-state(ng-show="!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)")
       .action-text Tell everyone what you know
@@ -24,7 +24,7 @@
 
       .description You can add languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.
 
-      button.link-button(ui-sref="settings.profile") ADD SKILLS
+      button.tc-btn.tc-btn-l.link-button(ui-sref="settings.profile") ADD SKILLS
 
   tc-section(ng-show="vm.displaySection.stats", state="profileVm.status.stats")
 
@@ -40,7 +40,7 @@
               div
             .text {{track | track}}
         .description Compete in challenges to win money, test yourself against the world's best, and learn new skills. Your performance rating will show up here.
-        a.link-button(href="/challenges") FIND CHALLENGES
+        a.tc-btn.tc-btn-l.link-button(href="/challenges") FIND CHALLENGES
 
       .track(
         ng-repeat="track in profileVm.profile.tracks",
@@ -96,4 +96,4 @@
 
       .description Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.
 
-      button.link-button(ui-sref="settings.profile") CONNECT ACCOUNTS
+      button.tc-btn.tc-btn-l.link-button(ui-sref="settings.profile") CONNECT ACCOUNTS
