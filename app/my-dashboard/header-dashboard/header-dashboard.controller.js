@@ -34,7 +34,7 @@
       .then(function(financials) {
         vm.moneyEarned = _.sum(_.pluck(financials, 'amount'));
 
-        if (typeof(vm.moneyEarned) === "number" && vm.moneyEarned === 0) {
+        if (!vm.moneyEarned) {
           vm.hideMoney = true;
         }
 
