@@ -34,6 +34,13 @@
 
       &.disabled {
         color: $black;
+
+        &.tile:before {
+          background: url(/images/grid-on.svg);
+        }
+        &.list:before {
+          background: url(/images/list-on.svg);
+        }
       }
 
       &:before {
@@ -42,14 +49,14 @@
         margin-bottom: 2px;
         margin-right: 4px;
         vertical-align: middle;
-        @include background-image-size(16px, 16px);
+        @include background-image-size(12px, 12px);
       }
 
       &.tile:before {
-        background: url(/images/ico-grid.svg);
+        background: url(/images/grid-off.svg);
       }
       &.list:before {
-        background: url(/images/ico-list.svg);
+        background: url(/images/list-off.svg);
       }
 
     }
