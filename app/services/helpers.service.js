@@ -37,6 +37,7 @@
         socialProviderId = '';
 
       var socialUserId = profile.user_id.substring(profile.user_id.lastIndexOf('|') + 1);
+      var refreshToken = null;
 
       if (socialProvider === 'google-oauth2') {
         firstName = profile.given_name;
@@ -90,6 +91,7 @@
       var token = accessToken;
       if (profile.identities && profile.identities.length > 0) {
         token = profile.identities[0].access_token;
+        console.log(profile.identities[0]);
       }
       return {
         socialUserId: socialUserId,
@@ -99,7 +101,8 @@
         email: email,
         socialProfile: profile,
         socialProvider: socialProvider,
-        accessToken: token
+        accessToken: token,
+        refreshToken: refreshToken
       }
     }
 
