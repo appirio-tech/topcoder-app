@@ -8,7 +8,6 @@
   .empty-state {
     a.link-button {
       margin-top: 20px;
-      @include button-1-l;
     }
   }
 
@@ -30,6 +29,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
     .track {
       margin-top: 22.4px;
       display: flex;
@@ -38,8 +38,6 @@
       cursor: pointer;
 
       .name {
-        span {
-        }
         margin: auto;
         font-family: 'Sofia Pro';
         font-weight: 200;
@@ -158,7 +156,6 @@
         width: 60%;
       }
       button.link-button {
-        @include button-1-l;
         margin-top: 20px;
       }
       padding-bottom: 40px;
@@ -193,10 +190,9 @@
       margin-top: 20px;
       margin-left: auto;
       margin-right: auto;
-      @include button-2-l;
     }
-    .list {
 
+    .list {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -210,7 +206,6 @@
       .skill {
         margin: 5px 7.5px;
       }
-
     }
     .empty-state {
       width: 100%;
@@ -231,7 +226,6 @@
         line-height: 22px;
       }
       button.link-button {
-        @include button-1-l;
         margin-top: 30px;
       }
       .list {
@@ -282,7 +276,6 @@
         width: 60%;
       }
       button.link-button {
-        @include button-1-l;
         margin-top: 20px;
       }
       .external-account-container {
@@ -387,7 +380,6 @@
         margin-right: auto;
       }
       button.link-button {
-        @include button-1-l;
         margin-top: 30px;
       }
       .list {
@@ -442,7 +434,6 @@
         margin-right: auto;
       }
       button.link-button {
-        @include button-1-l;
         margin-top: 30px;
       }
       .list {
@@ -521,7 +512,6 @@
       margin-right: auto;
     }
     button.link-button {
-      @include button-1-l;
       margin-top: 30px;
     }
     .list {

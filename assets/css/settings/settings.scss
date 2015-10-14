@@ -93,10 +93,6 @@
   }
 
   // Common element stylings
-  .button-l {
-    @include button-l;
-  }
-
   @include ui-form-placeholder;
   input:not([type="checkbox"]) {
     @include ui-form-field;
@@ -211,7 +207,6 @@
     }
 
     button {
-      @include button-2-l;
       margin-bottom: 20px;
       align-self: center;
       margin-top: 20px;

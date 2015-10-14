@@ -38,7 +38,7 @@
               p(ng-class="{ 'has-symbol-or-number': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
           .button-container
-            button.button-l.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine", ng-class="{'disabled': vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine}") Change Password
+            button.tc-btn.tc-btn-secondary.tc-btn-l.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine", ng-class="{'disabled': vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine}") Change Password
 
 
       div(ng-show="vm.isSocialRegistration")
@@ -82,13 +82,13 @@
             .form-input-error(ng-show="vm.accountInfoForm.lastname.$invalid")
               p(ng-show="vm.accountInfoForm.lastname.$error.required") This is a required field.
 
-    
+
     .settings-section.address
       .section-info
         h2  address
         .description Required for payments and in case we need to mail you something. Will be kept private and not shared with anyone.
 
-      .section-fields          
+      .section-fields
           .form-label.address Address
           input.form-field(
             name="address", type="text",
@@ -98,7 +98,7 @@
             ng-class="{'form-field-focused': hasFocus==true}"
           )
 
-          .form-label Address 2 
+          .form-label Address 2
             span(style="text-transform: none;") &nbsp;(opt., suite, etc.)
           input.form-field(
             name="address2",
@@ -155,4 +155,4 @@
 
 
           .button-container
-            button.button-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid", ng-class="{'enabled-button': vm.accountInfoForm.$valid}") Save
+            button.tc-btn.tc-btn-secondary.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid", ng-class="{'enabled-button': vm.accountInfoForm.$valid}") Save

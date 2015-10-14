@@ -216,6 +216,14 @@
   cursor: pointer;
 }
 
+.menu-text {
+  color: $white;
+
+  &:hover {
+    color: $white;
+  }
+}
+
 @media only screen and (max-width : 991px) {
   .header-wrapper {
     // When autocomplete list is displayed, hide all menu items and footer (except copyright notice)
@@ -264,7 +272,7 @@
 
     &.active {
       background-color: rgba(0, 150, 255, 0.2);
-      border-left: 5px solid #0096ff;
+      border-left: 5px solid $primary;
       color: #fff;
       margin: 0 -20px;
         padding-left: 15px;
@@ -370,7 +378,8 @@
     }
 
     .menu-link:hover {
-      background-color: #0096ff;
+      background-color: $primary;
+      text-decoration: none;
     }
 
     .menu-link.active {
@@ -380,7 +389,7 @@
     .menu-item:not(.anonymous-menu):hover .menu-item-header {
       position: relative;
       cursor: pointer;
-      color: #0096ff;
+      color: $primary;
 
       &:after {
         content: '';

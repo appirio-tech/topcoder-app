@@ -14,8 +14,6 @@ skill-tile {
     width: 100px;
   }
 
-
-
   .new {
     .skill-icon {
       background-color: #F2FAFF;
@@ -24,7 +22,12 @@ skill-tile {
     }
   }
 
+  a:hover {
+      text-decoration: none;
+  }
+
   a.hidden {
+
     img {
       opacity: .3;
     }

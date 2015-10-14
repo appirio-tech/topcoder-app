@@ -464,10 +464,20 @@ body {
 
 // Refactor buttons when button mixins and/or style guide is done
 .introjs-button {
-  @include button-m;
+  height: 30px;
   padding: 0 10px;
+  line-height: 30px;
+  border: none;
+  border-radius: 4px;
   background-color: $gray;
   background-image: none;
+  @include sofia-pro-regular;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  outline: 0;
   color: $white;
   text-shadow: none;
 

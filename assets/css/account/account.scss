@@ -72,18 +72,9 @@
   }
 
   button {
-    @include ui-submit-button;
     width: 180px;
-    border-radius: 4px;
     align-self: center;
-
-    &.enabled-button {
-      @include ui-enabled-button;
-    }
-
-    &[disabled] {
-      @include ui-disabled-button;
-    }
+    text-transform: uppercase;
   }
 
   // Form stylings

@@ -15,9 +15,9 @@ section.ios(ng-hide="vm.loading")
       p Experienced and proven iOS developers are in high-demand. Prove your skills by earning these iOS topcoder badges and gain exclusive access to iOS challenges and prize accelerators, special previews into content and releases, and special community-related events and info.
 
       .info-links
-        a(ng-click="vm.registerUser()") Participate
+        a.tc-btn(ng-click="vm.registerUser()") Participate
 
-        a(ng-href="https://ios.{{DOMAIN}}", target="_blank") Learn More
+        a.tc-btn.tc-btn-ghost(ng-href="https://ios.{{DOMAIN}}", target="_blank") Learn More
 
   .registered(ng-show="vm.registered")
     .badge-and-challenges
@@ -28,6 +28,6 @@ section.ios(ng-hide="vm.loading")
           .badge-timeline
             img(src="/images/member-program/svg/Member-06.svg", alt="Development Challenge Icon")
 
-          a(href="http://ios.{{vm.domain}}", title="topcoder iOS Member Program") View Challenges
+          a.tc-btn.tc-btn-s.tc-btn-ghost.tc-btn-wide(href="http://ios.{{vm.domain}}", title="topcoder iOS Member Program") View Challenges
 
       ios-card(ng-repeat="challenge in vm.challenges | orderBy:reviewType:true| orderBy:registrationEndDate:true", challenge="challenge", view="'tile'")

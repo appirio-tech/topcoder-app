@@ -91,7 +91,7 @@
     section.terms
       p By clicking "Join," you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms of Service] and #[a(href="http://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank") Privacy Policy]
 
-    button(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid", ng-class="{'enabled-button': vm.registerForm.$valid}") Join
+    button.tc-btn.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid") Join
 
   section.social
     p ------------ Or Register With ------------
@@ -109,5 +109,5 @@
 
 .join-topcoder
   span Already a member?
-  p.redirect
-    a(ui-sref="login(vm.$stateParams)") Log in
+
+  a.tc-btn.tc-btn-ghost-secondary.tc-btn-s(ui-sref="login(vm.$stateParams)") Log in

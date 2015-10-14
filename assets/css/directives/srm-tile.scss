@@ -193,7 +193,6 @@
   .srm-action {
     margin-top: 22px;
     margin-bottom: 40px;
-    @include button-m-wide;
   }
 
   .phase-status {
@@ -355,10 +354,6 @@
         }
       }
     }
-  }
-
-  .srm-action {
-    @include button-m-wide;
   }
 
   .phase-status {
