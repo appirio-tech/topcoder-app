@@ -3,7 +3,9 @@
     .challenge-track
 
     header
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      a(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+
+      a(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{challenge.rounds[0].id}}") {{challenge.name}}
 
       p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
@@ -22,18 +24,23 @@
 
         .submitted(ng-switch-when="Submitted") Submitted
 
-        // Need styling and JS logic for this one
+        // TODO: Need styling and JS logic for this one
         .registered(ng-switch-when="Registered") Registered
 
       // Only show if not data science track
-      p.roles {{challenge.userDetails.roles | listRoles}}
+      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") {{challenge.userDetails.roles | listRoles}}
 
       .challenge-links
         .stats
-          a.registrants(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+          a.registrants(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
             .registrants-icon
 
             p {{challenge.numRegistrants}}
+
+          a.registrants(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/longcontest/?module=ViewStandings&rd={{challenge.rounds[0].id}}")
+            .registrants-icon
+
+            p {{challenge.numRegistrants[0]}}
 
           a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
             .submissions-icon
@@ -49,6 +56,7 @@
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
     ng-switch="challenge.track")
     header
+      // TODO: handle url for past marathon match
       a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
 
       p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
@@ -90,7 +98,9 @@
     .challenge-track
 
     header
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      a(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+
+      a(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{challenge.rounds[0].id}}") {{challenge.name}}
 
       p.subtrack {{challenge.subTrack | underscoreStrip}}
 
@@ -109,12 +119,17 @@
 
         .submitted(ng-switch-when="Submitted") Submitted
 
-        // Need styling and JS logic for this one
+        // TODO: Need styling and JS logic for this one
         .registered(ng-switch-when="Registered") Registered
 
     .challenge-links
-      a.registrants(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+      a.registrants(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
         p {{challenge.numRegistrants}}
+
+        .registrants-icon
+
+      a.registrants(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/longcontest/?module=ViewStandings&rd={{challenge.rounds[0].id}}")
+        p {{challenge.numRegistrants[0]}}
 
         .registrants-icon
 
