@@ -127,6 +127,27 @@
           return SRMService.getPastSRMs(profileVm.profile.handle, params)
           .then(function(data) {
             vm.challenges = data;
+            // sort SRMs by points
+            vm.challenges.sort(function(a, b) {
+              // if both SRMs have finalPoints details
+              var aHasFP;
+              var bHasFP;
+              if (
+                (aHasFP = a.rounds[0] && a.rounds[0].userSRMDetails && a.rounds[0].userSRMDetails.finalPoints)
+                &&
+                (bHasFP = b.rounds[0] && b.rounds[0].userSRMDetails && b.rounds[0].userSRMDetails.finalPoints)
+              ) {
+                // sort descending
+                return b.rounds[0].userSRMDetails.finalPoints - a.rounds[0].userSRMDetails.finalPoints;
+              } else if (bHasFP) {
+                // if b has FP, b should go first
+                return 1;
+              } else if (aHasFP) {
+                return -1;
+              } else {
+                return 0;
+              }
+            });
             vm.status.challenges = CONSTANTS.STATE_READY;
           })
           .catch(function(resp) {
