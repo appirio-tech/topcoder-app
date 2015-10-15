@@ -5,16 +5,17 @@
 
   ProfileCtrl.$inject = ['CONSTANTS', '$log', '$q',
     'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService', 'ExternalAccountService',
-    'userHandle', 'profile', 'ngDialog'
+    'userHandle', 'profile', 'ngDialog', '$anchorScroll'
   ];
 
-  function ProfileCtrl(CONSTANTS, $log, $q, TcAuthService, UserService, ProfileService, ChallengeService, ExternalAccountService, userHandle, profile, ngDialog) {
+  function ProfileCtrl(CONSTANTS, $log, $q, TcAuthService, UserService, ProfileService, ChallengeService, ExternalAccountService, userHandle, profile, ngDialog, $anchorScroll) {
     var vm = this;
     // set profile to the object that was resolved
     vm.profile = profile;
     vm.userHandle = userHandle;
     vm.showBadges = showBadges;
     vm.closeDialog = closeDialog;
+    vm.scrollTo = scrollTo;
 
     vm.imgMap = {
       'DEVELOP': 'develop',
@@ -96,6 +97,10 @@
 
     function closeDialog() {
       ngDialog.close();
+    }
+
+    function scrollTo(track) {
+      $anchorScroll(track + '_TRACK');
     }
   }
 
