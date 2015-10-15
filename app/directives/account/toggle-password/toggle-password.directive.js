@@ -29,10 +29,12 @@
         vm.onCPFocus = function(event) {
           vm.currentPasswordFocus = true;
           vm.currentPasswordPlaceholder = '';
+          element.addClass('focus');
         }
 
         vm.onCPBlur = function(event) {
           var relatedTarget = angular.element(event.relatedTarget);
+          element.removeClass('focus');
 
           // If you are blurring from the password input and clicking the checkbox
           if (relatedTarget.attr('type') === 'checkbox' && relatedTarget.attr('id') === 'currentPasswordCheckbox') {
