@@ -13,10 +13,10 @@ body {
 
 .fold-wrapper {
   min-height: 100%;
-  @media only screen and (min-width : 992px) {
+  @media only screen and (min-width : 1025px) {
     margin: 0 auto -270px;
   }
-  @media only screen and (max-width : 991px) {
+  @media only screen and (max-width : 1024px) {
     margin: 0 auto -200px;
   }
 }
