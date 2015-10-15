@@ -34,7 +34,7 @@
     }
 
     function getNextReview(challengeId) {
-      var url = CONSTANTS.API_URL + '/challenges/' + challengeId + '/assignNextReview';
+      var url = CONSTANTS.API_URL + '/reviews/' + challengeId + '/assignNextReview';
       return ApiService.requestHandler('PUT', url);
     }
 
