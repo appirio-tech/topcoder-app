@@ -75,8 +75,7 @@
             .value {{(account.data.followers|number:0) || 0}}
             .key followers
           li
-            //- {{(account.data.repositories|number:0) || 0}}
-            .value TBD
+            .value {{(account.data.repos|number:0) || 0}}
             .key repositories
 
       div(ng-switch-when="twitter")

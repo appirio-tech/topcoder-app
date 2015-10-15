@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .login-container, .register-container, .reset-password-container, .registered-successfully-container {
@@ -63,26 +64,17 @@
   }
 
   .tips {
-    left: 380px;  
+    left: 380px;
   }
 
   .email-tips {
-    left: 380px;  
+    left: 380px;
   }
 
   button {
-    @include ui-submit-button;
     width: 180px;
-    border-radius: 4px;
     align-self: center;
-
-    &.enabled-button {
-      @include ui-enabled-button;
-    }
-
-    &[disabled] {
-      @include ui-disabled-button;
-    }
+    text-transform: uppercase;
   }
 
   // Form stylings

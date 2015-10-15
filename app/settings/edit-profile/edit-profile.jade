@@ -38,7 +38,7 @@
         .bio
           .form-label short bio
             span(style="float:right;") {{vm.userData.description.length || 0}}/144
-          textarea.form-field(name="description", ng-model="vm.userData.description", maxlength="144")
+          textarea.form-field(name="description", ng-model="vm.userData.description", data-ng-trim="false", maxlength="144")
 
     .settings-section.tracks
       .section-info
@@ -49,7 +49,7 @@
       .section-fields
         track-toggle(tracks="vm.tracks")
 
-        button(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': vm.editProfile.$pristine || vm.editProfile.$invalid}") Save
+        button.tc-btn.tc-btn-secondary.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': vm.editProfile.$pristine || vm.editProfile.$invalid}") Save
 
   .settings-section.skills
     .section-info

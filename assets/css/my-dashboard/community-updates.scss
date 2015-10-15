@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .community-updates {
@@ -94,10 +95,14 @@
         a {
           display: block;
           margin-top: 25px;
-          color: $primary-color;
+          color: $primary;
           text-decoration: none;
           @media only screen and (min-width: 1132px) {
             margin-top: 0;
+          }
+
+          &:hover {
+            text-decoration: underline;
           }
         }
       }
@@ -106,10 +111,5 @@
 
   .blog-links {
     @include module-links;
-
-    a {
-      @include button-m;
-      @include button-secondary;
-    }
   }
 }

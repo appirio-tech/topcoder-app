@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .profile-widget-directive {
@@ -54,6 +55,7 @@
   }
 
   p.description {
+    word-wrap: break-word;
     margin-top: 10px;
     font-size: 14px;
     line-height: 24px;
@@ -62,10 +64,10 @@
     text-align: center;
   }
 
-  button.edit {
-    @include button-1-m;
+  .edit {
     width: 200px;
     margin-top: 10px;
+    text-align: center;
   }
 
   .tracks-links {
@@ -108,78 +110,73 @@
       align-items: center;
       justify-content: flex-end;
       .link {
-        @include button-2-m;
         text-decoration: none;
         text-transform: uppercase;
         margin-left: 5px;
         margin-right: 5px;
       }
     }
-
-
   }
 }
 @media (min-width: 768px) {
-
-.profile-widget-directive {
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  img.profile-circle {
-    margin-top: 10px;
-    width: 180px;
-    height: 180px;
-  }
-  .info {
-    margin-left: 15px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 2;
-
-    h1.handle {
-      margin: 0;
-      text-align: left;
-      font-size: 46px;
-      line-height: 56px;
+  .profile-widget-directive {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    img.profile-circle {
+      margin-top: 10px;
+      width: 180px;
+      height: 180px;
     }
+    .info {
+      margin-left: 15px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 2;
 
-    h3.tenure {
-      margin-top: 3px;
-      text-align: left;
+      h1.handle {
+        margin: 0;
+        text-align: left;
+        font-size: 46px;
+        line-height: 56px;
+      }
+
+      h3.tenure {
+        margin-top: 3px;
+        text-align: left;
+      }
+
+      h3.location-challenges {
+        margin-top: 36px;
+        text-align: left;
+      }
+
+      p.description {
+        margin-top: 12px;
+        max-width: 600px;
+        text-align: left;
+      }
+
     }
-
-    h3.location-challenges {
-      margin-top: 36px;
-      text-align: left;
-    }
-
-    p.description {
-      margin-top: 12px;
-      max-width: 600px;
-      text-align: left;
-    }
-
-  }
-  .tracks-links {
-    margin-top: -2.1px;
-    .tracks {
-      .track {
-        img {
-          height: 44px;
-        }
-        .text {
-          margin-top: 8px;
+    .tracks-links {
+      margin-top: -2.1px;
+      .tracks {
+        .track {
+          img {
+            height: 44px;
+          }
+          .text {
+            margin-top: 8px;
+          }
         }
       }
-    }
-    hr {
-      margin-bottom: 0;
-    }
+      hr {
+        margin-bottom: 0;
+      }
 
-    .links {
-      margin-top: 20px;
+      .links {
+        margin-top: 20px;
+      }
     }
   }
-}
-
 }

@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .account-info-container {
@@ -20,7 +21,6 @@
       .button-container {
         button.save {
           margin-top: 20px;
-          @include button-2-l;
         }
       }
     }
@@ -54,9 +54,6 @@
         justify-content: center;
         width: 100%;
         margin-top: 30px;
-        button {
-          @include button-2-l;
-        }
       }
     }
   }

@@ -20,6 +20,7 @@ html
     link(rel='stylesheet', href='../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.css')
     link(rel='stylesheet', href='../bower_components/ngDialog/css/ngDialog.css')
     link(rel='stylesheet', href='../bower_components/ngDialog/css/ngDialog-theme-default.css')
+    link(rel='stylesheet', href='../bower_components/angular-carousel/dist/angular-carousel.css')
     //- endbower
     // endbuild
 
@@ -81,7 +82,7 @@ html
 
   body(ng-app="topcoder", ng-controller="TopcoderController as main", ng-class="{'menu-visible': main.menuVisible}", ng-strict-di)
 
-    #header(ui-view="header")
+    #header(ui-view="header", autoscroll="true")
 
     .intro-js-container(ng-intro-options="main.introOptions", ng-intro-method="main.startIntro")
 
@@ -107,6 +108,7 @@ html
     script(src='../bower_components/intro.js/intro.js')
     script(src='../bower_components/angular-intro.js/src/angular-intro.js')
     script(src='../bower_components/angular-jwt/dist/angular-jwt.js')
+    script(src='../bower_components/angular-messages/angular-messages.js')
     script(src='../bower_components/angular-sanitize/angular-sanitize.js')
     script(src='../bower_components/angular-ui-router/release/angular-ui-router.js')
     script(src='../bower_components/x2js/xml2json.min.js')
@@ -122,6 +124,8 @@ html
     script(src='../bower_components/ngDialog/js/ngDialog.js')
     script(src='../bower_components/lodash/lodash.js')
     script(src='../bower_components/restangular/dist/restangular.js')
+    script(src='../bower_components/angular-touch/angular-touch.js')
+    script(src='../bower_components/angular-carousel/dist/angular-carousel.js')
     //- endbower
     //- inject:nonBowerScripts
     script(src="/scripts/auth0-angular.js")

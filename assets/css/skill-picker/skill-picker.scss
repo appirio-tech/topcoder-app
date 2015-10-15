@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .skill-picker-container {
@@ -143,8 +144,7 @@
     font-size: 15px;
     padding: 5px 0px;
   }
-  .button-l{
+  .done-button{
     margin: 30px;
-    @include button-l;
   }
 }

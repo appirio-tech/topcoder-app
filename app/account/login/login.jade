@@ -21,7 +21,7 @@
     p.problem-signin
       a.forgot-password(ui-sref="resetPassword") Forgot your password?
 
-    button(type="submit", ng-disabled="vm.loginForm.$invalid", ng-class="{'enabled-button': vm.loginForm.$valid}") Log In
+    button.tc-btn.tc-btn-l(type="submit", ng-disabled="vm.loginForm.$invalid") Log In
 
   section.social
     p ------------ Or Log in With ------------
@@ -41,7 +41,7 @@
         p Twitter
 
 .join-topcoder
-  span Not a member yet? 
-  p.redirect
-    a(ui-sref="register(vm.$stateParams)") Join now
+  span Not a member yet?
+
+  a.tc-btn.tc-btn-ghost-secondary.tc-btn-s(ui-sref="register(vm.$stateParams)") Join now
 

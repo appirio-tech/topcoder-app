@@ -2,6 +2,7 @@ var gulp         = require('gulp');
 var args         = require('yargs').argv;
 var config       = require('./gulp.config')();
 var del          = require('del'); // rm -rf
+var fs           = require('fs');
 var $            = require('gulp-load-plugins')({lazy: true});
 var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
@@ -49,7 +50,7 @@ gulp.task('styles', ['clean-styles'], function() {
   return gulp
     .src(config.sass, {base: './'})
     .pipe($.plumber())
-    .pipe($.sass())
+    .pipe($.sass({includePaths: [require('tc-ui-kit').includePaths]}))
     .pipe($.autoprefixer({browsers: ['last 2 version']}))
     .pipe($.replace(/\/fonts/g, assetPrefix + 'fonts'))
     .pipe(gulp.dest(config.temp));

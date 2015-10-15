@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .profile-subtrack-container {
@@ -41,7 +42,7 @@
           text-decoration: none;
           color: black;
           &:hover {
-            color: $accent-color;
+            color: $primary;
           }
         }
       }
@@ -53,7 +54,7 @@
       }
       .subtrack {
         display: block;
-        color: $accent-color;
+        color: $primary;
         font-weight: 700;
         text-align: center;
         text-transform: uppercase;
@@ -152,7 +153,7 @@
         padding: 14px;
         border-bottom: 1px solid #f6f6f6;
         .right {
-          color: $accent-color;
+          color: $primary;
         }
         &.first {
           border-top: 1px solid #f6f6f6;
@@ -519,6 +520,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
   .track {
     margin-top: 22.4px;
     display: flex;
@@ -618,38 +620,5 @@
       height: 80px;
       margin: auto;
     }
-
-  }
-  .empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .action-text {
-      margin-top: 32px;
-      font-family: 'Sofia Pro';
-      font-size: 18px;
-      line-height: 24px;
-      font-weight: 200;
-    }
-    .tracks {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 50%;
-      .track {
-      }
-    }
-    .description {
-      margin-top: 50px;
-      font-family: 'Source Sans Pro';
-      font-size: 15px;
-      line-height: 22px;
-      width: 60%;
-    }
-    button.link-button {
-      @include button-1-l;
-      margin-top: 20px;
-    }
-    padding-bottom: 40px;
   }
 }

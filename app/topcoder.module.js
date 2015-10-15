@@ -28,7 +28,9 @@
     'CONSTANTS',
     'dcbImgFallback',
     'toaster',
-    'angular-intro'
+    'angular-intro',
+    'ngMessages',
+    'angular-carousel'
   ];
 
   angular.module('topcoder', dependencies).run(appRun);
