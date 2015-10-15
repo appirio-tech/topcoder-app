@@ -24,8 +24,6 @@
         // matchs everything besides /v3/members/{handle}/financial
         { method: 'GET', url: '\/v3[\\d\\.\\-A-Za-z]*\/members\/\\w+\/(?!financial)\\w*'}
       ];
-      // list here all endpoints which are v3 but require v2 token for backward compatability
-      var v3EndpointsWithV2Token = [];
 
       for (var i = 0; i < haveItAddItEndpoints.length; i++) {
         var obj = haveItAddItEndpoints[i];
@@ -60,13 +58,6 @@
 
       // for everything else assume that we need to send token
       var idToken = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token();
-
-      for (var i = 0; i < v3EndpointsWithV2Token.length; i++) {;
-        var ep = v3EndpointsWithV2Token[i];
-        if (config.url.indexOf(ep.url) > -1) {
-          idToken = AuthTokenService.getV2Token();
-        }
-      };
 
       if (!TcAuthService.isAuthenticated() || idToken == null) {
         $state.go('login');
