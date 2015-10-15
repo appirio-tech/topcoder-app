@@ -25,12 +25,7 @@
         { method: 'GET', url: '\/v3[\\d\\.\\-A-Za-z]*\/members\/\\w+\/(?!financial)\\w*'}
       ];
       // list here all endpoints which are v3 but require v2 token for backward compatability
-      var v3EndpointsWithV2Token = [
-        { method: 'GET', url: '\/v3\/reviews'},
-        { method: 'GET', url: '\/v3\/scorecards'},
-        { method: 'GET', url: '\/v3\/scorecardQuestions'},
-        { method: 'GET', url: '\/v3\/reviewItems'}
-      ];
+      var v3EndpointsWithV2Token = [];
 
       for (var i = 0; i < haveItAddItEndpoints.length; i++) {
         var obj = haveItAddItEndpoints[i];
@@ -68,7 +63,6 @@
 
       for (var i = 0; i < v3EndpointsWithV2Token.length; i++) {;
         var ep = v3EndpointsWithV2Token[i];
-        console.log(config.url);
         if (config.url.indexOf(ep.url) > -1) {
           idToken = AuthTokenService.getV2Token();
         }
