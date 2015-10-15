@@ -44,7 +44,8 @@
 
       .track(
         ng-repeat="track in profileVm.profile.tracks",
-        ng-if="profileVm.categories[track].length > 0"
+        ng-if="profileVm.categories[track].length > 0",
+        id="{{track}}_TRACK"
       )
 
         div(class="name")
