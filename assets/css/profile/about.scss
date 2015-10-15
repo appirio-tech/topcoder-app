@@ -412,8 +412,10 @@
     .list {
       display: flex;
       flex-direction: row;
-      width: 80%;
+      width: 100%;
       overflow-x: auto;
+      padding-left: 30px;
+      padding-right: 30px;
       margin: 70px auto 0 auto;
       .skill {
         margin: 0 30px;
