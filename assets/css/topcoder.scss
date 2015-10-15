@@ -11,6 +11,15 @@ body {
   }
 }
 
+// TODO move hidden and visible classes to ui kit
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
 .fold-wrapper {
   min-height: 100%;
   @media only screen and (min-width : 1025px) {

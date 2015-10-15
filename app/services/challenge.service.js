@@ -183,9 +183,36 @@
 
     function processPastChallenges(challenges) {
       angular.forEach(challenges, function(challenge) {
-        if (challenge.userDetails && Array.isArray(challenge.userDetails.winningPlacements)) {
-          challenge.highestPlacement = _.max(challenge.userDetails.winningPlacements);
-          challenge.wonFirst = challenge.highestPlacement == 1;
+        if (challenge.userDetails) {
+          // TODO placement logic for challenges can be moved to their corresponding user place directive
+          // process placement for challenges having winningPlacements array in response
+          if (Array.isArray(challenge.userDetails.winningPlacements)) {
+            challenge.highestPlacement = _.max(challenge.userDetails.winningPlacements);
+            challenge.wonFirst = challenge.highestPlacement == 1;
+            if (challenge.highestPlacement === 0) {
+              challenge.highestPlacement = null;
+            }
+          }
+          // process placement for design challenges
+          if (challenge.track == 'DESIGN' && challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
+            challenge.thumbnailId = challenge.userDetails.submissions[0].id;
+
+            challenge.highestPlacement = _.max(challenge.userDetails.submissions, 'placement').placement;
+
+            if (challenge.highestPlacement == 1) {
+              challenge.wonFirst = true;
+            }
+          }
+
+          if (challenge.userDetails.hasUserSubmittedForReview) {
+            if (!challenge.highestPlacement) {
+              challenge.userStatus = "PASSED_SCREENING";
+            } else {
+              challenge.userStatus = "PASSED_REVIEW";
+            }
+          } else {
+            challenge.userStatus = "NOT_FINISHED";
+          }
         }
       });
     }
