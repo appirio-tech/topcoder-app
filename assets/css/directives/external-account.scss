@@ -45,6 +45,14 @@
     cursor: default;
   }
 
+  &.connecting {
+    cursor: default;
+  }
+
+  &.disabled {
+    cursor: default;
+  }
+
   .external-account-box {
     display: flex;
     flex-direction: column;
