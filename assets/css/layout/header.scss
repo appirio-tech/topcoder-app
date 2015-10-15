@@ -224,7 +224,7 @@
   }
 }
 
-@media only screen and (max-width : 991px) {
+@media only screen and (max-width : 1024px) {
   .header-wrapper {
     // When autocomplete list is displayed, hide all menu items and footer (except copyright notice)
     &.autocomplete .menu-item:not(.search-wrapper),
@@ -315,7 +315,7 @@
   }
 }
 
-@media only screen and (min-width : 992px) {
+@media only screen and (min-width : 1025px) {
   .header-wrapper {
     background: #fff;
     position: relative;
