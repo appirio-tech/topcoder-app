@@ -75,9 +75,11 @@
         p BLAH
 
     .challenge-details(ng-switch-when="DEVELOP")
-      p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
+      p.place(ng-class="{ 'first-place': challenge.wonFirst }", ng-show="challenge.highestPlacement") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
+      p.place(ng-show="challenge.userStatus === 'NOT_FINISHED'") Didn't Finish
+      p.place(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
 
-      .challenge-score
+      .challenge-score(ng-show="challenge.userStatus !== 'NOT_FINISHED'")
         p.score {{challenge.userDetails.submissionReviewScore/100 | percentage}}
 
         p Review Score

@@ -81,7 +81,11 @@
 
       return ChallengeService.getUserChallenges(handle, params)
       .then(function(challenges){
-        ChallengeService.processActiveDevDesignChallenges(challenges);
+        if (vm.statusFilter == 'active') {
+          ChallengeService.processActiveDevDesignChallenges(challenges);
+        } else {
+          ChallengeService.processPastChallenges(challenges);
+        }
         if (challenges.length > 0) {
           vm.myChallenges = challenges;
           vm.userHasChallenges = true;

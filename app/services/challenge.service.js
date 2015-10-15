@@ -171,9 +171,22 @@
 
     function processPastChallenges(challenges) {
       angular.forEach(challenges, function(challenge) {
-        if (challenge.userDetails && Array.isArray(challenge.userDetails.winningPlacements)) {
-          challenge.highestPlacement = _.max(challenge.userDetails.winningPlacements);
-          challenge.wonFirst = challenge.highestPlacement == 1;
+        if (challenge.userDetails) {
+          if (Array.isArray(challenge.userDetails.winningPlacements)) {
+            challenge.highestPlacement = _.max(challenge.userDetails.winningPlacements);
+            challenge.wonFirst = challenge.highestPlacement == 1;
+            if (challenge.highestPlacement === 0) {
+              challenge.highestPlacement = null;
+            }
+          }
+
+          if (challenge.userDetails.hasUserSubmittedForReview) {
+            if (!challenge.highestPlacement) {
+              challenge.userStatus = "PASSED_SCREENING";
+            }
+          } else {
+            challenge.userStatus = "NOT_FINISHED";
+          }
         }
       });
     }
