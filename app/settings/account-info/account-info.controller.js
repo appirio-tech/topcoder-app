@@ -31,7 +31,7 @@
       });
 
       vm.countries = ISO3166.getAllCountryObjects();
-      vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.homeCountryCode);
+      vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.competitionCountryCode);
 
       // Timeout needed since newPasswordForm.currentPassword doesn't exist until later
       $timeout(function(){
