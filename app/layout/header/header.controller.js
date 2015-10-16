@@ -65,6 +65,7 @@
       vm.isAuth = TcAuthService.isAuthenticated();
       if (vm.isAuth) {
         vm.userHandle = UserService.getUserIdentity().handle;
+
         vm.userMenu = [
           { 'sref': 'dashboard', 'text': 'DASHBOARD', 'icon': '/images/nav/dashboard.svg' },
           { 'sref': 'profile.about', 'srefParams': { 'userHandle': vm.userHandle }, 'text': 'MY PROFILE', 'icon': '/images/nav/badge.svg' },
@@ -75,6 +76,7 @@
         ProfileService.getUserProfile(vm.userHandle)
         .then(function(data) {
           vm.profile = data;
+          vm.userHandleColor = ProfileService.getUserHandleColor(vm.profile);
         })
         .catch(function(err) {
           $log.error("Unable to get user data");
