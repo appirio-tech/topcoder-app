@@ -4,7 +4,7 @@
     img.profile-circle(ng-if="!profile.photoURL", src="/images/ico-user-default.svg")
 
   .info
-    h1.handle {{profile.handle}}
+    h1.handle(style="color:{{handleColor}};") {{profile.handle}}
 
     h3.tenure(ng-if="profile.startMonth")
       | Member Since {{profile.startMonth}}
