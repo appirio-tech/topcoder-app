@@ -23,15 +23,6 @@
             $scope.challenge.subTrack === 'MARATHON_MATCH') {
             ChallengeService.processPastMarathonMatch($scope.challenge);
           }
-          if ($scope.challenge.track == 'DESIGN' && $scope.challenge.userDetails.submissions && $scope.challenge.userDetails.submissions.length > 0) {
-            $scope.challenge.thumbnailId = $scope.challenge.userDetails.submissions[0].id;
-
-            $scope.challenge.highestPlacement = _.max($scope.challenge.userDetails.submissions, 'placement').placement;
-
-            if ($scope.challenge.highestPlacement == 1) {
-              $scope.challenge.wonFirst = true;
-            }
-          }
         }
 
         function openLightbox() {

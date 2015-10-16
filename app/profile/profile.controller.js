@@ -58,13 +58,6 @@
       vm.status.skills = CONSTANTS.STATE_ERROR;
     });
 
-
-    vm.externalLinksPromise = ExternalAccountService.getLinkedExternalLinksData(vm.userHandle).then(function(data) {
-      vm.linkedExternalAccountsData = data.plain();
-    }).catch(function(err) {
-      vm.status.externalLinks = CONSTANTS.STATE_ERROR;
-    });
-
     function activate() {
       $log.debug('Calling ProfileController activate()');
       // show edit profile link if user is authenticated and is viewing their own profile
