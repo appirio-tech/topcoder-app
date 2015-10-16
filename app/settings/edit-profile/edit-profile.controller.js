@@ -18,6 +18,7 @@
     activate();
 
     function activate() {
+      vm.userData = userData.clone();
       vm.linkedExternalAccounts = [];
       vm.linkedExternalAccountsData = {};
       vm.skills = false;
@@ -26,12 +27,11 @@
       vm.tracks = {};
 
       vm.countries = ISO3166.getAllCountryObjects();
-      vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.competitionCountryCode);
+      vm.countryObj = ISO3166.getCountryObjFromAlpha3(vm.userData.competitionCountryCode);
 
-      processData(userData);
-      vm.userData = userData;
+      processData(vm.userData);
 
-      ExternalAccountService.getLinkedExternalAccounts(userData.userId).then(function(data) {
+      ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId).then(function(data) {
         vm.linkedExternalAccounts = data;
       });
 
@@ -114,6 +114,7 @@
         vm.profileFormProcessing = false;
         $log.info('Saved successfully');
         toaster.pop('success', "Success!", "Your account information was updated.");
+        for (var k in vm.userData) userData[k] = vm.userData[k];
       })
       .catch(function(err) {
         vm.profileFormProcessing = false;
@@ -128,9 +129,9 @@
 
     function processData(userInfo) {
       vm.tracks = {
-        DESIGN: _.contains(userData.tracks, 'DESIGN'),
-        DEVELOP: _.contains(userData.tracks, 'DEVELOP'),
-        DATA_SCIENCE: _.contains(userData.tracks, 'DATA_SCIENCE'),
+        DESIGN: _.contains(userInfo.tracks, 'DESIGN'),
+        DEVELOP: _.contains(userInfo.tracks, 'DEVELOP'),
+        DATA_SCIENCE: _.contains(userInfo.tracks, 'DATA_SCIENCE'),
       };
     }
   }
