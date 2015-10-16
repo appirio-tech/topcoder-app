@@ -37,7 +37,8 @@ describe('Profile Badges Controller', function() {
     scope = $rootScope.$new();
     controller = $controller('BadgesController', {
       $scope: scope,
-      userHandle: 'vikasrohit'
+      userHandle: 'vikasrohit',
+      profile: {photoURL: "http://topcoder.com/test.png"}
     });
     $rootScope.$apply();
 

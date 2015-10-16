@@ -6,6 +6,7 @@ describe('Profile Controller', function() {
   var mockStats = mockData.getMockStats();
   var mockSkills = mockData.getMockSkills();
   var mockExternalLinks = mockData.getMockLinkedExternalAccounts();
+  var mockExternalLinksData = mockData.getMockLinkedExternalAccountsData();
 
   beforeEach(function() {
     bard.appModule('tc.profile');
@@ -25,7 +26,7 @@ describe('Profile Controller', function() {
 
     var externalAccountService = {
       getLinkedExternalLinksData: function() {
-        return $q.when(mockExternalLinks);
+        return $q.when(mockExternalLinksData);
       }
     }
     controller = $controller('ProfileCtrl', {
@@ -56,9 +57,10 @@ describe('Profile Controller', function() {
     });
 
     it('should have default status', function() {
+      expect(controller.status.badges).to.equal(CONSTANTS.STATE_LOADING);
       expect(controller.status.stats).to.equal(CONSTANTS.STATE_READY);
       expect(controller.status.skills).to.equal(CONSTANTS.STATE_READY);
-      expect(controller.status.externalLinks).to.equal(CONSTANTS.STATE_READY);
+      expect(controller.status.externalLinks).to.equal(CONSTANTS.STATE_LOADING);
     });
   });
 });
