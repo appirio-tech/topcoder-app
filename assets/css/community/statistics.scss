@@ -1,0 +1,328 @@
+@import '../partials/combined';
+@import 'community';
+.statistics-container {
+  margin-top: 15px;
+  @media only screen and (min-width: 1000px) {
+    margin: 60px 67px;
+  }
+  %statistics-panel {
+    background: $white;
+    padding: 10px;
+    margin-bottom: 6px;
+    h2 {
+      @include sofia-pro-bold;
+      font-size: 18px;
+      text-transform: uppercase;
+      text-align: center;
+      padding-top: 23px;
+      padding-bottom: 23px;
+      @media only screen and (min-width: 1000px) {
+        font-size: 28px;
+        padding-top: 82px;
+        padding-bottom: 82px;
+      }
+      small {
+        @include sofia-pro-regular;
+        font-size: 16px;
+        display: block;
+        text-transform: capitalize;
+        color: $gray-dark-alt;
+        padding-top: 8px;
+      }
+      span {
+        color: $member-search-highlight;
+      }
+    }
+  }
+  .winner-tile {
+    @include sofia-pro-regular;
+    display: flex;
+    flex-direction: row;
+    background: $white;
+    border: 1px solid $member-tile-border;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1);
+    margin-bottom: 8px;
+    position: relative;
+    .text-content {
+      padding-top: 15px;
+      padding-right: 16px;
+      @media only screen and (min-width: 1070px) {
+        padding-top: 18px;
+        padding-right: 15px;
+      }
+    }
+    .winner-name {
+      text-transform: uppercase;
+      font-size: 15px;
+      @media only screen and (min-width: 1070px) {
+        font-size: 22px;
+      }
+    }
+    .winning-date {
+      color: $gray-dark-alt;
+      font-size: 12px;
+      padding-top: 1px;
+      position: absolute;
+      right: 16px;
+      @media only screen and (min-width: 1070px) {
+        font-size: 17px;
+        padding-top: 8px;
+      }
+    }
+    .winner-country {
+      color: $member-blue;
+      font-size: 11px;
+      padding-top: 2px;
+      @media only screen and (min-width: 1070px) {
+        font-size: 15px;
+        padding-top: 8px;
+      }
+    }
+    .avatar-wrapper,
+    .avatar-wrapper img {
+      height: 92px;
+      width: 96px;
+      @media only screen and (min-width: 1070px) {
+        height: 133px;
+        width: 139px;
+      }
+    }
+    .avatar-wrapper {
+      margin-right: 10px;
+      @media only screen and (min-width: 1070px) {
+        margin-right: 15px;
+      }
+    }
+    .contests {
+      font-size: 12px;
+      position: absolute;
+      bottom: 15px;
+      @media only screen and (min-width: 1070px) {
+        font-size: 16px;
+        bottom: 21px;
+      }
+    }
+  }
+  .outlined-btn {
+    border: 1px solid $member-button;
+    cursor: pointer;
+    font-size: 11px;
+    display: block;
+    margin: 22px auto 9px;
+    width: 127px;
+    text-align: center;
+    text-transform: uppercase;
+    color: $member-blue;
+    padding: 9px 0 4px;
+    border-radius: 4px;
+    @media only screen and (min-width: 1000px) {
+      margin-top: 63px;
+      margin-bottom: 29px;
+      width: 159px;
+      font-size: 14px;
+      padding: 8px 0;
+    }
+  }
+  .winner-container> div {
+    @extend %statistics-panel;
+  }
+  .tile-wrapper {
+    @media only screen and (min-width: 641px) {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      .winner-tile {
+        min-width: 300px;
+      }
+    }
+    @media only screen and (min-width: 1070px) {
+      width: 918px;
+      margin: 0 auto;
+      justify-content: space-between;
+      .winner-tile {
+        min-width: 437px;
+      }
+    }
+  }
+  .MM-winner-container {
+    @media only screen and (min-width: 1000px) {
+      .tile-wrapper {
+        margin: -16px auto 0;
+        justify-content: center;
+        .winner-tile {
+          min-width: 524px;
+        }
+      }
+      .text-content {
+        padding-top: 25px;
+        padding-right: 15px;
+      }
+      .winner-name {
+        font-size: 26px;
+      }
+      .winning-date {
+        font-size: 17px;
+        padding-top: 0;
+      }
+      .winner-country {
+        font-size: 18px;
+        padding-top: 5px;
+      }
+      .avatar-wrapper,
+      .avatar-wrapper img {
+        height: 160px;
+        width: 167px;
+      }
+      .avatar-wrapper {
+        margin-right: 18px;
+      }
+      .contests {
+        font-size: 19px;
+        bottom: 24px;
+      }
+    }
+    .outlined-btn {
+      margin-top: 40px;
+    }
+  }
+  .top-performers-container {
+    @extend %statistics-panel;
+    @include sofia-pro-regular;
+    padding-bottom: 40px;
+    .performers-container {
+      display: flex;
+      flex-direction: row;
+      overflow-x: scroll;
+      margin: 0 -10px;
+    }
+    .performer-wrapper {
+      min-width: 280px;
+      margin-right: 10px;
+    }
+    @media only screen and (min-width: 861px) {
+      .performers-container {
+        justify-content: center;
+      }
+      .performer-wrapper:first-child {
+        margin-left: 10px;
+      }
+    }
+    @media only screen and (min-width: 1000px) {
+      h2 {
+        padding-bottom: 65px;
+      }
+    }
+    @media only screen and (min-width: 1070px) {
+      .performer-wrapper {
+        min-width: 300px;
+      }
+    }
+    @media only screen and (min-width: 1170px) {
+      .performer-wrapper {
+        margin-right: 60px;
+        &:first-child {
+          margin-left: 60px;
+        }
+      }
+    }
+  }
+  .performer-wrapper {
+    h3 {
+      text-align: center;
+      text-transform: uppercase;
+      color: $gray-dark-alt;
+      padding: 1px 0 17px;
+    }
+    table {
+      @include module-full-width;
+    }
+    thead {
+      text-transform: uppercase;
+      color: $white;
+      &.design th {
+        background: $statistics-design;
+      }
+      &.develop th {
+        background: $statistics-develop;
+      }
+      &.data-science th {
+        background: $statistics-data_science;
+      }
+    }
+    th,
+    td {
+      text-align: left;
+      padding-left: 13px;
+      background: $gray-lighter;
+      font-size: 12px;
+      padding: 21px 0 23px 13px;
+      &:first-child {
+        width: 43px;
+      }
+      &:nth-child(2) {
+        padding-left: 0;
+      }
+      &:last-child {
+        width: 75px;
+      }
+    }
+    .even td {
+      background: $statistics-table-even;
+    }
+    @media only screen and (min-width: 1000px) {
+      h3 {
+        font-size: 22px;
+        padding: 1px 0 28px;
+      }
+      th,
+      td {
+        padding-left: 13px;
+        font-size: 13px;
+      }
+      th {
+        padding: 26px 0 22px 13px;
+      }
+      td {
+        padding: 23px 0 24px 13px;
+      }
+    }
+  }
+  .tops-container,
+  .record-books-container {
+    @extend %statistics-panel;
+    @include sofia-pro-regular;
+    text-align: center;
+    padding-bottom: 16px;
+    min-height: 165px;
+    h2 {
+      padding-bottom: 17px;
+    }
+    a {
+      cursor: pointer;
+      color: $member-blue;
+      font-size: 12px;
+      line-height: 23px;
+    }
+    @media only screen and (min-width: 768px) {
+      .content-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: left;
+      }
+    }
+    @media only screen and (min-width: 1000px) {
+      h2 {
+        padding-bottom: 44px;
+      }
+      a {
+        font-size: 24px;
+        line-height: 49px;
+      }
+      .content-wrapper {
+        margin-bottom: 60px;
+      }
+    }
+  }
+}

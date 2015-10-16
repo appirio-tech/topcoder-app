@@ -23,13 +23,27 @@
       'community.members': {
         parent: 'root',
         url: '/community/members/',
-        templateUrl: 'community/members.html'
+        templateUrl: 'community/members.html',
+        controller: 'MembersController',
+        controllerAs: 'ctrl',
+        resolve: {
+          membersData: function($http) {
+            return $http.get('community/mock-data/members.json');
+          }
+        }
       },
       
       'community.statistics': {
         parent: 'root',
         url: '/community/statistics/',
-        templateUrl: 'community/statistics.html'
+        templateUrl: 'community/statistics.html',
+        controller: 'StatisticsController',
+        controllerAs: 'ctrl',
+        resolve: {
+          statData: function($http) {
+            return $http.get('community/mock-data/statistics.json');
+          }
+        }
       },
     };
 

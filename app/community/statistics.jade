@@ -1,1 +1,74 @@
-span statistics page placeholder
+.community-view
+  .header-community
+    header
+      h1 Statistics
+
+  .statistics-container
+    .winner-container
+      .SRM-winner-container
+        h2 SRM Winners
+        .tile-wrapper
+          .winner-tile(ng-repeat="item in ctrl.SRMWinners")
+            .avatar-wrapper: img(ng-src="{{item.avatar}}")
+            .text-content
+              p
+                span.winner-name {{item.name}}
+                span.winning-date {{item.date | date: 'dd MMM yyyy'}}
+              p.winner-country {{item.country}}
+              .contests
+                p(ng-repeat="contest in item.contests") {{contest}}
+        .btn-wrapper: a.outlined-btn View all SRM
+
+      .MM-winner-container
+        h2 Marathon Matches Winners
+        .tile-wrapper
+          .winner-tile(ng-repeat="item in ctrl.MarathonWinner")
+            .avatar-wrapper: img(ng-src="{{item.avatar}}")
+            .text-content
+              p
+                span.winner-name {{item.name}}
+                span.winning-date {{item.date | date: 'dd MMM yyyy'}}
+              p.winner-country {{item.country}}
+              .contests
+                p(ng-repeat="contest in item.contests") {{contest}}
+        .btn-wrapper: a.outlined-btn View all SM STATS
+
+    .top-performers-container
+      h2 Top Performers
+      .performers-container
+        .performer-wrapper(ng-repeat="item in ctrl.TopPerformers")
+          h3 {{item.contestType}}
+          table
+            thead(class="{{item.class}}")
+              tr 
+                th #
+                th Handle
+                th Wins
+            tbody
+              tr(ng-repeat="user in item.performers track by $index", ng-class="{even: $even}")
+                td {{$index + 1}}
+                td {{user.name}}
+                td {{user.wins}}
+
+    .tops-container 
+      h2 Tops
+      .content-wrapper
+        .col
+          .link: a Algorithm    
+          .link: a Marathon    
+          .link: a Conceptualization
+        .col
+          .link: a Specification    
+          .link: a Architecture    
+          .link: a Component Design    
+        .col
+          .link: a Component Development    
+          .link: a Assembly    
+          .link: a Test Suites
+
+    .record-books-container
+      h2 Record Books
+      .content-wrapper
+        .col: .link: a Algorithm    
+        .col: .link: a Marathon    
+        .col: .link: a Component 

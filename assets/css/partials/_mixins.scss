@@ -464,6 +464,21 @@
   }
 }
 
+@mixin community-form-placeholder {
+  ::-webkit-input-placeholder {
+    color: #ADADB7;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #ADADB7;
+  }
+  :-ms-input-placeholder {
+    color: #ADADB7;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: #ADADB7;
+  }
+}
+
 @mixin ui-enabled-button {
   background-color: $ui-enabled-button-blue;
   cursor: pointer;

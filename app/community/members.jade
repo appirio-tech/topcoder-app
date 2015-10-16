@@ -1,1 +1,56 @@
-span members page placeholder
+.community-view
+  .header-community
+    header
+      h1 Members
+
+  .members-container
+    .search-container
+      form(name="searchForm", role="form", ng-submit="ctrl.search()", novalidate)
+        input(ng-model="ctrl.keywords", name="keywords", placeholder="Search member here...", type="text", required)
+        input(type="submit" name="search-btn" value="").search-ico
+
+    .default-show-container(ng-show="ctrl.notSearch")
+      .members-of-month-container
+        h2 Members of the Month
+          small {{ctrl.currentMonth}}
+        .members-wrapper
+          .user-tile(ng-repeat="item in ctrl.memberLeaderboard")
+            .avatar-wrapper: img(ng-src="{{item.avatar}}")
+            .user-name {{item.name}}
+            .user-tag(class="{{item.class}}") {{item.contestType}}
+            p.user-desc {{item.description}}
+            a.user-more Read the story
+        p.member-congratulation Congratulations for all member of the month, win prize each
+
+      .copilots-container
+        h2 Copilots
+        .copilots-wrapper
+          .user-tile(ng-repeat="item in ctrl.copilots")
+            .avatar-wrapper: img(ng-src="{{item.avatar}}")
+            .user-name {{item.name}}
+            .user-country {{item.country}}
+        .btn-wrapper
+          a.blue-btn View all copilots
+   
+    .search-result-container(ng-hide="ctrl.notSearch")
+      h2 Search Result For: 
+        span "{{ctrl.keywords}}"
+        .showing-controll-wrapper
+          ul
+            li
+              input(type="radio" ng-model="ctrl.showing" value="grid" name="showing")#member-showing-grid
+              label(for="member-showing-grid").grid-lbl grid
+            li
+              input(type="radio" ng-model="ctrl.showing" value="list" name="showing")#member-showing-list
+              label(for="member-showing-list").list-lbl list
+      .results-wrapper(ng-class="{'show-grid': ctrl.showing=='grid'}")
+        .user-tile(ng-repeat="item in ctrl.searchResult")
+          .avatar-wrapper: img(ng-src="{{item.avatar}}")
+          .text-content 
+            .user-name {{item.name}}
+            .user-country {{item.country}}
+          a.user-more View Profile
+      .btn-wrapper
+        a.gray-btn Load More
+
+

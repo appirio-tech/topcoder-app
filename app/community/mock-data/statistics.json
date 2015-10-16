@@ -1,0 +1,125 @@
+{
+    "SRMWinners": [{
+        "avatar": "community/mock-data/avatar.png",
+        "name": "enot",
+        "date": "20150813T000000Z",
+        "country": "Indonesia",
+        "contests": ["SRM 668 DIVISION WINNER"]
+    }, {
+        "avatar": "community/mock-data/avatar.png",
+        "name": "javaiscool",
+        "date": "20150813T000000Z",
+        "country": "Brazil",
+        "contests": ["SRM 668 DIVISION WINNER"]
+    }],
+    "MarathonWinner": [{
+        "avatar": "community/mock-data/avatar.png",
+        "name": "tomerun",
+        "date": "20150813T000000Z",
+        "country": "Brazil",
+        "contests": ["MARATHON MATCH 87", "Population Mapping"]
+    }],
+    "TopPerformers": [{
+        "contestType": "Design",
+        "class": "design",
+        "performers": [{
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }, {
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }, {
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }, {
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }, {
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }]
+    }, {
+        "contestType": "Development",
+        "class": "develop",
+        "performers": [{
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }, {
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }, {
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }, {
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }, {
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }]
+    }, {
+        "contestType": "Data Science",
+        "class": "data-science",
+        "performers": [{
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }, {
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }, {
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }, {
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }, {
+            "name": "jQluvix",
+            "wins": 900
+        }, {
+            "name": "Truahm",
+            "wins": 850
+        }]
+    }]
+}
