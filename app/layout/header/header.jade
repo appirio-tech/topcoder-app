@@ -33,7 +33,7 @@
             span(ui-sref="profile.about({userHandle: vm.userHandle})")
               img(class="user-avatar", ng-src="{{vm.profile.photoURL}}")
 
-              span.username {{vm.userHandle}}
+              span.username(style="color:{{vm.userHandleColor}}") {{vm.userHandle}}
 
           a.btn-link.btn-edit-profile.show-small(ui-sref="settings.profile") EDIT
 

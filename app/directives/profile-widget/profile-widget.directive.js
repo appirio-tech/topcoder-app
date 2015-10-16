@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  angular.module('tcUIComponents').directive('profileWidget', ['CONSTANTS', '$filter', profileWidget]);
+  angular.module('tcUIComponents').directive('profileWidget', ['CONSTANTS', 'ProfileService', profileWidget]);
 
-  function profileWidget(CONSTANTS, $filter) {
+  function profileWidget(CONSTANTS, ProfileService) {
     return {
       restrict: 'E',
       templateUrl: 'directives/profile-widget/profile-widget.html',
@@ -16,9 +16,8 @@
       link: function(scope, elem, attrs) {
         scope.DOMAIN = CONSTANTS.domain;
         scope.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
-        // get max rating or default to 0
-        var rating = _.get(scope.profile, 'maxRating.rating', 0);
-        scope.handleColor = $filter('ratingColor')(rating);
+
+        scope.handleColor = ProfileService.getUserHandleColor(scope.profile);
         scope.$watch('editProfileLink', function(newValue, oldValue, scope) {
           if (newValue) {
             scope.editProfileLink = newValue;
