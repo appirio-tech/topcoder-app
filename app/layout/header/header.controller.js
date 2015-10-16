@@ -21,7 +21,7 @@
           { 'href':  "/challenges/design/active/", 'text': 'DESIGN CHALLENGES', 'icon': '/images/nav/design.svg' },
           { 'href':  "/challenges/develop/active", 'text': 'DEVELOPMENT CHALLENGES', 'icon': '/images/nav/development.svg' },
           { 'href':  "/challenges/data/active", 'text': 'DATA SCIENCE CHALLENGES', 'icon': '/images/nav/data-science.svg' },
-          { 'href':  vm.constants.ARENA_URL, 'text': 'THE ARENA', 'icon': '/images/nav/srms.svg' },
+          { 'href':  vm.constants.ARENA_URL, 'text': 'THE ARENA', 'icon': '/images/nav/srms.svg', 'target': '_blank' },
       ],
       'learn': [
           { 'href': '/community/design/', 'text': 'DESIGN', 'icon': '/images/nav/scroll-design.svg' },
@@ -32,7 +32,7 @@
       'community': [
           { 'href': '/community/members/', 'text': 'MEMBERS', 'icon': '/images/nav/users.svg' },
           { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/images/nav/medal.svg' },
-          { 'href': vm.constants.FORUMS_APP_URL, 'text': 'FORUMS', 'icon': '/images/nav/forum.svg' },
+          { 'href': vm.constants.FORUMS_APP_URL, 'text': 'FORUMS', 'icon': '/images/nav/forum.svg', 'target': '_blank' },
           { 'href': '/community/statistics/', 'text': 'STATISTICS', 'icon': '/images/nav/statistics.svg' },
           { 'href': '/community/events/', 'text': 'EVENTS', 'icon': '/images/nav/calendar.svg' },
           { 'href': '/blog/', 'text': 'BLOG', 'icon': '/images/nav/blog.svg' }
@@ -65,16 +65,18 @@
       vm.isAuth = TcAuthService.isAuthenticated();
       if (vm.isAuth) {
         vm.userHandle = UserService.getUserIdentity().handle;
+
         vm.userMenu = [
           { 'sref': 'dashboard', 'text': 'DASHBOARD', 'icon': '/images/nav/dashboard.svg' },
           { 'sref': 'profile.about', 'srefParams': { 'userHandle': vm.userHandle }, 'text': 'MY PROFILE', 'icon': '/images/nav/badge.svg' },
-          { 'href':  vm.constants.COMMUNITY_URL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/images/nav/money-bag.svg' },
+          { 'href':  vm.constants.COMMUNITY_URL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/images/nav/money-bag.svg', 'target': '_blank' },
           { 'sref': 'settings.profile', 'text': 'SETTINGS', 'icon': '/images/nav/gear.svg' },
         ];
 
         ProfileService.getUserProfile(vm.userHandle)
         .then(function(data) {
           vm.profile = data;
+          vm.userHandleColor = ProfileService.getUserHandleColor(vm.profile);
         })
         .catch(function(err) {
           $log.error("Unable to get user data");

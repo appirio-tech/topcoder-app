@@ -130,6 +130,11 @@
         questions[questionId].answer = answerObject.answer;
         questions[questionId].reviewItemId = answerObject.id;
 
+        if (answerObject.comments && answerObject.comments.length > 0) {
+          // pick first comment for peer review challenges
+          questions[questionId].comment = answerObject.comments[0].content;
+        }
+
         if (answerObject.answer !== '') {
           saved = true;
         }
@@ -150,6 +155,16 @@
           uploadId: review.uploadId,
           answer: '' + q.answer
         };
+
+        if (q.comment.length > 0) {
+          reviewItem.comments = [
+            {
+              content: '' + q.comment,
+              resourceId: review.resourceId,
+              commentTypeId: 1
+            }
+          ];
+        }
 
         if (updating) {
           reviewItem.id = q.reviewItemId;

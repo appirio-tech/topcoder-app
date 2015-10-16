@@ -21,7 +21,8 @@ var mockData = (function() {
     getMockSRMResults: getMockSRMResults,
     getMockBadge: getMockBadge,
     getMockUserFinancials: getMockUserFinancials,
-    getMockLinkedExternalAccounts: getMockLinkedExternalAccounts
+    getMockLinkedExternalAccounts: getMockLinkedExternalAccounts,
+    getMockLinkedExternalAccountsData: getMockLinkedExternalAccountsData
   };
 
   function getMockStates() {
@@ -1934,7 +1935,7 @@ var mockData = (function() {
     }];
   }
 
-  function getMockLinkedExternalAccounts() {
+  function getMockLinkedExternalAccountsData() {
     return {
       github: null,
       stackoverflow: null,
@@ -1946,6 +1947,27 @@ var mockData = (function() {
       userId: 123,
       plain: function() {}
     };
+  }
+
+  function getMockLinkedExternalAccounts() {
+    return [
+      {
+        providerType: 'linkedin',
+        // don't care about other details
+      },
+      {
+        providerType: 'github'
+      },
+      {
+        providerType: 'behance'
+      },
+      {
+        providerType: 'dribbble'
+      },
+      {
+        providerType: 'bitbucket'
+      }
+    ];
   }
 
 

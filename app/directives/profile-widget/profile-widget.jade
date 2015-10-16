@@ -4,7 +4,7 @@
     img.profile-circle(ng-if="!profile.photoURL", src="/images/ico-user-default.svg")
 
   .info
-    h1.handle {{profile.handle}}
+    h1.handle(style="color:{{handleColor}};") {{profile.handle}}
 
     h3.tenure(ng-if="profile.startMonth")
       | Member Since {{profile.startMonth}}
@@ -19,7 +19,7 @@
 
   .tracks-links
     .tracks
-      .track(ng-repeat="track in (profile.tracks)")
+      .track(ng-repeat="track in (profile.tracks)", ng-click="profileVm.scrollTo(track)")
         div(class="{{profileVm.imgMap[track]}}-icon")
           div
         .text {{track | role}}

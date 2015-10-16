@@ -5,16 +5,17 @@
 
   ProfileCtrl.$inject = ['CONSTANTS', '$log', '$q',
     'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService', 'ExternalAccountService',
-    'userHandle', 'profile', 'ngDialog'
+    'userHandle', 'profile', 'ngDialog', '$anchorScroll'
   ];
 
-  function ProfileCtrl(CONSTANTS, $log, $q, TcAuthService, UserService, ProfileService, ChallengeService, ExternalAccountService, userHandle, profile, ngDialog) {
+  function ProfileCtrl(CONSTANTS, $log, $q, TcAuthService, UserService, ProfileService, ChallengeService, ExternalAccountService, userHandle, profile, ngDialog, $anchorScroll) {
     var vm = this;
     // set profile to the object that was resolved
     vm.profile = profile;
     vm.userHandle = userHandle;
     vm.showBadges = showBadges;
     vm.closeDialog = closeDialog;
+    vm.scrollTo = scrollTo;
 
     vm.imgMap = {
       'DEVELOP': 'develop',
@@ -57,13 +58,6 @@
       vm.status.skills = CONSTANTS.STATE_ERROR;
     });
 
-
-    vm.externalLinksPromise = ExternalAccountService.getLinkedExternalLinksData(vm.userHandle).then(function(data) {
-      vm.linkedExternalAccountsData = data.plain();
-    }).catch(function(err) {
-      vm.status.externalLinks = CONSTANTS.STATE_ERROR;
-    });
-
     function activate() {
       $log.debug('Calling ProfileController activate()');
       // show edit profile link if user is authenticated and is viewing their own profile
@@ -96,6 +90,10 @@
 
     function closeDialog() {
       ngDialog.close();
+    }
+
+    function scrollTo(track) {
+      $anchorScroll(track + '_TRACK');
     }
   }
 
