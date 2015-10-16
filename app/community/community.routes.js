@@ -10,7 +10,7 @@
 
   function routes($stateProvider, $urlRouterProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
-    var states = {    
+    var states = {
       'community': {
         parent: 'root',
         url: '/community/',
@@ -19,7 +19,7 @@
           authRequired: false,
         }
       },
-      
+
       'community.members': {
         parent: 'root',
         url: '/community/members/',
@@ -32,7 +32,7 @@
           }
         }
       },
-      
+
       'community.statistics': {
         parent: 'root',
         url: '/community/statistics/',

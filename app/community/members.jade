@@ -31,9 +31,9 @@
             .user-country {{item.country}}
         .btn-wrapper
           a.blue-btn View all copilots
-   
+
     .search-result-container(ng-hide="ctrl.notSearch")
-      h2 Search Result For: 
+      h2 Search Result For:
         span "{{ctrl.keywords}}"
         .showing-controll-wrapper
           ul
@@ -46,7 +46,7 @@
       .results-wrapper(ng-class="{'show-grid': ctrl.showing=='grid'}")
         .user-tile(ng-repeat="item in ctrl.searchResult")
           .avatar-wrapper: img(ng-src="{{item.avatar}}")
-          .text-content 
+          .text-content
             .user-name {{item.name}}
             .user-country {{item.country}}
           a.user-more View Profile
