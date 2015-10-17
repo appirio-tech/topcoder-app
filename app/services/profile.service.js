@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('ProfileService', ProfileService);
 
-  ProfileService.$inject = ['CONSTANTS', 'ApiService', 'UserService', '$q'];
+  ProfileService.$inject = ['CONSTANTS', 'ApiService', 'UserService', '$q', '$filter'];
 
-  function ProfileService(CONSTANTS, ApiService, UserService, $q) {
+  function ProfileService(CONSTANTS, ApiService, UserService, $q, $filter) {
 
     var restangular = ApiService.restangularV3;
 
@@ -29,8 +29,9 @@
       getTracks: getTracks,
       getSubTracks: getSubTracks,
       getDivisions: getDivisions,
-      // for profile - to be deprecated
-      getMockMemberProfile: getMockMemberProfile
+
+      getUserHandleColor: getUserHandleColor,
+
     };
     return service;
 
@@ -283,47 +284,12 @@
       };
     }
 
-    function getMockMemberProfile() {
-      if (!service.memberProfile) {
-        service.memberProfile = {
-          "links": [
-            {
-              "name": "Github",
-              "logo": "git-logo.png",
-              "properties": [
-                {
-                  "name": "Repos",
-                  "value": 20
-                },
-                {
-                  "name": "Followers",
-                  "value": 10
-                }
-              ]
-            },
-            {
-              "name": "Stack Overflow",
-              "logo": "stackoverflow-logo.png",
-              "properties": [
-                {
-                  "name": "Reputation",
-                  "value": 200
-                },
-                {
-                  "name": "Questions",
-                  "value": 102
-                },
-                {
-                  "name": "Answers",
-                  "value": 2001
-                }
-              ]
-            }
-          ]
-        };
-      }
-      return service.memberProfile;
+    function getUserHandleColor(profile) {
+      var rating = _.get(profile, 'maxRating.rating', 0);
+      return $filter('ratingColor')(rating);
     }
+
+
   }
 
 })();

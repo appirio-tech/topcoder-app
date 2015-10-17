@@ -95,8 +95,12 @@
             placeholder="123 Topcoder Ave.",
             value="{{vm.homeAddress.streetAddr1}}",
             ng-model="vm.homeAddress.streetAddr1",
-            ng-class="{'form-field-focused': hasFocus==true}"
+            ng-class="{'form-field-focused': hasFocus==true}",
+            ng-required="vm.addressDirty = vm.accountInfoForm.address.$dirty || vm.accountInfoForm.city.$dirty || vm.accountInfoForm.state.$dirty || vm.accountInfoForm.zipcode.$dirty || vm.accountInfoForm.country.$dirty"
           )
+
+          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.address.$invalid")
+            p(ng-show="vm.accountInfoForm.address.$error.required") Please enter an address
 
           .form-label Address 2
             span(style="text-transform: none;") &nbsp;(opt., suite, etc.)
@@ -115,8 +119,12 @@
             value="{{vm.homeAddress.city}}",
             placeholder="Best City in the World",
             ng-model="vm.homeAddress.city",
-            ng-class="{'form-field-focused': hasFocus==true}"
+            ng-class="{'form-field-focused': hasFocus==true}",
+            ng-required="vm.addressDirty"
           )
+
+          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.city.$invalid")
+            p(ng-show="vm.accountInfoForm.city.$error.required") Please enter a city
 
           .form-label State/Province
           input.form-field(
@@ -124,8 +132,12 @@
             value="{{vm.homeAddress.stateCode}}",
             placeholder="California",
             ng-model="vm.homeAddress.stateCode",
-            ng-class="{'form-field-focused': hasFocus==true}"
+            ng-class="{'form-field-focused': hasFocus==true}",
+            ng-required="vm.addressDirty"
           )
+
+          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.state.$invalid")
+            p(ng-show="vm.accountInfoForm.state.$error.required") Please enter a state or province
 
           .form-label Zip
           input.form-field(
@@ -133,8 +145,12 @@
             placeholder="Zip"
             value="{{vm.homeAddress.zip}}",
             ng-model="vm.homeAddress.zip",
-            ng-class="{'form-field-focused': hasFocus==true}"
+            ng-class="{'form-field-focused': hasFocus==true}",
+            ng-required="vm.addressDirty"
           )
+
+          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.zipcode.$invalid")
+            p(ng-show="vm.accountInfoForm.zipcode.$error.required") Please enter a zip
 
           .form-label Country
           angucomplete-alt(
@@ -148,9 +164,10 @@
             title-field="name",
             match-class="angucomplete-highlight",
             minlength="1",
-            ng-class="{'form-field-focused': hasFocus==true}"
+            ng-class="{'form-field-focused': hasFocus==true}",
+            field-required="vm.addressDirty"
           )
-          .account-info-error(ng-show="vm.accountInfoForm.country.$invalid")
+          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.country.$error.required")
             p(ng-show="vm.accountInfoForm.country.$error.required") Please choose a country from the list.
 
 
