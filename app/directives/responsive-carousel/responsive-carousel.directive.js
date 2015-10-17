@@ -28,7 +28,6 @@
 
           function init() {
             var width = $window.innerWidth;
-            console.log(width);
             if(width > 1070) {
                // desktop
                buildCarouselSlide(6);
