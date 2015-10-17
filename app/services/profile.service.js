@@ -101,7 +101,8 @@
             'subTrack': subTrack.name,
             'rank': subTrack.rank ? subTrack.rank.overallRank : 0,
             'rating': subTrack.rank.rating || 0,
-            'wins': subTrack.wins
+            'wins': subTrack.wins,
+            'mostRecentEventDate': new Date(subTrack.mostRecentEventDate)
           };
         }).filter(function(subTrack) {
           return !(subTrack.subTrack == 'COPILOT_POSTING' && subTrack.track == 'DEVELOP');
@@ -114,7 +115,8 @@
             'track': 'DESIGN',
             'subTrack': subTrack.name,
             'rank': false,
-            'wins': subTrack.wins
+            'wins': subTrack.wins,
+            'mostRecentEventDate': new Date(subTrack.mostRecentEventDate)
           };
         });
       }
@@ -124,7 +126,8 @@
           'track': 'DATA_SCIENCE',
           'subTrack': 'SRM',
           'rank': srmStats.rank.rank,
-          'rating': srmStats.rank.rating
+          'rating': srmStats.rank.rating,
+          'mostRecentEventDate': new Date(srmStats.rank.mostRecentEventDate)
         });
       }
       if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.MARATHON_MATCH && stats.DATA_SCIENCE.MARATHON_MATCH.rank) {
@@ -133,7 +136,8 @@
           'track': 'DATA_SCIENCE',
           'subTrack': 'MARATHON_MATCH',
           'rank': marathonStats.rank.rank,
-          'rating': marathonStats.rank.rating
+          'rating': marathonStats.rank.rating,
+          'mostRecentEventDate': new Date(marathonStats.rank.mostRecentEventDate)
         });
       }
       if (stats.COPILOT) {
