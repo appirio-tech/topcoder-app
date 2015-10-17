@@ -3,9 +3,9 @@
 
   angular.module('tc.myDashboard').controller('SubtrackStatsController', SubtrackStatsController);
 
-  SubtrackStatsController.$inject = ['ProfileService', 'userIdentity'];
+  SubtrackStatsController.$inject = ['$filter', 'ProfileService', 'userIdentity'];
 
-  function SubtrackStatsController(ProfileService, userIdentity) {
+  function SubtrackStatsController($filter, ProfileService, userIdentity) {
     var vm = this;
     vm.loading = true;
 
@@ -20,10 +20,11 @@
         var subtrackRanks = compileSubtracks(trackRanks);
 
         processStats(subtrackRanks);
+        // sort subtrack ranks
+        subtrackRanks = $filter('orderBy')(subtrackRanks, 'mostRecentEventDate', true);
+
         vm.subtrackRanks = subtrackRanks;
         vm.hasRanks = !!vm.subtrackRanks.length;
-
-        buildCarouselSlide();
 
         vm.loading = false;
       })
@@ -63,27 +64,6 @@
           subtrack.statType = 'Rating';
         }
       });
-    }
-
-    // This function aids in showing multiple items (subtracks) per slide
-    function buildCarouselSlide(numItemsPerSlide) {
-      var subtrackRanksCollection = [];
-      var slide = [];
-      // Might be able to change number of subtracks per slide based
-      // on screen size if the width of each subtrack is consistent:
-      // http://stackoverflow.com/questions/26252038/multi-item-responsive-carousel
-      numItemsPerSlide = numItemsPerSlide || 4;
-
-      for(var i = 0; i < vm.subtrackRanks.length; i++) {
-        if (slide.length === numItemsPerSlide) {
-          // When slide is full, push it to collection and make a new slide []
-          subtrackRanksCollection.push(slide);
-          slide = [];
-        }
-        slide.push(vm.subtrackRanks[i]);
-      }
-      subtrackRanksCollection.push(slide);
-      vm.subtrackRanksCollection = subtrackRanksCollection;
     }
   }
 })();
