@@ -1,8 +1,8 @@
 .login-container
   header
-    a.logo-link(href="/")
+    a.logo-link(href="/", title="Back to the home page")
       img(src="/images/logo_mobile.svg", alt="Topcoder Logo")
-    .arrow
+
   h1 LOG IN TO TOPCODER
 
   form(name="vm.loginForm", role="form", ng-submit="vm.loginForm.$valid && vm.login()", novalidate)
@@ -21,27 +21,25 @@
     p.problem-signin
       a.forgot-password(ui-sref="resetPassword") Forgot your password?
 
-    button.tc-btn.tc-btn-l(type="submit", ng-disabled="vm.loginForm.$invalid") Log In
+    button.tc-btn.tc-btn-wide(type="submit", ng-disabled="vm.loginForm.$invalid") Log In
 
   section.social
-    p ------------ Or Log in With ------------
+    p.tc-separator
+      span Or Log in With
 
-    .social-icons
-      .network.github
-        .ico(ng-click="vm.socialLogin('github')")
-        p Github
-      .network.google-plus
-        .ico(ng-click="vm.socialLogin('google-oauth2')")
-        p Google
-      .network.facebook
-        .ico(ng-click="vm.socialLogin('facebook')")
-        p Facebook
-      .network.twitter
-        .ico(ng-click="vm.socialLogin('twitter')")
-        p Twitter
+    ul.social-icons
+      li.network.github
+        a.ico(ng-click="vm.socialLogin('github')")
+        span Github
+      li.network.google-plus
+        a.ico(ng-click="vm.socialLogin('google-oauth2')")
+        span Google
+      li.network.facebook
+        a.ico(ng-click="vm.socialLogin('facebook')")
+        span Facebook
+      li.network.twitter
+        a.ico(ng-click="vm.socialLogin('twitter')")
+        span Twitter
 
-.join-topcoder
-  span Not a member yet?
-
-  a.tc-btn.tc-btn-ghost-secondary.tc-btn-s(ui-sref="register(vm.$stateParams)") Join now
-
+p.join-topcoder Not a member yet? &nbsp;
+  a(ui-sref="register(vm.$stateParams)") Join now

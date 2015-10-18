@@ -536,3 +536,28 @@ body {
     background-color: $primary;
   }
 }
+
+// UI KIT - INPUT ELEMENTS
+
+input[type="text"],
+input[type="password"],
+toggle-password {
+  height: 38px;
+  background: #FFFFFF;
+  border: 1px solid #B7B7B7;
+  box-shadow: inset 0px 0px 2px 0px rgba(183,183,183,0.30);
+  border-radius: 2px;
+}
+
+
+input {
+  &[type='text']:focus,
+  &[type='password']:focus {
+    background: #FFFFFF;
+    border: 1px solid #0096FF;
+    box-shadow: inset 0px 0px 2px 1px rgba(133,203,255,0.60);
+    border-radius: 2px;
+  }
+
+}
+
