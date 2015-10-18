@@ -103,6 +103,7 @@
             'rank': subTrack.rank ? subTrack.rank.overallRank : 0,
             'rating': subTrack.rank.rating || 0,
             'wins': subTrack.wins,
+            'submissions': (subTrack.submissions && subTrack.submissions.submissions) || 0,
             'mostRecentEventDate': new Date(subTrack.mostRecentEventDate)
           };
         }).filter(function(subTrack) {
@@ -149,15 +150,15 @@
         stats.COPILOT.subTrack = 'COPILOT';
       }
       var compiledStats = {
-        'DEVELOP': removeRankless(dev),
-        'DESIGN': removeRankless(design),
-        'DATA_SCIENCE': removeRankless(dataScience),
+        'DEVELOP': removeRanklessNoSubmissions(dev),
+        'DESIGN': removeRanklessNoSubmissions(design),
+        'DATA_SCIENCE': removeRanklessNoSubmissions(dataScience),
         'COPILOT': copilot
       };
 
-      function removeRankless(arr) {
+      function removeRanklessNoSubmissions(arr) {
         return arr.filter(function(subTrack) {
-          return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment);
+          return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment || subTrack.submissions);
         });
       }
 

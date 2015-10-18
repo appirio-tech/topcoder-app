@@ -3,7 +3,7 @@
 
 .ratings(ng-if="vm.hasRanks && !vm.loading")
   .tracks
-    .track(ng-repeat="subtrack in vm.subtrackRanks | orderBy:'mostRecentEventDate':true", ui-sref="profile.subtrack({userHandle: vm.handle, track: subtrack.track, subTrack: subtrack.subTrack})")
+    .track(ng-repeat="subtrack in vm.subtrackRanks", ui-sref="profile.subtrack({userHandle: vm.handle, track: subtrack.track, subTrack: subtrack.subTrack})")
       .flex-wrapper
         p.subtrack {{subtrack.subTrack | underscoreStrip}} 
 
@@ -14,15 +14,14 @@
 
         p {{subtrack.statType}}
 
-  ul(rn-carousel, rn-carousel-controls)
-    li(ng-repeat="subtracks in vm.subtrackRanksCollection")
-      .track(ng-repeat="subtrack in subtracks | orderBy:'mostRecentEventDate':true", ui-sref="profile.subtrack({userHandle: vm.handle, track: subtrack.track, subTrack: subtrack.subTrack})")
-        .flex-wrapper
-          p.subtrack {{subtrack.subTrack | underscoreStrip}}
+  responsive-carousel(data="vm.subtrackRanks")
+    .track(ui-sref="profile.subtrack({userHandle: vm.handle, track: item.track, subTrack: item.subTrack})")
+      .flex-wrapper
+        p.subtrack {{item.subTrack | underscoreStrip}}
 
-          p.rating(ng-if="subtrack.track !== 'DESIGN'", style="color: {{subtrack.stat | ratingColor}}") {{subtrack.stat | number}}
-            span(style="background-color: {{subtrack.stat | ratingColor}}", ng-if="subtrack.track === 'DEVELOP' || subtrack.track === 'DATA_SCIENCE'")
+        p.rating(ng-if="item.track !== 'DESIGN'", style="color: {{item.stat | ratingColor}}") {{item.stat | number}}
+          span(style="background-color: {{item.stat | ratingColor}}", ng-if="item.track === 'DEVELOP' || item.track === 'DATA_SCIENCE'")
 
-          p.rating(ng-if="subtrack.track === 'DESIGN'", style="color: #21B2F1") {{subtrack.stat | number}}
+        p.rating(ng-if="item.track === 'DESIGN'", style="color: #21B2F1") {{item.stat | number}}
 
-          p {{subtrack.statType}}
+        p {{item.statType}}
