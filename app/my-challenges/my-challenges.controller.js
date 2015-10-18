@@ -17,6 +17,11 @@
     vm.loadMore = loadMore;
     vm.getChallenges = getChallenges;
     vm.totalCount = 0;
+    // this will help to keep track of pagination across individual api calls
+    var counts = {
+      devDesign: {total: 0, current: 0},
+      mms: {total: 0, current: 0}
+    };
     vm.statusFilter = _.get($stateParams, 'status','active');
     if (vm.statusFilter !== 'active' && vm.statusFilter !== 'completed') {
       $log.error('invalid filter, defaulting to active');
@@ -48,47 +53,94 @@
     }
 
     function changeFilter(filter) {
+      // reset
+      vm.myChallenges = [];
       currentOffset = 0;
+      counts = {
+        devDesign: {total: 0, current: 0},
+        mms: {total: 0, current: 0}
+      };
       vm.statusFilter = filter;
       vm.orderBy = vm.statusFilter === 'active' ? 'registrationEndDate' : 'submissionEndDate';
-      vm.getChallenges(currentOffset);
+      vm.getChallenges(currentOffset, true);
     }
 
-    function getChallenges(offset) {
+
+    function getChallenges(offset, force) {
       vm.loading = CONSTANTS.STATE_LOADING;
-      if (!offset) {
-        // reset
-        offset = 0;
-        vm.myChallenges = [];
+      var promises = [];
+
+      if (force || counts.devDesign.current < counts.devDesign.total) {
+        promises.push(getDevDesignChallenges(offset));
+      }
+      if (force || counts.mms.current < counts.mms.total) {
+        promises.push(getMMS(offset));
       }
 
+      $q.all(promises)
+      .then(function(data) {
+        // data should be an array of 2 objects each with it's own array (2D array with metadata)
+        vm.loading = CONSTANTS.STATE_READY;
+
+        vm.totalCount = _.sum(_.pluck(data, 'metadata.totalCount'));
+        // var challenges = [];
+        // .concat(data[0]);
+        // challenges = challenges.concat(data[1]);
+        vm.myChallenges = vm.myChallenges.concat(_.union(data[0], data[1]));
+      })
+      .catch(function(resp) {
+        $log.error(resp);
+        vm.loading = CONSTANTS.STATE_ERROR;
+      });
+    }
+
+    function getDevDesignChallenges(offset) {
       var params = {
-        limit: defaultParams.limit,
+        limit: 12,
         offset: offset,
         orderBy: vm.orderBy + ' desc',
         filter: "status=" + vm.statusFilter
       };
-
-      return ChallengeService.getUserChallenges(handle, params)
-      .then(function(challenges) {
+      return ChallengeService.getUserChallenges(handle, params).then(function(challenges) {
         if (vm.statusFilter == 'active') {
           ChallengeService.processActiveDevDesignChallenges(challenges);
         } else {
           ChallengeService.processPastChallenges(challenges);
         }
-        vm.myChallenges = vm.myChallenges.concat(challenges);
-        vm.totalCount = challenges.metadata.totalCount;
-        vm.loading = CONSTANTS.STATE_READY;
-      })
-      .catch(function(err) {
-        vm.loading = CONSTANTS.STATE_ERROR;
-        $log.error(err);
+        // update counts
+        counts.devDesign.total = challenges.metadata.totalCount;
+        counts.devDesign.current += challenges.length;
+        return challenges;
+      });
+    }
+
+    function getMMS(offset) {
+      var _filter;
+      if (vm.statusFilter === 'active') {
+        _filter = 'status=active';
+      } else {
+        _filter = 'status=past&isRatedForMM=true';
+      }
+      var params = {
+        limit: 12,
+        offset: offset,
+        orderBy: vm.statusFilter === 'active' ? 'startDate' : 'endDate desc',
+        filter: _filter
+      };
+      return ChallengeService.getUserMarathonMatches(handle, params).then(function(marathonMatches) {
+        if (vm.statusFilter === 'active') {
+          ChallengeService.processActiveMarathonMatches(marathonMatches);
+        }
+        // update counts
+        counts.mms.total = marathonMatches.metadata.totalCount;
+        counts.mms.current += marathonMatches.length;
+        return marathonMatches;
       });
     }
 
     function loadMore() {
       currentOffset+=1;
-      vm.getChallenges(currentOffset);
+      vm.getChallenges(currentOffset, false);
     }
   }
 })();

@@ -28,7 +28,7 @@
 
           .data(ng-class="vm.view + '-view'")                      
             challenge-tile(
-              ng-repeat="challenge in vm.myChallenges | orderBy:vm.orderBy:false", 
+              ng-repeat="challenge in vm.myChallenges | orderBy:vm.orderBy:true", 
               challenge="challenge", view="vm.view", ng-class="vm.view + '-view'")
 
           tc-section(state="vm.loading")

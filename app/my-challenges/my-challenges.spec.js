@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('My Challenges Controller', function() {
+describe.only('My Challenges Controller', function() {
   var controller;
   var domain;
   var authService, challengeService, userService, identity, mockState;
@@ -61,11 +61,26 @@ describe('My Challenges Controller', function() {
       deferred.resolve(resp);
       return deferred.promise;
     });
+    // mock mms api
+    sinon.stub(challengeService, 'getUserMarathonMatches', function(handle, data) {
+      var deferred = $q.defer();
+      var resp = null;
+      if (data.filter.status == 'active') {
+        resp = JSON.parse(JSON.stringify(marathons));
+      } else {
+        resp = JSON.parse(JSON.stringify(marathons.slice(1)));
+      }
+      resp.metadata = {
+        totalCount: resp.length
+      };
+      deferred.resolve(resp);
+      return deferred.promise;
+    });
   });
 
   bard.verifyNoOutstandingHttpRequests();
 
-  describe('intialization', function() {
+  describe('initialization', function() {
     var ctrl = null;
     var spy;
     beforeEach( function(){
@@ -89,7 +104,7 @@ describe('My Challenges Controller', function() {
       // default value for pageIndex
       expect(ctrl.myChallenges).to.exist;
       // expect(ctrl.myChallenges.length).to.equal(challenges.length);
-      expect(ctrl.totalCount).to.equal(2);
+      expect(ctrl.totalCount).to.equal(3);
       expect(ctrl.statusFilter).to.equal('active');
       expect(ctrl.view).to.equal('tile');
       expect(ctrl.loading).to.equal('ready');
@@ -117,7 +132,7 @@ describe('My Challenges Controller', function() {
     it('past challenges should be fetched', function() {
       expect(ctrl.myChallenges).to.exist;
       // should have one less challenge for past filter as per mocked method
-      expect(ctrl.myChallenges.length).to.equal(challenges.length - 1);
+      expect(ctrl.myChallenges.length).to.equal(challenges.length);
       expect(spy.withArgs(0).calledOnce);
       expect(ctrl.statusFilter).to.equal('completed');
       expect(ctrl.loading).to.equal('ready');
