@@ -32,9 +32,11 @@
       line-height: 16px;
       text-transform: uppercase;
       color: #A3A3AE;
+      cursor: pointer;
 
       &.disabled {
         color: $black;
+        cursor: default;
 
         &.tile:before {
           background: url(/images/grid-on.svg);

@@ -6,7 +6,7 @@ li.submenu-item(ng-if="item.sref && !item.srefParams")
 
 // external links
 li.submenu-item(ng-if="item.href && !item.srefParams")
-  a.menu-link(ng-click="$event.stopPropagation();" ng-href="{{item.href}}" ng-class="{ 'active': isActive() }" target="_blank")
+  a.menu-link(ng-click="$event.stopPropagation();" ng-href="{{item.href}}" ng-class="{ 'active': isActive() }" target="{{ item.target ? item.target : '_self'}}")
     img.menu-icon(ng-src="{{item.icon}}")
     .menu-text {{item.text}}
 

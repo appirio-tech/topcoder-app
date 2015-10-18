@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  angular.module('tcUIComponents').directive('profileWidget', ['CONSTANTS', profileWidget]);
+  angular.module('tcUIComponents').directive('profileWidget', ['CONSTANTS', 'ProfileService', profileWidget]);
 
-  function profileWidget(CONSTANTS) {
+  function profileWidget(CONSTANTS, ProfileService) {
     return {
       restrict: 'E',
       templateUrl: 'directives/profile-widget/profile-widget.html',
@@ -17,6 +17,7 @@
         scope.DOMAIN = CONSTANTS.domain;
         scope.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
 
+        scope.handleColor = ProfileService.getUserHandleColor(scope.profile);
         scope.$watch('editProfileLink', function(newValue, oldValue, scope) {
           if (newValue) {
             scope.editProfileLink = newValue;

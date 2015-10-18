@@ -56,8 +56,9 @@
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
     ng-switch="challenge.track")
     header
-      // TODO: handle url for past marathon match
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      
+      a(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      a(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{challenge.rounds[0].id}}") {{challenge.name}}
 
       p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
@@ -75,23 +76,10 @@
         p BLAH
 
     .challenge-details(ng-switch-when="DEVELOP")
-      p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
-
-      .challenge-score
-        p.score {{challenge.userDetails.submissionReviewScore/100 | percentage}}
-
-        p Review Score
+      dev-challenge-user-place(challenge="challenge", view="view")
 
     .challenge-details(ng-switch-when="DESIGN")
-      p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
-
-      .thumbnail(ng-click="openLightbox()")
-        img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
-
-        .thumbnail-gallery(ng-click="challenge.showLightbox()")
-          .gallery-icon
-
-          .num-images 1 image
+      design-challenge-user-place(challenge="challenge", view="view")
 
 .challenge.list-view(ng-show="view=='list'", ng-class="challenge.track")
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")
@@ -163,28 +151,7 @@
           p Total Points
 
     .challenge-details(ng-switch-when="DEVELOP")
-      .place-date
-        p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
-        p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
-
-      .winner-ribbon(ng-show="challenge.wonFirst")
-
-      .challenge-score
-        p.score {{challenge.userDetails.submissionReviewScore/100 | percentage}}
-
-        p Review Score
+      dev-challenge-user-place(challenge="challenge", view="view")
 
     .challenge-details(ng-switch-when="DESIGN")
-      .place-date
-        p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
-        p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
-
-      .winner-ribbon(ng-show="challenge.wonFirst")
-
-      .thumbnail(ng-click="openLightbox()")
-        img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
-
-        .thumbnail-gallery(ng-click="challenge.showLightbox()")
-          .gallery-icon
-
-          .num-images 1 image
+      design-challenge-user-place(challenge="challenge", view="view")

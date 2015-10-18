@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('ProfileService', ProfileService);
 
-  ProfileService.$inject = ['CONSTANTS', 'ApiService', 'UserService', '$q'];
+  ProfileService.$inject = ['CONSTANTS', 'ApiService', 'UserService', '$q', '$filter'];
 
-  function ProfileService(CONSTANTS, ApiService, UserService, $q) {
+  function ProfileService(CONSTANTS, ApiService, UserService, $q, $filter) {
 
     var restangular = ApiService.restangularV3;
 
@@ -29,8 +29,9 @@
       getTracks: getTracks,
       getSubTracks: getSubTracks,
       getDivisions: getDivisions,
-      // for profile - to be deprecated
-      getMockMemberProfile: getMockMemberProfile
+
+      getUserHandleColor: getUserHandleColor,
+
     };
     return service;
 
@@ -101,7 +102,9 @@
             'subTrack': subTrack.name,
             'rank': subTrack.rank ? subTrack.rank.overallRank : 0,
             'rating': subTrack.rank.rating || 0,
-            'wins': subTrack.wins
+            'wins': subTrack.wins,
+            'submissions': (subTrack.submissions && subTrack.submissions.submissions) || 0,
+            'mostRecentEventDate': new Date(subTrack.mostRecentEventDate)
           };
         }).filter(function(subTrack) {
           return !(subTrack.subTrack == 'COPILOT_POSTING' && subTrack.track == 'DEVELOP');
@@ -114,7 +117,8 @@
             'track': 'DESIGN',
             'subTrack': subTrack.name,
             'rank': false,
-            'wins': subTrack.wins
+            'wins': subTrack.wins,
+            'mostRecentEventDate': new Date(subTrack.mostRecentEventDate)
           };
         });
       }
@@ -124,7 +128,8 @@
           'track': 'DATA_SCIENCE',
           'subTrack': 'SRM',
           'rank': srmStats.rank.rank,
-          'rating': srmStats.rank.rating
+          'rating': srmStats.rank.rating,
+          'mostRecentEventDate': new Date(srmStats.rank.mostRecentEventDate)
         });
       }
       if (stats.DATA_SCIENCE && stats.DATA_SCIENCE.MARATHON_MATCH && stats.DATA_SCIENCE.MARATHON_MATCH.rank) {
@@ -133,7 +138,8 @@
           'track': 'DATA_SCIENCE',
           'subTrack': 'MARATHON_MATCH',
           'rank': marathonStats.rank.rank,
-          'rating': marathonStats.rank.rating
+          'rating': marathonStats.rank.rating,
+          'mostRecentEventDate': new Date(marathonStats.rank.mostRecentEventDate)
         });
       }
       if (stats.COPILOT) {
@@ -144,15 +150,15 @@
         stats.COPILOT.subTrack = 'COPILOT';
       }
       var compiledStats = {
-        'DEVELOP': removeRankless(dev),
-        'DESIGN': removeRankless(design),
-        'DATA_SCIENCE': removeRankless(dataScience),
+        'DEVELOP': removeRanklessNoSubmissions(dev),
+        'DESIGN': removeRanklessNoSubmissions(design),
+        'DATA_SCIENCE': removeRanklessNoSubmissions(dataScience),
         'COPILOT': copilot
       };
 
-      function removeRankless(arr) {
+      function removeRanklessNoSubmissions(arr) {
         return arr.filter(function(subTrack) {
-          return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment);
+          return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment || subTrack.submissions);
         });
       }
 
@@ -279,47 +285,12 @@
       };
     }
 
-    function getMockMemberProfile() {
-      if (!service.memberProfile) {
-        service.memberProfile = {
-          "links": [
-            {
-              "name": "Github",
-              "logo": "git-logo.png",
-              "properties": [
-                {
-                  "name": "Repos",
-                  "value": 20
-                },
-                {
-                  "name": "Followers",
-                  "value": 10
-                }
-              ]
-            },
-            {
-              "name": "Stack Overflow",
-              "logo": "stackoverflow-logo.png",
-              "properties": [
-                {
-                  "name": "Reputation",
-                  "value": 200
-                },
-                {
-                  "name": "Questions",
-                  "value": 102
-                },
-                {
-                  "name": "Answers",
-                  "value": 2001
-                }
-              ]
-            }
-          ]
-        };
-      }
-      return service.memberProfile;
+    function getUserHandleColor(profile) {
+      var rating = _.get(profile, 'maxRating.rating', 0);
+      return $filter('ratingColor')(rating);
     }
+
+
   }
 
 })();

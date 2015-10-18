@@ -8,7 +8,10 @@ describe('Login Controller', function() {
   });
 
   beforeEach(function() {
-    controller = $controller('LoginController');
+    $scope = $rootScope.$new();
+    controller = $controller('LoginController', {
+      $scope : $scope
+    });
     $rootScope.$apply();
   });
 

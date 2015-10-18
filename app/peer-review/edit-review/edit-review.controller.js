@@ -19,6 +19,7 @@
     vm.scorecard = {
       questions: {}
     };
+    var handle = UserService.getUserIdentity().handle;
 
     vm.submitReviewItems = function() {
       var body = Helpers.compileReviewItems(vm.scorecard.questions, vm.review, vm.saved);
@@ -63,7 +64,7 @@
 
     function activate() {
       var promises = [
-        UserService.getUsername(),
+        handle,
         ChallengeService.getChallengeDetails(vm.challengeId),
         ReviewService.getReview($stateParams.reviewId),
         ScorecardService.getScorecard(vm.challengeId)
@@ -72,7 +73,7 @@
       $q.all(promises)
       .then(function(response) {
         var user = response[0].data;
-        vm.stats.username = user.handle;
+        vm.stats.username = handle;
 
         var challenge = response[1].data;
         vm.challenge = challenge;

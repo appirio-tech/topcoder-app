@@ -199,6 +199,11 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+
+    .unregistered {
+      // workaround until we are able to get registration status of the user
+      visibility: hidden;
+    }
   }
 }
 
@@ -361,5 +366,10 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+
+    .unregistered {
+      // workaround until we are able to get registration status of the user
+      visibility: hidden;
+    }
   }
 }

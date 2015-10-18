@@ -22,8 +22,8 @@
 
     function activate() {
 
-      profileVm.externalLinksPromise.then(function() {
-        vm.linkedExternalAccountsData = profileVm.linkedExternalAccountsData;
+    ExternalAccountService.getLinkedExternalLinksData(profileVm.userHandle).then(function(data) {
+        vm.linkedExternalAccountsData = data.plain();
 
         // show section if user is viewing his/her own profile OR if we have data
         //vm.hasLinks = profileVm.linkedExternalAccounts.length;
@@ -53,6 +53,8 @@
           }
           profileVm.status.externalLinks = CONSTANTS.STATE_READY;
         }
+      }).catch(function(err) {
+        profileVm.status.externalLinks = CONSTANTS.STATE_ERROR;
       });
 
       profileVm.statsPromise.then(function() {

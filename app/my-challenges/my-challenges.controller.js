@@ -3,30 +3,37 @@
 
   angular.module('tc.myChallenges').controller('MyChallengesController', MyChallengesController);
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity', '$stateParams'];
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', '$state', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity', '$stateParams'];
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log, CONSTANTS, Helpers, $scope, userIdentity, $stateParams) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log, $state, CONSTANTS, Helpers, $scope, userIdentity, $stateParams) {
+    $log = $log.getInstance('MyChallengesController');
     var vm = this;
     vm.domain = CONSTANTS.domain;
-    vm.loading = true;
     vm.myChallenges = [];
-    vm.userHasChallenges = true;
-    vm.viewActiveChallenges = viewActiveChallenges;
-    vm.viewPastChallenges = viewPastChallenges;
-    vm.view = 'tile';
+    vm.loading = CONSTANTS.STATE_LOADING;
+    vm.view = UserService.getPreference($state.$current.name+'.challengeListView') || 'tile';
     vm.changeView = changeView;
-    vm.statusFilter = _.get($stateParams, 'status','active');
-
-    // paging params, these are updated by tc-pager
-    vm.pageParams = {
-      offset : 0,
-      limit: 16,
-      count: 0,
-      totalCount: 0,
-      // counter used to indicate page change
-      updated: 0
+    vm.changeFilter = changeFilter;
+    vm.loadMore = loadMore;
+    vm.getChallenges = getChallenges;
+    vm.totalCount = 0;
+    // this will help to keep track of pagination across individual api calls
+    var counts = {
+      devDesign: {total: 0, current: 0},
+      mms: {total: 0, current: 0}
     };
-    vm.orderBy = 'submissionEndDate';
+    vm.statusFilter = _.get($stateParams, 'status','active');
+    if (vm.statusFilter !== 'active' && vm.statusFilter !== 'completed') {
+      $log.error('invalid filter, defaulting to active');
+      vm.statusFilter = 'active';
+    }
+    vm.orderBy;
+
+    var currentOffset = 0;
+    var defaultParams = {
+      orderBy: 'submissionEndDate',
+      limit: 10
+    };
 
     var userId = userIdentity.userId;
     var handle = userIdentity.handle;
@@ -34,69 +41,106 @@
     activate();
 
     function activate() {
-      vm.isError = false;
       vm.isCopilot = _.includes(userIdentity.roles, 'copilot');
-
-      // watches page change counter to reload the data
-      $scope.$watch('vm.pageParams.updated', function(updatedParams) {
-        _getChallenges();
-      });
-      if (vm.statusFilter == 'completed') {
-        viewPastChallenges();
-      } else {
-        viewActiveChallenges();
-      }
+      vm.myChallenges = [];
+      changeFilter(vm.statusFilter);
     }
 
     function changeView(view) {
       vm.view = view;
+      // update UserPreference
+      UserService.setPreference($state.$current.name+'.challengeListView', view);
     }
 
-    function viewActiveChallenges() {
-      if (vm.statusFilter != 'active') {
-        vm.myChallenges = [];
-        vm.pageParams.offset = 0;
-        vm.statusFilter = 'active';
-        _getChallenges();
-      }
-    };
+    function changeFilter(filter) {
+      // reset
+      vm.myChallenges = [];
+      currentOffset = 0;
+      counts = {
+        devDesign: {total: 0, current: 0},
+        mms: {total: 0, current: 0}
+      };
+      vm.statusFilter = filter;
+      vm.orderBy = vm.statusFilter === 'active' ? 'registrationEndDate' : 'submissionEndDate';
+      vm.getChallenges(currentOffset, true);
+    }
 
-    function viewPastChallenges() {
-      if (vm.statusFilter != 'completed') {
-        vm.myChallenges = [];
-        vm.pageParams.offset = 0;
-        vm.statusFilter = 'completed';
-        _getChallenges();
-      }
-    };
 
-    function _getChallenges() {
+    function getChallenges(offset, force) {
+      vm.loading = CONSTANTS.STATE_LOADING;
+      var promises = [];
+
+      if (force || counts.devDesign.current < counts.devDesign.total) {
+        promises.push(getDevDesignChallenges(offset));
+      }
+      if (force || counts.mms.current < counts.mms.total) {
+        promises.push(getMMS(offset));
+      }
+
+      $q.all(promises)
+      .then(function(data) {
+        // data should be an array of 2 objects each with it's own array (2D array with metadata)
+        vm.loading = CONSTANTS.STATE_READY;
+
+        vm.totalCount = _.sum(_.pluck(data, 'metadata.totalCount'));
+        // var challenges = [];
+        // .concat(data[0]);
+        // challenges = challenges.concat(data[1]);
+        vm.myChallenges = vm.myChallenges.concat(_.union(data[0], data[1]));
+      })
+      .catch(function(resp) {
+        $log.error(resp);
+        vm.loading = CONSTANTS.STATE_ERROR;
+      });
+    }
+
+    function getDevDesignChallenges(offset) {
       var params = {
-        limit: vm.pageParams.limit,
-        offset: vm.pageParams.offset,
-        orderBy: vm.orderBy, // TODO verify if this is the correct sort order clause,
+        limit: 12,
+        offset: offset,
+        orderBy: vm.orderBy + ' desc',
         filter: "status=" + vm.statusFilter
       };
-      vm.loading = true;
-
-      return ChallengeService.getUserChallenges(handle, params)
-      .then(function(challenges){
-        ChallengeService.processActiveDevDesignChallenges(challenges);
-        if (challenges.length > 0) {
-          vm.myChallenges = challenges;
-          vm.userHasChallenges = true;
-          vm.loading = false;
+      return ChallengeService.getUserChallenges(handle, params).then(function(challenges) {
+        if (vm.statusFilter == 'active') {
+          ChallengeService.processActiveDevDesignChallenges(challenges);
         } else {
-          vm.userHasChallenges = false;
-          vm.loading = false;
+          ChallengeService.processPastChallenges(challenges);
         }
-      })
-      .catch(function(err) {
-        vm.userHasChallenges = false;
-        vm.isError = true;
-        vm.loading = false;
-        $log.error(err);
+        // update counts
+        counts.devDesign.total = challenges.metadata.totalCount;
+        counts.devDesign.current += challenges.length;
+        return challenges;
       });
+    }
+
+    function getMMS(offset) {
+      var _filter;
+      if (vm.statusFilter === 'active') {
+        _filter = 'status=active';
+      } else {
+        _filter = 'status=past&isRatedForMM=true';
+      }
+      var params = {
+        limit: 12,
+        offset: offset,
+        orderBy: vm.statusFilter === 'active' ? 'startDate' : 'endDate desc',
+        filter: _filter
+      };
+      return ChallengeService.getUserMarathonMatches(handle, params).then(function(marathonMatches) {
+        if (vm.statusFilter === 'active') {
+          ChallengeService.processActiveMarathonMatches(marathonMatches);
+        }
+        // update counts
+        counts.mms.total = marathonMatches.metadata.totalCount;
+        counts.mms.current += marathonMatches.length;
+        return marathonMatches;
+      });
+    }
+
+    function loadMore() {
+      currentOffset+=1;
+      vm.getChallenges(currentOffset, false);
     }
   }
 })();

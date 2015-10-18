@@ -55,74 +55,76 @@
 
         history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
-  .bottom(ng-show="vm.viewing == 'stats'")
-    h2.detailed Details
+    hr(ng-if="vm.history && vm.viewing == 'stats'")
 
-    ul.vertical-stats
-      li.first
-        .left Win Percentage
-        .right {{vm.typeStats.submissions.winPercent | percentage | empty}}
+    .bottom(ng-show="vm.viewing == 'stats'")
+      h2.detailed Details
 
-      li
-        .left Country Rank
-        .right {{vm.typeStats.rank.overallCountryRank | empty}}
+      ul.vertical-stats
+        li.first
+          .left Win Percentage
+          .right {{vm.typeStats.submissions.winPercent | percentage | empty}}
 
-      li
-        .left Volatility
-        .right {{vm.typeStats.rank.volatility | empty}}
+        li(ng-hide="vm.nonRated")
+          .left Country Rank
+          .right {{vm.typeStats.rank.overallCountryRank | empty}}
 
-      li
-        .left Maximum Rating
-        .right {{vm.typeStats.rank.maxRating | empty}}
+        li(ng-hide="vm.nonRated")
+          .left Volatility
+          .right {{vm.typeStats.rank.volatility | empty}}
 
-      li(ng-if="profileVm.isUser")
-        .left Inquiries
-        .right {{vm.typeStats.submissions.numInquiries | empty}}
+        li(ng-hide="vm.nonRated")
+          .left Maximum Rating
+          .right {{vm.typeStats.rank.maxRating | empty}}
 
-      li(ng-if="profileVm.isUser")
-        .left Submissions
-        .right {{vm.typeStats.submissions.submissions | empty}}
+        li(ng-if="profileVm.isUser")
+          .left Inquiries
+          .right {{vm.typeStats.submissions.numInquiries | empty}}
 
-      li
-        .left Submission Rate
-        .right {{vm.typeStats.submissions.submissionRate | percentage | empty}}
+        li(ng-if="profileVm.isUser")
+          .left Submissions
+          .right {{vm.typeStats.submissions.submissions | empty}}
 
-      li(ng-if="profileVm.isUser")
-        .left Passed Screening
-        .right {{vm.typeStats.submissions.passedScreening | empty}}
+        li
+          .left Submission Rate
+          .right {{vm.typeStats.submissions.submissionRate | percentage | empty}}
 
-      li
-        .left Screening Success Rate
-        .right {{vm.typeStats.submissions.screeningSuccessRate | percentage | empty}}
+        li(ng-if="profileVm.isUser")
+          .left Passed Screening
+          .right {{vm.typeStats.submissions.passedScreening | empty}}
 
-      li(ng-if="profileVm.isUser")
-        .left Passed Review
-        .right {{vm.typeStats.submissions.passedReview | empty}}
+        li
+          .left Screening Success Rate
+          .right {{vm.typeStats.submissions.screeningSuccessRate | percentage | empty}}
 
-      li
-        .left Review Success Rate
-        .right {{vm.typeStats.submissions.reviewSuccessRate | percentage | empty}}
+        li(ng-if="profileVm.isUser")
+          .left Passed Review
+          .right {{vm.typeStats.submissions.passedReview | empty}}
 
-      li(ng-if="profileVm.isUser")
-        .left Appeals
-        .right {{vm.typeStats.submissions.appeals | empty}}
+        li
+          .left Review Success Rate
+          .right {{vm.typeStats.submissions.reviewSuccessRate | percentage | empty}}
 
-      li
-        .left Appeals Success Rate
-        .right {{vm.typeStats.submissions.appealSuccessRate | percentage | empty}}
+        li(ng-if="profileVm.isUser")
+          .left Appeals
+          .right {{vm.typeStats.submissions.appeals | empty}}
 
-      li(ng-if="profileVm.isUser")
-        .left Maximum Score
-        .right {{vm.typeStats.submissions.maxScore | empty}}
+        li
+          .left Appeals Success Rate
+          .right {{vm.typeStats.submissions.appealSuccessRate | percentage | empty}}
 
-      li(ng-if="profileVm.isUser")
-        .left Minimum Score
-        .right {{vm.typeStats.submissions.minScore | empty}}
+        li(ng-if="profileVm.isUser")
+          .left Maximum Score
+          .right {{vm.typeStats.submissions.maxScore | empty}}
 
-      li(ng-if="profileVm.isUser")
-        .left Average Score
-        .right {{vm.typeStats.submissions.avgScore | number: 2 | empty}}
+        li(ng-if="profileVm.isUser")
+          .left Minimum Score
+          .right {{vm.typeStats.submissions.minScore | empty}}
 
-      li
-        .left Average Placement
-        .right {{vm.typeStats.submissions.avgPlacement | number: 2 | empty}}
+        li(ng-if="profileVm.isUser")
+          .left Average Score
+          .right {{vm.typeStats.submissions.avgScore | number: 2 | empty}}
+
+        li
+          .left Average Placement
+          .right {{vm.typeStats.submissions.avgPlacement | number: 2 | empty}}

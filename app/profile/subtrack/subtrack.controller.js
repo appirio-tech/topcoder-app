@@ -123,7 +123,7 @@
       if (vm.track.toUpperCase() === 'DATA_SCIENCE') {
         if (vm.subTrack.toUpperCase() === 'SRM') {
           // _challengePromise = SRMService.getSRMs()
-          params['filter'] = "status=past";
+          params['filter'] = "status=past&isRatedForSRM=true";
           return SRMService.getPastSRMs(profileVm.profile.handle, params)
           .then(function(data) {
             vm.challenges = data;
@@ -154,8 +154,8 @@
             vm.status.challenges = CONSTANTS.STATE_ERROR;
           });
         } else {
-          params['filter'] = "status=past";
-          // params['orderBy'] ='submissionEndDate desc';
+          params['filter'] = "status=past&isRatedForMM=true";
+          params['orderBy'] ='endDate desc';
           return ChallengeService.getUserMarathonMatches(profileVm.profile.handle, params)
           .then(function(data) {
             vm.challenges = data;
@@ -166,14 +166,12 @@
           });
         }
       } else {
-        params['filter']= 'status=completed&track=' + vm.track + '&subTrack=' + vm.subTrack;
+        params['filter']= 'status=completed&hasUserSubmittedForReview=true&track=' + vm.track + '&subTrack=' + vm.subTrack;
         params['orderBy'] ='submissionEndDate desc';
         return ChallengeService.getUserChallenges(profileVm.profile.handle, params)
         .then(function(data) {
           ChallengeService.processPastChallenges(data);
-          vm.challenges = data.filter(function(challenge) {
-            return challenge.userDetails.hasUserSubmittedForReview;
-          });
+          vm.challenges = data;
           vm.status.challenges = CONSTANTS.STATE_READY;
           return data;
         }).catch(function(err) {

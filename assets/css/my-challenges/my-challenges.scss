@@ -6,12 +6,6 @@
   display: flex;
   flex-direction: column;
 
-  .section-loading {
-    width: 100%;
-    height: 50px;
-    background: url(/images/ripple.gif) no-repeat center center;
-  }
-
   .section-title {
     font-size: 22px;
     color: #4f4f4f;
@@ -97,6 +91,12 @@
       font-size: 18px;
     }
 
+    .hasChallenges {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .content {
       margin-left: 10px;
       margin-right: 10px;
@@ -161,6 +161,13 @@
               &.disabled {
                 color: $black;
                 cursor: default;
+
+                &.tile:before {
+                  background: url(/images/grid-on.svg);
+                }
+                &.list:before {
+                  background: url(/images/list-on.svg);
+                }
               }
 
               &:before {
@@ -169,14 +176,14 @@
                 margin-bottom: 2px;
                 margin-right: 4px;
                 vertical-align: middle;
-                @include background-image-size(16px, 16px);
+                @include background-image-size(12px, 12px);
               }
 
               &.tile:before {
-                background: url(/images/ico-grid.svg);
+                background: url(/images/grid-off.svg);
               }
               &.list:before {
-                background: url(/images/ico-list.svg);
+                background: url(/images/list-off.svg);
               }
 
             }
