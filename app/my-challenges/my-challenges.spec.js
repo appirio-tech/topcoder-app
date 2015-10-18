@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe.only('My Challenges Controller', function() {
+describe('My Challenges Controller', function() {
   var controller;
   var domain;
   var authService, challengeService, userService, identity, mockState;
