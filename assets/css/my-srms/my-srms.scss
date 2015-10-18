@@ -11,12 +11,6 @@
     margin-bottom: 35px;
   }
 
-  .section-loading {
-    width: 100%;
-    height: 50px;
-    background: url(/images/ripple.gif) no-repeat center center;
-  }
-
   .section-title {
     font-size: 22px;
     color: #4f4f4f;
@@ -62,12 +56,17 @@
     }
   }
 
+  .has-srms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .content {
     margin-left: 10px;
     margin-right: 10px;
 
-    section.srms {
+    section.my-srms {
       background: white;
       align-self: center;
       margin-top: 15px;
@@ -214,6 +213,7 @@
       }
     }
   }
+
 }
 
 
@@ -250,7 +250,7 @@
 
 @media (min-width: 870px) {
   .my-srms-container {
-    section.srms {
+    section.my-srms {
       .data {
         max-width: 840px;
       }
@@ -259,7 +259,7 @@
 }
 @media (min-width: 1155px) {
   .my-srms-container {
-    section.srms {
+    section.my-srms {
       .data {
         max-width: 1125px;
       }

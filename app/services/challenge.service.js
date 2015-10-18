@@ -31,17 +31,8 @@
       return api.one('members', handle.toLowerCase()).all('challenges').getList(params);
     }
 
-    function getUserMarathonMatches(handle, params, filterUnRated) {
-      filterUnRated = filterUnRated || true;
-      return api.one('members', handle.toLowerCase()).all('mms').getList(params)
-      .then(function(mms) {
-        if (filterUnRated) {
-          mms = _.filter(mms, function(m) {
-            return _.isArray(m.rounds) && m.rounds.length && !_.isUndefined(m.rounds[0].userMMDetails) && m.rounds[0].userMMDetails.rated;
-          });
-        }
-        return mms;
-      });
+    function getUserMarathonMatches(handle, params) {
+      return api.one('members', handle.toLowerCase()).all('mms').getList(params);
     }
 
     function getReviewEndDate(challengeId) {
