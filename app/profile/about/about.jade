@@ -59,7 +59,7 @@
             span {{track | track | uppercase}}
 
           a.subtrack(
-            ng-repeat="subtrack in profileVm.categories[track]",
+            ng-repeat="subtrack in profileVm.categories[track] | orderBy:'mostRecentEventDate':true",
             ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})",
             class="{{$index == 0 && 'first'}}"
           )
