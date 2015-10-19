@@ -59,7 +59,7 @@
             controllerAs: 'vm'
           },
           'container@': {
-            template: "<div ui-view>Main container, add your stuff here</div>"
+            template: "<div ui-view></div>"
           },
           'footer@': {
             templateUrl: 'layout/footer/footer.html',
