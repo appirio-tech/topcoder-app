@@ -83,9 +83,6 @@
         vm.loading = CONSTANTS.STATE_READY;
 
         vm.totalCount = _.sum(_.pluck(data, 'metadata.totalCount'));
-        // var challenges = [];
-        // .concat(data[0]);
-        // challenges = challenges.concat(data[1]);
         vm.myChallenges = vm.myChallenges.concat(_.union(data[0], data[1]));
       })
       .catch(function(resp) {

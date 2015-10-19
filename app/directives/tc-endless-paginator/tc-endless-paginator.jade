@@ -1,5 +1,5 @@
 
-div(ng-transclude)
-
-tc-section(state="vm.loading")
-  button.tc-btn(ng-show="vm.totalCount > vm.currentLength", ng-click="vm.loadMore()") Load More
+div
+  tc-section(state="state")
+    button.tc-btn(ng-show="pageParams.totalCount > pageParams.currentCount", ng-click="loadMore()") More
+  
