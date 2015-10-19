@@ -1,32 +1,48 @@
 @import 'topcoder-includes';
 @import '../partials/combined';
 
-.login-container, .register-container, .reset-password-container, .registered-successfully-container {
+.login-container,
+.register-container,
+.reset-password-container,
+.registered-successfully-container {
   width: 560px;
-  margin: 120px auto 0 auto;
+  margin: 60px auto 0;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: flex-start;
   @include source-sans-regular;
   background-color: white;
+  border-radius: 3px;
 
   header {
     height: 70px;
-    background-color: #2E2E2E;
+    background-color: $gray-darkest;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 3px 3px 0 0;
+    position: relative;
 
-    .arrow {
-      background-image: url(/images/ico-arrow.png);
-      background-repeat: no-repeat;
-      background-position: 0px -11px;
-      width: 16px;
-      height: 10px;
-      /* TODO remove workarounds of -ve margin */
-      margin-left: -35px;
-      margin-top: 61px;
+    // CSS-olny Arrow
+    &:after {
+      bottom: 0;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      border-color: rgba(255, 255, 255, 0);
+      border-bottom-color: #fff;
+      border-width: 13px;
+      margin-left: -16px;
+    }
+
+    .logo-link img {
+      height: 30px;
+      display: inline-block;
     }
   }
 
@@ -41,10 +57,7 @@
     @include sofia-pro-light;
     width: 380px;
     align-self: center;
-  }
-
-  a {
-    @include login-link;
+    text-transform: uppercase;
   }
 
   input:not([type="checkbox"]), button {
@@ -61,6 +74,8 @@
     @include source-sans-regular;
     font-size: 16px;
     color: #231F20;
+    box-shadow: none;
+    outline: none;
   }
 
   .tips {
@@ -72,15 +87,109 @@
   }
 
   button {
-    width: 180px;
+    // width: 180px;
     align-self: center;
-    text-transform: uppercase;
+    // text-transform: uppercase;
   }
 
   // Form stylings
   @include ui-form-placeholder;
 
+  input[type="text"],
+  toggle-password {
+    width: 380px;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input.email,
+  toggle-password,
+  toggle-password-with-tips {
+    height: 38px;
+    background: $white;
+    border: 1px solid #B7B7B7;
+    box-shadow: inset 0px 0px 2px 0px rgba(183,183,183,0.30);
+    border-radius: 2px;
+    cursor: auto;
+    color: #3d3d3d;
+
+    &:hover {
+      border: 1px solid #A3A3AE;
+      box-shadow: inset 0px 0px 2px 0px #B7B7B7;
+    }
+
+    &:focus,
+    &.focus {
+      border: 1px solid #0096FF;
+      outline: none;
+      box-shadow: inset 0px 0px 2px 1px rgba(133,203,255,0.60);
+    }
+
+    transition: .15s all;
+  }
+
+  input:not([type="checkbox"]) {
+    box-shadow: none;
+  }
+
+  toggle-password {
+    input#current-password-input {
+      width: 300px;
+      height: 20px;
+      border: none;
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+  toggle-password-with-tips {
+    input#password-input {
+      border: none;
+      outline: none;
+      box-shadow: none;
+    }
+  }
+
+
+
+
   // Social section
+
+  .social-icons {
+    display: block;
+
+    .network {
+      margin-left: 30px;
+
+      &:first-child {
+        margin-left: 0 !important;
+      }
+
+      & a:hover {
+        filter: brightness(80%);
+      }
+
+      span {
+        color: #A3A3AE;
+        font-size: 10px;
+        line-height: 13px;
+        font-family: 'Sofia Pro', Arial;
+        font-weight: 500;
+        text-transform: uppercase;
+        margin-top: 10px;
+        cursor: pointer;
+        transition: .1s all;
+      }
+    }
+
+    .network:hover {
+      span {
+        color: $gray-darkest;
+      }
+    }
+  }
+
   .social {
     margin-top: 15px;
     margin-bottom: 40px;
@@ -159,9 +268,55 @@
   }
 }
 
+// Register Link styles
+
+.join-topcoder {
+  display: flex;
+  flex-flow: row wrap;
+  margin-top: 30px;
+  justify-content: center;  
+  font-size: 12px;
+  text-transform: uppercase;
+  font-size: 12px;
+
+  a {
+    display: inline;
+  }
+
+  .redirect{
+    width: 111px;
+    padding: 8px 10px;
+  }
+}
+
+.fold-pusher {
+  height: 0px;
+  max-height: 0px;
+}
+
+.fold-wrapper {
+  margin: 0;
+}
+
+.account-footer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 0 0 30px;
+
+  .copyright-notice {
+    color: $gray-dark;
+  }
+  
+}
+
+
 @media (max-width: 767px) {
 
-  .login-container, .register-container, .reset-password-container, .registered-successfully-container {
+  .login-container,
+  .register-container,
+  .reset-password-container,
+  .registered-successfully-container {
     width: 100%;
     margin: 0 auto;
 
@@ -194,3 +349,48 @@
     }
   }
 }
+
+  // The separator for login options
+  .tc-separator {
+    // border: 1px solid $gray-light;
+    // position: relative;
+    // display: inline-block;
+    // height: 1px;
+    $sp-width: 340px;
+    width: $sp-width;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+
+    &:after {
+      display: block;
+      width: $sp-width;
+      content: " ";
+      overflow: hidden;
+      height: 1px;
+      background-color: $gray-light;
+      position: absolute;
+      top: 50%;
+      z-index: 99;
+    }
+
+    & span {
+      display: inline-block;
+      background: $white;
+      border: none;
+      z-index: 100;
+      position: relative;
+      top:  0;
+      padding: 0 15px;
+      font: {
+        size: 10px;
+        family: "Sofia Pro", Arial, sans-serif;
+        weight: 500;
+      }
+      text: {
+        align: center;
+        transform: uppercase;
+      }
+    }
+  }

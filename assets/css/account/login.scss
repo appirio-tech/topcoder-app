@@ -2,22 +2,53 @@
 @import '../partials/combined';
 
 .login-container {
-
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+
+  h1 {
+      @media (max-width: 767px) {
+        margin: 30px auto;
+      }
+  }
 
   form {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    margin-left: 90px;
-    margin-right: 90px;
+    margin: 0 90px;
 
     input[type="text"],
     toggle-password {
       width: 380px;
-      height: 42px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    toggle-password {
+      height: 38px;
+      background: $white;
+      border: 1px solid #B7B7B7;
+      box-shadow: inset 0px 0px 2px 0px rgba(183,183,183,0.30);
       border-radius: 2px;
-      border: 1px solid #D1D3D4;
+      cursor: auto;
+      color: #3d3d3d;
+
+      &:hover {
+        border: 1px solid #A3A3AE;
+        box-shadow: inset 0px 0px 2px 0px #B7B7B7;
+      }
+
+      &:focus,
+      &.focus {
+        border: 1px solid #0096FF;
+        outline: none;
+        box-shadow: inset 0px 0px 2px 1px rgba(133,203,255,0.60);
+      }
+
+      transition: .15s all;
+    }
+
+    input:not([type="checkbox"]) {
+      box-shadow: none;
     }
 
     toggle-password {
@@ -25,11 +56,13 @@
         width: 300px;
         height: 20px;
         border: none;
+        outline: none;
+        box-shadow: none;
       }
     }
 
     button {
-      margin-top: 40px;
+      margin-top: 20px;
     }
   }
 
@@ -51,65 +84,18 @@
       margin-bottom: 25px;
       font-size: 12px;
     }
+
   }
 
-}
 
-.join-topcoder {
-  .redirect{
-    width: 111px;
-    padding: 8px 10px;
-  }
-}
+  section.social {
+    @media (max-width: 767px) {
+      margin-bottom: 41px;
+    }
 
-@media (min-width: 768px) {
-
-  .login-container {
-    section.social {
+    @media (min-width: 768px) {
       margin-bottom: 60px;
     }
-  }
-}
-@media (max-width: 767px) {
-
-  .login-container {
-
-    h1 {
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
-
-    form {
-
-    }
-
-    section.social {
-      margin-bottom: 41px;
-
-      .social-icons {
-        .network {
-          &.github {
-
-          }
-
-          &.facebook {
-            margin-left: 30px;
-          }
-
-          &.google-plus {
-            margin-left: 32px;
-          }
-
-          &.twitter {
-            margin-left: 30px;
-          }
-        }
-      }
-    }
-  }
-
-  .join-topcoder {
-    position: initial;
-    margin-top: 30px;
+    
   }
 }

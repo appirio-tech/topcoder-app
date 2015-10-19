@@ -72,7 +72,6 @@
     padding-top: 10px;
   }
   .bottom {
-    @include module-l;
     background: white;
     align-self: center;
     margin-left: auto;
@@ -370,6 +369,7 @@
   ul.vertical-stats {
     display: flex;
     flex-direction: column;
+    align-items: center;
     li {
       display: flex;
       flex-direction: row;

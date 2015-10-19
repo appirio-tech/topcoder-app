@@ -56,8 +56,9 @@
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
     ng-switch="challenge.track")
     header
-      // TODO: handle url for past marathon match
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      
+      a(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      a(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{challenge.rounds[0].id}}") {{challenge.name}}
 
       p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
