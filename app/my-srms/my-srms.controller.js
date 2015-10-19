@@ -56,14 +56,14 @@
         vm.srms = [];
       }
       // reverseOrder implies we need to send 'desc' in orderBy clause.
-      var _filterString = 'status=' + vm.statusFilter;
+      var _orderByString = vm.orderBy;
       if (vm.reverseOrder)
-        _filterString += ' desc';
+        _orderByString += ' desc';
       var params = {
         limit: defaultParams.limit,
-        orderBy: vm.orderBy,
+        orderBy: _orderByString,
         offset: offset,
-        filter: _filterString
+        filter: 'status=' + vm.statusFilter
       };
 
       if (vm.statusFilter === 'past') {
