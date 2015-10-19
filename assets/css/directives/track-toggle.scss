@@ -69,10 +69,12 @@ track-toggle {
 }
 .onoffswitch {
   position: relative; width: 45px;
+  min-width: 45px;
   height: 24px;
   align-self: center;
   -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
   margin-right: 30px;
+  margin-left: 5px;
 }
 .onoffswitch-checkbox {
   display: none;
