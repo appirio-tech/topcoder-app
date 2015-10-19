@@ -87,6 +87,11 @@
   font-weight: 500;
 }
 
+@mixin sofia-pro-semi-bold {
+  font-family: 'Sofia Pro', Arial;
+  font-weight: 600;
+}
+
 @mixin sofia-pro-bold {
   font-family: 'Sofia Pro', Arial;
   font-weight: bold;
