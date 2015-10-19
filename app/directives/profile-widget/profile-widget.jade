@@ -27,7 +27,7 @@
     hr
 
     .links
-      a.tc-btn.tc-btn-secondary.tc-btn-s.forums.link(ng-href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
+      a.tc-btn.tc-btn-s.forums.link(ng-href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
         | Forum Posts
-      button.tc-btn.tc-btn-secondary.tc-btn-s.badges.link(ng-click="profileVm.showBadges()", ng-show="profileVm.profile.badges.Achievements.length > 0")
+      button.tc-btn.tc-btn-s.badges.link(ng-click="profileVm.showBadges()", ng-show="profileVm.profile.badges.Achievements.length > 0")
         | Badges
