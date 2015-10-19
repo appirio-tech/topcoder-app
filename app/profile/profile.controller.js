@@ -68,6 +68,9 @@
       } else {
         profile.startMonth = null;
       }
+      UserService.getV2UserProfile(vm.userHandle).then(function(resp) {
+        vm.profile.badges = resp;
+      });
 
     }
 
