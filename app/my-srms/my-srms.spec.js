@@ -57,7 +57,10 @@ describe('My SRMs Controller', function() {
       return deferred.promise;
     });
 
-    mockState = { '$current' : {'name': 'test'}};
+    mockState = {
+      '$current' : {'name': 'test'},
+      go: function() {}
+    };
   });
 
   bard.verifyNoOutstandingHttpRequests();

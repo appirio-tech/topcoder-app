@@ -10,9 +10,9 @@
     section.my-srms
       .top
         .filters
-          a(ng-click="vm.changeFilter('future')", ng-class="{disabled: vm.statusFilter == 'future'}") Upcoming
+          a(ng-click="vm.statusFilter !== 'future' && vm.changeFilter('future')", ng-class="{disabled: vm.statusFilter == 'future'}") Upcoming
           span &nbsp; | &nbsp;
-          a(ng-click="vm.changeFilter('past')", ng-class="{disabled: vm.statusFilter == 'past'}") Past
+          a(ng-click="vm.statusFilter !== 'past' && vm.changeFilter('past')", ng-class="{disabled: vm.statusFilter == 'past'}") Past
 
         .viewOptions
           button.tile(ng-click="vm.changeView('tile')", ng-class="{ disabled: vm.view === 'tile' }") Grid

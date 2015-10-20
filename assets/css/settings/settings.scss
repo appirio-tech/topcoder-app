@@ -145,8 +145,7 @@
         font-size: 13px;
         line-height: 20px;
         color: #A3A3AE;
-        font-family: 'Source Sans Pro';
-        font-style: italic;
+        @include source-sans-italic;
         margin-top: 5px;
       }
     }
@@ -212,7 +211,7 @@
 
         span.error-message {
           color: #EF3A3A;
-          font-family: 'Sofia Pro';
+          @include sofia-pro-regular;
           font-size: 10px;
           text-transform: uppercase;
         }
@@ -256,7 +255,7 @@
       }
 
       .field-label {
-        font-family: 'Sofia Pro';
+        @include sofia-pro-regular;
         font-size: 12px;
         text-transform: uppercase;
       }
@@ -266,8 +265,7 @@
         margin-top: 6px;
 
         input {
-          font-family: 'Source Sans Pro';
-          font-style: italic;
+          @include source-sans-italic;
           color: #7f7f7f;
         }
       }
@@ -291,7 +289,7 @@
   }
   .links {
     .field-label {
-      font-family: 'Sofia Pro';
+      @include sofia-pro-regular;
       font-size: 12px;
       text-transform: uppercase;
     }

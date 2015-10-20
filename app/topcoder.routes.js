@@ -63,6 +63,9 @@
           },
           'footer@': {
             templateUrl: 'layout/footer/footer.html',
+            controller: ['$scope', 'CONSTANTS', function($scope, CONSTANTS) {
+              $scope.domain = CONSTANTS.domain;
+            }]
           }
         }
       },

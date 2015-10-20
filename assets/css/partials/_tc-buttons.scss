@@ -36,22 +36,27 @@ a.tc-btn, button.tc-btn {
   border-radius: 4px;
   border: 1px solid $primary;
   background-color: $primary;
+  background-image : none;
   @include sofia-pro-regular;
   font-size: 16px;
   color: $white;
   text-transform: uppercase;
   outline: none;
+  text-shadow: none;
 
   &:hover {
     background-color: $primary-dark;
     border-color: $primary-dark;
+    color: $white;
   }
 
-  &:active {
+  &:active,
+  &:focus {
     background-color: $primary-dark;
+    background-image : none;
     border-color: $primary-dark;
     box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,0.30);
-    line-height: 41px;
+    line-height: 30px;
   }
 
   &:disabled {
@@ -62,15 +67,18 @@ a.tc-btn, button.tc-btn {
   &.tc-btn-secondary {
     border-color: $gray;
     background-color: $gray;
+    background-image : none;
 
     &:hover {
       border-color: $primary;
       background-color: $primary;
+      background-image : none;
     }
 
     &:active {
       border-color: $primary-dark;
       background-color: $primary-dark;
+      background-image : none;
       box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,0.30);
     }
   }
