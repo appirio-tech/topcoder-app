@@ -1,3 +1,4 @@
+var path = require('path');
 var ProfilePage = function() {
  
   this.get = function(baseUrl) {
@@ -72,10 +73,27 @@ var ProfilePage = function() {
 		  isClickable = EC.elementToBeClickable(editProfile);
 		  browser.wait(isClickable, 60000);
 		  editProfile.click().then(function() {
-//			  var profileTab = element(by.partialLinkText('Profile'));
-//			  var countryId = element(by.id('countryId_value'));
-//			  countryId.clear();
-//			  countryId.sendKeys(loginUserCred.country);
+			  var profileTab = element(by.partialLinkText('Profile'));
+			  var absolutePath = path.resolve(loginUserCred.profilePicDir, loginUserCred.profilePicFile);
+			  var imageUpload = element(by.name('image'));
+			  isClickable = EC.elementToBeClickable(imageUpload);
+			  browser.wait(isClickable, 30000);
+			  console.log('absolutePath'+absolutePath);
+			  $('input[type="file"]').sendKeys(absolutePath);
+			  var countryId = element(by.id('countryId_value'));
+			  countryId.clear();
+			  countryId.sendKeys(loginUserCred.country);
+			  var countryIdDropDown = element(by.id('countryId_dropdown'));
+			  isClickable = EC.elementToBeClickable(countryIdDropDown);
+			  browser.wait(isClickable, 30000);
+			  countryIdDropDown.all(by.css('.angucomplete-title')).filter(function(elem, index){
+				  return elem.getInnerHtml().then(function(text){
+					  return text.indexOf(loginUserCred.country) != -1 ;
+				  })
+			  }).then(function(filteredElements){
+				  filteredElements[0].click();
+			  });
+			  
 			  var shortBio = element(by.model('vm.userData.description'));
 			  isClickable = EC.elementToBeClickable(shortBio);
 			  browser.wait(isClickable, 60000);

@@ -4,7 +4,9 @@ var ProfileData = function() {
     this.userCredentials = [
                             	{	'username' :'aqmansuri',
                             		'password' :'appirio123', 
-                            		'country'  :'United States',
+                            		'profilePicDir':'/Volumes/data',
+                            		'profilePicFile': 'profilePic.jpg',
+                            		'country'  :'India',
                             		'shortBio' :'lets play with open source',
                             		'design'   :'y',
                             		'development' : 'y',
