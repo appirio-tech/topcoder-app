@@ -53,14 +53,44 @@
       background-color: $gray-lightest;
       color: $accent-gray;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .rn-carousel-control-prev {
       left: 0;
     }
 
+    .rn-carousel-control-prev:before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 38px;
+      background-image: url('/images/ico-arrow-big-left.svg');
+      background-size: 20px 38px;
+
+      :hover {
+        opacity: 0;
+      }
+    }
+
     .rn-carousel-control-next {
       right: 0;
+    }
+
+    .rn-carousel-control.rn-carousel-control-next:before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 38px;
+      background-image: url('/images/ico-arrow-big-right.svg');
+      background-size: 20px 38px;
+
+      :hover {
+        opacity: 0.3;
+      }
     }
 
   }
