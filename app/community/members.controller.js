@@ -8,7 +8,7 @@
   function MembersController(membersData, $http) {
     this.notSearch = true;
     this.showing = 'list';
-    this.currentMonth = 'September 2015';
+    this.currentMonth = 'October 2015';
     this.memberLeaderboard = membersData.data.memberLeaderboard;
     this.copilots = membersData.data.copilots;
     this.search = function() {

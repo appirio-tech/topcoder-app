@@ -19,7 +19,7 @@
             .user-name {{item.name}}
             .user-tag(class="{{item.class}}") {{item.contestType}}
             p.user-desc {{item.description}}
-            a.user-more Read the story
+            a(ng-href="//www.topcoder.com/community/member-programs/topcoder-member-of-the-month/", target="_blank").user-more Read the story
         p.member-congratulation Congratulations for all member of the month, win prize each
 
       .copilots-container
@@ -30,7 +30,8 @@
             .user-name {{item.name}}
             .user-country {{item.country}}
         .btn-wrapper
-          a.blue-btn View all copilots
+          a(ng-href="//community.topcoder.com/tc?module=ViewCopilotPool&size=20&view=0&sort=12", target="_blank").blue-btn View all copilots
+
 
     .search-result-container(ng-hide="ctrl.notSearch")
       h2 Search Result For:
@@ -52,5 +53,6 @@
           a.user-more View Profile
       .btn-wrapper
         a.gray-btn Load More
+
 
 

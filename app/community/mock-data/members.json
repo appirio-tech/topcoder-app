@@ -1,70 +1,46 @@
 {
     "memberLeaderboard": [{
-        "avatar": "community/mock-data/avatar.png",
-        "name": "ilesmana",
+        "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/yoki_august2015.png",
+        "name": "yoki",
         "contestType": "Design",
-        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s.",
+        "description": "Won $3,800 in design challenges.",
         "class": "design"
     }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "arminmuaniez",
+        "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/ultronzero_august2015.png",
+        "name": "ultronzero",
         "contestType": "Software",
-        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s.",
+        "description": "Won $6750 in development challenges.",
         "class": "develop"
     }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "koimsz",
+        "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/lowsfish_august2015.png",
+        "name": "lowsfish",
         "contestType": "Data Science",
-        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s.",
+        "description": "Rating increased in both SRMs & advanced from Div 2 to Div 1.",
         "class": "data-science"
     }],
     "copilots": [{
-        "avatar": "community/mock-data/avatar.png",
-        "name": "ilesmana",
-        "country": "Indonesia"
+        "avatar": "//community.topcoder.com/i/m/maroosh.jpeg",
+        "name": "maroosh",
+        "country": "Jordan"
     }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "utamidwi",
-        "country": "Indonesia"
+        "avatar": "//community.topcoder.com/i/m/elkhawajah.jpeg",
+        "name": "elkhawajah",
+        "country": "Jordan"
     }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "janedoe",
-        "country": "Brazil"
+        "avatar": "//community.topcoder.com/i/m/hohosky.png",
+        "name": "hohosky",
+        "country": "China"
     }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "freeyourself",
-        "country": "Chile"
+        "avatar": "//community.topcoder.com/i/m/Wendell.jpeg",
+        "name": "Wendell",
+        "country": "China"
     }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "buureen",
-        "country": "Venezuela"
+        "avatar": "//community.topcoder.com/i/m/callmekatootie.jpeg",
+        "name": "callmekatootie",
+        "country": "India"
     }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "mariaja",
-        "country": "Malaysia"
-    }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "ilesmana",
-        "country": "Indonesia"
-    }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "afputra",
-        "country": "Indonesia"
-    }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "janedoe",
-        "country": "Brazil"
-    }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "freeyourself",
-        "country": "Chile"
-    }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "buureen",
-        "country": "Venezuela"
-    }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "mariaja",
-        "country": "Malaysia"
+        "avatar": "//community.topcoder.com/i/m/iSpartan.jpeg",
+        "name": "iSpartan",
+        "country": "United States"
     }]
 }
