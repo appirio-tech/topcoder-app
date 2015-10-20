@@ -3,9 +3,7 @@
     .challenge-track
 
     header
-      a(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
-
-      a(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{challenge.rounds[0].id}}") {{challenge.name}}
+      a(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
 
       p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
@@ -32,24 +30,18 @@
 
       .challenge-links
         .stats
-          a.registrants(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+          a.registrants(ng-href="{{challenge|challengeLinks:'registrants'}}", ng-switch="challenge.subTrack")
             .registrants-icon
 
-            p {{challenge.numRegistrants}}
+            p(ng-switch-when="MARATHON_MATCH") {{challenge.numRegistrants[0]}}
+            p(ng-switch-default) {{challenge.numRegistrants}}
 
-          a.registrants(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/longcontest/?module=ViewStandings&rd={{challenge.rounds[0].id}}")
-            .registrants-icon
-
-            p {{challenge.numRegistrants[0]}}
-
-          a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+          a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="{{challenge|challengeLinks:'submissions'}}")
             .submissions-icon
-
             p {{challenge.numSubmissions}}
 
-        a.forum(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
+        a.forum(ng-href="{{challenge|challengeLinks:'forums'}}")
           .forum-icon
-
           p Forum
 
   .completed-challenge(
@@ -57,8 +49,7 @@
     ng-switch="challenge.track")
     header
       
-      a(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
-      a(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{challenge.rounds[0].id}}") {{challenge.name}}
+      a(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
 
       p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
@@ -66,14 +57,11 @@
 
     .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack", ng-class="challenge.track")
 
-      div(ng-switch-when="MARATHON_MATCH")
+      div
         .marathon-score
           p.score {{challenge.pointTotal || 0 }}
 
           p Total Points
-
-      div(ng-switch-when="SRM")
-        p BLAH
 
     .challenge-details(ng-switch-when="DEVELOP")
       dev-challenge-user-place(challenge="challenge", view="view")
@@ -86,10 +74,8 @@
     .challenge-track
 
     header
-      a(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
-
-      a(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{challenge.rounds[0].id}}") {{challenge.name}}
-
+      a(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
+      
       p.subtrack {{challenge.subTrack | underscoreStrip}}
 
       p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:] {{challenge.userDetails.roles | listRoles}}
@@ -111,32 +97,27 @@
         .registered(ng-switch-when="Registered") Registered
 
     .challenge-links
-      a.registrants(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
-        p {{challenge.numRegistrants}}
-
+      a.registrants(ng-href="{{challenge|challengeLinks:'registrants'}}", ng-switch="challenge.subTrack")
+        
+        p(ng-switch-when="MARATHON_MATCH") {{challenge.numRegistrants[0]}}
+        p(ng-switch-default) {{challenge.numRegistrants}}
         .registrants-icon
 
-      a.registrants(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/longcontest/?module=ViewStandings&rd={{challenge.rounds[0].id}}")
-        p {{challenge.numRegistrants[0]}}
-
-        .registrants-icon
-
-      a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+      a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="")
         p {{challenge.numSubmissions}}
-
         .submissions-icon
 
-      a.forum(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
+      a.forum(ng-href="{{challenge|challengeLinks:'forums'}}")
         .forum-icon
-
         p Forum
+        
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
     ng-switch="challenge.track")
     .challenge-track
 
     header
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      a(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
 
       p.subtrack {{challenge.subTrack | underscoreStrip}}
 
@@ -144,7 +125,7 @@
 
     .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack", ng-class="challenge.track")
 
-      div(ng-switch-when="MARATHON_MATCH")
+      div
         .marathon-score
           p.score {{challenge.pointTotal || 0 }}
 

@@ -23,6 +23,7 @@
     vm.selectSubTrack = selectSubTrack;
     vm.showNav = showNav;
     vm.back = back;
+
     vm.status = {
       'challenges': CONSTANTS.STATE_LOADING
     };
@@ -36,7 +37,13 @@
       updated: 0
     };
 
-    activate();
+        // make sure track and subtrack are set
+    if (!$stateParams.track || !$stateParams.subTrack) {
+      // redirect to main profile
+      $state.go('profile.about', {userHandle: $stateParams.userHandle});
+    } else {
+      activate();
+    }
 
     function activate() {
       if (vm.track == 'DEVELOP' || vm.track == 'DATA_SCIENCE') {
@@ -164,7 +171,7 @@
           params['orderBy'] ='endDate desc';
           return ChallengeService.getUserMarathonMatches(profileVm.profile.handle, params)
           .then(function(data) {
-            vm.pageParams.totalCount = vm.challenges.metadata.totalCount;
+            vm.pageParams.totalCount = data.metadata.totalCount;
             vm.pageParams.currentCount = vm.challenges.length;
             vm.challenges = vm.challenges.concat(data);
             vm.status.challenges = CONSTANTS.STATE_READY;
