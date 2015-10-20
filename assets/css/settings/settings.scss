@@ -304,6 +304,20 @@
 .preferences-container {
   @media only screen and (min-width: 768px) {
   }
+  .password {
+    padding-left: 30px;
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 5px;
+    &:hover {
+      cursor: text;
+    }
+    input, input:hover, input:focus {
+      background: none;
+      border: none;
+      box-shadow: none;
+    }
+  }
   .tab-title {
     margin-bottom: 35px;
     font-size: 32px;

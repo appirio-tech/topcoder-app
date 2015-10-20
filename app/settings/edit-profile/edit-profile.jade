@@ -25,7 +25,7 @@
           angucomplete-alt(
             id="countryId",
             input-name="location",
-            input-class="form-field",
+            input-class="tc-input",
             placeholder="Country",
             pause="100",
             selected-object="vm.updateCountry",
@@ -42,7 +42,7 @@
         .bio
           .form-label short bio
             span(style="float:right;") {{vm.userData.description.length || 0}}/256
-          textarea.form-field(name="description", ng-model="vm.userData.description", data-ng-trim="false", maxlength="256")
+          textarea.tc-input(name="description", ng-model="vm.userData.description", data-ng-trim="false", maxlength="256")
 
     .settings-section.tracks
       .section-info
@@ -65,7 +65,7 @@
       angucomplete-alt(
         id="tagId",
         input-name="skill-input",
-        input-class="form-field",
+        input-class="tc-input",
         placeholder='Start typing a skill then select from the list',
         pause="100",
         selected-object="vm.addSkill",

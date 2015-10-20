@@ -3,7 +3,9 @@
 
 @import 'topcoder-includes';
 
-input.tc-input {
+input.tc-input,
+.tc-input > input,
+.tc-input {
   color: #231f20;
   outline: none;
   background: white;

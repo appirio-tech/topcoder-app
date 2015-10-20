@@ -16,7 +16,9 @@
           .form-label Current password
 
           .validation-bar(ng-class="{ 'error-bar': (vm.newPasswordForm.currentPassword.$dirty && vm.newPasswordForm.currentPassword.$invalid) }")
-            toggle-password.form-field(ng-model="vm.currentPassword")
+            toggle-password.tc-input.password(
+              ng-model="vm.currentPassword"
+            )
 
             .form-input-error(ng-show="vm.newPasswordForm.currentPassword.$dirty && vm.newPasswordForm.currentPassword.$invalid")
               p(ng-show="vm.newPasswordForm.currentPassword.$error.required") This is a required field.
@@ -25,7 +27,9 @@
 
           .form-label New Password
           .validation-bar
-            toggle-password-with-tips.form-field(placeholder="Pick a new password")
+            toggle-password-with-tips.tc-input.password(
+              placeholder="Pick a new password"
+            )
             .tips.password-tips(ng-show="vm.passwordFocus")
               h3 Password Tips:
 
@@ -155,7 +159,7 @@
           .form-label Country
           angucomplete-alt(
             input-name="country",
-            input-class="form-field",
+            input-class="tc-input",
             pause="100",
             selected-object="vm.updateCountry",
             local-data="vm.countries",
