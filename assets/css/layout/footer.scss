@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .bottom-footer {
@@ -33,7 +34,7 @@
 }
 
 
-@media only screen and (max-width : 991px) {
+@media only screen and (max-width : 1024px) {
 	.bottom-footer, .fold-pusher {
 		height: 200px;
 	}
@@ -73,7 +74,7 @@
 	}
 }
 
-@media only screen and (min-width : 992px) {
+@media only screen and (min-width : 1025px) {
 	.bottom-footer, .fold-pusher {
 		height: 270px;
 	}
@@ -115,8 +116,8 @@
 		margin-bottom: 3px;
 
 		a {
-			width: 20px;
-			height: 20px;
+			width: 26px;
+			height: 26px;
 			margin-top: 13px;
 		}
 

@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .ext-tile {
@@ -44,6 +45,14 @@
     cursor: default;
   }
 
+  &.connecting {
+    cursor: default;
+  }
+
+  &.disabled {
+    cursor: default;
+  }
+
   .external-account-box {
     display: flex;
     flex-direction: column;
@@ -66,7 +75,8 @@
       line-height: 13px;
       text-align: center;
       text-transform: uppercase;
-      color: $system-gray;
+      color: $accent-gray;
+      padding: 0 10px;
     }
   }
 

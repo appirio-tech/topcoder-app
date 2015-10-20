@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .register-container {
@@ -67,10 +68,10 @@
     }
   }
 
-  // Social section
-  .social {
+  // login-options section
+  .login-options {
 
-    .social-icons {
+    .networks {
 
       i {
         cursor: pointer;
@@ -91,71 +92,28 @@
       }
     }
   }
-
   .section-break {
-    display: none;
-  }
-}
-
-.join-topcoder {
-  display: flex;
-  flex-flow: row wrap;
-  margin-top: 20px;
-  justify-content: center;
-  position: absolute;
-  top: 0px;
-  right: 20px;
-
-  span {
-    display: flex;
-    align-items: center;
-  }
-
-  .redirect {
-    border: 1px solid #D1D3D4;
-    background-color: white;
-    border-radius : 4px;
-    width: 66px;/* TODO as per design it should be 63px*/
-    height: 30px;
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    @include sofia-pro-light;
-    text-transform: uppercase;
-    font-size: 12px;
-    line-height: 14px;
-    padding: 8px 12px;
-
-    a {
-      text-decoration: none;
-    @include sofia-pro-light;
+    hr {
+      max-width: 180px;
+      margin: 10px auto 20px;
+      border: none;
+      border-bottom: 1px solid $gray-light;
     }
   }
 }
 
+
 @media (max-width: 767px) {
-
   .register-container {
-
     form {
-
       .first-last-names {
         display: flex;
         flex-direction: column;
         width: 100%;
       }
-      .section-break {
-        display: block;
-
-        hr {
-          max-width: 180px;
-          margin: 10px auto 20px auto;
-        }
-      }
     }
 
-    section.social {
+    section.login-options {
       margin-bottom: 41px;
     }
   }

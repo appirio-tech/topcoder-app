@@ -7,29 +7,41 @@
     '$stateParams',
     'NotificationService',
     'ProfileService',
-    'userIdentity'
+    'userIdentity',
+    '$log'
   ];
 
-  function HeaderDashboardController($stateParams, NotificationService, ProfileService, userIdentity) {
+  function HeaderDashboardController($stateParams, NotificationService, ProfileService, userIdentity, $log) {
     var vm = this;
-    vm.loading = true;
 
-    if ($stateParams.notifyReset) {
-      NotificationService.inform('Thanks. Your new password has been set.');
-    }
 
     activate();
 
     function activate() {
+      vm.loading = true;
+      vm.hideMoney = false;
       var handle = userIdentity.handle;
 
+      if ($stateParams.notifyReset) {
+        NotificationService.inform('Thanks. Your new password has been set.');
+      }
+
+      displayMoneyEarned(handle);
+    }
+
+    function displayMoneyEarned(handle) {
       ProfileService.getUserFinancials(handle)
       .then(function(financials) {
         vm.moneyEarned = _.sum(_.pluck(financials, 'amount'));
-        vm.loading = false;
 
+        if (!vm.moneyEarned) {
+          vm.hideMoney = true;
+        }
+
+        vm.loading = false;
       })
       .catch(function(err) {
+        vm.hideMoney = true;
         vm.loading = false;
       });
     }

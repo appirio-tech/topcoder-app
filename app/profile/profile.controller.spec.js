@@ -1,15 +1,19 @@
 /* jshint -W117, -W030 */
 describe('Profile Controller', function() {
   var controller;
+  var userService;
   var apiUrl;
   var mockProfile = mockData.getMockProfile();
+  var mockV2Profile = mockData.getMockUserProfile();
   var mockStats = mockData.getMockStats();
   var mockSkills = mockData.getMockSkills();
   var mockExternalLinks = mockData.getMockLinkedExternalAccounts();
+  var mockExternalLinksData = mockData.getMockLinkedExternalAccountsData();
 
   beforeEach(function() {
     bard.appModule('tc.profile');
-    bard.inject(this, '$controller', 'CONSTANTS', '$rootScope', '$q', 'ProfileService', 'ExternalAccountService');
+    bard.inject(this, '$controller', 'CONSTANTS', '$rootScope', '$q', 'ProfileService', 'ExternalAccountService', 'UserService');
+    userService = UserService;
 
     apiUrl = CONSTANTS.API_URL;
 
@@ -22,16 +26,23 @@ describe('Profile Controller', function() {
       },
       getRanks: ProfileService.getRanks
     };
+    // mock user api
+    sinon.stub(userService, 'getV2UserProfile', function() {
+      var deferred = $q.defer();
+      deferred.resolve(mockV2Profile.data);
+      return deferred.promise;
+    });
 
     var externalAccountService = {
       getLinkedExternalLinksData: function() {
-        return $q.when(mockExternalLinks);
+        return $q.when(mockExternalLinksData);
       }
     }
     controller = $controller('ProfileCtrl', {
       userHandle: 'rakesh',
       profile: mockProfile,
       ProfileService: profileService,
+      userService: userService,
       ExternalAccountService: externalAccountService
     });
   });
@@ -56,9 +67,10 @@ describe('Profile Controller', function() {
     });
 
     it('should have default status', function() {
+      expect(controller.status.badges).to.equal(CONSTANTS.STATE_LOADING);
       expect(controller.status.stats).to.equal(CONSTANTS.STATE_READY);
       expect(controller.status.skills).to.equal(CONSTANTS.STATE_READY);
-      expect(controller.status.externalLinks).to.equal(CONSTANTS.STATE_READY);
+      expect(controller.status.externalLinks).to.equal(CONSTANTS.STATE_LOADING);
     });
   });
 });

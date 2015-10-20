@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 .profile-about-container {
   margin-top: 20px;
@@ -7,7 +8,6 @@
   .empty-state {
     a.link-button {
       margin-top: 20px;
-      @include button-1-l;
     }
   }
 
@@ -29,6 +29,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
     .track {
       margin-top: 22.4px;
       display: flex;
@@ -36,12 +37,13 @@
       align-items: center;
       cursor: pointer;
 
+      &.noclick {
+        cursor: default;
+      }
+
       .name {
-        span {
-        }
         margin: auto;
-        font-family: 'Sofia Pro';
-        font-weight: 200;
+        @include sofia-pro-extra-light;
         font-size: 20px;
         line-height: 24px;
         margin-bottom: 10.6px;
@@ -53,6 +55,8 @@
         margin-bottom: -2px;
       }
       .subtrack {
+        text-decoration: none;
+        color: black;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -74,10 +78,9 @@
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          font-family: 'Sofia Pro';
+          @include sofia-pro-light;
           font-size: 14px;
           line-height: 18px;
-          font-weight: 300;
           text-transform: uppercase;
           display: flex;
           flex-direction: row;
@@ -92,10 +95,9 @@
           color: #7f7f7f;
           .number {
             text-align: center;
-            font-family: 'Sofia Pro';
+            @include sofia-pro-semi-bold;
             font-size: 13.4px;
             line-height: 16px;
-            font-weight: 600;
             span.square {
               position: absolute;
               margin-left: 5px;
@@ -106,16 +108,14 @@
           .tag {
             text-transform: uppercase;
             margin: 10px auto 0px auto;
-            font-family: 'Sofia Pro';
+            @include sofia-pro-regular;
             font-size: 8.4px;
             line-height: 10px;
             color: #7f7f7f;
-            font-weight: normal;
           }
         }
         .arrow {
-          font-family: 'Sofia Pro';
-          font-weight: 200;
+          @include sofia-pro-extra-light;
           color: #cccccc;
           font-size: 18px;
           display: flex;
@@ -136,10 +136,9 @@
       align-items: center;
       .action-text {
         margin-top: 32px;
-        font-family: 'Sofia Pro';
+        @include sofia-pro-extra-light;
         font-size: 18px;
         line-height: 24px;
-        font-weight: 200;
       }
       .tracks {
         display: flex;
@@ -147,17 +146,20 @@
         justify-content: space-between;
         width: 50%;
         .track {
+          .text {
+            margin-top: 15px;
+            text-transform: uppercase;
+          }
         }
       }
       .description {
         margin-top: 50px;
-        font-family: 'Source Sans Pro';
+        @include source-sans-regular;
         font-size: 15px;
         line-height: 22px;
         width: 60%;
       }
       button.link-button {
-        @include button-1-l;
         margin-top: 20px;
       }
       padding-bottom: 40px;
@@ -184,6 +186,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
     h1 {
       font-size: 25px;
       margin: auto;
@@ -192,10 +196,9 @@
       margin-top: 20px;
       margin-left: auto;
       margin-right: auto;
-      @include button-2-l;
     }
+
     .list {
-      
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -209,7 +212,6 @@
       .skill {
         margin: 5px 7.5px;
       }
-
     }
     .empty-state {
       width: 100%;
@@ -218,19 +220,16 @@
       .action-text {
         text-transform: uppercase;
         margin-top: 32px;
-        font-family: 'Sofia Pro';
-        font-weight: 200;
+        @include sofia-pro-extra-light;
         font-size: 18px;
         line-height: 24px;
       }
       .description {
-        font-family: 'Source Sans Pro';
-        font-weight: 300;
+        @include source-sans-light;
         font-size: 15px;
         line-height: 22px;
       }
       button.link-button {
-        @include button-1-l;
         margin-top: 30px;
       }
       .list {
@@ -259,6 +258,8 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 
 
     .empty-state {
@@ -268,20 +269,18 @@
       .action-text {
         text-transform: uppercase;
         margin-top: 32px;
-        font-family: 'Sofia Pro';
+        @include sofia-pro-extra-light;
         font-size: 18px;
         line-height: 24px;
-        font-weight: 200;
       }
       .description {
         margin-top: 50px;
-        font-family: 'Source Sans Pro';
+        @include source-sans-regular;
         font-size: 15px;
         line-height: 22px;
         width: 60%;
       }
       button.link-button {
-        @include button-1-l;
         margin-top: 20px;
       }
       .external-account-container {
@@ -301,18 +300,16 @@
  .activity {
     font-size: 28px;
     line-height: 34px;
-    font-weight: bold;
-    font-family: 'Sofia Pro';
+    @include sofia-pro-bold;
     text-transform: uppercase;
   }
-    
+
   .categories {
     padding-bottom: 90px;
     .activity {
       font-size: 28px;
       line-height: 34px;
-      font-weight: bold;
-      font-family: 'Sofia Pro';
+      @include sofia-pro-bold;
       text-transform: uppercase;
     }
 
@@ -377,8 +374,7 @@
         line-height: 34px;
       }
       .description {
-        font-family: 'Source Sans Pro';
-        font-weight: 300;
+        @include source-sans-light;
         font-size: 22px;
         line-height: 32px;
         width: 60%;
@@ -386,7 +382,6 @@
         margin-right: auto;
       }
       button.link-button {
-        @include button-1-l;
         margin-top: 30px;
       }
       .list {
@@ -409,8 +404,10 @@
     .list {
       display: flex;
       flex-direction: row;
-      width: 80%;
+      width: 100%;
       overflow-x: auto;
+      padding-left: 30px;
+      padding-right: 30px;
       margin: 70px auto 0 auto;
       .skill {
         margin: 0 30px;
@@ -432,8 +429,7 @@
         line-height: 34px;
       }
       .description {
-        font-family: 'Source Sans Pro';
-        font-weight: 300;
+        @include source-sans-light;
         font-size: 22px;
         line-height: 32px;
         width: 60%;
@@ -441,7 +437,6 @@
         margin-right: auto;
       }
       button.link-button {
-        @include button-1-l;
         margin-top: 30px;
       }
       .list {
@@ -511,8 +506,7 @@
       line-height: 34px;
     }
     .description {
-      font-family: 'Source Sans Pro';
-      font-weight: 300;
+      @include source-sans-light;
       font-size: 22px;
       line-height: 32px;
       width: 60%;
@@ -520,7 +514,6 @@
       margin-right: auto;
     }
     button.link-button {
-      @include button-1-l;
       margin-top: 30px;
     }
     .list {
@@ -530,7 +523,7 @@
       padding: 10px;
       margin: 20px auto;
     }
-  } 
+  }
   }
 
 

@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .tc-section {
@@ -6,6 +7,6 @@
   .section-loading {
     width: 100%;
     min-height: 100px;
-    background: $loading no-repeat center center;
+    background: url(/images/ripple.gif) no-repeat center center;
   }
 }

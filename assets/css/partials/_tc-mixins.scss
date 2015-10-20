@@ -28,12 +28,7 @@
 }
 
 @mixin login-link {
-  color: $login-blue;
-  text-decoration: underline;
-
-  &:visited {
-    color: $login-blue;
-  }
+  color: $primary;
 }
 
 @mixin horizontal-rule {
@@ -92,6 +87,11 @@
   font-weight: 500;
 }
 
+@mixin sofia-pro-semi-bold {
+  font-family: 'Sofia Pro', Arial;
+  font-weight: 600;
+}
+
 @mixin sofia-pro-bold {
   font-family: 'Sofia Pro', Arial;
   font-weight: bold;
@@ -134,201 +134,6 @@
   &:hover {
     text-decoration: underline;
   }
-}
-
-@mixin button-s($background: $primary-color) {
-  height: 20px;
-  line-height: 20px;
-  padding: 0 8px;
-  border: none;
-  border-radius: 3px;
-  color: $white;
-  background-color: $background;
-  @include sofia-pro-regular;
-  font-size: 11px;
-  text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
-  outline: 0;
-}
-
-@mixin button-m($background: $primary-color) {
-  @include button-s($background);
-  height: 30px;
-  line-height: 30px;
-  padding: 0 15px;
-  font-size: 14px;
-  border-radius: 4px;
-}
-
-@mixin button-l($background: $primary-color) {
-  @include button-s($background);
-  height: 50px;
-  line-height: 50px;
-  padding: 0 15px;
-  @include sofia-pro-bold;
-  font-size: 18px;
-  border-radius: 4px;
-}
-
-@mixin button-xl($background: $primary-color) {
-  @include button-s($background);
-  height: 60px;
-  line-height: 60px;
-  padding: 0 15px;
-  @include sofia-pro-bold;
-  font-size: 24px;
-  border-radius: 4px;
-}
-
-@mixin button-m-wide($background: $primary-color) {
-  @include button-m($background);
-  padding: 0 30px;
-}
-
-@mixin button-secondary {
-  background-color: #D1D3D4;
-}
-
-@mixin button-ghost {
-  background-color: $white;
-  color: $primary-color;
-  border: 1px solid $primary-color;
-}
-
-@mixin button-1($disabled: #b2e7fe, $normal: #1eaefc, $hover: #199ae2, $active: #1792d7) {
-  @include button-s;
-  background-color: $normal;
-  &:hover {
-    background-color: $hover;
-  }
-  &:active {
-    background-color: $active;
-  }
-  &.disabled {
-    background-color: $disabled;
-    cursor: default;
-  }
-}
-
-@mixin button-1-m {
-  @include button-1;
-  @include button-m(#1eaefc);
-}
-
-@mixin button-1-m-wide {
-  @include button-1;
-  @include button-m-wide(#1eaefc);
-}
-
-@mixin button-1-l {
-  @include button-1;
-  @include button-l(#1eaefc);
-}
-
-@mixin button-1-xl {
-  @include button-1;
-  @include button-xl(#1eaefc);
-}
-
-@mixin button-2 {
-  @include button-1(#edeeee, #d1d3d4, #1eaefc)
-}
-
-@mixin button-2-m {
-  @include button-2;
-  @include button-m(#d1d3d4);
-}
-
-@mixin button-2-m-wide {
-  @include button-2;
-  @include button-m-wide(#d1d3d4);
-}
-
-@mixin button-2-l {
-  @include button-2;
-  @include button-l(#d1d3d4);
-}
-
-@mixin button-2-xl {
-  @include button-2;
-  @include button-xl(#d1d3d4);
-}
-
-@mixin button-border($disabled, $normal, $hover, $hover-fill: white, $fill: $normal) {
-  background-color: white;
-  color: $fill;
-  border: 1px solid $normal;
-  &:hover {
-    border: 1px solid $hover;
-    color: $hover-fill;
-  }
-  &:active {
-    color: white;
-  }
-  &.disabled {
-    border: 1px solid $disabled;
-    cursor: default;
-  }
-}
-
-@mixin button-3 {
-  @include button-1(white, white, #1eaefc, #1893d8);
-  @include button-border(#dedede, #1eaefc, #1eaefc);
-}
-
-@mixin button-3-m {
-  @include button-3;
-  @include button-m(#edeeee);
-  @include button-border(#dedede, #1eaefc, #1eaefc);
-}
-
-@mixin button-3-m-wide {
-  @include button-3;
-  @include button-m-wide(#edeeee);
-  @include button-border(#dedede, #1eaefc, #1eaefc);
-}
-
-@mixin button-3-l {
-  @include button-3;
-  @include button-l(white);
-  @include button-border(#dedede, #1eaefc, #1eaefc);
-}
-
-@mixin button-3-xl {
-  @include button-3;
-  @include button-xl(#edeeee);
-  @include button-border(#dedede, #1eaefc, #1eaefc);
-}
-
-@mixin button-4 {
-  @include button-1(white, white, white, #1893d8);
-  @include button-border(#dedede, #dedede, #1eaefc, #1eaefc, #83d7fc);
-}
-
-@mixin button-4-m {
-  @include button-4;
-  @include button-m(#edeeee);
-  @include button-border(#dedede, #dedede, #1eaefc, #1eaefc, #83d7fc);
-}
-
-@mixin button-4-m-wide {
-  @include button-4;
-  @include button-m-wide(#edeeee);
-  @include button-border(#dedede, #dedede, #1eaefc, #1eaefc, #83d7fc);
-}
-
-@mixin button-4-l {
-  @include button-4;
-  @include button-l(#edeeee);
-  @include button-border(#dedede, #dedede, #1eaefc, #1eaefc, #83d7fc);
-}
-
-@mixin button-4-xl {
-  @include button-4;
-  @include button-xl(#edeeee);
-  @include button-border(#dedede, #dedede, #1eaefc, #1eaefc, #83d7fc);
 }
 
 @mixin module-s {

@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe.only('External Accounts Directive', function() {
+describe('External Accounts Directive', function() {
   var scope;
   var element;
 
@@ -66,13 +66,30 @@ describe('External Links Data Directive', function() {
   bard.verifyNoOutstandingHttpRequests();
 
   describe('Linked external accounts', function() {
+    var externalLinks = [
+      {
+        providerType: 'linkedin',
+        // don't care about other details
+      },
+      {
+        providerType: 'github'
+      },
+      {
+        providerType: 'behance'
+      },
+      {
+        providerType: 'dribbble'
+      },
+      {
+        providerType: 'bitbucket'
+      }
+    ];
     var linkedAccounts = {
       github: {
         handle: "github-handle",
         followers: 1,
         publicRepos: 1
       },
-
       stackoverflow: {
         handle: 'so-handle',
         reputation: 2,
@@ -83,7 +100,7 @@ describe('External Links Data Directive', function() {
         projectViews: 3,
         projectAppreciations: 3
       },
-      dribble: {
+      dribbble: {
         handle: 'dribble-handle',
         followers: 4,
         likes: 4
@@ -107,14 +124,16 @@ describe('External Links Data Directive', function() {
 
     beforeEach(function() {
       scope.linkedAccounts = linkedAccounts;
-      element = angular.element('<external-links-data linked-accounts-data="linkedAccounts"></external-links-data>)');
+      scope.externalLinks = externalLinks;
+      element = angular.element('<external-links-data linked-accounts-data="linkedAccounts" external-links="externalLinks"></external-links-data>)');
       externalLinksData = $compile(element)(scope);
       scope.$digest();
     });
 
     it('should have added linkedAccounts to scope', function() {
       expect(element.isolateScope().linkedAccounts).to.exist;
-      expect(element.isolateScope().linkedAccounts).to.have.length(1);
+      // linkedAccounts should have 5 entries because externalLinks contains only 5 records
+      expect(element.isolateScope().linkedAccounts).to.have.length(5);
     });
 
   });

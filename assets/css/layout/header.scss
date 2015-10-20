@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 #header {
@@ -188,7 +189,7 @@
     padding-left: 10px;
     vertical-align: middle;
   }
-  
+
   .menu-item-header {
     text-transform: none;
   }
@@ -215,7 +216,15 @@
   cursor: pointer;
 }
 
-@media only screen and (max-width : 991px) {
+.menu-text {
+  color: $white;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+@media only screen and (max-width : 1024px) {
   .header-wrapper {
     // When autocomplete list is displayed, hide all menu items and footer (except copyright notice)
     &.autocomplete .menu-item:not(.search-wrapper),
@@ -263,7 +272,7 @@
 
     &.active {
       background-color: rgba(0, 150, 255, 0.2);
-      border-left: 5px solid #0096ff;
+      border-left: 5px solid $primary;
       color: #fff;
       margin: 0 -20px;
         padding-left: 15px;
@@ -306,7 +315,7 @@
   }
 }
 
-@media only screen and (min-width : 992px) {
+@media only screen and (min-width : 1025px) {
   .header-wrapper {
     background: #fff;
     position: relative;
@@ -363,13 +372,24 @@
       line-height: 54px;
     }
 
+    .menu-item .submenu {
+      overflow: hidden;
+      max-height: 0px;
+      transition: all .25s ease-in-out;
+    }
+
+    .menu-item:hover .submenu {
+      max-height: 500px;
+    }
+
     // Expand the submenu only when hovering on header or submenu itself or if submenu is marked with .expanded
     .menu-item:not(:hover) .submenu:not(.expanded):not(:hover) {
-      display: none;
+      padding: 0px 54px 0px 54px;
     }
 
     .menu-link:hover {
-      background-color: #0096ff;
+      background-color: $primary;
+      text-decoration: none;
     }
 
     .menu-link.active {
@@ -379,7 +399,7 @@
     .menu-item:not(.anonymous-menu):hover .menu-item-header {
       position: relative;
       cursor: pointer;
-      color: #0096ff;
+      color: $primary;
 
       &:after {
         content: '';

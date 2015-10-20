@@ -2,7 +2,7 @@ header
   h1 My Dashboard
 
   .user-stats(id="metrics", ng-hide="vm.loading")
-    .money-earned
+    .money-earned(ng-hide="vm.hideMoney")
       p.number(ng-bind="vm.moneyEarned | currency:'$':0")
 
       p Earned

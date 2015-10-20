@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 // Default Challenge Tile Stylings
@@ -49,7 +50,10 @@ ios-card .challenge.tile-view {
     align-items: center;
 
     .currentPhase {
-      margin-top: 42px;
+      margin-top: 40px;
+      @include sofia-pro-light;
+      font-size: 20px;
+      line-height: 24px;
     }
   }
 
@@ -62,7 +66,8 @@ ios-card .challenge.tile-view {
   }
 
   .technologies {
-    margin-bottom: 40px;
+    height: 36px;
+    margin-bottom: 33px;
     padding: 0 20px;
     @include source-sans-regular;
     font-size: 13px;
@@ -75,8 +80,7 @@ ios-card .challenge.tile-view {
     align-items: center;
     width: 75px;
     height: 63px;
-    margin-bottom: 20px;
-    margin-top: 44px;
+    margin-top: 16px;
     background-image: url(/images/ico-calendar.svg);
 
     > p {
@@ -105,9 +109,13 @@ ios-card .challenge.tile-view {
     }
   }
 
+  .stalled-challenge {
+    margin-top: 31px;
+    margin-bottom: 32px;
+  }
+
   .phase-action {
     margin-bottom: 25px;
-    @include button-m-wide;
   }
 
   .roles {
@@ -129,7 +137,7 @@ ios-card .challenge.tile-view {
     padding: 0 20px;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
-    background-color: #FCFCFC;
+    background-color: $gray-lighter;
 
     a {
       text-decoration: none;

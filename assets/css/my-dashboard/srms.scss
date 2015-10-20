@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .srms {
@@ -86,6 +87,11 @@
           display: inline-block;
           margin-left: 15px;
         }
+
+        a {
+          width: 196px;
+          text-align: center;
+        }
       }
 
       .flex-wrapper {
@@ -106,8 +112,6 @@
 
         a {
           margin-bottom: 21px;
-          @include button-m-wide;
-          text-decoration: none;
         }
       }
     }
@@ -116,13 +120,8 @@
   .srms-links {
     @include module-links;
 
-    a {
-      @include button-m;
-      @include button-secondary;
-
-      &:not(:first-child) {
-        margin-left: 10px;
-      }
+    a:not(:first-child) {
+      margin-left: 10px;
     }
   }
 }

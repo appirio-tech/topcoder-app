@@ -31,26 +31,17 @@
       return api.one('members', handle.toLowerCase()).all('challenges').getList(params);
     }
 
-    function getUserMarathonMatches(handle, params, filterUnRated) {
-      filterUnRated = filterUnRated || true;
-      return api.one('members', handle.toLowerCase()).all('mms').getList(params)
-      .then(function(mms) {
-        if (filterUnRated) {
-          mms = _.filter(mms, function(m) {
-            return _.isArray(m.rounds) && m.rounds.length && !_.isUndefined(m.rounds[0].userMMDetails) && m.rounds[0].userMMDetails.rated;
-          });
-        }
-        return mms;
-      });
+    function getUserMarathonMatches(handle, params) {
+      return api.one('members', handle.toLowerCase()).all('mms').getList(params);
     }
 
     function getReviewEndDate(challengeId) {
-      var url = CONSTANTS.API_URL + '/phases/?filter=' + encodeURIComponent('challengeId=' + challengeId + ' & phaseType=4');
+      var url = CONSTANTS.API_URL + '/phases/?filter=' + encodeURIComponent('challengeId=' + challengeId + '&phaseType=4');
       return ApiService.requestHandler('GET', url);
     }
 
     function getChallengeDetails(challengeId) {
-      var url = CONSTANTS.API_URL + '/challenges/' + challengeId;
+      var url = CONSTANTS.API_URL_V2 + '/challenges/' + challengeId;
       return ApiService.requestHandler('GET', url, {}, true);
     }
 
@@ -82,6 +73,18 @@
                 if (phases[index + 1]) {
                   challenge.userCurrentPhase = phases[index + 1].phaseType;
                   challenge.userCurrentPhaseEndTime = phases[index + 1].scheduledEndTime;
+                  challenge.userAction = null;
+                }
+              }
+
+              // if user has role of observer
+              var roles = challenge.userDetails.roles;
+              if (roles.length > 0) {
+                var submitterRole = _.findIndex(roles, function(role) {
+                  var lRole = role.toLowerCase();
+                  return lRole === 'submitter';
+                });
+                if (submitterRole === -1) {
                   challenge.userAction = null;
                 }
               }
@@ -134,8 +137,8 @@
           }
         }
 
-        if (challenge.userCurrentPhaseEndTime) {
-          var fullTime = challenge.userCurrentPhaseEndTime;
+        if (match.userCurrentPhaseEndTime) {
+          var fullTime = match.userCurrentPhaseEndTime;
           var timeAndUnit = moment(fullTime).fromNow(true);
           // Split into components: ['an', 'hour'] || ['2', 'months']
           timeAndUnit = timeAndUnit.split(' ');
@@ -146,7 +149,7 @@
 
           // Add actual time ['2', 'months', actual date]
           timeAndUnit.push(fullTime);
-          challenge.userCurrentPhaseEndTime = timeAndUnit;
+          match.userCurrentPhaseEndTime = timeAndUnit;
         }
       });
     }
@@ -171,9 +174,36 @@
 
     function processPastChallenges(challenges) {
       angular.forEach(challenges, function(challenge) {
-        if (challenge.userDetails && Array.isArray(challenge.userDetails.winningPlacements)) {
-          challenge.highestPlacement = _.max(challenge.userDetails.winningPlacements);
-          challenge.wonFirst = challenge.highestPlacement == 1;
+        if (challenge.userDetails) {
+          // TODO placement logic for challenges can be moved to their corresponding user place directive
+          // process placement for challenges having winningPlacements array in response
+          if (Array.isArray(challenge.userDetails.winningPlacements)) {
+            challenge.highestPlacement = _.max(challenge.userDetails.winningPlacements);
+            challenge.wonFirst = challenge.highestPlacement == 1;
+            if (challenge.highestPlacement === 0) {
+              challenge.highestPlacement = null;
+            }
+          }
+          // process placement for design challenges
+          if (challenge.track == 'DESIGN' && challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
+            challenge.thumbnailId = challenge.userDetails.submissions[0].id;
+
+            challenge.highestPlacement = _.max(challenge.userDetails.submissions, 'placement').placement;
+
+            if (challenge.highestPlacement == 1) {
+              challenge.wonFirst = true;
+            }
+          }
+
+          if (challenge.userDetails.hasUserSubmittedForReview) {
+            if (!challenge.highestPlacement) {
+              challenge.userStatus = "PASSED_SCREENING";
+            } else {
+              challenge.userStatus = "PASSED_REVIEW";
+            }
+          } else {
+            challenge.userStatus = "NOT_FINISHED";
+          }
         }
       });
     }

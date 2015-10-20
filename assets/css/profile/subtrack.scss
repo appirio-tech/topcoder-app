@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .profile-subtrack-container {
@@ -31,8 +32,7 @@
       }
     }
     .breadcrumbs {
-      font-family: 'Sofia Pro';
-      font-weight: 200;
+      @include sofia-pro-extra-light;
       font-size: 14px;
       line-height: 16px;
       .handle {
@@ -41,7 +41,7 @@
           text-decoration: none;
           color: black;
           &:hover {
-            color: $accent-color;
+            color: $primary;
           }
         }
       }
@@ -53,7 +53,7 @@
       }
       .subtrack {
         display: block;
-        color: $accent-color;
+        color: $primary;
         font-weight: 700;
         text-align: center;
         text-transform: uppercase;
@@ -71,7 +71,6 @@
     padding-top: 10px;
   }
   .bottom {
-    @include module-l;
     background: white;
     align-self: center;
     margin-left: auto;
@@ -90,7 +89,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      font-family: 'Sofia Pro';
+      @include sofia-pro-regular;
 
       .value {
         font-weight: 700;
@@ -146,13 +145,13 @@
       width: 90%;
       margin: 0 auto;
       li {
-        font-family: 'Sofia Pro';
+        @include sofia-pro-regular;
         font-size: 15px;
         line-height: 18px;
         padding: 14px;
         border-bottom: 1px solid #f6f6f6;
         .right {
-          color: $accent-color;
+          color: $primary;
         }
         &.first {
           border-top: 1px solid #f6f6f6;
@@ -161,7 +160,7 @@
     }
 
     ul.divisions {
-      font-family: 'Sofia Pro';
+      @include sofia-pro-regular;
 
       li.division {
         border-bottom: 1px solid #f0f0f0;
@@ -256,8 +255,7 @@
         height: 30px;
         padding-top: 6px;
         text-align: center;
-        font-family: 'Sofia Pro';
-        font-weight: bold;
+        @include sofia-pro-bold;
         font-size: 16px;
         text-transform: uppercase;
         &.left {
@@ -369,6 +367,7 @@
   ul.vertical-stats {
     display: flex;
     flex-direction: column;
+    align-items: center;
     li {
       display: flex;
       flex-direction: row;
@@ -384,7 +383,7 @@
     }
     h2.detailed {
       margin: 50px auto 25px auto;
-      font-family: 'Sofia Pro';
+      @include sofia-pro-regular;
       font-size: 28px;
       line-height: 34px;
     }
@@ -401,7 +400,7 @@
       li {
         width: 28%;
         margin: 0 15px;
-        font-family: 'Sofia Pro';
+        @include sofia-pro-regular;
         font-size: 15px;
         line-height: 18px;
         padding: 14px;
@@ -519,6 +518,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
   .track {
     margin-top: 22.4px;
     display: flex;
@@ -530,8 +530,7 @@
       span {
       }
       margin: auto;
-      font-family: 'Sofia Pro';
-      font-weight: 200;
+      @include sofia-pro-extra-light;
       font-size: 20px;
       line-height: 24px;
       margin-bottom: 10.6px;
@@ -564,10 +563,9 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        font-family: 'Sofia Pro';
+        @include sofia-pro-light;
         font-size: 14px;
         line-height: 18px;
-        font-weight: 300;
         text-transform: uppercase;
         display: flex;
         flex-direction: row;
@@ -582,10 +580,9 @@
         color: #7f7f7f;
         .number {
           text-align: center;
-          font-family: 'Sofia Pro';
+          @include sofia-pro-semi-bold;
           font-size: 13.4px;
           line-height: 16px;
-          font-weight: 600;
           span.square {
             position: absolute;
             margin-left: 5px;
@@ -596,16 +593,14 @@
         .tag {
           text-transform: uppercase;
           margin: 10px auto 0px auto;
-          font-family: 'Sofia Pro';
+          @include sofia-pro-regular;
           font-size: 8.4px;
           line-height: 10px;
           color: #7f7f7f;
-          font-weight: normal;
         }
       }
       .arrow {
-        font-family: 'Sofia Pro';
-        font-weight: 200;
+        @include sofia-pro-extra-light;
         color: #cccccc;
         font-size: 18px;
         display: flex;
@@ -618,38 +613,5 @@
       height: 80px;
       margin: auto;
     }
-
-  }
-  .empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .action-text {
-      margin-top: 32px;
-      font-family: 'Sofia Pro';
-      font-size: 18px;
-      line-height: 24px;
-      font-weight: 200;
-    }
-    .tracks {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 50%;
-      .track {
-      }
-    }
-    .description {
-      margin-top: 50px;
-      font-family: 'Source Sans Pro';
-      font-size: 15px;
-      line-height: 22px;
-      width: 60%;
-    }
-    button.link-button {
-      @include button-1-l;
-      margin-top: 20px;
-    }
-    padding-bottom: 40px;
   }
 }

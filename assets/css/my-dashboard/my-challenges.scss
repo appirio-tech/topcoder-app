@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .my-challenges {
@@ -31,9 +32,18 @@
       line-height: 16px;
       text-transform: uppercase;
       color: #A3A3AE;
+      cursor: pointer;
 
       &.disabled {
         color: $black;
+        cursor: default;
+
+        &.tile:before {
+          background: url(/images/grid-on.svg);
+        }
+        &.list:before {
+          background: url(/images/list-on.svg);
+        }
       }
 
       &:before {
@@ -42,16 +52,15 @@
         margin-bottom: 2px;
         margin-right: 4px;
         vertical-align: middle;
-        @include background-image-size(16px, 16px);
+        @include background-image-size(12px, 12px);
       }
 
       &.tile:before {
-        background: url(/images/ico-grid.svg);
+        background: url(/images/grid-off.svg);
       }
       &.list:before {
-        background: url(/images/ico-list.svg);
+        background: url(/images/list-off.svg);
       }
-
     }
   }
 
@@ -144,7 +153,6 @@
       a {
         display: block;
         margin: 30px auto;
-        @include button-l;
         text-decoration: none;
         @media only screen and (min-width: 768px) {
           display: inline-block;
@@ -152,13 +160,19 @@
           margin-bottom: 40px;
         }
         @media only screen and (min-width: 900px) {
-          @include button-xl;
+          height: 60px;
           margin-top: 30px;
           margin-bottom: 90px;
+          padding: 0 30px;
+          line-height: 60px;
+          font-size: 24px;
+
+          &:active {
+            line-height: 62px;
+          }
         }
 
         &:last-child {
-          @include button-ghost;
           @media only screen and (min-width: 768px) {
             margin-left: 30px;
           }
@@ -290,16 +304,11 @@
       padding: 15px 0;
     }
 
-    a {
-      @include button-m;
-      @include button-secondary;
-
-      &:not(:first-child) {
-        margin-left: 10px;
-        @media only screen and (max-width: 767px) {
-          margin-top: 10px;
-          margin-left: 0;
-        }
+    a:not(:first-child) {
+      margin-left: 10px;
+      @media only screen and (max-width: 767px) {
+        margin-top: 10px;
+        margin-left: 0;
       }
     }
   }

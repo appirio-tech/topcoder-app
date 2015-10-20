@@ -39,22 +39,23 @@
 
     hr
 
-    tc-section(
-      ng-show="vm.viewing == 'challenges'",
-      state="vm.status.challenges"
-    )
-      tc-paginator(data="vm.challenges", page-params="vm.pageParams")
+    section(ng-show="vm.viewing == 'challenges'")
+      
       .challenges(ng-hide="vm.subTrack === 'SRM'")
         .challenge.tile(ng-repeat="challenge in vm.challenges")
           challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
+              
         .no-challenges(ng-show="!vm.challenges || vm.challenges.length == 0")
           | Sorry, no successful challenges found.
 
       .challenges(ng-show="vm.subTrack == 'SRM'")
         .challenge.tile(ng-repeat="challenge in vm.challenges")
           srm-tile(srm="challenge", domain="vm.domain", view="'tile'")
+
         .no-challenges(ng-show="!vm.challenges || vm.challenges.length == 0")
           | Sorry, no rated SRMs found.
+
+      tc-endless-paginator(state="vm.status.challenges", page-params="vm.pageParams")
 
     .stats(ng-show="vm.viewing == 'stats' && profileVm.status.stats === 'ready'")
       .graphs(ng-if="vm.history")
@@ -62,131 +63,133 @@
 
         history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
-  .bottom(ng-show="vm.viewing == 'stats' && (vm.subTrack == 'MARATHON_MATCH' || vm.SRMDetailDisplay)")
-    h2.detailed Details
+    hr(ng-if="vm.history && vm.viewing == 'stats'")
 
-    ul.vertical-stats(ng-show="vm.subTrack == 'MARATHON_MATCH'")
-      li
-        .left Country Rank
-        .right {{vm.typeStats.rank.countryRank | empty}}
+    .bottom(ng-show="vm.viewing == 'stats' && (vm.subTrack == 'MARATHON_MATCH' || vm.SRMDetailDisplay)")
+      h2.detailed Details
 
-      li
-        .left Volatility
-        .right {{vm.typeStats.rank.volatility | empty}}
+      ul.vertical-stats(ng-show="vm.subTrack == 'MARATHON_MATCH'")
+        li
+          .left Country Rank
+          .right {{vm.typeStats.rank.countryRank | empty}}
 
-      li
-        .left Maximum Rating
-        .right {{vm.typeStats.rank.maximumRating | empty}}
+        li
+          .left Volatility
+          .right {{vm.typeStats.rank.volatility | empty}}
 
-      li
-        .left Best Rank
-        .right {{vm.typeStats.rank.bestRank | empty}}
+        li
+          .left Maximum Rating
+          .right {{vm.typeStats.rank.maximumRating | empty}}
 
-      li.first
-        .left Wins
-        .right {{vm.typeStats.wins | empty}}
+        li
+          .left Best Rank
+          .right {{vm.typeStats.rank.bestRank | empty}}
 
-      li.first
-        .left Top Five Finishes
-        .right {{vm.typeStats.rank.topFiveFinishes | empty}}
+        li.first
+          .left Wins
+          .right {{vm.typeStats.wins | empty}}
 
-      li.first
-        .left Top Ten Finishes
-        .right {{vm.typeStats.rank.topTenFinishes | empty}}
+        li.first
+          .left Top Five Finishes
+          .right {{vm.typeStats.rank.topFiveFinishes | empty}}
 
-      li.first
-        .left Average Rank
-        .right {{vm.typeStats.rank.avgRank | empty}}
+        li.first
+          .left Top Ten Finishes
+          .right {{vm.typeStats.rank.topTenFinishes | empty}}
 
-      li.first
-        .left Average # Submissions
-        .right {{vm.typeStats.rank.avgNumSubmissions | empty}}
+        li.first
+          .left Average Rank
+          .right {{vm.typeStats.rank.avgRank | empty}}
 
-      li.first
-        .left Competitions
-        .right {{vm.typeStats.challenges | empty}}
+        li.first
+          .left Average # Submissions
+          .right {{vm.typeStats.rank.avgNumSubmissions | empty}}
 
-      li
-        .left Most Recent Event
-        .right {{vm.typeStats.mostRecentEventDate | date | empty}}
+        li.first
+          .left Competitions
+          .right {{vm.typeStats.challenges | empty}}
 
-    ul.divisions(ng-show="vm.subTrack == 'SRM'")
-      li.division(ng-repeat="division in vm.divisionList", ng-if="division.levels && division.levels.length")
-        ul(class="{{division.levelName}}")
-          li.totals
-            ul.row
-              li.left
-                h2 {{vm.divisionName[$index]}}
-                span TOTAL
-              li.success
-                h3 {{division.total.percentSuccessful | percentage | empty}}
-                span SUCCESS
+        li
+          .left Most Recent Event
+          .right {{vm.typeStats.mostRecentEventDate | date | empty}}
 
-              li.submitted
-                h3 {{division.total.problemsSubmitted | empty}}
-                span SUBMITTED
+      ul.divisions(ng-show="vm.subTrack == 'SRM'")
+        li.division(ng-repeat="division in vm.divisionList", ng-if="division.levels && division.levels.length")
+          ul(class="{{division.levelName}}")
+            li.totals
+              ul.row
+                li.left
+                  h2 {{vm.divisionName[$index]}}
+                  span TOTAL
+                li.success
+                  h3 {{division.total.percentSuccessful | percentage | empty}}
+                  span SUCCESS
 
-              li.failed
-                h3 {{division.total.problemsFailed | empty}}
-                span FAILED CHALLENGES
+                li.submitted
+                  h3 {{division.total.problemsSubmitted | empty}}
+                  span SUBMITTED
 
-              li.failed-sys
-                h3 {{division.total.problemsSysByTest | empty}}
-                span FAILED SYS. TEST
+                li.failed
+                  h3 {{division.total.problemsFailed | empty}}
+                  span FAILED CHALLENGES
 
-          li.level(ng-repeat="level in division.levels")
-            ul.row
-              li.left
-                h3 {{level.levelName}}
+                li.failed-sys
+                  h3 {{division.total.problemsSysByTest | empty}}
+                  span FAILED SYS. TEST
 
-              li.success
-                h3 {{level.percentSuccessful | percentage | empty}}
-                span SUCCESS
+            li.level(ng-repeat="level in division.levels")
+              ul.row
+                li.left
+                  h3 {{level.levelName}}
 
-              li.submitted
-                h3 {{level.problemsSubmitted | empty}}
-                span SUBMITTED
+                li.success
+                  h3 {{level.percentSuccessful | percentage | empty}}
+                  span SUCCESS
 
-              li.failed
-                h3 {{level.problemsFailed | empty}}
-                span FAILED CHALLENGES
+                li.submitted
+                  h3 {{level.problemsSubmitted | empty}}
+                  span SUBMITTED
 
-              li.failed-sys
-                h3 {{level.problemsSysByTest | empty}}
-                span FAILED SYS. TEST
+                li.failed
+                  h3 {{level.problemsFailed | empty}}
+                  span FAILED CHALLENGES
 
-      li.division(ng-if="vm.challengesSRM.levels && vm.challengesSRM.levels.length")
-        ul(class="{{vm.challengesSRM.levelName}}")
-          li.totals
-            ul.row
-              li.left
-                h2 CHALLENGES
-                span TOTAL
-              li.success
-                h3 {{vm.challengesSRM.total.percentSuccessful | percentage | empty}}
-                span SUCCESS
+                li.failed-sys
+                  h3 {{level.problemsSysByTest | empty}}
+                  span FAILED SYS. TEST
 
-              li.submitted
-                h3 {{vm.challengesSRM.total.problemsSubmitted | empty}}
-                span CREATED
+        li.division(ng-if="vm.challengesSRM.levels && vm.challengesSRM.levels.length")
+          ul(class="{{vm.challengesSRM.levelName}}")
+            li.totals
+              ul.row
+                li.left
+                  h2 CHALLENGES
+                  span TOTAL
+                li.success
+                  h3 {{vm.challengesSRM.total.percentSuccessful | percentage | empty}}
+                  span SUCCESS
 
-              li.failed
-                h3 {{vm.challengesSRM.total.problemsFailed | empty}}
-                span FAILED
+                li.submitted
+                  h3 {{vm.challengesSRM.total.problemsSubmitted | empty}}
+                  span CREATED
 
-          li.level(ng-repeat="level in vm.challengesSRM.levels")
-            ul.row
-              li.left
-                h3 {{level.levelName}}
+                li.failed
+                  h3 {{vm.challengesSRM.total.problemsFailed | empty}}
+                  span FAILED
 
-              li.success
-                h3 {{level.percentSuccessful | percentage | empty}}
-                span SUCCESS
+            li.level(ng-repeat="level in vm.challengesSRM.levels")
+              ul.row
+                li.left
+                  h3 {{level.levelName}}
 
-              li.submitted
-                h3 {{level.problemsSubmitted | empty}}
-                span CREATED
+                li.success
+                  h3 {{level.percentSuccessful | percentage | empty}}
+                  span SUCCESS
 
-              li.failed
-                h3 {{level.problemsFailed | empty}}
-                span FAILED
+                li.submitted
+                  h3 {{level.problemsSubmitted | empty}}
+                  span CREATED
+
+                li.failed
+                  h3 {{level.problemsFailed | empty}}
+                  span FAILED

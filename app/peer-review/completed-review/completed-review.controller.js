@@ -15,6 +15,7 @@
     vm.scorecard = {
       questions: {}
     };
+    var handle = UserService.getUserIdentity().handle;
     vm.submit = function() {
       $state.go('review.status', {
         challengeId: vm.challengeId
@@ -25,7 +26,7 @@
 
     function activate() {
       var promises = [
-        UserService.getUsername(),
+        handle,
         ChallengeService.getChallengeDetails($stateParams.challengeId),
         ReviewService.getReview($stateParams.reviewId),
         ScorecardService.getScorecard(vm.challengeId)
@@ -34,7 +35,7 @@
       $q.all(promises)
       .then(function(response) {
         var user = response[0].data;
-        vm.stats.username = user.handle;
+        vm.stats.username = handle;
 
         var challenge = response[1].data;
         vm.challenge = challenge;

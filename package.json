@@ -50,11 +50,13 @@
     "gulp-plumber": "^1.0.1",
     "gulp-print": "^1.1.0",
     "gulp-replace": "^0.5.3",
+    "gulp-replace-task": "^0.11.0",
     "gulp-rev": "^5.0.1",
     "gulp-rev-all": "0.8.18",
     "gulp-rev-replace": "^0.4.2",
     "gulp-sass": "^2.0.1",
     "gulp-sourcemaps": "^1.5.2",
+    "gulp-svg-sprite": "^1.2.11",
     "gulp-task-listing": "^1.0.1",
     "gulp-uglify": "^1.2.0",
     "gulp-useref": "^1.2.0",
@@ -81,5 +83,8 @@
     "sinon-chai": "^2.8.0",
     "wiredep": "^2.2.2",
     "yargs": "^3.12.0"
+  },
+  "dependencies": {
+    "tc-ui-kit": "0.0.x"
   }
 }

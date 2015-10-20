@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .my-srms-container {
@@ -8,12 +9,6 @@
   hr {
     @include horizontal-rule;
     margin-bottom: 35px;
-  }
-
-  .section-loading {
-    width: 100%;
-    height: 50px;
-    background: $loading no-repeat center center;
   }
 
   .section-title {
@@ -37,8 +32,7 @@
       width: 15px;
     }
     .breadcrumbs {
-      font-family: 'Sofia Pro';
-      font-weight: 200;
+      @include sofia-pro-extra-light;
       font-size: 14px;
       line-height: 16px;
       .dashboard {
@@ -48,12 +42,17 @@
         text-transform: uppercase;
 
         a {
+          color: black;
           text-decoration: none;
+
+          &:hover {
+            color: $primary;
+          }
         }
       }
       .my-srms {
         display: block;
-        color: $accent-color;
+        color: $primary;
         font-weight: 700;
         text-align: center;
         text-transform: uppercase;
@@ -61,12 +60,23 @@
     }
   }
 
+  .no-srms {
+    margin: 30px;
+    display: flex;
+    flex-direction: inherit;
+    align-items: center;
+  }
+  .has-srms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
   .content {
     margin-left: 10px;
     margin-right: 10px;
 
-    section.srms {
+    section.my-srms {
       background: white;
       align-self: center;
       margin-top: 15px;
@@ -125,6 +135,13 @@
             &.disabled {
               color: $black;
               cursor: default;
+
+              &.tile:before {
+                background: url(/images/grid-on.svg);
+              }
+              &.list:before {
+                background: url(/images/list-on.svg);
+              }
             }
 
             &:before {
@@ -133,21 +150,21 @@
               margin-bottom: 2px;
               margin-right: 4px;
               vertical-align: middle;
-              @include background-image-size(16px, 16px);
+              @include background-image-size(12px, 12px);
             }
 
             &.tile:before {
-              background: url(/images/ico-grid.svg);
+              background: url(/images/grid-off.svg);
             }
             &.list:before {
-              background: url(/images/ico-list.svg);
+              background: url(/images/list-off.svg);
             }
 
           }
         }
       }
 
-      
+
       .data {
         display: flex;
         flex-flow: row wrap;
@@ -169,7 +186,7 @@
         display: inline;
         margin-bottom: 15px;
         &.tile-view {
-          
+
           margin-bottom: 20px;
           @media only screen and (max-width: 767px) {
             display: inline-block;
@@ -206,6 +223,7 @@
       }
     }
   }
+
 }
 
 
@@ -230,7 +248,7 @@
         }
         .my-srms {
           display: block;
-          color: $accent-color;
+          color: $primary;
           font-weight: 700;
           text-align: center;
           text-transform: uppercase;
@@ -242,7 +260,7 @@
 
 @media (min-width: 870px) {
   .my-srms-container {
-    section.srms {
+    section.my-srms {
       .data {
         max-width: 840px;
       }
@@ -251,7 +269,7 @@
 }
 @media (min-width: 1155px) {
   .my-srms-container {
-    section.srms {
+    section.my-srms {
       .data {
         max-width: 1125px;
       }

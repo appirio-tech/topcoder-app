@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .edit-profile-container {
@@ -8,6 +9,7 @@
 
     .profile-circle {
       border-radius: 50%;
+      border: 1px solid #d1d3d4;
       margin-right: 20px;
       width: 100px;
     }
@@ -40,7 +42,6 @@
     span {
       max-width: 300px;
       display: block;
-      text-align: right;
       margin-right: 5px;
 
       @media only screen and (min-width: 550px) {

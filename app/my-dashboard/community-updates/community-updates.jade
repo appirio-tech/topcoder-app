@@ -6,9 +6,9 @@ header
 .posts(ng-hide="vm.loading")
   .post(ng-repeat='blog in vm.blogPosts | orderBy : pubDate | limitTo : 4')
     .blog-link
-      a(ng-href='{{blog.link}}', target='_blank') {{blog.title}}
+      a(ng-href='{{blog.link}}', target='_blank', title="{{blog.title}}") {{blog.title}}
 
     .description(ng-bind-html="blog.description")
 
 .blog-links(ng-hide="vm.loading")
-  a(ng-href="https://www.{{DOMAIN}}/blog/") View More
+  a.tc-btn(ng-href="https://www.{{DOMAIN}}/blog/") View More

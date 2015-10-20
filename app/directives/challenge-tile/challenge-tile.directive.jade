@@ -3,7 +3,7 @@
     .challenge-track
 
     header
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      a(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
 
       p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
@@ -18,38 +18,38 @@
       .stalled-challenge(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
 
       .phase-action(ng-switch="challenge.userAction")
-        .submit(ng-switch-when="Submit") Submit
+        a.tc-btn.tc-btn-s.tc-btn-wide.submit(ng-switch-when="Submit") Submit
 
         .submitted(ng-switch-when="Submitted") Submitted
 
-        // Need styling and JS logic for this one
+        // TODO: Need styling and JS logic for this one
         .registered(ng-switch-when="Registered") Registered
 
       // Only show if not data science track
-      p.roles {{challenge.userDetails.roles | listRoles}}
+      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") {{challenge.userDetails.roles | listRoles}}
 
       .challenge-links
         .stats
-          a.registrants(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+          a.registrants(ng-href="{{challenge|challengeLinks:'registrants'}}", ng-switch="challenge.subTrack")
             .registrants-icon
 
-            p {{challenge.numRegistrants}}
+            p(ng-switch-when="MARATHON_MATCH") {{challenge.numRegistrants[0]}}
+            p(ng-switch-default) {{challenge.numRegistrants}}
 
-          a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+          a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="{{challenge|challengeLinks:'submissions'}}")
             .submissions-icon
-
             p {{challenge.numSubmissions}}
 
-        a.forum(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
+        a.forum(ng-href="{{challenge|challengeLinks:'forums'}}")
           .forum-icon
-
           p Forum
 
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
     ng-switch="challenge.track")
     header
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      
+      a(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
 
       p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
@@ -57,41 +57,25 @@
 
     .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack", ng-class="challenge.track")
 
-      div(ng-switch-when="MARATHON_MATCH")
+      div
         .marathon-score
           p.score {{challenge.pointTotal || 0 }}
 
           p Total Points
 
-      div(ng-switch-when="SRM")
-        p BLAH
-
     .challenge-details(ng-switch-when="DEVELOP")
-      p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
-
-      .challenge-score
-        p.score {{challenge.userDetails.submissionReviewScore/100 | percentage}}
-
-        p Review Score
+      dev-challenge-user-place(challenge="challenge", view="view")
 
     .challenge-details(ng-switch-when="DESIGN")
-      p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
-
-      .thumbnail(ng-click="openLightbox()")
-        img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
-
-        .thumbnail-gallery(ng-click="challenge.showLightbox()")
-          .gallery-icon
-
-          .num-images 1 image
+      design-challenge-user-place(challenge="challenge", view="view")
 
 .challenge.list-view(ng-show="view=='list'", ng-class="challenge.track")
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")
     .challenge-track
 
     header
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
-
+      a(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
+      
       p.subtrack {{challenge.subTrack | underscoreStrip}}
 
       p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:] {{challenge.userDetails.roles | listRoles}}
@@ -105,35 +89,35 @@
         p.ends-in(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
 
       .phase-action(ng-switch="challenge.userAction")
-        .submit(ng-switch-when="Submit") Submit
+        a.tc-btn.tc-btn-s.tc-btn-wide.submit(ng-switch-when="Submit") Submit
 
         .submitted(ng-switch-when="Submitted") Submitted
 
-        // Need styling and JS logic for this one
+        // TODO: Need styling and JS logic for this one
         .registered(ng-switch-when="Registered") Registered
 
     .challenge-links
-      a.registrants(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
-        p {{challenge.numRegistrants}}
-
+      a.registrants(ng-href="{{challenge|challengeLinks:'registrants'}}", ng-switch="challenge.subTrack")
+        
+        p(ng-switch-when="MARATHON_MATCH") {{challenge.numRegistrants[0]}}
+        p(ng-switch-default) {{challenge.numRegistrants}}
         .registrants-icon
 
-      a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+      a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="")
         p {{challenge.numSubmissions}}
-
         .submissions-icon
 
-      a.forum(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
+      a.forum(ng-href="{{challenge|challengeLinks:'forums'}}")
         .forum-icon
-
         p Forum
+        
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
     ng-switch="challenge.track")
     .challenge-track
 
     header
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      a(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
 
       p.subtrack {{challenge.subTrack | underscoreStrip}}
 
@@ -141,35 +125,14 @@
 
     .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack", ng-class="challenge.track")
 
-      div(ng-switch-when="MARATHON_MATCH")
+      div
         .marathon-score
           p.score {{challenge.pointTotal || 0 }}
 
           p Total Points
 
     .challenge-details(ng-switch-when="DEVELOP")
-      .place-date
-        p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
-        p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
-
-      .winner-ribbon(ng-show="challenge.wonFirst")
-
-      .challenge-score
-        p.score {{challenge.userDetails.submissionReviewScore/100 | percentage}}
-
-        p Review Score
+      dev-challenge-user-place(challenge="challenge", view="view")
 
     .challenge-details(ng-switch-when="DESIGN")
-      .place-date
-        p.place(ng-class="{ 'first-place': challenge.wonFirst }") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
-        p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
-
-      .winner-ribbon(ng-show="challenge.wonFirst")
-
-      .thumbnail(ng-click="openLightbox()")
-        img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
-
-        .thumbnail-gallery(ng-click="challenge.showLightbox()")
-          .gallery-icon
-
-          .num-images 1 image
+      design-challenge-user-place(challenge="challenge", view="view")

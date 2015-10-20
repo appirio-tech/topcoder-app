@@ -7,7 +7,7 @@ describe('Challenge Service', function() {
     bard.appModule('tc.services');
     bard.inject(this, '$httpBackend', 'ChallengeService', 'CONSTANTS');
 
-    apiUrl = CONSTANTS.API_URL;
+    apiUrl = CONSTANTS.API_URL_V2;
   });
 
   bard.verifyNoOutstandingHttpRequests();

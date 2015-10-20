@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .community-updates {
@@ -41,7 +42,7 @@
       border: 1px solid #F0F0F0;
       @media only screen and (min-width: 570px) {
         width: 270px;
-        height: 386px;
+        // height: 386px;
 
         &:nth-child(2n + 1) {
           margin-right: 10px;
@@ -72,11 +73,16 @@
         font-size: 16px;
         line-height: 22px;
         background-color: #F2FAFF;
+        height: 76px;
+        overflow: hidden;
         @media only screen and (min-width: 570px) {
           padding: 20px 20px 12px;
         }
 
         a {
+          display: block;
+          height: 44px;
+          overflow: hidden;
           text-decoration: none;
           color: inherit;
         }
@@ -94,10 +100,14 @@
         a {
           display: block;
           margin-top: 25px;
-          color: $primary-color;
+          color: $primary;
           text-decoration: none;
           @media only screen and (min-width: 1132px) {
             margin-top: 0;
+          }
+
+          &:hover {
+            text-decoration: underline;
           }
         }
       }
@@ -106,10 +116,5 @@
 
   .blog-links {
     @include module-links;
-
-    a {
-      @include button-m;
-      @include button-secondary;
-    }
   }
 }

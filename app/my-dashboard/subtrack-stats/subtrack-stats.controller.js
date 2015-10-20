@@ -3,12 +3,9 @@
 
   angular.module('tc.myDashboard').controller('SubtrackStatsController', SubtrackStatsController);
 
-  SubtrackStatsController.$inject = [
-    'ProfileService',
-    'userIdentity'
-  ];
+  SubtrackStatsController.$inject = ['$filter', 'ProfileService', 'userIdentity'];
 
-  function SubtrackStatsController(ProfileService, userIdentity) {
+  function SubtrackStatsController($filter, ProfileService, userIdentity) {
     var vm = this;
     vm.loading = true;
 
@@ -21,10 +18,14 @@
       .then(function(stats) {
         var trackRanks = ProfileService.getRanks(stats);
         var subtrackRanks = compileSubtracks(trackRanks);
+
         processStats(subtrackRanks);
+        // sort subtrack ranks
+        subtrackRanks = $filter('orderBy')(subtrackRanks, 'mostRecentEventDate', true);
 
         vm.subtrackRanks = subtrackRanks;
         vm.hasRanks = !!vm.subtrackRanks.length;
+
         vm.loading = false;
       })
       .catch(function(err) {
@@ -46,7 +47,6 @@
 
         } else {
           return result;
-
         }
       }, []);
     }

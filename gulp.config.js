@@ -141,7 +141,8 @@ module.exports = function() {
         reporters: [
           {type: 'html', subdir: 'report-html'},
           {type: 'lcov', subdir: '.', file: 'lcov.info'},
-          {type: 'text-summary'}
+          {type: 'text-summary'},
+          {type: 'cobertura', subdir: 'cobertura', file: 'coverage.xml'}
         ]
       },
       preprocessors: {}
