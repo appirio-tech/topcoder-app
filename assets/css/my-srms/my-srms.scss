@@ -44,7 +44,7 @@
         a {
           color: black;
           text-decoration: none;
-            
+
           &:hover {
             color: $primary;
           }
@@ -60,6 +60,12 @@
     }
   }
 
+  .no-srms {
+    margin: 30px;
+    display: flex;
+    flex-direction: inherit;
+    align-items: center;
+  }
   .has-srms {
     display: flex;
     flex-direction: column;

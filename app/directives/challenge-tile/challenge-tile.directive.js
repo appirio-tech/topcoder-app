@@ -1,7 +1,9 @@
 (function() {
   'use strict';
 
-  angular.module('tcUIComponents').directive('challengeTile', challengeTile);
+  angular.module('tcUIComponents')
+    .directive('challengeTile', challengeTile)
+    .filter('challengeLinks', ['CONSTANTS', challengeLinks]);
 
   function challengeTile() {
     return {
@@ -19,8 +21,7 @@
 
         function activate() {
           // move to service helper, called from controller
-          if ($scope.challenge.status.trim().toUpperCase() === 'PAST' &&
-            $scope.challenge.subTrack === 'MARATHON_MATCH') {
+          if ($scope.challenge.status.trim().toUpperCase() === 'PAST' && $scope.challenge.subTrack === 'MARATHON_MATCH') {
             ChallengeService.processPastMarathonMatch($scope.challenge);
           }
         }
@@ -34,5 +35,40 @@
         }
       }]
     };
+  }
+
+  function challengeLinks(CONSTANTS) {
+    return function(challenge, type) {
+      if (challenge.subTrack === 'MARATHON_MATCH') {
+        var data = {
+          domain: CONSTANTS.domain,
+          roundId: challenge.rounds[0].id,
+          forumId: challenge.rounds[0].forumId
+        };
+        switch (type) {
+          case 'forums':
+            return String.supplant('http://apps.{domain}/forums/?module=Category&categoryID={forumId}', data);
+          case 'registrants':
+            return String.supplant('https://community.{domain}/longcontest/?module=ViewStandings&rd={roundId}', data);
+          case 'detail':
+            return String.supplant('https://community.{domain}/tc?module=MatchDetails&rd={roundId}', data);
+        }
+      } else {
+        var data = {
+          domain: CONSTANTS.domain,
+          track: challenge.track,
+          forumId: challenge.forumId
+        };
+        switch (type) {
+          case 'forums':
+            return String.supplant('http://apps.{domain}/forums/?module=Category&categoryID={forumId}', data);
+          case 'submissions':
+          case 'registrants':
+            return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}#viewRegistrant', data);
+          case 'detail':
+            return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}', data);
+        }
+      }
+    }
   }
 })();
