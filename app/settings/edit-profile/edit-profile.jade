@@ -14,7 +14,11 @@
           .edit-image
             img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photoURL}}")
 
-            input(type="file", name="image", on-file-change)
+            button.file-upload.tc-btn.tc-btn-primary.tc-btn-s
+              span Change Image
+              input(type="file", name="image", on-file-change)
+
+            //button.file-delete.tc-btn.tc-btn-secondary.tc-btn-s Delete
 
         .country
           .form-label country to represent
@@ -49,7 +53,7 @@
       .section-fields
         track-toggle(tracks="vm.tracks")
 
-        button.tc-btn.tc-btn-secondary.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': vm.editProfile.$pristine || vm.editProfile.$invalid}") Save
+        button.tc-btn.tc-btn-secondary.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
 
   .settings-section.skills
     .section-info

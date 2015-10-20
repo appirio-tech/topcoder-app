@@ -37,6 +37,16 @@
 }
 
 .settings-container {
+  input, textarea {
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Source Sans Pro';
+    background: white;
+    color: black;
+  }
+  input:focus, textarea:focus {
+    outline: 1px solid #4cb5ff;
+  }
   @include module-l;
   margin: 30px auto 0;
   @media only screen and (min-width: 768px) {
@@ -98,6 +108,7 @@
     @include ui-form-field;
     height: 38px;
   }
+
   .settings-section {
     display: flex;
     flex-direction: column;
@@ -158,6 +169,8 @@
       .form-field {
         @include form-field;
         @include ui-form-placeholder;
+        background: white;
+        color: black;
         &:disabled {
           color: #B7B7B7;
         }
@@ -169,6 +182,23 @@
         .edit-image {
           img.profile-circle {
             margin-top: 10px;
+          }
+          .file-upload {
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+            width: 150px;
+            input {
+              position: absolute;
+              top: 0;
+              right: 0;
+              margin: 0;
+              padding: 0;
+              font-size: 20px;
+              cursor: pointer;
+              opacity: 0;
+              filter: alpha(opacity=0);
+            }
           }
         }
       }
@@ -195,7 +225,7 @@
         textarea {
           background: white;
           width: 100%;
-          height: 80px;
+          height: 115px;
         }
       }
     }
@@ -209,8 +239,10 @@
 
     button {
       margin-bottom: 20px;
-      align-self: center;
+      align-self: flex-start;
+      margin-left: 25%;
       margin-top: 20px;
+      width: 100px;
     }
   }
   .skills {
