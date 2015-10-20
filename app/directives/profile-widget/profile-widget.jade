@@ -6,14 +6,12 @@
   .info
     h1.handle(style="color:{{handleColor}};") {{profile.handle}}
 
-    h3.tenure(ng-if="profile.startMonth")
-      | Member Since {{profile.startMonth}}
-
     h3.location-challenges {{profile.homeCountryCode | isoCountry}}
       span.bar(ng-show="profile.homeCountryCode && numWins") &nbsp;|&nbsp;
       span(ng-show="numWins") {{numWins}} Wins
 
-    p.description {{profile.description}}
+    h3.tenure(ng-if="profile.startMonth")
+      | Member Since {{profile.startMonth}}
 
     a.tc-btn.tc-btn-s.edit(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
 
@@ -24,10 +22,10 @@
           div
         .text {{track | role}}
 
-    hr
+  p.description {{profile.description}}
 
-    .links
-      a.tc-btn.tc-btn-s.forums.link(ng-href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
-        | Forum Posts
-      button.tc-btn.tc-btn-s.badges.link(ng-click="profileVm.showBadges()", ng-show="profileVm.profile.badges.Achievements.length > 0")
-        | Badges
+  .links
+    a.badges.link(ng-click="profileVm.showBadges()", ng-show="profileVm.profile.badges.Achievements.length > 0")
+      | Badges
+    a.forums.link(ng-href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
+      | Forum Posts

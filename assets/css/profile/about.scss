@@ -1,9 +1,31 @@
 @import 'topcoder-includes';
 @import '../partials/combined';
+
+.about-container {
+  display: flex;
+  flex-flow: row wrap;
+  @include module-l;
+  background-color: transparent;
+  margin-top: 30px;
+  padding-top: 0px;
+  @media only screen and (min-width: 900px) {
+    padding-top: 0px;
+  }
+}
+
+.profile-header-container {
+  padding: 50px 34px;
+  background: white;
+  width: 30%;
+  max-width: 348px;
+  margin-right: 10px;
+}
+
 .profile-about-container {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 883px;
 
   .empty-state {
     a.link-button {
@@ -167,6 +189,7 @@
   }
 
   .skills {
+    padding-top: 30px;
     .dimmed {
       width:100%;
       margin-top: -70px;
@@ -176,7 +199,6 @@
       transition: all 0.5s;
       -webkit-transition: all 0.5s;
     }
-    @include module-l;
     width: 100%;
     align-self: center;
     padding-bottom: 30px;
@@ -295,7 +317,6 @@
 @media (min-width: 768px) {
 
 .profile-about-container {
-  margin-top: 80px;
 
  .activity {
     font-size: 28px;
