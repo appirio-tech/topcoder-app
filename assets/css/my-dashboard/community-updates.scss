@@ -73,11 +73,16 @@
         font-size: 16px;
         line-height: 22px;
         background-color: #F2FAFF;
+        height: 76px;
+        overflow: hidden;
         @media only screen and (min-width: 570px) {
           padding: 20px 20px 12px;
         }
 
         a {
+          display: block;
+          height: 44px;
+          overflow: hidden;
           text-decoration: none;
           color: inherit;
         }
