@@ -174,8 +174,7 @@
         color: #A3A3AE;
         font-size: 10px;
         line-height: 13px;
-        font-family: 'Sofia Pro', Arial;
-        font-weight: 500;
+        @include sofia-pro-medium;
         text-transform: uppercase;
         margin-top: 10px;
         cursor: pointer;

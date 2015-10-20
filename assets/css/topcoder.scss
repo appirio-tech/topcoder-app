@@ -473,48 +473,19 @@ body {
 
 // Refactor buttons when button mixins and/or style guide is done
 .introjs-button {
-  height: 30px;
-  padding: 0 10px;
-  line-height: 30px;
-  border: none;
-  border-radius: 4px;
-  background-color: $gray;
-  background-image: none;
-  @include sofia-pro-regular;
-  font-size: 14px;
-  text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
-  outline: 0;
-  color: $white;
-  text-shadow: none;
-
-  &:hover {
-    background-color: $primary;
-    color: $white;
-    box-shadow: none;
-  }
-
-  &.introjs-disabled {
-    background-color: $gray;
-  }
-
-  &:focus {
-    background-image: none;
-  }
+  @extend .tc-btn;
+  @extend .tc-btn-s;
 }
 
 .introjs-skipbutton {
   float: left;
-  color: $gray-dark;
-  background-color: $white;
-  border: 1px solid $gray;
+  @extend .tc-btn-ghost;
+}
 
-  &:hover {
-    color: $gray-dark;
-    background-color: $white;
-  }
+
+.introjs-disabled {
+  @extend .tc-btn-s;
+  @extend :disabled;
 }
 
 .introjs-prevbutton {
