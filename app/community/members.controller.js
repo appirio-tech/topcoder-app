@@ -6,6 +6,7 @@
   MembersController.$inject = ['membersData', '$http'];
 
   function MembersController(membersData, $http) {
+
     this.notSearch = true;
     this.showing = 'list';
     this.currentMonth = 'October 2015';
@@ -13,14 +14,17 @@
     this.copilots = membersData.data.copilots;
     this.search = function() {
       if (this.keywords) {
-        $http.get('community/mock-data/search-result.json')
-            .success(function(data) {
-                this.searchResult = data.result;
-                this.notSearch = false;
-            }.bind(this));
+        window.location.replace('/search?s=' + this.keywords + '&scope=member');
+
+        //$http.get('community/mock-data/search-result.json')
+        //    .success(function(data) {
+        //        this.searchResult = data.result;
+        //        this.notSearch = false;
+        //    }.bind(this));
       } else {
         this.notSearch = true;
       }
     };
   }
+
 })();

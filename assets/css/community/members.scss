@@ -5,6 +5,35 @@
   @media only screen and (min-width: 1070px) {
     padding: 60px 67px 0;
   }
+  %reviewboard-panel {
+    background: $white;
+    padding: 10px;
+    margin-bottom: 6px;
+    h2 {
+      @include sofia-pro-bold;
+      font-size: 18px;
+      text-transform: uppercase;
+      text-align: center;
+      padding-top: 23px;
+      padding-bottom: 23px;
+      @media only screen and (min-width: 1000px) {
+        font-size: 28px;
+        padding-top: 82px;
+        padding-bottom: 82px;
+      }
+      small {
+        @include sofia-pro-regular;
+        font-size: 16px;
+        display: block;
+        text-transform: capitalize;
+        color: $gray-dark-alt;
+        padding-top: 8px;
+      }
+      span {
+        color: $member-search-highlight;
+      }
+    }
+  }
   .search-container {
     @include module-full-width;
     background: $white;
@@ -499,4 +528,41 @@
       }
     }
   }
+  .reviewboard-container,
+  .record-books-container {
+    @extend %reviewboard-panel;
+    @include sofia-pro-regular;
+    text-align: center;
+    padding-bottom: 16px;
+    min-height: 165px;
+    h2 {
+      padding-bottom: 17px;
+    }
+    a {
+      cursor: pointer;
+      color: $member-blue;
+      font-size: 12px;
+      line-height: 23px;
+    }
+    @media only screen and (min-width: 768px) {
+      .content-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: left;
+      }
+    }
+    @media only screen and (min-width: 1000px) {
+      h2 {
+        padding-bottom: 44px;
+      }
+      a {
+        font-size: 24px;
+        line-height: 49px;
+      }
+      .content-wrapper {
+        margin-bottom: 60px;
+      }
+    }
+  }  
 }

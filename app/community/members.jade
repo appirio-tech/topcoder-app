@@ -6,7 +6,7 @@
   .members-container
     .search-container
       form(name="searchForm", role="form", ng-submit="ctrl.search()", novalidate)
-        input(ng-model="ctrl.keywords", name="keywords", placeholder="Search member here...", type="text", required)
+        input(ng-model="ctrl.keywords", name="keywords", placeholder="find people", type="text", required)
         input(type="submit" name="search-btn" value="").search-ico
 
     .default-show-container(ng-show="ctrl.notSearch")
@@ -20,7 +20,30 @@
             .user-tag(class="{{item.class}}") {{item.contestType}}
             p.user-desc {{item.description}}
             a(ng-href="//www.topcoder.com/community/member-programs/topcoder-member-of-the-month/", target="_blank").user-more Read the story
-        p.member-congratulation Congratulations for all member of the month, win prize each
+        p.member-congratulation Congratulations to all the members of the month!
+
+      .reviewboard-container 
+        h2 Review Boards
+        .content-wrapper
+          .col
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=23", target="_blank") Conceptualization
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=6", target="_blank") Specification  
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=7", target="_blank") Architecture
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=1", target="_blank") Component Design
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=2", target="_blank") Component Development
+          .col
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=14", target="_blank") Assembly    
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=38", target="_blank") First2Finish
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=39", target="_blank") Code    
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=13", target="_blank") Test Suites
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=36", target="_blank") Report
+          .col
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=19", target="_blank") UI prototype    
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=24", target="_blank") RIA Build    
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=35", target="_blank") Content Creation
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=26", target="_blank") Test Scenarios
+            .link: a(ng-href="//www.topcoder.com/tc?module=ReviewBoard&pt=9", target="_blank") Bug Hunt
+
 
       .copilots-container
         h2 Copilots
@@ -53,6 +76,5 @@
           a.user-more View Profile
       .btn-wrapper
         a.gray-btn Load More
-
 
 
