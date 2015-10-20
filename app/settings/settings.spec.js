@@ -4,9 +4,11 @@ describe('Settings Controller', function() {
 
   beforeEach(function() {
     bard.appModule('tc.settings');
-    bard.inject(this, '$controller');
-
-    vm = $controller('SettingsController');
+    bard.inject(this, '$controller', '$state');
+    var mockState = { '$current' : {'name': 'test'}};
+    vm = $controller('SettingsController', {
+      '$state': mockState
+    });
   });
 
   bard.verifyNoOutstandingHttpRequests();

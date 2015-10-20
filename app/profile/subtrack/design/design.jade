@@ -18,11 +18,12 @@
 
     hr
 
-    tc-section(state="vm.status.challenges")
-      tc-paginator(data="vm.challenges", page-params="vm.pageParams")
+    section
       .challenges
         .challenge.tile(ng-repeat="challenge in vm.challenges")
           challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
+
+        tc-endless-paginator(state="vm.status.challenges", page-params="vm.pageParams")
 
         .no-challenges(ng-show="!vm.challenges || vm.challenges.length == 0")
           | Sorry, no successful challenges found.
