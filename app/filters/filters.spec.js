@@ -2,7 +2,7 @@ describe('filters', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter');
+    bard.inject(this, 'CONSTANTS', 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter', 'challengeLinksFilter');
   });
 
   describe('role filter', function() {
@@ -54,6 +54,47 @@ describe('filters', function() {
     it('should list roles', function() {
       expect(listRolesFilter(false)).to.be.equal('No assigned role.');
       expect(listRolesFilter([1,2])).to.be.equal('1, 2');
+    });
+  });
+
+  describe('challengeLinksFilter', function() {
+    // bard.inject(this, 'CONSTANTS');
+    it ('should have the correct links for DEVELOP challenge', function() {
+      var _ch = {
+        id: 1,
+        forumId: 2,
+        track: 'DEVELOP',
+        subTrack : 'CODE'
+      };
+      expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://www.topcoder-dev.com/challenge-details/1/?type=DEVELOP');
+      expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.topcoder-dev.com/forums/?module=Category&categoryID=2');
+      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://www.topcoder-dev.com/challenge-details/1/?type=DEVELOP#viewRegistrant');
+      expect(challengeLinksFilter(_ch, 'submissions')).to.be.equal('https://www.topcoder-dev.com/challenge-details/1/?type=DEVELOP#viewRegistrant');
+    });
+
+    it ('should have the correct links for DESIGN challenge', function() {
+      var _ch = {
+        id: 1,
+        forumId: 2,
+        track: 'DESIGN',
+        subTrack : 'WEB_DESIGN'
+      };
+      expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://www.topcoder-dev.com/challenge-details/1/?type=DESIGN');
+      expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.topcoder-dev.com/forums/?module=ThreadList&forumId=2');
+      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://www.topcoder-dev.com/challenge-details/1/?type=DESIGN#viewRegistrant');
+      expect(challengeLinksFilter(_ch, 'submissions')).to.be.equal('https://www.topcoder-dev.com/challenge-details/1/?type=DESIGN#viewRegistrant');
+    });
+
+    it ('should have the correct links for DATA_SCIENCE challenge', function() {
+      var _ch = {
+        id: 1,
+        rounds: [{id: 3,forumId: 2}],
+        track: 'DATA_SCIENCE',
+        subTrack : 'MARATHON_MATCH'
+      };
+      expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://community.topcoder-dev.com/tc?module=MatchDetails&rd=3');
+      expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.topcoder-dev.com/forums/?module=ThreadList&forumID=2');
+      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://community.topcoder-dev.com/longcontest/?module=ViewStandings&rd=3');
     });
   });
 });
