@@ -3,9 +3,9 @@
 
   angular.module('tc.myDashboard').controller('MySRMsController', MySRMsController);
 
-  MySRMsController.$inject = ['UserService','SRMService', '$log', '$state', '$stateParams', 'CONSTANTS'];
+  MySRMsController.$inject = ['UserService','SRMService', '$log', '$state', '$stateParams', 'CONSTANTS', '$scope'];
 
-  function MySRMsController(UserService, SRMService, $log, $state, $stateParams, CONSTANTS) {
+  function MySRMsController(UserService, SRMService, $log, $state, $stateParams, CONSTANTS, $scope) {
     $log = $log.getInstance('MySRMsController');
     var vm = this;
     vm.srms = [];
@@ -15,13 +15,15 @@
     vm.view = UserService.getPreference($state.$current.name+'.challengeListView') || 'tile';
     vm.changeView = changeView;
     vm.changeFilter = changeFilter;
-    vm.loadMore = loadMore;
-    vm.totalCount = 0;
     vm.getSRMs = getSRMs;
-    var currentOffset = 0;
-    var defaultParams = {
-      orderBy: '',
-      limit: 12
+    // paging params, these are updated by tc-pager
+    vm.pageParams = {
+      currentOffset : 0,
+      limit: 16,
+      currentCount: 0,
+      totalCount: 0,
+      // counter used to indicate page change
+      updated: 0
     };
 
     var userId = UserService.getUserIdentity().userId;
@@ -31,6 +33,13 @@
 
     function activate() {
       vm.srms = [];
+      // watches page change counter to reload the data
+      $scope.$watch('vm.pageParams.updated', function(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          getSRMs();
+        }
+      });
+      // initial call
       changeFilter(vm.statusFilter);
     }
 
@@ -41,31 +50,29 @@
     }
 
     function changeFilter(filter) {
-      currentOffset = 0;
       vm.statusFilter = filter;
       vm.orderBy = filter === 'future'? 'startDate': 'endDate';
       vm.reverseOrder = filter !== 'future';
       // update url but don't reload
       $state.go($state.$current.name, {status: filter}, {notify: false});
-      getSRMs(0);
+      // reset
+      vm.srms = [];
+      vm.pageParams.currentOffset = 0;
+      getSRMs();
     }
 
-    function getSRMs(offset) {
+    function getSRMs() {
       vm.loading = CONSTANTS.STATE_LOADING;
-      if (!offset) {
-        // reset
-        offset = 0;
-        vm.srms = [];
-      }
+
       // reverseOrder implies we need to send 'desc' in orderBy clause.
-      var _filterString = 'status=' + vm.statusFilter;
+      var _orderByString = vm.orderBy;
       if (vm.reverseOrder)
-        _filterString += ' desc';
+        _orderByString += ' desc';
       var params = {
-        limit: defaultParams.limit,
-        orderBy: vm.orderBy,
-        offset: offset,
-        filter: _filterString
+        limit: vm.pageParams.limit,
+        orderBy: _orderByString,
+        offset: vm.pageParams.currentOffset,
+        filter: 'status=' + vm.statusFilter
       };
 
       if (vm.statusFilter === 'past') {
@@ -78,20 +85,15 @@
     }
 
     function handleSRMsLoad(data) {
+      vm.pageParams.totalCount = data.metadata.totalCount;
       vm.srms = vm.srms.concat(data);
+      vm.pageParams.currentCount = vm.srms.length;
       vm.loading = CONSTANTS.STATE_READY;
-      vm.totalCount = data.metadata.totalCount;
     }
 
     function handleSRMsFailure(resp) {
       $log.error(resp);
       vm.loading = CONSTANTS.STATE_ERROR;
     }
-
-    function loadMore() {
-      currentOffset+=1;
-      getSRMs(currentOffset);
-    }
-
   }
 })();

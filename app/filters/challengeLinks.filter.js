@@ -14,7 +14,7 @@
         };
         switch (type) {
           case 'forums':
-            return String.supplant('http://apps.{domain}/forums/?module=Category&categoryID={forumId}', data);
+            return String.supplant('https://apps.{domain}/forums/?module=ThreadList&forumID={forumId}', data);
           case 'registrants':
             return String.supplant('https://community.{domain}/longcontest/?module=ViewStandings&rd={roundId}', data);
           case 'detail':
@@ -24,11 +24,20 @@
         var data = {
           domain: CONSTANTS.domain,
           track: challenge.track,
-          forumId: challenge.forumId
+          forumId: challenge.forumId,
+          id: challenge.id
         };
         switch (type) {
           case 'forums':
-            return String.supplant('http://apps.{domain}/forums/?module=Category&categoryID={forumId}', data);
+            switch (challenge.track) {
+              case 'DEVELOP':
+                return String.supplant('https://apps.{domain}/forums/?module=Category&categoryID={forumId}', data);
+              case 'DATA':
+                return String.supplant('https://apps.{domain}/forums/?module=Category&categoryID={forumId}', data);
+              case 'DESIGN':
+                return String.supplant('https://apps.{domain}/forums/?module=ThreadList&forumId={forumId}', data);
+            }
+
           case 'submissions':
           case 'registrants':
             return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}#viewRegistrant', data);
