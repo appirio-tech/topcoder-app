@@ -14,8 +14,8 @@
           .skill(ng-repeat="skill in vm.skills")
             skill-tile(skill="skill")
 
-        button.tc-btn.tc-btn-secondary.tc-btn-l.more(ng-if="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW ALL
-        button.tc-btn.tc-btn-secondary.tc-btn-l.more(ng-if="vm.skills.length > 6", ng-click="vm.skills = vm.someSkills") VIEW LESS
+        button.tc-btn.tc-btn-l.more(ng-if="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW ALL
+        button.tc-btn.tc-btn-l.more(ng-if="vm.skills.length > 6", ng-click="vm.skills = vm.someSkills") VIEW LESS
 
         .empty-state(ng-show="!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)")
           .action-text Tell everyone what you know

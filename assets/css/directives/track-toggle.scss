@@ -34,7 +34,7 @@ track-toggle {
             width: 35px;
           }
           span {
-            font-family: 'Sofia Pro';
+            @include sofia-pro-regular;
             font-size: 22px;
           }
         }
@@ -51,7 +51,7 @@ track-toggle {
         }
       }
       .description {
-        font-family: 'Source Sans Pro';
+        @include source-sans-regular;
         font-size: 13px;
         color: #b7b7b7;
       }

@@ -32,8 +32,7 @@
       width: 15px;
     }
     .breadcrumbs {
-      font-family: 'Sofia Pro';
-      font-weight: 200;
+      @include sofia-pro-extra-light;
       font-size: 14px;
       line-height: 16px;
       .dashboard {
