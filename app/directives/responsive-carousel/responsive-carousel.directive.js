@@ -7,7 +7,8 @@
       replace: true,
       templateUrl: 'directives/responsive-carousel/responsive-carousel.directive.html',
       scope: {
-        data: '='
+        data: '=',
+        handle: '@'
       },
       controller: ['$log', '$scope', '$element', '$window',
         function($log, $scope, $element, $window) {
