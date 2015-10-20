@@ -103,6 +103,7 @@
   @include ui-form-placeholder;
   input:not([type="checkbox"]) {
     @include ui-form-field;
+    background-color: white;
     height: 38px;
   }
 
@@ -161,6 +162,13 @@
         text-transform: uppercase;
         margin-bottom: 5px;
         margin-top: 5px;
+        width: 300px;
+
+        .mandatory {
+          text-transform: none;
+          color: #0096ff;
+          float: right;
+        }
       }
       .form-field {
         @include form-field;

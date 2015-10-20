@@ -62,6 +62,7 @@
           input(autocomplete="false", name="hidden", type="text", style="display:none;")
           .form-label.first First name 
             span(style="text-transform: none;") &nbsp;(Given name)
+            span.mandatory *mandatory
           .validation-bar(ng-class="{ 'error-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.firstname.$invalid), 'success-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.firstname.$valid)}")
             input.tc-input(
               name="firstname", type="text",
@@ -75,6 +76,7 @@
 
           .form-label Last name
             span(style="text-transform: none;") &nbsp;(Surname)
+            span.mandatory *mandatory
           .validation-bar(ng-class="{ 'error-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.lastname.$invalid), 'success-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.lastname.$valid)}")
             input.tc-input(
               name="lastname", type="text", 

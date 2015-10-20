@@ -40,7 +40,7 @@
           span.error-message(ng-if="vm.editProfile.$invalid") This is a required field
 
         .bio
-          .form-label short bio
+          .form-label(style="width: 100%;") short bio
             span(style="float:right;") {{vm.userData.description.length || 0}}/256
           textarea.tc-input(name="description", ng-model="vm.userData.description", data-ng-trim="false", maxlength="256")
 
