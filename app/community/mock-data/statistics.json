@@ -1,23 +1,23 @@
 {
     "SRMWinners": [{
-        "avatar": "community/mock-data/avatar.png",
-        "name": "enot",
-        "date": "20150813T000000Z",
-        "country": "Indonesia",
-        "contests": ["SRM 668 DIVISION WINNER"]
+        "avatar": "http://www.topcoder.com/i/m/tourist.jpeg",
+        "name": "tourist",
+        "date": "20151014T000000Z",
+        "country": "Belarus",
+        "contests": ["SRM 671 DIVISION 1 WINNER"]
     }, {
-        "avatar": "community/mock-data/avatar.png",
-        "name": "javaiscool",
-        "date": "20150813T000000Z",
-        "country": "Brazil",
-        "contests": ["SRM 668 DIVISION WINNER"]
+        "avatar": "https://www.topcoder.com/i/m/thegunner2401.jpeg",
+        "name": "thegunner2401",
+        "date": "20151014T000000Z",
+        "country": "Viet Nam",
+        "contests": ["SRM 671 DIVISION 2 WINNER"]
     }],
     "MarathonWinner": [{
-        "avatar": "community/mock-data/avatar.png",
-        "name": "tomerun",
-        "date": "20150813T000000Z",
-        "country": "Brazil",
-        "contests": ["MARATHON MATCH 87", "Population Mapping"]
+        "avatar": "http://www.topcoder.com/i/m/eldidou.jpeg",
+        "name": "eldidou",
+        "date": "20150915T000000Z",
+        "country": "France",
+        "contests": ["MARATHON MATCH 88", "ViralInfection"]
     }],
     "TopPerformers": [{
         "contestType": "Design",
