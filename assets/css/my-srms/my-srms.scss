@@ -42,7 +42,12 @@
         text-transform: uppercase;
 
         a {
+          color: black;
           text-decoration: none;
+            
+          &:hover {
+            color: $primary;
+          }
         }
       }
       .my-srms {
