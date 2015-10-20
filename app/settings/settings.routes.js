@@ -12,7 +12,7 @@
     var states = {
       'settings': {
         parent: 'root',
-        abstract: true,
+        abstract: false,
         url: '/settings/',
         templateUrl: 'settings/settings.html',
         controller: 'SettingsController',
@@ -45,15 +45,6 @@
         controllerAs: 'vm',
         data: {
           title: 'Account Info'
-        }
-      },
-      'settings.password': {
-        url: 'password/',
-        templateUrl: 'settings/update-password/update-password.html',
-        controller: 'UpdatePasswordController',
-        controllerAs: 'vm',
-        data: {
-          title: 'Password'
         }
       },
       'settings.preferences': {

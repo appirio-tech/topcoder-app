@@ -61,6 +61,8 @@
         mms: {total: 0, current: 0}
       };
       vm.statusFilter = filter;
+      // update url but don't reload
+      $state.go($state.$current.name, {status: filter}, {notify: false});
       vm.orderBy = vm.statusFilter === 'active' ? 'registrationEndDate' : 'submissionEndDate';
       vm.getChallenges(currentOffset, true);
     }
@@ -83,9 +85,6 @@
         vm.loading = CONSTANTS.STATE_READY;
 
         vm.totalCount = _.sum(_.pluck(data, 'metadata.totalCount'));
-        // var challenges = [];
-        // .concat(data[0]);
-        // challenges = challenges.concat(data[1]);
         vm.myChallenges = vm.myChallenges.concat(_.union(data[0], data[1]));
       })
       .catch(function(resp) {

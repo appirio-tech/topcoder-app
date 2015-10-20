@@ -3,14 +3,17 @@
 
   angular.module('tc.settings').controller('SettingsController', SettingsController);
 
-  SettingsController.$inject = [];
+  SettingsController.$inject = ['$state'];
 
-  function SettingsController() {
+  function SettingsController($state) {
     var vm = this;
 
     activate();
 
     function activate() {
+      if ($state.$current.name === 'settings') {
+        $state.go('settings.profile');
+      }
     }
   }
 

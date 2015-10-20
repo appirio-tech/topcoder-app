@@ -15,10 +15,9 @@
     align-items: center;
 
     header.head {
-      font-family: 'Sofia Pro';
+      @include sofia-pro-extra-light;
       font-size: 28px;
       line-height: 34px;
-      font-weight: 200;
       span {
         display: inline;
         &.title {

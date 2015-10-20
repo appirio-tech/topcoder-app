@@ -32,8 +32,7 @@
       width: 15px;
     }
     .breadcrumbs {
-      font-family: 'Sofia Pro';
-      font-weight: 200;
+      @include sofia-pro-extra-light;
       font-size: 14px;
       line-height: 16px;
       .dashboard {
@@ -43,7 +42,12 @@
         text-transform: uppercase;
 
         a {
+          color: black;
           text-decoration: none;
+
+          &:hover {
+            color: $primary;
+          }
         }
       }
       .my-srms {
@@ -56,6 +60,12 @@
     }
   }
 
+  .no-srms {
+    margin: 30px;
+    display: flex;
+    flex-direction: inherit;
+    align-items: center;
+  }
   .has-srms {
     display: flex;
     flex-direction: column;
