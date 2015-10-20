@@ -29,18 +29,22 @@
 
           function init() {
             var width = $window.innerWidth;
-            if(width > 1070) {
-               // desktop
-               buildCarouselSlide(6);
-            } else if(width > 900) {
-               // desktop
-               buildCarouselSlide(5);
-            } else if(width <= 900 && width > 768) {
-               // tablet
-               buildCarouselSlide(4);
+            if(width >= 1350) {
+              // desktop
+              buildCarouselSlide(7);
+            } else if(width >= 1180) {
+              // desktop
+              buildCarouselSlide(6);
+            } else if(width >= 1010) {
+              // desktop
+              buildCarouselSlide(5);
+            } else if(width < 1010 && width >= 768) {
+              // tablet
+              buildCarouselSlide(4);
             } else {
-               // phone
-               buildCarouselSlide(2);
+              // we don't need to build carousel for mobile as we show horizontal scroll
+              // phone
+              buildCarouselSlide(2);
             }
           }
 

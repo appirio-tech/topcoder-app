@@ -5,7 +5,6 @@ describe('My SRMs Controller', function() {
   var srms = mockData.getMockSRMs();
   var results = mockData.getMockSRMResults();
 
-
   beforeEach(function() {
     bard.appModule('topcoder');
     bard.inject(this,
@@ -73,7 +72,8 @@ describe('My SRMs Controller', function() {
       mySRMs = $controller('MySRMsController', {
         SRMService : srmService,
         UserService : userService,
-        $state: mockState
+        $state: mockState,
+        $scope: $scope
       });
       $rootScope.$apply();
       spy = sinon.spy(mySRMs, 'getSRMs');
@@ -92,12 +92,6 @@ describe('My SRMs Controller', function() {
       expect(mySRMs.srms.length).to.equal(srms.length - 1);
       expect(spy.withArgs(0).calledOnce);
     });
-
-    it('more past SRMs should be fetched', function() {
-      mySRMs.loadMore();
-      expect(spy.withArgs(1).calledOnce);
-    });
-
   });
 
   describe('upcoming/past filters', function() {
@@ -109,7 +103,8 @@ describe('My SRMs Controller', function() {
         SRMService : srmService,
         UserService : userService,
         $state: mockState,
-        $stateParams: {'status': 'future'}
+        $stateParams: {'status': 'future'},
+        $scope: $scope
       });
       $rootScope.$apply();
       spy = sinon.spy(mySRMs, 'getSRMs');
