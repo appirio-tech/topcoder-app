@@ -17,7 +17,7 @@
               p.winner-country {{item.country}}
               .contests
                 p(ng-repeat="contest in item.contests") {{contest}}
-        .btn-wrapper: a.outlined-btn View all SRM
+        .btn-wrapper: a(ng-href="//community.topcoder.com/tc?module=SrmDivisionWins", target="_blank").outlined-btn View all SRM
 
       .MM-winner-container
         h2 Marathon Matches Winners
@@ -31,7 +31,7 @@
               p.winner-country {{item.country}}
               .contests
                 p(ng-repeat="contest in item.contests") {{contest}}
-        .btn-wrapper: a.outlined-btn View all SM STATS
+        .btn-wrapper: a(ng-href="//community.topcoder.com/longcontest/stats/?module=MatchWinners", target="_blank").outlined-btn View all SM STATS
 
     .top-performers-container
       h2 Top Performers
@@ -54,21 +54,21 @@
       h2 Tops
       .content-wrapper
         .col
-          .link: a Algorithm    
-          .link: a Marathon    
-          .link: a Conceptualization
+          .link: a(ng-href="//community.topcoder.com/tc?module=AlgoRank", target="_blank") Algorithm    
+          .link: a(ng-href="//www.topcoder.com/longcontest/stats/?module=CoderRank", target="_blank") Marathon    
+          .link: a(ng-href="//www.topcoder.com/stat?c=top_conceptors", target="_blank") Conceptualization
         .col
-          .link: a Specification    
-          .link: a Architecture    
-          .link: a Component Design    
+          .link: a(ng-href="//www.topcoder.com/stat?c=top_specificators", target="_blank") Specification    
+          .link: a(ng-href="//www.topcoder.com/stat?c=top_architects", target="_blank") Architecture    
+          .link: a(ng-href="//www.topcoder.com/stat?c=top_designers", target="_blank") Component Design    
         .col
-          .link: a Component Development    
-          .link: a Assembly    
-          .link: a Test Suites
+          .link: a(ng-href="//www.topcoder.com/stat?c=top_developers", target="_blank") Component Development    
+          .link: a(ng-href="//www.topcoder.com/stat?c=top_assemblers", target="_blank") Assembly    
+          .link: a(ng-href="//www.topcoder.com/stat?c=top_testers", target="_blank") Test Suites
 
     .record-books-container
       h2 Record Books
       .content-wrapper
-        .col: .link: a Algorithm    
-        .col: .link: a Marathon    
-        .col: .link: a Component 
+        .col: .link: a(ng-href="//www.topcoder.com/tc?module=Static&d1=statistics&d2=recordbook_home", target="_blank") Algorithm    
+        .col: .link: a(ng-href="//www.topcoder.com/longcontest/?module=Static&d1=stats&d2=recordbook_home", target="_blank") Marathon    
+        .col: .link: a(ng-href="//www.topcoder.com/tc?module=Static&d1=compstats&d2=comp_recordbook_home", target="_blank") Component 
