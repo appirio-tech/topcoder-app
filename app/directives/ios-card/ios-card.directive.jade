@@ -19,7 +19,7 @@
 
     p.prize-money(ng-show="challenge.reviewType === 'PEER'") Peer Review Challenge
 
-    p.prize-money(ng-hide="challenge.reviewType === 'PEER'") {{challenge.totalCheckpointPrize || 0 | currency:undefined:0}}
+    p.prize-money(ng-hide="challenge.reviewType === 'PEER'") {{challenge.totalPrize || 0 | currency:undefined:0}}
 
     p.technologies {{challenge.technologies}}
 
