@@ -8,6 +8,7 @@
     'ngCookies',
     'angularSlideables',
     'tcUIComponents',
+    'topcoder',
     'dcbImgFallback',
     'angular.filter'
   ];

@@ -4,12 +4,15 @@
   .content
     .track-details
       .icon(ng-class="{'disabled': !tracks[track]}")
-        img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data-outline.svg")
-        img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop-outline.svg")
-        img(ng-if="track == 'DESIGN'", src="/images/ico-track-design-outline.svg")
+        img(ng-if="track == 'DATA_SCIENCE' && tracks[track]", src="/images/ico-track-data.svg")
+        img(ng-if="track == 'DATA_SCIENCE' && !tracks[track]", src="/images/ico-track-data-grey.svg")
+        img(ng-if="track == 'DEVELOP' && tracks[track]", src="/images/ico-track-develop.svg")
+        img(ng-if="track == 'DEVELOP' && !tracks[track]", src="/images/ico-track-develop-grey.svg")
+        img(ng-if="track == 'DESIGN' && tracks[track]", src="/images/ico-track-design.svg")
+        img(ng-if="track == 'DESIGN' && !tracks[track]", src="/images/ico-track-design-grey.svg")
 
       .text
-        span.title {{track | track}}
+        span.title(class="{{!tracks[track] && 'disabled'}}") {{track | track}}
         .description
           span(ng-if="track == 'DESIGN'") Website, mobile, and product design; UI and UX
           span(ng-if="track == 'DEVELOP'") Software architecture, component assembly, application developent, and bug hunting

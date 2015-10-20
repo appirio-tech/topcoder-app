@@ -61,6 +61,8 @@
         mms: {total: 0, current: 0}
       };
       vm.statusFilter = filter;
+      // update url but don't reload
+      $state.go($state.$current.name, {status: filter}, {notify: false});
       vm.orderBy = vm.statusFilter === 'active' ? 'registrationEndDate' : 'submissionEndDate';
       vm.getChallenges(currentOffset, true);
     }

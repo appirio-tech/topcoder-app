@@ -1,7 +1,8 @@
 (function() {
   'use strict';
 
-  angular.module('tcUIComponents').directive('challengeTile', challengeTile);
+  angular.module('tcUIComponents')
+    .directive('challengeTile', challengeTile);
 
   function challengeTile() {
     return {
@@ -19,8 +20,7 @@
 
         function activate() {
           // move to service helper, called from controller
-          if ($scope.challenge.status.trim().toUpperCase() === 'PAST' &&
-            $scope.challenge.subTrack === 'MARATHON_MATCH') {
+          if ($scope.challenge.status.trim().toUpperCase() === 'PAST' && $scope.challenge.subTrack === 'MARATHON_MATCH') {
             ChallengeService.processPastMarathonMatch($scope.challenge);
           }
         }
