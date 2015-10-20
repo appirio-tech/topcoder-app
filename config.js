@@ -40,7 +40,7 @@ module.exports = function() {
     },
     'qa': {
       'CONSTANTS': {
-        API_URL: process.env.API_URL || 'https://api.topcoder-qa.com/v3',
+        API_URL: process.env.API_URL || 'https://api.topcoder-qa.com/v3.0.0',
         API_URL_V2: process.env.API_URL_V2 || 'https://api.topcoder-qa.com/v2',
         ASSET_PREFIX: process.env.ASSET_PREFIX || '',
         auth0Callback: process.env.auth0Callback || 'https://api.topcoder-qa.com/pub/callback.html',
@@ -154,7 +154,7 @@ module.exports = function() {
     },
     'production': {
       'CONSTANTS': {
-        API_URL: process.env.API_URL || 'https://api.topcoder.com/v3',
+        API_URL: process.env.API_URL || 'https://api.topcoder.com/v3.0.0',
         API_URL_V2: process.env.API_URL_V2 || 'https://api.topcoder.com/v2',
         ASSET_PREFIX: process.env.ASSET_PREFIX || 'https://s3.amazonaws.com/app.topcoder-dev.com',
         auth0Callback: process.env.auth0Callback || 'https://api.topcoder.com/pub/callback.html',
