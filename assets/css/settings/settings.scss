@@ -38,11 +38,8 @@
 
 .settings-container {
   input, textarea {
-    border-radius: 5px;
     font-size: 16px;
     font-family: 'Source Sans Pro';
-    background: white;
-    color: black;
   }
   input:focus, textarea:focus {
     outline: 1px solid #4cb5ff;
@@ -106,6 +103,7 @@
   @include ui-form-placeholder;
   input:not([type="checkbox"]) {
     @include ui-form-field;
+    background-color: white;
     height: 38px;
   }
 
@@ -164,6 +162,13 @@
         text-transform: uppercase;
         margin-bottom: 5px;
         margin-top: 5px;
+        width: 300px;
+
+        .mandatory {
+          text-transform: none;
+          color: #0096ff;
+          float: right;
+        }
       }
       .form-field {
         @include form-field;
@@ -175,7 +180,6 @@
         }
       }
       .form-field-focused {
-        @include form-field-focused;
       }
       .image {
         .edit-image {
@@ -307,6 +311,20 @@
 .update-password-container,
 .preferences-container {
   @media only screen and (min-width: 768px) {
+  }
+  .password {
+    padding-left: 30px;
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 5px;
+    &:hover {
+      cursor: text;
+    }
+    input, input:hover, input:focus {
+      background: none;
+      border: none;
+      box-shadow: none;
+    }
   }
   .tab-title {
     margin-bottom: 35px;
