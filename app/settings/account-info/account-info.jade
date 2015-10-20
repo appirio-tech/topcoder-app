@@ -59,7 +59,7 @@
           .form-label.first First name 
             span(style="text-transform: none;") &nbsp;(Given name)
           .validation-bar(ng-class="{ 'error-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.firstname.$invalid), 'success-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.firstname.$valid)}")
-            input.form-field(
+            input.tc-input(
               name="firstname", type="text",
               placeholder="First",
               ng-model="vm.userData.firstName", 
@@ -72,7 +72,7 @@
           .form-label Last name
             span(style="text-transform: none;") &nbsp;(Surname)
           .validation-bar(ng-class="{ 'error-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.lastname.$invalid), 'success-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.lastname.$valid)}")
-            input.form-field(
+            input.tc-input(
               name="lastname", type="text", 
               placeholder="Last",
               ng-model="vm.userData.lastName", 
@@ -90,7 +90,7 @@
 
       .section-fields
           .form-label.address Address
-          input.form-field(
+          input.tc-input(
             name="address", type="text",
             placeholder="123 Topcoder Ave.",
             value="{{vm.homeAddress.streetAddr1}}",
@@ -104,7 +104,7 @@
 
           .form-label Address 2
             span(style="text-transform: none;") &nbsp;(opt., suite, etc.)
-          input.form-field(
+          input.tc-input(
             name="address2",
             type="text",
             placeholder="Suite 42",
@@ -114,7 +114,7 @@
           )
 
           .form-label City
-          input.form-field(
+          input.tc-input(
             name="city", type="text",
             value="{{vm.homeAddress.city}}",
             placeholder="Best City in the World",
@@ -127,7 +127,7 @@
             p(ng-show="vm.accountInfoForm.city.$error.required") Please enter a city
 
           .form-label State/Province
-          input.form-field(
+          input.tc-input(
             name="state", type="text",
             value="{{vm.homeAddress.stateCode}}",
             placeholder="California",
@@ -140,7 +140,7 @@
             p(ng-show="vm.accountInfoForm.state.$error.required") Please enter a state or province
 
           .form-label Zip
-          input.form-field(
+          input.tc-input(
             name="zipcode", type="text",
             placeholder="Zip"
             value="{{vm.homeAddress.zip}}",

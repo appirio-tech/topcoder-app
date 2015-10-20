@@ -38,11 +38,8 @@
 
 .settings-container {
   input, textarea {
-    border-radius: 5px;
     font-size: 16px;
     font-family: 'Source Sans Pro';
-    background: white;
-    color: black;
   }
   input:focus, textarea:focus {
     outline: 1px solid #4cb5ff;
@@ -175,7 +172,6 @@
         }
       }
       .form-field-focused {
-        @include form-field-focused;
       }
       .image {
         .edit-image {

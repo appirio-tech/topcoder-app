@@ -1,0 +1,32 @@
+// Topcoder Inputs
+// tc- is the default prefix that we use for all classes
+
+@import 'topcoder-includes';
+
+input.tc-input {
+  color: #231f20;
+  outline: none;
+  background: white;
+  border: 1px solid #f0f0f0;
+  box-shadow: inset 0px 0px 2px 0px rgba(183,183,183,0.30);
+  border-radius: 2px;
+  cursor: auto;
+  color: #3d3d3d;
+  height: 30px;
+
+  &:hover {
+    border: 1px solid #A3A3AE;
+    box-shadow: inset 0px 0px 2px 0px #B7B7B7;
+    padding-left: 15px;
+  }
+
+  &:focus,
+  &.focus {
+    border: 1px solid #0096FF;
+    outline: none;
+    box-shadow: inset 0px 0px 2px 1px rgba(133,203,255,0.60);
+    padding-left: 15px;
+  }
+ 
+  transition: .15s all;
+}
