@@ -91,6 +91,7 @@
 
       span {
         @include sofia-pro-bold;
+        height: 24px;// matches the line-height of the section
       }
     }
     .ranks {

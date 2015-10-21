@@ -81,6 +81,9 @@
       .subtrack {
         padding-bottom: 7px;
         border-bottom: 1px solid #D1D3D4;
+        width: 90px;
+        @include ellipsis;
+        text-align: center;
       }
 
       .rating {

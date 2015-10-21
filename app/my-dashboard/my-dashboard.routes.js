@@ -32,6 +32,11 @@
         url: '/my-dashboard/',
         params: { 'notifyReset': false },
         parent: 'baseDashboard',
+        resolve: {
+          profile: ['userIdentity', 'ProfileService', function(userIdentity, ProfileService) {
+            return ProfileService.getUserProfile(userIdentity.handle);
+          }]
+        },
         views: {
           'header-dashboard' : {
             templateUrl: 'my-dashboard/header-dashboard/header-dashboard.html',

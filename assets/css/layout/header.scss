@@ -138,9 +138,10 @@
 
 // Menu
 .menu-item {
-  color: #fff;
+  color: #a3a3ae;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
+  font-family: 'Sofia Pro';
 }
 
 .search-wrapper {
@@ -365,7 +366,6 @@
   // Page header
   .top-header {
     height: 54px;
-    max-width: 1376px;
     margin: 0 auto;
 
     .main-menu {
