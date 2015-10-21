@@ -78,7 +78,6 @@
             newSkill.isNew = new Date().getTime();
             vm.skills.push(newSkill);
             toaster.pop('success', 'Success!', 'Skill added.');
-            console.log('A')
           });
         } else {
           toaster.pop('note', null, 'You\'ve already added that skill.');
@@ -117,7 +116,6 @@
         vm.profileFormProcessing = false;
         $log.info('Saved successfully');
         toaster.pop('success', "Success!", "Your account information was updated.");
-        console.log('B')
         for (var k in vm.userData) userData[k] = vm.userData[k];
       })
       .catch(function(err) {
@@ -148,7 +146,6 @@
         vm.userData.photoURL = '';
         $log.info('Saved successfully');
         toaster.pop('success', "Success!", "Your account information was updated.");
-        console.log('C')
       })
       .catch(function(err) {
         vm.profileFormProcessing = false;
