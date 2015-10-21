@@ -1455,6 +1455,7 @@ var mockData = (function() {
           "id": 125,
           "name": "ASSEMBLY_COMPETITION",
           "challenges": 22,
+          "wins": 10,
           "rank": {
             "rating": 1733,
             "activePercentile": 91.5033,
@@ -1466,8 +1467,7 @@ var mockData = (function() {
             "overallCountryRank": 16,
             "overallSchoolRank": 0,
             "volatility": 416,
-            "reliability": 0.8,
-            "rating": 0
+            "reliability": 0.8
           },
           "submissions": {
             "numRatings": 19,
@@ -1623,64 +1623,102 @@ var mockData = (function() {
         }]
       },
       "DESIGN": {
-        "challenges": 1,
-        "wins": 0,
-        "subTracks": [{
-          "id": 22,
-          "name": "IDEA_GENERATION",
-          "submissions": {
-            "submissions": 0,
-            "passedScreening": 0,
+        "challenges": 664,
+        "wins": 271,
+        "subTracks": [
+          {
+            "id": 34,
+            "name": "STUDIO_OTHER",
+            "challenges": 21,
+            "wins": 4,
+            "mostRecentEventDate": "2011-04-20T09:00:00.000Z"
+          },
+          {
+            "id": 30,
+            "name": "WIDGET_OR_MOBILE_SCREEN_DESIGN",
+            "challenges": 82,
+            "wins": 30,
+            "mostRecentEventDate": "2015-02-01T22:00:53.000Z"
+          },
+          {
+            "id": 22,
+            "name": "IDEA_GENERATION",
+            "challenges": 3,
             "wins": 0,
-            "failedContests": 0,
-            "completedContests": 0,
-            "challenges": 0
-          }
-        }, {
-          "id": 18,
-          "name": "WIREFRAMES",
-          "submissions": {
-            "submissions": 0,
-            "passedScreening": 0,
+            "mostRecentEventDate": "2013-05-27T10:00:07.000Z"
+          },
+          {
+            "id": 17,
+            "name": "WEB_DESIGNS",
+            "challenges": 418,
+            "wins": 190,
+            "mostRecentEventDate": "2015-01-26T19:00:03.000Z"
+          },
+          {
+            "id": 29,
+            "name": "COPILOT_POSTING",
+            "challenges": 1,
             "wins": 0,
-            "failedContests": 0,
-            "completedContests": 0,
-            "challenges": 0
-          }
-        }, {
-          "id": 40,
-          "name": "DESIGN_FIRST_2_FINISH",
-          "submissions": {
-            "submissions": 0,
-            "passedScreening": 0,
+            "mostRecentEventDate": null
+          },
+          {
+            "id": 18,
+            "name": "WIREFRAMES",
+            "challenges": 2,
+            "wins": 1,
+            "mostRecentEventDate": "2010-11-17T09:00:00.000Z"
+          },
+          {
+            "id": 14,
+            "name": "ASSEMBLY_COMPETITION",
+            "challenges": 1,
             "wins": 0,
-            "failedContests": 0,
-            "completedContests": 0,
-            "challenges": 1
-          }
-        }, {
-          "id": 17,
-          "name": "WEB_DESIGNS",
-          "submissions": {
-            "submissions": 0,
-            "passedScreening": 0,
+            "mostRecentEventDate": null
+          },
+          {
+            "id": 32,
+            "name": "APPLICATION_FRONT_END_DESIGN",
+            "challenges": 54,
+            "wins": 23,
+            "mostRecentEventDate": "2014-08-07T01:03:11.000Z"
+          },
+          {
+            "id": 21,
+            "name": "PRINT_OR_PRESENTATION",
+            "challenges": 24,
+            "wins": 8,
+            "mostRecentEventDate": "2014-10-08T17:48:09.000Z"
+          },
+          {
+            "id": 16,
+            "name": "BANNERS_OR_ICONS",
+            "challenges": 24,
+            "wins": 10,
+            "mostRecentEventDate": "2014-01-11T17:30:27.000Z"
+          },
+          {
+            "id": 20,
+            "name": "LOGO_DESIGN",
+            "challenges": 31,
+            "wins": 4,
+            "mostRecentEventDate": "2014-02-21T19:00:09.000Z"
+          },
+          {
+            "id": 31,
+            "name": "FRONT_END_FLASH",
+            "challenges": 2,
+            "wins": 1,
+            "mostRecentEventDate": "2009-06-19T23:00:00.000Z"
+          },
+          {
+            "id": 13,
+            "name": "TEST_SUITES",
+            "challenges": 1,
             "wins": 0,
-            "failedContests": 0,
-            "completedContests": 0,
-            "challenges": 0
+            "mostRecentEventDate": null
           }
-        }, {
-          "id": 21,
-          "name": "PRINT_OR_PRESENTATION",
-          "submissions": {
-            "submissions": 0,
-            "passedScreening": 0,
-            "wins": 0,
-            "failedContests": 0,
-            "completedContests": 0,
-            "challenges": 0
-          }
-        }]
+        ],
+        "mostRecentEventDate": "2015-02-01T22:00:53.000Z"
       },
       "DATA_SCIENCE": {
         "challenges": 10,

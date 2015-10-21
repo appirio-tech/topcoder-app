@@ -8,12 +8,15 @@
     'NotificationService',
     'ProfileService',
     'userIdentity',
-    '$log'
+    'profile',
+    '$log',
+    '$filter'
   ];
 
-  function HeaderDashboardController($stateParams, NotificationService, ProfileService, userIdentity, $log) {
+  function HeaderDashboardController($stateParams, NotificationService, ProfileService, userIdentity, profile, $log, $filter) {
     var vm = this;
-
+    vm.profile = profile;
+    vm.handleColor = $filter('ratingColor')(_.get(profile, 'maxRating.rating', 0));
 
     activate();
 

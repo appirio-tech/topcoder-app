@@ -4,9 +4,9 @@
     .module('tc.profile')
     .controller('ProfileSubtrackController', ProfileSubtrackController);
 
-  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'SRMService', 'CONSTANTS', '$state', '$window', 'ngDialog'];
+  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'SRMService', 'CONSTANTS', '$state', '$window', 'ngDialog', 'UserStatsService'];
 
-  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, SRMService, CONSTANTS, $state, $window, ngDialog) {
+  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, SRMService, CONSTANTS, $state, $window, ngDialog, UserStatsService) {
     var vm = this;
     vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
     vm.graphState = { show: 'history' };
@@ -23,6 +23,7 @@
     vm.selectSubTrack = selectSubTrack;
     vm.showNav = showNav;
     vm.back = back;
+    vm.subTrackStats = [];
 
     vm.status = {
       'challenges': CONSTANTS.STATE_LOADING
@@ -62,6 +63,10 @@
       }
 
       profileVm.statsPromise.then(function(data) {
+
+        // user iterable stats
+        vm.subTrackStats = UserStatsService.getIterableStats(vm.track, vm.subTrack, data).slice(0, 6);
+
         if (vm.subTrack == 'SRM') {
           vm.divisions = ProfileService.getDivisions(profileVm.stats);
           vm.divisionList = [

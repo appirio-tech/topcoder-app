@@ -116,5 +116,6 @@
 
   .blog-links {
     @include module-links;
+    text-transform: uppercase;
   }
 }
