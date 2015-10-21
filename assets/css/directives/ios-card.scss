@@ -59,6 +59,14 @@ ios-card .challenge.tile-view {
 
       a {
         text-decoration: none;
+
+        p {
+          color: $accent-gray;
+          @include sofia-pro-medium;
+          font-size: 12px;
+          line-height: 14px;
+          text-transform: uppercase;
+        }
       }
 
       .stats, .registrants, .submissions, .forum {
@@ -73,17 +81,6 @@ ios-card .challenge.tile-view {
 
       .registrants {
         margin-right: 15px;
-      }
-
-      p {
-        @include sofia-pro-medium;
-        font-size: 12px;
-        color: $gray-darkest;
-      }
-
-      .forum p {
-        @include sofia-pro-regular;
-        text-transform: uppercase;
       }
     }
   }

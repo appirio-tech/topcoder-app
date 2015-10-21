@@ -507,19 +507,14 @@ challenge-tile .challenge.list-view {
         display: flex;
         flex-direction: column;
       }
-    }
 
-    p {
-      @include sofia-pro-light;
-      font-size: 24px;
-      color: $gray-darkest;
-    }
-
-    .forum p {
-      @include sofia-pro-regular;
-      font-size: 10px;
-      color: #A3A3AE;
-      text-transform: uppercase;
+      p {
+        color: $accent-gray;
+        @include sofia-pro-medium;
+        font-size: 12px;
+        line-height: 14px;
+        text-transform: uppercase;
+      }
     }
 
     .registrants-icon, .submissions-icon {
