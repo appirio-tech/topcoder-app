@@ -28,7 +28,6 @@ dev-challenge-user-place {
       height: 84px;
       display: flex;
       flex-direction: column;
-      margin-bottom: 70px;
       text-align: center;
       background-color: #F6F6F6;
 
@@ -84,11 +83,10 @@ dev-challenge-user-place {
       }
 
       .date-completed {
-        @include sofia-pro-regular;
-        font-size: 14px;
-        line-height: 18px;
+        @include sofia-pro-medium;
+        font-size: 12px;
         text-transform: uppercase;
-        color: #A3A3AE;
+        color: $accent-gray;
         margin-top: 9px;
       }
     }
