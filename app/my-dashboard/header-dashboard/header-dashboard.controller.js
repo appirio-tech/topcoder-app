@@ -9,14 +9,14 @@
     'ProfileService',
     'userIdentity',
     'profile',
-    '$log',
-    '$filter'
+    '$log'
   ];
 
-  function HeaderDashboardController($stateParams, NotificationService, ProfileService, userIdentity, profile, $log, $filter) {
+  function HeaderDashboardController($stateParams, NotificationService, ProfileService, userIdentity, profile, $log) {
     var vm = this;
     vm.profile = profile;
-    vm.handleColor = $filter('ratingColor')(_.get(profile, 'maxRating.rating', 0));
+    vm.handleColor = ProfileService.getUserHandleColor(profile);
+
 
     activate();
 
