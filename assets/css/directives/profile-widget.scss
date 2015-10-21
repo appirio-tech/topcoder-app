@@ -6,31 +6,50 @@
   flex-direction: column;
   align-items: center;
 
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1.handle {
+      text-align: center;
+      font-size: 28px;
+      line-height: 34px;
+      @include sofia-pro-medium;
+    }
+
+    h3.tenure {
+      margin-top: 5px;
+      font-size: 12px;
+      line-height: 14px;
+      @include sofia-pro-medium;
+      color: $accent-gray;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    h3.location-challenges {
+      margin-top: 20px;
+      font-size: 12px;
+      line-height: 14px;
+      @include sofia-pro-medium;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    p.description {
+      margin-top: 12px;
+      max-width: 600px;
+      text-align: left;
+    }
+
+  }
+
   img.profile-circle {
     border-radius: 50%;
     display: inline;
-    margin-right: 20px;
     width: 140px;
     height: 140px;
-    margin-top: 30px;
-  }
-
-  h1.handle {
-    margin-top: 10px;
-    text-align: center;
-    font-size: 32px;
-    line-height: 38px;
-    @include sofia-pro-bold;
-  }
-
-  h3.tenure {
-    margin-top: 5px;
-    font-size: 18px;
-    line-height: 23px;
-    @include sofia-pro-light;
-    color: #d1d3d4;
-    text-align: center;
-    text-transform: uppercase;
   }
 
   h5 {
@@ -43,137 +62,84 @@
     }
   }
 
-  h3.location-challenges {
-    margin-top: 29px;
-    font-size: 18px;
-    @include sofia-pro-medium;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
   p.description {
     word-wrap: break-word;
-    margin-top: 10px;
-    font-size: 14px;
+    margin-top: 30px;
+    font-size: 15px;
     line-height: 24px;
+    //TODO change font to Merriweather Sans Regular
     @include source-sans-italic;
-    max-width: 254px;
     text-align: center;
+    color: $gray-darkest;
   }
 
   .edit {
-    width: 200px;
-    margin-top: 10px;
+    width: 99px;
+    margin-top: 30px;
     text-align: center;
+    @include sofia-pro-bold;
+    // font-size: 12px;
   }
 
   .tracks-links {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 40px;
+
     .tracks {
       display: flex;
       flex-direction: row;
-      justify-content: flex-end;
-      width: 100%;
+      justify-content: center;
+      overflow-x: scroll;
+      overflow-y: hidden;
       .track {
         cursor: pointer;
         display: flex;
+        width: 100%;
         flex-direction: column;
         align-items: center;
-        margin: 15px 0 0 0;
-        width: 90px;
+        + .track {
+          margin-left: 20px;
+        }
+        .track-icon {
+          background-size: 44px;
+          width: 44px;
+        }
         .text {
           @include sofia-pro-medium;
+          color: $accent-gray;
           font-size: 12px;
           line-height: 14px;
           margin-top: 11px;
           text-transform: uppercase;
           text-align: center;
+          word-wrap: break-word;
         }
       }
     }
+  }
 
-    hr {
-      margin-top: 14px;
-      color: #f0f0f0;
-    }
-
-    .links {
-      margin-top: 15px;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-end;
-      .link {
-        text-decoration: none;
-        text-transform: uppercase;
-        margin-left: 5px;
-        margin-right: 5px;
-      }
+  .links {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    .link {
+      @include sofia-pro-medium;
+      font-size: 12px;
+      line-height: 14px;
+      text-decoration: none;
+      text-transform: uppercase;
+      margin-left: 10px;
+      margin-right: 10px;
     }
   }
 }
 @media only screen and (min-width: 955px) {
   .profile-widget-directive {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    img.profile-circle {
-      margin-top: 10px;
-      width: 180px;
-      height: 180px;
-    }
-    .info {
-      margin-left: 15px;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 2;
 
-      h1.handle {
-        margin: 0;
-        text-align: left;
-        font-size: 46px;
-        line-height: 56px;
-      }
-
-      h3.tenure {
-        margin-top: 3px;
-        text-align: left;
-      }
-
-      h3.location-challenges {
-        margin-top: 36px;
-        text-align: left;
-      }
-
-      p.description {
-        margin-top: 12px;
-        max-width: 600px;
-        text-align: left;
-      }
-
-    }
-    .tracks-links {
-      margin-top: -2.1px;
-      .tracks {
-        .track {
-          img {
-            height: 44px;
-          }
-          .text {
-            margin-top: 8px;
-          }
-        }
-      }
-      hr {
-        margin-bottom: 0;
-      }
-
-      .links {
-        margin-top: 20px;
-      }
-    }
   }
 }
