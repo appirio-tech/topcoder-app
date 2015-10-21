@@ -19,10 +19,10 @@
   }
 
   section {
-    padding: 15px;
-    border-top: 1px solid #F0F0F0;
-    border-bottom: 1px solid #F0F0F0;
-    background-color: #FCFCFC;
+    padding: 20px 15px 5px 15px;
+    border-top: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+    background-color: $gray-lightest;
 
     .srm-tiles {
       @include horizontal-scroll;
