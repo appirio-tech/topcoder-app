@@ -8,21 +8,7 @@
 
         p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
-      .challenge-links
-        .stats
-          a.registrants(ng-href="{{challenge|challengeLinks:'registrants'}}", ng-switch="challenge.subTrack")
-            .registrants-icon
-
-            p(ng-switch-when="MARATHON_MATCH") {{challenge.numRegistrants[0]}}
-            p(ng-switch-default) {{challenge.numRegistrants}}
-
-          a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="{{challenge|challengeLinks:'submissions'}}")
-            .submissions-icon
-            p {{challenge.numSubmissions}}
-
-        a.forum(ng-href="{{challenge|challengeLinks:'forums'}}")
-          .forum-icon
-          p Posts
+      challenge-links(challenge="challenge", view="'tile'")
 
     .challenge-details
       p.currentPhase {{challenge.userCurrentPhase}}
@@ -48,9 +34,13 @@
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
     ng-switch="challenge.track")
+    .challenge-track
+
     header
-      
-      a(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
+      .top
+        a.name(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
+
+        p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
       p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
@@ -70,16 +60,19 @@
     .challenge-details(ng-switch-when="DESIGN")
       design-challenge-user-place(challenge="challenge", view="view")
 
+    // Only show if not data science track
+    p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
+
 .challenge.list-view(ng-show="view=='list'", ng-class="challenge.track")
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")
     .challenge-track
 
     header
-      a(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
+      a.name(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
       
-      p.subtrack {{challenge.subTrack | underscoreStrip}}
+      p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
-      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:] {{challenge.userDetails.roles | listRoles}}
+      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
 
     .challenge-details
       .challenge-info
@@ -90,27 +83,14 @@
         p.ends-in(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
 
       .phase-action(ng-switch="challenge.userAction")
-        a.tc-btn.tc-btn-s.tc-btn-wide.submit(ng-switch-when="Submit") Submit
+        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Submit") Submit
 
         .submitted(ng-switch-when="Submitted") Submitted
 
         // TODO: Need styling and JS logic for this one
         .registered(ng-switch-when="Registered") Registered
 
-    .challenge-links
-      a.registrants(ng-href="{{challenge|challengeLinks:'registrants'}}", ng-switch="challenge.subTrack")
-        
-        p(ng-switch-when="MARATHON_MATCH") {{challenge.numRegistrants[0]}}
-        p(ng-switch-default) {{challenge.numRegistrants}}
-        .registrants-icon
-
-      a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="")
-        p {{challenge.numSubmissions}}
-        .submissions-icon
-
-      a.forum(ng-href="{{challenge|challengeLinks:'forums'}}")
-        .forum-icon
-        p Posts
+    challenge-links(challenge="challenge", view="'list'")
         
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
@@ -118,11 +98,11 @@
     .challenge-track
 
     header
-      a(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
+      a.name(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
 
-      p.subtrack {{challenge.subTrack | underscoreStrip}}
+      p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
-      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:] {{challenge.userDetails.roles | listRoles}}
+      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
 
     .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack", ng-class="challenge.track")
 

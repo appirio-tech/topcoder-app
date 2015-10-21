@@ -26,8 +26,9 @@
 
     .srm-tiles {
       @include horizontal-scroll;
+      display: flex;
+      flex-direction: row;
       @media only screen and (min-width: 768px) {
-        display: flex;
         flex-flow: row wrap;
         margin: 0 auto;
         overflow: visible;
