@@ -25,6 +25,15 @@
     vm.back = back;
     vm.subTrackStats = [];
 
+    vm.tabs = [];
+    if (vm.track !== 'DESIGN') {
+      vm.tabs.push('statistics');
+    }
+
+    if (vm.track !== 'COPILOT') {
+      vm.tabs.push( vm.subTrack === 'SRM' ? 'Past srm': 'challenges');
+    }
+
     vm.status = {
       'challenges': CONSTANTS.STATE_LOADING
     };
