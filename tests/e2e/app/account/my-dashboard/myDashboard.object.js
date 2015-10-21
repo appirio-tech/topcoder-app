@@ -30,6 +30,81 @@ var MyDashboardPage = function() {
   
   
   
+  
+  this.goToDahsboardRestLinks = function(dashBoardUrl, loginUserCred) {
+	  browser.driver.ignoreSynchronization = true;
+		
+	  var EC = protractor.ExpectedConditions;
+	  browser.get(dashBoardUrl);
+	  var pastSrms = element(by.partialLinkText('VIEW PAST SRMS'));
+		 browser.actions().mouseMove(pastSrms).perform();
+		 pastSrms.click().then(function(){
+			 console.log('pastSrms '+pastSrms);
+			 var upcoming = element(by.partialLinkText('UPCOMING'));
+			 isClickable = EC.elementToBeClickable(upcoming);
+			 browser.wait(isClickable, 70000);
+			 
+			 browser.get(dashBoardUrl);
+			 
+			 moneyEarned = element(by.css('.money-earned'));
+			 isClickable = EC.elementToBeClickable(moneyEarned);
+			 browser.wait(isClickable, 30000);
+			 
+			 var launchArena = element(by.partialLinkText('LAUNCH ARENA'));
+			 browser.actions().mouseMove(launchArena).perform();
+			 isClickable = EC.elementToBeClickable(launchArena);
+			 browser.wait(isClickable, 70000);
+			 
+			 launchArena.click().then(function(){
+				 
+				 browser.get(dashBoardUrl);
+				 
+				 moneyEarned = element(by.css('.money-earned'));
+				 isClickable = EC.elementToBeClickable(moneyEarned);
+				 browser.wait(isClickable, 70000);
+				 
+					  var iosChallenges = element(by.css('.badge-and-challenges')).all(by.partialLinkText('VIEW CHALLENGES'));
+					  iosChallenges.get(0).click().then(function(){
+//						  var landingBanner = element(by.css('.landing-banner'));
+//						  isClickable = EC.elementToBeClickable(landingBanner);
+//						  browser.wait(isClickable, 170000);
+						  
+						  
+						  browser.get(dashBoardUrl);
+						  moneyEarned = element(by.css('.money-earned'));
+						  isClickable = EC.elementToBeClickable(moneyEarned);
+						  browser.wait(isClickable, 70000);
+						  
+						  var iosCards = element(by.css('.badge-and-challenges')).all(by.css('ios-card'));
+						  expect(iosCards.count()).toEqual(3);
+						  var firstIos = iosCards.get(0);
+						  var firstChallengeIos = firstIos.all(by.css('.top a')).get(0);
+						  firstChallengeIos.click().then(function(){
+							  var cdNgMain = element(by.id('cdNgMain'));
+							  isClickable = EC.elementToBeClickable(cdNgMain);
+							  browser.wait(isClickable, 70000);
+							  
+							  browser.get(dashBoardUrl);
+							  
+							  element.all(by.css('.posts .post')).each(function(elem, index) {
+								  elem.all(by.css('.blog-link a')).get(0).click().then(function(){
+									  browser.get(dashBoardUrl);
+								  });
+								});
+							  
+						  });
+						  
+						  
+						  
+					  });
+					  
+				  });
+				  
+			  });
+  };
+  
+  
+  
   this.goToDashboardPage = function(dashBoardUrl,loginUserCred) {
 	  
 	  browser.driver.ignoreSynchronization = true;
@@ -57,19 +132,19 @@ var MyDashboardPage = function() {
 	  
 	  var tileViewChallenges = element(by.css('.tile-view')).all(by.css('challenge-tile'));
 	  
-	  expect(tileViewChallenges.count()).toEqual(8);
+	  expect(tileViewChallenges.count()).toEqual(loginUserCred.challengeCount);
 	  
 	  var listButton = element(by.partialButtonText('List'));
 	  listButton.click().then(function(){
 		   var listViewChallenges = element(by.css('.list-view')).all(by.css('challenge-tile'));
-		   expect(listViewChallenges.count()).toEqual(8);
+		   expect(listViewChallenges.count()).toEqual(2);
 	  });
 	  
 	  var gridButton = element(by.partialButtonText('Grid'));
 	  gridButton.click().then(function(){
 		   tileViewChallenges = element(by.css('.tile-view')).all(by.css('challenge-tile'));
-		   expect(tileViewChallenges.count()).toEqual(8);
-		   var allActiveChallengesPage = element(by.partialLinkText('VIEW ALL ACTIVE CHALLENGES'));
+		   expect(tileViewChallenges.count()).toEqual(loginUserCred.challengeCount);
+		   var allActiveChallengesPage = element(by.partialLinkText('VIEW MORE'));
 			  browser.actions().mouseMove(allActiveChallengesPage).perform();
 			  
 			  allActiveChallengesPage.click().then(function(){
@@ -94,7 +169,7 @@ var MyDashboardPage = function() {
 				  isClickable = EC.elementToBeClickable(moneyEarned);
 				  browser.wait(isClickable, 30000);
 				  
-				  var allPastChallenges = element(by.partialLinkText('VIEW ALL PAST CHALLENGES'));
+				  var allPastChallenges = element(by.partialLinkText('PAST CHALLENGES'));
 				  browser.actions().mouseMove(allPastChallenges).perform();
 				  allPastChallenges.click().then(function(){
 					  var myChallenges = element(by.css('.my-challenges'));
@@ -122,70 +197,113 @@ var MyDashboardPage = function() {
 							 isClickable = EC.elementToBeClickable(moneyEarned);
 							 browser.wait(isClickable, 30000);
 							 var srmTiles = element(by.css('.srm-tiles')).all(by.css('srm-tile'));
-							 expect(srmTiles.count()).toEqual(1);
+							 expect(srmTiles.count()).toEqual(loginUserCred.srmCount);
 							 var problemArchivesLink = element(by.partialLinkText('PROBLEM ARCHIVES'));
 							 problemArchivesLink.click().then(function(){
-								  browser.get(dashBoardUrl);
-								  moneyEarned = element(by.css('.money-earned'));
-								  isClickable = EC.elementToBeClickable(moneyEarned);
-								  var matchEditorialLink = element(by.partialLinkText('MATCH EDITORIALS'));
-								  isClickable = EC.elementToBeClickable(matchEditorialLink);
-								  browser.wait(isClickable, 30000);
-								  matchEditorialLink.click().then(function(){
-									  browser.get(dashBoardUrl);
-									  moneyEarned = element(by.css('.money-earned'));
-									  isClickable = EC.elementToBeClickable(moneyEarned);
-									  browser.wait(isClickable, 30000);
-									  var learnMoreLink = element(by.partialLinkText('LEARN MORE'));
-									  isClickable = EC.elementToBeClickable(learnMoreLink);
-									  browser.wait(isClickable, 30000);
-									  learnMoreLink.click().then(function(){
-										  browser.get(dashBoardUrl);
-										  moneyEarned = element(by.css('.money-earned'));
-										  isClickable = EC.elementToBeClickable(moneyEarned);
-										  browser.wait(isClickable, 30000);
-										  
-										  var pastSrms = element(by.partialLinkText('VIEW PAST SRMS'));
-										  browser.actions().mouseMove(pastSrms).perform();
-										  pastSrms.click().then(function(){
-											  browser.get(dashBoardUrl);
-											  moneyEarned = element(by.css('.money-earned'));
-											  isClickable = EC.elementToBeClickable(moneyEarned);
-											  browser.wait(isClickable, 30000);
-											  
-											  var launchArena = element(by.partialLinkText('LAUNCH ARENA'));
-											  browser.actions().mouseMove(launchArena).perform();
-											  isClickable = EC.elementToBeClickable(launchArena);
-											  browser.wait(isClickable, 30000);
-											  
-											  launchArena.click().then(function(){
-												  browser.get(dashBoardUrl);
-												  moneyEarned = element(by.css('.money-earned'));
-												  isClickable = EC.elementToBeClickable(moneyEarned);
-												  browser.wait(isClickable, 30000);
-												  
-												  var iosChallenges = element(by.css('.badge-and-challenges')).all(by.partialLinkText('View Challenges'));
-												  iosChallenges.get(0).click().then(function(){
-													  browser.get(dashBoardUrl);
-													  moneyEarned = element(by.css('.money-earned'));
-													  isClickable = EC.elementToBeClickable(moneyEarned);
-													  browser.wait(isClickable, 30000);
-													  
-													  var iosCards = element(by.css('.badge-and-challenges')).all(by.css('ios-card'));
-													  expect(iosCards.count()).toEqual(3);
-													  
-													  element.all(by.repeater('blog in vm.blogPosts | orderBy : pubDate | limitTo : 4')).each(function(elem, index) {
-														  
-														  elem.all(by.css('.blog-link a')).get(0).click().then(function(){
-															  browser.get(dashBoardUrl);
-														  });
-														});
-													  
-												  });
-												  
-											  });
-											  
-										  });
+//								 browser.ignoreSynchronization = true;
+//								 browser.driver.wait(function() {
+//									 console.log('bodyText');
+//									  var bodyText = browser.driver.findElement(By.id('StayFocusd-infobar'));
+//									  console.log('bodyText'+bodyText);
+////									  isClickable = EC.elementToBeClickable(bodyText);
+//									  
+//									  return true;
+//								  },30000);
+								 
+								 
+								 browser.get(dashBoardUrl);
+								 moneyEarned = element(by.css('.money-earned'));
+								 isClickable = EC.elementToBeClickable(moneyEarned);
+								 browser.wait(isClickable, 30000);
+								 
+								 var matchEditorialLink = element(by.partialLinkText('MATCH EDITORIALS'));
+								 isClickable = EC.elementToBeClickable(matchEditorialLink);
+								 browser.wait(isClickable, 30000);
+								 browser.ignoreSynchronization = true;
+								 matchEditorialLink.click().then(function(){
+//									 browser.ignoreSynchronization = true;
+//									 browser.driver.wait(function() { 
+//										 browser.ignoreSynchronization = true;
+//										 var bodyText = browser.driver.findElement(by.css('.logoSpaceLink'));
+////										 isClickable = EC.elementToBeClickable(bodyText);
+//										 browser.driver.get(dashBoardUrl);
+//										 console.log('bodyText');
+//										 return true;
+//									 },70000);
+									 
+								 browser.get(dashBoardUrl);
+								 
+								 moneyEarned = element(by.css('.money-earned'));
+								 isClickable = EC.elementToBeClickable(moneyEarned);
+								 browser.wait(isClickable, 30000);
+								 
+								 var learnMoreLink = element(by.partialLinkText('LEARN MORE'));
+								 isClickable = EC.elementToBeClickable(learnMoreLink);
+								 browser.wait(isClickable, 30000);
+								 
+								 learnMoreLink.click().then(function(){
+//									 browser.driver.wait(function() { 
+//										 var overviewPageTitle = browser.driver.findElement(by.css('.overviewPageTitle'));
+//										 isClickable = EC.elementToBeClickable(overviewPageTitle);
+//										 console.log('in learnmore');
+//										 return true;
+//									  },30000);	 
+										 
+									 browser.get(dashBoardUrl);
+									 moneyEarned = element(by.css('.money-earned'));
+									 isClickable = EC.elementToBeClickable(moneyEarned);
+									 browser.wait(isClickable, 30000);
+									 
+//									 var pastSrms = element(by.partialLinkText('VIEW PAST SRMS'));
+//									 browser.actions().mouseMove(pastSrms).perform();
+//									 pastSrms.click().then(function(){
+//										 console.log('pastSrms '+pastSrms);
+//										 var upcoming = element(by.partialLinkText('UPCOMING'));
+//										 isClickable = EC.elementToBeClickable(upcoming);
+//										 browser.wait(isClickable, 70000);
+//										 
+//										 browser.get(dashBoardUrl);
+//										 
+//										 moneyEarned = element(by.css('.money-earned'));
+//										 isClickable = EC.elementToBeClickable(moneyEarned);
+//										 browser.wait(isClickable, 30000);
+//										 
+//										 var launchArena = element(by.partialLinkText('LAUNCH ARENA'));
+//										 browser.actions().mouseMove(launchArena).perform();
+//										 isClickable = EC.elementToBeClickable(launchArena);
+//										 browser.wait(isClickable, 70000);
+//										 
+//										 launchArena.click().then(function(){
+//											 browser.get(dashBoardUrl);
+//											 moneyEarned = element(by.css('.money-earned'));
+//											 isClickable = EC.elementToBeClickable(moneyEarned);
+//											 browser.wait(isClickable, 70000);
+//											 
+//												  var iosChallenges = element(by.css('.badge-and-challenges')).all(by.partialLinkText('View Challenges'));
+//												  iosChallenges.get(0).click().then(function(){
+//													  browser.get(dashBoardUrl);
+//													  moneyEarned = element(by.css('.money-earned'));
+//													  isClickable = EC.elementToBeClickable(moneyEarned);
+//													  browser.wait(isClickable, 70000);
+//													  
+//													  var iosCards = element(by.css('.badge-and-challenges')).all(by.css('ios-card'));
+//													  expect(iosCards.count()).toEqual(3);
+//													  var firstIos = iosCards.get(0);
+//													  var firstChallengeIos = firstIos.all(by.css('.top a')).get(0);
+//													  firstChallengeIos.click();
+//													  
+//													  element.all(by.repeater('blog in vm.blogPosts | orderBy : pubDate | limitTo : 4')).each(function(elem, index) {
+//														  
+//														  elem.all(by.css('.blog-link a')).get(0).click().then(function(){
+//															  browser.get(dashBoardUrl);
+//														  });
+//														});
+//													  
+//												  });
+//												  
+//											  });
+//											  
+//										  });
 									  });
 								  });
 								  

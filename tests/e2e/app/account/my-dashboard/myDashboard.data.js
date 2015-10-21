@@ -13,15 +13,18 @@ var MyDashboardData = function() {
                             		'city' :'Jaipur',
                             		'state' : 'RJ',
                             		'zipCode' : '302004',
-                            		'country' : 'United States'
+                            		'country' : 'United States',
+                            		
+                            		'challengeCount':2,
+                            		'srmCount' : 3,
                             	}/*,
                             	{	'username' : 'DhananjayKumar1',
                             		'password' : 'appirio123'
                             	}*/
                            ],
     						  
-    this.baseUrl = 'https://app.topcoder-dev.com/login';
-    this.dashBoardUrl = 'https://app.topcoder-dev.com/my-dashboard/';
+    this.baseUrl = 'https://app.topcoder-qa.com/login';
+    this.dashBoardUrl = 'https://app.topcoder-qa.com/my-dashboard/';
     this.invalidPasswordMessage = 'That password doesn\'t match the one we have on file. Please try again.';
     this.invalidHandle = 'This user does not exist.'
     this.invalidSpaceHandle = 'That password doesn\'t match the one we have on file. Please try again.'	

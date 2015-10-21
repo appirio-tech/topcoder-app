@@ -12,16 +12,23 @@
 		 for (; i< myDashboardData.userCredentials.length; i++) {
 			 console.log('user creds :'+myDashboardData.userCredentials[i].username);
 			 (function(loginUserCred) {
-				 it('welcomes the user', function() {
+				 it('Dashboard first part', function() {
 					 loginPage.get(myDashboardData.baseUrl);
 					 loginPage.login(loginUserCred);
 					 myDashboardPage.goToDashboardPage(myDashboardData.dashBoardUrl, loginUserCred);
 				 });
 		  
-				 it('welcomes the user for logout', function() {
-//					 loginPage.logOut(myDashboardData.dashBoardUrl);
+		  
+				 it('Dashboard srm and rest links', function() {
+					 loginPage.get(myDashboardData.baseUrl);
+					 loginPage.login(loginUserCred);
+					 myDashboardPage.goToDahsboardRestLinks(myDashboardData.dashBoardUrl, loginUserCred);
 				 });
 		  
+				 it('welcomes the user for logout', function() {
+					 loginPage.logOut(myDashboardData.dashBoardUrl);
+				 });
+				 
 				 afterEach(function() {  
 					 browser.manage().logs().get('browser').then(function(browserLog) {
 						 var i = 0,
@@ -45,39 +52,6 @@
 			 
 		 }
 
-		 /*i=0;
-		for(;i < loginUser.gitCredentials.length; i++) {
-			 (function(loginUserCred) {
-				 it('Welcomes the Git user', function() {
-					 console.log('loginUser.baseUrl'+loginUser.baseUrl);
-					 myDashboardPage.get(loginUser.baseUrl);
-					 myDashboardPage.gitLogin(loginUserCred);
-				 });
-		  
-				 it('Git user logout', function() {
-					 myDashboardPage.logOut(loginUser.dashBoardUrl);
-				 });
-				 
-				 afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
-			 })(loginUser.gitCredentials[i]);
-		 }*/
 			 
   
 });
