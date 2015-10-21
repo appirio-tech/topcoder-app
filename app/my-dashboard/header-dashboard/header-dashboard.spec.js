@@ -116,7 +116,8 @@ describe('Header Dashboard Controller', function() {
         NotificationService : notificationService,
         UserService : userService,
         ProfileService: profileService,
-        userIdentity: identity
+        userIdentity: identity,
+        profile: profile
       });
       $rootScope.$apply();
     });
@@ -146,7 +147,8 @@ describe('Header Dashboard Controller', function() {
         NotificationService : notificationService,
         UserService : userService,
         ProfileService: profileService,
-        userIdentity: identity
+        userIdentity: identity,
+        profile: profile
       });
       $rootScope.$apply();
     });
