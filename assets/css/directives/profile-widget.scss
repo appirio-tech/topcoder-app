@@ -75,36 +75,46 @@
 
   .edit {
     width: 99px;
-    margin-top: 31px;
+    margin-top: 30px;
     text-align: center;
     @include sofia-pro-bold;
-    font-size: 12px;
+    // font-size: 12px;
   }
 
   .tracks-links {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 41px;
+    margin-top: 40px;
+
     .tracks {
       display: flex;
-      flex-flow: row wrap;
+      flex-direction: row;
       justify-content: center;
-      width: 100%;
+      overflow-x: scroll;
+      overflow-y: hidden;
       .track {
         cursor: pointer;
         display: flex;
+        width: 100%;
         flex-direction: column;
         align-items: center;
-        margin: 15px 0 0 0;
-        width: 90px;
+        + .track {
+          margin-left: 20px;
+        }
+        .track-icon {
+          background-size: 44px;
+          width: 44px;
+        }
         .text {
           @include sofia-pro-medium;
+          color: $accent-gray;
           font-size: 12px;
           line-height: 14px;
           margin-top: 11px;
           text-transform: uppercase;
           text-align: center;
+          word-wrap: break-word;
         }
       }
     }
@@ -123,13 +133,13 @@
       line-height: 14px;
       text-decoration: none;
       text-transform: uppercase;
-      margin-left: 5px;
-      margin-right: 5px;
+      margin-left: 10px;
+      margin-right: 10px;
     }
   }
 }
 @media only screen and (min-width: 955px) {
   .profile-widget-directive {
-    
+
   }
 }

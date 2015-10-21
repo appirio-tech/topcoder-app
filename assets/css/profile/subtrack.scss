@@ -4,24 +4,40 @@
 .profile-subtrack-container {
   display: flex;
   flex-direction: column;
+  .content {
+
+    @include module-full-width;
+    max-width: 1242px;
+    background: white;
+
+    margin: 30px auto 40px;
+
 
   .nav {
     @include module-full-width;
-    background: white;
+    width: 100%;
+    // max-width: 1242px;
+    // background: white;
     height: 100px;
-    padding-left: 60px;
-    padding-right: 60px;
+    // margin: 30px auto 40px;
+    // margin-right: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
-    .arrow {
-      width: 15px;
-    }
+    // margin-bottom: 10px;
+
     .right {
       width: 15px;
       margin-right: 50px;
+      .subtrack {
+        display: block;
+        color: $primary;
+        font-weight: 700;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
       i {
         color: #a3a3ae;
         font-size: 19px;
@@ -31,35 +47,59 @@
         }
       }
     }
-    .breadcrumbs {
-      @include sofia-pro-extra-light;
-      font-size: 14px;
-      line-height: 16px;
-      .handle {
-        display: none;
-        a {
-          text-decoration: none;
-          color: black;
-          &:hover {
-            color: $primary;
-          }
+
+    .handle {
+      a {
+        &:hover {
+          color: $primary;
         }
       }
-      .track {
-        display: block;
-        color: black;
-        text-align: center;
-        text-transform: uppercase;
+    }
+
+
+  }
+  .tabs {
+    background-color: $gray-lightest;
+    display: flex;
+    height: 60px;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 16px;
+    border-top: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+    a {
+      color: #a3a3ae;
+      width: 140px;
+      height: 30px;
+      // padding-top: 6px;
+      text-align: center;
+      @include sofia-pro-medium;
+      font-size: 18px;
+      line-height: 24px;
+      text-transform: uppercase;
+      &.left {
       }
-      .subtrack {
-        display: block;
-        color: $primary;
-        font-weight: 700;
-        text-align: center;
-        text-transform: uppercase;
+      &.right {
+      }
+      &.selected {
+        color: $gray-darkest;
+        padding-bottom: 36px;
+        border-bottom: solid 2px $primary;
       }
     }
   }
+  .subtrack-stats {
+    // @include module-l;
+    width: 100%;
+    max-width: 1242px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    padding: 30px auto;
+
+  }
+
   .top {
     @include module-l;
     background: white;
@@ -244,30 +284,7 @@
       }
     }
 
-    .tabs {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      margin-top: 30px;
-      a {
-        color: #a3a3ae;
-        width: 140px;
-        height: 30px;
-        padding-top: 6px;
-        text-align: center;
-        @include sofia-pro-bold;
-        font-size: 16px;
-        text-transform: uppercase;
-        &.left {
-        }
-        &.right {
-        }
-        &.selected {
-          color: black;
-          border-bottom: solid 3px #0096ff;
-        }
-      }
-    }
+
     hr {
       margin-bottom: 15px;
       margin-top: -3px;
@@ -301,6 +318,7 @@
 
   }
 }
+}
 @media (min-width: 768px) {
 .profile-subtrack-container {
 
@@ -309,32 +327,23 @@
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 8px;
-    .arrow {
-      width: 15px;
-      display: none;
-    }
+    height: 120px;
+
     .right {
       width: 15px;
-    }
-    .breadcrumbs {
-      margin-left: -30%;
-      font-size: 28px;
-      line-height: 34px;
-      .handle {
-        img.profile-circle {
-          border-radius: 50%;
-          height: 30px;
-          margin-bottom: -5px;
-          margin-right: 13px;
-        }
-        display: inline;
-      }
-      .track {
-        display: inline;
-      }
       .subtrack {
         display: inline;
       }
+    }
+
+    .handle {
+      img.profile-circle {
+        border-radius: 50%;
+        height: 60px;
+        margin-top: 30px;
+        margin-left: 60px;
+      }
+      display: inline;
     }
   }
   .top {

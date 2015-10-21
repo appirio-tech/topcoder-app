@@ -15,8 +15,8 @@
             .skill(ng-repeat="skill in vm.skills")
               skill-tile(skill="skill")
 
-          button.tc-btn.tc-btn-l.more(ng-if="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW ALL
-          button.tc-btn.tc-btn-l.more(ng-if="vm.skills.length > 6", ng-click="vm.skills = vm.someSkills") VIEW LESS
+          button.tc-btn.tc-btn-m.more(ng-if="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW ALL
+          button.tc-btn.tc-btn-m.more(ng-if="vm.skills.length > 10", ng-click="vm.skills = vm.someSkills") VIEW LESS
 
           .empty-state(ng-show="!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)")
             .action-text Tell everyone what you know
@@ -34,15 +34,13 @@
 
         .categories
 
-          h3.activity Activity on Topcoder
-
           .empty-state(ng-if="!profileVm.numProjects")
             .action-text Start competing within the community
             .tracks
               .track.noclick(ng-repeat="track in ['DEVELOP', 'DESIGN', 'DATA_SCIENCE']")
                 div(class="{{profileVm.imgMap[track]}}-icon")
                   div
-                .text {{track | track}}
+                .text {{track | track}} 
             .description Compete in challenges to win money, test yourself against the world's best, and learn new skills. Your performance rating will show up here.
             a.tc-btn.tc-btn-l.link-button(href="/challenges") FIND CHALLENGES
 
@@ -57,7 +55,7 @@
               img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop-outline.svg")
               img(ng-if="track == 'DESIGN'", src="/images/ico-track-design-outline.svg")
               img(ng-if="track == 'COPILOT'", src="/images/ico-track-co_pilot-outline.svg")
-              span {{track | track | uppercase}}
+              span {{track | track | uppercase}} ACTIVITY
 
             a.subtrack(
               ng-repeat="subtrack in profileVm.categories[track] | orderBy:'mostRecentEventDate':true",
@@ -69,7 +67,6 @@
               .ranking(ng-if="subtrack.rating")
                 .number.rating(style="color: {{subtrack.rating | ratingColor}}")
                   | {{subtrack.rating}}
-                  span.square(style="background-color: {{subtrack.rating | ratingColor}}")
 
                 .tag Rating
 
@@ -93,7 +90,7 @@
     #externalLinks
       tc-section(ng-show="vm.displaySection.externalLinks", state="profileVm.status.externalLinks")
         .external-links
-          h3.activity Activity across the web
+          h3.activity on the web
           external-links-data(ng-show="vm.hasLinks", external-links="vm.linkedExternalAccounts", linked-accounts-data="vm.linkedExternalAccountsData")
 
           .empty-state(ng-hide="vm.hasLinks")

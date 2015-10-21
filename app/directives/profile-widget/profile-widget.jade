@@ -13,12 +13,12 @@
     h3.tenure(ng-if="profile.startMonth")
       | Member Since {{profile.startMonth}}
 
-    a.tc-btn.tc-btn-s.edit(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
+    a.tc-btn.tc-btn-m.edit(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
 
   .tracks-links
     .tracks
       .track(ng-repeat="track in (profile.tracks)", ng-click="profileVm.scrollTo(track)")
-        div(class="{{profileVm.imgMap[track]}}-icon")
+        div(class="track-icon {{profileVm.imgMap[track]}}-icon")
           div
         .text {{track | role}}
 
