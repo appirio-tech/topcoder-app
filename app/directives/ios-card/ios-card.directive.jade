@@ -2,9 +2,27 @@
   .challenge-track
 
   header
-    a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+    .top
+      a.name(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") #[span {{challenge.name}}]
 
-    p {{challenge.subTrack | underscoreStrip}}
+      p.subtrack-color {{challenge.subTrack | underscoreStrip}}
+
+    .challenge-links
+      .stats
+        a.registrants(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+          .registrants-icon
+
+          p {{challenge.numRegistrants}}
+
+        a.submissions(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+          .submissions-icon
+
+          p {{challenge.numSubmissions}}
+
+      a.forum(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
+        .forum-icon
+
+        p Posts
 
   .challenge-details
 
@@ -24,20 +42,3 @@
     p.technologies {{challenge.technologies}}
 
     //button.phase-action(ng-class="{'action-completed': challenge.currentPhaseActionCompleted}") Submit
-
-    .challenge-links
-      .stats
-        a.registrants(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
-          .registrants-icon
-
-          p {{challenge.numRegistrants}}
-
-        a.submissions(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
-          .submissions-icon
-
-          p {{challenge.numSubmissions}}
-
-      a.forum(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
-        .forum-icon
-
-        p Posts

@@ -2,25 +2,20 @@
 @import '../partials/combined';
 
 .header-dashboard {
-  @include module-full-width;
+  @include module-l;
   background-color: $white;
-  box-shadow: 0 0 3px 0 rgba(0, 0, 0, .3);
+  padding: 30px 60px;
+  margin-top: 30px;
+  @media only screen and (min-width: 900px) {
+    padding: 30px 60px;
+  }
 
   header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1242px;
-    margin: 0 auto;
-    padding-top: 20px;
-    @media only screen and (min-width: 600px) {
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 25px 25px 23px;
-    }
-    @media only screen and (min-width: 900px) {
-      padding: 40px 50px 33px;
-    }
+    flex-direction: row;
+    justify-content: space-between;
 
 
     h1 {
@@ -37,22 +32,36 @@
       }
     }
 
-    .user-stats {
+    .info {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      .pic {
+        img.profile-circle {
+          border-radius: 50%;
+          display: inline;
+          width: 60px;
+          height: 60px;
+        }
+      }
+    }
+
+    .user-stats {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
       margin-bottom: 12px;
+      margin-left: 15px;
       @media only screen and (min-width: 600px) {
         margin-bottom: 0;
       }
 
       .money-earned {
         display: flex;
-        flex-direction: column;
-        text-align: right;
+        flex-direction: row;
+        align-items: center;
 
         .number {
-          margin-bottom: 4px;
           @include sofia-pro-bold;
           font-size: 18px;
           line-height: 23px;
@@ -67,19 +76,13 @@
           @include sofia-pro-regular;
           font-size: 10px;
           line-height: 13px;
-          text-transform: uppercase;
-          color: #A3A3AE;
+          text-transform: lowercase;
+          margin-left: 5px;
+          color: $accent-gray;
           @media only screen and (min-width: 600px) {
             font-size: 12px;
             line-height: 14px;
           }
-        }
-      }
-
-      .money-earned {
-        padding-left: 15px;
-        @media only screen and (min-width: 600px) {
-          padding-left: 10px;
         }
       }
     }

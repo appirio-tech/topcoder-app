@@ -8,11 +8,13 @@
     'NotificationService',
     'ProfileService',
     'userIdentity',
+    'profile',
     '$log'
   ];
 
-  function HeaderDashboardController($stateParams, NotificationService, ProfileService, userIdentity, $log) {
+  function HeaderDashboardController($stateParams, NotificationService, ProfileService, userIdentity, profile, $log) {
     var vm = this;
+    vm.profile = profile;
 
 
     activate();
