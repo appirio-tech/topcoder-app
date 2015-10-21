@@ -188,8 +188,10 @@
           }
           .file-upload {
             position: relative;
+            display: block;
             overflow: hidden;
             margin: 10px;
+            margin-left: 0;
             width: 150px;
             input {
               position: absolute;
@@ -201,6 +203,13 @@
               cursor: pointer;
               opacity: 0;
               filter: alpha(opacity=0);
+            }
+          }
+          .file-delete {
+            float: left;
+            clear: left;
+            a {
+              padding: 5px 10px;
             }
           }
         }

@@ -14,11 +14,13 @@
     vm.onFileChange   = onFileChange;
     vm.updateProfile  = updateProfile;
     vm.addSkill = addSkill;
+    vm.deleteImage = deleteImage;
 
     activate();
 
     function activate() {
       vm.userData = userData.clone();
+      vm.originalUserData = userData;
       vm.linkedExternalAccounts = [];
       vm.linkedExternalAccountsData = {};
       vm.skills = false;
@@ -76,6 +78,7 @@
             newSkill.isNew = new Date().getTime();
             vm.skills.push(newSkill);
             toaster.pop('success', 'Success!', 'Skill added.');
+            console.log('A')
           });
         } else {
           toaster.pop('note', null, 'You\'ve already added that skill.');
@@ -114,6 +117,7 @@
         vm.profileFormProcessing = false;
         $log.info('Saved successfully');
         toaster.pop('success', "Success!", "Your account information was updated.");
+        console.log('B')
         for (var k in vm.userData) userData[k] = vm.userData[k];
       })
       .catch(function(err) {
@@ -133,6 +137,26 @@
         DEVELOP: _.contains(userInfo.tracks, 'DEVELOP'),
         DATA_SCIENCE: _.contains(userInfo.tracks, 'DATA_SCIENCE'),
       };
+    }
+
+    function deleteImage() {
+      var userData = vm.originalUserData;
+      var oldPhotoURL = userData.photoURL;
+      delete userData['photoURL'];
+      ProfileService.updateUserProfile(userData)
+      .then(function() {
+        vm.userData.photoURL = '';
+        $log.info('Saved successfully');
+        toaster.pop('success', "Success!", "Your account information was updated.");
+        console.log('C')
+      })
+      .catch(function(err) {
+        vm.profileFormProcessing = false;
+        $log.error(err);
+        vm.userData.photoURL = oldPhotoURL;
+        vm.originalUserData.photoURL = oldPhotoURL;
+        toaster.pop('error', "Whoops!", "Something went wrong. Please try again later.");
+      });
     }
   }
 })();
