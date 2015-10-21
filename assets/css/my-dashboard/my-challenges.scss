@@ -297,13 +297,21 @@
   .my-challenges-links {
     @include module-links;
     text-transform: uppercase;
-    @media only screen and (max-width: 767px) {
-      flex-direction: column;
-      padding: 15px 0;
-    }
+    flex-direction: row;
+    padding: 15px 0;
 
     a:not(:first-child) {
       margin-left: 30px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .my-challenges {
+    .my-challenges-links {
+      a:not(:first-child) {
+        margin-left: 15px;
+      }
     }
   }
 }
