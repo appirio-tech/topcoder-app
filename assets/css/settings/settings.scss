@@ -38,8 +38,9 @@
 
 .settings-container {
   input, textarea {
-    font-size: 16px;
-    font-family: 'Source Sans Pro';
+    font-size: 15px;
+    font-family: 'Merriweather Sans';
+    font-weight: 400;
   }
   input:focus, textarea:focus {
     outline: 1px solid #4cb5ff;
@@ -143,7 +144,8 @@
         font-size: 13px;
         line-height: 20px;
         color: #A3A3AE;
-        @include source-sans-italic;
+        // @include source-sans-italic;
+        @include label-description;
         margin-top: 5px;
       }
     }
