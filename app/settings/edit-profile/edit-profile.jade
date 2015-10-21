@@ -22,7 +22,7 @@
                 input(type="file", name="image", on-file-change)
 
               .file-delete
-                a.tc-btn.tc-btn-secondary.tc-btn-s(ng-click="vm.deleteImage()") Delete
+                button.tc-btn.tc-btn-secondary.tc-btn-s(ng-click="vm.deleteImage()", type="button") Delete
 
         .country
           .form-label country to represent
@@ -57,7 +57,8 @@
       .section-fields
         track-toggle(tracks="vm.tracks")
 
-        button.tc-btn.tc-btn-secondary.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
+        button.tc-btn.tc-btn-secondary.tc-btn-l.disabled(ng-show="!(vm.editProfile.$invalid || vm.editProfile.$pristine)", type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
+        button.tc-btn.tc-btn-secondary.tc-btn-l.disabled(ng-show="vm.editProfile.$invalid || vm.editProfile.$pristine", type="button") Save
 
   .settings-section.skills
     .section-info
