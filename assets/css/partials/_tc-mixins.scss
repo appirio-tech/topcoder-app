@@ -36,6 +36,9 @@
   border-bottom: 1px solid $horizontal-rule;
 }
 
+// Font Stack: BODY
+// Refactor to use non-typeface specific name; best - use variables;
+
 @mixin source-sans-light {
   font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
   font-weight: 300;
@@ -61,6 +64,18 @@
   font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
   font-weight: 700;
 }
+
+// Replacement for Merriweather Sans
+
+@mixin label-description {
+  font: {
+    family: "Merriweather Sans", $font-family-sans-serif;
+    weight: 400;
+    size: 13px;
+  }
+}
+
+// body end;
 
 @mixin sofia-pro-extra-light {
   font-family: 'Sofia Pro', Arial;
