@@ -17,6 +17,10 @@
           activate();
 
           function activate() {
+
+            $scope.$watchCollection('data', function(newValue, oldValue) {
+              init();
+            });
             init();
 
             var window = angular.element($window);
@@ -72,7 +76,7 @@
             $scope.slideCounts[slidesCollection.length - 1] = slide.length;
             $scope.slidesCollection = slidesCollection;
           }
-        
+
       }]
     };
   });

@@ -1,8 +1,10 @@
 describe('filters', function() {
+  var domain;
 
   beforeEach(function() {
     bard.appModule('topcoder');
     bard.inject(this, 'CONSTANTS', 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter', 'challengeLinksFilter');
+    domain = CONSTANTS.domain;
   });
 
   describe('role filter', function() {
@@ -58,7 +60,6 @@ describe('filters', function() {
   });
 
   describe('challengeLinksFilter', function() {
-    // bard.inject(this, 'CONSTANTS');
     it ('should have the correct links for DEVELOP challenge', function() {
       var _ch = {
         id: 1,
@@ -66,10 +67,10 @@ describe('filters', function() {
         track: 'DEVELOP',
         subTrack : 'CODE'
       };
-      expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://www.topcoder-dev.com/challenge-details/1/?type=DEVELOP');
-      expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.topcoder-dev.com/forums/?module=Category&categoryID=2');
-      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://www.topcoder-dev.com/challenge-details/1/?type=DEVELOP#viewRegistrant');
-      expect(challengeLinksFilter(_ch, 'submissions')).to.be.equal('https://www.topcoder-dev.com/challenge-details/1/?type=DEVELOP#viewRegistrant');
+      expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=DEVELOP');
+      expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.'+domain+'/forums/?module=Category&categoryID=2');
+      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=DEVELOP#viewRegistrant');
+      expect(challengeLinksFilter(_ch, 'submissions')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=DEVELOP#viewRegistrant');
     });
 
     it ('should have the correct links for DESIGN challenge', function() {
@@ -79,10 +80,10 @@ describe('filters', function() {
         track: 'DESIGN',
         subTrack : 'WEB_DESIGN'
       };
-      expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://www.topcoder-dev.com/challenge-details/1/?type=DESIGN');
-      expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.topcoder-dev.com/forums/?module=ThreadList&forumId=2');
-      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://www.topcoder-dev.com/challenge-details/1/?type=DESIGN#viewRegistrant');
-      expect(challengeLinksFilter(_ch, 'submissions')).to.be.equal('https://www.topcoder-dev.com/challenge-details/1/?type=DESIGN#viewRegistrant');
+      expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=DESIGN');
+      expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.'+domain+'/forums/?module=ThreadList&forumId=2');
+      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=DESIGN#viewRegistrant');
+      expect(challengeLinksFilter(_ch, 'submissions')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=DESIGN#viewRegistrant');
     });
 
     it ('should have the correct links for DATA_SCIENCE challenge', function() {
@@ -92,9 +93,9 @@ describe('filters', function() {
         track: 'DATA_SCIENCE',
         subTrack : 'MARATHON_MATCH'
       };
-      expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://community.topcoder-dev.com/tc?module=MatchDetails&rd=3');
-      expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.topcoder-dev.com/forums/?module=ThreadList&forumID=2');
-      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://community.topcoder-dev.com/longcontest/?module=ViewStandings&rd=3');
+      expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://community.'+domain+'/tc?module=MatchDetails&rd=3');
+      expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.'+domain+'/forums/?module=ThreadList&forumID=2');
+      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://community.'+domain+'/longcontest/?module=ViewStandings&rd=3');
     });
   });
 });
