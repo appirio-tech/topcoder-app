@@ -2,32 +2,24 @@
 @import '../partials/combined';
 
 .header-dashboard {
-  @include module-l;
   background-color: $white;
-  padding: 30px 60px;
-  margin-top: 30px;
+  padding: 15px;
+  margin-top: 15px;
   margin-left: auto;
   margin-right: auto;
-  @media only screen and (min-width: 900px) {
-    padding: 30px 60px;
-    margin-left: auto;
-    margin-right: auto;
-  }
 
   header {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-
 
     h1 {
       @include sofia-pro-medium;
-      font-size: 36px;
-      line-height: 43px;
+      font-size: 24px;
+      line-height: 31px;
       color: $gray-darkest;
       text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 15px;
     }
 
     .info {
@@ -86,5 +78,39 @@
         }
       }
     }
+  }
+}
+
+
+@media (min-width: 768px) {
+  .header-dashboard {
+    @include module-l;
+    padding: 30px 60px;
+    margin-top: 30px;
+
+    header {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      h1 {
+        font-size: 36px;
+        line-height: 43px;
+        order: 2;
+      }
+
+      .info {
+        order: 1;
+      }
+    }
+  }
+}
+
+
+@media (min-width: 900px) {
+  .header-dashboard {
+    padding: 30px 60px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

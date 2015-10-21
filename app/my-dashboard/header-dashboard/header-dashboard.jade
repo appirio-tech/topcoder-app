@@ -1,4 +1,5 @@
 header
+  h1 Dashboard
   .info
     .pic
       a(ui-sref="profile.about({userHandle: vm.profile.handle})")
@@ -9,5 +10,4 @@ header
       .money-earned(ng-hide="vm.hideMoney")
         p.number(ng-bind="vm.moneyEarned | currency:'$':0")
         p Earned
-  h1 Dashboard
 
