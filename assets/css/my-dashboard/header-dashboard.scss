@@ -21,17 +21,11 @@
 
 
     h1 {
-      margin-bottom: 10px;
-      @include sofia-pro-bold;
-      font-size: 22px;
-      line-height: 26px;
+      @include sofia-pro-medium;
+      font-size: 36px;
+      line-height: 43px;
       color: $gray-darkest;
       text-transform: uppercase;
-      @media only screen and (min-width: 600px) {
-        margin-bottom: 0;
-        font-size: 32px;
-        line-height: 38px;
-      }
     }
 
     .info {
@@ -58,6 +52,12 @@
         margin-bottom: 0;
       }
 
+      .handle {
+        @include sofia-pro-medium;
+        font-size: 24px;
+        line-height: 29px;
+      }
+
       .money-earned {
         display: flex;
         flex-direction: row;
@@ -68,10 +68,6 @@
           font-size: 18px;
           line-height: 23px;
           color: $gray-darkest;
-          @media only screen and (min-width: 600px) {
-            font-size: 22px;
-            line-height: 28px;
-          }
         }
 
         p:not(.number) {

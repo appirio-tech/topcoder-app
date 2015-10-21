@@ -15,6 +15,7 @@
   function HeaderDashboardController($stateParams, NotificationService, ProfileService, userIdentity, profile, $log) {
     var vm = this;
     vm.profile = profile;
+    vm.handleColor = ProfileService.getUserHandleColor(profile);
 
 
     activate();
