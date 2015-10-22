@@ -6,9 +6,10 @@
 
       history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
 
-  hr(ng-if="vm.history")
 
   .bottom(ng-show="vm.subTrack == 'MARATHON_MATCH' || vm.SRMDetailDisplay")
+    hr(ng-if="vm.history")
+
     h2.detailed Details
 
     ul.vertical-stats(ng-show="vm.subTrack == 'MARATHON_MATCH'")
