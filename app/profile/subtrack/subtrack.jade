@@ -1,16 +1,8 @@
 .profile-subtrack-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
   .content 
-    //- .nav
+    
     .page-header
-      page-state-header(handle="{{vm.userHandle}}", page-title="My SRMs", hide-money="true", show-back-link="true", default-state="profile")
-      //- a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
-      //-   .handle
-      //-     img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
-      //-     span(style="color: {{profileVm.profile.maxRating.rating | ratingColor}};") {{profileVm.profile.handle}}
-
-      //- .right
-      //-   {{vm.subTrack}}
-      //-   i.fa.fa-th(ng-click="vm.showNav()")
+      page-state-header(handle="{{vm.userHandle}}", page-title="{{vm.pageName}}", hide-money="true", show-back-link="true", default-state="dashboard")
 
     tc-tab-set
       tc-tab(heading="{{vm.tabs[0]}}")
@@ -31,7 +23,6 @@
         //- yes, challenges :( this is confusing and needs refactoring
         include ./design/design-challenges.jade
         include ./data/data-statistics.jade
-        //- include ./copilot/copilot.jade
         
       tc-tab(heading="{{vm.tabs[1]}}", ng-if="vm.track === 'DATA_SCIENCE' || vm.track === 'DEVELOP'")
         .subtrack-stats

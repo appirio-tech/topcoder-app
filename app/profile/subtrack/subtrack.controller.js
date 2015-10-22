@@ -25,6 +25,8 @@
     vm.back = back;
     vm.subTrackStats = [];
 
+    vm.pageName = vm.subTrack.toLowerCase().replace(/ /g, '');
+
     vm.tabs = [];
     if (vm.track !== 'DESIGN') {
       vm.tabs.push('statistics');
