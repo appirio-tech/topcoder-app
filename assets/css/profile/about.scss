@@ -24,11 +24,11 @@
 .profile-header-container {
   background: transparent;
   width: 100%;
+  max-width: 100%;
   margin-bottom: 5px;
   display: flex;
   position: relative;
   margin-left: 10px;
-
 
   @media (min-width: 768px) {
     max-width: 368px;
@@ -36,18 +36,21 @@
     padding-right: 10px;
     display: block;
     position: relative;
-
   }
 
   // Sticky container
   .sticky-container {
     background-color: white;
     margin: 0 auto;
-    display: block;
-    width: 100%;
+    padding: 0;
+    display: flex;
+    width: auto;
+    max-width: auto;
+
     @media (min-width: 768px){
+      display: block;
       box-sizing: border-box;
-      width: 338px;
+      width: 368px;
       margin: 0;
     }
     padding: 30px 34px;

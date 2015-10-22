@@ -11,7 +11,7 @@
             scope.width = element.prop('offsetWidth');
             var elWidth = scope.width + 'px',
                 elChild = angular.element(element[0].querySelector(':first-child'));
-                elChild.css('width', elWidth);
+                // elChild.css('width', elWidth);
             angular.element($window).bind("scroll", function() {
                 var affixElement = document.getElementById('affix'),
                     xPosition = 0,
