@@ -74,11 +74,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: $gray-lightest;
   }
 
   .content {
-    margin-left: 10px;
-    margin-right: 10px;
 
     section.my-srms {
       background: white;
