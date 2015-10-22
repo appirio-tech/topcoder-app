@@ -2,6 +2,7 @@
   header
     .page-info
       h1 {{pageTitle}}
+      div(ng-transclude)
     .info
       .pic
         a(ui-sref="profile.about({userHandle: vm.profile.handle})")
