@@ -14,5 +14,5 @@
           p.number(ng-bind="vm.moneyEarned | currency:'$':0")
           p Earned
         .back-link(ng-if="showBackLink && vm.previousStateLabel")
-          a(ui-sref="{{vm.previousStateName}}") Back to {{vm.previousStateLabel}}
+          a(ng-click="vm.backHandler()") Back to {{vm.previousStateLabel}}
 
