@@ -60,7 +60,9 @@
 
       var obj;
       // data science stats are nested in a funky way
-      if (track === 'DATA_SCIENCE') {
+      if (track === 'COPILOT') {
+        obj = _.get(stats, 'COPILOT', null);
+      } else if (track === 'DATA_SCIENCE') {
         obj = _.get(stats, "DATA_SCIENCE." + subTrack, null);
       } else {
         var _subTrackStats = _.get(stats, track+'.subTracks', []);

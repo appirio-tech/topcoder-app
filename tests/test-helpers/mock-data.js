@@ -1815,8 +1815,8 @@ var mockData = (function() {
         "failures": 4,
         "reposts": 9,
         "activeContests": 0,
-        "activeProjects": 0,
-        "fulfillment": 83.33
+        "activeProjects": 1,
+        "fulfillment": 83.53
       }
     }
   }
