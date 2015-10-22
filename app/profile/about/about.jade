@@ -1,11 +1,11 @@
 .about-container
   
-  .profile-header-container(ng-cloak)
+  .profile-header-container(ng-cloak,id="affix", tc-sticky)
     //- .sticky-container(sticky media-query="min-width: 780px" use-placeholder="true" offset="10" confine="true" sticky-class="sticked")
       profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
 
     //- .sticky-container(bs-affix data-offset-top="10" data-offset-bottom="400")
-    .sticky-container
+    .sticky-container()
       profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
 
   

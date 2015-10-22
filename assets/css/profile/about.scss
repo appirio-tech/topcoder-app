@@ -26,15 +26,14 @@
   width: 100%;
   margin-bottom: 5px;
   display: flex;
-
   position: relative;
   margin-left: 10px;
 
 
   @media (min-width: 768px) {
-    max-width: 348px;
+    max-width: 368px;
     margin: 0 auto;
-    padding-left: 10px;
+    padding-right: 10px;
     display: block;
     position: relative;
 
@@ -46,13 +45,29 @@
     margin: 0 auto;
     display: block;
     width: 100%;
+    @media (min-width: 768px){
+      box-sizing: border-box;
+      width: 338px;
+      margin: 0;
+    }
     padding: 30px 34px;
-    top: 0;
-    margin: 0 auto;
+    margin: 0 10px;
+    transition: .2s all;
   }
 
-  .sticky.sticked {
-    
+  .sticky-container.affix {
+    position:fixed;
+    top: 10px;
+    bottom: auto;
+    z-index: 10;
+  }
+
+  .sticky-container.affix-bottom {
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+    top: auto;
+
   }
 }
 
