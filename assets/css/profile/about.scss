@@ -1,8 +1,11 @@
 @import 'topcoder-includes';
 @import '../partials/combined';
 
+// Main container
 .about-container {
   display: flex;
+  display: block;
+  position: relative;
   flex-flow: row wrap;
   @include module-l;
   background-color: transparent;
@@ -10,21 +13,49 @@
   margin-left: auto;
   margin-right: auto;
   margin-top: 0px;
+  @media (min-width: 768px) {
+    padding-top: 30px;
+  }
 }
 
+// User data container
 .profile-header-container {
   padding: 30px 34px;
   background: white;
   width: 100%;
-  max-height: 640px;
+  // max-height: 640px;
   margin-bottom: 5px;
+  display: block;
+  @media (min-width: 768px) {
+    max-width: 348px;
+    margin-right: 0;
+    margin-bottom: 0;
+    float: left;
+  }
+  &.sticky + div {
+    float: left;
+  }
 }
 
+
+.bottom-footer {
+  display: block;
+  position: relative;
+  clear: both;
+}
+
+// Where we show the info
 .profile-about-container {
   display: flex;
+  display: block;
   flex-direction: column;
   width: 100%;
-  max-width: 883px;
+  // max-width: 883px;
+  padding: 0 10px;
+  @media (min-width: 768px) {
+    padding-left: 360px;
+    display: block;
+  }
 
   .empty-state {
     a.link-button {
@@ -40,6 +71,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    align-self: center;
+    background: white;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    
     .list {
       display: flex;
       flex-direction: row;
@@ -56,6 +93,7 @@
         + .skill {
           margin-left: 15px;
         }
+    
         &:nth-child(3n + 1) {
           margin-left: 0px;
         }
@@ -72,12 +110,7 @@
       -webkit-transition: all 0.5s;
     }
 
-    align-self: center;
-    background: white;
-    text-align: center;
-
-    margin-left: auto;
-    margin-right: auto;
+   
     h1 {
       font-size: 25px;
       margin: auto;
@@ -87,6 +120,7 @@
       width: 100%;
       padding: 30px;
       padding-top: 5px;
+      
       .action-text {
         text-transform: uppercase;
         margin-top: 32px;
@@ -94,21 +128,26 @@
         font-size: 18px;
         line-height: 24px;
       }
+      
       .description {
         @include source-sans-light;
         font-size: 15px;
         line-height: 22px;
       }
+      
       button.link-button {
         margin-top: 30px;
       }
+      
       .list {
-        .skill {
-          width: 130px;
-        }
         padding: 10px;
         margin: 20px auto;
+      
+        .skill {
+          width: 130px;
+        } 
       }
+
     }
   }
 
@@ -144,18 +183,20 @@
       }
 
       .name {
-        margin: auto;
-        @include sofia-pro-extra-light;
+        margin: auto;        
         font-size: 20px;
         line-height: 24px;
         margin-bottom: 10.6px;
+        @include sofia-pro-extra-light;
       }
+
       img {
         height: 20px;
         width: 20px;
         margin-right: 7px;
         margin-bottom: -2px;
       }
+
       .subtrack {
         text-decoration: none;
         color: black;
@@ -166,12 +207,15 @@
         width: 300px;
         height: 52px;
         border-bottom: 1px solid #f0f0f0;
+
         &.first {
           border-top: 1px solid #f0f0f0;
         }
+
         &:hover {
           background-color: #f0f0f0;
         }
+
         .name {
           margin-left: 15px;
           align-self: center;
@@ -180,7 +224,6 @@
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          @include sofia-pro-light;
           font-size: 14px;
           line-height: 18px;
           text-transform: uppercase;
@@ -188,9 +231,13 @@
           flex-direction: row;
           justify-content: flex-start;
           margin-top: 12px;
+          @include sofia-pro-light;
+
           span {
           }
+
         }
+
         .ranking {
           margin: auto;
           margin-right: 15px;
@@ -199,10 +246,12 @@
           flex-direction: column;
           align-items: flex-end;
           @include sofia-pro-medium;
+
           .number {
             text-align: center;
             font-size: 13.4px;
             line-height: 16px;
+
             span.square {
               position: absolute;
               margin-left: 5px;
@@ -210,6 +259,7 @@
               height: 6px;
             }
           }
+
           .tag {
             text-transform: uppercase;
             margin: 5px auto 0px auto;
@@ -219,6 +269,7 @@
             color: #7f7f7f;
           }
         }
+
         .arrow {
           @include sofia-pro-extra-light;
           color: $accent-gray;
@@ -228,6 +279,7 @@
           justify-content: center;
         }
       }
+
       .icon {
         width: 80px;
         height: 80px;
@@ -235,21 +287,25 @@
       }
 
     }
+
     .empty-state {
       display: flex;
       flex-direction: column;
       align-items: center;
+
       .action-text {
         margin-top: 32px;
         @include sofia-pro-extra-light;
         font-size: 18px;
         line-height: 24px;
       }
+
       .tracks {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         width: 50%;
+
         .track {
           .text {
             margin-top: 15px;
@@ -257,6 +313,7 @@
           }
         }
       }
+
       .description {
         margin-top: 50px;
         @include source-sans-regular;
@@ -264,9 +321,11 @@
         line-height: 22px;
         width: 60%;
       }
+
       button.link-button {
         margin-top: 20px;
       }
+
       padding-bottom: 40px;
     }
   }
@@ -317,216 +376,198 @@
   }
 }
 
-@media (min-width: 900px) {
-  .about-container {
-    padding-top: 30px;
-  }
-}
 @media (min-width: 768px) {
-.about-container {
-  padding-top: 30px;
-}
-.profile-header-container {
-  max-width: 348px;
-  margin-right: 10px;
-  margin-bottom: 0px;
-}
+  .profile-about-container {
 
-.profile-about-container {
-
-  .activity {
-    font-size: 24px;
-    line-height: 30px;
-  }
-
-  .skills {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 40px;
-    .list {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      padding-left: 30px;
-      padding-right: 30px;
-      margin: -20px auto 50px auto;
-      .skill {
-        margin-top: 50px;
-        margin-right: 30px;
-      }
-      .leftButton, .rightButton {
-        height: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        &:hover {
-          cursor: pointer;
-        }
-      }
-
-    }
-    .empty-state {
-      .action-text {
-        font-size: 28px;
-        line-height: 34px;
-      }
-      .description {
-        @include source-sans-light;
-        font-size: 22px;
-        line-height: 32px;
-        width: 60%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      button.link-button {
-        margin-top: 30px;
-      }
-      .list {
-        .skill {
-          width: 130px;
-        }
-        padding: 10px;
-        margin: 20px auto;
-      }
-    }
-
-  }
-
-  .categories {
-    margin-top: 1px;
-    padding-bottom: 40px;
-    padding-top: 0px;
     .activity {
-      font-size: 28px;
-      line-height: 34px;
-      @include sofia-pro-bold;
-      text-transform: uppercase;
+      font-size: 24px;
+      line-height: 30px;
     }
 
-    .track {
-      width: 100%;
-      cursor: pointer;
-      padding-top: 30px;
-      .name {
-        img {
-          height: 30px;
-          width: 30px;
-          margin-right: 7px;
-          margin-bottom: -4px;
+    .skills {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 40px;
+      .list {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin: -20px auto 50px auto;
+        .skill {
+          margin-top: 50px;
+          margin-right: 30px;
         }
-        background-size: 30px;
-        background-position: 16px 4px;
-        font-weight: 200;
-        font-size: 24px;
-        line-height: 30px;
-        margin-bottom: 30px;
-        margin-top: 0px;
-        @include sofia-pro-medium;
-      }
-
-      .subtrack {
-        align-items: center;
-        width: 75%;
-        height: 60px;
-        .name {
-
-          font-size: 18px;
-          flex-basis: 350px;
-          line-height: 24px;
-          margin-top: 17px;
-          margin-bottom: 20px;
-        }
-        .ranking {
+        .leftButton, .rightButton {
+          height: 100px;
           display: flex;
           flex-direction: column;
-          align-items: flex-end;
-          .number {
-            font-size: 18px;
-            line-height: 23px;
-          }
-          .tag {
-            margin-top: 2px;
-            font-size: 12px;
-            line-height: 14px;
-            color: #7f7f7f;
+          justify-content: center;
+          &:hover {
+            cursor: pointer;
           }
         }
-        .arrow {
-          color: #cccccc;
-          height: 15px;
-          margin-right: 10px;
-        }
+
       }
-      .icon {
-        width: 80px;
-        height: 80px;
-        margin: auto;
+      .empty-state {
+        .action-text {
+          font-size: 28px;
+          line-height: 34px;
+        }
+        .description {
+          @include source-sans-light;
+          font-size: 22px;
+          line-height: 32px;
+          width: 60%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        button.link-button {
+          margin-top: 30px;
+        }
+        .list {
+          .skill {
+            width: 130px;
+          }
+          padding: 10px;
+          margin: 20px auto;
+        }
       }
 
     }
-    .empty-state {
-      .action-text {
+
+    .categories {
+      margin-top: 1px;
+      padding-bottom: 40px;
+      padding-top: 0px;
+      .activity {
         font-size: 28px;
         line-height: 34px;
+        @include sofia-pro-bold;
+        text-transform: uppercase;
       }
-      .description {
-        @include source-sans-light;
-        font-size: 22px;
-        line-height: 32px;
-        width: 60%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      button.link-button {
-        margin-top: 30px;
-      }
-      .list {
-        .skill {
-          width: 130px;
+
+      .track {
+        width: 100%;
+        cursor: pointer;
+        padding-top: 30px;
+        .name {
+          img {
+            height: 30px;
+            width: 30px;
+            margin-right: 7px;
+            margin-bottom: -4px;
+          }
+          background-size: 30px;
+          background-position: 16px 4px;
+          font-weight: 200;
+          font-size: 24px;
+          line-height: 30px;
+          margin-bottom: 30px;
+          margin-top: 0px;
+          @include sofia-pro-medium;
         }
-        padding: 10px;
-        margin: 20px auto;
+
+        .subtrack {
+          align-items: center;
+          width: 75%;
+          height: 60px;
+          .name {
+
+            font-size: 18px;
+            flex-basis: 350px;
+            line-height: 24px;
+            margin-top: 17px;
+            margin-bottom: 20px;
+          }
+          .ranking {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            .number {
+              font-size: 18px;
+              line-height: 23px;
+            }
+            .tag {
+              margin-top: 2px;
+              font-size: 12px;
+              line-height: 14px;
+              color: #7f7f7f;
+            }
+          }
+          .arrow {
+            color: #cccccc;
+            height: 15px;
+            margin-right: 10px;
+          }
+        }
+        .icon {
+          width: 80px;
+          height: 80px;
+          margin: auto;
+        }
+
+      }
+      .empty-state {
+        .action-text {
+          font-size: 28px;
+          line-height: 34px;
+        }
+        .description {
+          @include source-sans-light;
+          font-size: 22px;
+          line-height: 32px;
+          width: 60%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        button.link-button {
+          margin-top: 30px;
+        }
+        .list {
+          .skill {
+            width: 130px;
+          }
+          padding: 10px;
+          margin: 20px auto;
+        }
+      }
+
+    }
+
+    .external-links {
+      margin-top: 1px;
+      padding-top: 30px;
+      padding-bottom: 40px;
+      .activity {
+        margin-bottom: 0px;
+        text-transform: uppercase;
+      }
+      .empty-state {
+        .action-text {
+          font-size: 28px;
+          line-height: 34px;
+        }
+        .description {
+          @include source-sans-light;
+          font-size: 22px;
+          line-height: 32px;
+          width: 60%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        button.link-button {
+          margin-top: 30px;
+        }
+        .list {
+          .skill {
+            width: 130px;
+          }
+          padding: 10px;
+          margin: 20px auto;
+        }
       }
     }
-
   }
-
-  .external-links {
-    margin-top: 1px;
-    padding-top: 30px;
-    padding-bottom: 40px;
-    .activity {
-      margin-bottom: 0px;
-      text-transform: uppercase;
-    }
-   .empty-state {
-    .action-text {
-      font-size: 28px;
-      line-height: 34px;
-    }
-    .description {
-      @include source-sans-light;
-      font-size: 22px;
-      line-height: 32px;
-      width: 60%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    button.link-button {
-      margin-top: 30px;
-    }
-    .list {
-      .skill {
-        width: 130px;
-      }
-      padding: 10px;
-      margin: 20px auto;
-    }
-  }
-  }
-
-
-}
-
-
 }

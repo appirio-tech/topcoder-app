@@ -1,7 +1,9 @@
 .about-container
-  .profile-header-container(ng-cloak)
+  
+  .profile-header-container(sticky media-query="min-width: 768px" use-placeholder="false" offset="10px" bottom-class="bottom-footer", ng-cloak)
     profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
 
+  
   .profile-about-container
 
     #skills

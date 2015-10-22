@@ -30,7 +30,8 @@
     'toaster',
     'angular-intro',
     'ngMessages',
-    'angular-carousel'
+    'angular-carousel',
+    'sticky'
   ];
 
   angular.module('topcoder', dependencies).run(appRun);
