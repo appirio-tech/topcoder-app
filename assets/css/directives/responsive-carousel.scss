@@ -109,9 +109,9 @@
         top: 32px;
         left: -30px;
         @include forward-slash(1px, 60px, 0, 2px, 30deg);
-        background-color: #D1D3D4;
+        background-color: $gray-light;
         @media only screen and (min-width: 768px) {
-          top: 42px;
+          top: 32px;
           left: -18px;
         }
       }
@@ -126,7 +126,6 @@
       width: 130px;
       margin-right: 35px;
       padding: 30px 20px;
-      cursor: pointer;
 
       &:hover {
         background-color: $gray-lightest;
@@ -173,9 +172,9 @@
 
     .value {
       position: relative;
-      margin-top: 17px;
       margin-bottom: 7px;
       font-size: 32px;
+      color: $gray-darkest;
       @media only screen and (max-width: 767px) {
         margin-top: 10px;
       }

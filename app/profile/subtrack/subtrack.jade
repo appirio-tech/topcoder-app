@@ -1,14 +1,8 @@
 .profile-subtrack-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
   .content 
-    .nav
-      a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
-        .handle
-          img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
-          span(style="color: {{profileVm.profile.maxRating.rating | ratingColor}};") {{profileVm.profile.handle}}
-
-      .right
-        {{vm.subTrack}}
-        i.fa.fa-th(ng-click="vm.showNav()")
+    
+    .page-header
+      page-state-header(handle="{{vm.userHandle}}", page-title="{{vm.pageName}}", hide-money="true", show-back-link="true", default-state="dashboard")
 
     tc-tab-set
       tc-tab(heading="{{vm.tabs[0]}}")
@@ -29,84 +23,19 @@
         //- yes, challenges :( this is confusing and needs refactoring
         include ./design/design-challenges.jade
         include ./data/data-statistics.jade
-        //- include ./copilot/copilot.jade
         
       tc-tab(heading="{{vm.tabs[1]}}", ng-if="vm.track === 'DATA_SCIENCE' || vm.track === 'DEVELOP'")
+        .subtrack-stats
+          responsive-carousel(data="vm.subTrackStats", handle="{{vm.handle}}")
+            .carousel-elem
+              .flex-wrapper
+                p.title(ng-hide="true") {{item.subTrack | underscoreStrip}}
+                
+                p.value(ng-show="item.label === 'rating'", style="color: {{item.val |  ratingColor}}") {{item.val | empty}}
+                  span(style="background-color: {{item.val | ratingColor}}")
+
+                p.value(ng-hide="item.label === 'rating'") {{item.val | empty}}
+
+                p.label {{item.label}}
         include ./develop/develop-challenges.jade        
         include ./data/data-challenges.jade
-
-    //- DEVELOP stats bar (don't delete -PARTH)
-    //- ul.horizontal-stats(id="subtrack-stats")
-      li.stat(ng-if="vm.typeStats.rank.rating")
-        .value.rating(style="color: {{vm.typeStats.rank.rating | ratingColor}}") {{vm.typeStats.rank.rating | empty}}
-          span.square(ng-if="vm.typeStats.rank.rating", style="background-color: {{vm.typeStats.rank.rating | ratingColor}}")
-        .name RATING
-
-      li.stat(ng-if="!vm.typeStats.rank.rating && !vm.nonRated")
-        .value -
-        .name RATING
-
-      li.stat(ng-hide="vm.nonRated")
-        .value {{vm.typeStats.rank.overallRank | empty}}
-        .name RANK
-
-      li.stat(ng-hide="vm.nonRated")
-        .value {{vm.typeStats.rank.overallPercentile / 100 | percentage | empty}}
-        .name PERCENTILE
-
-      li.stat
-        .value {{vm.typeStats.submissions.submissions | empty}}
-        .name CHALLENGES
-
-      li.stat
-        .value {{vm.typeStats.wins | empty}}
-        .name WINS
-
-      li.stat(ng-hide="vm.nonRated")
-        .value {{vm.typeStats.rank.reliability | percentage | empty}}
-        .name RELIABILITY
-
-    //- DESIGN stats bar don't delete
-    //- ul.horizontal-stats(id="subtrack-stats")
-      li.stat(ng-if="vm.typeStats.wins")
-        .value(style="color: #21B2F1") {{vm.typeStats.wins}}
-        .name WINS
-
-      li.stat(ng-if="!vm.typeStats.wins")
-        .value -
-        .name WINS
-
-      li.stat
-        .value {{vm.typeStats.challenges | empty}}
-        .name CHALLENGES
-
-    //- DATA stats bar don't delete
-    //- .top
-    //- ul.horizontal-stats(id="subtrack-stats")
-      li.stat(ng-if="vm.typeStats.rank.rating")
-        .value.rating(style="color: {{vm.typeStats.rank.rating | ratingColor}}") {{vm.typeStats.rank.rating}}
-          span.square(style="background-color: {{vm.typeStats.rank.rating | ratingColor}}")
-        .name RATING
-
-      li.stat(ng-if="!vm.typeStats.rank.rating")
-        .value.rating -
-        .name RATING
-
-      li.stat
-        .value {{vm.typeStats.rank.rank | empty}}
-        .name RANK
-
-      li.stat
-        .value {{vm.typeStats.rank.percentile / 100 | percentage | empty}}
-        .name PERCENTILE
-
-      li.stat(ng-if="vm.subTrack == 'SRM'")
-        .value {{vm.typeStats.challenges | empty}}
-        .name COMPETITIONS
-
-      li.stat(ng-if="vm.subTrack == 'MARATHON_MATCH'")
-        .value {{vm.typeStats.wins | empty}}
-        .name WINS
-
-
-

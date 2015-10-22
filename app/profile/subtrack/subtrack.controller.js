@@ -25,6 +25,8 @@
     vm.back = back;
     vm.subTrackStats = [];
 
+    vm.pageName = vm.subTrack.toLowerCase().replace('_', ' ');
+
     vm.tabs = [];
     if (vm.track !== 'DESIGN') {
       vm.tabs.push('statistics');
@@ -59,13 +61,13 @@
       if (vm.track == 'DEVELOP' || vm.track == 'DATA_SCIENCE') {
         vm.distributionPromise = ProfileService.getDistributionStats(vm.track, vm.subTrack);
         vm.distributionPromise.then(function(data) {
-          vm.distribution = data.distribution;
+          vm.distribution = _.get(data, 'distribution', {});
         });
         var historyDeferred = $q.defer();
         vm.historyPromise = historyDeferred.promise;
         ProfileService.getHistoryStats(profileVm.profile.handle).then(function(data) {
           if (data.handle) {
-            vm.history = ProfileService.getChallengeTypeStats(data, vm.track, vm.subTrack).history;
+            vm.history = _.get(ProfileService.getChallengeTypeStats(data, vm.track, vm.subTrack), 'history', null);
             historyDeferred.resolve(vm.history);
           }
         });
@@ -74,7 +76,16 @@
       profileVm.statsPromise.then(function(data) {
 
         // user iterable stats
-        vm.subTrackStats = UserStatsService.getIterableStats(vm.track, vm.subTrack, data).slice(0, 6);
+        vm.subTrackStats = UserStatsService.getIterableStats(vm.track, vm.subTrack, data);
+        if (vm.track === 'DEVELOP') {
+          var mustHaveMetrics = ["rank", "rating", "reliability"];
+          // check if rating, rank & reliability are all set
+          var _filteredObjs = _.filter(vm.subTrackStats, function(k) { return _.indexOf(mustHaveMetrics, k.label) > -1});
+          if (_.all(_.pluck(_filteredObjs, 'val'), function(v) { return !v})) {
+            // all false filter em out
+            _.remove(vm.subTrackStats, function(k) { return _.indexOf(mustHaveMetrics, k.label) > -1});
+          }
+        }
 
         if (vm.subTrack == 'SRM') {
           vm.divisions = ProfileService.getDivisions(profileVm.stats);
@@ -97,7 +108,8 @@
           vm.subTrack.toLowerCase().replace(/ /g, '')
         );
 
-        vm.nonRated = !vm.typeStats.rank.rating && !vm.typeStats.rank.overallRank && !vm.typeStats.rank.reliability;
+        vm.nonRated = vm.typeStats.rank && !vm.typeStats.rank.rating && !vm.typeStats.rank.overallRank && !vm.typeStats.rank.reliability;
+
 
         if (vm.subTrack) {
           vm.dropdown = ProfileService.getSubTracks(profileVm.stats, vm.track.toLowerCase())
@@ -126,8 +138,10 @@
           _getChallenges();
         }
       });
-      // initial call
-      _getChallenges();
+      // initial call unless it's copilot
+      if (vm.track !== 'COPILOT') {
+        _getChallenges();
+      }
     }
 
     function selectSubTrack(subTrack) {

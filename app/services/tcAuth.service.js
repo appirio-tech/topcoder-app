@@ -66,10 +66,6 @@
 
         auth0.signin(options,
           function(profile, idToken, accessToken, state, refreshToken) {
-            console.log(profile);
-            console.log(idToken);
-            console.log(accessToken);
-            console.log(refreshToken);
             AuthTokenService.exchangeToken(refreshToken, idToken).then(
               function(appiriojwt) {
                 $timeout(function() {

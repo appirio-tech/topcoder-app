@@ -22,16 +22,16 @@
     vm.handle = $scope.handle;
     vm.profile = null;
     vm.handleColor = null;
-    vm.hideMoney = $scope.hideMoney;
+    vm.hideMoney = _.get($scope, 'hideMoney', true);
     vm.previousStateName = null;
     vm.previousStateLabel = null;
     vm.previousState = null;
+    vm.showBackLink = _.get($scope, 'showBackLink', false);
 
     activate();
 
     function activate() {
       vm.loading = true;
-      vm.hideMoney = false;
 
       // identifies the previous state
       if ($scope.$root.previousState && $scope.$root.previousState.name.length > 0) {
@@ -55,8 +55,11 @@
       ProfileService.getUserProfile(vm.handle).then(function(profile) {
         vm.profile = profile;
         vm.handleColor = ProfileService.getUserHandleColor(vm.profile);
-
-        displayMoneyEarned(vm.handle);
+        if (!vm.hideMoney) {
+          displayMoneyEarned(vm.handle);
+        } else {
+          vm.loading = false;
+        }
       });
     }
 
