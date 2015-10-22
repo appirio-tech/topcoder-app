@@ -72,7 +72,7 @@
     }
 
     function selectedGroup() {
-      return _.get(NavService, 'selectedTopLevelItem.parent', null);
+      return _.get(NavService, 'selectedTopLevelItem', null);
     }
   }
 })();
