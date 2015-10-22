@@ -100,23 +100,6 @@
 
   }
 
-  .top {
-    @include module-l;
-    background: white;
-    align-self: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 15px;
-    padding-bottom: 15px;
-    padding-top: 10px;
-  }
-  .bottom {
-    background: white;
-    align-self: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 30px;
-  }
   .horizontal-stats {
     display: flex;
     justify-content: center;
@@ -347,13 +330,6 @@
         }
         display: inline;
       }
-    }
-    .top {
-      margin-top: 60px;
-      padding-top: 10px;
-    }
-    .bottom {
-      padding-top: 30px;
     }
     .horizontal-stats {
       display: flex;
