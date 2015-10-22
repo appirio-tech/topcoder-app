@@ -1,0 +1,41 @@
+@import 'topcoder-includes';
+@import '../partials/combined';
+
+.empty-state-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $gray-darkest;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 30px;
+
+  .title {
+    margin-bottom: 20px;
+    @include sofia-pro-bold;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .description {
+    max-width: 650px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    @include merriweather-sans-regular;
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+    @media only screen and (min-width: 768px) {
+      margin-bottom: 40px;
+    }
+    @media only screen and (min-width: 900px) {
+      max-width: 856px;
+    }
+  }
+
+  .upsell {
+
+  }
+}

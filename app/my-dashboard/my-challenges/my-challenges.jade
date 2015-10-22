@@ -1,4 +1,4 @@
-header(ng-hide="vm.loading")
+header(ng-hide="vm.loading || !vm.userHasChallenges")
   h1.section-title Active Challenges
 
   .challenge-view-toggle(ng-show="vm.userHasChallenges")
@@ -9,31 +9,11 @@ header(ng-hide="vm.loading")
 .section-loading(ng-show="vm.loading")
 
 section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
-  h3 Win prize money and expand your knowledge
+  empty-state-placeholder(title="My Challenges", description="Compete in challenges to win money, test yourself against the world's best, and learn new skills")
+    .info-links
+      a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
 
-  .tracks
-    .track
-      .develop-icon-outline
-      p Development
-
-    .track
-      .design-icon-outline
-      p Design
-
-    .track
-      .data-science-icon-outline
-      p Data Science
-
-    .track
-      .copilot-icon-outline
-      p Co-Pilot
-
-  p.info Compete in challenges to win money, test yourself against the world's best, and learn new skills
-
-  .info-links
-    a.tc-btn.tc-btn-l(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
-
-    a.tc-btn.tc-btn-ghost.tc-btn-l(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
+      a.learn-more(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
 
 section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading", ng-class="{ 'list-view-active': vm.challengeView === 'list' }")
   .section-titles(ng-show="vm.challengeView === 'list'")

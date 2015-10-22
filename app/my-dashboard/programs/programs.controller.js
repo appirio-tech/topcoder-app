@@ -26,7 +26,7 @@
     function activate() {
       MemberCertService.getMemberRegistration(userId, CONSTANTS.SWIFT_PROGRAM_ID)
       .then(function(res) {
-        if (res == null) {
+        if (res != null) {
           vm.registered = false;
           vm.loading = false;
         } else {

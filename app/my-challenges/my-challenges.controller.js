@@ -9,6 +9,7 @@
     $log = $log.getInstance('MyChallengesController');
     var vm = this;
     vm.domain = CONSTANTS.domain;
+    vm.neverParticipated = false;
     vm.myChallenges = [];
     vm.loading = CONSTANTS.STATE_LOADING;
     vm.view = UserService.getPreference($state.$current.name+'.challengeListView') || 'tile';
@@ -41,9 +42,11 @@
     activate();
 
     function activate() {
-      vm.isCopilot = _.includes(userIdentity.roles, 'copilot');
-      vm.myChallenges = [];
-      changeFilter(vm.statusFilter);
+      _checkForParticipation().then(function() {
+        vm.isCopilot = _.includes(userIdentity.roles, 'copilot');
+        vm.myChallenges = [];
+        changeFilter(vm.statusFilter);
+      });
     }
 
     function changeView(view) {
@@ -85,7 +88,7 @@
         vm.loading = CONSTANTS.STATE_READY;
 
         vm.totalCount = _.sum(_.pluck(data, 'metadata.totalCount'));
-        vm.myChallenges = vm.myChallenges.concat(_.union(data[0], data[1]));
+        vm.myChallenges = [];//vm.myChallenges.concat(_.union(data[0], data[1]));
       })
       .catch(function(resp) {
         $log.error(resp);
@@ -140,6 +143,20 @@
     function loadMore() {
       currentOffset+=1;
       vm.getChallenges(currentOffset, false);
+    }
+
+    function _checkForParticipation() {
+      var params = {
+        limit: 1,
+        offset: 0
+      };
+      return ChallengeService.getUserChallenges(vm.handle, params).then(function(challenges) {
+        if (challenges.metadata.totalCount > 0) {
+          vm.neverParticipated = false;
+        } else {
+          vm.neverParticipated = true;
+        }
+      });
     }
   }
 })();

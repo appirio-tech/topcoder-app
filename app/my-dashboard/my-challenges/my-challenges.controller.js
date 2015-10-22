@@ -54,8 +54,8 @@
           // sort by closest deadline? .sort(function)
           // limit to 8 .slice(0, 8);
 
-          vm.myChallenges = userChallenges;
-          vm.userHasChallenges = true;
+          vm.myChallenges = [];//userChallenges;
+          vm.userHasChallenges = false;
           vm.loading = false;
         }
       })

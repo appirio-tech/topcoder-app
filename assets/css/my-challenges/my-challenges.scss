@@ -28,6 +28,35 @@
     .page-header {
     }
 
+    .never-participated {
+      padding-top: 30px;
+      
+      .info-links {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+
+        a {
+          text-transform: uppercase;
+          @include sofia-pro-medium;
+
+          &:not(:last-child) {
+            margin-bottom: 30px;
+          }
+
+          &.participate {
+            color: $white;
+          }
+
+          &.learn-more {
+            font-size: 12px;
+            line-height: 12px;
+            color: $gray-lighter;
+          }
+        }
+      }
+    }
+
     section.noChallenges {
       text-align: center;
       margin-top: 10px;
