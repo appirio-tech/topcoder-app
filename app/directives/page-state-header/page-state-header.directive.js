@@ -5,6 +5,7 @@
     return {
       restrict: 'E',
       templateUrl: 'directives/page-state-header/page-state-header.directive.html',
+      transclude: true,
       scope: {
         handle: '@',
         pageTitle: '@',
