@@ -69,7 +69,7 @@
 
 @mixin label-description {
   font: {
-    family: "Merriweather Sans", $font-family-sans-serif;
+    family: "Merriweather Sans",Arial, Helvetica, sans-serif;
     weight: 400;
     size: 13px;
   }
@@ -77,7 +77,7 @@
 
 @mixin merriweather-sans-regular {
   font: {
-    family: "Merriweather Sans", $font-family-sans-serif;
+    family: "Merriweather Sans", Arial, Helvetica, sans-serif;
     weight: 400;
   }
 }
@@ -85,17 +85,17 @@
 // body end;
 
 @mixin sofia-pro-extra-light {
-  font-family: 'Sofia Pro', Arial;
+  font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 200;
 }
 
 @mixin sofia-pro-light {
-  font-family: 'Sofia Pro', Arial;
+  font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 300;
 }
 
 @mixin sofia-pro-regular {
-  font-family: 'Sofia Pro', Arial;
+  font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
 
@@ -105,17 +105,17 @@
 }
 
 @mixin sofia-pro-medium {
-  font-family: 'Sofia Pro', Arial;
+  font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 500;
 }
 
 @mixin sofia-pro-semi-bold {
-  font-family: 'Sofia Pro', Arial;
+  font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 600;
 }
 
 @mixin sofia-pro-bold {
-  font-family: 'Sofia Pro', Arial;
+  font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: bold;
 }
 

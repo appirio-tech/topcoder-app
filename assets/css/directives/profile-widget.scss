@@ -22,7 +22,7 @@
       margin-top: 5px;
       font-size: 12px;
       line-height: 14px;
-      @include sofia-pro-medium;
+      @include sofia-pro-light;
       color: $accent-gray;
       text-align: center;
       text-transform: uppercase;
@@ -107,14 +107,15 @@
           width: 44px;
         }
         .text {
-          @include sofia-pro-medium;
+          @include sofia-pro-light;
           color: $accent-gray;
-          font-size: 12px;
-          line-height: 14px;
+          font-size: $label-small;
+          line-height: 12px;
           margin-top: 11px;
           text-transform: uppercase;
           text-align: center;
-          word-wrap: break-word;
+          white-space: nowrap;
+          // word-wrap: break-word;
         }
       }
     }
@@ -128,7 +129,7 @@
     align-items: center;
     justify-content: center;
     .link {
-      @include sofia-pro-medium;
+      @include sofia-pro-regular;
       font-size: 12px;
       line-height: 14px;
       text-decoration: none;

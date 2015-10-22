@@ -35,6 +35,8 @@
     max-width: 348px;
     margin: 0 auto;
     padding-left: 10px;
+    display: block;
+    position: relative;
 
   }
 
@@ -42,12 +44,11 @@
   .sticky-container {
     background-color: white;
     margin: 0 auto;
-
+    display: block;
     width: 100%;
     padding: 30px 34px;
     top: 0;
-    max-height: 680px;
-    margin: 0;
+    margin: 0 auto;
   }
 
   .sticky.sticked {
@@ -94,17 +95,18 @@
       width: 100%;
       margin-left: auto;
       margin-bottom: 15px;
-      margin-right: auto;
+      margin-right: 15px;
 
       .skill {
         margin-top: 20px;
+        margin-right: 15px;
 
         + .skill {
           margin-left: 15px;
         }
     
         &:nth-child(3n + 1) {
-          margin-left: 0px;
+          // margin-left: 0px;
         }
       }
     }
@@ -397,6 +399,7 @@
       display: flex;
       flex-direction: column;
       padding-bottom: 40px;
+      
       .list {
         display: flex;
         flex-direction: row;
@@ -404,10 +407,22 @@
         padding-left: 30px;
         padding-right: 30px;
         margin: -20px auto 50px auto;
+        
         .skill {
           margin-top: 50px;
-          margin-right: 30px;
+          margin-right: 15px;
+          margin-left: 15px;
         }
+
+        + .skill {
+          margin-left: 15px;
+        }
+    
+        &:nth-child(3n + 1) {
+          margin-left: 15px !important;
+          border: 1px solid lime;
+        }
+        
         .leftButton, .rightButton {
           height: 100px;
           display: flex;
@@ -417,8 +432,8 @@
             cursor: pointer;
           }
         }
-
       }
+
       .empty-state {
         .action-text {
           font-size: 28px;
