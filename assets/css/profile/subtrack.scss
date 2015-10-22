@@ -58,37 +58,7 @@
 
 
   }
-  .tabs {
-    background-color: $gray-lightest;
-    display: flex;
-    height: 60px;
-    flex-direction: row;
-    justify-content: center;
-    padding-top: 20px;
-    padding-bottom: 16px;
-    border-top: 1px solid $gray-light;
-    border-bottom: 1px solid $gray-light;
-    a {
-      color: #a3a3ae;
-      width: 140px;
-      height: 30px;
-      // padding-top: 6px;
-      text-align: center;
-      @include sofia-pro-medium;
-      font-size: 18px;
-      line-height: 24px;
-      text-transform: uppercase;
-      &.left {
-      }
-      &.right {
-      }
-      &.selected {
-        color: $gray-darkest;
-        padding-bottom: 36px;
-        border-bottom: solid 2px $primary;
-      }
-    }
-  }
+
   .subtrack-stats {
     // @include module-l;
     width: 100%;
@@ -132,6 +102,7 @@
       @include sofia-pro-regular;
 
       .value {
+        color: $gray-darkest;
         font-weight: 700;
         text-align: center;
         font-size: 20px;
@@ -350,9 +321,7 @@
     margin-top: 60px;
     padding-top: 10px;
   }
-  .bottom {
-    padding-top: 30px;
-  }
+  .bottom { }
   .horizontal-stats {
     display: flex;
     justify-content: center;

@@ -74,7 +74,7 @@
       profileVm.statsPromise.then(function(data) {
 
         // user iterable stats
-        vm.subTrackStats = UserStatsService.getIterableStats(vm.track, vm.subTrack, data).slice(0, 6);
+        vm.subTrackStats = UserStatsService.getIterableStats(vm.track, vm.subTrack, data);
 
         if (vm.subTrack == 'SRM') {
           vm.divisions = ProfileService.getDivisions(profileVm.stats);
@@ -97,7 +97,7 @@
           vm.subTrack.toLowerCase().replace(/ /g, '')
         );
 
-        vm.nonRated = !vm.typeStats.rank.rating && !vm.typeStats.rank.overallRank && !vm.typeStats.rank.reliability;
+        vm.nonRated = vm.typeStats.rank && !vm.typeStats.rank.rating && !vm.typeStats.rank.overallRank && !vm.typeStats.rank.reliability;
 
         if (vm.subTrack) {
           vm.dropdown = ProfileService.getSubTracks(profileVm.stats, vm.track.toLowerCase())

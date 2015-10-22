@@ -5,7 +5,7 @@
 
   ul {
     display: block;
-    height: 148px;
+    height: 114px;
     margin: 0 auto;
     @media only screen and (max-width: 767px) {
       display: none;
@@ -46,10 +46,10 @@
     }
 
     .rn-carousel-control {
-      height: 148px;
+      height: 114px;
       width: 80px;
-      line-height: 148px;
-      top: -148px;
+      line-height: 114px;
+      top: -114px;
       background-color: $gray-lightest;
       color: $accent-gray;
       text-align: center;
@@ -109,9 +109,9 @@
         top: 32px;
         left: -30px;
         @include forward-slash(1px, 60px, 0, 2px, 30deg);
-        background-color: #D1D3D4;
+        background-color: $gray-light;
         @media only screen and (min-width: 768px) {
-          top: 42px;
+          top: 32px;
           left: -18px;
         }
       }
@@ -173,9 +173,9 @@
 
     .value {
       position: relative;
-      margin-top: 17px;
       margin-bottom: 7px;
       font-size: 32px;
+      color: $gray-darkest;
       @media only screen and (max-width: 767px) {
         margin-top: 10px;
       }

@@ -32,6 +32,18 @@
         //- include ./copilot/copilot.jade
         
       tc-tab(heading="{{vm.tabs[1]}}", ng-if="vm.track === 'DATA_SCIENCE' || vm.track === 'DEVELOP'")
+        .subtrack-stats
+          responsive-carousel(data="vm.subTrackStats", handle="{{vm.handle}}")
+            .carousel-elem
+              .flex-wrapper
+                p.title(ng-hide="true") {{item.subTrack | underscoreStrip}}
+                
+                p.value(ng-show="item.label === 'rating'", style="color: {{item.val |  ratingColor}}") {{item.val | empty}}
+                  span(style="background-color: {{item.val | ratingColor}}")
+
+                p.value(ng-hide="item.label === 'rating'") {{item.val | empty}}
+
+                p.label {{item.label}}
         include ./develop/develop-challenges.jade        
         include ./data/data-challenges.jade
 

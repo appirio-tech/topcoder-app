@@ -10,29 +10,27 @@
     padding-bottom: 16px;
     border-top: 1px solid $gray-light;
     border-bottom: 1px solid $gray-light;
-    .tab-pill {
-      color: #a3a3ae;
-      width: 140px;
+    background-color: $gray-lightest;
+    li {
       height: 30px;
-      // padding-top: 6px;
-      text-align: center;
-    }
-
-    &.selected {
-      color: $gray-darkest;
-      padding-bottom: 36px;
-      border-bottom: solid 2px $primary;
-    }
-
-    .header {
-      font-size: 18px;
-      line-height: 24px;
-      @include sofia-pro-medium;
-      text-transform: uppercase;
+      a {
+        text-align: center;
+        color: $accent-gray;
+        // padding-top: 6px;
+        .header {
+          font-size: 18px;
+          line-height: 24px;
+          @include sofia-pro-medium;
+          text-transform: uppercase;
+          margin: auto 30px;
+          &.selected {
+            color: $gray-darkest;
+            padding-bottom: 14px;
+            border-bottom: solid 2px $primary;
+          }
+        }
+      }
     }
   }
-
-  .tab-view {
-
-  }
+  .tab-view {}
 }
