@@ -75,6 +75,15 @@
           }
         }
       }
+
+      .back-link {
+        @include sofia-pro-medium;
+        font-size: 12px;
+        line-height: 14px;
+        a {
+          color: $accent-gray;
+        }
+      }
     }
   }
 }
@@ -89,10 +98,13 @@
       align-items: center;
       justify-content: space-between;
 
-      h1 {
-        font-size: 36px;
-        line-height: 43px;
+
+      .page-info {
         order: 2;
+        h1 {
+          font-size: 36px;
+          line-height: 43px;
+        }
       }
 
       .info {
