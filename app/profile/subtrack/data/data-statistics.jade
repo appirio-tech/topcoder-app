@@ -62,7 +62,7 @@
           li.totals
             ul.row
               li.left
-                h2 {{vm.divisionName[$index]}}
+                h3 {{vm.divisionName[$index]}}
                 span TOTAL
               li.success
                 h3 {{division.total.percentSuccessful | percentage | empty}}
@@ -82,8 +82,8 @@
 
           li.level(ng-repeat="level in division.levels")
             ul.row
-              li.left
-                h3 {{level.levelName}}
+              li.left.level
+                h3.level {{level.levelName}}
 
               li.success
                 h3 {{level.percentSuccessful | percentage | empty}}
@@ -105,8 +105,8 @@
         ul(class="{{vm.challengesSRM.levelName}}")
           li.totals
             ul.row
-              li.left
-                h2 CHALLENGES
+              li.left.wide
+                h3 CHALLENGES
                 span TOTAL
               li.success
                 h3 {{vm.challengesSRM.total.percentSuccessful | percentage | empty}}
@@ -122,8 +122,8 @@
 
           li.level(ng-repeat="level in vm.challengesSRM.levels")
             ul.row
-              li.left
-                h3 {{level.levelName}}
+              li.left.level.wide
+                h3.level {{level.levelName}}
 
               li.success
                 h3 {{level.percentSuccessful | percentage | empty}}
