@@ -68,7 +68,7 @@
     font-size: 15px;
     line-height: 24px;
     //TODO change font to Merriweather Sans Regular
-    @include source-sans-italic;
+    @include merriweather-sans-regular;
     text-align: center;
     color: $gray-darkest;
   }
