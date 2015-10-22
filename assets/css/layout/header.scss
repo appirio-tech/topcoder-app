@@ -187,8 +187,11 @@
   }
 
   .username {
-    padding-left: 10px;
     vertical-align: middle;
+    &.underline {
+      padding-bottom: 4px;
+      border-bottom: 4px #0096FF solid;
+    }
   }
 
   .menu-item-header {
@@ -348,6 +351,9 @@
       height: 53px;
       padding: 0;
       font-weight: normal;
+      &:focus {
+        background-color: transparent;
+      }
     }
 
     ::-webkit-input-placeholder {
@@ -412,7 +418,7 @@
         position: absolute;
         bottom: 5px;
         left: 50%;
-        margin-left: -6px;
+        margin-left: -12px;
         background-color: transparent;
       }
     }
