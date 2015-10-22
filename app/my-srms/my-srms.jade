@@ -1,10 +1,7 @@
 .my-srms-container
 
-  .nav
-    .breadcrumbs
-      .dashboard
-        a(ui-sref="dashboard") Dashboard
-      .my-srms // My SRMs
+  .page-header
+    page-state-header(handle="{{vm.handle}}", page-title="My SRMs")
 
   .content
     section.my-srms
