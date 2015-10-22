@@ -9,7 +9,8 @@
     var service = {
       requestHandler: requestHandler,
       restangularV2: _getRestangularV2(),
-      restangularV3: _getRestangularV3()
+      restangularV3: _getRestangularV3(),
+      getApiServiceProvider: getApiServiceProvider
     };
     return service;
 
@@ -64,8 +65,19 @@
       return _restangular;
     }
 
-    function _getRestangularV3() {
-      var baseUrl = CONSTANTS.API_URL;
+    function getApiServiceProvider(type) {
+      switch (type.toUpperCase()) {
+        case 'AUTH':
+        case 'USER':
+          debugger;
+          return _getRestangularV3(CONSTANTS.AUTH_API_URL);
+        default:
+          return _getRestangularV3();
+      }
+    }
+
+    function _getRestangularV3(baseUrl) {
+      baseUrl = baseUrl || CONSTANTS.API_URL;
       var _restangular = Restangular.withConfig(function(Configurer) {
         Configurer
           .setBaseUrl(baseUrl)
