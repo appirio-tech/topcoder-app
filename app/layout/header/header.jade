@@ -45,8 +45,7 @@
           ul.submenu
             header-menu-item(ng-repeat="item in vm.userMenu" item="item")
 
-            li.submenu-item(
-            )
+            li.submenu-item
               a.menu-link(ng-click="vm.logout(); main.menuVisible = vm.isAuth = false")
                 img.menu-icon(ng-src="/images/nav/logout.svg")
                 .menu-text LOG OUT

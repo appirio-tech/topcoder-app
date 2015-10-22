@@ -71,16 +71,11 @@
         ref = ref.slice(0, ref.indexOf('.'));
       if (ref.match(/profile/)) {
         if (TcAuthService.isAuthenticated() && $state.params && $state.params.userHandle == UserService.getUserIdentity().handle) {
-          console.log('USER')
           return 'user';
         } else {
-          console.log('COMMUNITY')
           return 'community';
         }
       } else {
-        console.log('REFS')
-        console.log(ref)
-        console.log(service.hrefs[ref])
         return service.hrefs[ref] && service.hrefs[ref].parent;
       }
     }
