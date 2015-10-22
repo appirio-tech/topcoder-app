@@ -67,8 +67,9 @@
     });
 
     function getParent(ref) {
-      if (ref.indexOf(-1) >= 0)
+      if (ref.indexOf('.') >= 0)
         ref = ref.slice(0, ref.indexOf('.'));
+
       if (ref.match(/profile/)) {
         if (TcAuthService.isAuthenticated() && $state.params && $state.params.userHandle == UserService.getUserIdentity().handle) {
           return 'user';
