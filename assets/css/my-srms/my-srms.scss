@@ -5,6 +5,10 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  @include module-l;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
 
   hr {
     @include horizontal-rule;
@@ -79,7 +83,6 @@
     section.my-srms {
       background: white;
       align-self: center;
-      margin-top: 15px;
       padding-bottom: 15px;
       padding-top: 10px 20px 0px 20px;
       display: flex;
@@ -229,32 +232,8 @@
 
 @media (min-width: 768px) {
   .my-srms-container {
-    .nav {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-bottom: 8px;
-
-      .breadcrumbs {
-        font-size: 28px;
-        line-height: 34px;
-        display: flex;
-        flex-direction: row;
-        .dashboard {
-          display: block;
-          color: black;
-          text-align: center;
-          text-transform: uppercase;
-        }
-        .my-srms {
-          display: block;
-          color: $primary;
-          font-weight: 700;
-          text-align: center;
-          text-transform: uppercase;
-        }
-      }
-    }
+    @include module-l;
+    margin-top: 30px;
   }
 }
 
@@ -267,6 +246,15 @@
     }
   }
 }
+
+@media (min-width: 900px) {
+  .my-srms-container {
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 @media (min-width: 1155px) {
   .my-srms-container {
     section.my-srms {

@@ -1,11 +1,8 @@
 .my-challenges-container
   .my-challenges
-    .nav
-      .breadcrumbs
-        .dashboard
-          a(ui-sref="dashboard") Dashboard
-
-        .my-challenges // My Challenges
+    
+    .page-header
+      page-state-header(handle="{{vm.handle}}", page-title="My Challenges")
 
     .content
       section.challenges
@@ -31,5 +28,5 @@
               ng-repeat="challenge in vm.myChallenges | orderBy:vm.orderBy:true", 
               challenge="challenge", view="vm.view", ng-class="vm.view + '-view'")
 
-          tc-section(state="vm.loading")
+          tc-section.load-more(state="vm.loading")
               button.tc-btn(ng-show="vm.totalCount > vm.myChallenges.length", ng-click="vm.loadMore()") Load More
