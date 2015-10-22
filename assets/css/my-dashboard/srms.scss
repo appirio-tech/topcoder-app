@@ -19,15 +19,16 @@
   }
 
   section {
-    padding: 15px;
-    border-top: 1px solid #F0F0F0;
-    border-bottom: 1px solid #F0F0F0;
-    background-color: #FCFCFC;
+    padding: 20px 15px 5px 15px;
+    border-top: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+    background-color: $gray-lightest;
 
     .srm-tiles {
       @include horizontal-scroll;
+      display: flex;
+      flex-direction: row;
       @media only screen and (min-width: 768px) {
-        display: flex;
         flex-flow: row wrap;
         margin: 0 auto;
         overflow: visible;

@@ -188,21 +188,32 @@
           img.profile-circle {
             margin-top: 10px;
           }
-          .file-upload {
-            position: relative;
-            overflow: hidden;
-            margin: 10px;
-            width: 150px;
-            input {
-              position: absolute;
-              top: 0;
-              right: 0;
-              margin: 0;
-              padding: 0;
-              font-size: 20px;
-              cursor: pointer;
-              opacity: 0;
-              filter: alpha(opacity=0);
+          .buttons {
+            padding-top: 20px;
+            .file-upload {
+              position: relative;
+              display: block;
+              overflow: hidden;
+              margin: 10px;
+              margin-left: 0;
+              margin-top: 20px;
+              width: 150px;
+              input {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0;
+                padding: 0;
+                font-size: 20px;
+                cursor: pointer;
+                opacity: 0;
+                filter: alpha(opacity=0);
+              }
+            }
+            .file-delete {
+              button {
+                width: 80px;
+              }
             }
           }
         }

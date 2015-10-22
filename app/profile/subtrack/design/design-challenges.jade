@@ -1,22 +1,4 @@
 .design(ng-if="vm.track == 'DESIGN'")
-  //- .top
-    ul.horizontal-stats(id="subtrack-stats")
-      li.stat(ng-if="vm.typeStats.wins")
-        .value(style="color: #21B2F1") {{vm.typeStats.wins}}
-        .name WINS
-
-      li.stat(ng-if="!vm.typeStats.wins")
-        .value -
-        .name WINS
-
-      li.stat
-        .value {{vm.typeStats.challenges | empty}}
-        .name CHALLENGES
-
-    .tabs
-      a.right.selected(id="challenges-tab") Challenges
-
-  hr
 
   section
     .challenges

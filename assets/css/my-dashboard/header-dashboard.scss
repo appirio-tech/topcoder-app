@@ -2,91 +2,24 @@
 @import '../partials/combined';
 
 .header-dashboard {
-  @include module-l;
-  background-color: $white;
-  padding: 30px 60px;
-  margin-top: 30px;
-  @media only screen and (min-width: 900px) {
-    padding: 30px 60px;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+@media (min-width: 768px) {
+  .header-dashboard {
+    @include module-l;
+    margin-top: 30px;
+  }
+}
+
+
+@media (min-width: 900px) {
+  .header-dashboard {
+    padding: 0px;
     margin-left: auto;
     margin-right: auto;
-  }
-
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-
-
-    h1 {
-      margin-bottom: 10px;
-      @include sofia-pro-bold;
-      font-size: 22px;
-      line-height: 26px;
-      color: $gray-darkest;
-      text-transform: uppercase;
-      @media only screen and (min-width: 600px) {
-        margin-bottom: 0;
-        font-size: 32px;
-        line-height: 38px;
-      }
-    }
-
-    .info {
-      display: flex;
-      flex-direction: row;
-      .pic {
-        img.profile-circle {
-          border-radius: 50%;
-          display: inline;
-          width: 60px;
-          height: 60px;
-        }
-      }
-    }
-
-    .user-stats {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      margin-bottom: 12px;
-      margin-left: 15px;
-      @media only screen and (min-width: 600px) {
-        margin-bottom: 0;
-      }
-
-      .money-earned {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        .number {
-          @include sofia-pro-bold;
-          font-size: 18px;
-          line-height: 23px;
-          color: $gray-darkest;
-          @media only screen and (min-width: 600px) {
-            font-size: 22px;
-            line-height: 28px;
-          }
-        }
-
-        p:not(.number) {
-          @include sofia-pro-regular;
-          font-size: 10px;
-          line-height: 13px;
-          text-transform: lowercase;
-          margin-left: 5px;
-          color: $accent-gray;
-          @media only screen and (min-width: 600px) {
-            font-size: 12px;
-            line-height: 14px;
-          }
-        }
-      }
-    }
   }
 }

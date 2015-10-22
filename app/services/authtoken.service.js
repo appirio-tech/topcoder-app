@@ -8,6 +8,8 @@
   function AuthTokenService(CONSTANTS, $cookies, $location,  store, $http, $log, jwtHelper, $q) {
     var v2TokenKey = 'tcjwt';
     var v3TokenKey = 'appiriojwt';
+    // use this api url over CONSTANTS
+    var apiUrl = CONSTANTS.AUTH_API_URL || CONSTANTS.API_URL;
 
     var service = {
       setV3Token: setV3Token,
@@ -51,7 +53,7 @@
     function refreshV3Token(token) {
       // This is a promise of a JWT id_token
       return $http({
-        url: CONSTANTS.API_URL + '/authorizations/1',
+        url: apiUrl + '/authorizations/1',
         method: 'GET',
         headers: {
           'Authorization': "Bearer " + token
@@ -70,7 +72,7 @@
     function exchangeToken(refreshToken, idToken) {
       var req = {
         method: "POST",
-        url: CONSTANTS.API_URL + '/authorizations',
+        url: apiUrl + '/authorizations',
         data: {
           param: {
             refreshToken: refreshToken,
@@ -100,7 +102,7 @@
     function getTokenFromAuth0Code(code) {
       var req = {
         method: 'POST',
-        url: CONSTANTS.API_URL + '/authorizations',
+        url: apiUrl + '/authorizations',
         skipAuthorization: true,
         headers: {
           'Content-Type': 'application/json',

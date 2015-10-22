@@ -1,0 +1,36 @@
+@import 'topcoder-includes';
+@import '../partials/combined';
+.tab-panel {
+  .tab-set {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 60px;
+    padding-top: 20px;
+    padding-bottom: 16px;
+    border-top: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+    background-color: $gray-lightest;
+    li {
+      height: 30px;
+      a {
+        text-align: center;
+        color: $accent-gray;
+        // padding-top: 6px;
+        .header {
+          font-size: 18px;
+          line-height: 24px;
+          @include sofia-pro-medium;
+          text-transform: uppercase;
+          margin: auto 30px;
+          &.selected {
+            color: $gray-darkest;
+            padding-bottom: 14px;
+            border-bottom: solid 2px $primary;
+          }
+        }
+      }
+    }
+  }
+  .tab-view {}
+}

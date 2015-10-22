@@ -75,6 +75,13 @@
   }
 }
 
+@mixin merriweather-sans-regular {
+  font: {
+    family: "Merriweather Sans", $font-family-sans-serif;
+    weight: 400;
+  }
+}
+
 // body end;
 
 @mixin sofia-pro-extra-light {

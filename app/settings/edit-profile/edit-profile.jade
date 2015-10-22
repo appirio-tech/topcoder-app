@@ -12,13 +12,17 @@
         .image
           .form-label your profile image
           .edit-image
-            img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photoURL}}")
+            img.profile-circle(ng-show="vm.userData.photoURL && vm.userData.photoURL.length", ng-src="{{vm.userData.photoURL}}")
+            img.profile-circle(ng-show="!vm.userData.photoURL || !vm.userData.photoURL.length", src="/images/avatarPlaceholder.png")
 
-            button.file-upload.tc-btn.tc-btn-primary.tc-btn-s
-              span Change Image
-              input(type="file", name="image", on-file-change)
+            .buttons
 
-            //button.file-delete.tc-btn.tc-btn-secondary.tc-btn-s Delete
+              button.file-upload.tc-btn.tc-btn-primary.tc-btn-s
+                span Change Image
+                input(type="file", name="image", on-file-change)
+
+              .file-delete
+                button.tc-btn.tc-btn-secondary.tc-btn-s(ng-click="vm.deleteImage()", type="button") Delete
 
         .country
           .form-label country to represent
@@ -53,7 +57,8 @@
       .section-fields
         track-toggle(tracks="vm.tracks")
 
-        button.tc-btn.tc-btn-secondary.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
+        button.tc-btn.tc-btn-secondary.tc-btn-l(ng-show="!(vm.editProfile.$invalid || vm.editProfile.$pristine)", type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
+        button.tc-btn.tc-btn-secondary.tc-btn-l.disabled(ng-show="vm.editProfile.$invalid || vm.editProfile.$pristine", type="button") Save
 
   .settings-section.skills
     .section-info
