@@ -28,6 +28,7 @@
 
     var userId = UserService.getUserIdentity().userId;
     var userHandle = UserService.getUserIdentity().handle;
+    vm.handle = userHandle;
 
     activate();
 

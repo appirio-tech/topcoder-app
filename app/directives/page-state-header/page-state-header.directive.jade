@@ -1,0 +1,17 @@
+.page-state-header
+  header
+    .page-info
+      h1 {{pageTitle}}
+    .info
+      .pic
+        a(ui-sref="profile.about({userHandle: vm.profile.handle})")
+          img.profile-circle(ng-if="vm.profile.photoURL", ng-src="{{vm.profile.photoURL}}")
+          img.profile-circle(ng-if="!vm.profile.photoURL", src="/images/ico-user-default.svg")
+      .user-stats(id="metrics", ng-hide="vm.loading")
+        .handle(style="color:{{vm.handleColor}};") {{vm.profile.handle}}
+        .money-earned(ng-hide="hideMoney")
+          p.number(ng-bind="vm.moneyEarned | currency:'$':0")
+          p Earned
+        .back-link(ng-if="showBackLink && vm.previousStateLabel")
+          a(ui-sref="{{vm.previousStateName}}") Back to {{vm.previousStateLabel}}
+

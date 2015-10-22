@@ -43,6 +43,13 @@
         {key: 'rank.rank', label: 'rank', postFunc: null},
         {key: 'rank.percentile', label: 'percentile', postFunc: percentileFunc},
         {key: 'wins', label:'wins', postFunc: null}
+      ],
+      'COPILOT': [
+        {key: 'activeContests', label: 'active challenges', postFunc: null},
+        {key: 'activeProjects', label: 'active projects', postFunc: null},
+        {key: 'contests', label: 'total challenges', postFunc: null},
+        {key: 'projects', label: 'total projects', postFunc: null},
+        {key: 'fulfillment', label: 'fulfillment', postFunc: percentileFunc}
       ]
     };
     return service;
@@ -53,7 +60,9 @@
 
       var obj;
       // data science stats are nested in a funky way
-      if (track === 'DATA_SCIENCE') {
+      if (track === 'COPILOT') {
+        obj = _.get(stats, 'COPILOT', null);
+      } else if (track === 'DATA_SCIENCE') {
         obj = _.get(stats, "DATA_SCIENCE." + subTrack, null);
       } else {
         var _subTrackStats = _.get(stats, track+'.subTracks', []);

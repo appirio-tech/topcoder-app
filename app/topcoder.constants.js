@@ -2,6 +2,7 @@ angular.module("CONSTANTS", [])
 
 .constant("CONSTANTS", {
 	"API_URL": "https://api.topcoder-dev.com/v3",
+	"AUTH_API_URL": "https://api.topcoder-dev.com/v3",
 	"API_URL_V2": "https://api.topcoder-dev.com/v2",
 	"ASSET_PREFIX": "",
 	"auth0Callback": "https://api.topcoder-dev.com/pub/callback.html",

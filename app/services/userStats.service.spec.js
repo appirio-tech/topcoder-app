@@ -37,4 +37,13 @@ describe('User Stats Service', function() {
     expect(_.pluck(_data, 'val')).to.have.members(['799', '6,280', '26%', '10']);
   });
 
+
+  it('should return stats for Copilot ', function() {
+    var _data = UserStatsService.getIterableStats('COPILOT', 'COPILOT', stats);
+    expect(_data).to.have.length(5);
+    expect(_.pluck(_data, 'label')).to.have.members(['active challenges', 'active projects', 'total challenges', 'total projects', 'fulfillment']);
+    expect(_.pluck(_data, 'val')).to.have.members([0, '1', '24', '3', '84%']);
+  });
+
+
 });

@@ -36,7 +36,7 @@
     };
 
     var userId = userIdentity.userId;
-    var handle = userIdentity.handle;
+    vm.handle = userIdentity.handle;
 
     activate();
 
@@ -100,7 +100,7 @@
         orderBy: vm.orderBy + ' desc',
         filter: "status=" + vm.statusFilter
       };
-      return ChallengeService.getUserChallenges(handle, params).then(function(challenges) {
+      return ChallengeService.getUserChallenges(vm.handle, params).then(function(challenges) {
         if (vm.statusFilter == 'active') {
           ChallengeService.processActiveDevDesignChallenges(challenges);
         } else {
@@ -126,7 +126,7 @@
         orderBy: vm.statusFilter === 'active' ? 'startDate' : 'endDate desc',
         filter: _filter
       };
-      return ChallengeService.getUserMarathonMatches(handle, params).then(function(marathonMatches) {
+      return ChallengeService.getUserMarathonMatches(vm.handle, params).then(function(marathonMatches) {
         if (vm.statusFilter === 'active') {
           ChallengeService.processActiveMarathonMatches(marathonMatches);
         }

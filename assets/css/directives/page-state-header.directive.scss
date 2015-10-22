@@ -1,0 +1,115 @@
+@import 'topcoder-includes';
+@import '../partials/combined';
+
+.page-state-header {
+  background-color: $white;
+  padding: 15px;
+  border-bottom: 1px solid $gray-light;
+
+  header {
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      @include sofia-pro-medium;
+      font-size: 24px;
+      line-height: 31px;
+      color: $gray-darkest;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: row;
+      .pic {
+        img.profile-circle {
+          border-radius: 50%;
+          display: inline;
+          width: 60px;
+          height: 60px;
+        }
+      }
+    }
+
+    .user-stats {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      margin-bottom: 12px;
+      margin-left: 15px;
+      @media only screen and (min-width: 600px) {
+        margin-bottom: 0;
+      }
+
+      .handle {
+        @include sofia-pro-medium;
+        font-size: 24px;
+        line-height: 29px;
+      }
+
+      .money-earned {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .number {
+          @include sofia-pro-bold;
+          font-size: 18px;
+          line-height: 23px;
+          color: $gray-darkest;
+        }
+
+        p:not(.number) {
+          @include sofia-pro-regular;
+          font-size: 10px;
+          line-height: 13px;
+          text-transform: lowercase;
+          margin-left: 5px;
+          color: $accent-gray;
+          @media only screen and (min-width: 600px) {
+            font-size: 12px;
+            line-height: 14px;
+          }
+        }
+      }
+
+      .back-link {
+        @include sofia-pro-medium;
+        font-size: 12px;
+        line-height: 14px;
+        a {
+          color: $accent-gray;
+        }
+      }
+    }
+  }
+}
+
+
+@media (min-width: 768px) {
+  .page-state-header {
+    padding: 30px 60px;
+
+    header {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+
+      .page-info {
+        order: 2;
+        h1 {
+          font-size: 36px;
+          line-height: 43px;
+        }
+      }
+
+      .info {
+        order: 1;
+      }
+    }
+  }
+}
