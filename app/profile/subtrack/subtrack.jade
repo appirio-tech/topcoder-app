@@ -1,14 +1,16 @@
 .profile-subtrack-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
   .content 
-    .nav
-      a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
-        .handle
-          img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
-          span(style="color: {{profileVm.profile.maxRating.rating | ratingColor}};") {{profileVm.profile.handle}}
+    //- .nav
+    .page-header
+      page-state-header(handle="{{vm.userHandle}}", page-title="My SRMs", hide-money="true", show-back-link="true", default-state="profile")
+      //- a(ui-sref="profile.about({userHandle: profileVm.profile.handle})")
+      //-   .handle
+      //-     img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{profileVm.profile.photoURL}}")
+      //-     span(style="color: {{profileVm.profile.maxRating.rating | ratingColor}};") {{profileVm.profile.handle}}
 
-      .right
-        {{vm.subTrack}}
-        i.fa.fa-th(ng-click="vm.showNav()")
+      //- .right
+      //-   {{vm.subTrack}}
+      //-   i.fa.fa-th(ng-click="vm.showNav()")
 
     tc-tab-set
       tc-tab(heading="{{vm.tabs[0]}}")

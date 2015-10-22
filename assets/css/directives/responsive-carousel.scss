@@ -5,7 +5,7 @@
 
   ul {
     display: block;
-    height: 114px;
+    height: 148px;
     margin: 0 auto;
     @media only screen and (max-width: 767px) {
       display: none;
@@ -46,10 +46,10 @@
     }
 
     .rn-carousel-control {
-      height: 114px;
+      height: 148px;
       width: 80px;
-      line-height: 114px;
-      top: -114px;
+      line-height: 148px;
+      top: -148px;
       background-color: $gray-lightest;
       color: $accent-gray;
       text-align: center;
@@ -126,7 +126,6 @@
       width: 130px;
       margin-right: 35px;
       padding: 30px 20px;
-      cursor: pointer;
 
       &:hover {
         background-color: $gray-lightest;
