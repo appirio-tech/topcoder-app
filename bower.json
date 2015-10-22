@@ -47,7 +47,8 @@
     "ng-notifications-bar": "~0.0.15",
     "ngDialog": "0.5.1",
     "restangular": "~1.5.1",
-    "angular-carousel": "~1.0.1"
+    "angular-carousel": "~1.0.1",
+    "ngSticky": "~1.8.4"
   },
   "devDependencies": {
     "bardjs": "~0.1.4",

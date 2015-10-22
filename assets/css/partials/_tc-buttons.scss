@@ -143,11 +143,12 @@ a.tc-btn, button.tc-btn {
   &.tc-btn-s {
     height: 30px;
     padding: 0 10px;
-    line-height: 30px;
-    font-size: 14px;
+    line-height: 28px;
+    font-size: 12px;
+    font-weight: 500;
 
     &:active {
-      line-height: 31px;
+      line-height: 29px;
     }
   }
 
