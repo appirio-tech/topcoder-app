@@ -18,7 +18,8 @@
 
         $scope.isActive = function() {
           if (window.location.pathname == href || $state.is(sref)) {
-            NavService.selectedTopLevelItem = NavService.hrefs[href] || NavService.hrefs[sref.slice(0, sref.indexOf('.'))];
+            NavService.selectedTopLevelItem = NavService.getParent(href || sref);
+              //NavService.hrefs[href] || NavService.hrefs[sref.slice(0, sref.indexOf('.'))];
 
             return true;
           }

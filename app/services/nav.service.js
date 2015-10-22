@@ -3,13 +3,14 @@
 
   angular.module('tc.services').factory('NavService', NavService);
 
-  NavService.$inject = ['CONSTANTS'];
+  NavService.$inject = ['CONSTANTS', '$state', 'UserService', 'TcAuthService'];
 
-  function NavService(CONSTANTS) {
+  function NavService(CONSTANTS, $state, UserService, TcAuthService) {
 
     var service = {
 
-      selectedTopLevelItem: null
+      selectedTopLevelItem: null,
+      getParent: getParent
 
     };
 
@@ -40,6 +41,7 @@
       {'href': 'profile'},
       {'href': 'settings'},
       {'href': 'my-dashboard'},
+      {'href': 'dashboard'},
       {'href': 'my-challenges'}
     ];
 
@@ -63,6 +65,20 @@
       link.parent = 'user';
       service.hrefs[link.href] = link;
     });
+
+    function getParent(ref) {
+      if (ref.indexOf(-1) >= 0)
+        ref = ref.slice(0, ref.indexOf('.'));
+      if (ref.match(/profile/)) {
+        if (TcAuthService.isAuthenticated() && $state.params && $state.params.userHandle == UserService.getUserIdentity().handle) {
+          return 'user';
+        } else {
+          return 'community';
+        }
+      } else {
+        return service.hrefs[ref] && service.hrefs[ref].parent;
+      }
+    }
 
 
     return service;

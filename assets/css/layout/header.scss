@@ -421,6 +421,11 @@
         margin-left: -12px;
         background-color: transparent;
       }
+      &.hide {
+        &:after {
+          display: none;
+        }
+      }
     }
 
     // Topcoder logo
@@ -521,6 +526,11 @@
     display: inline-block;
     color: #a3a3a3;
     font-size: 16px;
+    &.selected {
+      -moz-box-shadow: inset 0 -4px 0px -1px #0096ff;
+      -webkit-box-shadow: inset 0 -4px 0px -1px #0096ff;
+      box-shadow: inset 0 -4px 0px -1px #0096ff;
+    }
   }
 
   .search-wrapper .menu-item-header:before {
