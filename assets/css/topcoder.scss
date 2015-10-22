@@ -3,7 +3,7 @@
 @include glyphicons-halflings;
 
 body {
-  @include source-sans-regular;
+  @include merriweather-sans-regular;
   background-color: $ui-page-gray;
 
   > svg {
