@@ -52,6 +52,12 @@
 
       .skill {
         margin-top: 20px;
+        &:hover {
+          cursor: default;
+        }
+        a:hover {
+          cursor: default;
+        }
 
         + .skill {
           margin-left: 15px;
@@ -137,7 +143,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      cursor: pointer;
+      pointer: default;
 
       &.noclick {
         cursor: default;
@@ -405,7 +411,6 @@
 
     .track {
       width: 100%;
-      cursor: pointer;
       padding-top: 30px;
       .name {
         img {
