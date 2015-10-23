@@ -104,8 +104,7 @@
                 postData.context.accessTokenSecret = socialData.accessTokenSecret;
               }
               $log.debug("link API postdata: " + JSON.stringify(postData));
-              var api = ApiService.restangularV3;
-              api.one('users', user.userId).customPOST(postData, "profiles", {}, {})
+              userApi.one('users', user.userId).customPOST(postData, "profiles", {}, {})
                 .then(function(resp) {
                   $log.debug("Succesfully linked account: " + JSON.stringify(resp));
                   resolve({
