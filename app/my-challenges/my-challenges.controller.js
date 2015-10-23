@@ -88,7 +88,7 @@
         vm.loading = CONSTANTS.STATE_READY;
 
         vm.totalCount = _.sum(_.pluck(data, 'metadata.totalCount'));
-        vm.myChallenges = [];//vm.myChallenges.concat(_.union(data[0], data[1]));
+        vm.myChallenges = vm.myChallenges.concat(_.union(data[0], data[1]));
       })
       .catch(function(resp) {
         $log.error(resp);

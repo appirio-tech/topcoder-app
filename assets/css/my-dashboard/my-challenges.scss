@@ -1,7 +1,7 @@
 @import 'topcoder-includes';
 @import '../partials/combined';
 
-.my-challenges {
+.challenges {
   header {
     position: relative;
   }
@@ -66,54 +66,12 @@
   }
 
   .noChallenges {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: $gray-darkest;
-    padding-left: 20px;
-    padding-right: 20px;
-
-    // TODO remove once we are sure we don't need tracks in empty state
-    .tracks {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      min-width: 260px;
-      @media only screen and (min-width: 450px) {
-        min-width: 350px;
-      }
-
-      .track {
-        div:first-child {
-          margin: 0 auto 10px;
-          @include background-image-size(44px, 44px);
-        }
-
-        &:last-child {
-          display: none;
-          @media only screen and (min-width: 450px) {
-            display: block;
-          }
-        }
-
-        p {
-          @include sofia-pro-medium;
-          font-size: 12px;
-          text-transform: uppercase;
-        }
-      }
-      .develop-icon-outline {
-        @include develop-icon-outline;
-      }
-      .design-icon-outline {
-        @include design-icon-outline;
-      }
-      .data-science-icon-outline {
-        @include data-icon-outline;
-      }
-      .copilot-icon-outline {
-        @include copilot-icon-outline;
-      }
+    padding-top: 40px;
+    background-image: url('/images/empty-states/pattern-my-challenges-dashboard.png');
+    background-repeat: repeat;
+    .title,
+    .description {
+      color: $white;
     }
 
     .info-links {

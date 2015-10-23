@@ -18,7 +18,7 @@
       .no-srms(ng-if="!vm.srms.length && vm.loading === 'ready'")
         empty-state-placeholder(title="Past SRMs", description="You have not participated in any SRMs yet.", show="vm.statusFilter === 'past'")
           .info-links
-            a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/data?pageIndex=1") Find SRMs
+            a.find-srms.tc-btn.tc-btn-s.tc-btn-ghost(ng-href="https://www.{{DOMAIN}}/challenges/data?pageIndex=1") Find SRMs
             a.learn-more(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
         empty-state-placeholder(title="Upcoming SRMs", description="There are no upcoming SRMs.", show="vm.statusFilter === 'future'")
 
@@ -28,4 +28,4 @@
             ng-repeat="srm in vm.srms | orderBy:vm.orderBy:vm.reverseOrder", 
             srm="srm", view="vm.view", ng-class="vm.view + '-view'", show-results="vm.statusFilter === 'past'")
 
-      tc-endless-paginator(state="vm.loading", page-params="vm.pageParams")
+        tc-endless-paginator(state="vm.loading", page-params="vm.pageParams")

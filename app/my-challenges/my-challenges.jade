@@ -7,12 +7,12 @@
     .content
 
       .never-participated(ng-if="vm.neverParticipated")
-        empty-state-placeholder(title="My Challenges", description="Compete in challenges to win money, test yourself against the world's best, and learn new skills")
+        empty-state-placeholder(title="My Challenges", description="Compete in challenges to win money, test yourself against the world's best, and learn new skills", show="vm.neverParticipated")
           .info-links
             a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
 
             a.learn-more(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
-      section.challenges(ng-if="!vm.neverParticipated")
+      section.participated(ng-if="!vm.neverParticipated")
         .top
           .filters
             a(ng-click="vm.statusFilter !== 'active' && vm.changeFilter('active')", ng-class="{disabled: vm.statusFilter == 'active'}") Active
@@ -34,7 +34,7 @@
               a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
               a.learn-more(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
 
-        tc-section.hasChallenges(ng-show="vm.myChallenges.length", state="vm.loading")
+        .hasChallenges(ng-show="vm.myChallenges.length", state="vm.loading")
 
           .data(ng-class="vm.view + '-view'")                      
             challenge-tile(

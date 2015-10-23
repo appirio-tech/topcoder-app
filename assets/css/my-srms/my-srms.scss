@@ -21,54 +21,13 @@
     text-align: center;
   }
 
-  .nav {
-    @include module-full-width;
-    background: white;
-    height: 100px;
-    padding-left: 60px;
-    padding-right: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    .arrow {
-      width: 15px;
-    }
-    .breadcrumbs {
-      @include sofia-pro-extra-light;
-      font-size: 14px;
-      line-height: 16px;
-      .dashboard {
-        display: block;
-        color: black;
-        text-align: center;
-        text-transform: uppercase;
-
-        a {
-          color: black;
-          text-decoration: none;
-
-          &:hover {
-            color: $primary;
-          }
-        }
-      }
-      .my-srms {
-        display: block;
-        color: $primary;
-        font-weight: 700;
-        text-align: center;
-        text-transform: uppercase;
-      }
-    }
-  }
-
   .no-srms {
-    margin: 30px;
+    padding: 30px;
     display: flex;
     flex-direction: inherit;
     align-items: center;
+    background-image: url('/images/empty-states/pattern-my-challenges.png');
+    background-repeat: repeat;
 
     .info-links {
       text-align: center;
@@ -83,14 +42,13 @@
           margin-bottom: 30px;
         }
 
-        &.participate {
-          color: $white;
+        &.find-srms {
         }
 
         &.learn-more {
           font-size: 12px;
           line-height: 12px;
-          color: $gray-lighter;
+          color: $accent-gray;
         }
       }
     }
@@ -99,6 +57,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 15px 15px 30px 15px;
     background-color: $gray-lightest;
   }
 
@@ -107,8 +66,6 @@
     section.my-srms {
       background: white;
       align-self: center;
-      padding-bottom: 15px;
-      padding-top: 10px 20px 0px 20px;
       display: flex;
       flex-flow: column wrap;
       position: relative;
@@ -121,7 +78,7 @@
         justify-content: space-between;
         padding-top: 35px;
         padding-bottom: 35px;
-        border-bottom: 1px solid #F0F0F0;
+        border-bottom: 1px solid $gray-light;
 
         .filters {
           position: initial;
