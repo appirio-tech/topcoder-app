@@ -253,11 +253,21 @@
       margin-top: 40px;
     }
 
+
+  }
+  .save-section {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fcfcfc;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     button {
-      margin-bottom: 20px;
-      align-self: flex-start;
-      margin-left: 25%;
-      margin-top: 20px;
+      margin-bottom: 15px;
+      margin-top: 15px;
       width: 100px;
     }
   }
