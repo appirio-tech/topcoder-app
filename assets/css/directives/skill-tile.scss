@@ -26,7 +26,7 @@ skill-tile {
     text-decoration: none;
   }
 
-  a.hidden {
+  a.skill-hidden {
 
     img {
       opacity: .3;
@@ -103,7 +103,7 @@ skill-tile {
 
 .settings-container {
   skill-tile {
-    a:not(.hidden):hover {
+    a:not(.skill-hidden):hover {
       div.skill-icon {
         background-color: #FEE8EC;
         border: 1px solid #FCBBC5;
