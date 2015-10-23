@@ -6,6 +6,8 @@ challenge-tile .challenge.tile-view {
 
   // common css for both active and completed challenge for tile-view
   height: 350px;
+  display: flex;
+  flex-direction: row;
 
   .challenge-track {
     width: 5px;
@@ -137,7 +139,13 @@ challenge-tile .challenge.tile-view {
 
       .stalled-challenge {
         min-height: 83px;
-        padding-top: 21px;
+        padding: 21px 20px 0px 20px;
+        @include sofia-pro-medium;
+        font-size: 12px;
+        line-height: 18px;
+        text-transform: uppercase;
+        text-align: center;
+        color: $accent-gray;
       }
 
       .phase-action {
