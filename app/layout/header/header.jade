@@ -33,7 +33,7 @@
             ng-class="{'hide': vm.selectedGroup() == 'user'}"
           )
             span(ui-sref="profile.about({userHandle: vm.userHandle})")
-              img(class="user-avatar", ng-src="{{vm.profile.photoURL}}")
+              img(class="user-avatar", ng-src="{{vm.profile.photoURL}}", loading-src="/images/ico-user-default.svg")
 
               span.username(
                 style="color:{{vm.userHandleColor}}",
