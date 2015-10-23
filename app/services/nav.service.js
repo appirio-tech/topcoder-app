@@ -22,6 +22,7 @@
           { 'href':  CONSTANTS.ARENA_URL, 'text': 'THE ARENA', 'icon': '/images/nav/track-cp.svg', 'target': '_blank' },
       ],
       'learn': [
+          { 'href': '/member-onboarding/', 'text': 'GET STARTED', 'icon': '/images/nav/rocket.svg' },
           { 'href': '/community/design/', 'text': 'DESIGN', 'icon': '/images/nav/book-design.svg' },
           { 'href': '/community/development/', 'text': 'DEVELOPMENT', 'icon': '/images/nav/book-develop.svg' },
           { 'href': '/community/data-science/', 'text': 'DATA SCIENCE', 'icon': '/images/nav/book-data.svg' },
