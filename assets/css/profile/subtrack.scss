@@ -93,6 +93,15 @@
   //   }
   // }
 
+  .tc-carousel .carousel-elem:hover {
+    background-color: $white;
+    cursor: default;
+
+    .label {
+      color: $accent-gray;
+    }
+  }
+
   .subtrack-stats {
     // @include module-l;
     width: 100%;
