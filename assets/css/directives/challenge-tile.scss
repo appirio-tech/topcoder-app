@@ -71,13 +71,12 @@ challenge-tile .challenge.tile-view {
     line-height: 18px;
     background-color: $gray-lighter;
 
-    span:first-child {
-      color: $accent-gray;
-      white-space: nowrap;
-    }
-
-    span:not(:first-child) {
+    span {
       @include ellipsis;
+      span:first-child {
+        color: $accent-gray;
+        white-space: nowrap;
+      }
     }
 
   }
