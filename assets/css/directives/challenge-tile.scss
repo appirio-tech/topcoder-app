@@ -6,6 +6,8 @@ challenge-tile .challenge.tile-view {
 
   // common css for both active and completed challenge for tile-view
   height: 350px;
+  display: flex;
+  flex-direction: row;
 
   .challenge-track {
     width: 5px;
