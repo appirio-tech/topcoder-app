@@ -15,7 +15,7 @@
         img(ng-switch-when="true", ng-if="vm.profile.photoURL && vm.profile.photoURL.length", class="user-avatar", ng-src="{{vm.profile.photoURL}}")
         img(ng-switch-when="true", ng-if="!vm.profile.photoURL || !vm.profile.photoURL.length", class="user-avatar", ng-src="/images/ico-user-default.svg")
 
-        span(ng-switch-when="false" class="btn-link") JOIN
+        span(ng-switch-when="false" class="tc-btn tc-btn-s") JOIN
 
     ul.main-menu
       li.menu-item.search-wrapper
@@ -43,7 +43,7 @@
                 ng-class="{'underline': vm.selectedGroup() == 'user'}"
               ) {{vm.userHandle}}
 
-          a.btn-link.btn-edit-profile.show-small(ui-sref="settings.profile") EDIT
+          a.tc-btn.tc-btn-s.btn-edit-profile.show-small(ui-sref="settings.profile") EDIT
 
           ul.submenu
             header-menu-item(ng-repeat="item in vm.userMenu" item="item")
@@ -55,9 +55,9 @@
 
         // links for anonymous user
         .menu-item-header(ng-switch-when="false")
-          a.btn-link(ui-sref="register") REGISTER
+          a.tc-btn.tc-btn-s.btn-link(ui-sref="register") JOIN
 
-          a.btn-link.secondary-link(ui-sref="login") LOGIN
+          a.tc-btn.tc-btn-s.tc-btn-ghost.btn-link(ui-sref="login") LOG IN
 
           //- a(ng-click="launchIntro();", ng-show="!!vm.introOptions") Intro
 

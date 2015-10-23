@@ -8,6 +8,9 @@ track-toggle {
     &.first {
       margin-top: 0px;
     }
+    &.bottom {
+      margin-bottom: 0;
+    }
   }
   .track {
     width: 100%;
