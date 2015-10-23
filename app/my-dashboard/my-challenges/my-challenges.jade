@@ -13,7 +13,7 @@ section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
     .info-links
       a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
 
-      a.learn-more(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
+      a.learn-more(href="https://www.{{DOMAIN}}/member-onboarding") Learn More
 
 section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading", ng-class="{ 'list-view-active': vm.challengeView === 'list' }")
   .section-titles(ng-show="vm.challengeView === 'list'")

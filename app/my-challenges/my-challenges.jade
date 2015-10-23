@@ -11,7 +11,7 @@
           .info-links
             a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
 
-            a.learn-more(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
+            a.learn-more(href="https://www.{{DOMAIN}}/member-onboarding") Learn More
       section.participated(ng-if="!vm.neverParticipated")
         .top
           .filters
@@ -28,11 +28,9 @@
           empty-state-placeholder(title="Past Challenges", description="You have not participated in any challenges yet.", show="vm.statusFilter === 'completed'")
             .info-links
               a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
-              a.learn-more(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
           empty-state-placeholder(title="Active Challenges", description="There are no active challenges.", show="vm.statusFilter === 'active'")
             .info-links
               a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
-              a.learn-more(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
 
         .hasChallenges(ng-show="vm.myChallenges.length", state="vm.loading")
 
