@@ -37,30 +37,46 @@
 }
 
 .settings-container {
+  .angucomplete-dropdown {
+    width: 100%;
+  }
+  .angucomplete-selected-row {
+    background-color: #097DCE;
+  }
   input, textarea {
     font-size: 15px;
     font-family: 'Merriweather Sans';
     font-weight: 400;
+    padding-left: 15px;
+  }
+  textarea {
+    padding-left: 10px;
+    &:hover, &:focus {
+      padding-left: 10px;
+    }
   }
   input:focus, textarea:focus {
     outline: 1px solid #4cb5ff;
   }
   @include module-l;
   margin: 30px auto 0;
-  @media only screen and (min-width: 768px) {
-    margin-top: 70px;
-    padding-left: 30px;
-    padding-right: 30px;
+
+  @media only screen and (min-width: 900px) {
+    padding-top: 0px;
   }
 
   nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    border-bottom: 1px solid $gray-light;
+    background-color: $gray-lightest;
     @media only screen and (min-width: 768px) {
       display: flex;
       flex-direction: row;
+      height: 60px;
       justify-content: center;
+      align-items: center;
     }
 
     li {
@@ -74,21 +90,25 @@
 
     a {
       @include sofia-pro-medium;
-      font-size: 14px;
-      color: #A3A3AE;
+      font-size: 18px;
+      line-height: 24px;
+      color: $accent-gray;
       text-transform: uppercase;
       text-decoration: none;
       cursor: pointer;
       @media only screen and (min-width: 768px) {
         font-size: 16px;
       }
+      &:hover {
+        color: $gray-darkest;
+      }
     }
   }
 
   .active-tab {
-    padding: 0 5px 6px;
-    border-bottom: 4px #0096FF solid;
-    color: black;
+    padding-bottom: 18px;
+    border-bottom: 2px solid $primary;
+    color: $gray-darkest;
   }
 
   hr {
@@ -132,11 +152,13 @@
       @media only screen and (min-width: 768px) {
         width: 270px;
         margin-right: 33px;
+        margin-left: 30px;
       }
 
       h2 {
         text-transform: uppercase;
-        @include sofia-pro-light;
+        font-family: 'Sofia Pro';
+        font-weight: 500;
         font-size: 16px;
       }
 
@@ -171,6 +193,15 @@
           color: #0096ff;
           float: right;
         }
+
+        .char-count {
+          font-family: 'Source Sans Pro';
+          float: right;
+        }
+
+        .grey {
+          color: #a3a3ae;
+        }
       }
       .form-field {
         @include form-field;
@@ -197,7 +228,7 @@
               margin: 10px;
               margin-left: 0;
               margin-top: 20px;
-              width: 150px;
+              width: 120px;
               input {
                 position: absolute;
                 top: 0;
@@ -248,20 +279,32 @@
   }
   .tracks {
     padding-bottom: 0px;
+    border-bottom: none;
 
     .section-fields {
       margin-top: 40px;
     }
 
+
+  }
+  .save-section {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fcfcfc;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     button {
-      margin-bottom: 20px;
-      align-self: flex-start;
-      margin-left: 25%;
-      margin-top: 20px;
-      width: 100px;
+      margin-bottom: 15px;
+      margin-top: 15px;
+      width: 120px;
     }
   }
   .skills {
+    border-top: 1px solid $gray-light;
     .section-fields {
       margin-top: 20px;
       display: flex;
@@ -298,7 +341,7 @@
           @media only screen and (min-width: 768px) {
             margin: 0;
             margin-right: 30px;
-            margin-bottom: 5px;
+            margin-bottom: 60px;
           }
         }
       }

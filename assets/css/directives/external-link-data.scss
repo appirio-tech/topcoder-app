@@ -122,23 +122,24 @@ external-accounts {
 
   }
 }
+
 @media (min-width: 768px) {
   .external-link-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
-    padding: 0px 75px;
+    padding: 0px 60px;
 
     .external-link-tile {
       border: 1px solid #f0f0f0;
       background-color: $gray-lightest;
-      margin-left: 30px;
+      margin-left: 15px;
       margin-top: 30px;
       margin-bottom: 0px;
-      &:nth-child(3n+1) {
-        margin-left: 0px;
-      }
+      // &:nth-child(3n+1) {
+      //   margin-left: 0px;
+      // }
       width: 218px;
       height: 240px;
       display: flex;
@@ -209,6 +210,7 @@ external-accounts {
 
           }
         }
+
         .logo {
           padding: 10px;
           font-size: 50px;

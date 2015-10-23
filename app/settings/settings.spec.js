@@ -7,7 +7,8 @@ describe('Settings Controller', function() {
     bard.inject(this, '$controller', '$state');
     var mockState = { '$current' : {'name': 'test'}};
     vm = $controller('SettingsController', {
-      '$state': mockState
+      '$state': mockState,
+      'userHandle': 'test'
     });
   });
 

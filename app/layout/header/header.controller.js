@@ -47,9 +47,9 @@
 
         vm.userMenu = [
           { 'sref': 'dashboard', 'text': 'DASHBOARD', 'icon': '/images/nav/dashboard.svg' },
-          { 'sref': 'profile.about', 'srefParams': { 'userHandle': vm.userHandle }, 'text': 'MY PROFILE', 'icon': '/images/nav/badge.svg' },
-          { 'href':  vm.constants.COMMUNITY_URL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/images/nav/money-bag.svg', 'target': '_blank' },
-          { 'sref': 'settings.profile', 'text': 'SETTINGS', 'icon': '/images/nav/gear.svg' },
+          { 'sref': 'profile.about', 'srefParams': { 'userHandle': vm.userHandle }, 'text': 'MY PROFILE', 'icon': '/images/nav/profile.svg' },
+          { 'href':  vm.constants.COMMUNITY_URL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '/images/nav/wallet.svg', 'target': '_blank' },
+          { 'sref': 'settings.profile', 'text': 'SETTINGS', 'icon': '/images/nav/settings.svg' },
         ];
 
         ProfileService.getUserProfile(vm.userHandle)
@@ -72,7 +72,7 @@
     }
 
     function selectedGroup() {
-      return _.get(NavService, 'selectedTopLevelItem.parent', null);
+      return _.get(NavService, 'selectedTopLevelItem', null);
     }
   }
 })();

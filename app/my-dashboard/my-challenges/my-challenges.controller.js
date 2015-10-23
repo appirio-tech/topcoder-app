@@ -50,12 +50,12 @@
           ChallengeService.processActiveDevDesignChallenges(devDesignChallenges);
           ChallengeService.processActiveMarathonMatches(marathonMatches);
           var userChallenges = marathonMatches.concat(devDesignChallenges);
-          // FIX when working on marathon matches:
-          // sort by closest deadline? .sort(function)
-          // limit to 8 .slice(0, 8);
 
-          vm.myChallenges = [];//userChallenges;
-          vm.userHasChallenges = false;
+          userChallenges = _.sortBy(userChallenges, function(n) {
+            return n.registrationEndDate
+          });
+          vm.myChallenges = userChallenges.reverse().slice(0, 8);
+          vm.userHasChallenges = true;
           vm.loading = false;
         }
       })

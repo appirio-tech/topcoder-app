@@ -6,10 +6,10 @@
 
     .section-fields
       .form-label.username Username
-      input.form-field(name="username", value="{{vm.userData.handle}}", disabled=true)
+      input.form-field.grey(name="username", value="{{vm.userData.handle}}", disabled=true)
 
       .form-label email
-      input.form-field(name="email", value="{{vm.userData.email}}", disabled=true)
+      input.form-field.grey(name="email", value="{{vm.userData.email}}", disabled=true)
 
       div(ng-hide="vm.isSocialRegistration")
         form(name="vm.newPasswordForm", role="form", ng-submit="vm.newPasswordForm.$valid && vm.submitNewPassword()", novalidate)
@@ -109,7 +109,7 @@
             p(ng-show="vm.accountInfoForm.address.$error.required") Please enter an address
 
           .form-label Address 2
-            span(style="text-transform: none;") &nbsp;(opt., suite, etc.)
+            span(style="text-transform: none;") &nbsp;(apt., suite, etc.)
           input.tc-input(
             name="address2",
             type="text",
@@ -145,7 +145,7 @@
           .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.state.$invalid")
             p(ng-show="vm.accountInfoForm.state.$error.required") Please enter a state or province
 
-          .form-label Zip
+          .form-label Zip/Post Code
           input.tc-input(
             name="zipcode", type="text",
             placeholder="Zip"
@@ -158,7 +158,9 @@
           .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.zipcode.$invalid")
             p(ng-show="vm.accountInfoForm.zipcode.$error.required") Please enter a zip
 
-          .form-label Country
+          .form-label
+            span Country
+            span.mandatory *mandatory
           angucomplete-alt(
             input-name="country",
             input-class="tc-input",
@@ -177,5 +179,5 @@
             p(ng-show="vm.accountInfoForm.country.$error.required") Please choose a country from the list.
 
 
-          .button-container
-            button.tc-btn.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid", ng-class="{'enabled-button': vm.accountInfoForm.$valid}") Save
+  .save-section
+    button.save.tc-btn.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid", ng-class="{'enabled-button': vm.accountInfoForm.$valid}") Save

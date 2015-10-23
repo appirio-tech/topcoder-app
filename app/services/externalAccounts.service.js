@@ -10,6 +10,7 @@
     $log = $log.getInstance('ExternalAccountService');
 
     var api = ApiService.restangularV3;
+    var userApi = ApiService.getApiServiceProvider('USER');
 
     var service = {
       getLinkedExternalAccounts: getLinkedExternalAccounts,
@@ -28,7 +29,7 @@
      * @return list of linked Accounts
      */
     function getLinkedExternalAccounts(userId) {
-      return api.one('users', userId).get({fields:"profiles"})
+      return userApi.one('users', userId).get({fields:"profiles"})
       .then(function(result) {
         return result.profiles || [];
       });
@@ -58,7 +59,7 @@
         .catch(function(resp) {
           $log.error("Error unlinking account: " + resp.data.result.content);
           var status = resp.status;
-          var msg = resp.data.result.content; 
+          var msg = resp.data.result.content;
           if (resp.status = 404) {
             status = "SOCIAL_PROFILE_NOT_EXIST";
           } else {
@@ -103,8 +104,7 @@
                 postData.context.accessTokenSecret = socialData.accessTokenSecret;
               }
               $log.debug("link API postdata: " + JSON.stringify(postData));
-              var api = ApiService.restangularV3;
-              api.one('users', user.userId).customPOST(postData, "profiles", {}, {})
+              userApi.one('users', user.userId).customPOST(postData, "profiles", {}, {})
                 .then(function(resp) {
                   $log.debug("Succesfully linked account: " + JSON.stringify(resp));
                   resolve({

@@ -2,7 +2,7 @@
 @import '../partials/combined';
 
 .page-state-header {
-  background-color: $white;
+  background-color: $gray-lightest;
   padding: 15px;
   border-bottom: 1px solid $gray-light;
 
@@ -98,9 +98,10 @@
       align-items: center;
       justify-content: space-between;
 
-
       .page-info {
         order: 2;
+        display: flex;
+        flex-direction: row;
         h1 {
           font-size: 36px;
           line-height: 43px;

@@ -55,35 +55,16 @@
     }
 
     function loadChallenges() {
-      var challengePromises = [
-        ChallengeService.getChallenges({
-          filter: "reviewType=peer&status=active",
-          limit: 3,
-          offset: 0,
-          orderBy: 'submissionEndDate'
-        }),
-        ChallengeService.getChallenges({
-          filter: "platforms=ios&technologies=swift&status=active",
-          limit: 3,
-          offset: 0,
-          orderBy: 'submissionEndDate'
-        })
-      ];
-
-      return $q.all(challengePromises)
-      .then(function(challenges) {
-        var peerChallenges = challenges[0];
-        var iOSChallenges = challenges[1];
-        var challenges = [];
-
-        if (peerChallenges.length === 0) {
-          challenges = challenges.concat(iOSChallenges);
-        } else if (peerChallenges.length > 0) {
-          challenges = challenges.concat(peerChallenges[0]).concat(iOSChallenges.slice(0, iOSChallenges.length - 1));
+      ChallengeService.getChallenges({
+        filter: "platforms=ios&technologies=swift&status=active",
+        limit: 3,
+        offset: 0,
+        orderBy: 'submissionEndDate desc'
+      }).then(function(challenges) {
+        if (challenges.length > 0) {
+          vm.challenges = challenges.slice(0, 3);
+          ChallengeService.processActiveDevDesignChallenges(vm.challenges);
         }
-
-        vm.challenges = challenges;
-        ChallengeService.processActiveDevDesignChallenges(vm.challenges);
         vm.loading = false;
       })
       .catch(function(err) {

@@ -108,7 +108,7 @@
           vm.subTrack.toLowerCase().replace(/ /g, '')
         );
 
-        vm.nonRated = vm.typeStats.rank && !vm.typeStats.rank.rating && !vm.typeStats.rank.overallRank && !vm.typeStats.rank.reliability;
+        vm.nonRated = vm.typeStats && vm.typeStats.rank && !vm.typeStats.rank.rating && !vm.typeStats.rank.overallRank && !vm.typeStats.rank.reliability;
 
 
         if (vm.subTrack) {
