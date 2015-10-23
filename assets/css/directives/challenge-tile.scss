@@ -68,12 +68,13 @@ challenge-tile .challenge.tile-view {
     align-items: center;
     min-height: 36px;
     padding: 0 20px;
-    @include source-sans-regular;
-    font-size: 13px;
-    line-height: 18px;
+    @include merriweather-sans-regular;
+    font-size: 12px;
+    line-height: 17px;
     background-color: $gray-lighter;
 
     span {
+      padding: 0;
       @include ellipsis;
       span:first-child {
         color: $accent-gray;

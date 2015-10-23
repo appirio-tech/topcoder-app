@@ -1,6 +1,14 @@
 @import 'topcoder-includes';
 @import '../partials/combined';
 
+.my-challenges-links,
+.srms-links,
+.blog-links {
+  a {
+    font-size: 12px;
+  }
+}
+
 .my-challenges-container {
   width: 100%;
   display: flex;
