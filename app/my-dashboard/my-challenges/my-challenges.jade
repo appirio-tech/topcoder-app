@@ -1,5 +1,5 @@
 header(ng-hide="vm.loading || !vm.userHasChallenges")
-  h1.section-title Active Challenges
+  h1.section-title My Challenges
 
   .challenge-view-toggle(ng-show="vm.userHasChallenges")
     button.tile(ng-click="vm.toggleView('tile')", ng-class="{ disabled: vm.challengeView === 'tile' }") Grid
@@ -9,11 +9,15 @@ header(ng-hide="vm.loading || !vm.userHasChallenges")
 .section-loading(ng-show="vm.loading")
 
 section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
-  empty-state-placeholder(title="My Challenges", description="Compete in challenges to win money, test yourself against the world's best, and learn new skills", show="!vm.userHasChallenges")
-    .info-links
-      a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
+  .never-participated(ng-if="vm.neverParticipated")
+    empty-state-placeholder(title="My Challenges", description="Compete in challenges to win money, test yourself against the world's best, and learn new skills", show="vm.neverParticipated")
+      .info-links
+        a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
 
-      a.learn-more(href="https://www.{{DOMAIN}}/member-onboarding") Learn More
+        a.learn-more(href="https://www.{{DOMAIN}}/member-onboarding") Learn More
+  empty-state-placeholder(title="My Challenges", description="You don't have any active challenges. Ready to find your next challenge?", show="!vm.userHasChallenges")
+    .info-links
+      a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Explore Open Challenges
 
 section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading", ng-class="{ 'list-view-active': vm.challengeView === 'list' }")
   .section-titles(ng-show="vm.challengeView === 'list'")

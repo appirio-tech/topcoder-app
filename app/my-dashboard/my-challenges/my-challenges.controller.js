@@ -8,6 +8,7 @@
   function MyChallengesWidgetController(ChallengeService, UserService, $log, CONSTANTS, userIdentity, $q) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
+    vm.neverParticipated = false;
     vm.loading = true;
     vm.userHasChallenges = true;
     vm.challengeView = 'tile';
@@ -19,7 +20,9 @@
 
     function activate() {
       vm.myChallenges = [];
-      getChallenges();
+      _checkForParticipation().then(function() {
+        getChallenges();
+      });
     }
 
     function getChallenges() {
@@ -70,6 +73,20 @@
       if (vm.challengeView !== view) {
         vm.challengeView = view;
       }
+    }
+
+    function _checkForParticipation() {
+      var params = {
+        limit: 1,
+        offset: 0
+      };
+      return ChallengeService.getUserChallenges(handle, params).then(function(challenges) {
+        if (challenges.metadata.totalCount > 0) {
+          vm.neverParticipated = true;
+        } else {
+          vm.neverParticipated = true;
+        }
+      });
     }
   }
 })();
