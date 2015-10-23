@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>nav/programs</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="nav/programs" sketch:type="MSArtboardGroup" stroke="#F6F6F6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12.4636,18 L17.3836,26.391 C18.1456,27.69 17.7096,29.361 16.4106,30.123 C15.1116,30.885 13.4406,30.449 12.6786,29.15 L6.1406,18" id="Stroke-187" sketch:type="MSShapeGroup"></path>
+            <path d="M20.669,6.9988 C23.36,7.3338 25.545,9.7178 25.545,12.4998 C25.545,15.2808 23.313,17.4868 20.624,17.8238" id="Stroke-189" sketch:type="MSShapeGroup"></path>
+            <path d="M9,7 L4,6.999 C2.494,6.999 1,9.488 1,12.5 C1,15.512 2.494,18 4,18 L9,18" id="Stroke-191" sketch:type="MSShapeGroup"></path>
+            <path d="M25.5,1 C21.464,1 17.887,3.742 16,7 L9,7 C7.494,7 6.455,9.488 6.455,12.5 C6.455,15.512 7.494,18 9,18 L16,18 C17.887,21.258 21.464,24 25.5,24" id="Stroke-193" sketch:type="MSShapeGroup"></path>
+            <path d="M25.5,1 C28.538,1 31,6.149 31,12.5 C31,18.851 28.538,24 25.5,24 C22.462,24 20,18.851 20,12.5 C20,6.149 22.462,1 25.5,1 L25.5,1 L25.5,1 Z" id="Stroke-195" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>
