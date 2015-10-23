@@ -37,10 +37,17 @@
 }
 
 .settings-container {
+  .angucomplete-dropdown {
+    width: 100%;
+  }
+  .angucomplete-selected-row {
+    background-color: #097DCE;
+  }
   input, textarea {
     font-size: 15px;
     font-family: 'Merriweather Sans';
     font-weight: 400;
+    padding-left: 15px;
   }
   input:focus, textarea:focus {
     outline: 1px solid #4cb5ff;
@@ -177,6 +184,15 @@
           text-transform: none;
           color: #0096ff;
           float: right;
+        }
+
+        .char-count {
+          font-family: 'Source Sans Pro';
+          float: right;
+        }
+
+        .grey {
+          color: #a3a3ae;
         }
       }
       .form-field {

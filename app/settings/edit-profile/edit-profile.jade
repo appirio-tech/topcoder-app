@@ -12,12 +12,12 @@
         .image
           .form-label your profile image
           .edit-image
-            img.profile-circle(loading-src="/images/ico-user-default.svg", ng-src="{{vm.userData.photoURL}}")
+            img.profile-circle(ng-show="vm.userData.photoURL && vm.userData.photoURL.length", ng-src="{{vm.userData.photoURL}}")
+            img.profile-circle(ng-show="!vm.userData.photoURL || !vm.userData.photoURL.length", src="/images/ico-user-default.svg")
 
             .buttons
-              button.file-upload.tc-btn.tc-btn-primary.tc-btn-s
-                span Change Image
-                input(type="file", name="image", on-file-change)
+              :verbatim
+                <button class="file-upload tc-btn tc-btn-primary tc-btn-s"><span>Change Image</span><input type="file" name="image" on-file-change="on-file-change"/></button>
 
               .file-delete
                 button.tc-btn.tc-btn-secondary.tc-btn-s(ng-click="vm.deleteImage()", type="button") Delete
@@ -43,8 +43,9 @@
 
         .bio
           .form-label(style="width: 100%;") short bio
-            span(style="float:right;") {{vm.userData.description.length || 0}}/256
-          textarea.tc-input(name="description", ng-model="vm.userData.description", data-ng-trim="false", maxlength="256")
+            span.char-count {{vm.userData.description.length || 0}}
+              span.grey &nbsp;/ 256
+          textarea.tc-input(name="description", ng-model="vm.userData.description", data-ng-trim="false", maxlength="256", placeholder="E.g., I'm JS architect interested in creating new data interchange formats. I love sci-fi and riding my motorcycle.")
 
     .settings-section.tracks
       .section-info

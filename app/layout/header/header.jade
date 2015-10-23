@@ -11,7 +11,9 @@
 
       // User link (profile or join)
       a(ui-sref="profile.about({userHandle: vm.userHandle})", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
-        img(ng-switch-when="true", class="user-avatar", ng-src="{{vm.profile.photoURL}}")
+        //- img(ng-switch-when="true", class="user-avatar", ng-src="{{vm.profile.photoURL}}")
+        img(ng-switch-when="true", ng-if="vm.profile.photoURL && vm.profile.photoURL.length", class="user-avatar", ng-src="{{vm.profile.photoURL}}")
+        img(ng-switch-when="true", ng-if="!vm.profile.photoURL || !vm.profile.photoURL.length", class="user-avatar", ng-src="/images/ico-user-default.svg")
 
         span(ng-switch-when="false" class="btn-link") JOIN
 
@@ -33,7 +35,8 @@
             ng-class="{'hide': vm.selectedGroup() == 'user'}"
           )
             span(ui-sref="profile.about({userHandle: vm.userHandle})")
-              img(class="user-avatar", ng-src="{{vm.profile.photoURL}}", loading-src="/images/ico-user-default.svg")
+              img(ng-if="vm.profile.photoURL && vm.profile.photoURL.length", class="user-avatar", ng-src="{{vm.profile.photoURL}}")
+              img(ng-if="!vm.profile.photoURL || !vm.profile.photoURL.length", class="user-avatar", ng-src="/images/ico-user-default.svg")
 
               span.username(
                 style="color:{{vm.userHandleColor}}",
@@ -47,7 +50,7 @@
 
             li.submenu-item
               a.menu-link(ng-click="vm.logout(); main.menuVisible = vm.isAuth = false")
-                img.menu-icon(ng-src="/images/nav/logout.svg")
+                img.menu-icon(ng-src="/images/nav/exit.svg")
                 .menu-text LOG OUT
 
         // links for anonymous user
