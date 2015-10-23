@@ -37,6 +37,12 @@
 }
 
 .settings-container {
+  .angucomplete-dropdown {
+    width: 100%;
+  }
+  .angucomplete-selected-row {
+    background-color: #097DCE;
+  }
   input, textarea {
     font-size: 15px;
     font-family: 'Merriweather Sans';

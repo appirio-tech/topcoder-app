@@ -15,9 +15,8 @@
             img.profile-circle(loading-src="/images/ico-user-default.svg", ng-src="{{vm.userData.photoURL}}")
 
             .buttons
-              button.file-upload.tc-btn.tc-btn-primary.tc-btn-s
-                input(type="file", name="image", on-file-change="on-file-change")
-                span Change Image
+              :verbatim
+                <button class="file-upload tc-btn tc-btn-primary tc-btn-s"><span>Change Image</span><input type="file" name="image" on-file-change="on-file-change"/></button>
 
               .file-delete
                 button.tc-btn.tc-btn-secondary.tc-btn-s(ng-click="vm.deleteImage()", type="button") Delete
