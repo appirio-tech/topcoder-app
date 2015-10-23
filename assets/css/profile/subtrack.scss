@@ -101,7 +101,10 @@
     margin-bottom: 10px;
     background-color: #fff;
     padding: 30px auto;
-
+    & + .develop {
+      // move the cards up to compensate for size. Refactor of the component will make this obsolete!
+      margin-top: -40px;
+    }
   }
 
   .bottom {
@@ -163,9 +166,9 @@
       justify-content: center;
     }
     h2.detailed {
-      margin: 50px auto 25px auto;
+      margin: 30px auto 0;
       text-align: center;
-      font-family: 'Lucida Grande';
+      @include sofia-pro-medium;
       font-size: 18px;
       line-height: 21px;
       font-weight: bold;
@@ -281,7 +284,7 @@
       margin-top: -3px;
       width: 90%;
       border: 0;
-      border-top: 1px solid #d1d3d4;
+      border-top: 1px solid $gray-lighter;
       margin-left: auto;
       margin-right: auto;
     }
@@ -376,13 +379,13 @@
         justify-content: center;
       }
       h2.detailed {
-        margin: 50px auto 25px auto;
+        margin: 30px auto 0;
         @include sofia-pro-regular;
-        font-size: 28px;
-        line-height: 34px;
+        font-size: 24px;
+        line-height: 30px;
       }
       ul.vertical-stats {
-        margin-top: 50px;
+        margin-top: 30px;
         width: 95%;
         align-content: space-between;
         height: 300px;
@@ -398,12 +401,12 @@
           font-size: 15px;
           line-height: 18px;
           padding: 14px;
-          border-bottom: 1px solid #f6f6f6;
+          border-bottom: 1px solid $gray-lighter;
           .right {
-            color: #00aeff;
+            color: $primary;
           }
           &.first {
-            border-top: 1px solid #f6f6f6;
+            border-top: 1px solid $gray-lighter;
           }
         }
       }

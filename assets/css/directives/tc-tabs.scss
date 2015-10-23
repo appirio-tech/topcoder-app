@@ -22,7 +22,7 @@
           line-height: 24px;
           @include sofia-pro-medium;
           text-transform: uppercase;
-          margin: auto 30px;
+          margin: auto 45px;
           &.selected {
             color: $gray-darkest;
             padding-bottom: 14px;
@@ -30,7 +30,18 @@
           }
         }
       }
+      a:hover {
+        color: $accent-gray-dark;
+      }
     }
   }
   .tab-view {}
 }
+
+.page-header + tc-tab-set {
+   .tab-panel .tab-set {
+      border-top: none;
+    }
+  }
+
+
