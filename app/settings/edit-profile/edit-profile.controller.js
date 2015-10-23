@@ -15,6 +15,7 @@
     vm.updateProfile  = updateProfile;
     vm.addSkill = addSkill;
     vm.deleteImage = deleteImage;
+    vm.changeImage = changeImage;
 
     activate();
 
@@ -154,6 +155,11 @@
         vm.originalUserData.photoURL = oldPhotoURL;
         toaster.pop('error', "Whoops!", "Something went wrong. Please try again later.");
       });
+    }
+
+    function changeImage() {
+      var fileInput = document.querySelector('#change-image-input');
+      fileInput.click(); // Or, use the native click() of the file input.
     }
   }
 })();

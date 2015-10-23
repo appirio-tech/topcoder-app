@@ -49,6 +49,12 @@
     font-weight: 400;
     padding-left: 15px;
   }
+  textarea {
+    padding-left: 10px;
+    &:hover, &:focus {
+      padding-left: 10px;
+    }
+  }
   input:focus, textarea:focus {
     outline: 1px solid #4cb5ff;
   }
@@ -146,11 +152,13 @@
       @media only screen and (min-width: 768px) {
         width: 270px;
         margin-right: 33px;
+        margin-left: 30px;
       }
 
       h2 {
         text-transform: uppercase;
-        @include sofia-pro-light;
+        font-family: 'Sofia Pro';
+        font-weight: 500;
         font-size: 16px;
       }
 
@@ -220,7 +228,7 @@
               margin: 10px;
               margin-left: 0;
               margin-top: 20px;
-              width: 150px;
+              width: 120px;
               input {
                 position: absolute;
                 top: 0;
@@ -271,6 +279,7 @@
   }
   .tracks {
     padding-bottom: 0px;
+    border-bottom: none;
 
     .section-fields {
       margin-top: 40px;
@@ -291,10 +300,11 @@
     button {
       margin-bottom: 15px;
       margin-top: 15px;
-      width: 100px;
+      width: 120px;
     }
   }
   .skills {
+    border-top: 1px solid $gray-light;
     .section-fields {
       margin-top: 20px;
       display: flex;
