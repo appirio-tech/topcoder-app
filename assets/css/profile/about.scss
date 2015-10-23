@@ -119,6 +119,10 @@
         margin-top: 20px;
         margin-right: 15px;
 
+        a:hover {
+          cursor: default;
+        }
+
         + .skill {
           margin-left: 15px;
         }
