@@ -12,11 +12,9 @@
         .image
           .form-label your profile image
           .edit-image
-            img.profile-circle(ng-show="vm.userData.photoURL && vm.userData.photoURL.length", ng-src="{{vm.userData.photoURL}}")
-            img.profile-circle(ng-show="!vm.userData.photoURL || !vm.userData.photoURL.length", src="/images/avatarPlaceholder.png")
+            img.profile-circle(loading-src="/images/ico-user-default.svg", ng-src="{{vm.userData.photoURL}}")
 
             .buttons
-
               button.file-upload.tc-btn.tc-btn-primary.tc-btn-s
                 span Change Image
                 input(type="file", name="image", on-file-change)
@@ -51,19 +49,20 @@
     .settings-section.tracks
       .section-info
         h2 Tracks
-        .description Topcoder's three categories of challenges... please pick at least one on your skills and interests
+        .description Topcoder's three categories of challenges... please pick at least one based on your skills and interests.
 
 
       .section-fields
         track-toggle(tracks="vm.tracks")
 
-        button.tc-btn.tc-btn-secondary.tc-btn-l(ng-show="!(vm.editProfile.$invalid || vm.editProfile.$pristine)", type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
-        button.tc-btn.tc-btn-secondary.tc-btn-l.disabled(ng-show="vm.editProfile.$invalid || vm.editProfile.$pristine", type="button") Save
+    .save-section
+      button.tc-btn.tc-btn-primary.tc-btn-m(ng-show="!(vm.editProfile.$invalid || vm.editProfile.$pristine)", type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
+      button.tc-btn.tc-btn-secondary.tc-btn-m.disabled(ng-show="vm.editProfile.$invalid || vm.editProfile.$pristine", type="button") Save
 
   .settings-section.skills
     .section-info
       h2 skills
-      .description Languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well
+      .description Languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.
 
     .section-fields
       .field-label Add a new skill

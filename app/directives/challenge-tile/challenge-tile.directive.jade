@@ -29,7 +29,9 @@
         .registered(ng-switch-when="Registered") Registered
 
     // Only show if not data science track
-    p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
+    p.roles 
+      span(ng-hide="challenge.track === 'DATA_SCIENCE'") 
+        #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
 
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",

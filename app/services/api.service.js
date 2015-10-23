@@ -69,7 +69,6 @@
       switch (type.toUpperCase()) {
         case 'AUTH':
         case 'USER':
-          debugger;
           return _getRestangularV3(CONSTANTS.AUTH_API_URL);
         default:
           return _getRestangularV3();

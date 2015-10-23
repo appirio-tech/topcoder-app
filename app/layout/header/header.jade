@@ -29,13 +29,15 @@
       li.menu-item.link-group.user-menu(ng-switch="vm.isAuth", ng-class="{'anonymous-menu': !vm.isAuth}")
         // links for logged in user
         div(ng-switch-when="true")
-          .menu-item-header
+          .menu-item-header(
+            ng-class="{'hide': vm.selectedGroup() == 'user'}"
+          )
             span(ui-sref="profile.about({userHandle: vm.userHandle})")
-              img(class="user-avatar", ng-src="{{vm.profile.photoURL}}")
+              img(class="user-avatar", ng-src="{{vm.profile.photoURL}}", loading-src="/images/ico-user-default.svg")
 
               span.username(
                 style="color:{{vm.userHandleColor}}",
-                ng-class="{'underline': vm.selectedGroup()}"
+                ng-class="{'underline': vm.selectedGroup() == 'user'}"
               ) {{vm.userHandle}}
 
           a.btn-link.btn-edit-profile.show-small(ui-sref="settings.profile") EDIT
@@ -56,7 +58,10 @@
 
           //- a(ng-click="launchIntro();", ng-show="!!vm.introOptions") Intro
 
-      li.menu-item.link-group(ng-repeat="(menu, items) in vm.menuLinks")
+      li.menu-item.link-group(
+        ng-repeat="(menu, items) in vm.menuLinks",
+        ng-class="{'selected': vm.selectedGroup() == menu}"
+      )
         .menu-item-header {{menu}}
 
         ul.submenu

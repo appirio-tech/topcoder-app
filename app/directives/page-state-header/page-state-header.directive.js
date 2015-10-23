@@ -13,12 +13,12 @@
         hideMoney: '=',
         defaultState: '@'
       },
-      controller: ['$scope', 'NotificationService', 'ProfileService', '$log', pageStateHeader],
+      controller: ['$scope', 'NotificationService', 'ProfileService', '$log', '$state', pageStateHeader],
       controllerAs: "vm"
     };
   });
 
-  function pageStateHeader($scope, NotificationService, ProfileService, $log) {
+  function pageStateHeader($scope, NotificationService, ProfileService, $log, $state) {
     var vm = this;
     vm.handle = $scope.handle;
     vm.profile = null;
@@ -28,7 +28,7 @@
     vm.previousStateLabel = null;
     vm.previousState = null;
     vm.showBackLink = _.get($scope, 'showBackLink', false);
-
+    vm.backHandler = backHandler;
     activate();
 
     function activate() {
@@ -47,7 +47,7 @@
       if (vm.previousStateName) {
         if (vm.previousStateName === 'dashboard') {
           vm.previousStateLabel = 'Dashboard';
-        } else if (vm.previousStateName === 'profile') {
+        } else if (vm.previousStateName.indexOf('profile') > -1) {
           vm.previousStateLabel = 'Profile';
         }
       }
@@ -62,6 +62,21 @@
           vm.loading = false;
         }
       });
+    }
+
+    function backHandler() {
+      var _params = {};
+      var _name = vm.previousStateName;
+      switch (vm.previousStateName) {
+        case 'profile.about':
+          _params = {userHandle: vm.profile.handle};
+          break;
+        case 'dashboard':
+        default:
+          _name = 'dashboard';
+          break;
+      }
+      $state.go(_name, _params);
     }
 
     function displayMoneyEarned(handle) {
