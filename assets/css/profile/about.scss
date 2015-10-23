@@ -209,7 +209,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      cursor: pointer;
 
       &.noclick {
         cursor: default;
@@ -496,7 +495,6 @@
 
       .track {
         width: 100%;
-        cursor: pointer;
         padding-top: 30px;
         .name {
           img {
