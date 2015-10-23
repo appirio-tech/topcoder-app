@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>nav/members</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="nav/members" sketch:type="MSArtboardGroup" stroke="#F6F6F6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M26,2 L21,2 C21,4.761 18.761,7 16,7 C13.239,7 11,4.761 11,2 L6,2 L1,5.091 L1,13 L6,13 L6,30 L26,30 L26,13 L31,13 L31,5.091 L26,2 L26,2 Z" id="Stroke-73" sketch:type="MSShapeGroup"></path>
+            <path d="M18.0715096,14.5295886 L20.7184637,14.5295886 L20.7184637,22.4038232 L18.0715096,22.4038232 L18.0715096,22.2943548 L20.2036922,22.2943548 L20.2036922,14.6141003 L18.0715096,14.6141003 L18.0715096,14.5295886 Z" id="Path-121" sketch:type="MSShapeGroup"></path>
+            <path d="M11.0715096,14.5295886 L13.7184637,14.5295886 L13.7184637,22.4038232 L11.0715096,22.4038232 L11.0715096,22.2943548 L13.2036922,22.2943548 L13.2036922,14.6141003 L11.0715096,14.6141003 L11.0715096,14.5295886 Z" id="Path-121" sketch:type="MSShapeGroup" transform="translate(12.394987, 18.466706) scale(-1, 1) translate(-12.394987, -18.466706) "></path>
+        </g>
+    </g>
+</svg>
