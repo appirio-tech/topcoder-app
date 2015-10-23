@@ -12,7 +12,8 @@
         .image
           .form-label your profile image
           .edit-image
-            img.profile-circle(loading-src="/images/ico-user-default.svg", ng-src="{{vm.userData.photoURL}}")
+            img.profile-circle(ng-show="vm.userData.photoURL && vm.userData.photoURL.length", ng-src="{{vm.userData.photoURL}}")
+            img.profile-circle(ng-show="!vm.userData.photoURL || !vm.userData.photoURL.length", src="/images/ico-user-default.svg")
 
             .buttons
               button.file-upload.tc-btn.tc-btn-primary.tc-btn-s
