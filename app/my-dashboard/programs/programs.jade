@@ -5,7 +5,7 @@ header(ng-hide="vm.loading || !vm.registered")
 
 section.ios(ng-hide="vm.loading")
   .unregistered(ng-hide="vm.registered")
-    empty-state-placeholder(title="iOS COMMUNITY", description="Earn iOS topcoder badges and exclusive access to iOS challenges, prizes and special community-related events.")
+    empty-state-placeholder(title="iOS COMMUNITY", description="Earn iOS topcoder badges and exclusive access to iOS challenges, prizes and special community-related events.", show="!vm.registered")
       .info-links
         a.participate.tc-btn.tc-btn-s(ng-click="vm.registerUser()") Participate
 

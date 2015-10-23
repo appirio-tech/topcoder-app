@@ -16,8 +16,11 @@
           button.list(ng-click="vm.changeView('list')", ng-class="{ disabled: vm.view === 'list' }") List
 
       .no-srms(ng-if="!vm.srms.length && vm.loading === 'ready'")
-        p(ng-if="vm.statusFilter === 'future'") There are no upcoming SRMs.
-        p(ng-if="vm.statusFilter === 'past'") You have not participated in any SRMs yet.
+        empty-state-placeholder(title="Past SRMs", description="You have not participated in any SRMs yet.", show="vm.statusFilter === 'past'")
+          .info-links
+            a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/data?pageIndex=1") Find SRMs
+            a.learn-more(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
+        empty-state-placeholder(title="Upcoming SRMs", description="There are no upcoming SRMs.", show="vm.statusFilter === 'future'")
 
       .has-srms(ng-show="vm.srms.length")
         .data(ng-class="vm.view + '-view'")

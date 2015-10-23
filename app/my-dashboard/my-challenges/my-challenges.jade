@@ -9,7 +9,7 @@ header(ng-hide="vm.loading || !vm.userHasChallenges")
 .section-loading(ng-show="vm.loading")
 
 section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
-  empty-state-placeholder(title="My Challenges", description="Compete in challenges to win money, test yourself against the world's best, and learn new skills")
+  empty-state-placeholder(title="My Challenges", description="Compete in challenges to win money, test yourself against the world's best, and learn new skills", show="!vm.userHasChallenges")
     .info-links
       a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
 

@@ -69,6 +69,31 @@
     display: flex;
     flex-direction: inherit;
     align-items: center;
+
+    .info-links {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      a {
+        text-transform: uppercase;
+        @include sofia-pro-medium;
+
+        &:not(:last-child) {
+          margin-bottom: 30px;
+        }
+
+        &.participate {
+          color: $white;
+        }
+
+        &.learn-more {
+          font-size: 12px;
+          line-height: 12px;
+          color: $gray-lighter;
+        }
+      }
+    }
   }
   .has-srms {
     display: flex;

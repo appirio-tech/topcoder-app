@@ -11,20 +11,25 @@
       templateUrl: 'directives/empty-state-placeholder/empty-state-placeholder.directive.html',
       scope: {
         title: '@',
-        description: '@'
+        description: '@',
+        show: '='
       },
       controller: ['$scope', 'CONSTANTS', '$attrs',
         function($scope, CONSTANTS, $attrs) {
-        $scope.DOMAIN = CONSTANTS.domain;
-        var vm = this;
-        vm.title = $scope.title;
-        vm.description = $scope.description;
+          $scope.DOMAIN = CONSTANTS.domain;
+          var vm = this;
+          vm.title = $scope.title;
+          vm.description = $scope.description;
+          console.log($scope.show);
+          vm.show = _.get($scope, 'show', false);
 
-        activate();
+          activate();
 
-        function activate() {
-
-        }
+          function activate() {
+            $scope.$watch('show', function (newValue, oldValue) {
+              vm.show = newValue;
+            })
+          }
       }],
       controllerAs: "vm"
     };

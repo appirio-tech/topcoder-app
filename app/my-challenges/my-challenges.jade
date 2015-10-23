@@ -24,14 +24,15 @@
 
             button.list(ng-click="vm.changeView('list')", ng-class="{ disabled: vm.view === 'list' }") List
 
-        .noChallenges(ng-show="vm.myChallenges.length === 0 && vm.loading === 'ready'")
-          p(ng-show="vm.statusFilter === 'completed'") You have not participated in any challenges yet.
-          p(ng-if="vm.statusFilter === 'active'")
-            empty-state-placeholder(title="My Challenges", description="There are no active challenges.")
-              .info-links
-                a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
-
-                a.learn-more(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
+        section.noChallenges(ng-show="vm.myChallenges.length === 0 && vm.loading === 'ready'")
+          empty-state-placeholder(title="Past Challenges", description="You have not participated in any challenges yet.", show="vm.statusFilter === 'completed'")
+            .info-links
+              a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
+              a.learn-more(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
+          empty-state-placeholder(title="Active Challenges", description="There are no active challenges.", show="vm.statusFilter === 'active'")
+            .info-links
+              a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
+              a.learn-more(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
 
         tc-section.hasChallenges(ng-show="vm.myChallenges.length", state="vm.loading")
 
