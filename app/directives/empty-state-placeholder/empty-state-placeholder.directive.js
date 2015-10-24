@@ -20,7 +20,6 @@
           var vm = this;
           vm.title = $scope.title;
           vm.description = $scope.description;
-          console.log($scope.show);
           vm.show = _.get($scope, 'show', false);
 
           activate();
