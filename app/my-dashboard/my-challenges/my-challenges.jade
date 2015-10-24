@@ -15,9 +15,9 @@ section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
         a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
 
         a.learn-more(href="https://www.{{DOMAIN}}/member-onboarding") Learn More
-  empty-state-placeholder(title="My Challenges", description="You don't have any active challenges. Ready to find your next challenge?", show="!vm.userHasChallenges")
+  empty-state-placeholder(title="My Challenges", description="You don't have any active challenges. Ready to find your next challenge?", show="!vm.userHasChallenges && !vm.neverParticipated")
     .info-links
-      a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Explore Open Challenges
+      a.find-challenges.tc-btn.tc-btn-s(ui-sref="my-challenges({status: 'completed'})") Explore Open Challenges
 
 section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading", ng-class="{ 'list-view-active': vm.challengeView === 'list' }")
   .section-titles(ng-show="vm.challengeView === 'list'")
