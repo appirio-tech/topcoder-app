@@ -1,0 +1,139 @@
+.data.develop(ng-if="vm.track == 'DATA_SCIENCE'")
+
+  .stats(ng-show="profileVm.status.stats === 'ready'")
+    .graphs(ng-if="vm.history")
+      distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
+
+      history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
+
+
+  .bottom(ng-show="vm.subTrack == 'MARATHON_MATCH' || vm.SRMDetailDisplay")
+    hr(ng-if="vm.history")
+
+    h2.detailed Details
+
+    ul.vertical-stats(ng-show="vm.subTrack == 'MARATHON_MATCH'")
+      li
+        .left Country Rank
+        .right {{vm.typeStats.rank.countryRank | empty}}
+
+      li
+        .left Volatility
+        .right {{vm.typeStats.rank.volatility | empty}}
+
+      li
+        .left Maximum Rating
+        .right {{vm.typeStats.rank.maximumRating | empty}}
+
+      li
+        .left Best Rank
+        .right {{vm.typeStats.rank.bestRank | empty}}
+
+      li.first
+        .left Wins
+        .right {{vm.typeStats.wins | empty}}
+
+      li.first
+        .left Top Five Finishes
+        .right {{vm.typeStats.rank.topFiveFinishes | empty}}
+
+      li.first
+        .left Top Ten Finishes
+        .right {{vm.typeStats.rank.topTenFinishes | empty}}
+
+      li.first
+        .left Average Rank
+        .right {{vm.typeStats.rank.avgRank | empty}}
+
+      li.first
+        .left Average # Submissions
+        .right {{vm.typeStats.rank.avgNumSubmissions | empty}}
+
+      li.first
+        .left Competitions
+        .right {{vm.typeStats.challenges | empty}}
+
+      li
+        .left Most Recent Event
+        .right {{vm.typeStats.mostRecentEventDate | date | empty}}
+
+    ul.divisions(ng-show="vm.subTrack == 'SRM'")
+      li.division(ng-repeat="division in vm.divisionList", ng-if="division.levels && division.levels.length")
+        ul(class="{{division.levelName}}")
+          li.totals
+            ul.row
+              li.left
+                h3 {{vm.divisionName[$index]}}
+                span TOTAL
+              li.success
+                h3 {{division.total.percentSuccessful | percentage | empty}}
+                span SUCCESS
+
+              li.submitted
+                h3 {{division.total.problemsSubmitted | empty}}
+                span SUBMITTED
+
+              li.failed
+                h3 {{division.total.problemsFailed | empty}}
+                span FAILED CHALLENGES
+
+              li.failed-sys
+                h3 {{division.total.problemsSysByTest | empty}}
+                span FAILED SYS. TEST
+
+          li.level(ng-repeat="level in division.levels")
+            ul.row
+              li.left.level
+                h3.level {{level.levelName}}
+
+              li.success
+                h3 {{level.percentSuccessful | percentage | empty}}
+                span SUCCESS
+
+              li.submitted
+                h3 {{level.problemsSubmitted | empty}}
+                span SUBMITTED
+
+              li.failed
+                h3 {{level.problemsFailed | empty}}
+                span FAILED CHALLENGES
+
+              li.failed-sys
+                h3 {{level.problemsSysByTest | empty}}
+                span FAILED SYS. TEST
+
+      li.division(ng-if="vm.challengesSRM.levels && vm.challengesSRM.levels.length")
+        ul(class="{{vm.challengesSRM.levelName}}")
+          li.totals
+            ul.row
+              li.left.wide
+                h3 CHALLENGES
+                span TOTAL
+              li.success
+                h3 {{vm.challengesSRM.total.percentSuccessful | percentage | empty}}
+                span SUCCESS
+
+              li.submitted
+                h3 {{vm.challengesSRM.total.problemsSubmitted | empty}}
+                span CREATED
+
+              li.failed
+                h3 {{vm.challengesSRM.total.problemsFailed | empty}}
+                span FAILED
+
+          li.level(ng-repeat="level in vm.challengesSRM.levels")
+            ul.row
+              li.left.level.wide
+                h3.level {{level.levelName}}
+
+              li.success
+                h3 {{level.percentSuccessful | percentage | empty}}
+                span SUCCESS
+
+              li.submitted
+                h3 {{level.problemsSubmitted | empty}}
+                span CREATED
+
+              li.failed
+                h3 {{level.problemsFailed | empty}}
+                span FAILED

@@ -2,37 +2,21 @@
   .top
     ul.horizontal-stats
       li.stat
-        .value {{vm.typeStats.contests}}
-        .name CONTESTS
+        .value {{vm.typeStats.activeContests | empty}}
+        .name ACTIVE CHALLENGES
 
       li.stat
-        .value {{vm.typeStats.projects}}
-        .name PROJECTS
+        .value {{vm.typeStats.activeProjects | empty}}
+        .name ACTIVE PROJECTS
 
       li.stat
-        .value {{vm.typeStats.fulfillment + '%'}}
+        .value {{vm.typeStats.contests | empty}}
+        .name TOTAL CHALLENGES
+
+      li.stat
+        .value {{vm.typeStats.projects | empty}}
+        .name TOTAL PROJECTS
+
+      li.stat
+        .value {{vm.typeStats.fulfillment + '%' | empty}}
         .name FULFILLMENT
-
-  .top
-    h2.detailed Detailed Stats
-
-    ul.vertical-stats
-      li.first
-        .left Contests
-        .right {{vm.typeStats.contests}}
-
-      li
-        .left Projects
-        .right {{vm.typeStats.projects}}
-
-      li
-        .left Active Contests
-        .right {{vm.typeStats.activeContests}}
-
-      li
-        .left Active Projects
-        .right {{vm.typeStats.activeProjects}}
-
-      li
-        .left Fulfillment
-        .right {{vm.typeStats.fulfillment + '%'}}

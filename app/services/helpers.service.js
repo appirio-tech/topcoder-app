@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('Helpers', Helpers);
 
-  Helpers.$inject = ['$window', '$location', '$state', '$http', 'ISO3166'];
+  Helpers.$inject = ['$window', '$location', '$state', '$http', '$filter', 'ISO3166'];
 
-  function Helpers($window, $location, $state, $http, ISO3166) {
+  function Helpers($window, $location, $state, $http, $filter, ISO3166) {
     // TODO: Separate helpers by submodule
 
     var service = {
@@ -20,7 +20,8 @@
       getCountyObjFromIP: getCountyObjFromIP,
       redirectPostLogin: redirectPostLogin,
       getSocialUserData: getSocialUserData,
-      setupLoginEventMetrices: setupLoginEventMetrices
+      setupLoginEventMetrices: setupLoginEventMetrices,
+      npad: npad
 
     };
     return service;
@@ -34,6 +35,10 @@
         handle = "",
         email = "",
         socialProviderId = '';
+
+      var socialUserId = profile.user_id.substring(profile.user_id.lastIndexOf('|') + 1);
+      var refreshToken = null;
+
       if (socialProvider === 'google-oauth2') {
         firstName = profile.given_name;
         lastName = profile.family_name;
@@ -68,10 +73,27 @@
         lastName = profile.last_name;
         handle = profile.username;
         email = profile.email;
-        socialProviderId = 4;
+        socialProviderId = 5;
+      } else if (socialProvider === 'stackoverflow') {
+        firstName = profile.first_name;
+        lastName = profile.last_name;
+        handle = socialUserId;
+        email = profile.email;
+        socialProviderId = 6;
+      } else if (socialProvider === 'dribbble') {
+        firstName = profile.first_name;
+        lastName = profile.last_name;
+        handle = socialUserId;
+        email = profile.email;
+        socialProviderId = 7;
       }
 
-      var socialUserId = profile.user_id.substring(profile.user_id.indexOf('|') + 1);
+      var token = accessToken;
+      var tokenSecret = null;
+      if (profile.identities && profile.identities.length > 0) {
+        token = profile.identities[0].access_token;
+        tokenSecret = profile.identities[0].access_token_secret;
+      }
       return {
         socialUserId: socialUserId,
         username: handle,
@@ -80,8 +102,8 @@
         email: email,
         socialProfile: profile,
         socialProvider: socialProvider,
-        // TODO should this be refresh token or accessToken?
-        accessToken: accessToken
+        accessToken: token,
+        accessTokenSecret : tokenSecret
       }
     }
 
@@ -108,6 +130,11 @@
         questions[questionId].answer = answerObject.answer;
         questions[questionId].reviewItemId = answerObject.id;
 
+        if (answerObject.comments && answerObject.comments.length > 0) {
+          // pick first comment for peer review challenges
+          questions[questionId].comment = answerObject.comments[0].content;
+        }
+
         if (answerObject.answer !== '') {
           saved = true;
         }
@@ -128,6 +155,16 @@
           uploadId: review.uploadId,
           answer: '' + q.answer
         };
+
+        if (q.comment.length > 0) {
+          reviewItem.comments = [
+            {
+              content: '' + q.comment,
+              resourceId: review.resourceId,
+              commentTypeId: 1
+            }
+          ];
+        }
 
         if (updating) {
           reviewItem.id = q.reviewItemId;
@@ -264,6 +301,10 @@
       if (_kmq) {
         _kmq.push(['identify', usernameOrEmail ]);
       }
+    }
+
+    function npad(toPad, n) {
+      return $filter('npad')(toPad, n);
     }
   }
 })();

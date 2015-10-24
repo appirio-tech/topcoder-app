@@ -1,9 +1,17 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .completed-review-container {
-  form .scorecard .answer {
-    @include source-sans-italic;
-    margin: 25px 0;
-    padding-left: 30px;
+
+  form .scorecard {
+  	.answer {
+      @include source-sans-italic;
+      margin: 25px 0;
+      padding-left: 30px;
+    }
+    .comment {
+      margin: 25px 0;
+      padding-left: 30px;
+    }
   }
 }

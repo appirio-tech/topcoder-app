@@ -2,25 +2,10 @@
   .challenge-track
 
   header
-    a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+    .top
+      a.name(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") #[span {{challenge.name}}]
 
-    p {{challenge.subTrack | underscoreStrip}}
-
-  .challenge-details
-
-    p.currentPhase {{challenge.userCurrentPhase}}
-    .challenge-calendar(ng-show="challenge.userCurrentPhaseEndTime")
-      p.ends-in Ends In
-      p.time-remaining {{challenge.userCurrentPhaseEndTime[0]}}
-      p.unit-of-time {{challenge.userCurrentPhaseEndTime[1]}}
-      
-    p.prize-money(ng-show="challenge.reviewType === 'PEER'") Peer Review Challenge
-
-    p.prize-money(ng-hide="challenge.reviewType === 'PEER'") {{challenge.totalCheckpointPrize || 0 | currency:undefined:0}}
-
-    p.technologies {{challenge.technologies}}
-
-    //button.phase-action(ng-class="{'action-completed': challenge.currentPhaseActionCompleted}") Submit
+      p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
     .challenge-links
       .stats
@@ -38,3 +23,22 @@
         .forum-icon
 
         p Posts
+
+  .challenge-details
+
+    p.currentPhase {{challenge.userCurrentPhase}}
+
+    .challenge-calendar(ng-show="challenge.userCurrentPhaseEndTime")
+      p.ends-in Ends In
+      p.time-remaining {{challenge.userCurrentPhaseEndTime[0]}}
+      p.unit-of-time {{challenge.userCurrentPhaseEndTime[1]}}
+
+    .stalled-challenge(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
+
+    p.prize-money(ng-show="challenge.reviewType === 'PEER'") Peer Review Challenge
+
+    p.prize-money(ng-hide="challenge.reviewType === 'PEER'") {{challenge.totalPrize || 0 | currency:undefined:0}}
+
+    p.technologies {{challenge.technologies}}
+
+    //button.phase-action(ng-class="{'action-completed': challenge.currentPhaseActionCompleted}") Submit

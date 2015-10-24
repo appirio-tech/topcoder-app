@@ -1,14 +1,13 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .history-graph-directive {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
   .compare {
     margin-top: 5px;
     margin-bottom: 15px;
-    @include button-1-m;
   }
 }
 .history-graph-container {
@@ -33,7 +32,9 @@
     }
 
     rect {
-      fill: #f6f6f6;
+      fill: $white;
+      stroke: $gray-lighter;
+      stroke-width: 2.3px;
     }
 
     .line {
@@ -43,20 +44,32 @@
     }
 
     .grid.x .tick {
-      stroke: white;
-      opacity: 0.7;
+      stroke: $gray-light;
+      stroke-width: 2px;
+      stroke-dasharray: 6, 8;
     }
 
     .grid.y .tick {
-      stroke: #d7d7d7;
-      stroke-dasharray: 5, 5;
-      opacity: 0.3;
+      stroke: none;
+      opacity: 0;
+      stroke-width: 1px;
     }
 
     .y.axis .tick text {
       font-size: 10px;
       width: 20px;
       text-align: left;
+    }
+
+    circle {
+      r: 5.5px;
+      stroke: $white;
+      stroke-width: 1.5px;
+    }
+
+    circle::hover {
+      r: 7.5px;
+      stroke-width: 2px;
     }
 
 
@@ -115,6 +128,11 @@
 }
 
 @media (min-width: 768px) {
+
+.stats > .graphs {
+  margin-top: -40px !important;
+}
+
 .history-graph-container {
   width: 950px;
   margin-left: auto;
@@ -136,10 +154,6 @@
 
     .x.axis path {
       display: none;
-    }
-
-    rect {
-      fill: #f6f6f6;
     }
 
     .line {

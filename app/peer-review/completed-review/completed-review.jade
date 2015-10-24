@@ -31,3 +31,6 @@
         p.guidelines(ng-if="q.questionTypeId === 5", ng-repeat="guideline in q.guidelines track by $index") {{guideline}}
 
         p.answer(ng-if="q.questionTypeId === 5") Your Response: {{q.answer}}
+
+        p.comment(ng-if="q.comment") Comment: {{q.comment}}
+

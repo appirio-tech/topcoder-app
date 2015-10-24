@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .srm.tile-view {
@@ -90,6 +91,7 @@
 
       span {
         @include sofia-pro-bold;
+        height: 24px;// matches the line-height of the section
       }
     }
     .ranks {
@@ -192,13 +194,17 @@
   .srm-action {
     margin-top: 22px;
     margin-bottom: 40px;
-    @include button-m-wide;
   }
 
   .phase-status {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+
+    .unregistered {
+      // workaround until we are able to get registration status of the user
+      visibility: hidden;
+    }
   }
 }
 
@@ -356,14 +362,15 @@
     }
   }
 
-  .srm-action {
-    @include button-m-wide;
-  }
-
   .phase-status {
     flex : 1;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+
+    .unregistered {
+      // workaround until we are able to get registration status of the user
+      visibility: hidden;
+    }
   }
 }

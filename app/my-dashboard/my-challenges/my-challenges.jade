@@ -1,5 +1,5 @@
 header(ng-hide="vm.loading")
-  h1.section-title My Challenges
+  h1.section-title Active Challenges
 
   .challenge-view-toggle(ng-show="vm.userHasChallenges")
     button.tile(ng-click="vm.toggleView('tile')", ng-class="{ disabled: vm.challengeView === 'tile' }") Grid
@@ -31,9 +31,9 @@ section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
   p.info Compete in challenges to win money, test yourself against the world's best, and learn new skills
 
   .info-links
-    a(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
+    a.tc-btn.tc-btn-l(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
 
-    a(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
+    a.tc-btn.tc-btn-ghost.tc-btn-l(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
 
 section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading", ng-class="{ 'list-view-active': vm.challengeView === 'list' }")
   .section-titles(ng-show="vm.challengeView === 'list'")
@@ -45,7 +45,7 @@ section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading", ng-class="{ '
 
     challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.challengeView", ng-class="vm.challengeView + '-view'")
 
-.my-challenges-links(ng-if="vm.userHasChallenges && !vm.loading")
-  a(ui-sref="my-challenges({status: 'active'})") View All Active Challenges
+.my-challenges-links(id="viewAllChallenges", ng-show="vm.userHasChallenges && !vm.loading")
+  a.active(ui-sref="my-challenges({status: 'active'})") View More
 
-  a(ui-sref="my-challenges({status: 'completed'})") View All Past Challenges
+  a.past(ui-sref="my-challenges({status: 'completed'})") Past Challenges

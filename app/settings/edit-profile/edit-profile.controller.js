@@ -14,10 +14,14 @@
     vm.onFileChange   = onFileChange;
     vm.updateProfile  = updateProfile;
     vm.addSkill = addSkill;
+    vm.deleteImage = deleteImage;
+    vm.changeImage = changeImage;
 
     activate();
 
     function activate() {
+      vm.userData = userData.clone();
+      vm.originalUserData = userData;
       vm.linkedExternalAccounts = [];
       vm.linkedExternalAccountsData = {};
       vm.skills = false;
@@ -26,12 +30,11 @@
       vm.tracks = {};
 
       vm.countries = ISO3166.getAllCountryObjects();
-      vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.competitionCountryCode);
+      vm.countryObj = ISO3166.getCountryObjFromAlpha3(vm.userData.competitionCountryCode);
 
-      processData(userData);
-      vm.userData = userData;
+      processData(vm.userData);
 
-      ExternalAccountService.getLinkedExternalAccounts(userData.userId).then(function(data) {
+      ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId).then(function(data) {
         vm.linkedExternalAccounts = data;
       });
 
@@ -114,6 +117,7 @@
         vm.profileFormProcessing = false;
         $log.info('Saved successfully');
         toaster.pop('success', "Success!", "Your account information was updated.");
+        for (var k in vm.userData) userData[k] = vm.userData[k];
       })
       .catch(function(err) {
         vm.profileFormProcessing = false;
@@ -128,10 +132,34 @@
 
     function processData(userInfo) {
       vm.tracks = {
-        DESIGN: _.contains(userData.tracks, 'DESIGN'),
-        DEVELOP: _.contains(userData.tracks, 'DEVELOP'),
-        DATA_SCIENCE: _.contains(userData.tracks, 'DATA_SCIENCE'),
+        DESIGN: _.contains(userInfo.tracks, 'DESIGN'),
+        DEVELOP: _.contains(userInfo.tracks, 'DEVELOP'),
+        DATA_SCIENCE: _.contains(userInfo.tracks, 'DATA_SCIENCE'),
       };
+    }
+
+    function deleteImage() {
+      var userData = vm.originalUserData;
+      var oldPhotoURL = userData.photoURL;
+      delete userData['photoURL'];
+      ProfileService.updateUserProfile(userData)
+      .then(function() {
+        vm.userData.photoURL = '';
+        $log.info('Saved successfully');
+        toaster.pop('success', "Success!", "Your account information was updated.");
+      })
+      .catch(function(err) {
+        vm.profileFormProcessing = false;
+        $log.error(err);
+        vm.userData.photoURL = oldPhotoURL;
+        vm.originalUserData.photoURL = oldPhotoURL;
+        toaster.pop('error', "Whoops!", "Something went wrong. Please try again later.");
+      });
+    }
+
+    function changeImage() {
+      var fileInput = document.querySelector('#change-image-input');
+      fileInput.click(); // Or, use the native click() of the file input.
     }
   }
 })();

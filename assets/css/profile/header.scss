@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .profile-container {
@@ -5,11 +6,6 @@
   flex-direction: column;
   align-items: stretch;
 
-}
-
-.profile-header-container {
-  padding: 50px 160px;
-  background: white;
 }
 
 

@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('TcAuthService', TcAuthService);
 
-  TcAuthService.$inject = ['CONSTANTS', 'auth', 'AuthTokenService', '$rootScope', '$q', '$log', '$timeout', 'UserService', 'Helpers', 'ApiService'];
+  TcAuthService.$inject = ['CONSTANTS', 'auth', 'AuthTokenService', '$rootScope', '$q', '$log', '$timeout', 'UserService', 'Helpers', 'ApiService', 'store'];
 
-  function TcAuthService(CONSTANTS, auth, AuthTokenService, $rootScope, $q, $log, $timeout, UserService, Helpers, ApiService) {
+  function TcAuthService(CONSTANTS, auth, AuthTokenService, $rootScope, $q, $log, $timeout, UserService, Helpers, ApiService, store) {
     $log = $log.getInstance("TcAuthServicetcAuth");
     var auth0 = auth;
     var service = {
@@ -66,14 +66,16 @@
 
         auth0.signin(options,
           function(profile, idToken, accessToken, state, refreshToken) {
-            console.log(profile);
-            console.log(idToken);
-            console.log(accessToken);
-            console.log(refreshToken);
             AuthTokenService.exchangeToken(refreshToken, idToken).then(
               function(appiriojwt) {
                 $timeout(function() {
                   $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
+
+                  var userIdentity = UserService.getUserIdentity();
+
+                  if (userIdentity && !store.get(userIdentity.userId)) {
+                    store.set(userIdentity.userId, {});
+                  }
                   resolve();
                 }, 200);
               },
@@ -102,7 +104,6 @@
             reject(error);
           }
         );
-
       });
     }
 
@@ -119,6 +120,7 @@
             },
             function(profile, idToken, accessToken, state, refreshToken) {
               var socialData = Helpers.getSocialUserData(profile, accessToken);
+
               UserService.validateSocialProfile(socialData.socialUserId, socialData.socialProvider)
                 .then(function(resp) {
                   $log.debug(JSON.stringify(resp));

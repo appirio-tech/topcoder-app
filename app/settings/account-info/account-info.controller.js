@@ -15,12 +15,13 @@
       accountInfoForm: false,
       newPasswordForm: false
     };
+    var originalUserData = userData;
 
     activate();
 
     function activate() {
-      processData();
-      vm.userData = userData;
+      vm.userData = userData.clone();
+      processData(vm.userData);
       UserService.getUserProfile({fields: 'credential'})
       .then(function(res) {
         vm.isSocialRegistrant = !res.credential.hasPassword;
@@ -31,7 +32,7 @@
       });
 
       vm.countries = ISO3166.getAllCountryObjects();
-      vm.countryObj = ISO3166.getCountryObjFromAlpha3(userData.homeCountryCode);
+      vm.countryObj = ISO3166.getCountryObjFromAlpha3(vm.userData.homeCountryCode);
 
       // Timeout needed since newPasswordForm.currentPassword doesn't exist until later
       $timeout(function(){
@@ -52,14 +53,29 @@
 
       var isValidCountry = _.isUndefined(countryCode) ? false : true;
       vm.accountInfoForm.country.$setValidity('required', isValidCountry);
+      if (isValidCountry) {
+        vm.userData.homeCountryCode = countryCode;
+      }
+    }
+
+    function getAddr() {
+      var add = vm.homeAddress;
+      if (add.streetAddr1 && add.city && add.zip) {
+        add.type = add.type || 'home';
+        return [add];
+      } else {
+        return [];
+      }
     }
 
     function saveAccountInfo() {
       vm.formProcessing.accountInfoForm = true;
-      ProfileService.updateUserProfile(userData)
+      vm.userData.addresses = getAddr();
+      ProfileService.updateUserProfile(vm.userData)
       .then(function(data) {
         vm.formProcessing.accountInfoForm = false;
         toaster.pop('success', "Success!", "Your account information was updated.");
+        for (var k in vm.userData) userData[k] = vm.userData[k];
       })
       .catch(function() {
         vm.formProcessing.accountInfoForm = false;
@@ -67,7 +83,7 @@
       })
     }
 
-    function processData() {
+    function processData(userData) {
       vm.homeAddress = _.find(userData.addresses, {type: 'HOME'}) || {};
     }
 

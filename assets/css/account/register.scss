@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .register-container {
@@ -58,31 +59,67 @@
 
   .terms {
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
     p {
       font-size: 12px;
       line-height: 15px;
       color: #A3A3AE;
     }
-
-    p:first-child {
-      margin-bottom: 10px;
-    }
   }
 
-  // Social section
-  .social {
+  // login-options section
+  .login-options {
 
-    .social-icons {
+    .networks {
 
       i {
         cursor: pointer;
       }
+
+      .network {
+        &.github {
+
+        }
+
+        &.facebook {
+          margin-left: 41px;
+        }
+
+        &.google-plus {
+          margin-left: 43px;
+        }
+      }
+    }
+  }
+  .section-break {
+    hr {
+      max-width: 180px;
+      margin: 10px auto 20px;
+      border: none;
+      border-bottom: 1px solid $gray-light;
+    }
+  }
+}
+
+
+@media (max-width: 767px) {
+  .register-container {
+    form {
+      .first-last-names {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+
+    section.login-options {
+      margin-bottom: 41px;
     }
   }
 
   .join-topcoder {
-    margin-bottom: 15px;
+    position: initial;
+    margin-top: 30px;
   }
 }

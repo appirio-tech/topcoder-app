@@ -1,0 +1,29 @@
+.tile-view(ng-show="view === 'tile'")
+  p.place(ng-class="{ 'first-place': challenge.wonFirst }", ng-show="challenge.highestPlacement") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
+  p.place(ng-show="challenge.userStatus === 'NOT_FINISHED'") Didn't Finish
+  p.place(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
+
+  .thumbnail(ng-click="openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
+    img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
+
+    .thumbnail-gallery(ng-click="challenge.showLightbox()")
+      .gallery-icon
+
+      .num-images 1 image
+
+.list-view(ng-show="view === 'list'")
+  .place-date
+    p.place(ng-class="{ 'first-place': challenge.wonFirst }", ng-show="challenge.highestPlacement") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
+    p.place(ng-show="challenge.userStatus === 'NOT_FINISHED'") Didn't Finish
+    p.place(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
+    p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
+
+  .winner-ribbon(ng-show="challenge.wonFirst")
+
+  .thumbnail(ng-click="openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
+    img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
+
+    .thumbnail-gallery(ng-click="challenge.showLightbox()")
+      .gallery-icon
+
+      .num-images 1 image

@@ -3,11 +3,11 @@
 
   angular.module('tc.services').factory('UserService', UserService);
 
-  UserService.$inject = ['CONSTANTS', 'ApiService', '$injector', 'AuthTokenService'];
+  UserService.$inject = ['CONSTANTS', 'ApiService', '$injector', 'AuthTokenService', 'UserPrefStore'];
 
-  function UserService(CONSTANTS, ApiService, $injector, AuthTokenService) {
+  function UserService(CONSTANTS, ApiService, $injector, AuthTokenService, UserPrefStore) {
 
-    var api = ApiService.restangularV3;
+    var api = ApiService.getApiServiceProvider('USER');
 
     var _config = {
       cache: false,
@@ -26,6 +26,9 @@
       getUserProfile: getUserProfile,
       getV2UserProfile: getV2UserProfile,
       addSocialProfile: addSocialProfile
+      removeSocialProfile: removeSocialProfile,
+      getPreference: getPreference,
+      setPreference: setPreference
     };
     return service;
 
@@ -104,12 +107,27 @@
       return api.one('users', userId).customPOST(profileData, "profiles", {}, {});
     }
 
+    function removeSocialProfile (userId, account) {
+      return api.one("users", userId).one("profiles", account).remove();
+    }
+
     /**
      * Temporary end point for getting member's badges/achievements. This endpoint
      * should be removed once we have it in v3.
      */
     function getV2UserProfile(handle) {
       return ApiService.restangularV2.one('users', handle).get();
+    }
+
+    function getPreference(prefName) {
+      var obj = UserPrefStore.get('preferences');
+      return _.get(obj, prefName)
+    }
+
+    function setPreference(prefName, val) {
+      var obj = UserPrefStore.get('preferences') || {};
+      obj[prefName] = val;
+      UserPrefStore.set('preferences', obj);
     }
   }
 

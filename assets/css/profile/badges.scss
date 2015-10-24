@@ -1,30 +1,67 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
-.ngdialog.ngdialog-theme-default .ngdialog-content {
-  display: flex;
-  flex-flow: row wrap;
-
-  .badges {
+.ngdialog.ngdialog-theme-default {
+  padding: 0;
+  .ngdialog-content {
+    padding: 30px;
+    background: white;
+    opacity: 0.95;
     width: 100%;
-    margin-top: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 
-    .content {
-      max-height: 300px;
-      overflow: auto;
-      .badgeGroups {
-        display: flex;
-        flex-flow: column wrap;
-        align-items: center;
+    header.head {
+      @include sofia-pro-extra-light;
+      font-size: 28px;
+      line-height: 34px;
+      span {
+        display: inline;
+        &.title {
+          color: $primary;
+          font-weight: bold;
+        }
       }
-      .footer-badges {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
+      img.profile-circle {
+        display: inline;
+        border-radius: 50%;
+        height: 30px;
+        margin-bottom: -5px;
+        margin-right: 13px;
+      }
+
+    }
+
+    .badges {
+      margin-top: 30px;
+      padding: 30px;
+      background: #fbfbfb;
+      border: 1px solid #f0f0f0;
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .content {
+        overflow: auto;
+        .badgeGroups {
+          display: flex;
+          flex-flow: column wrap;
+          align-items: center;
+        }
+        .footer-badges {
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: center;
+        }
       }
     }
   }
 }
+
 
 .ngdialog.ngdialog-theme-default .ngdialog-content {
   @media (max-width: 768px) {
@@ -32,12 +69,9 @@
     border-radius: 0;
   }
   @media (min-width: 768px) {
-    width: 80%;
   }
   @media (min-width: 992px) {
-    width: 60%;
   }
   @media (min-width: 1200px) {
-    width: 50%;
   }
 }

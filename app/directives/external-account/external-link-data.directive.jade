@@ -22,7 +22,7 @@
             .key repositories
 
       div(ng-switch-when="stackoverflow")
-        .handle {{account.data.handle}}
+        .handle {{account.data.name}}
 
         .pending(ng-show="account.data.status === 'PENDING'")
           p Loading data. This will take a few minutes.
@@ -50,7 +50,7 @@
             .key likes
 
 
-      div(ng-switch-when="dribble")
+      div(ng-switch-when="dribbble")
         .handle {{account.data.handle}}
 
         .pending(ng-show="account.data.status === 'PENDING'")
@@ -65,7 +65,7 @@
             .key likes
 
       div(ng-switch-when="bitbucket")
-        .handle {{account.data.username}}
+        .handle {{account.data.handle}}
 
         .pending(ng-show="account.data.status === 'PENDING'")
           p Loading data. This will take a few minutes.
@@ -75,8 +75,7 @@
             .value {{(account.data.followers|number:0) || 0}}
             .key followers
           li
-            //- {{(account.data.repositories|number:0) || 0}}
-            .value TBD
+            .value {{(account.data.repos|number:0) || 0}}
             .key repositories
 
       div(ng-switch-when="twitter")

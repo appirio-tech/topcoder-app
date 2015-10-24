@@ -27,12 +27,14 @@
     'angular.filter',
     'CONSTANTS',
     'dcbImgFallback',
-    'toaster'
+    'toaster',
+    'angular-intro',
+    'ngMessages',
+    'angular-carousel',
+    'sticky'
   ];
 
-  angular
-    .module('topcoder', dependencies)
-    .run(appRun);
+  angular.module('topcoder', dependencies).run(appRun);
 
   appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log', 'NotificationService', 'CONSTANTS'];
 
@@ -55,6 +57,8 @@
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
       // set document title
       document.title = Helpers.getPageTitle(toState, $state.$current);
+      // adds previous state to scope
+      $rootScope.previousState = fromState;
     });
 
     $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {

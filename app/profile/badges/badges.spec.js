@@ -22,11 +22,6 @@ describe('Profile Badges Controller', function() {
     userService = UserService;
 
     // mock user api
-    sinon.stub(userService, 'getV2UserProfile', function() {
-      var deferred = $q.defer();
-      deferred.resolve(mockUserProfile.data);
-      return deferred.promise;
-    });
     sinon.stub(userService, 'getUserIdentity', function() {
       return {
         userId: 1234567,
@@ -37,7 +32,8 @@ describe('Profile Badges Controller', function() {
     scope = $rootScope.$new();
     controller = $controller('BadgesController', {
       $scope: scope,
-      userHandle: 'vikasrohit'
+      userHandle: 'vikasrohit',
+      profile: {photoURL: "http://topcoder.com/test.png", badges: mockUserProfile.data}
     });
     $rootScope.$apply();
 
@@ -47,9 +43,8 @@ describe('Profile Badges Controller', function() {
 
   describe('initialization', function() {
 
-    it('$scope.coder', function() {
-      expect(scope.coder).to.exist;
-      expect(scope.coder.handle).to.equal('vikasrohit');
+    it('$scope.achievements', function() {
+      expect(scope.achievements).to.exist;
     });
 
     it('controller.achievementGroups', function() {

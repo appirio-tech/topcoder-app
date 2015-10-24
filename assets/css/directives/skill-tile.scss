@@ -1,19 +1,18 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 skill-tile {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 130px;
-  width: 100px;
+  height: 106px;
+  width: 80px;
 
   @media (min-width: 768px) {
     width: 100px;
-    height: 180px;
+    height: 100px;
     width: 100px;
   }
-
-
 
   .new {
     .skill-icon {
@@ -23,7 +22,12 @@ skill-tile {
     }
   }
 
-  a.hidden {
+  a:hover {
+    text-decoration: none;
+  }
+
+  a.skill-hidden {
+
     img {
       opacity: .3;
     }
@@ -34,7 +38,7 @@ skill-tile {
 
     .name {
       text-decoration: line-through;
-      color: $system-gray;
+      color: $accent-gray;
     }
   }
 
@@ -87,7 +91,7 @@ skill-tile {
 
   .name {
     @include sofia-pro-light;
-    margin-top: 10px;
+    margin-top: 8px;
     font-size: 12px;
     color: #3A3C3E;
     text-align: center;
@@ -96,9 +100,10 @@ skill-tile {
     }
   }
 }
+
 .settings-container {
   skill-tile {
-    a:not(.hidden):hover {
+    a:not(.skill-hidden):hover {
       div.skill-icon {
         background-color: #FEE8EC;
         border: 1px solid #FCBBC5;

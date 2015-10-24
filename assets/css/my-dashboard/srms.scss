@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .srms {
@@ -7,7 +8,7 @@
 
    > header {
     position: relative;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 
     a.viewSRMs {
       position: absolute;
@@ -18,15 +19,16 @@
   }
 
   section {
-    padding: 15px;
-    border-top: 1px solid #F0F0F0;
-    border-bottom: 1px solid #F0F0F0;
-    background-color: #FCFCFC;
+    padding: 20px 15px 5px 15px;
+    border-top: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+    background-color: $gray-lightest;
 
     .srm-tiles {
       @include horizontal-scroll;
+      display: flex;
+      flex-direction: row;
       @media only screen and (min-width: 768px) {
-        display: flex;
         flex-flow: row wrap;
         margin: 0 auto;
         overflow: visible;
@@ -86,6 +88,11 @@
           display: inline-block;
           margin-left: 15px;
         }
+
+        a {
+          width: 196px;
+          text-align: center;
+        }
       }
 
       .flex-wrapper {
@@ -106,8 +113,6 @@
 
         a {
           margin-bottom: 21px;
-          @include button-m-wide;
-          text-decoration: none;
         }
       }
     }
@@ -115,14 +120,10 @@
 
   .srms-links {
     @include module-links;
+    text-transform: uppercase;
 
-    a {
-      @include button-m;
-      @include button-secondary;
-
-      &:not(:first-child) {
-        margin-left: 10px;
-      }
+    a:not(:first-child) {
+      margin-left: 30px;
     }
   }
 }

@@ -1,7 +1,7 @@
 /* jshint -W117, -W030 */
 describe('My SRMs Controller', function() {
   var controller;
-  var authService, srmService, userService;
+  var authService, srmService, userService, mockState;
   var srms = mockData.getMockSRMs();
   var results = mockData.getMockSRMResults();
 
@@ -39,10 +39,8 @@ describe('My SRMs Controller', function() {
       } else {
         resp = JSON.parse(JSON.stringify(srms.slice(1)));
       }
-      resp.pagination = {
-        total: resp.length,
-        pageIndex: 1,
-        pageSize: 10
+      resp.metadata = {
+        totalCount: resp.length
       };
       deferred.resolve(resp);
       return deferred.promise;
@@ -51,40 +49,34 @@ describe('My SRMs Controller', function() {
     sinon.stub(srmService, 'getPastSRMs', function(data) {
       var deferred = $q.defer();
       var resp = JSON.parse(JSON.stringify(srms.slice(1)));
-      resp.pagination = {
-        total: resp.length,
-        pageIndex: 1,
-        pageSize: 10
+      resp.metadata = {
+        totalCount: resp.length,
       };
       deferred.resolve(resp);
       return deferred.promise;
     });
 
-    // mock srmResults api
-    sinon.stub(srmService, 'getSRMResults', function(data) {
-      var deferred = $q.defer();
-      var resp = JSON.parse(JSON.stringify(results));
-      resp.pagination = {
-        total: resp.length,
-        pageIndex: 1,
-        pageSize: 10
-      };
-      deferred.resolve(resp);
-      return deferred.promise;
-    });
+    mockState = {
+      '$current' : {'name': 'test'},
+      go: function() {}
+    };
   });
 
   bard.verifyNoOutstandingHttpRequests();
 
-  describe('inialization', function() {
+  describe('intialization', function() {
     var mySRMs = null;
+    var spy;
     beforeEach( function(){
       $scope = $rootScope.$new();
       mySRMs = $controller('MySRMsController', {
         SRMService : srmService,
-        UserService : userService
+        UserService : userService,
+        $state: mockState,
+        $scope: $scope
       });
       $rootScope.$apply();
+      spy = sinon.spy(mySRMs, 'getSRMs');
     });
 
     it('controller should exist', function() {
@@ -93,21 +85,29 @@ describe('My SRMs Controller', function() {
 
     it('mySRMs.srms should be initialized', function() {
       // by default it should load upcoming SRMs
-      expect(mySRMs.listType).to.equal('past');
+      expect(mySRMs.statusFilter).to.equal('past');
       expect(mySRMs.srms).to.exist;
+      expect(mySRMs.orderBy).to.equal('endDate');
+      expect(mySRMs.reverseOrder).to.be.true;
       expect(mySRMs.srms.length).to.equal(srms.length - 1);
+      expect(spy.withArgs(0).calledOnce);
     });
   });
 
   describe('upcoming/past filters', function() {
     var mySRMs = null;
+    var spy;
     beforeEach( function(){
       $scope = $rootScope.$new();
       mySRMs = $controller('MySRMsController', {
         SRMService : srmService,
-        UserService : userService
+        UserService : userService,
+        $state: mockState,
+        $stateParams: {'status': 'future'},
+        $scope: $scope
       });
       $rootScope.$apply();
+      spy = sinon.spy(mySRMs, 'getSRMs');
     });
 
     it('controller should exist', function() {
@@ -115,23 +115,21 @@ describe('My SRMs Controller', function() {
     });
 
     it('upcoming SRMs should be fetched', function() {
-      expect(mySRMs.listType).to.equal('past');
       expect(mySRMs.srms).to.exist;
-      // should have one less srm for past filter as per mocked method
-      expect(mySRMs.srms.length).to.equal(srms.length - 1);
-      // apply upcoming filter
-      mySRMs.viewUpcomingSRMs();
-      $rootScope.$apply();
-      expect(mySRMs.listType).to.equal('future');
+      expect(mySRMs.statusFilter).to.equal('future');
+      expect(mySRMs.orderBy).to.equal('startDate');
+      expect(mySRMs.reverseOrder).to.be.false;
       expect(mySRMs.srms).to.exist;
       // should have one extra srm for past filter as per mocked method
       expect(mySRMs.srms.length).to.equal(srms.length);
+      expect(spy.withArgs(0).calledOnce);
+
     });
 
     it('past SRMs should be fetched', function() {
       // apply past filter
-      mySRMs.viewPastSRMs();
-      expect(mySRMs.listType).to.equal('past');
+      mySRMs.changeFilter('past');
+      expect(mySRMs.statusFilter).to.equal('past');
       $rootScope.$apply();
       expect(mySRMs.srms).to.exist;
       // should have one less srm for upcoming filter as per mocked method

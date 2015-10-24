@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .programs {
@@ -99,11 +100,9 @@
 
     .info-links {
       a {
-        @include button-m;
         display: inline-block;
         margin-top: 30px;
         font-size: 13px;
-        color: $white;
         text-decoration: none;
         text-transform: uppercase;
         @media only screen and (min-width: 1000px) {
@@ -111,7 +110,6 @@
         }
 
         &:last-child {
-          @include button-ghost;
           margin-left: 30px;
         }
       }
@@ -120,16 +118,17 @@
   }
 
   .registered {
-    padding: 15px;
-    border-top: 1px solid #F0F0F0;
-    border-bottom: 1px solid #F0F0F0;
-    background-color: #FCFCFC;
+    padding: 20px 15px 5px 15px;
+    border-top: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+    background-color: $gray-lightest;
 
     .badge-and-challenges {
       @include horizontal-scroll;
+      display: flex;
+      flex-direction: row;
       @media only screen and (min-width: 768px) {
-        display: flex;
-        flex-flow: row wrap;
+        flex-wrapper: wrap;
         margin: 0 auto;
         overflow: visible;
         white-space: normal;
@@ -146,7 +145,7 @@
     .registered-badge {
       display: inline;
       height: 370px;
-      width: 270px;
+      min-width: 270px;
       border: 1px solid #DCDCDC;
       border-radius: 4px;
       background-color: $white;
@@ -175,8 +174,6 @@
       a {
         display: block;
         margin-top: 37px;
-        @include button-m-wide;
-        @include button-ghost;
         text-decoration: none;
       }
     }

@@ -6,32 +6,20 @@
   HeaderDashboardController.$inject = [
     '$stateParams',
     'NotificationService',
-    'ProfileService',
-    'userIdentity'
+    'profile',
+    '$log'
   ];
 
-  function HeaderDashboardController($stateParams, NotificationService, ProfileService, userIdentity) {
+  function HeaderDashboardController($stateParams, NotificationService, profile, $log) {
     var vm = this;
-    vm.loading = true;
-
-    if ($stateParams.notifyReset) {
-      NotificationService.inform('Thanks. Your new password has been set.');
-    }
+    vm.profile = profile;
 
     activate();
 
     function activate() {
-      var handle = userIdentity.handle;
-
-      ProfileService.getUserFinancials(handle)
-      .then(function(financials) {
-        vm.moneyEarned = _.sum(_.pluck(financials, 'amount'));
-        vm.loading = false;
-
-      })
-      .catch(function(err) {
-        vm.loading = false;
-      });
+      if ($stateParams.notifyReset) {
+        NotificationService.inform('Thanks. Your new password has been set.');
+      }
     }
   }
 })();

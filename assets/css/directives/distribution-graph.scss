@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .distribution-graph-directive {
@@ -8,7 +9,6 @@
   .compare {
     margin-top: 100px;
     margin-bottom: 15px;
-    @include button-1-m;
   }
 
 }

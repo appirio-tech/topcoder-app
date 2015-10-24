@@ -1,3 +1,4 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
 
 .my-dashboard-container {
@@ -8,40 +9,28 @@
   .subtrack-stats {
     width: 100%;
     max-width: 1242px;
-    margin-top: 60px;
     background-color: $white;
   }
 
-  .my-challenges, .srms, .programs {
+  .my-challenges, .srms, .programs, .community-updates {
     @include module-l;
+    margin-top: 1px;
     width: 100%;
+    padding-top: 30px;
   }
 
-  .programs {
-    @media only screen and (max-width: 450px) {
-      padding-top: 10px;
-    }
-    @media only screen and (min-width: 1200px) {
-      padding-top: 70px;
-      padding-bottom: 0;
-    }
-  }
-
-  .community-updates {
-    width: 100%;
-    @media only screen and (min-width: 1132px) {
-      @include module-l;
+  .my-challenges, .srms, .programs, .community-updates {
+    @media only screen and (min-width: 900px) {
+      padding-top: 30px;
     }
   }
 
   .section-title {
-    @include sofia-pro-bold;
-    font-size: 22px;
+    @include sofia-pro-medium;
+    font-size: 24px;
+    line-height: 29px;
     color: $gray-darkest;
     text-align: center;
     text-transform: uppercase;
-    @media only screen and (min-width: 450px) {
-      font-size: 28px;
-    }
   }
 }

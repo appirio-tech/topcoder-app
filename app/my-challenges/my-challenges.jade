@@ -1,34 +1,32 @@
 .my-challenges-container
   .my-challenges
-    .nav
-      .breadcrumbs
-        .dashboard
-          a(ui-sref="dashboard") Dashboard
-
-        .my-challenges // My Challenges
-
-    .section-loading(ng-show="vm.loading")
-
-    section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
-      p(ng-hide="vm.isError") You have not participated in any challenges yet.
-
-      p(ng-show="vm.isError") There was an error fetching challenges. Please try again later.
+    
+    .page-header
+      page-state-header(handle="{{vm.handle}}", page-title="My Challenges", hide-money="true", show-back-link="true", default-state="dashboard")
 
     .content
-      section.challenges(ng-show="vm.userHasChallenges && !vm.loading")
+      section.challenges
         .top
           .filters
-            a(ng-click="vm.viewActiveChallenges()", ng-class="{disabled: vm.statusFilter == 'active'}") Active
+            a(ng-click="vm.statusFilter !== 'active' && vm.changeFilter('active')", ng-class="{disabled: vm.statusFilter == 'active'}") Active
             span &nbsp; | &nbsp;
-            a(ng-click="vm.viewPastChallenges()", ng-class="{disabled: vm.statusFilter == 'completed'}") Past
+            a(ng-click="vm.statusFilter !== 'completed' && vm.changeFilter('completed')", ng-class="{disabled: vm.statusFilter == 'completed'}") Past
 
           .challenge-view-toggle
             button.tile(ng-click="vm.changeView('tile')", ng-class="{ disabled: vm.view === 'tile' }") Grid
 
             button.list(ng-click="vm.changeView('list')", ng-class="{ disabled: vm.view === 'list' }") List
 
-        .data(ng-class="vm.view + '-view'")
-          challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.view", ng-class="vm.view + '-view'")
+        .noChallenges(ng-show="vm.myChallenges.length === 0 && vm.loading === 'ready'")
+          p(ng-show="vm.statusFilter === 'completed'") You have not participated in any challenges yet.
+          p(ng-if="vm.statusFilter === 'active'") There are no upcoming challenges.
 
-        .bottom
-          tc-paginator(data="vm.myChallenges", page-params="vm.pageParams")
+        .hasChallenges(ng-show="vm.myChallenges.length")
+
+          .data(ng-class="vm.view + '-view'")                      
+            challenge-tile(
+              ng-repeat="challenge in vm.myChallenges | orderBy:vm.orderBy:true", 
+              challenge="challenge", view="vm.view", ng-class="vm.view + '-view'")
+
+          tc-section.load-more(state="vm.loading")
+              button.tc-btn(ng-show="vm.totalCount > vm.myChallenges.length", ng-click="vm.loadMore()") Load More

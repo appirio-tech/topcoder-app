@@ -4,30 +4,28 @@
     img.profile-circle(ng-if="!profile.photoURL", src="/images/ico-user-default.svg")
 
   .info
-    h1.handle {{profile.handle}}
+    h1.handle(style="color:{{handleColor}};") {{profile.handle}}
+
+    h3.location-challenges {{profile.homeCountryCode | isoCountry}}
+      span.bar(ng-show="profile.homeCountryCode && numWins") &nbsp;|&nbsp;
+      span(ng-show="numWins") {{numWins}} Wins
 
     h3.tenure(ng-if="profile.startMonth")
       | Member Since {{profile.startMonth}}
 
-    h3.location-challenges {{profile.homeCountryCode | isoCountry}}
-      span.bar(ng-show="profile.homeCountryCode && numChallenges") &nbsp;|&nbsp;
-      span(ng-show="numChallenges") {{numChallenges}} Challenges
+    a.tc-btn.tc-btn-s.edit(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
 
-    p.description {{profile.description}}
-
-    button.edit(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
-
-  .tracks-links
+  .tracks-links(ng-if="profile.tracks && profile.tracks.length > 0")
     .tracks
-      .track(ng-repeat="track in (profile.tracks)")
-        div(class="{{profileVm.imgMap[track]}}-icon")
+      .track(ng-repeat="track in (profile.tracks)", ng-click="profileVm.scrollTo(track)")
+        div(class="track-icon {{profileVm.imgMap[track]}}-icon")
           div
         .text {{track | role}}
 
-    hr
+  p.description(ng-if="profile.description") {{profile.description}}
 
-    .links
-      a.forums.link(ng-href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
-        | Forum Posts
-      button.badges.link(ng-click="profileVm.showBadges()")
-        | Badges
+  .links
+    a.badges.link(ng-click="profileVm.showBadges()", ng-show="profileVm.profile.badges.Achievements.length > 0")
+      | Badges
+    a.forums.link(ng-href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
+      | Forum Posts

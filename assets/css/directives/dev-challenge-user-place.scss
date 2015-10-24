@@ -1,0 +1,125 @@
+@import 'topcoder-includes';
+@import '../partials/combined';
+
+// styling for tile view
+dev-challenge-user-place {
+
+  .tile-view {
+    .place {
+      margin-bottom: 30px;
+      @include sofia-pro-light;
+      font-size: 18px;
+      line-height: 23px;
+      color: $gray-darkest;
+      text-transform: uppercase;
+
+      &.first-place {
+        font-weight: bold;
+        color: $black;
+      }
+
+      span {
+        @include superscript;
+        text-transform: lowercase;
+      }
+    }
+
+    .challenge-score {
+      width: 84px;
+      height: 84px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      background-color: #F6F6F6;
+
+      .score {
+        margin-top: 28px;
+        margin-bottom: 5px;
+        @include sofia-pro-bold;
+        font-size: 18px;
+        color: $gray-darkest;
+      }
+
+      p:last-child {
+        @include sofia-pro-medium;
+        font-size: 9px;
+        color: #A3A3AE;
+        text-transform: uppercase;
+      }
+    }
+  }
+  
+}
+
+// styling for list view
+dev-challenge-user-place {
+  width: 100%;
+
+  .list-view {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .place-date {
+      display: flex;
+      flex-direction: column;
+
+      .place {
+        @include sofia-pro-light;
+        font-size: 18px;
+        line-height: 23px;
+        color: $gray-darkest;
+        text-transform: uppercase;
+
+        &.first-place {
+          font-weight: bold;
+          color: $black;
+        }
+
+        span {
+          @include superscript;
+          text-transform: lowercase;
+        }
+      }
+
+      .date-completed {
+        @include sofia-pro-medium;
+        font-size: 12px;
+        text-transform: uppercase;
+        color: $accent-gray;
+        margin-top: 9px;
+      }
+    }
+
+    .winner-ribbon {
+      @include background-image-size(73px, 26px);
+      background: url(/images/ico-winner-ribbon.svg);
+      align-self: flex-start;
+    }
+
+    .challenge-score {
+      width: 84px;
+      height: 84px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      background-color: #F6F6F6;
+
+      .score {
+        margin-top: 28px;
+        margin-bottom: 5px;
+        @include sofia-pro-bold;
+        font-size: 18px;
+        color: $gray-darkest;
+      }
+
+      p:last-child {
+        @include sofia-pro-medium;
+        font-size: 9px;
+        color: #A3A3AE;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

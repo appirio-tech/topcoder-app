@@ -1,9 +1,2 @@
-header
-  h1 My Dashboard
-
-  .user-stats(id="metrics", ng-hide="vm.loading")
-    .money-earned
-      p.number(ng-bind="vm.moneyEarned | currency:'$':0")
-
-      p Earned
+page-state-header(handle="{{vm.profile.handle}}", page-title="Dashboard", hide-money="false")
 

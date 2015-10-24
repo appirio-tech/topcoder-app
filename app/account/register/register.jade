@@ -3,7 +3,8 @@
     a.logo-link(href="/")
       img(src="/images/logo_mobile.svg", alt="Topcoder Logo")
     .arrow
-  h1 Join the Topcoder technology community to earn, learn, and connect
+  //- h1 Join the Topcoder technology community to earn, learn, and connect
+  h1 Join Topcoder
 
   form(name="vm.registerForm", role="form", ng-submit="vm.registerForm.$valid && vm.register()", novalidate, autocomplete="off")
 
@@ -34,8 +35,11 @@
         minlength="1"
       )
 
-      .form-errors
-        p.form-error(ng-show="vm.registerForm.country.$error.required") Please choose a country from the list.
+      .form-input-error(ng-show="vm.registerForm.country.$dirty && vm.registerForm.country.$invalid", ng-messages="vm.registerForm.country.$error")
+        p.form-error(ng-message="required") Please choose a country from the list
+
+    .section-break
+      hr
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.username.$error.usernameIsFree || vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength), 'success-bar': (vm.registerForm.username.$valid && !vm.registerForm.username.$error.usernameIsFree) }")
       input-sticky-placeholder(sticky-placeholder="Username", ng-model="vm.username")
@@ -50,13 +54,16 @@
 
         p It can contain letters, numbers, and these characters: -_.{}[]
 
-    .form-errors
-      p.form-error(ng-show="vm.registerForm.username.$dirty && vm.registerForm.username.$error.usernameIsFree", ng-bind="vm.usernameErrorMessage")
+    .form-input-error(ng-if="vm.registerForm.username.$dirty && vm.registerForm.username.$invalid", ng-messages="vm.registerForm.username.$error")
+      p.form-error(ng-message="required") Please enter a username.
+      p.form-error(ng-message="usernameIsFree") {{vm.usernameErrorMessage}}
 
-      p.form-error(ng-show="vm.registerForm.username.$dirty && (vm.registerForm.username.$error.minlength || vm.registerForm.username.$error.maxlength)") That username is not the correct length or format.
+      p.form-error(ng-message="minlength") That username is not the correct length or format.
+
+      p.form-error(ng-message="maxlength") That username is not the correct length or format.
 
     .validation-bar(ng-class="{ 'error-bar': (vm.registerForm.email.$dirty && vm.registerForm.email.$invalid), 'success-bar': (vm.registerForm.email.$valid) }")
-      input-sticky-placeholder(sticky-placeholder="Email", ng-model="vm.email")
+      input-sticky-placeholder.email(sticky-placeholder="Email", ng-model="vm.email")
         input(ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required)
 
       .tips.email-tips(ng-show="vm.emailTips")
@@ -66,10 +73,12 @@
 
         p We'll occasionally send you emails related to your activities or interests.
 
-    .form-errors
-      p.form-error(ng-show="vm.registerForm.email.$dirty && (vm.registerForm.email.$error.emailIsAvailable || vm.registerForm.email.$error.validEmail)", ng-bind="vm.emailErrorMessage")
+    .form-input-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$invalid", ng-messages="vm.registerForm.email.$error")
+      p.form-error(ng-message="emailIsAvailable") {{vm.emailErrorMessage}}
 
-      p.form-error(ng-show="vm.registerForm.email.$dirty && vm.registerForm.email.$error.required") Please enter an email address.
+      p.form-error(ng-message="validEmail") {{vm.emailErrorMessage}}
+
+      p.form-error(ng-message="required") Please enter an email address.
 
     .validation-bar(ng-class="{ 'success-bar': (vm.registerForm.password.$valid) }")
       toggle-password-with-tips(ng-if="!vm.isSocialRegistration")
@@ -85,26 +94,27 @@
 
         p(ng-class="{ 'has-symbol-or-number': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
-    button(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid", ng-class="{'enabled-button': vm.registerForm.$valid}") Join
+    section.terms
+      p By clicking "Join" you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms] and #[a(href="http://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank") Privacy Policy]
 
-  section.terms
-    p By clicking "Join," you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms of Service] and #[a(href="http://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank") Privacy Policy]
+    button.tc-btn.tc-btn-large(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid") Join
 
-  section.social
-    p ------------ Or Register With ------------
+  section.login-options
+    p.tc-separator
+      span Or Register With
 
-    .social-icons
-      .github
-        .ico(ng-click="vm.socialRegister('github')")
-        p Github
-      .google-plus
-        .ico(ng-click="vm.socialRegister('google-oauth2')")
-        p Google
-      .facebook
-        .ico(ng-click="vm.socialRegister('facebook')")
-        p Facebook
+    ul.networks
+      li.network.github
+        a.ico(ng-click="vm.socialRegister('github')")
+        span Github
+      li.network.google-plus
+        a.ico(ng-click="vm.socialRegister('google-oauth2')")
+        span Google
+      li.network.facebook
+        a.ico(ng-click="vm.socialRegister('facebook')")
+        span Facebook
 
-  .join-topcoder
-    span Already a member?
-    p.redirect
-      a(ui-sref="login(vm.$stateParams)") Log in
+.join-topcoder
+  span Have an account? &nbsp;
+
+    a(ui-sref="login(vm.$stateParams)") Log in

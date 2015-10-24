@@ -3,9 +3,9 @@
 
   angular.module('tc.profile').controller('ProfileAboutController', ProfileAboutController);
 
-  ProfileAboutController.$inject = ['$log', '$scope', 'ProfileService', 'ExternalAccountService'];
+  ProfileAboutController.$inject = ['$log', '$scope', 'ProfileService', 'ExternalAccountService', 'UserService', 'CONSTANTS'];
 
-  function ProfileAboutController($log, $scope, ProfileService, ExternalAccountService, UserService) {
+  function ProfileAboutController($log, $scope, ProfileService, ExternalAccountService, UserService, CONSTANTS) {
     var vm = this;
     $log = $log.getInstance("ProfileAboutController");
     var profileVm = $scope.$parent.profileVm;
@@ -22,11 +22,39 @@
 
     function activate() {
 
-      profileVm.externalLinksPromise.then(function() {
-        vm.linkedExternalAccountsData = profileVm.linkedExternalAccountsData;
+    ExternalAccountService.getLinkedExternalLinksData(profileVm.userHandle).then(function(data) {
+        vm.linkedExternalAccountsData = data.plain();
+
         // show section if user is viewing his/her own profile OR if we have data
+        //vm.hasLinks = profileVm.linkedExternalAccounts.length;
         vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
         vm.displaySection.externalLinks = profileVm.showEditProfileLink || vm.hasLinks;
+
+        // if user is authenticated, call for profiles end point
+        if (profileVm.isUser) {
+          var userId = UserService.getUserIdentity().userId;
+          ExternalAccountService.getLinkedExternalAccounts(userId).then(function(data) {
+            vm.linkedExternalAccounts = data;
+            profileVm.status.externalLinks = CONSTANTS.STATE_READY;
+          }).catch(function(err) {
+            profileVm.status.externalLinks = CONSTANTS.STATE_ERROR;
+          });
+        } else {
+          vm.linkedExternalAccounts = [];
+          // remove all keys except the provider keys
+          var accounts = _.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle']);
+          // populate the externalLinks for external-account-data directive with info from ext accounts data
+          for(var provider in accounts) {
+            if (accounts[provider]) {
+              vm.linkedExternalAccounts.push({
+                providerType: provider
+              });
+            }
+          }
+          profileVm.status.externalLinks = CONSTANTS.STATE_READY;
+        }
+      }).catch(function(err) {
+        profileVm.status.externalLinks = CONSTANTS.STATE_ERROR;
       });
 
       profileVm.statsPromise.then(function() {
@@ -39,7 +67,7 @@
       profileVm.skillsPromise.then(function() {
         // show section if user is viewing his/her own profile OR if we have data
         vm.fullSkills = profileVm.skills;
-        vm.someSkills = profileVm.skills.slice(0, 6);
+        vm.someSkills = profileVm.skills.slice(0, 10);
         vm.skills = vm.someSkills;
         vm.displaySection.skills = profileVm.showEditProfileLink || !!vm.skills.length;
       });
