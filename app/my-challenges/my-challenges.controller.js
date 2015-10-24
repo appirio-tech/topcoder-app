@@ -42,11 +42,9 @@
     activate();
 
     function activate() {
-      _checkForParticipation().then(function() {
-        vm.isCopilot = _.includes(userIdentity.roles, 'copilot');
-        vm.myChallenges = [];
-        changeFilter(vm.statusFilter);
-      });
+      vm.isCopilot = _.includes(userIdentity.roles, 'copilot');
+      vm.myChallenges = [];
+      changeFilter(vm.statusFilter);
     }
 
     function changeView(view) {
@@ -85,10 +83,16 @@
       $q.all(promises)
       .then(function(data) {
         // data should be an array of 2 objects each with it's own array (2D array with metadata)
-        vm.loading = CONSTANTS.STATE_READY;
 
         vm.totalCount = _.sum(_.pluck(data, 'metadata.totalCount'));
         vm.myChallenges = vm.myChallenges.concat(_.union(data[0], data[1]));
+        if (vm.totalCount === 0) {
+          _checkForParticipation().then(function() {
+            vm.loading = CONSTANTS.STATE_READY;
+          });
+        } else {
+          vm.loading = CONSTANTS.STATE_READY;
+        }
       })
       .catch(function(resp) {
         $log.error(resp);
@@ -146,16 +150,8 @@
     }
 
     function _checkForParticipation() {
-      var params = {
-        limit: 1,
-        offset: 0
-      };
-      return ChallengeService.getUserChallenges(vm.handle, params).then(function(challenges) {
-        if (challenges.metadata.totalCount > 0) {
-          vm.neverParticipated = false;
-        } else {
-          vm.neverParticipated = true;
-        }
+      return ChallengeService.checkChallengeParticipation(vm.handle, function(participated) {
+        vm.neverParticipated = !participated;
       });
     }
   }

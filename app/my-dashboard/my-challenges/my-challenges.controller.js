@@ -20,9 +20,7 @@
 
     function activate() {
       vm.myChallenges = [];
-      _checkForParticipation().then(function() {
-        getChallenges();
-      });
+      getChallenges();
     }
 
     function getChallenges() {
@@ -47,7 +45,9 @@
 
         if (!marathonMatches.length && !devDesignChallenges.length) {
           vm.userHasChallenges = false;
-          vm.loading = false;
+          _checkForParticipation().then(function() {
+            vm.loading = false;
+          });
 
         } else {
           ChallengeService.processActiveDevDesignChallenges(devDesignChallenges);
@@ -55,7 +55,7 @@
           var userChallenges = marathonMatches.concat(devDesignChallenges);
 
           userChallenges = _.sortBy(userChallenges, function(n) {
-            return n.registrationEndDate
+            return n.registrationEndDate;
           });
           vm.myChallenges = userChallenges.reverse().slice(0, 8);
           vm.userHasChallenges = true;
@@ -76,16 +76,8 @@
     }
 
     function _checkForParticipation() {
-      var params = {
-        limit: 1,
-        offset: 0
-      };
-      return ChallengeService.getUserChallenges(handle, params).then(function(challenges) {
-        if (challenges.metadata.totalCount > 0) {
-          vm.neverParticipated = true;
-        } else {
-          vm.neverParticipated = true;
-        }
+      return ChallengeService.checkChallengeParticipation(handle, function(participated) {
+        vm.neverParticipated = !participated;
       });
     }
   }
