@@ -2,7 +2,12 @@
 @import 'community';
 .statistics-container {
   margin-top: 15px;
-  @media only screen and (min-width: 1000px) {
+
+  a {
+    text-decoration: none;
+  }
+
+  @media only screen and (min-width: 1030px) {
     margin: 60px 67px;
   }
   %statistics-panel {
@@ -16,7 +21,7 @@
       text-align: center;
       padding-top: 23px;
       padding-bottom: 23px;
-      @media only screen and (min-width: 1000px) {
+      @media only screen and (min-width: 1020px) {
         font-size: 28px;
         padding-top: 82px;
         padding-bottom: 82px;
@@ -44,6 +49,7 @@
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1);
     margin-bottom: 8px;
     position: relative;
+    overflow: hidden;
     .text-content {
       padding-top: 15px;
       padding-right: 16px;
@@ -79,19 +85,23 @@
         padding-top: 8px;
       }
     }
-    .avatar-wrapper,
-    .avatar-wrapper img {
+    .avatar-wrapper {
       height: 92px;
       width: 96px;
+      margin-right: 10px;
+      img {
+        height: 96px;
+        width: 98px;
+        margin: -2px 0 -2px -2px;
+      }
       @media only screen and (min-width: 1070px) {
         height: 133px;
         width: 139px;
-      }
-    }
-    .avatar-wrapper {
-      margin-right: 10px;
-      @media only screen and (min-width: 1070px) {
         margin-right: 15px;
+        img {
+          height: 137px;
+          width: 141px;
+        }
       }
     }
     .contests {
@@ -116,7 +126,8 @@
     color: $member-blue;
     padding: 9px 0 4px;
     border-radius: 4px;
-    @media only screen and (min-width: 1000px) {
+    text-decoration: none;
+    @media only screen and (min-width: 1020px) {
       margin-top: 63px;
       margin-bottom: 29px;
       width: 159px;
@@ -146,7 +157,7 @@
     }
   }
   .MM-winner-container {
-    @media only screen and (min-width: 1000px) {
+    @media only screen and (min-width: 1020px) {
       .tile-wrapper {
         margin: -16px auto 0;
         justify-content: center;
@@ -169,13 +180,14 @@
         font-size: 18px;
         padding-top: 5px;
       }
-      .avatar-wrapper,
-      .avatar-wrapper img {
+      .avatar-wrapper {
         height: 160px;
         width: 167px;
-      }
-      .avatar-wrapper {
         margin-right: 18px;
+        img {
+          height: 164px;
+          width: 171px;
+        }
       }
       .contests {
         font-size: 19px;
@@ -195,6 +207,9 @@
       flex-direction: row;
       overflow-x: scroll;
       margin: 0 -10px;
+      @media screen and (min-device-width: 992px) {
+        overflow-x: auto;
+      }
     }
     .performer-wrapper {
       min-width: 280px;
@@ -208,7 +223,7 @@
         margin-left: 10px;
       }
     }
-    @media only screen and (min-width: 1000px) {
+    @media only screen and (min-width: 1020px) {
       h2 {
         padding-bottom: 65px;
       }
@@ -218,11 +233,11 @@
         min-width: 300px;
       }
     }
-    @media only screen and (min-width: 1170px) {
+    @media only screen and (min-width: 1220px) {
       .performer-wrapper {
         margin-right: 60px;
-        &:first-child {
-          margin-left: 60px;
+        &:last-child {
+          margin-right: 0;
         }
       }
     }
@@ -270,7 +285,7 @@
     .even td {
       background: $statistics-table-even;
     }
-    @media only screen and (min-width: 1000px) {
+    @media only screen and (min-width: 1020px) {
       h3 {
         font-size: 22px;
         padding: 1px 0 28px;
@@ -312,7 +327,7 @@
         text-align: left;
       }
     }
-    @media only screen and (min-width: 1000px) {
+    @media only screen and (min-width: 1020px) {
       h2 {
         padding-bottom: 44px;
       }

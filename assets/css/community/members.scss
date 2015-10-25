@@ -2,6 +2,9 @@
 @import 'community';
 .members-container {
   padding: 15px 0 0;
+  a {
+    text-decoration: none;
+  }
   @media only screen and (min-width: 1070px) {
     padding: 60px 67px 0;
   }
@@ -61,7 +64,7 @@
       background: transparent;
       outline: none;
       @media only screen and (min-width: 1070px) {
-        font-size: 22px; 
+        font-size: 22px;
       }
     }
     .search-ico {
@@ -81,7 +84,7 @@
         height: 23px;
         width: 23px;
         top: 18px;
-        right: 24px; 
+        right: 24px;
       }
     }
   }
@@ -169,6 +172,7 @@
     }
     .user-desc {
       color: $gray-dark-alt;
+      min-height: 54px;
     }
     .user-more {
       border: 1px solid $member-button;
@@ -186,19 +190,30 @@
     overflow-x: scroll;
     flex-direction: row;
     display: flex;
+    @media screen and (min-device-width: 992px) {
+      overflow-x: auto;
+      justify-content: center;
+    }
     @media only screen and (min-width: 1070px) {
       padding-bottom: 33px;
-      justify-content: center;
     }
     .user-tile {
       min-width: 250px;
+      width: 250px;
       max-width: 365px;
       margin-right: 14px;
       padding: 14px 20px;
       &:first-child {
         margin-left: 14px;
       }
+      @media only screen and (min-width: 992px) {
+        width: 280px;
+      }
       @media only screen and (min-width: 1070px) {
+        padding: 20px 30px 28px;
+      }
+      @media only screen and (min-width: 1290px) {
+        width: 365px;
         padding: 20px 30px 28px;
       }
       @media only screen and (min-width: 1367px) {
@@ -273,9 +288,10 @@
     overflow-x: scroll;
     flex-direction: row;
     display: flex;
-    @media only screen and (min-width: 1000px) {
-      flex-wrap: wrap;
+    @media screen and (min-device-width: 992px) {
+      overflow-x: auto;
       justify-content: center;
+      flex-wrap: wrap;
     }
     .user-tile {
       min-width: 246px;
@@ -284,8 +300,8 @@
       &:first-child {
         margin-left: 15px;
       }
-      @media only screen and (min-width: 1000px) {
-        min-width: 272px;
+      @media only screen and (min-device-width: 992px) {
+        width: 272px;
         margin: 0 6px 14px;
         padding: 31px 20px 49px;
         &:first-child {
@@ -339,6 +355,9 @@
     padding: {
       left: 12px;
       right: 12px;
+    }
+    @media screen and (min-device-width: 992px) {
+      overflow-x: auto;
     }
     @media only screen and (min-width: 1070px) {
       padding: {
@@ -405,7 +424,7 @@
       right: 50px;
       width: 121px;
       border-radius: 5px;
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-device-width: 768px) {
         display: block;
         padding: 5px 0;
         top: 50%;
@@ -460,6 +479,7 @@
       position: relative;
       color: $gray-dark-alt;
       margin-left: 19px;
+      cursor: pointer;
       &::before {
         display: block;
         content: '';
@@ -564,5 +584,5 @@
         margin-bottom: 60px;
       }
     }
-  }  
+  }
 }

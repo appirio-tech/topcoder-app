@@ -43,12 +43,12 @@
               tr 
                 th #
                 th Handle
-                th Wins
+                th {{item.dataType}}
             tbody
               tr(ng-repeat="user in item.performers track by $index", ng-class="{even: $even}")
                 td {{$index + 1}}
-                td {{user.name}}
-                td {{user.wins}}
+                td {{user.handle}}
+                td {{user.rating}}
 
     .tops-container 
       h2 Top Ranked
