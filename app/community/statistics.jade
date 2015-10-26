@@ -19,6 +19,7 @@
                 p(ng-repeat="contest in item.contests") {{contest}}
         .btn-wrapper: a(ng-href="//community.topcoder.com/tc?module=SrmDivisionWins", target="_blank").outlined-btn View All
 
+
       .MM-winner-container
         h2 Recent Marathon Match Winners
         .tile-wrapper
@@ -69,6 +70,12 @@
     .record-books-container
       h2 Record Books
       .content-wrapper
-        .col: .link: a(ng-href="//www.topcoder.com/tc?module=Static&d1=statistics&d2=recordbook_home", target="_blank") Algorithm    
-        .col: .link: a(ng-href="//www.topcoder.com/longcontest/?module=Static&d1=stats&d2=recordbook_home", target="_blank") Marathon    
-        .col: .link: a(ng-href="//www.topcoder.com/tc?module=Static&d1=compstats&d2=comp_recordbook_home", target="_blank") Component 
+        .col 
+          .link: a(ng-href="//www.topcoder.com/tc?module=Static&d1=statistics&d2=recordbook_home", target="_blank") Algorithm
+          .link: a(ng-href="//http://community.topcoder.com/tc?module=ColorChange&ratid=1", target="_blank") Recent SRM Color Changes         
+        .col 
+          .link: a(ng-href="//www.topcoder.com/longcontest/?module=Static&d1=stats&d2=recordbook_home", target="_blank") Marathon
+          
+        .col 
+          .link: a(ng-href="//www.topcoder.com/tc?module=Static&d1=compstats&d2=comp_recordbook_home", target="_blank") Component 
+        
