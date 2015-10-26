@@ -82,8 +82,6 @@
   // max-width: 883px;
   padding: 0 10px;
   margin: auto;
-  @media (min-width: 768px) {
-  }
   .empty-state {
     width: 100%;
   }
@@ -158,7 +156,10 @@
           width: 130px;
         } 
       }
+    }
 
+    button.more {
+      margin-bottom: 20px;
     }
   }
 
@@ -167,6 +168,7 @@
     line-height: 21px;
     @include sofia-pro-medium;
     text-transform: uppercase;
+    margin-top: 20px;
   }
 
   .categories {
@@ -315,6 +317,10 @@
       margin-bottom: 15px;
     }
 
+    external-links-data {
+      margin-bottom: 20px;
+    }
+
     .empty-state {
       
       .sample-ext-accounts {
@@ -336,6 +342,7 @@
     .activity {
       font-size: 24px;
       line-height: 30px;
+      margin-top: 30px;
     }
 
     .skills {
@@ -350,10 +357,10 @@
         width: 100%;
         padding-left: 30px;
         padding-right: 30px;
-        margin: -20px auto 50px auto;
+        margin: 0px auto 30px auto;
         
         .skill {
-          margin-top: 50px;
+          margin-top: 30px;
           margin-right: 15px;
           margin-left: 15px;
         }
@@ -376,6 +383,10 @@
             cursor: pointer;
           }
         }
+      }
+
+      button.more {
+        margin-bottom: 30px;
       }
 
     }
@@ -457,6 +468,10 @@
       margin-top: 1px;
       padding-top: 0px;
       padding-bottom: 0px;
+
+      external-links-data {
+        margin-bottom: 30px;
+      }
       .activity {
         margin-bottom: 0px;
         text-transform: uppercase;
