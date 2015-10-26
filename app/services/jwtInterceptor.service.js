@@ -20,6 +20,7 @@
       var haveItAddItEndpoints = [
         { method: 'GET', url: '\/v3[\\d\\.\\-A-Za-z]*\/challenges'},
         { method: 'GET', url: '\/v2\/challenges'},
+        { method: 'GET', url: '\/v2\/user'},
 
         // matchs everything besides /v3/members/{handle}/financial
         { method: 'GET', url: '\/v3[\\d\\.\\-A-Za-z]*\/members\/\\w+\/(?!financial)\\w*'}

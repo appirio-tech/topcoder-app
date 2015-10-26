@@ -4,9 +4,9 @@
     .module('tc.profile')
     .controller('ProfileSubtrackController', ProfileSubtrackController);
 
-  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'SRMService', 'CONSTANTS', '$state', '$window', 'ngDialog'];
+  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'SRMService', 'CONSTANTS', '$state', '$window', 'ngDialog', 'UserStatsService'];
 
-  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, SRMService, CONSTANTS, $state, $window, ngDialog) {
+  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, SRMService, CONSTANTS, $state, $window, ngDialog, UserStatsService) {
     var vm = this;
     vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX;
     vm.graphState = { show: 'history' };
@@ -23,38 +23,70 @@
     vm.selectSubTrack = selectSubTrack;
     vm.showNav = showNav;
     vm.back = back;
+    vm.subTrackStats = [];
+
+    vm.pageName = vm.subTrack.toLowerCase().replace('_', ' ');
+
+    vm.tabs = [];
+    if (vm.track !== 'DESIGN') {
+      vm.tabs.push('statistics');
+    }
+
+    if (vm.track !== 'COPILOT') {
+      vm.tabs.push( vm.subTrack === 'SRM' ? 'Past srm': 'challenges');
+    }
+
     vm.status = {
       'challenges': CONSTANTS.STATE_LOADING
     };
     // paging params, these are updated by tc-pager
     vm.pageParams = {
-      offset : 0,
-      limit: 10,
-      count: 0,
+      currentOffset : 0,
+      limit: 16,
+      currentCount: 0,
       totalCount: 0,
       // counter used to indicate page change
       updated: 0
     };
 
-    activate();
+        // make sure track and subtrack are set
+    if (!$stateParams.track || !$stateParams.subTrack) {
+      // redirect to main profile
+      $state.go('profile.about', {userHandle: $stateParams.userHandle});
+    } else {
+      activate();
+    }
 
     function activate() {
       if (vm.track == 'DEVELOP' || vm.track == 'DATA_SCIENCE') {
         vm.distributionPromise = ProfileService.getDistributionStats(vm.track, vm.subTrack);
         vm.distributionPromise.then(function(data) {
-          vm.distribution = data.distribution;
+          vm.distribution = _.get(data, 'distribution', {});
         });
         var historyDeferred = $q.defer();
         vm.historyPromise = historyDeferred.promise;
         ProfileService.getHistoryStats(profileVm.profile.handle).then(function(data) {
           if (data.handle) {
-            vm.history = ProfileService.getChallengeTypeStats(data, vm.track, vm.subTrack).history;
+            vm.history = _.get(ProfileService.getChallengeTypeStats(data, vm.track, vm.subTrack), 'history', null);
             historyDeferred.resolve(vm.history);
           }
         });
       }
 
       profileVm.statsPromise.then(function(data) {
+
+        // user iterable stats
+        vm.subTrackStats = UserStatsService.getIterableStats(vm.track, vm.subTrack, data);
+        if (vm.track === 'DEVELOP') {
+          var mustHaveMetrics = ["rank", "rating", "reliability"];
+          // check if rating, rank & reliability are all set
+          var _filteredObjs = _.filter(vm.subTrackStats, function(k) { return _.indexOf(mustHaveMetrics, k.label) > -1});
+          if (_.all(_.pluck(_filteredObjs, 'val'), function(v) { return !v})) {
+            // all false filter em out
+            _.remove(vm.subTrackStats, function(k) { return _.indexOf(mustHaveMetrics, k.label) > -1});
+          }
+        }
+
         if (vm.subTrack == 'SRM') {
           vm.divisions = ProfileService.getDivisions(profileVm.stats);
           vm.divisionList = [
@@ -76,7 +108,8 @@
           vm.subTrack.toLowerCase().replace(/ /g, '')
         );
 
-        vm.nonRated = !vm.typeStats.rank.rating && !vm.typeStats.rank.overallRank && !vm.typeStats.rank.reliability;
+        vm.nonRated = vm.typeStats && vm.typeStats.rank && !vm.typeStats.rank.rating && !vm.typeStats.rank.overallRank && !vm.typeStats.rank.reliability;
+
 
         if (vm.subTrack) {
           vm.dropdown = ProfileService.getSubTracks(profileVm.stats, vm.track.toLowerCase())
@@ -100,10 +133,15 @@
       });
 
       // watches page change counter to reload the data
-      $scope.$watch('vm.pageParams.updated', function(updatedParams) {
-        _getChallenges();
+      $scope.$watch('vm.pageParams.updated', function(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          _getChallenges();
+        }
       });
-      _getChallenges();
+      // initial call unless it's copilot
+      if (vm.track !== 'COPILOT') {
+        _getChallenges();
+      }
     }
 
     function selectSubTrack(subTrack) {
@@ -118,7 +156,7 @@
       vm.status.challenges = CONSTANTS.STATE_LOADING;
       var params = {
         limit: vm.pageParams.limit,
-        offset: vm.pageParams.offset,
+        offset: vm.pageParams.currentOffset,
       };
       if (vm.track.toUpperCase() === 'DATA_SCIENCE') {
         if (vm.subTrack.toUpperCase() === 'SRM') {
@@ -126,7 +164,10 @@
           params['filter'] = "status=past&isRatedForSRM=true";
           return SRMService.getPastSRMs(profileVm.profile.handle, params)
           .then(function(data) {
-            vm.challenges = data;
+            vm.pageParams.totalCount = data.metadata.totalCount;
+            vm.challenges = vm.challenges.concat(data);
+            vm.pageParams.currentCount = vm.challenges.length;
+
             // sort SRMs by points
             vm.challenges.sort(function(a, b) {
               // if both SRMs have finalPoints details
@@ -158,7 +199,9 @@
           params['orderBy'] ='endDate desc';
           return ChallengeService.getUserMarathonMatches(profileVm.profile.handle, params)
           .then(function(data) {
-            vm.challenges = data;
+            vm.pageParams.totalCount = data.metadata.totalCount;
+            vm.pageParams.currentCount = vm.challenges.length;
+            vm.challenges = vm.challenges.concat(data);
             vm.status.challenges = CONSTANTS.STATE_READY;
           })
           .catch(function(resp) {
@@ -171,7 +214,9 @@
         return ChallengeService.getUserChallenges(profileVm.profile.handle, params)
         .then(function(data) {
           ChallengeService.processPastChallenges(data);
-          vm.challenges = data;
+          vm.pageParams.totalCount = data.metadata.totalCount;
+          vm.challenges = vm.challenges.concat(data);
+          vm.pageParams.currentCount = vm.challenges.length;
           vm.status.challenges = CONSTANTS.STATE_READY;
           return data;
         }).catch(function(err) {

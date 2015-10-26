@@ -12,16 +12,23 @@
         .image
           .form-label your profile image
           .edit-image
-            img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.userData.photoURL}}")
+            img.profile-circle(ng-show="vm.userData.photoURL && vm.userData.photoURL.length", ng-src="{{vm.userData.photoURL}}")
+            img.profile-circle(ng-show="!vm.userData.photoURL || !vm.userData.photoURL.length", src="/images/ico-user-default.svg")
 
-            input(type="file", name="image", on-file-change)
+            .buttons
+              button.file-upload.tc-btn.tc-btn-primary.tc-btn-s(ng-click="vm.changeImage()", type="button")
+                span Change Image
+              input(type='file', name='image', on-file-change='on-file-change', id="change-image-input", style="display: none;")
+
+              .file-delete
+                button.tc-btn.tc-btn-secondary.tc-btn-s(ng-click="vm.deleteImage()", type="button") Delete
 
         .country
-          .form-label country
+          .form-label country to represent
           angucomplete-alt(
             id="countryId",
             input-name="location",
-            input-class="form-field",
+            input-class="tc-input",
             placeholder="Country",
             pause="100",
             selected-object="vm.updateCountry",
@@ -36,33 +43,36 @@
           span.error-message(ng-if="vm.editProfile.$invalid") This is a required field
 
         .bio
-          .form-label short bio
-            span(style="float:right;") {{vm.userData.description.length || 0}}/144
-          textarea.form-field(name="description", ng-model="vm.userData.description", data-ng-trim="false", maxlength="144")
+          .form-label(style="width: 100%;") short bio
+            span.char-count {{vm.userData.description.length || 0}}
+              span.grey &nbsp;/ 256
+          textarea.tc-input(name="description", ng-model="vm.userData.description", data-ng-trim="false", maxlength="256", placeholder="E.g., I'm JS architect interested in creating new data interchange formats. I love sci-fi and riding my motorcycle.")
 
     .settings-section.tracks
       .section-info
         h2 Tracks
-        .description Topcoder's three categories of challenges... please pick at least one on your skills and interests
+        .description Topcoder's three categories of challenges... please pick at least one based on your skills and interests.
 
 
       .section-fields
         track-toggle(tracks="vm.tracks")
 
-        button.tc-btn.tc-btn-secondary.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': vm.editProfile.$pristine || vm.editProfile.$invalid}") Save
+    .save-section
+      button.tc-btn.tc-btn-primary.tc-btn-s(ng-show="!(vm.editProfile.$invalid || vm.editProfile.$pristine)", type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
+      button.tc-btn.tc-btn-secondary.tc-btn-s.disabled(ng-show="vm.editProfile.$invalid || vm.editProfile.$pristine", type="button") Save
 
   .settings-section.skills
     .section-info
       h2 skills
-      .description Languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well
+      .description Languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.
 
     .section-fields
       .field-label Add a new skill
       angucomplete-alt(
         id="tagId",
         input-name="skill-input",
-        input-class="form-field",
-        placeholder='Type skill name here and press "Enter" to add it',
+        input-class="tc-input",
+        placeholder='Start typing a skill then select from the list',
         pause="100",
         selected-object="vm.addSkill",
         local-data="vm.tags",

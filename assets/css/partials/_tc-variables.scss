@@ -1,0 +1,15 @@
+// Typography
+//
+// Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif:     "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif:          Georgia, "Times New Roman", Times, serif !default;
+$font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:           $font-family-sans-serif !default;
+
+
+// The label is showing in many places; particulary on data/stats
+$label-medium:				14px;
+$label-small:				11.5px;
+$label-xs:					10px;
+$label-large:				16px;

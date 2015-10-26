@@ -1,5 +1,5 @@
 header
-  h1.section-title Competitive Programming
+  h1.section-title Single Round Matches
 
 
 .section-loading(ng-show="vm.loading")
@@ -12,13 +12,13 @@ section(ng-hide="vm.loading")
       .flex-wrapper
         h2 Practice on past problems
 
-        a.tc-btn.tc-btn-s.tc-btn-wide(ng-href="https://community.{{DOMAIN}}/tc?module=ProblemArchive") Problem Archives
+        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost(ng-href="https://arena.{{DOMAIN}}/#/u/practiceProblemList") Problem Archives
 
-        a.tc-btn.tc-btn-s.tc-btn-wide(ng-href="https://community.{{DOMAIN}}/wiki/display/tc/Algorithm+Problem+Set+Analysis") Match Editorials
+        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost(ng-href="https://community.{{DOMAIN}}/wiki/display/tc/Algorithm+Problem+Set+Analysis") Match Editorials
 
-        a.tc-btn.tc-btn-s.tc-btn-wide(ng-href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
+        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost(ng-href="https://www.{{DOMAIN}}/member-onboarding") Learn More
 
 .srms-links(ng-hide="vm.loading")
-  a.tc-btn.tc-btn-s.tc-btn-secondary(ui-sref="my-srms") View Past SRMs
+  a(ui-sref="my-srms") View Past SRMs
 
-  a.tc-btn.tc-btn-s.tc-btn-secondary(ng-href="https://arena.{{DOMAIN}}") Launch Arena
+  a(ng-href="https://arena.{{DOMAIN}}") Launch Arena

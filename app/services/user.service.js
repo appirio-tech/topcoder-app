@@ -7,7 +7,7 @@
 
   function UserService(CONSTANTS, ApiService, $injector, AuthTokenService, UserPrefStore) {
 
-    var api = ApiService.restangularV3;
+    var api = ApiService.getApiServiceProvider('USER');
 
     var _config = {
       cache: false,

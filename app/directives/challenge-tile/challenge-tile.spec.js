@@ -32,8 +32,5 @@ describe('Challenge Tile Directive', function() {
     //  expect(directiveHtml).to.include('Learn and Earn Cordova App Assembly');
     //});
 
-    it('should have domain added to the scope', function() {
-      expect(element.isolateScope().DOMAIN).to.equal(domain);
-    });
   });
 });

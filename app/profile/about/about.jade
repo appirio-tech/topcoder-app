@@ -1,105 +1,110 @@
-.profile-header-container(ng-cloak)
-  profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
+.about-container
+  
+  .profile-header-container(ng-cloak,id="affix", tc-sticky)
+    //- .sticky-container(sticky media-query="min-width: 780px" use-placeholder="true" offset="10" confine="true" sticky-class="sticked")
+      profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
 
-.profile-about-container
+    //- .sticky-container(bs-affix data-offset-top="10" data-offset-bottom="400")
+    .sticky-container()
+      profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
 
-  #skills
-    tc-section(ng-show="vm.displaySection.skills", state="profileVm.status.skills")
+  
+  .profile-about-container
 
-      .skills
-        h3.activity Skills
+    #skills
+      tc-section(ng-show="vm.displaySection.skills", state="profileVm.status.skills")
 
-        .list(ng-show="profileVm.skills && profileVm.skills.length > 0")
+        .skills
+          h3.activity Skills
 
-          .skill(ng-repeat="skill in vm.skills")
-            skill-tile(skill="skill")
+          .list(ng-show="profileVm.skills && profileVm.skills.length > 0")
 
-        button.tc-btn.tc-btn-secondary.tc-btn-l.more(ng-if="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW ALL
-        button.tc-btn.tc-btn-secondary.tc-btn-l.more(ng-if="vm.skills.length > 6", ng-click="vm.skills = vm.someSkills") VIEW LESS
-
-        .empty-state(ng-show="!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)")
-          .action-text Tell everyone what you know
-
-          .list
-            .skill(ng-repeat="skill in vm.sampleSkills")
+            .skill(ng-repeat="skill in vm.skills")
               skill-tile(skill="skill")
 
-          .description You can add languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.
+          button.tc-btn.tc-btn-s.more(ng-if="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW ALL
+          button.tc-btn.tc-btn-s.more(ng-if="vm.skills.length > 10", ng-click="vm.skills = vm.someSkills") VIEW LESS
 
-          button.tc-btn.tc-btn-l.link-button(ui-sref="settings.profile") ADD SKILLS
+          .empty-state(ng-show="!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)")
+            .action-text Tell everyone what you know
 
-  #tcActivity
-    tc-section(ng-show="vm.displaySection.stats", state="profileVm.status.stats")
+            .list
+              .skill(ng-repeat="skill in vm.sampleSkills")
+                skill-tile(skill="skill")
 
-      .categories
+            .description You can add languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.
 
-        h3.activity Activity on Topcoder
+            button.tc-btn.tc-btn-s.link-button(ui-sref="settings.profile") ADD SKILLS
 
-        .empty-state(ng-if="!profileVm.numProjects")
-          .action-text Start competing within the community
-          .tracks
-            .track.noclick(ng-repeat="track in ['DEVELOP', 'DESIGN', 'DATA_SCIENCE']")
-              div(class="{{profileVm.imgMap[track]}}-icon")
-                div
-              .text {{track | track}}
-          .description Compete in challenges to win money, test yourself against the world's best, and learn new skills. Your performance rating will show up here.
-          a.tc-btn.tc-btn-l.link-button(href="/challenges") FIND CHALLENGES
+    #tcActivity
+      tc-section(ng-show="vm.displaySection.stats", state="profileVm.status.stats")
 
-        .track(
-          ng-repeat="track in profileVm.profile.tracks",
-          ng-if="profileVm.categories[track].length > 0",
-          id="{{track}}_TRACK"
-        )
+        .categories
 
-          div(class="name")
-            img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data-outline.svg")
-            img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop-outline.svg")
-            img(ng-if="track == 'DESIGN'", src="/images/ico-track-design-outline.svg")
-            img(ng-if="track == 'COPILOT'", src="/images/ico-track-co_pilot-outline.svg")
-            span {{track | track | uppercase}}
+          .empty-state(ng-if="!profileVm.numProjects")
+            .action-text Start competing within the community
+            .tracks
+              .track.noclick(ng-repeat="track in ['DEVELOP', 'DESIGN', 'DATA_SCIENCE']")
+                div(class="{{profileVm.imgMap[track]}}-icon")
+                  div
+                .text {{track | track}} 
+            .description Compete in challenges to win money, test yourself against the world's best, and learn new skills. Your performance rating will show up here.
+            a.tc-btn.tc-btn-s.link-button(href="/challenges") FIND CHALLENGES
 
-          a.subtrack(
-            ng-repeat="subtrack in profileVm.categories[track]",
-            ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})",
-            class="{{$index == 0 && 'first'}}"
+          .track(
+            ng-repeat="track in profileVm.profile.tracks",
+            ng-if="profileVm.categories[track].length > 0",
+            id="{{track}}_TRACK"
           )
-            .name {{subtrack.subTrack | track}}
 
-            .ranking(ng-if="subtrack.rating")
-              .number.rating(style="color: {{subtrack.rating | ratingColor}}")
-                | {{subtrack.rating}}
-                span.square(style="background-color: {{subtrack.rating | ratingColor}}")
+            div(class="name")
+              img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data.svg")
+              img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop.svg")
+              img(ng-if="track == 'DESIGN'", src="/images/ico-track-design.svg")
+              img(ng-if="track == 'COPILOT'", src="/images/ico-track-copilot.svg")
+              span {{track | track | uppercase}} ACTIVITY
 
-              .tag Rating
+            a.subtrack(
+              ng-repeat="subtrack in profileVm.categories[track] | orderBy:'mostRecentEventDate':true",
+              ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})",
+              class="{{$index == 0 && 'first'}}"
+            )
+              .name {{subtrack.subTrack | track}}
 
-            .ranking(ng-if="subtrack.rank && !subtrack.rating")
-              .number {{subtrack.rank | ordinal}}
+              .ranking(ng-if="subtrack.rating")
+                .number.rating(style="color: {{subtrack.rating | ratingColor}}")
+                  | {{subtrack.rating}}
 
-              .tag Ranking
+                .tag Rating
 
-            .ranking(ng-if="subtrack.wins && !subtrack.rank && !subtrack.rating")
-              .number(style="color: #21B2F1") {{subtrack.wins}}
+              .ranking(ng-if="subtrack.rank && !subtrack.rating")
+                .number {{subtrack.rank | ordinal}}
 
-              .tag Wins
+                .tag Ranking
 
-            .ranking(ng-if="subtrack.fulfillment")
-              .number {{subtrack.fulfillment + '%'}}
+              .ranking(ng-if="subtrack.wins && !subtrack.rank && !subtrack.rating")
+                .number(style="color: #21B2F1") {{subtrack.wins}}
 
-              .tag Fulfillment
+                .tag Wins
 
-            img.arrow(src="/images/ico-arrow-big-right.svg")
+              .ranking(ng-if="subtrack.fulfillment")
+                .number {{subtrack.fulfillment + '%'}}
 
-  #externalLinks
-    tc-section(ng-show="vm.displaySection.externalLinks", state="profileVm.status.externalLinks")
-      .external-links
-        h3.activity Activity across the web
-        external-links-data(ng-show="vm.hasLinks", external-links="vm.linkedExternalAccounts", linked-accounts-data="vm.linkedExternalAccountsData")
+                .tag Fulfillment
 
-        .empty-state(ng-hide="vm.hasLinks")
-          .action-text Showcase your work from around the web
+              img.arrow(src="/images/ico-arrow-big-right.svg")
 
-          external-accounts.external-account-container(linked-accounts="[]", links-data="{}", read-only="true")
+    #externalLinks
+      tc-section(ng-show="vm.displaySection.externalLinks", state="profileVm.status.externalLinks")
+        .external-links
+          h3.activity on the web
+          external-links-data(ng-show="vm.hasLinks", external-links="vm.linkedExternalAccounts", linked-accounts-data="vm.linkedExternalAccountsData")
 
-          .description Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.
+          .empty-state(ng-hide="vm.hasLinks")
+            .action-text Showcase your work from around the web
 
-          button.tc-btn.tc-btn-l.link-button(ui-sref="settings.profile") CONNECT ACCOUNTS
+            external-accounts.external-account-container(linked-accounts="[]", links-data="{}", read-only="true")
+
+            .description Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.
+
+            button.tc-btn.tc-btn-s.link-button(ui-sref="settings.profile") CONNECT ACCOUNTS

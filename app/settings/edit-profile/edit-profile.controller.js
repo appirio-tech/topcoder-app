@@ -14,11 +14,14 @@
     vm.onFileChange   = onFileChange;
     vm.updateProfile  = updateProfile;
     vm.addSkill = addSkill;
+    vm.deleteImage = deleteImage;
+    vm.changeImage = changeImage;
 
     activate();
 
     function activate() {
       vm.userData = userData.clone();
+      vm.originalUserData = userData;
       vm.linkedExternalAccounts = [];
       vm.linkedExternalAccountsData = {};
       vm.skills = false;
@@ -133,6 +136,30 @@
         DEVELOP: _.contains(userInfo.tracks, 'DEVELOP'),
         DATA_SCIENCE: _.contains(userInfo.tracks, 'DATA_SCIENCE'),
       };
+    }
+
+    function deleteImage() {
+      var userData = vm.originalUserData;
+      var oldPhotoURL = userData.photoURL;
+      delete userData['photoURL'];
+      ProfileService.updateUserProfile(userData)
+      .then(function() {
+        vm.userData.photoURL = '';
+        $log.info('Saved successfully');
+        toaster.pop('success', "Success!", "Your account information was updated.");
+      })
+      .catch(function(err) {
+        vm.profileFormProcessing = false;
+        $log.error(err);
+        vm.userData.photoURL = oldPhotoURL;
+        vm.originalUserData.photoURL = oldPhotoURL;
+        toaster.pop('error', "Whoops!", "Something went wrong. Please try again later.");
+      });
+    }
+
+    function changeImage() {
+      var fileInput = document.querySelector('#change-image-input');
+      fileInput.click(); // Or, use the native click() of the file input.
     }
   }
 })();

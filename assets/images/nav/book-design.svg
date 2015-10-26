@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>nav/book-design</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="nav/book-design" sketch:type="MSArtboardGroup" stroke="#F6F6F6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16.045427,17.64289 L13.7727,15.370162 L20.590882,8.5519807 C21.218723,7.9241398 22.235768,7.9241398 22.863609,8.5519807 C23.49145,9.179822 23.49145,10.196867 22.863609,10.824708 L16.045427,17.64289 L16.045427,17.64289 Z" id="Stroke-151" sketch:type="MSShapeGroup"></path>
+            <path d="M10.0329433,18.168525 C10.920443,17.281025 12.359648,17.281025 13.247148,18.168525 C14.134648,19.056025 14.134648,20.49523 13.247148,21.38273 C12.359648,22.27023 9.22953423,22.186139 9.22953423,22.186139 C9.22953423,22.186139 9.14544332,19.056025 10.0329433,18.168525 L10.0329433,18.168525 L10.0329433,18.168525 Z" id="Stroke-153" sketch:type="MSShapeGroup"></path>
+            <path d="M23.5,3 C19.358,3 16,4.559 16,6.818 C16,4.559 12.642,3 8.5,3 C4.358,3 1,4.559 1,6.818 L1,30 C1,27.741 4.358,26 8.5,26 C12.642,26 16,27.741 16,30 C16,27.741 19.358,26 23.5,26 C27.642,26 31,27.741 31,30 L31,6.818 C31,4.559 27.642,3 23.5,3 L23.5,3 L23.5,3 Z" id="Stroke-155" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

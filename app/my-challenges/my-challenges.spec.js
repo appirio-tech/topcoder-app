@@ -35,7 +35,10 @@ describe('My Challenges Controller', function() {
       };
     };
 
-    mockState = { '$current' : {'name': 'test'}};
+    mockState = {
+      '$current' : {'name': 'test'},
+      go: function() {}
+    };
 
     // mock user api
     sinon.stub(userService, 'getUserIdentity', function() {

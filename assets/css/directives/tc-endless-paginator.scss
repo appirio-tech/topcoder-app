@@ -1,0 +1,8 @@
+.paginator {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  section {
+    min-height: auto;
+  }
+}

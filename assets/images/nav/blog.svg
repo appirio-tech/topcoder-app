@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="36px" height="36px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
     <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>icons/nav/blog</title>
+    <title>nav/blog</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="icons/nav/blog" sketch:type="MSArtboardGroup" fill="#FCFCFC">
-            <g id="files-outline_paper" sketch:type="MSLayerGroup" transform="translate(2.000000, 2.000000)">
-                <path d="M31,0 L7,0 C6.4,0 6,0.4 6,1 L6,17 L1,17 C0.4,17 0,17.4 0,18 L0,28 C0,30.2 1.8,32 4,32 L28,32 C30.2,32 32,30.2 32,28 L32,1 C32,0.4 31.6,0 31,0 L31,0 Z M4,30 C2.9,30 2,29.1 2,28 L2,19 L6,19 L6,28 C6,29.1 5.1,30 4,30 L4,30 Z M30,28 C30,29.1 29.1,30 28,30 L7.5,30 C7.8,29.4 8,28.7 8,28 L8,2 L30,2 L30,28 L30,28 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-                <path d="M22,7 L26,7 C26.6,7 27,6.6 27,6 C27,5.4 26.6,5 26,5 L22,5 C21.4,5 21,5.4 21,6 C21,6.6 21.4,7 22,7 L22,7 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-                <path d="M22,12 L26,12 C26.6,12 27,11.6 27,11 C27,10.4 26.6,10 26,10 L22,10 C21.4,10 21,10.4 21,11 C21,11.6 21.4,12 22,12 L22,12 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-                <path d="M12,17 L26,17 C26.6,17 27,16.6 27,16 C27,15.4 26.6,15 26,15 L12,15 C11.4,15 11,15.4 11,16 C11,16.6 11.4,17 12,17 L12,17 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-                <path d="M12,12 L18,12 C18.6,12 19,11.6 19,11 L19,6 C19,5.4 18.6,5 18,5 L12,5 C11.4,5 11,5.4 11,6 L11,11 C11,11.6 11.4,12 12,12 L12,12 Z M13,7 L17,7 L17,10 L13,10 L13,7 L13,7 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-                <path d="M12,27 L16,27 C16.6,27 17,26.6 17,26 C17,25.4 16.6,25 16,25 L12,25 C11.4,25 11,25.4 11,26 C11,26.6 11.4,27 12,27 L12,27 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-                <path d="M12,22 L16,22 C16.6,22 17,21.6 17,21 C17,20.4 16.6,20 16,20 L12,20 C11.4,20 11,20.4 11,21 C11,21.6 11.4,22 12,22 L12,22 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-                <path d="M26,20 L20,20 C19.4,20 19,20.4 19,21 L19,26 C19,26.6 19.4,27 20,27 L26,27 C26.6,27 27,26.6 27,26 L27,21 C27,20.4 26.6,20 26,20 L26,20 Z M25,25 L21,25 L21,22 L25,22 L25,25 L25,25 Z" id="Shape" sketch:type="MSShapeGroup"></path>
-            </g>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="nav/blog" sketch:type="MSArtboardGroup" stroke="#F6F6F6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3.727273,31.99996 C2.221136,31.99996 1,30.77883 1,29.27269 L1,18.3636 L6.454545,18.3636" id="Stroke-35" sketch:type="MSShapeGroup"></path>
+            <path d="M6.454573,2 L6.454573,29.27273 C6.454573,30.77886 5.233436,32 3.7273,32 L28.27275,32 C29.77889,32 31.00003,30.77886 31.00003,29.27273 L31.00003,2 L6.454573,2 L6.454573,2 Z" id="Stroke-37" sketch:type="MSShapeGroup"></path>
+            <path d="M13,22.5 L25,22.5" id="Stroke-39" sketch:type="MSShapeGroup"></path>
+            <path d="M13,26.5 L25,26.5" id="Stroke-41" sketch:type="MSShapeGroup"></path>
+            <path d="M16.8,16.466667 L14,16.466667 L14,9 L16.8,9" id="Stroke-183" sketch:type="MSShapeGroup"></path>
+            <path d="M21,9 L23.8,9 L23.8,16.466667 L21,16.466667" id="Stroke-185" sketch:type="MSShapeGroup"></path>
         </g>
     </g>
 </svg>

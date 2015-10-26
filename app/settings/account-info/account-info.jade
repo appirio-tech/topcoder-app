@@ -6,17 +6,19 @@
 
     .section-fields
       .form-label.username Username
-      input.form-field(name="username", value="{{vm.userData.handle}}", disabled=true)
+      input.form-field.grey(name="username", value="{{vm.userData.handle}}", disabled=true)
 
       .form-label email
-      input.form-field(name="email", value="{{vm.userData.email}}", disabled=true)
+      input.form-field.grey(name="email", value="{{vm.userData.email}}", disabled=true)
 
       div(ng-hide="vm.isSocialRegistration")
         form(name="vm.newPasswordForm", role="form", ng-submit="vm.newPasswordForm.$valid && vm.submitNewPassword()", novalidate)
           .form-label Current password
 
           .validation-bar(ng-class="{ 'error-bar': (vm.newPasswordForm.currentPassword.$dirty && vm.newPasswordForm.currentPassword.$invalid) }")
-            toggle-password.form-field(ng-model="vm.currentPassword")
+            toggle-password.tc-input.password(
+              ng-model="vm.currentPassword"
+            )
 
             .form-input-error(ng-show="vm.newPasswordForm.currentPassword.$dirty && vm.newPasswordForm.currentPassword.$invalid")
               p(ng-show="vm.newPasswordForm.currentPassword.$error.required") This is a required field.
@@ -25,7 +27,9 @@
 
           .form-label New Password
           .validation-bar
-            toggle-password-with-tips.form-field(placeholder="Pick a new password")
+            toggle-password-with-tips.tc-input.password(
+              placeholder="Pick a new password"
+            )
             .tips.password-tips(ng-show="vm.passwordFocus")
               h3 Password Tips:
 
@@ -38,7 +42,7 @@
               p(ng-class="{ 'has-symbol-or-number': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
           .button-container
-            button.tc-btn.tc-btn-secondary.tc-btn-l.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine", ng-class="{'disabled': vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine}") Change Password
+            button.tc-btn.tc-btn-l.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine", ng-class="{'disabled': vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine}") Change Password
 
 
       div(ng-show="vm.isSocialRegistration")
@@ -58,8 +62,9 @@
           input(autocomplete="false", name="hidden", type="text", style="display:none;")
           .form-label.first First name 
             span(style="text-transform: none;") &nbsp;(Given name)
+            span.mandatory *mandatory
           .validation-bar(ng-class="{ 'error-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.firstname.$invalid), 'success-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.firstname.$valid)}")
-            input.form-field(
+            input.tc-input(
               name="firstname", type="text",
               placeholder="First",
               ng-model="vm.userData.firstName", 
@@ -71,8 +76,9 @@
 
           .form-label Last name
             span(style="text-transform: none;") &nbsp;(Surname)
+            span.mandatory *mandatory
           .validation-bar(ng-class="{ 'error-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.lastname.$invalid), 'success-bar': (vm.accountInfoForm.$dirty && vm.accountInfoForm.lastname.$valid)}")
-            input.form-field(
+            input.tc-input(
               name="lastname", type="text", 
               placeholder="Last",
               ng-model="vm.userData.lastName", 
@@ -90,7 +96,7 @@
 
       .section-fields
           .form-label.address Address
-          input.form-field(
+          input.tc-input(
             name="address", type="text",
             placeholder="123 Topcoder Ave.",
             value="{{vm.homeAddress.streetAddr1}}",
@@ -103,8 +109,8 @@
             p(ng-show="vm.accountInfoForm.address.$error.required") Please enter an address
 
           .form-label Address 2
-            span(style="text-transform: none;") &nbsp;(opt., suite, etc.)
-          input.form-field(
+            span(style="text-transform: none;") &nbsp;(apt., suite, etc.)
+          input.tc-input(
             name="address2",
             type="text",
             placeholder="Suite 42",
@@ -114,7 +120,7 @@
           )
 
           .form-label City
-          input.form-field(
+          input.tc-input(
             name="city", type="text",
             value="{{vm.homeAddress.city}}",
             placeholder="Best City in the World",
@@ -127,7 +133,7 @@
             p(ng-show="vm.accountInfoForm.city.$error.required") Please enter a city
 
           .form-label State/Province
-          input.form-field(
+          input.tc-input(
             name="state", type="text",
             value="{{vm.homeAddress.stateCode}}",
             placeholder="California",
@@ -139,8 +145,8 @@
           .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.state.$invalid")
             p(ng-show="vm.accountInfoForm.state.$error.required") Please enter a state or province
 
-          .form-label Zip
-          input.form-field(
+          .form-label Zip/Post Code
+          input.tc-input(
             name="zipcode", type="text",
             placeholder="Zip"
             value="{{vm.homeAddress.zip}}",
@@ -152,10 +158,12 @@
           .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.zipcode.$invalid")
             p(ng-show="vm.accountInfoForm.zipcode.$error.required") Please enter a zip
 
-          .form-label Country
+          .form-label
+            span Country
+            span.mandatory *mandatory
           angucomplete-alt(
             input-name="country",
-            input-class="form-field",
+            input-class="tc-input",
             pause="100",
             selected-object="vm.updateCountry",
             local-data="vm.countries",
@@ -171,5 +179,5 @@
             p(ng-show="vm.accountInfoForm.country.$error.required") Please choose a country from the list.
 
 
-          .button-container
-            button.tc-btn.tc-btn-secondary.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid", ng-class="{'enabled-button': vm.accountInfoForm.$valid}") Save
+  .save-section
+    button.save.tc-btn.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid", ng-class="{'enabled-button': vm.accountInfoForm.$valid}") Save
