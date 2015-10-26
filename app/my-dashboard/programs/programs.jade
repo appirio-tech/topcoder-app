@@ -1,23 +1,11 @@
-header(ng-hide="vm.loading")
+header(ng-hide="vm.loading || !vm.registered")
   h1.section-title #[span iOS]: Show Your Skills
 
 .section-loading(ng-show="vm.loading")
 
 section.ios(ng-hide="vm.loading")
   .unregistered(ng-hide="vm.registered")
-    img(src="/images/learn-and-improve.png", srcset="/images/learn-and-improve2x.png 2x")
-
-    .join-program
-      h3 #[span iOS]: Show Your Skills
-
-      h4 Take the first steps to stand out in the Community
-
-      p Experienced and proven iOS developers are in high-demand. Prove your skills by earning these iOS topcoder badges and gain exclusive access to iOS challenges and prize accelerators, special previews into content and releases, and special community-related events and info.
-
-      .info-links
-        a.tc-btn(ng-click="vm.registerUser()") Participate
-
-        a.tc-btn.tc-btn-ghost(ng-href="https://ios.{{DOMAIN}}", target="_blank") Learn More
+    empty-state-placeholder(state-name="dashboard-ios-community", show="!vm.registered", theme="sky")
 
   .registered(ng-show="vm.registered")
     .badge-and-challenges

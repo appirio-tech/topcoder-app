@@ -8,6 +8,7 @@
   function MyChallengesWidgetController(ChallengeService, UserService, $log, CONSTANTS, userIdentity, $q) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
+    vm.neverParticipated = false;
     vm.loading = true;
     vm.userHasChallenges = true;
     vm.challengeView = 'tile';
@@ -44,7 +45,9 @@
 
         if (!marathonMatches.length && !devDesignChallenges.length) {
           vm.userHasChallenges = false;
-          vm.loading = false;
+          _checkForParticipation().then(function() {
+            vm.loading = false;
+          });
 
         } else {
           ChallengeService.processActiveDevDesignChallenges(devDesignChallenges);
@@ -52,7 +55,7 @@
           var userChallenges = marathonMatches.concat(devDesignChallenges);
 
           userChallenges = _.sortBy(userChallenges, function(n) {
-            return n.registrationEndDate
+            return n.registrationEndDate;
           });
           vm.myChallenges = userChallenges.reverse().slice(0, 8);
           vm.userHasChallenges = true;
@@ -70,6 +73,12 @@
       if (vm.challengeView !== view) {
         vm.challengeView = view;
       }
+    }
+
+    function _checkForParticipation() {
+      return ChallengeService.checkChallengeParticipation(handle, function(participated) {
+        vm.neverParticipated = !participated;
+      });
     }
   }
 })();

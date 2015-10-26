@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('ChallengeService', ChallengeService);
 
-  ChallengeService.$inject = ['CONSTANTS', 'ApiService'];
+  ChallengeService.$inject = ['CONSTANTS', 'ApiService', '$q'];
 
-  function ChallengeService(CONSTANTS, ApiService) {
+  function ChallengeService(CONSTANTS, ApiService, $q) {
     var api = ApiService.restangularV3;
 
     var service = {
@@ -18,7 +18,8 @@
       processActiveMarathonMatches: processActiveMarathonMatches,
       processPastMarathonMatch: processPastMarathonMatch,
       processPastSRM: processPastSRM,
-      processPastChallenges: processPastChallenges
+      processPastChallenges: processPastChallenges,
+      checkChallengeParticipation: checkChallengeParticipation
     };
 
     return service;
@@ -204,6 +205,25 @@
           } else {
             challenge.userStatus = "NOT_FINISHED";
           }
+        }
+      });
+    }
+
+    function checkChallengeParticipation(handle, callback) {
+      var params = {
+        limit: 1,
+        offset: 0
+      };
+      return $q.all([
+        getUserMarathonMatches(handle, params),
+        getUserChallenges(handle, params)
+      ]).then(function(data) {
+        var mms = data[0];
+        var challenges = data[1];
+        if (challenges.metadata.totalCount > 0 || mms.metadata.totalCount > 0) {
+          callback(true);
+        } else {
+          callback(false);
         }
       });
     }

@@ -9,6 +9,7 @@
     $log = $log.getInstance('MyChallengesController');
     var vm = this;
     vm.domain = CONSTANTS.domain;
+    vm.neverParticipated = false;
     vm.myChallenges = [];
     vm.loading = CONSTANTS.STATE_LOADING;
     vm.view = UserService.getPreference($state.$current.name+'.challengeListView') || 'tile';
@@ -82,10 +83,16 @@
       $q.all(promises)
       .then(function(data) {
         // data should be an array of 2 objects each with it's own array (2D array with metadata)
-        vm.loading = CONSTANTS.STATE_READY;
 
         vm.totalCount = _.sum(_.pluck(data, 'metadata.totalCount'));
         vm.myChallenges = vm.myChallenges.concat(_.union(data[0], data[1]));
+        if (vm.totalCount === 0) {
+          _checkForParticipation().then(function() {
+            vm.loading = CONSTANTS.STATE_READY;
+          });
+        } else {
+          vm.loading = CONSTANTS.STATE_READY;
+        }
       })
       .catch(function(resp) {
         $log.error(resp);
@@ -140,6 +147,12 @@
     function loadMore() {
       currentOffset+=1;
       vm.getChallenges(currentOffset, false);
+    }
+
+    function _checkForParticipation() {
+      return ChallengeService.checkChallengeParticipation(vm.handle, function(participated) {
+        vm.neverParticipated = !participated;
+      });
     }
   }
 })();
