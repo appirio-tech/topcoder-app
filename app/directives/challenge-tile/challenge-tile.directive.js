@@ -23,6 +23,11 @@
           if ($scope.challenge.status.trim().toUpperCase() === 'PAST' && $scope.challenge.subTrack === 'MARATHON_MATCH') {
             ChallengeService.processPastMarathonMatch($scope.challenge);
           }
+
+          if ($scope.challenge.status.trim().toUpperCase() === 'COMPLETED' && $scope.challenge.track === 'DESIGN') {
+            ChallengeService.formatPastDesignChallenge($scope.challenge);
+            console.log($scope.challenge.plain());
+          }
         }
 
         function openLightbox() {

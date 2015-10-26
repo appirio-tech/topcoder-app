@@ -11,6 +11,7 @@
     var service = {
       getChallenges: getChallenges,
       getUserChallenges: getUserChallenges,
+      formatPastDesignChallenge: formatPastDesignChallenge,
       getUserMarathonMatches: getUserMarathonMatches,
       getReviewEndDate: getReviewEndDate,
       getChallengeDetails: getChallengeDetails,
@@ -29,6 +30,18 @@
 
     function getUserChallenges(handle, params) {
       return api.one('members', handle.toLowerCase()).all('challenges').getList(params);
+    }
+
+    function formatPastDesignChallenge(challenge) {
+      if (!challenge.isPrivate && challenge.userDetails && challenge.userDetails.submissions && challenge.userDetails.submissions.length) {
+        challenge.userDetails.submissions.forEach(function(submission) {
+          var images = submission.images.filter(function(image) {
+            return image.match('full') || image.match('thumb');
+          });
+          submission.fullImage = images[0];
+          submission.thumbnailImage = images[1];
+        });
+      }
     }
 
     function getUserMarathonMatches(handle, params) {

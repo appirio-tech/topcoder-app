@@ -1,10 +1,76 @@
 .lightbox-container {
+  font-family: 'Sofia Pro';
   display: flex;
   width: 100%;
   margin: auto;
   overflow: hidden;
+  flex-direction: row;
 
-  img {
-    margin: 0 auto;
+  .left-nav, .right-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    img {
+      width: 20px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+
+  .selector {
+
+    .title {
+      font-size: 24px;
+      margin: 30px auto;
+      text-align: center;
+    }
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    img {
+      height: 550px;
+    }
+
+    .info {
+      color: #a3a3ae;
+      text-align: right;
+    }
+
+    .selections {
+      img.selection {
+        height: 60px;
+        opacity: .6;
+        &.current {
+          border: solid 2px #0096ff;
+          height: 62px;
+          opacity: 1;
+        }
+        &:hover {
+          cursor: pointer;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+
+}
+
+.design-lightbox {
+  display: flex;
+  justify-content: center;
+  z-index: 10000;
+  .ngdialog-content {
+    .ngdialog-close { display: none; }
+    opacity: .95;
+    height: 742px;
+    width: 768px;
+    align-self: center;
   }
 }
