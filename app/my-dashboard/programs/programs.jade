@@ -5,11 +5,7 @@ header(ng-hide="vm.loading || !vm.registered")
 
 section.ios(ng-hide="vm.loading")
   .unregistered(ng-hide="vm.registered")
-    empty-state-placeholder(title="iOS COMMUNITY", description="Earn iOS topcoder badges and exclusive access to iOS challenges, prizes and special community-related events.", show="!vm.registered")
-      .info-links
-        a.participate.tc-btn.tc-btn-s(ng-click="vm.registerUser()") Participate
-
-        a.learn-more(ng-href="https://ios.{{DOMAIN}}", target="_blank") Learn More
+    empty-state-placeholder(state-name="dashboard-ios-community", show="!vm.registered", theme="sky")
 
   .registered(ng-show="vm.registered")
     .badge-and-challenges

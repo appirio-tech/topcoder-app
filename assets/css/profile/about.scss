@@ -84,16 +84,11 @@
   margin: auto;
   @media (min-width: 768px) {
   }
-
   .empty-state {
-    a.link-button {
-      margin-top: 20px;
-    }
+    width: 100%;
   }
 
   .skills {
-    padding-top: 30px;
-    padding-bottom: 30px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -150,31 +145,14 @@
     }
 
     .empty-state {
-      width: 100%;
-      padding: 30px;
-      padding-top: 5px;
       
-      .action-text {
-        text-transform: uppercase;
-        margin-top: 32px;
-        @include sofia-pro-extra-light;
-        font-size: 18px;
-        line-height: 24px;
-      }
-      
-      .description {
-        @include source-sans-light;
-        font-size: 15px;
-        line-height: 22px;
-      }
-      
-      button.link-button {
-        margin-top: 30px;
-      }
-      
-      .list {
-        padding: 10px;
-        margin: 20px auto;
+      .sample-skills {
+        margin: 0px auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
       
         .skill {
           width: 130px;
@@ -195,7 +173,6 @@
     @include module-l;
     margin-left: auto;
     margin-right: auto;
-    padding-bottom: 30px;
     padding-top: 15px;
     align-self: center;
     background: white;
@@ -209,6 +186,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding-bottom: 30px;
 
       &.noclick {
         cursor: default;
@@ -319,47 +297,6 @@
       }
 
     }
-
-    .empty-state {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .action-text {
-        margin-top: 32px;
-        @include sofia-pro-extra-light;
-        font-size: 18px;
-        line-height: 24px;
-      }
-
-      .tracks {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 50%;
-
-        .track {
-          .text {
-            margin-top: 15px;
-            text-transform: uppercase;
-          }
-        }
-      }
-
-      .description {
-        margin-top: 50px;
-        @include source-sans-regular;
-        font-size: 15px;
-        line-height: 22px;
-        width: 60%;
-      }
-
-      button.link-button {
-        margin-top: 20px;
-      }
-
-      padding-bottom: 40px;
-    }
   }
 
   .external-links {
@@ -377,33 +314,18 @@
     .activity {
       margin-bottom: 15px;
     }
+
     .empty-state {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      .action-text {
-        text-transform: uppercase;
-        margin-top: 32px;
-        @include sofia-pro-extra-light;
-        font-size: 18px;
-        line-height: 24px;
-      }
-      .description {
-        margin-top: 50px;
-        @include source-sans-regular;
-        font-size: 15px;
-        line-height: 22px;
-        width: 60%;
-      }
-      button.link-button {
-        margin-top: 20px;
-      }
-      .external-account-container {
+      
+      .sample-ext-accounts {
+        margin: 0px auto;
         display: flex;
         flex-direction: row;
-        margin: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
       }
-      padding-bottom: 40px;
+
     }
   }
 }
@@ -419,7 +341,8 @@
     .skills {
       display: flex;
       flex-direction: column;
-      padding-bottom: 40px;
+      padding-top: 0px;
+      padding-bottom: 0px;
       
       .list {
         display: flex;
@@ -455,36 +378,10 @@
         }
       }
 
-      .empty-state {
-        .action-text {
-          font-size: 28px;
-          line-height: 34px;
-        }
-        .description {
-          @include source-sans-light;
-          font-size: 22px;
-          line-height: 32px;
-          width: 60%;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        button.link-button {
-          margin-top: 30px;
-        }
-        .list {
-          .skill {
-            width: 130px;
-          }
-          padding: 10px;
-          margin: 20px auto;
-        }
-      }
-
     }
 
     .categories {
       margin-top: 1px;
-      padding-bottom: 40px;
       padding-top: 0px;
       .activity {
         font-size: 28px;
@@ -553,64 +450,16 @@
         }
 
       }
-      .empty-state {
-        .action-text {
-          font-size: 28px;
-          line-height: 34px;
-        }
-        .description {
-          @include source-sans-light;
-          font-size: 22px;
-          line-height: 32px;
-          width: 60%;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        button.link-button {
-          margin-top: 30px;
-        }
-        .list {
-          .skill {
-            width: 130px;
-          }
-          padding: 10px;
-          margin: 20px auto;
-        }
-      }
 
     }
 
     .external-links {
       margin-top: 1px;
-      padding-top: 30px;
-      padding-bottom: 40px;
+      padding-top: 0px;
+      padding-bottom: 0px;
       .activity {
         margin-bottom: 0px;
         text-transform: uppercase;
-      }
-      .empty-state {
-        .action-text {
-          font-size: 28px;
-          line-height: 34px;
-        }
-        .description {
-          @include source-sans-light;
-          font-size: 22px;
-          line-height: 32px;
-          width: 60%;
-          margin-left: auto;
-          margin-right: auto;
-        }
-        button.link-button {
-          margin-top: 30px;
-        }
-        .list {
-          .skill {
-            width: 130px;
-          }
-          padding: 10px;
-          margin: 20px auto;
-        }
       }
     }
   }

@@ -5,13 +5,8 @@
       page-state-header(handle="{{vm.handle}}", page-title="My Challenges", hide-money="true", show-back-link="true", default-state="dashboard")
 
     .content
-
       .never-participated(ng-if="vm.neverParticipated")
-        empty-state-placeholder(title="My Challenges", description="Compete in challenges to win money, test yourself against the world's best, and learn new skills", show="vm.neverParticipated")
-          .info-links
-            a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
-
-            a.learn-more(href="https://www.{{DOMAIN}}/member-onboarding") Learn More
+        empty-state-placeholder(state-name="my-challenges-never-participated", show="vm.neverParticipated", theme="offwhite")
       section.participated(ng-if="!vm.neverParticipated")
         .top
           .filters
@@ -25,13 +20,9 @@
             button.list(ng-click="vm.changeView('list')", ng-class="{ disabled: vm.view === 'list' }") List
 
         section.noChallenges(ng-show="vm.myChallenges.length === 0 && vm.loading === 'ready'")
-          empty-state-placeholder(title="Past Challenges", description="You have not participated in any challenges yet.", show="vm.statusFilter === 'completed'")
-            .info-links
-              a.find-challenges.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
-              a.learn-more(href="https://www.{{DOMAIN}}/member-onboarding") Learn More
-          empty-state-placeholder(title="Active Challenges", description="You don't have any active challenges. Ready to find your next challenge?", show="vm.statusFilter === 'active'")
-            .info-links
-              a.find-challenges.tc-btn.tc-btn-s(ng-click="vm.changeFilter('completed')") Explore Open Challenges
+
+          empty-state-placeholder(state-name="my-challenges-past", show="vm.statusFilter === 'completed'", theme="offwhite")
+          empty-state-placeholder(state-name="my-challenges-active", show="vm.statusFilter === 'active'", theme="offwhite")
 
         .hasChallenges(ng-show="vm.myChallenges.length", state="vm.loading")
 

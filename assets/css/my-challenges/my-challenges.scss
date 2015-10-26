@@ -36,66 +36,6 @@
     .page-header {
     }
 
-    .never-participated {
-      padding-top: 30px;
-      background-image: url('/images/empty-states/pattern-my-challenges.png');
-      background-repeat: repeat;
-      
-      .info-links {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-
-        a {
-          text-transform: uppercase;
-          @include sofia-pro-medium;
-
-          &:not(:last-child) {
-            margin-bottom: 30px;
-          }
-
-          &.find-challenges {
-          }
-
-          &.learn-more {
-            font-size: 12px;
-            line-height: 12px;
-            color: $accent-gray;
-          }
-        }
-      }
-    }
-
-    section.noChallenges {
-      padding-top: 30px;
-      background-image: url('/images/empty-states/pattern-my-challenges.png');
-      background-repeat: repeat;
-
-      .info-links {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-
-        a {
-          text-transform: uppercase;
-          @include sofia-pro-medium;
-
-          &:not(:last-child) {
-            margin-bottom: 30px;
-          }
-
-          &.find-challenges {
-          }
-
-          &.learn-more {
-            font-size: 12px;
-            line-height: 12px;
-            color: $accent-gray;
-          }
-        }
-      }
-    }
-
     .hasChallenges {
       display: flex;
       flex-direction: column;

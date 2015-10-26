@@ -66,38 +66,6 @@
   }
 
   .noChallenges {
-    padding-top: 40px;
-    background-image: url('/images/empty-states/pattern-my-challenges-dashboard.png');
-    background-repeat: repeat;
-    .title,
-    .description {
-      color: $white;
-    }
-
-    .info-links {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-
-      a {
-        text-transform: uppercase;
-        @include sofia-pro-medium;
-
-        &:not(:last-child) {
-          margin-bottom: 30px;
-        }
-
-        &.find-challenges {
-          color: $white;
-        }
-
-        &.learn-more {
-          font-size: 12px;
-          line-height: 12px;
-          color: $gray-lighter;
-        }
-      }
-    }
   }
 
   .hasChallenges {
