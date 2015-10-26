@@ -41,7 +41,7 @@ module.exports = function() {
     },
     'qa': {
       'CONSTANTS': {
-        API_URL: process.env.API_URL || 'https://api.topcoder-qa.com/v3',
+        API_URL: process.env.API_URL || 'https://api.topcoder-qa.com/v3.0.0',
         AUTH_API_URL: process.env.AUTH_API_URL || 'https://api.topcoder-qa.com/v3',
         API_URL_V2: process.env.API_URL_V2 || 'https://api.topcoder-qa.com/v2',
         ASSET_PREFIX: process.env.ASSET_PREFIX || '',
