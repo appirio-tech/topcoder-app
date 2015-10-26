@@ -13,6 +13,7 @@
     'tc.profile',
     'tc.settings',
     'tc.skill-picker',
+    'tc.sitemap',
     'tc.community',
     'ui.router',
     'blocks.logger',
