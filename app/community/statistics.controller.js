@@ -17,7 +17,7 @@
         "contestType": "Design",
         "class": "design",
         "dataType": "Wins",
-        "performers": data.data.data
+        "performers": data.plain().data
     });
     });
 
@@ -26,7 +26,7 @@
         "contestType": "Development",
         "class": "develop",
         "dataType": "Rating",
-        "performers": data.data.data
+        "performers": data.plain().data
       });
     });
 
@@ -35,8 +35,9 @@
         "contestType": "Competitive Programming",
         "class": "data-science",
         "dataType": "Rating",
-        "performers": data.data.data
+        "performers": data.plain().data
       });
     });
+    console.log(statsData.TopPerformers);
   }
 })();
