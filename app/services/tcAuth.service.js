@@ -154,7 +154,7 @@
         } else {
           $log.error('Unsupported social login provider: ' + provider);
           reject({
-            status: "failed",
+            status: "FAILED",
             "error": "Unsupported social login provider '" + provider + "'"
           });
         }
