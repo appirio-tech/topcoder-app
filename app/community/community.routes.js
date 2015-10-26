@@ -28,12 +28,6 @@
         data: {
           authRequired: false,
           title: 'Community Members'
-        },
-        resolve: {
-          membersData: function($http) {
-            // TODO this needs to move to a service
-            return $http.get('community/mock-data/members.json', {skipAuthorization: true});
-          }
         }
       },
 
@@ -45,14 +39,8 @@
         controllerAs: 'ctrl',
         data: {
           title: 'Community Statistics'
-        },
-        resolve: {
-          statData: function($http) {
-            // TODO this needs to move to a service
-            return $http.get('community/mock-data/statistics.json', {skipAuthorization: true});
-          }
         }
-      },
+      }
     };
 
     angular.forEach(states, function(state, name) {
