@@ -23,7 +23,7 @@ section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading", ng-class="{ '
 
     challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.challengeView", ng-class="vm.challengeView + '-view'")
 
-.my-challenges-links(id="viewAllChallenges", ng-show="vm.userHasChallenges && !vm.loading")
-  a.active(ui-sref="my-challenges({status: 'active'})") View More
+.my-challenges-links(id="viewAllChallenges", ng-show="!vm.neverParticipated && !vm.loading")
+  a.active(ui-sref="my-challenges({status: 'active'})", ng-if="vm.userHasChallenges") View More
 
   a.past(ui-sref="my-challenges({status: 'completed'})") Past Challenges

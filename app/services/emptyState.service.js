@@ -38,7 +38,7 @@
           description: "You don't have any active challenges. Ready to find your next challenge?",
           helpLinks: [{
             title: "Explore Open Challenges",
-            state: "my-challenges({status: 'completed'})",
+            url: "/challenges/?pageIndex=1",
             cssClass: "find-challenges tc-btn tc-btn-s"
           }]
         },
@@ -73,7 +73,7 @@
           description: "You don't have any active challenges. Ready to find your next challenge?",
           helpLinks: [{
             title: "Explore Open Challenges",
-            state: "my-challenges({status: 'completed'})",
+            url: "/challenges/?pageIndex=1",
             cssClass: "find-challenges tc-btn tc-btn-s tc-btn-ghost"
           }]
         },
