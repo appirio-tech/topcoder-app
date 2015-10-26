@@ -31,7 +31,7 @@
 
     StatisticsService.getDataTop(10).then(function (data) {
       stasData.TopPerformers.push({
-        "contestType": "Data Science",
+        "contestType": "Competitive Programming",
         "class": "data-science",
         "dataType": "Rating",
         "performers": data.data.data

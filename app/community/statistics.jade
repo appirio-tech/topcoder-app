@@ -6,7 +6,7 @@
   .statistics-container
     .winner-container
       .SRM-winner-container
-        h2 SRM Winners
+        h2 Recent SRM Winners
         .tile-wrapper
           .winner-tile(ng-repeat="item in ctrl.SRMWinners")
             .avatar-wrapper: img(ng-src="{{item.avatar}}")
@@ -17,10 +17,10 @@
               p.winner-country {{item.country}}
               .contests
                 p(ng-repeat="contest in item.contests") {{contest}}
-        .btn-wrapper: a(ng-href="//community.topcoder.com/tc?module=SrmDivisionWins", target="_blank").outlined-btn View all SRM
+        .btn-wrapper: a(ng-href="//community.topcoder.com/tc?module=SrmDivisionWins", target="_blank").outlined-btn View All
 
       .MM-winner-container
-        h2 Marathon Matches Winners
+        h2 Recent Marathon Match Winners
         .tile-wrapper
           .winner-tile(ng-repeat="item in ctrl.MarathonWinner")
             .avatar-wrapper: img(ng-src="{{item.avatar}}")
@@ -31,7 +31,7 @@
               p.winner-country {{item.country}}
               .contests
                 p(ng-repeat="contest in item.contests") {{contest}}
-        .btn-wrapper: a(ng-href="//community.topcoder.com/longcontest/stats/?module=MatchWinners", target="_blank").outlined-btn View all SM STATS
+        .btn-wrapper: a(ng-href="//community.topcoder.com/longcontest/stats/?module=MatchWinners", target="_blank").outlined-btn View All
 
     .top-performers-container
       h2 Top Performers
