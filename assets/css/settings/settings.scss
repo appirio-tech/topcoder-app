@@ -43,21 +43,7 @@
   .angucomplete-selected-row {
     background-color: #097DCE;
   }
-  input, textarea {
-    font-size: 15px;
-    font-family: 'Merriweather Sans';
-    font-weight: 400;
-    padding-left: 15px;
-  }
-  textarea {
-    padding-left: 10px;
-    &:hover, &:focus {
-      padding-left: 10px;
-    }
-  }
-  input:focus, textarea:focus {
-    outline: 1px solid #4cb5ff;
-  }
+  
   @include module-l;
   margin: 30px auto 0;
 
@@ -121,12 +107,7 @@
   }
 
   // Common element stylings
-  @include ui-form-placeholder;
-  input:not([type="checkbox"]) {
-    @include ui-form-field;
-    background-color: white;
-    height: 38px;
-  }
+
 
   .settings-section {
     display: flex;
@@ -179,30 +160,7 @@
         padding-left: 60px;
         width: 65%;
       }
-      .form-label {
-        @include sofia-pro-regular;
-        font-size: 12px;
-        color: black;
-        text-transform: uppercase;
-        margin-bottom: 5px;
-        margin-top: 5px;
-        width: 300px;
-
-        .mandatory {
-          text-transform: none;
-          color: #0096ff;
-          float: right;
-        }
-
-        .char-count {
-          font-family: 'Source Sans Pro';
-          float: right;
-        }
-
-        .grey {
-          color: #a3a3ae;
-        }
-      }
+      
       .form-field {
         @include form-field;
         @include ui-form-placeholder;
@@ -320,15 +278,7 @@
         text-transform: uppercase;
       }
 
-      angucomplete-alt {
-        width: 100%;
-        margin-top: 6px;
-
-        input {
-          @include source-sans-italic;
-          color: #7f7f7f;
-        }
-      }
+      
 
       .list {
         display: flex;
@@ -410,56 +360,6 @@
   }
 }
 
-.onoffswitch {
-    position: relative; width: 60px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-}
-.onoffswitch-checkbox {
-    display: none;
-}
-.onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border-radius: 36px;
-}
-.onoffswitch-inner {
-    display: block; width: 200%; margin-left: -100%;
-    transition: margin 0.3s ease-in 0s;
-}
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 26px; padding: 0; line-height: 26px;
-    font-size: 15px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
-    box-sizing: border-box;
-}
-.onoffswitch-inner:before {
-    content: "";
-    padding-left: 10px;
-    background-color: #0096ff;
-    color: #0096ff;
-}
-.onoffswitch-inner:after {
-    content: "";
-    padding-right: 10px;
-    background-color: #d1d3d4;
-    color: #d1d3d4;
-    text-align: right;
-}
-.onoffswitch-switch {
-    display: block; width: 19px; margin: 3.5px;
-    height: 19px;
-    background: #FFFFFF;
-    position: absolute; top: 0; bottom: 0;
-    margin-top: 3.45px;
-    right: 30px;
-    border: none;
-    border-radius: 36px;
-    transition: all 0.3s ease-in 0s;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px;
-}
 
 .settings-section {
   @media only screen and (min-width: 768px) {

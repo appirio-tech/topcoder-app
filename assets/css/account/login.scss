@@ -21,43 +21,9 @@
       width: 380px;
     }
 
-    input[type="text"],
-    input[type="password"],
-    toggle-password {
-      height: 38px;
-      background: $white;
-      border: 1px solid #B7B7B7;
-      box-shadow: inset 0px 0px 2px 0px rgba(183,183,183,0.30);
-      border-radius: 2px;
-      cursor: auto;
-      color: #3d3d3d;
-
-      &:hover {
-        border: 1px solid #A3A3AE;
-        box-shadow: inset 0px 0px 2px 0px #B7B7B7;
-      }
-
-      &:focus,
-      &.focus {
-        border: 1px solid #0096FF;
-        outline: none;
-        box-shadow: inset 0px 0px 2px 1px rgba(133,203,255,0.60);
-      }
-
-      transition: .15s all;
-    }
-
-    input:not([type="checkbox"]) {
-      box-shadow: none;
-    }
-
     toggle-password {
       input#current-password-input {
         width: 300px;
-        height: 20px;
-        border: none;
-        outline: none;
-        box-shadow: none;
       }
     }
 

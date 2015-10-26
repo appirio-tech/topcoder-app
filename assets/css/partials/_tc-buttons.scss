@@ -128,6 +128,20 @@ a.tc-btn, button.tc-btn {
     }
   }
 
+  &.tc-btn-warning {
+    &:hover {
+      background-color: $error;
+      border-color: $error-dark;
+
+    }
+    &:active {
+      background-color: $error-dark;
+
+    }
+  }
+
+
+
   &.tc-btn-xs {
     height: 20px;
     padding: 0 10px;
