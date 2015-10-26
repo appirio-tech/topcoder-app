@@ -98,9 +98,10 @@
       tc-section(ng-show="vm.displaySection.externalLinks", state="profileVm.status.externalLinks")
         .external-links
           h3.activity on the web
-          external-links-data(ng-show="vm.hasLinks", external-links="vm.linkedExternalAccounts", linked-accounts-data="vm.linkedExternalAccountsData")
+          
+          external-links-data(ng-show="vm.linkedExternalAccounts.length", linked-accounts-data="vm.linkedExternalAccounts")
 
-          .empty-state(ng-hide="vm.hasLinks")
+          .empty-state(ng-hide="vm.linkedExternalAccounts.length")
             .action-text Showcase your work from around the web
 
             external-accounts.external-account-container(linked-accounts="[]", links-data="{}", read-only="true")

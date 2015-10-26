@@ -1,5 +1,5 @@
 .external-link-list
-  div.external-link-tile(ng-repeat="account in linkedAccounts")
+  div.external-link-tile(ng-repeat="account in linkedAccountsData")
     .top
       div.logo
         i.fa(ng-class="(account|providerData:'className') || 'fa-globe'")
@@ -98,7 +98,7 @@
 
         .title {{account.data.title}}
 
-      div(ng-switch-default)
+      div(ng-switch-when="weblink")
         .handle My Portfoilo
 
-        .title www.TBD.com
+        .title {{account.data.title}}

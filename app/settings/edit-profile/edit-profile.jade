@@ -97,14 +97,14 @@
       .field-label Add a web link
 
       .web-links
-        external-web-link(linked-accounts="vm.linkedExternalAccounts", user-data="vm.userData", read-only="false")
+        external-web-link(linked-accounts="vm.linkedExternalAccounts", user-handle="{{vm.userData.handle}}")
 
       .field-label Link Your Accounts
 
       .external-links
-        external-accounts(linked-accounts="vm.linkedExternalAccounts", links-data="vm.linkedExternalAccountsData", read-only="false")
+        external-accounts(linked-accounts="vm.linkedExternalAccountsData", read-only="false")
 
       .field-label Linked Accounts
 
       .existing-links
-        external-links-data(external-links="vm.linkedExternalAccounts", linked-accounts-data="vm.linkedExternalAccountsData")
+        external-links-data(linked-accounts-data="vm.linkedExternalAccountsData")

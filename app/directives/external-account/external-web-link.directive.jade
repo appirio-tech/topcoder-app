@@ -1,14 +1,17 @@
 .web-link
-  form(name="addWebLinkFrm", ng-submit="addWebLinkFrm.$valid && addWebLink()", autocomplete="off")
+  form(name="addWebLinkFrm", ng-submit="addWebLinkFrm.$valid && vm.addWebLink()", autocomplete="off")
     .validation-bar.url(ng-class="{ 'error-bar': (addWebLinkFrm.url.$dirty && addWebLinkFrm.url.$invalid) }")
-      input.form-field.url(name="url", type="url", ng-model="url", placeholder="http://www.youlink.com", required)
+      input.form-field.url(name="url", type="url", ng-model="vm.url", placeholder="http://www.yourlink.com", required)
 
       .form-input-error(ng-show="addWebLinkFrm.url.$dirty && addWebLinkFrm.url.$invalid")
         p(ng-show="addWebLinkFrm.url.$error.required") This is a required field.
 
-        p(ng-show="addWebLinkFrm.url.$error.url") Please enter a vadlid URL
+        p(ng-show="addWebLinkFrm.url.$error.url") Please enter a valid URL
     
-    button(type="submit", tc-busy-button, tc-busy-when="addingWebLink", tc-busy-message="Adding", ng-disabled="addWebLinkFrm.$invalid || addWebLinkFrm.$pristine", ng-class="{'enabled-button': addWebLinkFrm.$valid, 'disabled': addWebLinkFrm.$pristine || addWebLinkFrm.$invalid, 'busy' : addingWebLink}") Add
+    button.tc-btn.tc-btn-secondary.tc-btn-s(type="submit", 
+      tc-busy-button, tc-busy-when="vm.addingWebLink", tc-busy-message="Adding", 
+      ng-disabled="addWebLinkFrm.$invalid || addWebLinkFrm.$pristine", 
+      ng-class="{'enabled-button': addWebLinkFrm.$valid, 'disabled': addWebLinkFrm.$pristine || addWebLinkFrm.$invalid, 'busy' : vm.addingWebLink}") Add
 
-  .form-errors(ng-show="errorMessage")
-    p.form-error {{errorMessage}}
+  .form-errors(ng-show="vm.errorMessage")
+    p.form-error {{vm.errorMessage}}

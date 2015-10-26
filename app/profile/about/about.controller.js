@@ -3,9 +3,9 @@
 
   angular.module('tc.profile').controller('ProfileAboutController', ProfileAboutController);
 
-  ProfileAboutController.$inject = ['$log', '$scope', 'ProfileService', 'ExternalAccountService', 'UserService', 'CONSTANTS'];
+  ProfileAboutController.$inject = ['$log', '$scope', '$q', 'ProfileService', 'ExternalAccountService', 'ExternalWebLinksService', 'UserService', 'CONSTANTS'];
 
-  function ProfileAboutController($log, $scope, ProfileService, ExternalAccountService, UserService, CONSTANTS) {
+  function ProfileAboutController($log, $scope, $q, ProfileService, ExternalAccountService, ExternalWebLinksService, UserService, CONSTANTS) {
     var vm = this;
     $log = $log.getInstance("ProfileAboutController");
     var profileVm = $scope.$parent.profileVm;
@@ -22,38 +22,18 @@
 
     function activate() {
 
-    ExternalAccountService.getLinkedExternalLinksData(profileVm.userHandle).then(function(data) {
-        vm.linkedExternalAccountsData = data.plain();
+      var _userId = profileVm.isUser ? UserService.getUserIdentity().userId : false;
+      // retrieve web links & external accounts
+      var _linksPromises = [
+        ExternalAccountService.getAllExternalLinks(profileVm.userHandle, _userId, !!_userId),
+        ExternalWebLinksService.getLinks(profileVm.userHandle, !!_userId)
+      ];
+      $q.all(_linksPromises).then(function(data) {
+        vm.linkedExternalAccounts = data[0].concat(data[1]);
+        vm.displaySection.externalLinks = profileVm.showEditProfileLink || !!vm.linkedExternalAccounts.length;
 
-        // show section if user is viewing his/her own profile OR if we have data
-        //vm.hasLinks = profileVm.linkedExternalAccounts.length;
-        vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
-        vm.displaySection.externalLinks = profileVm.showEditProfileLink || vm.hasLinks;
-
-        // if user is authenticated, call for profiles end point
-        if (profileVm.isUser) {
-          var userId = UserService.getUserIdentity().userId;
-          ExternalAccountService.getLinkedExternalAccounts(userId).then(function(data) {
-            vm.linkedExternalAccounts = data;
-            profileVm.status.externalLinks = CONSTANTS.STATE_READY;
-          }).catch(function(err) {
-            profileVm.status.externalLinks = CONSTANTS.STATE_ERROR;
-          });
-        } else {
-          vm.linkedExternalAccounts = [];
-          // remove all keys except the provider keys
-          var accounts = _.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle']);
-          // populate the externalLinks for external-account-data directive with info from ext accounts data
-          for(var provider in accounts) {
-            if (accounts[provider]) {
-              vm.linkedExternalAccounts.push({
-                providerType: provider
-              });
-            }
-          }
-          profileVm.status.externalLinks = CONSTANTS.STATE_READY;
-        }
-      }).catch(function(err) {
+        profileVm.status.externalLinks = CONSTANTS.STATE_READY;
+      }).catch(function(resp) {
         profileVm.status.externalLinks = CONSTANTS.STATE_ERROR;
       });
 

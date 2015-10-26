@@ -4,9 +4,9 @@
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
 
-  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster'];
+  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', 'ExternalWebLinksService', '$log', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster', '$q'];
 
-  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, CONSTANTS, TagsService, toaster) {
+  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, ExternalWebLinksService, $log, ISO3166, ImageService, CONSTANTS, TagsService, toaster, $q) {
     $log = $log.getInstance("EditProfileCtrl");
     var vm = this;
     vm.toggleTrack    = toggleTrack;
@@ -34,17 +34,30 @@
 
       processData(vm.userData);
 
-      ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId).then(function(data) {
-        vm.linkedExternalAccounts = data;
-      });
+      // ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId).then(function(data) {
+      //   vm.linkedExternalAccounts = data;
+      // });
 
-      ExternalAccountService.getLinkedExternalLinksData(userHandle).then(function(data) {
-        vm.linkedExternalAccountsData = data.plain();
-        vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
-      })
-      .catch(function(err) {
-        $log.error(JSON.stringify(err));
+      // ExternalAccountService.getLinkedExternalLinksData(userHandle).then(function(data) {
+      //   vm.linkedExternalAccountsData = data.plain();
+      //   vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
+      // })
+      // .catch(function(err) {
+      //   $log.error(JSON.stringify(err));
+      // });
+      var userId = vm.userData.userId;
+      var userHandle = vm.userData.handle;
+      var _linksPromises = [
+        ExternalAccountService.getAllExternalLinks(userHandle, userId, true),
+        ExternalWebLinksService.getLinks(userHandle, true)
+      ];
+      $q.all(_linksPromises).then(function(data) {
+        vm.linkedExternalAccountsData = data[0].concat(data[1]);
       });
+      ExternalAccountService.getLinkedAccounts(userId)
+        .then(function(data) {
+          vm.linkedExternalAccounts = data;
+        })
 
       TagsService.getApprovedSkillTags()
       .then(function(tags) {

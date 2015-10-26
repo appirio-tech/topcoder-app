@@ -25,7 +25,7 @@
       updatePassword: updatePassword,
       getUserProfile: getUserProfile,
       getV2UserProfile: getV2UserProfile,
-      addSocialProfile: addSocialProfile
+      addSocialProfile: addSocialProfile,
       removeSocialProfile: removeSocialProfile,
       getPreference: getPreference,
       setPreference: setPreference
