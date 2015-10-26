@@ -3,12 +3,13 @@
 
   angular.module('tc.community').controller('MembersController', MembersController);
 
-  MembersController.$inject = ['membersData', '$http'];
+  MembersController.$inject = ['membersData', '$http', 'CONSTANTS'];
 
-  function MembersController(membersData, $http) {
+  function MembersController(membersData, $http, CONSTANTS) {
 
     this.notSearch = true;
     this.showing = 'list';
+    this.domain = CONSTANTS.domain;
     this.currentMonth = 'October 2015';
     this.memberLeaderboard = membersData.data.memberLeaderboard;
     this.copilots = membersData.data.copilots;

@@ -3,16 +3,17 @@
 
   angular.module('tc.community').controller('StatisticsController', StatisticsController);
 
-  StatisticsController.$inject = ['statData', 'StatisticsService'];
+  StatisticsController.$inject = ['statData', 'StatisticsService', 'CONSTANTS'];
 
-  function StatisticsController(statData, StatisticsService) {
-    var stasData = this;
-    stasData.SRMWinners = statData.data.SRMWinners;
-    stasData.MarathonWinner = statData.data.MarathonWinner;
-    stasData.TopPerformers = [];
+  function StatisticsController(statData, StatisticsService, CONSTANTS) {
+    var statsData = this;
+    statsData.domain = CONSTANTS.domain;
+    statsData.SRMWinners = statData.data.SRMWinners;
+    statsData.MarathonWinner = statData.data.MarathonWinner;
+    statsData.TopPerformers = [];
 
     StatisticsService.getDesignTop(10).then(function (data) {
-      stasData.TopPerformers.push({
+      statsData.TopPerformers.push({
         "contestType": "Design",
         "class": "design",
         "dataType": "Wins",
@@ -21,7 +22,7 @@
     });
 
     StatisticsService.getDevTop(10).then(function (data) {
-      stasData.TopPerformers.push({
+      statsData.TopPerformers.push({
         "contestType": "Development",
         "class": "develop",
         "dataType": "Rating",
@@ -30,7 +31,7 @@
     });
 
     StatisticsService.getDataTop(10).then(function (data) {
-      stasData.TopPerformers.push({
+      statsData.TopPerformers.push({
         "contestType": "Competitive Programming",
         "class": "data-science",
         "dataType": "Rating",

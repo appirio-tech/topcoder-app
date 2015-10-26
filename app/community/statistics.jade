@@ -17,7 +17,7 @@
               p.winner-country {{item.country}}
               .contests
                 p(ng-repeat="contest in item.contests") {{contest}}
-        .btn-wrapper: a(ng-href="//community.topcoder.com/tc?module=SrmDivisionWins", target="_blank").outlined-btn View All
+        .btn-wrapper: a(ng-href="//community.{{ctrl.domain}}/tc?module=SrmDivisionWins", target="_blank").outlined-btn View All
 
 
       .MM-winner-container
@@ -32,7 +32,7 @@
               p.winner-country {{item.country}}
               .contests
                 p(ng-repeat="contest in item.contests") {{contest}}
-        .btn-wrapper: a(ng-href="//community.topcoder.com/longcontest/stats/?module=MatchWinners", target="_blank").outlined-btn View All
+        .btn-wrapper: a(ng-href="//community.{{ctrl.domain}}/longcontest/stats/?module=MatchWinners", target="_blank").outlined-btn View All
 
     .top-performers-container
       h2 Top Performers
@@ -55,27 +55,27 @@
       h2 Top Ranked
       .content-wrapper
         .col
-          .link: a(ng-href="//community.topcoder.com/tc?module=AlgoRank", target="_blank") Algorithm    
-          .link: a(ng-href="//www.topcoder.com/longcontest/stats/?module=CoderRank", target="_blank") Marathon    
-          .link: a(ng-href="//www.topcoder.com/stat?c=top_conceptors", target="_blank") Conceptualization
+          .link: a(ng-href="//community.{{ctrl.domain}}/tc?module=AlgoRank", target="_blank") Algorithm    
+          .link: a(ng-href="//www.{{ctrl.domain}}/longcontest/stats/?module=CoderRank", target="_blank") Marathon    
+          .link: a(ng-href="//www.{{ctrl.domain}}/stat?c=top_conceptors", target="_blank") Conceptualization
         .col
-          .link: a(ng-href="//www.topcoder.com/stat?c=top_specificators", target="_blank") Specification    
-          .link: a(ng-href="//www.topcoder.com/stat?c=top_architects", target="_blank") Architecture    
-          .link: a(ng-href="//www.topcoder.com/stat?c=top_designers", target="_blank") Component Design    
+          .link: a(ng-href="//www.{{ctrl.domain}}/stat?c=top_specificators", target="_blank") Specification    
+          .link: a(ng-href="//www.{{ctrl.domain}}/stat?c=top_architects", target="_blank") Architecture    
+          .link: a(ng-href="//www.{{ctrl.domain}}/stat?c=top_designers", target="_blank") Component Design    
         .col
-          .link: a(ng-href="//www.topcoder.com/stat?c=top_developers", target="_blank") Component Development    
-          .link: a(ng-href="//www.topcoder.com/stat?c=top_assemblers", target="_blank") Assembly    
-          .link: a(ng-href="//www.topcoder.com/stat?c=top_testers", target="_blank") Test Suites
+          .link: a(ng-href="//www.{{ctrl.domain}}/stat?c=top_developers", target="_blank") Component Development    
+          .link: a(ng-href="//www.{{ctrl.domain}}/stat?c=top_assemblers", target="_blank") Assembly    
+          .link: a(ng-href="//www.{{ctrl.domain}}/stat?c=top_testers", target="_blank") Test Suites
 
     .record-books-container
       h2 Record Books
       .content-wrapper
         .col 
-          .link: a(ng-href="//www.topcoder.com/tc?module=Static&d1=statistics&d2=recordbook_home", target="_blank") Algorithm
-          .link: a(ng-href="//http://community.topcoder.com/tc?module=ColorChange&ratid=1", target="_blank") Recent SRM Color Changes         
+          .link: a(ng-href="//www.{{ctrl.domain}}/tc?module=Static&d1=statistics&d2=recordbook_home", target="_blank") Algorithm
+          .link: a(ng-href="//community.{{ctrl.domain}}/tc?module=ColorChange&ratid=1", target="_blank") Recent SRM Color Changes         
         .col 
-          .link: a(ng-href="//www.topcoder.com/longcontest/?module=Static&d1=stats&d2=recordbook_home", target="_blank") Marathon
+          .link: a(ng-href="//www.{{ctrl.domain}}/longcontest/?module=Static&d1=stats&d2=recordbook_home", target="_blank") Marathon
           
         .col 
-          .link: a(ng-href="//www.topcoder.com/tc?module=Static&d1=compstats&d2=comp_recordbook_home", target="_blank") Component 
+          .link: a(ng-href="//www.{{ctrl.domain}}/tc?module=Static&d1=compstats&d2=comp_recordbook_home", target="_blank") Component 
         

@@ -14,21 +14,25 @@
       'community': {
         parent: 'root',
         url: '/community/',
-        abstract: true,
         data: {
           authRequired: false,
-        }
+        },
+        controller: 'BaseCommunityController'
       },
-
       'community.members': {
         parent: 'root',
         url: '/community/members/',
         templateUrl: 'community/members.html',
         controller: 'MembersController',
         controllerAs: 'ctrl',
+        data: {
+          authRequired: false,
+          title: 'Community Members'
+        },
         resolve: {
           membersData: function($http) {
-            return $http.get('community/mock-data/members.json');
+            // TODO this needs to move to a service
+            return $http.get('community/mock-data/members.json', {skipAuthorization: true});
           }
         }
       },
@@ -39,9 +43,13 @@
         templateUrl: 'community/statistics.html',
         controller: 'StatisticsController',
         controllerAs: 'ctrl',
+        data: {
+          title: 'Community Statistics'
+        },
         resolve: {
           statData: function($http) {
-            return $http.get('community/mock-data/statistics.json');
+            // TODO this needs to move to a service
+            return $http.get('community/mock-data/statistics.json', {skipAuthorization: true});
           }
         }
       },
