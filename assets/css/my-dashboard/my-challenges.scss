@@ -7,10 +7,7 @@
   }
 
   .section-title {
-    margin-bottom: 27px;
-    @media only screen and (min-width: 900px) {
-      margin-bottom: 30px;
-    }
+    margin-bottom: 30px;
   }
 
   .challenge-view-toggle {
@@ -182,10 +179,10 @@
   }
 
   .hasChallenges {
-    padding: 15px;
-    border-top: 1px solid #F0F0F0;
-    border-bottom: 1px solid #F0F0F0;
-    background-color: #FCFCFC;
+    padding: 20px 15px 5px 15px;
+    border-top: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+    background-color: $gray-lightest;
 
     &.list-view-active {
       padding-top: 0;
@@ -299,16 +296,21 @@
 
   .my-challenges-links {
     @include module-links;
-    @media only screen and (max-width: 767px) {
-      flex-direction: column;
-      padding: 15px 0;
-    }
+    text-transform: uppercase;
+    flex-direction: row;
+    padding: 15px 0;
 
     a:not(:first-child) {
-      margin-left: 10px;
-      @media only screen and (max-width: 767px) {
-        margin-top: 10px;
-        margin-left: 0;
+      margin-left: 30px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .my-challenges {
+    .my-challenges-links {
+      a:not(:first-child) {
+        margin-left: 15px;
       }
     }
   }

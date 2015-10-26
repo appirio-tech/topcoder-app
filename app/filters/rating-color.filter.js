@@ -6,6 +6,9 @@
   function ratingColor() {
     return function(rating) {
       function ratingToColor(colors, rating) {
+        // in case rating is a number formatted string
+        if (typeof rating === 'string')
+          rating = parseInt(rating.replace(",", ""));
         colors = colors.filter(function(color) {
           return rating >= color.start && rating <= color.end;
         });

@@ -30,7 +30,8 @@
     'toaster',
     'angular-intro',
     'ngMessages',
-    'angular-carousel'
+    'angular-carousel',
+    'sticky'
   ];
 
   angular.module('topcoder', dependencies).run(appRun);
@@ -56,6 +57,8 @@
     $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
       // set document title
       document.title = Helpers.getPageTitle(toState, $state.$current);
+      // adds previous state to scope
+      $rootScope.previousState = fromState;
     });
 
     $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {

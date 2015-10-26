@@ -4,6 +4,10 @@
 .account-info-container {
   padding-bottom: 75px;
 
+  .account-info-error {
+    color: #ef3a3a;
+  }
+
   .section-fields {
     margin-top: 20px;
   }
@@ -12,17 +16,18 @@
     .section-fields {
       display: flex;
       flex-direction: column;
+      .form-field {
+        &.grey {
+          background-color: #fcfcfc;
+        }
+      }
       .form-label {
         margin-top: 30px;
         &.username {
           margin-top: 0px;
         }
       }
-      .button-container {
-        button.save {
-          margin-top: 20px;
-        }
-      }
+
     }
   }
 
@@ -88,6 +93,23 @@
 
     button.enabled-button {
       @include ui-enabled-button;
+    }
+  }
+  .save-section {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fcfcfc;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button.save {
+      margin-bottom: 15px;
+      margin-top: 15px;
+      width: 100px;
     }
   }
 }

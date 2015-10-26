@@ -1,0 +1,11 @@
+.design(ng-if="vm.track == 'DESIGN'")
+
+  section
+    .challenges
+      .challenge.tile(ng-repeat="challenge in vm.challenges")
+        challenge-tile(challenge="challenge", domain="vm.domain", view="'tile'")
+
+      .no-challenges(ng-show="!vm.challenges || vm.challenges.length == 0")
+        | Sorry, no successful challenges found.
+
+      tc-endless-paginator(state="vm.status.challenges", page-params="vm.pageParams")

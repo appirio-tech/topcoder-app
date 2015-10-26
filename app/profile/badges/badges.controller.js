@@ -5,18 +5,15 @@
    * The controller for badges section of member-profile page.
    */
   var BadgeCtrl = function ($scope, CONSTANTS, ProfileService, UserService, userHandle, profile) {
+    $scope.achievements = profile.badges.Achievements;
     var badgeCtrl = this;
     // use logged in user's handle for showing badges if not injected into the controller
     badgeCtrl.userHandle = userHandle ? userHandle : UserService.getUserIdentity().username;
     badgeCtrl.init($scope);
     badgeCtrl.mapBadges();
     badgeCtrl.profile = profile;
-
     badgeCtrl.dealWithBadgeData($scope, ProfileService);
 
-    UserService.getV2UserProfile(badgeCtrl.userHandle).then(function(resp) {
-      $scope.coder = resp;
-    });
 
   };
   /**
@@ -31,36 +28,34 @@
     
     var excluded_badgesID = [1,6, 11, 16, 21, 52, 1000, 1001, 1002, 1003, 1004, 1005, 1006]; // few data is not available, so lets exclude them.
     
-    $scope.$watch('coder', function () {
-      if($scope.coder && $scope.coder.Achievements){
-        angular.forEach($scope.coder.Achievements, function(achievement){
-          var desc = achievement.description;
-          /* Fix Studio Badges */
-          if(badgeCtrl.map[achievement.description] === undefined && desc.indexOf('Studio ') === 0) {
-            desc = desc.substring(7);
+    if($scope.achievements) {
+      angular.forEach($scope.achievements, function(achievement){
+        var desc = achievement.description;
+        /* Fix Studio Badges */
+        if(badgeCtrl.map[achievement.description] === undefined && desc.indexOf('Studio ') === 0) {
+          desc = desc.substring(7);
+        }
+        /* Fix Studio bad badge name */
+        if(desc === 'Fifty Milestone Prize' || desc === 'One Hundred Milestone Prize' || desc === 'Two Hundred And Fifty Milestone Prize') {
+         desc = desc + 's';
+        }
+        if(desc.indexOf('Designer of the Month') !== -1) {
+          desc = 'Designer of the Month';
+        }
+        if(desc.indexOf('Member of the Month') !== -1) {
+          desc = 'Member of the Month';
+        }
+        var value = badgeCtrl.map[desc];
+        //activate all active badges.
+        if(value){
+          value.date = badgeCtrl.formatDate(achievement.date);
+          value.active = true;
+          if(achievement.description.indexOf('Studio ') === 0) {
+            value.isStudio = true;
           }
-          /* Fix Studio bad badge name */
-          if(desc === 'Fifty Milestone Prize' || desc === 'One Hundred Milestone Prize' || desc === 'Two Hundred And Fifty Milestone Prize') {
-           desc = desc + 's';
-          }
-          if(desc.indexOf('Designer of the Month') !== -1) {
-            desc = 'Designer of the Month';
-          }
-          if(desc.indexOf('Member of the Month') !== -1) {
-            desc = 'Member of the Month';
-          }
-          var value = badgeCtrl.map[desc];
-          //activate all active badges.
-          if(value){
-            value.date = badgeCtrl.formatDate(achievement.date);
-            value.active = true;
-            if(achievement.description.indexOf('Studio ') === 0) {
-              value.isStudio = true;
-            }
-          }
-        });
-      }
-    });
+        }
+      });
+    }
   };
 
   /**

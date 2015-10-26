@@ -1,4 +1,4 @@
-a(ng-click="enableHide && toggle()", ng-class="{'hidden': skill.hidden, 'new': skill.isNew}")
+a(ng-click="enableHide && toggle()", ng-class="{'skill-hidden': skill.hidden, 'new': skill.isNew}")
   .skill-icon(ng-switch="skill.category")
     .remove-indicator
 
@@ -10,4 +10,4 @@ a(ng-click="enableHide && toggle()", ng-class="{'hidden': skill.hidden, 'new': s
 
     img(ng-switch-when="DATA_SCIENCE", ng-src="{{ASSET_PREFIX}}images/skills/id-{{skill.tagId}}.svg", fallback-src="/images/skills/id-data.svg")
 
-  .name {{skill.tagName}}
+  .name {{skill.tagName | characters: 20:false}}

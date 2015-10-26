@@ -5,16 +5,14 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  @include module-l;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
 
   hr {
     @include horizontal-rule;
     margin-bottom: 35px;
-  }
-
-  .section-loading {
-    width: 100%;
-    height: 50px;
-    background: url(/images/ripple.gif) no-repeat center center;
   }
 
   .section-title {
@@ -38,8 +36,7 @@
       width: 15px;
     }
     .breadcrumbs {
-      font-family: 'Sofia Pro';
-      font-weight: 200;
+      @include sofia-pro-extra-light;
       font-size: 14px;
       line-height: 16px;
       .dashboard {
@@ -49,7 +46,12 @@
         text-transform: uppercase;
 
         a {
+          color: black;
           text-decoration: none;
+
+          &:hover {
+            color: $primary;
+          }
         }
       }
       .my-srms {
@@ -62,15 +64,24 @@
     }
   }
 
+  .no-srms {
+    margin: 30px;
+    display: flex;
+    flex-direction: inherit;
+    align-items: center;
+  }
+  .has-srms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $gray-lightest;
+  }
 
   .content {
-    margin-left: 10px;
-    margin-right: 10px;
 
-    section.srms {
+    section.my-srms {
       background: white;
       align-self: center;
-      margin-top: 15px;
       padding-bottom: 15px;
       padding-top: 10px 20px 0px 20px;
       display: flex;
@@ -214,52 +225,38 @@
       }
     }
   }
+
 }
 
 
 @media (min-width: 768px) {
   .my-srms-container {
-    .nav {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-bottom: 8px;
-
-      .breadcrumbs {
-        font-size: 28px;
-        line-height: 34px;
-        display: flex;
-        flex-direction: row;
-        .dashboard {
-          display: block;
-          color: black;
-          text-align: center;
-          text-transform: uppercase;
-        }
-        .my-srms {
-          display: block;
-          color: $primary;
-          font-weight: 700;
-          text-align: center;
-          text-transform: uppercase;
-        }
-      }
-    }
+    @include module-l;
+    margin-top: 30px;
   }
 }
 
 @media (min-width: 870px) {
   .my-srms-container {
-    section.srms {
+    section.my-srms {
       .data {
         max-width: 840px;
       }
     }
   }
 }
+
+@media (min-width: 900px) {
+  .my-srms-container {
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 @media (min-width: 1155px) {
   .my-srms-container {
-    section.srms {
+    section.my-srms {
       .data {
         max-width: 1125px;
       }

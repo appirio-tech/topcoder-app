@@ -29,6 +29,12 @@
     }
   }
 
+  &.connect {
+    .external-account-box {
+      background-color: #fbfbfb;
+    }
+  }
+
   &.connected,
   &.enabled:hover {
     .el-weblinks i {color: #82A0AA;}
@@ -39,6 +45,13 @@
     .el-stackoverflow i {color: #E5712A;}
     .el-behance i {color: #188CFC;}
     .el-github i {color: #4B3D74;}
+  }
+
+  &.enabled.connect:hover {
+    .external-account-box {
+      background-color: #f2faff;
+      border: 1px solid #85ccff;
+    }
   }
 
   &.read-only {
@@ -71,7 +84,7 @@
     .provider {
       margin-top: 8px;
       @include sofia-pro-medium;
-      font-size: 10px;
+      font-size: 12px;
       line-height: 13px;
       text-align: center;
       text-transform: uppercase;

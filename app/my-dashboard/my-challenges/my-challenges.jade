@@ -1,5 +1,5 @@
 header(ng-hide="vm.loading")
-  h1.section-title My Challenges
+  h1.section-title Active Challenges
 
   .challenge-view-toggle(ng-show="vm.userHasChallenges")
     button.tile(ng-click="vm.toggleView('tile')", ng-class="{ disabled: vm.challengeView === 'tile' }") Grid
@@ -45,7 +45,7 @@ section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading", ng-class="{ '
 
     challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.challengeView", ng-class="vm.challengeView + '-view'")
 
-.my-challenges-links(id="viewAllChallenges", ng-if="vm.userHasChallenges && !vm.loading")
-  a.tc-btn.tc-btn-s.tc-btn-secondary(ui-sref="my-challenges({status: 'active'})") View All Active Challenges
+.my-challenges-links(id="viewAllChallenges", ng-show="vm.userHasChallenges && !vm.loading")
+  a.active(ui-sref="my-challenges({status: 'active'})") View More
 
-  a.tc-btn.tc-btn-s.tc-btn-secondary(ui-sref="my-challenges({status: 'completed'})") View All Past Challenges
+  a.past(ui-sref="my-challenges({status: 'completed'})") Past Challenges

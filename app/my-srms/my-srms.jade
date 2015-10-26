@@ -1,28 +1,28 @@
 .my-srms-container
-  .nav
-    .breadcrumbs
-      .dashboard
-        a(ui-sref="dashboard") Dashboard
-      .my-srms // My SRMs
 
-  .section-loading(ng-show="vm.loading")
+  .page-header
+    page-state-header(handle="{{vm.handle}}", page-title="My SRMs", hide-money="true", show-back-link="true", default-state="dashboard")
 
   .content
-    section.srms(ng-hide="vm.loading")
+    section.my-srms
       .top
         .filters
-          a(ng-click="vm.viewUpcomingSRMs()", ng-class="{disabled: vm.listType == 'future'}") Upcoming
+          a(ng-click="vm.statusFilter !== 'future' && vm.changeFilter('future')", ng-class="{disabled: vm.statusFilter == 'future'}") Upcoming
           span &nbsp; | &nbsp;
-          a(ng-click="vm.viewPastSRMs()", ng-class="{disabled: vm.listType == 'past'}") Past
+          a(ng-click="vm.statusFilter !== 'past' && vm.changeFilter('past')", ng-class="{disabled: vm.statusFilter == 'past'}") Past
 
         .viewOptions
           button.tile(ng-click="vm.changeView('tile')", ng-class="{ disabled: vm.view === 'tile' }") Grid
           button.list(ng-click="vm.changeView('list')", ng-class="{ disabled: vm.view === 'list' }") List
-      .data(ng-class="vm.view + '-view'")
-        .no-srms(ng-if="!vm.userHasSrms && !vm.loading")
-          p(ng-hide="vm.isError") {{vm.noSrmsMessage}}
 
-          p(ng-show="vm.isError") There was an error fetching challenges. Please try again later.
-        srm-tile.srm-tile(ng-repeat="srm in vm.srms", srm="srm", view="vm.view", ng-class="vm.view + '-view'", show-results="vm.listType == 'past'")
-      .bottom
-          tc-paginator(data="vm.srms", page-params="vm.pageParams")
+      .no-srms(ng-if="!vm.srms.length && vm.loading === 'ready'")
+        p(ng-if="vm.statusFilter === 'future'") There are no upcoming SRMs.
+        p(ng-if="vm.statusFilter === 'past'") You have not participated in any SRMs yet.
+
+      .has-srms(ng-show="vm.srms.length")
+        .data(ng-class="vm.view + '-view'")
+          srm-tile.srm-tile(
+            ng-repeat="srm in vm.srms | orderBy:vm.orderBy:vm.reverseOrder", 
+            srm="srm", view="vm.view", ng-class="vm.view + '-view'", show-results="vm.statusFilter === 'past'")
+
+      tc-endless-paginator(state="vm.loading", page-params="vm.pageParams")

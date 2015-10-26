@@ -28,18 +28,16 @@
 }
 
 @mixin login-link {
-  color: $login-blue;
-  text-decoration: underline;
-
-  &:visited {
-    color: $login-blue;
-  }
+  color: $primary;
 }
 
 @mixin horizontal-rule {
   border: 0;
   border-bottom: 1px solid $horizontal-rule;
 }
+
+// Font Stack: BODY
+// Refactor to use non-typeface specific name; best - use variables;
 
 @mixin source-sans-light {
   font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
@@ -67,18 +65,37 @@
   font-weight: 700;
 }
 
+// Replacement for Merriweather Sans
+
+@mixin label-description {
+  font: {
+    family: "Merriweather Sans",Arial, Helvetica, sans-serif;
+    weight: 400;
+    size: 13px;
+  }
+}
+
+@mixin merriweather-sans-regular {
+  font: {
+    family: "Merriweather Sans", Arial, Helvetica, sans-serif;
+    weight: 400;
+  }
+}
+
+// body end;
+
 @mixin sofia-pro-extra-light {
-  font-family: 'Sofia Pro', Arial;
+  font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 200;
 }
 
 @mixin sofia-pro-light {
-  font-family: 'Sofia Pro', Arial;
+  font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 300;
 }
 
 @mixin sofia-pro-regular {
-  font-family: 'Sofia Pro', Arial;
+  font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 400;
 }
 
@@ -88,12 +105,17 @@
 }
 
 @mixin sofia-pro-medium {
-  font-family: 'Sofia Pro', Arial;
+  font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 500;
 }
 
+@mixin sofia-pro-semi-bold {
+  font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
 @mixin sofia-pro-bold {
-  font-family: 'Sofia Pro', Arial;
+  font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: bold;
 }
 
@@ -245,7 +267,6 @@
   width: 300px;
   padding: 0;
   padding-left: 15px;
-  border: 0;
   background-color: $gray-lightest;
   @include source-sans-regular;
   font-size: 16px;

@@ -1,0 +1,5 @@
+.tc-carousel
+  ul(rn-carousel, rn-carousel-controls, slide-count="{{slideCounts[carouselIndex]}}")
+    li(ng-repeat="slides in slidesCollection")
+      .slide(ng-repeat="item in slides")
+        tc-transclude

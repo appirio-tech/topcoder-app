@@ -19,7 +19,18 @@ external-accounts {
     display: flex;
     flex-direction: row;
     text-align: center;
-    font-family: 'Sofia Pro';
+    margin-bottom: 10px;
+    border-radius: 4px;
+    @include sofia-pro-medium;
+
+    i.fa-weblinks  {color: #82A0AA;}
+    i.fa-bitbucket {color: #205081;}
+    i.fa-dribble {color: #EA4C89;}
+    i.fa-linkedin {color: #127CB5;}
+    i.fa-twitter {color: #62AADC;}
+    i.fa-stack-overflow {color: #E5712A;}
+    i.fa-behance {color: #188CFC;}
+    i.fa-github {color: #4B3D74;}
 
     &:hover {
       cursor: pointer;
@@ -38,8 +49,9 @@ external-accounts {
       flex-direction: column;
       align-items: center;
       width: 90px;
-      height: 90px;
-      background-color: #f0f0f0;
+      height: 88px;
+      background-color: $gray-lightest;
+      border-radius: 4px 0 0 4px;
       i {
         font-size: 40px;
         margin-top: 15px;
@@ -58,8 +70,7 @@ external-accounts {
       width: 220px;
       margin-top: 15px;
       .handle {
-        font-weight: normal;
-        font-family: 'Sofia Pro';
+        @include sofia-pro-light;
         font-size: 18px;
         height: 20px;
       }
@@ -67,8 +78,9 @@ external-accounts {
         // placeholder
         margin-top: 20px;
         color: #9e9e9e;
-        font-size: 14px;
-        font-family: 'Sofia Pro';
+        font-size: 12px;
+        line-height: 14px;
+        @include sofia-pro-medium;
       }
 
       .pending {
@@ -86,13 +98,14 @@ external-accounts {
         height: 40px;
         display: flex;
         flex-direction: row;
+        justify-content: center;
         li {
           justify-content: space-between;
           margin: 10px 0 10px 0;
           width: 90px;
           color: #9e9e9e;
           .key {
-              font-size: 10px;
+              font-size: 11px;
               text-transform: capitalize;
           }
           .value {
@@ -109,23 +122,31 @@ external-accounts {
 
   }
 }
+
 @media (min-width: 768px) {
   .external-link-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 0px 60px;
 
     .external-link-tile {
       border: 1px solid #f0f0f0;
-      margin: 10px 10px;
-      width: 200px;
+      background-color: $gray-lightest;
+      margin-left: 15px;
+      margin-top: 30px;
+      margin-bottom: 0px;
+      // &:nth-child(3n+1) {
+      //   margin-left: 0px;
+      // }
+      width: 218px;
       height: 240px;
       display: flex;
       flex-direction: column;
       text-align: center;
       padding: 0px;
-      font-family: 'Sofia Pro';
+      @include sofia-pro-medium;
       i {
         color: #7f7f7f;
       }
@@ -141,25 +162,22 @@ external-accounts {
         padding-top: 15px;
         background-color: none;
         background: none;
-        width: 200px;
-
-
+        width: auto;
         h2 {
           flex-basis: 40px;
           font-weight: normal;
           text-transform: uppercase;
           font-weight: 500;
           color: #a3a3ae;
-          font-size: 10px;
+          font-size: 12px;
+          line-height: 14px;
         }
 
       }
 
       .bottom {
-        width: 200px;
-
+        width: auto;
         .handle {
-         font-weight: normal;
          margin-top: 20px;
          margin-bottom: 20px;
         }
@@ -178,15 +196,21 @@ external-accounts {
             justify-content: space-between;
             margin: 10px 0 10px 0;
             width: 90px;
-            font-size: 90%;
-            .key {
-                text-transform: capitalize;
-            }
+            @include sofia-pro-medium;
             .value {
-                // placeholder
+              color: $gray-darkest;
+              font-size: 18px;
             }
+            .key {
+              text-transform: uppercase;
+              font-size: 12px;
+              margin-top: 4px;
+              color: $accent-gray;
+            }
+
           }
         }
+
         .logo {
           padding: 10px;
           font-size: 50px;

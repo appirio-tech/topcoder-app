@@ -8,7 +8,7 @@
       scope: {
         item: '='
       },
-      controller: ['$scope', '$state', function($scope, $state) {
+      controller: ['$scope', '$state', 'NavService', function($scope, $state, NavService) {
         var sref = $scope.item.sref;
         var href = $scope.item.href;
 
@@ -17,8 +17,12 @@
           $scope.wtfhref = $state.href($scope.item.sref, $scope.item.srefParams);
 
         $scope.isActive = function() {
-          if (window.location.pathname == href || $state.is(sref))
+          if (window.location.pathname == href || $state.is(sref)) {
+            NavService.selectedTopLevelItem = NavService.getParent(href || sref);
+              //NavService.hrefs[href] || NavService.hrefs[sref.slice(0, sref.indexOf('.'))];
+
             return true;
+          }
           return false;
         }
       }]

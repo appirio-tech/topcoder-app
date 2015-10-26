@@ -1,8 +1,7 @@
-.settings-header
-  header
-    h1 Settings
-
 .settings-container
+  .page-header
+    page-state-header(handle="{{settings.userHandle}}", page-title="settings", hide-money="true", show-back-link="false", default-state="dashboard")
+
   nav
     ul
       li
@@ -13,7 +12,5 @@
 
       li
         a(ui-sref="settings.preferences", ui-sref-active="active-tab") Preferences
-
-  hr.nav-line
 
   ui-view

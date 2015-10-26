@@ -3,11 +3,12 @@
     .challenge-track
 
     header
-      a(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      .top
+        a.name(ng-href="{{challenge|challengeLinks:'detail'}}") #[span {{challenge.name}}]
 
-      a(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{challenge.rounds[0].id}}") {{challenge.name}}
+        p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
-      p.subtrack-color {{challenge.subTrack | underscoreStrip}}
+      challenge-links(challenge="challenge", view="'tile'")
 
     .challenge-details
       p.currentPhase {{challenge.userCurrentPhase}}
@@ -20,44 +21,28 @@
       .stalled-challenge(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
 
       .phase-action(ng-switch="challenge.userAction")
-        a.tc-btn.tc-btn-s.tc-btn-wide.submit(ng-switch-when="Submit") Submit
+        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Submit") Submit
 
         .submitted(ng-switch-when="Submitted") Submitted
 
         // TODO: Need styling and JS logic for this one
         .registered(ng-switch-when="Registered") Registered
 
-      // Only show if not data science track
-      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") {{challenge.userDetails.roles | listRoles}}
-
-      .challenge-links
-        .stats
-          a.registrants(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
-            .registrants-icon
-
-            p {{challenge.numRegistrants}}
-
-          a.registrants(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/longcontest/?module=ViewStandings&rd={{challenge.rounds[0].id}}")
-            .registrants-icon
-
-            p {{challenge.numRegistrants[0]}}
-
-          a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
-            .submissions-icon
-
-            p {{challenge.numSubmissions}}
-
-        a.forum(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
-          .forum-icon
-
-          p Forum
+    // Only show if not data science track
+    p.roles 
+      span(ng-hide="challenge.track === 'DATA_SCIENCE'") 
+        #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
 
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
     ng-switch="challenge.track")
+    .challenge-track
+
     header
-      // TODO: handle url for past marathon match
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      .top
+        a.name(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
+
+        p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
       p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
@@ -65,14 +50,11 @@
 
     .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack", ng-class="challenge.track")
 
-      div(ng-switch-when="MARATHON_MATCH")
+      div
         .marathon-score
           p.score {{challenge.pointTotal || 0 }}
 
           p Total Points
-
-      div(ng-switch-when="SRM")
-        p BLAH
 
     .challenge-details(ng-switch-when="DEVELOP")
       dev-challenge-user-place(challenge="challenge", view="view")
@@ -80,18 +62,21 @@
     .challenge-details(ng-switch-when="DESIGN")
       design-challenge-user-place(challenge="challenge", view="view")
 
+    // Only show if not data science track
+    p.roles
+      span(ng-hide="challenge.track === 'DATA_SCIENCE'") 
+        #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
+
 .challenge.list-view(ng-show="view=='list'", ng-class="challenge.track")
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")
     .challenge-track
 
     header
-      a(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      a.name(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
+      
+      p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
-      a(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{challenge.rounds[0].id}}") {{challenge.name}}
-
-      p.subtrack {{challenge.subTrack | underscoreStrip}}
-
-      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:] {{challenge.userDetails.roles | listRoles}}
+      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
 
     .challenge-details
       .challenge-info
@@ -102,48 +87,30 @@
         p.ends-in(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
 
       .phase-action(ng-switch="challenge.userAction")
-        a.tc-btn.tc-btn-s.tc-btn-wide.submit(ng-switch-when="Submit") Submit
+        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Submit") Submit
 
         .submitted(ng-switch-when="Submitted") Submitted
 
         // TODO: Need styling and JS logic for this one
         .registered(ng-switch-when="Registered") Registered
 
-    .challenge-links
-      a.registrants(ng-hide="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
-        p {{challenge.numRegistrants}}
-
-        .registrants-icon
-
-      a.registrants(ng-show="challenge.subTrack === 'MARATHON_MATCH'", ng-href="https://community.{{DOMAIN}}/longcontest/?module=ViewStandings&rd={{challenge.rounds[0].id}}")
-        p {{challenge.numRegistrants[0]}}
-
-        .registrants-icon
-
-      a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
-        p {{challenge.numSubmissions}}
-
-        .submissions-icon
-
-      a.forum(ng-href="http://apps.{{DOMAIN}}/forums//?module=Category&categoryID={{challenge.forumId}}")
-        .forum-icon
-
-        p Forum
+    challenge-links(challenge="challenge", view="'list'")
+        
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
     ng-switch="challenge.track")
     .challenge-track
 
     header
-      a(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") {{challenge.name}}
+      a.name(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
 
-      p.subtrack {{challenge.subTrack | underscoreStrip}}
+      p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
-      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:] {{challenge.userDetails.roles | listRoles}}
+      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
 
     .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack", ng-class="challenge.track")
 
-      div(ng-switch-when="MARATHON_MATCH")
+      div
         .marathon-score
           p.score {{challenge.pointTotal || 0 }}
 

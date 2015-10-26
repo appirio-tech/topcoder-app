@@ -1,0 +1,81 @@
+.develop(ng-if="vm.track == 'DEVELOP'")
+  
+  .stats(ng-show="profileVm.status.stats === 'ready'")
+    .graphs(ng-if="vm.history")
+      distribution-graph(promise="vm.distributionPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
+
+      history-graph(promise="vm.historyPromise", rating="vm.typeStats.rank.rating", graph-state="vm.graphState")
+
+  hr(ng-if="vm.history")
+
+  .bottom
+    h2.detailed Details
+
+    ul.vertical-stats
+      li.first
+        .left Win Percentage
+        .right {{vm.typeStats.submissions.winPercent | percentage | empty}}
+
+      li(ng-hide="vm.nonRated")
+        .left Country Rank
+        .right {{vm.typeStats.rank.overallCountryRank | empty}}
+
+      li(ng-hide="vm.nonRated")
+        .left Volatility
+        .right {{vm.typeStats.rank.volatility | empty}}
+
+      li(ng-hide="vm.nonRated")
+        .left Maximum Rating
+        .right {{vm.typeStats.rank.maxRating | empty}}
+
+      li(ng-if="profileVm.isUser")
+        .left Inquiries
+        .right {{vm.typeStats.submissions.numInquiries | empty}}
+
+      li(ng-if="profileVm.isUser")
+        .left Submissions
+        .right {{vm.typeStats.submissions.submissions | empty}}
+
+      li
+        .left Submission Rate
+        .right {{vm.typeStats.submissions.submissionRate | percentage | empty}}
+
+      li(ng-if="profileVm.isUser")
+        .left Passed Screening
+        .right {{vm.typeStats.submissions.passedScreening | empty}}
+
+      li
+        .left Screening Success Rate
+        .right {{vm.typeStats.submissions.screeningSuccessRate | percentage | empty}}
+
+      li(ng-if="profileVm.isUser")
+        .left Passed Review
+        .right {{vm.typeStats.submissions.passedReview | empty}}
+
+      li
+        .left Review Success Rate
+        .right {{vm.typeStats.submissions.reviewSuccessRate | percentage | empty}}
+
+      li(ng-if="profileVm.isUser")
+        .left Appeals
+        .right {{vm.typeStats.submissions.appeals | empty}}
+
+      li
+        .left Appeals Success Rate
+        .right {{vm.typeStats.submissions.appealSuccessRate | percentage | empty}}
+
+      li(ng-if="profileVm.isUser")
+        .left Maximum Score
+        .right {{vm.typeStats.submissions.maxScore | empty}}
+
+      li(ng-if="profileVm.isUser")
+        .left Minimum Score
+        .right {{vm.typeStats.submissions.minScore | empty}}
+
+      li(ng-if="profileVm.isUser")
+        .left Average Score
+        .right {{vm.typeStats.submissions.avgScore | number: 2 | empty}}
+
+      li
+        .left Average Placement
+        .right {{vm.typeStats.submissions.avgPlacement | number: 2 | empty}}

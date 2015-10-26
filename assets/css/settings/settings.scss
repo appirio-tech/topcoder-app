@@ -37,22 +37,46 @@
 }
 
 .settings-container {
+  .angucomplete-dropdown {
+    width: 100%;
+  }
+  .angucomplete-selected-row {
+    background-color: #097DCE;
+  }
+  input, textarea {
+    font-size: 15px;
+    font-family: 'Merriweather Sans';
+    font-weight: 400;
+    padding-left: 15px;
+  }
+  textarea {
+    padding-left: 10px;
+    &:hover, &:focus {
+      padding-left: 10px;
+    }
+  }
+  input:focus, textarea:focus {
+    outline: 1px solid #4cb5ff;
+  }
   @include module-l;
   margin: 30px auto 0;
-  @media only screen and (min-width: 768px) {
-    margin-top: 80px;
-    padding-left: 30px;
-    padding-right: 30px;
+
+  @media only screen and (min-width: 900px) {
+    padding-top: 0px;
   }
 
   nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    border-bottom: 1px solid $gray-light;
+    background-color: $gray-lightest;
     @media only screen and (min-width: 768px) {
       display: flex;
       flex-direction: row;
+      height: 60px;
       justify-content: center;
+      align-items: center;
     }
 
     li {
@@ -66,21 +90,25 @@
 
     a {
       @include sofia-pro-medium;
-      font-size: 14px;
-      color: #A3A3AE;
+      font-size: 18px;
+      line-height: 24px;
+      color: $accent-gray;
       text-transform: uppercase;
       text-decoration: none;
       cursor: pointer;
       @media only screen and (min-width: 768px) {
         font-size: 16px;
       }
+      &:hover {
+        color: $gray-darkest;
+      }
     }
   }
 
   .active-tab {
-    padding: 0 5px 6px;
-    border-bottom: 4px #0096FF solid;
-    color: black;
+    padding-bottom: 18px;
+    border-bottom: 2px solid $primary;
+    color: $gray-darkest;
   }
 
   hr {
@@ -96,8 +124,10 @@
   @include ui-form-placeholder;
   input:not([type="checkbox"]) {
     @include ui-form-field;
+    background-color: white;
     height: 38px;
   }
+
   .settings-section {
     display: flex;
     flex-direction: column;
@@ -122,11 +152,13 @@
       @media only screen and (min-width: 768px) {
         width: 270px;
         margin-right: 33px;
+        margin-left: 30px;
       }
 
       h2 {
         text-transform: uppercase;
-        @include sofia-pro-light;
+        font-family: 'Sofia Pro';
+        font-weight: 500;
         font-size: 16px;
       }
 
@@ -134,8 +166,8 @@
         font-size: 13px;
         line-height: 20px;
         color: #A3A3AE;
-        font-family: 'Source Sans Pro';
-        font-style: italic;
+        // @include source-sans-italic;
+        @include label-description;
         margin-top: 5px;
       }
     }
@@ -154,21 +186,66 @@
         text-transform: uppercase;
         margin-bottom: 5px;
         margin-top: 5px;
+        width: 300px;
+
+        .mandatory {
+          text-transform: none;
+          color: #0096ff;
+          float: right;
+        }
+
+        .char-count {
+          font-family: 'Source Sans Pro';
+          float: right;
+        }
+
+        .grey {
+          color: #a3a3ae;
+        }
       }
       .form-field {
         @include form-field;
         @include ui-form-placeholder;
+        background: white;
+        color: black;
         &:disabled {
           color: #B7B7B7;
         }
       }
       .form-field-focused {
-        @include form-field-focused;
       }
       .image {
         .edit-image {
           img.profile-circle {
             margin-top: 10px;
+          }
+          .buttons {
+            padding-top: 20px;
+            .file-upload {
+              position: relative;
+              display: block;
+              overflow: hidden;
+              margin: 10px;
+              margin-left: 0;
+              margin-top: 20px;
+              width: 120px;
+              input {
+                position: absolute;
+                top: 0;
+                right: 0;
+                margin: 0;
+                padding: 0;
+                font-size: 20px;
+                cursor: pointer;
+                opacity: 0;
+                filter: alpha(opacity=0);
+              }
+            }
+            .file-delete {
+              button {
+                width: 80px;
+              }
+            }
           }
         }
       }
@@ -177,11 +254,12 @@
 
         input {
           background-color: white;
+          width: 100%;
         }
 
         span.error-message {
           color: #EF3A3A;
-          font-family: 'Sofia Pro';
+          @include sofia-pro-regular;
           font-size: 10px;
           text-transform: uppercase;
         }
@@ -194,28 +272,41 @@
         textarea {
           background: white;
           width: 100%;
-          height: 80px;
+          height: 115px;
         }
       }
     }
   }
   .tracks {
     padding-bottom: 0px;
+    border-bottom: none;
 
     .section-fields {
       margin-top: 40px;
     }
 
+
+  }
+  .save-section {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fcfcfc;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     button {
-      margin-bottom: 20px;
-      align-self: center;
-      margin-top: 20px;
+      margin-bottom: 15px;
+      margin-top: 15px;
+      width: 120px;
     }
   }
   .skills {
+    border-top: 1px solid $gray-light;
     .section-fields {
       margin-top: 20px;
-      width: 100%;
       display: flex;
       flex-direction: column;
 
@@ -224,7 +315,7 @@
       }
 
       .field-label {
-        font-family: 'Sofia Pro';
+        @include sofia-pro-regular;
         font-size: 12px;
         text-transform: uppercase;
       }
@@ -234,8 +325,7 @@
         margin-top: 6px;
 
         input {
-          font-family: 'Source Sans Pro';
-          font-style: italic;
+          @include source-sans-italic;
           color: #7f7f7f;
         }
       }
@@ -251,7 +341,7 @@
           @media only screen and (min-width: 768px) {
             margin: 0;
             margin-right: 30px;
-            margin-bottom: 5px;
+            margin-bottom: 60px;
           }
         }
       }
@@ -259,7 +349,7 @@
   }
   .links {
     .field-label {
-      font-family: 'Sofia Pro';
+      @include sofia-pro-regular;
       font-size: 12px;
       text-transform: uppercase;
     }
@@ -277,6 +367,20 @@
 .update-password-container,
 .preferences-container {
   @media only screen and (min-width: 768px) {
+  }
+  .password {
+    padding-left: 30px;
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 5px;
+    &:hover {
+      cursor: text;
+    }
+    input, input:hover, input:focus {
+      background: none;
+      border: none;
+      box-shadow: none;
+    }
   }
   .tab-title {
     margin-bottom: 35px;

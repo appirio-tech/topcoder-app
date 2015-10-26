@@ -10,46 +10,23 @@
       }
     }
 
-    ul {
-      display: block;
-      height: 148px;
-      width: 665px;
-      margin: 0 auto;
-      @media only screen and (max-width: 767px) {
-        display: none;
-      }
+    .slide {
 
-      li {
-        div:last-child {
-          margin-right: 0;
+      &:not(:first-child) {
+        .track:before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 32px;
+          left: -30px;
+          @include forward-slash(1px, 60px, 0, 2px, 30deg);
+          background-color: #D1D3D4;
+          @media only screen and (min-width: 768px) {
+            top: 42px;
+            left: -18px;
+          }
         }
       }
-    }
-
-    .rn-carousel-controls {
-      position: relative;
-      @media only screen and (max-width: 767px) {
-        display: none;
-      }
-
-      .rn-carousel-control {
-        height: 148px;
-        width: 80px;
-        line-height: 148px;
-        top: -148px;
-        background-color: $gray-lightest;
-        color: $accent-gray;
-        text-align: center;
-      }
-
-      .rn-carousel-control-prev {
-        left: 0;
-      }
-
-      .rn-carousel-control-next {
-        right: 0;
-      }
-
     }
 
     .track {
@@ -91,21 +68,6 @@
         align-items: center;
       }
 
-
-      &:not(:first-child):before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 32px;
-        left: -30px;
-        @include forward-slash(1px, 60px, 0, 2px, 30deg);
-        background-color: #D1D3D4;
-        @media only screen and (min-width: 768px) {
-          top: 42px;
-          left: -18px;
-        }
-      }
-
       p {
         @include sofia-pro-regular;
         font-size: 12px;
@@ -119,6 +81,9 @@
       .subtrack {
         padding-bottom: 7px;
         border-bottom: 1px solid #D1D3D4;
+        width: 90px;
+        @include ellipsis;
+        text-align: center;
       }
 
       .rating {
