@@ -1,6 +1,7 @@
 section(ng-switch="state")
   .section-loading(ng-switch-when="loading")
 
-  p(ng-switch-when="error") {{errMsg}}
+  .section-error(ng-switch-when="error")
+    p {{errMsg}}
 
   div(ng-transclude, ng-switch-when="ready")
