@@ -59,8 +59,8 @@
         track-toggle(tracks="vm.tracks")
 
     .save-section
-      button.tc-btn.tc-btn-primary.tc-btn-s(ng-show="!(vm.editProfile.$invalid || vm.editProfile.$pristine)", type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
-      button.tc-btn.tc-btn-secondary.tc-btn-s.disabled(ng-show="vm.editProfile.$invalid || vm.editProfile.$pristine", type="button") Save
+      button.tc-btn.tc-btn-primary.tc-btn-s(ng-show="!(vm.editProfile.$invalid || vm.editProfile.$pristine || !vm.tracksValid())", type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
+      button.tc-btn.tc-btn-secondary.tc-btn-s.disabled(ng-show="vm.editProfile.$invalid || vm.editProfile.$pristine || !vm.tracksValid()", type="button") Save
 
   .settings-section.skills
     .section-info
