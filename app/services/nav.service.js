@@ -29,6 +29,7 @@
           { 'href': '/community/competitive%20programming/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/images/nav/book-cp.svg' },
       ],
       'community': [
+          { 'sref': 'community', 'text': 'HOME', 'icon': '/images/nav/community.svg' },
           { 'sref': 'community.members', 'text': 'MEMBERS', 'icon': '/images/nav/members.svg' },
           { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/images/nav/programs.svg' },
           { 'href': CONSTANTS.FORUMS_APP_URL, 'text': 'FORUMS', 'icon': '/images/nav/forums.svg', 'target': '_blank' },
