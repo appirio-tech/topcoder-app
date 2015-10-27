@@ -13,9 +13,9 @@
     vm.skillIndex = 0;
     vm.displaySection = {};
     vm.sampleSkills = [
-      {"tagName":"VisualForce","hidden":false,"score":0,"sources":[], "tagId": 385},
-      {"tagName":"MongoDB","hidden":false,"score":0,"sources":[], "tagId": 281},
-      {"tagName":"Heroku","hidden":false,"score":0,"sources":[], "tagId": 210}
+      {"tagName":"Photoshop","hidden":false,"score":0,"sources":[], "tagId": 302},
+      {"tagName":"Sketch","hidden":false,"score":0,"sources":[], "tagId": 351},
+      {"tagName":"HTML5","hidden":false,"score":0,"sources":[], "tagId": 213}
     ];
 
     activate();

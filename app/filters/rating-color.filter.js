@@ -10,23 +10,16 @@
         if (typeof rating === 'string')
           rating = parseInt(rating.replace(",", ""));
         colors = colors.filter(function(color) {
-          return rating >= color.start && rating <= color.end;
+          return rating !== null && rating >= color.start && rating <= color.end;
         });
         return colors[0] && colors[0].color || 'black';
       }
       var colors = [
-        // level 0 grey
-        {
-          'color': '#F0F0F0',
-          'darkerColor': '#F0F0F0',
-          'start': 0,
-          'end': 0
-        },
         // grey
         {
           'color': '#9D9FA0',
           'darkerColor': '#9D9FA0',
-          'start': 1,
+          'start': 0,
           'end': 899
         },
         // green
