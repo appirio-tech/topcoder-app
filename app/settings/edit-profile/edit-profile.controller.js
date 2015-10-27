@@ -4,9 +4,9 @@
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
 
-  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster'];
+  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster', '$scope'];
 
-  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, CONSTANTS, TagsService, toaster) {
+  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, CONSTANTS, TagsService, toaster, $scope) {
     $log = $log.getInstance("EditProfileCtrl");
     var vm = this;
     vm.toggleTrack    = toggleTrack;
@@ -16,6 +16,7 @@
     vm.addSkill = addSkill;
     vm.deleteImage = deleteImage;
     vm.changeImage = changeImage;
+    vm.tracksValid = tracksValid;
 
     activate();
 
@@ -33,6 +34,13 @@
       vm.countryObj = ISO3166.getCountryObjFromAlpha3(vm.userData.competitionCountryCode);
 
       processData(vm.userData);
+
+      $scope.tracks = vm.tracks;
+      $scope.$watch('tracks', function watcher() {
+        if (!tracksValid()) {
+          toaster.pop('error', "Error", "Please select at least one track.");
+        }
+      }, true);
 
       ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId).then(function(data) {
         vm.linkedExternalAccounts = data;
@@ -84,6 +92,10 @@
           toaster.pop('note', null, 'You\'ve already added that skill.');
         }
       }
+    }
+
+    function tracksValid() {
+      return vm.tracks.DEVELOP || vm.tracks.DESIGN || vm.tracks.DATA_SCIENCE;
     }
 
     function updateCountry(angucompleteCountryObj) {
