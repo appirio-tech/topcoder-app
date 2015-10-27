@@ -4,9 +4,9 @@
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
 
-  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster'];
+  EditProfileController.$inject = ['$rootScope', 'userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster'];
 
-  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, CONSTANTS, TagsService, toaster) {
+  function EditProfileController($rootScope, userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, CONSTANTS, TagsService, toaster) {
     $log = $log.getInstance("EditProfileCtrl");
     var vm = this;
     vm.toggleTrack    = toggleTrack;
@@ -100,6 +100,7 @@
       .then(ImageService.createFileRecord)
       .then(function(newPhotoURL) {
         vm.userData.photoURL = newPhotoURL;
+        $rootScope.$broadcast(CONSTANTS.EVENT_PROFILE_UPDATED);
       });
     }
 
