@@ -3,10 +3,11 @@
 
   angular.module('tc.settings').controller('SettingsController', SettingsController);
 
-  SettingsController.$inject = ['$state'];
+  SettingsController.$inject = ['$state', 'userHandle'];
 
-  function SettingsController($state) {
+  function SettingsController($state, userHandle) {
     var vm = this;
+    vm.userHandle = userHandle;
 
     activate();
 

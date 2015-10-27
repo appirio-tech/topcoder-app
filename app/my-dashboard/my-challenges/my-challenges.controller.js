@@ -8,6 +8,7 @@
   function MyChallengesWidgetController(ChallengeService, UserService, $log, CONSTANTS, userIdentity, $q) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
+    vm.neverParticipated = false;
     vm.loading = true;
     vm.userHasChallenges = true;
     vm.challengeView = 'tile';
@@ -44,17 +45,19 @@
 
         if (!marathonMatches.length && !devDesignChallenges.length) {
           vm.userHasChallenges = false;
-          vm.loading = false;
+          _checkForParticipation().then(function() {
+            vm.loading = false;
+          });
 
         } else {
           ChallengeService.processActiveDevDesignChallenges(devDesignChallenges);
           ChallengeService.processActiveMarathonMatches(marathonMatches);
           var userChallenges = marathonMatches.concat(devDesignChallenges);
-          // FIX when working on marathon matches:
-          // sort by closest deadline? .sort(function)
-          // limit to 8 .slice(0, 8);
 
-          vm.myChallenges = userChallenges;
+          userChallenges = _.sortBy(userChallenges, function(n) {
+            return n.registrationEndDate;
+          });
+          vm.myChallenges = userChallenges.reverse().slice(0, 8);
           vm.userHasChallenges = true;
           vm.loading = false;
         }
@@ -70,6 +73,12 @@
       if (vm.challengeView !== view) {
         vm.challengeView = view;
       }
+    }
+
+    function _checkForParticipation() {
+      return ChallengeService.checkChallengeParticipation(handle, function(participated) {
+        vm.neverParticipated = !participated;
+      });
     }
   }
 })();

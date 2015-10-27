@@ -2,7 +2,6 @@
 @import '../partials/combined';
 
 .programs {
-  padding-top: 30px;
 
   .section-loading {
     min-height: 200px;
@@ -17,117 +16,25 @@
   }
 
   .unregistered {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 300px;
-    margin: 0 auto;
-    @media only screen and (min-width: 800px) {
-      flex-direction: row;
-      justify-content: space-between;
-      max-width: 750px;
-    }
-    @media only screen and (min-width: 900px) {
-      padding-left: 90px;
-      padding-right: 90px;
-      max-width: none;
-    }
-
-    img {
-      width: 300px;
-      @media only screen and (min-width: 800px) {
-        order: 2;
-      }
-      @media only screen and (min-width: 1030px) {
-        width: 335px;
-      }
-      @media only screen and (min-width: 1100px) {
-        width: 400px;
-      }
-      @media only screen and (min-width: 1200px) {
-        width: 508px;
+    .empty-state-placeholder {
+      .title {
+        text-transform: none;
       }
     }
-  }
-
-  .join-program {
-    max-width: 451px;
-    padding: 0 20px 40px;
-    @media only screen and (min-width: 800px) {
-      order: 1;
-      padding: 0;
-      margin-bottom: 30px;
-    }
-
-    h3 {
-      margin-top: 30px;
-      @include sofia-pro-light;
-      font-size: 23px;
-      text-transform: uppercase;
-      color: $gray-darkest;
-      @media only screen and (min-width: 900px) {
-        margin-top: 0;
-      }
-      @media only screen and (min-width: 1000px) {
-        font-size: 40px;
-      }
-
-      span { text-transform: none; }
-    }
-
-    h4 {
-      margin-top: 10px;
-      @include source-sans-light;
-      font-size: 18px;
-      line-height: 24px;
-      color: #A3A3AE;
-      @media only screen and (min-width: 1000px) {
-        font-size: 22px;
-        margin-top: 6px;
-      }
-    }
-
-    p {
-      margin-top: 20px;
-      @include source-sans-regular;
-      font-size: 13px;
-      line-height: 26px;
-      @media only screen and (min-width: 1000px) {
-        font-size: 16px;
-        margin-top: 60px;
-      }
-    }
-
-    .info-links {
-      a {
-        display: inline-block;
-        margin-top: 30px;
-        font-size: 13px;
-        text-decoration: none;
-        text-transform: uppercase;
-        @media only screen and (min-width: 1000px) {
-          font-size: 16px;
-        }
-
-        &:last-child {
-          margin-left: 30px;
-        }
-      }
-    }
-
   }
 
   .registered {
-    padding: 15px;
-    border-top: 1px solid #F0F0F0;
-    border-bottom: 1px solid #F0F0F0;
-    background-color: #FCFCFC;
+    padding: 20px 15px 5px 15px;
+    border-top: 1px solid $gray-light;
+    border-bottom: 1px solid $gray-light;
+    background-color: $gray-lightest;
 
     .badge-and-challenges {
       @include horizontal-scroll;
+      display: flex;
+      flex-direction: row;
       @media only screen and (min-width: 768px) {
-        display: flex;
-        flex-flow: row wrap;
+        flex-wrapper: wrap;
         margin: 0 auto;
         overflow: visible;
         white-space: normal;
@@ -144,7 +51,7 @@
     .registered-badge {
       display: inline;
       height: 370px;
-      width: 270px;
+      min-width: 270px;
       border: 1px solid #DCDCDC;
       border-radius: 4px;
       background-color: $white;

@@ -6,7 +6,7 @@ describe('User Service', function() {
     bard.appModule('topcoder');
     bard.inject(this, '$httpBackend', 'UserService', 'CONSTANTS');
 
-    apiUrl = CONSTANTS.API_URL;
+    apiUrl = CONSTANTS.AUTH_API_URL;
 
     // mock api
     $httpBackend

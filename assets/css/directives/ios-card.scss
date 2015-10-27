@@ -154,7 +154,15 @@ ios-card .challenge.tile-view {
 
   .stalled-challenge {
     margin-top: 31px;
-    margin-bottom: 32px;
+    margin-bottom: 12px;
+    height: 36px;
+    padding: 0px 20px 0px 20px;
+    @include sofia-pro-medium;
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+    text-align: center;
+    color: $accent-gray;
   }
 
   .phase-action {

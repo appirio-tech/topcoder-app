@@ -1,5 +1,5 @@
-header(ng-hide="vm.loading")
-  h1.section-title Active Challenges
+header(ng-hide="vm.loading || !vm.userHasChallenges")
+  h1.section-title My Challenges
 
   .challenge-view-toggle(ng-show="vm.userHasChallenges")
     button.tile(ng-click="vm.toggleView('tile')", ng-class="{ disabled: vm.challengeView === 'tile' }") Grid
@@ -9,31 +9,9 @@ header(ng-hide="vm.loading")
 .section-loading(ng-show="vm.loading")
 
 section.noChallenges(ng-if="!vm.userHasChallenges && !vm.loading")
-  h3 Win prize money and expand your knowledge
-
-  .tracks
-    .track
-      .develop-icon-outline
-      p Development
-
-    .track
-      .design-icon-outline
-      p Design
-
-    .track
-      .data-science-icon-outline
-      p Data Science
-
-    .track
-      .copilot-icon-outline
-      p Co-Pilot
-
-  p.info Compete in challenges to win money, test yourself against the world's best, and learn new skills
-
-  .info-links
-    a.tc-btn.tc-btn-l(ng-href="https://www.{{DOMAIN}}/challenges/?pageIndex=1") Find Challenges
-
-    a.tc-btn.tc-btn-ghost.tc-btn-l(href="https://www.{{DOMAIN}}/community/getting-started/") Learn More
+  .never-participated(ng-if="vm.neverParticipated")
+    empty-state-placeholder(state-name="dashboard-challenges-never-participated", show="vm.neverParticipated", theme="black")
+  empty-state-placeholder(state-name="dashboard-challenges", show="!vm.userHasChallenges && !vm.neverParticipated", theme="black")
 
 section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading", ng-class="{ 'list-view-active': vm.challengeView === 'list' }")
   .section-titles(ng-show="vm.challengeView === 'list'")
@@ -45,7 +23,7 @@ section.hasChallenges(ng-if="vm.userHasChallenges && !vm.loading", ng-class="{ '
 
     challenge-tile(ng-repeat="challenge in vm.myChallenges | orderBy:registrationEndDate:true", challenge="challenge", view="vm.challengeView", ng-class="vm.challengeView + '-view'")
 
-.my-challenges-links(id="viewAllChallenges", ng-show="vm.userHasChallenges && !vm.loading")
-  a.active(ui-sref="my-challenges({status: 'active'})") View More
+.my-challenges-links(id="viewAllChallenges", ng-show="!vm.neverParticipated && !vm.loading")
+  a.active(ui-sref="my-challenges({status: 'active'})", ng-if="vm.userHasChallenges") View More
 
   a.past(ui-sref="my-challenges({status: 'completed'})") Past Challenges

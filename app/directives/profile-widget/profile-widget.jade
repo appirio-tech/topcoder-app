@@ -13,19 +13,19 @@
     h3.tenure(ng-if="profile.startMonth")
       | Member Since {{profile.startMonth}}
 
-    a.tc-btn.tc-btn-m.edit(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
+    a.tc-btn.tc-btn-s.edit(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
 
-  .tracks-links
+  .tracks-links(ng-if="profile.tracks && profile.tracks.length > 0")
     .tracks
       .track(ng-repeat="track in (profile.tracks)", ng-click="profileVm.scrollTo(track)")
         div(class="track-icon {{profileVm.imgMap[track]}}-icon")
           div
         .text {{track | role}}
 
-  p.description {{profile.description}}
+  p.description(ng-if="profile.description") {{profile.description}}
 
   .links
     a.badges.link(ng-click="profileVm.showBadges()", ng-show="profileVm.profile.badges.Achievements.length > 0")
       | Badges
-    a.forums.link(ng-href="http://forums.{{DOMAIN}}/?module=History&userID={{profileVm.profile.userId}}")
+    a.forums.link(ng-href="https://apps.{{DOMAIN}}/forums/?module=History&userID={{profileVm.profile.userId}}")
       | Forum Posts

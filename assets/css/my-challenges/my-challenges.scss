@@ -1,10 +1,22 @@
 @import 'topcoder-includes';
 @import '../partials/combined';
 
+.my-challenges-links,
+.srms-links,
+.blog-links {
+  a {
+    font-size: 12px;
+  }
+}
+
 .my-challenges-container {
   width: 100%;
   display: flex;
   flex-direction: column;
+  @include module-l;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
 
   .section-title {
     font-size: 22px;
@@ -12,105 +24,34 @@
     text-align: center;
   }
 
+  section.load-more {
+    min-height: auto;
+  }
+
   .my-challenges {
     min-height: 50px;
     display: flex;
     flex-direction: column;
 
-    .nav {
-      @include module-full-width;
-      background: white;
-      height: 100px;
-      padding-left: 60px;
-      padding-right: 60px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      @media (min-width: 768px) {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin-bottom: 8px;
-      }
-
-      .arrow {
-        width: 15px;
-      }
-
-      .breadcrumbs {
-        @include sofia-pro-extra-light;
-        font-size: 14px;
-        line-height: 16px;
-        @media (min-width: 768px) {
-          font-size: 28px;
-          line-height: 34px;
-          display: flex;
-          flex-direction: row;
-        }
-
-        .dashboard {
-          display: block;
-          color: black;
-          text-align: center;
-          text-transform: uppercase;
-          @media (min-width: 768px) {
-            display: block;
-            color: black;
-            text-align: center;
-            text-transform: uppercase;
-          }
-
-          a {
-            color: black;
-            text-decoration: none;
-            
-            &:hover {
-              color: $primary;
-            }
-          }
-        }
-
-        .my-challenges {
-          display: block;
-          color: $primary;
-          font-weight: 700;
-          text-align: center;
-          text-transform: uppercase;
-          @media (min-width: 768px) {
-            display: block;
-            color: $primary;
-            font-weight: 700;
-            text-align: center;
-            text-transform: uppercase;
-          }
-        }
-      }
-    }
-
-    section.noChallenges {
-      text-align: center;
-      margin-top: 10px;
-      font-size: 18px;
+    .page-header {
     }
 
     .hasChallenges {
       display: flex;
       flex-direction: column;
       align-items: center;
+      border-top: none;// prevent css from my dashboard to 
+      border-bottom: none;// prevent css from my dashboard to override
+      
+      padding: 15px 15px 30px 15px;
+      background-color: $gray-lightest;
     }
 
     .content {
-      margin-left: 10px;
-      margin-right: 10px;
 
-      section.challenges {
+      section.participated {
         background: white;
         align-self: center;
-        margin-top: 15px;
-        padding-bottom: 15px;
-        padding-top: 10px 20px 0px 20px;
         display: flex;
         flex-flow: column wrap;
         position: relative;
@@ -123,7 +64,7 @@
           justify-content: space-between;
           padding-top: 35px;
           padding-bottom: 35px;
-          border-bottom: 1px solid #F0F0F0;
+          border-bottom: 1px solid $gray-light;
 
           .filters {
             position: initial;
@@ -255,5 +196,21 @@
         }
       }
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .my-challenges-container {
+    @include module-l;
+    margin-top: 30px;
+  }
+}
+
+
+@media (min-width: 900px) {
+  .my-challenges-container {
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

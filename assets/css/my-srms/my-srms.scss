@@ -5,6 +5,10 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  @include module-l;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
 
   hr {
     @include horizontal-rule;
@@ -17,71 +21,51 @@
     text-align: center;
   }
 
-  .nav {
-    @include module-full-width;
-    background: white;
-    height: 100px;
-    padding-left: 60px;
-    padding-right: 60px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    .arrow {
-      width: 15px;
-    }
-    .breadcrumbs {
-      @include sofia-pro-extra-light;
-      font-size: 14px;
-      line-height: 16px;
-      .dashboard {
-        display: block;
-        color: black;
-        text-align: center;
-        text-transform: uppercase;
-
-        a {
-          color: black;
-          text-decoration: none;
-
-          &:hover {
-            color: $primary;
-          }
-        }
-      }
-      .my-srms {
-        display: block;
-        color: $primary;
-        font-weight: 700;
-        text-align: center;
-        text-transform: uppercase;
-      }
-    }
-  }
-
   .no-srms {
-    margin: 30px;
+    padding: 30px;
     display: flex;
     flex-direction: inherit;
     align-items: center;
+    background-image: url('/images/empty-states/pattern-my-challenges.png');
+    background-repeat: repeat;
+
+    .info-links {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      a {
+        text-transform: uppercase;
+        @include sofia-pro-medium;
+
+        &:not(:last-child) {
+          margin-bottom: 30px;
+        }
+
+        &.find-srms {
+        }
+
+        &.learn-more {
+          font-size: 12px;
+          line-height: 12px;
+          color: $accent-gray;
+        }
+      }
+    }
   }
   .has-srms {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 15px 15px 30px 15px;
+    background-color: $gray-lightest;
   }
 
   .content {
-    margin-left: 10px;
-    margin-right: 10px;
 
     section.my-srms {
       background: white;
       align-self: center;
-      margin-top: 15px;
-      padding-bottom: 15px;
-      padding-top: 10px 20px 0px 20px;
       display: flex;
       flex-flow: column wrap;
       position: relative;
@@ -94,7 +78,7 @@
         justify-content: space-between;
         padding-top: 35px;
         padding-bottom: 35px;
-        border-bottom: 1px solid #F0F0F0;
+        border-bottom: 1px solid $gray-light;
 
         .filters {
           position: initial;
@@ -229,32 +213,8 @@
 
 @media (min-width: 768px) {
   .my-srms-container {
-    .nav {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-bottom: 8px;
-
-      .breadcrumbs {
-        font-size: 28px;
-        line-height: 34px;
-        display: flex;
-        flex-direction: row;
-        .dashboard {
-          display: block;
-          color: black;
-          text-align: center;
-          text-transform: uppercase;
-        }
-        .my-srms {
-          display: block;
-          color: $primary;
-          font-weight: 700;
-          text-align: center;
-          text-transform: uppercase;
-        }
-      }
-    }
+    @include module-l;
+    margin-top: 30px;
   }
 }
 
@@ -267,6 +227,15 @@
     }
   }
 }
+
+@media (min-width: 900px) {
+  .my-srms-container {
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 @media (min-width: 1155px) {
   .my-srms-container {
     section.my-srms {

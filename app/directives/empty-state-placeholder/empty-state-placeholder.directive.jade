@@ -1,0 +1,9 @@
+.empty-state-placeholder(ng-show="vm.show", class="{{vm.theme}}")
+  .title(ng-bind="vm.title")
+  .content(ng-transclude, ng-show="transcluded")
+  .description(ng-bind="vm.description")
+  .help-links
+    .help-link(ng-repeat="link in vm.helpLinks")
+      a(class="{{link.cssClass}}", title="{{link.title}}", ng-href="{{link.url}}", ng-if="link.url") {{link.title}}
+      a(class="{{link.cssClass}}", title="{{link.title}}", ui-sref="{{link.state}}", ng-if="link.state") {{link.title}}
+      a(class="{{link.cssClass}}", title="{{link.title}}", ng-click="link.onClick", ng-if="link.onClick") {{link.title}}

@@ -1,48 +1,45 @@
 .about-container
-  .profile-header-container(ng-cloak)
-    profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
+  
+  .profile-header-container(ng-cloak,id="affix", tc-sticky)
+    //- .sticky-container(sticky media-query="min-width: 780px" use-placeholder="true" offset="10" confine="true" sticky-class="sticked")
+      profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
 
+    //- .sticky-container(bs-affix data-offset-top="10" data-offset-bottom="400")
+    .sticky-container()
+      profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
+
+  
   .profile-about-container
 
     #skills
       tc-section(ng-show="vm.displaySection.skills", state="profileVm.status.skills")
 
         .skills
-          h3.activity Skills
+          h3.activity(ng-hide="!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)") Skills
 
           .list(ng-show="profileVm.skills && profileVm.skills.length > 0")
 
             .skill(ng-repeat="skill in vm.skills")
               skill-tile(skill="skill")
 
-          button.tc-btn.tc-btn-m.more(ng-if="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW ALL
-          button.tc-btn.tc-btn-m.more(ng-if="vm.skills.length > 10", ng-click="vm.skills = vm.someSkills") VIEW LESS
+          button.tc-btn.tc-btn-s.more(ng-if="vm.skills.length < vm.fullSkills.length", ng-click="vm.skills = vm.fullSkills") VIEW ALL
+          button.tc-btn.tc-btn-s.more(ng-if="vm.skills.length > 10", ng-click="vm.skills = vm.someSkills") VIEW LESS
 
-          .empty-state(ng-show="!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)")
-            .action-text Tell everyone what you know
+          .empty-state
+            empty-state-placeholder(state-name="profile-skills", show="!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)")
+              .sample-skills
+                .skill(ng-repeat="skill in vm.sampleSkills")
+                  skill-tile(skill="skill")
 
-            .list
-              .skill(ng-repeat="skill in vm.sampleSkills")
-                skill-tile(skill="skill")
 
-            .description You can add languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.
-
-            button.tc-btn.tc-btn-l.link-button(ui-sref="settings.profile") ADD SKILLS
 
     #tcActivity
       tc-section(ng-show="vm.displaySection.stats", state="profileVm.status.stats")
 
         .categories
 
-          .empty-state(ng-if="!profileVm.numProjects")
-            .action-text Start competing within the community
-            .tracks
-              .track.noclick(ng-repeat="track in ['DEVELOP', 'DESIGN', 'DATA_SCIENCE']")
-                div(class="{{profileVm.imgMap[track]}}-icon")
-                  div
-                .text {{track | track}} 
-            .description Compete in challenges to win money, test yourself against the world's best, and learn new skills. Your performance rating will show up here.
-            a.tc-btn.tc-btn-l.link-button(href="/challenges") FIND CHALLENGES
+          .empty-state
+            empty-state-placeholder(state-name="profile-topcoder-activity", show="!profileVm.numProjects", theme="offwhite")
 
           .track(
             ng-repeat="track in profileVm.profile.tracks",
@@ -51,10 +48,10 @@
           )
 
             div(class="name")
-              img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data-outline.svg")
-              img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop-outline.svg")
-              img(ng-if="track == 'DESIGN'", src="/images/ico-track-design-outline.svg")
-              img(ng-if="track == 'COPILOT'", src="/images/ico-track-co_pilot-outline.svg")
+              img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data.svg")
+              img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop.svg")
+              img(ng-if="track == 'DESIGN'", src="/images/ico-track-design.svg")
+              img(ng-if="track == 'COPILOT'", src="/images/ico-track-copilot.svg")
               span {{track | track | uppercase}} ACTIVITY
 
             a.subtrack(
@@ -90,14 +87,10 @@
     #externalLinks
       tc-section(ng-show="vm.displaySection.externalLinks", state="profileVm.status.externalLinks")
         .external-links
-          h3.activity on the web
+          h3.activity(ng-if="vm.hasLinks") on the web
           external-links-data(ng-show="vm.hasLinks", external-links="vm.linkedExternalAccounts", linked-accounts-data="vm.linkedExternalAccountsData")
 
-          .empty-state(ng-hide="vm.hasLinks")
-            .action-text Showcase your work from around the web
+          .empty-state
+            empty-state-placeholder(state-name="profile-external-links", show="!vm.hasLinks")
+              external-accounts.external-account-container(linked-accounts="[]", links-data="{}", read-only="true")
 
-            external-accounts.external-account-container(linked-accounts="[]", links-data="{}", read-only="true")
-
-            .description Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.
-
-            button.tc-btn.tc-btn-l.link-button(ui-sref="settings.profile") CONNECT ACCOUNTS

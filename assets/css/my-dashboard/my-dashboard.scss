@@ -9,20 +9,24 @@
   .subtrack-stats {
     width: 100%;
     max-width: 1242px;
-    margin-top: 1px;
     background-color: $white;
   }
 
-  .my-challenges, .srms, .programs, .community-updates {
+  .challenges, .srms, .programs, .community-updates {
     @include module-l;
     margin-top: 1px;
     width: 100%;
-    padding-top: 30px;
+
+    header {
+      .section-title {
+        padding-top: 30px;
+      }
+    }
   }
 
-  .my-challenges, .srms, .programs, .community-updates {
+  .challenges, .srms, .programs, .community-updates {
     @media only screen and (min-width: 900px) {
-      padding-top: 30px;
+      padding-top: 0px;
     }
   }
 

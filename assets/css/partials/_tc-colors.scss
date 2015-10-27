@@ -1,3 +1,50 @@
+// TOPCODER Brand palette
+// We should use those variables instead of color values;
+$primary: #0096FF;
+$primary-dark: #097DCE;
+$primary-dark2: darken($primary, 20%);
+$primary-light: #85CCFF;
+$primary-light2: lighten($primary, 70%);
+$primary-lighter: #F2FAFF;
+$primary-lighter2: lighten($primary, 90%);
+
+
+$error: #F31D3D;
+$error-dark: #C70E2A;
+$error-light: #FCBBC5;
+$error-lighter: #FEE8EC;
+
+$success: #5BC921;
+$success-dark: #42A30F;
+$success-light: #CEEFBC;
+$success-lighter: #EFFAE9;
+
+$accent-gray: #A3A3AE;
+$accent-gray-dark: #394146;
+
+$black: #000;
+$white: #fff;
+$gray-darkest: #3D3D3D;
+$gray-darker: #7F7F7F;
+$gray-dark: #B7B7B7;
+$gray: #D1D3D4;
+$gray-light: #F0F0F0;
+$gray-lighter: #F6F6F6;
+$gray-lightest: #FCFCFC;
+
+$level-5: #EF3A3A;
+$level-4: #FCD617;
+$level-3: #616BD5;
+$level-2: #69C329;
+$level-1: #9D9FA0;
+
+$design: #21B2F1;
+$data_science: #FC9A00;
+$develop: #05C14F;
+$copilot: #7D939E;
+
+
+
 // Old colors that we should clean. Don't reference or use in new modules!
 
 $light-black: #333;
@@ -11,6 +58,7 @@ $table-rows-gray : #f7f7f7;
 $review-border   : #e7e7e7;
 $horizontal-rule : #e1e1e1;
 $input-background: #3f4143;
+$gray-dark-alt: #ADADB7;
 
 // oranges
 $tc-btn-light-orange: #f90;
@@ -35,3 +83,17 @@ $ui-blue: #26A9E0;
 $ui-disabled-button-blue: #94D7ED;
 $button-gray: #d1d3d4;
 $ui-enabled-button-blue: #27a9e1;
+
+$community-text-dark: #464646;
+$member-search-highlight: #F69C23;
+$member-tile-border: #E0E0E0;
+$member-blue: #03B7FF;
+$member-button: #00AEFF;
+$member-design: $member-blue;
+$member-develop: #A3D200;
+$member-data_science: #F49F2A;
+
+$statistics-design: #22AEFF;
+$statistics-develop: #99cc00;
+$statistics-data_science: #F39426;
+$statistics-table-even: #FAFAFA;
