@@ -33,7 +33,6 @@
       ]).then(function(data) {
         var srms = data[0];
         var userSrms = data[1];
-        // userSrms.push(_.clone(srms[0]));
         var userSrmsMap = {};
         var userSrms = userSrms.forEach(function (srm) {
           var id = srm.id;
