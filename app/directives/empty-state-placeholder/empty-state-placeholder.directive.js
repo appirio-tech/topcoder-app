@@ -23,8 +23,8 @@
         });
         scope.transcluded = angular.element(contentDiv)[0].children.length > 0;
       },
-      controller: ['$scope', 'CONSTANTS', '$attrs', '$element',
-        function($scope, CONSTANTS, $attrs, $element) {
+      controller: ['$scope', '$attrs', '$element',
+        function($scope, $attrs, $element) {
           $scope.DOMAIN = CONSTANTS.domain;
           var vm = this;
           vm.title = null;
