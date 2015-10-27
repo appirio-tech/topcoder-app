@@ -19,7 +19,7 @@
           { 'href':  "/challenges/design/active/?pageIndex=1", 'text': 'DESIGN CHALLENGES', 'icon': '/images/nav/track-design.svg' },
           { 'href':  "/challenges/develop/active/?pageIndex=1", 'text': 'DEVELOPMENT CHALLENGES', 'icon': '/images/nav/track-develop.svg' },
           { 'href':  "/challenges/data/active/?pageIndex=1", 'text': 'DATA SCIENCE CHALLENGES', 'icon': '/images/nav/track-data.svg' },
-          { 'href':  CONSTANTS.ARENA_URL, 'text': 'THE ARENA', 'icon': '/images/nav/track-cp.svg', 'target': '_blank' },
+          { 'href':  CONSTANTS.ARENA_URL, 'text': 'COMPETITIVE PROGRAMMING', 'icon': '/images/nav/track-cp.svg', 'target': '_blank' },
       ],
       'learn': [
           { 'href': '/member-onboarding/', 'text': 'GET STARTED', 'icon': '/images/nav/rocket.svg' },
