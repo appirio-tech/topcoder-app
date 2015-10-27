@@ -46,7 +46,7 @@ describe('My SRMs Controller', function() {
       return deferred.promise;
     });
 
-    sinon.stub(srmService, 'getPastSRMs', function(data) {
+    sinon.stub(srmService, 'getUserSRMs', function(data) {
       var deferred = $q.defer();
       var resp = JSON.parse(JSON.stringify(srms.slice(1)));
       resp.metadata = {

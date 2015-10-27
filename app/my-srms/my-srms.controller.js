@@ -76,13 +76,8 @@
         filter: 'status=' + vm.statusFilter
       };
 
-      if (vm.statusFilter === 'past') {
-        return SRMService.getPastSRMs(userHandle, params)
-          .then(handleSRMsLoad, handleSRMsFailure);
-      } else {
-        return SRMService.getSRMs(params)
+      return SRMService.getUserSRMs(userHandle, params)
         .then(handleSRMsLoad, handleSRMsFailure);
-      }
     }
 
     function handleSRMsLoad(data) {
