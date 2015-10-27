@@ -21,35 +21,35 @@
       // grey
       {
         'color': '#9D9FA0',
-        'darkerColor': '#656565',
+        'darkerColor': '#9D9FA0',
         'start': 0,
         'end': 899
       },
       // green
       {
         'color': '#69C329',
-        'darkerColor': '#7aa307',
+        'darkerColor': '#69C329',
         'start': 900,
         'end': 1199
       },
       // blue
       {
         'color': '#616BD5',
-        'darkerColor': '#078ccb',
+        'darkerColor': '#616BD5',
         'start': 1200,
         'end': 1499
       },
       // yellow
       {
-        'color': '#FCB816',
-        'darkerColor': '#c2761e',
+        'color': '#FCD617',
+        'darkerColor': '#FCD617',
         'start': 1500,
         'end': 2199
       },
       // red
       {
         'color': '#EF3A3A',
-        'darkerColor': '#cb0651',
+        'darkerColor': '#EF3A3A',
         'start': 2200,
         'end': Infinity
       }
