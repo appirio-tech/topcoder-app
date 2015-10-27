@@ -154,6 +154,10 @@
       
         .skill {
           width: 130px;
+          opacity: 0.3;
+          a {
+            cursor: default;
+          }
         } 
       }
     }
