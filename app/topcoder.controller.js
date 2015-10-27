@@ -30,8 +30,7 @@
       $rootScope.$on('$stateChangeSuccess', function(evt, toState, toParams, fromState, fromParams) {
         $document[0].body.scrollTop = $document[0].documentElement.scrollTop = 0;
 
-        vm.introOptions = {};
-        // vm.introOptions = IntroService.getCurrentPageOptions();
+        vm.introOptions = IntroService.getCurrentPageOptions();
 
         $timeout(function() {
           if (vm.introOptions) {
