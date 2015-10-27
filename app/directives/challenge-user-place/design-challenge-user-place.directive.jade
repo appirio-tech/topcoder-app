@@ -5,9 +5,9 @@
   p.place(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
 
   .thumbnail(ng-click="openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
-    img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
+    img(ng-src="{{imageURL}}", fallback-src="/images/ico-picture.svg")
 
-    .thumbnail-gallery(ng-click="challenge.showLightbox()")
+    .thumbnail-gallery(ng-click="openLightbox()")
       .gallery-icon
 
       .num-images 1 image
