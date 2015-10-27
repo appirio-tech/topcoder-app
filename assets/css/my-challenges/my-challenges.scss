@@ -36,27 +36,22 @@
     .page-header {
     }
 
-    section.noChallenges {
-      text-align: center;
-      margin-top: 10px;
-      font-size: 18px;
-    }
-
     .hasChallenges {
       display: flex;
       flex-direction: column;
       align-items: center;
       border-top: none;// prevent css from my dashboard to 
       border-bottom: none;// prevent css from my dashboard to override
+      
+      padding: 15px 15px 30px 15px;
+      background-color: $gray-lightest;
     }
 
     .content {
 
-      section.challenges {
+      section.participated {
         background: white;
         align-self: center;
-        padding-bottom: 15px;
-        padding-top: 10px 20px 0px 20px;
         display: flex;
         flex-flow: column wrap;
         position: relative;
@@ -69,7 +64,7 @@
           justify-content: space-between;
           padding-top: 35px;
           padding-bottom: 35px;
-          border-bottom: 1px solid #F0F0F0;
+          border-bottom: 1px solid $gray-light;
 
           .filters {
             position: initial;
