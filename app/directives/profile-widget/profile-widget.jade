@@ -6,8 +6,8 @@
   .info
     h1.handle(style="color:{{handleColor}};") {{profile.handle}}
 
-    h3.location-challenges {{profile.homeCountryCode | isoCountry}}
-      span.bar(ng-show="profile.homeCountryCode && numWins") &nbsp;|&nbsp;
+    h3.location-challenges {{profile.competitionCountryCode | isoCountry}}
+      span.bar(ng-show="profile.competitionCountryCode && numWins") &nbsp;|&nbsp;
       span(ng-show="numWins") {{numWins}} Wins
 
     h3.tenure(ng-if="profile.startMonth")
