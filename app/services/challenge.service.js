@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('ChallengeService', ChallengeService);
 
-  ChallengeService.$inject = ['CONSTANTS', 'ApiService'];
+  ChallengeService.$inject = ['CONSTANTS', 'ApiService', '$q'];
 
-  function ChallengeService(CONSTANTS, ApiService) {
+  function ChallengeService(CONSTANTS, ApiService, $q) {
     var api = ApiService.restangularV3;
 
     var service = {
@@ -18,7 +18,8 @@
       processActiveMarathonMatches: processActiveMarathonMatches,
       processPastMarathonMatch: processPastMarathonMatch,
       processPastSRM: processPastSRM,
-      processPastChallenges: processPastChallenges
+      processPastChallenges: processPastChallenges,
+      checkChallengeParticipation: checkChallengeParticipation
     };
 
     return service;
@@ -195,6 +196,20 @@
             }
           }
 
+          challenge.userHasSubmitterRole = false;
+
+          // determines if user has submitter role or not
+          var roles = challenge.userDetails.roles;
+          if (roles.length > 0) {
+            var submitterRole = _.findIndex(roles, function(role) {
+              var lRole = role.toLowerCase();
+              return lRole === 'submitter';
+            });
+            if (submitterRole >= 0) {
+              challenge.userHasSubmitterRole = true;
+            }
+          }
+
           if (challenge.userDetails.hasUserSubmittedForReview) {
             if (!challenge.highestPlacement) {
               challenge.userStatus = "PASSED_SCREENING";
@@ -204,6 +219,30 @@
           } else {
             challenge.userStatus = "NOT_FINISHED";
           }
+
+          // if user does not has submitter role, just show Completed
+          if (!challenge.userHasSubmitterRole) {
+            challenge.userStatus = "COMPLETED";
+          }
+        }
+      });
+    }
+
+    function checkChallengeParticipation(handle, callback) {
+      var params = {
+        limit: 1,
+        offset: 0
+      };
+      return $q.all([
+        getUserMarathonMatches(handle, params),
+        getUserChallenges(handle, params)
+      ]).then(function(data) {
+        var mms = data[0];
+        var challenges = data[1];
+        if (challenges.metadata.totalCount > 0 || mms.metadata.totalCount > 0) {
+          callback(true);
+        } else {
+          callback(false);
         }
       });
     }

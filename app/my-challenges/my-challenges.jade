@@ -5,7 +5,9 @@
       page-state-header(handle="{{vm.handle}}", page-title="My Challenges", hide-money="true", show-back-link="true", default-state="dashboard")
 
     .content
-      section.challenges
+      .never-participated(ng-if="vm.neverParticipated")
+        empty-state-placeholder(state-name="my-challenges-never-participated", show="vm.neverParticipated", theme="offwhite")
+      section.participated(ng-if="!vm.neverParticipated")
         .top
           .filters
             a(ng-click="vm.statusFilter !== 'active' && vm.changeFilter('active')", ng-class="{disabled: vm.statusFilter == 'active'}") Active
@@ -17,11 +19,12 @@
 
             button.list(ng-click="vm.changeView('list')", ng-class="{ disabled: vm.view === 'list' }") List
 
-        .noChallenges(ng-show="vm.myChallenges.length === 0 && vm.loading === 'ready'")
-          p(ng-show="vm.statusFilter === 'completed'") You have not participated in any challenges yet.
-          p(ng-if="vm.statusFilter === 'active'") There are no upcoming challenges.
+        section.noChallenges(ng-show="vm.myChallenges.length === 0 && vm.loading === 'ready'")
 
-        .hasChallenges(ng-show="vm.myChallenges.length")
+          empty-state-placeholder(state-name="my-challenges-past", show="vm.statusFilter === 'completed'", theme="offwhite")
+          empty-state-placeholder(state-name="my-challenges-active", show="vm.statusFilter === 'active'", theme="offwhite")
+
+        .hasChallenges(ng-show="vm.myChallenges.length", state="vm.loading")
 
           .data(ng-class="vm.view + '-view'")                      
             challenge-tile(

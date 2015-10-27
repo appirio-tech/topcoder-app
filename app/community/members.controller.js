@@ -3,27 +3,27 @@
 
   angular.module('tc.community').controller('MembersController', MembersController);
 
-  MembersController.$inject = ['membersData', '$http', 'CONSTANTS'];
+  MembersController.$inject = ['CommunityDataService', 'CONSTANTS'];
 
-  function MembersController(membersData, $http, CONSTANTS) {
+  function MembersController(CommunityDataService, CONSTANTS) {
+    var ctrl = this;
+    ctrl.notSearch = true;
+    ctrl.showing = 'list';
+    ctrl.domain = CONSTANTS.domain;
+    ctrl.currentMonth = 'October 2015';
+    ctrl.memberLeaderboard = [];
+    ctrl.copilots = [];
+    CommunityDataService.getMembersData()
+      .then(function(data) {
+        ctrl.memberLeaderboard = data.memberLeaderboard;
+        ctrl.copilots = data.copilots;
+      });
 
-    this.notSearch = true;
-    this.showing = 'list';
-    this.domain = CONSTANTS.domain;
-    this.currentMonth = 'October 2015';
-    this.memberLeaderboard = membersData.data.memberLeaderboard;
-    this.copilots = membersData.data.copilots;
-    this.search = function() {
-      if (this.keywords) {
-        window.location.replace('/search?s=' + this.keywords + '&scope=member');
-
-        //$http.get('community/mock-data/search-result.json')
-        //    .success(function(data) {
-        //        this.searchResult = data.result;
-        //        this.notSearch = false;
-        //    }.bind(this));
+    ctrl.search = function() {
+      if (ctrl.keywords) {
+        window.location.replace('/search?s=' + ctrl.keywords + '&scope=member');
       } else {
-        this.notSearch = true;
+        ctrl.notSearch = true;
       }
     };
   }
