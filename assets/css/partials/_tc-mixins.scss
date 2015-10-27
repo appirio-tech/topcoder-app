@@ -83,20 +83,25 @@
 }
 
 // body end;
+$text-rendering: geometricPrecision;
+
 
 @mixin sofia-pro-extra-light {
   font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 200;
+  text-rendering: $text-rendering;
 }
 
 @mixin sofia-pro-light {
   font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 300;
+  text-rendering: $text-rendering;
 }
 
 @mixin sofia-pro-regular {
   font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 400;
+  text-rendering: $text-rendering;
 }
 
 @mixin sofia-pro-italic {
@@ -107,6 +112,7 @@
 @mixin sofia-pro-medium {
   font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 500;
+  text-rendering: $text-rendering;
 }
 
 @mixin sofia-pro-semi-bold {
@@ -170,7 +176,7 @@
   margin-right: 10px;
   padding-top: 30px;
   @media only screen and (min-width: 900px) {
-    padding-top: 90px;
+    padding-top: 30px;
   }
 }
 
@@ -191,18 +197,18 @@
 }
 
 @mixin form-field {
-  padding-left: 10px;
-  margin-bottom: 5px;
-  background-color: #FCFCFC;
-  border: 1px solid #F0F0F0;
-  border-radius: 2px;
-  height: 40px;
+  // padding-left: 10px;
+  // margin-bottom: 5px;
+  // background-color: #FCFCFC;
+  // border: 1px solid #F0F0F0;
+  // border-radius: 2px;
+  // height: 40px;
+  // TODO REMOVED: use _tc-inputs !!!!
 }
 
 @mixin form-field-focused {
-  background-color: $white;
-  border: 1px solid #D1D3D4;
-  // TODO shadow?
+  // background-color: $white;
+  // TODO REMOVED: use _tc-inputs !!!!
 }
 
 @mixin horizontal-scroll {
@@ -263,44 +269,47 @@
 }
 
 @mixin ui-form-field {
-  height: 40px;
-  width: 300px;
-  padding: 0;
-  padding-left: 15px;
-  background-color: $gray-lightest;
-  @include source-sans-regular;
-  font-size: 16px;
-  color: #231F20;
+  // height: 40px;
+  // width: 300px;
+  // padding: 0;
+  // padding-left: 15px;
+  // background-color: $gray-lightest;
+  // @include source-sans-regular;
+  // font-size: 16px;
+  // color: #231F20;
+  // TODO REMOVED: use _tc-inputs !!!!
 }
 
 @mixin ui-form-placeholder {
-  ::-webkit-input-placeholder {
-    color: #B7B7B7;
-  }
-  ::-moz-placeholder { /* Firefox 19+ */
-    color: #B7B7B7;
-  }
-  :-ms-input-placeholder {
-    color: #B7B7B7;
-  }
-  :-moz-placeholder { /* Firefox 18- */
-    color: #B7B7B7;
-  }
+  // ::-webkit-input-placeholder {
+  //   color: #B7B7B7;
+  // }
+  // ::-moz-placeholder { /* Firefox 19+ */
+  //   color: #B7B7B7;
+  // }
+  // :-ms-input-placeholder {
+  //   color: #B7B7B7;
+  // }
+  // :-moz-placeholder { /* Firefox 18- */
+  //   color: #B7B7B7;
+  // }
+  // TODO REMOVED: use _tc-inputs !!!!  
 }
 
 @mixin community-form-placeholder {
-  ::-webkit-input-placeholder {
-    color: #ADADB7;
-  }
-  ::-moz-placeholder { /* Firefox 19+ */
-    color: #ADADB7;
-  }
-  :-ms-input-placeholder {
-    color: #ADADB7;
-  }
-  :-moz-placeholder { /* Firefox 18- */
-    color: #ADADB7;
-  }
+  // ::-webkit-input-placeholder {
+  //   color: #ADADB7;
+  // }
+  // ::-moz-placeholder { /* Firefox 19+ */
+  //   color: #ADADB7;
+  // }
+  // :-ms-input-placeholder {
+  //   color: #ADADB7;
+  // }
+  // :-moz-placeholder { /* Firefox 18- */
+  //   color: #ADADB7;
+  // }
+  // TODO REMOVED: use _tc-inputs !!!!
 }
 
 @mixin ui-enabled-button {

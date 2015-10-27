@@ -102,47 +102,7 @@ body {
   @include sofia-pro-italic;
 }
 
-// Sidebar form field tips (e.g. username, email, password)
-.tips {
 
-  p:before {
-    font-family: 'FontAwesome';
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 20px;
-  }
-}
-
-.username-tips {
-  left: 330px;
-}
-
-.email-tips {
-  left: 330px;
-
-  p:last-child {
-    line-height: 1.5;
-  }
-}
-
-.password-tips {
-  left: 330px;
-
-  p:before {
-    content: '\f05d';
-    color: #7ece95;
-    display: none;
-  }
-
-  .has-length-between-range:before,
-  .has-letter:before,
-  .has-symbol-or-number:before,
-  .has-number:before {
-    display: block;
-  }
-}
 
 @media (max-width: 767px) {
   .form-errors {
@@ -230,130 +190,41 @@ body {
   }
 }
 
+
+// FORMS
+// ----------------------------------------------------------------------
 // 
-// 
-// 
-//  TOPCODER FORMS AND FIELDS SECTION
-//  -----------------------------------------------
-// Topcoder Inputs
-// tc- is the default prefix that we use for all classes
+// Form Labels
 
-input.tc-input,
-.tc-input > input,
-.tc-input {
-  color: #231f20;
-  outline: none;
-  background: white;
-  border: 1px solid #b7b7b7;
-  box-shadow: inset 0px 0px 2px 0px rgba(183,183,183,0.30);
-  border-radius: 2px;
-  cursor: auto;
-  color: #3d3d3d;
-  height: 30px;
-
-  &:hover {
-    border: 1px solid #A3A3AE;
-    box-shadow: inset 0px 0px 2px 0px #B7B7B7;
-    padding-left: 15px;
-  }
-
-  &:focus,
-  &.focus {
-    border: 1px solid #0096FF;
-    outline: none;
-    box-shadow: inset 0px 0px 2px 1px rgba(133,203,255,0.60);
-    padding-left: 15px;
-  }
-
-  transition: .15s all;
-}
-
-input, textarea {
-  font-size: 15px;
-  font-family: 'Merriweather Sans';
-  font-weight: 400;
-  padding-left: 15px;
-}
-textarea {
-  padding-left: 10px;
-  &:hover, &:focus {
-    padding-left: 10px;
-  }
-}
-input:focus, textarea:focus {
-  outline: 1px solid #4cb5ff;
-}
-
-
-input[type="text"],
-input[type="password"],
-toggle-password {
-  height: 38px;
-  background: #FFFFFF;
-  border: 1px solid #B7B7B7;
-  box-shadow: inset 0px 0px 2px 0px rgba(183,183,183,0.30);
-  border-radius: 2px;
-}
-
-
-input {
-  &[type='text']:focus,
-  &[type='password']:focus {
-    background: #FFFFFF;
-    border: 1px solid #0096FF;
-    box-shadow: inset 0px 0px 2px 1px rgba(133,203,255,0.60);
-    border-radius: 2px;
-  }
-}
-
-input[type="text"],
-input[type="email"],
-toggle-password-with-tips {
-  width: 380px;
-  height: 42px;
-  border-radius: 2px;
-  border: 1px solid #D1D3D4;
+.form-label {
+  @include sofia-pro-medium;
   font-size: 12px;
-  line-height: 14px;
-}
+  color: $gray-darkest;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  
+  .mandatory {
+    text-transform: none;
+    color: $primary-light;
+    float: right;
+  }
 
-toggle-password,
-toggle-password-with-tips {
-  input#password-input,
-  input#current-password-input {
-    width: 300px;
-    height: 20px;
-    border: none;
+  .char-count {
+    float: right;
+    font-size: 11px;
+    padding-right: 5px;
+  }
+
+  .grey {
+    color: $accent-gray;
   }
 }
 
-input[type="text"],
-input[type="email"],
-toggle-password,
-toggle-password-with-tips {
-  width: 380px;
-  height: 42px;
-  border-radius: 2px;
-  border: 1px solid #D1D3D4;
-}
-
-toggle-password,
-toggle-password-with-tips {
-  input#password-input,
-  input#current-password-input {
-    width: 300px;
-    height: 20px;
-    border: none;
-  }
-}
-
-input[name="firstname"], input[name="lastname"] {
-  width: 185px;
-  padding-right: 45px;
-}
-
-input[name="username"], input[name="email"] {
-  padding-right: 85px;
+.form-errors {
+  position: absolute;
+  top: 70px;
+  left: 3px;
 }
 
 
@@ -363,170 +234,6 @@ input[name="username"], input[name="email"] {
   p {
     margin: 2px 0 12px 5px;
   }
-}
-
-input[type="text"],
-toggle-password {
-  width: 380px;
-}
-
-input[type="text"],
-input[type="password"],
-toggle-password {
-  height: 38px;
-  background: $white;
-  border: 1px solid #B7B7B7;
-  box-shadow: inset 0px 0px 2px 0px rgba(183,183,183,0.30);
-  border-radius: 2px;
-  cursor: auto;
-  color: #3d3d3d;
-
-  &:hover {
-    border: 1px solid #A3A3AE;
-    box-shadow: inset 0px 0px 2px 0px #B7B7B7;
-  }
-
-  &:focus,
-  &.focus {
-    border: 1px solid #0096FF;
-    outline: none;
-    box-shadow: inset 0px 0px 2px 1px rgba(133,203,255,0.60);
-  }
-
-  transition: .15s all;
-}
-
-input:not([type="checkbox"]) {
-  box-shadow: none;
-}
-
-toggle-password {
-  input#current-password-input {
-    width: 300px;
-    height: 20px;
-    border: none;
-    outline: none;
-    box-shadow: none;
-  }
-}
-input:not([type="checkbox"]), button {
-  display: block;
-  margin-bottom: 10px;
-}
-
-input:not([type="checkbox"]) {
-  height: 40px;
-  width: 300px;
-  padding: 0;
-  padding-left: 15px;
-  border: 0;
-  @include source-sans-regular;
-  font-size: 16px;
-  color: #231F20;
-  box-shadow: none;
-  outline: none;
-}
-
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input.email,
-toggle-password,
-toggle-password-with-tips {
-  height: 38px;
-  background: $white;
-  border: 1px solid #B7B7B7;
-  box-shadow: inset 0px 0px 2px 0px rgba(183,183,183,0.30);
-  border-radius: 2px;
-  cursor: auto;
-  color: #3d3d3d;
-  font-family: "Merriweather Sans";
-  font-size: 15px;
-
-  &:hover {
-    border: 1px solid #A3A3AE;
-    box-shadow: inset 0px 0px 2px 0px #B7B7B7;
-  }
-
-  &:focus,
-  &.focus {
-    border: 1px solid #0096FF;
-    outline: none;
-    box-shadow: inset 0px 0px 2px 1px rgba(133,203,255,0.60);
-  }
-
-  transition: .15s all;
-}
-
-input:not([type="checkbox"]) {
-  box-shadow: none;
-}
-
-toggle-password {
-  input#current-password-input {
-    width: 300px;
-    height: 20px;
-    border: none;
-    outline: none;
-    box-shadow: none;
-  }
-}
-
-toggle-password-with-tips {
-  input#password-input {
-    border: none;
-    outline: none;
-    box-shadow: none;
-  }
-}
-
-@include ui-form-placeholder;
-input:not([type="checkbox"]) {
-  @include ui-form-field;
-  background-color: white;
-  height: 38px;
-}
-
-angucomplete-alt {
-  width: 100%;
-  margin-top: 6px;
-
-  input {
-    color: $gray-lighter;
-  }
-}
-
-
-// FORMS
-
-.form-label {
-  @include sofia-pro-regular;
-  font-size: 12px;
-  color: black;
-  text-transform: uppercase;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  width: 300px;
-
-  .mandatory {
-    text-transform: none;
-    color: #0096ff;
-    float: right;
-  }
-
-  .char-count {
-    font-family: 'Source Sans Pro';
-    float: right;
-  }
-
-  .grey {
-    color: #a3a3ae;
-  }
-}
-.form-errors {
-  position: absolute;
-  top: 70px;
-  left: 3px;
 }
 
 // Error and success styles
@@ -556,80 +263,71 @@ angucomplete-alt {
 }
 
 // FORM TIPS
+// ----------------------------------------------------------------------
 // probably structure needs to be redone
 
+$tips-shadow: 0px 1px 6px 1px rgba(0, 0, 0, 0.2);
+$tips-background: $gray-lighter;
+
+// Tip conatiner
 .tips {
-  position: absolute;
-  width: 320px;
-  text-align: left;
-  top: 13px;
-  background-color: $gray-lightest;
+  background-color: $tips-background;
   border-radius: 4px;
-  // box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.20);
-  // -webkit-filter: drop-shadow(0 2px 3px rgba(0,0,0,.3));
-  // -moz-filter: drop-shadow(0 2px 3px rgba(0,0,0,.3));
-  // filter: drop-shadow(0 2px 3px rgba(0,0,0,.3));
   padding: 20px;
   z-index: 1000;
-  
-  // CSS-olny arrow
-  &:before {
-    // content: '◀';
-    // top: 15px;
-    // left: -15px;
-    // font-size: 24px;
-    // color: $gray-lightest;
-    // position: absolute;
-    // z-index: -1;
-    // // text-shadow: 0px 2px 6px rgba(0,0,0,0.20);
-    // left: -35px;
-    // top: 30px;
-    // border: solid transparent;
-    // content: " ";
-    // height: 0;
-    // width: 0;
-    // position: absolute;
-    // pointer-events: none;
-    // border-color: rgba(136, 183, 213, 0);
-    // border-width: 20px;
-    // margin-top: -20px;
-    // border-right-color: $gray-lightest;
-    // -webkit-transform:rotate(360deg);
-
-
+  opacity: 1;
+  transition: all .1s ease-in-out;
+  padding-bottom: 20px;
+  @media screen and (min-width: 915px) {
     position: absolute;
-    left: -35px;
-    top: 30px;
-    width: 24px;
-    height: 24px;
-    overflow: hidden;
+    width: 320px;
+    text-align: left;
+    top: -10px;
+    box-shadow: $tips-shadow;
+    padding-bottom: 0;
   }
 
-  &::after {
-    position: absolute;
-    left: -35px;
-    top: 30px;
-    width: 24px;
-    height: 24px;
-    background-color: $gray-lightest;
-    -webkit-transform: rotate(45deg);
-    -moz-transform:    rotate(45deg);
-    -ms-transform:     rotate(45deg);
-    -o-transform:      rotate(45deg);
-
-    box-shadow: 6px 5px 9px -9px black,
-              5px 6px 9px -9px black;
+  // The tip container is hidden
+  &.ng-hide {
+    opacity: 0;
   }
 
-  h3, p {
-    margin-bottom: 10px;
+  // Tip container arrow element
+  .arrow {
+    display: none;
+    @media screen and (min-width: 915px){
+      display: block;
+      position: absolute;
+      left: -24px;
+      top: 10px;
+      width: 24px;
+      height: 34px;
+      overflow: hidden;
+
+      &:after {
+      content: '';
+      position: absolute;
+      display: block;
+      top: 10px;
+      left: 18px;
+      width: 12px;
+      height: 12px;
+      background-color: $tips-background;
+      -webkit-transform: rotate(45deg);
+      -moz-transform:    rotate(45deg);
+      -ms-transform:     rotate(45deg);
+      -o-transform:      rotate(45deg);
+      box-shadow: $tips-shadow;
+      }
+    }
   }
 
   h3 {
     @include sofia-pro-medium;
-    font-size: 16px;
+    padding-bottom: 15px;
+    font-size: 14px;
     @media only screen and (max-width: 915px) {
-      font-size: 15px;
+      font-size: 16px;
     }
   }
 
@@ -638,14 +336,15 @@ angucomplete-alt {
     color: $gray-darkest;
     line-height: 1.3;
     position: relative;
-    padding-left: 20px;
+    padding-bottom: 10px;
+    text-align: left;
   }
 
   p:before {
     // font-family: 'FontAwesome';
     @include sofia-pro-medium;
     font-size: 14px;
-    content: "\2713 ";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -653,10 +352,30 @@ angucomplete-alt {
   }
 }
 
+// Password tips show checkmark validation
+// TODO: refactor name to be context independent, like .validation-tips
+.password-tips {
+  p {
+    padding-left: 20px
+  }
 
+  p:before {
+    content: '\2713 ';
+    color: $success;
+    display: none;
+  }
+
+  .has-length-between-range:before,
+  .has-letter:before,
+  .has-symbol-or-number:before,
+  .has-number:before {
+    display: block;
+  }
+}
 
 
 // SWITCHES
+// ----------------------------------------------------------------------
 // TODO: Refactor
 
 // Switch parameters
@@ -770,7 +489,3 @@ $switch-inactive-color: $gray;
   border-radius: $switch-height;
   @include switch-transition;
 }
-
-
-
-

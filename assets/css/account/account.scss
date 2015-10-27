@@ -12,8 +12,9 @@
   text-align: center;
   justify-content: flex-start;
   @include source-sans-regular;
-  background-color: white;
+  background-color: $white;
   border-radius: 3px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
 
   header {
     height: 70px;
@@ -50,8 +51,11 @@
   h1 {
     margin-top: 39px;
     margin-bottom: 40px;
+    @media (max-width: 767px) {
+      margin: 30px auto;
+    }
     @include ui-h1;
-    color: #3D3D3D;
+    color: $gray-darkest;
     line-height: 30px;
     font-size: 20px;
     @include sofia-pro-light;
@@ -60,16 +64,41 @@
     text-transform: uppercase;
   }
 
+  // registration sizes, remove
+  input[name="firstname"], input[name="lastname"] {
+    width: 185px;
+    padding-right: 45px;
+  }
+
+  input[name="username"], input[name="email"] {
+    padding-right: 85px;
+  }
+
+  input[type="text"],
+  toggle-password {
+    width: 380px;
+  }
+
   input:not([type="checkbox"]) {
     width: 300px;
   }
 
-  .tips {
-    left: 380px;
+  toggle-password {
+    input#current-password-input {
+      width: 300px;
+      height: 20px;
+      border: none;
+      outline: none;
+      box-shadow: none;
+    }
   }
 
-  .email-tips {
-    left: 380px;
+  .tips,
+  .email-tips,
+  .password-tips {
+    @media screen and (min-width: 915px) {
+      left: 395px;
+    }   
   }
 
   button {
@@ -216,9 +245,9 @@
   flex-flow: row wrap;
   margin-top: 30px;
   justify-content: center;  
-  font-size: 12px;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: $label-small;
+  @include sofia-pro-medium;
 
   a {
     display: inline;

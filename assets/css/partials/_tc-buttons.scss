@@ -9,7 +9,7 @@ button {
   transition: .15s all;
   cursor: pointer;
 
-  &:disabled {
+  &:disabled, &.disabled {
     background-color: $gray !important;
     border-color: $gray-dark !important;
     opacity: 1;

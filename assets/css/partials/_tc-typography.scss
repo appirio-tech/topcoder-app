@@ -38,9 +38,10 @@
   font-family: 'Sofia Pro';
   src: url('/fonts/sofiapro-black-webfont.eot');
   src: url('/fonts/sofiapro-black-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/sofiapro-black-webfont.svg#webfont') format('svg'),
        url('/fonts/sofiapro-black-webfont.woff') format('woff'),
-       url('/fonts/sofiapro-black-webfont.ttf') format('truetype'),
-       url('/fonts/sofiapro-black-webfont.svg#webfont') format('svg');
+       url('/fonts/sofiapro-black-webfont.ttf') format('truetype');
+       
   font-weight: 800;
 }
 
@@ -48,9 +49,9 @@
   font-family: 'Sofia Pro';
   src: url('/fonts/sofiapro-black-italic-webfont.eot');
   src: url('/fonts/sofiapro-black-italic-webfont.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/sofiapro-black-italic-webfont.svg#webfont') format('svg'),
        url('/fonts/sofiapro-black-italic-webfont.woff') format('woff'),
-       url('/fonts/sofiapro-black-italic-webfont.ttf') format('truetype'),
-       url('/fonts/sofiapro-black-italic-webfont.svg#webfont') format('svg');
+       url('/fonts/sofiapro-black-italic-webfont.ttf') format('truetype');
   font-weight: 800;
   font-style: italic;
 }
@@ -101,9 +102,9 @@
   font-family: 'Sofia Pro';
   src: url('/fonts/sofiapro-medium-webfont.eot');
   src: url('/fonts/sofiapro-medium-webfont.eot?#iefix') format('embedded-opentype'),
+        url('/fonts/sofiapro-medium-webfont.svg#webfont') format('svg'),
        url('/fonts/sofiapro-medium-webfont.woff') format('woff'),
-       url('/fonts/sofiapro-medium-webfont.ttf') format('truetype'),
-       url('/fonts/sofiapro-medium-webfont.svg#webfont') format('svg');
+       url('/fonts/sofiapro-medium-webfont.ttf') format('truetype');
   font-weight: 500;
 }
 
@@ -111,9 +112,9 @@
   font-family: 'Sofia Pro';
   src: url('/fonts/sofiapro-medium-italic.eot');
   src: url('/fonts/sofiapro-medium-italic.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/sofiapro-medium-italic.svg#webfont') format('svg'),
        url('/fonts/sofiapro-medium-italic.woff') format('woff'),
-       url('/fonts/sofiapro-medium-italic.ttf') format('truetype'),
-       url('/fonts/sofiapro-medium-italic.svg#webfont') format('svg');
+       url('/fonts/sofiapro-medium-italic.ttf') format('truetype');
   font-style: italic;
   font-weight: 500;
 }
@@ -122,9 +123,9 @@
   font-family: 'Sofia Pro';
   src: url('/fonts/sofiapro-regular-webfont.eot');
   src: url('/fonts/sofiapro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/sofiapro-regular-webfont.svg#webfont') format('svg'),
        url('/fonts/sofiapro-regular-webfont.woff') format('woff'),
-       url('/fonts/sofiapro-regular-webfont.ttf') format('truetype'),
-       url('/fonts/sofiapro-regular-webfont.svg#webfont') format('svg');
+       url('/fonts/sofiapro-regular-webfont.ttf') format('truetype');
   font-weight: 400;
 }
 
@@ -132,9 +133,9 @@
   font-family: 'Sofia Pro';
   src: url('/fonts/sofiapro-regular-webfont.eot');
   src: url('/fonts/sofiapro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/sofiapro-regular-webfont.svg#webfont') format('svg'),
        url('/fonts/sofiapro-regular-webfont.woff') format('woff'),
-       url('/fonts/sofiapro-regular-webfont.ttf') format('truetype'),
-       url('/fonts/sofiapro-regular-webfont.svg#webfont') format('svg');
+       url('/fonts/sofiapro-regular-webfont.ttf') format('truetype');
   font-weight: 400;
   font-style: italic;
 }
@@ -143,9 +144,9 @@
   font-family: 'Sofia Pro';
   src: url('/fonts/sofiapro-light-webfont.eot');
   src: url('/fonts/sofiapro-light-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/sofiapro-light-webfont.svg#webfont') format('svg'),
        url('/fonts/sofiapro-light-webfont.woff') format('woff'),
-       url('/fonts/sofiapro-light-webfont.ttf') format('truetype'),
-       url('/fonts/sofiapro-light-webfont.svg#webfont') format('svg');
+       url('/fonts/sofiapro-light-webfont.ttf') format('truetype');
   font-weight: 300;
 }
 
@@ -153,9 +154,9 @@
   font-family: 'Sofia Pro';
   src: url('/fonts/sofiapro-light-italic-webfont.eot');
   src: url('/fonts/sofiapro-light-italic-webfont.eot?#iefix') format('embedded-opentype'),
+       url('/fonts/sofiapro-light-italic-webfont.svg#webfont') format('svg'),
        url('/fonts/sofiapro-light-italic-webfont.woff') format('woff'),
-       url('/fonts/sofiapro-light-italic-webfont.ttf') format('truetype'),
-       url('/fonts/sofiapro-light-italic-webfont.svg#webfont') format('svg');
+       url('/fonts/sofiapro-light-italic-webfont.ttf') format('truetype');
   font-weight: 300;
   font-style: italic;
 }

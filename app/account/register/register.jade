@@ -14,13 +14,13 @@
     p.form-error(ng-show="vm.errMsg") {{vm.errMsg}}
 
     .first-last-names
-      input-sticky-placeholder(sticky-placeholder="First", ng-model="vm.firstname")
+      input-sticky-placeholder.tc-input(sticky-placeholder="First", ng-model="vm.firstname")
         input(ng-model="vm.firstname", maxlength="64", name="firstname", placeholder="First Name", type="text", required)
 
-      input-sticky-placeholder(sticky-placeholder="Last", ng-model="vm.lastname")
+      input-sticky-placeholder.tc-input(sticky-placeholder="Last", ng-model="vm.lastname")
         input(ng-model="vm.lastname", maxlength="64", name="lastname", placeholder="Last Name", type="text", required)
 
-    .country-dropdown
+    .country-dropdown.tc-input
       angucomplete-alt(
         input-name="country",
         placeholder="Country",
@@ -46,6 +46,7 @@
         input(ng-model="vm.username", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.usernameTips = true", ng-blur="vm.usernameTips = false", ng-minlength="2", ng-maxlength="15", name="username", placeholder="Username", type="text", username-is-free, required)
 
       .tips.username-tips(ng-show="vm.usernameTips")
+        .arrow
         h3 Username Tips:
 
         p Your username will be public
@@ -67,6 +68,7 @@
         input(ng-model="vm.email", ng-model-options="{ debounce: {'default': 500} }", ng-focus="vm.emailTips = true", ng-blur="vm.emailTips = false", name="email", placeholder="Enter Your Email", type="email", valid-email, email-is-available, required)
 
       .tips.email-tips(ng-show="vm.emailTips")
+        .arrow
         h3 Email Tips:
 
         p Your email address will be private and not shared with anyone.
@@ -84,9 +86,10 @@
       toggle-password-with-tips(ng-if="!vm.isSocialRegistration")
 
       .tips.password-tips(ng-show="vm.passwordFocus")
-        h3 Password Tips:
+        .arrow
+        //- h3 Password Tips:
 
-        p Your password must have:
+        H3 Your password must have:
 
         p(ng-class="{ 'has-length-between-range': (vm.registerForm.password.$dirty && !vm.registerForm.password.$error.minlength && !vm.registerForm.password.$error.maxlength && !vm.registerForm.password.$error.required) }") At least 8 characters
 
@@ -97,7 +100,7 @@
     section.terms
       p By clicking "Join" you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms] and #[a(href="http://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank") Privacy Policy]
 
-    button.tc-btn.tc-btn-large(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid") Join
+    button.tc-btn.tc-btn-large.tc-btn-wide(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid") Join
 
   section.login-options
     p.tc-separator
@@ -116,5 +119,4 @@
 
 .join-topcoder
   span Have an account? &nbsp;
-
     a(ui-sref="login(vm.$stateParams)") Log in
