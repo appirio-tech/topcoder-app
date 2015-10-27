@@ -142,6 +142,7 @@
       var userData = vm.originalUserData;
       var oldPhotoURL = userData.photoURL;
       delete userData['photoURL'];
+      userData.tracks = userData.tracks || [];
       ProfileService.updateUserProfile(userData)
       .then(function() {
         vm.userData.photoURL = '';
