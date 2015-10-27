@@ -286,7 +286,7 @@
     }
 
     function getUserHandleColor(profile) {
-      var rating = _.get(profile, 'maxRating.rating', 0);
+      var rating = _.get(profile, 'maxRating.rating', null);
       return $filter('ratingColor')(rating);
     }
 
