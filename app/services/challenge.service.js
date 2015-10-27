@@ -196,6 +196,20 @@
             }
           }
 
+          challenge.userHasSubmitterRole = false;
+
+          // determines if user has submitter role or not
+          var roles = challenge.userDetails.roles;
+          if (roles.length > 0) {
+            var submitterRole = _.findIndex(roles, function(role) {
+              var lRole = role.toLowerCase();
+              return lRole === 'submitter';
+            });
+            if (submitterRole >= 0) {
+              challenge.userHasSubmitterRole = true;
+            }
+          }
+
           if (challenge.userDetails.hasUserSubmittedForReview) {
             if (!challenge.highestPlacement) {
               challenge.userStatus = "PASSED_SCREENING";
@@ -204,6 +218,11 @@
             }
           } else {
             challenge.userStatus = "NOT_FINISHED";
+          }
+
+          // if user does not has submitter role, just show Completed
+          if (!challenge.userHasSubmitterRole) {
+            challenge.userStatus = "COMPLETED";
           }
         }
       });
