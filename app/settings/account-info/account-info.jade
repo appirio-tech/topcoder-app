@@ -1,7 +1,7 @@
 .account-info-container
   .settings-section.credentials
     .section-info
-      h2 credentials
+      h2 Credentials
       .description Used to log in to your account and cannot be edited. Please contact support@topcoder.com if you need to make changes.
 
     .section-fields
@@ -31,6 +31,7 @@
               placeholder="Pick a new password"
             )
             .tips.password-tips(ng-show="vm.passwordFocus")
+              .arrow
               h3 Password Tips:
 
               p Your password must have:
