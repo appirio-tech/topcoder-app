@@ -7,9 +7,10 @@
    */
   angular
     .module('tcUIComponents')
-    .directive('externalWebLink', externalWebLink);
+    .directive('externalWebLink', ExternalWebLink);
+  ExternalWebLink.$inject = ['$log', 'ExternalWebLinksService'];
 
-  function externalWebLink() {
+  function ExternalWebLink($log, ExternalWebLinksService) {
     var directive = {
       estrict: 'E',
       templateUrl: 'directives/external-account/external-web-link.directive.html',
@@ -17,13 +18,13 @@
         linkedAccounts: '=',
         userHandle: '@'
       },
-      controller: ['$log', '$scope', 'ExternalWebLinksService', ExternalWebLinkCtrl],
-      controllerAs: 'vm',
-      bindToController: true
+      bindToController: true,
+      controller: ['$log', ExternalWebLinkCtrl],
+      controllerAs: 'vm'
     };
-    return directive;
 
-    function ExternalWebLinkCtrl($log, $scope, ExternalWebLinksService) {
+
+    function ExternalWebLinkCtrl($log) {
       $log = $log.getInstance('ExternalWebLinkCtrl');
       var vm = this;
       vm.addingWebLink = false;
@@ -34,36 +35,20 @@
         vm.addingWebLink = true;
         vm.errorMessage = null;
         ExternalWebLinksService.addLink(vm.userHandle, vm.url)
-          .then(function(resp) {
+          .then(function(data) {
             vm.addingWebLink = false;
-            $log.debug("Web link added: " + JSON.stringify(resp));
-            vm.linkedAccounts.push(resp.profile);
-            toaster.pop('success', "Success",
-              String.supplant(
-                "Your link has been added. Data from your link will be visible on your profile shortly.",
-                {provider: extAccountProvider}
-              )
-            );
+            $log.debug("Web link added: " + JSON.stringify(data));
+            vm.linkedAccounts.push(data);
+            toaster.pop('success', "Success", "Your link has been added. Data from your link will be visible on your profile shortly.");
           })
           .catch(function(resp) {
             vm.addingWebLink = false;
-            $log.debug(JSON.stringify(resp));
-            if (resp.status === 'SOCIAL_PROFILE_ALREADY_EXISTS') {
-              $log.info("Social profile already linked to another account");
-              toaster.pop('error', "Whoops!",
-                String.supplant(
-                  "This {provider} account is linked to another account. \
-                  If you think this is an error please contact <a href=\"mailTo:support@.appirio.com\">support@apprio.com</a>.", {
-                    provider: extAccountProvider
-                  }
-                )
-              );
-            } else {
-              $log.info("Server error:" + resp.content);
-              vm.errorMessage = "Sorry, we are unable add web link. If problem persist please contact support@topcoder.com";
-            }
+            $log.error("Server error:" + resp.content);
+            toaster.pop('error', "Sorry, we are unable add web link. If problem persist please contact support@topcoder.com");
           });
       };
     }
+
+    return directive;
   }
 })();

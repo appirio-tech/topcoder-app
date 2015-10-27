@@ -1,4 +1,6 @@
+@import 'topcoder-includes';
 @import '../partials/combined';
+
 
 external-web-link {
   .web-link {
@@ -12,7 +14,6 @@ external-web-link {
     form {
       display: flex;
       flex-flow: row wrap;
-
 
       .form-label {
         @include sofia-pro-regular;

@@ -136,7 +136,6 @@
               connection: provider,
               scope: "openid profile offline_access",
               state: callbackUrl,
-              // callbackURL: CONSTANTS.auth0Callback
             },
             function(profile, idToken, accessToken, state, refreshToken) {
               $log.debug("onSocialLoginSuccess");
@@ -160,10 +159,16 @@
               userApi.one('users', user.userId).customPOST(postData, "profiles", {}, {})
                 .then(function(resp) {
                   $log.debug("Succesfully linked account: " + JSON.stringify(resp));
-                  resolve({
+                  // construct "card" object and resolve it
+                  var _data = {
                     status: "SUCCESS",
-                    profile: postData
-                  });
+                    linkedAccount: {
+                      provider: provider,
+                      data: postData
+                    }
+                  };
+                  _data.linkedAccount.data.status = 'PENDING';
+                  return _data;
                 })
                 .catch(function(resp) {
                   $log.error("Error linking account: " + resp.data.result.content);

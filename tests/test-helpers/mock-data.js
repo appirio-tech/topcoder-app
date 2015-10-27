@@ -2032,7 +2032,8 @@ var mockData = (function() {
         "keywords": "topcoder-app,merged,oct,dashboard,15appirio-tech,20appirio-tech,polish,21appirio-tech,sup-1889,19appirio-tech",
         "title": "Test's profile",
         "images": "https://avatars3.githubusercontent.com/u/2417632?v=3&s=400,https://avatars1.githubusercontent.com/u/2417632?v=3&s=460,https://assets-cdn.github.com/images/spinners/octocat-spinner-128.gif",
-        "source": "embed.ly"
+        "source": "embed.ly",
+        "synchronizedAt": 123112
       }, {
         "userId": 111,
         "key": "c69a1246c135b16069395010e91f5c65",
@@ -2042,12 +2043,13 @@ var mockData = (function() {
         "keywords": "topcoder-app,merged,oct,dashboard,15appirio-tech,20appirio-tech,polish,21appirio-tech,sup-1889,19appirio-tech",
         "title": "Test's profile",
         "images": "https://avatars3.githubusercontent.com/u/2417632?v=3&s=400,https://avatars1.githubusercontent.com/u/2417632?v=3&s=460,https://assets-cdn.github.com/images/spinners/octocat-spinner-128.gif",
-        "source": "embed.ly"
+        "source": "embed.ly",
+        "synchronizedAt": 123123
       }, {
         "userId": 111,
         "key": "c69a1246c135b16069395010e91f5c66",
         "handle": "test1",
-        "status": 'PENDING'
+        "synchronizedAt": 0
       }
     ]
   }

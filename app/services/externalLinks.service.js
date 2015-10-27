@@ -27,19 +27,28 @@
           links = links.plain();
           if (!includePending) {
             _.remove(links, function(l) {
-              return l.status && l.status.toLowerCase() === 'pending';
+              return _.get(l, 'synchronizedAt') === 0;
             });
           }
+          // add provider type as weblink
           links = _(links).forEach(function(l) {
             l.provider = 'weblink';
           }).value();
-          // add provider type as link
           return links;
         });
     }
 
     function addLink(userHandle, url) {
-      return memberApi.one('members', userHandle).customPOST({'url': url}, 'externalLinks');
+      return memberApi.one('members', userHandle).customPOST({'url': url}, 'externalLinks')
+        .then(function(resp) {
+          debugger;
+          var _newLink = {
+            provider: 'weblink',
+            data: resp
+          };
+          _newLink.data.status = 'pending';
+          return _newLink;
+        });
     }
 
     function removeLink(userHandle, key) {
