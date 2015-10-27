@@ -64,7 +64,7 @@
             cssClass: "find-challenges tc-btn tc-btn-s"
           }, {
             title: "Learn More",
-            url: _getUrl("/member-onboarding"),
+            url: _getUrl("/getting-started"),
             cssClass: "learn-more"
           }]
         },
@@ -86,7 +86,7 @@
             cssClass: "find-challenges tc-btn tc-btn-s tc-btn-ghost"
           }, {
             title: "Learn More",
-            url: _getUrl("/member-onboarding"),
+            url: _getUrl("/getting-started"),
             cssClass: "learn-more"
           }]
         },
@@ -121,7 +121,7 @@
             cssClass: "find-challenges tc-btn tc-btn-s tc-btn-ghost"
           }, {
             title: "Learn More",
-            url: _getUrl("/member-onboarding"),
+            url: _getUrl("/getting-started"),
             cssClass: "learn-more"
           }]
         },
@@ -134,7 +134,7 @@
             cssClass: "find-challenges tc-btn tc-btn-s tc-btn-ghost"
           }, {
             title: "Learn More",
-            url: _getUrl("/member-onboarding"),
+            url: _getUrl("/getting-started"),
             cssClass: "learn-more"
           }]
         },
