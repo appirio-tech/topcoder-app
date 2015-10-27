@@ -9,14 +9,4 @@
     min-height: 100px;
     background: url(/images/ripple.gif) no-repeat center center;
   }
-
-  .section-error {
-    width: 100%;
-    min-height: 100px;
-    background: $white;
-    border-top: 1px solid $gray-light;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 }
