@@ -10,7 +10,7 @@
         if (typeof rating === 'string')
           rating = parseInt(rating.replace(",", ""));
         colors = colors.filter(function(color) {
-          return rating >= color.start && rating <= color.end;
+          return rating !== null && rating >= color.start && rating <= color.end;
         });
         return colors[0] && colors[0].color || 'black';
       }
