@@ -19,12 +19,35 @@ var AccountData = function() {
                             		'password' : 'appirio123'
                             	}*/
                            ],
+     this.invalidLengthUserCredentials = [
+                                          {	'username' :'aqmansuri',
+                                        	'password' :'appirio123',
+                                        	'newpassword' : 'app',
+                                          }
+                                          ],    
+                                          
+     this.invalidLengthNameCredentials = [
+                                          {	'username' :'aqmansuri',
+                                        	'password' : 'appirio123',  
+                                        	'firstName' :'',
+                                        	'lastName' : 'Qadir',
+                                        	'country' : ''
+                                          }
+                                          ],
+    this.changePasswordCredentials = [
+                                         {	'username' :'aqmansuri',
+                                        	 'password' : 'appirio123',  
+                                        	 'newPassword':'appirio1234'
+                                         }
+                                         ],                                       
     						  
-    this.baseUrl = 'https://app.topcoder-qa.com/login';
-    this.dashBoardUrl = 'https://app.topcoder-qa.com/my-dashboard/';
-    this.invalidPasswordMessage = 'That password doesn\'t match the one we have on file. Please try again.';
-    this.invalidHandle = 'This user does not exist.'
-    this.invalidSpaceHandle = 'That password doesn\'t match the one we have on file. Please try again.'	
+    this.baseUrl = 'https://app.topcoder-qa.com/login',
+    this.dashBoardUrl = 'https://app.topcoder-qa.com/my-dashboard/',
+    this.invalidPasswordMessage = 'That password doesn\'t match the one we have on file. Please try again.',
+    this.invalidHandle = 'This user does not exist.',
+    this.invalidSpaceHandle = 'That password doesn\'t match the one we have on file. Please try again.',	
+    this.requiredFieldMsg = 'This is a required field.',
+    this.emptyCountryMsg = 'Please choose a country from the list.'
     
 };
 module.exports = new AccountData;

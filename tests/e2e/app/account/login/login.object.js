@@ -64,18 +64,18 @@ var LoginPage = function() {
 	  
     
 	  loginButton.click().then(function(){
-		  var toolTip = element(by.css('.introjs-tooltip'));
-		  var isClickable = EC.elementToBeClickable(toolTip);
-		  browser.wait(isClickable, 30000);
-		  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
-		  isClickable = EC.elementToBeClickable(skipBtn);
-		  browser.wait(isClickable, 30000);
-		  skipBtn.click().then(function() {
+//		  var toolTip = element(by.css('.introjs-tooltip'));
+//		  var isClickable = EC.elementToBeClickable(toolTip);
+//		  browser.wait(isClickable, 30000);
+//		  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
+//		  isClickable = EC.elementToBeClickable(skipBtn);
+//		  browser.wait(isClickable, 30000);
+//		  skipBtn.click().then(function() {
 			  
 		  
 		  
 		  
-		  var headerDash = element(by.css('.header-dashboard header h1'));
+		  var headerDash = element(by.id('header'));
 		  isClickable = EC.elementToBeClickable(headerDash);
 		  browser.wait(isClickable, 30000);
 		  
@@ -98,7 +98,7 @@ var LoginPage = function() {
 //    });
     	expect(true).toEqual(true);
     	
-		  });
+//		  });
    });
   };
   
