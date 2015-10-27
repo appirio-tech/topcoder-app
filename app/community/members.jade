@@ -9,18 +9,16 @@
         input(ng-model="ctrl.keywords", name="keywords", placeholder="find people", type="text", required)
         input(type="submit" name="search-btn" value="").search-ico
 
-    .default-show-container(ng-show="ctrl.notSearch")
-      .members-of-month-container
-        h2 Members of the Month
-          small {{ctrl.currentMonth}}
-        .members-wrapper
-          .user-tile(ng-repeat="item in ctrl.memberLeaderboard")
+      .copilots-container
+        h2 Copilots
+        .copilots-wrapper
+          .user-tile(ng-repeat="item in ctrl.copilots")
             .avatar-wrapper: img(ng-src="{{item.avatar}}")
             .user-name {{item.name}}
-            .user-tag(class="{{item.class}}") {{item.contestType}}
-            p.user-desc {{item.description}}
-            a(ng-href="//www.{{ctrl.domain}}/community/member-programs/topcoder-member-of-the-month/", target="_blank").user-more Read the story
-        p.member-congratulation Congratulations to all the members of the month!
+            .user-country {{item.country}}
+        .btn-wrapper
+          a(ng-href="//community.{{ctrl.domain}}/tc?module=ViewCopilotPool&size=20&view=0&sort=12", target="_blank").blue-btn View all copilots
+
 
       .reviewboard-container 
         h2 Review Boards
@@ -45,15 +43,6 @@
             .link: a(ng-href="//www.{{ctrl.domain}}/tc?module=ReviewBoard&pt=9", target="_blank") Bug Hunt
 
 
-      .copilots-container
-        h2 Copilots
-        .copilots-wrapper
-          .user-tile(ng-repeat="item in ctrl.copilots")
-            .avatar-wrapper: img(ng-src="{{item.avatar}}")
-            .user-name {{item.name}}
-            .user-country {{item.country}}
-        .btn-wrapper
-          a(ng-href="//community.{{ctrl.domain}}/tc?module=ViewCopilotPool&size=20&view=0&sort=12", target="_blank").blue-btn View all copilots
 
 
     .search-result-container(ng-hide="ctrl.notSearch")
