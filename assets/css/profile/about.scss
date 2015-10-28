@@ -336,6 +336,19 @@
         width: 100%;
       }
 
+      .ext-tile {
+        opacity: 0.3;
+        margin-top: 0px;
+        margin-bottom: 0px;
+
+        .external-account-box {
+          margin-top: 0px;
+        }
+        a {
+          cursor: default;
+        }
+      } 
+
     }
   }
 }

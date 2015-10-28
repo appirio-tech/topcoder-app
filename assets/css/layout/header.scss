@@ -177,6 +177,7 @@
 .user-menu {
   .user-avatar {
     height: 31px;
+    width: 31px;
     vertical-align: middle;
     border-radius: 50%;
   }
@@ -427,6 +428,15 @@
         &:after {
           display: none;
         }
+      }
+    }
+
+    // overrides the search wrapper hover state because the .menu-item-header includes :before
+    // element as well which causes the arrow to be center aligned with the complete .menu-item-header
+    // instead of the search icon along
+    .menu-item.search-wrapper:hover .menu-item-header {
+      &:after {
+        margin-left: 6px;
       }
     }
 
