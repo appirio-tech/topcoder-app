@@ -13,12 +13,12 @@
         hideMoney: '=',
         defaultState: '@'
       },
-      controller: ['$scope', 'NotificationService', 'ProfileService', '$log', '$state', pageStateHeader],
+      controller: ['CONSTANTS', '$rootScope', '$scope', 'NotificationService', 'ProfileService', '$log', '$state', pageStateHeader],
       controllerAs: "vm"
     };
   });
 
-  function pageStateHeader($scope, NotificationService, ProfileService, $log, $state) {
+  function pageStateHeader(CONSTANTS, $rootScope, $scope, NotificationService, ProfileService, $log, $state) {
     var vm = this;
     vm.handle = $scope.handle;
     vm.profile = null;
@@ -31,12 +31,16 @@
     vm.backHandler = backHandler;
     activate();
 
+    // watch for profile update event in case handle/image are updated
+    $rootScope.$on(CONSTANTS.EVENT_PROFILE_UPDATED, function() {
+      activate();
+    });
+
     function activate() {
       vm.loading = true;
 
       // identifies the previous state
       if ($scope.$root.previousState && $scope.$root.previousState.name.length > 0) {
-        console.log($scope.$root.previousState);
         vm.previousState = $scope.$root.previousState;
         vm.previousStateName = vm.previousState.name;
       } else if ($scope.defaultState) {

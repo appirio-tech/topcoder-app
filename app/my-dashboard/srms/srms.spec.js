@@ -31,14 +31,28 @@ describe('SRMs Widget Controller', function() {
     });
 
     // mock srms api
-    sinon.stub(srmService, 'getSRMs', function(data) {
+    sinon.stub(srmService, 'getSRMs', function(params) {
       var deferred = $q.defer();
       var resp = null;
-      if (data.filter.indexOf('listType=past') != -1) {
+      if (params.filter.indexOf('listType=past') != -1) {
         resp = JSON.parse(JSON.stringify(srms));
       } else {
         resp = JSON.parse(JSON.stringify(srms.slice(1)));
       }
+      resp.pagination = {
+        total: resp.length,
+        pageIndex: 1,
+        pageSize: 10
+      };
+      deferred.resolve(resp);
+      return deferred.promise;
+    });
+
+    // mock srms api
+    sinon.stub(srmService, 'getUserSRMs', function(handle, params) {
+      var deferred = $q.defer();
+      // TODO remove add more tests case for scenario when user has some registered SRMs
+      var resp = [];
       resp.pagination = {
         total: resp.length,
         pageIndex: 1,

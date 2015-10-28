@@ -36,6 +36,7 @@
 
       var isValidCountry = _.isUndefined(countryCode) ? false : true;
       vm.registerForm.country.$setValidity('required', isValidCountry);
+      vm.isValidCountry = isValidCountry;
       if (isValidCountry) {
         vm.country = angucompleteCountryObj.originalObject;
       }
@@ -103,8 +104,20 @@
           var socialData = resp.data;
           vm.socialUserId = socialData.socialUserId;
           vm.username = socialData.username;
+          if (socialData.username) {
+            vm.registerForm.username.$setDirty();
+          }
           vm.firstname = socialData.firstname;
+          if (socialData.firstname) {
+            vm.registerForm.firstname.$setDirty();
+          }
           vm.lastname = socialData.lastname;
+          if (socialData.lastname) {
+            vm.registerForm.lastname.$setDirty();
+          }
+          if (socialData.email) {
+            vm.registerForm.email.$setDirty();
+          }
           vm.email = socialData.email;
           vm.socialProfile = socialData.socialProfile;
           vm.socialProvider = socialData.socialProvider;
