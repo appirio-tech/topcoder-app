@@ -2,11 +2,12 @@
   p.place(ng-class="{ 'first-place': challenge.wonFirst }", ng-show="challenge.highestPlacement") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
   p.place(ng-show="challenge.userStatus === 'NOT_FINISHED'") Didn't Finish
   p.place(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
+  p.place(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
 
   .thumbnail(ng-click="openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
-    img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
+    img(ng-src="{{imageURL}}", fallback-src="/images/ico-picture.svg")
 
-    .thumbnail-gallery(ng-click="challenge.showLightbox()")
+    .thumbnail-gallery(ng-click="openLightbox()")
       .gallery-icon
 
       .num-images 1 image
@@ -16,6 +17,7 @@
     p.place(ng-class="{ 'first-place': challenge.wonFirst }", ng-show="challenge.highestPlacement") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
     p.place(ng-show="challenge.userStatus === 'NOT_FINISHED'") Didn't Finish
     p.place(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
+    p.place(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
     p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
   .winner-ribbon(ng-show="challenge.wonFirst")

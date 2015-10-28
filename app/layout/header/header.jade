@@ -18,11 +18,11 @@
         span(ng-switch-when="false" class="tc-btn tc-btn-s") JOIN
 
     ul.main-menu
-      li.menu-item.search-wrapper
+      li.menu-item.search-wrapper(ng-mouseenter="vm.focusSearch = true", ng-mouseleave="vm.focusSearch = false")
         .menu-item-header.show-large #[button.btn-expand-search.search-icon(type="button")]
 
         .submenu
-          input(type="text" placeholder="find people" ng-model="vm.searchTerm" ng-keyup="vm.checkSubmit($event)")
+          input(type="text" placeholder="find members" ng-model="vm.searchTerm" ng-keyup="vm.checkSubmit($event)", focus-on="vm.focusSearch")
           // Suggestion list container
           // ul.suggestion-list(ng-if="main.searchTerm.length > 0")
           //   li(ng-repeat="suggestion in main.suggestions | filter:main.searchTerm | limitTo:5")

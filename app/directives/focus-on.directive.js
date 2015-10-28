@@ -10,8 +10,11 @@
       var model = $parse(attr.focusOn);
       scope.$watch(model, function(newValue) {
         $timeout(function() {
-          if (newValue !== undefined) {
+          
+          if (newValue !== undefined && newValue) {
             element[0].focus();
+          } else {
+            element[0].blur();
           }
         }, 0);
       });
