@@ -14,10 +14,10 @@
       'community': {
         parent: 'root',
         url: '/community/',
+        abstract: true,
         data: {
           authRequired: false,
-        },
-        controller: 'BaseCommunityController'
+        }
       },
       'community.members': {
         parent: 'root',

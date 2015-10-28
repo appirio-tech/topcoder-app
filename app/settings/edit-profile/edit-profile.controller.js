@@ -4,9 +4,9 @@
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
 
-  EditProfileController.$inject = ['userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster', '$scope'];
+  EditProfileController.$inject = ['$rootScope', 'userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster', '$scope'];
 
-  function EditProfileController(userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, CONSTANTS, TagsService, toaster, $scope) {
+  function EditProfileController($rootScope, userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, CONSTANTS, TagsService, toaster, $scope) {
     $log = $log.getInstance("EditProfileCtrl");
     var vm = this;
     vm.toggleTrack    = toggleTrack;
@@ -112,6 +112,7 @@
       .then(ImageService.createFileRecord)
       .then(function(newPhotoURL) {
         vm.userData.photoURL = newPhotoURL;
+        $rootScope.$broadcast(CONSTANTS.EVENT_PROFILE_UPDATED);
       });
     }
 
@@ -127,6 +128,7 @@
       ProfileService.updateUserProfile(vm.userData)
       .then(function() {
         vm.profileFormProcessing = false;
+        vm.editProfile.$setPristine();
         $log.info('Saved successfully');
         toaster.pop('success', "Success!", "Your account information was updated.");
         for (var k in vm.userData) userData[k] = vm.userData[k];
