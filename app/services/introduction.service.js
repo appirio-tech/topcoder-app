@@ -82,17 +82,17 @@
             },
             {
               // element: '#skills',
-              intro: 'The quickest way to understand a member’s skills. It includes languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.',
+              intro: 'The quickest way to understand a member’s skills. It includes languages, environments, frameworks, libraries, platforms, tools, and any other technologies that the members knows well.',
               position: 'top'
             },
             {
               // element: '#tcActivity',
-              intro: 'Topcoder activity, ratings and other statistics now live in this section. See the active sub-tracks and click on them for even more details and history.',
+              intro: 'See the active sub-tracks and click on them for ratings, charts, history and even more details.',
               position: 'top'
             },
             {
               // element: '#externalLinks',
-              intro: 'Best of member’s presence on the web will be highlighted here. Show off your work and experience outside of Topcoder by connecting accounts or adding links.',
+              intro: 'View the best of your presence on the web: show off your work and experience outside of Topcoder by connecting accounts or adding links.',
               position: 'top'
             }
           ]
@@ -100,16 +100,21 @@
         subtrack: {
           steps: [
             {
-              intro: 'Welcome to the new Sub-track details page. This page contains activity in this track and in-depth metrics in an easy-to-understand way.'
+              intro: 'Welcome to the new Sub-track details page. This page contains activity in this track, in-depth metrics and history in an easy-to-understand way.'
             },
             {
               // element: '#subtrack-stats',
-              intro: 'Find the most important metrics here to understand performance in a glance. You can scroll below to see charts and more in-depth metrics to get a very granular understanding of the activity in this subtrack.',
+              intro: 'Find the most important metrics here to understand performance in a glance.',
               position: 'bottom'
             },
             {
               // element: '#challenges-tab',
-              intro: 'This sections contains all the completed challenges, in order of success.',
+              intro: 'View all the successfully completed challenges for the member in this sub-track.',
+              position: 'top'
+            },
+            {
+              // element: '#challenges-tab',
+              intro: 'View charts and more in-depth metrics to get a very granular understanding of the activity in this sub-track.',
               position: 'top'
             }
           ]
@@ -118,7 +123,7 @@
       dashboard: {
         steps: [
           {
-            intro: 'Welcome to your new Topcoder Dashboard. We have revamped the dashboard to bring to fore the information that matters to you. Let us walk you through some of the new things to help you keep on top of your Topcoder activity.'
+            intro: 'Welcome to the your new Topcoder Dashboard. We have revamped the dashboard to bring to fore the information that matters to you. Lets walk through some of the new features.'
           },
           {
             // element: '#metrics',
@@ -132,12 +137,7 @@
           },
           {
             // element: '#challenges',
-            intro: 'All your active challenges can be found here. See the phase, and activity on here, or click on them to go to the challenge details. You can view these in a grid or list view.',
-            position: 'top'
-          },
-          {
-            // element: '#viewAllChallenges',
-            intro: 'Want to see more of the challenges? Or look up a past one? Click on the buttons here to see all of your challenges.',
+            intro: 'View your active challenges on the dashboard in a grid or list view.  You can find the phase, and activity on here, or can click on them to go to the challenge details.',
             position: 'top'
           },
           {
