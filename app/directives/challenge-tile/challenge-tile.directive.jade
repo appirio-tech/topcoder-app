@@ -21,7 +21,7 @@
       .stalled-challenge(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
 
       .phase-action(ng-switch="challenge.userAction")
-        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Submit") Submit
+        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Submit", ng-href="{{challenge|challengeLinks:'detail'}}") Submit
 
         .submitted(ng-switch-when="Submitted") Submitted
 
@@ -31,7 +31,7 @@
     // Only show if not data science track
     p.roles 
       span(ng-hide="challenge.track === 'DATA_SCIENCE'") 
-        #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
+       #[span Role:&nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
 
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
@@ -65,7 +65,7 @@
     // Only show if not data science track
     p.roles
       span(ng-hide="challenge.track === 'DATA_SCIENCE'") 
-        #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
+        #[span Role:&nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
 
 .challenge.list-view(ng-show="view=='list'", ng-class="challenge.track")
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")
@@ -76,7 +76,7 @@
       
       p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
-      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
+      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:&nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
 
     .challenge-details
       .challenge-info
@@ -87,7 +87,7 @@
         p.ends-in(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
 
       .phase-action(ng-switch="challenge.userAction")
-        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Submit") Submit
+        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Submit", ng-href="{{challenge|challengeLinks:'detail'}}") Submit
 
         .submitted(ng-switch-when="Submitted") Submitted
 
@@ -106,7 +106,7 @@
 
       p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
-      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role: &nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
+      p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:&nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
 
     .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack", ng-class="challenge.track")
 

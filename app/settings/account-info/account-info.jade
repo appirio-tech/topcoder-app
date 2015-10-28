@@ -1,14 +1,14 @@
 .account-info-container
   .settings-section.credentials
     .section-info
-      h2 credentials
+      h2 Credentials
       .description Used to log in to your account and cannot be edited. Please contact support@topcoder.com if you need to make changes.
 
     .section-fields
       .form-label.username Username
       input.form-field.grey(name="username", value="{{vm.userData.handle}}", disabled=true)
 
-      .form-label email
+      .form-label Email
       input.form-field.grey(name="email", value="{{vm.userData.email}}", disabled=true)
 
       div(ng-hide="vm.isSocialRegistration")
@@ -31,6 +31,7 @@
               placeholder="Pick a new password"
             )
             .tips.password-tips(ng-show="vm.passwordFocus")
+              .arrow
               h3 Password Tips:
 
               p Your password must have:
@@ -42,7 +43,7 @@
               p(ng-class="{ 'has-symbol-or-number': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
           .button-container
-            button.tc-btn.tc-btn-l.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine", ng-class="{'disabled': vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine}") Change Password
+            button.tc-btn.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine", ng-class="{'disabled': vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine}") Change Password
 
 
       div(ng-show="vm.isSocialRegistration")
@@ -163,4 +164,4 @@
 
 
   .save-section
-    button.save.tc-btn.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid", ng-class="{'enabled-button': vm.accountInfoForm.$valid, 'disabled': vm.accountInfoForm.$invalid || vm.accountInfoForm.$pristine}", ng-click="vm.accountInfoForm.$valid && vm.accountInfoForm.$dirty && vm.saveAccountInfo()") Save
+    button.save.tc-btn.tc-btn-wide(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid || vm.accountInfoForm.$pristine", ng-class="{'enabled-button': vm.accountInfoForm.$valid}", ng-click="vm.accountInfoForm.$valid && vm.accountInfoForm.$dirty && vm.saveAccountInfo()") Save

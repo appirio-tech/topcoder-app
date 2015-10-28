@@ -89,7 +89,7 @@
 
       .description {
         padding: 20px 10px;
-        @include source-sans-regular;
+        @include font-with-weight('Merriweather Sans');
         font-size: 13px;
         line-height: 18px;
         @media only screen and (min-width: 570px) {

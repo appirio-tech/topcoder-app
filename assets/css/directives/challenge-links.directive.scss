@@ -16,7 +16,7 @@
     text-decoration: none;
     p {
       color: $accent-gray;
-      @include sofia-pro-medium;
+      @include font-with-weight('Sofia Pro', 500);
       font-size: 12px;
       line-height: 14px;
       text-transform: uppercase;
@@ -89,7 +89,7 @@
     p {
       order: 1;
       color: $accent-gray;
-      @include sofia-pro-medium;
+      @include font-with-weight('Sofia Pro', 500);
       font-size: 12px;
       line-height: 14px;
       text-transform: uppercase;
