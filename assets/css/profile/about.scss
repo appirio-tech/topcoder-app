@@ -81,7 +81,11 @@
   width: 100%;
   // max-width: 883px;
   padding: 0 10px;
-  margin: auto;
+  margin: 0 auto;
+
+  .empty-profile {
+    background: $white;
+  }
   .empty-state {
     width: 100%;
   }

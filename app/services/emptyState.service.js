@@ -125,6 +125,15 @@
             cssClass: "learn-more"
           }]
         },
+        "profile-empty": {
+          title: "Beep. Beep. Hello!",
+          description: "Seems like this member doesn’t have much information to share yet.",
+          helpLinks: [{
+            title: "View Other Members",
+            url: _getUrl("/community/members"),
+            cssClass: "find-members tc-btn tc-btn-s"
+          }]
+        },
         "profile-topcoder-activity": {
           title: "My Challenges",
           description: "You have not participated in any challenges yet.",

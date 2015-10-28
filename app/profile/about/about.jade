@@ -8,8 +8,13 @@
     .sticky-container()
       profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
 
-  
   .profile-about-container
+
+    .empty-profile
+      .empty-state
+        empty-state-placeholder(state-name="profile-empty", show="!profileVm.numProjects && (!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)) && !vm.hasLinks")
+          .sample-image
+            img(ng-src="/images/robot.svg")
 
     #skills
       tc-section(ng-show="vm.displaySection.skills", state="profileVm.status.skills")
