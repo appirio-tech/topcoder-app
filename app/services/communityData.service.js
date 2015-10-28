@@ -36,15 +36,21 @@
           "contestType": "Data Science",
           "description": "Rating increased in both SRMs & advanced from Div 2 to Div 1.",
           "class": "data-science"
+        }, {
+          "avatar": "https://s3.amazonaws.com/app.topcoder-dev.com/images/ico-user-default.7aa28736.svg",
+          "name": "TBD",
+          "contestType": "Rookie of the Month",
+          "description": "Most impressive start...",
+          "class": "data-science"
         }],
         "copilots": [{
           "avatar": "//community.topcoder.com/i/m/maroosh.jpeg",
           "name": "maroosh",
           "country": "Jordan"
         }, {
-          "avatar": "//community.topcoder.com/i/m/elkhawajah.jpeg",
-          "name": "elkhawajah",
-          "country": "Jordan"
+          "avatar": "//community.topcoder.com/i/m/Ghostar.jpeg",
+          "name": "Ghostar",
+          "country": "United States"
         }, {
           "avatar": "//community.topcoder.com/i/m/hohosky.png",
           "name": "hohosky",
