@@ -156,11 +156,10 @@
             title-field="name",
             match-class="angucomplete-highlight",
             minlength="1",
-            ng-class="{'form-field-focused': hasFocus==true}",
-            field-required="vm.addressDirty"
+            ng-class="{'form-field-focused': hasFocus==true}"
           )
-          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.country.$error.required")
-            p(ng-show="vm.accountInfoForm.country.$error.required") Please choose a country from the list.
+          .account-info-error(ng-show="vm.accountInfoForm.country.$dirty")
+            p(ng-show="!vm.isValidCountry") Please choose a country from the list.
 
 
   .save-section
