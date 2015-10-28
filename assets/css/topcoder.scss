@@ -3,15 +3,15 @@
 @include glyphicons-halflings;
 
 body {
-  @include merriweather-sans-regular;
-  background-color: $ui-page-gray;
+  @include font-with-weight('Merriweather Sans', 400);
+  background-color: $gray-lighter;
 
   > svg {
     display: none;
   }
 }
 
-// TODO move hidden and visible classes to ui kit
+// TODO move hidden and visible classes to ui helpers kit
 .hidden {
   visibility: hidden;
 }
@@ -60,17 +60,6 @@ body {
   }
 }
 
-// Country dropdown styles
-.angucomplete-highlight {
-  color: $black;
-  font-weight: bold;
-}
-
-.angucomplete-dropdown {
-  overflow-y: auto;
-  max-height: 250px;
-}
-
 // Section loading and form styles
 .section-loading {
   width: 100%;
@@ -96,10 +85,10 @@ body {
 .form-input-error {
   padding: 10px;
   margin-bottom: 10px;
-  background-color: #FFCCE1;
-  border: 1px solid #FF99C2;
-  color: #FF0066;
-  @include sofia-pro-italic;
+  background-color: $error-lighter;
+  border: 1px solid $error-light;
+  color: $error;
+  text-align: left;
 }
 
 
@@ -124,7 +113,7 @@ body {
 }
 
 .introjs-tooltiptext {
-  @include source-sans-regular;
+  @include font-with-weight('Merriweather Sans');
   font-size: 14px;
   line-height: 24px;
   color: $gray-darker;
@@ -225,9 +214,10 @@ body {
 }
 
 .form-errors {
-  position: absolute;
-  top: 70px;
-  left: 3px;
+  position: relative;
+  line-height: 22px;
+  //top: 70px;
+  //left: 3px;
 }
 
 

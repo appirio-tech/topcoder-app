@@ -41,12 +41,18 @@
 }
 
 .settings-container {
+  // Autocomplete
   .angucomplete-dropdown {
     width: 100%;
+    color: $gray-darkest;
+    text-align: left;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.4);
   }
   .angucomplete-selected-row {
-    background-color: #097DCE;
+    background-color: $primary-lighter;
+    color: $gray-darkest;
   }
+  // Autocomplete end
   
   @include module-l;
   margin: 30px auto 0;
@@ -178,7 +184,8 @@
       font-size: 13px;
       line-height: 20px;
       color: $accent-gray;
-      // @include source-sans-italic;
+      @include font-with-weight('Merriweather Sans');
+      font-style: italic;
       @include label-description;
       margin-top: 5px;
     }
@@ -365,7 +372,7 @@
   .tab-title {
     margin-bottom: 35px;
     font-size: 32px;
-    @include source-sans-light;
+    @include font-with-weight('Sofia Pro', 300);
     color: $ui-light-gray;
     @media only screen and (min-width: 768px) {
       margin-top: 50px;

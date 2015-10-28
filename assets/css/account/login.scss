@@ -35,7 +35,7 @@
     color: #A3A3AE;
     font-size: 12px;
     line-height: 15px;
-    @include source-sans-regular;
+    @include font-with-weight('Merriweather Sans');
     margin-top: 10px;
 
     .forgot-password {

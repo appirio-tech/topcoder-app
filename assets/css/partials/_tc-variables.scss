@@ -2,10 +2,11 @@
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:     "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-family-serif:          Georgia, "Times New Roman", Times, serif !default;
-$font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace !default;
-$font-family-base:           $font-family-sans-serif !default;
+$text-rendering:             auto;
+$fonts-family-sans-serif:     "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$fonts-family-serif:          Georgia, "Times New Roman", Times, serif !default;
+$fonts-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$fonts-family-base:           $fonts-family-sans-serif !default;
 
 
 // The label is showing in many places; particulary on data/stats

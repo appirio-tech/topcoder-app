@@ -5,13 +5,14 @@
 .register-container,
 .reset-password-container,
 .registered-successfully-container {
+  position: relative;
   width: 560px;
   margin: 60px auto 0;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: flex-start;
-  @include source-sans-regular;
+  @include font-with-weight('Merriweather Sans');
   background-color: $white;
   border-radius: 3px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
@@ -54,11 +55,10 @@
     @media (max-width: 767px) {
       margin: 30px auto;
     }
-    @include ui-h1;
     color: $gray-darkest;
     line-height: 30px;
     font-size: 20px;
-    @include sofia-pro-light;
+    @include font-with-weight('Sofia Pro', 300);
     width: 380px;
     align-self: center;
     text-transform: uppercase;
@@ -100,6 +100,19 @@
       left: 395px;
     }   
   }
+
+  // Autocomplete
+  .angucomplete-dropdown {
+    width: 100%;
+    color: $gray-darkest;
+    text-align: left;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.4);
+  }
+  .angucomplete-selected-row {
+    background-color: $primary-lighter;
+    color: $gray-darkest;
+  }
+  // Autocomplete end
 
   button {
     // width: 180px;
@@ -145,7 +158,7 @@
         color: #A3A3AE;
         font-size: 10px;
         line-height: 13px;
-        @include sofia-pro-medium;
+        @include font-with-weight('Sofia Pro', 500);;
         text-transform: uppercase;
         margin-top: 10px;
         cursor: pointer;
@@ -168,7 +181,7 @@
       color: #A3A3AE;
       font-size: 13px;
       line-height: 22px;
-      @include sofia-pro-regular;
+      @include font-with-weight;
       text-transform: uppercase;
     }
 
@@ -186,7 +199,7 @@
           color: #A3A3AE;
           font-size: 10px;
           line-height: 13px;
-          @include sofia-pro-medium;
+          @include font-with-weight('Sofia Pro', 500);
           text-transform: uppercase;
           cursor: pointer;
           margin-top: 10px;
@@ -247,7 +260,7 @@
   justify-content: center;  
   text-transform: uppercase;
   font-size: $label-small;
-  @include sofia-pro-medium;
+  @include font-with-weight('Sofia Pro', 500);
 
   a {
     display: inline;

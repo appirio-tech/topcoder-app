@@ -15,7 +15,7 @@
     padding: 10px;
     margin-bottom: 6px;
     h2 {
-      @include sofia-pro-bold;
+      @include font-with-weight('Sofia Pro', 700);
       font-size: 18px;
       text-transform: uppercase;
       text-align: center;
@@ -27,7 +27,6 @@
         padding-bottom: 82px;
       }
       small {
-        @include sofia-pro-regular;
         font-size: 16px;
         display: block;
         text-transform: capitalize;
@@ -40,7 +39,7 @@
     }
   }
   .winner-tile {
-    @include sofia-pro-regular;
+    @include font-with-weight;
     display: flex;
     flex-direction: row;
     background: $white;
@@ -200,7 +199,7 @@
   }
   .top-performers-container {
     @extend %statistics-panel;
-    @include sofia-pro-regular;
+    @include font-with-weight;
     padding-bottom: 40px;
     .performers-container {
       display: flex;
@@ -306,7 +305,7 @@
   .tops-container,
   .record-books-container {
     @extend %statistics-panel;
-    @include sofia-pro-regular;
+    @include font-with-weight;
     text-align: center;
     padding-bottom: 16px;
     min-height: 165px;

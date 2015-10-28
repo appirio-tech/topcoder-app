@@ -14,13 +14,13 @@
     p.form-error(ng-show="vm.errMsg") {{vm.errMsg}}
 
     .first-last-names
-      input-sticky-placeholder.tc-input(sticky-placeholder="First", ng-model="vm.firstname")
+      input-sticky-placeholder(sticky-placeholder="First", ng-model="vm.firstname")
         input(ng-model="vm.firstname", maxlength="64", name="firstname", placeholder="First Name", type="text", required)
 
-      input-sticky-placeholder.tc-input(sticky-placeholder="Last", ng-model="vm.lastname")
+      input-sticky-placeholder(sticky-placeholder="Last", ng-model="vm.lastname")
         input(ng-model="vm.lastname", maxlength="64", name="lastname", placeholder="Last Name", type="text", required)
 
-    .country-dropdown.tc-input
+    .country-dropdown
       angucomplete-alt(
         input-name="country",
         placeholder="Country",

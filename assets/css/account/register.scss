@@ -2,7 +2,6 @@
 @import '../partials/combined';
 
 .register-container {
-  position: relative;
 
   form {
     display: flex;
@@ -64,29 +63,6 @@
   }
 
   // login-options section
-  .login-options {
-
-    .networks {
-
-      i {
-        cursor: pointer;
-      }
-
-      .network {
-        &.github {
-
-        }
-
-        &.facebook {
-          margin-left: 41px;
-        }
-
-        &.google-plus {
-          margin-left: 43px;
-        }
-      }
-    }
-  }
   .section-break {
     hr {
       max-width: 180px;

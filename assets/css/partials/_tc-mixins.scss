@@ -1,3 +1,32 @@
+@import '_tc-variables';
+
+// SPECIFY FONTS THE SMART WAY
+// --------------------------------------------------------------------------------------------
+// Instead of repeating the use of fonts, we can build a simple mixin to do that for us
+@mixin font-with-weight($font-family: 'Sofia Pro', $font-weight: 400, $font-fallback: sans-serif){
+  @if $font-fallback == serif {
+    font-family: $font-family, $fonts-family-serif;
+    font-weight: $font-weight; 
+
+  }
+  @else if $font-fallback == sans-serif {
+    font-family: $font-family, $fonts-family-sans-serif;
+    font-weight: $font-weight; 
+
+  }
+  @else if $font-fallback == monospace {
+    font-family: $font-family, $fonts-family-monospace;
+    font-weight: $font-weight; 
+  }
+  @else {
+    font-family: $font-family, $fonts-family-monospace;
+    font-weight: $font-familyt-base; 
+  }
+}
+
+
+// HELPERS
+// --------------------------------------------------------------------------------------------
 @mixin clearfix {
   &:after {
     content: "";
@@ -39,32 +68,6 @@
 // Font Stack: BODY
 // Refactor to use non-typeface specific name; best - use variables;
 
-@mixin source-sans-light {
-  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-  font-weight: 300;
-}
-
-@mixin source-sans-regular {
-  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-  font-weight: 400;
-}
-
-@mixin source-sans-italic {
-  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-@mixin source-sans-semi-bold {
-  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-  font-weight: 600;
-}
-
-@mixin source-sans-bold {
-  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-  font-weight: 700;
-}
-
 // Replacement for Merriweather Sans
 
 @mixin label-description {
@@ -83,25 +86,20 @@
 }
 
 // body end;
-$text-rendering: geometricPrecision;
-
 
 @mixin sofia-pro-extra-light {
   font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 200;
-  text-rendering: $text-rendering;
 }
 
 @mixin sofia-pro-light {
   font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 300;
-  text-rendering: $text-rendering;
 }
 
 @mixin sofia-pro-regular {
   font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 400;
-  text-rendering: $text-rendering;
 }
 
 @mixin sofia-pro-italic {
@@ -112,7 +110,6 @@ $text-rendering: geometricPrecision;
 @mixin sofia-pro-medium {
   font-family: 'Sofia Pro', Arial, Helvetica, sans-serif;
   font-weight: 500;
-  text-rendering: $text-rendering;
 }
 
 @mixin sofia-pro-semi-bold {
@@ -264,7 +261,6 @@ $text-rendering: geometricPrecision;
 }
 
 @mixin ui-h1 {
-  @include source-sans-light;
   font-size: 46px;
 }
 
