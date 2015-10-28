@@ -7,10 +7,12 @@ var ProfileData = function() {
                             		'profilePicDir':'/Volumes/data',
                             		'profilePicFile': 'profilePic.jpg',
                             		'country'  :'India',
-                            		'shortBio' :'lets play with open source',
+                            		'shortBio' :'12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890',
                             		'design'   :'y',
                             		'development' : 'y',
-                            		'dataScience' : 'y'
+                            		'dataScience' : 'y',
+                            		'githubUserName' : 'aqmansuri',
+                            		'githubPassword' : 'appirio123'
                             	}/*,
                             	{	'username' : 'DhananjayKumar1',
                             		'password' : 'appirio123'

@@ -9,8 +9,8 @@ exports.config = {
 //		regression2: 'app/manage/newproject.spec.js'//,
 //	    regression3: 'app/manage/manage.spec.js',
 //        regression4: 'app/account/register/register.spec.js',
-//        regression6: 'app/account/profile/profile.spec.js'//,
-        	regression7: 'app/account/account/account.spec.js'
+        regression6: 'app/account/profile/profile.spec.js'//,
+//        	regression7: 'app/account/account/account.spec.js'
 //        regression8: 'app/account/my-dashboard/myDashboard.spec.js'
 //        regression5: 'app/account/reset-password/reset-password.spec.js'
 	  },

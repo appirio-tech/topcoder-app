@@ -15,6 +15,7 @@
 					 loginPage.get(accountData.baseUrl);
 					 loginPage.login(loginUserCred);
 					 accountPage.goToAccountPage(accountData.dashBoardUrl, loginUserCred);
+					 accountPage.verifyAccountChanges(accountData.dashBoardUrl, loginUserCred);
 				 });
 		  
 				 it('welcomes the user for logout', function() {

@@ -52,13 +52,13 @@ var ProfilePage = function() {
 	  browser.wait(isClickable, 30000);
 	
 	  profileLink.click().then(function() {
-		  var toolTip = element(by.css('.introjs-tooltip'));
-		  var isClickable = EC.elementToBeClickable(toolTip);
-		  browser.wait(isClickable, 30000);
-		  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
-		  isClickable = EC.elementToBeClickable(skipBtn);
-		  browser.wait(isClickable, 30000);
-		  skipBtn.click().then(function() {
+//		  var toolTip = element(by.css('.introjs-tooltip'));
+//		  var isClickable = EC.elementToBeClickable(toolTip);
+//		  browser.wait(isClickable, 30000);
+//		  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
+//		  isClickable = EC.elementToBeClickable(skipBtn);
+//		  browser.wait(isClickable, 30000);
+//		  skipBtn.click().then(function() {
 		  
 		  console.log('hii');
 		  
@@ -66,10 +66,10 @@ var ProfilePage = function() {
 		  var username = element(by.css('.info .handle'));
 		  var isClickable = EC.elementToBeClickable(username);
 		  browser.wait(isClickable, 30000);
-		  console.log('username '+username.getInnerHtml());
+//		  console.log('username '+username.getInnerHtml());
 		  expect(username.getInnerHtml()).toEqual(loginUserCred.username);
 		  
-		  var editProfile = element(by.partialButtonText('Edit Profile'));
+		  var editProfile = element(by.partialButtonText('EDIT PROFILE'));
 		  isClickable = EC.elementToBeClickable(editProfile);
 		  browser.wait(isClickable, 60000);
 		  editProfile.click().then(function() {
@@ -129,7 +129,7 @@ var ProfilePage = function() {
 			  
 			  
 		  });
-		  });
+//		  });
 	  });
   };
    
