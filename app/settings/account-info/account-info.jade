@@ -50,7 +50,7 @@
         p You joined Topcoder by using an external account, so we don't have a password for you.
 
 
-  form(name="vm.accountInfoForm", role="form", ng-submit="vm.accountInfoForm.$valid && vm.saveAccountInfo()", novalidate, autocomplete="off")
+  form(name="vm.accountInfoForm", role="form", novalidate, autocomplete="off")
 
     .settings-section.name
       .section-info
@@ -102,12 +102,8 @@
             placeholder="123 Topcoder Ave.",
             value="{{vm.homeAddress.streetAddr1}}",
             ng-model="vm.homeAddress.streetAddr1",
-            ng-class="{'form-field-focused': hasFocus==true}",
-            ng-required="vm.addressDirty = vm.accountInfoForm.address.$dirty || vm.accountInfoForm.city.$dirty || vm.accountInfoForm.state.$dirty || vm.accountInfoForm.zipcode.$dirty || vm.accountInfoForm.country.$dirty"
+            ng-class="{'form-field-focused': hasFocus==true}"
           )
-
-          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.address.$invalid")
-            p(ng-show="vm.accountInfoForm.address.$error.required") Please enter an address
 
           .form-label Address 2
             span(style="text-transform: none;") &nbsp;(apt., suite, etc.)
@@ -126,12 +122,8 @@
             value="{{vm.homeAddress.city}}",
             placeholder="Best City in the World",
             ng-model="vm.homeAddress.city",
-            ng-class="{'form-field-focused': hasFocus==true}",
-            ng-required="vm.addressDirty"
+            ng-class="{'form-field-focused': hasFocus==true}"
           )
-
-          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.city.$invalid")
-            p(ng-show="vm.accountInfoForm.city.$error.required") Please enter a city
 
           .form-label State/Province
           input.tc-input(
@@ -139,12 +131,8 @@
             value="{{vm.homeAddress.stateCode}}",
             placeholder="California",
             ng-model="vm.homeAddress.stateCode",
-            ng-class="{'form-field-focused': hasFocus==true}",
-            ng-required="vm.addressDirty"
+            ng-class="{'form-field-focused': hasFocus==true}"
           )
-
-          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.state.$invalid")
-            p(ng-show="vm.accountInfoForm.state.$error.required") Please enter a state or province
 
           .form-label Zip/Post Code
           input.tc-input(
@@ -152,12 +140,8 @@
             placeholder="Zip"
             value="{{vm.homeAddress.zip}}",
             ng-model="vm.homeAddress.zip",
-            ng-class="{'form-field-focused': hasFocus==true}",
-            ng-required="vm.addressDirty"
+            ng-class="{'form-field-focused': hasFocus==true}"
           )
-
-          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.zipcode.$invalid")
-            p(ng-show="vm.accountInfoForm.zipcode.$error.required") Please enter a zip
 
           .form-label
             span Country
@@ -173,12 +157,11 @@
             title-field="name",
             match-class="angucomplete-highlight",
             minlength="1",
-            ng-class="{'form-field-focused': hasFocus==true}",
-            field-required="vm.addressDirty"
+            ng-class="{'form-field-focused': hasFocus==true}"
           )
-          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.country.$error.required")
-            p(ng-show="vm.accountInfoForm.country.$error.required") Please choose a country from the list.
+          .account-info-error(ng-show="vm.accountInfoForm.country.$dirty")
+            p(ng-show="!vm.isValidCountry") Please choose a country from the list.
 
 
   .save-section
-    button.save.tc-btn.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid", ng-class="{'enabled-button': vm.accountInfoForm.$valid}") Save
+    button.save.tc-btn.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid", ng-class="{'enabled-button': vm.accountInfoForm.$valid, 'disabled': vm.accountInfoForm.$invalid || vm.accountInfoForm.$pristine}", ng-click="vm.accountInfoForm.$valid && vm.accountInfoForm.$dirty && vm.saveAccountInfo()") Save

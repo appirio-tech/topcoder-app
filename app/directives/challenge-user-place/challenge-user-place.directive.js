@@ -46,7 +46,7 @@
           if (!$scope.challenge.isPrivate && $scope.challenge.userDetails.submissions && $scope.challenge.userDetails.submissions.length > 0) {
             $scope.selectedIndex = 0;
             $scope.challenge.thumbnailId = $scope.challenge.userDetails.submissions[0].id;
-            $scope.imageURL = $scope.challenge.userDetails.submissions[0].fullImage;
+            $scope.imageURL = $scope.challenge.userDetails.submissions[0].submissionImage;
             $scope.selectedImage = $scope.imageURL;
 
             $scope.challenge.highestPlacement = _.max($scope.challenge.userDetails.submissions, 'placement').placement;

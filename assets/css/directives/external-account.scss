@@ -56,6 +56,10 @@
 
   &.read-only {
     cursor: default;
+
+    .el-dribble i {color: #EA4C89;}
+    .el-linkedin i {color: #127CB5;}
+    .el-github i {color: #4B3D74;}
   }
 
   &.connecting {
