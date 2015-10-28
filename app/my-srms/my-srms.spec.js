@@ -31,26 +31,16 @@ describe('My SRMs Controller', function() {
     });
 
     // mock srms api
-    sinon.stub(srmService, 'getSRMs', function(data) {
+    sinon.stub(srmService, 'getUserSRMs', function(handle, params) {
       var deferred = $q.defer();
       var resp = null;
-      if (data.filter.indexOf('status=future') != -1) {
+      if (params.filter.indexOf('status=future') != -1) {
         resp = JSON.parse(JSON.stringify(srms));
       } else {
         resp = JSON.parse(JSON.stringify(srms.slice(1)));
       }
       resp.metadata = {
         totalCount: resp.length
-      };
-      deferred.resolve(resp);
-      return deferred.promise;
-    });
-
-    sinon.stub(srmService, 'getUserSRMs', function(data) {
-      var deferred = $q.defer();
-      var resp = JSON.parse(JSON.stringify(srms.slice(1)));
-      resp.metadata = {
-        totalCount: resp.length,
       };
       deferred.resolve(resp);
       return deferred.promise;
