@@ -15,11 +15,9 @@
         span.time-zone {{srm.codingStartAt | localTime:"z" }}
 
     .phase-status
-      .registered(ng-show="vm.registered")
-        i.fa.fa-check-circle-o
-        p You are registered!
-      .unregistered(ng-hide="vm.registered")
-        button.tc-btn.tc-btn-s.tc-btn-wide.srm-action Register
+      .registered(ng-show="srm.userStatus === CONSTANTS.REGISTERED") Registered
+      .unregistered(ng-hide="srm.currentPhase !== CONSTANTS.REGISTRATION || srm.userStatus === CONSTANTS.REGISTERED")
+        a.tc-btn.tc-btn-s.tc-btn-wide(href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") Register
 
   .past-srm(ng-show="srm.status === 'PAST'")
     .challenge-track
@@ -48,13 +46,11 @@
 
     .srm-details
       p.starts-in Starts in #[span {{srm.codingStartAt | timeDiff:"quantity"}} {{srm.codingStartAt | timeDiff:'unit'}}]
-
+    
     .phase-status
-      .registered(ng-show="vm.registered")
-        i.fa.fa-check-circle-o
-        p You are registered!
-      .unregistered(ng-hide="vm.registered")
-        button.tc-btn.tc-btn-s.tc-btn-wide.srm-action Register
+      .registered(ng-show="srm.userStatus === CONSTANTS.REGISTERED") Registered
+      .unregistered(ng-hide="srm.currentPhase !== CONSTANTS.REGISTRATION || srm.userStatus === CONSTANTS.REGISTERED")
+        a.tc-btn.tc-btn-s.tc-btn-wide(href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") Register
 
   .past-srm(ng-show="srm.status === 'PAST'")
     .challenge-track

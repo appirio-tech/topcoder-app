@@ -4,7 +4,7 @@ header
 
 .section-loading(ng-show="vm.loading")
 
-section(ng-hide="vm.loading")
+tc-section(state="vm.state")
   .srm-tiles
     srm-tile(ng-repeat="srm in vm.srms", srm="srm", view="'tile'", ng-class="'tile-view'")
 
@@ -16,7 +16,7 @@ section(ng-hide="vm.loading")
 
         a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost(ng-href="https://community.{{DOMAIN}}/wiki/display/tc/Algorithm+Problem+Set+Analysis") Match Editorials
 
-        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost(ng-href="https://www.{{DOMAIN}}/member-onboarding") Learn More
+        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost(ng-href="https://www.{{DOMAIN}}/member-onboarding/learning-practicing-skills/") Learn More
 
 .srms-links(ng-hide="vm.loading")
   a(ui-sref="my-srms") View Past SRMs
