@@ -2,7 +2,7 @@
 @import '../partials/combined';
 
 .account-info-container {
-  padding-bottom: 75px;
+  // padding-bottom: 75px;
 
   .account-info-error {
     color: #ef3a3a;
@@ -16,13 +16,19 @@
     .section-fields {
       display: flex;
       flex-direction: column;
+
       .form-field {
+
         &.grey {
           background-color: #fcfcfc;
         }
       }
+
       .form-label {
         margin-top: 10px;
+        width: 100%;
+
+
         &.username {
           margin-top: 0px;
         }
@@ -36,8 +42,11 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      
       .form-label {
+        width: 100%;
         margin-top: 10px;
+        
         &.first {
           margin-top: 0;
         }
@@ -67,7 +76,7 @@
     width: 630px;
 
     .address-fields {
-      @media only screen and (min-width: 768px) {
+      @include media-min(768) {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
@@ -96,9 +105,8 @@
     }
   }
   .save-section {
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    margin: 0 auto;
     background-color: #fcfcfc;
     border-top: 1px solid #f0f0f0;
     display: flex;
@@ -114,18 +122,37 @@
   }
 }
 
-@media only screen and (min-width: 760px) {
-  .account-info-container {
-    .section-fields {
+.validation-bar,
+.angucomplete-holder {
+  width: 100%;
+  display: block;
+
+  & input[type='text'],
+  & input[type='password'] {
+    width: 100% !important;
+  }
+}
+
+.address.settings-section {
+  border-bottom: none;
+}
+
+@include media-min(768px) {
+  .account-info-container .section-fields {
       margin-top: 0px;
-    }
-    .section-info {
-      h2 {
-        font-size: 18px;
-      }
-      .description {
-        margin-top: 10px;
-      }
-    }
+  }
+
+  // size the main container to accomodate for the tooltips
+  // HaCKY!
+  .account-info-container .credentials .section-fields,
+  .account-info-container .name .section-fields,
+  .account-info-container .address .section-fields {
+    min-width: 400px;
+    width: 100%;
+    padding-right: 340px;
+  }
+
+  .tips {
+    left: 105%;
   }
 }

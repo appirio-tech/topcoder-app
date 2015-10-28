@@ -46,30 +46,39 @@ toggle-password-with-tips  {
 }
 
 // Style the placeholders
-input::-webkit-input-placeholder{
-  color: $accent-gray;
-  font-size: 12px;
-  @include sofia-pro-medium;
-  text-transform: uppercase;
+input {
+    @include placeholder {
+    color: $accent-gray;
+    font-size: 12px;
+    @include font-with-weight;
+    text-transform: uppercase;
+    transition: opacity .15s;
+    opacity: 1;
+  }
 }
 
-input:focus::-webkit-input-placeholder{
-  opacity: 0;
-  transition: opacity .15s;
+input:focus {
+  @include placeholder {
+    opacity: 0;
+    transition: opacity .15s;
+  }
 }
+
 
 textarea {
   padding: 10px;
   line-height: 24px;
   
-  &::-webkit-input-placeholder{
-  color: $accent-gray;
-  font-weight: 300;
+  @include placeholder {
+    color: $accent-gray;
+    font-weight: 300;
   }
 
-  &:focus::-webkit-input-placeholder {
-    opacity: 0;
-    transition: opacity .15s;
+  &:focus {
+    @include placeholder {
+      opacity: 0;
+      transition: opacity .15s;
+    }
   }
 }
 
