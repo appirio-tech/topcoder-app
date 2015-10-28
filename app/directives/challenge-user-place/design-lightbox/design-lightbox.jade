@@ -15,9 +15,9 @@
     .selections
       img.selection(
         ng-repeat="submission in challenge.userDetails.submissions",
-        ng-src="{{submission.submissionImage}}",
-        ng-click="updateSelected(submission.submissionImage, $index)",
-        ng-class="{'current': submission.submissionImage == selectedImage}"
+        ng-src="{{currentImage = submission.submissionImage && submission.submissionImage.full}}",
+        ng-click="updateSelected(currentImage, $index)",
+        ng-class="{'current': currentImage == selectedImage}"
       )
 
   .right-nav
