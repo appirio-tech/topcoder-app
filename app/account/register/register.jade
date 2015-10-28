@@ -97,7 +97,8 @@
     section.terms
       p By clicking "Join" you agree to Topcoder's #[a(href="http://www.topcoder.com/community/how-it-works/terms/", target="_blank") Terms] and #[a(href="http://www.topcoder.com/community/how-it-works/privacy-policy/", target="_blank") Privacy Policy]
 
-    button.tc-btn.tc-btn-large(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid") Join
+    button.tc-btn.tc-btn-large(type="submit", tc-busy-button, tc-busy-when="vm.registering", ng-disabled="vm.registerForm.$invalid", ng-show="vm.isValidCountry") Join
+    button.tc-btn.tc-btn-large.disabled(type="submit", ng-show="!vm.isValidCountry", disabled="disabled") Join
 
   section.login-options
     p.tc-separator
