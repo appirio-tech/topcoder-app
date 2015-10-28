@@ -23,9 +23,9 @@
               scope);
             element.attr('disabled', true).html('').append(busyMessageHtml);
           } else {
-            // remove the disabled attribute only if either element does not have ng-disabled set
+            // remove the disabled attribute only if either element does not have disabled set
             // or it evaluates to false
-            if (!attr.ngDisabled || !$parse(attr.ngDisabled)) {
+            if (!attrs.disabled) {
               element.removeAttr('disabled').html(scope.originalContent);
             }
           }

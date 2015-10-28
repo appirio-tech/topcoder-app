@@ -71,17 +71,17 @@
       var deferred = $q.defer();
       var data = {
         "SRMWinners": [{
-          "avatar": "http://www.topcoder.com/i/m/tourist.jpeg",
-          "name": "tourist",
-          "date": "20151014T000000Z",
-          "country": "Belarus",
-          "contests": ["SRM 671 DIVISION 1 WINNER"]
+          "avatar": "https://s3.amazonaws.com/app.topcoder-dev.com/images/ico-user-default.7aa28736.svg",
+          "name": "xudyh",
+          "date": "20151020T000000Z",
+          "country": "China",
+          "contests": ["SRM 672 DIVISION 1 WINNER"]
         }, {
-          "avatar": "https://www.topcoder.com/i/m/thegunner2401.jpeg",
-          "name": "thegunner2401",
-          "date": "20151014T000000Z",
-          "country": "Viet Nam",
-          "contests": ["SRM 671 DIVISION 2 WINNER"]
+          "avatar": "https://s3.amazonaws.com/app.topcoder-dev.com/images/ico-user-default.7aa28736.svg",
+          "name": "jiangshibiao2",
+          "date": "20151020T000000Z",
+          "country": "China",
+          "contests": ["SRM 672 DIVISION 2 WINNER"]
         }],
         "MarathonWinner": [{
           "avatar": "http://www.topcoder.com/i/m/eldidou.jpeg",
