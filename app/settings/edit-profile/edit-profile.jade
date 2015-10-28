@@ -21,7 +21,7 @@
                 span(ng-show="!vm.userData.photoURL || !vm.userData.photoURL.length") Add Image
               input(type='file', name='image', on-file-change='on-file-change', id="change-image-input", style="display: none;")
 
-              .file-delete
+              .file-delete(ng-show="vm.userData.photoURL && vm.userData.photoURL.length")
                 button.tc-btn.tc-btn-ghost.tc-btn-warning.tc-btn-s(ng-click="vm.deleteImage()", type="button") Delete
 
         .country
