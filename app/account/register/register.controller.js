@@ -36,6 +36,7 @@
 
       var isValidCountry = _.isUndefined(countryCode) ? false : true;
       vm.registerForm.country.$setValidity('required', isValidCountry);
+      vm.isValidCountry = isValidCountry;
       if (isValidCountry) {
         vm.country = angucompleteCountryObj.originalObject;
       }

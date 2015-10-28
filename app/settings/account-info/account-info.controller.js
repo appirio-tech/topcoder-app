@@ -53,6 +53,7 @@
 
       var isValidCountry = _.isUndefined(countryCode) ? false : true;
       vm.accountInfoForm.country.$setValidity('required', isValidCountry);
+      vm.isValidCountry = isValidCountry;
       if (isValidCountry) {
         vm.userData.homeCountryCode = countryCode;
       }

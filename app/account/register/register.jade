@@ -35,8 +35,8 @@
         minlength="1"
       )
 
-      .form-input-error(ng-show="vm.registerForm.country.$dirty && vm.registerForm.country.$invalid", ng-messages="vm.registerForm.country.$error")
-        p.form-error(ng-message="required") Please choose a country from the list
+      .form-input-error(ng-show="vm.registerForm.country.$dirty && !vm.isValidCountry")
+        p.form-error(ng-show="!vm.isValidCountry") Please choose a country from the list
 
     .section-break
       hr
