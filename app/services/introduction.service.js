@@ -82,17 +82,17 @@
             },
             {
               // element: '#skills',
-              intro: 'The quickest way to understand a member’s skills. It includes languages, environments, frameworks, libraries, platforms, tools, and any other technologies that the members knows well.',
+              intro: '<h1>Skills</h1><img src="/images/introjs/profile-skills.png" /><p>The quickest way to understand a member’s skills. It includes languages, environments, frameworks, libraries, platforms, tools, and any other technologies that the members knows well.</p>',
               position: 'top'
             },
             {
               // element: '#tcActivity',
-              intro: 'See the active sub-tracks and click on them for ratings, charts, history and even more details.',
+              intro: '<h1>Activity on Topcoder</h1><img src="/images/introjs/profile-tc-activity.png" /><p>See the active sub-tracks and click on them for ratings, charts, history and even more details.</p>',
               position: 'top'
             },
             {
               // element: '#externalLinks',
-              intro: 'View the best of your presence on the web: show off your work and experience outside of Topcoder by connecting accounts or adding links.',
+              intro: '<h1>Activity across the web</h1><img src="/images/introjs/profile-web-activity.png" /><p>View the best of your presence on the web: show off your work and experience outside of Topcoder by connecting accounts or adding links.</p>',
               position: 'top'
             }
           ]
@@ -104,17 +104,17 @@
             },
             {
               // element: '#subtrack-stats',
-              intro: 'Find the most important metrics here to understand performance in a glance.',
+              intro: '<h1>Metrics</h1><img src="/images/introjs/subtrack-metrics.png" /><p>Find the most important metrics here to understand performance in a glance.</p>',
               position: 'bottom'
             },
             {
               // element: '#challenges-tab',
-              intro: 'View all the successfully completed challenges for the member in this sub-track.',
+              intro: '<h1>Challenges</h1><img src="/images/introjs/subtrack-challenges.png" /><p>View all the successfully completed challenges for the member in this sub-track.</p>',
               position: 'top'
             },
             {
               // element: '#challenges-tab',
-              intro: 'View charts and more in-depth metrics to get a very granular understanding of the activity in this sub-track.',
+              intro: '<h1>Statistics</h1><img src="/images/introjs/subtrack-statistics.png" /><p>View charts and more in-depth metrics to get a very granular understanding of the activity in this sub-track.</p>',
               position: 'top'
             }
           ]
@@ -123,31 +123,31 @@
       dashboard: {
         steps: [
           {
-            intro: 'Welcome to the your new Topcoder Dashboard. We have revamped the dashboard to bring to fore the information that matters to you. Lets walk through some of the new features.'
+            intro: '<p>Welcome to the your new Topcoder Dashboard. We have revamped the dashboard to bring to fore the information that matters to you. Lets walk through some of the new features.</p>'
           },
           {
             // element: '#metrics',
-            intro: 'Quickly glance your active challenges and money earned, and click on them to see more in detail.',
+            intro: '<h1>Header Metrics</h1><img src="/images/introjs/dashboard-metrics.png" /><p>Quickly glance your active challenges and money earned, and click on them to see more in detail.</p>',
             position: 'bottom'
           },
           {
             // element: '#stats',
-            intro: 'Keep on top of how you are faring vs rest of the community with the rating here.',
+            intro: '<h1>Main Rankings</h1><img src="/images/introjs/dashboard-rankings.png" /><p>Keep on top of how you are faring vs rest of the community with the rating here.</p>',
             position: 'top'
           },
           {
             // element: '#challenges',
-            intro: 'View your active challenges on the dashboard in a grid or list view.  You can find the phase, and activity on here, or can click on them to go to the challenge details.',
+            intro: '<h1>Acitve Challenges</h1><img src="/images/introjs/dashboard-challenges.png" /><p>View your active challenges on the dashboard in a grid or list view.  You can find the phase, and activity on here, or can click on them to go to the challenge details.</p>',
             position: 'top'
           },
           {
             // element: '#srms',
-            intro: 'Keep track of the SRMs being scheduled, and find easy links to past problems, editorial and the Arena.',
+            intro: '<h1>SRM Section</h1><img src="/images/introjs/dashboard-srms.png" /><p>Keep track of the SRMs being scheduled, and find easy links to past problems, editorial and the Arena.</p>',
             position: 'top'
           },
           {
             // element: '#community',
-            intro: 'Don’t miss out on the latest happenings in our community. Blogs, Events, Member Programs and more!',
+            intro: '<h1>Community Updates</h1><img src="/images/introjs/dashboard-community.png" /><p>Don’t miss out on the latest happenings in our community. Blogs, Events, Member Programs and more!</p>',
             position: 'top'
           }
         ]
