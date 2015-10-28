@@ -48,7 +48,7 @@
           "name": "maroosh",
           "country": "Jordan"
         }, {
-          "avatar": "//community.topcoder.com/i/m/ghostar.jpeg",
+          "avatar": "//community.topcoder.com/i/m/Ghostar.jpeg",
           "name": "Ghostar",
           "country": "United States"
         }, {
