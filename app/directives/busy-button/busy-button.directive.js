@@ -3,7 +3,9 @@
 
   angular.module('tcUIComponents').directive('tcBusyButton', tcBusyButton);
 
-  function tcBusyButton() {
+  tcBusyButton.$inject = ['$parse'];
+
+  function tcBusyButton($parse) {
     return {
       restrict: "A",
       scope: {
@@ -21,7 +23,11 @@
               scope);
             element.attr('disabled', true).html('').append(busyMessageHtml);
           } else {
-            element.removeAttr('disabled').html(scope.originalContent);
+            // remove the disabled attribute only if either element does not have ng-disabled set
+            // or it evaluates to false
+            if (!attr.ngDisabled || !$parse(attr.ngDisabled)) {
+              element.removeAttr('disabled').html(scope.originalContent);
+            }
           }
         });
       }
