@@ -128,6 +128,7 @@
       ProfileService.updateUserProfile(vm.userData)
       .then(function() {
         vm.profileFormProcessing = false;
+        vm.editProfile.$setPristine();
         $log.info('Saved successfully');
         toaster.pop('success', "Success!", "Your account information was updated.");
         for (var k in vm.userData) userData[k] = vm.userData[k];
