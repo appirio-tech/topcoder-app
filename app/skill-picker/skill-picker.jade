@@ -51,4 +51,4 @@
     type="button",
     tc-busy-button, tc-busy-when="vm.saving",
     ng-click="vm.submitSkills()",
-    ng-class="{'enabled-button': vm.tracks.design || vm.tracks.develop || vm.tracks.data_science}") Done
+    ng-disabled="!vm.tracks.DESIGN && !vm.tracks.DEVELOP && !vm.tracks.DATA_SCIENCE") Done
