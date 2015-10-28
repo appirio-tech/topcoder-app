@@ -21,38 +21,6 @@
     text-align: center;
   }
 
-  .no-srms {
-    padding: 30px;
-    display: flex;
-    flex-direction: inherit;
-    align-items: center;
-    background-image: url('/images/empty-states/pattern-my-challenges.png');
-    background-repeat: repeat;
-
-    .info-links {
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-
-      a {
-        text-transform: uppercase;
-        @include sofia-pro-medium;
-
-        &:not(:last-child) {
-          margin-bottom: 30px;
-        }
-
-        &.find-srms {
-        }
-
-        &.learn-more {
-          font-size: 12px;
-          line-height: 12px;
-          color: $accent-gray;
-        }
-      }
-    }
-  }
   .has-srms {
     display: flex;
     flex-direction: column;

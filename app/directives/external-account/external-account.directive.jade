@@ -1,15 +1,15 @@
-.ext-tile(ng-repeat="account in accountList | orderBy:'order'", ng-click="!account.disabled && !readOnly && handleClick(account.provider, account.status)", ng-class="{'connected': account.status === 'linked', 'connecting': account.status === 'pending', 'disabled': account.disabled, 'enabled': !account.disabled, 'read-only': readOnly, 'connect': account.status === 'unlinked' && !account.disabled}")
+.ext-tile(ng-repeat="account in accountList | orderBy:'order'", ng-click="!account.disabled && !readOnly && handleClick(account.provider, account.status)", ng-class="{'connected': !readOnly && account.status === 'linked', 'connecting': !readOnly && account.status === 'pending', 'disabled': account.disabled, 'enabled': !readOnly && !account.disabled, 'read-only': readOnly, 'connect': !readOnly && account.status === 'unlinked' && !account.disabled}", ng-if="!readOnly || account.featured === true")
   .external-account-box(ng-class="account.colorClass")
     i.fa(ng-class="account.className")
 
     .provider {{account.displayName}}
 
-  .status.already-connected(ng-if="account.status === 'linked'") Connected
+  .status.already-connected(ng-if="!readOnly && account.status === 'linked'") Connected
 
-  .status.already-connected(ng-if="account.status === 'pending'") Connecting
+  .status.already-connected(ng-if="!readOnly && account.status === 'pending'") Connecting
 
   .status.disconnect Disconnect
 
-  .status(ng-if="account.status === 'unlinked' && !account.disabled") Connect
+  .status(ng-if="!readOnly && account.status === 'unlinked' && !account.disabled") Connect
 
-  .status(ng-if="account.disabled") Coming Soon
+  .status(ng-if="!readOnly && account.disabled") Coming Soon
