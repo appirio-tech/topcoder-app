@@ -6,7 +6,10 @@
     .title {{challenge.name}}
 
 
-    img(ng-src="{{selectedImage}}")
+    img(
+      ng-src="{{selectedImage}}",
+      fallback-src="/images/card-bg-no-image.svg"
+    )
 
 
     .info
@@ -17,7 +20,8 @@
         ng-repeat="submission in challenge.userDetails.submissions",
         ng-src="{{currentImage = submission.submissionImage && submission.submissionImage.full}}",
         ng-click="updateSelected(currentImage, $index)",
-        ng-class="{'current': currentImage == selectedImage}"
+        ng-class="{'current': currentImage == selectedImage}",
+        fallback-src="/images/card-bg-no-image.svg"
       )
 
   .right-nav
