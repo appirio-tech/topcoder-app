@@ -77,6 +77,7 @@
         vm.formProcessing.accountInfoForm = false;
         toaster.pop('success', "Success!", "Your account information was updated.");
         for (var k in vm.userData) userData[k] = vm.userData[k];
+        vm.accountInfoForm.$setPristine();
       })
       .catch(function() {
         vm.formProcessing.accountInfoForm = false;
