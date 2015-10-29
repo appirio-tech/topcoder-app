@@ -43,7 +43,7 @@
           }]
         },
         "dashboard-ios-community": {
-          title: "iOS COMMUNITY",
+          title: "iOS Community",
           description: "Earn iOS topcoder badges and exclusive access to iOS challenges, prizes and special community-related events.",
           helpLinks: [{
             title: "Participate",
@@ -159,7 +159,7 @@
         },
         "profile-external-links": {
           title: "External Links",
-          description: "You can add languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.",
+          description: "Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.",
           helpLinks: [{
             title: "Connect Your Accounts",
             state: "settings.profile",
