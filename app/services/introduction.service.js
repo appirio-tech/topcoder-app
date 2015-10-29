@@ -66,7 +66,7 @@
     var _introJSData = {
       'default': {
         steps:[],
-        showStepNumbers: true,
+        showStepNumbers: false,
         exitOnOverlayClick: true,
         exitOnEsc: true,
         nextLabel: 'Next',
@@ -78,21 +78,21 @@
         about: {
           steps: [
             {
-              intro: 'Welcome to the new Topcoder Profile. To make this the premier place to showcase skills, we have reimagined this page and introduced several new features.'
+              intro: '<p>Welcome to the new Topcoder Profile. It’s been reimagined as the premier place to showcase your experience, with three main sections.</p>'
             },
             {
               // element: '#skills',
-              intro: 'The quickest way to understand a member’s skills. It includes languages, environments, frameworks, libraries, platforms, tools, and any other technologies that the members knows well.',
+              intro: '<img src="/images/introjs/profile-skills.svg" /><h1>Skills</h1><p>A quick way to understand your strengths. Skills include languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.</p>',
               position: 'top'
             },
             {
               // element: '#tcActivity',
-              intro: 'See the active sub-tracks and click on them for ratings, charts, history and even more details.',
+              intro: '<img src="/images/introjs/profile-tc-activity.svg" /><h1>Activity on Topcoder</h1><p>See your active sub-track ratings and explore detailed statistics and past challenges</p>',
               position: 'top'
             },
             {
               // element: '#externalLinks',
-              intro: 'View the best of your presence on the web: show off your work and experience outside of Topcoder by connecting accounts or adding links.',
+              intro: '<img src="/images/introjs/profile-web-activity.svg" /><h1>Activity across the web</h1><p>Show off the best of your work and experience outside of Topcoder by connecting external accounts or adding links.</p>',
               position: 'top'
             }
           ]
@@ -100,21 +100,21 @@
         subtrack: {
           steps: [
             {
-              intro: 'Welcome to the new Sub-track details page. This page contains activity in this track, in-depth metrics and history in an easy-to-understand way.'
+              intro: '<p>Welcome to the new Sub-track Details page. This page summarizes your activity in a particular sub-track and has detailed historical metrics.</p>'
             },
             {
               // element: '#subtrack-stats',
-              intro: 'Find the most important metrics here to understand performance in a glance.',
+              intro: '<img src="/images/introjs/subtrack-metrics.svg" /><h1>Basic metrics</h1><p>Understand your performance at a glance.</p>',
               position: 'bottom'
             },
             {
               // element: '#challenges-tab',
-              intro: 'View all the successfully completed challenges for the member in this sub-track.',
+              intro: '<img src="/images/introjs/subtrack-challenges.svg" /><h1>Charts & in-depth statistics</h1><p>View charts and comprehensive metrics to get a granular understanding of the activity in this sub-track.</p>',
               position: 'top'
             },
             {
               // element: '#challenges-tab',
-              intro: 'View charts and more in-depth metrics to get a very granular understanding of the activity in this sub-track.',
+              intro: '<img src="/images/introjs/subtrack-statistics.svg" /><h1>Completed challenges</h1><p>View all the challenges you’ve successfully completed in this sub-track.</p>',
               position: 'top'
             }
           ]
@@ -123,31 +123,21 @@
       dashboard: {
         steps: [
           {
-            intro: 'Welcome to the your new Topcoder Dashboard. We have revamped the dashboard to bring to fore the information that matters to you. Lets walk through some of the new features.'
-          },
-          {
-            // element: '#metrics',
-            intro: 'Quickly glance your active challenges and money earned, and click on them to see more in detail.',
-            position: 'bottom'
-          },
-          {
-            // element: '#stats',
-            intro: 'Keep on top of how you are faring vs rest of the community with the rating here.',
-            position: 'top'
+            intro: '<p>Welcome to your new Topcoder Dashboard. It’s been revamped to bring your most-needed information to the fore. Let’s walk through some of the new sections.</p>'
           },
           {
             // element: '#challenges',
-            intro: 'View your active challenges on the dashboard in a grid or list view.  You can find the phase, and activity on here, or can click on them to go to the challenge details.',
+            intro: '<img src="/images/introjs/dashboard-challenges.svg" /><h1>Your challenges</h1><p>See your active challenges in a grid or list. Find the main challenge information, such as phase or action required, and click to go to the challenge details.</p>',
             position: 'top'
           },
           {
             // element: '#srms',
-            intro: 'Keep track of the SRMs being scheduled, and find easy links to past problems, editorial and the Arena.',
+            intro: '<img src="/images/introjs/dashboard-srms.svg" /><h1>Single round matches</h1><p>Keep track of upcoming Single Round Matches and easily find links to past problems, match editorials, and the Arena.</p>',
             position: 'top'
           },
           {
             // element: '#community',
-            intro: 'Don’t miss out on the latest happenings in our community. Blogs, Events, Member Programs and more!',
+            intro: '<img src="/images/introjs/dashboard-community.svg" /><h1>Community updates</h1><p>Don’t miss the latest happenings in our community. Events, member programs, fun challenges, and more!</p>',
             position: 'top'
           }
         ]

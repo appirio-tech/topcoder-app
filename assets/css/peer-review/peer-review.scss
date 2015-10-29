@@ -21,7 +21,7 @@
       width: 8px;
     }
     p {
-      @include source-sans-light;
+      @include font-with-weight('Merriweather Sans', 300);
       font-size: 18px;
     }
 
@@ -59,7 +59,7 @@
 
     h1 {
       @include ellipsis;
-      @include source-sans-regular;
+      @include font-with-weight('Merriweather Sans');
       display: inline-block;
       vertical-align: middle;
       font-size: 38px;
@@ -71,7 +71,7 @@
   }
 
   table.review-info {
-    @include source-sans-regular;
+    @include font-with-weight('Merriweather Sans');
     margin-top: 15px;
     margin-left: 5px;
 
@@ -80,7 +80,7 @@
         padding-bottom: 5px;
 
         &.info {
-          @include source-sans-semi-bold;
+          @include font-with-weight('Merriweather Sans');
           font-size: 16px;
           width: 195px;
           @media only screen and (max-width: 380px) {
@@ -107,14 +107,14 @@
     background-color: $white;
 
     .scorecard {
-      @include source-sans-regular;
+      @include font-with-weight('Merriweather Sans');
       color: $dark-gray;
 
       h5.description {
         border-top: 1px solid $review-border;
         border-bottom: 1px solid $review-border;
         background-color: $table-rows-gray;
-        @include source-sans-semi-bold;
+        @include font-with-weight('Merriweather Sans', 500);
         padding: 12px 0 12px 20px;
         margin-bottom: 32px;
         line-height: 1.2;

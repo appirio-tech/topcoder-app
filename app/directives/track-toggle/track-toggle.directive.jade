@@ -1,7 +1,6 @@
 .track(ng-repeat="track in ['DESIGN', 'DEVELOP', 'DATA_SCIENCE']")
-  hr(class="{{!$index  && 'first'}}")
 
-  .content
+  .content(class="{{!tracks[track] && 'disabled'}}")
     .track-details
       .icon(ng-class="{'disabled': !tracks[track]}")
         img(ng-if="track == 'DATA_SCIENCE' && tracks[track]", src="/images/ico-track-data.svg")
@@ -23,5 +22,3 @@
       label.onoffswitch-label(for='{{track}}-onoffswitch')
         span.onoffswitch-inner
         span.onoffswitch-switch
-
-hr.bottom

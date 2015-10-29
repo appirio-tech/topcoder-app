@@ -26,8 +26,9 @@
             // remove the disabled attribute only if either element does not have disabled set
             // or it evaluates to false
             if (!attrs.disabled) {
-              element.removeAttr('disabled').html(scope.originalContent);
+              element.removeAttr('disabled');
             }
+            element.html(scope.originalContent);
           }
         });
       }

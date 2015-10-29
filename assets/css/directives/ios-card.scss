@@ -103,7 +103,7 @@ ios-card .challenge.tile-view {
   .prize-money {
     margin-top: 32px;
     margin-bottom: 10px;
-    @include sofia-pro-light;
+    @include font-with-weight('Sofia Pro', 300);
     font-size: 20px;
     line-height: 24px;
   }
@@ -112,7 +112,7 @@ ios-card .challenge.tile-view {
     height: 36px;
     margin-bottom: 33px;
     padding: 0 20px;
-    @include source-sans-regular;
+    @include font-with-weight('Merriweather Sans');
     font-size: 13px;
     line-height: 18px;
   }
@@ -173,7 +173,7 @@ ios-card .challenge.tile-view {
     min-height: 36px;
     margin-bottom: 25px;
     color: $gray-darkest;
-    @include source-sans-regular;
+    @include font-with-weight('Merriweather Sans');
     font-size: 13px;
     line-height: 18px;
   }

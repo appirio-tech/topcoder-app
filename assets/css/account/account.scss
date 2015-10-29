@@ -5,15 +5,17 @@
 .register-container,
 .reset-password-container,
 .registered-successfully-container {
+  position: relative;
   width: 560px;
   margin: 60px auto 0;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: flex-start;
-  @include source-sans-regular;
-  background-color: white;
+  @include font-with-weight('Merriweather Sans');
+  background-color: $white;
   border-radius: 3px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
 
   header {
     height: 70px;
@@ -50,41 +52,67 @@
   h1 {
     margin-top: 39px;
     margin-bottom: 40px;
-    @include ui-h1;
-    color: #3D3D3D;
+    @media (max-width: 767px) {
+      margin: 30px auto;
+    }
+    color: $gray-darkest;
     line-height: 30px;
     font-size: 20px;
-    @include sofia-pro-light;
+    @include font-with-weight('Sofia Pro', 300);
     width: 380px;
     align-self: center;
     text-transform: uppercase;
   }
 
-  input:not([type="checkbox"]), button {
-    display: block;
-    margin-bottom: 10px;
+  // registration sizes, remove
+  input[name="firstname"], input[name="lastname"] {
+    width: 185px;
+    padding-right: 45px;
+  }
+
+  input[name="username"], input[name="email"] {
+    padding-right: 85px;
+  }
+
+  input[type="text"],
+  toggle-password {
+    width: 380px;
   }
 
   input:not([type="checkbox"]) {
-    height: 40px;
     width: 300px;
-    padding: 0;
-    padding-left: 15px;
-    border: 0;
-    @include source-sans-regular;
-    font-size: 16px;
-    color: #231F20;
-    box-shadow: none;
-    outline: none;
   }
 
-  .tips {
-    left: 380px;
+  toggle-password {
+    input#current-password-input {
+      width: 300px;
+      height: 20px;
+      border: none;
+      outline: none;
+      box-shadow: none;
+    }
   }
 
-  .email-tips {
-    left: 380px;
+  .tips,
+  .email-tips,
+  .password-tips {
+    @media screen and (min-width: 915px) {
+      left: 395px;
+    }   
   }
+
+  // Autocomplete
+  .angucomplete-dropdown {
+    width: 100%;
+    color: $gray-darkest;
+    text-align: left;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.4);
+  }
+  .angucomplete-selected-row {
+    background-color: $primary-lighter;
+    color: $gray-darkest;
+  }
+  // Autocomplete end
 
   button {
     // width: 180px;
@@ -100,56 +128,10 @@
     width: 380px;
   }
 
-  input[type="text"],
-  input[type="password"],
-  input[type="email"],
-  input.email,
-  toggle-password,
-  toggle-password-with-tips {
-    height: 38px;
-    background: $white;
-    border: 1px solid #B7B7B7;
-    box-shadow: inset 0px 0px 2px 0px rgba(183,183,183,0.30);
-    border-radius: 2px;
-    cursor: auto;
-    color: #3d3d3d;
-    font-family: "Merriweather Sans";
-    font-size: 15px;
-
-    &:hover {
-      border: 1px solid #A3A3AE;
-      box-shadow: inset 0px 0px 2px 0px #B7B7B7;
-    }
-
-    &:focus,
-    &.focus {
-      border: 1px solid #0096FF;
-      outline: none;
-      box-shadow: inset 0px 0px 2px 1px rgba(133,203,255,0.60);
-    }
-
-    transition: .15s all;
-  }
-
-  input:not([type="checkbox"]) {
-    box-shadow: none;
-  }
 
   toggle-password {
     input#current-password-input {
       width: 300px;
-      height: 20px;
-      border: none;
-      outline: none;
-      box-shadow: none;
-    }
-  }
-
-  toggle-password-with-tips {
-    input#password-input {
-      border: none;
-      outline: none;
-      box-shadow: none;
     }
   }
 
@@ -176,7 +158,7 @@
         color: #A3A3AE;
         font-size: 10px;
         line-height: 13px;
-        @include sofia-pro-medium;
+        @include font-with-weight('Sofia Pro', 500);;
         text-transform: uppercase;
         margin-top: 10px;
         cursor: pointer;
@@ -199,7 +181,7 @@
       color: #A3A3AE;
       font-size: 13px;
       line-height: 22px;
-      @include sofia-pro-regular;
+      @include font-with-weight;
       text-transform: uppercase;
     }
 
@@ -217,7 +199,7 @@
           color: #A3A3AE;
           font-size: 10px;
           line-height: 13px;
-          @include sofia-pro-medium;
+          @include font-with-weight('Sofia Pro', 500);
           text-transform: uppercase;
           cursor: pointer;
           margin-top: 10px;
@@ -276,9 +258,9 @@
   flex-flow: row wrap;
   margin-top: 30px;
   justify-content: center;  
-  font-size: 12px;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: $label-small;
+  @include font-with-weight('Sofia Pro', 500);
 
   a {
     display: inline;

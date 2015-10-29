@@ -25,7 +25,7 @@
     vm.back = back;
     vm.subTrackStats = [];
 
-    vm.pageName = vm.subTrack.toLowerCase().replace('_', ' ');
+    vm.pageName = vm.subTrack.toLowerCase().replace(/_/g, ' ');
 
     vm.tabs = [];
     if (vm.track !== 'DESIGN') {

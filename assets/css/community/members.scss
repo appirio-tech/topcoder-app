@@ -13,7 +13,7 @@
     padding: 10px;
     margin-bottom: 6px;
     h2 {
-      @include sofia-pro-bold;
+      @include font-with-weight('Sofia Pro', 500);
       font-size: 18px;
       text-transform: uppercase;
       text-align: center;
@@ -25,7 +25,7 @@
         padding-bottom: 82px;
       }
       small {
-        @include sofia-pro-regular;
+        @include font-with-weight;
         font-size: 16px;
         display: block;
         text-transform: capitalize;
@@ -58,7 +58,7 @@
     }
     input[type="text"] {
       @include module-full-width;
-      @include sofia-pro-light;
+      @include font-with-weight('Sofia Pro', 300);
       font-size: 14px;
       border-width: 0;
       background: transparent;
@@ -89,7 +89,7 @@
     }
   }
   h2 {
-    @include sofia-pro-bold;
+    @include font-with-weight('Sofia Pro', 500);
     font-size: 20px;
     text-transform: uppercase;
     text-align: center;
@@ -97,7 +97,7 @@
     padding-bottom: 17px;
     position: relative;
     small {
-      @include sofia-pro-regular;
+      @include font-with-weight;
       font-size: 16px;
       display: block;
       text-transform: capitalize;
@@ -136,7 +136,7 @@
     }
   }
   .user-tile {
-    @include sofia-pro-regular;
+    @include font-with-weight;
     border: 1px solid $member-tile-border;
     border-radius: 4px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1);
@@ -149,7 +149,7 @@
       overflow: hidden;
     }
     .user-country {
-      @include sofia-pro-light;
+      @include font-with-weight('Sofia Pro', 300);
     }
     .user-tag,
     .user-country,
@@ -270,7 +270,7 @@
     }
   }
   .member-congratulation {
-    @include sofia-pro-regular;
+    @include font-with-weight;
     font-size: 11px;
     color: $gray-dark-alt;
     text-align: center;
@@ -417,7 +417,7 @@
       }
     }
     .user-more {
-      @include sofia-pro-light;
+      @include font-with-weight('Sofia Pro', 300);
       display: none;
       text-transform: capitalize;
       position: absolute;
@@ -472,7 +472,7 @@
       display: none;
     }
     label {
-      @include sofia-pro-light;
+      @include font-with-weight('Sofia Pro', 300);
       font-size: 11px;
       text-transform: uppercase;
       padding-left: 20px;
@@ -551,7 +551,7 @@
   .reviewboard-container,
   .record-books-container {
     @extend %reviewboard-panel;
-    @include sofia-pro-regular;
+    @include font-with-weight;
     text-align: center;
     padding-bottom: 16px;
     min-height: 165px;
