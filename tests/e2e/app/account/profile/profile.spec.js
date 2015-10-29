@@ -15,6 +15,7 @@
 					 loginPage.get(profileData.baseUrl);
 					 loginPage.login(loginUserCred);
 					 profilePage.goToProfilePage(profileData.dashBoardUrl, loginUserCred);
+					 profilePage.verifyProfileChanges(profileData.dashBoardUrl, loginUserCred);
 				 });
 		  
 				 it('welcomes the user for logout', function() {

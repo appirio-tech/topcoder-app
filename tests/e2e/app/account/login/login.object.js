@@ -44,7 +44,7 @@ var LoginPage = function() {
 	  
 	  var userInput = element(by.model('vm.username'));
 	  var isClickable = EC.elementToBeClickable(userInput);
-	  browser.wait(isClickable, 30000);
+	  browser.wait(isClickable, 60000);
 	  console.log('username '+loginUser.username);
 	  browser.actions().mouseMove(userInput).perform();
 	  userInput.clear();
@@ -52,7 +52,7 @@ var LoginPage = function() {
 	  
 	  passwordInput = element(by.model('vm.currentPassword'));
 	  isClickable = EC.elementToBeClickable(passwordInput);
-	  browser.wait(isClickable, 30000);
+	  browser.wait(isClickable, 60000);
 	  passwordInput.clear();
 	  passwordInput.sendKeys(loginUser.password);
 	  
@@ -60,7 +60,7 @@ var LoginPage = function() {
 	  
 	  var loginButton = element(by.css('.tc-btn'));
 	  isClickable = EC.elementToBeClickable(loginButton);
-	  browser.wait(isClickable, 30000);
+	  browser.wait(isClickable, 60000);
 	  
     
 	  loginButton.click().then(function(){
@@ -77,13 +77,13 @@ var LoginPage = function() {
 		  
 		  var headerDash = element(by.id('header'));
 		  isClickable = EC.elementToBeClickable(headerDash);
-		  browser.wait(isClickable, 30000);
+		  browser.wait(isClickable, 60000);
 		  
 		  var menuItemHeaderList = element.all(by.css('.menu-item-header'));
 		  var menuItemHeader = menuItemHeaderList.get(1);
 		  var username = menuItemHeader.all(by.css('.username')).get(0);
 		  isClickable = EC.elementToBeClickable(username);
-		  browser.wait(isClickable, 30000);
+		  browser.wait(isClickable, 60000);
 		  console.log('username '+username.getInnerHtml());
 //		  expect(username.getInnerHtml()).toEqual(loginUser.username);
 		  

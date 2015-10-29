@@ -20,6 +20,7 @@ exports.config = {
 //	  allScriptsTimeout: 500000,
 
   onPrepare: function(){
+	  browser.manage().window().setSize(1600, 1000);
   	require('protractor-linkuisref-locator')(protractor);
   	require('jasmine-reporters');
   	var HtmlReporter = require('protractor-html-screenshot-reporter');
@@ -46,7 +47,7 @@ exports.config = {
 		isVerbose: true,
 		includeStackTrace: true,
 		showColors: true,
-		defaultTimeoutInterval: 30000,
+		defaultTimeoutInterval: 300000,
         print: function() {}
 	}
 };

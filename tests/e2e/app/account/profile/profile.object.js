@@ -35,9 +35,15 @@ var ProfilePage = function() {
 	  browser.driver.ignoreSynchronization = true;
 	
 	  var EC = protractor.ExpectedConditions;
-		
-	  this.get(dashBoardUrl);
-	  var EC = protractor.ExpectedConditions;
+	  
+	  var toolTip = element(by.css('.introjs-tooltip'));
+	  var isClickable = EC.elementToBeClickable(toolTip);
+	  browser.wait(isClickable, 30000);
+	  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
+	  isClickable = EC.elementToBeClickable(skipBtn);
+	  browser.wait(isClickable, 30000);
+	  skipBtn.click().then(function() {
+		  
 	  var menuItemHeaders = element.all(by.css('.menu-item-header'));
 	  var nameHeader = menuItemHeaders.get(1);
 	  var isClickable = EC.elementToBeClickable(nameHeader);
@@ -52,30 +58,28 @@ var ProfilePage = function() {
 	  browser.wait(isClickable, 30000);
 	
 	  profileLink.click().then(function() {
-//		  var toolTip = element(by.css('.introjs-tooltip'));
-//		  var isClickable = EC.elementToBeClickable(toolTip);
-//		  browser.wait(isClickable, 30000);
-//		  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
-//		  isClickable = EC.elementToBeClickable(skipBtn);
-//		  browser.wait(isClickable, 30000);
-//		  skipBtn.click().then(function() {
+		  toolTip = element(by.css('.introjs-tooltip'));
+		  isClickable = EC.elementToBeClickable(toolTip);
+		  browser.wait(isClickable, 30000);
+		  skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
+		  isClickable = EC.elementToBeClickable(skipBtn);
+		  browser.wait(isClickable, 30000);
+		  skipBtn.click().then(function() {
 		  
 		  console.log('hii');
 		  
+//		  var username = element(by.css('.info .handle'));
+////		  var isClickable = EC.elementToBeClickable(username);
+////		  browser.wait(isClickable, 30000);
+////		  console.log('username '+username.getInnerHtml());
+//		  expect(username.getInnerHtml()).toEqual(loginUserCred.username);
 		  
-		  var username = element(by.css('.info .handle'));
-		  var isClickable = EC.elementToBeClickable(username);
-		  browser.wait(isClickable, 30000);
-//		  console.log('username '+username.getInnerHtml());
-		  expect(username.getInnerHtml()).toEqual(loginUserCred.username);
-		  
-		  var editProfile = element(by.partialButtonText('EDIT PROFILE'));
+		  var editProfile = element(by.partialLinkText('EDIT PROFILE'));
 		  isClickable = EC.elementToBeClickable(editProfile);
 		  browser.wait(isClickable, 60000);
 		  editProfile.click().then(function() {
-			  var profileTab = element(by.partialLinkText('Profile'));
 			  var absolutePath = path.resolve(loginUserCred.profilePicDir, loginUserCred.profilePicFile);
-			  var imageUpload = element(by.name('image'));
+			  var imageUpload = element(by.css('.file-upload'));
 			  isClickable = EC.elementToBeClickable(imageUpload);
 			  browser.wait(isClickable, 30000);
 			  console.log('absolutePath'+absolutePath);
@@ -99,39 +103,247 @@ var ProfilePage = function() {
 			  browser.wait(isClickable, 60000);
 			  shortBio.clear();
 			  shortBio.sendKeys(loginUserCred.shortBio);
-//			  var selRep = element.all(by.repeater('track in [\'DESIGN\', \'DEVELOP\', \'DATA_SCIENCE\']'));
-//			  var designRep = selRep.get(0);
-//			  var designSwitch = designRep.all(by.css('.onoffswitch .onoffswitch-checkbox')).get(0);
+			  var selRep = element.all(by.repeater('track in [\'DESIGN\', \'DEVELOP\', \'DATA_SCIENCE\']'));
+
+			  var designRep = selRep.get(0);
+			  var designSwitch = designRep.all(by.css('.onoffswitch .onoffswitch-label')).get(0);
+			  var designButton = designRep.all(by.css('.onoffswitch')).get(0);
+			  isClickable = EC.elementToBeClickable(designButton);
+			  browser.wait(isClickable, 30000);
 			  
-//			  isClickable = EC.elementToBeClickable(designSwitch);
-//			  browser.wait(isClickable, 60000);
-//			  console.log('2 loginUserCred.design '+loginUserCred.design+' .. '+designSwitch.getAttribute('checked'));
-//			  console.log('selected '+designSwitch.isSelected());
-//			  designSwitch.getAttribute('checked').then(function(selected){
-//				  console.log('selecged '+selected);
-//				  console.log('loginUserCred.design '+loginUserCred.design);
-//				  if(selected){
-//					  if(loginUserCred.design != 'y'){
-//						  designSwitch.click();
-//					  }
-//				  } else {
-//					  if(loginUserCred.design == 'y'){
-//						  designSwitch.click();
-//					  }
-//				  }
-//			  });
+			  designSwitch.getCssValue('background-color').then(function(backgroundColor){
+				  if(backgroundColor == 'rgba(209, 211, 212, 1)') {
+					  console.log('d1d design');
+					  if(loginUserCred.design == 'y'){
+						  designButton.click();
+					  }
+				  } else{
+					  console.log('selected design'+backgroundColor);
+					  if(loginUserCred.design != 'y'){
+						  designButton.click();
+					  }
+				  }
+			  });
 			  
-			  var submitBtn = element(by.css('.settings-container .tracks button'));
+			  var devRep = selRep.get(1);
+			  var devSwitch = devRep.all(by.css('.onoffswitch .onoffswitch-label')).get(0);
+			  var devButton = devRep.all(by.css('.onoffswitch')).get(0);
+			  isClickable = EC.elementToBeClickable(devButton);
+			  browser.wait(isClickable, 30000);
+			  
+			  devSwitch.getCssValue('background-color').then(function(backgroundColor){
+				  if(backgroundColor == 'rgba(209, 211, 212, 1)') {
+					  console.log('d1d dev');
+					  if(loginUserCred.development == 'y'){
+						  devButton.click();
+					  }
+				  } else{
+					  console.log('selected dev '+backgroundColor);
+					  if(loginUserCred.design != 'y'){
+						  devButton.click();
+					  }
+				  }
+			  });
+			  
+			  var dataScienceRep = selRep.get(2);
+			  var dataScienceSwitch = dataScienceRep.all(by.css('.onoffswitch .onoffswitch-label')).get(0);
+			  var dataScienceButton = dataScienceRep.all(by.css('.onoffswitch')).get(0);
+			  isClickable = EC.elementToBeClickable(dataScienceButton);
+			  browser.wait(isClickable, 30000);
+			  
+			  
+			  dataScienceSwitch.getCssValue('background-color').then(function(backgroundColor){
+				  if(backgroundColor == 'rgba(209, 211, 212, 1)') {
+					  console.log('d1d science');
+					  if(loginUserCred.dataScience == 'y'){
+						  dataScienceButton.click();
+					  }
+				  } else{
+					  console.log('selected science'+backgroundColor);
+					  if(loginUserCred.dataScience != 'y'){
+						  dataScienceButton.click();
+					  }
+				  }
+			  });
+			  
+			  
+			  var submitBtn = element(by.css('.settings-container .save-section button'));
 			  isClickable = EC.elementToBeClickable(submitBtn);
 			  browser.wait(isClickable, 30000);
-			  browser.actions().mouseMove(submitBtn).perform();
-			  submitBtn.click();
+			  
+			  if(loginUserCred.design != 'y' && loginUserCred.development != 'y' && loginUserCred.dataScience != 'y'){
+				  browser.actions().mouseMove(submitBtn).perform();
+				  submitBtn.click();
+			  } else {
+				  browser.actions().mouseMove(submitBtn).perform();
+				  submitBtn.click().then(function(){
+					  this.selectWindow(1);
+					  var toasterList = element.all(by.repeater('toaster in toasters'));
+					  var firstToaster = toasterList.get(0);
+					  isClickable = EC.elementToBeClickable(firstToaster);
+					  browser.wait(isClickable, 30000);
+					  var toastCloseBtn = firstToaster.all(by.css('.toast-close-button')).get(0);
+					  isClickable = EC.elementToBeClickable(toastCloseBtn);
+					  browser.wait(isClickable, 30000);
+					  var toasterTitle = firstToaster.all(by.css('.toast-title')).get(0);
+					  isClickable = EC.elementToBeClickable(toasterTitle);
+					  browser.wait(isClickable, 30000);
+					  toastCloseBtn.click();
+					  
+				  });
+				  /*.then(function(){
+//					  browser.driver.navigate().refresh();
+					  var countryId = element(by.id('countryId_value'));
+					  isClickable = EC.elementToBeClickable(countryId);
+					  browser.wait(isClickable, 30000);
+					  expect(countryId.getText()).toContain(loginUserCred.country);
+					  var shortBio = element(by.model('vm.userData.description'));
+					  expect(loginUserCred.shortBio).toContain(shortBio.getText());
+					  var selRep = element.all(by.repeater('track in [\'DESIGN\', \'DEVELOP\', \'DATA_SCIENCE\']'));
+
+					  var designRep = selRep.get(0);
+					  var designSwitch = designRep.all(by.css('.onoffswitch .onoffswitch-label')).get(0);
+					  var designButton = designRep.all(by.css('.onoffswitch')).get(0);
+					  isClickable = EC.elementToBeClickable(designButton);
+					  browser.wait(isClickable, 30000);
+					  
+					  designSwitch.getCssValue('background-color').then(function(backgroundColor){
+						  if(loginUserCred.design == 'y'){
+							  expect(backgroundColor).toEqual('rgba(0, 150, 255, 1)');
+						  } else {
+							  expect(backgroundColor).toEqual('rgba(209, 211, 212, 1)');
+						  }
+					  });
+					  
+					  
+					  var devRep = selRep.get(1);
+					  var devSwitch = devRep.all(by.css('.onoffswitch .onoffswitch-label')).get(0);
+					  var devButton = devRep.all(by.css('.onoffswitch')).get(0);
+					  isClickable = EC.elementToBeClickable(devButton);
+					  browser.wait(isClickable, 30000);
+					  
+					  devSwitch.getCssValue('background-color').then(function(backgroundColor){
+						  if(loginUserCred.development == 'y'){
+							  expect(backgroundColor).toEqual('rgba(0, 150, 255, 1)');
+						  } else {
+							  expect(backgroundColor).toEqual('rgba(209, 211, 212, 1)');
+						  }
+					  });
+					  
+					  
+					  var dataScienceRep = selRep.get(2);
+					  var dataScienceSwitch = dataScienceRep.all(by.css('.onoffswitch .onoffswitch-label')).get(0);
+					  var dataScienceButton = dataScienceRep.all(by.css('.onoffswitch')).get(0);
+					  isClickable = EC.elementToBeClickable(devButton);
+					  browser.wait(isClickable, 30000);
+					  
+					  dataScienceSwitch.getCssValue('background-color').then(function(backgroundColor){
+						  if(loginUserCred.dataScience == 'y'){
+							  expect(backgroundColor).toEqual('rgba(0, 150, 255, 1)');
+						  } else {
+							  expect(backgroundColor).toEqual('rgba(209, 211, 212, 1)');
+						  }
+					  });
+					  
+					  
+					  
+					  
+					  
+				  });*/
+			  }
+			  
+			  
 			  
 			  
 		  });
-//		  });
+		  });
 	  });
+  });
   };
+  
+  this.verifyProfileChanges = function(dashBoardUrl,loginUserCred){
+	  browser.driver.ignoreSynchronization = true;
+		
+	  var EC = protractor.ExpectedConditions;
+	  var menuItemHeaders = element.all(by.css('.menu-item-header'));
+	  var nameHeader = menuItemHeaders.get(1);
+	  var isClickable = EC.elementToBeClickable(nameHeader);
+	  browser.wait(isClickable, 30000);
+	  browser.actions().mouseMove(nameHeader).perform();
+	  var profileHeader = element(by.repeater("item in vm.userMenu").row(1));
+	  var mainMenuLiList = element.all(by.css('.main-menu li'));
+	  var submenuLi = mainMenuLiList.get(1);
+	  var profileLink = element(by.partialLinkText('MY PROFILE'));
+	  
+	  isClickable = EC.elementToBeClickable(profileLink);
+	  browser.wait(isClickable, 30000);
+	
+	  profileLink.click().then(function() {
+		  var editProfile = element(by.partialLinkText('EDIT PROFILE'));
+		  isClickable = EC.elementToBeClickable(editProfile);
+		  browser.wait(isClickable, 60000);
+		  editProfile.click().then(function() {
+
+//	  browser.driver.navigate().refresh();
+	  var countryId = element(by.id('countryId_value'));
+	  isClickable = EC.elementToBeClickable(countryId);
+	  browser.wait(isClickable, 30000);
+//	  expect(countryId.getText()).toContain(loginUserCred.country);
+	  var shortBio = element(by.model('vm.userData.description'));
+	  expect(loginUserCred.shortBio).toEqual(shortBio.getText());
+	  var selRep = element.all(by.repeater('track in [\'DESIGN\', \'DEVELOP\', \'DATA_SCIENCE\']'));
+
+	  var designRep = selRep.get(0);
+	  var designSwitch = designRep.all(by.css('.onoffswitch .onoffswitch-label')).get(0);
+	  var designButton = designRep.all(by.css('.onoffswitch')).get(0);
+	  isClickable = EC.elementToBeClickable(designButton);
+	  browser.wait(isClickable, 30000);
+	  
+	  designSwitch.getCssValue('background-color').then(function(backgroundColor){
+		  if(loginUserCred.design == 'y'){
+			  expect(backgroundColor).toEqual('rgba(0, 150, 255, 1)');
+		  } else {
+			  expect(backgroundColor).toEqual('rgba(209, 211, 212, 1)');
+		  }
+	  });
+	  
+	  
+	  var devRep = selRep.get(1);
+	  var devSwitch = devRep.all(by.css('.onoffswitch .onoffswitch-label')).get(0);
+	  var devButton = devRep.all(by.css('.onoffswitch')).get(0);
+	  isClickable = EC.elementToBeClickable(devButton);
+	  browser.wait(isClickable, 30000);
+	  
+	  devSwitch.getCssValue('background-color').then(function(backgroundColor){
+		  if(loginUserCred.development == 'y'){
+			  expect(backgroundColor).toEqual('rgba(0, 150, 255, 1)');
+		  } else {
+			  expect(backgroundColor).toEqual('rgba(209, 211, 212, 1)');
+		  }
+	  });
+	  
+	  
+	  var dataScienceRep = selRep.get(2);
+	  var dataScienceSwitch = dataScienceRep.all(by.css('.onoffswitch .onoffswitch-label')).get(0);
+	  var dataScienceButton = dataScienceRep.all(by.css('.onoffswitch')).get(0);
+	  isClickable = EC.elementToBeClickable(devButton);
+	  browser.wait(isClickable, 30000);
+	  
+	  dataScienceSwitch.getCssValue('background-color').then(function(backgroundColor){
+		  if(loginUserCred.dataScience == 'y'){
+			  expect(backgroundColor).toEqual('rgba(0, 150, 255, 1)');
+		  } else {
+			  expect(backgroundColor).toEqual('rgba(209, 211, 212, 1)');
+		  }
+	  });
+	  });
+	  });
+	  
+	  
+	  
+	  
+  
+  }
    
   
   /*
