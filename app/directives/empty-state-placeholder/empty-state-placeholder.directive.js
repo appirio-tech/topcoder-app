@@ -23,8 +23,8 @@
         });
         scope.transcluded = angular.element(contentDiv)[0].children.length > 0;
       },
-      controller: ['$scope', '$attrs', '$element',
-        function($scope, $attrs, $element) {
+      controller: ['$scope', '$attrs', '$element', '$parse', '$rootScope',
+        function($scope, $attrs, $element, $parse, $rootScope) {
           $scope.DOMAIN = CONSTANTS.domain;
           var vm = this;
           vm.title = null;
@@ -34,6 +34,10 @@
           vm.show = _.get($scope, 'show', false);
 
           activate();
+
+          vm.handleClick  = function(_link) {
+            $rootScope.$broadcast(_link.eventName);
+          }
 
           function activate() {
             var state = EmptyStateService.getState($scope.stateName);

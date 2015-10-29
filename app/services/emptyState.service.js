@@ -47,7 +47,8 @@
           description: "Earn iOS topcoder badges and exclusive access to iOS challenges, prizes and special community-related events.",
           helpLinks: [{
             title: "Participate",
-            onClick: "vm.registerUser()",
+            // clickHandler: "vm.registerUser",
+            eventName: "IOS_REGISTER_USER",
             cssClass: "participate tc-btn tc-btn-s tc-btn-ghost"
           }, {
             title: "Learn More",

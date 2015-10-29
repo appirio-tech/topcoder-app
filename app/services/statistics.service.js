@@ -10,11 +10,19 @@
     var service = {
       getDevTop: getDevTop,
       getDesignTop: getDesignTop,
-      getDataTop: getDataTop
+      getDataTop: getDataTop,
+      getPlatformStats: getPlatformStats
     };
     return service;
 
     ///////////////
+
+
+    function getPlatformStats() {
+      return ApiService.restangularV2.all('platform')
+        .withHttpConfig({skipAuthorization: true})
+        .customGET('statistics');
+    }
 
     function getDevTop(size) {
       var url = CONSTANTS.API_URL_V2 + '/users/tops/develop?pageSize=' + size;

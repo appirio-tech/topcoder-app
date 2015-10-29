@@ -3,9 +3,9 @@
 
   angular.module('tc.community').controller('MembersController', MembersController);
 
-  MembersController.$inject = ['CommunityDataService', 'CONSTANTS'];
+  MembersController.$inject = ['CommunityDataService', 'StatisticsService', 'CONSTANTS'];
 
-  function MembersController(CommunityDataService, CONSTANTS) {
+  function MembersController(CommunityDataService, StatisticsService, CONSTANTS) {
     var ctrl = this;
     ctrl.notSearch = true;
     ctrl.showing = 'list';
@@ -26,6 +26,10 @@
         ctrl.notSearch = true;
       }
     };
+
+    StatisticsService.getPlatformStats().then(function(data) {
+      ctrl.platformStats = data;
+    })
   }
 
 })();

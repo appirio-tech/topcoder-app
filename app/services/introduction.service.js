@@ -78,7 +78,7 @@
         about: {
           steps: [
             {
-              intro: '<p>Welcome to the new Topcoder Profile. It’s been reimagined as the premier place to showcase your experience, with three main sections.</p>'
+              intro: '<img src="/images/introjs/profile-skills.svg" /><h1>Member Profile</h1><p>Welcome to the new Topcoder Profile. It’s been reimagined as the premier place to showcase your experience, with three main sections.</p>'
             },
             {
               // element: '#skills',
@@ -100,7 +100,7 @@
         subtrack: {
           steps: [
             {
-              intro: '<p>Welcome to the new Sub-track Details page. This page summarizes your activity in a particular sub-track and has detailed historical metrics.</p>'
+              intro: '<img src="/images/introjs/subtrack-metrics.svg" /><h1>Subtrack Details</h1><p>Welcome to the new Sub-track Details page. This page summarizes your activity in a particular sub-track and has detailed historical metrics.</p>'
             },
             {
               // element: '#subtrack-stats',
@@ -123,7 +123,7 @@
       dashboard: {
         steps: [
           {
-            intro: '<p>Welcome to your new Topcoder Dashboard. It’s been revamped to bring your most-needed information to the fore. Let’s walk through some of the new sections.</p>'
+            intro: '<img src="/images/introjs/dashboard-challenges.svg" /><h1>Topcoder Dashboard</h1><p>Welcome to your new Topcoder Dashboard. It’s been revamped to bring your most-needed information to the fore. Let’s walk through some of the new sections.</p>'
           },
           {
             // element: '#challenges',

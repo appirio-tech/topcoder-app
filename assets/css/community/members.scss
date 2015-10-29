@@ -37,6 +37,30 @@
       }
     }
   }
+  .platform-stats-container {
+    background: $white;
+    padding: 10px;
+    margin-bottom: 6px;
+    height: 70px;
+    font-family: "Sofia Pro",Arial,Helvetica,sans-serif;
+    .stat {
+      float: left;
+      width: 25% ;
+      text-align: center;
+    }
+    .statVal {
+      color: #3d3d3d;
+      font-size: 32px;
+      margin-bottom: 7px;
+      position: relative;
+    }
+
+    .statLabel {
+      color: #a3a3ae;
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
   .search-container {
     @include module-full-width;
     background: $white;

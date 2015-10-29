@@ -115,7 +115,6 @@ body {
 }
 
 .introjs-tooltiptext {
-  @include font-with-weight('Merriweather Sans');
   color: $gray-darker;
   display: flex;
   flex-direction: column;
