@@ -79,7 +79,7 @@
               }
 
               // if user has role of observer
-              var roles = challenge.userDetails.roles;
+              var roles = _.get(challenge, 'userDetails.roles', []);
               if (roles.length > 0) {
                 var submitterRole = _.findIndex(roles, function(role) {
                   var lRole = role.toLowerCase();
