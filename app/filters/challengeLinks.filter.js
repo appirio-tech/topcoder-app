@@ -23,18 +23,18 @@
       } else {
         var data = {
           domain: CONSTANTS.domain,
-          track: challenge.track,
+          track: challenge.track.toLowerCase(),
           forumId: challenge.forumId,
           id: challenge.id
         };
         switch (type) {
           case 'forums':
             switch (challenge.track) {
-              case 'DEVELOP':
+              case 'develop':
                 return String.supplant('https://apps.{domain}/forums/?module=Category&categoryID={forumId}', data);
-              case 'DATA':
+              case 'data':
                 return String.supplant('https://apps.{domain}/forums/?module=Category&categoryID={forumId}', data);
-              case 'DESIGN':
+              case 'design':
                 return String.supplant('https://apps.{domain}/forums/?module=ThreadList&forumId={forumId}', data);
             }
 
