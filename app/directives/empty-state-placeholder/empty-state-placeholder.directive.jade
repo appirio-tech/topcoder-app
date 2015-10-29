@@ -6,4 +6,4 @@
     .help-link(ng-repeat="link in vm.helpLinks")
       a(class="{{link.cssClass}}", title="{{link.title}}", ng-href="{{link.url}}", ng-if="link.url") {{link.title}}
       a(class="{{link.cssClass}}", title="{{link.title}}", ui-sref="{{link.state}}", ng-if="link.state") {{link.title}}
-      a(class="{{link.cssClass}}", title="{{link.title}}", ng-click="link.onClick", ng-if="link.onClick") {{link.title}}
+      a(class="{{link.cssClass}}", title="{{link.title}}", ng-click="vm.handleClick(link)", ng-if="link.eventName") {{link.title}}
