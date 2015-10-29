@@ -35,7 +35,7 @@
               if (_idx == -1) {
                 $scope.accountList[i].status = 'unlinked';
               } else {
-                // check if data 
+                // check if data
                 if ($scope.linksData[$scope.accountList[i].provider]) {
                   $scope.accountList[i].status = 'linked';
                 } else {
@@ -128,10 +128,18 @@
       controller: ['$log', '$scope', 'ExternalAccountService',
         function($log, $scope, ExternalAccountService) {
           $log = $log.getInstance('ExternalLinksDataDirective');
+          var validProviders = _.pluck(_supportedAccounts, 'provider');
           function reCalcData(links, data) {
             $scope.linkedAccounts = [];
             angular.forEach(links, function(link) {
+
               var provider = link.providerType;
+              var isValidProviderIdx = _.findIndex(validProviders, function(p) {
+                return p === provider;
+              });
+              // skip if we dont care about this provider
+              if (isValidProviderIdx == -1)
+                return;
 
               if (!data[provider]) {
                 $scope.linkedAccounts.push({
@@ -142,7 +150,7 @@
                   }
                 });
               } else {
-                // add data 
+                // add data
                 $scope.linkedAccounts.push({
                   provider: provider,
                   data: data[provider]
@@ -151,7 +159,7 @@
             });
           }
 
-          
+
           $scope.$watch('linkedAccountsData', function(newValue, oldValue) {
             reCalcData($scope.externalLinks, newValue);
           });
