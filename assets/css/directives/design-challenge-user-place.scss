@@ -8,9 +8,9 @@ design-challenge-user-place {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     .place {
-      margin-bottom: 30px;
+      margin-bottom: 0px;
       @include sofia-pro-regular;
       font-size: 20px;
       color: $gray-darkest;
@@ -67,7 +67,7 @@ design-challenge-user-place {
       }
     }
   }
-  
+
 }
 
 // styling for list view
