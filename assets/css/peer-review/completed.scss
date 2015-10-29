@@ -5,7 +5,7 @@
 
   form .scorecard {
   	.answer {
-      @include source-sans-italic;
+      @include font-with-weight('Merriweather Sans');
       margin: 25px 0;
       padding-left: 30px;
     }

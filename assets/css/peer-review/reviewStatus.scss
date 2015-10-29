@@ -3,7 +3,7 @@
 
 .review-status-container {
   h1 {
-    @include source-sans-regular;
+    @include font-with-weight('Merriweather Sans');
     font-size: 38px;
     color: $light-black;
     margin-top: 11px;
@@ -17,7 +17,7 @@
 
   .help-center {
     margin-top: 13px;
-    @include source-sans-light;
+    @include font-with-weight('Merriweather Sans');
     font-size: 15px;
     color: $light-gray;
     @media only screen and (max-width: 1020px) {
@@ -39,7 +39,7 @@
 
   hgroup {
     margin-top: 38px;
-    @include source-sans-light;
+    @include font-with-weight('Merriweather Sans');
 
     h2 {
       font-size: 24px;
@@ -70,7 +70,7 @@
     width: 100%;
     color: $dark-gray;
     text-align: center;
-    @include source-sans-regular;
+    @include font-with-weight('Merriweather Sans');
 
     thead {
       background-color: $table-head-gray;
@@ -116,7 +116,7 @@
     border-bottom: 4px solid $tc-btn-dark-orange;
     border-radius: 4px;
     color: $white;
-    @include source-sans-light;
+    @include font-with-weight;
     font-size: 19px;
     text-transform: uppercase;
     float: right;

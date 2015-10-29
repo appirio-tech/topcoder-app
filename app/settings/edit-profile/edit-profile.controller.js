@@ -35,12 +35,13 @@
 
       processData(vm.userData);
 
-      $scope.tracks = vm.tracks;
-      $scope.$watch('tracks', function watcher() {
-        if (!tracksValid()) {
-          toaster.pop('error', "Error", "Please select at least one track.");
-        }
-      }, true);
+      // commenting out since this might come back
+//      $scope.tracks = vm.tracks;
+//      $scope.$watch('tracks', function watcher() {
+//        if (!tracksValid()) {
+//          toaster.pop('error', "Error", "Please select at least one track.");
+//        }
+//      }, true);
 
       ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId).then(function(data) {
         vm.linkedExternalAccounts = data;
@@ -117,6 +118,10 @@
     }
 
     function updateProfile() {
+      if (!vm.tracksValid()) {
+        toaster.pop('error', "Error", "Please select at least one track.");
+        return false;
+      }
       vm.profileFormProcessing = true;
       vm.userData.tracks = _.reduce(vm.tracks, function(result, isInterested, trackName) {
         if (isInterested) {

@@ -2,10 +2,9 @@
 @import '../partials/combined';
 
 .registered-successfully-container {
-	p.message {
+	p {
     font-size: 20px;
     line-height: 30px;
-    @include source-sans-light;
     color: #3D3D3D;
     padding: 62px 90px 154px 90px;
   }
