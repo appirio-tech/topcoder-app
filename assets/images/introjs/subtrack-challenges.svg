@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="340px" height="200px" viewBox="0 0 340 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4 (15588) - http://www.bohemiancoding.com/sketch -->
+    <title>intro-subtrack</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="-1" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feGaussianBlur stdDeviation="0" in="shadowOffsetInner1" result="shadowBlurInner1"></feGaussianBlur>
+            <feComposite in="shadowBlurInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.042 0" in="shadowInnerInner1" type="matrix" result="shadowMatrixInner1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+                <feMergeNode in="shadowMatrixInner1"></feMergeNode>
+            </feMerge>
+        </filter>
+        <rect id="path-2" x="0" y="0" width="340" height="200" rx="4"></rect>
+        <linearGradient x1="50.0890374%" y1="-2.34685881%" x2="50.0890374%" y2="94.0880734%" id="linearGradient-3">
+            <stop stop-color="#EF3A3A" offset="0%"></stop>
+            <stop stop-color="#F35B30" offset="14.2344548%"></stop>
+            <stop stop-color="#FAA11C" offset="22.2265609%"></stop>
+            <stop stop-color="#FCB816" offset="75.8484951%"></stop>
+            <stop stop-color="#606AD3" offset="86.7501794%"></stop>
+            <stop stop-color="#616BD5" offset="100%"></stop>
+        </linearGradient>
+        <path id="path-4" d="M6.18945312,102.046875 L47.5058594,83.4589844 L90.7885056,36.9573097 L103.397461,76.7392578 L121.762695,62.7529297 L131.748047,96.5859375 L173.851562,48.40625 L217.669922,6.09082031"></path>
+    </defs>
+    <g id="Intro-JS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="intro-subtrack" sketch:type="MSLayerGroup">
+            <g id="Rectangle-43" filter="url(#filter-1)">
+                <use fill="#F0F0F0" fill-rule="evenodd" sketch:type="MSShapeGroup" xlink:href="#path-2"></use>
+                <use fill="none" xlink:href="#path-2"></use>
+                <use fill="none" xlink:href="#path-2"></use>
+            </g>
+            <g id="Group" transform="translate(55.000000, 44.000000)">
+                <rect id="Rectangle-42" fill="#FFFFFF" sketch:type="MSShapeGroup" x="8" y="112" width="1" height="13"></rect>
+                <rect id="Rectangle-42" fill="#FFFFFF" sketch:type="MSShapeGroup" x="50" y="95" width="1" height="30"></rect>
+                <rect id="Rectangle-42" fill="#FFFFFF" sketch:type="MSShapeGroup" x="92" y="50" width="1" height="75"></rect>
+                <rect id="Rectangle-42" fill="#FFFFFF" sketch:type="MSShapeGroup" x="134" y="105" width="1" height="20"></rect>
+                <rect id="Rectangle-42" fill="#FFFFFF" sketch:type="MSShapeGroup" x="176" y="58" width="1" height="67"></rect>
+                <rect id="Rectangle-42" fill="#FFFFFF" sketch:type="MSShapeGroup" x="220" y="17" width="1" height="108"></rect>
+                <g transform="translate(3.000000, 0.000000)">
+                    <g id="Path-143">
+                        <use stroke="none" sketch:type="MSShapeGroup" xlink:href="#path-4"></use>
+                        <use stroke="url(#linearGradient-3)" stroke-width="2" xlink:href="#path-4"></use>
+                    </g>
+                    <circle id="data-point" stroke="#616BD5" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="5.5" cy="102.5" r="5.5"></circle>
+                    <circle id="data-point" stroke="#FCB816" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="173.5" cy="47.5" r="5.5"></circle>
+                    <circle id="data-point" stroke="#616BD5" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="131.5" cy="96.5" r="5.5"></circle>
+                    <circle id="data-point" stroke="#FCB816" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="121.5" cy="62.5" r="5.5"></circle>
+                    <circle id="data-point" stroke="#FCB816" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="103.5" cy="76.5" r="5.5"></circle>
+                    <circle id="data-point" stroke="#FCB816" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="90.5" cy="36.5" r="5.5"></circle>
+                    <circle id="data-point" stroke="#616BD5" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="47.5" cy="83.5" r="5.5"></circle>
+                    <circle id="data-point" stroke="#EF3A3A" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="217.5" cy="5.5" r="5.5"></circle>
+                </g>
+                <rect id="Rectangle-41" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="128" width="230" height="3"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
