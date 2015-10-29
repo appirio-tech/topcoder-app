@@ -119,7 +119,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: MerriweatherSans-Regular;
+  @include font-with-weight('Merriweather Sans', 400);
   font-size: 13px;
   line-height: 20px;
 
