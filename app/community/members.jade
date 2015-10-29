@@ -10,6 +10,19 @@
         input(type="submit" name="search-btn" value="").search-ico
 
     .default-show-container(ng-show="ctrl.notSearch")
+      .platform-stats-container
+        .stat
+          p.statVal {{ctrl.platformStats.memberCount | number : 0}}
+          p.statLabel ACTIVE MEMBER
+        .stat
+          p.statVal {{ctrl.platformStats.activeMembersCount | number : 0}}
+          p.statLabel COMPETING TODAY
+        .stat
+          p.statVal {{ctrl.platformStats.prizePurse | currency:undefined:0}}
+          p.statLabel AVAILABLE PRIZE
+        .stat
+          p.statVal {{ctrl.platformStats.activeContestsCount | number : 0}}
+          p.statLabel ACTIVE CHALLENGES
       .members-of-month-container
         h2 Members of the Month
           small {{ctrl.currentMonth}}
