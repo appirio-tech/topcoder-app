@@ -9,6 +9,7 @@
 
       var map = {
         'UI_PROTOTYPE_COMPETITION': 'UI Prototype Competition',
+        'ASSEMBLY_COMPETITION': 'ASSEMBLY',
         'RIA_BUILD_COMPETITION': 'RIA Build Competition',
         'RIA_COMPONENT_COMPETITION': 'RIA Component Competition',
         'DEVELOP_MARATHON_MATCH': 'Marathon Match',
