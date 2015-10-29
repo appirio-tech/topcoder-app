@@ -43,7 +43,11 @@
         activate();
 
         function activate() {
+          $scope.numImages = 0;
           if (!$scope.challenge.isPrivate && $scope.challenge.userDetails.submissions && $scope.challenge.userDetails.submissions.length > 0) {
+            $scope.numImages = $scope.challenge.userDetails.submissions.filter(function(submission) {
+              return submission && submission.submissionImage;
+            }).length;
             $scope.selectedIndex = 0;
             $scope.challenge.thumbnailId = $scope.challenge.userDetails.submissions[0].id;
             $scope.imageURL = $scope.challenge.userDetails.submissions[0].submissionImage && $scope.challenge.userDetails.submissions[0].submissionImage.full;
