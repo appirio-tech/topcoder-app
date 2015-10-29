@@ -12,7 +12,7 @@
 
     .empty-profile
       .empty-state
-        empty-state-placeholder(state-name="profile-empty", show="!profileVm.numProjects && (!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)) && !vm.hasLinks")
+        empty-state-placeholder(state-name="profile-empty", show="!profileVm.showEditProfileLink && !profileVm.numProjects && (!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)) && !vm.hasLinks")
           .sample-image
             img(ng-src="/images/robot.svg")
 
