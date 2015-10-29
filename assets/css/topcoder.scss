@@ -105,31 +105,32 @@ body {
 // -----------------------------------------------------------
 
 .introjs-overlay {
-  background: rgba(239, 239, 239, 0.60);
-  background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%);
+  opacity: 0.94;
+  background: $accent-gray-dark;
 }
 
 .introjs-tooltip {
   max-width: 320px;
-  padding: 20px;
+  padding: 0 20px 20px;
 }
 
 .introjs-tooltiptext {
   @include font-with-weight('Merriweather Sans');
-  font-size: 14px;
-  line-height: 24px;
   color: $gray-darker;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: MerriweatherSans-Regular;
+  font-size: 13px;
+  line-height: 20px;
 
   h1 {
-    font-size: 24px;
-    line-height: 30px;
-    margin-bottom: 20px;
+    margin-top: 20px;
     text-align: center;
     @include sofia-pro-medium;
-    text-transform: uppercase;
+    font-size: 16px;
+    color: $gray-darkest;
+    line-height: 24px;
   }
 
   img {
@@ -139,6 +140,10 @@ body {
     @media only screen and (min-width : 768px) {
       display: block;
     }
+  }
+
+  p {
+    margin-top: 20px;
   }
 }
 
