@@ -1,12 +1,12 @@
 (function() {
   'use strict';
   var _supportedAccounts = [
-    { provider: "dribbble", className: "fa-dribbble", displayName: "Dribbble", disabled: false, order: 6, colorClass: 'el-dribble'},
-    { provider: "linkedin", className: "fa-linkedin", displayName: "LinkedIn", disabled: true, order: 5, colorClass: 'el-linkedin'},
+    { provider: "dribbble", className: "fa-dribbble", displayName: "Dribbble", disabled: false, order: 6, colorClass: 'el-dribble', featured: true},
+    { provider: "linkedin", className: "fa-linkedin", displayName: "LinkedIn", disabled: true, order: 5, colorClass: 'el-linkedin', featured: true},
     { provider: "stackoverflow", className: "fa-stack-overflow", displayName: "Stack Overflow", disabled: false, order: 3, colorClass: 'el-stackoverflow'},
     { provider: "behance", className: "fa-behance", displayName: "Behance", disabled: true, order: 2, colorClass: 'el-behance'},
     // { provider: "google-oauth2", className: "fa-google-plus", displayName: "Google+", disabled: true, order: }, colorClass: 'el-dribble',
-    { provider: "github", className: "fa-github", displayName: "Github", disabled: false, order: 1, colorClass: 'el-github'},
+    { provider: "github", className: "fa-github", displayName: "Github", disabled: false, order: 1, colorClass: 'el-github', featured: true},
     { provider: "bitbucket", className: "fa-bitbucket", displayName: "Bitbucket", disabled: false, order: 7, colorClass: 'el-bitbucket'},
     { provider: "twitter", className: "fa-twitter", displayName: "Twitter", disabled: true, order: 4, colorClass: 'el-twitter'},
     { provider: "weblinks", className: "fa-globe", displayName: "Web Links", disabled: true, order: 8, colorClass: 'el-weblinks'}

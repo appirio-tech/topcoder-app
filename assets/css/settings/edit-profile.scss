@@ -12,6 +12,7 @@
       border: 1px solid #d1d3d4;
       margin-right: 20px;
       width: 120px;
+      height: 120px;
       padding: 2px;
     }
 
@@ -136,12 +137,6 @@
     position: relative;
   }
 
-  .form-errors {
-    position: absolute;
-    top: 70px;
-    left: 3px;
-  }
-
   .external-account-container {
     display: flex;
     flex-direction: row;
@@ -154,4 +149,8 @@
   .existing-links {
     margin-bottom: 30px;
   }
+}
+
+.links.settings-section {
+  border-bottom: none;
 }

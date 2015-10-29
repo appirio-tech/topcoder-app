@@ -1,0 +1,30 @@
+.community-view {
+  background: $gray-lighter;
+  color: $community-text-dark;
+  .header-community {
+    @include module-full-width;
+    background-color: $white;
+    @include font-with-weight('Sofia Pro', 500);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .3);
+    header {
+      text-align: center;
+      margin: 0 auto;
+      padding: 16px 0 13px;
+      h1 {
+        font-size: 22px;
+        line-height: 26px;
+        text-transform: uppercase;
+      }
+    }
+    @media only screen and (min-width: 1000px) {
+      box-shadow: none;
+      header {
+        text-align: left;
+        padding: 33px 0 37px 128px;
+        h1 {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+}

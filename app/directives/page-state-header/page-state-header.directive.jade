@@ -10,7 +10,7 @@
           img.profile-circle(ng-if="!vm.profile.photoURL", src="/images/ico-user-default.svg")
             
       .user-stats(id="metrics", ng-hide="vm.loading")
-        .handle(style="color:{{vm.handleColor}};") {{vm.profile.handle}}
+        a.handle(style="color:{{vm.handleColor}};", ui-sref="profile.about({userHandle: vm.profile.handle})") {{vm.profile.handle}}
         .money-earned(ng-hide="hideMoney")
           p.number(ng-bind="vm.moneyEarned | currency:'$':0")
           p Earned

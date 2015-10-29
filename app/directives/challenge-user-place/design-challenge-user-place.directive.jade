@@ -2,28 +2,33 @@
   p.place(ng-class="{ 'first-place': challenge.wonFirst }", ng-show="challenge.highestPlacement") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
   p.place(ng-show="challenge.userStatus === 'NOT_FINISHED'") Didn't Finish
   p.place(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
+  p.place(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
 
-  .thumbnail(ng-click="openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
-    img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
+  .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
+    img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || '/images/card-bg-no-image.svg'}}", fallback-src="/images/card-bg-no-image.svg")
+    img(ng-show="challenge.isPrivate", src="/images/card-bg-private-project.svg")
 
-    .thumbnail-gallery(ng-click="challenge.showLightbox()")
+    .thumbnail-gallery(ng-show="numImages", ng-click="!challenge.isPrivate && imageURL && openLightbox()")
       .gallery-icon
 
-      .num-images 1 image
+      .num-images {{numImages}} IMAGES
 
 .list-view(ng-show="view === 'list'")
   .place-date
     p.place(ng-class="{ 'first-place': challenge.wonFirst }", ng-show="challenge.highestPlacement") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
     p.place(ng-show="challenge.userStatus === 'NOT_FINISHED'") Didn't Finish
     p.place(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
+    p.place(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
     p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
   .winner-ribbon(ng-show="challenge.wonFirst")
 
-  .thumbnail(ng-click="openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
-    img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
 
-    .thumbnail-gallery(ng-click="challenge.showLightbox()")
+  .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
+    img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || '/images/card-bg-no-image.svg'}}", fallback-src="/images/ico-picture.svg")
+    img(ng-show="challenge.isPrivate", src="/images/card-bg-private-project.svg")
+
+    .thumbnail-gallery(ng-show="numImages", ng-click="!challenge.isPrivate && imageURL && openLightbox()")
       .gallery-icon
 
-      .num-images 1 image
+      .num-images {{numImages}} IMAGES

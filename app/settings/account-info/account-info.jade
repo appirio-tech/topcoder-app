@@ -1,14 +1,14 @@
 .account-info-container
   .settings-section.credentials
     .section-info
-      h2 credentials
+      h2 Credentials
       .description Used to log in to your account and cannot be edited. Please contact support@topcoder.com if you need to make changes.
 
     .section-fields
       .form-label.username Username
       input.form-field.grey(name="username", value="{{vm.userData.handle}}", disabled=true)
 
-      .form-label email
+      .form-label Email
       input.form-field.grey(name="email", value="{{vm.userData.email}}", disabled=true)
 
       div(ng-hide="vm.isSocialRegistration")
@@ -31,6 +31,7 @@
               placeholder="Pick a new password"
             )
             .tips.password-tips(ng-show="vm.passwordFocus")
+              .arrow
               h3 Password Tips:
 
               p Your password must have:
@@ -42,14 +43,14 @@
               p(ng-class="{ 'has-symbol-or-number': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.hasSymbolOrNumber) }") At least one number or symbol
 
           .button-container
-            button.tc-btn.tc-btn-l.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine", ng-class="{'disabled': vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine}") Change Password
+            button.tc-btn.save(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.newPasswordForm", ng-disabled="vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine", ng-class="{'disabled': vm.newPasswordForm.$invalid || vm.newPasswordForm.$pristine}") Change Password
 
 
       div(ng-show="vm.isSocialRegistration")
         p You joined Topcoder by using an external account, so we don't have a password for you.
 
 
-  form(name="vm.accountInfoForm", role="form", ng-submit="vm.accountInfoForm.$valid && vm.saveAccountInfo()", novalidate, autocomplete="off")
+  form(name="vm.accountInfoForm", role="form", novalidate, autocomplete="off")
 
     .settings-section.name
       .section-info
@@ -101,12 +102,8 @@
             placeholder="123 Topcoder Ave.",
             value="{{vm.homeAddress.streetAddr1}}",
             ng-model="vm.homeAddress.streetAddr1",
-            ng-class="{'form-field-focused': hasFocus==true}",
-            ng-required="vm.addressDirty = vm.accountInfoForm.address.$dirty || vm.accountInfoForm.city.$dirty || vm.accountInfoForm.state.$dirty || vm.accountInfoForm.zipcode.$dirty || vm.accountInfoForm.country.$dirty"
+            ng-class="{'form-field-focused': hasFocus==true}"
           )
-
-          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.address.$invalid")
-            p(ng-show="vm.accountInfoForm.address.$error.required") Please enter an address
 
           .form-label Address 2
             span(style="text-transform: none;") &nbsp;(apt., suite, etc.)
@@ -125,12 +122,8 @@
             value="{{vm.homeAddress.city}}",
             placeholder="Best City in the World",
             ng-model="vm.homeAddress.city",
-            ng-class="{'form-field-focused': hasFocus==true}",
-            ng-required="vm.addressDirty"
+            ng-class="{'form-field-focused': hasFocus==true}"
           )
-
-          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.city.$invalid")
-            p(ng-show="vm.accountInfoForm.city.$error.required") Please enter a city
 
           .form-label State/Province
           input.tc-input(
@@ -138,12 +131,8 @@
             value="{{vm.homeAddress.stateCode}}",
             placeholder="California",
             ng-model="vm.homeAddress.stateCode",
-            ng-class="{'form-field-focused': hasFocus==true}",
-            ng-required="vm.addressDirty"
+            ng-class="{'form-field-focused': hasFocus==true}"
           )
-
-          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.state.$invalid")
-            p(ng-show="vm.accountInfoForm.state.$error.required") Please enter a state or province
 
           .form-label Zip/Post Code
           input.tc-input(
@@ -151,12 +140,8 @@
             placeholder="Zip"
             value="{{vm.homeAddress.zip}}",
             ng-model="vm.homeAddress.zip",
-            ng-class="{'form-field-focused': hasFocus==true}",
-            ng-required="vm.addressDirty"
+            ng-class="{'form-field-focused': hasFocus==true}"
           )
-
-          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.zipcode.$invalid")
-            p(ng-show="vm.accountInfoForm.zipcode.$error.required") Please enter a zip
 
           .form-label
             span Country
@@ -172,12 +157,11 @@
             title-field="name",
             match-class="angucomplete-highlight",
             minlength="1",
-            ng-class="{'form-field-focused': hasFocus==true}",
-            field-required="vm.addressDirty"
+            ng-class="{'form-field-focused': hasFocus==true}"
           )
-          .account-info-error(ng-show="vm.addressDirty && vm.accountInfoForm.country.$error.required")
-            p(ng-show="vm.accountInfoForm.country.$error.required") Please choose a country from the list.
+          .account-info-error(ng-show="vm.accountInfoForm.country.$dirty")
+            p(ng-show="!vm.isValidCountry") Please choose a country from the list.
 
 
   .save-section
-    button.save.tc-btn.tc-btn-l(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid", ng-class="{'enabled-button': vm.accountInfoForm.$valid}") Save
+    button.save.tc-btn.tc-btn-wide(type="submit", tc-busy-button, tc-busy-when="vm.formProcessing.accountInfoForm", ng-disabled="vm.accountInfoForm.$invalid || vm.accountInfoForm.$pristine", ng-class="{'enabled-button': vm.accountInfoForm.$valid}", ng-click="vm.accountInfoForm.$valid && vm.accountInfoForm.$dirty && vm.saveAccountInfo()") Save

@@ -32,6 +32,7 @@
       angular.forEach([
         CONSTANTS.EVENT_USER_LOGGED_IN,
         CONSTANTS.EVENT_USER_LOGGED_OUT,
+        CONSTANTS.EVENT_PROFILE_UPDATED
       ], function(event) {
         $rootScope.$on(event, function() {
           initHeaderProps(event);

@@ -10,7 +10,7 @@
           responsive-carousel(data="vm.subTrackStats", handle="{{vm.handle}}")
             .carousel-elem
               .flex-wrapper
-                p.title(ng-hide="true") {{item.subTrack | underscoreStrip}}
+                p.title(ng-hide="true") {{item.subTrack | track}}
                 
                 p.value(ng-show="item.label === 'rating'", style="color: {{item.val |  ratingColor}}") {{item.val | empty}}
                   span(style="background-color: {{item.val | ratingColor}}")
@@ -29,7 +29,7 @@
           responsive-carousel(data="vm.subTrackStats", handle="{{vm.handle}}")
             .carousel-elem
               .flex-wrapper
-                p.title(ng-hide="true") {{item.subTrack | underscoreStrip}}
+                p.title(ng-hide="true") {{item.subTrack | track}}
                 
                 p.value(ng-show="item.label === 'rating'", style="color: {{item.val |  ratingColor}}") {{item.val | empty}}
                   span(style="background-color: {{item.val | ratingColor}}")

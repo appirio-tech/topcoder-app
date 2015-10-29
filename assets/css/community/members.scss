@@ -1,0 +1,612 @@
+@import '../partials/combined';
+@import 'community';
+.members-container {
+  padding: 15px 0 0;
+  a {
+    text-decoration: none;
+  }
+  @media only screen and (min-width: 1070px) {
+    padding: 60px 67px 0;
+  }
+  %reviewboard-panel {
+    background: $white;
+    padding: 10px;
+    margin-bottom: 6px;
+    h2 {
+      @include font-with-weight('Sofia Pro', 500);
+      font-size: 18px;
+      text-transform: uppercase;
+      text-align: center;
+      padding-top: 23px;
+      padding-bottom: 23px;
+      @media only screen and (min-width: 1000px) {
+        font-size: 28px;
+        padding-top: 82px;
+        padding-bottom: 82px;
+      }
+      small {
+        @include font-with-weight;
+        font-size: 16px;
+        display: block;
+        text-transform: capitalize;
+        color: $gray-dark-alt;
+        padding-top: 8px;
+      }
+      span {
+        color: $member-search-highlight;
+      }
+    }
+  }
+  .platform-stats-container {
+    background: $white;
+    padding: 10px;
+    margin-bottom: 6px;
+    height: 70px;
+    font-family: "Sofia Pro",Arial,Helvetica,sans-serif;
+    .stat {
+      float: left;
+      width: 25% ;
+      text-align: center;
+    }
+    .statVal {
+      color: #3d3d3d;
+      font-size: 32px;
+      margin-bottom: 7px;
+      position: relative;
+    }
+
+    .statLabel {
+      color: #a3a3ae;
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+  .search-container {
+    @include module-full-width;
+    background: $white;
+    padding: 15px;
+    @media only screen and (min-width: 1070px) {
+      padding: 30px 40px 30px 41px;
+    }
+    form {
+      @include module-full-width;
+      @include community-form-placeholder;
+      background: $gray-lighter;
+      padding: 9px 30px 10px 11px;
+      border-radius: 4px;
+      position: relative;
+      @media only screen and (min-width: 1070px) {
+        padding: 13px 50px 15px 22px;
+        border-radius: 7px;
+      }
+    }
+    input[type="text"] {
+      @include module-full-width;
+      @include font-with-weight('Sofia Pro', 300);
+      font-size: 14px;
+      border-width: 0;
+      background: transparent;
+      outline: none;
+      @media only screen and (min-width: 1070px) {
+        font-size: 22px;
+      }
+    }
+    .search-ico {
+      display: inline-block;
+      height: 15px;
+      width: 15px;
+      background: url('/images/magnifying_glass.svg');
+      background-size: contain;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      position: absolute;
+      right: 8px;
+      top: 13px;
+      @media only screen and (min-width: 1070px) {
+        height: 23px;
+        width: 23px;
+        top: 18px;
+        right: 24px;
+      }
+    }
+  }
+  h2 {
+    @include font-with-weight('Sofia Pro', 500);
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 31px;
+    padding-bottom: 17px;
+    position: relative;
+    small {
+      @include font-with-weight;
+      font-size: 16px;
+      display: block;
+      text-transform: capitalize;
+      color: $gray-dark-alt;
+      padding-top: 8px;
+    }
+    span {
+      color: $member-search-highlight;
+    }
+    @media only screen and (min-width: 1070px) {
+      font-size: 28px;
+      padding-top: 92px;
+      padding-bottom: 34px;
+      small {
+        font-size: 20px;
+        padding-top: 16px;
+      }
+    }
+  }
+  .default-show-container > div,
+  .search-result-container {
+    margin-top: 6px;
+    background: $white;
+    position: relative;
+  }
+  %members-gray-wrapper {
+    background: $gray-lightest;
+    border: {
+      top: 2px solid $gray-light;
+      bottom: 2px solid $gray-light;
+    }
+    padding: 13px 0;
+    @media only screen and (min-width: 1070px) {
+      padding: 29px 0;
+      border-width: 1px;
+    }
+  }
+  .user-tile {
+    @include font-with-weight;
+    border: 1px solid $member-tile-border;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1);
+    text-align: center;
+    background: $white;
+    .avatar-wrapper {
+      margin: 0 auto;
+      border-radius: 100px;
+      border: 1px solid $gray-light;
+      overflow: hidden;
+    }
+    .user-country {
+      @include font-with-weight('Sofia Pro', 300);
+    }
+    .user-tag,
+    .user-country,
+    .user-more {
+      color: $member-blue;
+      &.develop {
+        color: $member-develop;
+      }
+      &.data-science {
+        color: $member-data_science;
+      }
+    }
+    .user-tag {
+      text-transform: capitalize;
+    }
+    .user-name,
+    .user-country,
+    .user-more {
+      text-transform: uppercase;
+    }
+    .user-desc {
+      color: $gray-dark-alt;
+      min-height: 54px;
+    }
+    .user-more {
+      border: 1px solid $member-button;
+      cursor: pointer;
+      font-size: 12px;
+      display: block;
+      width: 196px;
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+  .members-wrapper {
+    @extend %members-gray-wrapper;
+    @include module-full-width;
+    overflow-x: scroll;
+    flex-direction: row;
+    display: flex;
+    @media screen and (min-device-width: 992px) {
+      overflow-x: auto;
+      justify-content: center;
+    }
+    @media only screen and (min-width: 1070px) {
+      padding-bottom: 33px;
+    }
+    .user-tile {
+      min-width: 250px;
+      width: 250px;
+      max-width: 365px;
+      margin-right: 14px;
+      padding: 14px 20px;
+      &:first-child {
+        margin-left: 14px;
+      }
+      @media only screen and (min-width: 992px) {
+        width: 280px;
+      }
+      @media only screen and (min-width: 1070px) {
+        padding: 20px 30px 28px;
+      }
+      @media only screen and (min-width: 1290px) {
+        width: 365px;
+        padding: 20px 30px 28px;
+      }
+      @media only screen and (min-width: 1367px) {
+        margin-right: 33px;
+        &:first-child {
+          margin-left: 33px;
+        }
+      }
+    }
+    .avatar-wrapper,
+    .avatar-wrapper img {
+      height: 62px;
+      width: 62px;
+      @media only screen and (min-width: 1070px) {
+        height: 90px;
+        width: 90px;
+      }
+    }
+    .user-name {
+      font-size: 14px;
+      padding-top: 11px;
+      @media only screen and (min-width: 1070px) {
+        font-size: 22px;
+        padding-top: 10px;
+      }
+    }
+    .user-tag {
+      font-size: 11px;
+      padding-top: 3px;
+      @media only screen and (min-width: 1070px) {
+        font-size: 15px;
+        padding-top: 5px;
+      }
+    }
+    .user-desc {
+      font-size: 13px;
+      line-height: 15px;
+      padding-top: 12px;
+      @media only screen and (min-width: 1070px) {
+        font-size: 19px;
+        padding-top: 10px;
+        line-height: 22px;
+      }
+    }
+    .user-more {
+      margin-top: 10px;
+      padding: 8px 0 10px;
+      border-radius: 4px;
+      @media only screen and (min-width: 1070px) {
+        font-size: 14px;
+        margin-top: 25px;
+        padding: 9px 0 7px;
+      }
+    }
+  }
+  .member-congratulation {
+    @include font-with-weight;
+    font-size: 11px;
+    color: $gray-dark-alt;
+    text-align: center;
+    padding: 12px 20px 14px;
+    line-height: 19px;
+    margin-bottom: 8px;
+    @media only screen and (min-width: 1070px) {
+      font-size: 20px;
+      padding: 32px 0 34px;
+    }
+  }
+  .copilots-wrapper {
+    @extend %members-gray-wrapper;
+    @include module-full-width;
+    overflow-x: scroll;
+    flex-direction: row;
+    display: flex;
+    @media screen and (min-device-width: 992px) {
+      overflow-x: auto;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .user-tile {
+      min-width: 246px;
+      margin-right: 15px;
+      padding: 39px 20px 40px;
+      &:first-child {
+        margin-left: 15px;
+      }
+      @media only screen and (min-device-width: 992px) {
+        width: 272px;
+        margin: 0 6px 14px;
+        padding: 31px 20px 49px;
+        &:first-child {
+          margin-left: 6px;
+        }
+      }
+    }
+    .avatar-wrapper,
+    .avatar-wrapper img {
+      height: 80px;
+      width: 80px;
+    }
+    .user-name {
+      font-size: 20px;
+      padding-top: 19px;
+    }
+    .user-country {
+      font-size: 11px;
+      padding-top: 11px;
+    }
+  }
+  .btn-wrapper {
+    padding: 13px;
+    @media only screen and (min-width: 1070px) {
+      padding: 30px;
+    }
+  }
+  .blue-btn {
+    text-transform: uppercase;
+    background-color: $member-button;
+    color: $white;
+    font-size: 11px;
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+    border-radius: 3px;
+    text-align: center;
+    padding: 5px;
+    @media only screen and (min-width: 1070px){
+      font-size: 14px;
+      width: 159px;
+      padding: 8px 5px;
+    }
+  }
+  .results-wrapper {
+    @extend %members-gray-wrapper;
+    @include module-full-width;
+    overflow-x: scroll;
+    flex-direction: column;
+    display: flex;
+    padding: {
+      left: 12px;
+      right: 12px;
+    }
+    @media screen and (min-device-width: 992px) {
+      overflow-x: auto;
+    }
+    @media only screen and (min-width: 1070px) {
+      padding: {
+        left: 50px;
+        right: 50px;
+      }
+    }
+    .user-tile {
+      padding: 14px;
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 8px;
+      position: relative;
+      @media only screen and (min-width: 1070px) {
+        padding: 20px 25px;
+      }
+    }
+    .text-content {
+      text-align: left;
+      @media only screen and (min-width: 768px) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+    .avatar-wrapper,
+    .avatar-wrapper img {
+      height: 50px;
+      width: 50px;
+      margin-left: 0;
+      margin-right: 14px;
+      @media only screen and (min-width: 1070px) {
+        height: 80px;
+        width: 80px;
+        margin-right: 21px;
+      }
+    }
+    .user-name {
+      font-size: 20px;
+      padding-top: 4px;
+      @media only screen and (min-width: 768px) {
+        width: 200px;
+      }
+      @media only screen and (min-width: 1070px) {
+        padding-top: 0;
+      }
+    }
+    .user-country {
+      font-size: 11px;
+      padding-top: 10px;
+      @media only screen and (min-width: 768px) {
+        color: $community-text-dark;
+      }
+      @media only screen and (min-width: 1070px) {
+        font-size: 18px;
+        padding-top: 1px;
+      }
+    }
+    .user-more {
+      @include font-with-weight('Sofia Pro', 300);
+      display: none;
+      text-transform: capitalize;
+      position: absolute;
+      right: 50px;
+      width: 121px;
+      border-radius: 5px;
+      @media only screen and (min-device-width: 768px) {
+        display: block;
+        padding: 5px 0;
+        top: 50%;
+        height: 26px;
+        margin-top: -7px;
+      }
+      @media only screen and (min-width: 1070px) {
+        font-size: 16px;
+        height: 40px;
+        margin-top: -21px;
+        padding-top: 13px;
+      }
+    }
+  }
+  .gray-btn {
+    text-transform: uppercase;
+    background-color: $button-gray;
+    color: $white;
+    font-size: 11px;
+    display: block;
+    margin: 0 auto;
+    width: 110px;
+    border-radius: 3px;
+    text-align: center;
+    padding: 5px;
+    @media only screen and (min-width: 1070px){
+      font-size: 14px;
+      width: 159px;
+      padding: 8px 5px;
+    }
+  }
+  .showing-controll-wrapper {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 38px;
+    margin-right: 55px;
+    @media only screen and (min-width: 1070px) {
+      display: block;
+    }
+    li {
+      display: inline-block;
+    }
+    input {
+      display: none;
+    }
+    label {
+      @include font-with-weight('Sofia Pro', 300);
+      font-size: 11px;
+      text-transform: uppercase;
+      padding-left: 20px;
+      position: relative;
+      color: $gray-dark-alt;
+      margin-left: 19px;
+      cursor: pointer;
+      &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 0;
+        background: {
+          repeat: no-repeat;
+          size: contain;
+        };
+      }
+      &.grid-lbl::before {
+        left: 2px;
+        height: 12px;
+        width: 12px;
+        background-image: url(/images/grid-off.svg);
+      }
+      &.list-lbl::before {
+        left: 0;
+        height: 12px;
+        width: 14px;
+        background-image: url(/images/list-off.svg);
+      }
+    }
+    input:checked ~ label {
+      color: $community-text-dark;
+    }
+    input:checked ~ .grid-lbl::before {
+      background-image: url(/images/grid-on.svg);
+    }
+    input:checked ~ .list-lbl::before {
+      background-image: url(/images/list-on.svg);
+    }
+  }
+  .show-grid {
+    @media only screen and (min-width: 1070px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      .user-tile {
+        flex-direction: column;
+        margin: 0 6px 14px;
+        padding: 32px 20px 50px;
+      }
+      .text-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .avatar-wrapper {
+        margin: 0 auto;
+      }
+      .user-name {
+        padding-top: 19px;
+      }
+      .user-more {
+        display: none;
+      }
+      .user-country {
+        color: $member-blue;
+        font-size: 11px;
+        padding-top: 11px;
+      }
+    }
+    @media only screen and (min-width: 1170px) {
+      .user-tile {
+        width: 272px;
+      }
+    }
+  }
+  .reviewboard-container,
+  .record-books-container {
+    @extend %reviewboard-panel;
+    @include font-with-weight;
+    text-align: center;
+    padding-bottom: 16px;
+    min-height: 165px;
+    h2 {
+      padding-bottom: 17px;
+    }
+    a {
+      cursor: pointer;
+      color: $member-blue;
+      font-size: 12px;
+      line-height: 23px;
+    }
+    @media only screen and (min-width: 768px) {
+      .content-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: left;
+      }
+    }
+    @media only screen and (min-width: 1000px) {
+      h2 {
+        padding-bottom: 44px;
+      }
+      a {
+        font-size: 24px;
+        line-height: 49px;
+      }
+      .content-wrapper {
+        margin-bottom: 60px;
+      }
+    }
+  }
+}

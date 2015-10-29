@@ -35,7 +35,14 @@ module.exports = function() {
         STATE_ERROR: 'error',
         STATE_READY: 'ready',
 
-        BUSY_PROGRESS_MESSAGE : 'Processing..'
+        BUSY_PROGRESS_MESSAGE : 'Processing..',
+
+        // srm phases
+        REGISTRATION: 'REGISTRATION',
+        CODING: 'CODING',
+
+        // users' status
+        REGISTERED: 'REGISTERED'
 
       }
     },
@@ -74,7 +81,14 @@ module.exports = function() {
         STATE_ERROR: 'error',
         STATE_READY: 'ready',
 
-        BUSY_PROGRESS_MESSAGE : 'Processing..'
+        BUSY_PROGRESS_MESSAGE : 'Processing..',
+
+        // srm phases
+        REGISTRATION: 'REGISTRATION',
+        CODING: 'CODING',
+
+        // users' status
+        REGISTERED: 'REGISTERED'
 
       }
     },
@@ -113,7 +127,14 @@ module.exports = function() {
         STATE_ERROR: 'error',
         STATE_READY: 'ready',
 
-        BUSY_PROGRESS_MESSAGE : 'Processing..'
+        BUSY_PROGRESS_MESSAGE : 'Processing..',
+
+        // srm phases
+        REGISTRATION: 'REGISTRATION',
+        CODING: 'CODING',
+
+        // users' status
+        REGISTERED: 'REGISTERED'
 
       }
     },
@@ -152,7 +173,14 @@ module.exports = function() {
         STATE_ERROR: 'error',
         STATE_READY: 'ready',
 
-        BUSY_PROGRESS_MESSAGE : 'Processing..'
+        BUSY_PROGRESS_MESSAGE : 'Processing..',
+
+        // srm phases
+        REGISTRATION: 'REGISTRATION',
+        CODING: 'CODING',
+
+        // users' status
+        REGISTERED: 'REGISTERED'
 
       }
     },
@@ -191,7 +219,14 @@ module.exports = function() {
         STATE_ERROR: 'error',
         STATE_READY: 'ready',
 
-        BUSY_PROGRESS_MESSAGE : 'Processing..'
+        BUSY_PROGRESS_MESSAGE : 'Processing..',
+
+        // srm phases
+        REGISTRATION: 'REGISTRATION',
+        CODING: 'CODING',
+
+        // users' status
+        REGISTERED: 'REGISTERED'
 
       }
     }

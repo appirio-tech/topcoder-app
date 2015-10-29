@@ -1,5 +1,8 @@
 @import 'topcoder-includes';
 @import '../partials/combined';
+
+
+
 .settings-header {
   @include module-full-width;
   background-color: $white;
@@ -20,6 +23,7 @@
     @media only screen and (min-width: 900px) {
       padding: 40px 50px 33px;
     }
+
     h1 {
       margin-bottom: 10px;
       @include sofia-pro-bold;
@@ -37,27 +41,19 @@
 }
 
 .settings-container {
+  // Autocomplete
   .angucomplete-dropdown {
     width: 100%;
+    color: $gray-darkest;
+    text-align: left;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.4);
   }
   .angucomplete-selected-row {
-    background-color: #097DCE;
+    background-color: $primary-lighter;
+    color: $gray-darkest;
   }
-  input, textarea {
-    font-size: 15px;
-    font-family: 'Merriweather Sans';
-    font-weight: 400;
-    padding-left: 15px;
-  }
-  textarea {
-    padding-left: 10px;
-    &:hover, &:focus {
-      padding-left: 10px;
-    }
-  }
-  input:focus, textarea:focus {
-    outline: 1px solid #4cb5ff;
-  }
+  // Autocomplete end
+  
   @include module-l;
   margin: 30px auto 0;
 
@@ -120,197 +116,196 @@
     }
   }
 
+
+// Main Container
+.edit-profile-container,
+.account-info-container,
+.prefferences-container {
+  padding: 0 60px 30px;
+}
+
+
   // Common element stylings
-  @include ui-form-placeholder;
-  input:not([type="checkbox"]) {
-    @include ui-form-field;
-    background-color: white;
-    height: 38px;
-  }
 
-  .settings-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 30px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    @media only screen and (min-width: 768px) {
-      flex-direction: row;
-      padding-bottom: 40px;
-    }
-    border-bottom: 1px solid;
-    border-color: #F0F0F0;
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
+
+.settings-section {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 20px auto;
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    margin: 30px auto 0;
+    padding-bottom: 30px;
+
     .section-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-self: flex-start;
-      @media only screen and (min-width: 768px) {
-        width: 270px;
-        margin-right: 33px;
-        margin-left: 30px;
-      }
-
       h2 {
-        text-transform: uppercase;
-        font-family: 'Sofia Pro';
-        font-weight: 500;
-        font-size: 16px;
+        font-size: 18px;
       }
-
       .description {
-        font-size: 13px;
-        line-height: 20px;
-        color: #A3A3AE;
-        // @include source-sans-italic;
-        @include label-description;
-        margin-top: 5px;
+        margin-top: 10px;
       }
     }
-    .section-fields {
-      display: flex;
-      flex-direction: column;
-      @media only screen and (min-width: 768px) {
-        border-left: 6px solid #F6F6F6;
-        padding-left: 60px;
-        width: 65%;
+
+    &.skills {
+      input {
+        width: 100%;
       }
-      .form-label {
-        @include sofia-pro-regular;
-        font-size: 12px;
-        color: black;
-        text-transform: uppercase;
-        margin-bottom: 5px;
-        margin-top: 5px;
-        width: 300px;
-
-        .mandatory {
-          text-transform: none;
-          color: #0096ff;
-          float: right;
-        }
-
-        .char-count {
-          font-family: 'Source Sans Pro';
-          float: right;
-        }
-
-        .grey {
-          color: #a3a3ae;
-        }
-      }
-      .form-field {
-        @include form-field;
-        @include ui-form-placeholder;
-        background: white;
-        color: black;
-        &:disabled {
-          color: #B7B7B7;
-        }
-      }
-      .form-field-focused {
-      }
-      .image {
-        .edit-image {
-          img.profile-circle {
-            margin-top: 10px;
-          }
-          .buttons {
-            padding-top: 20px;
-            .file-upload {
-              position: relative;
-              display: block;
-              overflow: hidden;
-              margin: 10px;
-              margin-left: 0;
-              margin-top: 20px;
-              width: 120px;
-              input {
-                position: absolute;
-                top: 0;
-                right: 0;
-                margin: 0;
-                padding: 0;
-                font-size: 20px;
-                cursor: pointer;
-                opacity: 0;
-                filter: alpha(opacity=0);
-              }
-            }
-            .file-delete {
-              button {
-                width: 80px;
-              }
-            }
-          }
-        }
-      }
-      .country {
-        margin-top: 30px;
-
-        input {
-          background-color: white;
-          width: 100%;
-        }
-
-        span.error-message {
-          color: #EF3A3A;
-          @include sofia-pro-regular;
-          font-size: 10px;
-          text-transform: uppercase;
-        }
-
-      }
-
-      .bio {
-        margin-top: 30px;
-
-        textarea {
-          background: white;
-          width: 100%;
-          height: 115px;
-        }
+      .section-fields {
+        max-width: 768px;
       }
     }
   }
-  .tracks {
-    padding-bottom: 0px;
-    border-bottom: none;
 
-    .section-fields {
-      margin-top: 40px;
-    }
+  border-bottom: 1px solid;
+  border-color: $gray-light;
 
 
-  }
-  .save-section {
-    width: 95%;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #fcfcfc;
-    border-top: 1px solid #f0f0f0;
+  .section-info {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    button {
-      margin-bottom: 15px;
-      margin-top: 15px;
-      width: 120px;
+    justify-content: flex-start;
+    align-self: flex-start;
+    @media only screen and (min-width: 768px) {
+      width: 270px;
+      margin-right: 30px;
+    }
+
+    h2 {
+      text-transform: uppercase;
+      font-family: 'Sofia Pro';
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .description {
+      font-size: 13px;
+      line-height: 20px;
+      color: $accent-gray;
+      @include font-with-weight('Merriweather Sans');
+      font-style: italic;
+      @include label-description;
+      margin-top: 5px;
     }
   }
+  .section-fields {
+    display: flex;
+    flex-direction: column;
+    @media only screen and (min-width: 768px) {
+      border-left: 6px solid #F6F6F6;
+      padding-left: 60px;
+      width: 65%;
+    }
+    
+    .form-field {
+      @include form-field;
+      @include ui-form-placeholder;
+      background: white;
+      color: black;
+      &:disabled {
+        color: #B7B7B7;
+      }
+    }
+    .form-field-focused {
+    }
+    .image {
+      .edit-image {
+        img.profile-circle {
+          margin-top: 10px;
+        }
+        .buttons {
+          padding-top: 20px;
+          .file-upload {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            margin: 10px;
+            margin-left: 0;
+            margin-top: 20px;
+            width: 120px;
+            input {
+              position: absolute;
+              top: 0;
+              right: 0;
+              margin: 0;
+              padding: 0;
+              font-size: 20px;
+              cursor: pointer;
+              opacity: 0;
+              filter: alpha(opacity=0);
+            }
+          }
+          .file-delete {
+            button {
+              width: 80px;
+            }
+          }
+        }
+      }
+    }
+    .country {
+      margin-top: 30px;
+
+      input {
+        background-color: white;
+        width: 100%;
+      }
+
+      span.error-message {
+        color: #EF3A3A;
+        @include sofia-pro-regular;
+        font-size: 10px;
+        text-transform: uppercase;
+      }
+
+    }
+
+    .bio {
+      margin-top: 30px;
+
+      textarea {
+        background: white;
+        width: 100%;
+        height: 115px;
+      }
+    }
+  }
+}
+
+.tracks {
+  border-bottom: none;
+}
+
+.save-section {
+
+  background-color: #fcfcfc;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  button {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    width: 120px;
+  }
+}
+
   .skills {
     border-top: 1px solid $gray-light;
+    padding-top: 20px;
+    @media screen and (min-width: 768) {
+      padding-top: 30px;
+    }
+
     .section-fields {
-      margin-top: 20px;
       display: flex;
       flex-direction: column;
 
-      .field-label, angucomplete-alt {
+      .field-label,
+      angucomplete-alt {
         align-self: flex-start;
       }
 
@@ -320,15 +315,7 @@
         text-transform: uppercase;
       }
 
-      angucomplete-alt {
-        width: 100%;
-        margin-top: 6px;
-
-        input {
-          @include source-sans-italic;
-          color: #7f7f7f;
-        }
-      }
+      
 
       .list {
         display: flex;
@@ -385,7 +372,7 @@
   .tab-title {
     margin-bottom: 35px;
     font-size: 32px;
-    @include source-sans-light;
+    @include font-with-weight('Sofia Pro', 300);
     color: $ui-light-gray;
     @media only screen and (min-width: 768px) {
       margin-top: 50px;
@@ -410,92 +397,15 @@
   }
 }
 
-.onoffswitch {
-    position: relative; width: 60px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
-}
-.onoffswitch-checkbox {
-    display: none;
-}
-.onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border-radius: 36px;
-}
-.onoffswitch-inner {
-    display: block; width: 200%; margin-left: -100%;
-    transition: margin 0.3s ease-in 0s;
-}
-.onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 26px; padding: 0; line-height: 26px;
-    font-size: 15px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
-    box-sizing: border-box;
-}
-.onoffswitch-inner:before {
-    content: "";
-    padding-left: 10px;
-    background-color: #0096ff;
-    color: #0096ff;
-}
-.onoffswitch-inner:after {
-    content: "";
-    padding-right: 10px;
-    background-color: #d1d3d4;
-    color: #d1d3d4;
-    text-align: right;
-}
-.onoffswitch-switch {
-    display: block; width: 19px; margin: 3.5px;
-    height: 19px;
-    background: #FFFFFF;
-    position: absolute; top: 0; bottom: 0;
-    margin-top: 3.45px;
-    right: 30px;
-    border: none;
-    border-radius: 36px;
-    transition: all 0.3s ease-in 0s;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
-}
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px;
-}
 
-.settings-section {
-  @media only screen and (min-width: 768px) {
-    padding-top: 40px;
-    padding-bottom: 40px;
-    .section-fields {
-      // Remove !important during refactor
-      margin-top: 0px !important;
-    }
-    .section-info {
-      h2 {
-        font-size: 18px;
-      }
-      .description {
-        margin-top: 10px;
-      }
-    }
-    &.tracks {
-      padding-bottom: 40px;
-      .section-fields {
-        margin-top: 40px;
-      }
-    }
-    &.skills {
-      input {
-        width: 100%;
-      }
-      .section-fields {
-        max-width: 768px;
-      }
-    }
-  }
-}
+
 .settings-container {
   @media only screen and (min-width: 768px) {
     .links {
+      & .external-link-list {
+        padding: 0;
+      }
+
       .existing-links {
         display: flex;
         flex-direction: row;

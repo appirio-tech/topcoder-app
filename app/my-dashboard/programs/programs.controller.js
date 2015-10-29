@@ -9,10 +9,11 @@
     'CONSTANTS',
     '$log',
     'ChallengeService',
-    '$q'
+    '$q',
+    '$rootScope'
   ];
 
-  function ProgramsController (UserService, MemberCertService, CONSTANTS, $log, ChallengeService, $q) {
+  function ProgramsController (UserService, MemberCertService, CONSTANTS, $log, ChallengeService, $q, $rootScope) {
     var vm = this;
     vm.domain = CONSTANTS.domain;
     vm.registered = false;
@@ -24,10 +25,14 @@
     activate();
 
     function activate() {
+
       MemberCertService.getMemberRegistration(userId, CONSTANTS.SWIFT_PROGRAM_ID)
       .then(function(res) {
         if (res == null) {
           vm.registered = false;
+          $rootScope.$on('IOS_REGISTER_USER', function() {
+            vm.registerUser();
+          });
           vm.loading = false;
         } else {
           vm.registered = true;
@@ -41,7 +46,10 @@
       });
     }
 
+
+
     function registerUser() {
+      debugger;
       vm.loading = true;
       return MemberCertService.registerMember(userId, CONSTANTS.SWIFT_PROGRAM_ID).then(function(data) {
         if (data && data.eventId && data.userId) {

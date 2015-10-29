@@ -33,15 +33,25 @@
         challenge: '=',
         view: '='
       },
-      controller: ['$scope', 'CONSTANTS', '$attrs', 'ChallengeService',
-       function($scope, CONSTANTS, $attrs, ChallengeService) {
+      controller: ['$scope', 'CONSTANTS', '$attrs', 'ChallengeService', 'ngDialog',
+       function($scope, CONSTANTS, $attrs, ChallengeService, ngDialog) {
         $scope.DOMAIN = CONSTANTS.domain;
+        $scope.openLightbox = openLightbox;
+        $scope.updateSelected = updateSelected;
+        $scope.incrementIndex = incrementIndex;
 
         activate();
 
         function activate() {
-          if ($scope.challenge.userDetails.submissions && $scope.challenge.userDetails.submissions.length > 0) {
+          $scope.numImages = 0;
+          if (!$scope.challenge.isPrivate && $scope.challenge.userDetails.submissions && $scope.challenge.userDetails.submissions.length > 0) {
+            $scope.numImages = $scope.challenge.userDetails.submissions.filter(function(submission) {
+              return submission && submission.submissionImage;
+            }).length;
+            $scope.selectedIndex = 0;
             $scope.challenge.thumbnailId = $scope.challenge.userDetails.submissions[0].id;
+            $scope.imageURL = $scope.challenge.userDetails.submissions[0].submissionImage && $scope.challenge.userDetails.submissions[0].submissionImage.full;
+            $scope.selectedImage = $scope.imageURL;
 
             $scope.challenge.highestPlacement = _.max($scope.challenge.userDetails.submissions, 'placement').placement;
 
@@ -50,6 +60,27 @@
             }
           }
         }
+
+        function updateSelected(newImage, index) {
+          $scope.selectedImage = newImage;
+          $scope.selectedIndex = index;
+        }
+
+        function incrementIndex(x) {
+          $scope.selectedIndex += x;
+          if ($scope.selectedIndex < 0) $scope.selectedIndex = $scope.challenge.userDetails.submissions.length - 1;
+          if ($scope.selectedIndex == $scope.challenge.userDetails.submissions.length) $scope.selectedIndex = 0;
+          $scope.selectedImage = $scope.challenge.userDetails.submissions[$scope.selectedIndex].fullImage;
+        }
+
+        function openLightbox() {
+          ngDialog.open({
+            template: 'directives/challenge-user-place/design-lightbox/design-lightbox.html',
+            className: 'design-lightbox',
+            scope: $scope
+          });
+        }
+
       }]
     };
   }

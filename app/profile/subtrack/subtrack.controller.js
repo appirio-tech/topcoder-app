@@ -25,7 +25,7 @@
     vm.back = back;
     vm.subTrackStats = [];
 
-    vm.pageName = vm.subTrack.toLowerCase().replace('_', ' ');
+    vm.pageName = vm.subTrack.toLowerCase().replace(/_/g, ' ');
 
     vm.tabs = [];
     if (vm.track !== 'DESIGN') {
@@ -162,7 +162,7 @@
         if (vm.subTrack.toUpperCase() === 'SRM') {
           // _challengePromise = SRMService.getSRMs()
           params['filter'] = "status=past&isRatedForSRM=true";
-          return SRMService.getPastSRMs(profileVm.profile.handle, params)
+          return SRMService.getUserSRMs(profileVm.profile.handle, params)
           .then(function(data) {
             vm.pageParams.totalCount = data.metadata.totalCount;
             vm.challenges = vm.challenges.concat(data);

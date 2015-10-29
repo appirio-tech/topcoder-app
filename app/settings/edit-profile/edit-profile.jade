@@ -5,7 +5,7 @@
 
     .settings-section.about
       .section-info
-        h2 about me
+        h2 About Me
         .description The most important information that other community members should know about you.
 
       .section-fields
@@ -17,14 +17,15 @@
 
             .buttons
               button.file-upload.tc-btn.tc-btn-primary.tc-btn-s(ng-click="vm.changeImage()", type="button")
-                span Change Image
+                span(ng-show="vm.userData.photoURL && vm.userData.photoURL.length") Change Image
+                span(ng-show="!vm.userData.photoURL || !vm.userData.photoURL.length") Add Image
               input(type='file', name='image', on-file-change='on-file-change', id="change-image-input", style="display: none;")
 
-              .file-delete
+              .file-delete(ng-show="vm.userData.photoURL && vm.userData.photoURL.length")
                 button.tc-btn.tc-btn-secondary.tc-btn-s(ng-click="vm.deleteImage()", type="button") Delete
 
         .country
-          .form-label country to represent
+          .form-label Country to represent
           angucomplete-alt(
             id="countryId",
             input-name="location",
@@ -58,12 +59,12 @@
         track-toggle(tracks="vm.tracks")
 
     .save-section
-      button.tc-btn.tc-btn-primary.tc-btn-s(ng-show="!(vm.editProfile.$invalid || vm.editProfile.$pristine)", type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
-      button.tc-btn.tc-btn-secondary.tc-btn-s.disabled(ng-show="vm.editProfile.$invalid || vm.editProfile.$pristine", type="button") Save
+      button.tc-btn.tc-btn-primary.tc-btn-wide(ng-show="!(vm.editProfile.$invalid || vm.editProfile.$pristine)", type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
+      button.tc-btn.tc-btn-secondary.tc-btn-wide(ng-show="vm.editProfile.$invalid || vm.editProfile.$pristine", type="button", disabled="disabled") Save
 
   .settings-section.skills
     .section-info
-      h2 skills
+      h2 Skills
       .description Languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.
 
     .section-fields
@@ -90,7 +91,7 @@
 
   .settings-section.links
     .section-info
-      h2 external links
+      h2 External links
       .description Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.
 
     .section-fields

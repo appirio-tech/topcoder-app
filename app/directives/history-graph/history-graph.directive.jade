@@ -1,8 +1,6 @@
 .history-graph-directive(ng-show="graphState.show == 'history'")
   .history-graph-container
 
-    br
-
     .history-graph
 
     .info-port
@@ -12,4 +10,4 @@
       .history-info
         .challenge(ng-if="historyRating") {{historyChallenge}}
         .date(ng-if="historyRating") {{historyDate | date}}
-      button.tc-btn.tc-btn-s.compare(ng-click="graphState.show = 'distribution'") COMMUNITY RATINGS
+      button.tc-btn.tc-btn-s.compare(ng-click="graphState.show = 'distribution'") View Rating Distribution

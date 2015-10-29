@@ -29,7 +29,7 @@ challenge-tile .challenge.tile-view {
     a.name {
       display: block;
       padding: 15px 20px 0px 20px;
-      @include sofia-pro-medium;
+      @include font-with-weight('Sofia Pro', 500);
       font-size: 14px;
       line-height: 20px;
       color: $gray-darkest;
@@ -45,7 +45,7 @@ challenge-tile .challenge.tile-view {
     p.subtrack-color {
       padding: 0 20px;
       margin-top: 5px;
-      @include sofia-pro-medium;
+      @include font-with-weight('Sofia Pro', 500);
       font-size: 12px;
       line-height: 14px;
       text-transform: uppercase;
@@ -68,12 +68,13 @@ challenge-tile .challenge.tile-view {
     align-items: center;
     min-height: 36px;
     padding: 0 20px;
-    @include source-sans-regular;
-    font-size: 13px;
-    line-height: 18px;
+    @include merriweather-sans-regular;
+    font-size: 12px;
+    line-height: 17px;
     background-color: $gray-lighter;
 
     span {
+      padding: 0;
       @include ellipsis;
       span:first-child {
         color: $accent-gray;
@@ -95,7 +96,7 @@ challenge-tile .challenge.tile-view {
       .currentPhase {
         margin-top: 40px;
         margin-bottom: 20px;
-        @include sofia-pro-light;
+        @include font-with-weight('Sofia Pro', 300);
         font-size: 18px;
         line-height: 23px;
         text-transform: uppercase;
@@ -112,7 +113,7 @@ challenge-tile .challenge.tile-view {
         background-image: url(/images/ico-calendar.svg);
 
         > p {
-          @include sofia-pro-bold;
+          @include font-with-weight('Sofia Pro', 700);
         }
 
         .ends-in {
@@ -140,7 +141,7 @@ challenge-tile .challenge.tile-view {
       .stalled-challenge {
         min-height: 83px;
         padding: 21px 20px 0px 20px;
-        @include sofia-pro-medium;
+        @include font-with-weight('Sofia Pro', 500);
         font-size: 12px;
         line-height: 18px;
         text-transform: uppercase;
@@ -166,7 +167,7 @@ challenge-tile .challenge.tile-view {
           border: 1px solid #F0F0F0;
           border-radius: 4px;
           background-color: $white;
-          @include sofia-pro-regular;
+          @include font-with-weight;
           font-size: 12px;
           text-transform: uppercase;
           color: $gray-darkest;
@@ -193,7 +194,6 @@ challenge-tile .challenge.tile-view {
     justify-content: space-between;
     align-items: center;
     width: 270px;
-    height: 340px;
     border: 1px solid #E0E0E0;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
@@ -204,7 +204,7 @@ challenge-tile .challenge.tile-view {
       position: relative;
 
       .date-completed {
-        @include sofia-pro-medium;
+        @include font-with-weight('Sofia Pro', 500);
         font-size: 12px;
         text-transform: uppercase;
         color: $accent-gray;
@@ -238,14 +238,14 @@ challenge-tile .challenge.tile-view {
         .score {
           margin-top: 28px;
           margin-bottom: 5px;
-          @include sofia-pro-regular;
+          @include font-with-weight;
           font-size: 32px;
           line-height: 38px;
           color: #3D3D3D;
         }
 
         p:last-child {
-          @include sofia-pro-regular;
+          @include font-with-weight;
           font-size: 12px;
           line-height: 14px;
           color: #A3A3AE;
@@ -299,7 +299,7 @@ challenge-tile .challenge.list-view {
 
     a.name {
       display: block;
-      @include sofia-pro-medium;
+      @include font-with-weight('Sofia Pro', 500);
       font-size: 14px;
       line-height: 20px;
       color: $gray-darkest;
@@ -314,7 +314,7 @@ challenge-tile .challenge.list-view {
 
     p.subtrack-color {
       margin-bottom: 12px;
-      @include sofia-pro-medium;
+      @include font-with-weight('Sofia Pro', 500);
       font-size: 12px;
       line-height: 14px;
       text-transform: uppercase;
@@ -322,7 +322,7 @@ challenge-tile .challenge.list-view {
 
     .roles {
       max-width: 362px;
-      @include source-sans-regular;
+      @include font-with-weight('Merriweather Sans');
       font-size: 13px;
       line-height: 18px;
       color: $gray-darkest;
@@ -350,14 +350,14 @@ challenge-tile .challenge.list-view {
     .challenge-info {
       .currentPhase {
         margin-bottom: 10px;
-        @include sofia-pro-light;
+        @include font-with-weight('Sofia Pro', 300);
         font-size: 18px;
         color: $gray-darkest;
         text-transform: uppercase;
       }
 
       .ends-in {
-        @include sofia-pro-regular;
+        @include font-with-weight;
         font-size: 14px;
         color: #A3A3AE;
       }
@@ -368,7 +368,7 @@ challenge-tile .challenge.list-view {
 
       .score {
         margin-bottom: 5px;
-        @include sofia-pro-regular;
+        @include font-with-weight;
         font-size: 32px;
         line-height: 38px;
         color: #3D3D3D;

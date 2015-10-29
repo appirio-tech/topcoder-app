@@ -1,3 +1,109 @@
+@import '_tc-variables';
+
+// SPECIFY FONTS THE SMART WAY
+// ----------------------------------------------------------------------------
+// Instead of repeating the use of fonts, we can build a simple mixin to do that for us
+@mixin font-with-weight($family: 'Sofia Pro', $weight: 400, $fallback: sans-serif){
+  @if $fallback == serif {
+    font-family: $family, $fonts-family-serif;
+    font-weight: $weight; 
+
+  }
+  @else if $fallback == sans-serif {
+    font-family: $family, $fonts-family-sans-serif;
+    font-weight: $weight; 
+
+  }
+  @else if $fallback == monospace {
+    font-family: $family, $fonts-family-monospace;
+    font-weight: $weight; 
+  }
+  @else {
+    font-family: $family, $fonts-family-monospace;
+    font-weight: $familyt-base; 
+  }
+}
+
+
+// Placeholders refactored
+// ----------------------------------------------------------------------------
+// from 'http://stackoverflow.com/questions/17181849/placeholder-mixin-scss-css'
+//
+// Usage:
+//
+// .foo {
+//   @include placeholder {
+//     color: green;
+//   }
+// }
+
+// @include placeholder { 
+//   color: red;
+// }
+
+
+// Smart, but not working for me currently :(
+// @mixin optional-at-root($sel) {
+//   @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+//     @content;
+//   }
+// }
+
+// @mixin placeholder {
+//   @include optional-at-root('::-webkit-input-placeholder') {
+//     @content;
+//   }
+
+//   @include optional-at-root(':-moz-placeholder') {
+//     @content;
+//   }
+
+//   @include optional-at-root('::-moz-placeholder') {
+//     @content;
+//   }
+
+//   @include optional-at-root(':-ms-input-placeholder') {
+//     @content;
+//   }
+// }
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}  
+}
+
+
+//
+// Pass a number, and use in different places. How to use:
+// 
+// @include media(320px) {
+//   background: red; // the content will be wrapped with the mixin;
+// }
+//
+// from 'https://robots.thoughtbot.com/sasss-content-directive'
+
+
+// @MEDIA MIXIN
+// ----------------------------------------------------------------------------
+
+@mixin media-max($width) {
+  @media only screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin media-min($width) {
+  @media only screen and (min-width: $width) {
+    @content;
+  }
+}
+
+
+
+// HELPERS
+// ----------------------------------------------------------------------------
 @mixin clearfix {
   &:after {
     content: "";
@@ -38,32 +144,6 @@
 
 // Font Stack: BODY
 // Refactor to use non-typeface specific name; best - use variables;
-
-@mixin source-sans-light {
-  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-  font-weight: 300;
-}
-
-@mixin source-sans-regular {
-  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-  font-weight: 400;
-}
-
-@mixin source-sans-italic {
-  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-@mixin source-sans-semi-bold {
-  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-  font-weight: 600;
-}
-
-@mixin source-sans-bold {
-  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-  font-weight: 700;
-}
 
 // Replacement for Merriweather Sans
 
@@ -170,7 +250,7 @@
   margin-right: 10px;
   padding-top: 30px;
   @media only screen and (min-width: 900px) {
-    padding-top: 90px;
+    padding-top: 30px;
   }
 }
 
@@ -189,20 +269,20 @@
     padding: 30px 0;
   }
 }
-
+// VIC: Left for refactoring
 @mixin form-field {
-  padding-left: 10px;
-  margin-bottom: 5px;
-  background-color: #FCFCFC;
-  border: 1px solid #F0F0F0;
-  border-radius: 2px;
-  height: 40px;
+  // padding-left: 10px;
+  // margin-bottom: 5px;
+  // background-color: #FCFCFC;
+  // border: 1px solid #F0F0F0;
+  // border-radius: 2px;
+  // height: 40px;
+  // TODO REMOVED: use _tc-inputs !!!!
 }
 
 @mixin form-field-focused {
-  background-color: $white;
-  border: 1px solid #D1D3D4;
-  // TODO shadow?
+  // background-color: $white;
+  // TODO REMOVED: use _tc-inputs !!!!
 }
 
 @mixin horizontal-scroll {
@@ -227,20 +307,22 @@
   background-repeat: no-repeat;
 }
 
+
+// TODO: Reafactor those as $variables; you can also build a mixin to pass a parameter;
 @mixin develop-icon-outline {
-  background-image: url(/images/ico-track-develop-outline.svg);
+  background-image: url(/images/ico-track-develop.svg);
 }
 
 @mixin design-icon-outline {
-  background-image: url(/images/ico-track-design-outline.svg);
+  background-image: url(/images/ico-track-design.svg);
 }
 
 @mixin data-icon-outline {
-  background-image: url(/images/ico-track-data-outline.svg);
+  background-image: url(/images/ico-track-data.svg);
 }
 
 @mixin copilot-icon-outline {
-  background-image: url(/images/ico-track-co_pilot-outline.svg);
+  background-image: url(/images/ico-track-copilot.svg);
 }
 
 // UI REFRESH STYLES
@@ -258,35 +340,60 @@
 }
 
 @mixin ui-h1 {
-  @include source-sans-light;
   font-size: 46px;
 }
 
+
+// TODO: Cleanup
 @mixin ui-form-field {
-  height: 40px;
-  width: 300px;
-  padding: 0;
-  padding-left: 15px;
-  background-color: $gray-lightest;
-  @include source-sans-regular;
-  font-size: 16px;
-  color: #231F20;
+  // height: 40px;
+  // width: 300px;
+  // padding: 0;
+  // padding-left: 15px;
+  // background-color: $gray-lightest;
+  // @include source-sans-regular;
+  // font-size: 16px;
+  // color: #231F20;
+  // TODO REMOVED: use _tc-inputs !!!!
 }
 
 @mixin ui-form-placeholder {
-  ::-webkit-input-placeholder {
-    color: #B7B7B7;
-  }
-  ::-moz-placeholder { /* Firefox 19+ */
-    color: #B7B7B7;
-  }
-  :-ms-input-placeholder {
-    color: #B7B7B7;
-  }
-  :-moz-placeholder { /* Firefox 18- */
-    color: #B7B7B7;
-  }
+  // ::-webkit-input-placeholder {
+  //   color: #B7B7B7;
+  // }
+  // ::-moz-placeholder { /* Firefox 19+ */
+  //   color: #B7B7B7;
+  // }
+  // :-ms-input-placeholder {
+  //   color: #B7B7B7;
+  // }
+  // :-moz-placeholder { /* Firefox 18- */
+  //   color: #B7B7B7;
+  // }
+  // TODO REMOVED: use _tc-inputs !!!!  
 }
+
+@mixin community-form-placeholder {
+  // ::-webkit-input-placeholder {
+  //   color: #ADADB7;
+  // }
+  // ::-moz-placeholder { /* Firefox 19+ */
+  //   color: #ADADB7;
+  // }
+  // :-ms-input-placeholder {
+  //   color: #ADADB7;
+  // }
+  // :-moz-placeholder { /* Firefox 18- */
+  //   color: #ADADB7;
+  // }
+  // TODO REMOVED: use _tc-inputs !!!!
+}
+
+
+
+// OLD MIXINS
+// ----------------------------------------------------------------------------
+// We have to review those;
 
 @mixin ui-enabled-button {
   background-color: $ui-enabled-button-blue;

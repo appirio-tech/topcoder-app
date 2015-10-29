@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('ProfileService', ProfileService);
 
-  ProfileService.$inject = ['CONSTANTS', 'ApiService', 'UserService', '$q', '$filter'];
+  ProfileService.$inject = ['CONSTANTS', 'ApiService', 'UserService', '$q', '$filter', '$rootScope'];
 
-  function ProfileService(CONSTANTS, ApiService, UserService, $q, $filter) {
+  function ProfileService(CONSTANTS, ApiService, UserService, $q, $filter, $rootScope) {
 
     var restangular = ApiService.restangularV3;
 
@@ -42,7 +42,11 @@
     }
 
     function updateUserProfile(userData) {
-      return userData.save();
+      return userData.save().then(function(resp) {
+        // notify listeners of profile update event
+        $rootScope.$broadcast(CONSTANTS.EVENT_PROFILE_UPDATED);
+        return resp;
+      });
     }
 
     function getUserSkills(username) {
@@ -117,6 +121,7 @@
             'track': 'DESIGN',
             'subTrack': subTrack.name,
             'rank': false,
+            'challenges': subTrack.challenges,
             'wins': subTrack.wins,
             'mostRecentEventDate': new Date(subTrack.mostRecentEventDate)
           };
@@ -158,7 +163,7 @@
 
       function removeRanklessNoSubmissions(arr) {
         return arr.filter(function(subTrack) {
-          return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment || subTrack.submissions);
+          return subTrack && ((subTrack.track === 'DESIGN' && subTrack.challenges) || subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment || subTrack.submissions);
         });
       }
 
@@ -286,7 +291,7 @@
     }
 
     function getUserHandleColor(profile) {
-      var rating = _.get(profile, 'maxRating.rating', 0);
+      var rating = _.get(profile, 'maxRating.rating', null);
       return $filter('ratingColor')(rating);
     }
 
