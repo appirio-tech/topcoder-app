@@ -8,6 +8,11 @@
     img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || '/images/card-bg-no-image.svg'}}", fallback-src="/images/card-bg-no-image.svg")
     img(ng-show="challenge.isPrivate", src="/images/card-bg-private-project.svg")
 
+    .thumbnail-gallery(ng-show="numImages", ng-click="!challenge.isPrivate && imageURL && openLightbox()")
+      .gallery-icon
+
+      .num-images {{numImages}} IMAGES
+
 .list-view(ng-show="view === 'list'")
   .place-date
     p.place(ng-class="{ 'first-place': challenge.wonFirst }", ng-show="challenge.highestPlacement") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
@@ -22,3 +27,8 @@
   .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
     img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || '/images/card-bg-no-image.svg'}}", fallback-src="/images/ico-picture.svg")
     img(ng-show="challenge.isPrivate", src="/images/card-bg-private-project.svg")
+
+    .thumbnail-gallery(ng-show="numImages", ng-click="!challenge.isPrivate && imageURL && openLightbox()")
+      .gallery-icon
+
+      .num-images {{numImages}} IMAGES
