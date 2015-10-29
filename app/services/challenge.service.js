@@ -66,7 +66,7 @@
             if (phase.phaseType === 'Submission') {
               challenge.userAction = 'Submit';
 
-              if (challenge.userDetails.hasUserSubmittedForReview) {
+              if (_.get(challenge, 'userDetails.hasUserSubmittedForReview', false)) {
                 challenge.userCurrentPhase = phase.phaseType;
                 challenge.userCurrentPhaseEndTime = phase.scheduledEndTime;
                 challenge.userAction = 'Submitted';
