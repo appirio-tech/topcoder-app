@@ -5,14 +5,14 @@
       profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
 
     //- .sticky-container(bs-affix data-offset-top="10" data-offset-bottom="400")
-    .sticky-container()
+    .sticky-container
       profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
 
   .profile-about-container
 
     .empty-profile
       .empty-state
-        empty-state-placeholder(state-name="profile-empty", show="!profileVm.showEditProfileLink && !profileVm.numProjects && (!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)) && !vm.hasLinks")
+        empty-state-placeholder(state-name="profile-empty", show="profileVm.status.skills === 'ready' && profileVm.status.stats === 'ready' && profileVm.status.externalLinks === 'ready' && !profileVm.showEditProfileLink && !profileVm.numProjects && (!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)) && !vm.hasLinks")
           .sample-image
             img(ng-src="/images/robot.svg")
 

@@ -14,7 +14,7 @@
       | Member Since {{profile.startMonth}}
 
     a.tc-btn.tc-btn-s.edit(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
-
+  
   .tracks-links(ng-if="profile.tracks && profile.tracks.length > 0")
     .tracks
       .track(ng-repeat="track in (profile.tracks)", ng-click="profileVm.scrollTo(track)")
