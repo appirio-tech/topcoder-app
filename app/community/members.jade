@@ -1,12 +1,12 @@
 .community-view
   .header-community
     header
-      h1 Overview
+      h1 Community Overview
 
   .members-container
     .search-container
       form(name="searchForm", role="form", ng-submit="ctrl.search()", novalidate)
-        input(ng-model="ctrl.keywords", name="keywords", placeholder="find people", type="text", required)
+        input(ng-model="ctrl.keywords", name="keywords", placeholder="find members", type="text", required)
         input(type="submit" name="search-btn" value="").search-ico
 
     .default-show-container(ng-show="ctrl.notSearch")

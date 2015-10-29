@@ -76,6 +76,18 @@
     background-size: contain;
     background-repeat: no-repeat;
   }
+
+  .logo-link:after {
+    content: '';
+    background: url('/images/badge-beta.svg');
+    background-size: contain;
+    background-repeat: no-repeat; 
+    display: block;
+    width: 37px;
+    height: 17px;
+    margin-top: 23px;
+    margin-left: 155px;
+  }
 }
 
 .user-link {
@@ -285,6 +297,11 @@
 
   .top-header {
     padding: 0 20px;
+
+    .logo-link:after {
+      margin-top: 17px;
+      margin-left: 4px;
+    }
   }
 
   .menu-item {
