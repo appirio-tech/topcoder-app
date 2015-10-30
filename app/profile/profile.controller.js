@@ -42,26 +42,38 @@
         if (stats.COPILOT && stats.COPILOT.contests && vm.profile.tracks.indexOf('COPILOT') == -1) {
           vm.profile.tracks.push('COPILOT');
         }
-        vm.numProjects = vm.stats.challenges;
+        // flag to indicate if the member has acitivity on topcoder to be shown
+        // it is set to true, if we get at least one track with showTrack == true
+        vm.showTCActivity = false;
         vm.numWins = vm.stats.wins;
         vm.categories = ProfileService.getRanks(vm.stats);
         for(var trackName in vm.categories) {
           // trackStats is an array of subtrack rankings along with track stats properties (e.g showTrack)
           var trackStats = vm.categories[trackName];
+          // flag to indicate if the member has activity for this track
+          // it is set to true, if we get at least one subtrack which can be shown for topcoder activity
           trackStats.showTrack = false;
+          // if track has subtracks with stats
           if (trackStats && trackStats.length > 0) {
+            // iterate over each subtrack stat and determine if we need to show as stat
             trackStats.forEach(function(subTrackRank) {
+              // process subtack stat
               UserStatsService.processStatRank(subTrackRank);
+              // if any of the subtrack has stat to show, enable the showTrack flag for the track
               if (subTrackRank.showStats) {
                 trackStats.showTrack = true;
               }
             });
           }
+          // if any of the track has stat to show, enable the showTCActivity flag to true
+          if (trackStats.showTrack) {
+            vm.showTCActivity = true;
+          }
         }
       } else {
         vm.stats = false;
         // vm.profile.tracks = [];
-        vm.numProjects = 0;
+        vm.showTCActivity = 0;
         vm.numWins = 0;
         vm.categories = {};
       }
