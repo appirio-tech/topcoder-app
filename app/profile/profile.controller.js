@@ -4,11 +4,11 @@
   angular.module('tc.profile').controller('ProfileCtrl', ProfileCtrl);
 
   ProfileCtrl.$inject = ['CONSTANTS', '$log', '$q',
-    'TcAuthService', 'UserService', 'ProfileService', 'ChallengeService', 'ExternalAccountService',
+    'TcAuthService', 'UserService', 'UserStatsService', 'ProfileService', 'ChallengeService', 'ExternalAccountService',
     'userHandle', 'profile', 'ngDialog', '$anchorScroll'
   ];
 
-  function ProfileCtrl(CONSTANTS, $log, $q, TcAuthService, UserService, ProfileService, ChallengeService, ExternalAccountService, userHandle, profile, ngDialog, $anchorScroll) {
+  function ProfileCtrl(CONSTANTS, $log, $q, TcAuthService, UserService, UserStatsService, ProfileService, ChallengeService, ExternalAccountService, userHandle, profile, ngDialog, $anchorScroll) {
     var vm = this;
     // set profile to the object that was resolved
     vm.profile = profile;
@@ -45,6 +45,19 @@
         vm.numProjects = vm.stats.challenges;
         vm.numWins = vm.stats.wins;
         vm.categories = ProfileService.getRanks(vm.stats);
+        for(var trackName in vm.categories) {
+          var subTracks = vm.categories[trackName];
+          var trackStats = vm.categories[trackName];
+          trackStats.showTrack = false;
+          if (subTracks && subTracks.length > 0) {
+            subTracks.forEach(function(subTrackRank) {
+              UserStatsService.processStatRank(subTrackRank);
+              if (subTrackRank.showStats) {
+                trackStats.showTrack = true;
+              }
+            });
+          }
+        }
       } else {
         vm.stats = false;
         // vm.profile.tracks = [];
