@@ -19,29 +19,29 @@
       var data = {
         "memberLeaderboard": [
         {
-          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/yoki_august2015.png",
-          "name": "yoki",
+          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/iamtong_oct2015.png",
+          "name": "iamtong ",
           "contestType": "Design",
-          "description": "Won $3,800 in design challenges.",
+          "description": "Won $6500 in design challenges.",
           "class": "design"
         }, {
-          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/ultronzero_august2015.png",
-          "name": "ultronzero",
-          "contestType": "Software",
-          "description": "Won $6750 in development challenges.",
+          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/cjalmeida_oct2015.png",
+          "name": "cjalmeida",
+          "contestType": "Development",
+          "description": "Won $4500 in development challenges.",
           "class": "develop"
         }, {
-          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/lowsfish_august2015.png",
-          "name": "lowsfish",
+          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/islands_oct2015.png",
+          "name": "islands",
           "contestType": "Data Science",
-          "description": "Rating increased in both SRMs & advanced from Div 2 to Div 1.",
+          "description": "Advanced from Div 2 to Div 1 & total rating increase of 424 pts.",
           "class": "data-science"
         }, {
           "avatar": "https://s3.amazonaws.com/app.topcoder-dev.com/images/ico-user-default.7aa28736.svg",
-          "name": "TBD",
-          "contestType": "Rookie of the Month",
-          "description": "Most impressive start...",
-          "class": "data-science"
+          "name": "WinkTales",
+          "contestType": "Dev Rookie",
+          "description": "Already won 2 challenges in his short 2.5 month time with Topcoder",
+          "class": "develop"
         }],
         "copilots": [{
           "avatar": "//community.topcoder.com/i/m/maroosh.jpeg",
