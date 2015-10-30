@@ -77,7 +77,7 @@
 
                 .tag Ranking
 
-              .ranking(ng-if="subtrack.wins && !subtrack.rank && !subtrack.rating")
+              .ranking(ng-if="subtrack.wins !== null && subtrack.rank === null && !subtrack.rating")
                 .number(style="color: #21B2F1") {{subtrack.wins}}
 
                 .tag Wins
