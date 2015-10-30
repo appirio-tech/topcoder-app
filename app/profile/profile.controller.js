@@ -46,11 +46,11 @@
         vm.numWins = vm.stats.wins;
         vm.categories = ProfileService.getRanks(vm.stats);
         for(var trackName in vm.categories) {
-          var subTracks = vm.categories[trackName];
+          // trackStats is an array of subtrack rankings along with track stats properties (e.g showTrack)
           var trackStats = vm.categories[trackName];
           trackStats.showTrack = false;
-          if (subTracks && subTracks.length > 0) {
-            subTracks.forEach(function(subTrackRank) {
+          if (trackStats && trackStats.length > 0) {
+            trackStats.forEach(function(subTrackRank) {
               UserStatsService.processStatRank(subTrackRank);
               if (subTrackRank.showStats) {
                 trackStats.showTrack = true;

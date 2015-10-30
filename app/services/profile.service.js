@@ -123,7 +123,7 @@
             'rank': false,
             'challenges': subTrack.challenges,
             'wins': subTrack.wins,
-            'submissions': (subTrack.submissions && subTrack.submissions.submissions) || 0,
+            'submissions': (subTrack.submissions) || 0,
             'mostRecentEventDate': new Date(subTrack.mostRecentEventDate)
           };
         });
