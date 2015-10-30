@@ -39,7 +39,6 @@
         ChallengeService.getUserMarathonMatches(handle, marathonMatchParams),
         ChallengeService.getUserChallenges(handle, challengeParams)
       ]).then(function(challenges){
-        console.log('challenges: ', challenges);
         var marathonMatches = challenges[0];
         var devDesignChallenges = challenges[1];
 

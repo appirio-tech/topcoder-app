@@ -20,6 +20,9 @@
         var subtrackRanks = UserStatsService.compileSubtracks(trackRanks);
 
         UserStatsService.processStats(subtrackRanks);
+        // filter stats based on processing done above
+        // filtering is a separate step to allow multiple pre-processings and filter out in single call
+        subtrackRanks = UserStatsService.filterStats(subtrackRanks);
         // sort subtrack ranks
         subtrackRanks = $filter('orderBy')(subtrackRanks, 'mostRecentEventDate', true);
 

@@ -14,7 +14,9 @@
     var service = {
       getIterableStats: getIterableStats,
       processStats: processStats,
-      compileSubtracks: compileSubtracks
+      compileSubtracks: compileSubtracks,
+      filterStats: filterStats,
+      processStatRank: processStatRank
     };
 
     var percentageFunc = function(n) { return $filter('percentage')(n);};
@@ -111,27 +113,50 @@
       }, []);
     }
 
-    function processStats(ranks) {
-      angular.forEach(ranks, function(rank) {
-        if (rank.track === 'DESIGN') {
+    function processStatRank(rank) {
+      rank.showStats = true;
+      if (rank.track === 'DESIGN') {
+        rank.stat = rank.wins;
+        rank.statType = 'Wins';
+        // for non rated tracks, use submissions to filter out empty values
+        if(!rank.submissions) {
+          rank.showStats = false;
+        }
+      } else if (rank.track === 'COPILOT') {
+        rank.stat = rank.activeContests;
+        rank.statType = 'Challenges';
+      } else if (rank.track === 'DEVELOP') {
+        if (['CODE', 'FIRST_2_FINISH'].indexOf(rank.subTrack) != -1) {
           rank.stat = rank.wins;
           rank.statType = 'Wins';
-        } else if (rank.track === 'COPILOT') {
-          rank.stat = rank.activeContests;
-          rank.statType = 'Challenges';
-        } else if (rank.track === 'DEVELOP') {
-          if (['CODE', 'FIRST_2_FINISH'].indexOf(rank.subTrack) != -1) {
-            rank.stat = rank.wins;
-            rank.statType = 'Wins';
-          } else {
-            rank.stat = rank.rating;
-            rank.statType = 'Rating';
+          // for non rated tracks, use submissions to filter out empty values
+          if(!rank.submissions) {
+            rank.showStats = false;
           }
         } else {
           rank.stat = rank.rating;
           rank.statType = 'Rating';
         }
+      } else {
+        rank.stat = rank.rating;
+        rank.statType = 'Rating';
+      }
+    }
+
+    function processStats(ranks) {
+      angular.forEach(ranks, function(rank) {
+        processStatRank(rank);
       });
+    }
+
+    function filterStats(ranks) {
+      var filtered = [];
+      angular.forEach(ranks, function(rank) {
+        if (rank.showStats) {
+          filtered.push(rank);
+        }
+      });
+      return filtered;
     }
 
 

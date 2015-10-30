@@ -48,7 +48,7 @@
 
           .track(
             ng-repeat="track in profileVm.profile.tracks",
-            ng-if="profileVm.categories[track].length > 0",
+            ng-if="profileVm.categories[track].showTrack",
             id="{{track}}_TRACK"
           )
 
@@ -63,6 +63,7 @@
               ng-repeat="subtrack in profileVm.categories[track] | orderBy:'mostRecentEventDate':true",
               ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})",
               class="{{$index == 0 && 'first'}}"
+              ng-if="subtrack.showStats"
             )
               .name {{subtrack.subTrack | track}}
 
@@ -77,7 +78,7 @@
 
                 .tag Ranking
 
-              .ranking(ng-if="subtrack.wins !== null && subtrack.rank === null && !subtrack.rating")
+              .ranking(ng-if="subtrack.statType === 'Wins'")
                 .number(style="color: #21B2F1") {{subtrack.wins}}
 
                 .tag Wins
