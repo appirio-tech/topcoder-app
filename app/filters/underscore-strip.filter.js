@@ -5,6 +5,12 @@
 
   function underscoreStrip() {
     return function(string) {
+      var map = {
+        'ASSEMBLY_COMPETITION': 'ASSEMBLY'
+      };
+      if (map[string]) {
+        return map[string];
+      }
       if (!string) {
         return '';
       }
