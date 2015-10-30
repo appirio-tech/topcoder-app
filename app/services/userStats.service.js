@@ -12,7 +12,9 @@
   function UserStatsService($filter) {
 
     var service = {
-      getIterableStats: getIterableStats
+      getIterableStats: getIterableStats,
+      processStats: processStats,
+      compileSubtracks: compileSubtracks
     };
 
     var percentageFunc = function(n) { return $filter('percentage')(n);};
@@ -109,17 +111,25 @@
       }, []);
     }
 
-    function processStats(subtrackRanks) {
-      angular.forEach(subtrackRanks, function(subtrack) {
-        if (subtrack.track === 'DESIGN') {
-          subtrack.stat = subtrack.wins;
-          subtrack.statType = 'Wins';
-        } else if (subtrack.track === 'COPILOT') {
-          subtrack.stat = subtrack.activeContests;
-          subtrack.statType = 'Challenges';
+    function processStats(ranks) {
+      angular.forEach(ranks, function(rank) {
+        if (rank.track === 'DESIGN') {
+          rank.stat = rank.wins;
+          rank.statType = 'Wins';
+        } else if (rank.track === 'COPILOT') {
+          rank.stat = rank.activeContests;
+          rank.statType = 'Challenges';
+        } else if (rank.track === 'DEVELOP') {
+          if (['CODE', 'FIRST_2_FINISH'].indexOf(rank.subTrack) != -1) {
+            rank.stat = rank.wins;
+            rank.statType = 'Wins';
+          } else {
+            rank.stat = rank.rating;
+            rank.statType = 'Rating';
+          }
         } else {
-          subtrack.stat = subtrack.rating;
-          subtrack.statType = 'Rating';
+          rank.stat = rank.rating;
+          rank.statType = 'Rating';
         }
       });
     }
