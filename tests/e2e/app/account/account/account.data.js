@@ -22,7 +22,7 @@ var AccountData = function() {
      this.invalidLengthUserCredentials = [
                                           {	'username' :'aqmansuri',
                                         	'password' :'appirio123',
-                                        	'newpassword' : 'app',
+                                        	'newPassword' : 'app',
                                           }
                                           ],    
                                           

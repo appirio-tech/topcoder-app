@@ -15,7 +15,7 @@
 					 loginPage.get(accountData.baseUrl);
 					 loginPage.login(loginUserCred);
 					 accountPage.goToAccountPage(accountData.dashBoardUrl, loginUserCred);
-					 accountPage.verifyAccountChanges(accountData.dashBoardUrl, loginUserCred);
+//					 accountPage.verifyAccountChanges(accountData.dashBoardUrl, loginUserCred);
 				 });
 		  
 				 it('welcomes the user for logout', function() {
@@ -44,7 +44,7 @@
 			 
 			 
 		 }
-		 /*
+		 i=0;
 		 for (; i< accountData.invalidLengthUserCredentials.length; i++) {
 			 console.log('user credentials :'+accountData.userCredentials[i].username);
 			 (function(loginUserCred) {
@@ -76,12 +76,12 @@
 //						 expect(severWarnings).toBe(false);
 					 });
 				 });
-		        })(accountData.userCredentials[i]);
+		        })(accountData.invalidLengthUserCredentials[i]);
 			 
 			 
 		 }
 		 
-		 
+		 i=0;
 		 for (; i< accountData.invalidLengthNameCredentials.length; i++) {
 			 console.log('user credentials :'+accountData.userCredentials[i].username);
 			 (function(loginUserCred) {
@@ -117,7 +117,7 @@
 			 
 			 
 		 }
-
+		 i=0;
 		 for (; i< accountData.changePasswordCredentials.length; i++) {
 			 console.log('user credentials :'+accountData.userCredentials[i].username);
 			 (function(loginUserCred) {
@@ -165,7 +165,7 @@
 		        })(accountData.changePasswordCredentials[i]);
 			 
 			 
-		 }*/
+		 }
 			 
   
 });
