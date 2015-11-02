@@ -1,6 +1,6 @@
 .lightbox-container
   .left-nav
-    img(src="/images/ico-arrow-big-left.svg", ng-click="incrementIndex(-1)")
+    img(ng-show="challenge.userDetails.submissions.length > 1", src="/images/ico-arrow-big-left.svg", ng-click="incrementIndex(-1)")
 
   .selector
     .title {{challenge.name}}
@@ -25,6 +25,6 @@
       )
 
   .right-nav
-    img(src="/images/ico-arrow-big-right.svg", ng-click="incrementIndex(1)")
+    img(ng-show="challenge.userDetails.submissions.length > 1", src="/images/ico-arrow-big-right.svg", ng-click="incrementIndex(1)")
 
 //  img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
