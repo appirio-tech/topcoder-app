@@ -67,7 +67,7 @@
         filter: "platforms=ios&technologies=swift&status=active",
         limit: 3,
         offset: 0,
-        orderBy: 'submissionEndDate desc'
+        orderBy: 'submissionEndDate asc'
       }).then(function(challenges) {
         if (challenges.length > 0) {
           vm.challenges = challenges.slice(0, 3);

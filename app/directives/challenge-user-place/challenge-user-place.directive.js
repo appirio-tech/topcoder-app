@@ -70,7 +70,7 @@
           $scope.selectedIndex += x;
           if ($scope.selectedIndex < 0) $scope.selectedIndex = $scope.challenge.userDetails.submissions.length - 1;
           if ($scope.selectedIndex == $scope.challenge.userDetails.submissions.length) $scope.selectedIndex = 0;
-          $scope.selectedImage = $scope.challenge.userDetails.submissions[$scope.selectedIndex].fullImage;
+          $scope.selectedImage = $scope.challenge.userDetails.submissions[$scope.selectedIndex].submissionImage && $scope.challenge.userDetails.submissions[$scope.selectedIndex].submissionImage.full;
         }
 
         function openLightbox() {

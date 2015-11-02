@@ -61,7 +61,7 @@
         vm.categories = profileVm.categories;
         vm.marathonRating = profileVm.categories['MARATHON_MATCH'] && profileVm.categories['MARATHON_MATCH'].rating;
         vm.SRMRating = profileVm.categories['SRM'] && profileVm.categories['SRM'].rating;
-        vm.displaySection.stats = profileVm.showEditProfileLink || _.get(vm, 'categories.DESIGN', []).length || _.get(vm, 'categories.DEVELOP', []).length || _.get(vm, 'categories.DATA_SCIENCE', []).length || _.get(vm, 'categories.COPILOT', []).length;
+        vm.displaySection.stats = profileVm.showEditProfileLink;
       });
 
       profileVm.skillsPromise.then(function() {

@@ -93,7 +93,11 @@ body {
   line-height: 20px;
 }
 
-
+#toast-container > div {
+  width: 400px;
+  opacity: 0.95;
+  @include sofia-pro-light;
+}
 
 @media (max-width: 767px) {
   .form-errors {
