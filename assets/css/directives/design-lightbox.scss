@@ -67,7 +67,12 @@
   justify-content: center;
   z-index: 10000;
   .ngdialog-content {
-    .ngdialog-close { display: none; }
+    .ngdialog-close { 
+      position: absolute;
+      top: 5px;
+      right: 15px;
+      font-size: 30px;
+    }
     opacity: .95;
     height: 742px;
     width: 768px;

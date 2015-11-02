@@ -19,6 +19,17 @@ var ProfileData = function() {
                             	}*/
                            ],
                            
+   this.skillUserCred = [
+                        {
+                        'username' :'aqmansuri',
+                		'password' :'appirio123',
+                        'skillSet' : [ 'J', 'Javascript'],
+                        'gitUserName' :'abdul-auto',
+                        'gitPassword' : 'appirio123'
+                        
+   						}
+                        ]
+                           
     this.wrongPasswordCredentials= [
                                     {
                                     	'username' : 'aqmansuri',

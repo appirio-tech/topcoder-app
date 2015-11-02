@@ -43,11 +43,12 @@
           }]
         },
         "dashboard-ios-community": {
-          title: "iOS COMMUNITY",
+          title: "iOS Community",
           description: "Earn iOS topcoder badges and exclusive access to iOS challenges, prizes and special community-related events.",
           helpLinks: [{
             title: "Participate",
-            onClick: "vm.registerUser()",
+            // clickHandler: "vm.registerUser",
+            eventName: "IOS_REGISTER_USER",
             cssClass: "participate tc-btn tc-btn-s tc-btn-ghost"
           }, {
             title: "Learn More",
@@ -125,6 +126,15 @@
             cssClass: "learn-more"
           }]
         },
+        "profile-empty": {
+          title: "Beep. Beep. Hello!",
+          description: "Seems like this member doesn’t have much information to share yet.",
+          helpLinks: [{
+            title: "View Other Members",
+            url: _getUrl("/community/members"),
+            cssClass: "find-members tc-btn tc-btn-s"
+          }]
+        },
         "profile-topcoder-activity": {
           title: "My Challenges",
           description: "You have not participated in any challenges yet.",
@@ -149,7 +159,7 @@
         },
         "profile-external-links": {
           title: "External Links",
-          description: "You can add languages, environments, frameworks, libraries, platforms, tools, and any other technologies that you know well.",
+          description: "Show off your work and experience outside of Topcoder. Connect accounts from popular services and networks or add a link to any site.",
           helpLinks: [{
             title: "Connect Your Accounts",
             state: "settings.profile",

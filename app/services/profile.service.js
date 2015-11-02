@@ -121,6 +121,7 @@
             'track': 'DESIGN',
             'subTrack': subTrack.name,
             'rank': false,
+            'challenges': subTrack.challenges,
             'wins': subTrack.wins,
             'mostRecentEventDate': new Date(subTrack.mostRecentEventDate)
           };
@@ -162,7 +163,7 @@
 
       function removeRanklessNoSubmissions(arr) {
         return arr.filter(function(subTrack) {
-          return subTrack && (subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment || subTrack.submissions);
+          return subTrack && ((subTrack.track === 'DESIGN' && subTrack.challenges) || subTrack.rank || subTrack.rating || subTrack.wins || subTrack.fulfillment || subTrack.submissions);
         });
       }
 

@@ -38,7 +38,7 @@
     vm.statsPromise = ProfileService.getUserStats(vm.userHandle).then(function(stats) {
       if (stats) {
         vm.stats = stats;
-        vm.profile.tracks = vm.profile.tracks || ProfileService.getTracks(vm.stats) || [];
+        vm.profile.tracks = vm.profile.tracks || [];
         if (stats.COPILOT && stats.COPILOT.contests && vm.profile.tracks.indexOf('COPILOT') == -1) {
           vm.profile.tracks.push('COPILOT');
         }
@@ -47,10 +47,10 @@
         vm.categories = ProfileService.getRanks(vm.stats);
       } else {
         vm.stats = false;
-        vm.profile.tracks = [];
+        // vm.profile.tracks = [];
         vm.numProjects = 0;
         vm.numWins = 0;
-        vm.categories = [];
+        vm.categories = {};
       }
       vm.status.stats = CONSTANTS.STATE_READY;
       return vm.stats;

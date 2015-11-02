@@ -1,4 +1,6 @@
+var loginPage = require('../login/login.object');
 var path = require('path');
+
 var ProfilePage = function() {
  
   this.get = function(baseUrl) {
@@ -6,27 +8,27 @@ var ProfilePage = function() {
     browser.get(baseUrl);
   };
  
-  this.selectWindow = function(index) {
-	  // wait for handles[index] to exist
-	  browser.wait(function() {
-	    return browser.getAllWindowHandles().then(function(handles) {
-	      /**
-	       * Assume that handles.length >= 1 and index >=0.
-	       * So when calling selectWindow(index) return
-	       * true if handles contains that window.
-	       */
-	      if (handles.length > index) {
-	        return true;
-	      }
-	    });
-	  }, 30000);
-	  // here i know that the requested window exists
-
-	  // switch to the window
-	  return browser.getAllWindowHandles().then(function(handles) {
-	    return browser.switchTo().window(handles[index]);
-	  });
-  };
+//  this.selectWindow = function(index) {
+//	  // wait for handles[index] to exist
+//	  browser.wait(function() {
+//	    return browser.getAllWindowHandles().then(function(handles) {
+//	      /**
+//	       * Assume that handles.length >= 1 and index >=0.
+//	       * So when calling selectWindow(index) return
+//	       * true if handles contains that window.
+//	       */
+//	      if (handles.length > index) {
+//	        return true;
+//	      }
+//	    });
+//	  }, 30000);
+//	  // here i know that the requested window exists
+//
+//	  // switch to the window
+//	  return browser.getAllWindowHandles().then(function(handles) {
+//	    return browser.switchTo().window(handles[index]);
+//	  });
+//  };
   
   
   
@@ -176,7 +178,7 @@ var ProfilePage = function() {
 				  submitBtn.click();
 			  } else {
 				  browser.actions().mouseMove(submitBtn).perform();
-				  submitBtn.click().then(function(){
+				  submitBtn.click();//.then(function(){
 					  this.selectWindow(1);
 					  var toasterList = element.all(by.repeater('toaster in toasters'));
 					  var firstToaster = toasterList.get(0);
@@ -190,7 +192,7 @@ var ProfilePage = function() {
 					  browser.wait(isClickable, 30000);
 					  toastCloseBtn.click();
 					  
-				  });
+//				  });
 				  /*.then(function(){
 //					  browser.driver.navigate().refresh();
 					  var countryId = element(by.id('countryId_value'));
@@ -260,6 +262,8 @@ var ProfilePage = function() {
 	  });
   });
   };
+  
+  
   
   this.verifyProfileChanges = function(dashBoardUrl,loginUserCred){
 	  browser.driver.ignoreSynchronization = true;
@@ -343,7 +347,380 @@ var ProfilePage = function() {
 	  
 	  
   
-  }
+  };
+  
+  
+this.goToProfileSkill = function(dashBoardUrl,loginUserCred) {
+	  
+	  browser.driver.ignoreSynchronization = true;
+	
+	  var EC = protractor.ExpectedConditions;
+	  var until = protractor.until;
+	  
+	  var toolTip = element(by.css('.introjs-tooltip'));
+	  var isClickable = EC.elementToBeClickable(toolTip);
+	  browser.wait(isClickable, 30000);
+	  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
+	  isClickable = EC.elementToBeClickable(skipBtn);
+	  browser.wait(isClickable, 30000);
+	  skipBtn.click().then(function() {
+		  
+	  var menuItemHeaders = element.all(by.css('.menu-item-header'));
+	  var nameHeader = menuItemHeaders.get(1);
+	  var isClickable = EC.elementToBeClickable(nameHeader);
+	  browser.wait(isClickable, 30000);
+	  browser.actions().mouseMove(nameHeader).perform();
+	  var profileHeader = element(by.repeater("item in vm.userMenu").row(1));
+	  var mainMenuLiList = element.all(by.css('.main-menu li'));
+	  var submenuLi = mainMenuLiList.get(1);
+	  var profileLink = element(by.partialLinkText('MY PROFILE'));
+	  
+	  isClickable = EC.elementToBeClickable(profileLink);
+	  browser.wait(isClickable, 30000);
+	
+	  profileLink.click().then(function() {
+		  toolTip = element(by.css('.introjs-tooltip'));
+		  isClickable = EC.elementToBeClickable(toolTip);
+		  browser.wait(isClickable, 30000);
+		  skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
+		  isClickable = EC.elementToBeClickable(skipBtn);
+		  browser.wait(isClickable, 30000);
+		  skipBtn.click().then(function() {
+		  
+		  console.log('hii');
+		  
+//		  var username = element(by.css('.info .handle'));
+////		  var isClickable = EC.elementToBeClickable(username);
+////		  browser.wait(isClickable, 30000);
+////		  console.log('username '+username.getInnerHtml());
+//		  expect(username.getInnerHtml()).toEqual(loginUserCred.username);
+		  
+		  var editProfile = element(by.partialLinkText('EDIT PROFILE'));
+		  isClickable = EC.elementToBeClickable(editProfile);
+		  browser.wait(isClickable, 60000);
+		  editProfile.click().then(function() {
+			  /*
+			  var skillSet = element(by.id('tagId_value'));
+			  isClickable = EC.elementToBeClickable(skillSet);
+			  browser.wait(isClickable, 60000);
+			  for(var i=0; i<loginUserCred.skillSet.length; i++) {
+				  skillSet.sendKeys(loginUserCred.skillSet[0]).then(function(){
+					  var skillSetDropDown = element(by.id('tagId_dropdown'));
+					  isClickable = EC.elementToBeClickable(skillSetDropDown);
+					  browser.wait(isClickable, 60000);
+					  
+					  var row1 = element.all(by.css('.angucomplete-row')).first();
+					  isClickable = EC.elementToBeClickable(row1);
+					  browser.wait(isClickable, 60000);
+					  
+					  
+					  skillSetDropDown.all(by.css('.angucomplete-title')).filter(function(elem, index){
+						  return elem.getInnerHtml().then(function(text){
+//							  return text.toLowerCase() == loginUserCred.skillSet[i].toLowerCase();
+							  return text.indexOf(loginUserCred.skilSet[0]) != -1 ;
+						  })
+					  }).then(function(filteredElements){
+						  filteredElements[0].click();
+					  });
+				  });
+				  
+				  
+//				  browser.driver.wait(until.elementLocated(by.css('.angucomplete-row'), 60000));
+				  
+//				  browser.wait(function() {
+//					  var deferred = protractor.promise.defer();
+//					  
+//					  EC.elementToBeClickable(skillSetDropDown);
+//					  element(by.css('.angucomplete-row')).isPresent()
+//					  	.then(function (isPresent) {
+//					      deferred.fulfill(!isPresent);
+//					    });
+//					  return deferred.promise;
+//					});
+				  
+//				  browser.pause();
+				  
+//				  browser.actions().mouseMove(skillSet).perform();
+				  
+//				  browser.wait(element(by.css('.angucomplete-row')).isPresent());
+//				  browser.pause();
+//				  skillSetDropDown.all(by.css('.angucomplete-title')).filter(function(elem, index){
+//					  return elem.getInnerHtml().then(function(text){
+////						  return text.toLowerCase() == loginUserCred.skillSet[i].toLowerCase();
+//						  return text.indexOf(loginUserCred.skilSet[0]) != -1 ;
+//					  })
+//				  }).then(function(filteredElements){
+//					  filteredElements[0].click();
+//				  });
+			  }*/
+			  
+		  });
+		  });
+	  });
+  });
+  };
+  
+  
+  
+  
+  
+  
+this.goToProfileGitLogin = function(dashBoardUrl,loginUserCred) {
+	  
+	  browser.driver.ignoreSynchronization = true;
+	
+	  var EC = protractor.ExpectedConditions;
+	  var until = protractor.until;
+	  
+	  var toolTip = element(by.css('.introjs-tooltip'));
+	  var isClickable = EC.elementToBeClickable(toolTip);
+	  browser.wait(isClickable, 30000);
+	  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
+	  isClickable = EC.elementToBeClickable(skipBtn);
+	  browser.wait(isClickable, 30000);
+	  skipBtn.click().then(function() {
+		  
+	  var menuItemHeaders = element.all(by.css('.menu-item-header'));
+	  var nameHeader = menuItemHeaders.get(1);
+	  var isClickable = EC.elementToBeClickable(nameHeader);
+	  browser.wait(isClickable, 30000);
+	  browser.actions().mouseMove(nameHeader).perform();
+	  var profileHeader = element(by.repeater("item in vm.userMenu").row(1));
+	  var mainMenuLiList = element.all(by.css('.main-menu li'));
+	  var submenuLi = mainMenuLiList.get(1);
+	  var profileLink = element(by.partialLinkText('MY PROFILE'));
+	  
+	  isClickable = EC.elementToBeClickable(profileLink);
+	  browser.wait(isClickable, 30000);
+	
+	  profileLink.click().then(function() {
+		  toolTip = element(by.css('.introjs-tooltip'));
+		  isClickable = EC.elementToBeClickable(toolTip);
+		  browser.wait(isClickable, 30000);
+		  skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
+		  isClickable = EC.elementToBeClickable(skipBtn);
+		  browser.wait(isClickable, 30000);
+		  skipBtn.click().then(function() {
+		  
+		  var editProfile = element(by.partialLinkText('EDIT PROFILE'));
+		  isClickable = EC.elementToBeClickable(editProfile);
+		  browser.wait(isClickable, 60000);
+		  editProfile.click().then(function() {
+			  
+			  
+			  var accountList = element.all(by.repeater('account in accountList | orderBy:\'order\''));
+			  var githubAccount = accountList.get(0);
+			  var statusList = githubAccount.all(by.css('.status'));
+			  if(statusList.get(0).getInnerHtml() == 'Disconnect') {
+				if(statusList.get(0).getCssValue('display') == 'none') {
+					var faGithub = element(by.css('.el-github'));
+					faGithub.click();
+					selectWindow(1);
+					  browser.driver.wait(function() {
+						  var emailId = browser.driver.findElement(by.id('login_field'));
+						  console.log('git username');
+						  emailId.sendKeys(loginUserCred.gitUsername);
+						  return true;
+					  },30000);
+					  
+					  browser.driver.wait(function(){
+						 var password = browser.driver.findElement(by.id('password'));
+						 password.sendKeys(loginUserCred.gitPassword);
+						 console.log(' Git login Passwd');
+						 return true;
+					  },30000);
+					  
+					  browser.driver.wait(function(){
+							 var signIn = browser.driver.findElement(by.name('commit'));
+							 console.log('Git signIn');
+							 signIn.click();
+							 return true;
+					  },30000);
+					  
+					  browser.getAllWindowHandles().then(function (handles) {
+						  browser.switchTo().window(handles[0]);
+					  });
+					  
+					  if(githubAccount.all(by.css('.status')).get(0).getInnerHtml() == 'Connecting'){
+						  expect(true).toEqual(true);
+					  };
+					
+					
+				}  
+			  }
+		  });
+		  });
+	  });
+  });
+  };
+  
+  
+  
+  
+  
+  
+this.goToProfileBitBucketLogin = function(dashBoardUrl,loginUserCred) {
+	  
+	  browser.driver.ignoreSynchronization = true;
+	
+	  var EC = protractor.ExpectedConditions;
+	  var until = protractor.until;
+	  
+	  var toolTip = element(by.css('.introjs-tooltip'));
+	  var isClickable = EC.elementToBeClickable(toolTip);
+	  browser.wait(isClickable, 30000);
+	  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
+	  isClickable = EC.elementToBeClickable(skipBtn);
+	  browser.wait(isClickable, 30000);
+	  skipBtn.click().then(function() {
+		  
+	  var menuItemHeaders = element.all(by.css('.menu-item-header'));
+	  var nameHeader = menuItemHeaders.get(1);
+	  var isClickable = EC.elementToBeClickable(nameHeader);
+	  browser.wait(isClickable, 30000);
+	  browser.actions().mouseMove(nameHeader).perform();
+	  var profileHeader = element(by.repeater("item in vm.userMenu").row(1));
+	  var mainMenuLiList = element.all(by.css('.main-menu li'));
+	  var submenuLi = mainMenuLiList.get(1);
+	  var profileLink = element(by.partialLinkText('MY PROFILE'));
+	  
+	  isClickable = EC.elementToBeClickable(profileLink);
+	  browser.wait(isClickable, 30000);
+	
+	  profileLink.click().then(function() {
+		  toolTip = element(by.css('.introjs-tooltip'));
+		  isClickable = EC.elementToBeClickable(toolTip);
+		  browser.wait(isClickable, 30000);
+		  skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
+		  isClickable = EC.elementToBeClickable(skipBtn);
+		  browser.wait(isClickable, 30000);
+		  skipBtn.click().then(function() {
+		  
+		  var editProfile = element(by.partialLinkText('EDIT PROFILE'));
+		  isClickable = EC.elementToBeClickable(editProfile);
+		  browser.wait(isClickable, 60000);
+		  editProfile.click().then(function() {
+			  var imageUpload = element(by.css('.file-upload'));
+			  isClickable = EC.elementToBeClickable(imageUpload);
+			  browser.wait(isClickable, 30000);
+			  
+			  
+			  var accountList = element.all(by.css('.links .ext-tile'));
+			  var githubAccount = accountList.get(6);
+			  isClickable = EC.elementToBeClickable(githubAccount);
+			  browser.wait(isClickable, 60000);
+			  
+			  var statusList = githubAccount.all(by.css('.status'));
+			  expect(statusList.get(0).getInnerHtml()).toEqual('Disconnect');
+			  statusList.get(0).getInnerHtml().then(function(statusType){
+				  if(statusType == 'Disconnect'){
+					  console.log('status type' + statusType);
+					  statusList.get(0).getCssValue('display').then(function(displayType) {
+						  console.log('status display' + displayType);
+						  if(displayType == 'none') {
+							  var faGithub = element(by.css('.el-bitbucket'));
+								faGithub.click();
+								loginPage.selectWindow(1);
+								  browser.driver.wait(function() {
+									  var emailId = browser.driver.findElement(by.id('id_username'));
+									  console.log('git username');
+									  emailId.sendKeys(loginUserCred.gitUserName);
+									  return true;
+								  },30000);
+								  
+								  browser.driver.wait(function(){
+									 var password = browser.driver.findElement(by.id('id_password'));
+									 password.sendKeys(loginUserCred.gitPassword);
+									 console.log(' Git login Passwd');
+									 return true;
+								  },30000);
+								  
+								  browser.driver.wait(function(){
+									  var signIn = browser.driver.findElement(by.name('submit'));
+									  console.log('Git signIn');
+									  signIn.click().then(function(){
+//										  loginPage.selectWindow(1);
+										  browser.driver.wait(function(){
+											  var signIn1 = element(by.name('submit'));
+											  signIn1.isPresent().then(function(present){
+												 if(present == 'true'){
+													 console.log('Git submit access');
+													 signIn1.click();
+													 return true;
+												 } else {
+													 console.log('present '+present)
+												 }
+											  });
+
+										  },60000);
+									  });
+									  return true;
+								  },30000);
+//								  loginPage.selectWindow(1);
+								  
+								  
+								  browser.getAllWindowHandles().then(function (handles) {
+									  browser.switchTo().window(handles[0]);
+								  });
+								  
+								  if(githubAccount.all(by.css('.status')).get(0).getInnerHtml() == 'Connecting'){
+									  expect(true).toEqual(true);
+								  };
+						  } 
+					  });
+				  }else {
+					  console.log('i am here .. get me');
+				  }
+			  })
+			  /*
+			  if(statusList.get(0).getInnerHtml() == 'Disconnect') {
+				  expect(statusList.get(0).getAttirbute('display').toEqual('none'));
+				if(statusList.get(0).getAttirbute('display') == 'none') {
+					var faGithub = element(by.css('.el-bitbucket'));
+					faGithub.click();
+					this.selectWindow(1);
+					  browser.driver.wait(function() {
+						  var emailId = browser.driver.findElement(by.id('id_username'));
+						  console.log('git username');
+						  emailId.sendKeys(loginUserCred.gitUsername);
+						  return true;
+					  },30000);
+					  
+					  browser.driver.wait(function(){
+						 var password = browser.driver.findElement(by.id('id_password'));
+						 password.sendKeys(loginUserCred.gitPassword);
+						 console.log(' Git login Passwd');
+						 return true;
+					  },30000);
+					  
+					  browser.driver.wait(function(){
+						  var signIn = browser.driver.findElement(by.name('submit'));
+						  console.log('Git signIn');
+						  signIn.click();
+						  return true;
+					  },30000);
+					  
+					  browser.getAllWindowHandles().then(function (handles) {
+						  browser.switchTo().window(handles[0]);
+					  });
+					  
+					  if(githubAccount.all(by.css('.status')).get(0).getInnerHtml() == 'Connecting'){
+						  expect(true).toEqual(true);
+					  };
+					
+					
+				}  
+			  } else {
+				  console.log('i am here .. get me');
+			  }*/
+		  });
+		  });
+	  });
+  });
+  };
+  
+  
+  
    
   
   /*

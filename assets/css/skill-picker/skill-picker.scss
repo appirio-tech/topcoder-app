@@ -27,7 +27,7 @@
     margin-bottom: 25px;
     font-size: 22px;
     line-height: 32px;
-    @include source-sans-light;
+    @include font-with-weight('Sofia Pro', 300);
     color: $accent-gray;
   }
 
@@ -40,7 +40,7 @@
       padding-bottom: 10px;
     }
     >.description {
-      @include source-sans-regular;
+      @include font-with-weight('Merriweather Sans');
       color: #A3A3AE;
       font-size: 13px;
       line-height: 18px;
@@ -65,7 +65,7 @@
       padding-bottom: 10px;
     }
     .description {
-      @include source-sans-italic;
+      @include font-with-weight('Merriweather Sans');
       color: #A3A3AE;
       font-size: 13px;
       line-height: 20px;
@@ -117,7 +117,7 @@
               background-color: $white;
               border: none;
             }
-            @include source-sans-regular;
+            @include font-with-weight('Merriweather Sans');
             font-size: 14px;
             padding: 5px;
             color: $black;

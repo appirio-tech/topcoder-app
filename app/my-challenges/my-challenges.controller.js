@@ -145,7 +145,7 @@
     }
 
     function loadMore() {
-      currentOffset+=1;
+      currentOffset+=12;
       vm.getChallenges(currentOffset, false);
     }
 
