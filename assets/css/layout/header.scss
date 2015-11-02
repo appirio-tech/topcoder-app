@@ -78,15 +78,18 @@
   }
 
   .logo-link:after {
-    content: '';
-    background: url('/images/badge-beta.svg');
-    background-size: contain;
-    background-repeat: no-repeat; 
-    display: block;
     width: 37px;
-    height: 17px;
-    margin-top: 23px;
-    margin-left: 155px;
+    height: 18px;
+    margin-top: 21px;
+    margin-left: 160px;
+    border-radius: 0;
+    content: 'beta';
+    background-color: $gray-lighter;
+    padding: 0 1px;
+    border-radius: 15px;
+    font-size: 10px;
+    display: inline-block;
+    line-height: 19px;
   }
 }
 
