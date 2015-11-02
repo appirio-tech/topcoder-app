@@ -40,15 +40,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      border-top: none;// prevent css from my dashboard to 
+      border-top: none;// prevent css from my dashboard to
       border-bottom: none;// prevent css from my dashboard to override
-      
       padding: 15px 15px 30px 15px;
       background-color: $gray-lightest;
     }
 
     .content {
-
       section.participated {
         background: white;
         align-self: center;
@@ -73,7 +71,7 @@
             margin-left: 55px;
             align-self: flex-start;
             text-transform: uppercase;
-            color: #A3A3AE;
+            color: $accent-gray;
             a {
               text-decoration: none;
 
@@ -90,6 +88,7 @@
             right: 55px;*/
             margin-right: 55px;
             align-self: flex-end;
+
             button {
               margin-right: 17px;
               padding: 0;
@@ -100,8 +99,14 @@
               font-size: 11px;
               line-height: 16px;
               text-transform: uppercase;
-              color: #A3A3AE;
+              color: $accent-gray;
               cursor: pointer;
+              transition: none;
+
+              &:hover {
+                color: $black;
+                transition: none;
+              }
 
               &.disabled {
                 color: $black;
@@ -124,13 +129,25 @@
                 @include background-image-size(12px, 12px);
               }
 
-              &.tile:before {
-                background: url(/images/grid-off.svg);
-              }
-              &.list:before {
-                background: url(/images/list-off.svg);
+              &.tile {
+                &:before {
+                  background: url(/images/grid-off.svg);
+                }
+
+                &:hover:before {
+                  background: url(/images/grid-on.svg);
+                }
               }
 
+              &.list {
+                &:before {
+                  background: url(/images/list-off.svg);
+                }
+
+                &:hover:before {
+                  background: url(/images/list-on.svg);
+                }
+              }
             }
           }
         }
