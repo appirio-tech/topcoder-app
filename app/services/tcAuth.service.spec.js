@@ -15,91 +15,83 @@ describe('TcAuthService', function() {
     expect(service).to.exist;
   });
 
-  describe("isAuthenticated", function() {
+  describe('isAuthenticated - invalid v2 token', function() {
     beforeEach(function() {
       bard.mockService(AuthTokenService, {
         getV2Token: function() {
-          return
+          return;
         },
         getV3Token: function() {
-          return "v3Token";
+          return 'v3Token';
         },
+        getTCSSOToken: function() {
+          return 'tcssoToken';
+        }
       });
     });
-    it('should return false for invalid v2token', function() {
+
+    it('should return false', function() {
       expect(service.isAuthenticated()).to.be.false;
     });
   });
 
-  describe("isAuthenticated", function() {
+  describe('isAuthenticated - invalid v3 token', function() {
     beforeEach(function() {
       bard.mockService(AuthTokenService, {
         getV2Token: function() {
-          return "v2Token";
+          return 'v2Token';
         },
         getV3Token: function() {
           return ;
         },
+        getTCSSOToken: function() {
+          return 'tcssoToken';
+        }
       });
     });
-    it('should return false for invalid v3token', function() {
+
+    it('should return false', function() {
       expect(service.isAuthenticated()).to.be.false;
     });
   });
 
-  describe("isAuthenticated", function() {
+  describe('isAuthenticated - invalid v2 tcsso token', function() {
     beforeEach(function() {
       bard.mockService(AuthTokenService, {
         getV2Token: function() {
-          return "v2Token";
+          return 'v2Token';
         },
         getV3Token: function() {
-          return "V3Token";
+          return 'v3Token';
         },
+        getTCSSOToken: function() {
+          return;
+        }
       });
     });
-    it('should return true for valid tokens', function() {
+
+    it('should return false', function() {
+      expect(service.isAuthenticated()).to.be.false;
+    });
+  });
+
+  describe('isAuthenticated - valid tokens', function() {
+    beforeEach(function() {
+      bard.mockService(AuthTokenService, {
+        getV2Token: function() {
+          return 'v2Token';
+        },
+        getV3Token: function() {
+          return 'V3Token';
+        },
+        getTCSSOToken: function() {
+          return 'tcssoToken';
+        }
+      });
+    });
+
+    it('should return true', function() {
       expect(service.isAuthenticated()).to.be.true;
     });
   });
-  describe("isAuthenticated", function() {
-    beforeEach(function() {
-      bard.mockService(AuthTokenService, {
-        getV2Token: function() {
-          return ;
-        },
-        getV3Token: function() {
-          return ;
-        },
-      });
-    });
-    it('should return false for invalid tokens', function() {
-      expect(service.isAuthenticated()).to.be.false;
-    });
-  });
 });
-// describe.only('TCAuthService', function() {
-//   beforeEach(function() {
-//       var service;
-//     bard.appModule('tc.services');
-//     bard.inject(this, '$httpBackend', 'AuthTokenService', 'TcAuthService');
-//     bard.mockService(AuthTokenService, {
-//       getV2Token(): function() {return;},
-//       getV3Token(): function() {return "v3token";}
-//     });
-//     service = TcAuthService;
-//     $rootScope.$apply();
-//   });
-
-//   // bard.verifyNoOutstandingHttpRequests();
-
-//   it('should exist', function() {
-//     expect(service).to.exist;
-//   });
-
-// describe('isAuthenticated', function() {
-//   it('should return false for invalid v3 token', function() {
-//     expect(service.isAuthenticated()).to.be.false;
-//   });
-// });
-// });
