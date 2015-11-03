@@ -1,7 +1,7 @@
 .profile-subtrack-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
   .content 
     .page-header
-      page-state-header(handle="{{vm.userHandle}}", page-title="{{vm.pageName}}", hide-money="true", show-back-link="true", default-state="dashboard")
+      page-state-header(handle="{{vm.userHandle}}", page-title="{{vm.pageName}}", hide-money="true", show-back-link="true", default-state="profile")
         .nav-right
           i.fa.fa-th(ng-click="vm.showNav()")
     tc-tab-set
