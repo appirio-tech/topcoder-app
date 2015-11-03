@@ -25,7 +25,6 @@
 
       UserService.getUserProfile({fields: 'credential'})
       .then(function(res) {
-        console.log("RES: ", res.plain().credential.hasPassword);
         vm.isSocialRegistrant = !res.credential.hasPassword;
       })
       .catch(function(err) {
