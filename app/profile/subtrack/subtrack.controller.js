@@ -230,7 +230,7 @@
         template: 'profile/subtrack/nav.html',
         controller: 'ProfileCtrl',
         controllerAs: 'vm',
-        className: 'ngdialog-theme-default',
+        className: 'ngdialog-nav-theme',
         resolve: {
           userHandle: function() {
             return vm.userHandle;
