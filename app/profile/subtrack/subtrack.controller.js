@@ -28,9 +28,7 @@
     vm.pageName = vm.subTrack.toLowerCase().replace(/_/g, ' ');
 
     vm.tabs = [];
-    if (vm.track !== 'DESIGN') {
-      vm.tabs.push('statistics');
-    }
+    vm.tabs.push('statistics');
 
     if (vm.track !== 'COPILOT') {
       vm.tabs.push( vm.subTrack === 'SRM' ? 'Past srm': 'challenges');

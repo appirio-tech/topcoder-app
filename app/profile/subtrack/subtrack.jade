@@ -20,11 +20,10 @@
                 p.label {{item.label}}
 
         include ./develop/develop-statistics.jade
-        //- yes, challenges :( this is confusing and needs refactoring
-        include ./design/design-challenges.jade
+        include ./design/design-statistics.jade
         include ./data/data-statistics.jade
         
-      tc-tab(heading="{{vm.tabs[1]}}", ng-if="vm.track === 'DATA_SCIENCE' || vm.track === 'DEVELOP'")
+      tc-tab(heading="{{vm.tabs[1]}}")
         .subtrack-stats
           responsive-carousel(data="vm.subTrackStats", handle="{{vm.handle}}")
             .carousel-elem
@@ -37,5 +36,6 @@
                 p.value(ng-hide="item.label === 'rating'") {{item.val | empty}}
 
                 p.label {{item.label}}
-        include ./develop/develop-challenges.jade        
+        include ./develop/develop-challenges.jade    
+        include ./design/design-challenges.jade    
         include ./data/data-challenges.jade
