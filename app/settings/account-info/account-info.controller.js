@@ -3,25 +3,28 @@
 
   angular.module('tc.settings').controller('AccountInfoController', AccountInfoController);
 
-  AccountInfoController.$inject = ['userData', 'UserService', 'ProfileService', '$log', 'ISO3166', 'toaster', '$scope', '$timeout'];
+  AccountInfoController.$inject = ['userData', 'UserService', 'ProfileService', '$log', 'ISO3166', 'toaster', '$scope', '$timeout', '$state'];
 
-  function AccountInfoController(userData, UserService, ProfileService, $log, ISO3166, toaster, $scope, $timeout) {
+  function AccountInfoController(userData, UserService, ProfileService, $log, ISO3166, toaster, $scope, $timeout, $state) {
     var vm = this;
-    vm.saveAccountInfo = saveAccountInfo;
-    vm.updateCountry   = updateCountry;
-    vm.submitNewPassword = submitNewPassword;
-    vm.isSocialRegistrant = false;
-    vm.formProcessing = {
-      accountInfoForm: false,
-      newPasswordForm: false
-    };
     var originalUserData = userData;
+    vm.saveAccountInfo   = saveAccountInfo;
+    vm.updateCountry     = updateCountry;
+    vm.submitNewPassword = submitNewPassword;
 
     activate();
 
     function activate() {
+      vm.isSocialRegistrant = false;
+
+      vm.formProcessing = {
+        accountInfoForm: false,
+        newPasswordForm: false
+      };
+
       vm.userData = userData.clone();
       processData(vm.userData);
+
       UserService.getUserProfile({fields: 'credential'})
       .then(function(res) {
         vm.isSocialRegistrant = !res.credential.hasPassword;
