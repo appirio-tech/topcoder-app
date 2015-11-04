@@ -177,7 +177,7 @@
     }
 
     function isAuthenticated() {
-      return !!AuthTokenService.getV3Token() && !!AuthTokenService.getV2Token();
+      return !!AuthTokenService.getV3Token() && !!AuthTokenService.getV2Token() && !!AuthTokenService.getTCSSOToken()
     }
 
   }
