@@ -80,6 +80,9 @@
                     {provider: provider.displayName }
                   )
                 );
+              } else {
+                $log.error("Fatal Error: _link: " + resp.msg);
+                toaster.pop('error', "Whoops!", "Sorry, we are unable to add your account right now. Please try again later. If the problem persists, please contact <a href=\"mailTo:support@.appirio.com\">support@apprio.com</a>.");
               }
             });
           }
@@ -107,7 +110,7 @@
                 $log.info("Social profile not linked to account");
                 msg = "{provider} account is not linked to your account. If you think this is an error please contact <a href=\"mailTo:support@.appirio.com\">support@apprio.com</a>.";
               } else {
-                $log.info("Fatal error: " + msg);
+                $log.error("Fatal error: _unlink: " + msg);
                 msg = "Sorry! We are unable to unlink your {provider} account. If problem persists, please contact <a href=\"mailTo:support@.appirio.com\">support@apprio.com</a>";
               }
               toaster.pop('error', "Whoops!", String.supplant(msg, {provider: provider.displayName }));
