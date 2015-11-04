@@ -527,6 +527,13 @@
       }
 
     }
+
+    .design {
+      // override height of the statistics section for design track as we don't have limited stats for design
+      ul.vertical-stats {
+        height: 200px;
+      }
+    }
   }
   }
   .categoryNav {
