@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 .profile-widget-directive {
   display: flex;
@@ -93,7 +92,7 @@
       display: flex;
       flex-direction: row;
       justify-content: center;
- 
+
       .track {
         cursor: pointer;
         display: flex;
