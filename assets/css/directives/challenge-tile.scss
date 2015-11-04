@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 // Default Challenge Tile Stylings
 challenge-tile .challenge.tile-view {
@@ -232,7 +231,7 @@ challenge-tile .challenge.tile-view {
       &.DATA_SCIENCE {
         flex: 2;
         justify-content: center;
-      }      
+      }
 
       .marathon-score {
         margin-bottom: 70px;
@@ -331,7 +330,7 @@ challenge-tile .challenge.list-view {
       color: $gray-darkest;
       @include ellipsis;
 
-      
+
       span:first-child {
         color: $accent-gray;
         white-space: nowrap;

@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 .login-container,
 .register-container,
@@ -98,7 +97,7 @@
   .password-tips {
     @media screen and (min-width: 915px) {
       left: 395px;
-    }   
+    }
   }
 
   // Autocomplete
@@ -257,7 +256,7 @@
   display: flex;
   flex-flow: row wrap;
   margin-top: 30px;
-  justify-content: center;  
+  justify-content: center;
   text-transform: uppercase;
   font-size: $label-small;
   @include font-with-weight('Sofia Pro', 500);
@@ -290,7 +289,7 @@
   .copyright-notice {
     color: $gray-dark;
   }
-  
+
 }
 
 

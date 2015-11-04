@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 .login-container {
 
@@ -56,6 +55,6 @@
     @media (min-width: 768px) {
       margin-bottom: 60px;
     }
-    
+
   }
 }

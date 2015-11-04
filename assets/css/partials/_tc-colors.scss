@@ -1,5 +1,4 @@
 // TOPCODER Brand palette
-// We should use those variables instead of color values;
 $primary: #0096FF;
 $primary-dark: #097DCE;
 $primary-dark2: darken($primary, 20%);
@@ -7,7 +6,6 @@ $primary-light: #85CCFF;
 $primary-light2: lighten($primary, 70%);
 $primary-lighter: #F2FAFF;
 $primary-lighter2: lighten($primary, 90%);
-
 
 $error: #F31D3D;
 $error-dark: #C70E2A;
@@ -43,13 +41,9 @@ $data_science: #FC9A00;
 $develop: #05C14F;
 $copilot: #7D939E;
 
-
-
-// Old colors that we should clean. Don't reference or use in new modules!
-
+// Old colors that need to be removed. Don't reference or use in new modules!
 $light-black: #333;
 
-// grays
 $light-gray      : #929292;
 $medium-gray     : #eee;
 $dark-gray       : #666;
@@ -60,19 +54,16 @@ $horizontal-rule : #e1e1e1;
 $input-background: #3f4143;
 $gray-dark-alt: #ADADB7;
 
-// oranges
 $tc-btn-light-orange: #f90;
 $tc-btn-dark-orange : #ff7a00;
 $light-orange       : #ffb800;
 $dark-orange        : #ff8a00;
 
-// blues
 $light-blue : #00aeff;
 $dark-blue  : #0096ff;
 $review-blue: #0071bc;
 $login-blue : #26A9E0;
 
-// Refactor and get rid of these:
 $ui-page-gray: #f1f2f2;
 
 $ui-dark-gray: #231F20;
