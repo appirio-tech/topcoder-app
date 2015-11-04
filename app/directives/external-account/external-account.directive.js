@@ -76,13 +76,13 @@
                 toaster.pop('error', "Whoops!",
                   String.supplant(
                     "This {provider} account is linked to another account. \
-                    If you think this is an error please contact <a href=\"mailTo:support@.appirio.com\">support@apprio.com</a>.",
+                    If you think this is an error please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>.",
                     {provider: provider.displayName }
                   )
                 );
               } else {
                 $log.error("Fatal Error: _link: " + resp.msg);
-                toaster.pop('error', "Whoops!", "Sorry, we are unable to add your account right now. Please try again later. If the problem persists, please contact <a href=\"mailTo:support@.appirio.com\">support@apprio.com</a>.");
+                toaster.pop('error', "Whoops!", "Sorry, we are unable to add your account right now. Please try again later. If the problem persists, please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>.");
               }
             });
           }
@@ -108,10 +108,10 @@
               var msg = resp.msg;
               if (resp.status === 'SOCIAL_PROFILE_NOT_EXIST') {
                 $log.info("Social profile not linked to account");
-                msg = "{provider} account is not linked to your account. If you think this is an error please contact <a href=\"mailTo:support@.appirio.com\">support@apprio.com</a>.";
+                msg = "{provider} account is not linked to your account. If you think this is an error please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>.";
               } else {
                 $log.error("Fatal error: _unlink: " + msg);
-                msg = "Sorry! We are unable to unlink your {provider} account. If problem persists, please contact <a href=\"mailTo:support@.appirio.com\">support@apprio.com</a>";
+                msg = "Sorry! We are unable to unlink your {provider} account. If problem persists, please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>";
               }
               toaster.pop('error', "Whoops!", String.supplant(msg, {provider: provider.displayName }));
             });
