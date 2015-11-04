@@ -2,7 +2,7 @@ var LoginPage = function() {
  
   this.get = function(baseUrl) {
 	  browser.ignoreSynchronization = true;
-    browser.get(baseUrl);
+	  browser.get(baseUrl);
   };
  
   this.selectWindow = function(index) {
@@ -64,6 +64,7 @@ var LoginPage = function() {
 	  
     
 	  loginButton.click().then(function(){
+//		  browser.driver.ignoreSynchronization = true;
 //		  var toolTip = element(by.css('.introjs-tooltip'));
 //		  var isClickable = EC.elementToBeClickable(toolTip);
 //		  browser.wait(isClickable, 30000);
@@ -72,19 +73,22 @@ var LoginPage = function() {
 //		  browser.wait(isClickable, 30000);
 //		  skipBtn.click().then(function() {
 			  
-		  
-		  
-		  
-		  var headerDash = element(by.id('header'));
-		  isClickable = EC.elementToBeClickable(headerDash);
+//		  browser.pause();
+		  var pageHeader = element(by.css('.page-info .ng-binding'));
+		  var isClickable = EC.elementToBeClickable(pageHeader);
 		  browser.wait(isClickable, 60000);
+		  expect(pageHeader.getInnerHtml()).toEqual('Dashboard');
 		  
-		  var menuItemHeaderList = element.all(by.css('.menu-item-header'));
-		  var menuItemHeader = menuItemHeaderList.get(1);
-		  var username = menuItemHeader.all(by.css('.username')).get(0);
-		  isClickable = EC.elementToBeClickable(username);
-		  browser.wait(isClickable, 60000);
-		  console.log('username '+username.getInnerHtml());
+//		  var headerDash = element(by.id('header'));
+//		  var isClickable = EC.elementToBeClickable(headerDash);
+//		  browser.wait(isClickable, 60000);
+		  
+//		  var menuItemHeaderList = element.all(by.css('.menu-item-header'));
+//		  var menuItemHeader = menuItemHeaderList.get(1);
+//		  var username = menuItemHeader.all(by.css('.username')).get(0);
+//		  isClickable = EC.elementToBeClickable(username);
+//		  browser.wait(isClickable, 60000);
+//		  console.log('username '+username.getInnerHtml());
 //		  expect(username.getInnerHtml()).toEqual(loginUser.username);
 		  
 		  

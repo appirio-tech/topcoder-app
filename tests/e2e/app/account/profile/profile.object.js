@@ -353,6 +353,7 @@ var ProfilePage = function() {
 this.goToProfileSkill = function(dashBoardUrl,loginUserCred) {
 	  
 	  browser.driver.ignoreSynchronization = true;
+//	  console.log(browser.driver.ignoreSynchronization +'browser.driver.ignoreSynchronization');
 	
 	  var EC = protractor.ExpectedConditions;
 	  var until = protractor.until;
@@ -399,18 +400,23 @@ this.goToProfileSkill = function(dashBoardUrl,loginUserCred) {
 		  isClickable = EC.elementToBeClickable(editProfile);
 		  browser.wait(isClickable, 60000);
 		  editProfile.click().then(function() {
-			  /*
+			  
 			  var skillSet = element(by.id('tagId_value'));
 			  isClickable = EC.elementToBeClickable(skillSet);
 			  browser.wait(isClickable, 60000);
-			  for(var i=0; i<loginUserCred.skillSet.length; i++) {
+//			  for(var i=0; i<loginUserCred.skillSet.length; i++) {
 				  skillSet.sendKeys(loginUserCred.skillSet[0]).then(function(){
 					  var skillSetDropDown = element(by.id('tagId_dropdown'));
 					  isClickable = EC.elementToBeClickable(skillSetDropDown);
 					  browser.wait(isClickable, 60000);
 					  
-					  var row1 = element.all(by.css('.angucomplete-row')).first();
-					  isClickable = EC.elementToBeClickable(row1);
+//					  var row1 = element.all(by.css('.angucomplete-row')).first();
+//					  isClickable = EC.elementToBeClickable(row1);
+//					  browser.wait(isClickable, 60000);
+					   
+					  var titleFirst = element(by.css('.angucomplete-title'));
+//					  expect(titleFirst.isPresent()).toEqual(true);
+					  isClickable = EC.elementToBeClickable(titleFirst);
 					  browser.wait(isClickable, 60000);
 					  
 					  
@@ -452,7 +458,7 @@ this.goToProfileSkill = function(dashBoardUrl,loginUserCred) {
 //				  }).then(function(filteredElements){
 //					  filteredElements[0].click();
 //				  });
-			  }*/
+//			  }
 			  
 		  });
 		  });

@@ -11,15 +11,15 @@
 		 for (; i< accountData.userCredentials.length; i++) {
 			 console.log('user creds :'+accountData.userCredentials[i].username);
 			 (function(loginUserCred) {
-				 it('welcomes the user', function() {
+				 it('Account Update +ve', function() {
 					 loginPage.get(accountData.baseUrl);
 					 loginPage.login(loginUserCred);
 					 accountPage.goToAccountPage(accountData.dashBoardUrl, loginUserCred);
 //					 accountPage.verifyAccountChanges(accountData.dashBoardUrl, loginUserCred);
 				 });
 		  
-				 it('welcomes the user for logout', function() {
-//					 loginPage.logOut(accountData.dashBoardUrl);
+				 it('User logout', function() {
+					 loginPage.logOut(accountData.dashBoardUrl);
 				 });
 		  
 				 afterEach(function() {  
@@ -46,7 +46,7 @@
 		 }
 		 i=0;
 		 for (; i< accountData.invalidLengthUserCredentials.length; i++) {
-			 console.log('user credentials :'+accountData.userCredentials[i].username);
+			 console.log('user credentials :'+accountData.invalidLengthUserCredentials[i].username);
 			 (function(loginUserCred) {
 				 it('Invalid length new password', function() {
 					 loginPage.get(accountData.baseUrl);
@@ -119,7 +119,7 @@
 		 }
 		 i=0;
 		 for (; i< accountData.changePasswordCredentials.length; i++) {
-			 console.log('user credentials :'+accountData.userCredentials[i].username);
+			 console.log('changePasswordCredentials credentials :'+accountData.changePasswordCredentials[i].username);
 			 (function(loginUserCred) {
 				 it('Change Password', function() {
 					 loginPage.get(accountData.baseUrl);

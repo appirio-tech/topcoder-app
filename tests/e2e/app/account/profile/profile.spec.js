@@ -53,9 +53,9 @@
 				 it('Profile Skill Update', function() {
 					 loginPage.get(profileData.baseUrl);
 					 loginPage.login(loginUserCred);
-//					 profilePage.goToProfileSkill(profileData.dashBoardUrl, loginUserCred);
+					 profilePage.goToProfileSkill(profileData.dashBoardUrl, loginUserCred);
 //					 profilePage.verifyProfileChanges(profileData.dashBoardUrl, loginUserCred);
-					 profilePage.goToProfileBitBucketLogin(profileData.dashBoardUrl, loginUserCred);
+//					 profilePage.goToProfileBitBucketLogin(profileData.dashBoardUrl, loginUserCred);
 				 });
 		  
 				 it('welcomes the user for logout', function() {

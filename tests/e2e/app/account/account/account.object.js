@@ -1,4 +1,6 @@
 var path = require('path');
+var loginPage = require('../login/login.object');
+
 var AccountPage = function() {
  
   this.get = function(baseUrl) {
@@ -50,8 +52,8 @@ var AccountPage = function() {
 	  browser.wait(isClickable1, 30000);
 	  
 	  var nameHeader = element.all(by.css('.main-menu li')).get(1);
-	  var isClickable = EC.elementToBeClickable(nameHeader);
-	  browser.wait(isClickable, 30000);
+//	  var isClickable = EC.elementToBeClickable(nameHeader);
+//	  browser.wait(isClickable, 30000);
 	  
 	  browser.actions().mouseMove(nameHeader).perform();
 	  var profileHeader = element(by.repeater("item in vm.userMenu").row(1));
@@ -139,8 +141,8 @@ var AccountPage = function() {
 	  browser.wait(isClickable1, 30000);
 	  
 	  var nameHeader = element.all(by.css('.main-menu li')).get(1);
-	  var isClickable = EC.elementToBeClickable(nameHeader);
-	  browser.wait(isClickable, 30000);
+//	  var isClickable = EC.elementToBeClickable(nameHeader);
+//	  browser.wait(isClickable, 30000);
 	  
 	  browser.actions().mouseMove(nameHeader).perform();
 	  var profileLink = element(by.partialLinkText('MY PROFILE'));
@@ -242,8 +244,8 @@ var AccountPage = function() {
 //	  var nameHeader = itemHeader.get(6);
 	  var menuItemHeaders = element.all(by.css('.menu-item-header'));
 	  var nameHeader = menuItemHeaders.get(1);
-	  var isClickable = EC.elementToBeClickable(nameHeader);
-	  browser.wait(isClickable, 30000);
+//	  var isClickable = EC.elementToBeClickable(nameHeader);
+//	  browser.wait(isClickable, 30000);
 	  browser.actions().mouseMove(nameHeader).perform();
 	  var profileHeader = element(by.repeater("item in vm.userMenu").row(1));
 	  var mainMenuLiList = element.all(by.css('.main-menu li'));
@@ -296,10 +298,11 @@ var AccountPage = function() {
 			  browser.actions().mouseMove(changePasswordBtn).perform();
 			  
 			  changePasswordBtn.click().then(function(){
+				  loginPage.get(dashBoardUrl);
 				  
-				  changePasswordBtn = element(by.partialButtonText('Change Password'));
-				  isClickable = EC.elementToBeClickable(changePasswordBtn);
-				  browser.wait(isClickable, 60000);
+//				  changePasswordBtn = element(by.partialButtonText('Change Password'));
+//				  isClickable = EC.elementToBeClickable(changePasswordBtn);
+//				  browser.wait(isClickable, 60000);
 				  
 			  });
 			  });

@@ -323,6 +323,191 @@ var MyDashboardPage = function() {
 			  });
 	  });
 	  
+  };
+	  
+	  
+	  
+	  this.goToEmptyDashboardPage = function(dashBoardUrl,loginUserCred) {
+		  
+		  browser.driver.ignoreSynchronization = true;
+		
+		  var EC = protractor.ExpectedConditions;
+		  var menuItemHeaders = element.all(by.css('.menu-item-header'));
+		  var nameHeader = menuItemHeaders.get(1);
+		  var isClickable = EC.elementToBeClickable(nameHeader);
+		  var moneyEarned = element(by.css('.money-earned'));
+		  isClickable = EC.elementToBeClickable(moneyEarned);
+		  browser.wait(isClickable, 30000);
+		  
+		  
+		  var noChallengeSection = element(by.css('.challenges .noChallenges'));
+		  expect(noChallengeSection.isPresent()).toEqual(true);
+		  isClickable = EC.elementToBeClickable(noChallengeSection);
+		  browser.wait(isClickable, 30000);
+		  
+		  var pastChallenges = element(by.partialLinkText('Past Challenges'));
+		  expect(pastChallenges.isPresent()).toEqual(true);
+		  isClickable = EC.elementToBeClickable(pastChallenges);
+		  browser.wait(isClickable, 30000);
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  var ratings = element(by.css('.ratings'));
+		  var carouselCont = ratings.all(by.css('ul')).get(0);
+		  var carouselNext = element(by.css('.rn-carousel-control-next'));
+		  var subTrackList = element.all(by.repeater('subtracks in vm.subtrackRanksCollection'));
+		  var subTrackCount = subTrackList.count();
+		  var counter = 0;
+		  carouselNext.click().then(function(displayed){
+			  carouselNext = element(by.css('.rn-carousel-control-next'));
+		  });
+
+		  var carouselPrev = element(by.css('.rn-carousel-control-prev'));
+		  carouselPrev.click();
+		  
+		  var tileViewChallenges = element(by.css('.tile-view')).all(by.css('challenge-tile'));
+		  
+		  expect(tileViewChallenges.count()).toEqual(loginUserCred.challengeCount);
+		  
+		  var listButton = element(by.partialButtonText('List'));
+		  listButton.click().then(function(){
+			   var listViewChallenges = element(by.css('.list-view')).all(by.css('challenge-tile'));
+			   expect(listViewChallenges.count()).toEqual(2);
+		  });
+		  
+		  var gridButton = element(by.partialButtonText('Grid'));
+		  gridButton.click().then(function(){
+			   tileViewChallenges = element(by.css('.tile-view')).all(by.css('challenge-tile'));
+			   expect(tileViewChallenges.count()).toEqual(loginUserCred.challengeCount);
+			   var allActiveChallengesPage = element(by.partialLinkText('VIEW MORE'));
+				  browser.actions().mouseMove(allActiveChallengesPage).perform();
+				  
+				  allActiveChallengesPage.click().then(function(){
+					  var myChallenges = element(by.css('.my-challenges'));
+					  isClickable = EC.elementToBeClickable(myChallenges);
+					  browser.wait(isClickable, 30000);
+					  console.log(myChallenges.getText());
+					  
+					  var tileView = element(by.css('.tile-view'));
+					  var challengeList = tileView.all(by.css('challenge-tile'));
+					  var firstChallenge = challengeList.get(0);
+					  var firstChallengeLink = firstChallenge.all(by.css('.tile-view .active-challenge a')).get(0);
+					  
+					  browser.get(dashBoardUrl);
+					  moneyEarned = element(by.css('.money-earned'));
+					  isClickable = EC.elementToBeClickable(moneyEarned);
+					  browser.wait(isClickable, 30000);
+					  
+					  var allPastChallenges = element(by.partialLinkText('PAST CHALLENGES'));
+					  browser.actions().mouseMove(allPastChallenges).perform();
+					  allPastChallenges.click().then(function(){
+						  var myChallenges = element(by.css('.my-challenges'));
+						  isClickable = EC.elementToBeClickable(myChallenges);
+						  browser.wait(isClickable, 30000);
+						  console.log(myChallenges.getText());
+						  expect(myChallenges.getText()).toContain('MY CHALLENGES');
+						  
+						  tileView = element(by.css('.tile-view'));
+						  isClickable = EC.elementToBeClickable(tileView);
+						  browser.wait(isClickable, 30000);
+						  
+						  challengeList = tileView.all(by.css('challenge-tile'));
+						  firstChallenge = challengeList.get(0);
+						  firstChallengeLink = firstChallenge.all(by.css('.tile-view .completed-challenge a')).get(0);
+							  
+							  browser.get(dashBoardUrl);
+								 moneyEarned = element(by.css('.money-earned'));
+								 isClickable = EC.elementToBeClickable(moneyEarned);
+								 browser.wait(isClickable, 30000);
+								 var srmTiles = element(by.css('.srm-tiles')).all(by.css('srm-tile'));
+								 expect(srmTiles.count()).toEqual(loginUserCred.srmCount);
+								 var problemArchivesLink = element(by.partialLinkText('PROBLEM ARCHIVES'));
+								 problemArchivesLink.click().then(function(){
+									 
+									 browser.get(dashBoardUrl);
+									 moneyEarned = element(by.css('.money-earned'));
+									 isClickable = EC.elementToBeClickable(moneyEarned);
+									 browser.wait(isClickable, 30000);
+									 
+									 var matchEditorialLink = element(by.partialLinkText('MATCH EDITORIALS'));
+									 isClickable = EC.elementToBeClickable(matchEditorialLink);
+									 browser.wait(isClickable, 30000);
+									 browser.ignoreSynchronization = true;
+									 matchEditorialLink.click().then(function(){
+										 
+									 browser.get(dashBoardUrl);
+									 
+									 moneyEarned = element(by.css('.money-earned'));
+									 isClickable = EC.elementToBeClickable(moneyEarned);
+									 browser.wait(isClickable, 30000);
+									 
+									 var learnMoreLink = element(by.partialLinkText('LEARN MORE'));
+									 isClickable = EC.elementToBeClickable(learnMoreLink);
+									 browser.wait(isClickable, 30000);
+									 
+									 learnMoreLink.click().then(function(){
+											 
+										 browser.get(dashBoardUrl);
+										 moneyEarned = element(by.css('.money-earned'));
+										 isClickable = EC.elementToBeClickable(moneyEarned);
+										 browser.wait(isClickable, 30000);
+										 
+										  });
+									  });
+									  
+								  });
+						  
+						  
+						
+					 });
+				  });
+		  });
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	 /** 
 	  var allActiveChallengesPage = element(by.partialLinkText('VIEW ALL ACTIVE CHALLENGES'));
 	  browser.actions().mouseMove(allActiveChallengesPage).perform();
