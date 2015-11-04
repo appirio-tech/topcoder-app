@@ -28,8 +28,14 @@
       font-size: 11px;
       line-height: 16px;
       text-transform: uppercase;
-      color: #A3A3AE;
+      color: $accent-gray;
       cursor: pointer;
+      transition: none;
+
+      &:hover {
+        color: $black;
+        transition: none;
+      }
 
       &.disabled {
         color: $black;
@@ -52,11 +58,24 @@
         @include background-image-size(12px, 12px);
       }
 
-      &.tile:before {
-        background: url(/images/grid-off.svg);
+      &.tile {
+        &:before {
+          background: url(/images/grid-off.svg);
+        }
+
+        &:hover:before {
+          background: url(/images/grid-on.svg);
+        }
       }
-      &.list:before {
-        background: url(/images/list-off.svg);
+
+      &.list {
+        &:before {
+          background: url(/images/list-off.svg);
+        }
+
+        &:hover:before {
+          background: url(/images/list-on.svg);
+        }
       }
     }
   }
@@ -94,7 +113,7 @@
           padding-right: 15px;
           padding-bottom: 15px;
           @include sofia-pro-regular;
-          color: #7F7F7F;
+          color: $gray-darker;
           font-size: 12px;
           text-transform: uppercase;
           @media only screen and (min-width: 1000px) {

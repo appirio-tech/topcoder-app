@@ -61,7 +61,9 @@ challenge-tile .challenge.tile-view {
 
   // roles bar is common for both active and completed
   .roles {
-    width: 100%;
+    width: 101%;
+    border: 1px solid #e0e0e0;
+    border-top: none;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -215,6 +217,7 @@ challenge-tile .challenge.tile-view {
 
       .winner-ribbon {
         position: absolute;
+        z-index: 1;
         bottom: -40px;
         left: -2px;
         @include background-image-size(73px, 26px);

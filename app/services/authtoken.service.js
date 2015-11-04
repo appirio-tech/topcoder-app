@@ -7,6 +7,7 @@
 
   function AuthTokenService(CONSTANTS, $cookies, $location,  store, $http, $log, jwtHelper, $q) {
     var v2TokenKey = 'tcjwt';
+    var v2TCSSOTokenKey = 'tcsso'
     var v3TokenKey = 'appiriojwt';
     // use this api url over CONSTANTS
     var apiUrl = CONSTANTS.AUTH_API_URL || CONSTANTS.API_URL;
@@ -15,6 +16,7 @@
       setV3Token: setV3Token,
       getV2Token: getV2Token,
       getV3Token: getV3Token,
+      getTCSSOToken: getTCSSOToken,
       removeTokens: removeTokens,
       refreshV3Token: refreshV3Token,
       exchangeToken: exchangeToken,
@@ -35,6 +37,10 @@
 
     function getV2Token() {
       return $cookies.get(v2TokenKey);
+    }
+
+    function getTCSSOToken() {
+      return $cookies.get(v2TCSSOTokenKey);
     }
 
     function removeTokens() {
