@@ -1,13 +1,16 @@
-// @import 'community';
+@import 'tc-includes';
 
 .members-container {
   padding: 15px 0 0;
+
   a {
     text-decoration: none;
   }
+
   @media only screen and (min-width: 1070px) {
     padding: 60px 67px 0;
   }
+
   %reviewboard-panel {
     background: $white;
     padding: 10px;
@@ -37,17 +40,20 @@
       }
     }
   }
+
   .platform-stats-container {
     background: $white;
     padding: 10px;
     margin-bottom: 6px;
     height: 70px;
     font-family: "Sofia Pro",Arial,Helvetica,sans-serif;
+
     .stat {
       float: left;
       width: 25% ;
       text-align: center;
     }
+
     .statVal {
       color: #3d3d3d;
       font-size: 32px;
@@ -61,6 +67,7 @@
       font-weight: 400;
     }
   }
+
   .search-container {
     @include module-full-width;
     background: $white;
@@ -68,6 +75,7 @@
     @media only screen and (min-width: 1070px) {
       padding: 30px 40px 30px 41px;
     }
+
     form {
       @include module-full-width;
       @include community-form-placeholder;
@@ -80,6 +88,7 @@
         border-radius: 7px;
       }
     }
+
     input[type="text"] {
       @include module-full-width;
       @include font-with-weight('Sofia Pro', 300);
@@ -91,6 +100,7 @@
         font-size: 22px;
       }
     }
+
     .search-ico {
       display: inline-block;
       height: 15px;
@@ -112,6 +122,7 @@
       }
     }
   }
+
   h2 {
     @include font-with-weight('Sofia Pro', 500);
     font-size: 20px;
@@ -120,6 +131,7 @@
     padding-top: 31px;
     padding-bottom: 17px;
     position: relative;
+
     small {
       @include font-with-weight;
       font-size: 16px;
@@ -128,9 +140,11 @@
       color: $gray-dark-alt;
       padding-top: 8px;
     }
+
     span {
       color: $member-search-highlight;
     }
+
     @media only screen and (min-width: 1070px) {
       font-size: 28px;
       padding-top: 92px;
@@ -141,12 +155,14 @@
       }
     }
   }
+
   .default-show-container > div,
   .search-result-container {
     margin-top: 6px;
     background: $white;
     position: relative;
   }
+
   %members-gray-wrapper {
     background: $gray-lightest;
     border: {
