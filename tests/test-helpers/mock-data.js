@@ -22,7 +22,8 @@ var mockData = (function() {
     getMockBadge: getMockBadge,
     getMockUserFinancials: getMockUserFinancials,
     getMockLinkedExternalAccounts: getMockLinkedExternalAccounts,
-    getMockLinkedExternalAccountsData: getMockLinkedExternalAccountsData
+    getMockLinkedExternalAccountsData: getMockLinkedExternalAccountsData,
+    getMockExternalWebLinksData: getMockExternalWebLinksData,
   };
 
   function getMockStates() {
@@ -1625,99 +1626,85 @@ var mockData = (function() {
       "DESIGN": {
         "challenges": 664,
         "wins": 271,
-        "subTracks": [
-          {
-            "id": 34,
-            "name": "STUDIO_OTHER",
-            "challenges": 21,
-            "wins": 4,
-            "mostRecentEventDate": "2011-04-20T09:00:00.000Z"
-          },
-          {
-            "id": 30,
-            "name": "WIDGET_OR_MOBILE_SCREEN_DESIGN",
-            "challenges": 82,
-            "wins": 30,
-            "mostRecentEventDate": "2015-02-01T22:00:53.000Z"
-          },
-          {
-            "id": 22,
-            "name": "IDEA_GENERATION",
-            "challenges": 3,
-            "wins": 0,
-            "mostRecentEventDate": "2013-05-27T10:00:07.000Z"
-          },
-          {
-            "id": 17,
-            "name": "WEB_DESIGNS",
-            "challenges": 418,
-            "wins": 190,
-            "mostRecentEventDate": "2015-01-26T19:00:03.000Z"
-          },
-          {
-            "id": 29,
-            "name": "COPILOT_POSTING",
-            "challenges": 1,
-            "wins": 0,
-            "mostRecentEventDate": null
-          },
-          {
-            "id": 18,
-            "name": "WIREFRAMES",
-            "challenges": 2,
-            "wins": 1,
-            "mostRecentEventDate": "2010-11-17T09:00:00.000Z"
-          },
-          {
-            "id": 14,
-            "name": "ASSEMBLY_COMPETITION",
-            "challenges": 1,
-            "wins": 0,
-            "mostRecentEventDate": null
-          },
-          {
-            "id": 32,
-            "name": "APPLICATION_FRONT_END_DESIGN",
-            "challenges": 54,
-            "wins": 23,
-            "mostRecentEventDate": "2014-08-07T01:03:11.000Z"
-          },
-          {
-            "id": 21,
-            "name": "PRINT_OR_PRESENTATION",
-            "challenges": 24,
-            "wins": 8,
-            "mostRecentEventDate": "2014-10-08T17:48:09.000Z"
-          },
-          {
-            "id": 16,
-            "name": "BANNERS_OR_ICONS",
-            "challenges": 24,
-            "wins": 10,
-            "mostRecentEventDate": "2014-01-11T17:30:27.000Z"
-          },
-          {
-            "id": 20,
-            "name": "LOGO_DESIGN",
-            "challenges": 31,
-            "wins": 4,
-            "mostRecentEventDate": "2014-02-21T19:00:09.000Z"
-          },
-          {
-            "id": 31,
-            "name": "FRONT_END_FLASH",
-            "challenges": 2,
-            "wins": 1,
-            "mostRecentEventDate": "2009-06-19T23:00:00.000Z"
-          },
-          {
-            "id": 13,
-            "name": "TEST_SUITES",
-            "challenges": 1,
-            "wins": 0,
-            "mostRecentEventDate": null
-          }
-        ],
+        "subTracks": [{
+          "id": 34,
+          "name": "STUDIO_OTHER",
+          "challenges": 21,
+          "wins": 4,
+          "mostRecentEventDate": "2011-04-20T09:00:00.000Z"
+        }, {
+          "id": 30,
+          "name": "WIDGET_OR_MOBILE_SCREEN_DESIGN",
+          "challenges": 82,
+          "wins": 30,
+          "mostRecentEventDate": "2015-02-01T22:00:53.000Z"
+        }, {
+          "id": 22,
+          "name": "IDEA_GENERATION",
+          "challenges": 3,
+          "wins": 0,
+          "mostRecentEventDate": "2013-05-27T10:00:07.000Z"
+        }, {
+          "id": 17,
+          "name": "WEB_DESIGNS",
+          "challenges": 418,
+          "wins": 190,
+          "mostRecentEventDate": "2015-01-26T19:00:03.000Z"
+        }, {
+          "id": 29,
+          "name": "COPILOT_POSTING",
+          "challenges": 1,
+          "wins": 0,
+          "mostRecentEventDate": null
+        }, {
+          "id": 18,
+          "name": "WIREFRAMES",
+          "challenges": 2,
+          "wins": 1,
+          "mostRecentEventDate": "2010-11-17T09:00:00.000Z"
+        }, {
+          "id": 14,
+          "name": "ASSEMBLY_COMPETITION",
+          "challenges": 1,
+          "wins": 0,
+          "mostRecentEventDate": null
+        }, {
+          "id": 32,
+          "name": "APPLICATION_FRONT_END_DESIGN",
+          "challenges": 54,
+          "wins": 23,
+          "mostRecentEventDate": "2014-08-07T01:03:11.000Z"
+        }, {
+          "id": 21,
+          "name": "PRINT_OR_PRESENTATION",
+          "challenges": 24,
+          "wins": 8,
+          "mostRecentEventDate": "2014-10-08T17:48:09.000Z"
+        }, {
+          "id": 16,
+          "name": "BANNERS_OR_ICONS",
+          "challenges": 24,
+          "wins": 10,
+          "mostRecentEventDate": "2014-01-11T17:30:27.000Z"
+        }, {
+          "id": 20,
+          "name": "LOGO_DESIGN",
+          "challenges": 31,
+          "wins": 4,
+          "mostRecentEventDate": "2014-02-21T19:00:09.000Z"
+        }, {
+          "id": 31,
+          "name": "FRONT_END_FLASH",
+          "challenges": 2,
+          "wins": 1,
+          "mostRecentEventDate": "2009-06-19T23:00:00.000Z"
+        }, {
+          "id": 13,
+          "name": "TEST_SUITES",
+          "challenges": 1,
+          "wins": 0,
+          "mostRecentEventDate": null
+        }],
         "mostRecentEventDate": "2015-02-01T22:00:53.000Z"
       },
       "DATA_SCIENCE": {
@@ -1975,38 +1962,96 @@ var mockData = (function() {
 
   function getMockLinkedExternalAccountsData() {
     return {
-      github: null,
-      stackoverflow: null,
-      dribble: null,
-      behance: null,
-      bitbucket: null,
-      linkedin: null,
-      twitter: null,
-      userId: 123,
+      "updatedAt": null,
+      "createdAt": null,
+      "createdBy": null,
+      "updatedBy": null,
+      "userId": 22688955,
+      "handle": "test",
+      "behance": null,
+      "bitbucket": {
+        "handle": "test1",
+        "followers": 0,
+        "languages": "html/css",
+        "repos": 1
+      },
+      "dribbble": {
+        "handle": "test2",
+        "socialId": "944202",
+        "name": "Vikas Agarwal",
+        "summary": "Principal Engineer <a href=\"/Appirio\">@Appirio</a>",
+        "followers": 0,
+        "likes": 0,
+        "tags": null
+      },
+      "github": {
+        "handle": "test3",
+        "socialId": "2417632",
+        "publicRepos": 11,
+        "followers": 2,
+        "languages": "Java,JavaScript,HTML,CSS,Ruby"
+      },
+      "linkedin": null,
+      "stackoverflow": {
+        "name": "test",
+        "socialId": "365172",
+        "answers": 42,
+        "questions": 9,
+        "reputation": 928,
+        "topTags": "java,jsp,jstl,hashmap,quartz-scheduler,eclipse,ant,tomcat,warnings,hadoop,mysql,amazon-ec2,amazon-ebs,java-ee,amazon-web-services,amazon-rds,hibernate,scala,maven,apache-spark,apache-spark-sql,hbase,scheduling,javascript,gmail,junit,byte,persistence,hql,gdata"
+      },
+      "twitter": null,
       plain: function() {}
     };
   }
 
   function getMockLinkedExternalAccounts() {
-    return [
-      {
-        providerType: 'linkedin',
-        // don't care about other details
-      },
-      {
+    return {
+      profiles: [{
         providerType: 'github'
-      },
-      {
+      }, {
+        providerType: 'stackoverflow'
+      }, {
         providerType: 'behance'
-      },
-      {
+      }, {
         providerType: 'dribbble'
-      },
-      {
+      }, {
         providerType: 'bitbucket'
-      }
-    ];
+      }]
+    }
   }
 
+  function getMockExternalWebLinksData() {
+    return [
+      {
+        "userId": 111,
+        "key": "c69a1246c135b16069395010e91f5c64",
+        "handle": "test1",
+        "description": "description 1.",
+        "entities": "Activiti,Data Science,Reference Implementation for Angular Reference",
+        "keywords": "topcoder-app,merged,oct,dashboard,15appirio-tech,20appirio-tech,polish,21appirio-tech,sup-1889,19appirio-tech",
+        "title": "Test's profile",
+        "images": "https://avatars3.githubusercontent.com/u/2417632?v=3&s=400,https://avatars1.githubusercontent.com/u/2417632?v=3&s=460,https://assets-cdn.github.com/images/spinners/octocat-spinner-128.gif",
+        "source": "embed.ly",
+        "synchronizedAt": 123112
+      }, {
+        "userId": 111,
+        "key": "c69a1246c135b16069395010e91f5c65",
+        "handle": "test1",
+        "description": "description 1.",
+        "entities": "Activiti,Data Science,Reference Implementation for Angular Reference",
+        "keywords": "topcoder-app,merged,oct,dashboard,15appirio-tech,20appirio-tech,polish,21appirio-tech,sup-1889,19appirio-tech",
+        "title": "Test's profile",
+        "images": "https://avatars3.githubusercontent.com/u/2417632?v=3&s=400,https://avatars1.githubusercontent.com/u/2417632?v=3&s=460,https://assets-cdn.github.com/images/spinners/octocat-spinner-128.gif",
+        "source": "embed.ly",
+        "synchronizedAt": 123123
+      }, {
+        "userId": 111,
+        "key": "c69a1246c135b16069395010e91f5c66",
+        "handle": "test1",
+        "synchronizedAt": 0
+      }
+    ]
+  }
 
 })();

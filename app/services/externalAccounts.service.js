@@ -9,12 +9,13 @@
     var auth0 = auth;
     $log = $log.getInstance('ExternalAccountService');
 
-    var api = ApiService.restangularV3;
+    var memberApi = ApiService.getApiServiceProvider('MEMBER');
     var userApi = ApiService.getApiServiceProvider('USER');
 
     var service = {
-      getLinkedExternalAccounts: getLinkedExternalAccounts,
-      getLinkedExternalLinksData: getLinkedExternalLinksData,
+      getAllExternalLinks: getAllExternalLinks,
+      getLinkedAccounts: getLinkedAccounts,
+      getAccountsData: getAccountsData,
       linkExternalAccount: linkExternalAccount,
       unlinkExternalAccount: unlinkExternalAccount
     };
@@ -28,22 +29,27 @@
      * @param  userId
      * @return list of linked Accounts
      */
-    function getLinkedExternalAccounts(userId) {
+    function getLinkedAccounts(userId) {
       return userApi.one('users', userId).get({fields:"profiles"})
       .then(function(result) {
-        return result.profiles || [];
+        angular.forEach(result.profiles, function(p) {
+          p.provider = p.providerType;
+        });
+        return result.profiles;
       });
     }
 
-    function getLinkedExternalLinksData(userHandle) {
-      return api.one('members', userHandle).withHttpConfig({skipAuthorization: true}).customGET('externalAccounts')
-      .then(function(data) {
-        // TODO workaround for dribbble spelling mistake, remove once API is fixed
-        if (data.dribble) {
-          data.dribbble = data.dribble;
-        }
-        return data;
-      })
+    function getAccountsData(userHandle) {
+      return memberApi.one('members', userHandle)
+        .withHttpConfig({skipAuthorization: true})
+        .customGET('externalAccounts')
+        .then(function(data) {
+          // TODO workaround for dribbble spelling mistake, remove once API is fixed
+          if (data.dribble) {
+            data.dribbble = data.dribble;
+          }
+          return data;
+        });
     }
 
     function unlinkExternalAccount(account) {
@@ -71,6 +77,53 @@
       });
     }
 
+
+    function _convertAccountsIntoCards(links, data, includePending) {
+      var _cards = [];
+      if (!links.length) {
+         var providers = _.omit(data, ['userId', 'updatedAt', 'createdAt', 'createdBy', 'updatedBy', 'handle']);
+        // populate the externalLinks for external-account-data directive with info from ext accounts data
+
+        angular.forEach(_.keys(providers), function(p) {
+          if (providers[p])
+            links.push({provider: p});
+        });
+      }
+      // handling external accounts first
+      angular.forEach(links, function(link) {
+        var provider = link.provider;
+        if (data[provider]) {
+          // add data
+          _cards.push({provider: provider, data: data[provider]});
+        } else if (includePending) {
+          // add pending card
+          _cards.push({provider: provider, data: {handle: link.name, status: 'PENDING'}});
+        }
+      });
+      $log.debug("Processed Accounts Cards: " + JSON.stringify(_cards));
+      return _cards;
+    }
+
+
+    function getAllExternalLinks(userHandle, userId, includePending) {
+      return $q(function(resolve, reject) {
+        var _promises = [getAccountsData(userHandle)];
+        if (includePending)
+          _promises.push(getLinkedAccounts(userId));
+
+        $q.all(_promises).then(function(data) {
+          var links = includePending ? data[1]: [];
+          var _cards = _convertAccountsIntoCards(links, data[0].plain(), includePending);
+          // TODO add weblinks
+          resolve(_cards);
+        }).catch(function(resp) {
+          $log.error(resp);
+          reject(resp);
+        })
+      })
+    }
+
+
     function linkExternalAccount(provider, callbackUrl) {
       return $q(function(resolve, reject) {
         // supported backends
@@ -81,7 +134,6 @@
               connection: provider,
               scope: "openid profile offline_access",
               state: callbackUrl,
-              // callbackURL: CONSTANTS.auth0Callback
             },
             function(profile, idToken, accessToken, state, refreshToken) {
               $log.debug("onSocialLoginSuccess");
@@ -105,10 +157,16 @@
               userApi.one('users', user.userId).customPOST(postData, "profiles", {}, {})
                 .then(function(resp) {
                   $log.debug("Succesfully linked account: " + JSON.stringify(resp));
-                  resolve({
+                  // construct "card" object and resolve it
+                  var _data = {
                     status: "SUCCESS",
-                    profile: postData
-                  });
+                    linkedAccount: {
+                      provider: provider,
+                      data: postData
+                    }
+                  };
+                  _data.linkedAccount.data.status = 'PENDING';
+                  return _data;
                 })
                 .catch(function(resp) {
                   var errorStatus = "FATAL_ERROR";

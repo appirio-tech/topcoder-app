@@ -15,7 +15,7 @@
         p {{subtrack.statType}}
 
   responsive-carousel(data="vm.subtrackRanks", handle="{{vm.handle}}")
-    .track(ui-sref="profile.subtrack({userHandle: handle, track: item.track, subTrack: item.subTrack})")
+    a.track(ui-sref="profile.subtrack({userHandle: handle, track: item.track, subTrack: item.subTrack})")
       .flex-wrapper
         p.subtrack(title="{{item.subTrack | underscoreStrip}}") {{item.subTrack | underscoreStrip}}
 
