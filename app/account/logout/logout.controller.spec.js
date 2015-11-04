@@ -1,21 +1,21 @@
 /* jshint -W117, -W030 */
-describe.only('Logout Controller', function() {
+describe('Logout Controller', function() {
   var controller;
-  var fakeLocation = {
-    path: function(param) {
-      return;
+  var fakeWindow = {
+    location: {
+      href: ''
     }
   };
-  sinon.spy(fakeLocation, "path");
+
 
   beforeEach(function() {
     bard.appModule('topcoder');
     bard.appModule('tc.account');
     module('tc.account', function($provide) {
-      $provide.value('$location', fakeLocation);
+      $provide.value('$window', fakeWindow);
     });
 
-    bard.inject(this, '$controller', 'TcAuthService', '$location', '$q');
+    bard.inject(this, '$controller', 'TcAuthService', '$window', '$q', 'CONSTANTS');
 
     bard.mockService(TcAuthService, {
       logout: $q.when({}),
@@ -33,7 +33,7 @@ describe.only('Logout Controller', function() {
 
   it('should be successfully logged out', function() {
     expect(TcAuthService.logout).to.have.been.calledOnce;
-    expect($location.path).to.have.been.calledWith('/');
+    expect($window.location.href).to.equal(CONSTANTS.MAIN_URL);
   });
 
 });
