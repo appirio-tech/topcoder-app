@@ -41,16 +41,7 @@ challenge-tile .challenge.tile-view {
   // common css for both active and completed challenge for tile-view
   height: 350px;
   display: flex;
-  flex-direction: row;
-
-  .challenge-track {
-    width: 5px;
-    top: -1px;
-    height: 91px;
-    position: absolute;
-    left: -1px;
-    border-top-left-radius: 4px;
-  }
+  flex-direction: column;
 
   header {
     width: 270px;
@@ -61,6 +52,7 @@ challenge-tile .challenge.tile-view {
     flex-direction: column;
     justify-content: space-between;
     border-radius: 3px 0 0 0;
+    align-self: flex-start;
 
 
     a.name {
@@ -73,6 +65,11 @@ challenge-tile .challenge.tile-view {
       // @include ellipsis;
       @include link;
       text-transform: uppercase;
+
+      // smaller font-size to fit title of 200 chars
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 16px;
     }
 
     p.subtrack-color {
@@ -94,16 +91,16 @@ challenge-tile .challenge.tile-view {
 
   // roles bar is common for both active and completed
   .roles {
-    width: 101%;
-    border: 1px solid #e0e0e0;
-    border-top: none;
+    width: 100%;
+    align-self: flex-end;
+    border: none;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     min-height: 36px;
     padding: 0 20px;
-    @include merriweather-sans-regular;
+    @include font-with-weight('Merriweather Sans');
     font-size: 12px;
     line-height: 17px;
     background-color: $gray-lighter;
@@ -129,11 +126,9 @@ challenge-tile .challenge.tile-view {
 
     .challenge-details {
       .currentPhase {
-        margin-top: 40px;
-        margin-bottom: 20px;
         @include font-with-weight('Sofia Pro', 300);
         font-size: 18px;
-        line-height: 23px;
+        line-height: 22px;
         text-transform: uppercase;
         color: $gray-darkest;
       }
@@ -385,11 +380,9 @@ challenge-tile .challenge.list-view {
 
     .challenge-info {
       .currentPhase {
-        margin-bottom: 10px;
         @include font-with-weight('Sofia Pro', 300);
         font-size: 18px;
         color: $gray-darkest;
-        text-transform: uppercase;
       }
 
       .ends-in {
@@ -457,6 +450,19 @@ challenge-tile .challenge.list-view {
     width: 100%;
     display: flex;
     flex-direction: row;
+    position: relative;
+    width: 270px;
+    height: 320px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    display: flex;
+    /* align-items: flex-end; */
+    justify-content: space-between;
 
     header {
       max-width: 470px;
@@ -481,6 +487,11 @@ challenge-tile .challenge.list-view {
   }
 }
 
+p.currentPhase {
+    margin: 10px auto !important;
+  }
+
+
 // Dynamic colors based on track
 .DESIGN {
   .challenge-track { background-color: $design; }
@@ -502,4 +513,116 @@ challenge-tile .challenge.list-view {
   .challenge-track { background-color: $copilot; }
 
   header .subtrack-color { color: $copilot; }
+}
+
+
+///// FIXES
+
+challenge-tile .challenge.tile-view .active-challenge {
+    position: relative;
+    width: 270px;
+    height: 340px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    /* align-items: center; */
+    display: flex;
+    /* align-items: flex-end; */
+    justify-content: space-between;
+  }
+
+challenge-tile .challenge.tile-view header {
+    width: 270px;
+    /* min-height: 91px; */ // FIXME
+    border-bottom: 1px solid #F0F0F0;
+    border-left: 2px solid #05C14F;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    border-radius: 3px 0 0 0;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+}
+
+challenge-tile .challenge.tile-view header a.name {
+    display: block;
+    padding: 10px 15px 0;
+    font-family: "Sofia Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #3D3D3D;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+challenge-tile .challenge.tile-view .challenge-details {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+challenge-tile .challenge.tile-view .roles {
+    width: 100%;
+    -webkit-align-self: flex-end;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+    border: none;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    /* align-items: flex-end; */
+    min-height: 36px;
+    padding: 0 20px;
+    font-family: "Merriweather Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 17px;
+    background-color: #FBFBFB;
+    margin: 0 auto;
+    border-radius: 0 0 4px 4px;
+}
+
+challenge-tile .challenge.tile-view header p.subtrack-color {
+    padding: 0 15px;
+    margin-top: 3px;
+    font-family: "Sofia Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-weight: 300; */
+    font-size: 10px;
+    line-height: 14px;
+    text-transform: uppercase;
+}
+
+@media only screen and (min-width: 1155px) {
+  .challenges .hasChallenges challenge-tile.tile-view:nth-child(3n) {
+      margin-right: 15px;
+  }
 }
