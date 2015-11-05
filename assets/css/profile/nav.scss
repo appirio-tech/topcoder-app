@@ -194,7 +194,7 @@
     align-items: flex-start;
 
     .track {
-      margin: 30px 30px;
+      margin: 30px 3px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -204,8 +204,13 @@
         span {
         }
         margin: auto;
-        @include sofia-pro-extra-light;
+        @include sofia-pro-medium;
         font-size: 20px;
+        @media screen and (min-width: 768px) {
+          font-size: 24px;
+          line-height: 29px;
+          margin-bottom: 15px;
+        }
         line-height: 24px;
         margin-bottom: 10.6px;
       }
@@ -214,6 +219,11 @@
         width: 20px;
         margin-right: 7px;
         margin-bottom: -2px;
+        @media screen and (min-width: 768px) {
+          height: 30px;
+          width: 30px;
+          margin-bottom: -5px;
+        }
       }
       .subtrack {
         display: flex;
@@ -230,15 +240,17 @@
           background-color: #f0f0f0;
         }
         .name {
-          margin-left: 25px;
           align-self: center;
           flex-basis: 250px;
           align-text: left;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          @include sofia-pro-light;
+          @include sofia-pro-medium;
           font-size: 14px;
+          @media screen and (min-width: 768px) {
+            font-size: 16px;
+          }
           line-height: 18px;
           text-transform: uppercase;
           display: flex;
@@ -256,6 +268,9 @@
             text-align: center;
             @include sofia-pro-semi-bold;
             font-size: 13.4px;
+            @media screen and (min-width: 768px) {
+              font-size: 18px;
+            }
             line-height: 16px;
             span.square {
               position: absolute;
@@ -267,19 +282,20 @@
           .tag {
             text-transform: uppercase;
             margin: 10px auto 0px auto;
-            @include sofia-pro-regular;
+            @include sofia-pro-medium;
             font-size: 8.4px;
+            @media screen and (min-width: 768px) {
+              font-size: 10px;
+            }
             line-height: 10px;
-            color: #7f7f7f;
+            color: $accent-gray;
           }
         }
         .arrow {
-          @include sofia-pro-extra-light;
-          color: #cccccc;
-          font-size: 18px;
           display: flex;
           flex-direction: column;
           justify-content: center;
+          height: 18px;
         }
       }
       .icon {
