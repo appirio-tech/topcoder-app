@@ -2,69 +2,27 @@
 @import '../partials/combined';
 
 
-// FIXME: Refactor to name correctly all elements; 
-// ----------------------------------------------------------------------------
-// Call the component "CARD" and use semantic naming convention that describes
-// parts of the block and states rather rendering and current appearence
-
-// create @mixin to capture/expand cards for our different cases
-
-
-.card {
-
-}
-
-.card-header {
-  .card-header-title
-  .card-header-track
-
-}
-
-.card-meta {
-  .card-meta-subscriptions
-  .card-meta-submissions
-  .card-meta-link
-}
-
-.card-body {
-  .card-body-title
-  .card-calendar
-  .card-cta
-  .card-message
-}
-
-.card-footer {
-
-}
-
-.card-user-role
-
-
-
-
 // Default Challenge Tile Stylings
 challenge-tile .challenge.tile-view {
   display: flex;
   flex-direction: column;
   height: 350px;
   header {
-    border-bottom: 1px solid #F0F0F0;
+    border-bottom: 1px solid #f0f0f0;
     border-left: 2px solid $develop;
     border-radius: 3px 0 0 0;
     display: flex;
     flex-direction: column;
     align-self: flex-start;
     justify-content: space-between;
-    min-height: 91px;
     width: 270px;
+    min-height: 91px;
     a.name {
       @include font-with-weight('Sofia Pro', 500);
-      // @include ellipsis;
       @include link;
       color: $gray-darkest;
       display: block;
       font-size: 12px;
-      // smaller font-size to fit title of 200 chars
       font-weight: 600;
       line-height: 16px;
       padding: 15px 20px 0 20px;
@@ -95,11 +53,11 @@ challenge-tile .challenge.tile-view {
     align-self: flex-end;
     align-items: center;
     justify-content: flex-start;
+    width: 100%;
     font-size: 12px;
     line-height: 17px;
     min-height: 36px;
     padding: 0 20px;
-    width: 100%;
     span {
       @include ellipsis;
       padding: 0;
@@ -111,11 +69,11 @@ challenge-tile .challenge.tile-view {
   }
   .active-challenge {
     background-color: $white;
-    border: 1px solid #E0E0E0;
+    border: 1px solid #e0e0e0;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-    position: relative;
     width: 270px;
+    position: relative;
     .challenge-details {
       .currentPhase {
         @include font-with-weight('Sofia Pro', 300);
@@ -130,13 +88,13 @@ challenge-tile .challenge.tile-view {
         flex-direction: column;
         align-items: center;
         height: 63px;
-        margin-bottom: 20px;
         width: 75px;
+        margin-bottom: 20px;
         > p {
           @include font-with-weight('Sofia Pro', 700);
         }
         .ends-in {
-          color: #7F7F7F;
+          color: #7f7f7f;
           font-size: 10px;
           line-height: 13px;
           margin-top: 3px;
@@ -148,7 +106,7 @@ challenge-tile .challenge.tile-view {
           margin-top: 5px;
         }
         .unit-of-time {
-          color: #7F7F7F;
+          color: #7f7f7f;
           font-size: 10px;
           margin-top: 1px;
           text-transform: lowercase;
@@ -173,11 +131,11 @@ challenge-tile .challenge.tile-view {
         .submitted {
           @include font-with-weight;
           background-color: $white;
-          border: 1px solid #F0F0F0;
+          border: 1px solid #f0f0f0;
           border-radius: 4px;
           color: $gray-darkest;
-          font-size: 12px;
           height: 30px;
+          font-size: 12px;
           line-height: 30px;
           margin-bottom: 25px;
           padding-left: 35px;
@@ -190,9 +148,9 @@ challenge-tile .challenge.tile-view {
             bottom: 6px;
             content: '';
             height: 15px;
+            width: 15px;
             left: 14px;
             position: absolute;
-            width: 15px;
           }
         }
       }
@@ -200,15 +158,15 @@ challenge-tile .challenge.tile-view {
   }
   .completed-challenge {
     background-color: $white;
-    border: 1px solid #E0E0E0;
+    border: 1px solid #e0e0e0;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    position: relative;
     width: 270px;
+    position: relative;
     header {
       position: relative;
       .date-completed {
@@ -233,16 +191,15 @@ challenge-tile .challenge.tile-view {
       align-items: center;
       justify-content: space-between;
       &.DATA_SCIENCE {
-        justify-content: center;
-
         flex: 2;
+        justify-content: center;
       }
       .marathon-score {
         margin-bottom: 70px;
         text-align: center;
         .score {
           @include font-with-weight;
-          color: #3D3D3D;
+          color: #3d3d3d;
           font-size: 32px;
           line-height: 38px;
           margin-bottom: 5px;
@@ -250,7 +207,7 @@ challenge-tile .challenge.tile-view {
         }
         p:last-child {
           @include font-with-weight;
-          color: #A3A3AE;
+          color: #a3a3ae;
           font-size: 12px;
           line-height: 14px;
           text-transform: uppercase;
@@ -267,7 +224,7 @@ challenge-tile .challenge.tile-view {
 
 challenge-tile .challenge.list-view {
   background-color: $white;
-  border: 1px solid #E0E0E0;
+  border: 1px solid #e0e0e0;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
   display: flex;
@@ -282,13 +239,13 @@ challenge-tile .challenge.list-view {
     border-bottom-left-radius: 6px;
     border-top-left-radius: 6px;
     height: 110px;
+    width: 5px;
     left: -1px;
     position: absolute;
     top: -1px;
-    width: 5px;
   }
   header {
-    border-right: 1px solid #F0F0F0;
+    border-right: 1px solid #f0f0f0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -330,7 +287,7 @@ challenge-tile .challenge.list-view {
     }
   }
   .challenge-details {
-    border-right: 1px solid #F0F0F0;
+    border-right: 1px solid #f0f0f0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -347,7 +304,7 @@ challenge-tile .challenge.list-view {
       }
       .ends-in {
         @include font-with-weight;
-        color: #A3A3AE;
+        color: #a3a3ae;
         font-size: 14px;
       }
     }
@@ -355,14 +312,14 @@ challenge-tile .challenge.list-view {
       text-align: center;
       .score {
         @include font-with-weight;
-        color: #3D3D3D;
+        color: #3d3d3d;
         font-size: 32px;
         line-height: 38px;
         margin-bottom: 5px;
       }
       p:last-child {
         @include sofia-pro-regular;
-        color: #A3A3AE;
+        color: #a3a3ae;
         font-size: 12px;
         line-height: 14px;
         text-transform: uppercase;
@@ -375,11 +332,11 @@ challenge-tile .challenge.list-view {
       .submitted {
         @include sofia-pro-regular;
         background-color: $white;
-        border: 1px solid #F0F0F0;
+        border: 1px solid #f0f0f0;
         border-radius: 4px;
         color: $gray-darkest;
-        font-size: 12px;
         height: 30px;
+        font-size: 12px;
         line-height: 30px;
         padding-left: 35px;
         padding-right: 20px;
@@ -391,17 +348,17 @@ challenge-tile .challenge.list-view {
           bottom: 6px;
           content: '';
           height: 15px;
+          width: 15px;
           left: 14px;
           position: absolute;
-          width: 15px;
         }
       }
     }
   }
   // specific styles for active challenges in list view
   .active-challenge {
-    background-color: #FFF;
-    border: 1px solid #E0E0E0;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
     display: flex;
@@ -411,13 +368,12 @@ challenge-tile .challenge.list-view {
     /* align-items: flex-end; */
     justify-content: space-between;
     height: 320px;
-    position: relative;
     width: 100%;
     width: 270px;
+    position: relative;
     header {
-      max-width: 470px;
-
       flex: 1;
+      max-width: 470px;
     }
     .challenge-details {
       flex: 2;
@@ -481,8 +437,8 @@ p.currentPhase {
 ///// FIXES
 
 challenge-tile .challenge.tile-view .active-challenge {
-  background-color: #FFF;
-  border: 1px solid #E0E0E0;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
   display: flex;
@@ -491,13 +447,13 @@ challenge-tile .challenge.tile-view .active-challenge {
   justify-content: space-between;
   flex-wrap: nowrap;
   height: 340px;
-  position: relative;
   width: 270px;
+  position: relative;
 }
 
 challenge-tile .challenge.tile-view header {
-  border-bottom: 1px solid #F0F0F0;
-  border-left: 2px solid #05C14F;
+  border-bottom: 1px solid #f0f0f0;
+  border-left: 2px solid #05c14f;
   border-radius: 3px 0 0 0;
   display: flex;
   flex-direction: column;
@@ -523,20 +479,20 @@ challenge-tile .challenge.tile-view .challenge-details {
 }
 
 challenge-tile .challenge.tile-view .roles {
-  background-color: #FBFBFB;
+  background-color: #fbfbfb;
   border: none;
   border-radius: 0 0 4px 4px;
   display: flex;
   flex-direction: row;
   align-self: flex-end;
   justify-content: flex-start;
+  width: 100%;
   font-size: 12px;
   font-weight: 400;
   line-height: 17px;
   margin: 0 auto;
   min-height: 36px;
   padding: 0 20px;
-  width: 100%;
 }
 
 challenge-tile .challenge.tile-view header p.subtrack-color {
