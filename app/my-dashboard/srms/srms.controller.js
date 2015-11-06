@@ -21,7 +21,7 @@
 
     function getSRMs() {
       var params = {
-        filter: 'status=future',
+        filter: 'status=future&orderBy=registrationStartAt',
         limit: 3
       };
 

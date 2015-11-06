@@ -52,7 +52,7 @@
 
     function changeFilter(filter) {
       vm.statusFilter = filter;
-      vm.orderBy = filter === 'future'? 'startDate': 'endDate';
+      vm.orderBy = filter === 'future'? 'codingStartAt': 'codingEndAt';
       vm.reverseOrder = filter !== 'future';
       // update url but don't reload
       $state.go($state.$current.name, {status: filter}, {notify: false});
