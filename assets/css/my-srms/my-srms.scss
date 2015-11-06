@@ -2,92 +2,81 @@
 @import '../partials/combined';
 
 .my-srms-container {
-  width: 100%;
+  @include module-l;
   display: flex;
   flex-direction: column;
-  @include module-l;
-  margin-top: 15px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-
+  margin-top: 15px;
   hr {
     @include horizontal-rule;
     margin-bottom: 35px;
   }
-
   .section-title {
+    color: #4F4F4F;
     font-size: 22px;
-    color: #4f4f4f;
     text-align: center;
   }
-
   .has-srms {
+    background-color: $gray-lightest;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 15px 15px 30px 15px;
-    background-color: $gray-lightest;
   }
-
   .content {
-
     section.my-srms {
       background: white;
-      align-self: center;
       display: flex;
       flex-flow: column wrap;
-      position: relative;
+      align-self: center;
       width: 100%;
-
+      position: relative;
       .top {
+        border-bottom: 1px solid $gray-light;
         /*position: relative;*/
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding-top: 35px;
         padding-bottom: 35px;
-        border-bottom: 1px solid $gray-light;
-
+        padding-top: 35px;
         .filters {
-          position: initial;
+          align-self: flex-start;
           /*bottom: 0;
           left: 55px;*/
           margin-left: 55px;
-          align-self: flex-start;
+          position: initial;
           text-transform: uppercase;
           a {
             text-decoration: none;
-
             &.disabled {
               color: $dark-gray;
               cursor: default;
             }
           }
         }
-
         .viewOptions {
-          position: initial;
+          align-self: flex-end;
           /*bottom: 0;
           right: 55px;*/
           margin-right: 55px;
-          align-self: flex-end;
+          position: initial;
           button {
-            margin-right: 17px;
-            padding: 0;
-            border: 0;
-            outline: 0;
-            background-color: $white;
             @include sofia-pro-light;
-            font-size: 11px;
-            line-height: 16px;
-            text-transform: uppercase;
+            background-color: $white;
+            border: 0;
             color: #A3A3AE;
             cursor: pointer;
-
+            font-size: 11px;
+            line-height: 16px;
+            margin-right: 17px;
+            outline: 0;
+            padding: 0;
+            text-transform: uppercase;
             &.disabled {
               color: $black;
               cursor: default;
-
               &.tile:before {
                 background: url(/images/grid-on.svg);
               }
@@ -95,55 +84,45 @@
                 background: url(/images/list-on.svg);
               }
             }
-
             &:before {
+              @include background-image-size(12px, 12px);
               content: '';
               display: inline-block;
               margin-bottom: 2px;
               margin-right: 4px;
               vertical-align: middle;
-              @include background-image-size(12px, 12px);
             }
-
             &.tile:before {
               background: url(/images/grid-off.svg);
             }
             &.list:before {
               background: url(/images/list-off.svg);
             }
-
           }
         }
       }
-
-
       .data {
         display: flex;
         flex-flow: row wrap;
-        padding: 15px 0px;
         margin: 0 auto;
-
+        padding: 15px 0;
         &.list-view {
           flex-flow: column wrap;
           width: 100%;
         }
       }
-
       .bottom {
         border-top: 1px solid #F0F0F0;
         padding: 35px 55px 15px 55px;
       }
-
       srm-tile {
         display: inline;
         margin-bottom: 15px;
         &.tile-view {
-
           margin-bottom: 20px;
           @media only screen and (max-width: 767px) {
             display: inline-block;
             margin-left: 15px;
-
             &:first-child {
               margin-left: 0;
             }
@@ -155,7 +134,6 @@
           }
           @media only screen and (min-width: 870px) {
             margin-right: 15px;
-
             &:nth-child(3n) {
               margin-right: 0;
             }
@@ -175,7 +153,6 @@
       }
     }
   }
-
 }
 
 
@@ -198,9 +175,9 @@
 
 @media (min-width: 900px) {
   .my-srms-container {
-    padding: 0px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0;
   }
 }
 

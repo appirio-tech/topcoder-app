@@ -3,158 +3,140 @@
 
 // styling for tile view
 design-challenge-user-place {
-
   .tile-view {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     .place {
+      @include sofia-pro-regular;
+      color: $gray-darkest;
+      font-size: 20px;
       margin-bottom: 8px;
       margin-top: 8px;
-      @include sofia-pro-regular;
-      font-size: 20px;
-      color: $gray-darkest;
       text-transform: uppercase;
-
       &.first-place {
-        font-weight: bold;
         color: $black;
+        font-weight: bold;
       }
-
       span {
         @include superscript;
         text-transform: lowercase;
       }
     }
-
     .thumbnail {
-      position: relative;
-      width: 268px;
       height: 200px;
       overflow: hidden;
-
+      position: relative;
+      width: 268px;
       img {
-        width: 100%;
         height: auto;
         overflow: hidden;
+        width: 100%;
       }
-
       .thumbnail-gallery {
-        position: absolute;
+        background-color: rgba(0, 0, 0, .4);
+        bottom: 0;
+        cursor: pointer;
         display: flex;
         flex-direction: row;
-        align-items: center;
-        width: 270px;
         height: 32px;
-        bottom: 0;
         left: 0;
-        background-color: rgba(0, 0, 0, 0.4);
-        cursor: pointer;
+        position: absolute;
+        width: 270px;
 
+        align-items: center;
         .gallery-icon {
-          margin-left: 10px;
           @include background-image-size(21px, 17px);
           background: url(/images/ico-gallery.svg);
+          margin-left: 10px;
         }
-
         .num-images {
-          margin-left: 8px;
           @include sofia-pro-regular;
-          font-size: 10px;
           color: $gray-lighter;
+          font-size: 10px;
+          margin-left: 8px;
           text-transform: uppercase;
         }
       }
     }
   }
-
 }
 
 // styling for list view
 design-challenge-user-place {
   width: 100%;
-
   .list-view {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
 
+    align-items: center;
+    justify-content: space-between;
     .place-date {
       display: flex;
       flex-direction: column;
-
       .place {
         @include sofia-pro-light;
+        color: $gray-darkest;
         font-size: 18px;
         line-height: 23px;
-        color: $gray-darkest;
         text-transform: uppercase;
-
         &.first-place {
-          font-weight: bold;
           color: $black;
+          font-weight: bold;
         }
-
         span {
           @include superscript;
           text-transform: lowercase;
         }
       }
-
       .date-completed {
         @include sofia-pro-regular;
+        color: #A3A3AE;
         font-size: 14px;
         line-height: 18px;
-        text-transform: uppercase;
-        color: #A3A3AE;
         margin-top: 9px;
+        text-transform: uppercase;
       }
     }
-
     .winner-ribbon {
-      z-index: 1;
       @include background-image-size(73px, 26px);
       background: url(/images/ico-winner-ribbon.svg);
+      z-index: 1;
+
       align-self: flex-start;
     }
-
     .thumbnail {
-      position: relative;
-      width: 84px;
       height: 84px;
       overflow: hidden;
-
+      position: relative;
+      width: 84px;
       img {
-        width: 100%;
         height: auto;
         overflow: hidden;
+        width: 100%;
       }
-
       .thumbnail-gallery {
-        position: absolute;
+        background-color: rgba(0, 0, 0, .4);
+        bottom: 0;
+        cursor: pointer;
         display: flex;
         flex-direction: row;
-        align-items: center;
-        width: 84px;
         height: 32px;
-        bottom: 0;
         left: 0;
-        background-color: rgba(0, 0, 0, 0.4);
-        cursor: pointer;
+        position: absolute;
+        width: 84px;
 
+        align-items: center;
         .gallery-icon {
-          margin-left: 10px;
           @include background-image-size(21px, 17px);
           background: url(/images/ico-gallery.svg);
+          margin-left: 10px;
         }
-
         .num-images {
-          margin-left: 8px;
           @include sofia-pro-regular;
-          font-size: 10px;
           color: $gray-lighter;
+          font-size: 10px;
+          margin-left: 8px;
           text-transform: uppercase;
         }
       }

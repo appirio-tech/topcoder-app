@@ -8,282 +8,256 @@
 // parts of the block and states rather rendering and current appearence
 
 // create @mixin to capture/expand cards for our different cases
-// .card {
 
-// }
 
-// .card-header {
-//   .card-header-title
-//   .card-header-track
-// }
+.card {
 
-// .card-stats {
-//   .card-stats-subscriptions
-//   .card-stats-submissions
-//   .card-stats-link
-// }
+}
 
-// .card-body {
-//   .card-body-title
-//   .card-calendar
-//   .card-cta
-//   .card-message
-// }
+.card-header {
+  .card-header-title
+  .card-header-track
 
-// .card-user-role
+}
+
+.card-meta {
+  .card-meta-subscriptions
+  .card-meta-submissions
+  .card-meta-link
+}
+
+.card-body {
+  .card-body-title
+  .card-calendar
+  .card-cta
+  .card-message
+}
+
+.card-footer {
+
+}
+
+.card-user-role
 
 
 
 
 // Default Challenge Tile Stylings
 challenge-tile .challenge.tile-view {
-  // common css for both active and completed challenge for tile-view
-  height: 350px;
   display: flex;
   flex-direction: column;
-
+  height: 350px;
   header {
-    width: 270px;
-    min-height: 91px;
     border-bottom: 1px solid #F0F0F0;
     border-left: 2px solid $develop;
+    border-radius: 3px 0 0 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    border-radius: 3px 0 0 0;
     align-self: flex-start;
-
-
+    justify-content: space-between;
+    min-height: 91px;
+    width: 270px;
     a.name {
-      display: block;
-      padding: 15px 20px 0 20px;
       @include font-with-weight('Sofia Pro', 500);
-      font-size: 14px;
-      line-height: 20px;
-      color: $gray-darkest;
       // @include ellipsis;
       @include link;
-      text-transform: uppercase;
-
+      color: $gray-darkest;
+      display: block;
+      font-size: 12px;
       // smaller font-size to fit title of 200 chars
       font-weight: 600;
-      font-size: 12px;
       line-height: 16px;
+      padding: 15px 20px 0 20px;
+      text-transform: uppercase;
     }
-
     p.subtrack-color {
-      padding: 0 20px;
-      margin-top: 5px;
       @include font-with-weight('Sofia Pro', 500);
       font-size: 12px;
       line-height: 14px;
+      margin-top: 5px;
+      padding: 0 20px;
       text-transform: uppercase;
     }
   }
-
   // challenge details section
   .challenge-details {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
   // roles bar is common for both active and completed
   .roles {
-    width: 100%;
-    align-self: flex-end;
+    @include font-with-weight('Merriweather Sans');
+    background-color: $gray-lighter;
     border: none;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    align-self: flex-end;
     align-items: center;
-    min-height: 36px;
-    padding: 0 20px;
-    @include font-with-weight('Merriweather Sans');
+    justify-content: flex-start;
     font-size: 12px;
     line-height: 17px;
-    background-color: $gray-lighter;
-
+    min-height: 36px;
+    padding: 0 20px;
+    width: 100%;
     span {
-      padding: 0;
       @include ellipsis;
+      padding: 0;
       span:first-child {
         color: $accent-gray;
         white-space: nowrap;
       }
     }
   }
-
   .active-challenge {
-    position: relative;
-    width: 270px;
+    background-color: $white;
     border: 1px solid #E0E0E0;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-    background-color: $white;
-
+    position: relative;
+    width: 270px;
     .challenge-details {
       .currentPhase {
         @include font-with-weight('Sofia Pro', 300);
+        color: $gray-darkest;
         font-size: 18px;
         line-height: 22px;
         text-transform: uppercase;
-        color: $gray-darkest;
       }
-
       .challenge-calendar {
+        background-image: url(/images/ico-calendar.svg);
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 75px;
         height: 63px;
         margin-bottom: 20px;
-        background-image: url(/images/ico-calendar.svg);
-
+        width: 75px;
         > p {
           @include font-with-weight('Sofia Pro', 700);
         }
-
         .ends-in {
-          margin-top: 3px;
+          color: #7F7F7F;
           font-size: 10px;
           line-height: 13px;
+          margin-top: 3px;
           text-transform: uppercase;
-          color: #7F7F7F;
         }
-
         .time-remaining {
-          margin-top: 5px;
-          font-size: 24px;
           color: $gray-darkest;
+          font-size: 24px;
+          margin-top: 5px;
         }
-
         .unit-of-time {
-          margin-top: 1px;
-          font-size: 10px;
-          text-transform: lowercase;
           color: #7F7F7F;
+          font-size: 10px;
+          margin-top: 1px;
+          text-transform: lowercase;
         }
       }
-
       .stalled-challenge {
-        min-height: 83px;
-        padding: 21px 20px 0 20px;
         @include font-with-weight('Sofia Pro', 500);
+        color: $accent-gray;
         font-size: 12px;
         line-height: 18px;
-        text-transform: uppercase;
+        min-height: 83px;
+        padding: 21px 20px 0 20px;
         text-align: center;
-        color: $accent-gray;
+        text-transform: uppercase;
       }
-
       .phase-action {
         min-height: 55px;
-
         .submit {
-          margin-bottom: 25px;
           display: inline-block;
+          margin-bottom: 25px;
         }
-
         .submitted {
-          position: relative;
+          @include font-with-weight;
+          background-color: $white;
+          border: 1px solid #F0F0F0;
+          border-radius: 4px;
+          color: $gray-darkest;
+          font-size: 12px;
           height: 30px;
           line-height: 30px;
           margin-bottom: 25px;
           padding-left: 35px;
           padding-right: 20px;
-          border: 1px solid #F0F0F0;
-          border-radius: 4px;
-          background-color: $white;
-          @include font-with-weight;
-          font-size: 12px;
+          position: relative;
           text-transform: uppercase;
-          color: $gray-darkest;
-
           &:before {
-            content: '';
-            width: 15px;
-            height: 15px;
             background: url(/images/ico-checkmark.svg);
             background-size: 15px 15px;
-            position: absolute;
             bottom: 6px;
+            content: '';
+            height: 15px;
             left: 14px;
+            position: absolute;
+            width: 15px;
           }
         }
       }
     }
   }
-
-
   .completed-challenge {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 270px;
+    background-color: $white;
     border: 1px solid #E0E0E0;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     position: relative;
-
+    width: 270px;
     header {
       position: relative;
-
       .date-completed {
         @include font-with-weight('Sofia Pro', 500);
-        font-size: 12px;
-        text-transform: uppercase;
         color: $accent-gray;
+        font-size: 12px;
+        margin-bottom: 10px;
         padding-left: 20px;
         padding-right: 20px;
-        margin-bottom: 10px;
+        text-transform: uppercase;
       }
-
       .winner-ribbon {
-        position: absolute;
-        z-index: 1;
-        bottom: -40px;
-        left: -2px;
         @include background-image-size(73px, 26px);
         background: url(/images/ico-winner-ribbon.svg);
+        bottom: -40px;
+        left: -2px;
+        position: absolute;
+        z-index: 1;
       }
     }
-
     .challenge-details {
-      justify-content: space-between;
       align-items: center;
-
+      justify-content: space-between;
       &.DATA_SCIENCE {
-        flex: 2;
         justify-content: center;
-      }
 
+        flex: 2;
+      }
       .marathon-score {
         margin-bottom: 70px;
         text-align: center;
-
         .score {
-          margin-top: 28px;
-          margin-bottom: 5px;
           @include font-with-weight;
+          color: #3D3D3D;
           font-size: 32px;
           line-height: 38px;
-          color: #3D3D3D;
+          margin-bottom: 5px;
+          margin-top: 28px;
         }
-
         p:last-child {
           @include font-with-weight;
+          color: #A3A3AE;
           font-size: 12px;
           line-height: 14px;
-          color: #A3A3AE;
           text-transform: uppercase;
         }
       }
     }
   }
-
   .past-design-details {
     img {
       height: 200px;
@@ -292,190 +266,168 @@ challenge-tile .challenge.tile-view {
 }
 
 challenge-tile .challenge.list-view {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
-  padding: 20px 0;
-  padding-left: 5px;
-  height: 110px;
+  background-color: $white;
   border: 1px solid #E0E0E0;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-  background-color: $white;
-
+  display: flex;
+  flex-direction: row;
+  height: 110px;
+  margin-bottom: 10px;
+  padding: 20px 0;
+  padding-left: 5px;
+  position: relative;
   // common styles for active and completed
-
   .challenge-track {
-    width: 5px;
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
     height: 110px;
+    left: -1px;
     position: absolute;
     top: -1px;
-    left: -1px;
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
+    width: 5px;
   }
-
   header {
+    border-right: 1px solid #F0F0F0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 0 15px;
-    border-right: 1px solid #F0F0F0;
     @media only screen and (min-width: 1000px) {
       padding: 0 30px;
     }
-
     a.name {
-      display: block;
       @include font-with-weight('Sofia Pro', 500);
-      font-size: 14px;
-      line-height: 20px;
-      color: $gray-darkest;
       @include ellipsis;
       @include link;
+      color: $gray-darkest;
+      display: block;
+      font-size: 14px;
+      line-height: 20px;
       text-transform: uppercase;
-
       &:hover {
         text-decoration: none;
       }
     }
-
     p.subtrack-color {
-      margin-bottom: 12px;
       @include font-with-weight('Sofia Pro', 500);
       font-size: 12px;
       line-height: 14px;
+      margin-bottom: 12px;
       text-transform: uppercase;
     }
-
     .roles {
-      max-width: 362px;
       @include font-with-weight('Merriweather Sans');
+      @include ellipsis;
+      color: $gray-darkest;
       font-size: 13px;
       line-height: 18px;
-      color: $gray-darkest;
-      @include ellipsis;
-
-
+      max-width: 362px;
       span:first-child {
         color: $accent-gray;
         white-space: nowrap;
       }
     }
   }
-
   .challenge-details {
+    border-right: 1px solid #F0F0F0;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0 15px;
-    border-right: 1px solid #F0F0F0;
     @media only screen and (min-width: 1000px) {
       padding: 0 10px 0 30px;
     }
-
     .challenge-info {
       .currentPhase {
         @include font-with-weight('Sofia Pro', 300);
-        font-size: 18px;
         color: $gray-darkest;
+        font-size: 18px;
       }
-
       .ends-in {
         @include font-with-weight;
-        font-size: 14px;
         color: #A3A3AE;
+        font-size: 14px;
       }
     }
-
     .marathon-score {
       text-align: center;
-
       .score {
-        margin-bottom: 5px;
         @include font-with-weight;
+        color: #3D3D3D;
         font-size: 32px;
         line-height: 38px;
-        color: #3D3D3D;
+        margin-bottom: 5px;
       }
-
       p:last-child {
         @include sofia-pro-regular;
+        color: #A3A3AE;
         font-size: 12px;
         line-height: 14px;
-        color: #A3A3AE;
         text-transform: uppercase;
       }
     }
-
     .phase-action {
       .submit {
         display: inline-block;
       }
-
       .submitted {
-        position: relative;
+        @include sofia-pro-regular;
+        background-color: $white;
+        border: 1px solid #F0F0F0;
+        border-radius: 4px;
+        color: $gray-darkest;
+        font-size: 12px;
         height: 30px;
         line-height: 30px;
         padding-left: 35px;
         padding-right: 20px;
-        border: 1px solid #F0F0F0;
-        border-radius: 4px;
-        background-color: $white;
-        @include sofia-pro-regular;
-        font-size: 12px;
+        position: relative;
         text-transform: uppercase;
-        color: $gray-darkest;
-
         &:before {
-          content: '';
-          width: 15px;
-          height: 15px;
           background: url(/images/ico-checkmark.svg);
           background-size: 15px 15px;
-          position: absolute;
           bottom: 6px;
+          content: '';
+          height: 15px;
           left: 14px;
+          position: absolute;
+          width: 15px;
         }
       }
     }
   }
-
   // specific styles for active challenges in list view
   .active-challenge {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    width: 270px;
-    height: 320px;
+    background-color: #FFF;
     border: 1px solid #E0E0E0;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-    background-color: #FFF;
     display: flex;
-    flex-direction: column;
     /* align-items: center; */
     display: flex;
+    flex-direction: row;
     /* align-items: flex-end; */
     justify-content: space-between;
-
+    height: 320px;
+    position: relative;
+    width: 100%;
+    width: 270px;
     header {
       max-width: 470px;
+
       flex: 1;
     }
     .challenge-details {
       flex: 2;
     }
   }
-
   // specific styles for completed challenges in list view
   .completed-challenge {
-    width: 100%;
     display: flex;
     flex-direction: row;
+    width: 100%;
     header {
       flex: 2;
     }
@@ -495,7 +447,6 @@ p.currentPhase {
   .challenge-track {
     background-color: $design;
   }
-
   header .subtrack-color {
     color: $design;
   }
@@ -505,7 +456,6 @@ p.currentPhase {
   .challenge-track {
     background-color: $develop;
   }
-
   header .subtrack-color {
     color: $develop;
   }
@@ -514,7 +464,6 @@ p.currentPhase {
   .challenge-track {
     background-color: $data_science;
   }
-
   header .subtrack-color {
     color: $data_science;
   }
@@ -523,7 +472,6 @@ p.currentPhase {
   .challenge-track {
     background-color: $copilot;
   }
-
   header .subtrack-color {
     color: $copilot;
   }
@@ -533,105 +481,69 @@ p.currentPhase {
 ///// FIXES
 
 challenge-tile .challenge.tile-view .active-challenge {
-  position: relative;
-  width: 270px;
-  height: 340px;
+  background-color: #FFF;
   border: 1px solid #E0E0E0;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-  background-color: #FFF;
+  display: flex;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  /* align-items: center; */
-  display: flex;
-  /* align-items: flex-end; */
   justify-content: space-between;
+  flex-wrap: nowrap;
+  height: 340px;
+  position: relative;
+  width: 270px;
 }
 
 challenge-tile .challenge.tile-view header {
-  width: 270px;
-  /* min-height: 91px; */ // FIXME
   border-bottom: 1px solid #F0F0F0;
   border-left: 2px solid #05C14F;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-          justify-content: space-between;
   border-radius: 3px 0 0 0;
-  -webkit-align-self: flex-start;
-  -ms-flex-item-align: start;
-          align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  justify-content: space-between;
+  width: 270px;
 }
 
 challenge-tile .challenge.tile-view header a.name {
   display: block;
-  padding: 10px 15px 0;
-  font-family: 'Sofia Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  color: #3D3D3D;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-weight: 600;
   font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
   line-height: 16px;
+  padding: 10px 15px 0;
+  text-transform: uppercase;
 }
 
 challenge-tile .challenge.tile-view .challenge-details {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-          align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 challenge-tile .challenge.tile-view .roles {
-  width: 100%;
-  -webkit-align-self: flex-end;
-  -ms-flex-item-align: end;
-          align-self: flex-end;
+  background-color: #FBFBFB;
   border: none;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  /* align-items: flex-end; */
+  border-radius: 0 0 4px 4px;
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  justify-content: flex-start;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  margin: 0 auto;
   min-height: 36px;
   padding: 0 20px;
-  font-family: 'Merriweather Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 17px;
-  background-color: #FBFBFB;
-  margin: 0 auto;
-  border-radius: 0 0 4px 4px;
+  width: 100%;
 }
 
 challenge-tile .challenge.tile-view header p.subtrack-color {
-  padding: 0 15px;
-  margin-top: 3px;
-  font-family: 'Sofia Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  /* font-weight: 300; */
   font-size: 10px;
   line-height: 14px;
+  margin-top: 3px;
+  padding: 0 15px;
   text-transform: uppercase;
 }
 

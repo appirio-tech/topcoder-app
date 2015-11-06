@@ -1,0 +1,196 @@
+@import 'topcoder-includes';
+@import '../partials/combined';
+
+// CARD
+// ----------------------------------------------------------------------------
+// Generic styling for a "CARD" componentand use semantic naming convention
+// that describes parts of the block and states rather rendering and current
+// appearence
+// 
+// all @mixin directives under 'mixins/_card' 
+
+
+// Main container, use to construct the card with header, body, footer
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+}
+
+// The card header. It usually contains Title, Track and Meta.
+// The header can be color-coded when there are different tracks.
+.card-header {
+  border-bottom: 1px solid #F0F0F0;
+  border-left: 2px solid $develop;
+  border-radius: 3px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  justify-content: space-between;
+  width: 270px;
+  min-height: 91px;
+}
+
+// The card title has 200 char. limit currently, it should be fluid
+.card-header-title {
+  @include font-with-weight('Sofia Pro', 500);
+  @include link;
+  color: $gray-darkest;
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+  padding: 15px 20px 0 20px;
+  text-transform: uppercase;
+}
+
+// The subtrack is usefull to differentiate between cards of the same track
+.card-header-subtrack {
+  @include font-with-weight('Sofia Pro', 500);
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 5px;
+  padding: 0 20px;
+  text-transform: uppercase;
+}
+
+// The card body is the main container. Put all content here. It should flex
+// and position itself to obtain all the available space vertically. When a 
+// past challenge is won, we add a special ribbon.
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &.winner-ribbon {
+    @include background-image-size(73px, 26px);
+    background: url(/images/ico-winner-ribbon.svg);
+    bottom: -40px;
+    left: -2px;
+    position: absolute;
+    z-index: 1;
+  }
+}
+// Use the title to name the content displayed, ex. Stage: Registration, Review,
+// etc.. When you need to display a failed/stalled message, use Title.
+.card-body-title {
+  @include font-with-weight('Sofia Pro', 300);
+  color: $gray-darkest;
+  font-size: 18px;
+  line-height: 22px;
+  text-transform: uppercase;
+}
+
+// Display a calendar for the current card body content.
+.card-body-calendar {
+  background-image: url(/images/ico-calendar.svg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 63px;
+  width: 75px;
+  margin-bottom: 20px;
+  > p {
+    @include font-with-weight('Sofia Pro', 700);
+  }
+  .calendar--title {
+    color: #7F7F7F;
+    font-size: 10px;
+    line-height: 13px;
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+  .calendar--unit {
+    color: $gray-darkest;
+    font-size: 24px;
+    margin-top: 5px;
+  }
+  .calendar--unit-label {
+    color: #7F7F7F;
+    font-size: 10px;
+    margin-top: 1px;
+    text-transform: lowercase;
+  }
+}
+
+// Use when there's a secondary message for a particular content, but not title
+// ex: 
+// 
+// 'REVIEW'
+// 
+// 'You must complete this stage, you're a reviewer' -- message
+// 
+.card-body-message {
+  @include font-with-weight('Sofia Pro', 500);
+  color: $accent-gray;
+  font-size: 12px;
+  line-height: 18px;
+  min-height: 83px;
+  padding: 21px 20px 0 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+// FIXME
+.card-body-action-item {
+  min-height: 55px;
+  .submit {
+    display: inline-block;
+    margin-bottom: 25px;
+  }
+  .submitted {
+    @include font-with-weight;
+    background-color: $white;
+    border: 1px solid #F0F0F0;
+    border-radius: 4px;
+    color: $gray-darkest;
+    height: 30px;
+    font-size: 12px;
+    line-height: 30px;
+    margin-bottom: 25px;
+    padding-left: 35px;
+    padding-right: 20px;
+    position: relative;
+    text-transform: uppercase;
+    &:before {
+      background: url(/images/ico-checkmark.svg);
+      background-size: 15px 15px;
+      bottom: 6px;
+      content: '';
+      height: 15px;
+      width: 15px;
+      left: 14px;
+      position: absolute;
+    }
+  }
+}
+
+// Put content into the footer that you want to be always affixed to the bottom.
+.card-footer {
+  background-color: $gray-lighter;
+  border-radius: 0 0 4px 4px;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  align-items: center;
+}
+
+// Display the user roles per challenge/stage; list them and end with ellipsis
+// when the roles don't fit into a single line.
+.card-user-role {
+  @include font-with-weight('Merriweather Sans');
+  background-color: $gray-lighter;
+  width: 100%;
+  font-size: 12px;
+  line-height: 17px;
+  min-height: 36px;
+  padding: 0 20px;
+  // FIXME
+  span {
+    @include ellipsis;
+    padding: 0;
+    span:first-child {
+      color: $accent-gray;
+      white-space: nowrap;
+    }
+  }
+}
