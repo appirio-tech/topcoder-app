@@ -46,11 +46,13 @@ gulp.task('styles', ['clean-styles'], function() {
   log('Compiling Sass --> CSS');
   var assetPrefix = envConfig.CONSTANTS.ASSET_PREFIX.length ? envConfig.CONSTANTS.ASSET_PREFIX : '/';
 
-
   return gulp
     .src(config.sass, {base: './'})
-    .pipe($.plumber()) 
-    .pipe($.sass({includePaths: [require('tc-ui-kit').includePaths]}))
+    .pipe($.plumber())
+    // Put back when we move the ui kit back to the external github repo
+    // .pipe($.sass({includePaths: [require('tc-ui-kit').includePaths]}))
+    // Replace with line above when ui kit is external again
+    .pipe($.sass({includePaths: [config.assets + 'css/partials']}))
     .pipe($.autoprefixer({browsers: ['last 2 version']}))
     .pipe($.replace(/\/fonts/g, assetPrefix + 'fonts'))
     .pipe(gulp.dest(config.temp));

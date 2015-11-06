@@ -1,16 +1,8 @@
-// Topcoder Inputs
-// tc- is the default prefix that we use for all classes
-@import 'topcoder-includes';
-
-
-// 
-//  TOPCODER FORMS AND FIELDS SECTION
+// TOPCODER FORMS AND FIELDS SECTION
 // ----------------------------------------------------------------------
 // Topcoder Inputs
-// tc- is the default prefix that we use for all classes
 
 //Empty state
-
 input,
 textarea,
 .tc-input,
@@ -68,7 +60,7 @@ input:focus {
 textarea {
   padding: 10px;
   line-height: 24px;
-  
+
   @include placeholder {
     color: $accent-gray;
     font-weight: 300;

@@ -84,7 +84,5 @@
     "wiredep": "^2.2.2",
     "yargs": "^3.12.0"
   },
-  "dependencies": {
-    "tc-ui-kit": "0.0.x"
-  }
+  "dependencies": {}
 }
