@@ -1,29 +1,22 @@
-@import '_tc-variables';
-
-// SPECIFY FONTS THE SMART WAY
-// ----------------------------------------------------------------------------
-// Instead of repeating the use of fonts, we can build a simple mixin to do that for us
 @mixin font-with-weight($family: 'Sofia Pro', $weight: 400, $fallback: sans-serif){
   @if $fallback == serif {
     font-family: $family, $fonts-family-serif;
-    font-weight: $weight; 
-
+    font-weight: $weight;
   }
   @else if $fallback == sans-serif {
     font-family: $family, $fonts-family-sans-serif;
-    font-weight: $weight; 
+    font-weight: $weight;
 
   }
   @else if $fallback == monospace {
     font-family: $family, $fonts-family-monospace;
-    font-weight: $weight; 
+    font-weight: $weight;
   }
   @else {
     font-family: $family, $fonts-family-monospace;
-    font-weight: $familyt-base; 
+    font-weight: $familyt-base;
   }
 }
-
 
 // Placeholders refactored
 // ----------------------------------------------------------------------------
@@ -37,7 +30,7 @@
 //   }
 // }
 
-// @include placeholder { 
+// @include placeholder {
 //   color: red;
 // }
 
@@ -71,13 +64,13 @@
   &::-webkit-input-placeholder {@content}
   &:-moz-placeholder           {@content}
   &::-moz-placeholder          {@content}
-  &:-ms-input-placeholder      {@content}  
+  &:-ms-input-placeholder      {@content}
 }
 
 
 //
 // Pass a number, and use in different places. How to use:
-// 
+//
 // @include media(320px) {
 //   background: red; // the content will be wrapped with the mixin;
 // }
@@ -370,7 +363,7 @@
   // :-moz-placeholder { /* Firefox 18- */
   //   color: #B7B7B7;
   // }
-  // TODO REMOVED: use _tc-inputs !!!!  
+  // TODO REMOVED: use _tc-inputs !!!!
 }
 
 @mixin community-form-placeholder {

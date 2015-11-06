@@ -58,12 +58,10 @@
         })
         .catch(function(resp) {
           $log.error("Error unlinking account: " + resp.data.result.content);
-          var status = resp.status;
+          var status = "FATAL_ERROR";
           var msg = resp.data.result.content;
-          if (resp.status = 404) {
+          if (resp.status === 404) {
             status = "SOCIAL_PROFILE_NOT_EXIST";
-          } else {
-            status = "FATAL_ERROR"
           }
           $reject({
             status: status,
@@ -113,9 +111,13 @@
                   });
                 })
                 .catch(function(resp) {
+                  var errorStatus = "FATAL_ERROR";
                   $log.error("Error linking account: " + resp.data.result.content);
+                  if (resp.data.result && resp.data.result.status === 400) {
+                    errorStatus = "SOCIAL_PROFILE_ALREADY_EXISTS";
+                  }
                   reject({
-                    status: "SOCIAL_PROFILE_ALREADY_EXISTS",
+                    status: errorStatus,
                     msg: resp.data.result.content
                   });
                 });

@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 .profile-subtrack-container {
   display: flex;
@@ -526,6 +525,13 @@
         }
       }
 
+    }
+
+    .design {
+      // override height of the statistics section for design track as we don't have limited stats for design
+      ul.vertical-stats {
+        height: 200px;
+      }
     }
   }
   }

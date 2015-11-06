@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 track-toggle {
   border-top: 1px solid $gray-light;
@@ -20,7 +19,7 @@ track-toggle {
     display: flex;
     flex-direction: column;
     align-items: left;
-    
+
     .content {
       display: flex;
       flex-direction: row;

@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 // styling for tile view
 design-challenge-user-place {
@@ -10,7 +9,8 @@ design-challenge-user-place {
     align-items: center;
 
     .place {
-      margin-bottom: 0px;
+      margin-bottom: 8px;
+      margin-top: 8px;
       @include sofia-pro-regular;
       font-size: 20px;
       color: $gray-darkest;
@@ -113,6 +113,7 @@ design-challenge-user-place {
     }
 
     .winner-ribbon {
+      z-index: 1;
       @include background-image-size(73px, 26px);
       background: url(/images/ico-winner-ribbon.svg);
       align-self: flex-start;
