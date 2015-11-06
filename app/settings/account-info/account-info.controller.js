@@ -51,7 +51,7 @@
             }
           }
         });
-      });
+      }, 400);
     }
 
     function updateCountry(angucompleteCountryObj) {
