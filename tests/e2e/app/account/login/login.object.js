@@ -75,6 +75,12 @@ var LoginPage = function() {
 			  
 //		  browser.pause();
 		  var pageHeader = element(by.css('.page-info .ng-binding'));
+		 
+		  
+		  expect(pageHeader.waitReady()).toBeTruthy();
+		  
+		  browser.debugger();
+		  
 		  var isClickable = EC.elementToBeClickable(pageHeader);
 		  browser.wait(isClickable, 60000);
 		  expect(pageHeader.getInnerHtml()).toEqual('Dashboard');
@@ -585,8 +591,9 @@ var LoginPage = function() {
 //		var label = element(by.css('.label'));
 //		var isClickable = EC.elementToBeClickable(label);
 //		browser.wait(isClickable, 20000);
-		  var userInput = element(by.model('vm.username'));
-		  var isClickable = EC.elementToBeClickable(userInput);
+		  var loginBtn = element(by.partialLinkText('[ Log in ]'));
+//		  var userInput = element(by.model('vm.username'));
+		  var isClickable = EC.elementToBeClickable(loginBtn);
 		  browser.wait(isClickable, 30000);
 //		  userInput.sendKeys(loginUser.username);
 		  expect(true).toEqual(true);

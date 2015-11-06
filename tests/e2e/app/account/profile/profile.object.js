@@ -405,16 +405,21 @@ this.goToProfileSkill = function(dashBoardUrl,loginUserCred) {
 			  isClickable = EC.elementToBeClickable(skillSet);
 			  browser.wait(isClickable, 60000);
 //			  for(var i=0; i<loginUserCred.skillSet.length; i++) {
-				  skillSet.sendKeys(loginUserCred.skillSet[0]).then(function(){
+			  skillSet.clear();
+			  skillSet.sendKeys(loginUserCred.skillSet[0]);
+//				  skillSet.sendKeys(loginUserCred.skillSet[0]).then(function(){
 					  var skillSetDropDown = element(by.id('tagId_dropdown'));
 					  isClickable = EC.elementToBeClickable(skillSetDropDown);
 					  browser.wait(isClickable, 60000);
+					  
+					  browser.debugger();
 					  
 //					  var row1 = element.all(by.css('.angucomplete-row')).first();
 //					  isClickable = EC.elementToBeClickable(row1);
 //					  browser.wait(isClickable, 60000);
 					   
 					  var titleFirst = element(by.css('.angucomplete-title'));
+//					  expect(titleFirst.waitReady()).toBeTruthy();
 //					  expect(titleFirst.isPresent()).toEqual(true);
 					  isClickable = EC.elementToBeClickable(titleFirst);
 					  browser.wait(isClickable, 60000);
@@ -428,7 +433,7 @@ this.goToProfileSkill = function(dashBoardUrl,loginUserCred) {
 					  }).then(function(filteredElements){
 						  filteredElements[0].click();
 					  });
-				  });
+//				  });
 				  
 				  
 //				  browser.driver.wait(until.elementLocated(by.css('.angucomplete-row'), 60000));

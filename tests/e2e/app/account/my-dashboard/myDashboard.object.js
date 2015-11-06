@@ -330,8 +330,16 @@ var MyDashboardPage = function() {
 	  this.goToEmptyDashboardPage = function(dashBoardUrl,loginUserCred) {
 		  
 		  browser.driver.ignoreSynchronization = true;
-		
 		  var EC = protractor.ExpectedConditions;
+		  
+		  var toolTip = element(by.css('.introjs-tooltip'));
+		  var isClickable = EC.elementToBeClickable(toolTip);
+		  browser.wait(isClickable, 30000);
+		  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
+		  isClickable = EC.elementToBeClickable(skipBtn);
+		  browser.wait(isClickable, 30000);
+		  skipBtn.click().then(function() {
+		
 		  var menuItemHeaders = element.all(by.css('.menu-item-header'));
 		  var nameHeader = menuItemHeaders.get(1);
 		  var isClickable = EC.elementToBeClickable(nameHeader);
@@ -341,170 +349,88 @@ var MyDashboardPage = function() {
 		  
 		  
 		  var noChallengeSection = element(by.css('.challenges .noChallenges'));
-		  expect(noChallengeSection.isPresent()).toEqual(true);
+		  expect(noChallengeSection.waitReady()).toBeTruthy();
 		  isClickable = EC.elementToBeClickable(noChallengeSection);
 		  browser.wait(isClickable, 30000);
 		  
-		  var pastChallenges = element(by.partialLinkText('Past Challenges'));
-		  expect(pastChallenges.isPresent()).toEqual(true);
+		  var pastChallenges = element(by.partialLinkText('PAST CHALLENGES'));
 		  isClickable = EC.elementToBeClickable(pastChallenges);
 		  browser.wait(isClickable, 30000);
+		  expect(pastChallenges.isPresent()).toEqual(true);
 		  
+		  pastChallenges.click().then(function(){
+			  var completedChallenge = element.all(by.css('.completed-challenge')).get(0);
+			  expect(completedChallenge.waitReady()).toBeTruthy();
+			  isClickable = EC.elementToBeClickable(completedChallenge);
+			  browser.wait(isClickable, 30000);
+			  expect(completedChallenge.isPresent()).toEqual(true);
+			  browser.navigate().back();
 		  
+		  var srmsElement = element(by.id('srms'));
+		  var sectionTitle = srmsElement.all(by.css('.section-title')).get(0);
+		  isClickable = EC.elementToBeClickable(sectionTitle);
+		  browser.wait(isClickable, 30000);
+		  expect(sectionTitle.isPresent()).toEqual(true);
 		  
+		  var srmLinksCard = element(by.css('.srm-links-card'));
+		  expect(srmLinksCard.waitReady()).toBeTruthy();
+		  expect(srmLinksCard.isPresent()).toEqual(true);
 		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  var ratings = element(by.css('.ratings'));
-		  var carouselCont = ratings.all(by.css('ul')).get(0);
-		  var carouselNext = element(by.css('.rn-carousel-control-next'));
-		  var subTrackList = element.all(by.repeater('subtracks in vm.subtrackRanksCollection'));
-		  var subTrackCount = subTrackList.count();
-		  var counter = 0;
-		  carouselNext.click().then(function(displayed){
-			  carouselNext = element(by.css('.rn-carousel-control-next'));
-		  });
-
-		  var carouselPrev = element(by.css('.rn-carousel-control-prev'));
-		  carouselPrev.click();
-		  
-		  var tileViewChallenges = element(by.css('.tile-view')).all(by.css('challenge-tile'));
-		  
-		  expect(tileViewChallenges.count()).toEqual(loginUserCred.challengeCount);
-		  
-		  var listButton = element(by.partialButtonText('List'));
-		  listButton.click().then(function(){
-			   var listViewChallenges = element(by.css('.list-view')).all(by.css('challenge-tile'));
-			   expect(listViewChallenges.count()).toEqual(2);
-		  });
-		  
-		  var gridButton = element(by.partialButtonText('Grid'));
-		  gridButton.click().then(function(){
-			   tileViewChallenges = element(by.css('.tile-view')).all(by.css('challenge-tile'));
-			   expect(tileViewChallenges.count()).toEqual(loginUserCred.challengeCount);
-			   var allActiveChallengesPage = element(by.partialLinkText('VIEW MORE'));
-				  browser.actions().mouseMove(allActiveChallengesPage).perform();
-				  
-				  allActiveChallengesPage.click().then(function(){
-					  var myChallenges = element(by.css('.my-challenges'));
-					  isClickable = EC.elementToBeClickable(myChallenges);
-					  browser.wait(isClickable, 30000);
-					  console.log(myChallenges.getText());
+		  var practiceProblems = element(by.partialLinkText('PRACTICE PROBLEMS'));
+		  practiceProblems.click().then(function(){
+			  
+			 var titleBar = element(by.css('.dashboard .titleBar'));
+			 browser.driver.wait(function(){
+				 var titleBar = browser.driver.findElement(by.css('.dashboard .titleBar'));
+				 expect(titleBar.waitReady()).toBeTruthy();
+				 expect(titleBar.isPresent()).toEqual(true);
+				 return true;
+			  },90000);
+			 
+			 
+			 browser.navigate().back().then(function(){
+				 var problemArchivesLink = element(by.partialLinkText('PROBLEM ARCHIVES'));
+				  problemArchivesLink.click().then(function(){
+					  var titleBar = element(by.css('.dashboard .titleBar'));
+					  expect(titleBar.isPresent()).toEqual(true);
+					  browser.navigate().back();
 					  
-					  var tileView = element(by.css('.tile-view'));
-					  var challengeList = tileView.all(by.css('challenge-tile'));
-					  var firstChallenge = challengeList.get(0);
-					  var firstChallengeLink = firstChallenge.all(by.css('.tile-view .active-challenge a')).get(0);
-					  
-					  browser.get(dashBoardUrl);
-					  moneyEarned = element(by.css('.money-earned'));
-					  isClickable = EC.elementToBeClickable(moneyEarned);
+					  var matchEditorialLink = element(by.partialLinkText('MATCH EDITORIALS'));
+					  isClickable = EC.elementToBeClickable(matchEditorialLink);
 					  browser.wait(isClickable, 30000);
 					  
-					  var allPastChallenges = element(by.partialLinkText('PAST CHALLENGES'));
-					  browser.actions().mouseMove(allPastChallenges).perform();
-					  allPastChallenges.click().then(function(){
-						  var myChallenges = element(by.css('.my-challenges'));
-						  isClickable = EC.elementToBeClickable(myChallenges);
+					  matchEditorialLink.click().then(function(){
+						  
+						  
+						  browser.driver.wait(function(){
+								 var loginBtn = browser.driver.findElement(by.css('.bodySubhead'));
+								 console.log('problem archives');
+								 return true;
+							  },30000);
+						  
+						  browser.navigate().back();
+						  
+						  
+						  
+						  
+						  var learnMoreLink = element(by.partialLinkText('LEARN MORE'));
+						  isClickable = EC.elementToBeClickable(learnMoreLink);
 						  browser.wait(isClickable, 30000);
-						  console.log(myChallenges.getText());
-						  expect(myChallenges.getText()).toContain('MY CHALLENGES');
-						  
-						  tileView = element(by.css('.tile-view'));
-						  isClickable = EC.elementToBeClickable(tileView);
-						  browser.wait(isClickable, 30000);
-						  
-						  challengeList = tileView.all(by.css('challenge-tile'));
-						  firstChallenge = challengeList.get(0);
-						  firstChallengeLink = firstChallenge.all(by.css('.tile-view .completed-challenge a')).get(0);
-							  
-							  browser.get(dashBoardUrl);
-								 moneyEarned = element(by.css('.money-earned'));
-								 isClickable = EC.elementToBeClickable(moneyEarned);
-								 browser.wait(isClickable, 30000);
-								 var srmTiles = element(by.css('.srm-tiles')).all(by.css('srm-tile'));
-								 expect(srmTiles.count()).toEqual(loginUserCred.srmCount);
-								 var problemArchivesLink = element(by.partialLinkText('PROBLEM ARCHIVES'));
-								 problemArchivesLink.click().then(function(){
-									 
-									 browser.get(dashBoardUrl);
-									 moneyEarned = element(by.css('.money-earned'));
-									 isClickable = EC.elementToBeClickable(moneyEarned);
-									 browser.wait(isClickable, 30000);
-									 
-									 var matchEditorialLink = element(by.partialLinkText('MATCH EDITORIALS'));
-									 isClickable = EC.elementToBeClickable(matchEditorialLink);
-									 browser.wait(isClickable, 30000);
-									 browser.ignoreSynchronization = true;
-									 matchEditorialLink.click().then(function(){
-										 
-									 browser.get(dashBoardUrl);
-									 
-									 moneyEarned = element(by.css('.money-earned'));
-									 isClickable = EC.elementToBeClickable(moneyEarned);
-									 browser.wait(isClickable, 30000);
-									 
-									 var learnMoreLink = element(by.partialLinkText('LEARN MORE'));
-									 isClickable = EC.elementToBeClickable(learnMoreLink);
-									 browser.wait(isClickable, 30000);
-									 
-									 learnMoreLink.click().then(function(){
-											 
-										 browser.get(dashBoardUrl);
-										 moneyEarned = element(by.css('.money-earned'));
-										 isClickable = EC.elementToBeClickable(moneyEarned);
-										 browser.wait(isClickable, 30000);
-										 
-										  });
-									  });
-									  
-								  });
-						  
-						  
-						
-					 });
+						  learnMoreLink.click().then(function(){
+							  browser.navigate().back();
+						  });
+					  });
+					  
 				  });
+			 });
 		  });
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+		  
+		  
+//		  var srmTiles = element(by.css('.srm-tiles')).all(by.css('srm-tile'));
+//		  expect(srmTiles.count()).toEqual(3);
+		 
+		  
+		  });
 	  
 	  
 	  
@@ -540,7 +466,7 @@ var MyDashboardPage = function() {
 		  });
 		  
 	  });**/
-	  
+		  });
   };
    
   

@@ -36,8 +36,8 @@ var AccountData = function() {
                                           ],
     this.changePasswordCredentials = [
                                          {	'username' :'aqmansuri',
-                                        	 'password' : 'appirio123',  
-                                        	 'newPassword':'appirio1234'
+                                        	'password' : 'appirio123',  
+                                        	'newPassword':'appirio1234'
                                          }
                                          ],                                       
     						  

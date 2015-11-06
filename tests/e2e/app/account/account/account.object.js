@@ -295,6 +295,7 @@ var AccountPage = function() {
 			  var changePasswordBtn = element(by.partialButtonText('Change Password'));
 			  isClickable = EC.elementToBeClickable(changePasswordBtn);
 			  browser.wait(isClickable, 30000);
+//			  browser.pause();
 			  browser.actions().mouseMove(changePasswordBtn).perform();
 			  
 			  changePasswordBtn.click().then(function(){

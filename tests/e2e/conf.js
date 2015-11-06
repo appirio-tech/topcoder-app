@@ -10,8 +10,8 @@ exports.config = {
 //	    regression3: 'app/manage/manage.spec.js',
 //        regression4: 'app/account/register/register.spec.js',
 //        regression6: 'app/account/profile/profile.spec.js'//,
-        	regression7: 'app/account/account/account.spec.js'
-//        regression8: 'app/account/my-dashboard/myDashboard.spec.js'
+//        	regression7: 'app/account/account/account.spec.js'
+        regression8: 'app/account/my-dashboard/myDashboard.spec.js'
 //        regression5: 'app/account/reset-password/reset-password.spec.js'
 	  },
     //baseUrl: 'http://qualityshepherd.com/angular',
@@ -23,6 +23,7 @@ exports.config = {
 	  browser.manage().window().setSize(1200, 900);
   	require('protractor-linkuisref-locator')(protractor);
   	require('jasmine-reporters');
+  	require('./waitReady.js');
   	var HtmlReporter = require('protractor-html-screenshot-reporter');
       // set implicit wait times in ms...
       //browser.manage().timeouts().pageLoadTimeout(10000);

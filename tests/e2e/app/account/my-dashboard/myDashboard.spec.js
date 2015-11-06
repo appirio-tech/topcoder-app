@@ -10,20 +10,21 @@
 //		 console.log(myDashboardData.baseUrl);
 		 var i=0;
 		 for (; i< myDashboardData.userCredentials.length; i++) {
-			 console.log('user creds :'+myDashboardData.userCredentials[i].username);
+			 console.log('user creds :'+myDashboardData.baseUrl);
 			 (function(loginUserCred) {
 				 it('Dashboard first part', function() {
 					 loginPage.get(myDashboardData.baseUrl);
 					 loginPage.login(loginUserCred);
-					 myDashboardPage.goToDashboardPage(myDashboardData.dashBoardUrl, loginUserCred);
+//					 myDashboardPage.goToDashboardPage(myDashboardData.dashBoardUrl, loginUserCred);
+					 myDashboardPage.goToEmptyDashboardPage(myDashboardData.dashBoardUrl, loginUserCred);
 				 });
 		  
 		  
-				 it('Dashboard srm and rest links', function() {
-					 loginPage.get(myDashboardData.baseUrl);
-					 loginPage.login(loginUserCred);
-					 myDashboardPage.goToDahsboardRestLinks(myDashboardData.dashBoardUrl, loginUserCred);
-				 });
+//				 it('Dashboard srm and rest links', function() {
+//					 loginPage.get(myDashboardData.baseUrl);
+//					 loginPage.login(loginUserCred);
+//					 myDashboardPage.goToDahsboardRestLinks(myDashboardData.dashBoardUrl, loginUserCred);
+//				 });
 		  
 				 it('welcomes the user for logout', function() {
 					 loginPage.logOut(myDashboardData.dashBoardUrl);
