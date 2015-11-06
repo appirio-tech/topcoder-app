@@ -24,6 +24,7 @@ var mockData = (function() {
     getMockLinkedExternalAccounts: getMockLinkedExternalAccounts,
     getMockLinkedExternalAccountsData: getMockLinkedExternalAccountsData,
     getMockExternalWebLinksData: getMockExternalWebLinksData,
+    getMockAuth0Profile: getMockAuth0Profile
   };
 
   function getMockStates() {
@@ -2052,6 +2053,26 @@ var mockData = (function() {
         "synchronizedAt": 0
       }
     ]
+  }
+
+  function getMockAuth0Profile() {
+    return {
+      "user_id": "mockSocialNetwork|123456",
+      "given_name": "mock",
+      "family_name": "user",
+      "first_name": "mock",
+      "last_name": "user",
+      "nickname": "mocky",
+      "name": "mock user",
+      "email": "mock@topcoder.com",
+      "username": "mockuser",
+      "identities": [
+        {
+          "access_token": "abcdefghi",
+          "access_token_secret": "abcdefghijklmnopqrstuvwxyz"
+        }
+      ]
+    };
   }
 
 })();

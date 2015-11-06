@@ -1,6 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
-
+@import 'tc-includes';
 
 external-web-link {
   .web-link {
@@ -33,9 +31,10 @@ external-web-link {
       .form-field-focused {
         @include form-field-focused;
       }
-
+      
       .validation-bar.url {
         flex: 1;
+        width: auto;
 
         &:before {
           height: 40px;
@@ -47,23 +46,10 @@ external-web-link {
         margin: 0px;
       }
 
-      // button {
-      //   @include button-2-m;
-      //   font-size: 14px;
-      //   line-height: 16px;
-      //   height: 40px;
-      //   width: 60px;
-      //   margin: 0 0 0 10px;
-      //   text-transform: uppercase;
-
-      //   &.enabled-button {
-      //     @include ui-enabled-button;
-      //   }
-
-      //   &.busy {
-      //     width: 94px;
-      //   }
-      // }
+      button {
+        width: auto;
+        margin-left: 10px;
+      }
     }
   }
 }

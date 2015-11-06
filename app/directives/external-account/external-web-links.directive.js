@@ -8,9 +8,9 @@
   angular
     .module('tcUIComponents')
     .directive('externalWebLink', ExternalWebLink);
-  ExternalWebLink.$inject = ['$log', 'ExternalWebLinksService'];
+  ExternalWebLink.$inject = ['$log', 'ExternalWebLinksService', 'toaster'];
 
-  function ExternalWebLink($log, ExternalWebLinksService) {
+  function ExternalWebLink($log, ExternalWebLinksService, toaster) {
     var directive = {
       estrict: 'E',
       templateUrl: 'directives/external-account/external-web-link.directive.html',

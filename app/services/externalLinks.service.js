@@ -41,7 +41,6 @@
     function addLink(userHandle, url) {
       return memberApi.one('members', userHandle).customPOST({'url': url}, 'externalLinks')
         .then(function(resp) {
-          debugger;
           var _newLink = {
             provider: 'weblink',
             data: resp

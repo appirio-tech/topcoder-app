@@ -99,6 +99,8 @@
         .title {{account.data.title}}
 
       div(ng-switch-when="weblink")
-        .handle My Portfoilo
+        .handle {{account.title}}
 
-        .title {{account.data.title}}
+        .title {{account.description}}
+
+        .title {{account.URL}}

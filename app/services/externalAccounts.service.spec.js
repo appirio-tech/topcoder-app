@@ -3,12 +3,16 @@ describe('ExternalAccount Service', function() {
   var service;
   var mockAccountsData = mockData.getMockLinkedExternalAccountsData();
   var mockUserLinksData = mockData.getMockLinkedExternalAccounts();
+  var mockAuth0Profile = mockData.getMockAuth0Profile();
+  var mockProfile = mockData.getMockProfile();
   var apiUrl;
+  var auth0, userService;
+  var profilePost, profileDelete;
 
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, 'ExternalAccountService', '$httpBackend', '$q', 'CONSTANTS', 'JwtInterceptorService');
+    bard.inject(this, 'ExternalAccountService', '$httpBackend', '$q', 'CONSTANTS', 'JwtInterceptorService', 'auth', 'UserService');
     bard.mockService(JwtInterceptorService, {
         getToken: $q.when('token'),
         _default:    $q.when([])
@@ -16,6 +20,28 @@ describe('ExternalAccount Service', function() {
 
     apiUrl  = CONSTANTS.API_URL;
     service = ExternalAccountService;
+    auth0 = auth;
+    userService = UserService;
+
+    // mock user api
+    sinon.stub(auth0, 'signin', function(params, successCallback, failureCallback) {
+      if (params && params.state == 'failure') {
+        failureCallback.call(failureCallback, "MOCK_ERROR");
+      }
+      successCallback.call(
+        successCallback,
+        mockAuth0Profile,
+        "mockAuth0IdToken",
+        "mockAuth0AccessToken",
+        params.state,
+        null
+      );
+    });
+
+    // mock user service
+    sinon.stub(userService, 'getUserIdentity', function() {
+      return {userId: 111, handle: mockProfile.handle };
+    });
 
     $httpBackend
       .when('GET', apiUrl + '/members/test1/externalAccounts/')
@@ -23,6 +49,11 @@ describe('ExternalAccount Service', function() {
     $httpBackend
       .when('GET', apiUrl + '/users/111/?fields=profiles')
       .respond(200, {result: {content: mockUserLinksData}});
+    profilePost = $httpBackend.when('POST', apiUrl + '/users/111/profiles/');
+    profilePost.respond(200, {result: {content: mockProfile}});
+
+    profileDelete = $httpBackend.when('DELETE', apiUrl + '/users/111/profiles/stackoverflow/');
+    profileDelete.respond(200, {result: {content: mockProfile}});
 
   });
 
@@ -69,6 +100,93 @@ describe('ExternalAccount Service', function() {
       expect(data).to.have.length(5);
       var nullAccounts = _.remove(data, function(n) {return n.data.status === 'PENDING'});
       expect(nullAccounts).to.have.length(1);
+    });
+    $httpBackend.flush();
+  });
+
+  it('should link external account', function() {
+    // call linkExternalAccount method with supporte network, should succeed
+    service.linkExternalAccount('stackoverflow', "callback").then(function(data) {
+      expect(data).to.be.defined;
+      // console.log(data);
+      expect(data.status).to.exist.to.equal('SUCCESS');
+      expect(data.linkedAccount).to.exist;
+      expect(data.linkedAccount.provider).to.exist.to.equal('stackoverflow');
+      expect(data.linkedAccount.data).to.exist;
+      expect(data.linkedAccount.data.status).to.exist.to.equal('PENDING');
+    });
+    $httpBackend.flush();
+  });
+
+  it('should fail with unsupported network', function() {
+    // call linkExternalAccount method with unsupported network, should fail
+    service.linkExternalAccount('unsupported', "callback").then(function(data) {
+      expect(data).to.be.defined;
+      expect(data.status).to.exist.to.equal('failed');
+      expect(data.error.to.contain('unsupported'));
+    });
+  });
+
+  it('should fail with already existing profile', function() {
+    var errorMessage = "social profile exists";
+    profilePost.respond(400, {result:  { status: 400, content: errorMessage } });
+    // call linkExternalAccount method, having user service throw already exist
+    service.linkExternalAccount('stackoverflow', "callback").then(function(data) {
+      sinon.assert.fail('should not be called');
+    }, function(error) {
+      expect(error).to.be.defined;
+      expect(error.status).to.exist.to.equal('SOCIAL_PROFILE_ALREADY_EXISTS');
+      expect(error.msg).to.exist.to.equal(errorMessage);
+    });
+    $httpBackend.flush();
+  });
+
+  it('should fail with auth0 error', function() {
+    // call linkExternalAccount method with auth0 throwing error
+    service.linkExternalAccount('stackoverflow', "failure").then(function(data) {
+      sinon.assert.fail('should not be called');
+    }, function(error) {
+      expect(error).to.be.exist.to.equal('MOCK_ERROR');
+    });
+    $httpBackend.flush();
+  });
+
+  it('should unlink external account', function() {
+    var errorMessage = "social profile exists";
+    profilePost.respond(400, {result:  { status: 400, content: errorMessage } });
+    // call unlinkExternalAccount method with supporte network, should succeed
+    service.unlinkExternalAccount('stackoverflow').then(function(data) {
+      expect(data).to.be.defined;
+      // console.log(data);
+      expect(data.status).to.exist.to.equal('SUCCESS');
+    });
+    $httpBackend.flush();
+  });
+
+  it('should fail, with profile does not exist, in unlinking external account', function() {
+    var errorMessage = "social profile does not exists";
+    profileDelete.respond(404, {result:  { status: 404, content: errorMessage } });
+    // call unlinkExternalAccount method with supporte network, should succeed
+    service.unlinkExternalAccount('stackoverflow').then(function(data) {
+      sinon.assert.fail('should not be called');
+    }).catch(function(error) {
+      expect(error).to.be.defined;
+      expect(error.status).to.exist.to.equal('SOCIAL_PROFILE_NOT_EXIST');
+      expect(error.msg).to.exist.to.equal(errorMessage);
+    });
+    $httpBackend.flush();
+  });
+
+  it('should fail, with fatal error, in unlinking external account', function() {
+    var errorMessage = "bad request";
+    profileDelete.respond(400, {result:  { status: 400, content: errorMessage } });
+    // call unlinkExternalAccount method with supporte network, should succeed
+    service.unlinkExternalAccount('stackoverflow').then(function(data) {
+      sinon.assert.fail('should not be called');
+    }).catch(function(error) {
+      expect(error).to.be.defined;
+      expect(error.status).to.exist.to.equal('FATAL_ERROR');
+      expect(error.msg).to.exist.to.equal(errorMessage);
     });
     $httpBackend.flush();
   });

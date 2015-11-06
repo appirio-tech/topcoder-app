@@ -44,10 +44,6 @@
         .withHttpConfig({skipAuthorization: true})
         .customGET('externalAccounts')
         .then(function(data) {
-          // TODO workaround for dribbble spelling mistake, remove once API is fixed
-          if (data.dribble) {
-            data.dribbble = data.dribble;
-          }
           return data;
         });
     }
@@ -166,7 +162,7 @@
                     }
                   };
                   _data.linkedAccount.data.status = 'PENDING';
-                  return _data;
+                  resolve(_data);
                 })
                 .catch(function(resp) {
                   var errorStatus = "FATAL_ERROR";
