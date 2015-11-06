@@ -24,7 +24,7 @@
         // filtering is a separate step to allow multiple pre-processings and filter out in single call
         subtrackRanks = UserStatsService.filterStats(subtrackRanks);
         // sort subtrack ranks
-        subtrackRanks = $filter('orderBy')(subtrackRanks, 'mostRecentEventDate', true);
+        subtrackRanks = $filter('orderBy')(subtrackRanks, 'mostRecentSubmissionDate', true);
 
         vm.subtrackRanks = subtrackRanks;
         vm.hasRanks = !!vm.subtrackRanks.length;

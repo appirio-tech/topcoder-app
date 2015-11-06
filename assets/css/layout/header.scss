@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 #header {
   @include clearfix;
@@ -81,7 +80,7 @@
     content: '';
     background: url('/images/badge-beta.svg');
     background-size: contain;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     display: block;
     width: 37px;
     height: 17px;

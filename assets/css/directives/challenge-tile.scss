@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 
 // Default Challenge Tile Stylings
@@ -279,7 +278,10 @@ challenge-tile .challenge.list-view {
       color: $gray-darkest;
       font-size: 13px;
       line-height: 18px;
-      max-width: 362px;
+      color: $gray-darkest;
+      @include ellipsis;
+
+
       span:first-child {
         color: $accent-gray;
         white-space: nowrap;
