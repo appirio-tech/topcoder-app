@@ -1,3 +1,9 @@
+//- 
+//- CARD DIRECTIVE
+//- ---------------------------------------------------------------------------
+//- Use to display flex cards and list cards at the same time. Depending on the
+//- layout switch classes are added/removed;
+
 .challenge.tile-view(ng-show="view === 'tile'", ng-class="challenge.track")
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")
     //- .challenge-track
@@ -29,9 +35,9 @@
         .registered(ng-switch-when="Registered") Registered
 
     // Only show if not data science track
-    p.roles 
-      span(ng-hide="challenge.track === 'DATA_SCIENCE'") 
-       #[span Role:&nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
+    .roles 
+      p(ng-hide="challenge.track === 'DATA_SCIENCE'") Role:&nbsp;
+        span {{challenge.userDetails.roles | listRoles}}
 
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
@@ -65,7 +71,8 @@
     // Only show if not data science track
     p.roles
       span(ng-hide="challenge.track === 'DATA_SCIENCE'") 
-        #[span Role:&nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
+        #[span Role:&nbsp;]
+        #[span {{challenge.userDetails.roles | listRoles}}]
 
 .challenge.list-view(ng-show="view=='list'", ng-class="challenge.track")
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")

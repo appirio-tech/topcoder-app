@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 // CARD
 // ----------------------------------------------------------------------------
@@ -20,7 +19,7 @@
 // The card header. It usually contains Title, Track and Meta.
 // The header can be color-coded when there are different tracks.
 .card-header {
-  border-bottom: 1px solid #F0F0F0;
+  border-bottom: 1px solid #f0f0f0;
   border-left: 2px solid $develop;
   border-radius: 3px 0 0 0;
   display: flex;
@@ -93,7 +92,7 @@
     @include font-with-weight('Sofia Pro', 700);
   }
   .calendar--title {
-    color: #7F7F7F;
+    color: #7f7f7f;
     font-size: 10px;
     line-height: 13px;
     margin-top: 3px;
@@ -105,7 +104,7 @@
     margin-top: 5px;
   }
   .calendar--unit-label {
-    color: #7F7F7F;
+    color: #7f7f7f;
     font-size: 10px;
     margin-top: 1px;
     text-transform: lowercase;
@@ -140,7 +139,7 @@
   .submitted {
     @include font-with-weight;
     background-color: $white;
-    border: 1px solid #F0F0F0;
+    border: 1px solid #f0f0f0;
     border-radius: 4px;
     color: $gray-darkest;
     height: 30px;

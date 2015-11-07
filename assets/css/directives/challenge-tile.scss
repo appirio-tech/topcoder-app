@@ -11,10 +11,7 @@ challenge-tile .challenge.tile-view {
     border-left: 2px solid $develop;
     border-radius: 3px 0 0 0;
     display: flex;
-    flex-direction: column;
-    align-self: flex-start;
-    justify-content: space-between;
-    width: 270px;
+
     min-height: 91px;
     a.name {
       @include font-with-weight('Sofia Pro', 500);
