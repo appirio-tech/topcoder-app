@@ -77,15 +77,17 @@
   }
 
   .logo-link:after {
-    content: '';
-    background: url('/images/badge-beta.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    display: block;
+    content: 'beta';
+    display: inline-block;
     width: 37px;
-    height: 17px;
-    margin-top: 23px;
-    margin-left: 155px;
+    height: 18px;
+    margin-top: 21px;
+    margin-left: 160px;
+    padding: 0 1px;
+    line-height: 19px;
+    font-size: 10px;
+    background-color: $gray-lighter;
+    border-radius: 15px;
   }
 }
 
