@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 .challenge-links.tile-view {
   display: flex;
@@ -57,7 +56,7 @@
     @include background-image-size(20px, 17px);
     background-image: url(/images/ico-posts.svg);
   }
-}  
+}
 
 .challenge-links.list-view {
   display: flex;

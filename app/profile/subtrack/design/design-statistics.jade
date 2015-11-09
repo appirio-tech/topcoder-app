@@ -1,0 +1,33 @@
+.design(ng-if="vm.track == 'DESIGN'")
+
+  .bottom
+    h2.detailed Details
+
+    ul.vertical-stats
+      li.first
+        .left Win Percentage
+        .right {{vm.typeStats.winPercent | percentage | empty}}
+
+      li(ng-if="profileVm.isUser")
+        .left Inquiries
+        .right {{vm.typeStats.numInquiries | empty}}
+
+      li(ng-if="profileVm.isUser")
+        .left Submissions
+        .right {{vm.typeStats.submissions | empty}}
+
+      li
+        .left Submission Rate
+        .right {{vm.typeStats.submissionRate | percentage | empty}}
+
+      li.first(ng-if="profileVm.isUser")
+        .left Passed Screening
+        .right {{vm.typeStats.passedScreening | empty}}
+
+      li
+        .left Screening Success Rate
+        .right {{vm.typeStats.screeningSuccessRate | percentage | empty}}
+
+      li
+        .left Average Placement
+        .right {{vm.typeStats.avgPlacement | number: 2 | empty}}

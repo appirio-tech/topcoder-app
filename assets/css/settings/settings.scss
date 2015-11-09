@@ -1,7 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
-
-
+@import 'tc-includes';
 
 .settings-header {
   @include module-full-width;
@@ -53,7 +50,7 @@
     color: $gray-darkest;
   }
   // Autocomplete end
-  
+
   @include module-l;
   margin: 30px auto 0;
 
@@ -198,7 +195,7 @@
       padding-left: 60px;
       width: 65%;
     }
-    
+
     .form-field {
       @include form-field;
       @include ui-form-placeholder;
@@ -315,7 +312,7 @@
         text-transform: uppercase;
       }
 
-      
+
 
       .list {
         display: flex;

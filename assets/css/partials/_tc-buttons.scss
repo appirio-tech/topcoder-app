@@ -1,8 +1,4 @@
-// Topcoder Buttons
-// tc- is the default prefixe that we use for all classes
-
-@import 'topcoder-includes';
-
+@import 'tc-includes';
 
 a,
 button {
@@ -63,7 +59,6 @@ a.tc-btn, button.tc-btn {
     opacity: .3;
     cursor: default;
   }
-
 
   &.tc-btn-secondary {
     border-color: $gray;

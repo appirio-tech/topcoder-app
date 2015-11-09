@@ -58,6 +58,7 @@ describe('TcAuthToken Service', function() {
     it('should remove tokens from store & cookie"', function() {
       service.removeTokens();
       expect($cookies.remove).to.have.been.calledWith('tcjwt');
+      expect($cookies.remove).to.have.been.calledWith('tcsso');
       expect(store.remove).to.be.have.been.calledWith('appiriojwt');
     });
 

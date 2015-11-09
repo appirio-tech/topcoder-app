@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 // styling for tile view
 design-challenge-user-place {
@@ -10,6 +9,10 @@ design-challenge-user-place {
     align-items: center;
 
     .place {
+      &.completed, &.passed, &.didnt {
+        margin-bottom: -23px;
+        margin-top: 40px;
+      }
       margin-bottom: 8px;
       margin-top: 8px;
       @include sofia-pro-regular;

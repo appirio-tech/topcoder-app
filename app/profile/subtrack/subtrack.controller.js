@@ -27,10 +27,7 @@
 
     vm.pageName = vm.subTrack.toLowerCase().replace(/_/g, ' ');
 
-    vm.tabs = [];
-    if (vm.track !== 'DESIGN') {
-      vm.tabs.push('statistics');
-    }
+    vm.tabs = ['statistics'];
 
     if (vm.track !== 'COPILOT') {
       vm.tabs.push( vm.subTrack === 'SRM' ? 'Past srm': 'challenges');
@@ -230,7 +227,7 @@
         template: 'profile/subtrack/nav.html',
         controller: 'ProfileCtrl',
         controllerAs: 'vm',
-        className: 'ngdialog-theme-default',
+        className: 'ngdialog-nav-theme',
         resolve: {
           userHandle: function() {
             return vm.userHandle;

@@ -11,7 +11,6 @@
     vm.constants = CONSTANTS;
     vm.domain = CONSTANTS.domain;
     vm.login = TcAuthService.login;
-    vm.logout = logout;
     vm.checkSubmit = checkSubmit;
     vm.searchTerm = '';
     vm.selectedGroup = selectedGroup;
@@ -63,13 +62,6 @@
           // todo handle error
         });
       }
-    }
-
-    function logout() {
-      TcAuthService.logout()
-      .then(function() {
-        $state.go('home');
-      });
     }
 
     function selectedGroup() {

@@ -1,5 +1,4 @@
-@import 'topcoder-includes';
-@import '../partials/combined';
+@import 'tc-includes';
 
 #header {
   @include clearfix;
@@ -78,18 +77,17 @@
   }
 
   .logo-link:after {
+    content: 'beta';
+    display: inline-block;
     width: 37px;
     height: 18px;
     margin-top: 21px;
     margin-left: 160px;
-    border-radius: 0;
-    content: 'beta';
-    background-color: $gray-lighter;
     padding: 0 1px;
-    border-radius: 15px;
-    font-size: 10px;
-    display: inline-block;
     line-height: 19px;
+    font-size: 10px;
+    background-color: $gray-lighter;
+    border-radius: 15px;
   }
 }
 

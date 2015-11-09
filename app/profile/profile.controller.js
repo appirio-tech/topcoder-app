@@ -13,6 +13,7 @@
     // set profile to the object that was resolved
     vm.profile = profile;
     vm.userHandle = userHandle;
+    vm.handleColor = ProfileService.getUserHandleColor(profile);
     vm.showBadges = showBadges;
     vm.closeDialog = closeDialog;
     vm.scrollTo = scrollTo;
