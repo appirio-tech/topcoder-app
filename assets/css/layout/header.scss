@@ -148,17 +148,18 @@
 
 .search-wrapper {
   input {
-    font-weight: bold;
-    border: 1px solid #7f7f7f;
-    color: #fff;
-    border-radius: 4px;
     display: block;
+    box-sizing: border-box;
     height: 32px;
     width: 100%;
     padding: 0 15px 0 37px;
     background: transparent;
-    outline: none;
+    border: 1px solid #7f7f7f;
+    border-radius: 4px;
     box-shadow: none;
+    outline: none;
+    font-weight: bold;
+    color: #fff;
 
     &:focus {
       outline: none;
@@ -193,6 +194,9 @@
     width: 31px;
     vertical-align: middle;
     border-radius: 50%;
+    @media only screen and (max-width: 1024px) {
+      margin-right: 10px;
+    }
   }
 
   .username {
@@ -200,6 +204,10 @@
     &.underline {
       padding-bottom: 12px;
       border-bottom: 2px $primary solid;
+      @media only screen and (max-width: 1024px) {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
     }
   }
 
@@ -212,8 +220,17 @@
   text-transform: uppercase;
 }
 
+.user-menu .submenu {
+  padding-top: 5px;
+}
+
 .submenu {
   font-size: 14px;
+  @media only screen and (max-width: 1024px) {
+    .submenu-item {
+      margin-top: 3px;
+    }
+  }
 }
 
 .suggestion-list {
@@ -297,11 +314,11 @@
   }
 
   .top-header {
-    padding: 0 20px;
+    padding: 0 20px 20px;
 
     .logo-link:after {
-      margin-top: 17px;
-      margin-left: 4px;
+      margin-top: 21px;
+      margin-left: -3px;
     }
   }
 

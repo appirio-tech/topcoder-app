@@ -2,20 +2,25 @@ footer.bottom-footer
   // Footer links
   nav.menu-item
     .menu-item-header.show-small OTHERS
+
     ul.submenu
-        li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/sitemap") SITEMAP]
-        li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/about") ABOUT US]
-        li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="/contact-us") CONTACT US]
-        li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="https://help.{{domain}}" target="_blank") HELP CENTER]
-        li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="https://www.{{domain}}/community/how-it-works/privacy-policy/") PRIVACY POLICY]
-        li.submenu-item #[a.menu-link(ng-click="$event.stopPropagation();" href="https://www.{{domain}}/community/how-it-works/terms/") TERMS]
+      li.submenu-item #[a.menu-link(ng-href="https://www.{{domain}}/sitemap") SITE MAP]
+      li.submenu-item #[a.menu-link(ng-href="https://www.{{domain}}/about") ABOUT US]
+      li.submenu-item #[a.menu-link(ng-href="https://www.{{domain}}/contact-us") CONTACT US]
+      li.submenu-item #[a.menu-link(ng-href="https://help.{{domain}}" target="_blank") HELP CENTER]
+      li.submenu-item #[a.menu-link(ng-href="https://www.{{domain}}/community/how-it-works/privacy-policy/") PRIVACY POLICY]
+      li.submenu-item #[a.menu-link(ng-href="https://www.{{domain}}/community/how-it-works/terms/") TERMS]
 
     // Social links
   .social-links
     p Topcoder is also on
+
     a.fb-link(href="https://www.facebook.com/topcoder" target="fbwindow")
+
     a.twitter-link(href="http://www.twitter.com/topcoder" target="twwindow")
+
     a.linkedin-link(href="https://www.linkedin.com/company/topcoder" target="liwindow")
+
     a.google-link(href="https://plus.google.com/u/0/b/104268008777050019973/104268008777050019973/posts" target="gpwindow")
     
   p.copyright-notice © 2015 Topcoder. All Rights Reserved

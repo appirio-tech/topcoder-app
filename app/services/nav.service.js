@@ -8,10 +8,8 @@
   function NavService(CONSTANTS, $state, UserService, TcAuthService) {
 
     var service = {
-
       selectedTopLevelItem: null,
       getParent: getParent
-
     };
 
     service.menuLinks = {
@@ -47,6 +45,7 @@
     ];
 
     service.hrefs = {};
+
     service.menuLinks.compete.forEach(function(link) {
       link.parent = 'compete';
       service.hrefs[link.href] = link;
@@ -68,8 +67,9 @@
     });
 
     function getParent(ref) {
-      if (ref.indexOf('.') >= 0)
+      if (ref.indexOf('.') >= 0) {
         ref = ref.slice(0, ref.indexOf('.'));
+      }
 
       if (ref.match(/profile/)) {
         if (TcAuthService.isAuthenticated() && $state.params && $state.params.userHandle == UserService.getUserIdentity().handle) {
@@ -82,9 +82,6 @@
       }
     }
 
-
     return service;
-
   }
-
 })();
