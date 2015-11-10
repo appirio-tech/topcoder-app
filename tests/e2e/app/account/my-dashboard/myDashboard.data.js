@@ -1,18 +1,20 @@
 
 // store user data in maps for ease of use and readability...
 var MyDashboardData = function() {
-    this.userCredentials = [
+    this.emptyUserCredentials = [
                             	{
                             		'username' : 'aqmansuri',
                             		'password' : 'appirio123'
                             	}
-                            	
-                            	
-                            	/*{	'username' :'Iamtong',
+                            ],
+                            
+     this.userCredentials = [                            
+                                  {	'username' :'Iamtong',
                             		'password' :'appirio123',
                             		'challengeCount':2,
                             		'srmCount' : 3,
-                            	},
+                                  }
+                                  /*,
                             	{	'username' : 'DhananjayKumar1',
                             		'password' : 'appirio123'
                             	}*/

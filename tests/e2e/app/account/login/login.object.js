@@ -580,6 +580,7 @@ var LoginPage = function() {
 	  var submenuLi = mainMenuLiList.get(1);
 //	  var logoutLink = submenuLi.all(by.css('ul .submenu-item .menu-link')).get(0);
 	  var logoutLink = element(by.partialLinkText('LOG OUT'));
+	  expect(logoutLink.waitReady()).toBeTruthy();
 	  
 //	  var submenuItems = element(by.css('.menu-item .submenu')).all(by.css('.submenu-item'));
 //	  var elementLabel = submenuItems.get(0);
