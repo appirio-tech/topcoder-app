@@ -71,6 +71,19 @@
 			height: 27px;
 		}
 	}
+
+  .bottom-footer nav {
+    position: absolute;
+    top: 997px;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: $gray-darkest;
+
+    ul a {
+      color: $white;
+    }
+  }
 }
 
 @media only screen and (min-width : 1025px) {

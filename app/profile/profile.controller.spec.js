@@ -24,6 +24,9 @@ describe('Profile Controller', function() {
       getUserSkills: function() {
         return $q.when({result: {content: mockSkills}});
       },
+      getUserHandleColor: function() {
+        return 'something';
+      },
       getRanks: ProfileService.getRanks
     };
     // mock user api
