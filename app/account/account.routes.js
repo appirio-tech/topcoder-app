@@ -108,9 +108,13 @@
       },
       logout: {
         url: '/logout/',
-        controller: ['TcAuthService', function(TcAuthService) {
-          TcAuthService.logout();
-        }],
+        views: {
+          'header@': {},
+          'container@': {
+            controller: 'LogoutController'
+          },
+          'footer@': {}
+        },
         data: {
           authRequired: false
         }

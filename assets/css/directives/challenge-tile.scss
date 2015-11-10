@@ -217,7 +217,7 @@ challenge-tile .challenge.tile-view {
       .winner-ribbon {
         position: absolute;
         z-index: 1;
-        bottom: -40px;
+        bottom: -33px;
         left: -2px;
         @include background-image-size(73px, 26px);
         background: url(/images/ico-winner-ribbon.svg);

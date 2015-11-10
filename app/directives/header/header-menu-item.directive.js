@@ -13,8 +13,9 @@
         var href = $scope.item.href;
 
         // I believe I have to hack this because of https://github.com/angular-ui/ui-router/issues/395, I tried ui-state
-        if ($scope.item.srefParams)
+        if ($scope.item.srefParams) {
           $scope.wtfhref = $state.href($scope.item.sref, $scope.item.srefParams);
+        }
 
         $scope.isActive = function() {
           if (window.location.pathname == href || $state.is(sref)) {
@@ -23,6 +24,7 @@
 
             return true;
           }
+
           return false;
         }
       }]

@@ -273,7 +273,7 @@
         array.forEach(function(level) {
           level.problemsFailed = level.problemsFailed || level.failedChallenges || 0;
           level.problemsSubmitted = level.problemsSubmitted || level.challenges || 0;
-          level.problemsSuccessful = (level.problemsSubmitted - level.problemsFailed) || 0;
+          level.problemsSuccessful = (level.problemsSubmitted - level.problemsFailed - (level.problemsSysByTest || 0)) || 0;
           level.percentSuccessful = (level.problemsSuccessful / (level.problemsSubmitted || 1)) || 0;
           ans.total.problemsSuccessful += level.problemsSuccessful || (level.challenges - level.failedChallenges) || 0;
           ans.total.problemsFailed += level.problemsFailed || level.failedChallenges || 0;

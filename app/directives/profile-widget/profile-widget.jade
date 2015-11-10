@@ -1,5 +1,5 @@
 .profile-widget-directive
-  a(ui-sref="profile.about({userHandle: profile.handle})")
+  .pic
     img.profile-circle(ng-if="profile.photoURL", ng-src="{{profile.photoURL}}")
     img.profile-circle(ng-if="!profile.photoURL", src="/images/ico-user-default.svg")
 
