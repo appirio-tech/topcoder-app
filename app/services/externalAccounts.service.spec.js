@@ -7,7 +7,7 @@ describe('ExternalAccount Service', function() {
   var mockProfile = mockData.getMockProfile();
   var apiUrl;
   var auth0, userService;
-  var profilePost, profileDelete;
+  var profileGet, profilePost, profileDelete;
 
 
   beforeEach(function() {
@@ -46,9 +46,10 @@ describe('ExternalAccount Service', function() {
     $httpBackend
       .when('GET', apiUrl + '/members/test1/externalAccounts/')
       .respond(200, {result: {content: mockAccountsData}});
-    $httpBackend
-      .when('GET', apiUrl + '/users/111/?fields=profiles')
-      .respond(200, {result: {content: mockUserLinksData}});
+
+    profileGet = $httpBackend.when('GET', apiUrl + '/users/111/?fields=profiles');
+    profileGet.respond(200, {result: {content: mockUserLinksData}});
+
     profilePost = $httpBackend.when('POST', apiUrl + '/users/111/profiles/');
     profilePost.respond(200, {result: {content: mockProfile}});
 
@@ -104,6 +105,33 @@ describe('ExternalAccount Service', function() {
     $httpBackend.flush();
   });
 
+  it('should not return unsupported links even if they are returned by the API', function() {
+    var profiles = JSON.parse(JSON.stringify(mockUserLinksData));
+    profiles.profiles.push({providerType: 'unsupported'});
+    profileGet.respond(200, {result: {content: profiles}});
+    // spy
+    service.getAllExternalLinks('test1', 111, true).then(function(data) {
+      expect(data).to.be.defined;
+      expect(_.pluck(data, 'provider')).to.include.members(['dribbble', 'github','bitbucket', 'stackoverflow']);
+      expect(_.all(_.pluck(data, 'data'))).to.be.truthy;
+    });
+    $httpBackend.flush();
+  });
+
+  it('should fail in returning links', function() {
+    var errorMessage = "bad request";
+    // mocks the GET call to respond with 400 bad request
+    profileGet.respond(400, {result:  { status: 400, content: errorMessage } });
+    // calls getAllExternalLinks method with valid params
+    service.getAllExternalLinks('test1', 111, true).then(function(data) {
+      sinon.assert.fail('should not be called');
+    }).catch(function(resp) {
+      expect(resp).to.exist;
+      expect(resp.status).to.exist.to.equal(400);
+    });
+    $httpBackend.flush();
+  });
+
   it('should link external account', function() {
     // call linkExternalAccount method with supporte network, should succeed
     service.linkExternalAccount('stackoverflow', "callback").then(function(data) {
@@ -147,6 +175,20 @@ describe('ExternalAccount Service', function() {
       sinon.assert.fail('should not be called');
     }, function(error) {
       expect(error).to.be.exist.to.equal('MOCK_ERROR');
+    });
+    $httpBackend.flush();
+  });
+
+  it('should fail, with fatal error, in linking external account', function() {
+    var errorMessage = "endpoint not found";
+    profilePost.respond(404, {result:  { status: 404, content: errorMessage } });
+    // call unlinkExternalAccount method with supporte network, should succeed
+    service.linkExternalAccount('stackoverflow', "callback").then(function(data) {
+      sinon.assert.fail('should not be called');
+    }).catch(function(error) {
+      expect(error).to.be.defined;
+      expect(error.status).to.exist.to.equal('FATAL_ERROR');
+      expect(error.msg).to.exist.to.equal(errorMessage);
     });
     $httpBackend.flush();
   });

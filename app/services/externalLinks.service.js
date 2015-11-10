@@ -51,7 +51,7 @@
     }
 
     function removeLink(userHandle, key) {
-      return memberApi.one('members', userHandle).one('externalLinks', key).delete();
+      return memberApi.one('members', userHandle).one('externalLinks', key).remove();
     }
 
   }
