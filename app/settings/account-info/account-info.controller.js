@@ -11,6 +11,7 @@
     vm.saveAccountInfo   = saveAccountInfo;
     vm.updateCountry     = updateCountry;
     vm.submitNewPassword = submitNewPassword;
+    vm.getAddr = getAddr;
 
     activate();
 
