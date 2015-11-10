@@ -126,7 +126,7 @@
         rank.stat = rank.activeContests;
         rank.statType = 'Challenges';
       } else if (rank.track === 'DEVELOP') {
-        if (['CODE', 'FIRST_2_FINISH'].indexOf(rank.subTrack) != -1) {
+        if (['CODE', 'FIRST_2_FINISH', 'BUG_HUNT'].indexOf(rank.subTrack) != -1) {
           rank.stat = rank.wins;
           rank.statType = 'Wins';
           // for non rated tracks, use submissions to filter out empty values
