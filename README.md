@@ -58,7 +58,7 @@ The tests folder contains mock data (tests/test-helpers/mock-data.js). It also h
 Spec files live alongside the code they are testing. For example, in peer-review you have review-status.controller.js and review-status.spec.js in the same review-status folder. If you want to see an example of tests, use review-status.spec.js as an example of controller tests and services/challenge.service.spec.js as an example of service tests.
 
 ## UI-Router and States
-See sample.routes.js and peer-review.routes.js as examples.
+See any *.routes.js file as an example.
 
 ## Contributing
 
@@ -87,7 +87,7 @@ Jade Files
 ```
 
 SCSS Files
-  - Use SCSS syntax (nesting)
+  - Use SCSS syntax, but do not overly nest
   - Use variables and mixins as much as possible
   - Store new variables and mixins in the appropriate file in `assets/css/partials`
   - Since a class with the current state name is added to the ui-view (see the Creating New Views/Pages section), wrap your .scss file with this class, in order to write specific SCSS in its own file for that page.
