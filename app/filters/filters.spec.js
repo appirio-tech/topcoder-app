@@ -3,7 +3,7 @@ describe('filters', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, 'CONSTANTS', 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter', 'challengeLinksFilter', 'externalLinkColorFilter', 'emptyFilter', 'iifFilter');
+    bard.inject(this, 'CONSTANTS', 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter', 'challengeLinksFilter', 'externalLinkColorFilter', 'emptyFilter', 'ternaryFilter');
     domain = CONSTANTS.domain;
   });
 
@@ -126,13 +126,13 @@ describe('filters', function() {
     });
   });
 
-  describe('iifFilter', function() {
+  describe('ternaryFilter', function() {
     it('should function logically', function() {
-      expect(iifFilter(true, 1, 2)).to.be.equal(1);
-      expect(iifFilter(false, 1, 2)).to.be.equal(2);
-      expect(iifFilter(0, 1, 2)).to.be.equal(2);
+      expect(ternaryFilter(true, 1, 2)).to.be.equal(1);
+      expect(ternaryFilter(false, 1, 2)).to.be.equal(2);
+      expect(ternaryFilter(0, 1, 2)).to.be.equal(2);
       console.log(jstz.determine().name());
-      expect(iifFilter(true, 'm', 'n')).to.be.equal('m');
+      expect(ternaryFilter(true, 'm', 'n')).to.be.equal('m');
     });
   });
 });
