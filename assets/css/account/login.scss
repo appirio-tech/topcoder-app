@@ -16,6 +16,10 @@
         width: 300px;
       }
     }
+
+    p + button {
+      margin-top: 0;
+    }
   }
   .form-errors {
     p {
