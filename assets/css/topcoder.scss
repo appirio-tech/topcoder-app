@@ -4,7 +4,6 @@
 body {
   @include font-with-weight('Merriweather Sans', 400);
   background-color: $gray-lighter;
-
   > svg {
     display: none;
   }
@@ -33,21 +32,20 @@ body {
   @media screen and (min-device-width: 768px) {
     min-width: 768px;
   }
-
   .notifications-container {
     position: static;
     z-index: 0;
   }
   .error {
-    color: #a94442;
     background-color: #f2dede;
     border-color: #ebccd1;
+    color: #a94442;
   }
 }
 
 .view-container {
-  padding-bottom: 30px;
   min-height: 480px;
+  padding-bottom: 30px;
   @media screen and (min-device-width: 768px) {
     min-width: 768px;
   }
@@ -61,9 +59,9 @@ body {
 
 // Section loading and form styles
 .section-loading {
+  background: url(/images/ripple.gif) no-repeat center center;
   width: 100%;
   min-height: 50px;
-  background: url(/images/ripple.gif) no-repeat center center;
 }
 
 .form-errors {
@@ -71,8 +69,8 @@ body {
 }
 
 .form-notice {
+  color: #58595b;
   font-size: 13px;
-  color: #58595B;
 }
 
 .form-error {
@@ -82,20 +80,20 @@ body {
 
 
 .form-input-error {
-  padding: 10px;
-  margin-bottom: 10px;
   background-color: $error-lighter;
   border: 1px solid $error-light;
   color: $error;
-  text-align: left;
   font-size: 12px;
   line-height: 20px;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: left;
 }
 
 #toast-container > div {
-  width: 400px;
-  opacity: 0.95;
   @include sofia-pro-light;
+  width: 400px;
+  opacity: .95;
 }
 
 @media (max-width: 767px) {
@@ -108,8 +106,8 @@ body {
 // -----------------------------------------------------------
 
 .introjs-overlay {
-  opacity: 0.94;
   background: $accent-gray-dark;
+  opacity: .94;
 }
 
 .introjs-tooltip {
@@ -118,32 +116,28 @@ body {
 }
 
 .introjs-tooltiptext {
+  @include font-with-weight('Merriweather Sans', 400);
   color: $gray-darker;
   display: flex;
   flex-direction: column;
   align-items: center;
-  @include font-with-weight('Merriweather Sans', 400);
   font-size: 13px;
   line-height: 20px;
-
   h1 {
+    @include sofia-pro-medium;
+    color: $gray-darkest;
+    font-size: 16px;
+    line-height: 24px;
     margin-top: 20px;
     text-align: center;
-    @include sofia-pro-medium;
-    font-size: 16px;
-    color: $gray-darkest;
-    line-height: 24px;
   }
-
   img {
-    max-width: 320px;
     display: none;
-
+    max-width: 320px;
     @media only screen and (min-width : 768px) {
       display: block;
     }
   }
-
   p {
     margin-top: 20px;
   }
@@ -152,26 +146,26 @@ body {
 
 .introjs-helperLayer {
   background: $white;
-  border: 1px solid #85CCFF;
-  box-shadow: 0px 0px 4px 0px rgba(0, 150, 255, 0.20);
+  border: 1px solid #85ccff;
   border-radius: 6px;
+  box-shadow: 0 0 4px 0 rgba(0, 150, 255, .20);
 }
 
 .introjs-helperNumberLayer {
-  width: 30px;
-  height: 30px;
-  padding: 0;
-  line-height: 22px;
-  border: 3px solid $white;
-  background: $primary;
   @include sofia-pro-medium;
+  background: $primary;
+  border: 3px solid $white;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.20);
+  height: 30px;
+  width: 30px;
   font-size: 17px;
-  box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.20);
+  line-height: 22px;
+  padding: 0;
 }
 
 .introjs-tooltipbuttons {
-  width: 280px;
   float: right;
+  width: 280px;
 }
 
 // Refactor buttons when button mixins and/or style guide is done
@@ -181,8 +175,8 @@ body {
 }
 
 .introjs-skipbutton {
-  float: left;
   @extend .tc-btn-ghost;
+  float: left;
 }
 
 
@@ -194,18 +188,17 @@ body {
 .introjs-prevbutton {
   margin-right: 10px;
 }
-.introjs-nextbutton {}
+
 
 .introjs-bullets ul li {
   margin-right: 3px;
 }
 
 .introjs-bullets ul li a {
-  width: 5px;
-  height: 5px;
-  border-radius: 0;
   background-color: $gray;
-
+  border-radius: 0;
+  height: 5px;
+  width: 5px;
   &.active {
     background-color: $primary;
   }
@@ -220,40 +213,34 @@ body {
 
 .form-label {
   @include sofia-pro-medium;
-  font-size: 12px;
   color: $gray-darkest;
-  text-transform: uppercase;
+  font-size: 12px;
   margin-bottom: 5px;
   margin-top: 5px;
-
+  text-transform: uppercase;
   .mandatory {
-    text-transform: none;
     color: $primary-light;
     float: right;
+    text-transform: none;
   }
-
   .char-count {
     float: right;
     font-size: 11px;
     padding-right: 5px;
   }
-
   .grey {
     color: $accent-gray;
   }
 }
 
 .form-errors {
-  position: relative;
   line-height: 22px;
-  //top: 70px;
-  //left: 3px;
+  position: relative;
 }
 
 
 .form-errors {
   text-align: left;
-
   p {
     margin: 2px 0 12px 5px;
   }
@@ -262,26 +249,23 @@ body {
 // Error and success styles
 .validation-bar {
   position: relative;
-
   &:before {
+    border-radius: 3px 0 0 3px;
     content: '';
     display: none;
-    position: absolute;
-    top: 0px;
-    left: 1px;
     height: 38px;
     width: 2px;
-    border-radius: 3px 0 0 3px;
+    left: 1px;
+    position: absolute;
+    top: 0;
   }
-
   &.error-bar:before {
-    display: block;
     background-color: $error;
-  }
-
-  &.success-bar:before {
     display: block;
+  }
+  &.success-bar:before {
     background-color: $success;
+    display: block;
   }
 }
 
@@ -289,89 +273,83 @@ body {
 // ----------------------------------------------------------------------
 // probably structure needs to be redone
 
-$tips-shadow: 0px 1px 6px 1px rgba(0, 0, 0, 0.2);
+$tips-shadow: 0 1px 6px 1px rgba(0, 0, 0, .2);
 $tips-background: $gray-lighter;
 
 // Tip conatiner
 .tips {
   background-color: $tips-background;
   border-radius: 4px;
-  padding: 20px;
-  z-index: 1000;
   opacity: 1;
-  transition: all .1s ease-in-out;
+  padding: 20px;
   padding-bottom: 20px;
+  transition: all .1s ease-in-out;
+  z-index: 1000;
   @media screen and (min-width: 915px) {
-    position: absolute;
+    box-shadow: $tips-shadow;
     width: 320px;
+    padding-bottom: 10px;
+    position: absolute;
     text-align: left;
     top: -10px;
-    box-shadow: $tips-shadow;
-    padding-bottom: 10px;
   }
-
   // The tip container is hidden
   &.ng-hide {
     opacity: 0;
   }
-
   // Tip container arrow element
   .arrow {
     display: none;
-    @media screen and (min-width: 915px){
+    @media screen and (min-width: 915px) {
       display: block;
-      position: absolute;
-      left: -24px;
-      top: 10px;
-      width: 24px;
       height: 34px;
+      width: 24px;
+      left: -24px;
       overflow: hidden;
-
-      &:after {
-      content: '';
       position: absolute;
-      display: block;
       top: 10px;
-      left: 18px;
-      width: 12px;
-      height: 12px;
-      background-color: $tips-background;
-      -webkit-transform: rotate(45deg);
-      -moz-transform:    rotate(45deg);
-      -ms-transform:     rotate(45deg);
-      -o-transform:      rotate(45deg);
-      box-shadow: $tips-shadow;
+      &:after {
+           -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+             -o-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        background-color: $tips-background;
+        box-shadow: $tips-shadow;
+        content: '';
+        display: block;
+        height: 12px;
+        width: 12px;
+        left: 18px;
+        position: absolute;
+        top: 10px;
       }
     }
   }
-
   h3 {
     @include sofia-pro-medium;
-    padding-bottom: 15px;
     font-size: 14px;
+    padding-bottom: 15px;
     @media only screen and (max-width: 915px) {
       font-size: 16px;
     }
   }
-
   p {
-    font-size: 13px;
     color: $gray-darkest;
+    font-size: 13px;
     line-height: 1.3;
-    position: relative;
     padding-bottom: 10px;
+    position: relative;
     text-align: left;
   }
-
   p:before {
     // font-family: 'FontAwesome';
     @include sofia-pro-medium;
-    font-size: 14px;
     content: '';
+    width: 20px;
+    font-size: 14px;
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
-    width: 20px;
   }
 }
 
@@ -381,13 +359,11 @@ $tips-background: $gray-lighter;
   p {
     padding-left: 20px
   }
-
   p:before {
-    content: '\2713 ';
     color: $success;
+    content: '\2713 ';
     display: none;
   }
-
   .has-length-between-range:before,
   .has-letter:before,
   .has-symbol-or-number:before,
@@ -410,21 +386,22 @@ $switch-active-color: $primary;
 $switch-inactive-color: $gray;
 
 @mixin switch-transition {
-  transition: all 0.15s ease-in-out;
+  transition: all .15s ease-in-out;
 }
 
 // Parent container
 .onoffswitch {
-  position: relative;
-  width: $switch-width;
-  height: $switch-height;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select: none;
-  box-sizing: border-box;
-  border-radius: $switch-height;
-  background-color: $switch-inactive-color;
   @include switch-transition;
+  background-color: $switch-inactive-color;
+  border-radius: $switch-height;
+  box-sizing: border-box;
+  height: $switch-height;
+  width: $switch-width;
+  position: relative;
+
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
 }
 
 .onoffswitch-checkbox {
@@ -432,37 +409,38 @@ $switch-inactive-color: $gray;
 }
 
 .onoffswitch-label {
+  border-radius: $switch-height;
+  cursor: pointer;
   display: block;
   width: $switch-width;
   overflow: hidden;
-  cursor: pointer;
-  border-radius: $switch-height;
 }
 
 .onoffswitch-inner {
+  @include switch-transition;
   display: block;
   width: 200%;
   margin-left: -100%;
-  @include switch-transition;
 }
 
 // Pseudo-elements that slide to create background of the switch; TODO: Remove those
-.onoffswitch-inner:before, .onoffswitch-inner:after {
+.onoffswitch-inner:before,
+.onoffswitch-inner:after {
+  box-sizing: border-box;
+  color: white;
   display: block;
   float: left;
-  width: 50%;
   height: $switch-height;
-  padding: 0;
-  line-height: $switch-height;
+  width: 50%;
   font-size: 15px;
-  color: white;
   font-weight: bold;
-  box-sizing: border-box;
+  line-height: $switch-height;
+  padding: 0;
 }
 
 .onoffswitch-checkbox + .onoffswitch-label {
-    background-color: $switch-inactive-color;
-    @include switch-transition;
+  @include switch-transition;
+  background-color: $switch-inactive-color;
 }
 
 .onoffswitch-checkbox:checked + .onoffswitch-label {
@@ -471,7 +449,6 @@ $switch-inactive-color: $gray;
     // margin-left: 0;
     // background-color: $switch-active-color;
   }
-
   & .onoffswitch-switch {
     right: 0;
   }
@@ -480,35 +457,35 @@ $switch-inactive-color: $gray;
 
 // Switch is on
 .onoffswitch-inner:before {
-  content: "";
-  padding-left: 10px;
   background-color: transparent; //$switch-active-color;
   color: transparent;// $switch-active-color;
+  content: '';
+  padding-left: 10px;
 }
 
 // switch is off
 .onoffswitch-inner:after {
-  content: "";
-  padding-right: 10px;
   background-color: transparent; // $switch-inactive-color;
   color: transparent; // $switch-inactive-color;
+  content: '';
+  padding-right: 10px;
   text-align: right;
 }
 
 // SWITCH HANDLE
 .onoffswitch-switch {
-  display: block;
-  background-color: $white;
-  color: $white;
-  width: $switch-handle-size;
-  height: $switch-handle-size;
+  @include switch-transition;
   background: $white;
-  position: absolute;
-  margin: $switch-handle-offset;
-  top: 0;
-  bottom: 0;
-  right: $switch-handle-offset + $switch-handle-size -1;
+  background-color: $white;
   border: none;
   border-radius: $switch-height;
-  @include switch-transition;
+  bottom: 0;
+  color: $white;
+  display: block;
+  height: $switch-handle-size;
+  width: $switch-handle-size;
+  margin: $switch-handle-offset;
+  position: absolute;
+  right: $switch-handle-offset + $switch-handle-size -1;
+  top: 0;
 }
