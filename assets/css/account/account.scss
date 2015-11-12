@@ -5,7 +5,6 @@
 .reset-password-container,
 .registered-successfully-container {
   @include font-with-weight('Merriweather Sans');
-  // Form stylings
   @include ui-form-placeholder;
   background-color: $white;
   border-radius: 3px;
@@ -59,6 +58,12 @@
     @media (max-width: 767px) {
       margin: 30px auto;
     }
+  }
+  header > p,
+  form > p {
+    font-size: 15px;
+    line-height: 20px;
+    padding-bottom: 20px;
   }
   // registration sizes, remove
   input[name='firstname'],
@@ -219,7 +224,6 @@
 }
 
 // Register Link styles
-
 .join-topcoder {
   @include font-with-weight('Sofia Pro', 500);
   display: flex;
