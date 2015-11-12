@@ -4,94 +4,88 @@
 .register-container,
 .reset-password-container,
 .registered-successfully-container {
-  position: relative;
-  width: 560px;
-  margin: 60px auto 0;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: flex-start;
   @include font-with-weight('Merriweather Sans');
+  // Form stylings
+  @include ui-form-placeholder;
   background-color: $white;
   border-radius: 3px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 560px;
+  margin: 60px auto 0;
+  position: relative;
+  text-align: center;
   header {
-    height: 70px;
     background-color: $gray-darkest;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-radius: 3px 3px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
     position: relative;
-
     // CSS-olny Arrow
     &:after {
-      bottom: 0;
-      left: 50%;
       border: solid transparent;
-      content: " ";
+      border-bottom-color: #fff;
+      border-color: rgba(255, 255, 255, 0);
+      border-width: 13px;
+      bottom: 0;
+      content: ' ';
       height: 0;
       width: 0;
-      position: absolute;
-      pointer-events: none;
-      border-color: rgba(255, 255, 255, 0);
-      border-bottom-color: #fff;
-      border-width: 13px;
+      left: 50%;
       margin-left: -16px;
+      pointer-events: none;
+      position: absolute;
     }
-
     .logo-link img {
-      height: 30px;
       display: inline-block;
+      height: 30px;
     }
   }
-
   // Basic element stylings
   h1 {
-    margin-top: 39px;
+    @include font-with-weight('Sofia Pro', 300);
+    color: $gray-darkest;
+    align-self: center;
+    width: 380px;
+    font-size: 20px;
+    line-height: 30px;
     margin-bottom: 40px;
+    margin-top: 39px;
+    text-transform: uppercase;
     @media (max-width: 767px) {
       margin: 30px auto;
     }
-    color: $gray-darkest;
-    line-height: 30px;
-    font-size: 20px;
-    @include font-with-weight('Sofia Pro', 300);
-    width: 380px;
-    align-self: center;
-    text-transform: uppercase;
   }
-
   // registration sizes, remove
-  input[name="firstname"], input[name="lastname"] {
+  input[name='firstname'],
+  input[name='lastname'] {
     width: 185px;
     padding-right: 45px;
   }
-
-  input[name="username"], input[name="email"] {
+  input[name='username'],
+  input[name='email'] {
     padding-right: 85px;
   }
-
-  input[type="text"],
+  input[type='text'],
   toggle-password {
     width: 380px;
   }
-
-  input:not([type="checkbox"]) {
+  input:not([type='checkbox']) {
     width: 300px;
   }
-
   toggle-password {
     input#current-password-input {
-      width: 300px;
-      height: 20px;
       border: none;
-      outline: none;
       box-shadow: none;
+      height: 20px;
+      width: 300px;
+      outline: none;
     }
   }
-
   .tips,
   .email-tips,
   .password-tips {
@@ -99,150 +93,125 @@
       left: 395px;
     }
   }
-
   // Autocomplete
   .angucomplete-dropdown {
-    width: 100%;
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, .4);
     color: $gray-darkest;
+    width: 100%;
     text-align: left;
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.4);
   }
   .angucomplete-selected-row {
     background-color: $primary-lighter;
     color: $gray-darkest;
   }
   // Autocomplete end
-
   button {
     align-self: center;
     margin-top: 20px;
   }
-
-  // Form stylings
-  @include ui-form-placeholder;
-
-  input[type="text"],
+  input[type='text'],
   toggle-password {
     width: 380px;
   }
-
-
   toggle-password {
     input#current-password-input {
       width: 300px;
     }
   }
-
-
-
-
   // Social section
-
   .networks {
     display: block;
-
     .network {
       margin-left: 30px;
-
       &:first-child {
         margin-left: 0 !important;
       }
-
       & a:hover {
         filter: brightness(80%);
       }
-
       span {
-        color: #A3A3AE;
+        @include font-with-weight('Sofia Pro', 500);
+        color: #a3a3ae;
+        cursor: pointer;
         font-size: 10px;
         line-height: 13px;
-        @include font-with-weight('Sofia Pro', 500);;
-        text-transform: uppercase;
         margin-top: 10px;
-        cursor: pointer;
-        transition: .1s all;
+        text-transform: uppercase;
+        transition: .1s all;;
       }
     }
-
     .network:hover {
       span {
         color: $gray-darkest;
       }
     }
   }
-
   .login-options {
-    margin-top: 15px;
     margin-bottom: 40px;
-
+    margin-top: 15px;
     p {
-      color: #A3A3AE;
+      @include font-with-weight;
+      color: #a3a3ae;
       font-size: 13px;
       line-height: 22px;
-      @include font-with-weight;
       text-transform: uppercase;
     }
-
     .networks {
       display: flex;
       justify-content: center;
-      padding: 0px 10px;
-
+      padding: 0 10px;
       .network {
         display: flex;
         flex-direction: column;
         align-items: center;
-
         p {
-          color: #A3A3AE;
+          @include font-with-weight('Sofia Pro', 500);
+          color: #a3a3ae;
+          cursor: pointer;
           font-size: 10px;
           line-height: 13px;
-          @include font-with-weight('Sofia Pro', 500);
-          text-transform: uppercase;
-          cursor: pointer;
           margin-top: 10px;
+          text-transform: uppercase;
         }
-
         .ico {
-          margin-top: 22px;
-          width: 40px;
-          height: 40px;
           cursor: pointer;
+          height: 40px;
+          width: 40px;
+          margin-top: 22px;
         }
       }
-
       .github {
         .ico {
-          color: #404041;
           background-image: url(/images/svg/github.svg);
           background-repeat: no-repeat;
+          color: #404041;
         }
       }
       .facebook {
         margin-left: 41px;
         .ico {
-          color: #0D72B9;
           background-image: url(/images/svg/facebook.svg);
           background-repeat: no-repeat;
+          color: #0d72b9;
         }
       }
       .google-plus {
         margin-left: 43px;
         .ico {
-          border: 1px solid #D1D3D4;
-          border-radius: 4px;
-          color: #EE4036;
           background-image: url(/images/svg/gplus.svg);
+          background-position: center;
           background-repeat: no-repeat;
-          background-position : center;
+          border: 1px solid #d1d3d4;
+          border-radius: 4px;
+          color: #ee4036;
         }
       }
       .twitter {
         margin-left: 40px;
         .ico {
-          color: #26A9E0;
           background-image: url(/images/svg/twitter.svg);
           background-repeat: no-repeat;
+          color: #26a9e0;
         }
       }
     }
@@ -252,27 +221,25 @@
 // Register Link styles
 
 .join-topcoder {
+  @include font-with-weight('Sofia Pro', 500);
   display: flex;
   flex-flow: row wrap;
-  margin-top: 30px;
   justify-content: center;
-  text-transform: uppercase;
   font-size: $label-small;
-  @include font-with-weight('Sofia Pro', 500);
-
+  margin-top: 30px;
+  text-transform: uppercase;
   a {
     display: inline;
   }
-
-  .redirect{
+  .redirect {
     width: 111px;
     padding: 8px 10px;
   }
 }
 
 .fold-pusher {
-  height: 0px;
-  max-height: 0px;
+  height: 0;
+  max-height: 0;
 }
 
 .fold-wrapper {
@@ -284,34 +251,28 @@
   flex-flow: row wrap;
   justify-content: center;
   padding: 0 0 30px;
-
   .copyright-notice {
     color: $gray-dark;
   }
-
 }
 
 
 @media (max-width: 767px) {
-
   .login-container,
   .register-container,
   .reset-password-container,
   .registered-successfully-container {
     width: 100%;
     margin: 0 auto;
-
     h1 {
       width: 100%;
     }
-
     form {
-      margin-left: 0px;
-      padding: 0 20px;
       width: 100%;
-
-      input[type="text"],
-      input[type="email"],
+      margin-left: 0;
+      padding: 0 20px;
+      input[type='text'],
+      input[type='email'],
       toggle-password,
       toggle-password-with-tips {
         width: 100%;
@@ -331,47 +292,38 @@
   }
 }
 
-  // The separator for login options
-  .tc-separator {
-    // border: 1px solid $gray-light;
-    // position: relative;
-    // display: inline-block;
-    // height: 1px;
-    $sp-width: 340px;
-    width: $sp-width;
-    position: relative;
+
+// The separator for login options
+.tc-separator {
+  $sp-width: 340px;
+  display: block;
+  width: $sp-width;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  &:after {
+    background-color: $gray-light;
+    content: ' ';
     display: block;
-    margin: 0 auto;
-    text-align: center;
-
-    &:after {
-      display: block;
-      width: $sp-width;
-      content: " ";
-      overflow: hidden;
-      height: 1px;
-      background-color: $gray-light;
-      position: absolute;
-      top: 50%;
-      z-index: 99;
-    }
-
-    & span {
-      display: inline-block;
-      background: $white;
-      border: none;
-      z-index: 100;
-      position: relative;
-      top:  0;
-      padding: 0 15px;
-      font: {
-        size: 10px;
-        family: "Sofia Pro", Arial, sans-serif;
-        weight: 500;
-      }
-      text: {
-        align: center;
-        transform: uppercase;
-      }
-    }
+    height: 1px;
+    width: $sp-width;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    z-index: 99;
   }
+  & span {
+    background: $white;
+    border: none;
+    display: inline-block;
+    font-family: 'Sofia Pro', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 0 15px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: 0;
+    z-index: 100;
+  }
+}
