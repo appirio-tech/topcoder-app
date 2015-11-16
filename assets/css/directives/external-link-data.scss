@@ -117,6 +117,29 @@ external-accounts {
         padding: 10px;
         font-size: 50px;
       }
+
+      .link-title {
+        @include sofia-pro-medium;
+        font-size: 12px;
+        line-height: 20px;
+        // to handle the missing title scenario
+        min-height: 20px;
+        color: $gray-darkest;
+        margin-top: 20px;
+        max-height: 60px;
+        overflow: hidden;
+        padding: 0px 20px;
+      }
+
+      .link-url {
+        font-size: 12px;
+        line-height: 14px;
+        word-wrap: break-word;
+        display: block;
+        overflow: hidden;
+        max-height: 28px;
+        padding: 0px 20px;
+      }
     }
 
   }
@@ -213,6 +236,11 @@ external-accounts {
         .logo {
           padding: 10px;
           font-size: 50px;
+        }        
+
+        .link-title {
+          margin-top: 20px;
+          margin-bottom: 20px;
         }
       }
     }

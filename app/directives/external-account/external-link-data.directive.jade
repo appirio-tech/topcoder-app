@@ -99,6 +99,6 @@
         .title {{account.data.title}}
 
       div(ng-switch-when="weblink")
-        .handle {{account.title}}
+        p.link-title(data-ellipsis, ng-bind="account.title")
 
-        .title {{account.URL}}
+        a.link-url(ng-href="{{account.URL}}", ng-bind="account.URL")
