@@ -1,20 +1,20 @@
- // Sitemap styles
+@import 'tc-includes';
+
 .sitemap-container {
 	margin: 10px;
-	background: #fff;
+	background: $white;
 	padding: 34px 26px;
 	font-family: 'Sofia Pro';
-	
 	@media only screen and (min-width: 768px) {
 		margin: 0;
 		padding: 0;
-		background: #F6F6F6;
-		
+		background: $gray-lighter;
+
 		.sitemap-wrapper {
 			margin: 58px 69px;
-			background: #fff;
+			background: $white;
 			padding: 41px 58px;
-			
+
 			&:after {
 				display: block;
 				content: '';
@@ -22,76 +22,71 @@
 			}
 		}
 	}
-	
+
 	.page-header {
 		font-size: 22px;
 		font-weight: bold;
 		text-align: center;
-		
 		@media only screen and (min-width: 768px) {
 			text-align: left;
 			font-size: 32px;
 			padding: 47px 38px 33px 129px;
-			background: #fff;
+			background: $white;
 			border-bottom: 2px solid #EBEBEB;
 		}
 	}
-	
+
 	.sitemap-header {
 		font-weight: bold;
 		font-size: 14px;
-		
 		@media only screen and (min-width: 768px) {
 			font-size: 15px;
 		}
 	}
-	
+
 	.sitemap-nav {
 		margin-top: 32px;
 		font-size: 18px;
 		text-transform: uppercase;
-		
 		@media only screen and (min-width: 768px) {
 			width: 25%;
 			float: left;
 			margin: 0;
 			box-sizing: border-box;
 			padding: 31px 5px 31px 5px;
-			
-			
+
 			&:nth-child(4n+1) {
 				clear: both;
 			}
 		}
-		
+
 		a {
 			display: block;
 			margin-top: 16px;
 			color: #A3A3B4;
 			font-size: 15px;
 		}
-		
+
 		+ .sitemap-nav {
 			margin-top: 42px;
-			
 			@media only screen and (min-width: 768px) {
 				margin: 0;
 			}
 		}
 	}
-	
+
 	.sitemap-subnav {
 		margin-left: 16px;
-		
+
 		a {
 			font-size: 13px;
 			text-transform: none;
 		}
 	}
-	
+
 	@media only screen and (max-width: 767px) {
-    	.hide-small {
+  	.hide-small {
 			display: none;
 		}
-    }
+  }
 }

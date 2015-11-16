@@ -77,7 +77,7 @@ describe('My SRMs Controller', function() {
       // by default it should load upcoming SRMs
       expect(mySRMs.statusFilter).to.equal('past');
       expect(mySRMs.srms).to.exist;
-      expect(mySRMs.orderBy).to.equal('endDate');
+      expect(mySRMs.orderBy).to.equal('codingEndAt');
       expect(mySRMs.reverseOrder).to.be.true;
       expect(mySRMs.srms.length).to.equal(srms.length - 1);
       expect(spy.withArgs(0).calledOnce);
@@ -107,7 +107,7 @@ describe('My SRMs Controller', function() {
     it('upcoming SRMs should be fetched', function() {
       expect(mySRMs.srms).to.exist;
       expect(mySRMs.statusFilter).to.equal('future');
-      expect(mySRMs.orderBy).to.equal('startDate');
+      expect(mySRMs.orderBy).to.equal('codingStartAt');
       expect(mySRMs.reverseOrder).to.be.false;
       expect(mySRMs.srms).to.exist;
       // should have one extra srm for past filter as per mocked method
