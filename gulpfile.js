@@ -8,6 +8,7 @@ var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
 var merge        = require('merge-stream');
 var RevAll       = require('gulp-rev-all');
+var styleguide   = require('sc5-styleguide');
 var awspublishRouter = require('gulp-awspublish-router');
 
 
@@ -41,6 +42,39 @@ gulp.task('jade', ['clean-html'], function() {
     .pipe($.jade({pretty: true}))
     .pipe($.replace(/-->/g, ' -->'))
     .pipe(gulp.dest(config.temp));
+});
+
+gulp.task('styleguide:generate', function() {
+  log('Generating styleguide.');
+
+  var outputDirectory = 'styleguide';
+
+  return gulp
+    .src(config.assets + 'css/partials/*.scss')
+    .pipe(styleguide.generate({
+      title: 'Topcoder Styleguide',
+      server: true,
+      port: 3132,
+      rootPath: outputDirectory
+    }))
+    .pipe(gulp.dest(outputDirectory));
+});
+
+gulp.task('styleguide:applystyles', function() {
+  return gulp
+    src(config.assets + 'css/partials/_tc-styles.scss')
+    .pipe($.sass({
+      errLogToConsole: true
+    }))
+    .pipe(styleguide.applyStyles())
+    .pipe(gulp.dest(outputDirectory))
+});
+
+gulp.task('styleguide', ['styleguide:generate', 'styleguide:applystyles']);
+
+gulp.task('watch-styleguide', ['styleguide'], function() {
+  // Start watching changes and update styleguide whenever changes are detected
+  gulp.watch(config.assets + 'css/partials/*.scss', ['styleguide']);
 });
 
 gulp.task('styles', ['clean-styles'], function() {

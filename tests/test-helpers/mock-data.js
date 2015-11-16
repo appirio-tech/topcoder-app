@@ -1169,37 +1169,39 @@ var mockData = (function() {
   function getMockProfile() {
     return {
       "updatedAt": null,
-      "createdAt": '2010-04-25T01:32:21.196+0600',
+      "createdAt": null,
       "createdBy": null,
       "updatedBy": null,
       "userId": 10336829,
       "firstName": "Albert",
+      "maxRating": {
+        "rating": 1616,
+        "track": "DEVELOP",
+        "subTrack": "DESIGN"
+      },
       "lastName": "Wang",
       "quote": "Competing since 2004, albertwang has achieved ratings in multiple data science, architecture, and devleopment challenge tracks. He is most skilled in component design and architecture",
-      "description": "Test description",
+      "description": null,
       "otherLangName": "NIAL",
       "handle": "albertwang",
       "email": "email@domain.com.z",
-      "addresses": [{
-        "updatedAt": null,
-        "createdAt": null,
-        "createdBy": null,
-        "updatedBy": null,
-        "addressId": 90263,
-        "streetAddr1": "123 Main Street",
-        "streetAddr2": "address_2",
-        "city": "Santa Clause",
-        "zip": "47579",
-        "stateCode": "IN",
-        "type": "HOME"
-      }],
+      "addresses": [
+        {
+          "streetAddr1": "123 Main Street",
+          "streetAddr2": "address_2",
+          "city": "Santa Clause",
+          "zip": "47579",
+          "stateCode": "IN",
+          "addressId": 90263,
+          "type": "Home"
+        }
+      ],
       "homeCountryCode": "USA",
-      "competitionCountryCode": "SXM",
-      "photo": {
-        "imageId": 20744540,
-        "photoUrl": "https://www.topcoder.com/i/m/albertwang.jpeg"
-      },
+      "competitionCountryCode": "CHN",
+      "photoURL": "https://topcoder-dev-media.s3.amazonaws.com/member/profile/albertwang-1440793843057.jpg",
       "tracks": [
+        "DESIGN",
+        "DEVELOP",
         "DATA_SCIENCE"
       ]
     };

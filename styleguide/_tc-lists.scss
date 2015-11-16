@@ -1,0 +1,11 @@
+ul.color-even {
+  > li:nth-child(even) {
+    background-color: #eee;
+  }
+}
+
+ul.color-odd {
+  > li:nth-child(odd) {
+    background-color: #eee;
+  }
+}

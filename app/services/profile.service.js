@@ -30,7 +30,7 @@
       getSubTracks: getSubTracks,
       getDivisions: getDivisions,
 
-      getUserHandleColor: getUserHandleColor,
+      getUserHandleColor: getUserHandleColor
 
     };
     return service;

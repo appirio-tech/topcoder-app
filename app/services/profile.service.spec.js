@@ -65,6 +65,20 @@ describe('Profile Service', function() {
       var subtracks = service.getSubTracks(mockStats, 'develop');
       expect(subtracks.length).to.be.equal(11);
     });
+
+    it('should return divisions', function() {
+      var divisions = service.getDivisions(mockStats);
+      var totalProblemsSuccessful = divisions.division1.total.problemsSuccessful;
+      var totalProblemsFailed = divisions.division1.total.problemsFailed;
+      expect(totalProblemsSuccessful).to.be.equal(2);
+      expect(totalProblemsFailed).to.be.equal(1);
+    });
+
+    it('should return user handle color', function() {
+      expect(service.getUserHandleColor(mockProfile.maxRating.rating)).to.be.equal('black');
+    });
+
+
   });
 
 });
