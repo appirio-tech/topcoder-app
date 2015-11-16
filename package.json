@@ -78,6 +78,7 @@
     "phantomjs": "^1.9.17",
     "protractor-html-screenshot-reporter": "0.0.21",
     "protractor-linkuisref-locator": "^1.1.2",
+    "sc5-styleguide": "^0.3.39",
     "sinon": "^1.15.3",
     "sinon-chai": "^2.8.0",
     "wiredep": "^2.2.2",
