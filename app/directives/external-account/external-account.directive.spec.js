@@ -15,10 +15,15 @@ describe('External Accounts Directive', function() {
     var linkedAccounts = [
       {
         provider: 'linkedin',
-        // don't care about other details
+        data: {
+          // don't care about other details
+        }
       },
       {
-        provider: 'github'
+        provider: 'github',
+        data: {
+          // don't care about other details
+        }
       }
     ];
     var externalAccounts;
@@ -27,31 +32,27 @@ describe('External Accounts Directive', function() {
       scope.linkedAccounts = linkedAccounts;
       element = angular.element('<external-accounts linked-accounts="linkedAccounts"></external-accounts>)');
       externalAccounts = $compile(element)(scope);
-      // externalAccounts.scope().$digest();
-      // externalAccounts.scope().$apply();
+      scope.$digest();
     });
 
     it('should have added account list to scope', function() {
-      inject(function($timeout) {
-        scope.$digest();
-        $timeout(function() {
-          expect(element.isolateScope().accountList).to.exist;
-        }, 0)
-      });
+      expect(element.isolateScope().accountList).to.exist;
     });
 
     it('should have "linked" property set for github & linkedin', function() {
-      inject(function($timeout) {
-        scope.$digest();
-        $timeout(function() {
-          var githubAccount = _.find(element.isolateScope().accountList, function(a) { return a.provider === 'github'});
-          expect(githubAccount).to.have.property('status').that.equals('linked');
-        }, 0)
+      var githubAccount = _.find(element.isolateScope().accountList, function(a) {
+        return a.provider === 'github'
       });
+      expect(githubAccount).to.have.property('status').that.equals('linked');
+    });
 
-      // var linkeindAccount = _.find(element.isolateScope().accountList, function(a) { return a.provider === 'linkedin'});
-      // expect(linkeindAccount).to.have.property('linked')
-      //   .that.equals(true);
+    it('should have pending status for stackoverflow ', function() {
+      scope.linkedAccounts.push({provider: 'stackoverflow', data: {status: 'PENDING'}});
+      scope.$digest();
+      var soAccount = _.find(element.isolateScope().accountList, function(a) {
+        return a.provider === 'stackoverflow'
+      });
+      expect(soAccount).to.have.property('status').that.equals('pending');
     });
   });
 });

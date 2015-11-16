@@ -30,14 +30,15 @@
           var _accountList = _.clone(_supportedAccounts, true);
           _.remove(_accountList, function(al) { return al.order < 0});
           $scope.$watchCollection('linkedAccounts', function(newValue, oldValue) {
-            if (newValue && newValue != oldValue) {
+            if (newValue) {
               angular.forEach(_accountList, function(account) {
                 var _linkedAccount = _.find(newValue, function(p) {
                   return p.provider === account.provider
                 });
+                var accountStatus = _.get(_linkedAccount, 'data.status', null);
                 if (!_linkedAccount) {
                   account.status = 'unlinked';
-                } else if(_linkedAccount.status && _linkedAccount.status.toLowerCase() === 'pending') {
+                } else if(accountStatus && accountStatus.toLowerCase() === 'pending') {
                   account.status = 'pending';
                 } else {
                   account.status = 'linked';
