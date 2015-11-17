@@ -64,7 +64,7 @@
             ExternalAccountService.linkExternalAccount(provider.provider, null)
             .then(function(resp) {
               $log.debug("Social account linked: " + JSON.stringify(resp));
-              $scope.linkedAccounts.push(resp.profile);
+              $scope.linkedAccounts.push(resp.linkedAccount);
               toaster.pop('success', "Success",
                 String.supplant(
                   "Your {provider} account has been linked. Data from your linked account will be visible on your profile shortly.",
