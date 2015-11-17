@@ -29,7 +29,7 @@
       'community': [
           { 'sref': 'community.members', 'text': 'OVERVIEW', 'icon': '/images/nav/members.svg' },
           { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/images/nav/programs.svg' },
-          { 'href': CONSTANTS.FORUMS_APP_URL, 'text': 'FORUMS', 'icon': '/images/nav/forums.svg', 'target': '_blank' },
+          { 'href': CONSTANTS.FORUMS_APP_URL, 'text': 'FORUMS', 'icon': '/images/nav/forums.svg' },
           { 'sref': 'community.statistics', 'text': 'STATISTICS', 'icon': '/images/nav/statistics.svg' },
           { 'href': '/community/events/', 'text': 'EVENTS', 'icon': '/images/nav/events.svg' },
           { 'href': '/blog/', 'text': 'BLOG', 'icon': '/images/nav/blog.svg' }
