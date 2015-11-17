@@ -19,7 +19,6 @@
       templateUrl: 'directives/external-account/external-account.directive.html',
       scope: {
         linkedAccounts: '=',
-        // linksData: '=',
         readOnly: '='
       },
       controller: ['$log', '$scope', 'ExternalAccountService', 'toaster',
@@ -99,7 +98,6 @@
               });
               // remove from both links array and links data array
               $scope.linkedAccounts.splice(toRemove, 1);
-              // delete $scope.linksData[provider.provider];
               toaster.pop('success', "Success",
                 String.supplant(
                   "Your {provider} account has been unlinked.",

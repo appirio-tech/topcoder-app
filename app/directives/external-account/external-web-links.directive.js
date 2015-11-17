@@ -12,7 +12,7 @@
 
   function ExternalWebLink($log, ExternalWebLinksService, toaster) {
     var directive = {
-      estrict: 'E',
+      restrict: 'E',
       templateUrl: 'directives/external-account/external-web-link.directive.html',
       scope: {
         linkedAccounts: '=',
