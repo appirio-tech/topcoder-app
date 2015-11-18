@@ -79,6 +79,11 @@
     var desktop = window.innerWidth >= 900 && true;
 
     $scope.promise.then(function(history) {
+      history.sort(function(left, right) {
+        left = moment(left.ratingDate);
+        right = moment(right.ratingDate);
+        return left > right ? 1 : left < right ? -1 : 0;
+      })
       $scope.history = history;
 
       var parseDate = d3.time.format.utc("%Y-%m-%dT%H:%M:%S.%LZ").parse;
