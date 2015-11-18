@@ -48,6 +48,12 @@
             $scope.challenge.userDetails.submissions = $scope.challenge.userDetails.submissions.filter(function(submission) {
               return submission && submission.submissionImage;
             });
+            $scope.challenge.userDetails.submissions.sort(function(left, right) {
+              if (!left.placement && !right.placement) return 0;
+              if (!right.placement) return -1;
+              if (!left.placement) return 1;
+              return left.placement - right.placement;
+            });
           }
           if (!$scope.challenge.isPrivate && $scope.challenge.userDetails && $scope.challenge.userDetails.submissions && $scope.challenge.userDetails.submissions.length > 0) {
             $scope.numImages = $scope.challenge.userDetails.submissions.length;
