@@ -52,9 +52,7 @@
 
     function changeFilter(filter) {
       vm.statusFilter = filter;
-      // for upcoming SRMs sorting is done ascending order of codingStartAt
-      // for past SRMs sorting is done descending order of codingEndAt
-      vm.orderBy = filter === 'future'? 'codingStartAt': 'codingEndAt';
+      vm.orderBy = filter === 'future'? 'startDate': 'endDate';
       vm.reverseOrder = filter !== 'future';
       // update url but don't reload
       $state.go($state.$current.name, {status: filter}, {notify: false});
