@@ -1,0 +1,51 @@
+// FONT STACK
+// --------------------------------------------------------------------------------------------
+// Use the mixin to include fonts.
+
+@mixin font-family($font-name, $font-weight, $font-style, $font-url, $font-file) {
+  @font-face {
+      font-family: '#{$font-name}';
+      src: url('#{$font-url}#{$font-file}-webfont.eot');
+      src: url('#{$font-url}#{$font-file}-webfont.eot?#iefix') format('embedded-opentype'),
+           url('#{$font-url}#{$font-file}-webfont.woff2') format('woff2'),
+           url('#{$font-url}#{$font-file}-webfont.woff') format('woff'),
+           url('#{$font-url}#{$font-file}-webfont.ttf') format('truetype'),
+           url('#{$font-url}-webfont.svg##{$font-file}') format('svg');
+      font-weight: $font-weight;
+      font-style: $font-style;
+  }
+}
+
+// FONT WEIGHTS
+// --------------------------------------------------------------------------------------------
+// Use the numerical value instead of the weight name.
+//
+//  100   Thin (Hairline)
+//  200   Extra Light (Ultra Light)
+//  300   Light
+//  400   Normal
+//  500   Medium
+//  600   Semi Bold (Demi Bold)
+//  700   Bold
+//  800   Extra Bold (Ultra Bold)
+//  900   Black (Heavy)
+
+// Sofia Pro
+@include font-family('Sofia Pro', 700, normal, '/fonts/sofiapro/', 'sofiapro-bold');              // Bold
+@include font-family('Sofia Pro', 700, italic, '/fonts/sofiapro/', 'sofiapro-bold-italic');       // Bold Italic
+@include font-family('Sofia Pro', 600, normal, '/fonts/sofiapro/', 'sofiapro-semibold');          // Semibold
+@include font-family('Sofia Pro', 600, italic, '/fonts/sofiapro/', 'sofiapro-semibold-italic');   // Semibold Italic
+@include font-family('Sofia Pro', 500, normal, '/fonts/sofiapro/', 'sofiapro-medium');            // Medium
+@include font-family('Sofia Pro', 500, italic, '/fonts/sofiapro/', 'sofiapro-medium-italic');     // Medium Italic
+@include font-family('Sofia Pro', 400, normal, '/fonts/sofiapro/', 'sofiapro-regular');           // Regular
+@include font-family('Sofia Pro', 400, italic, '/fonts/sofiapro/', 'sofiapro-regular-italic');    // Italic
+@include font-family('Sofia Pro', 300, normal, '/fonts/sofiapro/', 'sofiapro-light');             // Light
+@include font-family('Sofia Pro', 300, italic, '/fonts/sofiapro/', 'sofiapro-light-italic');      // Light Italic
+
+// Merriweather Sans
+@include font-family('Merriweather Sans', 700, normal, '/fonts/merriweather-sans/', 'merriweathersans-bold');         // Bold
+@include font-family('Merriweather Sans', 700, italic, '/fonts/merriweather-sans/', 'merriweathersans-bolditalic');   // Bold Italic
+@include font-family('Merriweather Sans', 400, normal, '/fonts/merriweather-sans/', 'merriweathersans-regular');      // Regular
+@include font-family('Merriweather Sans', 400, italic, '/fonts/merriweather-sans/', 'merriweathersans-italic');       // Italic
+@include font-family('Merriweather Sans', 300, normal, '/fonts/merriweather-sans/', 'merriweathersans-light');        // Light
+@include font-family('Merriweather Sans', 300, italic, '/fonts/merriweather-sans/', 'merriweathersans-lightitalic');  // Light Italic

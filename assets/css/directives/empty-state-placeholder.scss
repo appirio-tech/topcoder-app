@@ -60,9 +60,15 @@
       display: block;
       @include sofia-pro-medium;
 
+      // used more generic css class (secondary-cta)
+      // remove find-challenges class once we are sure that it is not being used in any empty state
+      &.primary-cta,
       &.find-challenges {
       }
 
+      // used more generic css class (secondary-cta)
+      // remove learn-more class once we are sure that it is not being used in any empty state
+      &.secondary-cta,
       &.learn-more {
         font-size: 12px;
         line-height: 12px;

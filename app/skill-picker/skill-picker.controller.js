@@ -15,6 +15,7 @@
     vm.toggleSkill = toggleSkill;
     vm.tracks = {};
     vm.mySkills = [];
+    vm.disableDoneButton = false;
     ///////
     activate();
 
@@ -57,6 +58,7 @@
               .then(function(resp) {
                 vm.saving = false;
                 toaster.pop('success', "Success!", "Your skills have been updated.");
+                vm.disableDoneButton = true;
                 $state.go('dashboard');
               })
               .catch(function(data) {
@@ -66,6 +68,7 @@
           } else {
             vm.saving = false;
             toaster.pop('success', "Success!", "Your skills have been updated.");
+            vm.disableDoneButton = true;
             $state.go('dashboard');
           }
 

@@ -13,6 +13,7 @@
     // set profile to the object that was resolved
     vm.profile = profile;
     vm.userHandle = userHandle;
+    vm.handleColor = ProfileService.getUserHandleColor(profile);
     vm.showBadges = showBadges;
     vm.closeDialog = closeDialog;
     vm.scrollTo = scrollTo;
@@ -39,6 +40,7 @@
       if (stats) {
         vm.stats = stats;
         vm.profile.tracks = vm.profile.tracks || [];
+        vm.tracks = ProfileService.getTracks(stats) || vm.profile.tracks;
         if (stats.COPILOT && stats.COPILOT.contests && vm.profile.tracks.indexOf('COPILOT') == -1) {
           vm.profile.tracks.push('COPILOT');
         }

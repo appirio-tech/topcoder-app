@@ -11,11 +11,13 @@
     vm.saveAccountInfo   = saveAccountInfo;
     vm.updateCountry     = updateCountry;
     vm.submitNewPassword = submitNewPassword;
+    vm.getAddr = getAddr;
 
     activate();
 
     function activate() {
       vm.isSocialRegistrant = false;
+      vm.loading = true;
 
       vm.formProcessing = {
         accountInfoForm: false,
@@ -28,10 +30,12 @@
       UserService.getUserProfile({fields: 'credential'})
       .then(function(res) {
         vm.isSocialRegistrant = !res.credential.hasPassword;
+        vm.loading = false;
       })
       .catch(function(err) {
         $log.error("Error fetching user profile. Redirecting to edit profile.");
         $state.go('settings.profile');
+        vm.loading = false;
       });
 
       vm.countries = ISO3166.getAllCountryObjects();
@@ -48,7 +52,7 @@
             }
           }
         });
-      });
+      }, 400);
     }
 
     function updateCountry(angucompleteCountryObj) {

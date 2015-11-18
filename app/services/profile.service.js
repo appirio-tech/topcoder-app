@@ -25,12 +25,13 @@
       getHistoryStats: getHistoryStats,
       // auxiliary functions for profile
       getRanks: getRanks,
+      sortByDate: sortByDate,
       getChallengeTypeStats: getChallengeTypeStats,
       getTracks: getTracks,
       getSubTracks: getSubTracks,
       getDivisions: getDivisions,
 
-      getUserHandleColor: getUserHandleColor,
+      getUserHandleColor: getUserHandleColor
 
     };
     return service;
@@ -149,7 +150,7 @@
           'rank': marathonStats.rank.rank,
           'rating': marathonStats.rank.rating,
           'mostRecentEventDate': new Date(marathonStats.rank.mostRecentEventDate),
-          'mostRecentSubmissionDate': new Date(marathonStats.mostRecentSubmission)
+          'mostRecentSubmission': new Date(marathonStats.mostRecentSubmission)
         });
       }
       if (stats.COPILOT) {
@@ -159,6 +160,11 @@
         stats.COPILOT.track = 'COPILOT';
         stats.COPILOT.subTrack = 'COPILOT';
       }
+
+      sortByDate(dev);
+      sortByDate(design);
+      sortByDate(dataScience);
+
       var compiledStats = {
         'DEVELOP': removeRanklessNoSubmissions(dev),
         'DESIGN': removeRanklessNoSubmissions(design),
@@ -174,6 +180,18 @@
 
       return compiledStats;
     }
+
+
+    function sortByDate(arr) {
+      arr.sort(function(a, b) {
+        if (!(a.mostRecentSubmission || a.mostRecentEventDate)) return -1; 
+        if (!(b.mostRecentSubmission || b.mostRecentEventDate)) return 1;
+        a = new Date(a.mostRecentSubmission || a.mostRecentEventDate);
+        b = new Date(b.mostRecentSubmission || b.mostRecentEventDate);
+        return a > b ? -1 : a < b ? 1 : 0;
+      });
+    }
+
 
     function getChallengeTypeStats(stats, track, type) {
       track = track.toUpperCase().replace(/ /g, '_');
@@ -242,20 +260,31 @@
         {
           'name': 'DEVELOP',
           'challenges': stats.DEVELOP.challenges,
+          'mostRecentEventDate': new Date(stats.DEVELOP.mostRecentEventDate),
+          'mostRecentSubmission': new Date(stats.DEVELOP.mostRecentSubmision)
         },
         {
           'name': 'DESIGN',
           'challenges': stats.DESIGN.challenges,
+          'mostRecentEventDate': new Date(stats.DESIGN.mostRecentEventDate),
+          'mostRecentSubmission': new Date(stats.DESIGN.mostRecentSubmision)
         },
         {
           'name': 'DATA_SCIENCE',
           'challenges': stats.DATA_SCIENCE.challenges,
+          'mostRecentEventDate': new Date(stats.DATA_SCIENCE.mostRecentEventDate),
+          'mostRecentSubmission': new Date(stats.DATA_SCIENCE.mostRecentSubmision)
         }
       ].filter(function(track) {
         return track.challenges > 0;
-      }).map(function(track) {
+      });
+      sortByDate(tracks);
+      tracks = tracks.map(function(track) {
         return track.name;
       });
+      if (stats.COPILOT) {
+        tracks = ['COPILOT'].concat(tracks);
+      }
       return tracks;
     }
 

@@ -113,6 +113,7 @@
       .then(ImageService.createFileRecord)
       .then(function(newPhotoURL) {
         vm.userData.photoURL = newPhotoURL;
+        userData.photoURL = newPhotoURL;
         $rootScope.$broadcast(CONSTANTS.EVENT_PROFILE_UPDATED);
       });
     }

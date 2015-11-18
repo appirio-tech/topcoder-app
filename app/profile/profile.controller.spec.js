@@ -24,7 +24,11 @@ describe('Profile Controller', function() {
       getUserSkills: function() {
         return $q.when({result: {content: mockSkills}});
       },
-      getRanks: ProfileService.getRanks
+      getUserHandleColor: function() {
+        return 'something';
+      },
+      getRanks: ProfileService.getRanks,
+      getTracks: function() { return ['DEVELOP']; }
     };
     // mock user api
     sinon.stub(userService, 'getV2UserProfile', function() {

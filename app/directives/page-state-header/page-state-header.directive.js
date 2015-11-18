@@ -14,21 +14,14 @@
         defaultState: '@'
       },
       controller: ['CONSTANTS', '$rootScope', '$scope', 'NotificationService', 'ProfileService', '$log', '$state', pageStateHeader],
-      controllerAs: "vm"
+      controllerAs: 'vm'
     };
   });
 
   function pageStateHeader(CONSTANTS, $rootScope, $scope, NotificationService, ProfileService, $log, $state) {
     var vm = this;
-    vm.handle = $scope.handle;
-    vm.profile = null;
-    vm.handleColor = null;
-    vm.hideMoney = _.get($scope, 'hideMoney', true);
-    vm.previousStateName = null;
-    vm.previousStateLabel = null;
-    vm.previousState = null;
-    vm.showBackLink = _.get($scope, 'showBackLink', false);
     vm.backHandler = backHandler;
+
     activate();
 
     // watch for profile update event in case handle/image are updated
@@ -37,12 +30,21 @@
     });
 
     function activate() {
+      vm.handle = $scope.handle;
+      vm.profile = null;
+      vm.handleColor = null;
+      $scope.hideMoney = _.get($scope, 'hideMoney', true);
+      vm.previousStateName = null;
+      vm.previousStateLabel = null;
+      vm.previousState = null;
+      vm.showBackLink = _.get($scope, 'showBackLink', false);
       vm.loading = true;
 
       // identifies the previous state
       if ($scope.$root.previousState && $scope.$root.previousState.name.length > 0) {
         vm.previousState = $scope.$root.previousState;
         vm.previousStateName = vm.previousState.name;
+
       } else if ($scope.defaultState) {
         vm.previousStateName = $scope.defaultState;
       }
@@ -51,6 +53,7 @@
       if (vm.previousStateName) {
         if (vm.previousStateName === 'dashboard') {
           vm.previousStateLabel = 'Dashboard';
+
         } else if (vm.previousStateName.indexOf('profile') > -1) {
           vm.previousStateLabel = 'Profile';
         }
@@ -60,7 +63,8 @@
       ProfileService.getUserProfile(vm.handle).then(function(profile) {
         vm.profile = profile;
         vm.handleColor = ProfileService.getUserHandleColor(vm.profile);
-        if (!vm.hideMoney) {
+
+        if (!$scope.hideMoney) {
           displayMoneyEarned(vm.handle);
         } else {
           vm.loading = false;
@@ -71,6 +75,7 @@
     function backHandler() {
       var _params = {};
       var _name = vm.previousStateName;
+
       switch (vm.previousStateName) {
         case 'profile.about':
           _params = {userHandle: vm.profile.handle};
@@ -80,6 +85,7 @@
           _name = 'dashboard';
           break;
       }
+
       $state.go(_name, _params);
     }
 
@@ -89,13 +95,13 @@
         vm.moneyEarned = _.sum(_.pluck(financials, 'amount'));
 
         if (!vm.moneyEarned) {
-          vm.hideMoney = true;
+          $scope.hideMoney = true;
         }
 
         vm.loading = false;
       })
       .catch(function(err) {
-        vm.hideMoney = true;
+        $scope.hideMoney = true;
         vm.loading = false;
       });
     }
