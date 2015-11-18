@@ -44,6 +44,11 @@
                 }
               });
               $scope.accountList = _accountList;
+            } else {
+              // reset the status for all accounts
+              angular.forEach(_accountList, function(account) {
+                delete account.status;
+              });
             }
           });
 
@@ -96,8 +101,10 @@
               var toRemove = _.findIndex($scope.linkedAccounts, function(la) {
                 return la.provider === provider.provider;
               });
-              // remove from both links array and links data array
-              $scope.linkedAccounts.splice(toRemove, 1);
+              if (toRemove > -1) {
+                // remove from the linkedAccounts array
+                $scope.linkedAccounts.splice(toRemove, 1);
+              }
               toaster.pop('success', "Success",
                 String.supplant(
                   "Your {provider} account has been unlinked.",
