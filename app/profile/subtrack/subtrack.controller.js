@@ -80,8 +80,6 @@
             reliability = reliability[0];
             reliability.link = 'http://community.' + vm.domain + '/tc?module=ReliabilityDetail&pt=2&cr=' + profileVm.profile.userId;
           }
-          console.log('sts')
-          console.log(vm.subTrackStats)
           var mustHaveMetrics = ["rank", "rating", "reliability"];
           // check if rating, rank & reliability are all set
           var _filteredObjs = _.filter(vm.subTrackStats, function(k) { return _.indexOf(mustHaveMetrics, k.label) > -1});
