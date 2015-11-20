@@ -31,6 +31,7 @@ module.exports = function(config) {
     junitReporter: {
       outputDir: 'report/junit',
       outputFile: 'test-results.xml',
+      useBrowserName: false
     },
 
     coverageReporter: {
