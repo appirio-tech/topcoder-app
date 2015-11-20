@@ -79,7 +79,7 @@
 			 (function(loginUserCred) {
 				 it('Invalid username Login', function() {
 					 loginPage.get(loginUser.baseUrl);
-					 loginPage.invalidPasswordLogin(loginUserCred, loginUser.invalidHandle);
+					 loginPage.invalidUserNameLogin(loginUserCred, loginUser.invalidHandle);
 				 });
 		  
 		  

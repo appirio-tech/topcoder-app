@@ -10,11 +10,20 @@ var RegistrationPage = function() {
 	  
 	  browser.driver.ignoreSynchronization = true;
 	  var EC = protractor.ExpectedConditions;
-		
+	  
+	  var h1Header = element(by.css('.register-container h1'));
+	  var isClickable1 = EC.elementToBeClickable(h1Header);
+	  browser.wait(isClickable1, 30000);
+	  h1Header.click();
+	 
 	  var firstName = element(by.model('vm.firstname'));
 	  var isClickable = EC.elementToBeClickable(firstName);
 	  browser.wait(isClickable, 30000);
+	  firstName.click();
+//	  firstName.clear();
 	  firstName.sendKeys(userInfo.firstname);
+	  console.log(userInfo.firstname);
+	  browser.pause();
   	
 	  var lastName = element(by.model('vm.lastname'));
 	  isClickable = EC.elementToBeClickable(lastName);
@@ -45,16 +54,16 @@ var RegistrationPage = function() {
 	  isClickable = EC.elementToBeClickable(registerButton);
 	  browser.wait(isClickable, 30000);
 	  
-	  registerButton.click().then(function(){ 	
-        element.all(by.css('.label')).each(function(element, index) {	
-          var isClickable = EC.elementToBeClickable(element);
-          browser.wait(isClickable, 30000);
- 	      element.getText().then(function (text) {
- 	        console.log(index, text);
- 		  });
-        });
-    	expect(true).toEqual(true);
-     });
+//	  registerButton.click().then(function(){ 	
+//        element.all(by.css('.label')).each(function(element, index) {	
+//          var isClickable = EC.elementToBeClickable(element);
+//          browser.wait(isClickable, 30000);
+// 	      element.getText().then(function (text) {
+// 	        console.log(index, text);
+// 		  });
+//        });
+//    	expect(true).toEqual(true);
+//     });
   };
   
   

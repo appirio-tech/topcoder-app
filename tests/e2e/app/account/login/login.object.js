@@ -129,7 +129,7 @@ var LoginPage = function() {
 	  
 	  console.log('password '+loginUser.password);
 	  
-	  var loginButton = browser.driver.findElement(By.css('.enabled-button'));
+	  var loginButton = browser.driver.findElement(By.css('.tc-btn'));
 //	  isClickable = EC.elementToBeClickable(loginButton);
 //	  browser.wait(isClickable, 30000);
 	  console.log('userInput'); 
@@ -159,7 +159,7 @@ var LoginPage = function() {
   };
   
   
-  this.invalidPasswordLogin = function(loginUser, errMsg) {
+  this.invalidUserNameLogin = function(loginUser, errMsg) {
 	  browser.driver.ignoreSynchronization = true;
 		
 	  var EC = protractor.ExpectedConditions;
@@ -176,7 +176,7 @@ var LoginPage = function() {
 	  
 	  console.log('password '+loginUser.password);
 	  
-	  var loginButton = browser.driver.findElement(By.css('.enabled-button'));
+	  var loginButton = browser.driver.findElement(By.css('.tc-btn'));
 //	  isClickable = EC.elementToBeClickable(loginButton);
 //	  browser.wait(isClickable, 30000);
 	  console.log('userInput'); 
@@ -186,7 +186,7 @@ var LoginPage = function() {
 		  username = element(by.model('vm.username'));
 		  var userNameAvail = username.isPresent();
 		  console.log('user name status'+userNameAvail);
-		  var formError = element(by.css('.form-errors')).all(by.css('.form-error')).get(1);
+		  var formError = element(by.css('.form-errors')).all(by.css('.form-error')).get(0);
 		  isClickable = EC.elementToBeClickable(formError);
 		  browser.wait(isClickable, 30000);
 		  console.log('text '+formError.getInnerHtml());
@@ -224,7 +224,7 @@ var LoginPage = function() {
 	  
 	  console.log('password '+loginUser.password);
 	  
-	  var loginButton = browser.driver.findElement(By.css('.enabled-button'));
+	  var loginButton = browser.driver.findElement(By.css('.tc-btn'));
 //	  isClickable = EC.elementToBeClickable(loginButton);
 //	  browser.wait(isClickable, 30000);
 	  console.log('userInput'); 
@@ -270,7 +270,7 @@ var LoginPage = function() {
 	  
 	  console.log('password '+loginUser.password);
 	  
-	  var loginButton = browser.driver.findElement(By.css('.enabled-button'));
+	  var loginButton = browser.driver.findElement(By.css('.tc-btn'));
 //	  isClickable = EC.elementToBeClickable(loginButton);
 //	  browser.wait(isClickable, 30000);
 	  console.log('userInput'); 
@@ -312,7 +312,7 @@ var LoginPage = function() {
 	  var isClickable = EC.elementToBeClickable(userInput);
 	  browser.wait(isClickable, 30000);
 	  
-	  var twitterSquare = browser.driver.findElement(by.css('.social-icons .twitter .ico'));
+	  var twitterSquare = browser.driver.findElement(by.css('.networks .twitter .ico'));
 	  twitterSquare.click();
 	  this.selectWindow(1);
 	  browser.driver.wait(function() {
@@ -372,7 +372,7 @@ var LoginPage = function() {
 	  var isClickable = EC.elementToBeClickable(userInput);
 	  browser.wait(isClickable, 30000);
 	  
-	  var fbSquare = browser.driver.findElement(by.css('.social-icons .facebook .ico'));
+	  var fbSquare = browser.driver.findElement(by.css('.networks .facebook .ico'));
 	  fbSquare.click();
 	  this.selectWindow(1);
 	  browser.driver.wait(function() {
@@ -459,7 +459,7 @@ var LoginPage = function() {
 	  var isClickable = EC.elementToBeClickable(userInput);
 	  browser.wait(isClickable, 30000);
 	  
-	  var fbSquare = browser.driver.findElement(by.css('.social-icons .google-plus .ico'));
+	  var fbSquare = browser.driver.findElement(by.css('.networks .google-plus .ico'));
 	  fbSquare.click();
 	  this.selectWindow(1);
 	  browser.driver.wait(function() {
@@ -522,7 +522,7 @@ var LoginPage = function() {
 	  var isClickable = EC.elementToBeClickable(userInput);
 	  browser.wait(isClickable, 30000);
 	  
-	  var gitSquare = browser.driver.findElement(by.css('.social-icons .github .ico'));
+	  var gitSquare = browser.driver.findElement(by.css('.networks .github .ico'));
 	  gitSquare.click();
 	  this.selectWindow(1);
 	  browser.driver.wait(function() {

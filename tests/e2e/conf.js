@@ -20,7 +20,7 @@ exports.config = {
 //	  allScriptsTimeout: 500000,
 
   onPrepare: function(){
-	  browser.manage().window().setSize(1280, 1000);
+	  browser.manage().window().setSize(1280, 1080);
   	require('protractor-linkuisref-locator')(protractor);
   	require('jasmine-reporters');
   	require('./waitReady.js');

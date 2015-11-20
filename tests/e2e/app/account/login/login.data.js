@@ -22,12 +22,8 @@ var LoginData = function() {
                                     ],
    this.notExisitingCredentials = [
                                    {
-                                	   'username' : 'aqmansurinotexist',
+                                	   'username' : 'artre1123',
                                 		'password':'notexist'   
-                                   },
-                                   {
-                                	   'username' : 'DhananjayKumar1notexist',
-                                	   'password' : 'notexist'
                                    }
                                    
                                    ]                                    
@@ -45,8 +41,8 @@ var LoginData = function() {
     					 ],
   						  	
   	this.googleCredentials = [ {
-  								'username' : 'topcoderpuneet4@gmail.com',
-								'password' : 'LavaIris123'
+  								'username' : 'ted@cloudworks-qa.com',
+								'password' : 'Appirio#123'
 							   }
   						 ],
   						 
@@ -69,10 +65,10 @@ var LoginData = function() {
   						  	
     						  
     						  
-    this.baseUrl = 'https://beta.topcoder.com/login';
-    this.dashBoardUrl = 'https://beta.topcoder.com/my-dashboard/';
-    this.invalidPasswordMessage = 'That password doesn\'t match the one we have on file. Please try again.';
-    this.invalidHandle = 'This user does not exist.'
+    this.baseUrl = 'https://app.topcoder-qa.com/login';
+    this.dashBoardUrl = 'https://app.topcoder-qa.com/my-dashboard/';
+    this.invalidPasswordMessage = 'That password is incorrect. Please check that you entered the right one.';
+    this.invalidHandle = 'We couldn\'t find a member with that username. Please check that you entered it correctly.'
     this.invalidSpaceHandle = 'That password doesn\'t match the one we have on file. Please try again.'	
     
 };

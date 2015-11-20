@@ -1,18 +1,119 @@
 
 // store user data in maps for ease of use and readability...
 var ProfileData = function() {
-    this.userCredentials = [
+ 
+	
+	this.designActivityType = [
+	                           'WEB DESING',
+	                           'DESIGN FIRST2FINISH',
+	                           'LOGO DESIGN',
+	                           'BANNERS / ICONS',
+	                           'APPLICATION FRONT-END DESIGN',
+	                           'WIDGET OR MOBILE SCREEN DESIGN',
+	                           'FRONT-END FLASH',
+	                           'PRINT / PRESENTATION',
+	                           'STUDIO OTHER',
+	                           'WIREFRAMES',
+	                           'IDEA GENERATION'
+	                           ],
+	this.developmentActivityType  =['SPECIFICATION',
+	                                'DEVELOPMENT',
+	                                'DESIGN',
+	                                'ASSEMBLY'
+//	                                'SPECIFICATION',
+//	                                'DEVELOPMENT',
+//	                                'DESIGN'
+	                               ],                         
+	                           
+  this.developmentActivityTypeOld = [
+	'Software Conceptualization',
+	'Software Specification',
+	'Architecture',
+	'Component Design',
+	'Component Development',
+	'RIA Component',
+	'RIA Build',
+	'UI Prototype',
+	'Software Assembly',
+	'Test Suites',
+	'Test Scenarios',
+	'Content Creation',
+	'Reporting',
+	'Bug Hunt',
+	'First2Finish',
+	'Code'
+	],	   
+	
+	this.dataActivityType = ['SRM', 'MARATHON MATCH' ],
+	this.copilotActivityType = ['COPILOT'],
+	this.copilotActivityTypeTag = 'FULFILLMENT',	
+	this.developeActivityTypeTag = 'RATING',
+	this.designActivityTypeTag = 'WINS',
+	this.dataActivityTypeTag = 'RATING',
+		
+	
+	                           
+    this.profileUpdateInfo = [
+                              {	'username' :'vikasrohit',
+                          		'password' :'appirio123', 
+                          		'profilePicDir':'/Volumes/data',
+                          		'profilePicFile': 'profilePic.jpg',
+                          		'country'  :'INDIA',
+                          		'shortBio' :'Trying to be TopCoder..',
+                          		'design'   :'y',
+                          		'development' : 'y',
+                          		'dataScience' : 'y',
+                          		'copilot' : 'n',
+                          		'githubUserName' : 'aqmansuri',
+                          		'githubPassword' : 'appirio123',
+                          		'skillSet' : ['.NET', 'ADO.NET', 'Advanced Math', 'Ajax','Brute Force',
+                          		              'C#', 'CSS', 'Dynamic Programming', 'Eclipse', 'EJB',
+                          		              'Scala', 'Java','JavaScript'],
+                          		'externalLinks' : ['stackoverflow', 'bitbucket', 'github'],
+                          		'totalWins' : '7 WINS',
+                          		'tenure' : 'MEMBER SINCE JULY, 2007'
+                          	}/*,
+                              {	'username' :'Iamtong',
+		'password' :'appirio123', 
+		'profilePicDir':'/Volumes/data',
+		'profilePicFile': 'profilePic.jpg',
+		'country'  :'UNITED ARAB EMIRATES',
+		'shortBio' :'hirr',
+		'design'   :'y',
+		'development' : 'y',
+		'dataScience' : 'y',
+		'githubUserName' : 'aqmansuri',
+		'githubPassword' : 'appirio123',
+		'skillSet' : ['Scala', 'Unit-Testing'],
+        'externalLinks' : ['github'],
+        'totalWins' : '135 WINS',
+        'tenure' : 'MEMBER SINCE MAY, 2009'
+	},
+                              
+//                              , 
+                              
+                              
                             	{	'username' :'aqmansuri',
                             		'password' :'appirio123', 
                             		'profilePicDir':'/Volumes/data',
                             		'profilePicFile': 'profilePic.jpg',
-                            		'country'  :'India',
-                            		'shortBio' :'1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456',
+                            		'country'  :'BRITISH INDIAN OCEAN TERRITORY',
+                            		'shortBio' :'1',
                             		'design'   :'y',
                             		'development' : 'y',
                             		'dataScience' : 'y',
                             		'githubUserName' : 'aqmansuri',
-                            		'githubPassword' : 'appirio123'
+                            		'githubPassword' : 'appirio123',
+                            		'copilot' : 'n',
+                              		'githubUserName' : 'aqmansuri',
+                               		'githubPassword' : 'appirio123',
+                               		'skillSet' : [],
+                               		'externalLinks' : [],
+                              		'totalWins' : '',
+                               		'tenure' : 'MEMBER SINCE DECEMBER, 2013',
+                               		'challengeParticipation' :'n'
+                            			
+                            			
                             	}/*,
                             	{	'username' : 'DhananjayKumar1',
                             		'password' : 'appirio123'
@@ -23,7 +124,7 @@ var ProfileData = function() {
                         {
                         'username' :'aqmansuri',
                 		'password' :'appirio123',
-                        'skillSet' : [ 'J', 'Javascript'],
+                        'skillSet' : [ 'Dynamic Programmin', 'Javascript'],
                         'gitUserName' :'abdul-auto',
                         'gitPassword' : 'appirio123'
                         
