@@ -58,7 +58,7 @@ describe('Profile Service', function() {
 
     it('should return a user\'s tracks', function() {
       var tracks = service.getTracks(mockStats);
-      expect(tracks.length).to.be.equal(3);
+      expect(tracks.length).to.be.equal(4);
     });
 
     it('should return subtracks', function() {

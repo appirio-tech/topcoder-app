@@ -479,7 +479,7 @@ gulp.task('deploy', ['build'], function() {
       }
     }));
 
-  var plain = gulp.src([ 'build/**/*', '!build/**/*.js' ])
+  var plain = gulp.src(['build/**/*', '!build/**/*.js', '!build/**/*.css'])
     .pipe(awspublishRouter({
       cache: {
         cacheTime: 94608000,

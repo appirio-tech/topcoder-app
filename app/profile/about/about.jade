@@ -47,7 +47,7 @@
             empty-state-placeholder(state-name="profile-topcoder-activity", show="!profileVm.showTCActivity", theme="offwhite")
 
           .track(
-            ng-repeat="track in profileVm.profile.tracks",
+            ng-repeat="track in profileVm.tracks",
             ng-if="profileVm.categories[track].showTrack",
             id="{{track}}_TRACK"
           )
@@ -60,7 +60,7 @@
               span {{track | track | uppercase}} ACTIVITY
 
             a.subtrack(
-              ng-repeat="subtrack in profileVm.categories[track] | orderBy:'mostRecentEventDate':true",
+              ng-repeat="subtrack in profileVm.categories[track]",
               ui-sref="profile.subtrack({track: subtrack.track, subTrack: subtrack.subTrack})",
               class="{{$index == 0 && 'first'}}"
               ng-if="subtrack.showStats"

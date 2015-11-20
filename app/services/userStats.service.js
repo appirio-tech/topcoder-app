@@ -100,9 +100,10 @@
       return _.reduce(trackRanks, function(result, subtracks, track) {
         if (Array.isArray(subtracks) && subtracks.length) {
           if (track === 'DEVELOP') {
-            _.remove(subtracks, function(subtrackObj) {
-              return subtrackObj.subTrack === 'COPILOT_POSTING';
+            var filtered = _.filter(subtracks, function(subtrackObj) {
+              return subtrackObj.subTrack !== 'COPILOT_POSTING';
             });
+            return result.concat(filtered);
           }
 
           return result.concat(subtracks);
