@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>icons/skills/id 325</title>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/skills/id-325</title>
     <desc>Created with Sketch.</desc>
     <defs>
         <linearGradient x1="84.7503599%" y1="111.399488%" x2="58.2549187%" y2="64.5842251%" id="linearGradient-1">
@@ -119,9 +119,9 @@
             <stop stop-color="#791C12" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+    <g id="Languages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="icons/skills/id-325" sketch:type="MSArtboardGroup">
-            <g id="ruby-original" sketch:type="MSLayerGroup" transform="translate(4.000000, 4.000000)">
+            <g id="ruby-original" sketch:type="MSLayerGroup" transform="translate(6.000000, 6.000000)">
                 <path d="M40.0988197,34.1895738 L10.8006557,51.5869836 L48.7363607,49.0125574 L51.6581639,10.7605902 L40.0988197,34.1895738 Z" id="Shape" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup"></path>
                 <path d="M48.7981639,48.9865574 L45.5379344,26.4820656 L36.6565902,38.2093443 L48.7981639,48.9865574 Z" id="Shape" fill="url(#linearGradient-2)" sketch:type="MSShapeGroup"></path>
                 <path d="M48.8424918,48.9865574 L24.9548852,47.1115738 L10.9276721,51.5379672 L48.8424918,48.9865574 Z" id="Shape" fill="url(#linearGradient-3)" sketch:type="MSShapeGroup"></path>

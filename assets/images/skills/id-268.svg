@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>icons/skills/id 268</title>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/skills/id-268</title>
     <desc>Created with Sketch.</desc>
     <defs>
         <radialGradient cx="49.8365231%" cy="49.6856011%" fx="49.8365231%" fy="49.6856011%" r="71.4460278%" id="radialGradient-1">
@@ -113,9 +113,9 @@
             <stop stop-color="#663200" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+    <g id="Brands" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="icons/skills/id-268" sketch:type="MSArtboardGroup">
-            <g id="linux-original" sketch:type="MSLayerGroup" transform="translate(4.000000, 0.000000)">
+            <g id="linux-original" sketch:type="MSLayerGroup" transform="translate(6.000000, 2.000000)">
                 <path d="M51.257619,52.4461905 C51.257619,56.4280952 44.8019048,59.6557143 36.8385714,59.6557143 C28.8757143,59.6557143 22.42,56.4280952 22.42,52.4461905 C22.42,48.4642857 28.8752381,45.2366667 36.8380952,45.2366667 C44.8014286,45.2371429 51.257619,48.4647619 51.257619,52.4461905 L51.257619,52.4461905 Z" id="Shape" fill="url(#radialGradient-1)" sketch:type="MSShapeGroup"></path>
                 <path d="M29.7838095,52.3685714 C29.7838095,56.3504762 23.1547619,59.5780952 14.9771429,59.5780952 C6.79952381,59.5780952 0.170952381,56.3504762 0.170952381,52.3685714 C0.170952381,48.3871429 6.8,45.1590476 14.9771429,45.1590476 C23.1547619,45.1590476 29.7838095,48.3871429 29.7838095,52.3685714 L29.7838095,52.3685714 Z" id="Shape" fill="url(#radialGradient-2)" sketch:type="MSShapeGroup"></path>
                 <path d="M46.7119048,38.2585714 C45.9814286,41.27 42.2728571,47.5571429 40.3028571,50.3242857 C38.332381,53.1028571 38.5761905,55.6047619 34.9338095,54.6304762 C31.3028571,53.6566667 30.2847619,53.8338095 26.5319048,54.0552381 C22.8019048,54.2761905 23.6095238,53.9442857 21.2738095,54.9961905 C18.9490476,56.047619 11.1452381,42.2438095 10.5142857,39.6757143 C9.8947619,37.107619 9.5952381,37.4171429 11.2114286,34.6390476 C12.8280952,31.8609524 13.0604762,29.1152381 15.1961905,25.75 C17.3328571,22.3738095 19.8014286,20.6580952 19.6242857,18.0790476 C18.9271429,8.50380952 18.3738095,3.72190476 22.6247619,1.50761905 C26.6757143,-0.595714286 30.0633333,0.655238095 31.4028571,1.3747619 C31.9780952,1.6847619 33.1519048,2.28238095 34.0261905,3.33428571 C34.9004762,4.36380952 35.6866667,5.9247619 36.1295238,7.8947619 C37.0371429,11.8466667 35.7528571,10.5404762 36.782381,15.0680952 C37.8009524,19.5842857 39.8704762,21.7980952 42.3952381,25.3738095 C44.9185714,28.9490476 47.5533333,34.8490476 46.7119048,38.2585714 L46.7119048,38.2585714 Z" id="Shape" fill="#000000" sketch:type="MSShapeGroup"></path>
