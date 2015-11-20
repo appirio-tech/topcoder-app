@@ -2,7 +2,7 @@
   
   ul.tab-set
     li.tab-pill(ng-repeat="tab in tabSet.tabs")
-      a(ng-click="tabSet.select(tab)")
+      a(ng-click="tabSet.select(tab)", ng-class="{'selected': tab.active}")
         .header(ng-class="{'selected': tab.active}") {{tab.heading}}
 
   .tab-view(ng-transclude)

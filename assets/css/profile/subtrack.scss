@@ -5,6 +5,10 @@
   flex-direction: column;
   .content {
 
+    a.selected:hover {
+      cursor: default;
+    }
+
     @include module-full-width;
     max-width: 1242px;
     background: white;
