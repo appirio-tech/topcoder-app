@@ -19,29 +19,29 @@
       var data = {
         "memberLeaderboard": [
         {
-          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/iamtong_oct2015.png",
-          "name": "iamtong ",
+          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/abedavera.jpg",
+          "name": "abedavera",
           "contestType": "Design",
-          "description": "Won $6500 in design challenges.",
+          "description": "TCO15 Design Champion!",
           "class": "design"
         }, {
-          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/cjalmeida_oct2015.png",
-          "name": "cjalmeida",
+          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/bonton.jpg",
+          "name": "bonton",
           "contestType": "Development",
-          "description": "Won $4500 in development challenges.",
+          "description": "Won $4200 with 4 wins in development challenges",
           "class": "develop"
         }, {
-          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/islands_oct2015.png",
-          "name": "islands",
+          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/maksay.jpg",
+          "name": "maksay",
           "contestType": "Data Science",
-          "description": "Advanced from Div 2 to Div 1 & total rating increase of 424 pts.",
+          "description": "Only participant to see a ratings increase in all four rounds in Sept.",
           "class": "data-science"
         }, {
-          "avatar": "https://s3.amazonaws.com/app.topcoder-dev.com/images/ico-user-default.7aa28736.svg",
-          "name": "WinkTales",
-          "contestType": "Dev Rookie",
-          "description": "Already won 2 challenges in his short 2.5 month time with Topcoder",
-          "class": "develop"
+          "avatar": "https://www.topcoder.com/wp-content/uploads/2015/05/herlansyahs.jpg",
+          "name": "herlansyahs",
+          "contestType": "Design Rookie",
+          "description": "Won first and second placements within his first two months of becoming a member!",
+          "class": "design"
         }],
         "copilots": [{
           "avatar": "//community.topcoder.com/i/m/maroosh.jpeg",
