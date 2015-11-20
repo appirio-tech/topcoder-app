@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>icons/skills/id 236</title>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/skills/id-236</title>
     <desc>Created with Sketch.</desc>
     <defs>
         <radialGradient cx="38.4590345%" cy="34.6128806%" fx="38.4590345%" fy="34.6128806%" r="86.7774404%" id="radialGradient-1">
@@ -10,9 +10,9 @@
         </radialGradient>
         <rect id="path-2" x="3" y="3" width="52" height="52"></rect>
     </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+    <g id="Tools" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="icons/skills/id-236" sketch:type="MSArtboardGroup">
-            <g id="Rectangle-83-+-Rectangle-84-+-Ai" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)">
+            <g id="Rectangle-83-+-Rectangle-84-+-Ai" sketch:type="MSLayerGroup" transform="translate(3.000000, 3.000000)">
                 <rect id="Rectangle-83" fill="#FD8B33" sketch:type="MSShapeGroup" x="0" y="0" width="58" height="58"></rect>
                 <g id="Rectangle-84">
                     <use fill="#000000" sketch:type="MSShapeGroup" xlink:href="#path-2"></use>

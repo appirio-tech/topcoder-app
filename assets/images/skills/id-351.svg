@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>icons/skills/id 351</title>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/skills/id-351</title>
     <desc>Created with Sketch.</desc>
     <defs>
         <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
@@ -65,9 +65,9 @@
             <stop stop-color="#EDA31E" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+    <g id="Tools" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="icons/skills/id-351" sketch:type="MSArtboardGroup">
-            <g id="Group" sketch:type="MSLayerGroup" transform="translate(0.000000, 4.000000)">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(2.000000, 6.000000)">
                 <ellipse id="Oval-1" fill="#979797" filter="url(#filter-1)" sketch:type="MSShapeGroup" cx="29.7824372" cy="50.915493" rx="3.8028169" ry="1.26760563"></ellipse>
                 <path d="M51.4984139,4.35490213 L41.0162834,0.105633803 L18.9837166,0.105633803 L8.50158609,4.35490213 L0,13.5331792 L30.0015844,51.443662 L60,13.5331792 L51.4984139,4.35490213 L51.4984139,4.35490213 Z" id="Path" fill="url(#linearGradient-2)" filter="url(#filter-3)" sketch:type="MSShapeGroup"></path>
                 <path d="M56.3930324,13.9168341 L48.4737264,19.6976279 L42.1710398,11.0310782 L51.0385315,7.04048622 L56.3930324,13.9168341 L56.3930324,13.9168341 Z" id="Path" fill="url(#linearGradient-4)" sketch:type="MSShapeGroup"></path>
