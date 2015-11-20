@@ -69,7 +69,7 @@ In general, follow this [AngularJS style guide](https://github.com/johnpapa/angu
 ### Pull Requests
 
 To contribute to the repository, please create a feature branch off of the dev branch. Once you're finished working on the feature, make a pull request to merge it into dev. Then, make sure to delete the branch when it's no longer used.
-Further, please make sure every pull request has passed the build checks, which appears just before the "Merge pull request" button in github. We are trying to show the unit tests results as well along with the build.
+Further, please make sure every pull request has passed the build checks, which appears just before the "Merge pull request" button in github. We are trying to show the unit tests results as well along with the build
 
 ### Adding New Content
 
