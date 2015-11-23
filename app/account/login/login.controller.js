@@ -12,11 +12,17 @@
     vm.passwordReset = false;
     vm.usernameExists = true;
     vm.currentPasswordDefaultPlaceholder = "Password";
+    vm.login = login;
+    vm.socialLogin;
     // reference for main vm
     var mainVm = $scope.$parent.main;
 
-    if ($stateParams.notifyReset) {
-      NotificationService.inform('Your new password has been set. Please log in. If you have any trouble, please contact support@topcoder.com.');
+    activate();
+
+    function activate() {
+      if ($stateParams.notifyReset) {
+        NotificationService.inform('Your new password has been set. Please log in. If you have any trouble, please contact support@topcoder.com.');
+      }
     }
 
     function _doLogin(usernameOrEmail, password) {
@@ -43,7 +49,7 @@
       });
     }
 
-    vm.login = function() {
+    function login() {
       vm.usernameExists = true;
       vm.wrongPassword = false;
       // TODO ideally it should be done by dedicated directive to handle all outside clicks
@@ -86,7 +92,7 @@
       }
     };
 
-    vm.socialLogin = function(backend) {
+    function socialLogin(backend) {
       var params = {}, callbackUrl;
       if ($stateParams.next) {
         params = {next: $stateParams.next};
