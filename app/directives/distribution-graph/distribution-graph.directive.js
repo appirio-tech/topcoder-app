@@ -178,18 +178,31 @@
          })
          .attr('fill', function(d) {
            return ratingToColor($scope.colors, d.start);
+         });
+
+      svg.selectAll('rect.hover')
+         .data(ranges)
+         .enter()
+         .append('rect')
+         .attr('class', 'hover')
+         .attr('fill', 'transparent')
+         .attr('x', function(d, i) {
+           return xScale(i);
+         })
+         .attr('y', function(d) {
+           return padding.top;
+         })
+         .attr('width', xScale.rangeBand())
+         .attr('height', function(d) {
+           return totalH - padding.bottom - padding.top;
          })
          .on('mouseover', function(d) {
-           d3.select(this)
-             .attr('fill', ratingToDarkerColor($scope.colors, d.start));
            $scope.highlightedRating = d.start;
            $scope.displayCoders = true;
            $scope.numCoders = d.number;
            $scope.$digest();
          })
          .on('mouseout', function(d) {
-           d3.select(this)
-             .attr('fill', ratingToColor($scope.colors, d.start));
            $scope.displayCoders = false;
            $scope.highlightedRating = false;
            $scope.$digest();
