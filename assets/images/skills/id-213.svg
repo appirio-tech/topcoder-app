@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>icons/skills/id 213</title>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/skills/id-213</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+    <g id="Languages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="icons/skills/id-213" sketch:type="MSArtboardGroup">
-            <g id="html5-original-wordmark" sketch:type="MSLayerGroup" transform="translate(9.000000, 0.000000)">
+            <g id="html5-original-wordmark" sketch:type="MSLayerGroup" transform="translate(11.000000, 2.000000)">
                 <path d="M4.21619048,54.9304762 L0.386190476,11.9728571 L42.4709524,11.9728571 L38.6371429,54.9238095 L21.4028571,59.7014286 L4.21619048,54.9304762 Z" id="Shape" fill="#E44D26" sketch:type="MSShapeGroup"></path>
                 <path d="M21.4285714,56.0495238 L35.3542857,52.1885714 L38.6309524,15.4857143 L21.4285714,15.4857143 L21.4285714,56.0495238 Z" id="Shape" fill="#F16529" sketch:type="MSShapeGroup"></path>
                 <path d="M21.4285714,31.4180952 L14.4566667,31.4180952 L13.9757143,26.022381 L21.4285714,26.022381 L21.4285714,20.7538095 L8.21761905,20.7538095 L8.34333333,22.167619 L9.63857143,36.6861905 L21.4285714,36.6861905 L21.4285714,31.4180952 Z M21.4285714,45.1004762 L21.4052381,45.1066667 L15.5380952,43.5219048 L15.1628571,39.3204762 L9.87380952,39.3204762 L10.6119048,47.5928571 L21.4042857,50.5890476 L21.4285714,50.5819048 L21.4285714,45.1004762 Z" id="Shape" fill="#EBEBEB" sketch:type="MSShapeGroup"></path>

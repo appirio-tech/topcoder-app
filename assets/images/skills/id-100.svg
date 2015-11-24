@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>icons/skills/id 100</title>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/skills/id-100</title>
     <desc>Created with Sketch.</desc>
     <defs>
         <linearGradient x1="50.9965651%" y1="-19.5372596%" x2="50.9965651%" y2="129.823384%" id="linearGradient-1">
@@ -103,9 +103,9 @@
             <stop stop-color="#37ABE7" stop-opacity="0" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+    <g id="Languages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="icons/skills/id-100" sketch:type="MSArtboardGroup">
-            <g id="dot-net-original" sketch:type="MSLayerGroup" transform="translate(0.000000, 18.000000)">
+            <g id="dot-net-original" sketch:type="MSLayerGroup" transform="translate(2.000000, 20.000000)">
                 <path d="M20.9458065,5.10919355 C23.0830645,11.6448387 23.8925806,23.3032258 30.1422581,23.3032258 C30.6174194,23.3032258 31.098871,23.2567742 31.5812903,23.1648387 C25.9006452,21.8404839 25.2270968,10.308871 21.7601613,4.33645161 C21.4882258,4.58370968 21.2191935,4.84112903 20.9458065,5.10919355" id="Shape" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup"></path>
                 <path d="M21.7601613,4.33645161 C25.2270968,10.3083871 25.9006452,21.84 31.5812903,23.1648387 C32.0279032,23.0830645 32.475,22.9587097 32.9230645,22.8024194 C27.8235484,20.3037097 26.4145161,9.10596774 22.4772581,3.71516129 C22.2391935,3.91354839 21.9996774,4.12112903 21.7601613,4.33645161" id="Shape" fill="url(#linearGradient-2)" sketch:type="MSShapeGroup"></path>
                 <path d="M26.7551613,0.785322581 C26.2809677,0.785322581 25.7985484,0.831774194 25.3146774,0.923709677 C24.0508065,1.16225806 22.7656452,1.7066129 21.4708065,2.53064516 C21.8240323,2.88 22.1612903,3.27919355 22.4777419,3.71516129 C23.7953226,2.62209677 25.1037097,1.81451613 26.4067742,1.32870968 C26.8964516,1.14725806 27.3837097,1.01129032 27.8724194,0.921290323 C27.5196774,0.832258065 27.1480645,0.785322581 26.7551613,0.785322581" id="Shape" fill="#14559A" sketch:type="MSShapeGroup"></path>

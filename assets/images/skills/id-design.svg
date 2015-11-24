@@ -1,25 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>icons/skills/id design</title>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/skills/id-design</title>
     <desc>Created with Sketch.</desc>
-    <defs>
-        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
-            <stop stop-color="#FFFFFF" stop-opacity="0.5" offset="0%"></stop>
-            <stop stop-color="#000000" stop-opacity="0.5" offset="100%"></stop>
-        </linearGradient>
-        <polygon id="path-2" points="26 -1.17065876 52 13.8293412 52 43.8293412 26 58.8293412 0 43.8293412 0 13.8293412 "></polygon>
-    </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+    <defs></defs>
+    <g id="Skills---Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="icons/skills/id-design" sketch:type="MSArtboardGroup">
-            <g id="Polygon-1-+-design-outline_design" sketch:type="MSLayerGroup" transform="translate(4.000000, 1.000000)">
-                <g id="Polygon-1">
-                    <use fill="#21B2F1" sketch:type="MSShapeGroup" xlink:href="#path-2"></use>
-                    <use fill-opacity="0.300000012" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
-                </g>
-                <g id="design-outline_design" transform="translate(11.000000, 14.000000)" fill="#FFFFFF" sketch:type="MSShapeGroup">
-                    <path d="M7.3,29.7 C7.5,29.9 7.7,30 8,30 C8.3,30 8.5,29.9 8.7,29.7 L15.5,22.9 L21.3,28.7 C21.4,28.8 21.5,28.9 21.6,28.9 L21.7,28.9 L21.8,28.9 L28.8,29.9 L28.9,29.9 C29.2,29.9 29.4,29.8 29.6,29.6 C29.8,29.4 29.9,29.1 29.9,28.8 L28.9,21.8 L28.9,21.7 L28.9,21.6 C28.9,21.5 28.8,21.4 28.7,21.3 L22.9,15.5 L28.7,9.7 C29.1,9.3 29.1,8.7 28.7,8.3 L21.7,1.3 C21.3,0.9 20.7,0.9 20.3,1.3 L14.5,7.1 L8.7,1.3 C8.3,0.9 7.7,0.9 7.3,1.3 L1.3,7.3 C0.9,7.7 0.9,8.3 1.3,8.7 L7.1,14.5 L0.3,21.3 C-0.1,21.7 -0.1,22.3 0.3,22.7 L7.3,29.7 L7.3,29.7 Z M24.1,27.3 L27.3,24.1 L27.8,27.8 L24.1,27.3 L24.1,27.3 Z M26.6,22 L22,26.6 L16.9,21.5 L21.5,16.9 L26.6,22 L26.6,22 Z M8.5,13.1 L6.4,11 L11,6.4 L13.1,8.5 L8.5,13.1 L8.5,13.1 Z M8,3.4 L9.6,5 L5,9.6 L3.4,8 L8,3.4 L8,3.4 Z M5,19.4 L7.3,21.7 C7.5,21.9 7.7,22 8,22 C8.3,22 8.5,21.9 8.7,21.7 C9.1,21.3 9.1,20.7 8.7,20.3 L6.4,18 L8,16.4 L9.3,17.7 C9.5,17.9 9.8,18 10,18 C10.2,18 10.5,17.9 10.7,17.7 C11.1,17.3 11.1,16.7 10.7,16.3 L9.4,15 L11,13.4 L13.3,15.7 C13.5,15.9 13.8,16 14,16 C14.2,16 14.5,15.9 14.7,15.7 C15.1,15.3 15.1,14.7 14.7,14.3 L12.4,12 L14,10.4 L15.3,11.7 C15.5,11.9 15.8,12 16,12 C16.2,12 16.5,11.9 16.7,11.7 C17.1,11.3 17.1,10.7 16.7,10.3 L15.4,9 L17,7.4 L19.3,9.7 C19.5,9.9 19.7,10 20,10 C20.3,10 20.5,9.9 20.7,9.7 C21.1,9.3 21.1,8.7 20.7,8.3 L18.4,6 L21,3.4 L26.6,9 L8,27.6 L2.4,22 L5,19.4 L5,19.4 Z" id="Shape"></path>
-                </g>
+            <rect id="Rectangle-7" fill="#2184AC" sketch:type="MSShapeGroup" x="9" y="9" width="50" height="50" rx="4"></rect>
+            <rect id="Rectangle-7" fill="#21B2F1" sketch:type="MSShapeGroup" x="5" y="5" width="50" height="50" rx="4"></rect>
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(14.000000, 15.000000)" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.3686786,15.8218745 L24.5918545,1.65382464 C26.114512,0.131173006 28.5820616,0.131173006 30.1047191,1.65382464 C31.6273667,3.17647718 31.6273667,5.64403273 30.1047191,7.16668526 L15.8815392,21.3347391 L10.3686786,15.8218745 Z" id="Stroke-79" sketch:type="MSShapeGroup"></path>
+                <path d="M9.99872176,21.8791935 C8.32501708,20.2054899 5.62481828,20.1933616 3.96765251,21.8505265 C2.90918303,22.908996 2.76695157,24.2232614 2.77907964,25.3225259 C2.79120771,26.4085599 2.01499722,27.4008748 0.117470968,27.4328491 C2.78238802,30.0966627 7.42311305,30.5145374 10.0273887,27.9102627 C11.7826875,26.1549679 11.5235743,23.4040509 9.99872176,21.8791935 L9.99872176,21.8791935 L9.99872176,21.8791935 Z" id="Stroke-81" sketch:type="MSShapeGroup"></path>
+                <path d="M11.9826592,3.30768303 L8.67494343,6.6153988" id="Stroke-83" sketch:type="MSShapeGroup"></path>
+                <path d="M27.4186126,18.7437356 L24.1108968,22.0514514" id="Stroke-85" sketch:type="MSShapeGroup"></path>
+                <path d="M18.7200472,25.4810591 C19.1396862,25.9006972 19.6825154,26.4435261 20.2400443,27.0010552 C21.5816659,28.3426748 23.0083913,29.7694052 23.0083913,29.7694052 L30.7263918,22.0513948 C30.7263918,22.0513948 26.0357653,17.0321963 25.8217865,16.8096148" id="Stroke-87" sketch:type="MSShapeGroup"></path>
+                <path d="M13.9877077,5.29910905 L8.67492061,0 L0.956917138,7.71800446 C0.956917138,7.71800446 2.67111918,9.4322075 5.12122785,11.8823152" id="Stroke-89" sketch:type="MSShapeGroup"></path>
             </g>
         </g>
     </g>
