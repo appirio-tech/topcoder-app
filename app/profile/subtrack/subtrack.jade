@@ -9,7 +9,7 @@
         .subtrack-stats
           responsive-carousel(data="vm.subTrackStats", handle="{{vm.handle}}")
             .carousel-elem
-              .flex-wrapper
+              a.flex-wrapper(ng-class="{'link': item.link, 'no-link': !item.link}", ng-href="{{item.link}}")
                 p.title(ng-hide="true") {{item.subTrack | track}}
                 
                 p.value(ng-show="item.label === 'rating'", style="color: {{item.val |  ratingColor}}") {{item.val | empty}}

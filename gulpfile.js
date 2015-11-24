@@ -11,7 +11,6 @@ var RevAll       = require('gulp-rev-all');
 var styleguide   = require('sc5-styleguide');
 var awspublishRouter = require('gulp-awspublish-router');
 
-
 var envFile = require('./config.js')();
 var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
 
@@ -460,7 +459,7 @@ gulp.task('deploy', ['build'], function() {
       }
     }));
 
-  var plain = gulp.src([ 'build/**/*', '!build/**/*.js' ])
+  var plain = gulp.src(['build/**/*', '!build/**/*.js', '!build/**/*.css'])
     .pipe(awspublishRouter({
       cache: {
         cacheTime: 94608000,
