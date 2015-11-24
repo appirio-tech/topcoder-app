@@ -18,7 +18,7 @@
           case 'registrants':
             return String.supplant('https://community.{domain}/longcontest/?module=ViewStandings&rd={roundId}', data);
           case 'detail':
-            return String.supplant('https://community.{domain}/tc?module=MatchDetails&rd={roundId}', data);
+            return String.supplant('https://community.{domain}/longcontest/stats/?module=ViewOverview&rd={roundId}', data);
         }
       } else {
         var data = {
