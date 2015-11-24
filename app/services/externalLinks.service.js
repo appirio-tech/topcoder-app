@@ -3,9 +3,9 @@
 
   angular.module('tc.services').factory('ExternalWebLinksService', ExternalWebLinksService);
 
-  ExternalWebLinksService.$inject = ['$log', 'CONSTANTS', 'ApiService'];
+  ExternalWebLinksService.$inject = ['$log', 'CONSTANTS', 'ApiService', '$q'];
 
-  function ExternalWebLinksService($log, CONSTANTS, ApiService) {
+  function ExternalWebLinksService($log, CONSTANTS, ApiService, $q) {
     $log = $log.getInstance("ExternalWebLinksService");
 
     var memberApi = ApiService.getApiServiceProvider('MEMBER');
@@ -33,21 +33,37 @@
           // add provider type as weblink
           links = _(links).forEach(function(l) {
             l.provider = 'weblink';
+            if (l.synchronizedAt === 0) {
+              l.status = 'PENDING';
+            }
           }).value();
           return links;
         });
     }
 
     function addLink(userHandle, url) {
-      return memberApi.one('members', userHandle).customPOST({'url': url}, 'externalLinks')
+      return $q(function(resolve, reject) {
+        memberApi.one('members', userHandle).customPOST({'url': url}, 'externalLinks')
         .then(function(resp) {
           var _newLink = {
             provider: 'weblink',
             data: resp
           };
-          _newLink.data.status = 'pending';
-          return _newLink;
+          _newLink.data.status = 'PENDING';
+          resolve(_newLink);
+        })
+        .catch(function(resp) {
+          var errorStatus = "FATAL_ERROR";
+          $log.error("Error adding weblink: " + resp.data.result.content);
+          if (resp.data.result && resp.data.result.status === 400) {
+            errorStatus = "WEBLINK_ALREADY_EXISTS";
+          }
+          reject({
+            status: errorStatus,
+            msg: resp.data.result.content
+          });
         });
+      });
     }
 
     function removeLink(userHandle, key) {

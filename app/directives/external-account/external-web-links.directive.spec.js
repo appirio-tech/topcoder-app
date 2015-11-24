@@ -4,15 +4,45 @@ describe('ExternalWebLinks Directive', function() {
   var element;
   var extWebLinkSvc;
   var toasterSvc;
+  var mockLinkedAccounts = [
+    {
+      provider: 'github',
+      data: {
+        handle: "github-handle",
+        followers: 1,
+        publicRepos: 1
+      }
+    }
+  ];
 
   beforeEach(function() {
     bard.appModule('topcoder');
     bard.inject(this, '$compile', '$rootScope', 'ExternalWebLinksService', '$q', 'toaster');
 
     extWebLinkSvc = ExternalWebLinksService;
-    bard.mockService(extWebLinkSvc, {
-      addLink: $q.when({title: 'blah'}),
-      default: $q.when({})
+
+    // mock external weblink service
+    sinon.stub(extWebLinkSvc, 'addLink', function(handle, url) {
+      var $deferred = $q.defer();
+      if (handle === 'throwError') {
+        $deferred.reject({
+          status: 'FATAL_ERROR',
+          msg: 'fatal error'
+        });
+      } else if(handle === 'alreadyExistsError') {
+        $deferred.reject({
+          status: 'WEBLINK_ALREADY_EXISTS',
+          msg: 'link already added to your account'
+        });
+      } else {
+        $deferred.resolve({
+          data: {
+            status: 'PENDING'
+          },
+          provider: 'weblink'
+        });
+      }
+      return $deferred.promise;
     });
 
     toasterSvc = toaster;
@@ -27,16 +57,7 @@ describe('ExternalWebLinks Directive', function() {
   bard.verifyNoOutstandingHttpRequests();
 
   describe('Linked external accounts', function() {
-    var linkedAccounts = [
-      {
-        provider: 'github',
-        data: {
-          handle: "github-handle",
-          followers: 1,
-          publicRepos: 1
-        }
-      }
-    ];
+    var linkedAccounts = angular.copy(mockLinkedAccounts);
     var template, element, controller;
 
     beforeEach(function() {
@@ -48,6 +69,11 @@ describe('ExternalWebLinks Directive', function() {
       controller = element.controller('externalWebLink');
     });
 
+    afterEach(function() {
+      linkedAccounts = angular.copy(mockLinkedAccounts);
+      scope.linkedAccounts = linkedAccounts;
+    });
+
     it('should have added linkedAccounts to scope', function() {
       expect(scope.linkedAccounts).to.exist;
       expect(scope.linkedAccounts).to.have.length(1);
@@ -56,12 +82,34 @@ describe('ExternalWebLinks Directive', function() {
     it('should have added new weblink to linkedAccounts', function() {
       scope.userHandle = 'test';
       scope.url = 'https://www.topcoder.com';
-      controller.addWebLink();
+      element.isolateScope().addWebLink();
       scope.$digest();
-      expect(extWebLinkSvc.addLink).to.have.been.calledOnce;
-      expect(controller.linkedAccounts).to.have.length(2);
-      expect(toasterSvc.pop).to.have.been.calledOnce;
-    })
+      expect(scope.linkedAccounts).to.have.length(2);
+      var topcoderLink = _.find(scope.linkedAccounts, function(a) {
+        return a.provider === 'weblink'
+      });
+      expect(topcoderLink).to.exist;
+      expect(topcoderLink.status).to.exist.to.equal('PENDING');
+      expect(toasterSvc.pop).to.have.been.calledWith('success').calledOnce;
+    });
+
+    it('should NOT add new weblink to linkedAccounts', function() {
+      element.isolateScope().userHandle = 'throwError';
+      element.isolateScope().url = 'https://www.topcoder.com';
+      element.isolateScope().addWebLink();
+      scope.$digest();
+      expect(scope.linkedAccounts).to.have.length(1);
+      expect(toasterSvc.pop).to.have.been.calledWith('error').calledOnce;
+    });
+
+    it('should NOT add new weblink to linkedAccounts', function() {
+      element.isolateScope().userHandle = 'alreadyExistsError';
+      element.isolateScope().url = 'https://www.topcoder.com';
+      element.isolateScope().addWebLink();
+      scope.$digest();
+      expect(scope.linkedAccounts).to.have.length(1);
+      expect(toasterSvc.pop).to.have.been.calledWith('error').calledOnce;
+    });
 
   });
 });

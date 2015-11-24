@@ -18,33 +18,40 @@
         linkedAccounts: '=',
         userHandle: '@'
       },
-      bindToController: true,
-      controller: ['$log', ExternalWebLinkCtrl],
-      controllerAs: 'vm'
+      controller: ['$scope', '$log', ExternalWebLinkCtrl]
     };
 
 
-    function ExternalWebLinkCtrl($log) {
+    function ExternalWebLinkCtrl($scope, $log) {
       $log = $log.getInstance('ExternalWebLinkCtrl');
-      var vm = this;
-      vm.addingWebLink = false;
-      vm.errorMessage = null;
+      $scope.addingWebLink = false;
+      $scope.errorMessage = null;
 
-      vm.addWebLink = function() {
-        $log.debug("URL: " + vm.url);
-        vm.addingWebLink = true;
-        vm.errorMessage = null;
-        ExternalWebLinksService.addLink(vm.userHandle, vm.url)
+      $scope.addWebLink = function() {
+        $log.debug("URL: " + $scope.url);
+        $scope.addingWebLink = true;
+        $scope.errorMessage = null;
+        ExternalWebLinksService.addLink($scope.userHandle, $scope.url)
           .then(function(data) {
-            vm.addingWebLink = false;
+            $scope.addingWebLink = false;
             $log.debug("Web link added: " + JSON.stringify(data));
-            vm.linkedAccounts.push(data);
+            data.data.provider = data.provider;
+            $scope.linkedAccounts.push(data.data);
             toaster.pop('success', "Success", "Your link has been added. Data from your link will be visible on your profile shortly.");
           })
           .catch(function(resp) {
-            vm.addingWebLink = false;
-            $log.error("Server error:" + resp.content);
-            toaster.pop('error', "Sorry, we are unable add web link. If problem persist please contact support@topcoder.com");
+            $scope.addingWebLink = false;
+
+            if (resp.status === 'WEBLINK_ALREADY_EXISTS') {
+              $log.info("Social profile already linked to another account");
+              toaster.pop('error', "Whoops!",
+                  "This weblink is already added to your account. \
+                  If you think this is an error please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>."
+              );
+            } else {
+              $log.error("Fatal Error: addWebLink: " + resp.msg);
+              toaster.pop('error', "Sorry, we are unable add web link. If problem persist please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>.");
+            }
           });
       };
     }

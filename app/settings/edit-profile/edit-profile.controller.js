@@ -34,17 +34,6 @@
 
       processData(vm.userData);
 
-      // ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId).then(function(data) {
-      //   vm.linkedExternalAccounts = data;
-      // });
-
-      // ExternalAccountService.getLinkedExternalLinksData(userHandle).then(function(data) {
-      //   vm.linkedExternalAccountsData = data.plain();
-      //   vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
-      // })
-      // .catch(function(err) {
-      //   $log.error(JSON.stringify(err));
-      // });
       var userId = vm.userData.userId;
       var userHandle = vm.userData.handle;
       var _linksPromises = [

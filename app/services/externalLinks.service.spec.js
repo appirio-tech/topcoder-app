@@ -59,7 +59,21 @@ describe('ExternalWebLinks service', function() {
       expect(newLink).to.be.exist;
       expect(newLink.provider).to.exist.to.equal('weblink');
       expect(newLink.data).to.exist;
-      expect(newLink.data.status).to.exist.to.equal('pending');
+      expect(newLink.data.status).to.exist.to.equal('PENDING');
+    });
+    $httpBackend.flush();
+  });
+
+  it('should fail with already existing link', function() {
+    var errorMessage = "web link exists";
+    linksPost.respond(400, {result:  { status: 400, content: errorMessage } });
+    // call linkExternalAccount method, having user service throw already exist
+    service.addLink('test1', "http://google.com").then(function(data) {
+      sinon.assert.fail('should not be called');
+    }, function(error) {
+      expect(error).to.be.defined;
+      expect(error.status).to.exist.to.equal('WEBLINK_ALREADY_EXISTS');
+      expect(error.msg).to.exist.to.equal(errorMessage);
     });
     $httpBackend.flush();
   });
