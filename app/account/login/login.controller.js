@@ -13,7 +13,7 @@
     vm.usernameExists = true;
     vm.currentPasswordDefaultPlaceholder = "Password";
     vm.login = login;
-    vm.socialLogin;
+    vm.socialLogin = socialLogin;
     // reference for main vm
     var mainVm = $scope.$parent.main;
 
@@ -26,15 +26,15 @@
     }
 
     function _doLogin(usernameOrEmail, password) {
-     return TcAuthService.login(usernameOrEmail, password).then(
-      function(data) {
+      return TcAuthService.login(usernameOrEmail, password).then(function(data) {
         // success
         $log.debug('logged in');
+
         // setup login event for analytics tracking
         Helpers.setupLoginEventMetrices(usernameOrEmail);
         return Helpers.redirectPostLogin($stateParams.next);
-      })
-     .catch(function(resp) {
+
+      }).catch(function(resp) {
         $log.warn(resp);
         switch (resp.status) {
           case "ACCOUNT_INACTIVE":
