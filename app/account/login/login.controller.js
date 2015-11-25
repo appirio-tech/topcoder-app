@@ -6,8 +6,8 @@
   LoginController.$inject = ['$log', '$state', '$stateParams', '$location', '$scope', 'TcAuthService', 'AuthTokenService', 'UserService', 'NotificationService', 'Helpers', 'CONSTANTS'];
 
   function LoginController($log, $state, $stateParams, $location, $scope, TcAuthService, AuthTokenService, UserService, NotificationService, Helpers, CONSTANTS) {
-    $log = $log.getInstance("LoginController");
     var vm = this;
+    $log = $log.getInstance("LoginController");
     vm.$stateParams = $stateParams;
     vm.passwordReset = false;
     vm.usernameExists = true;
