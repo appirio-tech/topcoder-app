@@ -1,4 +1,4 @@
-@import 'tc-includes';
+@import 'topcoder/tc-includes';
 
 .settings-header {
   @include module-full-width;
@@ -198,7 +198,6 @@
 
     .form-field {
       @include form-field;
-      @include ui-form-placeholder;
       background: white;
       color: black;
       &:disabled {

@@ -43,50 +43,15 @@ gulp.task('jade', ['clean-html'], function() {
     .pipe(gulp.dest(config.temp));
 });
 
-gulp.task('styleguide:generate', function() {
-  log('Generating styleguide.');
-
-  var outputDirectory = 'styleguide';
-
-  return gulp
-    .src(config.assets + 'css/partials/*.scss')
-    .pipe(styleguide.generate({
-      title: 'Topcoder Styleguide',
-      server: true,
-      port: 3132,
-      rootPath: outputDirectory
-    }))
-    .pipe(gulp.dest(outputDirectory));
-});
-
-gulp.task('styleguide:applystyles', function() {
-  return gulp
-    src(config.assets + 'css/partials/_tc-styles.scss')
-    .pipe($.sass({
-      errLogToConsole: true
-    }))
-    .pipe(styleguide.applyStyles())
-    .pipe(gulp.dest(outputDirectory))
-});
-
-gulp.task('styleguide', ['styleguide:generate', 'styleguide:applystyles']);
-
-gulp.task('watch-styleguide', ['styleguide'], function() {
-  // Start watching changes and update styleguide whenever changes are detected
-  gulp.watch(config.assets + 'css/partials/*.scss', ['styleguide']);
-});
-
 gulp.task('styles', ['clean-styles'], function() {
   log('Compiling Sass --> CSS');
+
   var assetPrefix = envConfig.CONSTANTS.ASSET_PREFIX.length ? envConfig.CONSTANTS.ASSET_PREFIX : '/';
 
   return gulp
     .src(config.sass, {base: './'})
     .pipe($.plumber())
-    // Put back when we move the ui kit back to the external github repo
-    // .pipe($.sass({includePaths: [require('tc-ui-kit').includePaths]}))
-    // Replace with line above when ui kit is external again
-    .pipe($.sass({includePaths: [config.assets + 'css/partials']}))
+    .pipe($.sass({includePaths: require('appirio-styles').includePaths}))
     .pipe($.autoprefixer({browsers: ['last 2 version']}))
     .pipe($.replace(/\/fonts/g, assetPrefix + 'fonts'))
     .pipe(gulp.dest(config.temp));
