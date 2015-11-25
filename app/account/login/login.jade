@@ -6,12 +6,12 @@
   h1 LOG IN TO TOPCODER
 
   form(name="vm.loginForm", role="form", ng-submit="vm.loginForm.$valid && vm.login()", novalidate)
-    .form-errors
-      p.form-error(ng-hide="vm.usernameExists") We couldn't find a member with that {{vm.emailOrUsername || "username"}}. Please check that you entered it correctly.
+    .form-errors(ng-messages="vm.loginErrors")
+      p.form-error(ng-message="username-nonexistant") We couldn't find a member with that {{vm.emailOrUsername || "username"}}. Please check that you entered it correctly.
 
-      p.form-error(ng-show="vm.wrongPassword") That password is incorrect. Please check that you entered the right one.
+      p.form-error(ng-message="wrong-password") That password is incorrect. Please check that you entered the right one.
 
-      p.form-error(ng-show="vm.socialLoginError === 401") User with that profile is not registered.
+      p.form-error(ng-message="social-login-error") User with that profile is not registered.
 
     div.validation-bar(ng-class="{'error-bar': !vm.usernameExists}")
       input(ng-model="vm.username", name="username", placeholder="Username or Email", type="text", required)

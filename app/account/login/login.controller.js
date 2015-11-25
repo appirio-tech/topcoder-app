@@ -14,6 +14,7 @@
     vm.currentPasswordDefaultPlaceholder = "Password";
     vm.login = login;
     vm.socialLogin = socialLogin;
+    vm.loginErrors = {};
     // reference for main vm
     var mainVm = $scope.$parent.main;
 
@@ -43,15 +44,15 @@
             break;
           case "UNKNOWN_ERROR":
           default:
-            vm.wrongPassword = true;
+            vm.loginErrors['wrong-password'] = true;
             vm.password = '';
         }
       });
     }
 
     function login() {
-      vm.usernameExists = true;
-      vm.wrongPassword = false;
+      vm.loginErrors['username-nonexistant'] = false;
+      vm.loginErrors['wrong-password'] = false;
       // TODO ideally it should be done by dedicated directive to handle all outside clicks
       mainVm.menuVisible = false;
 
@@ -61,15 +62,15 @@
         UserService.validateUserEmail(vm.username).then(function(data) {
           if (data.valid) {
             // email doesn't exist
-            vm.usernameExists = false;
+            vm.loginErrors['username-nonexistant'] = true;
           } else {
-            vm.usernameExists = true;
+            vm.loginErrors['username-nonexistant'] = false;
             _doLogin(vm.username, vm.currentPassword);
           }
         }).catch(function(resp) {
           // TODO handle error
           // assume email exists, login would in any case if it didn't
-          vm.usernameExists = true;
+          vm.loginErrors['username-nonexistant'] = false;
           _doLogin(vm.username, vm.currentPassword);
         });
       } else {
@@ -78,15 +79,15 @@
         UserService.validateUserHandle(vm.username).then(function(data) {
           if (data.valid) {
             // username doesn't exist
-            vm.usernameExists = false;
+            vm.loginErrors['username-nonexistant'] = true;
           } else {
-            vm.usernameExists = true;
+            vm.loginErrors['username-nonexistant'] = false;
             _doLogin(vm.username, vm.currentPassword);
           }
         }).catch(function(resp) {
           // TODO handle error
           // assume email exists, login would in any case if it didn't
-          vm.usernameExists = true;
+          vm.loginErrors['username-nonexistant'] = false;
           _doLogin(vm.username, vm.currentPassword);
         });
       }
@@ -110,6 +111,7 @@
           case "USER_NOT_REGISTERED":
           default:
             vm.socialLoginError = 401;
+            vm.loginErrors['social-login-error'] = true;
             break;
         }
       });
