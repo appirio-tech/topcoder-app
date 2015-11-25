@@ -20,7 +20,7 @@
       getCountyObjFromIP: getCountyObjFromIP,
       redirectPostLogin: redirectPostLogin,
       getSocialUserData: getSocialUserData,
-      setupLoginEventMetrices: setupLoginEventMetrices,
+      setupLoginEventMetrics: setupLoginEventMetrics,
       npad: npad
 
     };
@@ -297,7 +297,7 @@
       }
     }
 
-    function setupLoginEventMetrices (usernameOrEmail) {
+    function setupLoginEventMetrics (usernameOrEmail) {
       if (_kmq) {
         _kmq.push(['identify', usernameOrEmail ]);
       }

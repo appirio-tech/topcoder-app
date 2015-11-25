@@ -3,18 +3,19 @@
 
   angular.module('tc.account').controller('LoginController', LoginController);
 
-  LoginController.$inject = ['$log', '$state', '$stateParams', '$location', '$scope', 'TcAuthService', 'AuthTokenService', 'UserService', 'NotificationService', 'Helpers', 'CONSTANTS'];
+  LoginController.$inject = ['$log', '$state', '$stateParams', '$location', '$scope', 'TcAuthService', 'UserService', 'NotificationService', 'Helpers', 'CONSTANTS'];
 
-  function LoginController($log, $state, $stateParams, $location, $scope, TcAuthService, AuthTokenService, UserService, NotificationService, Helpers, CONSTANTS) {
+  function LoginController($log, $state, $stateParams, $location, $scope, TcAuthService, UserService, NotificationService, Helpers, CONSTANTS) {
     var vm = this;
     $log = $log.getInstance("LoginController");
     vm.$stateParams = $stateParams;
     vm.passwordReset = false;
-    vm.usernameExists = true;
     vm.currentPasswordDefaultPlaceholder = "Password";
+    vm.loginErrors = {};
+
     vm.login = login;
     vm.socialLogin = socialLogin;
-    vm.loginErrors = {};
+
     // reference for main vm
     var mainVm = $scope.$parent.main;
 
@@ -26,13 +27,60 @@
       }
     }
 
+    function login() {
+      vm.loginErrors['username-nonexistant'] = false;
+      vm.loginErrors['wrong-password'] = false;
+
+      // TODO ideally it should be done by dedicated directive to handle all outside clicks
+      mainVm.menuVisible = false;
+
+      if (Helpers.isEmail(vm.username)) {
+        // the user is loggin in using email
+        vm.emailOrUsername = 'email';
+
+        // ensure email exists
+        // uses same validity check as registration
+        // valid => email isn't already used by someone
+        UserService.validateUserEmail(vm.username).then(function(data) {
+          if (data.valid) {
+            // email doesn't exist
+            vm.loginErrors['username-nonexistant'] = true;
+          } else {
+            _doLogin(vm.username, vm.currentPassword);
+          }
+        }).catch(function(resp) {
+          // TODO handle error
+          // assume email exists, login would in any case if it didn't
+          vm.loginErrors['username-nonexistant'] = false;
+          _doLogin(vm.username, vm.currentPassword);
+        });
+      } else {
+        // the user is logging in using a username
+        vm.emailOrUsername = 'username';
+
+        // username - make sure it exists
+        UserService.validateUserHandle(vm.username).then(function(data) {
+          if (data.valid) {
+            // username doesn't exist
+            vm.loginErrors['username-nonexistant'] = true;
+          } else {
+            _doLogin(vm.username, vm.currentPassword);
+          }
+        }).catch(function(resp) {
+          // TODO handle error
+          // assume email exists, login would in any case if it didn't
+          _doLogin(vm.username, vm.currentPassword);
+        });
+      }
+    };
+
     function _doLogin(usernameOrEmail, password) {
       return TcAuthService.login(usernameOrEmail, password).then(function(data) {
         // success
         $log.debug('logged in');
 
         // setup login event for analytics tracking
-        Helpers.setupLoginEventMetrices(usernameOrEmail);
+        Helpers.setupLoginEventMetrics(usernameOrEmail);
         return Helpers.redirectPostLogin($stateParams.next);
 
       }).catch(function(resp) {
@@ -50,56 +98,17 @@
       });
     }
 
-    function login() {
-      vm.loginErrors['username-nonexistant'] = false;
-      vm.loginErrors['wrong-password'] = false;
-      // TODO ideally it should be done by dedicated directive to handle all outside clicks
-      mainVm.menuVisible = false;
-
-      if (Helpers.isEmail(vm.username)) {
-        vm.emailOrUsername = 'email';
-        // ensure email exists
-        UserService.validateUserEmail(vm.username).then(function(data) {
-          if (data.valid) {
-            // email doesn't exist
-            vm.loginErrors['username-nonexistant'] = true;
-          } else {
-            vm.loginErrors['username-nonexistant'] = false;
-            _doLogin(vm.username, vm.currentPassword);
-          }
-        }).catch(function(resp) {
-          // TODO handle error
-          // assume email exists, login would in any case if it didn't
-          vm.loginErrors['username-nonexistant'] = false;
-          _doLogin(vm.username, vm.currentPassword);
-        });
-      } else {
-        vm.emailOrUsername = 'username';
-        // username - make sure it exists
-        UserService.validateUserHandle(vm.username).then(function(data) {
-          if (data.valid) {
-            // username doesn't exist
-            vm.loginErrors['username-nonexistant'] = true;
-          } else {
-            vm.loginErrors['username-nonexistant'] = false;
-            _doLogin(vm.username, vm.currentPassword);
-          }
-        }).catch(function(resp) {
-          // TODO handle error
-          // assume email exists, login would in any case if it didn't
-          vm.loginErrors['username-nonexistant'] = false;
-          _doLogin(vm.username, vm.currentPassword);
-        });
-      }
-    };
-
-    function socialLogin(backend) {
-      var params = {}, callbackUrl;
+    function socialLogin(platform) {
+      // we need to pass on the 'next' param if we have one
+      var params = {};
       if ($stateParams.next) {
         params = {next: $stateParams.next};
       }
-      callbackUrl = $state.href('login', params, {absolute: true});
-      TcAuthService.socialLogin(backend, callbackUrl)
+
+      // redirect back to login
+      var callbackUrl = $state.href('login', params, {absolute: true});
+
+      TcAuthService.socialLogin(platform, callbackUrl)
       .then(function() {
         $log.debug('logged in');
         return Helpers.redirectPostLogin($stateParams.next);
