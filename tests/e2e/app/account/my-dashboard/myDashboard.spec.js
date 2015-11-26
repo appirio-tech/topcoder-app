@@ -12,24 +12,34 @@
 		 for (; i< myDashboardData.userCredentials.length; i++) {
 			 console.log('user creds :'+myDashboardData.baseUrl);
 			 (function(loginUserCred) {
-				 it('Dashboard first part', function() {
+				 it('Dashboard Header Carousel', function() {
 					 loginPage.get(myDashboardData.baseUrl);
 					 loginPage.login(loginUserCred);
-					 myDashboardPage.goToDashboardPage(myDashboardData.dashBoardUrl, loginUserCred);
+					 myDashboardPage.carouselDashboard(myDashboardData.dashBoardUrl, loginUserCred);
 				 });
+				 /*
+				 it('Dashboard My Challenges', function() {
+//					 loginPage.get(myDashboardData.baseUrl);
+//					 loginPage.login(loginUserCred);
+					 myDashboardPage.myChallengesDashboard(myDashboardData.dashBoardUrl, myDashboardData, loginUserCred);
+				 });*/
 				 
 				 it('DashBoardLogout', function() {
-					 loginPage.get(myDashboardData.baseUrl);
+//					 loginPage.get(myDashboardData.baseUrl);
 					 loginPage.logOut(myDashboardData.dashBoardUrl);
 				 });
 		  
 		  
-				 it('Dashboard srm and rest links', function() {
+				 it('Dashboard SRM Links', function() {
 					 loginPage.get(myDashboardData.baseUrl);
 					 loginPage.login(loginUserCred);
-					 myDashboardPage.goToDahsboardRestLinks(myDashboardData.dashBoardUrl, loginUserCred);
+					 myDashboardPage.goToSrmLinks(myDashboardData.dashBoardUrl, myDashboardData, loginUserCred);
 				 });
-		  
+				 
+				 it('Dashboard IOS Challenges', function() {
+					 myDashboardPage.goToIosChallenges(myDashboardData.dashBoardUrl, loginUserCred);
+				 });
+				 
 				 it('DashBoard Logout', function() {
 					 loginPage.logOut(myDashboardData.dashBoardUrl);
 				 });
@@ -77,7 +87,7 @@
 				 });
 			 })(myDashboardData.userCredentials[i]);
 		 }
-		  
+		  //i=0;
 			 for (; i< myDashboardData.emptyUserCredentials.length; i++) {
 				 (function(loginUserCred) {
 				 it('Empty Dashboard srm and rest links', function() {
@@ -88,6 +98,16 @@
 				 
 				 it('welcomes the user for logout', function() {
 					 loginPage.get(myDashboardData.baseUrl);
+					 loginPage.logOut(myDashboardData.dashBoardUrl);
+				 });
+				 
+				 it('Empty Dashboard srm and rest links', function() {
+					 loginPage.get(myDashboardData.baseUrl);
+					 loginPage.login(loginUserCred);
+					 myDashboardPage.goToEmptyDashboardRestLinks(myDashboardData.dashBoardUrl, loginUserCred);
+				 });
+		  
+				 it('Empty DashBoard Logout', function() {
 					 loginPage.logOut(myDashboardData.dashBoardUrl);
 				 });
 				 

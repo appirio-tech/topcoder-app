@@ -41,14 +41,14 @@ exports.config = {
   },
   
   capabilities: {
-	  'browserName': 'chrome'
+	  'browserName': 'firefox'
 	},
 
 	jasmineNodeOpts: {
 		isVerbose: true,
 		includeStackTrace: true,
 		showColors: true,
-		defaultTimeoutInterval: 300000,
+		defaultTimeoutInterval: 600000,
         print: function() {}
 	}
 };
