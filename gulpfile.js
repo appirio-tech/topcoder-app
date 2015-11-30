@@ -1,81 +1,32 @@
-var gulp         = require('gulp');
+'use strict';
+
+var gulp     = require('gulp');
+// rename to plugins once everything is modularized
+var $  = require('gulp-load-plugins')({lazy: true});
+var config   = require('./gulp.config')();
+var taskPath = './gulp-tasks/';
+var taskList = require('fs').readdirSync(taskPath);
+var utilities = require(taskPath + 'utilities');
+var envFile = require('./config.js')();
+var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
+
+taskList.forEach(function(taskFile) {
+  if (taskFile !== 'utilities.js') {
+    require(taskPath + taskFile)(gulp, $, config, utilities);
+  }
+});
+
 var args         = require('yargs').argv;
-var config       = require('./gulp.config')();
-var del          = require('del'); // rm -rf
 var fs           = require('fs');
-var $            = require('gulp-load-plugins')({lazy: true});
 var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
 var merge        = require('merge-stream');
 var RevAll       = require('gulp-rev-all');
-var styleguide   = require('sc5-styleguide');
-var awspublishRouter = require('gulp-awspublish-router');
 
-var envFile = require('./config.js')();
-var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
+var awspublishRouter = require('gulp-awspublish-router');
 
 gulp.task('help', $.taskListing);
 gulp.task('default', ['help']);
-
-gulp.task('vet', function() {
-  log('Analyzing source with JSHint and JSCS');
-
-  return gulp
-    .src(config.alljs)
-    .pipe($.if(args.verbose, $.print())) // gulp vet --verbose to trigger this line
-    .pipe($.jscs())
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('jshint-stylish', {verbose: true}))
-    .pipe($.jshint.reporter('fail'));
-});
-
-gulp.task('jade', ['clean-html'], function() {
-  log('Compiling Jade --> HTML');
-
-  return gulp
-    .src(config.jade)
-    .pipe($.plumber())
-    .pipe($.data(function(file) {
-      return envConfig;
-    }))
-    .pipe($.jade({pretty: true}))
-    .pipe($.replace(/-->/g, ' -->'))
-    .pipe(gulp.dest(config.temp));
-});
-
-gulp.task('styles', ['clean-styles'], function() {
-  log('Compiling Sass --> CSS');
-
-  var assetPrefix = envConfig.CONSTANTS.ASSET_PREFIX.length ? envConfig.CONSTANTS.ASSET_PREFIX : '/';
-
-  return gulp
-    .src(config.sass, {base: './'})
-    .pipe($.plumber())
-    .pipe($.sass({includePaths: require('appirio-styles').includePaths}))
-    .pipe($.autoprefixer({browsers: ['last 2 version']}))
-    .pipe($.replace(/\/fonts/g, assetPrefix + 'fonts'))
-    .pipe(gulp.dest(config.temp));
-});
-
-gulp.task('sass-watcher', function() {
-  gulp.watch([config.sass], ['styles']);
-});
-
-gulp.task('fonts', ['clean-fonts'], function() {
-  log('Copying fonts');
-
-  return gulp
-    .src([config.fonts, 'bower_components/fontawesome/fonts/fontawesome-webfont.*'])
-    .pipe(gulp.dest(config.build + 'fonts'));
-});
-
-gulp.task('dev-fonts', ['fonts'], function() {
-  log('Copying devicon fonts');
-
-  return gulp
-    .src('bower_components/devicon/fonts/**.*')
-    .pipe(gulp.dest(config.build + 'styles/fonts'));
-})
 
 gulp.task('images', ['clean-images'], function() {
   log('Copying and compressing the images');
@@ -85,7 +36,6 @@ gulp.task('images', ['clean-images'], function() {
     .pipe($.imagemin({optimizationLevel: 4}))
     .pipe(gulp.dest(config.temp + 'images'));
 });
-
 
 gulp.task('images-orig-nav', ['build1'], function() {
   log('Copying original images');
@@ -99,54 +49,6 @@ gulp.task('images-orig', ['images-orig-nav'], function() {
   return gulp
      .src(config.assets + 'images/skills/**.*')
     .pipe(gulp.dest(config.build + 'images/skills'));
-});
-
-gulp.task('clean', function(done) {
-  var delconfig = [].concat(config.build, config.temp);
-  log('Cleaning: ' + $.util.colors.blue(delconfig));
-  del(delconfig, done);
-});
-gulp.task('clean-fonts', function(done) {
-  clean(config.build + 'fonts/**/*.*', done);
-});
-gulp.task('clean-images', function(done) {
-  clean(config.build + 'images/**/*.*', done);
-});
-gulp.task('clean-styles', function(done) {
-  clean(config.temp + '**/*.css', done);
-});
-gulp.task('clean-html', function(done) {
-  clean(config.temp + '**/*.html', done);
-});
-gulp.task('clean-code', function(done) {
-  var files = [].concat(
-    config.temp + '**/*.js',
-    config.build + '**/*.html',
-    config.build + 'js/**/*.js',
-    config.build + 'styles/**/*.css'
-  );
-  clean(files, done);
-});
-
-gulp.task('copy-html', function() {
-  log('Moving app html files to .tmp');
-
-  return gulp
-    .src([config.app + '**/*.html', '!' + config.app + 'specs.html'])
-    .pipe(gulp.dest(config.temp));
-});
-
-gulp.task('templatecache', ['clean-code', 'jade', 'copy-html'], function() {
-  log('Creating AngularJS $templateCache');
-
-  return gulp
-    .src(config.htmltemplates)
-    .pipe($.minifyHtml({empty: true}))
-    .pipe($.angularTemplatecache(
-      config.templateCache.file,
-      config.templateCache.options
-      ))
-    .pipe(gulp.dest(config.temp));
 });
 
 gulp.task('ngConstants', function() {
@@ -240,7 +142,7 @@ gulp.task('optimize', ['inject', 'test', 'ngConstants', 'images'], function() {
     .pipe(gulp.dest(config.build));
 });
 
-gulp.task('build1', ['optimize', 'dev-fonts'], function() {
+gulp.task('build1', ['optimize', 'fonts'], function() {
   log('Building everything');
 
   var msg = {
@@ -378,17 +280,6 @@ gulp.task('serve-build', ['build'], function() {
 
 });
 
-gulp.task('e2e', [], function(done) {
-  gulp.src(['./tests/e2e/app/*.js'])
-    .pipe($.angularProtractor({
-        'configFile': 'tests/e2e/conf.js',
-        'args': ['--baseUrl', 'http://127.0.0.1:8000'],
-        'autoStartStopServer': true,
-        'debug': true
-    }))
-    .on('error', function(e) { throw e });
-});
-
 // gulp.task('test', ['vet', 'templatecache'], function(done) {
 gulp.task('test', ['templatecache', 'ngConstants'], function(done) {
   startTests(true /* singleRun */, done);
@@ -445,50 +336,3 @@ gulp.task('deploy', ['build'], function() {
     .pipe($.if(!config.production, publisher.sync()))
     .pipe($.awspublish.reporter());
 });
-
-/////////////////////////////////////
-
-function changeEvent(event) {
-  var srcPattern = new RegExp('/.*(?=/' + config.source + ')/');
-  log('File ' + event.path.replace(srcPattern, '') + ' ' + event.type);
-}
-
-function clean(path, done) {
-  log('Cleaning: ' + $.util.colors.blue(path));
-  del(path, done);
-}
-
-function log(msg) {
-  if (typeof(msg) === 'object') {
-    for (var item in msg) {
-      if (msg.hasOwnProperty(item)) {
-        $.util.log($.util.colors.blue(msg[item]));
-      }
-    }
-  } else {
-    $.util.log($.util.colors.blue(msg));
-  }
-}
-
-function startTests(singleRun, done) {
-  var karma = require('karma').server;
-  var excludeFiles = [];
-  var serverSpecs = config.serverIntegrationSpecs;
-
-  excludeFiles = serverSpecs;
-
-  karma.start({
-    configFile: __dirname + '/karma.conf.js',
-    exclude: excludeFiles,
-    singleRun: !!singleRun
-  }, karmaCompleted);
-
-  function karmaCompleted(karmaResult) {
-    log('Karma completed!');
-    if (karmaResult === 1) {
-      done('karma: tests failed with code ' + karmaResult);
-    } else {
-      done();
-    }
-  }
-}
