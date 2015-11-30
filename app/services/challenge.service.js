@@ -179,7 +179,7 @@
           // TODO placement logic for challenges can be moved to their corresponding user place directive
           // process placement for challenges having winningPlacements array in response
           if (Array.isArray(challenge.userDetails.winningPlacements)) {
-            challenge.highestPlacement = _.max(challenge.userDetails.winningPlacements);
+            challenge.highestPlacement = _.min(challenge.userDetails.winningPlacements);
             challenge.wonFirst = challenge.highestPlacement == 1;
             if (challenge.highestPlacement === 0) {
               challenge.highestPlacement = null;
@@ -189,7 +189,9 @@
           if (challenge.track == 'DESIGN' && challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
             challenge.thumbnailId = challenge.userDetails.submissions[0].id;
 
-            challenge.highestPlacement = _.max(challenge.userDetails.submissions, 'placement').placement;
+            challenge.highestPlacement = _.min(challenge.userDetails.submissions.filter(function(submission) {
+              return submission.placement;
+            }), 'placement').placement;
 
             if (challenge.highestPlacement == 1) {
               challenge.wonFirst = true;
