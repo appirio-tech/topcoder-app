@@ -25,6 +25,7 @@
       updatePassword: updatePassword,
       getUserProfile: getUserProfile,
       getV2UserProfile: getV2UserProfile,
+      addSocialProfile: addSocialProfile,
       removeSocialProfile: removeSocialProfile,
       getPreference: getPreference,
       setPreference: setPreference
@@ -100,6 +101,10 @@
     function getUserProfile(queryParams) {
       var userId = getUserIdentity().userId;
       return api.one('users', userId).get(queryParams);
+    }
+
+    function addSocialProfile(userId, profileData) {
+      return api.one('users', userId).customPOST(profileData, "profiles", {}, {});
     }
 
     function removeSocialProfile (userId, account) {
