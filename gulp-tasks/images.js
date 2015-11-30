@@ -1,25 +1,17 @@
 module.exports = function(gulp, $, config, utilities) {
   'use strict';
 
-  gulp.task('images', ['clean'], function() {
+  gulp.task('images', ['clean', 'images:move-skills'], function() {
     utilities.log('Copying and compressing the images');
 
     return gulp
-      .src(config.images)
+      .src([config.images, '!' + config.assets + 'images/skills/**.*'])
       .pipe($.imagemin({optimizationLevel: 4}))
       .pipe(gulp.dest(config.temp + 'images'));
   });
 
-  gulp.task('images-orig-nav', ['build1'], function() {
-    utilities.log('Copying original images');
-
-    return gulp
-       .src(config.assets + 'images/nav/**.*')
-      .pipe(gulp.dest(config.build + 'images/nav'));
-  });
-
-  gulp.task('images-orig', ['images-orig-nav'], function() {
-    utilities.log('Copying original images');
+  gulp.task('images:move-skills', ['clean'], function() {
+    utilities.log('Copying original skill icons to build folder');
 
     return gulp
        .src(config.assets + 'images/skills/**.*')
