@@ -1,4 +1,4 @@
-@import 'tc-includes';
+@import 'topcoder/tc-includes';
 
 external-web-link {
   .web-link {
@@ -23,7 +23,7 @@ external-web-link {
       }
       .form-field {
         @include form-field;
-        @include ui-form-placeholder;
+
         &:disabled {
           color: #B7B7B7;
         }
@@ -31,7 +31,7 @@ external-web-link {
       .form-field-focused {
         @include form-field-focused;
       }
-      
+
       .validation-bar.url {
         flex: 1;
         width: auto;
