@@ -11,7 +11,11 @@
     vm.$stateParams = $stateParams;
     vm.passwordReset = false;
     vm.currentPasswordDefaultPlaceholder = "Password";
-    vm.loginErrors = {};
+    vm.loginErrors = {
+      USERNAME_NONEXISTANT: false,
+      WRONG_PASSWORD: false,
+      SOCIAL_LOGIN_ERROR: false
+    };
 
     vm.login = login;
     vm.socialLogin = socialLogin;
@@ -28,8 +32,8 @@
     }
 
     function login() {
-      vm.loginErrors['username-nonexistant'] = false;
-      vm.loginErrors['wrong-password'] = false;
+      vm.loginErrors.USERNAME_NONEXISTANT = false;
+      vm.loginErrors.WRONG_PASSWORD = false;
 
       // TODO ideally it should be done by dedicated directive to handle all outside clicks
       mainVm.menuVisible = false;
@@ -44,14 +48,14 @@
         UserService.validateUserEmail(vm.username).then(function(data) {
           if (data.valid) {
             // email doesn't exist
-            vm.loginErrors['username-nonexistant'] = true;
+            vm.loginErrors.USERNAME_NONEXISTANT = true;
           } else {
             _doLogin(vm.username, vm.currentPassword);
           }
         }).catch(function(resp) {
           // TODO handle error
           // assume email exists, login would in any case if it didn't
-          vm.loginErrors['username-nonexistant'] = false;
+          vm.loginErrors.USERNAME_NONEXISTANT = false;
           _doLogin(vm.username, vm.currentPassword);
         });
       } else {
@@ -62,7 +66,7 @@
         UserService.validateUserHandle(vm.username).then(function(data) {
           if (data.valid) {
             // username doesn't exist
-            vm.loginErrors['username-nonexistant'] = true;
+            vm.loginErrors.USERNAME_NONEXISTANT = true;
           } else {
             _doLogin(vm.username, vm.currentPassword);
           }
@@ -92,7 +96,7 @@
             break;
           case "UNKNOWN_ERROR":
           default:
-            vm.loginErrors['wrong-password'] = true;
+            vm.loginErrors.WRONG_PASSWORD = true;
             vm.password = '';
         }
       });
@@ -120,7 +124,7 @@
           case "USER_NOT_REGISTERED":
           default:
             vm.socialLoginError = 401;
-            vm.loginErrors['social-login-error'] = true;
+            vm.loginErrors.SOCIAL_LOGIN_ERROR = true;
             break;
         }
       });

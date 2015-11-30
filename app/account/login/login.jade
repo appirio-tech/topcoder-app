@@ -7,13 +7,13 @@
 
   form(name="vm.loginForm", role="form", ng-submit="vm.loginForm.$valid && vm.login()", novalidate)
     .form-errors(ng-messages="vm.loginErrors")
-      p.form-error(ng-message="username-nonexistant") We couldn't find a member with that {{vm.emailOrUsername || "username"}}. Please check that you entered it correctly.
+      p.form-error(ng-message="USERNAME_NONEXISTANT") We couldn't find a member with that {{vm.emailOrUsername || "username"}}. Please check that you entered it correctly.
 
-      p.form-error(ng-message="wrong-password") That password is incorrect. Please check that you entered the right one.
+      p.form-error(ng-message="WRONG_PASSWORD") That password is incorrect. Please check that you entered the right one.
 
-      p.form-error(ng-message="social-login-error") User with that profile is not registered.
+      p.form-error(ng-message="SOCIAL_LOGIN_ERROR") User with that profile is not registered.
 
-    div.validation-bar(ng-class="{'error-bar': !vm.usernameExists}")
+    div.validation-bar(ng-class="{'error-bar': vm.loginErrors.USERNAME_NONEXISTANT}")
       input(ng-model="vm.username", name="username", placeholder="Username or Email", type="text", required)
 
     toggle-password
