@@ -18,6 +18,9 @@
     .nav-right {
       padding-top: 15px;
       padding-left: 15px;
+      i:hover {
+        cursor: pointer;
+      }
     }
   // .nav {
   //   @include module-full-width;
