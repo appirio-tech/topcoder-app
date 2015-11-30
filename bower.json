@@ -28,6 +28,7 @@
     "angular": "1.4.x",
     "angular-cookies": "1.4.x",
     "angular-dropdowns": "1.1.0",
+    "angular-ellipsis": "~0.1.6",
     "angular-filter": "~0.5.4",
     "angular-img-fallback": "~0.1.3",
     "angular-intro.js": "~1.3.0",
