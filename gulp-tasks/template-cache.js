@@ -1,7 +1,7 @@
 module.exports = function(gulp, $, config, utilities) {
   'use strict';
 
-  gulp.task('templatecache', ['clean', 'jade'], function() {
+  gulp.task('templatecache', ['jade'], function() {
     utilities.log('Creating AngularJS $templateCache');
 
     return gulp
