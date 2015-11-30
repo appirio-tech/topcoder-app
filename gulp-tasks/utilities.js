@@ -1,5 +1,7 @@
-var util = require('gulp-util');
-var del  = require('del'); // rm -rf
+var config = require('../gulp.config')();
+var util   = require('gulp-util');
+var del    = require('del'); // rm -rf
+var path   = require('path');
 
 exports.changeEvent = function(event) {
   var srcPattern = new RegExp('/.*(?=/' + config.source + ')/');
@@ -31,13 +33,13 @@ exports.startTests = function(singleRun, done) {
   excludeFiles = serverSpecs;
 
   karma.start({
-    configFile: __dirname + '/karma.conf.js',
+    configFile: path.join(__dirname,'../karma.conf.js'),
     exclude: excludeFiles,
     singleRun: !!singleRun
-  }, karmaCompleted);
+  }, karmaCompleted.bind(this));
 
   function karmaCompleted(karmaResult) {
-    log('Karma completed!');
+    this.log('Karma completed!');
     if (karmaResult === 1) {
       done('karma: tests failed with code ' + karmaResult);
     } else {
