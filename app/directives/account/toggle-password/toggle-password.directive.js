@@ -40,6 +40,7 @@
           if (relatedTarget.attr('type') === 'checkbox' && relatedTarget.attr('id') === 'currentPasswordCheckbox') {
             vm.currentPasswordFocus = true;
             vm.currentPasswordPlaceholder = '';
+            currentPasswordInput.focus();
           } else {
             // If you are blurring from the password input and clicking anywhere but the checkbox
             vm.currentPasswordFocus = false;
