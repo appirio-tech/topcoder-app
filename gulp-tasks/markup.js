@@ -4,7 +4,7 @@ var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
 module.exports = function(gulp, $, config, utilities) {
   'use strict';
 
-  gulp.task('jade', function() {
+  gulp.task('jade', ['clean'], function() {
     utilities.log('Compiling Jade --> HTML');
 
     return gulp
