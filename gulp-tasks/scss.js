@@ -4,7 +4,7 @@ var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
 module.exports = function(gulp, $, config, utilities) {
   'use strict';
 
-  gulp.task('styles', ['clean'], function() {
+  gulp.task('styles', function() {
     utilities.log('Compiling Sass --> CSS');
 
     var assetPrefix = envConfig.CONSTANTS.ASSET_PREFIX.length ? envConfig.CONSTANTS.ASSET_PREFIX : '/';
