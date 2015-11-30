@@ -16,8 +16,9 @@ taskList.forEach(function(taskFile) {
   }
 });
 
-var args         = require('yargs').argv;
-var fs           = require('fs');
+gulp.task('help', $.taskListing);
+gulp.task('default', ['help']);
+
 var browserSync  = require('browser-sync');
 var histFallback = require('connect-history-api-fallback');
 var merge        = require('merge-stream');
@@ -25,44 +26,8 @@ var RevAll       = require('gulp-rev-all');
 
 var awspublishRouter = require('gulp-awspublish-router');
 
-gulp.task('help', $.taskListing);
-gulp.task('default', ['help']);
-
-gulp.task('images', ['clean-images'], function() {
-  log('Copying and compressing the images');
-
-  return gulp
-    .src(config.images)
-    .pipe($.imagemin({optimizationLevel: 4}))
-    .pipe(gulp.dest(config.temp + 'images'));
-});
-
-gulp.task('images-orig-nav', ['build1'], function() {
-  log('Copying original images');
-  return gulp
-     .src(config.assets + 'images/nav/**.*')
-    .pipe(gulp.dest(config.build + 'images/nav'));
-});
-
-gulp.task('images-orig', ['images-orig-nav'], function() {
-  log('Copying original images');
-  return gulp
-     .src(config.assets + 'images/skills/**.*')
-    .pipe(gulp.dest(config.build + 'images/skills'));
-});
-
-gulp.task('ngConstants', function() {
-  return $.ngConstant({
-      name: 'CONSTANTS',
-      dest: 'topcoder.constants.js',
-      constants: envConfig,
-      stream: true
-    })
-    .pipe(gulp.dest(config.app));
-});
-
 gulp.task('wiredep', ['jade'], function() {
-  log('Injecting bower css/js and app js files into index.jade');
+  utilities.log('Injecting bower css/js and app js files into index.jade');
   var options = config.getWiredepDefaultOptions();
   var wiredep = require('wiredep').stream;
 
@@ -83,7 +48,7 @@ gulp.task('wiredep', ['jade'], function() {
 });
 
 gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
-  log('Injecting app css into index.jade');
+  utilities.log('Injecting app css into index.jade');
 
   return gulp
     .src(config.index)
@@ -95,7 +60,7 @@ gulp.task('inject', ['wiredep', 'styles', 'templatecache'], function() {
 });
 
 gulp.task('optimize', ['inject', 'test', 'ngConstants', 'images'], function() {
-  log('Optimizing the JavaScript, CSS, and HTML');
+  utilities.log('Optimizing the JavaScript, CSS, and HTML');
 
   var assets = $.useref.assets({searchPath: ['.tmp', 'app', 'assets']});
   var templateCache = config.temp + config.templateCache.file;
@@ -142,22 +107,13 @@ gulp.task('optimize', ['inject', 'test', 'ngConstants', 'images'], function() {
     .pipe(gulp.dest(config.build));
 });
 
-gulp.task('build1', ['optimize', 'fonts'], function() {
-  log('Building everything');
-
-  var msg = {
-    title: 'gulp build',
-    subtitle: 'Deployed to the build folder',
-    message: 'Running `gulp serve-build`'
-  };
-  del(config.temp);
-  log(msg);
+gulp.task('build', ['optimize', 'fonts'], function(done) {
+  utilities.log('Building everything');
+  utilities.clean(config.temp, done);
 });
 
-gulp.task('build', ['images-orig']);
-
 gulp.task('build-specs', ['templatecache', 'ngConstants'], function() {
-  log('Building the spec runner');
+  utilities.log('Building the spec runner');
 
   var wiredep = require('wiredep').stream;
   var options = config.getWiredepDefaultOptions();
@@ -219,7 +175,7 @@ gulp.task('serve', ['inject', 'ngConstants'], function() {
 });
 
 gulp.task('serve-specs', ['build-specs'], function() {
-  log('Run the spec runner');
+  utilities.log('Run the spec runner');
 
   gulp.watch(config.sass, ['styles'])
     .on('change', function(event) { changeEvent(event); });
@@ -282,11 +238,11 @@ gulp.task('serve-build', ['build'], function() {
 
 // gulp.task('test', ['vet', 'templatecache'], function(done) {
 gulp.task('test', ['templatecache', 'ngConstants'], function(done) {
-  startTests(true /* singleRun */, done);
+  utilities.startTests(true /* singleRun */, done);
 });
 
 gulp.task('autotest', ['vet', 'templatecache'], function(done) {
-  startTests(false /* singleRun */, done);
+  utilities.startTests(false /* singleRun */, done);
 });
 
 gulp.task('deploy', ['build'], function() {
@@ -301,7 +257,7 @@ gulp.task('deploy', ['build'], function() {
   // create a new publisher
   var publisher = $.awspublish.create(awsConfig);
 
-  log('Deploying to S3');
+  utilities.log('Deploying to S3');
 
   var gzip = gulp.src(['build/**/*.js', 'build/**/*.css']).pipe($.awspublish.gzip())
     .pipe(awspublishRouter({
