@@ -1,5 +1,5 @@
 module.exports = function() {
-  var constants = {
+  return {
     'development': {
       'CONSTANTS': {
         API_URL: process.env.API_URL || 'https://api.topcoder-dev.com/v3',
@@ -231,6 +231,4 @@ module.exports = function() {
       }
     }
   };
-
-  return constants;
 };
