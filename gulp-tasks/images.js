@@ -1,7 +1,7 @@
 module.exports = function(gulp, $, config, utilities) {
   'use strict';
 
-  gulp.task('images', ['clean', 'images:move-skills'], function() {
+  gulp.task('images', ['images:move-skills'], function() {
     utilities.log('Copying and compressing the images');
 
     return gulp
@@ -10,7 +10,7 @@ module.exports = function(gulp, $, config, utilities) {
       .pipe(gulp.dest(config.temp + 'images'));
   });
 
-  gulp.task('images:move-skills', ['clean'], function() {
+  gulp.task('images:move-skills', function() {
     utilities.log('Copying original skill icons to build folder');
 
     return gulp
