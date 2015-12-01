@@ -1,7 +1,7 @@
 module.exports = function(gulp, $, config, utilities) {
   'use strict';
 
-  gulp.task('fonts', ['clean'], function() {
+  gulp.task('fonts', function() {
     utilities.log('Copying fonts');
 
     return gulp
