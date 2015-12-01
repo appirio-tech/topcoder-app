@@ -4,7 +4,9 @@ var awspublishRouter = require('gulp-awspublish-router');
 module.exports = function(gulp, $, config, utilities) {
   'use strict';
 
-  gulp.task('deploy', ['build'], function() {
+  gulp.task('deploy', ['deploy:aws']);
+
+  gulp.task('deploy:aws', ['build'], function() {
     var awsConfig = {
       params: {
         Bucket: config.aws.bucket
