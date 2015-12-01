@@ -8,10 +8,9 @@ module.exports = function(gulp, $, config, utilities) {
 
     runSequence(
       'clean',
-      ['optimize', 'fonts']
+      ['optimize', 'fonts'],
+      done
     );
-
-    utilities.clean(config.temp, done);
   });
 
   gulp.task('build-specs', ['templatecache', 'ngConstants'], function() {
