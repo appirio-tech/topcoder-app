@@ -4,20 +4,14 @@ module.exports = function(gulp, $, config, utilities) {
   'use strict';
 
   gulp.task('e2eDataFilesRename', function() {
-	  log('Copying environment specific files'+config.e2eTestsDataFiles);
-	  
 	  return gulp.src(config.e2eTestsDataFiles)
 	  .pipe(rename(function (path) {
-		  log('path '+path.basename);
-		  log('curEnv '+config.curEnv);
 		  path.basename = path.basename.replace('.'+config.curEnv, '');
 	  }))
 	  .pipe(gulp.dest(config.e2eApp));
 	});
 
   gulp.task('e2eCopy', function() {
-	  log('Copying environment specific files');
-	  
 	  return gulp
 	    .src(config.e2eTests)
 	    .pipe(gulp.dest(config.e2eTemp));
