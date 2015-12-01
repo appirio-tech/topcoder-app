@@ -11,12 +11,13 @@ var MyDashboardData = function() {
      this.userCredentials = [                            
                                   {	'username' :'Iamtong',
                             		'password' :'appirio123',
-                            		'developement': true,
+                            		'development': true,
+                            		'data' : true,
                             		'challengeCount':2,
                             		'srmCount' : 3,
                             		'moneyEarned':'$564,381',
-                            		'carouselCheck' : 'y',
-                            		'emptyCarousel' : false,
+//                            		'carouselCheck' : 'y',
+//                            		'emptyCarousel' : false,
                             		'totalCarouselItems' : 11
                             		
                                   }
@@ -28,9 +29,10 @@ var MyDashboardData = function() {
     						  
     this.baseUrl = 'https://app.topcoder-qa.com/login',
     this.dashBoardUrl = 'https://app.topcoder-qa.com/my-dashboard/',
-    this.myChallengesViewMore = '/my-challenges/?status=active',
-    this.myChallengesPast = '/my-challenges/?status=completed',
-    this.pastSrms = '/my-srms/';
+    this.myChallengesViewMoreLink = '/my-challenges/?status=active',
+    this.myChallengesPastLink = '/my-challenges/?status=completed',
+    this.pastSrms = '/my-srms/',
+    this.baseUrlPrefix = 'https://app.topcoder-qa.com';
     
     
 };

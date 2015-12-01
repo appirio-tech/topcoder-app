@@ -14,10 +14,7 @@ var AccountData = function() {
                             		'state' : 'RJ',
                             		'zipCode' : '302004',
                             		'country' : 'United States'
-                            	}/*,
-                            	{	'username' : 'DhananjayKumar1',
-                            		'password' : 'appirio123'
-                            	}*/
+                            	}
                            ],
      this.invalidLengthUserCredentials = [
                                           {	'username' :'aqmansuri',
@@ -37,7 +34,7 @@ var AccountData = function() {
     this.changePasswordCredentials = [
                                          {	'username' :'aqmansuri',
                                         	'password' : 'appirio123',  
-                                        	'newPassword':'appirio1234'
+                                        	'newPassword':'appirio123$'
                                          }
                                          ],                                       
     						  

@@ -47,6 +47,7 @@ module.exports = function() {
                e2e + '**/**/*.object.js',
                e2e + '**/**/*.spec.js',
                e2e + '/conf.js',
+               e2e + '/waitReady.js',
                '!' + e2e + '**/**/*.development.data.js',
                '!' + e2e + '**/**/*.qa.data.js',
                '!' + e2e + '**/**/*.production.data.js'

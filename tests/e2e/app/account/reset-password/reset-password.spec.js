@@ -2,6 +2,19 @@
  var resetPasswordPage = require('./reset-password.object');
  var resetPasswordData = require('./reset-password.data');
  
+ var origFn = browser.driver.controlFlow().execute;
+
+// browser.driver.controlFlow().execute = function() {
+//   var args = arguments;
+//
+//   // queue 100ms wait
+//   origFn.call(browser.driver.controlFlow(), function() {
+//     return protractor.promise.delayed(50);
+//   });
+//
+//   return origFn.apply(browser.driver.controlFlow(), args);
+// };
+ 
  
  
 	 describe('Reset Password', function() {
@@ -12,7 +25,6 @@
 			 console.log('user creds :'+resetPasswordData.userNameList[i].username);
 			 (function(resetUserDataCred) {
 				 it('Forget Password First Time', function() {
-					 console.log('baseUrl'+resetPasswordData.baseUrl);
 					 resetPasswordPage.get(resetPasswordData.baseUrl);
 					 resetPasswordPage.clickForgotPassword(resetUserDataCred.username);
 				 });
@@ -47,7 +59,6 @@
 			 console.log('user creds :'+resetPasswordData.notExistingUserList[i].username);
 			 (function(resetUserDataCred) {
 				 it('Forget Password - Invalid User', function() {
-					 console.log('baseUrl'+resetPasswordData.baseUrl);
 					 resetPasswordPage.get(resetPasswordData.baseUrl);
 					 resetPasswordPage.clickInvalidUserForgotPassword(resetUserDataCred.username, 
 							 resetPasswordData.notExistingUserMessage);
@@ -82,7 +93,6 @@
 			 console.log('user creds :'+resetPasswordData.userNameList[i].username);
 			 (function(resetUserDataCred) {
 				 it('Forget Password - Duplicate Request', function() {
-					 console.log('baseUrl'+resetPasswordData.baseUrl);
 					 resetPasswordPage.get(resetPasswordData.baseUrl);
 					 resetPasswordPage.clickAgainForgotPassword(resetUserDataCred.username, 
 							 resetPasswordData.passwordAlreadySent);
@@ -117,7 +127,6 @@
 			 console.log('user creds :'+resetPasswordData.invalidEmailList[i].username);
 			 (function(resetUserDataCred) {
 				 it('Forget Password - Invalid Email', function() {
-					 console.log('baseUrl'+resetPasswordData.baseUrl);
 					 resetPasswordPage.get(resetPasswordData.baseUrl);
 					 resetPasswordPage.clickInvalidEmailForgotPassword(resetUserDataCred.username, 
 							 resetPasswordData.invalidEmailAddress);

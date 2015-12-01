@@ -37,7 +37,7 @@ var MyDashboardPage = function() {
 	  var EC = protractor.ExpectedConditions;
 	  browser.get(dashBoardUrl);
 	  
-	  var moneyEarned = element(by.css('.money-earned'));
+	  var moneyEarned = element(by.id('metrics'));
 	  isClickable = EC.elementToBeClickable(moneyEarned);
 	  browser.wait(isClickable, 30000);
 	  
@@ -65,7 +65,7 @@ var MyDashboardPage = function() {
 					  },30000);
 					  
 					  browser.get(dashBoardUrl);
-					  moneyEarned = element(by.css('.money-earned'));
+					  moneyEarned = element(by.id('metrics'));
 					  isClickable = EC.elementToBeClickable(moneyEarned);
 					  browser.wait(isClickable, 30000);
 			  }).then(function(){
@@ -98,7 +98,7 @@ var MyDashboardPage = function() {
 				  
 				  browser.get(dashBoardUrl);
 					 
-				  moneyEarned = element(by.css('.money-earned'));
+				  moneyEarned = element(by.id('metrics'));
 				  isClickable = EC.elementToBeClickable(moneyEarned);
 				  browser.wait(isClickable, 30000);
 					 
@@ -110,7 +110,7 @@ var MyDashboardPage = function() {
 				  launchArena.click().then(function(){
 					  browser.get(dashBoardUrl);
 					  
-					  moneyEarned = element(by.css('.money-earned'));
+					  moneyEarned = element(by.id('metrics'));
 					  isClickable = EC.elementToBeClickable(moneyEarned);
 					  browser.wait(isClickable, 70000);
 //				  }).then(function(){
@@ -122,7 +122,7 @@ var MyDashboardPage = function() {
 						   var menuItemHeaders = element.all(by.css('.menu-item-header'));
 						   var nameHeader = menuItemHeaders.get(1);
 						   var isClickable = EC.elementToBeClickable(nameHeader);
-						   var moneyEarned = element(by.css('.money-earned'));
+						   var moneyEarned = element(by.id('metrics'));
 						   isClickable = EC.elementToBeClickable(moneyEarned);
 						   browser.wait(isClickable, 30000);
 						   
@@ -183,7 +183,7 @@ var MyDashboardPage = function() {
 	  var EC = protractor.ExpectedConditions;  
 	  
 	  browser.get(dashBoardUrl);
-	  var moneyEarned = element(by.css('.money-earned'));
+	  var moneyEarned = element(by.id('metrics'));
 	  var isClickable = EC.elementToBeClickable(moneyEarned);
 	  browser.wait(isClickable, 30000);
 	  
@@ -200,7 +200,7 @@ var MyDashboardPage = function() {
 				 browser.wait(isClickable, 30000);
 				 
 				 browser.navigate().back().then(function(){
-					 moneyEarned = element(by.css('.money-earned'));
+					 moneyEarned = element(by.id('metrics'));
 					 var isClickable = EC.elementToBeClickable(moneyEarned);
 					 browser.wait(isClickable, 30000);
 					 
@@ -219,7 +219,7 @@ var MyDashboardPage = function() {
 		  iosChallenges.get(0).click().then(function(){
 		  
 		  browser.get(dashBoardUrl);
-		  moneyEarned = element(by.css('.money-earned'));
+		  moneyEarned = element(by.id('metrics'));
 		  isClickable = EC.elementToBeClickable(moneyEarned);
 		  browser.wait(isClickable, 70000);
 		  
@@ -233,7 +233,7 @@ var MyDashboardPage = function() {
 			  browser.wait(isClickable, 70000);
 			  
 			  browser.get(dashBoardUrl);
-			  moneyEarned = element(by.css('.money-earned'));
+			  moneyEarned = element(by.id('metrics'));
 			  isClickable = EC.elementToBeClickable(moneyEarned);
 			  browser.wait(isClickable, 70000);
 			  var registrantIosLink = firstIos.all(by.css('.tile-view .challenge-links .registrants')).get(0);
@@ -244,7 +244,7 @@ var MyDashboardPage = function() {
 				  browser.wait(isClickable, 70000);
 				  
 				  browser.get(dashBoardUrl);
-				  moneyEarned = element(by.css('.money-earned'));
+				  moneyEarned = element(by.id('metrics'));
 				  isClickable = EC.elementToBeClickable(moneyEarned);
 				  browser.wait(isClickable, 70000);
 				  
@@ -256,7 +256,7 @@ var MyDashboardPage = function() {
 					  browser.wait(isClickable, 70000);
 					  
 					  browser.get(dashBoardUrl);
-					  moneyEarned = element(by.css('.money-earned'));
+					  moneyEarned = element(by.id('metrics'));
 					  isClickable = EC.elementToBeClickable(moneyEarned);
 					  browser.wait(isClickable, 70000);
 					  var forumIosLink = firstIos.all(by.css('.tile-view .challenge-links .forum')).get(0);
@@ -267,7 +267,7 @@ var MyDashboardPage = function() {
 						  },30000);
 						  
 					  browser.get(dashBoardUrl);
-					  moneyEarned = element(by.css('.money-earned'));
+					  moneyEarned = element(by.id('metrics'));
 					  isClickable = EC.elementToBeClickable(moneyEarned);
 					  browser.wait(isClickable, 70000);
 			  
@@ -321,11 +321,14 @@ var MyDashboardPage = function() {
 	 
 	  var menuItemHeaders = element.all(by.css('.menu-item-header'));
 	  var nameHeader = menuItemHeaders.get(1);
-	  var moneyEarned = element(by.css('.money-earned'));
+	  var moneyEarned = element(by.id('metrics'));
 	  var isClickable = EC.elementToBeClickable(moneyEarned);
 	  browser.wait(isClickable, 30000);
 	  
 	  if(loginUserCred.moneyEarned != ''){
+		  moneyEarned = element(by.css('.money-earned'));
+		  var isClickable = EC.elementToBeClickable(moneyEarned);
+		  browser.wait(isClickable, 30000);
 		  var dollarEarned = moneyEarned.all(by.css('.number')).get(0);
 		  expect(dollarEarned.getText()).toEqual(loginUserCred.moneyEarned);
 	  } 
@@ -414,7 +417,7 @@ var MyDashboardPage = function() {
 							  pageInfo.getText().then(function(text){
 								expect(text).toContain(subTrackText); 
 								browser.navigate().back().then(function(){
-									moneyEarned = element(by.css('.money-earned'));
+									moneyEarned = element(by.id('metrics'));
 									expect(moneyEarned.waitReady()).toBeTruthy();
 									var isClickable = EC.elementToBeClickable(moneyEarned);
 									browser.wait(isClickable, 30000);
@@ -434,7 +437,7 @@ var MyDashboardPage = function() {
 	  var EC = protractor.ExpectedConditions;
 	  
 	  browser.get(dashBoardUrl);
-	  moneyEarned = element(by.css('.money-earned'));
+	  moneyEarned = element(by.id('metrics'));
 	  expect(moneyEarned.waitReady()).toBeTruthy();
 	  var isClickable = EC.elementToBeClickable(moneyEarned);
 	  browser.wait(isClickable, 30000);
@@ -451,7 +454,7 @@ var MyDashboardPage = function() {
 				 expect(openChallengeHeader.getText()).toEqual('ALL OPEN CHALLENGES');
 				 
 				 browser.get(dashBoardUrl);
-				 moneyEarned = element(by.css('.money-earned'));
+				 moneyEarned = element(by.id('metrics'));
 				 expect(moneyEarned.waitReady()).toBeTruthy();
 				 var isClickable = EC.elementToBeClickable(moneyEarned);
 				 browser.wait(isClickable, 30000);
@@ -489,7 +492,7 @@ var MyDashboardPage = function() {
 						  browser.wait(isClickable, 30000);
 					  
 						  browser.navigate().back().then(function(){
-							  moneyEarned = element(by.css('.money-earned'));
+							  moneyEarned = element(by.id('metrics'));
 							  isClickable = EC.elementToBeClickable(moneyEarned);
 							  browser.wait(isClickable, 30000);
 							  
@@ -501,7 +504,7 @@ var MyDashboardPage = function() {
 								  browser.wait(isClickable, 30000);
 							  
 								  browser.navigate().back().then(function(){
-									  moneyEarned = element(by.css('.money-earned'));
+									  moneyEarned = element(by.id('metrics'));
 									  isClickable = EC.elementToBeClickable(moneyEarned);
 									  browser.wait(isClickable, 30000);
 								  
@@ -513,7 +516,7 @@ var MyDashboardPage = function() {
 									   browser.wait(isClickable, 30000);
 									   
 									   browser.navigate().back().then(function(){
-										   moneyEarned = element(by.css('.money-earned'));
+										   moneyEarned = element(by.id('metrics'));
 										   isClickable = EC.elementToBeClickable(moneyEarned);
 										   browser.wait(isClickable, 30000);
 									   
@@ -525,7 +528,7 @@ var MyDashboardPage = function() {
 										   browser.wait(isClickable, 30000);
 										   
 										   browser.get(dashBoardUrl);
-										   moneyEarned = element(by.css('.money-earned'));
+										   moneyEarned = element(by.id('metrics'));
 										   isClickable = EC.elementToBeClickable(moneyEarned);
 										   browser.wait(isClickable, 30000);
 									   });
@@ -599,7 +602,7 @@ var MyDashboardPage = function() {
 									  browser.wait(isClickable, 30000);
 								  
 //									  browser.get(dashBoardUrl);
-//									  moneyEarned = element(by.css('.money-earned'));
+//									  moneyEarned = element(by.id('metrics'));
 //									  isClickable = EC.elementToBeClickable(moneyEarned);
 //									  browser.wait(isClickable, 30000);
 									  browser.navigate().back().then(function(){
@@ -621,7 +624,7 @@ var MyDashboardPage = function() {
 										   
 											  
 //										   browser.get(dashBoardUrl);
-//										   moneyEarned = element(by.css('.money-earned'));
+//										   moneyEarned = element(by.id('metrics'));
 //										   isClickable = EC.elementToBeClickable(moneyEarned);
 //										   browser.wait(isClickable, 30000);
 										   
@@ -632,7 +635,7 @@ var MyDashboardPage = function() {
 											   browser.wait(isClickable, 30000);
 											   
 											   browser.get(dashBoardUrl);
-											   moneyEarned = element(by.css('.money-earned'));
+											   moneyEarned = element(by.id('metrics'));
 											   isClickable = EC.elementToBeClickable(moneyEarned);
 											   browser.wait(isClickable, 30000);
 							  
@@ -662,7 +665,7 @@ var MyDashboardPage = function() {
 													   browser.wait(isClickable, 30000);
 													   
 													   browser.get(dashBoardUrl);
-													   moneyEarned = element(by.css('.money-earned'));
+													   moneyEarned = element(by.id('metrics'));
 													   isClickable = EC.elementToBeClickable(moneyEarned);
 													   browser.wait(isClickable, 30000);
 									  
@@ -708,7 +711,7 @@ var MyDashboardPage = function() {
 		  var menuItemHeaders = element.all(by.css('.menu-item-header'));
 		  var nameHeader = menuItemHeaders.get(1);
 		  var isClickable = EC.elementToBeClickable(nameHeader);
-		  var moneyEarned = element(by.css('.money-earned'));
+		  var moneyEarned = element(by.id('metrics'));
 		  isClickable = EC.elementToBeClickable(moneyEarned);
 		  browser.wait(isClickable, 30000);
 		  
@@ -748,7 +751,7 @@ var MyDashboardPage = function() {
 			  var menuItemHeaders = element.all(by.css('.menu-item-header'));
 			  var nameHeader = menuItemHeaders.get(1);
 			  var isClickable = EC.elementToBeClickable(nameHeader);
-			  var moneyEarned = element(by.css('.money-earned'));
+			  var moneyEarned = element(by.id('metrics'));
 			  isClickable = EC.elementToBeClickable(moneyEarned);
 			  browser.wait(isClickable, 30000);
 			 
@@ -794,7 +797,7 @@ var MyDashboardPage = function() {
 //								 var menuItemHeaders = element.all(by.css('.menu-item-header'));
 //								 var nameHeader = menuItemHeaders.get(1);
 //								 var isClickable = EC.elementToBeClickable(nameHeader);
-//								 var moneyEarned = element(by.css('.money-earned'));
+//								 var moneyEarned = element(by.id('metrics'));
 //								 isClickable = EC.elementToBeClickable(moneyEarned);
 //								 browser.wait(isClickable, 30000);
 						 });
@@ -839,7 +842,7 @@ var MyDashboardPage = function() {
 								  
 								  
 							  browser.get(dashBoardUrl);
-							  moneyEarned = element(by.css('.money-earned'));
+							  moneyEarned = element(by.id('metrics'));
 							  isClickable = EC.elementToBeClickable(moneyEarned);
 							  browser.wait(isClickable, 70000);
 							  

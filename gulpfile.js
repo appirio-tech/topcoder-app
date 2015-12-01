@@ -10,6 +10,8 @@ var merge        = require('merge-stream');
 var RevAll       = require('gulp-rev-all');
 var styleguide   = require('sc5-styleguide');
 var awspublishRouter = require('gulp-awspublish-router');
+var angularProtractor = require('gulp-angular-protractor');
+var rename = require('gulp-rename');
 
 var envFile = require('./config.js')();
 var envConfig = envFile[process.env.ENVIRONMENT || 'development'];
@@ -433,15 +435,16 @@ gulp.task('e2eCopy', function() {
 	    .pipe(gulp.dest(config.e2eTemp));
 	});
 
+
 gulp.task('e2e', ['e2eDataFilesRename', 'e2eCopy'], function(done) {
-  gulp.src(config.e2eTempFiles)
-    .pipe($.angularProtractor({
-        'configFile': config.e2eTemp + '/conf.js',
-        'args': ['--baseUrl', 'http://127.0.0.1:8000'],
-        'autoStartStopServer': true,
-        'debug': true
-    }))
-    .on('error', function(e) { throw e });
+	gulp.src(config.e2eTempFiles)
+	.pipe(angularProtractor({
+		'configFile': config.e2eTemp + '/conf.js',
+		'args': ['--baseUrl', 'http://127.0.0.1:8000'],
+		'autoStartStopServer': true,
+		'debug': true
+	}))
+	.on('error', function(e) { throw e });
 });
 
 // gulp.task('test', ['vet', 'templatecache'], function(done) {

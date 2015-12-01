@@ -3,17 +3,15 @@ var regUser = require('./register.data');
 
 describe('registerUser', function(){
 	console.log(regUser.userList.length);
-	var i=0;
+	var i=0;/*
 	for(;i < regUser.userList.length; i++) {
 	 (function(regUserCred) {
 		 it('register new user', function() {
-			 console.log('regUser.baseUrl'+regUser.baseUrl);
 			 regPage.get(regUser.baseUrl);
-			 console.log('regUserCred'+regUserCred);
-			 regPage.register(regUserCred);
+			 regPage.register(regUserCred, regUser.regSuccess);
 		 });
 	 })(regUser.userList[i]);
-	}/*
+	}
 	
 	i=0;
 	for(;i < regUser.invalidLengthUserNameList.length; i++) {

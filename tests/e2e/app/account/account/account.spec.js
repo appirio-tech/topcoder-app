@@ -4,6 +4,19 @@
  var loginPage = require('../login/login.object');
  var loginData = require('../login/login.data');
  
+ var origFn = browser.driver.controlFlow().execute;
+
+ browser.driver.controlFlow().execute = function() {
+   var args = arguments;
+
+   // queue 100ms wait
+   origFn.call(browser.driver.controlFlow(), function() {
+     return protractor.promise.delayed(50);
+   });
+
+   return origFn.apply(browser.driver.controlFlow(), args);
+ };
+ 
  
 	 describe('Account Login', function() {
 		 console.log(accountData.userCredentials.length);
@@ -91,7 +104,7 @@
 					 accountPage.goToInvalidNameCountry(accountData.dashBoardUrl, loginUserCred, accountData.requiredFieldMsg, accountData.emptyCountryMsg);
 				 });
 		  
-				 it('welcomes the user for logout', function() {
+				 it('User logout', function() {
 					 loginPage.logOut(accountData.dashBoardUrl);
 				 });
 		  
@@ -127,7 +140,7 @@
 					 accountPage.goToChangePassword(accountData.dashBoardUrl, loginUserCred);
 				 });
 		  
-				 it('welcomes the user for logout', function() {
+				 it('User logout', function() {
 					 loginPage.logOut(accountData.dashBoardUrl);
 				 });
 				 
@@ -140,7 +153,7 @@
 					 accountPage.goToChangePassword(accountData.dashBoardUrl, loginUserCred);
 				 });
 				 
-				 it('welcomes the user for logout', function() {
+				 it('User logout', function() {
 					 loginPage.logOut(accountData.dashBoardUrl);
 				 });
 		  

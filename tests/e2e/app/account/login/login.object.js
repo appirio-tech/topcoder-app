@@ -79,7 +79,7 @@ var LoginPage = function() {
 		  
 		  expect(pageHeader.waitReady()).toBeTruthy();
 		  
-		  browser.debugger();
+//		  browser.debugger();
 		  
 		  var isClickable = EC.elementToBeClickable(pageHeader);
 		  browser.wait(isClickable, 60000);

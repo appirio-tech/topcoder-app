@@ -7,8 +7,8 @@ var RegistrationData = function() {
                             'lastname' : 'user_lastname_'+rand,
                             'country'  : 'India',
                             'username' : 'user_name_'+rand,
-                            'email' : 'rjain'+rand+'@appirio.com',
-                            'password' : 'user_password_$$'+rand
+                            'email' : 'abdul.mansoori+'+rand+'@appirio.com',
+                            'password' : 'appirio123'
                         }
                     ],
     this.baseUrl = 'http://app.topcoder-qa.com/register/',
@@ -16,7 +16,8 @@ var RegistrationData = function() {
     this.notAllowedHandleMessage = 'That username is not allowed.',
     this.alreadyTakenHandleMessage = 'That username is already taken.',
     this.invalidEmailMessage = 'Please enter a valid email address.',
-    this.alreadyTakenEmailMessage = 'That email address is already taken.'
+    this.alreadyTakenEmailMessage = 'That email address is already taken.',
+    this.regSuccess = 'Thanks for joining Topcoder.We\'ve sent you a confirmation link. Please check your email and click the link to activate your account. If you can\'t find the message, please email support@topcoder.com.',
     
     this.invalidLengthUserNameList = [{
     							'firstname' : 'user_firstname_'+rand,

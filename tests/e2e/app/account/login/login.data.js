@@ -2,9 +2,9 @@
 // store user data in maps for ease of use and readability...
 var LoginData = function() {
     this.userCredentials = [
-                            	{	'username' :'aqmansuri',
-                            		'password' :'appirio123' 
-                            	},
+//                            	{	'username' :'aqmansuri',
+//                            		'password' :'appirio123' 
+//                            	},
                             	{	'username' : 'DhananjayKumar1',
                             		'password' : 'appirio123'
                             	}
@@ -69,8 +69,8 @@ var LoginData = function() {
   						  	
     						  
     						  
-    this.baseUrl = 'http://app.topcoder-dev.com/login';
-    this.dashBoardUrl = 'https://beta.topcoder.com/my-dashboard/';
+    this.baseUrl = 'http://www.topcoder-dev.com/login';
+    this.dashBoardUrl = 'https://www.topcoder-dev.com/my-dashboard/';
     this.invalidPasswordMessage = 'That password doesn\'t match the one we have on file. Please try again.';
     this.invalidHandle = 'This user does not exist.'
     this.invalidSpaceHandle = 'That password doesn\'t match the one we have on file. Please try again.'	

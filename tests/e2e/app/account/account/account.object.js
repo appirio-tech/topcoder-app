@@ -238,14 +238,9 @@ var AccountPage = function() {
 	
 	  var EC = protractor.ExpectedConditions;
 		
-//	  this.get(dashBoardUrl);
 	  var EC = protractor.ExpectedConditions;
-//	  var nameHeader = element(by.css('.main-menu')).all(by.css('li')).get(0);
-//	  var nameHeader = itemHeader.get(6);
 	  var menuItemHeaders = element.all(by.css('.menu-item-header'));
 	  var nameHeader = menuItemHeaders.get(1);
-//	  var isClickable = EC.elementToBeClickable(nameHeader);
-//	  browser.wait(isClickable, 30000);
 	  browser.actions().mouseMove(nameHeader).perform();
 	  var profileHeader = element(by.repeater("item in vm.userMenu").row(1));
 	  var mainMenuLiList = element.all(by.css('.main-menu li'));
@@ -264,11 +259,6 @@ var AccountPage = function() {
 //		  browser.wait(isClickable, 30000);
 //		  skipBtn.click().then(function() {
 		  
-//		  var username = element(by.css('.info .handle'));
-//		  var isClickable = EC.elementToBeClickable(username);
-//		  browser.wait(isClickable, 30000);
-//		  expect(username.getInnerHtml()).toEqual(loginUserCred.username);
-		  
 		  var editProfile = element(by.partialLinkText('EDIT PROFILE'));
 		  isClickable = EC.elementToBeClickable(editProfile);
 		  browser.wait(isClickable, 80000);
@@ -284,6 +274,7 @@ var AccountPage = function() {
 			  isClickable = EC.elementToBeClickable(currentPassword);
 			  browser.wait(isClickable, 30000);
 			  currentPassword.click();
+			  
 			  currentPassword.sendKeys(loginUserCred.password);
 			  
 			  var newPassword = element(by.id('password-input'));
@@ -291,6 +282,22 @@ var AccountPage = function() {
 			  browser.wait(isClickable, 30000);
 			  newPassword.click();
 			  newPassword.sendKeys(loginUserCred.newPassword);
+			  
+			  var passwordCheckbox = element(by.id('passwordCheckbox'));
+			  isClickable = EC.elementToBeClickable(passwordCheckbox);
+			  browser.wait(isClickable, 30000);
+			  passwordCheckbox.click();
+			  
+			  var currentPasswordCheckbox = element(by.id('currentPasswordCheckbox'));
+			  isClickable = EC.elementToBeClickable(currentPasswordCheckbox);
+			  browser.wait(isClickable, 30000);
+			  currentPasswordCheckbox.click();
+			  
+			  
+			  console.log('password'+loginUserCred.password);
+			  console.log('newpassword'+loginUserCred.newPassword);
+			  
+//			  browser.pause();
 
 			  var changePasswordBtn = element(by.partialButtonText('Change Password'));
 			  isClickable = EC.elementToBeClickable(changePasswordBtn);
@@ -299,7 +306,13 @@ var AccountPage = function() {
 			  browser.actions().mouseMove(changePasswordBtn).perform();
 			  
 			  changePasswordBtn.click().then(function(){
+//				  browser.pause();
+				  browser.sleep(6000);
 				  loginPage.get(dashBoardUrl);
+				  
+				  var metrics = element(by.id('metrics'));
+				  isClickable = EC.elementToBeClickable(metrics);
+				  browser.wait(isClickable, 30000);
 				  
 //				  changePasswordBtn = element(by.partialButtonText('Change Password'));
 //				  isClickable = EC.elementToBeClickable(changePasswordBtn);
@@ -434,82 +447,14 @@ this.goToAccountPage = function(dashBoardUrl,loginUserCred) {
 				  browser.wait(isClickable, 30000);
 				  browser.actions().mouseMove(submitBtn).perform();
 				  submitBtn.click().then(function(){
+					  browser.sleep(6000);
 					  
-					  console.log('in ssave btn');/*
-					  browser.driver.ignoreSynchronization = true;
-					  this.get(dashBoardUrl);
+					  loginPage.get(dashBoardUrl);
 					  
-					  menuItemHeaders = element.all(by.css('.menu-item-header'));
-					  nameHeader = menuItemHeaders.get(1);
-					  isClickable = EC.elementToBeClickable(nameHeader);
-					  browser.wait(isClickable, 30000);
-					  browser.actions().mouseMove(nameHeader).perform();
-					  profileHeader = element(by.repeater("item in vm.userMenu").row(1));
-					  mainMenuLiList = element.all(by.css('.main-menu li'));
-					  submenuLi = mainMenuLiList.get(1);
-					  profileLink = element(by.partialLinkText('MY PROFILE'));
-					  
-					  isClickable = EC.elementToBeClickable(profileLink);
+					  var metrics = element(by.id('metrics'));
+					  isClickable = EC.elementToBeClickable(metrics);
 					  browser.wait(isClickable, 30000);
 					  
-					  profileLink.click().then(function() {
-						  username = element(by.css('.info .handle'));
-						  isClickable = EC.elementToBeClickable(username);
-						  browser.wait(isClickable, 30000);
-						  expect(username.getInnerHtml()).toEqual(loginUserCred.username);
-						  
-						  editProfile = element(by.partialLinkText('EDIT PROFILE'));
-						  isClickable = EC.elementToBeClickable(editProfile);
-						  browser.wait(isClickable, 80000);
-						  
-						  editProfile.click().then(function() { 
-							  var accountTab = element(by.partialLinkText('ACCOUNT'));
-							  accountTab.click().then(function(){
-								  firstName = element(by.model('vm.userData.firstName'));
-								  isClickable = EC.elementToBeClickable(firstName);
-								  browser.wait(isClickable, 30000);
-								  
-								  expect(firstName.getText()).toEqual(loginUserCred.firstName);
-								  
-								  
-								  lastName = element(by.model('vm.userData.lastName'));
-								  isClickable = EC.elementToBeClickable(lastName);
-								  browser.wait(isClickable, 30000);
-								  expect(lastName.getText()).toEqual(loginUserCred.lastName);
-								  
-								  address1 = element(by.model('vm.homeAddress.streetAddr1'));
-								  isClickable = EC.elementToBeClickable(address1);
-								  browser.wait(isClickable, 30000);
-								  expect(address1.getText()).toEqual(loginUserCred.address1);
-								  
-								  address2 = element(by.model('vm.homeAddress.streetAddr2'));
-								  isClickable = EC.elementToBeClickable(address2);
-								  browser.wait(isClickable, 30000);
-								  expect(address2.getText()).toEqual(loginUserCred.address2);
-								  
-								  city = element(by.model('vm.homeAddress.city'));
-								  isClickable = EC.elementToBeClickable(city);
-								  browser.wait(isClickable, 30000);
-								  expect(city.getText()).toEqual(loginUserCred.city);
-								  
-								  state = element(by.model('vm.homeAddress.stateCode'));
-								  isClickable = EC.elementToBeClickable(state);
-								  browser.wait(isClickable, 30000);
-								  expect(state.getText()).toEqual(loginUserCred.state);
-								  
-								  zipCode = element(by.model('vm.homeAddress.zip'));
-								  isClickable = EC.elementToBeClickable(zipCode);
-								  browser.wait(isClickable, 30000);
-								  expect(zipCode.getText()).toEqual(loginUserCred.zipCode);
-								  
-								  country = element(by.model('searchStr'));
-								  isClickable = EC.elementToBeClickable(country);
-								  browser.wait(isClickable, 30000);
-//								  expect(country.getText()).toEqual(loginUserCred.country);
-							  });
-						  });
-					  });
-					 */ 
 				  });
 			  });
 		  });
@@ -595,20 +540,7 @@ this.goToAccountPage = function(dashBoardUrl,loginUserCred) {
 //				  expect(country.getText()).toEqual(loginUserCred.country);
 				  
 			  });
-			  
-			  
-			  
-			  
 		  });
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
 	  });
 	  
   

@@ -25,7 +25,7 @@ var ResetPasswordData = function() {
     							}*/
                              ],
                              
-  this.invalidEmailList = [
+    this.invalidEmailList = [
                            {
                         	   'username' : 'DhananjayKumar1'
                            },
@@ -63,7 +63,7 @@ var ResetPasswordData = function() {
   						  	
     						  
     						  
-    this.baseUrl = 'http://app.topcoder-dev.com/login';
+    this.baseUrl = 'http://app.topcoder-qa.com/login';
     
 };
 module.exports = new ResetPasswordData;
