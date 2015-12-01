@@ -1,4 +1,4 @@
-@import 'tc-includes';
+@import 'topcoder/tc-includes';
 
 .members-container {
   padding: 15px 0 0;
@@ -78,7 +78,6 @@
 
     form {
       @include module-full-width;
-      @include community-form-placeholder;
       background: $gray-lighter;
       padding: 9px 30px 10px 11px;
       border-radius: 4px;

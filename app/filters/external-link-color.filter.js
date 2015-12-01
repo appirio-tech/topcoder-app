@@ -10,7 +10,7 @@
       var providerColors = {
         'el-weblinks': '#82A0AA',
         'el-bitbucket': '#205081',
-        'el-dribble': '#EA4C89',
+        'el-dribbble': '#EA4C89',
         'el-linkedin': '#127CB5',
         'el-twitter': '#62AADC',
         'el-stackoverflow': '#E5712A',

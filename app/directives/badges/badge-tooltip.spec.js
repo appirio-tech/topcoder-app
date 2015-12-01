@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('Badge Tooltiop Directive', function() {
+describe('Badge Tooltip Directive', function() {
   var scope;
   var element;
   var badge = mockData.getMockBadge();

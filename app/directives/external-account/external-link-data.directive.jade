@@ -1,5 +1,5 @@
 .external-link-list
-  div.external-link-tile(ng-repeat="account in linkedAccounts")
+  div.external-link-tile(ng-repeat="account in linkedAccountsData")
     .top
       div.logo
         i.fa(ng-class="(account|providerData:'className') || 'fa-globe'")
@@ -97,3 +97,9 @@
         .handle {{account.data.name}}
 
         .title {{account.data.title}}
+
+      div(ng-switch-when="weblink")
+        p.link-title(data-ellipsis, ng-bind="account.title", ng-hide="account.status === 'PENDING'")
+        p.link-title(ng-show="account.status === 'PENDING'") Loading data. This will take a few minutes.
+
+        a.link-url(ng-href="{{account.URL}}", ng-bind="account.URL")

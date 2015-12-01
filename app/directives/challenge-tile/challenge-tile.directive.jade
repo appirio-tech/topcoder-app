@@ -1,10 +1,11 @@
 .challenge.tile-view(ng-show="view === 'tile'", ng-class="challenge.track")
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")
-    .challenge-track
 
     header
       .top
         a.name(ng-href="{{challenge|challengeLinks:'detail'}}") #[span {{challenge.name}}]
+
+        .challenge-track
 
         p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
@@ -31,7 +32,8 @@
     // Only show if not data science track
     p.roles 
       span(ng-hide="challenge.track === 'DATA_SCIENCE'") 
-       #[span Role:&nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
+        span Role: &nbsp;
+        span {{challenge.userDetails.roles | listRoles}}
 
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
@@ -65,7 +67,8 @@
     // Only show if not data science track
     p.roles
       span(ng-hide="challenge.track === 'DATA_SCIENCE'") 
-        #[span Role:&nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
+        span Role: &nbsp;
+        span {{challenge.userDetails.roles | listRoles}}
 
 .challenge.list-view(ng-show="view=='list'", ng-class="challenge.track")
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")

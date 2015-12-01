@@ -1,9 +1,13 @@
-@import 'tc-includes';
+@import 'topcoder/tc-includes';
 
 .profile-subtrack-container {
   display: flex;
   flex-direction: column;
   .content {
+
+    a.selected:hover {
+      cursor: default;
+    }
 
     @include module-full-width;
     max-width: 1242px;
@@ -14,6 +18,9 @@
     .nav-right {
       padding-top: 15px;
       padding-left: 15px;
+      i:hover {
+        cursor: pointer;
+      }
     }
   // .nav {
   //   @include module-full-width;
@@ -535,5 +542,5 @@
     }
   }
   }
-  
+
 }

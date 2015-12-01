@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/skills/id-173</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Technologies" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="icons/skills/id-173" sketch:type="MSArtboardGroup">
+            <circle id="Oval-3" fill="#EAE2C0" sketch:type="MSShapeGroup" cx="32" cy="32" r="30"></circle>
+            <path d="M42.1502124,14.4788379 L27.0578223,29.571228 C23.7235829,28.6830973 20.0219274,29.5370692 17.4075239,32.1523059 C13.5025814,36.0572483 13.5025814,42.3866377 17.4075239,46.2915801 C21.3116332,50.1956894 27.6418557,50.1956894 31.545965,46.2915801 C34.1612017,43.6763434 35.0151735,39.9746879 34.1270428,36.6404486 L37.437121,33.3303704 L37.437121,28.617279 L42.1502124,28.617279 L42.1493793,23.9058539 L46.8633038,23.9050207 L49.219433,21.5480585 L48.5120943,15.1861765 L42.1502124,14.4788379 L42.1502124,14.4788379 Z" id="Stroke-4267" stroke="#444444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#F6F6F6" sketch:type="MSShapeGroup"></path>
+            <path d="M20.9418009,42.7566366 C19.6404311,41.4552668 19.6404311,39.3449149 20.9418009,38.0435452 C22.2431707,36.7421754 24.3535226,36.7421754 25.6548923,38.0435452 C26.9562621,39.3449149 26.9562621,41.4552668 25.6548923,42.7566366 C24.3535226,44.0580063 22.2431707,44.0580063 20.9418009,42.7566366 L20.9418009,42.7566366 Z" id="Stroke-4268" stroke="#444444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#EAE2C0" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

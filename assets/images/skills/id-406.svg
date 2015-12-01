@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>icons/skills/id 406</title>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/skills/id-406</title>
     <desc>Created with Sketch.</desc>
     <defs>
         <linearGradient x1="7.32852269%" y1="78.1494237%" x2="90.71457%" y2="58.0668032%" id="linearGradient-1">
@@ -18,9 +18,9 @@
             <stop stop-color="#FD341C" offset="100%"></stop>
         </radialGradient>
     </defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+    <g id="Brands" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="icons/skills/id-406" sketch:type="MSArtboardGroup">
-            <g id="Rectangle-92-+-9-+-Oval-13-+-Oval-13" sketch:type="MSLayerGroup">
+            <g id="Rectangle-92-+-9-+-Oval-13-+-Oval-13" sketch:type="MSLayerGroup" transform="translate(2.000000, 2.000000)">
                 <rect id="Rectangle-92" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0.0955414013" y="0.0955414013" width="59.8089172" height="59.8089172" rx="17"></rect>
                 <g id="9-+-Oval-13-+-Oval-13" transform="translate(16.764331, 9.458599)">
                     <mask id="mask-3" sketch:name="Mask" fill="white">
