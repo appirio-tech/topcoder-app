@@ -1,12 +1,15 @@
 var merge = require('merge-stream');
 var awspublishRouter = require('gulp-awspublish-router');
+var runSequence = require('run-sequence');
 
 module.exports = function(gulp, $, config, utilities) {
   'use strict';
 
-  gulp.task('deploy', ['deploy:aws']);
+  gulp.task('deploy', function() {
+    runSequence('build', 'deploy:aws');
+  }});
 
-  gulp.task('deploy:aws', ['build'], function() {
+  gulp.task('deploy:aws', function() {
     var awsConfig = {
       params: {
         Bucket: config.aws.bucket
