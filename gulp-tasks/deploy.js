@@ -7,7 +7,7 @@ module.exports = function(gulp, $, config, utilities) {
 
   gulp.task('deploy', function() {
     runSequence('build', 'deploy:aws');
-  }});
+  });
 
   gulp.task('deploy:aws', function() {
     var awsConfig = {
