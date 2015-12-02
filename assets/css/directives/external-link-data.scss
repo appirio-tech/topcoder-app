@@ -5,6 +5,36 @@ external-accounts {
   flex-flow: row wrap;
 }
 
+.ext-link-tile_edit-header {
+  border-bottom: 1px solid $gray-light;
+
+  &:hover {
+    .show-on-profile_label {
+      color: $accent-gray-dark;
+    }
+  }
+}
+
+.ext-link-tile_edit-header_show-on-profile {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
+
+  .show-on-profile_label {
+    @include sofia-pro-medium;
+    font-size: 10px;
+    line-height: 13px;
+    color: $accent-gray;
+    text-transform: uppercase;
+    align-self: center;
+  }
+
+  // TODO remove this and handle in onoffswitch directive's css
+  .onoffswitch {
+    margin: 0px;
+  }
+}
+
 .external-link-list {
   display: flex;
   flex-direction: column;
@@ -12,7 +42,7 @@ external-accounts {
   margin-top: 10px;
 
   .external-link-tile {
-    border: 1px solid #f0f0f0;
+    border: 1px solid $gray-light;
     width: 280px;
     height: 90px;
     display: flex;
@@ -251,6 +281,10 @@ external-accounts {
           max-height: 28px;
         }
       }
+    }
+
+    .external-link-tile--editable {
+      height: 285px;
     }
   }
 }

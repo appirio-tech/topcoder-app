@@ -14,7 +14,8 @@
      restrict: 'E',
       templateUrl: 'directives/external-account/external-link-data.directive.html',
       scope: {
-        linkedAccountsData: '='
+        linkedAccountsData: '=',
+        editable: '='
       }
     };
     return directive;
