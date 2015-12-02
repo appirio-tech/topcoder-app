@@ -5,7 +5,7 @@ describe('ExternalAccount Service', function() {
   var mockUserLinksData = mockData.getMockLinkedExternalAccounts();
   var mockAuth0Profile = mockData.getMockAuth0Profile();
   var mockProfile = mockData.getMockProfile();
-  var apiUrl;
+  var apiUrl, authApiUrl;
   var auth0, userService;
   var profileGet, profilePost, profileDelete;
 
@@ -19,6 +19,7 @@ describe('ExternalAccount Service', function() {
     });
 
     apiUrl  = CONSTANTS.API_URL;
+    authApiUrl = CONSTANTS.AUTH_API_URL;
     service = ExternalAccountService;
     auth0 = auth;
     userService = UserService;
@@ -47,13 +48,13 @@ describe('ExternalAccount Service', function() {
       .when('GET', apiUrl + '/members/test1/externalAccounts/')
       .respond(200, {result: {content: mockAccountsData}});
 
-    profileGet = $httpBackend.when('GET', apiUrl + '/users/111/?fields=profiles');
+    profileGet = $httpBackend.when('GET', authApiUrl + '/users/111/?fields=profiles');
     profileGet.respond(200, {result: {content: mockUserLinksData}});
 
-    profilePost = $httpBackend.when('POST', apiUrl + '/users/111/profiles/');
+    profilePost = $httpBackend.when('POST', authApiUrl + '/users/111/profiles/');
     profilePost.respond(200, {result: {content: mockProfile}});
 
-    profileDelete = $httpBackend.when('DELETE', apiUrl + '/users/111/profiles/stackoverflow/');
+    profileDelete = $httpBackend.when('DELETE', authApiUrl + '/users/111/profiles/stackoverflow/');
     profileDelete.respond(200, {result: {content: mockProfile}});
 
   });
