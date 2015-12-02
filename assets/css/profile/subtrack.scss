@@ -1,4 +1,4 @@
-@import 'tc-includes';
+@import 'topcoder/tc-includes';
 
 .profile-subtrack-container {
   display: flex;
@@ -18,6 +18,9 @@
     .nav-right {
       padding-top: 15px;
       padding-left: 15px;
+      i:hover {
+        cursor: pointer;
+      }
     }
   // .nav {
   //   @include module-full-width;
@@ -539,5 +542,5 @@
     }
   }
   }
-  
+
 }

@@ -33,7 +33,8 @@
     'angular-intro',
     'ngMessages',
     'angular-carousel',
-    'sticky'
+    'sticky',
+    'dibari.angular-ellipsis'
   ];
 
   angular.module('topcoder', dependencies).run(appRun);

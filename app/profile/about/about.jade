@@ -12,7 +12,7 @@
 
     .empty-profile
       .empty-state
-        empty-state-placeholder(state-name="profile-empty", show="profileVm.status.skills === 'ready' && profileVm.status.stats === 'ready' && profileVm.status.externalLinks === 'ready' && !profileVm.showEditProfileLink && !profileVm.showTCActivity && (!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)) && !vm.hasLinks")
+        empty-state-placeholder(state-name="profile-empty", show="profileVm.status.skills === 'ready' && profileVm.status.stats === 'ready' && profileVm.status.externalLinks === 'ready' && !profileVm.showEditProfileLink && !profileVm.showTCActivity && (!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)) && !vm.linkedExternalAccounts.length")
           .sample-image
             img(ng-src="/images/robot.svg")
 
@@ -93,10 +93,14 @@
     #externalLinks
       tc-section(ng-show="vm.displaySection.externalLinks", state="profileVm.status.externalLinks")
         .external-links
-          h3.activity(ng-if="vm.hasLinks") on the web
-          external-links-data(ng-show="vm.hasLinks", external-links="vm.linkedExternalAccounts", linked-accounts-data="vm.linkedExternalAccountsData")
+
+          h3.activity(ng-if="vm.linkedExternalAccounts.length") on the web
+          
+          external-links-data(ng-show="vm.linkedExternalAccounts.length", linked-accounts-data="vm.linkedExternalAccounts")
 
           .empty-state
-            empty-state-placeholder(state-name="profile-external-links", show="!vm.hasLinks")
+            empty-state-placeholder(state-name="profile-external-links", show="!vm.linkedExternalAccounts.length")
               external-accounts.external-account-container(linked-accounts="[]", links-data="{}", read-only="true")
+
+          
 

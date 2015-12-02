@@ -1,0 +1,55 @@
+@import 'topcoder/tc-includes';
+
+external-web-link {
+  .web-link {
+    margin: 6px 0 31px 0;
+
+    .form-errors {
+      position: initial;
+      width: 100%;
+    }
+
+    form {
+      display: flex;
+      flex-flow: row wrap;
+
+      .form-label {
+        @include sofia-pro-regular;
+        font-size: 12px;
+        color: black;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        margin-top: 5px;
+      }
+      .form-field {
+        @include form-field;
+
+        &:disabled {
+          color: #B7B7B7;
+        }
+      }
+      .form-field-focused {
+        @include form-field-focused;
+      }
+
+      .validation-bar.url {
+        flex: 1;
+        width: auto;
+
+        &:before {
+          height: 40px;
+        }
+      }
+
+      input.url {
+        width: 100%;
+        margin: 0px;
+      }
+
+      button {
+        width: auto;
+        margin-left: 10px;
+      }
+    }
+  }
+}

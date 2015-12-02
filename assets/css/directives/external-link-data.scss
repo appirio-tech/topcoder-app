@@ -1,4 +1,4 @@
-@import 'tc-includes';
+@import 'topcoder/tc-includes';
 
 external-accounts {
   display: flex;
@@ -67,7 +67,7 @@ external-accounts {
     }
     .bottom {
       width: 220px;
-      margin-top: 15px;
+      margin-top: 10px;
       .handle {
         @include sofia-pro-light;
         font-size: 18px;
@@ -75,7 +75,7 @@ external-accounts {
       }
       .title {
         // placeholder
-        margin-top: 20px;
+        margin-top: 10px;
         color: #9e9e9e;
         font-size: 12px;
         line-height: 14px;
@@ -116,6 +116,29 @@ external-accounts {
       .logo {
         padding: 10px;
         font-size: 50px;
+      }
+
+      .link-title {
+        @include sofia-pro-medium;
+        font-size: 12px;
+        line-height: 20px;
+        color: $gray-darkest;
+        margin-top: 10px;
+        height: 40px;
+        overflow: hidden;
+        padding: 0px 20px;
+        text-transform: uppercase;
+      }
+
+      .link-url {
+        font-size: 12px;
+        line-height: 14px;
+        word-wrap: break-word;
+        display: block;
+        overflow: hidden;
+        max-height: 14px;
+        padding: 0px 20px;
+        text-transform: uppercase;
       }
     }
 
@@ -175,6 +198,7 @@ external-accounts {
       }
 
       .bottom {
+        margin-top: 15px;
         width: auto;
         .handle {
          margin-top: 20px;
@@ -183,6 +207,8 @@ external-accounts {
         .title {
           // placeholder
           height: 40px;
+          margin-top: 15px;
+          margin-bottom: 30px;
         }
 
         ul {
@@ -213,6 +239,16 @@ external-accounts {
         .logo {
           padding: 10px;
           font-size: 50px;
+        }        
+
+        .link-title {
+          margin-top: 15px;
+          margin-bottom: 20px;
+          height: 60px;
+        }
+
+        .link-url {
+          max-height: 28px;
         }
       }
     }
