@@ -26,6 +26,7 @@
       $log = $log.getInstance('ExternalWebLinkCtrl');
       $scope.addingWebLink = false;
       $scope.errorMessage = null;
+      $scope.urlRegEx = /^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/;
 
       $scope.addWebLink = function() {
         $log.debug("URL: " + $scope.url);
