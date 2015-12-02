@@ -41,6 +41,14 @@ describe('Programs Controller', function() {
       deferred.resolve(resp);
       return deferred.promise;
     });
+    
+    sinon.stub(memberCertService, 'registerMember', function() {
+      var deferred = $q.defer();
+      var resp = {eventId: 3445, userId: 12345};
+      deferred.resolve(resp);
+      return deferred.promise;
+    });
+
 
     // mock challenges api
     sinon.stub(challengeService, 'getChallenges', function() {
@@ -80,6 +88,17 @@ describe('Programs Controller', function() {
       // default value for challenges
       expect(controller.challenges).to.exist;
       expect(controller.challenges.length).to.equal(challenges.length);
+    });
+
+    describe('functions', function() {
+      beforeEach(function() {
+        controller.registerUser();
+        $rootScope.$apply();
+      });
+
+      it('registerUser should work', function() {
+        expect(controller.registered).to.be.equal(true);
+      });
     });
   });
 
