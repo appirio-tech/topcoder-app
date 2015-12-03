@@ -193,7 +193,7 @@
     @media only screen and (min-width: 768px) {
       border-left: 6px solid #F6F6F6;
       padding-left: 60px;
-      width: 65%;
+      max-width: 816px;// 1242 - (60 + 270 + 30 + 6 + 60)
     }
 
     .form-field {
