@@ -3,15 +3,16 @@ var regUser = require('./register.data');
 
 describe('registerUser', function(){
 	console.log(regUser.userList.length);
-	var i=0;/*
+	i=0;
 	for(;i < regUser.userList.length; i++) {
-	 (function(regUserCred) {
-		 it('register new user', function() {
-			 regPage.get(regUser.baseUrl);
-			 regPage.register(regUserCred, regUser.regSuccess);
-		 });
-	 })(regUser.userList[i]);
-	}
+		 (function(regUserCred) {
+			 it('Register New User', function() {
+				 console.log('regUser.baseUrl'+regUser.baseUrl);
+				 regPage.get(regUser.baseUrl);
+				 regPage.register(regUserCred, regUser.regSuccess);
+			 });
+		 })(regUser.userList[i]);
+	 }
 	
 	i=0;
 	for(;i < regUser.invalidLengthUserNameList.length; i++) {
@@ -27,7 +28,7 @@ describe('registerUser', function(){
 	i=0;
 	for(;i < regUser.notAllowedUserNameList.length; i++) {
 		 (function(regUserCred) {
-			 it('register not allowed handle ', function() {
+			 it('Register not allowed handle ', function() {
 				 console.log('regUser.baseUrl'+regUser.baseUrl);
 				 regPage.get(regUser.baseUrl);
 				 regPage.registerNotAllowedHandle(regUserCred, regUser.notAllowedHandleMessage);
@@ -62,7 +63,6 @@ describe('registerUser', function(){
 				 console.log('regUser.baseUrl'+regUser.baseUrl);
 				 regPage.get(regUser.baseUrl);
 				 regPage.registerAlreadyTakenEmailUsers(regUserCred, regUser.alreadyTakenEmailMessage);
-				 console.log('right below');
 			 });
 		 })(regUser.alreadyTakenEmailUserNameList[i]);
 	 }
@@ -77,6 +77,6 @@ describe('registerUser', function(){
 				 console.log('right below');
 			 });
 		 })(regUser.githubUserList[i]);
-	 }*/
+	 }
 	
 });

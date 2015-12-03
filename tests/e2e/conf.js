@@ -27,7 +27,7 @@ exports.config = {
       browser.manage().timeouts().implicitlyWait(2000);
       
       var reporter=new HtmlReporter({
-        baseDirectory: '/Volumes/Data/topcoder-app/topcoder-app/.tmp/tests/e2e/report', // a location to store screen shots.
+        baseDirectory: '/Volumes/Data/topcoder-app/topcoder-app/tests/e2e/report', // a location to store screen shots.
       	docTitle: 'Protractor Demo Reporter',
         docName:    'protractor-demo-tests-report.html'
       });
@@ -38,7 +38,7 @@ exports.config = {
   },
   
   capabilities: {
-	  'browserName': 'chrome'
+	  'browserName': 'firefox'
 	},
 
 	jasmineNodeOpts: {

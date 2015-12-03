@@ -132,18 +132,20 @@ var LoginPage = function() {
 	  var loginButton = browser.driver.findElement(By.css('.tc-btn'));
 //	  isClickable = EC.elementToBeClickable(loginButton);
 //	  browser.wait(isClickable, 30000);
-	  console.log('userInput'); 
-	  
     
 	  loginButton.click().then(function(){
-		  username = element(by.model('vm.username'));
-		  var userNameAvail = username.isPresent();
-		  console.log('user name status'+userNameAvail);
-		  var formError = element(by.css('.form-errors')).all(by.css('.form-error')).get(1);
+		  userInput = element(by.model('vm.username'));
+		  isClickable = EC.elementToBeClickable(userInput);
+		  browser.wait(isClickable, 30000);
+		  
+		  var formErrors = element(by.css('.form-errors'));
+		  isClickable = EC.elementToBeClickable(formErrors);
+		  browser.wait(isClickable, 30000);
+
+		  var formError = element(by.css('.form-errors')).all(by.css('.form-error')).get(0);
 		  isClickable = EC.elementToBeClickable(formError);
 		  browser.wait(isClickable, 30000);
-		  console.log('text '+formError.getInnerHtml());
-		  expect(formError.getInnerHtml()).toEqual(errMsg);
+		  expect(formError.getText()).toEqual(errMsg);
 //		  expect(formError.isDisplayed()).toEqual(true);
 		  
 //    	element.all(by.css('.label')).each(function(element, index) {
@@ -174,34 +176,26 @@ var LoginPage = function() {
 	  browser.wait(isClickable, 30000);
 	  passwordInput.sendKeys(loginUser.password);
 	  
-	  console.log('password '+loginUser.password);
 	  
 	  var loginButton = browser.driver.findElement(By.css('.tc-btn'));
 //	  isClickable = EC.elementToBeClickable(loginButton);
 //	  browser.wait(isClickable, 30000);
-	  console.log('userInput'); 
 	  
     
 	  loginButton.click().then(function(){
-		  username = element(by.model('vm.username'));
-		  var userNameAvail = username.isPresent();
-		  console.log('user name status'+userNameAvail);
+		  userInput = element(by.model('vm.username'));
+		  isClickable = EC.elementToBeClickable(userInput);
+		  browser.wait(isClickable, 30000);
+		  
+		  var formErrors = element(by.css('.form-errors'));
+		  isClickable = EC.elementToBeClickable(formErrors);
+		  browser.wait(isClickable, 30000);
+
 		  var formError = element(by.css('.form-errors')).all(by.css('.form-error')).get(0);
 		  isClickable = EC.elementToBeClickable(formError);
 		  browser.wait(isClickable, 30000);
-		  console.log('text '+formError.getInnerHtml());
-		  expect(formError.getInnerHtml()).toEqual(errMsg);
-//		  expect(formError.isDisplayed()).toEqual(true);
+		  expect(formError.getText()).toEqual(errMsg);
 		  
-//    	element.all(by.css('.label')).each(function(element, index) {
-//    		
-//    	var isClickable = EC.elementToBeClickable(element);
-//    	browser.wait(isClickable, 10000);
-// 		element.getText().then(function (text) {
-// 			console.log(index, text);
-// 		});
-//    });
-    	expect(true).toEqual(true);
    });
   };
   
@@ -233,12 +227,10 @@ var LoginPage = function() {
 	  loginButton.click().then(function(){
 		  username = element(by.model('vm.username'));
 		  var userNameAvail = username.isPresent();
-		  console.log('user name status'+userNameAvail);
 		  var formError = element(by.css('.form-errors')).all(by.css('.form-error')).get(1);
 		  isClickable = EC.elementToBeClickable(formError);
 		  browser.wait(isClickable, 30000);
-		  console.log('text '+formError.getInnerHtml());
-		  expect(formError.getInnerHtml()).toEqual(errMsg);
+		  expect(formError.getText()).toEqual(errMsg);
 //		  expect(formError.isDisplayed()).toEqual(true);
 		  
 //    	element.all(by.css('.label')).each(function(element, index) {
@@ -463,28 +455,29 @@ var LoginPage = function() {
 	  fbSquare.click();
 	  this.selectWindow(1);
 	  browser.driver.wait(function() {
-		  var emailId = browser.driver.findElement(by.id('Email'));
+		  var emailId = browser.driver.findElement(By.id('Email'));
 		  console.log('google username');
 		  emailId.sendKeys(loginUser1.username);
 		  return true;
 	  },30000);
 	  
 	  browser.driver.wait(function() {
-		  var next = browser.driver.findElement(by.id('next'));
+		  var next = browser.driver.findElement(By.id('next'));
 		  console.log('google next');
 		  next.click();
 		  return true;
 	  },30000);
 	  
+	  browser.driver.sleep(3000);
 	  browser.driver.wait(function(){
-		 var password = browser.driver.findElement(by.id('Passwd'));
-		 password.sendKeys(loginUser1.password);
+		 var password1 = browser.driver.findElement(By.name('Passwd'));
 		 console.log(' google login Passwd');
+		 password1.sendKeys(loginUser1.password);
 		 return true;
 	  },30000);
 	  
 	  browser.driver.wait(function(){
-			 var signIn = browser.driver.findElement(by.id('signIn'));
+			 var signIn = browser.driver.findElement(By.id('signIn'));
 			 console.log('google signIn');
 			 signIn.click();
 			 return true;

@@ -22,11 +22,11 @@ var LoginData = function() {
                                     ],
    this.notExisitingCredentials = [
                                    {
-                                	   'username' : 'aqmansurinotexist',
+                                	   'username' : 'aqmansuri1122q',
                                 		'password':'notexist'   
                                    },
                                    {
-                                	   'username' : 'DhananjayKumar1notexist',
+                                	   'username' : 'aqmansuri1122qa',
                                 	   'password' : 'notexist'
                                    }
                                    
@@ -69,11 +69,11 @@ var LoginData = function() {
   						  	
     						  
     						  
-    this.baseUrl = 'http://www.topcoder-dev.com/login';
-    this.dashBoardUrl = 'https://www.topcoder-dev.com/my-dashboard/';
-    this.invalidPasswordMessage = 'That password doesn\'t match the one we have on file. Please try again.';
-    this.invalidHandle = 'This user does not exist.'
-    this.invalidSpaceHandle = 'That password doesn\'t match the one we have on file. Please try again.'	
+    this.baseUrl = 'http://www.topcoder-dev.com/login',
+    this.dashBoardUrl = 'https://www.topcoder-dev.com/my-dashboard/',
+    this.invalidPasswordMessage = 'That password doesn\'t match the one we have on file. Please try again.',
+    this.invalidHandle = 'We couldn\'t find a member with that username. Please check that you entered it correctly.',
+    this.invalidSpaceHandle = 'That password doesn\'t match the one we have on file. Please try again.',
     
 };
 module.exports = new LoginData;

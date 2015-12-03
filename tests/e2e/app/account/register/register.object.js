@@ -60,6 +60,8 @@ var RegistrationPage = function() {
 	  browser.wait(isClickable, 30000);
 	  userPassword.sendKeys(userInfo.password);
 	  
+	  browser.driver.sleep(3000);
+	  
 	  var registerButton = element.all(by.css('.tc-btn-large')).get(0);
 	  isClickable = EC.elementToBeClickable(registerButton);
 	  browser.wait(isClickable, 30000);
@@ -78,12 +80,12 @@ var RegistrationPage = function() {
 	  browser.driver.ignoreSynchronization = true;
 	  var EC = protractor.ExpectedConditions;
 		
-	  var firstName = element(by.model('vm.firstname'));
+	  var firstName = element(by.name('firstname'));
 	  var isClickable = EC.elementToBeClickable(firstName);
 	  browser.wait(isClickable, 20000);
 	  firstName.sendKeys(userInfo.firstname);
   	
-	  var lastName = element(by.model('vm.lastname'));
+	  var lastName = element(by.name('lastname'));
 	  isClickable = EC.elementToBeClickable(lastName);
 	  browser.wait(isClickable, 20000);
 	  lastName.sendKeys(userInfo.lastname);
@@ -92,32 +94,44 @@ var RegistrationPage = function() {
 	  isClickable = EC.elementToBeClickable(userCountry);
 	  browser.wait(isClickable, 20000);
 	  userCountry.sendKeys(userInfo.country);
+	  
+	  var countryIdDropDown = element(by.id('_dropdown'));
+	  isClickable = EC.elementToBeClickable(countryIdDropDown);
+	  browser.wait(isClickable, 30000);
+	  countryIdDropDown.all(by.css('.angucomplete-title')).filter(function(elem, index){
+		  return elem.getInnerHtml().then(function(text){
+			  return text.indexOf(userInfo.country) != -1 ;
+		  })
+	  }).then(function(filteredElements){
+		  filteredElements[0].click();
+	  });
 
-	  var userName = element(by.model('vm.username'));
+	  var userName = element(by.name('username'));
 	  isClickable = EC.elementToBeClickable(userName);
 	  browser.wait(isClickable, 20000);
 	  userName.sendKeys(userInfo.username);
 	  
-	  var userEmail = element(by.model('vm.email'));
+	  var userEmail = element(by.name('email'));
 	  isClickable = EC.elementToBeClickable(userEmail);
 	  browser.wait(isClickable, 20000);
 	  userEmail.sendKeys(userInfo.email);
 	  
-	  var formErrorList = element.all(by.css('.form-errors .form-error'));
-	  var formError = formErrorList.get(2);
+	  var formErrorList = element.all(by.css('.form-input-error .form-error'));
+	  var formError = formErrorList.get(1);
 	  isClickable = EC.elementToBeClickable(formError);
 	  browser.wait(isClickable, 40000);
 	  
 	  expect(formError.isDisplayed()).toEqual(true);
-	  expect(formError.getInnerHtml()).toEqual(invalidLengthHandleMessage);
+	  expect(formError.getText()).toEqual(invalidLengthHandleMessage);
 	  
-	  var userPassword = element(by.model('vm.password'));
+	  var userPassword = element(by.name('password'));
 	  isClickable = EC.elementToBeClickable(userPassword);
 	  browser.wait(isClickable, 20000);
 	  userPassword.sendKeys(userInfo.password);
 	  
-	  var registerButton =element(by.partialButtonText('Join Now'));
-	  expect(registerButton.isEnabled()).toEqual(true);
+	  browser.driver.sleep(3000);
+	  var registerButton =element(by.partialButtonText('Join'));
+	  expect(registerButton.isEnabled()).toEqual(false);
   };
   
   
@@ -125,12 +139,12 @@ var RegistrationPage = function() {
 	  browser.driver.ignoreSynchronization = true;
 	  var EC = protractor.ExpectedConditions;
 		
-	  var firstName = element(by.model('vm.firstname'));
+	  var firstName = element(by.name('firstname'));
 	  var isClickable = EC.elementToBeClickable(firstName);
 	  browser.wait(isClickable, 20000);
 	  firstName.sendKeys(userInfo.firstname);
   	
-	  var lastName = element(by.model('vm.lastname'));
+	  var lastName = element(by.name('lastname'));
 	  isClickable = EC.elementToBeClickable(lastName);
 	  browser.wait(isClickable, 20000);
 	  lastName.sendKeys(userInfo.lastname);
@@ -139,32 +153,44 @@ var RegistrationPage = function() {
 	  isClickable = EC.elementToBeClickable(userCountry);
 	  browser.wait(isClickable, 20000);
 	  userCountry.sendKeys(userInfo.country);
+	  
+	  var countryIdDropDown = element(by.id('_dropdown'));
+	  isClickable = EC.elementToBeClickable(countryIdDropDown);
+	  browser.wait(isClickable, 30000);
+	  countryIdDropDown.all(by.css('.angucomplete-title')).filter(function(elem, index){
+		  return elem.getInnerHtml().then(function(text){
+			  return text.indexOf(userInfo.country) != -1 ;
+		  })
+	  }).then(function(filteredElements){
+		  filteredElements[0].click();
+	  });
 
-	  var userName = element(by.model('vm.username'));
+	  var userName = element(by.name('username'));
 	  isClickable = EC.elementToBeClickable(userName);
-	  browser.wait(isClickable, 20000);
+	  browser.wait(isClickable, 30000);
 	  userName.sendKeys(userInfo.username);
 	  
-	  var userEmail = element(by.model('vm.email'));
+	  var userEmail = element(by.name('email'));
 	  isClickable = EC.elementToBeClickable(userEmail);
-	  browser.wait(isClickable, 20000);
+	  browser.wait(isClickable, 30000);
 	  userEmail.sendKeys(userInfo.email);
 	  
-	  var formErrorList = element.all(by.css('.form-errors .form-error'));
+	  var userPassword = element(by.name('password'));
+	  isClickable = EC.elementToBeClickable(userPassword);
+	  browser.wait(isClickable, 20000);
+	  userPassword.sendKeys(userInfo.password);
+	  
+	  browser.driver.sleep(6000);
+	  var formErrorList = element.all(by.css('.form-input-error .form-error'));
 	  var formError = formErrorList.get(1);
 	  isClickable = EC.elementToBeClickable(formError);
 	  browser.wait(isClickable, 40000);
 	  
 	  expect(formError.isDisplayed()).toEqual(true);
 	  
-	  expect(formError.getInnerHtml()).toEqual(notAllowedHandleMsg);
+	  expect(formError.getText()).toEqual(notAllowedHandleMsg);
 	  
-	  var userPassword = element(by.model('vm.password'));
-	  isClickable = EC.elementToBeClickable(userPassword);
-	  browser.wait(isClickable, 20000);
-	  userPassword.sendKeys(userInfo.password);
-	  
-	  var registerButton =element(by.partialButtonText('Join Now'));
+	  var registerButton =element(by.partialButtonText('Join'));
 	  expect(registerButton.isEnabled()).toEqual(false);
   };
   
@@ -173,12 +199,12 @@ var RegistrationPage = function() {
 	  browser.driver.ignoreSynchronization = true;
 	  var EC = protractor.ExpectedConditions;
 		
-	  var firstName = element(by.model('vm.firstname'));
+	  var firstName = element(by.name('firstname'));
 	  var isClickable = EC.elementToBeClickable(firstName);
 	  browser.wait(isClickable, 20000);
 	  firstName.sendKeys(userInfo.firstname);
   	
-	  var lastName = element(by.model('vm.lastname'));
+	  var lastName = element(by.name('lastname'));
 	  isClickable = EC.elementToBeClickable(lastName);
 	  browser.wait(isClickable, 20000);
 	  lastName.sendKeys(userInfo.lastname);
@@ -187,32 +213,47 @@ var RegistrationPage = function() {
 	  isClickable = EC.elementToBeClickable(userCountry);
 	  browser.wait(isClickable, 20000);
 	  userCountry.sendKeys(userInfo.country);
+	  
+	  var countryIdDropDown = element(by.id('_dropdown'));
+	  isClickable = EC.elementToBeClickable(countryIdDropDown);
+	  browser.wait(isClickable, 30000);
+	  countryIdDropDown.all(by.css('.angucomplete-title')).filter(function(elem, index){
+		  return elem.getInnerHtml().then(function(text){
+			  return text.indexOf(userInfo.country) != -1 ;
+		  })
+	  }).then(function(filteredElements){
+		  filteredElements[0].click();
+	  });
 
-	  var userName = element(by.model('vm.username'));
+	  var userName = element(by.name('username'));
 	  isClickable = EC.elementToBeClickable(userName);
 	  browser.wait(isClickable, 20000);
 	  userName.sendKeys(userInfo.username);
 	  
-	  var userEmail = element(by.model('vm.email'));
+	  var userEmail = element(by.name('email'));
 	  isClickable = EC.elementToBeClickable(userEmail);
 	  browser.wait(isClickable, 20000);
 	  userEmail.sendKeys(userInfo.email);
 	  
-	  var formErrorList = element.all(by.css('.form-errors .form-error'));
-	  var formError = formErrorList.get(3);
+	  
+	  
+	  var userPassword = element(by.name('password'));
+	  isClickable = EC.elementToBeClickable(userPassword);
+	  browser.wait(isClickable, 20000);
+	  userPassword.sendKeys(userInfo.password);
+	  
+	  browser.driver.sleep(6000);
+	  
+	  var formErrorList = element.all(by.css('.form-input-error .form-error'));
+	  var formError = formErrorList.get(1);
 	  isClickable = EC.elementToBeClickable(formError);
 	  browser.wait(isClickable, 40000);
 	  
 	  expect(formError.isDisplayed()).toEqual(true);
 	  
-	  expect(formError.getInnerHtml()).toEqual(alreadyTakenHandleMessage);
+	  expect(formError.getText()).toEqual(alreadyTakenHandleMessage);
 	  
-	  var userPassword = element(by.model('vm.password'));
-	  isClickable = EC.elementToBeClickable(userPassword);
-	  browser.wait(isClickable, 20000);
-	  userPassword.sendKeys(userInfo.password);
-	  
-	  var registerButton = element(by.partialButtonText('Join Now'));
+	  var registerButton = element(by.partialButtonText('Join'));
 	  expect(registerButton.isEnabled()).toEqual(false);
   };
 
@@ -220,12 +261,12 @@ var RegistrationPage = function() {
 	  browser.driver.ignoreSynchronization = true;
 	  var EC = protractor.ExpectedConditions;
 		
-	  var firstName = element(by.model('vm.firstname'));
+	  var firstName = element(by.name('firstname'));
 	  var isClickable = EC.elementToBeClickable(firstName);
 	  browser.wait(isClickable, 40000);
 	  firstName.sendKeys(userInfo.firstname);
   	
-	  var lastName = element(by.model('vm.lastname'));
+	  var lastName = element(by.name('lastname'));
 	  isClickable = EC.elementToBeClickable(lastName);
 	  browser.wait(isClickable, 40000);
 	  lastName.sendKeys(userInfo.lastname);
@@ -234,19 +275,37 @@ var RegistrationPage = function() {
 	  isClickable = EC.elementToBeClickable(userCountry);
 	  browser.wait(isClickable, 40000);
 	  userCountry.sendKeys(userInfo.country);
+	  
+	  var countryIdDropDown = element(by.id('_dropdown'));
+	  isClickable = EC.elementToBeClickable(countryIdDropDown);
+	  browser.wait(isClickable, 30000);
+	  countryIdDropDown.all(by.css('.angucomplete-title')).filter(function(elem, index){
+		  return elem.getInnerHtml().then(function(text){
+			  return text.indexOf(userInfo.country) != -1 ;
+		  })
+	  }).then(function(filteredElements){
+		  filteredElements[0].click();
+	  });
 
-	  var userName = element(by.model('vm.username'));
+	  var userName = element(by.name('username'));
 	  isClickable = EC.elementToBeClickable(userName);
 	  browser.wait(isClickable, 40000);
 	  userName.sendKeys(userInfo.username);
 	  
-	  var userEmail = element(by.model('vm.email'));
+	  var userEmail = element(by.name('email'));
 	  isClickable = EC.elementToBeClickable(userEmail);
 	  browser.wait(isClickable, 40000);
 	  userEmail.sendKeys(userInfo.email);
 	  
-	  var formErrorList = element.all(by.css('.form-errors .form-error'));
-	  var formError = formErrorList.get(3);
+	  var userPassword = element(by.name('password'));
+	  isClickable = EC.elementToBeClickable(userPassword);
+	  browser.wait(isClickable, 40000);
+	  userPassword.sendKeys(userInfo.password);
+	  
+	  browser.driver.sleep(6000);
+	  
+	  var formErrorList = element.all(by.css('.form-input-error .form-error'));
+	  var formError = formErrorList.get(1);
 	  isClickable = EC.elementToBeClickable(formError);
 	  browser.wait(isClickable, 40000);
 	  
@@ -254,12 +313,7 @@ var RegistrationPage = function() {
 	  
 	  expect(formError.getInnerHtml()).toEqual(invalidEmailMsg);
 	  
-	  var userPassword = element(by.model('vm.password'));
-	  isClickable = EC.elementToBeClickable(userPassword);
-	  browser.wait(isClickable, 40000);
-	  userPassword.sendKeys(userInfo.password);
-	  
-	  var registerButton =element(by.partialButtonText('Join Now'));
+	  var registerButton =element(by.partialButtonText('Join'));
 	  expect(registerButton.isEnabled()).toEqual(false);
   };
   
@@ -268,12 +322,12 @@ var RegistrationPage = function() {
 	  browser.driver.ignoreSynchronization = true;
 	  var EC = protractor.ExpectedConditions;
 		
-	  var firstName = element(by.model('vm.firstname'));
+	  var firstName = element(by.name('firstname'));
 	  var isClickable = EC.elementToBeClickable(firstName);
 	  browser.wait(isClickable, 40000);
 	  firstName.sendKeys(userInfo.firstname);
   	
-	  var lastName = element(by.model('vm.lastname'));
+	  var lastName = element(by.name('lastname'));
 	  isClickable = EC.elementToBeClickable(lastName);
 	  browser.wait(isClickable, 40000);
 	  lastName.sendKeys(userInfo.lastname);
@@ -282,19 +336,37 @@ var RegistrationPage = function() {
 	  isClickable = EC.elementToBeClickable(userCountry);
 	  browser.wait(isClickable, 40000);
 	  userCountry.sendKeys(userInfo.country);
+	  
+	  var countryIdDropDown = element(by.id('_dropdown'));
+	  isClickable = EC.elementToBeClickable(countryIdDropDown);
+	  browser.wait(isClickable, 30000);
+	  countryIdDropDown.all(by.css('.angucomplete-title')).filter(function(elem, index){
+		  return elem.getInnerHtml().then(function(text){
+			  return text.indexOf(userInfo.country) != -1 ;
+		  })
+	  }).then(function(filteredElements){
+		  filteredElements[0].click();
+	  });
 
-	  var userName = element(by.model('vm.username'));
+	  var userName = element(by.name('username'));
 	  isClickable = EC.elementToBeClickable(userName);
 	  browser.wait(isClickable, 40000);
 	  userName.sendKeys(userInfo.username);
 	  
-	  var userEmail = element(by.model('vm.email'));
+	  var userEmail = element(by.name('email'));
 	  isClickable = EC.elementToBeClickable(userEmail);
 	  browser.wait(isClickable, 30000);
 	  userEmail.sendKeys(userInfo.email);
 	  
-	  var formErrorList = element.all(by.css('.form-errors .form-error'));
-	  var formError = formErrorList.get(3);
+	  var userPassword = element(by.name('password'));
+	  isClickable = EC.elementToBeClickable(userPassword);
+	  browser.wait(isClickable, 40000);
+	  userPassword.sendKeys(userInfo.password);
+	  
+	  browser.driver.sleep(10000);
+	  
+	  var formErrorList = element.all(by.css('.form-input-error .form-error'));
+	  var formError = formErrorList.get(1);
 	  isClickable = EC.elementToBeClickable(formError);
 	  browser.wait(isClickable, 30000);
 	  
@@ -302,14 +374,7 @@ var RegistrationPage = function() {
 	  
 	  expect(formError.getInnerHtml()).toEqual(invalidEmailMsg);
 	  
-	  var userPassword = element(by.model('vm.password'));
-	  isClickable = EC.elementToBeClickable(userPassword);
-	  browser.wait(isClickable, 40000);
-	  userPassword.sendKeys(userInfo.password);
-	  
-	  var registerButton = element(by.partialButtonText('Join Now'));
-//	  isClickable = EC.elementToBeClickable(registerButton);console.log('already....taken ... email.');
-//	  browser.wait(isClickable, 30000);
+	  var registerButton = element(by.partialButtonText('Join'));
 	  expect(registerButton.isEnabled()).toEqual(false);
   };
   
@@ -341,7 +406,7 @@ var RegistrationPage = function() {
 	  browser.driver.ignoreSynchronization = true;
 	  var EC = protractor.ExpectedConditions;
 	  
-	  var firstName = element(by.model('vm.firstname'));
+	  var firstName = element(by.name('firstname'));
 	  var isClickable = EC.elementToBeClickable(firstName);
 	  browser.wait(isClickable, 30000);
 	  

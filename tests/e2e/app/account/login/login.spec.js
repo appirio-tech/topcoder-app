@@ -105,7 +105,7 @@
 			 
 			 
 		 }
-		 
+
 		 i=0;
 		 for (; i< loginUser.spaceUserCredentials.length; i++) {
 			 console.log('user creds :'+loginUser.spaceUserCredentials[i].username);
@@ -142,7 +142,7 @@
 		 i=0;
 		for(;i < loginUser.twitterCredentials.length; i++) {
 			 (function(loginUserCred) {
-				 it('Welcomes the user', function() {
+				 it('Twitter login', function() {
 					 console.log('loginUser.baseUrl'+loginUser.baseUrl);
 					 loginPage.get(loginUser.baseUrl);
 					 loginPage.twitterLogin(loginUserCred);
@@ -175,7 +175,7 @@
 		i=0;
 		for(;i < loginUser.fbCredentials.length; i++) {
 			 (function(loginUserCred) {
-				 it('Welcomes the Facebook user', function() {
+				 it('Facebook login', function() {
 					 console.log('loginUser.baseUrl'+loginUser.baseUrl);
 					 loginPage.get(loginUser.baseUrl);
 					 loginPage.fbLogin(loginUserCred);
@@ -210,7 +210,7 @@
 		i=0;
 		for(;i < loginUser.googleCredentials.length; i++) {
 			 (function(loginUserCred) {
-				 it('Welcomes the Google user', function() {
+				 it('Google Login', function() {
 					 console.log('loginUser.baseUrl'+loginUser.baseUrl);
 					 loginPage.get(loginUser.baseUrl);
 					 loginPage.googleLogin(loginUserCred);
