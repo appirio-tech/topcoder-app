@@ -27,7 +27,6 @@
         });
 
         vm.onCPFocus = function(event) {
-          vm.currentPasswordFocus = true;
           vm.currentPasswordPlaceholder = '';
           element.addClass('focus');
         }
@@ -38,12 +37,9 @@
 
           // If you are blurring from the password input and clicking the checkbox
           if (relatedTarget.attr('type') === 'checkbox' && relatedTarget.attr('id') === 'currentPasswordCheckbox') {
-            vm.currentPasswordFocus = true;
             vm.currentPasswordPlaceholder = '';
             currentPasswordInput.focus();
           } else {
-            // If you are blurring from the password input and clicking anywhere but the checkbox
-            vm.currentPasswordFocus = false;
 
             if (vm.currentPassword === '' || vm.currentPassword === undefined) {
               vm.currentPasswordPlaceholder = vm.currentPasswordDefaultPlaceholder;
