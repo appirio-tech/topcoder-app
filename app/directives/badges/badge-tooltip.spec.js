@@ -6,7 +6,7 @@ describe('Badge Tooltip Directive', function() {
   var spotlightChallenge = mockData.getMockSpotlightChallenges()[0];
 
   beforeEach(function() {
-    bard.appModule('topcoder');
+    bard.appModule('tcUIComponents');
     bard.inject(this, '$compile', '$rootScope');
     scope = $rootScope.$new();
   });
