@@ -13,7 +13,7 @@ describe('Badge Tooltip Directive', function() {
 
   bard.verifyNoOutstandingHttpRequests();
 
-  describe('Badge Tooltip', function() {
+  xdescribe('Badge Tooltip', function() {
     var tooltip;
 
     beforeEach(function() {
