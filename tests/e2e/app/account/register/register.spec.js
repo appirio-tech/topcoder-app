@@ -66,7 +66,7 @@ describe('registerUser', function(){
 			 });
 		 })(regUser.alreadyTakenEmailUserNameList[i]);
 	 }
-	
+	/*
 	i=0;
 	for(;i < regUser.githubUserList.length; i++) {
 		 (function(regUserCred) {
@@ -77,6 +77,6 @@ describe('registerUser', function(){
 				 console.log('right below');
 			 });
 		 })(regUser.githubUserList[i]);
-	 }
+	 }*/
 	
 });

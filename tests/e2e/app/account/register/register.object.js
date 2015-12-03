@@ -410,13 +410,14 @@ var RegistrationPage = function() {
 	  var isClickable = EC.elementToBeClickable(firstName);
 	  browser.wait(isClickable, 30000);
 	  
-	  var githubButton = element(by.css('.social-icons .github .ico'));
+	  var githubButton = element(by.css('.networks .github .ico'));
 	  isClickable = EC.elementToBeClickable(githubButton);
 	  browser.wait(isClickable, 30000);
 	  
 	  githubButton.click();
 	  this.selectWindow(1);
 	  
+	  browser.driver.sleep(6000);
 	  browser.driver.wait(function() {
 		  var emailId = browser.driver.findElement(by.id('login_field'));
 		  console.log('git username');
@@ -437,6 +438,54 @@ var RegistrationPage = function() {
 			 submitBtn.click();
 			 return true;
 		  },30000);
+	  
+	  browser.driver.sleep(6000);
+	  browser.driver.wait(function() {
+			 var submitBtn = browser.driver.findElement(by.name('authorize'));
+			 console.log(' Git submit btn');
+			 submitBtn.click();
+			 return true;
+		  },30000);
+	  
+	  browser.getAllWindowHandles().then(function (handles) {
+		  browser.switchTo().window(handles[0]);
+	  });
+	  
+	  browser.driver.sleep(3000);
+	  var lastName = element(by.name('lastname'));
+	  isClickable = EC.elementToBeClickable(lastName);
+	  browser.wait(isClickable, 40000);
+	  lastName.sendKeys(userInfo.lastname);
+
+	  var userCountry = element(by.name('country'));
+	  isClickable = EC.elementToBeClickable(userCountry);
+	  browser.wait(isClickable, 40000);
+	  userCountry.sendKeys(userInfo.country);
+	  
+	  var countryIdDropDown = element(by.id('_dropdown'));
+	  isClickable = EC.elementToBeClickable(countryIdDropDown);
+	  browser.wait(isClickable, 30000);
+	  countryIdDropDown.all(by.css('.angucomplete-title')).filter(function(elem, index){
+		  return elem.getInnerHtml().then(function(text){
+			  return text.indexOf(userInfo.country) != -1 ;
+		  })
+	  }).then(function(filteredElements){
+		  filteredElements[0].click();
+	  });
+	  
+	  browser.driver.sleep(3000);
+	  
+	  var registerButton = element.all(by.css('.tc-btn-large')).get(0);
+	  isClickable = EC.elementToBeClickable(registerButton);
+	  browser.wait(isClickable, 30000);
+	  
+	  registerButton.click().then(function(){ 	
+		  var regCont = element(by.css('.registered-successfully-container'));
+		  isClickable = EC.elementToBeClickable(regCont);
+		  browser.wait(isClickable, 30000);
+		  var messageCont = regCont.all(by.css('.message')).get(0);
+		  expect(messageCont.getText()).toEqual(regSuccessMsg);
+     });
 	  
 	  
 	  
