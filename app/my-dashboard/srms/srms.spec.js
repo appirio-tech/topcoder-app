@@ -34,11 +34,7 @@ describe('SRMs Widget Controller', function() {
     sinon.stub(srmService, 'getSRMs', function(params) {
       var deferred = $q.defer();
       var resp = null;
-      if (params.filter.indexOf('listType=past') != -1) {
-        resp = JSON.parse(JSON.stringify(srms));
-      } else {
-        resp = JSON.parse(JSON.stringify(srms.slice(1)));
-      }
+      resp = JSON.parse(JSON.stringify(srms));
       resp.pagination = {
         total: resp.length,
         pageIndex: 1,
@@ -66,10 +62,10 @@ describe('SRMs Widget Controller', function() {
   bard.verifyNoOutstandingHttpRequests();
 
   describe('inialization', function() {
-    var mySRMs = null;
+    var controller = null;
     beforeEach( function(){
       $scope = $rootScope.$new();
-      mySRMs = $controller('SRMWidgetController', {
+      controller = $controller('SRMWidgetController', {
         SRMService : srmService,
         UserService : userService
       });
@@ -77,12 +73,12 @@ describe('SRMs Widget Controller', function() {
     });
 
     it('controller should exist', function() {
-      expect(mySRMs).to.exist;
+      expect(controller).to.exist;
     });
 
-    it('mySRMs.srms should be initialized', function() {
-      expect(mySRMs.srms).to.exist;
-      expect(mySRMs.srms.length).to.equal(srms.length - 1);
+    it('controller.srms should be initialized', function() {
+      expect(controller.srms).to.exist;
+      expect(controller.srms.length).to.equal(srms.length);
     });
   });
 

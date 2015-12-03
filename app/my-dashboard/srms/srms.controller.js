@@ -35,7 +35,7 @@
         var srms = data[0];
         var userSrms = data[1];
         var userSrmsMap = {};
-        var userSrms = userSrms.forEach(function (srm) {
+        var userSrms = userSrms.map(function (srm) {
           var id = srm.id;
           userSrmsMap[id] = srm;
         });
