@@ -162,8 +162,8 @@ config.awsPublish = {
   secret: process.env.AWS_SECRET,
   files: ['build/**/*', '!build/index.html'],
   index: 'build/index.html',
-  sync: envConfig.CONSTANTS.ENVIRONMENT !== 'production'
-
+  sync: envConfig.CONSTANTS.ENVIRONMENT !== 'production',
+  dependencies: ['build:topcoder']
 };
 
 var loadTasksModule = require(__dirname + '/node_modules/appirio-gulp-tasks/load-tasks.coffee');
