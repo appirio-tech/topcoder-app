@@ -1,12 +1,13 @@
 var angularProtractor = require('gulp-angular-protractor');
-var rename = require('gulp-rename');
+var rename            = require('gulp-rename');
+var curEnv            = process.env.ENVIRONMENT || 'development';
 module.exports = function(gulp, $, config, utilities) {
   'use strict';
 
   gulp.task('e2eDataFilesRename', function() {
-	  return gulp.src(config.e2eTestsDataFiles)
+	  return gulp.src(config.e2eApp + '/**/*.' + curEnv +'.data.js')
 	  .pipe(rename(function (path) {
-		  path.basename = path.basename.replace('.'+config.curEnv, '');
+		  path.basename = path.basename.replace('.'+ curEnv, '');
 	  }))
 	  .pipe(gulp.dest(config.e2eApp));
 	});
