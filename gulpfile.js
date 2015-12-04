@@ -155,7 +155,7 @@ config.serve = {
   }
 };
 
-config.awsPublish = {
+config.deploy = {
   bucket: process.env.AWS_BUCKET,
   key: process.env.AWS_KEY,
   region: process.env.AWS_REGION,
