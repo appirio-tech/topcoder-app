@@ -9,11 +9,10 @@ module.exports = function(gulp, $, config, utilities) {
       params: {
         Bucket: config.aws.bucket
       },
-      "accessKeyId": config.aws.key,
-      "secretAccessKey": config.aws.secret
+      'accessKeyId': config.aws.key,
+      'secretAccessKey': config.aws.secret
     };
 
-    // create a new publisher
     var publisher = $.awspublish.create(awsConfig);
 
     utilities.log('Deploying to S3');
@@ -26,7 +25,7 @@ module.exports = function(gulp, $, config, utilities) {
           public: true
         },
         routes: {
-          "^.+$": "$&"
+          '^.+$': '$&'
         }
       }));
 
@@ -38,10 +37,10 @@ module.exports = function(gulp, $, config, utilities) {
           public: true
         },
         routes: {
-          "^.+\\.html": {
+          '^.+\\.html': {
             cacheTime: 0
           },
-          "^.+$": "$&"
+          '^.+$': '$&'
         }
       }));
 

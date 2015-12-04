@@ -47,6 +47,10 @@
               }
             }
           });
+          // remove the event listener before destroying the directive
+          scope.$on('$destroy',function() {
+            angular.element($window).unbind("scroll");
+          });
       }
     };
   }
