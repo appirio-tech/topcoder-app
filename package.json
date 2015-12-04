@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/appirio-tech/topcoder-app#readme",
   "devDependencies": {
-    "appirio-gulp-tasks": "https://github.com/appirio-tech/gulp-tasks.git#topcoder-updates",
+    "appirio-gulp-tasks": "3.x.x",
     "appirio-styles": "0.x.x",
     "bower": "^1.6.8",
     "gulp": "^3.9.0",
