@@ -7,12 +7,30 @@ external-accounts {
 
 .ext-link-tile_edit-header {
   border-bottom: 1px solid $gray-light;
+  display: flex;
+  justify-content: flex-end;
 
   &:hover {
     .show-on-profile_label {
       color: $accent-gray-dark;
     }
   }
+}
+
+.ext-link-tile_edit-header_delete {
+  border-left: 1px solid $gray-light;
+  background-image: url(/images/ico-delete.svg);
+  background-position: center;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  height: 43px;
+  width: 51px;
+  cursor: pointer;
+}
+
+.ext-link-tile_edit-header_delete--deleting {
+  cursor: default;
+  opacity: 0.5;
 }
 
 .ext-link-tile_edit-header_show-on-profile {

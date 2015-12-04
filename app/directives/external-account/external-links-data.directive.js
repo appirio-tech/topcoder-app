@@ -15,8 +15,51 @@
       templateUrl: 'directives/external-account/external-link-data.directive.html',
       scope: {
         linkedAccountsData: '=',
-        editable: '='
-      }
+        editable: '=',
+        userHandle: '@'
+      },
+      controller: ['$log', '$scope', 'ExternalWebLinksService', 'toaster',
+        function($log, $scope, ExternalWebLinksService, toaster) {
+
+          $log = $log.getInstance("ExternalLinksDataCtrl");
+          $scope.deletingAccount = false;
+
+          $scope.deleteAccount = function(account) {
+            $log.debug('Deleting Account...');
+            if ($scope.deletingAccount) {
+              $log.debug('Another deletion is already in progress.');
+              return;
+            }
+            if (account && account.provider === 'weblink') {
+              $log.debug('Deleting weblink...');
+              $scope.deletingAccount = true;
+              ExternalWebLinksService.removeLink($scope.userHandle, account.key).then(function(data) {
+                $scope.deletingAccount = false;
+                $log.debug("Web link removed: " + JSON.stringify(data));
+                var toRemove = _.findIndex($scope.linkedAccountsData, function(la) {
+                  return la.provider === 'weblink' && la.key === account.key;
+                });
+                if (toRemove > -1) {
+                  // remove from the linkedAccountsData array
+                  $scope.linkedAccountsData.splice(toRemove, 1);
+                }
+                toaster.pop('success', "Success", "Your link has been added. Data from your link will be visible on your profile shortly.");
+              })
+              .catch(function(resp) {
+                var msg = resp.msg;
+                if (resp.status === 'WEBLINK_NOT_EXIST') {
+                  $log.info("Weblink does not exist");
+                  msg = "Weblink is not linked to your account. If you think this is an error please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>.";
+                } else {
+                  $log.error("Fatal error: _unlink: " + msg);
+                  msg = "Sorry! We are unable to remove your weblink. If problem persists, please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>";
+                }
+                toaster.pop('error', "Whoops!", msg);
+              });
+            }
+          }
+        }
+      ]
     };
     return directive;
   }
