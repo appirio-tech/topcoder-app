@@ -21,7 +21,6 @@ var RegistrationPage = function() {
 	  browser.wait(isClickable, 30000);
 	  firstName.click();
 	  firstName.sendKeys(userInfo.firstname);
-	  console.log(userInfo.firstname);
   	
 	  var lastName = element(by.name('lastname'));
 	  isClickable = EC.elementToBeClickable(lastName);
@@ -420,7 +419,6 @@ var RegistrationPage = function() {
 	  browser.driver.sleep(6000);
 	  browser.driver.wait(function() {
 		  var emailId = browser.driver.findElement(by.id('login_field'));
-		  console.log('git username');
 		  emailId.sendKeys(userInfo.githubUsername);
 		  return true;
 	  },30000);
@@ -428,13 +426,11 @@ var RegistrationPage = function() {
 	  browser.driver.wait(function() {
 		 var password = browser.driver.findElement(by.id('password'));
 		 password.sendKeys(userInfo.githubPassword);
-		 console.log(' Git login Passwd');
 		 return true;
 	  },30000);
 	  
 	  browser.driver.wait(function() {
 			 var submitBtn = browser.driver.findElement(by.name('commit'));
-			 console.log(' Git submit btn');
 			 submitBtn.click();
 			 return true;
 		  },30000);
@@ -442,7 +438,6 @@ var RegistrationPage = function() {
 	  browser.driver.sleep(6000);
 	  browser.driver.wait(function() {
 			 var submitBtn = browser.driver.findElement(by.name('authorize'));
-			 console.log(' Git submit btn');
 			 submitBtn.click();
 			 return true;
 		  },30000);

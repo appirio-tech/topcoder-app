@@ -603,7 +603,6 @@ var MyDashboardPage = function() {
 												   var myChallenges = element(by.css('.my-challenges'));
 												   isClickable = EC.elementToBeClickable(myChallenges);
 												   browser.wait(isClickable, 30000);
-												   console.log(myChallenges.getText());
 												   expect(myChallenges.getText()).toContain('MY CHALLENGES');
 								  
 												   tileView = element(by.css('.tile-view'));
