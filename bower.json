@@ -38,7 +38,7 @@
     "angular-ui-router": "~0.2.15",
     "angular-xml": "~2.1.1",
     "angularjs-toaster": "~0.4.15",
-    "appirio-tech-ng-iso-constants": "appirio-tech/ng-iso-constants#~1.0.5",
+    "appirio-tech-ng-iso-constants": "git@github.com:appirio-tech/ng-iso-constants#~1.0.5",
     "d3": "~3.5.6",
     "fontawesome": "~4.3.0",
     "jstzdetect": "~1.0.6",
