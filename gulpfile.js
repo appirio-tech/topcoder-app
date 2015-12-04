@@ -160,8 +160,6 @@ config.awsPublish = {
   key: process.env.AWS_KEY,
   region: process.env.AWS_REGION,
   secret: process.env.AWS_SECRET,
-  files: ['build/**/*', '!build/index.html'],
-  index: 'build/index.html',
   sync: envConfig.CONSTANTS.ENVIRONMENT !== 'production',
   dependencies: ['build:topcoder']
 };
