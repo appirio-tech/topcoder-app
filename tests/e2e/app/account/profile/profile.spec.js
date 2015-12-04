@@ -7,7 +7,7 @@
  
 	 describe('Profile Login', function() {
 		 console.log(profileData.profileUpdateInfo.length);
-		 var i=0;/*
+		 var i=0;
 		 for (; i< profileData.profileUpdateInfo.length; i++) {
 			 console.log('user creds :'+profileData.profileUpdateInfo[i].username);
 			 (function(loginUserCred) {
@@ -15,11 +15,10 @@
 					 loginPage.get(profileData.baseUrl);
 					 loginPage.login(loginUserCred);
 					 profilePage.goToProfilePage(profileData.dashBoardUrl, loginUserCred);
-//					 profilePage.verifyProfileChanges(profileData.dashBoardUrl, loginUserCred);
 				 });
 		  
 				 it('welcomes the user for logout', function() {
-//					 loginPage.logOut(profileData.dashBoardUrl);
+					 loginPage.logOut(profileData.dashBoardUrl);
 				 });
 		  
 				 afterEach(function() {  
@@ -42,7 +41,7 @@
 				 });
 		        })(profileData.profileUpdateInfo[i]);
 		 }
-		 */
+		 
 		 
 		 
 		 var i=0;
@@ -68,7 +67,7 @@
 					 profilePage.verifySubTrackPage(profileData.dashBoardUrl, loginUserCred, profileData);
 				 });
 		  
-				 it('welcomes the user for logout', function() {
+				 it('My Profile Logout', function() {
 					 loginPage.logOut(profileData.dashBoardUrl);
 				 });
 		  
@@ -95,7 +94,7 @@
 			 
 		 }
 		 
-		 /*
+		 
 		 i=0;
 		 for (; i< profileData.skillUserCred.length; i++) {
 			 console.log('user creds :'+profileData.skillUserCred[i].username);
@@ -104,12 +103,10 @@
 					 loginPage.get(profileData.baseUrl);
 					 loginPage.login(loginUserCred);
 					 profilePage.goToProfileSkill(profileData.dashBoardUrl, loginUserCred);
-//					 profilePage.verifyProfileChanges(profileData.dashBoardUrl, loginUserCred);
-//					 profilePage.goToProfileBitBucketLogin(profileData.dashBoardUrl, loginUserCred);
 				 });
 		  
 				 it('welcomes the user for logout', function() {
-//					 loginPage.logOut(profileData.dashBoardUrl);
+					 loginPage.logOut(profileData.dashBoardUrl);
 				 });
 		  
 				 afterEach(function() {  
@@ -135,10 +132,4 @@
 			 
 		 }
 		 
-		 */
-		 
-
-		
-			 
-  
 });

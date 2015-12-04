@@ -24,8 +24,9 @@ var ResetPasswordPage = function() {
 		  
 		  var resetButton = element(by.css('.enabled-button'));
 		  resetButton.click().then(function(){
+			  browser.driver.sleep(2000);
 			  var resetPasswordContainer = element(by.css('.reset-password-container'));
-			  console.log(resetPasswordContainer.getText());
+			  expect(resetPasswordContainer.isDisplayed()).toEqual(true);
 		  });
 		   
 	  });
@@ -51,6 +52,7 @@ var ResetPasswordPage = function() {
 
 		  var resetButton = element(by.css('.enabled-button'));
 		  resetButton.click().then(function(){
+			  browser.driver.sleep(2000);
 			  
 			  emailTextField = element(by.model('vm.email'));
 			  isClickable = EC.elementToBeClickable(emailTextField);
@@ -79,6 +81,8 @@ var ResetPasswordPage = function() {
 	  browser.wait(isClickable, 30000);
 	  
 	  forgotPasswordBtn.click().then(function(){
+		  browser.driver.sleep(2000);
+		  
 		  var emailTextField = element(by.name('email'));
 		  var isClickable = EC.elementToBeClickable(emailTextField);
 		  browser.wait(isClickable, 30000);
@@ -114,6 +118,7 @@ var ResetPasswordPage = function() {
 		  
 		  var resetButton = element(by.css('.enabled-button'));
 		  resetButton.click().then(function(){
+			  browser.driver.sleep(2000);
 			  
 			  emailTextField = element(by.model('vm.email'));
 			  isClickable = EC.elementToBeClickable(emailTextField);

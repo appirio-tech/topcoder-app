@@ -55,7 +55,9 @@ var ProfilePage = function() {
 			  isClickable = EC.elementToBeClickable(imageUpload);
 			  browser.wait(isClickable, 30000);
 			  console.log('absolutePath'+absolutePath);
-			  $('input[type="file"]').sendKeys(absolutePath);
+//			  var fileInputField = element(by.id('change-image-input'));
+//			  $('input[type="file"]').sendKeys(absolutePath);
+//			  fileInputField.sendKeys(absolutePath);
 			  var countryId = element(by.id('countryId_value'));
 			  countryId.clear();
 			  countryId.sendKeys(loginUserCred.country);
@@ -87,12 +89,14 @@ var ProfilePage = function() {
 				  if(backgroundColor == 'rgba(209, 211, 212, 1)') {
 					  console.log('d1d design');
 					  if(loginUserCred.design == 'y'){
-						  designButton.click();
+						  designSwitch.click();
 					  }
 				  } else{
 					  console.log('selected design'+backgroundColor);
+					  console.log('loginUserCred.design '+loginUserCred.design);
 					  if(loginUserCred.design != 'y'){
-						  designButton.click();
+						  console.log('loginUserCred.design '+loginUserCred.design);
+						  designSwitch.click();
 					  }
 				  }
 			  });
@@ -107,12 +111,14 @@ var ProfilePage = function() {
 				  if(backgroundColor == 'rgba(209, 211, 212, 1)') {
 					  console.log('d1d dev');
 					  if(loginUserCred.development == 'y'){
-						  devButton.click();
+						  devSwitch.click();
 					  }
 				  } else{
 					  console.log('selected dev '+backgroundColor);
-					  if(loginUserCred.design != 'y'){
-						  devButton.click();
+					  console.log('loginUserCred.development '+loginUserCred.development);
+					  if(loginUserCred.development != 'y'){
+						  console.log('loginUserCred.development '+loginUserCred.development);
+						  devSwitch.click();
 					  }
 				  }
 			  });
@@ -128,12 +134,13 @@ var ProfilePage = function() {
 				  if(backgroundColor == 'rgba(209, 211, 212, 1)') {
 					  console.log('d1d science');
 					  if(loginUserCred.dataScience == 'y'){
-						  dataScienceButton.click();
+						  dataScienceSwitch.click();
 					  }
 				  } else{
 					  console.log('selected science'+backgroundColor);
 					  if(loginUserCred.dataScience != 'y'){
-						  dataScienceButton.click();
+						  console.log('loginUserCred.science '+loginUserCred.dataScience);
+						  dataScienceSwitch.click();
 					  }
 				  }
 			  });
@@ -143,13 +150,14 @@ var ProfilePage = function() {
 			  isClickable = EC.elementToBeClickable(submitBtn);
 			  browser.wait(isClickable, 30000);
 			  
-			  if(loginUserCred.design != 'y' && loginUserCred.development != 'y' && loginUserCred.dataScience != 'y'){
+			  if(loginUserCred.design == 'y' || loginUserCred.development == 'y' || loginUserCred.dataScience == 'y'){
 				  browser.actions().mouseMove(submitBtn).perform();
 				  submitBtn.click();
 			  } else {
 				  browser.actions().mouseMove(submitBtn).perform();
-				  submitBtn.click();//.then(function(){
-					  loginPage.selectWindow(1);
+				  submitBtn.click().then(function(){
+					  browser.driver.sleep(1000);
+//					  loginPage.selectWindow(1);
 					  var toasterList = element.all(by.repeater('toaster in toasters'));
 					  var firstToaster = toasterList.get(0);
 					  isClickable = EC.elementToBeClickable(firstToaster);
@@ -162,66 +170,7 @@ var ProfilePage = function() {
 					  browser.wait(isClickable, 30000);
 					  toastCloseBtn.click();
 					  
-//				  });
-				  /*.then(function(){
-//					  browser.driver.navigate().refresh();
-					  var countryId = element(by.id('countryId_value'));
-					  isClickable = EC.elementToBeClickable(countryId);
-					  browser.wait(isClickable, 30000);
-					  expect(countryId.getText()).toContain(loginUserCred.country);
-					  var shortBio = element(by.model('vm.userData.description'));
-					  expect(loginUserCred.shortBio).toContain(shortBio.getText());
-					  var selRep = element.all(by.repeater('track in [\'DESIGN\', \'DEVELOP\', \'DATA_SCIENCE\']'));
-
-					  var designRep = selRep.get(0);
-					  var designSwitch = designRep.all(by.css('.onoffswitch .onoffswitch-label')).get(0);
-					  var designButton = designRep.all(by.css('.onoffswitch')).get(0);
-					  isClickable = EC.elementToBeClickable(designButton);
-					  browser.wait(isClickable, 30000);
-					  
-					  designSwitch.getCssValue('background-color').then(function(backgroundColor){
-						  if(loginUserCred.design == 'y'){
-							  expect(backgroundColor).toEqual('rgba(0, 150, 255, 1)');
-						  } else {
-							  expect(backgroundColor).toEqual('rgba(209, 211, 212, 1)');
-						  }
-					  });
-					  
-					  
-					  var devRep = selRep.get(1);
-					  var devSwitch = devRep.all(by.css('.onoffswitch .onoffswitch-label')).get(0);
-					  var devButton = devRep.all(by.css('.onoffswitch')).get(0);
-					  isClickable = EC.elementToBeClickable(devButton);
-					  browser.wait(isClickable, 30000);
-					  
-					  devSwitch.getCssValue('background-color').then(function(backgroundColor){
-						  if(loginUserCred.development == 'y'){
-							  expect(backgroundColor).toEqual('rgba(0, 150, 255, 1)');
-						  } else {
-							  expect(backgroundColor).toEqual('rgba(209, 211, 212, 1)');
-						  }
-					  });
-					  
-					  
-					  var dataScienceRep = selRep.get(2);
-					  var dataScienceSwitch = dataScienceRep.all(by.css('.onoffswitch .onoffswitch-label')).get(0);
-					  var dataScienceButton = dataScienceRep.all(by.css('.onoffswitch')).get(0);
-					  isClickable = EC.elementToBeClickable(devButton);
-					  browser.wait(isClickable, 30000);
-					  
-					  dataScienceSwitch.getCssValue('background-color').then(function(backgroundColor){
-						  if(loginUserCred.dataScience == 'y'){
-							  expect(backgroundColor).toEqual('rgba(0, 150, 255, 1)');
-						  } else {
-							  expect(backgroundColor).toEqual('rgba(209, 211, 212, 1)');
-						  }
-					  });
-					  
-					  
-					  
-					  
-					  
-				  });*/
+				  });
 			  }
 			  
 			  
@@ -362,33 +311,6 @@ var ProfilePage = function() {
 							 expect(trackTag.getText()).toEqual(profileData.copilotActivityTypeTag);
 					  });
 				  });
-				  /*
-				  firstTrack.click().then(function(){
-//					  if(introJsCounter == 0) {
-//						  var toolTip = element(by.css('.introjs-tooltip'));
-//						  var isClickable = EC.elementToBeClickable(toolTip);
-//						  browser.wait(isClickable, 30000);
-//						  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
-//						  isClickable = EC.elementToBeClickable(skipBtn);
-//						  browser.wait(isClickable, 30000);
-//						  skipBtn.click();
-//						  introJsCounter = introJsCounter + 1;
-//					  }
-					  var tab = element.all(by.repeater('tab in tabSet.tabs')).get(0);
-					  var aDiv = tab.all(by.css('a div')).get(0);
-					  expect(aDiv.waitReady()).toEqual(true);
-//					  expect(aDiv.isPresent()).toEqual(true);
-//					 pageInfo.getInnerHtml().then(function(text){
-//						expect(text).toEqual('copilot'); 
-						browser.navigate().back().then(function(){
-							editProfile = element(by.partialLinkText('EDIT PROFILE'));
-							expect(editProfile.waitReady()).toEqual(true);
-//							isClickable = EC.elementToBeClickable(editProfile);
-//							browser.wait(isClickable, 60000);
-						});
-//					 });
-				  });*/
-				  
 			  }
 			  
 			  if(activityName == 'DEVELOPMENT ACTIVITY') {
@@ -413,26 +335,6 @@ var ProfilePage = function() {
 							  
 						  });
 					  
-//						  subTrackElem.click().then(function(){
-////							  if(introJsCounter == 0) {
-////								  var toolTip = element(by.css('.introjs-tooltip'));
-////								  var isClickable = EC.elementToBeClickable(toolTip);
-////								  browser.wait(isClickable, 30000);
-////								  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
-////								  isClickable = EC.elementToBeClickable(skipBtn);
-////								  browser.wait(isClickable, 30000);
-////								  skipBtn.click();
-////								  introJsCounter = introJsCounter + 1;
-////							  }
-//							  var tab = element.all(by.repeater('tab in tabSet.tabs')).get(0);
-//							  var aDiv = tab.all(by.css('a div')).get(0);
-//							  expect(aDiv.isPresent()).toEqual(true);
-//							  browser.navigate().back().then(function(){
-//								  editProfile = element(by.partialLinkText('EDIT PROFILE'));
-//								  isClickable = EC.elementToBeClickable(editProfile);
-//								  browser.wait(isClickable, 60000);
-//							  });
-//						  });
 				  });
 			  }
 			  
@@ -464,27 +366,6 @@ var ProfilePage = function() {
 						 }
 					  });
 					  
-					  /*subTrackElem.click().then(function(){
-						  if(introJsCounter == 0) {
-							  var toolTip = element(by.css('.introjs-tooltip'));
-							  var isClickable = EC.elementToBeClickable(toolTip);
-							  browser.wait(isClickable, 30000);
-							  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
-							  isClickable = EC.elementToBeClickable(skipBtn);
-							  browser.wait(isClickable, 30000);
-							  skipBtn.click();
-							  introJsCounter = introJsCounter + 1;
-						  }
-						  
-						  var tab = element.all(by.repeater('tab in tabSet.tabs')).get(0);
-						  var aDiv = tab.all(by.css('a div')).get(0);
-						  expect(aDiv.getInnerHtml()).toEqual('statistics');
-						  browser.navigate().back().then(function(){
-							  editProfile = element(by.partialLinkText('EDIT PROFILE'));
-							  isClickable = EC.elementToBeClickable(editProfile);
-							  browser.wait(isClickable, 60000);
-						  });
-					  });*/
 				  });
 			  }
 			  
@@ -633,6 +514,9 @@ var ProfilePage = function() {
 				  }
 				  if(className == 'fa fa-bitbucket') {
 					  externalName = 'bitbucket';
+				  }
+				  if(className == 'fa fa-globe') {
+					  externalName = 'globe';
 				  }
 				  for(var j = 0; j < loginUserCred.externalLinks.length; j++) {
 					  if(loginUserCred.externalLinks[j] == externalName) {
@@ -875,51 +759,29 @@ this.goToProfileSkill = function(dashBoardUrl,loginUserCred) {
 		  isClickable = EC.elementToBeClickable(skipBtn);
 		  browser.wait(isClickable, 30000);
 		  skipBtn.click().then(function() {
-		  
-		  console.log('hii');
-		  
-//		  var username = element(by.css('.info .handle'));
-////		  var isClickable = EC.elementToBeClickable(username);
-////		  browser.wait(isClickable, 30000);
-////		  console.log('username '+username.getInnerHtml());
-//		  expect(username.getInnerHtml()).toEqual(loginUserCred.username);
-		  
-		  var editProfile = element(by.partialLinkText('EDIT PROFILE'));
-		  isClickable = EC.elementToBeClickable(editProfile);
-		  browser.wait(isClickable, 60000);
-		  editProfile.click().then(function() {
+
+			  var editProfile = element(by.partialLinkText('EDIT PROFILE'));
+			  isClickable = EC.elementToBeClickable(editProfile);
+			  browser.wait(isClickable, 60000);
+			  editProfile.click().then(function() {
 			  
 			  var skillSet = element(by.id('tagId_value'));
 			  isClickable = EC.elementToBeClickable(skillSet);
 			  browser.wait(isClickable, 60000);
 //			  for(var i=0; i<loginUserCred.skillSet.length; i++) {
 			  skillSet.clear();
-//			  skillSet.sendKeys(loginUserCred.skillSet[0]);
 				  skillSet.sendKeys(loginUserCred.skillSet[0]).then(function(){
 					  browser.driver.manage().timeouts().implicitlyWait( 6000);
 					  var skillSetDropDown = element(by.id('tagId_dropdown'));
 					  expect(skillSetDropDown.waitReady()).toBeTruthy();
 					  
-//					  isClickable = EC.elementToBeClickable(skillSetDropDown);
-//					  browser.wait(isClickable, 60000);
-					  
-//					  browser.debugger();
-					  
-//					  var row1 = element.all(by.css('.angucomplete-row')).first();
-//					  isClickable = EC.elementToBeClickable(row1);
-//					  browser.wait(isClickable, 60000);
-					   
 					  var titleFirst = element(by.css('.angucomplete-title'));
 					  expect(titleFirst.waitReady()).toBeTruthy();
-//					  expect(titleFirst.isPresent()).toEqual(true);
-//					  isClickable = EC.elementToBeClickable(titleFirst);
-//					  browser.wait(isClickable, 60000);
 					  
 					  
 					  skillSetDropDown.all(by.css('.angucomplete-title')).filter(function(elem, index){
 						  return elem.getInnerHtml().then(function(text){
 							  console.log('text value'+text);
-//							  return text.toLowerCase() == loginUserCred.skillSet[i].toLowerCase();
 							  return text.indexOf(loginUserCred.skillSet[0]) != -1 ;
 						  })
 					  }).then(function(filteredElements){
@@ -928,34 +790,6 @@ this.goToProfileSkill = function(dashBoardUrl,loginUserCred) {
 				  });
 				  
 				  
-//				  browser.driver.wait(until.elementLocated(by.css('.angucomplete-row'), 60000));
-				  
-//				  browser.wait(function() {
-//					  var deferred = protractor.promise.defer();
-//					  
-//					  EC.elementToBeClickable(skillSetDropDown);
-//					  element(by.css('.angucomplete-row')).isPresent()
-//					  	.then(function (isPresent) {
-//					      deferred.fulfill(!isPresent);
-//					    });
-//					  return deferred.promise;
-//					});
-				  
-//				  browser.pause();
-				  
-//				  browser.actions().mouseMove(skillSet).perform();
-				  
-//				  browser.wait(element(by.css('.angucomplete-row')).isPresent());
-//				  browser.pause();
-//				  skillSetDropDown.all(by.css('.angucomplete-title')).filter(function(elem, index){
-//					  return elem.getInnerHtml().then(function(text){
-////						  return text.toLowerCase() == loginUserCred.skillSet[i].toLowerCase();
-//						  return text.indexOf(loginUserCred.skilSet[0]) != -1 ;
-//					  })
-//				  }).then(function(filteredElements){
-//					  filteredElements[0].click();
-//				  });
-//			  }
 			  
 		  });
 		  });
