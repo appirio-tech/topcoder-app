@@ -6,6 +6,7 @@ module.exports = function() {
   var temp           = './.tmp/';
   var wiredep        = require('wiredep');
   var bowerFiles     = wiredep({devDependencies: true})['js'];
+  var e2e            ='./tests/e2e/';
 
   var config = {
     // File paths
@@ -38,6 +39,19 @@ module.exports = function() {
     report: report,
     sass: assets + 'css/**/*.scss',
     temp: temp,
+    e2e : e2e,
+    e2eApp : e2e + 'app',
+    e2eTests:[ e2e+'**/**/*.data.js',
+               e2e + '**/**/*.object.js',
+               e2e + '**/**/*.spec.js',
+               e2e + '/conf.js',
+               e2e + '/waitReady.js',
+               '!' + e2e + '**/**/*.development.data.js',
+               '!' + e2e + '**/**/*.qa.data.js',
+               '!' + e2e + '**/**/*.production.data.js'
+               ],
+    e2eTemp : temp + 'tests/e2e',
+    e2eTempFiles : ['.tmp/tests/e2e/app/*.js'],
 
     // Optimized files
     optimized: {
