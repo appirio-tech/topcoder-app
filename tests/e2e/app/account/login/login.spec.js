@@ -19,55 +19,18 @@
 					 loginPage.logOut(loginUser.dashBoardUrl);
 				 });
 		  
-				 afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
 		        })(loginUser.userCredentials[i]);
 			 
 			 
 		 }
 		 i=0;
 		 for (; i< loginUser.wrongPasswordCredentials.length; i++) {
-			 console.log('user creds :'+loginUser.wrongPasswordCredentials[i].username);
 			 (function(loginUserCred) {
 				 it('Invalid Password Login', function() {
 					 loginPage.get(loginUser.baseUrl);
 					 loginPage.invalidPasswordLogin(loginUserCred, loginUser.invalidPasswordMessage);
 				 });
 		  
-				 afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
 		        })(loginUser.wrongPasswordCredentials[i]);
 			 
 			 
@@ -75,7 +38,6 @@
 		 
 		 i=0;
 		 for (; i< loginUser.notExisitingCredentials.length; i++) {
-			 console.log('user creds :'+loginUser.notExisitingCredentials[i].username);
 			 (function(loginUserCred) {
 				 it('Invalid username Login', function() {
 					 loginPage.get(loginUser.baseUrl);
@@ -83,24 +45,6 @@
 				 });
 		  
 		  
-				 afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
 		        })(loginUser.notExisitingCredentials[i]);
 			 
 			 
@@ -115,25 +59,6 @@
 					 loginPage.invalidSpaceHandleLogin(loginUserCred, loginUser.invalidSpaceHandle);
 				 });
 		  
-		  
-				 afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
 		        })(loginUser.spaceUserCredentials[i]);
 			 
 			 
@@ -143,7 +68,6 @@
 		for(;i < loginUser.twitterCredentials.length; i++) {
 			 (function(loginUserCred) {
 				 it('Twitter login', function() {
-					 console.log('loginUser.baseUrl'+loginUser.baseUrl);
 					 loginPage.get(loginUser.baseUrl);
 					 loginPage.twitterLogin(loginUserCred);
 				 });
@@ -152,31 +76,12 @@
 					 loginPage.logOut(loginUser.dashBoardUrl);
 				 });
 
-				afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
 			 })(loginUser.twitterCredentials[i]);
 		 }
 		i=0;
 		for(;i < loginUser.fbCredentials.length; i++) {
 			 (function(loginUserCred) {
 				 it('Facebook login', function() {
-					 console.log('loginUser.baseUrl'+loginUser.baseUrl);
 					 loginPage.get(loginUser.baseUrl);
 					 loginPage.fbLogin(loginUserCred);
 				 });
@@ -185,33 +90,12 @@
 					 loginPage.logOut(loginUser.dashBoardUrl);
 				 });
 				 
-				 afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
-				 
-				 
 			 })(loginUser.fbCredentials[i]);
 		 }
 		i=0;
 		for(;i < loginUser.googleCredentials.length; i++) {
 			 (function(loginUserCred) {
 				 it('Google Login', function() {
-					 console.log('loginUser.baseUrl'+loginUser.baseUrl);
 					 loginPage.get(loginUser.baseUrl);
 					 loginPage.googleLogin(loginUserCred);
 				 });
@@ -220,24 +104,6 @@
 					 loginPage.logOut(loginUser.dashBoardUrl);
 				 });
 				 
-				 afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
 			 })(loginUser.googleCredentials[i]);
 		 }
 		
@@ -245,7 +111,6 @@
 		for(;i < loginUser.gitCredentials.length; i++) {
 			 (function(loginUserCred) {
 				 it('Welcomes the Git user', function() {
-					 console.log('loginUser.baseUrl'+loginUser.baseUrl);
 					 loginPage.get(loginUser.baseUrl);
 					 loginPage.gitLogin(loginUserCred);
 				 });
@@ -254,24 +119,6 @@
 					 loginPage.logOut(loginUser.dashBoardUrl);
 				 });
 				 
-				 afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
 			 })(loginUser.gitCredentials[i]);
 		 }
 			 

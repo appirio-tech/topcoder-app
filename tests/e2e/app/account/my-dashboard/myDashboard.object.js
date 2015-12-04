@@ -45,12 +45,6 @@ var MyDashboardPage = function() {
 	  isClickable = EC.elementToBeClickable(srmTiles);
 	  browser.wait(isClickable, 30000);
 	  
-//	  expect(srmTiles.isDisplayed()).toEqual(loginUserCred.development);
-	  
-//	  var srmCont = element(by.id('srms'));
-//	  var srmPresence = (loginUserCred.development || loginUserCred.data);
-//	  expect(srmCont.isDisplayed()).toEqual(srmPresence);
-	  
 	  srmTiles.isDisplayed().then(function(displayed){
 		  if(displayed){
 			  var srmTile = srmTiles.all(by.css('srm-tile'));
@@ -78,24 +72,6 @@ var MyDashboardPage = function() {
 				  isClickable = EC.elementToBeClickable(upcoming);
 				  browser.wait(isClickable, 70000);
 				  
-//				  upcoming.click().then(function(){
-//					  var noSrms = element(by.css('.no-srms .empty-state-placeholder'));
-//					  isClickable = EC.elementToBeClickable(upcoming);
-//					  browser.wait(isClickable, 70000);
-//					  noSrms.isDisplayed().then(function(noDisplaySrm){
-//						  console.log('noDisplaySrm -'+noDisplaySrm);
-//						  if(noDisplaySrm == true){
-//							  var openSrms = element(by.partialLinkText('EXPLORE OPEN SRMS'));
-//							  expect(openSrms.isDisplayed()).toEqual(true);
-//						  } else {
-//							  var hasSrms = element(by.css('.has-srms'));
-//							  expect(hasSrms.isDisplayed()).toEqual(true);
-//						  }
-//					  });
-//				  }).then(function(){
-					  
-				 
-				  
 				  browser.get(dashBoardUrl);
 					 
 				  moneyEarned = element(by.id('metrics'));
@@ -113,7 +89,6 @@ var MyDashboardPage = function() {
 					  moneyEarned = element(by.id('metrics'));
 					  isClickable = EC.elementToBeClickable(moneyEarned);
 					  browser.wait(isClickable, 70000);
-//				  }).then(function(){
 	  
 					   var practiceProblems = element(by.partialLinkText('PRACTICE PROBLEMS'));
 					   practiceProblems.click().then(function(){
@@ -168,14 +143,12 @@ var MyDashboardPage = function() {
 							   });
 						   });
 					   });
-//				  });
 			  });
 		  });
 		  }
 	   });
 	  }
 	  });
-//	  }
   };
   
   
@@ -337,7 +310,6 @@ var MyDashboardPage = function() {
 	  
 	  ratings.isPresent().then(function(ratingAvail){
 		  if(ratingAvail) {
-//			  expect(loginUserCred.emptyCarousel).toEqual(false);
 			  var carouselCont = ratings.all(by.css('ul')).get(0);
 			  var sliderCont = carouselCont.all(by.repeater('slides in slidesCollection'));
 			  var totalCarouselItems = 0;
@@ -347,7 +319,6 @@ var MyDashboardPage = function() {
 					  totalCarouselItems = totalCarouselItems + itemCounter;
 				  });
 			  }).then(function() {
-//				  expect(loginUserCred.totalCarouselItems).toEqual(totalCarouselItems);
 				  var totalSlides = (Math.floor(totalCarouselItems / 6)) + 1;
 				  expect(sliderCont.count()).toEqual(totalSlides);
 			  });
@@ -361,9 +332,6 @@ var MyDashboardPage = function() {
 						  totalCarouselItems = totalCarouselItems + itemCounter;
 					  });
 				  }
-//				  if(loginUserCred.totalCarouselItems != 0) {
-//					  expect(loginUserCred.totalCarouselItems).toEqual(totalCarouselItems);
-//				  }
 				  
 				  var totalSlides = Math.floor(totalCarouselItems / 6) + 1;
 				  var carouselNext = element(by.css('.rn-carousel-control-next'));
@@ -427,7 +395,6 @@ var MyDashboardPage = function() {
 					  });
 			  		});
 		  } else {
-//			  expect(loginUserCred.emptyCarousel).toEqual(true);
 		  }
 	  });
 	});
@@ -543,8 +510,6 @@ var MyDashboardPage = function() {
 				   var allActiveChallengesPage = viewAllChallengesCont.all(by.partialLinkText('VIEW MORE')).get(0);
 				   allActiveChallengesPage.getAttribute('href').then(function(hrefValue){
 					   expect(hrefValue).toEqual(myDashboardData.baseUrlPrefix +''+ myDashboardData.myChallengesViewMoreLink);
-//				   });
-					   
 					   
 					  browser.actions().mouseMove(allActiveChallengesPage).perform();
 					  
@@ -559,7 +524,6 @@ var MyDashboardPage = function() {
 						  
 						  var hasChallenges = element(by.css('.hasChallenges'));
 						  expect(hasChallenges.isPresent()).toEqual(true);
-//						  expect(myChallenges.getText()).toContain('DASHBOARD // MY CHALLENGES');
 						  
 						  var tileView = element(by.css('.tile-view'));
 						  browser.wait(isClickable, 30000);
@@ -601,10 +565,6 @@ var MyDashboardPage = function() {
 									  isClickable = EC.elementToBeClickable(stepBox);
 									  browser.wait(isClickable, 30000);
 								  
-//									  browser.get(dashBoardUrl);
-//									  moneyEarned = element(by.id('metrics'));
-//									  isClickable = EC.elementToBeClickable(moneyEarned);
-//									  browser.wait(isClickable, 30000);
 									  browser.navigate().back().then(function(){
 									  
 									  activeLink = element(by.partialLinkText('ACTIVE'));
@@ -623,11 +583,6 @@ var MyDashboardPage = function() {
 											   browser.wait(isClickable, 30000);
 										   
 											  
-//										   browser.get(dashBoardUrl);
-//										   moneyEarned = element(by.id('metrics'));
-//										   isClickable = EC.elementToBeClickable(moneyEarned);
-//										   browser.wait(isClickable, 30000);
-										   
 										   registrantLink = firstChallenge.all(by.css('.tile-view .active-challenge .challenge-links .forum')).get(0);	  
 										   registrantLink.click().then(function(){
 											   var stepBox = element(by.id('stepBox'));
@@ -642,7 +597,6 @@ var MyDashboardPage = function() {
 											   var allPastChallenges = element(by.partialLinkText('PAST CHALLENGES'));
 											   allPastChallenges.getAttribute('href').then(function(hrefValue){
 												   expect(hrefValue).toEqual(myDashboardData.baseUrlPrefix + '' + myDashboardData.myChallengesPastLink);
-//											   });
 											   
 											   browser.actions().mouseMove(allPastChallenges).perform();
 											   allPastChallenges.click().then(function(){
@@ -697,8 +651,6 @@ var MyDashboardPage = function() {
 		  
 		  browser.driver.ignoreSynchronization = true;
 		  var EC = protractor.ExpectedConditions;
-		  
-//		  browser.get(dashBoardUrl);
 		  
 		  var toolTip = element(by.css('.introjs-tooltip'));
 		  var isClickable = EC.elementToBeClickable(toolTip);
@@ -755,7 +707,6 @@ var MyDashboardPage = function() {
 			  isClickable = EC.elementToBeClickable(moneyEarned);
 			  browser.wait(isClickable, 30000);
 			 
-//			 browser.navigate().back().then(function(){
 				 var problemArchivesLink = element(by.partialLinkText('PROBLEM ARCHIVE'));
 				 isClickable = EC.elementToBeClickable(problemArchivesLink);
 				 browser.wait(isClickable, 30000);
@@ -791,21 +742,12 @@ var MyDashboardPage = function() {
 							 browser.wait(isClickable, 30000);
 							 
 							 findSrms.click().then(function(){
-								 
 							 
-//								 browser.get(dashBoardUrl);
-//								 var menuItemHeaders = element.all(by.css('.menu-item-header'));
-//								 var nameHeader = menuItemHeaders.get(1);
-//								 var isClickable = EC.elementToBeClickable(nameHeader);
-//								 var moneyEarned = element(by.id('metrics'));
-//								 isClickable = EC.elementToBeClickable(moneyEarned);
-//								 browser.wait(isClickable, 30000);
 						 });
 						 });
 					  });
 				 });
 				  });
-//			 });
 		  });
 		  
 		  });
@@ -824,23 +766,9 @@ var MyDashboardPage = function() {
 			  
 			  launchArena.click().then(function(){
 				  browser.navigate().back().then(function(){
-//					  var iosState = element(by.css('.ios .unregistered .empty-state-placeholder'));
-//					  isClickable = EC.elementToBeClickable(iosState);
-//					  browser.wait(isClickable, 30000);
-						
-//					  expect(iosState.isPresent()).toEqual(true);
-						
-//					  var participateLink = iosState.all(by.partialLinkText('PARTICIPATE')).get(0);
-//					  participateLink.click().then(function(){
-							//////////////
 							
 						  var iosChallenges = element(by.css('.badge-and-challenges')).all(by.partialLinkText('VIEW CHALLENGES'));
 						  iosChallenges.get(0).click().then(function(){
-//								  var landingBanner = element(by.css('.landing-banner'));
-//								  isClickable = EC.elementToBeClickable(landingBanner);
-//								  browser.wait(isClickable, 170000);
-								  
-								  
 							  browser.get(dashBoardUrl);
 							  moneyEarned = element(by.id('metrics'));
 							  isClickable = EC.elementToBeClickable(moneyEarned);
@@ -864,57 +792,15 @@ var MyDashboardPage = function() {
 								  var blogLink = postLink.all(by.css('.blog-link a')).get(0);
 								  expect(blogLink.waitReady()).toBeTruthy();
 									  
-//								  element.all(by.css('.posts .post')).each(function(elem, index) {
 								  blogLink.click().then(function(){
 									  		browser.get(dashBoardUrl);
 								  });
-//										});
 									  
 								  });
 							  });
-//						});
 						
 					 });
 				 });
 		  };
-	  
-	  
-	  
-	 /** 
-	  var allActiveChallengesPage = element(by.partialLinkText('VIEW ALL ACTIVE CHALLENGES'));
-	  browser.actions().mouseMove(allActiveChallengesPage).perform();
-	  allActiveChallengesPage.click().then(function(){
-		 browser.get(dashBoardUrl);
-		 var allPastChallenges = element(by.partialLinkText('VIEW ALL PAST CHALLENGES'));
-		 browser.actions().mouseMove(allPastChallenges).perform();
-		 allPastChallenges.click().then(function(){
-			 browser.get(dashBoardUrl);
-			 
-		 });
-	  });
-	  
-	  
-	  var srmTiles = element(by.css('.srm-tiles')).all(by.css('srm-tile'));
-	  expect(srmTiles.count()).toEqual(3);
-	  var problemArchivesLink = element(by.partialLinkText('PROBLEM ARCHIVES'));
-	  problemArchivesLink.click().then(function(){
-		  browser.get(dashBoardUrl);
-		  var matchEditorialLink = element(by.partialLinkText('MATCH EDITORIALS'));
-		  isClickable = EC.elementToBeClickable(matchEditorialLink);
-		  browser.wait(isClickable, 30000);
-		  matchEditorialLink.click().then(function(){
-			  var learnMoreLink = element(by.partialLinkText('LEARN MORE'));
-			  isClickable = EC.elementToBeClickable(learnMoreLink);
-			  browser.wait(isClickable, 30000);
-			  learnMoreLink.click().then(function(){
-				  console.log('hi');
-			  });
-		  });
-		  
-	  });**/
-//		  });
-//  };
-   
-  
 };
 module.exports = new MyDashboardPage();

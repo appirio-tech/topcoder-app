@@ -39,21 +39,12 @@ var AccountPage = function() {
 	
 	  var EC = protractor.ExpectedConditions;
 		
-//	  var toolTip = element(by.css('.introjs-tooltip'));
-//	  var isClickable = EC.elementToBeClickable(toolTip);
-//	  browser.wait(isClickable, 30000);
-//	  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
-//	  isClickable = EC.elementToBeClickable(skipBtn);
-//	  browser.wait(isClickable, 30000);
-//	  skipBtn.click().then(function() {
 	  
 	  var checkField= element(by.css('.menu-item-header'));
 	  var isClickable1 = EC.elementToBeClickable(checkField);
 	  browser.wait(isClickable1, 30000);
 	  
 	  var nameHeader = element.all(by.css('.main-menu li')).get(1);
-//	  var isClickable = EC.elementToBeClickable(nameHeader);
-//	  browser.wait(isClickable, 30000);
 	  
 	  browser.actions().mouseMove(nameHeader).perform();
 	  var profileHeader = element(by.repeater("item in vm.userMenu").row(1));
@@ -64,26 +55,6 @@ var AccountPage = function() {
 	  isClickable = EC.elementToBeClickable(profileLink);
 	  browser.wait(isClickable, 30000);
 	  profileLink.click().then(function() {
-//		  toolTip = element(by.css('.introjs-tooltip'));
-//		  isClickable = EC.elementToBeClickable(toolTip);
-//		  browser.wait(isClickable, 30000);
-//		  skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
-//		  isClickable = EC.elementToBeClickable(skipBtn);
-//		  browser.wait(isClickable, 30000);
-//		  skipBtn.click().then(function() {
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-//		  var username = element(by.css('.info .handle'));
-//		  var isClickable = EC.elementToBeClickable(username);
-//		  browser.wait(isClickable, 30000);
-//		  expect(username.getInnerHtml()).toEqual(loginUserCred.username);
-		  
 		  var editProfile = element(by.partialLinkText('EDIT PROFILE'));
 		  isClickable = EC.elementToBeClickable(editProfile);
 		  browser.wait(isClickable, 80000);
@@ -112,16 +83,11 @@ var AccountPage = function() {
 			  newPassword.sendKeys(loginUserCred.newPassword);
 
 			  var changePasswordBtn = element(by.partialButtonText('Change Password'));
-//			  isClickable = EC.elementToBeClickable(changePasswordBtn);
-//			  browser.wait(isClickable, 30000);
 			  browser.actions().mouseMove(changePasswordBtn).perform();
-//			  
 			  expect(changePasswordBtn.isEnabled()).toEqual(false);
 			  
 		  });
 		  });
-//	  });
-//	  });
   });
   };
   
@@ -141,8 +107,6 @@ var AccountPage = function() {
 	  browser.wait(isClickable1, 30000);
 	  
 	  var nameHeader = element.all(by.css('.main-menu li')).get(1);
-//	  var isClickable = EC.elementToBeClickable(nameHeader);
-//	  browser.wait(isClickable, 30000);
 	  
 	  browser.actions().mouseMove(nameHeader).perform();
 	  var profileLink = element(by.partialLinkText('MY PROFILE'));
@@ -222,11 +186,8 @@ var AccountPage = function() {
 			  
 		  });
 		  });
-//	  });
   });
   };
-  
-  
   
   
   
@@ -251,14 +212,6 @@ var AccountPage = function() {
 	  browser.wait(isClickable, 30000);
 	
 	  profileLink.click().then(function() {
-//		  var toolTip = element(by.css('.introjs-tooltip'));
-//		  var isClickable = EC.elementToBeClickable(toolTip);
-//		  browser.wait(isClickable, 30000);
-//		  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
-//		  isClickable = EC.elementToBeClickable(skipBtn);
-//		  browser.wait(isClickable, 30000);
-//		  skipBtn.click().then(function() {
-		  
 		  var editProfile = element(by.partialLinkText('EDIT PROFILE'));
 		  isClickable = EC.elementToBeClickable(editProfile);
 		  browser.wait(isClickable, 80000);
@@ -294,19 +247,12 @@ var AccountPage = function() {
 			  currentPasswordCheckbox.click();
 			  
 			  
-			  console.log('password'+loginUserCred.password);
-			  console.log('newpassword'+loginUserCred.newPassword);
-			  
-//			  browser.pause();
-
 			  var changePasswordBtn = element(by.partialButtonText('Change Password'));
 			  isClickable = EC.elementToBeClickable(changePasswordBtn);
 			  browser.wait(isClickable, 30000);
-//			  browser.pause();
 			  browser.actions().mouseMove(changePasswordBtn).perform();
 			  
 			  changePasswordBtn.click().then(function(){
-//				  browser.pause();
 				  browser.sleep(6000);
 				  loginPage.get(dashBoardUrl);
 				  
@@ -314,14 +260,9 @@ var AccountPage = function() {
 				  isClickable = EC.elementToBeClickable(metrics);
 				  browser.wait(isClickable, 30000);
 				  
-//				  changePasswordBtn = element(by.partialButtonText('Change Password'));
-//				  isClickable = EC.elementToBeClickable(changePasswordBtn);
-//				  browser.wait(isClickable, 60000);
-				  
 			  });
 			  });
 		  });
-//		  });
 	  });
   };
   
@@ -333,10 +274,6 @@ this.goToAccountPage = function(dashBoardUrl,loginUserCred) {
 	
 	  var EC = protractor.ExpectedConditions;
 		
-//	  this.get(dashBoardUrl);
-//	  var nameHeader = element(by.css('.main-menu')).all(by.css('li')).get(0);
-//	  var nameHeader = itemHeader.get(6);
-	  
 	  var toolTip = element(by.css('.introjs-tooltip'));
 	  var isClickable = EC.elementToBeClickable(toolTip);
 	  browser.wait(isClickable, 30000);
@@ -466,8 +403,6 @@ this.goToAccountPage = function(dashBoardUrl,loginUserCred) {
   this.verifyAccountChanges = function (dashBoardUrl, loginUserCred) {
 	  var EC = protractor.ExpectedConditions;
 
-	  
-	  console.log('in verifyAccountChanges ');
 	  browser.driver.ignoreSynchronization = true;
 	  this.get(dashBoardUrl);
 	  
@@ -537,14 +472,10 @@ this.goToAccountPage = function(dashBoardUrl,loginUserCred) {
 				  var country = element(by.model('searchStr'));
 				  isClickable = EC.elementToBeClickable(country);
 				  browser.wait(isClickable, 30000);
-//				  expect(country.getText()).toEqual(loginUserCred.country);
 				  
 			  });
 		  });
 	  });
-	  
-  
-	  
   };
    
   

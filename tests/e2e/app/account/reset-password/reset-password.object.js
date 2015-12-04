@@ -61,7 +61,6 @@ var ResetPasswordPage = function() {
 			  var formError = element(by.css('.form-errors')).all(by.css('.form-error')).get(2);
 			  isClickable = EC.elementToBeClickable(formError);
 			  browser.wait(isClickable, 30000);
-			  console.log('text '+formError.getInnerHtml());
 			  expect(formError.getInnerHtml()).toContain(errMsg);
 			  
 		  });
@@ -127,7 +126,6 @@ var ResetPasswordPage = function() {
 			  var formError = element(by.css('.form-errors')).all(by.css('.form-error')).get(1);
 			  isClickable = EC.elementToBeClickable(formError);
 			  browser.wait(isClickable, 30000);
-			  console.log('text '+formError.getInnerHtml());
 			  expect(formError.getInnerHtml()).toContain(errMsg);
 			  
 			  

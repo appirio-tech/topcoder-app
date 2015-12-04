@@ -31,21 +31,15 @@ var LoginPage = function() {
   
   this.login = function(loginUser) {
 	  
-//	expect(browser.getTitle()).toContain('Login');
 	  browser.driver.ignoreSynchronization = true;
 	
 	  var EC = protractor.ExpectedConditions;
   	
 	  var passwordInput = element(by.model('vm.currentPassword'));
-//	  isClickable = EC.elementToBeClickable(passwordInput);
-//	  browser.wait(isClickable, 30000);
-//	  passwordInput.clear();
-//	  passwordInput.sendKeys(loginUser.password);
 	  
 	  var userInput = element(by.model('vm.username'));
 	  var isClickable = EC.elementToBeClickable(userInput);
 	  browser.wait(isClickable, 60000);
-	  console.log('username '+loginUser.username);
 	  browser.actions().mouseMove(userInput).perform();
 	  userInput.clear();
 	  userInput.sendKeys(loginUser.username);
@@ -64,51 +58,16 @@ var LoginPage = function() {
 	  
     
 	  loginButton.click().then(function(){
-//		  browser.driver.ignoreSynchronization = true;
-//		  var toolTip = element(by.css('.introjs-tooltip'));
-//		  var isClickable = EC.elementToBeClickable(toolTip);
-//		  browser.wait(isClickable, 30000);
-//		  var skipBtn = toolTip.all(by.css('.introjs-tooltipbuttons .introjs-skipbutton')).get(0);
-//		  isClickable = EC.elementToBeClickable(skipBtn);
-//		  browser.wait(isClickable, 30000);
-//		  skipBtn.click().then(function() {
-			  
-//		  browser.pause();
 		  var pageHeader = element(by.css('.page-info .ng-binding'));
-		 
 		  
 		  expect(pageHeader.waitReady()).toBeTruthy();
-		  
-//		  browser.debugger();
 		  
 		  var isClickable = EC.elementToBeClickable(pageHeader);
 		  browser.wait(isClickable, 60000);
 		  expect(pageHeader.getInnerHtml()).toEqual('Dashboard');
 		  
-//		  var headerDash = element(by.id('header'));
-//		  var isClickable = EC.elementToBeClickable(headerDash);
-//		  browser.wait(isClickable, 60000);
-		  
-//		  var menuItemHeaderList = element.all(by.css('.menu-item-header'));
-//		  var menuItemHeader = menuItemHeaderList.get(1);
-//		  var username = menuItemHeader.all(by.css('.username')).get(0);
-//		  isClickable = EC.elementToBeClickable(username);
-//		  browser.wait(isClickable, 60000);
-//		  console.log('username '+username.getInnerHtml());
-//		  expect(username.getInnerHtml()).toEqual(loginUser.username);
-		  
-		  
-//    	element(by.css('.menu-item-header .username')).each(function(element, index) {
-//    		
-//    	var isClickable = EC.elementToBeClickable(element);
-//    	browser.wait(isClickable, 10000);
-// 		element.getText().then(function (text) {
-// 			console.log(index, text);
-// 		});
-//    });
     	expect(true).toEqual(true);
     	
-//		  });
    });
   };
   
@@ -127,11 +86,7 @@ var LoginPage = function() {
 	  browser.wait(isClickable, 30000);
 	  passwordInput.sendKeys(loginUser.password);
 	  
-	  console.log('password '+loginUser.password);
-	  
 	  var loginButton = browser.driver.findElement(By.css('.tc-btn'));
-//	  isClickable = EC.elementToBeClickable(loginButton);
-//	  browser.wait(isClickable, 30000);
     
 	  loginButton.click().then(function(){
 		  userInput = element(by.model('vm.username'));
@@ -146,16 +101,7 @@ var LoginPage = function() {
 		  isClickable = EC.elementToBeClickable(formError);
 		  browser.wait(isClickable, 30000);
 		  expect(formError.getText()).toEqual(errMsg);
-//		  expect(formError.isDisplayed()).toEqual(true);
 		  
-//    	element.all(by.css('.label')).each(function(element, index) {
-//    		
-//    	var isClickable = EC.elementToBeClickable(element);
-//    	browser.wait(isClickable, 10000);
-// 		element.getText().then(function (text) {
-// 			console.log(index, text);
-// 		});
-//    });
     	expect(true).toEqual(true);
    });
   };
@@ -178,9 +124,6 @@ var LoginPage = function() {
 	  
 	  
 	  var loginButton = browser.driver.findElement(By.css('.tc-btn'));
-//	  isClickable = EC.elementToBeClickable(loginButton);
-//	  browser.wait(isClickable, 30000);
-	  
     
 	  loginButton.click().then(function(){
 		  userInput = element(by.model('vm.username'));
@@ -216,12 +159,7 @@ var LoginPage = function() {
 	  browser.wait(isClickable, 30000);
 	  passwordInput.sendKeys(loginUser.password);
 	  
-	  console.log('password '+loginUser.password);
-	  
 	  var loginButton = browser.driver.findElement(By.css('.tc-btn'));
-//	  isClickable = EC.elementToBeClickable(loginButton);
-//	  browser.wait(isClickable, 30000);
-	  console.log('userInput'); 
 	  
     
 	  loginButton.click().then(function(){
@@ -231,16 +169,6 @@ var LoginPage = function() {
 		  isClickable = EC.elementToBeClickable(formError);
 		  browser.wait(isClickable, 30000);
 		  expect(formError.getText()).toEqual(errMsg);
-//		  expect(formError.isDisplayed()).toEqual(true);
-		  
-//    	element.all(by.css('.label')).each(function(element, index) {
-//    		
-//    	var isClickable = EC.elementToBeClickable(element);
-//    	browser.wait(isClickable, 10000);
-// 		element.getText().then(function (text) {
-// 			console.log(index, text);
-// 		});
-//    });
     	expect(true).toEqual(true);
    });  
   };
@@ -260,34 +188,18 @@ var LoginPage = function() {
 	  browser.wait(isClickable, 30000);
 	  passwordInput.sendKeys(loginUser.password);
 	  
-	  console.log('password '+loginUser.password);
-	  
 	  var loginButton = browser.driver.findElement(By.css('.tc-btn'));
-//	  isClickable = EC.elementToBeClickable(loginButton);
-//	  browser.wait(isClickable, 30000);
-	  console.log('userInput'); 
 	  
     
 	  loginButton.click().then(function(){
 		  username = element(by.model('vm.username'));
 		  var userNameAvail = username.isPresent();
-		  console.log('user name status'+userNameAvail);
 		  var formError = element(by.css('.form-errors')).all(by.css('.form-error')).get(1);
 		  isClickable = EC.elementToBeClickable(formError);
 		  browser.wait(isClickable, 30000);
-		  console.log('text '+formError.getInnerHtml());
 		  expect(formError.getInnerHtml()).toEqual(errMsg);
-//		  expect(formError.isDisplayed()).toEqual(true);
 		  
-//    	element.all(by.css('.label')).each(function(element, index) {
-//    		
-//    	var isClickable = EC.elementToBeClickable(element);
-//    	browser.wait(isClickable, 10000);
-// 		element.getText().then(function (text) {
-// 			console.log(index, text);
-// 		});
-//    });
-    	expect(true).toEqual(true);
+		  expect(true).toEqual(true);
    });
   };
   
@@ -298,7 +210,6 @@ var LoginPage = function() {
 	  
 	  var bD = browser.driver;
 	  var EC = protractor.ExpectedConditions;
-	  console.log('twitter login');
 	  
 	  var userInput = element(by.model('vm.username'));
 	  var isClickable = EC.elementToBeClickable(userInput);
@@ -309,20 +220,17 @@ var LoginPage = function() {
 	  this.selectWindow(1);
 	  browser.driver.wait(function() {
 		  var emailId = browser.driver.findElement(by.id('username_or_email'));
-		  console.log('twitter username');
 		  emailId.sendKeys(loginUser1.username);
 		  return true;
 	  },30000);
 	  browser.driver.wait(function() {
 		  var password = browser.driver.findElement(by.id('password'));
-		  console.log('twitter password');
 		  password.sendKeys(loginUser1.password);
 		  return true;
 	  },30000);
 	  
 	  browser.driver.wait(function(){
 		 var loginBtn = browser.driver.findElement(by.css('.submit'));
-		 console.log(' twitter login button');
 		 loginBtn.click();
 		 return true;
 	  },30000);
@@ -344,7 +252,6 @@ var LoginPage = function() {
 	  isClickable = EC.elementToBeClickable(username);
 	  browser.wait(isClickable, 30000);
 	  
-	  console.log('out of twitter login');
 	  expect(true).toEqual(true);
 	  
   };
@@ -358,7 +265,6 @@ var LoginPage = function() {
 	  
 	  var bD = browser.driver;
 	  var EC = protractor.ExpectedConditions;
-	  console.log('twitter login');
 	  
 	  var userInput = element(by.model('vm.username'));
 	  var isClickable = EC.elementToBeClickable(userInput);
@@ -369,21 +275,18 @@ var LoginPage = function() {
 	  this.selectWindow(1);
 	  browser.driver.wait(function() {
 		  var emailId = browser.driver.findElement(by.id('email'));
-		  console.log('fb username');
 		  emailId.sendKeys(loginUser1.username);
 		  return true;
 	  },30000);
 	  
 	  browser.driver.wait(function() {
 		  var password = browser.driver.findElement(by.id('pass'));
-		  console.log('fb password');
 		  password.sendKeys(loginUser1.password);
 		  return true;
 	  },30000);
 	  
 	  browser.driver.wait(function(){
 		 var loginBtn = browser.driver.findElement(by.id('u_0_2'));
-		 console.log(' fb login button');
 		 loginBtn.click();
 		 return true;
 		 
@@ -404,36 +307,6 @@ var LoginPage = function() {
 	  isClickable = EC.elementToBeClickable(username);
 	  browser.wait(isClickable, 30000);
 	  
-	  
-	  
-	  
-//	  this.selectWindow(0);
-	  /*browser.driver.wait(function() {
-		  browser.driver.findElement(by.css('.social-icons .fa-facebook-square')).then(function(elem) {   
-			  console.log('fb login');
-			  elem.click();
-				  browser.driver.findElement(by.id('email')).then(function(elem){
-					  elem.sendKeys(loginUser1.username);
-					  console.log('fb username');
-					  return true;
-				  });
-				  browser.driver.findElement(by.id('pass')).then(function(elem){
-					  elem.sendKeys(loginUser1.password);
-					  console.log('fb password ');
-					  return true;
-				  });
-				  browser.driver.findElement(by.id('u_0_2')).then(function(elem){
-					  elem.click();
-					  console.log(' fb login button');
-					  return true;
-				  });
-				  
-			  console.log('fb login click');
-			  return true;
-		  });
-	  },30000);*/
-	  
-	  console.log('out of fb login');
 	  expect(true).toEqual(true);
 	  
   };
@@ -445,7 +318,6 @@ var LoginPage = function() {
 	  
 	  var bD = browser.driver;
 	  var EC = protractor.ExpectedConditions;
-	  console.log('google login');
 	  
 	  var userInput = element(by.model('vm.username'));
 	  var isClickable = EC.elementToBeClickable(userInput);
@@ -456,14 +328,12 @@ var LoginPage = function() {
 	  this.selectWindow(1);
 	  browser.driver.wait(function() {
 		  var emailId = browser.driver.findElement(By.id('Email'));
-		  console.log('google username');
 		  emailId.sendKeys(loginUser1.username);
 		  return true;
 	  },30000);
 	  
 	  browser.driver.wait(function() {
 		  var next = browser.driver.findElement(By.id('next'));
-		  console.log('google next');
 		  next.click();
 		  return true;
 	  },30000);
@@ -471,14 +341,12 @@ var LoginPage = function() {
 	  browser.driver.sleep(3000);
 	  browser.driver.wait(function(){
 		 var password1 = browser.driver.findElement(By.name('Passwd'));
-		 console.log(' google login Passwd');
 		 password1.sendKeys(loginUser1.password);
 		 return true;
 	  },30000);
 	  
 	  browser.driver.wait(function(){
 			 var signIn = browser.driver.findElement(By.id('signIn'));
-			 console.log('google signIn');
 			 signIn.click();
 			 return true;
 	  },30000);
@@ -498,7 +366,6 @@ var LoginPage = function() {
 	  isClickable = EC.elementToBeClickable(username);
 	  browser.wait(isClickable, 30000);
 	  
-	  console.log('out of google login');
 	  expect(true).toEqual(true);
   };
   
@@ -509,7 +376,6 @@ var LoginPage = function() {
 	  
 	  var bD = browser.driver;
 	  var EC = protractor.ExpectedConditions;
-	  console.log('git login');
 	  
 	  var userInput = element(by.model('vm.username'));
 	  var isClickable = EC.elementToBeClickable(userInput);
@@ -520,7 +386,6 @@ var LoginPage = function() {
 	  this.selectWindow(1);
 	  browser.driver.wait(function() {
 		  var emailId = browser.driver.findElement(by.id('login_field'));
-		  console.log('git username');
 		  emailId.sendKeys(loginUser1.username);
 		  return true;
 	  },30000);
@@ -528,13 +393,11 @@ var LoginPage = function() {
 	  browser.driver.wait(function(){
 		 var password = browser.driver.findElement(by.id('password'));
 		 password.sendKeys(loginUser1.password);
-		 console.log(' Git login Passwd');
 		 return true;
 	  },30000);
 	  
 	  browser.driver.wait(function(){
 			 var signIn = browser.driver.findElement(by.name('commit'));
-			 console.log('Git signIn');
 			 signIn.click();
 			 return true;
 	  },30000);
@@ -554,7 +417,6 @@ var LoginPage = function() {
 	  isClickable = EC.elementToBeClickable(username);
 	  browser.wait(isClickable, 30000);
 	  
-	  console.log('out of git login');
 	  expect(true).toEqual(true);
   };
   
@@ -562,7 +424,6 @@ var LoginPage = function() {
   
   this.logOut = function (dashBoardUrl) {
 	  this.get(dashBoardUrl);
-//	  browser.get('https://beta.topcoder.com/my-dashboard/');
 	  var EC = protractor.ExpectedConditions;
 	  var menuItemHeaders = element.all(by.css('.menu-item-header'));
 	  var logoutHeader = menuItemHeaders.get(1);
@@ -571,25 +432,17 @@ var LoginPage = function() {
 	  browser.actions().mouseMove(logoutHeader).perform();
 	  var mainMenuLiList = element.all(by.css('.main-menu li'));
 	  var submenuLi = mainMenuLiList.get(1);
-//	  var logoutLink = submenuLi.all(by.css('ul .submenu-item .menu-link')).get(0);
 	  var logoutLink = element(by.partialLinkText('LOG OUT'));
 	  expect(logoutLink.waitReady()).toBeTruthy();
 	  
-//	  var submenuItems = element(by.css('.menu-item .submenu')).all(by.css('.submenu-item'));
-//	  var elementLabel = submenuItems.get(0);
 	  isClickable = EC.elementToBeClickable(logoutLink);
 	  browser.wait(isClickable, 30000);
 	
 	  logoutLink.click().then(function() {
 		
-//		var label = element(by.css('.label'));
-//		var isClickable = EC.elementToBeClickable(label);
-//		browser.wait(isClickable, 20000);
 		  var loginBtn = element(by.partialLinkText('[ Log in ]'));
-//		  var userInput = element(by.model('vm.username'));
 		  var isClickable = EC.elementToBeClickable(loginBtn);
 		  browser.wait(isClickable, 30000);
-//		  userInput.sendKeys(loginUser.username);
 		  expect(true).toEqual(true);
 		
 	  });

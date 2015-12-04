@@ -54,7 +54,6 @@ var ProfilePage = function() {
 			  var imageUpload = element(by.css('.file-upload'));
 			  isClickable = EC.elementToBeClickable(imageUpload);
 			  browser.wait(isClickable, 30000);
-			  console.log('absolutePath'+absolutePath);
 //			  var fileInputField = element(by.id('change-image-input'));
 //			  $('input[type="file"]').sendKeys(absolutePath);
 //			  fileInputField.sendKeys(absolutePath);
@@ -87,15 +86,11 @@ var ProfilePage = function() {
 			  
 			  designSwitch.getCssValue('background-color').then(function(backgroundColor){
 				  if(backgroundColor == 'rgba(209, 211, 212, 1)') {
-					  console.log('d1d design');
 					  if(loginUserCred.design == 'y'){
 						  designSwitch.click();
 					  }
 				  } else{
-					  console.log('selected design'+backgroundColor);
-					  console.log('loginUserCred.design '+loginUserCred.design);
 					  if(loginUserCred.design != 'y'){
-						  console.log('loginUserCred.design '+loginUserCred.design);
 						  designSwitch.click();
 					  }
 				  }
@@ -109,15 +104,11 @@ var ProfilePage = function() {
 			  
 			  devSwitch.getCssValue('background-color').then(function(backgroundColor){
 				  if(backgroundColor == 'rgba(209, 211, 212, 1)') {
-					  console.log('d1d dev');
 					  if(loginUserCred.development == 'y'){
 						  devSwitch.click();
 					  }
 				  } else{
-					  console.log('selected dev '+backgroundColor);
-					  console.log('loginUserCred.development '+loginUserCred.development);
 					  if(loginUserCred.development != 'y'){
-						  console.log('loginUserCred.development '+loginUserCred.development);
 						  devSwitch.click();
 					  }
 				  }
@@ -132,14 +123,11 @@ var ProfilePage = function() {
 			  
 			  dataScienceSwitch.getCssValue('background-color').then(function(backgroundColor){
 				  if(backgroundColor == 'rgba(209, 211, 212, 1)') {
-					  console.log('d1d science');
 					  if(loginUserCred.dataScience == 'y'){
 						  dataScienceSwitch.click();
 					  }
 				  } else{
-					  console.log('selected science'+backgroundColor);
 					  if(loginUserCred.dataScience != 'y'){
-						  console.log('loginUserCred.science '+loginUserCred.dataScience);
 						  dataScienceSwitch.click();
 					  }
 				  }
@@ -157,7 +145,6 @@ var ProfilePage = function() {
 				  browser.actions().mouseMove(submitBtn).perform();
 				  submitBtn.click().then(function(){
 					  browser.driver.sleep(1000);
-//					  loginPage.selectWindow(1);
 					  var toasterList = element.all(by.repeater('toaster in toasters'));
 					  var firstToaster = toasterList.get(0);
 					  isClickable = EC.elementToBeClickable(firstToaster);
@@ -192,16 +179,12 @@ var ProfilePage = function() {
 	  browser.wait(isClickable, 60000);
 	  
 	  
-//	  var skillElem = element(by.css('.skills .activity'));
-	  
-//	  expect(skillElem.getText()).toEqual('SKILLS');
 	  
 	  var skillSetList = element.all(by.repeater('skill in vm.skills'));
 	  
 	  var viewMoreVisible = false;
 	  if(loginUserCred.skillSet.length > 10){
 		  viewMoreVisible = true;
-		  console.log('counter value'+loginUserCred.skillSet.length);
 		  var moreBtn = element(by.css('.skills .more'));
 		  expect(moreBtn.isDisplayed()).toBeTruthy();
 		  moreBtn.click();
@@ -218,7 +201,6 @@ var ProfilePage = function() {
 		  // Will print 0 First, 1 Second, 2 Third.
 		  var elem = skillElem.all(by.css(' skill-tile .name')).get(0);
 		  elem.getText().then(function(text) {
-			  console.log('skill '+text);
 			  var j=0;
 			  var found = false;
 			  for(;j<loginUserCred.skillSet.length; j++) {
@@ -293,7 +275,6 @@ var ProfilePage = function() {
 		  expect(activityType.isPresent()).toEqual(true);
 		  
 		  activityType.getText().then(function(activityName){
-			  console.log('activity name'+activityName);
 			  if(activityName == 'COPILOT ACTIVITY') {
 				  var firstTrack = elem.all(by.css('.subtrack')).get(0);
 				  var subTrackName = firstTrack.all(by.css('.subtrack .name')).get(0);
@@ -345,7 +326,6 @@ var ProfilePage = function() {
 					  subTrackName.getText().then(function(subTrackNameValue){
 						  var foundTrack = false;
 						  for(var j=0; j < profileData.designActivityType.length; j++) {
-							  console.log('j'+profileData.designActivityType[j]+' '+j);
 							  if(profileData.designActivityType[j] == subTrackNameValue){
 								  foundTrack = true;
 							  }
@@ -353,7 +333,6 @@ var ProfilePage = function() {
 						 if(foundTrack == true) {
 							 var trackCounterElem = subTrackElem.all(by.css('.ranking .number')).get(0);
 							 trackCounterElem.getText().then(function(trackCounter){
-								 console.log('trackCounter'+trackCounter);
 								 var isInteger = Math.round(trackCounter) === parseInt(trackCounter);
 								 expect(isInteger).toEqual(true);
 								 var trackTag = subTrackElem.all(by.css('.ranking .tag')).get(0);
@@ -361,7 +340,6 @@ var ProfilePage = function() {
 							 });
 							 
 						 } else {
-							 console.log('subTrackNameValue' +subTrackNameValue);
 							 expect(foundTrack).toEqual(true);
 						 }
 					  });
@@ -377,7 +355,6 @@ var ProfilePage = function() {
 					  subTrackName.getText().then(function(subTrackNameValue){
 						  var foundTrack = false;
 						  for(var j=0; j < profileData.dataActivityType.length; j++) {
-							  console.log('j'+profileData.dataActivityType[j]+' '+j);
 							  if(profileData.dataActivityType[j] == subTrackNameValue){
 								  foundTrack = true;
 							  }
@@ -385,7 +362,6 @@ var ProfilePage = function() {
 						 if(foundTrack == true) {
 							 var trackCounterElem = subTrackElem.all(by.css('.ranking .number')).get(0);
 							 trackCounterElem.getText().then(function(trackCounter){
-								 console.log('trackCounter'+trackCounter);
 								 var isInteger = Math.round(trackCounter) === parseInt(trackCounter);
 								 expect(isInteger).toEqual(true);
 								 var trackTag = subTrackElem.all(by.css('.ranking .tag')).get(0);
@@ -393,7 +369,6 @@ var ProfilePage = function() {
 							 });
 							 
 						 } else {
-							 console.log('subTrackNameValue' +subTrackNameValue);
 							 expect(foundTrack).toEqual(true);
 						 }
 					  });
@@ -473,7 +448,6 @@ var ProfilePage = function() {
 	  browser.wait(isClickable, 60000);
 	  
 	  if(loginUserCred.externalLinks.length == 0){
-		  console.log('empty state');
 		  var emptyPlaceHolder = element(by.css('.external-links .empty-state .empty-state-placeholder'));
 		  expect(emptyPlaceHolder.isDisplayed()).toBeTruthy();
 		  var titleCont = emptyPlaceHolder.all(by.css('.title')).get(0);
@@ -607,12 +581,7 @@ var ProfilePage = function() {
 				  
 				  
 				  var designNumber = 0, devNumber = 0,copilotNumber = 0;
-				  console.log('loginUserCred.design'+loginUserCred.design);
-				  console.log('loginUserCred.dataScience'+loginUserCred.dataScience);
-				  console.log('loginUserCred.development'+loginUserCred.development);
-				  console.log('loginUserCred.copilot'+loginUserCred.copilot);
 				  if(loginUserCred.dataScience == 'y') {
-					  console.log('loginUserCred.dataScience'+loginUserCred.dataScience);
 					var dataIcon = element(by.css('.track .data-icon'));
 					isClickable = EC.elementToBeClickable(dataIcon);
 					browser.wait(isClickable, 60000);
@@ -628,8 +597,6 @@ var ProfilePage = function() {
 				  }
 				  
 				  if(loginUserCred.design == 'y') {
-					  console.log('loginUserCred.design'+loginUserCred.design);
-					  
 					  var designIcon = element(by.css('.track .design-icon'));
 					  isClickable = EC.elementToBeClickable(designIcon);
 					  browser.wait(isClickable, 60000);
@@ -646,7 +613,6 @@ var ProfilePage = function() {
 				  }
 				  
 				  if(loginUserCred.development == 'y') {
-					  console.log('loginUserCred.development'+loginUserCred.development);
 					  var devIcon = element(by.css('.track .develop-icon'));
 					  isClickable = EC.elementToBeClickable(designIcon);
 					  browser.wait(isClickable, 60000);
@@ -660,7 +626,6 @@ var ProfilePage = function() {
 				  }
 				  
 				  if(loginUserCred.copilot == 'y') {
-					  console.log('loginUserCred.copilot'+loginUserCred.copilot);
 					  var copilotIcon = element(by.css('.track .copilot-icon'));
 					  isClickable = EC.elementToBeClickable(copilotIcon);
 					  browser.wait(isClickable, 60000);
@@ -684,12 +649,9 @@ var ProfilePage = function() {
 				  browser.wait(isClickable, 60000);
 		  
 				  badgesLink.click().then(function(){
-//					  loginPage.selectWindow(1);
 					  var subBadge = element.all(by.css('.subBadge')).get(0);
 					  expect(subBadge.isPresent()).toEqual(true);
 					  
-//					  var closeButton = element(by.css('.ngdialog-close:before'));
-//					  closeButton.click();
 					  browser.refresh();
 					  
 					  editProfile = element(by.partialLinkText('EDIT PROFILE'));
@@ -725,7 +687,6 @@ var ProfilePage = function() {
 this.goToProfileSkill = function(dashBoardUrl,loginUserCred) {
 	  
 	  browser.driver.ignoreSynchronization = true;
-//	  console.log(browser.driver.ignoreSynchronization +'browser.driver.ignoreSynchronization');
 	
 	  var EC = protractor.ExpectedConditions;
 	  var until = protractor.until;
@@ -768,7 +729,6 @@ this.goToProfileSkill = function(dashBoardUrl,loginUserCred) {
 			  var skillSet = element(by.id('tagId_value'));
 			  isClickable = EC.elementToBeClickable(skillSet);
 			  browser.wait(isClickable, 60000);
-//			  for(var i=0; i<loginUserCred.skillSet.length; i++) {
 			  skillSet.clear();
 				  skillSet.sendKeys(loginUserCred.skillSet[0]).then(function(){
 					  browser.driver.manage().timeouts().implicitlyWait( 6000);
@@ -781,7 +741,6 @@ this.goToProfileSkill = function(dashBoardUrl,loginUserCred) {
 					  
 					  skillSetDropDown.all(by.css('.angucomplete-title')).filter(function(elem, index){
 						  return elem.getInnerHtml().then(function(text){
-							  console.log('text value'+text);
 							  return text.indexOf(loginUserCred.skillSet[0]) != -1 ;
 						  })
 					  }).then(function(filteredElements){
@@ -855,7 +814,6 @@ this.goToProfileGitLogin = function(dashBoardUrl,loginUserCred) {
 					selectWindow(1);
 					  browser.driver.wait(function() {
 						  var emailId = browser.driver.findElement(by.id('login_field'));
-						  console.log('git username');
 						  emailId.sendKeys(loginUserCred.gitUsername);
 						  return true;
 					  },30000);
@@ -863,13 +821,11 @@ this.goToProfileGitLogin = function(dashBoardUrl,loginUserCred) {
 					  browser.driver.wait(function(){
 						 var password = browser.driver.findElement(by.id('password'));
 						 password.sendKeys(loginUserCred.gitPassword);
-						 console.log(' Git login Passwd');
 						 return true;
 					  },30000);
 					  
 					  browser.driver.wait(function(){
 							 var signIn = browser.driver.findElement(by.name('commit'));
-							 console.log('Git signIn');
 							 signIn.click();
 							 return true;
 					  },30000);
@@ -951,16 +907,13 @@ this.goToProfileBitBucketLogin = function(dashBoardUrl,loginUserCred) {
 			  expect(statusList.get(0).getInnerHtml()).toEqual('Disconnect');
 			  statusList.get(0).getInnerHtml().then(function(statusType){
 				  if(statusType == 'Disconnect'){
-					  console.log('status type' + statusType);
 					  statusList.get(0).getCssValue('display').then(function(displayType) {
-						  console.log('status display' + displayType);
 						  if(displayType == 'none') {
 							  var faGithub = element(by.css('.el-bitbucket'));
 								faGithub.click();
 								loginPage.selectWindow(1);
 								  browser.driver.wait(function() {
 									  var emailId = browser.driver.findElement(by.id('id_username'));
-									  console.log('git username');
 									  emailId.sendKeys(loginUserCred.gitUserName);
 									  return true;
 								  },30000);
@@ -968,24 +921,19 @@ this.goToProfileBitBucketLogin = function(dashBoardUrl,loginUserCred) {
 								  browser.driver.wait(function(){
 									 var password = browser.driver.findElement(by.id('id_password'));
 									 password.sendKeys(loginUserCred.gitPassword);
-									 console.log(' Git login Passwd');
 									 return true;
 								  },30000);
 								  
 								  browser.driver.wait(function(){
 									  var signIn = browser.driver.findElement(by.name('submit'));
-									  console.log('Git signIn');
 									  signIn.click().then(function(){
-//										  loginPage.selectWindow(1);
 										  browser.driver.wait(function(){
 											  var signIn1 = element(by.name('submit'));
 											  signIn1.isPresent().then(function(present){
 												 if(present == 'true'){
-													 console.log('Git submit access');
 													 signIn1.click();
 													 return true;
 												 } else {
-													 console.log('present '+present)
 												 }
 											  });
 
@@ -993,7 +941,6 @@ this.goToProfileBitBucketLogin = function(dashBoardUrl,loginUserCred) {
 									  });
 									  return true;
 								  },30000);
-//								  loginPage.selectWindow(1);
 								  
 								  
 								  browser.getAllWindowHandles().then(function (handles) {
@@ -1006,50 +953,8 @@ this.goToProfileBitBucketLogin = function(dashBoardUrl,loginUserCred) {
 						  } 
 					  });
 				  }else {
-					  console.log('i am here .. get me');
 				  }
 			  })
-			  /*
-			  if(statusList.get(0).getInnerHtml() == 'Disconnect') {
-				  expect(statusList.get(0).getAttirbute('display').toEqual('none'));
-				if(statusList.get(0).getAttirbute('display') == 'none') {
-					var faGithub = element(by.css('.el-bitbucket'));
-					faGithub.click();
-					this.selectWindow(1);
-					  browser.driver.wait(function() {
-						  var emailId = browser.driver.findElement(by.id('id_username'));
-						  console.log('git username');
-						  emailId.sendKeys(loginUserCred.gitUsername);
-						  return true;
-					  },30000);
-					  
-					  browser.driver.wait(function(){
-						 var password = browser.driver.findElement(by.id('id_password'));
-						 password.sendKeys(loginUserCred.gitPassword);
-						 console.log(' Git login Passwd');
-						 return true;
-					  },30000);
-					  
-					  browser.driver.wait(function(){
-						  var signIn = browser.driver.findElement(by.name('submit'));
-						  console.log('Git signIn');
-						  signIn.click();
-						  return true;
-					  },30000);
-					  
-					  browser.getAllWindowHandles().then(function (handles) {
-						  browser.switchTo().window(handles[0]);
-					  });
-					  
-					  if(githubAccount.all(by.css('.status')).get(0).getInnerHtml() == 'Connecting'){
-						  expect(true).toEqual(true);
-					  };
-					
-					
-				}  
-			  } else {
-				  console.log('i am here .. get me');
-			  }*/
 		  });
 		  });
 	  });

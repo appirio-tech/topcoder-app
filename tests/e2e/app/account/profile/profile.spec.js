@@ -6,10 +6,8 @@
  
  
 	 describe('Profile Login', function() {
-		 console.log(profileData.profileUpdateInfo.length);
 		 var i=0;
 		 for (; i< profileData.profileUpdateInfo.length; i++) {
-			 console.log('user creds :'+profileData.profileUpdateInfo[i].username);
 			 (function(loginUserCred) {
 				 it('My Profile', function() {
 					 loginPage.get(profileData.baseUrl);
@@ -21,37 +19,18 @@
 					 loginPage.logOut(profileData.dashBoardUrl);
 				 });
 		  
-				 afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-//								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-//								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
 		        })(profileData.profileUpdateInfo[i]);
 		 }
 		 
 		 
 		 
-		 var i=0;
+		 i=0;
 		 for (; i< profileData.profileUpdateInfo.length; i++) {
 			 console.log('user creds :'+profileData.profileUpdateInfo[i].username);
 			 (function(loginUserCred) {
 				 it('Profile Left Panel Verfication', function() {
 					 loginPage.get(profileData.baseUrl);
 					 loginPage.login(loginUserCred);
-//					 profilePage.goToProfilePage(profileData.dashBoardUrl, loginUserCred);
 					 profilePage.verifyProfileChanges(profileData.dashBoardUrl, loginUserCred);
 				 });
 				 
@@ -71,24 +50,6 @@
 					 loginPage.logOut(profileData.dashBoardUrl);
 				 });
 		  
-				 afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-//								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-//								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
 		        })(profileData.profileUpdateInfo[i]);
 			 
 			 
@@ -109,24 +70,6 @@
 					 loginPage.logOut(profileData.dashBoardUrl);
 				 });
 		  
-				 afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-//								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-//								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
 		        })(profileData.skillUserCred[i]);
 			 
 			 

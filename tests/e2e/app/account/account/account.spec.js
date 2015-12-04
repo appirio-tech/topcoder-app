@@ -28,10 +28,9 @@
 					 loginPage.get(accountData.baseUrl);
 					 loginPage.login(loginUserCred);
 					 accountPage.goToAccountPage(accountData.dashBoardUrl, loginUserCred);
-//					 accountPage.verifyAccountChanges(accountData.dashBoardUrl, loginUserCred);
 				 });
 		  
-				 it('User logout', function() {
+				 it('Account logout', function() {
 					 loginPage.logOut(accountData.dashBoardUrl);
 				 });
 		  
@@ -67,7 +66,7 @@
 					 accountPage.goToInvalidLengthChangePassword(accountData.dashBoardUrl, loginUserCred);
 				 });
 		  
-				 it('welcomes the user for logout', function() {
+				 it('Account Logout', function() {
 					 loginPage.logOut(accountData.dashBoardUrl);
 				 });
 		  
@@ -104,7 +103,7 @@
 					 accountPage.goToInvalidNameCountry(accountData.dashBoardUrl, loginUserCred, accountData.requiredFieldMsg, accountData.emptyCountryMsg);
 				 });
 		  
-				 it('User logout', function() {
+				 it('Account logout', function() {
 					 loginPage.logOut(accountData.dashBoardUrl);
 				 });
 		  
@@ -140,7 +139,7 @@
 					 accountPage.goToChangePassword(accountData.dashBoardUrl, loginUserCred);
 				 });
 		  
-				 it('User logout', function() {
+				 it('Account logout', function() {
 					 loginPage.logOut(accountData.dashBoardUrl);
 				 });
 				 
@@ -153,28 +152,10 @@
 					 accountPage.goToChangePassword(accountData.dashBoardUrl, loginUserCred);
 				 });
 				 
-				 it('User logout', function() {
+				 it('Account logout', function() {
 					 loginPage.logOut(accountData.dashBoardUrl);
 				 });
 		  
-				 afterEach(function() {  
-					 browser.manage().logs().get('browser').then(function(browserLog) {
-						 var i = 0,
-						 severWarnings = false;
-
-						 for(i; i <= browserLog.length-1; i++){
-							 if(browserLog[i].level.name === 'SEVERE'){
-//								 console.log('\n' + browserLog[i].level.name);
-								 //uncomment to see the error
-//								 console.log('(Possibly exception) \n' + browserLog[i].message);
-
-								 severWarnings = true;
-							 }
-						 }
-						 //remove it to run test case even if test case is successful
-//						 expect(severWarnings).toBe(false);
-					 });
-				 });
 		        })(accountData.changePasswordCredentials[i]);
 			 
 			 

@@ -11,8 +11,6 @@ exports.config = {
         regression5: 'app/account/my-dashboard/myDashboard.spec.js',
         regression6: 'app/account/reset-password/reset-password.spec.js'
 	  },
-    //baseUrl: 'http://qualityshepherd.com/angular',
-    //framework: 'jasmine2',
 	  
 //	  allScriptsTimeout: 500000,
 
@@ -36,6 +34,26 @@ exports.config = {
     		reporter
       );
   },
+  
+  afterEach : function(){
+	  browser.manage().logs().get('browser').then(function(browserLog) {
+			 var i = 0,
+			 severWarnings = false;
+
+			 for(i; i <= browserLog.length-1; i++){
+				 if(browserLog[i].level.name === 'SEVERE'){
+					 console.log('\n' + browserLog[i].level.name);
+					 //uncomment to see the error
+					 console.log('(Possibly exception) \n' + browserLog[i].message);
+
+					 severWarnings = true;
+				 }
+			 }
+			 //remove it to run test case even if test case is successful
+//			 expect(severWarnings).toBe(false);
+		 });
+  },
+  
   
   capabilities: {
 	  'browserName': 'firefox'
