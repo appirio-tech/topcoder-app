@@ -121,7 +121,7 @@ config.serve = {
   scssFiles: ['./assets/css/**/*.scss'],
   jadeFiles: ['./app/**/*.jade'],
   options: {
-    port: 3141,
+    port: 3000,
     reloadDelay: 1200,
     open: true,
     logPrefix: 'Topcoder-App',
