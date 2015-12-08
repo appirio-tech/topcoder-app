@@ -102,7 +102,7 @@
 
         .title {{account.data.title}}
 
-      div(ng-switch-when="weblink", key="{{account.key}}")
+      div(ng-switch-when="weblink")
         p.link-title(data-ellipsis, ng-bind="account.title", ng-hide="account.status === 'PENDING'")
         p.link-title(ng-show="account.status === 'PENDING'") Loading data. This will take a few minutes.
 
