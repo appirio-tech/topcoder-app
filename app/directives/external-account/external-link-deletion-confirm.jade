@@ -1,0 +1,8 @@
+.deletion-confirmation
+  .deletion-confirmation-title Heads Up!
+  .deletion-confirmation-message Are you sure you want to delete the external link? This action can't be undone later
+  .deletion-confirmation-buttons
+    .deletion-confirmation-button-yes
+      button.tc-btn.tc-btn-s.tc-btn-ghost(ng-click="deleteAccount() && closeThisDialog()") Yes, Delete Link
+    .deletion-confirmation-button-no
+      button.tc-btn.tc-btn-s(ng-click="closeThisDialog()") Cancel

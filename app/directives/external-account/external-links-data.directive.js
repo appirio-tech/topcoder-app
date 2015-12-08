@@ -18,22 +18,36 @@
         editable: '=',
         userHandle: '@'
       },
-      controller: ['$log', '$scope', 'ExternalWebLinksService', 'toaster',
-        function($log, $scope, ExternalWebLinksService, toaster) {
+      controller: ['$log', '$scope', 'ExternalWebLinksService', 'toaster', 'ngDialog',
+        function($log, $scope, ExternalWebLinksService, toaster, ngDialog) {
 
           $log = $log.getInstance("ExternalLinksDataCtrl");
-          $scope.deletingAccount = false;
+          $scope.toDelete = null;
+          $scope.deletionDialog = null;
 
-          $scope.deleteAccount = function(account) {
+          $scope.confirmDeletion = function(account) {
+            $scope.toDelete = account;
+            $scope.deletionDialog = ngDialog.open({
+              className: 'ngdialog-theme-default tc-dialog',
+              template: 'directives/external-account/external-link-deletion-confirm.html',
+              scope: $scope
+            }).closePromise.then(function (data) {
+              $log.debug('Closing deletion confirmation dialog.');
+              $scope.toDelete = null;
+            });
+          }
+
+          $scope.deleteAccount = function() {
             $log.debug('Deleting Account...');
-            if ($scope.deletingAccount) {
+            var account = $scope.toDelete;
+            if (account && account.deletingAccount) {
               $log.debug('Another deletion is already in progress.');
               return;
             }
             if (account && account.provider === 'weblink') {
+              account.deletingAccount = true;
               $log.debug('Deleting weblink...');
-              $scope.deletingAccount = true;
-              ExternalWebLinksService.removeLink($scope.userHandle, account.key).then(function(data) {
+              return ExternalWebLinksService.removeLink($scope.userHandle, account.key).then(function(data) {
                 $scope.deletingAccount = false;
                 $log.debug("Web link removed: " + JSON.stringify(data));
                 var toRemove = _.findIndex($scope.linkedAccountsData, function(la) {
@@ -43,7 +57,8 @@
                   // remove from the linkedAccountsData array
                   $scope.linkedAccountsData.splice(toRemove, 1);
                 }
-                toaster.pop('success', "Success", "Your link has been added. Data from your link will be visible on your profile shortly.");
+                account.deletingAccount = false;
+                toaster.pop('success', "Success", "Your link has been removed.");
               })
               .catch(function(resp) {
                 var msg = resp.msg;
@@ -54,6 +69,8 @@
                   $log.error("Fatal error: _unlink: " + msg);
                   msg = "Sorry! We are unable to remove your weblink. If problem persists, please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>";
                 }
+
+                account.deletingAccount = false;
                 toaster.pop('error', "Whoops!", msg);
               });
             }
