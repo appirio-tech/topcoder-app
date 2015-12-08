@@ -102,4 +102,4 @@
         p.link-title(data-ellipsis, ng-bind="account.title", ng-hide="account.status === 'PENDING'")
         p.link-title(ng-show="account.status === 'PENDING'") Loading data. This will take a few minutes.
 
-        a.link-url(ng-href="{{account.URL}}", ng-bind="account.URL")
+        a.link-url(ng-href="{{account.URL | urlProtocol}}", ng-bind="account.URL")
