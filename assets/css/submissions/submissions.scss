@@ -1,0 +1,6 @@
+@import 'topcoder/tc-includes';
+
+.submissions-module {
+  @include module-l;
+  background-color: tomato;
+}
