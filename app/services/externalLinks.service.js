@@ -67,7 +67,23 @@
     }
 
     function removeLink(userHandle, key) {
-      return memberApi.one('members', userHandle).one('externalLinks', key).remove();
+      return $q(function($resolve, $reject) {
+        return memberApi.one('members', userHandle).one('externalLinks', key).remove()
+        .then(function(resp) {
+          $resolve(resp);
+        })
+        .catch(function(resp) {
+          var errorStatus = "FATAL_ERROR";
+          $log.error("Error removing weblink: " + resp.data.result.content);
+          if (resp.data.result && resp.data.result.status === 400) {
+            errorStatus = "WEBLINK_NOT_EXIST";
+          }
+          $reject({
+            status: errorStatus,
+            msg: resp.data.result.content
+          });
+        });
+      });
     }
 
   }

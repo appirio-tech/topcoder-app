@@ -1,0 +1,53 @@
+@import 'topcoder/tc-includes';
+
+.ngdialog.tc-dialog {
+  .ngdialog-content {
+    background: transparent;
+    opacity: 1;
+  }
+}
+
+.deletion-confirmation {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: $white;
+  opacity: 1;
+  border-radius: 4px;
+  padding: 40px;
+}
+
+.deletion-confirmation-title {
+  @include sofia-pro-medium;
+  font-size: 20px;
+  line-height: 24px;
+  color: $gray-darkest;
+  text-transform: uppercase;
+}
+
+.deletion-confirmation-message {
+  @include merriweather-sans-regular;//TODO use sansbook font
+
+  .deletion-confirmation-account-title {
+    font-style: italic;
+  }
+}
+
+.deletion-confirmation-buttons {
+  display: flex;
+  flex-flow: row wrap;
+
+  .deletion-confirmation-button-no {
+    margin-left: 10px;
+  }
+}
+
+
+
+@media (min-width: 768px) {
+  .deletion-confirmation {
+    width: 520px;
+    height: 256px;
+  }
+}
