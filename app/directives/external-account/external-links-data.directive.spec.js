@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('External Links Data Directive', function() {
+xdescribe('External Links Data Directive', function() {
   var scope;
   var element;
   var toasterSvc, extLinkSvc, ngDialogSvc;

@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('TC Paginator Directive', function() {
+xdescribe('TC Paginator Directive', function() {
   var scope;
   var element;
   var controller;
