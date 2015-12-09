@@ -313,5 +313,11 @@ external-accounts {
     .external-link-tile--editable {
       // height: 285px;
     }
+
+    .external-link-tile--pending {
+      &:hover {
+        cursor: default;
+      }
+    }
   }
 }

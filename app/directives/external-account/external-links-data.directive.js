@@ -18,11 +18,23 @@
         editable: '=',
         userHandle: '@'
       },
-      controller: ['$log', '$scope', 'ExternalWebLinksService', 'toaster', 'ngDialog',
-        function($log, $scope, ExternalWebLinksService, toaster, ngDialog) {
+      controller: ['$log', '$scope', '$window', '$filter', 'ExternalWebLinksService', 'toaster', 'ngDialog',
+        function($log, $scope, $window, $filter, ExternalWebLinksService, toaster, ngDialog) {
 
           $log = $log.getInstance("ExternalLinksDataCtrl");
           $scope.deletionDialog = null;
+
+          $scope.openLink = function(account) {
+            var url = null;
+            if (account) {
+              if (account.data && account.data.profileURL && account.data.status !== 'PENDING') {
+                url = account.data.profileURL;
+              }
+            }
+            if (url) {
+              $window.open($filter('urlProtocol')(url), '_blank');
+            }
+          }
 
           $scope.confirmDeletion = function(account) {
             $scope.deletionDialog = ngDialog.open({
