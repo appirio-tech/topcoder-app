@@ -5,6 +5,7 @@ describe('Challenges Widget Controller', function() {
   var authService, challengeService, userService;
   var marathons = mockData.getMockMarathons();
   var challenges = mockData.getMockiOSChallenges();
+  var marathons = mockData.getMockMarathons();
 
   beforeEach(function() {
     bard.appModule('topcoder');
@@ -49,37 +50,58 @@ describe('Challenges Widget Controller', function() {
       deferred.resolve(resp);
       return deferred.promise;
     });
+
+    sinon.stub(challengeService, 'getUserMarathonMatches', function(handle, params) {
+      var deferred = $q.defer();
+      deferred.resolve(marathons);
+      return deferred.promise;
+    });
+
+    sinon.stub(challengeService, 'checkChallengeParticipation', function() {
+      var deferred = $q.defer();
+      deferred.resolve(false);
+      return deferred.promise;
+    });
+
   });
 
   bard.verifyNoOutstandingHttpRequests();
 
-  xdescribe('inialization', function() {
-    var myChallenges = null;
-    beforeEach( function(){
-      $scope = $rootScope.$new();
-      myChallenges = $controller('MyChallengesWidgetController', {
-        ChallengeService: challengeService,
-        UserService: userService,
-        userIdentity: {handle: 'username'}
-      });
-      $rootScope.$apply();
+  var controller;
+  beforeEach( function(){
+    $scope = $rootScope.$new();
+    controller = $controller('MyChallengesWidgetController', {
+      ChallengeService: challengeService,
+      UserService: userService,
+      userIdentity: {handle: 'username'}
     });
+    $rootScope.$apply();
+  });
 
+  describe('initialization', function() {
     it('vm.domain should be initialized to default value', function() {
       // default value for domain
-      expect(myChallenges.domain).to.equal(domain);
+      expect(controller.domain).to.equal(domain);
     });
 
     it('vm.userHasChallenges should be initialized to default value', function() {
       // default value for pageIndex
-      expect(myChallenges.userHasChallenges).to.equal(true);
+      expect(controller.userHasChallenges).to.equal(true);
     });
 
-    it('myChallenges.myChallenges should be initialized', function() {
+    it('controller.myChallenges should be initialized', function() {
       // default value for pageIndex
-      expect(myChallenges.myChallenges).to.exist;
-      expect(myChallenges.myChallenges.length).to.equal(challenges.length);
+      expect(controller.myChallenges).to.exist;
+      expect(controller.myChallenges.length).to.equal(4);
     });
+  });
+
+  describe('functions', function() {
+    it('toggleView should work', function() {
+      controller.toggleView('foo');
+      expect(controller.challengeView).to.equal('foo');
+    });
+
   });
 
 });

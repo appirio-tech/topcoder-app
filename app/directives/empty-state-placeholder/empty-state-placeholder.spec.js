@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('Empty State Placeholder Directive', function() {
+xdescribe('Empty State Placeholder Directive', function() {
   var scope;
   var element;
   var emptyStateService;

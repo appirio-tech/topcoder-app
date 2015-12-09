@@ -3,7 +3,7 @@ describe('filters', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, 'CONSTANTS', 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter', 'challengeLinksFilter', 'externalLinkColorFilter', 'emptyFilter', 'ternaryFilter');
+    bard.inject(this, 'CONSTANTS', 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter', 'challengeLinksFilter', 'externalLinkColorFilter', 'emptyFilter', 'ternaryFilter', 'urlProtocolFilter');
     domain = CONSTANTS.domain;
   });
 
@@ -133,6 +133,21 @@ describe('filters', function() {
       expect(ternaryFilter(0, 1, 2)).to.be.equal(2);
       console.log(jstz.determine().name());
       expect(ternaryFilter(true, 'm', 'n')).to.be.equal('m');
+    });
+  });
+
+  describe('urlProtocolFilter', function() {
+    it('should add http to the url ', function() {
+      expect(urlProtocolFilter('google.com')).to.be.equal('http://google.com');
+    });
+    it('should add http to the url ', function() {
+      expect(urlProtocolFilter('www.google.com')).to.be.equal('http://www.google.com');
+    });
+    it('should not add anything to the url ', function() {
+      expect(urlProtocolFilter('http://google.com')).to.be.equal('http://google.com');
+    });
+    it('should not add anything to the url ', function() {
+      expect(urlProtocolFilter('https://google.com')).to.be.equal('https://google.com');
     });
   });
 });

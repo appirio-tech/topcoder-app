@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('ExternalWebLinks Directive', function() {
+xdescribe('ExternalWebLinks Directive', function() {
   var scope = {};
   var element;
   var extWebLinkSvc;
