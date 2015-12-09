@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-xdescribe('External Accounts Directive', function() {
+describe('External Accounts Directive', function() {
   var scope;
   var element;
   var toasterSvc;
