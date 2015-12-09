@@ -10,8 +10,8 @@
       templateUrl: 'directives/account/toggle-password/toggle-password.html',
       link: function(scope, element, attrs, formController) {
         var vm = scope.vm;
-        vm.currentPasswordField = formController.currentPassword;
-        vm.currentPasswordPlaceholder = vm.currentPasswordDefaultPlaceholder;
+        scope.currentPasswordDefaultPlaceholder = attrs.placeholder || 'Password';
+        scope.currentPasswordPlaceholder = scope.currentPasswordDefaultPlaceholder;
         vm.currentPassword = '';
 
         var currentPasswordInput = element.children()[0];
@@ -27,8 +27,7 @@
         });
 
         vm.onCPFocus = function(event) {
-          vm.currentPasswordFocus = true;
-          vm.currentPasswordPlaceholder = '';
+          scope.currentPasswordPlaceholder = '';
           element.addClass('focus');
         }
 
@@ -38,15 +37,11 @@
 
           // If you are blurring from the password input and clicking the checkbox
           if (relatedTarget.attr('type') === 'checkbox' && relatedTarget.attr('id') === 'currentPasswordCheckbox') {
-            vm.currentPasswordFocus = true;
-            vm.currentPasswordPlaceholder = '';
+            scope.currentPasswordPlaceholder = '';
             currentPasswordInput.focus();
           } else {
-            // If you are blurring from the password input and clicking anywhere but the checkbox
-            vm.currentPasswordFocus = false;
-
             if (vm.currentPassword === '' || vm.currentPassword === undefined) {
-              vm.currentPasswordPlaceholder = vm.currentPasswordDefaultPlaceholder;
+              scope.currentPasswordPlaceholder = scope.currentPasswordDefaultPlaceholder;
               formController.currentPassword.$setPristine();
             }
           }
