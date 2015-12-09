@@ -6,9 +6,11 @@ external-accounts {
 }
 
 .ext-link-tile_edit-header {
-  border-bottom: 1px solid $gray-light;
   display: flex;
   justify-content: flex-end;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 
   &:hover {
     .show-on-profile_label {
@@ -18,7 +20,6 @@ external-accounts {
 }
 
 .ext-link-tile_edit-header_delete {
-  border-left: 1px solid $gray-light;
   background-image: url(/images/ico-delete.svg);
   background-position: center;
   background-size: 16px 16px;
@@ -26,11 +27,18 @@ external-accounts {
   height: 43px;
   width: 51px;
   cursor: pointer;
+  opacity: 0.7;
+
+  &:hover:not(.ext-link-tile_edit-header_delete--disabled) {
+    // border-left: 1px solid $gray-light;
+    // border-bottom: 1px solid $gray-light;
+    opacity: 1.0;
+  }
 }
 
 .ext-link-tile_edit-header_delete--disabled {
   cursor: default;
-  opacity: 0.5;
+  opacity: 0.4;
 }
 
 .ext-link-tile_edit-header_show-on-profile {
@@ -99,6 +107,7 @@ external-accounts {
       height: 88px;
       background-color: $gray-lightest;
       border-radius: 4px 0 0 4px;
+      position: relative;
       i {
         font-size: 40px;
         margin-top: 15px;
@@ -302,7 +311,7 @@ external-accounts {
     }
 
     .external-link-tile--editable {
-      height: 285px;
+      // height: 285px;
     }
   }
 }

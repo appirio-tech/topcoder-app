@@ -1,8 +1,8 @@
 .external-link-list
   div.external-link-tile(ng-repeat="account in linkedAccountsData", ng-class="{'external-link-tile--editable' : editable}")
-    .ext-link-tile_edit-header(ng-show="editable && account.provider === 'weblink'")
-      .ext-link-tile_edit-header_delete(ng-click="confirmDeletion(account)", ng-class="{'ext-link-tile_edit-header_delete--disabled': account.deletingAccount || account.status === 'PENDING'}")
     .top
+      .ext-link-tile_edit-header(ng-show="editable && account.provider === 'weblink'")
+        .ext-link-tile_edit-header_delete(ng-click="confirmDeletion(account)", ng-class="{'ext-link-tile_edit-header_delete--disabled': account.deletingAccount || account.status === 'PENDING'}")
       div.logo
         i.fa(ng-class="(account|providerData:'className') || 'fa-globe'")
       h2 {{account|providerData:"displayName"}}
