@@ -30,6 +30,9 @@
               if (account.data && account.data.profileURL && account.data.status !== 'PENDING') {
                 url = account.data.profileURL;
               }
+              if (account.URL && account.status !== 'PENDING') {
+                url = account.URL;
+              }
             }
             if (url) {
               $window.open($filter('urlProtocol')(url), '_blank');
