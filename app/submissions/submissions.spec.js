@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe.only('Submissions Controller', function() {
+describe('Submissions Controller', function() {
   var controller;
   var vm;
 
