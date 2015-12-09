@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('Toggle Password Directive', function() {
+xdescribe('Toggle Password Directive', function() {
   var scope;
   var element;
 
