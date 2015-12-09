@@ -64,10 +64,24 @@ describe('ExternalWebLinks service', function() {
     $httpBackend.flush();
   });
 
+  it('should fail, with fatal error, in adding link', function() {
+    var errorMessage = "endpoint not found";
+    linksPost.respond(404, {result:  { status: 404, content: errorMessage } });
+    // call addLink method with valid args
+    service.addLink('test1', "http://google.com").then(function(data) {
+      sinon.assert.fail('should not be called');
+    }).catch(function(error) {
+      expect(error).to.be.defined;
+      expect(error.status).to.exist.to.equal('FATAL_ERROR');
+      expect(error.msg).to.exist.to.equal(errorMessage);
+    });
+    $httpBackend.flush();
+  });
+
   it('should fail with already existing link', function() {
     var errorMessage = "web link exists";
     linksPost.respond(400, {result:  { status: 400, content: errorMessage } });
-    // call linkExternalAccount method, having user service throw already exist
+    // call addLink method, having user service throw already exist
     service.addLink('test1', "http://google.com").then(function(data) {
       sinon.assert.fail('should not be called');
     }, function(error) {
@@ -83,6 +97,34 @@ describe('ExternalWebLinks service', function() {
     service.removeLink('test1', "testkey").then(function(newLink) {
     }).catch(function(error) {
       sinon.assert.fail('should not be called');
+    });
+    $httpBackend.flush();
+  });
+
+  it('should fail with non existing link', function() {
+    var errorMessage = "web link does not exists";
+    linksDelete.respond(400, {result:  { status: 400, content: errorMessage } });
+    // call removeLink method
+    service.removeLink('test1', "testkey").then(function(data) {
+      sinon.assert.fail('should not be called');
+    }, function(error) {
+      expect(error).to.be.defined;
+      expect(error.status).to.exist.to.equal('WEBLINK_NOT_EXIST');
+      expect(error.msg).to.exist.to.equal(errorMessage);
+    });
+    $httpBackend.flush();
+  });
+
+  it('should fail, with fatal error, in removing link', function() {
+    var errorMessage = "endpoint not found";
+    linksDelete.respond(404, {result:  { status: 404, content: errorMessage } });
+    // call removeLink method with valid args
+    service.removeLink('test1', "testkey").then(function(data) {
+      sinon.assert.fail('should not be called');
+    }).catch(function(error) {
+      expect(error).to.be.defined;
+      expect(error.status).to.exist.to.equal('FATAL_ERROR');
+      expect(error.msg).to.exist.to.equal(errorMessage);
     });
     $httpBackend.flush();
   });
