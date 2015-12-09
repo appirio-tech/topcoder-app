@@ -10,7 +10,6 @@
     $log = $log.getInstance("LoginController");
     vm.$stateParams = $stateParams;
     vm.passwordReset = false;
-    vm.currentPasswordDefaultPlaceholder = "Password";
     vm.loginErrors = {
       USERNAME_NONEXISTANT: false,
       WRONG_PASSWORD: false,
