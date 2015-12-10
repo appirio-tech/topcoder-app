@@ -12,6 +12,7 @@
     'tc.sample',
     'tc.profile',
     'tc.settings',
+    'tc.submissions',
     'tc.skill-picker',
     'tc.sitemap',
     'tc.community',

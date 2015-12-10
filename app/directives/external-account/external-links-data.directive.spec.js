@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-xdescribe('External Links Data Directive', function() {
+describe('External Links Data Directive', function() {
   var scope;
   var element;
   var ngDialogSvc;
@@ -103,17 +103,41 @@ xdescribe('External Links Data Directive', function() {
       expect(element.isolateScope().linkedAccountsData).to.have.length(8);
     });
 
-    it('should mark the account for deletion and open the popup ', function() {
-      var account = {key: 'somekey', provider: 'stackoverflow'};
+    it('should open the confirmation popup ', function() {
+      var account = {key: 'somekey', provider: 'weblink'};
       element.isolateScope().confirmDeletion(account);
       scope.$digest();
       // should open the popup
       expect(ngDialogSvc.open).to.be.called;
-      // should not remove anythign from the array of accounts/links
+      // should not remove anything from the array of accounts/links
       expect(element.isolateScope().linkedAccountsData).to.have.length(8);
       // $scope.deletionDialog should exist
       expect(element.isolateScope().deletionDialog).to.exist;
       ngDialogSvc.close();
+    });
+
+    it('should NOT open the popup for pending state card ', function() {
+      var account = {key: 'somekey', provider: 'weblink', status: 'PENDING'};
+      element.isolateScope().confirmDeletion(account);
+      scope.$digest();
+      // should NOT open the popup
+      expect(ngDialogSvc.open).not.to.be.called;
+      // should not remove anything from the array of accounts/links
+      expect(element.isolateScope().linkedAccountsData).to.have.length(8);
+      // $scope.deletionDialog should not exist
+      expect(element.isolateScope().deletionDialog).not.to.exist;
+    });
+
+    it('should NOT open the popup for non weblink external link ', function() {
+      var account = {key: 'somekey', provider: 'stackoverflow'};
+      element.isolateScope().confirmDeletion(account);
+      scope.$digest();
+      // should NOT open the popup
+      expect(ngDialogSvc.open).not.to.be.called;
+      // should not remove anything from the array of accounts/links
+      expect(element.isolateScope().linkedAccountsData).to.have.length(8);
+      // $scope.deletionDialog should not exist
+      expect(element.isolateScope().deletionDialog).not.to.exist;
     });
 
   });
