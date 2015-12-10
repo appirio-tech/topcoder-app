@@ -25,6 +25,14 @@
           $scope.deletionDialog = null;
 
           $scope.confirmDeletion = function(account) {
+            // for non weblink provider, do nothing
+            if (account.provider !== 'weblink') {
+              return;
+            }
+            // do nothing for pending state cards
+            if (account.status === 'PENDING') {
+              return;
+            }
             $scope.deletionDialog = ngDialog.open({
               className: 'ngdialog-theme-default tc-dialog',
               template: 'directives/external-account/external-link-deletion-confirm.html',
