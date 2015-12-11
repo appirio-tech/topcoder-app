@@ -11,13 +11,22 @@
     var states = {
       submissions: {
         parent: 'root',
-        url: '/challenges/:challengeId/submit/?method=file',
+        abstract: true,
         templateUrl: 'submissions/submissions.html',
         controller: 'SubmissionsController',
         controllerAs: 'submissions',
         data: {
-          authRequired: true
+          authRequired: true,
+
+          // TODO: Get title from PMs
+          title: 'Submit'
         }
+      },
+      'submissions.file': {
+        url: '/challenges/:challengeId/submit/?method=file',
+        templateUrl: 'submissions/submit-file/submit-file.html',
+        controller: 'SubmitFileController',
+        controllerAs: 'vm'
       }
     };
 
