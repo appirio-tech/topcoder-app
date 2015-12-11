@@ -1,0 +1,101 @@
+@import 'topcoder/tc-includes';
+
+// Intro JS overrides
+.introjs-overlay {
+  background: $accent-gray-dark;
+  opacity: .94;
+}
+
+.introjs-tooltip {
+  max-width: 320px;
+  padding: 0 20px 20px;
+}
+
+.introjs-tooltiptext {
+  @include font-with-weight('Merriweather Sans', 400);
+  color: $gray-darker;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+  line-height: 20px;
+  h1 {
+    @include sofia-pro-medium;
+    color: $gray-darkest;
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  img {
+    display: none;
+    max-width: 320px;
+    @media only screen and (min-width : 768px) {
+      display: block;
+    }
+  }
+  p {
+    margin-top: 20px;
+  }
+}
+
+
+.introjs-helperLayer {
+  background: $white;
+  border: 1px solid #85ccff;
+  border-radius: 6px;
+  box-shadow: 0 0 4px 0 rgba(0, 150, 255, .20);
+}
+
+.introjs-helperNumberLayer {
+  @include sofia-pro-medium;
+  background: $primary;
+  border: 3px solid $white;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.20);
+  height: 30px;
+  width: 30px;
+  font-size: 17px;
+  line-height: 22px;
+  padding: 0;
+}
+
+.introjs-tooltipbuttons {
+  float: right;
+  width: 280px;
+}
+
+// Refactor buttons when button mixins and/or style guide is done
+.introjs-button {
+  @extend .tc-btn;
+  @extend .tc-btn-s;
+}
+
+.introjs-skipbutton {
+  @extend .tc-btn-ghost;
+  float: left;
+}
+
+
+.introjs-disabled {
+  @extend .tc-btn-s;
+  @extend :disabled;
+}
+
+.introjs-prevbutton {
+  margin-right: 10px;
+}
+
+
+.introjs-bullets ul li {
+  margin-right: 3px;
+}
+
+.introjs-bullets ul li a {
+  background-color: $gray;
+  border-radius: 0;
+  height: 5px;
+  width: 5px;
+  &.active {
+    background-color: $primary;
+  }
+}
