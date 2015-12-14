@@ -51,7 +51,7 @@ body {
 }
 
 .view-container {
-  min-height: 480px;
+  min-height: 440px;
   padding-bottom: 30px;
   @media screen and (min-device-width: 768px) {
     min-width: 768px;
@@ -59,7 +59,7 @@ body {
 }
 
 .page-container {
-  padding: 15px 0;
+  padding: 10px;
   @media screen and (min-width:768px) {
     padding: 30px 10px;
   }
