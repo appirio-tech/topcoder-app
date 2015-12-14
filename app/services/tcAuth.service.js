@@ -168,8 +168,7 @@
         method: 'DELETE',
         headers: {
           'Authorization': "Bearer " + AuthTokenService.getV3Token()
-        },
-        data: {}
+        }
       }).then(function(res) {
         $log.log('logout successful');
       }).catch(function(resp) {
