@@ -18,13 +18,36 @@
         editable: '=',
         userHandle: '@'
       },
-      controller: ['$log', '$scope', 'ExternalWebLinksService', 'toaster', 'ngDialog',
-        function($log, $scope, ExternalWebLinksService, toaster, ngDialog) {
+      controller: ['$log', '$scope', '$window', '$filter', 'ExternalWebLinksService', 'toaster', 'ngDialog',
+        function($log, $scope, $window, $filter, ExternalWebLinksService, toaster, ngDialog) {
 
           $log = $log.getInstance("ExternalLinksDataCtrl");
           $scope.deletionDialog = null;
 
+          $scope.openLink = function(account) {
+            var url = null;
+            if (account) {
+              if (account.data && account.data.profileURL && account.data.status !== 'PENDING') {
+                url = account.data.profileURL;
+              }
+              if (account.URL && account.status !== 'PENDING') {
+                url = account.URL;
+              }
+            }
+            if (url) {
+              $window.open($filter('urlProtocol')(url), '_blank');
+            }
+          }
+
           $scope.confirmDeletion = function(account) {
+            // for non weblink provider, do nothing
+            if (account.provider !== 'weblink') {
+              return;
+            }
+            // do nothing for pending state cards
+            if (account.status === 'PENDING') {
+              return;
+            }
             $scope.deletionDialog = ngDialog.open({
               className: 'ngdialog-theme-default tc-dialog',
               template: 'directives/external-account/external-link-deletion-confirm.html',
