@@ -91,6 +91,23 @@ SCSS Files
   - Use variables, mixins, and classes as much as possible from our [style guide](https://github.com/appirio-tech/styles)
   - Reuse our [UI Components](https://github.com/appirio-tech/ng-ui-components)
   - When adding media queries, nest them inside the element, rather than creating a new section
+  ```
+  .box {
+    height: 50px;
+    width: 50px;
+    @media screen and (min-width: 768px) {
+      height: 100px;
+      width: 100px;
+    }
+    
+    .inside-box {
+      font-size: 14px;
+      @media screen and (min-width: 768px) {
+        font-size: 18px;
+      }
+    }
+  }
+  ```
   - This repository uses flexbox for arranging content. The use of any extra CSS libraries should be discussed with the team
 
 JavaScript
