@@ -27,7 +27,7 @@
 }
 
 .deletion-confirmation-message {
-  @include merriweather-sans-regular;//TODO use sansbook font
+  @include font-with-weight('Merriweather Sans', 300);
 
   .deletion-confirmation-account-title {
     font-style: italic;
