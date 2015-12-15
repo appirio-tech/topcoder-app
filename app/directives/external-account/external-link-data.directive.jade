@@ -2,7 +2,7 @@
   .external-link-tile(ng-repeat="account in linkedAccountsData", ng-class="{'external-link-tile--editable' : editable, 'external-link-tile--pending' : account.status === 'PENDING' || account.data.status === 'PENDING'}", ng-click="openLink(account)")
     .top
       .ext-link-tile_edit-header(ng-show="editable && account.provider === 'weblink'")
-        .ext-link-tile_edit-header_delete(ng-click="confirmDeletion(account)", ng-class="{'ext-link-tile_edit-header_delete--disabled': account.deletingAccount || account.status === 'PENDING'}")
+        .ext-link-tile_edit-header_delete(ng-click="confirmDeletion(account)", ng-class="{'ext-link-tile_edit-header_delete--disabled': account.deletingAccount || account.status === 'PENDING'}", prevent-event-propagation)
       div.logo
         i.fa(ng-class="(account|providerData:'className') || 'fa-globe'")
       h2 {{account|providerData:"displayName"}}
