@@ -8,7 +8,7 @@
   function TcAuthService(CONSTANTS, auth, AuthTokenService, $rootScope, $q, $log, $timeout, UserService, Helpers, ApiService, store, $http) {
     $log = $log.getInstance("TcAuthServicetcAuth");
     var auth0 = auth;
-    var apiUrl = CONSTANTS.API_URL_V3;
+    var apiUrl = CONSTANTS.API_URL;
     var service = {
       login: login,
       socialLogin: socialLogin,
@@ -163,22 +163,28 @@
     }
 
     function logout() {
-      $http({
+      // options for DELETE http call
+      var logoutOptions = {
         url: apiUrl + '/authorizations/1',
         method: 'DELETE',
         headers: {
           'Authorization': "Bearer " + AuthTokenService.getV3Token()
         }
-      }).then(function(res) {
-        $log.log('logout successful');
-      }).catch(function(resp) {
-        $log.error('logout error');
-      });
+      };
 
+      // remove local token
+      AuthTokenService.removeTokens();
+      $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT);
+
+      // logout of all browsers
       return $q(function(resolve, reject) {
-        AuthTokenService.removeTokens();
-        $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT);
-        resolve();
+        $http(logoutOptions).then(function(res) {
+          $log.log('logout successful');
+          resolve();
+        }).catch(function(resp) {
+          $log.error('logout error');
+          reject();
+        });
       });
     }
 
