@@ -47,7 +47,7 @@
           .form-label(style="width: 100%;") short bio
             span.char-count {{vm.userData.description.length || 0}}
               span.grey &nbsp;/ 256
-          textarea.tc-input(name="description", ng-model="vm.userData.description", data-ng-trim="false", maxlength="256", placeholder="E.g., I'm a JS architect interested in creating new data interchange formats. I love sci-fi and riding my motorcycle.")
+          textarea.topcoder-input(name="description", ng-model="vm.userData.description", data-ng-trim="false", maxlength="256", placeholder="E.g., I'm a JS architect interested in creating new data interchange formats. I love sci-fi and riding my motorcycle.")
 
     .settings-section.tracks
       .section-info
