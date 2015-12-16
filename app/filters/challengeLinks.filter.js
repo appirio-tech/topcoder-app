@@ -16,7 +16,7 @@
           case 'forums':
             return String.supplant('https://apps.{domain}/forums/?module=ThreadList&forumID={forumId}', data);
           case 'registrants':
-            return String.supplant('https://community.{domain}/longcontest/?module=ViewStandings&rd={roundId}', data);
+            return String.supplant('https://community.{domain}/longcontest/?module=ViewRegistrants&rd={roundId}', data);
           case 'detail':
             return String.supplant('https://community.{domain}/longcontest/stats/?module=ViewOverview&rd={roundId}', data);
         }
