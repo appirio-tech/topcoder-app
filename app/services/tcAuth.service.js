@@ -8,7 +8,7 @@
   function TcAuthService(CONSTANTS, auth, AuthTokenService, $rootScope, $q, $log, $timeout, UserService, Helpers, ApiService, store, $http) {
     $log = $log.getInstance("TcAuthServicetcAuth");
     var auth0 = auth;
-    var apiUrl = CONSTANTS.API_URL;
+    var apiUrl = CONSTANTS.AUTH_API_URL;
     var service = {
       login: login,
       socialLogin: socialLogin,
