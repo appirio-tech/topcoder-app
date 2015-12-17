@@ -4,18 +4,18 @@
   p.instruction Hi {{vm.username}}! Your account is now active. To help other members get to know you, select the tracks in which you're interested, and specify some of your skills. You can edit this information later on your Profile.
 
   .communities(ng-show="!vm.loadingCommunities && vm.showCommunity")
-    .communities-title Communities
-    .communities-description Topcoder regularly establishes exclusive communities to help members develop expertise and earn money in particular technologies. Join a featured community to be notified of events and challenges.
-    .communities-list
-      .community(ng-repeat="(communityKey, community) in vm.communities", ng-class="{'disabled': !community.status}", ng-if="community.display")
-        .community-details
-          .community-icon(ng-class="{'disabled': !community.status}")
+    .communities__title Communities
+    .communities__description Topcoder regularly establishes exclusive communities to help members develop expertise and earn money in particular technologies. Join a featured community to be notified of events and challenges.
+    .communities__list
+      .community(ng-repeat="(communityKey, community) in vm.communities", ng-class="{'community--disabled': !community.status}", ng-if="community.display")
+        .community__details
+          .community__icon(ng-class="{'community__icon--disabled': !community.status}")
             img(ng-if="communityKey == 'ios' && community.status", src="/images/ico-ios-community.svg")
             img(ng-if="communityKey == 'ios' && !community.status", src="/images/ico-ios-community-grey.svg")
 
-          .community-text
-            span.community-title(class="{{!community.status && 'disabled'}}") {{community.displayName}}
-            .community-description
+          .community__text
+            span.community__title(class="{{!community.status && 'disabled'}}") {{community.displayName}}
+            .community__description
               span(ng-if="communityKey == 'ios'") Mobile app design and development for iOS, with Swift emphasis
 
         onoff-switch(model="community.status", unique-id="'community-' + communityKey")

@@ -33,19 +33,19 @@
   .communities {
     width: 100%;
     margin-bottom: 30px;
-    .communities-title {
+    .communities__title {
       @include sofia-pro-regular;
       text-transform: uppercase;
       font-size: 18px;
       padding-bottom: 10px;
     }
-    .communities-description {
+    .communities__description {
       @include font-with-weight('Merriweather Sans');
       color: #A3A3AE;
       font-size: 13px;
       line-height: 18px;
     }
-    .communities-list {
+    .communities__list {
       margin-top: 10px;
       .community {
         display: flex;
@@ -59,18 +59,18 @@
           background-color: $gray-lightest;
         }
 
-        .community-details {
+        .community__details {
           display: flex;
           flex-direction: row;
           align-items: center;
           padding-left: 10px;
         }
 
-        .community-text {
+        .community__text {
           margin-left: 10px;
         }
 
-        .community-title {
+        .community__title {
           font-size: 16px;
           line-height: 28px;
           @include font-with-weight('Sofia Pro', 500);
@@ -81,7 +81,7 @@
           }
         }
 
-        .community-description {
+        .community__description {
           @include font-with-weight('Merriweather Sans', 400);
           font-size: 13px;
           margin-top: 4px;
