@@ -172,19 +172,20 @@
         }
       };
 
-      // remove local token
-      AuthTokenService.removeTokens();
-      $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT);
 
       // logout of all browsers
       return $q(function(resolve, reject) {
-        $http(logoutOptions).then(function(res) {
-          $log.log('logout successful');
-          resolve();
-        }).catch(function(resp) {
-          $log.error('logout error');
-          reject();
-        });
+        // remove local token
+        AuthTokenService.removeTokens();
+        $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT);
+        resolve();
+//        $http(logoutOptions).then(function(res) {
+//          $log.log('logout successful');
+//          resolve();
+//        }).catch(function(resp) {
+//          $log.error('logout error');
+//          reject();
+//        });
       });
     }
 
