@@ -1,11 +1,15 @@
 .external-link-list
-  div.external-link-tile(ng-repeat="account in linkedAccountsData")
+  .external-link-tile(ng-repeat="account in linkedAccountsData", ng-class="{'external-link-tile--editable' : editable, 'external-link-tile--pending' : account.status === 'PENDING' || account.data.status === 'PENDING'}", ng-click="openLink(account)")
     .top
+      .ext-link-tile_edit-header(ng-show="editable && account.provider === 'weblink'")
+        .ext-link-tile_edit-header_delete(ng-click="confirmDeletion(account)", ng-class="{'ext-link-tile_edit-header_delete--disabled': account.deletingAccount || account.status === 'PENDING'}", prevent-event-propagation)
       div.logo
         i.fa(ng-class="(account|providerData:'className') || 'fa-globe'")
       h2 {{account|providerData:"displayName"}}
 
-    div.bottom(ng-switch="account.provider")
+    div.bottom(ng-if="account.deletingAccount")
+      .section-loading
+    div.bottom(ng-switch="account.provider", ng-if="!account.deletingAccount")
 
       div(ng-switch-when="github")
         .handle {{account.data.handle}}
@@ -102,4 +106,4 @@
         p.link-title(data-ellipsis, ng-bind="account.title", ng-hide="account.status === 'PENDING'")
         p.link-title(ng-show="account.status === 'PENDING'") Loading data. This will take a few minutes.
 
-        a.link-url(ng-href="{{account.URL}}", ng-bind="account.URL")
+        a.link-url(ng-href="{{account.URL | urlProtocol}}", ng-bind="account.URL", target="_blank",prevent-event-propagation)

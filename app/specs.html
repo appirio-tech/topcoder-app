@@ -15,7 +15,7 @@
 
     <!--BEWARE of using any app styles as @media can screw up tests -->
 
-    <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+    <link rel="stylesheet" href="../node_modules/appirio-gulp-tasks/node_modules/mocha/mocha.css">
 
 </head>
 <body>
@@ -31,10 +31,9 @@
 <div id="mocha"></div>
 
     <!-- inject:testlibraries:js -->
-    <script src="/node_modules/mocha/mocha.js"></script>
-    <script src="/node_modules/chai/chai.js"></script>
-    <script src="/node_modules/mocha-clean/index.js"></script>
-    <script src="/node_modules/sinon-chai/lib/sinon-chai.js"></script>
+    <script src="/node_modules/appirio-gulp-tasks/node_modules/mocha/mocha.js"></script>
+    <script src="/node_modules/appirio-gulp-tasks/node_modules/chai/chai.js"></script>
+    <script src="/node_modules/appirio-gulp-tasks/node_modules/sinon-chai/lib/sinon-chai.js"></script>
     <!-- endinject -->
 
     <script>
@@ -45,7 +44,6 @@
     </script>
 
     <!-- bower:js -->
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/a0-angular-storage/dist/angular-storage.js"></script>
     <script src="../bower_components/angucomplete-alt/angucomplete-alt.js"></script>
@@ -81,6 +79,7 @@
     <script src="../bower_components/sinon/index.js"></script>
     <script src="../bower_components/bardjs/dist/bard.js"></script>
     <script src="../bower_components/bardjs/dist/bard-ngRouteTester.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
     <!-- endbower -->
 
     <!-- inject:nonBowerScripts:js -->
@@ -95,6 +94,9 @@
     <script src="/app/topcoder.interceptors.js"></script>
     <script src="/app/topcoder.controller.js"></script>
     <script src="/app/topcoder.constants.js"></script>
+    <script src="/app/submissions/submissions.module.js"></script>
+    <script src="/app/submissions/submissions.routes.js"></script>
+    <script src="/app/submissions/submissions.controller.js"></script>
     <script src="/app/skill-picker/skill-picker.module.js"></script>
     <script src="/app/skill-picker/skill-picker.routes.js"></script>
     <script src="/app/skill-picker/skill-picker.controller.js"></script>
@@ -164,6 +166,7 @@
     <script src="/app/my-challenges/my-challenges.controller.js"></script>
     <script src="/app/layout/layout.module.js"></script>
     <script src="/app/layout/header/header.controller.js"></script>
+    <script src="/app/filters/url-protocol.filter.js"></script>
     <script src="/app/filters/underscore-strip.filter.js"></script>
     <script src="/app/filters/truncate.filter.js"></script>
     <script src="/app/filters/track.filter.js"></script>
@@ -244,6 +247,7 @@
     <script src="/app/my-dashboard/my-dashboard.spec.js"></script>
     <script src="/app/my-srms/my-srms.spec.js"></script>
     <script src="/app/profile/profile.controller.spec.js"></script>
+    <script src="/app/settings/settings.spec.js"></script>
     <script src="/app/services/authToken.service.spec.js"></script>
     <script src="/app/services/challenge.service.spec.js"></script>
     <script src="/app/services/externalAccounts.service.spec.js"></script>
@@ -254,11 +258,11 @@
     <script src="/app/services/tcAuth.service.spec.js"></script>
     <script src="/app/services/user.service.spec.js"></script>
     <script src="/app/services/userStats.service.spec.js"></script>
-    <script src="/app/settings/settings.spec.js"></script>
     <script src="/app/skill-picker/skill-picker.spec.js"></script>
+    <script src="/app/submissions/submissions.spec.js"></script>
     <script src="/app/account/login/login.spec.js"></script>
-    <script src="/app/account/register/register.spec.js"></script>
     <script src="/app/account/logout/logout.controller.spec.js"></script>
+    <script src="/app/account/register/register.spec.js"></script>
     <script src="/app/account/reset-password/reset-password.spec.js"></script>
     <script src="/app/blocks/exception/exception-handler.provider.spec.js"></script>
     <script src="/app/directives/badges/badge-tooltip.spec.js"></script>
@@ -268,14 +272,15 @@
     <script src="/app/directives/external-account/external-account.directive.spec.js"></script>
     <script src="/app/directives/external-account/external-links-data.directive.spec.js"></script>
     <script src="/app/directives/external-account/external-web-links.directive.spec.js"></script>
-    <script src="/app/directives/tc-paginator/tc-paginator.spec.js"></script>
     <script src="/app/directives/tc-endless-paginator/tc-endless-paginator.spec.js"></script>
+    <script src="/app/directives/tc-paginator/tc-paginator.spec.js"></script>
     <script src="/app/directives/tc-tabs/tc-tabs.directive.spec.js"></script>
     <script src="/app/my-dashboard/community-updates/community-updates.spec.js"></script>
     <script src="/app/my-dashboard/header-dashboard/header-dashboard.spec.js"></script>
     <script src="/app/my-dashboard/my-challenges/my-challenges.spec.js"></script>
-    <script src="/app/my-dashboard/srms/srms.spec.js"></script>
     <script src="/app/my-dashboard/programs/programs.spec.js"></script>
+    <script src="/app/my-dashboard/srms/srms.spec.js"></script>
+    <script src="/app/my-dashboard/subtrack-stats/subtrack-stats.controller.spec.js"></script>
     <script src="/app/peer-review/completed-review/completed-review.spec.js"></script>
     <script src="/app/peer-review/edit-review/edit-review.spec.js"></script>
     <script src="/app/peer-review/readOnlyScorecard/readOnlyScorecard.spec.js"></script>
@@ -283,8 +288,8 @@
     <script src="/app/profile/about/about.controller.spec.js"></script>
     <script src="/app/profile/badges/badges.spec.js"></script>
     <script src="/app/profile/subtrack/subtrack.spec.js"></script>
-    <script src="/app/settings/edit-profile/edit-profile.spec.js"></script>
     <script src="/app/settings/account-info/account-info.spec.js"></script>
+    <script src="/app/settings/edit-profile/edit-profile.spec.js"></script>
     <script src="/app/settings/preferences/preferences.spec.js"></script>
     <script src="/app/directives/account/toggle-password/toggle-password.spec.js"></script>
     <script src="/app/directives/account/toggle-password-with-tips/toggle-password-with-tips.spec.js"></script>

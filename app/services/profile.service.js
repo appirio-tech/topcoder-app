@@ -106,7 +106,7 @@
             'track': 'DEVELOP',
             'subTrack': subTrack.name,
             'rank': subTrack.rank ? subTrack.rank.overallRank : 0,
-            'rating': subTrack.rank.rating || 0,
+            'rating': subTrack.rank ? subTrack.rank.rating || 0 : 0,
             'wins': subTrack.wins,
             'submissions': (subTrack.submissions && subTrack.submissions.submissions) || 0,
             'mostRecentEventDate': new Date(subTrack.mostRecentEventDate),
