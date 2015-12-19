@@ -1,0 +1,34 @@
+@import 'topcoder/tc-includes';
+
+.panel-body {
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.panel-footer {
+  text-align: center;
+
+  p {
+    margin-bottom: 30px;
+    @include font-with-weight('Merriweather Sans', 300);
+    font-size: 13px;
+    line-height: 24px;
+    color: $gray-darkest;
+    text-align: left;
+  }
+
+  .checkbox {
+    label {
+      margin-left: 10px;
+      @include font-with-weight('Sofia Pro', 500);
+      font-size: 16px;
+      color: $gray-darkest;
+      text-transform: uppercase;
+    }
+  }
+
+  button.tc-btn {
+    margin-top: 30px;
+  }
+}
