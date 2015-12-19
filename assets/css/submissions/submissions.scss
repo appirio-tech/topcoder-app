@@ -1,6 +1,43 @@
 @import 'topcoder/tc-includes';
 
-.submissions-module {
-  @include module-l;
-  background-color: tomato;
+.mobile-redirect {
+  padding: 45px 15px 30px;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
+.mobile-redirect__title {
+  margin-bottom: 10px;
+  @include font-with-weight('Sofia Pro', 500);
+  font-size: 16px;
+  line-height: 19px;
+  color: $gray-darkest;
+  text-transform: uppercase;
+}
+
+.mobile-redirect__body {
+  @include font-with-weight('Merriweather Sans');
+  font-size: 13px;
+  font-style: italic;
+  line-height: 20px;
+  color: $accent-gray;
+  text-align: center;
+
+  p {
+    text-align: left;
+  }
+
+  a {
+    &:not(.tc-btn) {
+      text-align: left;
+      display: block;
+      margin-top: 20px;
+    }
+
+    &.tc-btn {
+      display: inline-block;
+      margin-top: 20px;
+    }
+  }
 }
