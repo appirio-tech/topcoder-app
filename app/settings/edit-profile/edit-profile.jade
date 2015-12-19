@@ -19,7 +19,7 @@
               button.file-upload.tc-btn.tc-btn-primary.tc-btn-s(ng-click="vm.changeImage()", type="button")
                 span(ng-show="vm.userData.photoURL && vm.userData.photoURL.length") Change Image
                 span(ng-show="!vm.userData.photoURL || !vm.userData.photoURL.length") Add Image
-              input(type='file', name='image', on-file-change='on-file-change', id="change-image-input", style="display: none;")
+              input(type="file", name="image", on-file-change="on-file-change", id="change-image-input", style="display: none;")
 
               .file-delete(ng-show="vm.userData.photoURL && vm.userData.photoURL.length")
                 button.tc-btn.tc-btn-secondary.tc-btn-s(ng-click="vm.deleteImage()", type="button") Delete
