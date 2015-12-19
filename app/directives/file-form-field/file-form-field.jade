@@ -1,0 +1,12 @@
+.labelwrapper
+  label.tc-label {{labelText}}
+    span.lowercase(ng-if="fileType") {{fileType | addBeginningSpace}}
+
+  span.tc-label__mandatory(ng-if="mandatory") #[span *]mandatory
+
+.changenamelater
+  input(type="text", placeholder="{{placeholder}}", disabled)
+
+  button.tc-btn(ng-click="selectFile()") {{buttonText}}
+
+  input.none(type="file", id="{{fieldId}}")
