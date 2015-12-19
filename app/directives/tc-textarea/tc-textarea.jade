@@ -1,0 +1,7 @@
+label.tc-textarea__label {{labelText}}
+  span.tc-textarea__char-count(ng-if="characterCount")
+    span.tc-textarea__char-count--current {{commentValue.length || 0}}
+
+    span {{' / ' + characterCountMax}}
+
+textarea(placeholder="{{placeholder}}", ng-model="commentValue", maxlength="{{characterCountMax}}")
