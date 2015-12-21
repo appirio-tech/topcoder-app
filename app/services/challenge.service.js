@@ -180,10 +180,6 @@
           // process placement for challenges having winningPlacements array in response
           if (Array.isArray(challenge.userDetails.winningPlacements)) {
             challenge.highestPlacement = _.min(challenge.userDetails.winningPlacements);
-            challenge.wonFirst = challenge.highestPlacement == 1;
-            if (challenge.highestPlacement === 0) {
-              challenge.highestPlacement = null;
-            }
           }
           // process placement for design challenges
           if (challenge.track == 'DESIGN' && challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
@@ -192,11 +188,16 @@
             challenge.highestPlacement = _.min(challenge.userDetails.submissions.filter(function(submission) {
               return submission.placement;
             }), 'placement').placement;
-
-            if (challenge.highestPlacement == 1) {
-              challenge.wonFirst = true;
-            }
           }
+          if (challenge.track === 'DEVELOP' && challenge.subTrack === 'FIRST_2_FINISH') {
+            challenge.highestPlacement = _.min(challenge.userDetails.submissions.filter(function(submission) {
+              return submission.status === 'Active' ? submission.placement : 0;
+            }), 'placement').placement;
+          }
+          if (challenge.highestPlacement === 0) {
+            challenge.highestPlacement = null;
+          }
+          challenge.wonFirst = challenge.highestPlacement == 1;
 
           challenge.userHasSubmitterRole = false;
 
