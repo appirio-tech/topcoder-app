@@ -95,7 +95,7 @@ describe('filters', function() {
       };
       expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://community.'+domain+'/longcontest/stats/?module=ViewOverview&rd=3');
       expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.'+domain+'/forums/?module=ThreadList&forumID=2');
-      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://community.'+domain+'/longcontest/?module=ViewStandings&rd=3');
+      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://community.'+domain+'/longcontest/?module=ViewRegistrants&rd=3');
     });
   });
 

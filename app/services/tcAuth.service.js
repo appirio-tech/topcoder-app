@@ -3,11 +3,12 @@
 
   angular.module('tc.services').factory('TcAuthService', TcAuthService);
 
-  TcAuthService.$inject = ['CONSTANTS', 'auth', 'AuthTokenService', '$rootScope', '$q', '$log', '$timeout', 'UserService', 'Helpers', 'ApiService', 'store'];
+  TcAuthService.$inject = ['CONSTANTS', 'auth', 'AuthTokenService', '$rootScope', '$q', '$log', '$timeout', 'UserService', 'Helpers', 'ApiService', 'store', '$http'];
 
-  function TcAuthService(CONSTANTS, auth, AuthTokenService, $rootScope, $q, $log, $timeout, UserService, Helpers, ApiService, store) {
+  function TcAuthService(CONSTANTS, auth, AuthTokenService, $rootScope, $q, $log, $timeout, UserService, Helpers, ApiService, store, $http) {
     $log = $log.getInstance("TcAuthServicetcAuth");
     var auth0 = auth;
+    var apiUrl = CONSTANTS.AUTH_API_URL;
     var service = {
       login: login,
       socialLogin: socialLogin,
@@ -162,10 +163,29 @@
     }
 
     function logout() {
+      // options for DELETE http call
+      var logoutOptions = {
+        url: apiUrl + '/authorizations/1',
+        method: 'DELETE',
+        headers: {
+          'Authorization': "Bearer " + AuthTokenService.getV3Token()
+        }
+      };
+
+
+      // logout of all browsers
       return $q(function(resolve, reject) {
+        // remove local token
         AuthTokenService.removeTokens();
         $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT);
         resolve();
+//        $http(logoutOptions).then(function(res) {
+//          $log.log('logout successful');
+//          resolve();
+//        }).catch(function(resp) {
+//          $log.error('logout error');
+//          reject();
+//        });
       });
     }
 
