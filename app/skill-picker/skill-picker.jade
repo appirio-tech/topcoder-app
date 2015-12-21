@@ -3,6 +3,25 @@
 
   p.instruction Hi {{vm.username}}! Your account is now active. To help other members get to know you, select the tracks in which you're interested, and specify some of your skills. You can edit this information later on your Profile.
 
+  .communities(ng-show="!vm.loadingCommunities && vm.showCommunity")
+    .communities__title Communities
+    .communities__description Topcoder regularly establishes exclusive communities to help members develop expertise and earn money in particular technologies. Join a featured community to be notified of events and challenges.
+    .communities__list
+      .community(ng-repeat="(communityKey, community) in vm.communities", ng-class="{'community--disabled': !community.status}", ng-if="community.display")
+        .community__details
+          .community__icon(ng-class="{'community__icon--disabled': !community.status}")
+            img(ng-if="communityKey == 'ios' && community.status", src="/images/ico-ios-community.svg")
+            img(ng-if="communityKey == 'ios' && !community.status", src="/images/ico-ios-community-grey.svg")
+
+          .community__text
+            span.community__title(class="{{!community.status && 'disabled'}}") {{community.displayName}}
+            .community__description
+              span(ng-if="communityKey == 'ios'") Mobile app design and development for iOS, with Swift emphasis
+
+        onoff-switch(model="community.status", unique-id="'community-' + communityKey")
+
+      
+
   .tracks-container
     .title tracks
     .description Topcoder's three categories of challenges… please pick at least one based on your skills and interests.
@@ -51,4 +70,4 @@
     type="button",
     tc-busy-button, tc-busy-when="vm.saving",
     ng-click="vm.submitSkills()",
-    ng-disabled="vm.disableDoneButton || (!vm.tracks.DESIGN && !vm.tracks.DEVELOP && !vm.tracks.DATA_SCIENCE)") Done
+    ng-disabled="vm.disableDoneButton || !vm.isPageDirty()") Done
