@@ -3,7 +3,7 @@
     .challenge-track
 
     header
-      a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") {{srm.name}}
+      a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{srm.rounds[0].id}}") {{srm.name}}
 
     .srm-details
       p.starts-in Starts in #[span {{srm.codingStartAt | timeDiff:"quantity"}} {{srm.codingStartAt | timeDiff:'unit'}}]
@@ -17,19 +17,19 @@
     .phase-status
       .registered(ng-show="srm.userStatus === CONSTANTS.REGISTERED") Registered
       .unregistered(ng-hide="srm.currentPhase !== CONSTANTS.REGISTRATION || srm.userStatus === CONSTANTS.REGISTERED")
-        a.tc-btn.tc-btn-s.tc-btn-wide(href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") Register
+        a.tc-btn.tc-btn-s.tc-btn-wide(href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{srm.rounds[0].id}}") Register
 
   .past-srm(ng-show="srm.status === 'PAST'")
     .challenge-track
 
     header
-      a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") {{srm.name}}
+      a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{srm.rounds[0].id}}") {{srm.name}}
       .ended-on #[span {{srm.codingEndAt | localTime:"MMM DD, YYYY" }}]
 
     .member-stats
       p.points #[span {{srm.result.finalPoints }}] #[span Points]
       .ranks
-        .division
+        a.division(href="https://community.{{DOMAIN}}/stat?c=round_stats&rd={{srm.rounds[0].id}}&dn=2")
           p.rank {{srm.result.divisionPlacement}}
           p.label  #[span Division {{srm.result.division}}]
         .room
@@ -42,7 +42,7 @@
     .challenge-track
     header
       .srm-name
-        a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") {{srm.name}}
+        a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{srm.rounds[0].id}}") {{srm.name}}
 
     .srm-details
       p.starts-in Starts in #[span {{srm.codingStartAt | timeDiff:"quantity"}} {{srm.codingStartAt | timeDiff:'unit'}}]
@@ -56,7 +56,7 @@
     .challenge-track
     header
       .srm-name
-        a(ng-href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") {{srm.name}}
+        a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{srm.rounds[0].id}}") {{srm.name}}
 
     .srm-details
       p.ended-on Ended {{srm.codingEndAt | timeDiff:"quantity"}} {{srm.codingEndAt | timeDiff:'unit'}} ago
