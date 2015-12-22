@@ -1,12 +1,12 @@
 (function() {
   'use strict';
 
-  angular.module('tcUIComponents').directive('fileFormField', fileFormField);
+  angular.module('tcUIComponents').directive('tcFileInput', tcFileInput);
 
-  function fileFormField() {
+  function tcFileInput() {
     return {
       restrict: 'E',
-      templateUrl: 'directives/file-form-field/file-form-field.html',
+      templateUrl: 'directives/tc-file-input/tc-file-input.html',
       scope: {
         labelText: '@',
         fieldId: '@',
