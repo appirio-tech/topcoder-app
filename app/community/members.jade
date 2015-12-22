@@ -28,8 +28,9 @@
           small {{ctrl.currentMonth}}
         .members-wrapper
           .user-tile(ng-repeat="item in ctrl.memberLeaderboard")
-            .avatar-wrapper: img(ng-src="{{item.avatar}}")
-            .user-name {{item.name}}
+            a.avatar-wrapper(ui-sref="profile.about({userHandle: item.name})")
+              img(ng-src="{{item.avatar}}")
+            a.user-name(ui-sref="profile.about({userHandle: item.name})") {{item.name}}
             .user-tag(class="{{item.class}}") {{item.contestType}}
             p.user-desc {{item.description}}
             a(ng-href="//www.{{ctrl.domain}}/community/member-programs/topcoder-member-of-the-month/", target="_blank").user-more Read the story
