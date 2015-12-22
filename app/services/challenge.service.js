@@ -190,7 +190,7 @@
             challenge.thumbnailId = challenge.userDetails.submissions[0].id;
 
             challenge.highestPlacement = _.min(challenge.userDetails.submissions.filter(function(submission) {
-              return submission.placement;
+              return submission.type === CONSTANTS.SUBMISSION_TYPE_CONTEST && submission.placement;
             }), 'placement').placement;
 
             if (challenge.highestPlacement == 1) {

@@ -42,7 +42,10 @@ module.exports = function() {
         CODING: 'CODING',
 
         // users' status
-        REGISTERED: 'REGISTERED'
+        REGISTERED: 'REGISTERED',
+
+        // submission type
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
 
       }
     },
@@ -88,7 +91,10 @@ module.exports = function() {
         CODING: 'CODING',
 
         // users' status
-        REGISTERED: 'REGISTERED'
+        REGISTERED: 'REGISTERED',
+
+        // submission type
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
 
       }
     },
@@ -134,7 +140,10 @@ module.exports = function() {
         CODING: 'CODING',
 
         // users' status
-        REGISTERED: 'REGISTERED'
+        REGISTERED: 'REGISTERED',
+
+        // submission type
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
 
       }
     },
@@ -180,7 +189,10 @@ module.exports = function() {
         CODING: 'CODING',
 
         // users' status
-        REGISTERED: 'REGISTERED'
+        REGISTERED: 'REGISTERED',
+
+        // submission type
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
 
       }
     },
@@ -226,7 +238,10 @@ module.exports = function() {
         CODING: 'CODING',
 
         // users' status
-        REGISTERED: 'REGISTERED'
+        REGISTERED: 'REGISTERED',
+
+        // submission type
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
 
       }
     }

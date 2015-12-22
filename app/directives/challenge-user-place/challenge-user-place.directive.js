@@ -59,7 +59,9 @@
             $scope.imageURL = $scope.challenge.userDetails.submissions[0].submissionImage && $scope.challenge.userDetails.submissions[0].submissionImage.full;
             $scope.selectedImage = $scope.imageURL;
 
-            $scope.challenge.highestPlacement = _.max($scope.challenge.userDetails.submissions, 'placement').placement;
+            $scope.challenge.highestPlacement = _.min($scope.challenge.userDetails.submissions.filter(function(submission) {
+              return submission.type === CONSTANTS.SUBMISSION_TYPE_CONTEST && submission.placement;
+            }), 'placement').placement;
 
             if ($scope.challenge.highestPlacement == 1) {
               $scope.challenge.wonFirst = true;
