@@ -16,9 +16,10 @@
 
     function getPresignedURL(body) {
       // var deferred = $q.defer();
-
+      console.log('body: ', body)
       // return api.all('submissions').post('photoUploadUrl', {contentType: file.type})
-      return api.all('submissions').customPOST(JSON.stringify(body))
+
+      return api.all('submissions').customPOST(JSON.stringify({param: body}))
       .then(function(response) {
         console.log('POST Response: ', response);
         // deferred.resolve({

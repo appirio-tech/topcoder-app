@@ -25,7 +25,7 @@
 
       .form-block__fields
         .fieldset
-          file-form-field(
+          tc-file-input(
             label-text="Submission",
             field-id="SUBMISSION_ZIP",
             button-text="Add File",
@@ -35,7 +35,7 @@
             set-file-reference="vm.setFileReference(file, fieldId)"
           )
 
-          file-form-field(
+          tc-file-input(
             label-text="Source",
             field-id="SOURCE_ZIP",
             button-text="Add File",
@@ -45,7 +45,7 @@
             set-file-reference="vm.setFileReference(file, fieldId)"
           )
 
-          file-form-field(
+          tc-file-input(
             label-text="Preview Image",
             field-id="DESIGN_COVER",
             button-text="Add File",
@@ -66,8 +66,8 @@
           label-text="Comments",
           placeholder="My design tries to solve the problem with a particular idea in mind. The use of color is based on the provided brand guideline. The flows are included in the sub folder. I followed all revisions as per the directions provided.",
           character-count="true",
-          character-count-max='500',
-          comment-value: 'vm.comments'
+          character-count-max="500",
+          value="vm.comments"
         )
 
     .form-block.flex.wrap
@@ -84,7 +84,13 @@
           p If your font is not on the list, you must provide the URL to the font page (not file) from one of the approved font websites in the dropdown box.
 
       .form-block__fields
-        p Fields
+        .fieldsets
+          .fieldset
+            tc-input.fieldset__input(label-text="Font Name", placeholder="Select font source to edit field")
+
+            tc-input.fieldset__input(label-text="Font URL", placeholder="Select font source to edit field")
+
+          button.fieldset__button.tc-btn.tc-btn-s(ng-click="") + Add Font
 
     .form-block.flex.wrap
       .form-block__instructions
@@ -94,7 +100,15 @@
           p If you used any stock photos in your design mocks, please provide the location and details so that the client can obtain them. Follow the guidelines at our #[a(href="Need link") Studio Stock Art Policy].
 
       .form-block__fields
-        p Fields
+        .fieldsets
+          .fieldset
+            tc-input.fieldset__input(label-text="Photo Description", placeholder="A picture of a girl")
+
+            tc-input.fieldset__input(label-text="Photo URL", placeholder="www.istockphoto.com")
+
+            tc-input.fieldset__input(label-text="File Number", placeholder="u2434312")
+
+          button.fieldset__button.tc-btn.tc-btn-s(ng-click="") + Add Stock Photo
 
   .panel-footer
     p Submitting your files means you hereby agree to the #[a(href="https://www.{{DOMAIN}}/community/how-it-works/terms/", target="_blank") Topcoder terms of use] and to the extent your uploaded file wins a Topcoder Competition, you hereby assign, grant, and transfer to Topcoder all rights in and title to the Winning Submission (as further described in the terms of use).
