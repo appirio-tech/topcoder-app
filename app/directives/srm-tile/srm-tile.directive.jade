@@ -29,7 +29,7 @@
     .member-stats
       p.points #[span {{srm.result.finalPoints }}] #[span Points]
       .ranks
-        a.division(href="https://community.{{DOMAIN}}/stat?c=round_stats&rd={{srm.rounds[0].id}}&dn=2")
+        a.division(href="https://community.{{DOMAIN}}/stat?c=round_stats&rd={{srm.rounds[0].id}}&dn={{srm.result.division}}")
           p.rank {{srm.result.divisionPlacement}}
           p.label  #[span Division {{srm.result.division}}]
         a.room(href="https://community.{{DOMAIN}}/stat?c=coder_room_stats&cr={{userId}}&rd={{srm.rounds[0].id}}")
