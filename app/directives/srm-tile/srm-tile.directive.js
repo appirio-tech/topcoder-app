@@ -8,7 +8,8 @@
         srm: '=srm',
         view: '=',
         showResults: '=',
-        showFooter: '='
+        showFooter: '=',
+        userId: '='
       },
       controller: ['$scope', '$filter', 'CONSTANTS', 'SRMService',
         function($scope, $filter, CONSTANTS, SRMService) {

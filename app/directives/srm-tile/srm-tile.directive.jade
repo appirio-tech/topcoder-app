@@ -32,7 +32,7 @@
         a.division(href="https://community.{{DOMAIN}}/stat?c=round_stats&rd={{srm.rounds[0].id}}&dn=2")
           p.rank {{srm.result.divisionPlacement}}
           p.label  #[span Division {{srm.result.division}}]
-        .room
+        a.room(href="https://community.{{DOMAIN}}/stat?c=coder_room_stats&cr={{userId}}&rd={{srm.rounds[0].id}}")
           p.rank #[span {{srm.result.roomPlacement}}]
           p.label #[span Room] 
       p.placement Placement
