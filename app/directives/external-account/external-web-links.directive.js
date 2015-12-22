@@ -38,6 +38,9 @@
             $log.debug("Web link added: " + JSON.stringify(data));
             data.data.provider = data.provider;
             $scope.linkedAccounts.push(data.data);
+            // reset the form when it is successfully added
+            $scope.addWebLinkFrm.$setPristine();
+            $scope.url = null;
             toaster.pop('success', "Success", "Your link has been added. Data from your link will be visible on your profile shortly.");
           })
           .catch(function(resp) {
