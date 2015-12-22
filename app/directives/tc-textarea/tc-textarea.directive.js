@@ -12,10 +12,7 @@
         placeholder: '@',
         characterCount: '=',
         characterCountMax: '@',
-        commentValue: '='
-      },
-      link: function(scope) {
-        console.log(scope);
+        value: '='
       }
     }
   }
