@@ -1,7 +1,7 @@
 /* jshint -W117, -W030 */
 describe('Skill Picker Controller', function() {
   var vm;
-  var toasterSvc, memberCertService, profileService;
+  var toasterSvc, memberCertService, profileService, state;
   var mockProfile = mockData.getMockProfile();
 
   beforeEach(function() {
@@ -57,11 +57,16 @@ describe('Skill Picker Controller', function() {
       default: $q.when(true)
     });
 
+    // mocked $state object
+    state = { go: sinon.spy()};
+
     var scope = $rootScope.$new();
     vm = $controller('SkillPickerController', {
       $scope: scope,
       userProfile: mockProfile,
-      featuredSkills: []
+      featuredSkills: [],
+      $state: state
+
     });
     $rootScope.$digest();
   });
@@ -129,6 +134,9 @@ describe('Skill Picker Controller', function() {
     expect(mockProfile.save).not.to.be.called;
     expect(profileService.updateUserSkills).not.to.be.called;
     expect(memberCertService.registerMember).not.to.be.called;
+    // we should still go to dashboard if the function is called,
+    // call to the function is controlled by disabling the button
+    expect(state.go).to.have.been.calledWith('dashboard').calledOnce;
   });
 
   it('should update tracks for the member ', function() {
@@ -139,6 +147,7 @@ describe('Skill Picker Controller', function() {
     expect(mockProfile.save).to.be.calledOnce;
     expect(profileService.updateUserSkills).not.to.be.called;
     expect(memberCertService.registerMember).not.to.be.called;
+    expect(state.go).to.have.been.calledWith('dashboard').calledOnce;
   });
 
   it('should show error popup for updating tracks ', function() {
@@ -156,6 +165,7 @@ describe('Skill Picker Controller', function() {
     expect(toasterSvc.pop).to.have.been.calledWith('error', "Whoops!", sinon.match('wrong')).calledOnce;
     expect(profileService.updateUserSkills).not.to.be.called;
     expect(memberCertService.registerMember).not.to.be.called;
+    expect(state.go).not.to.be.called;
   });
 
   it('should update skills for the member ', function() {
@@ -165,6 +175,7 @@ describe('Skill Picker Controller', function() {
     expect(mockProfile.save).not.to.be.called;
     expect(profileService.updateUserSkills).to.be.calledOnce;
     expect(memberCertService.registerMember).not.to.be.called;
+    expect(state.go).to.have.been.calledWith('dashboard').calledOnce;
   });
 
   it('should show error popup for error in updating skills ', function() {
@@ -175,6 +186,7 @@ describe('Skill Picker Controller', function() {
     expect(profileService.updateUserSkills).to.be.calledOnce;
     expect(toasterSvc.pop).to.have.been.calledWith('error', "Whoops!", sinon.match('wrong')).calledOnce;
     expect(memberCertService.registerMember).not.to.be.called;
+    expect(state.go).not.to.be.called;
   });
 
   it('should update communities for the member ', function() {
@@ -185,6 +197,7 @@ describe('Skill Picker Controller', function() {
     expect(mockProfile.save).not.to.be.called;
     expect(profileService.updateUserSkills).not.to.be.called;
     expect(memberCertService.registerMember).to.be.calledOnce;
+    expect(state.go).to.have.been.calledWith('dashboard').calledOnce;
   });
 
   // we may need to update this test case when we want to call unregister endpoint
@@ -196,6 +209,9 @@ describe('Skill Picker Controller', function() {
     expect(mockProfile.save).not.to.be.called;
     expect(profileService.updateUserSkills).not.to.be.called;
     expect(memberCertService.registerMember).not.to.be.called;
+    // we should still go to dashboard if the function is called,
+    // call to the function is controlled by disabling the button
+    expect(state.go).to.have.been.calledWith('dashboard').calledOnce;
   });
 
   it('should NOT update communities for the member for enabled but non dirty community ', function() {
@@ -207,6 +223,9 @@ describe('Skill Picker Controller', function() {
     expect(mockProfile.save).not.to.be.called;
     expect(profileService.updateUserSkills).not.to.be.called;
     expect(memberCertService.registerMember).not.to.be.called;
+    // we should still go to dashboard if the function is called,
+    // call to the function is controlled by disabling the button
+    expect(state.go).to.have.been.calledWith('dashboard').calledOnce;
   });
 
   it('should show error popup for error in updating communities ', function() {
@@ -219,6 +238,7 @@ describe('Skill Picker Controller', function() {
     expect(profileService.updateUserSkills).not.to.be.called;
     expect(memberCertService.registerMember).to.be.calledOnce;
     expect(toasterSvc.pop).to.have.been.calledWith('error', "Whoops!", sinon.match('wrong')).calledOnce;
+    expect(state.go).not.to.be.called;
   });
 
 });
