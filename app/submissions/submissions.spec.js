@@ -19,6 +19,5 @@ describe('Submissions Controller', function() {
 
   it('should exist', function() {
     expect(vm).to.exist;
-    expect(vm.testValue).to.equal('testValue');
   });
 });

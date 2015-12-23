@@ -10,8 +10,6 @@
 
     activate();
 
-    function activate() {
-      vm.testValue = 'testValue';
-    }
+    function activate() {}
   }
 })();

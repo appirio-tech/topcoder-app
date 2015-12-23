@@ -6,10 +6,10 @@
 
     a Learn more about formatting your submission file
 
-    a.tc-btn.tc-btn-s Back to Challenge Details
+    a.tc-btn.tc-btn-s(ng-click="'TODO: go back to challenge details'") Back to Challenge Details
 
 .panel-body
-  .form-blocks
+  form.form-blocks(name="vm.submissionForm", role="form", ng-submit="vm.submissionForm.$valid && vm.uploadSubmission()", novalidate)
     .form-block.flex.wrap
       .form-block__instructions
         .form-block__title Files
@@ -17,7 +17,7 @@
         .form-block__text
           p Please follow the instructions on the Challenge Details page regarding what your submission, source, and preview files should contain.
 
-          p Do not name any of your files "declaration.txt" as this is added by our system.
+          p Do not name any of your files "declaration.txt", as this is added by our system.
 
           p Please be sure to double-check that you have submitted the correct files and that your JPG files (if applicable) are in RGB color mode.
 
@@ -114,8 +114,8 @@
     p Submitting your files means you hereby agree to the #[a(href="https://www.{{DOMAIN}}/community/how-it-works/terms/", target="_blank") Topcoder terms of use] and to the extent your uploaded file wins a Topcoder Competition, you hereby assign, grant, and transfer to Topcoder all rights in and title to the Winning Submission (as further described in the terms of use).
 
     .checkbox.flex.center
-      input(type="checkbox", ng-model="vm.hasAgreedToTerms")
+      input(type="checkbox", ng-model="vm.hasAgreedToTerms", id="agree-to-terms", required)
 
-      label I understand and agree
+      label(for="agree-to-terms") I understand and agree
 
-    button.tc-btn.tc-btn-secondary(ng-click="vm.uploadSubmission()") Submit
+    button.tc-btn.tc-btn-secondary(type="submit", ng-disabled="vm.submissionForm.$invalid") Submit

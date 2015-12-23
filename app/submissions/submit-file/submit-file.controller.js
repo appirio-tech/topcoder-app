@@ -41,9 +41,7 @@
 
     activate();
 
-    function activate() {
-
-    }
+    function activate() {}
 
     function setFileReference(file, fieldId) {
       var fileObject = {
@@ -63,7 +61,7 @@
           fileObject.mediaType = file.type;
       }
 
-      // If user picks a new file, replace the fileObject with the new one
+      // If user picks a new file, replace the that file's fileObject with a new one
       // Or add it the list if it's not there
       if (vm.submissionsBody.data.files.length) {
         vm.submissionsBody.data.files.some(function(file, i, filesArray) {
