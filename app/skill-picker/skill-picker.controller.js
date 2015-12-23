@@ -175,7 +175,7 @@
         vm.saving = false;
         toaster.pop('success', "Success!", "Your skills have been updated.");
         vm.disableDoneButton = true;
-        //$state.go('dashboard');
+        $state.go('dashboard');
       })
       .catch(function(resp) {
         vm.saving = false;
