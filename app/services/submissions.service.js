@@ -9,7 +9,10 @@
     var api = ApiService.restangularV3;
 
     var service = {
-      getPresignedURL: getPresignedURL
+      getPresignedURL: getPresignedURL,
+      uploadSubmissionFileToS3: uploadSubmissionFileToS3,
+      updateSubmissionStatus: updateSubmissionStatus,
+      recordCompletedSubmission: recordCompletedSubmission
     };
 
     return service;
@@ -37,6 +40,32 @@
       });
 
       // return deferred.promise;
+    }
+
+    function uploadSubmissionFileToS3(/* something that has file*/) {
+      var file;
+      var S3RequestOptions = {
+        url: 'preSignedURL',
+        method: 'PUT',
+        headers: {},
+        data: 'File Object'
+      };
+
+      return $http(S3RequestOptions)
+        .then(function(response) {
+          console.log('response from S3: ', response);
+        })
+        .catch(function(err) {
+          console.log('error uploading to S3: ', err);
+        });
+    }
+
+    function updateSubmissionStatus() {
+
+    }
+
+    function recordCompletedSubmission() {
+
     }
   };
 })();
