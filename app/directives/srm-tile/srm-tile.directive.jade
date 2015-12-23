@@ -65,10 +65,10 @@
       p.points #[span {{srm.result.finalPoints }}] Points
 
       .ranks
-        .division
+        a.division(ng-class="{noclick: !srm.result.divisionPlacement}")
           p.rank {{srm.result.divisionPlacement}}
           p.label #[span Div {{srm.result.division}}] #[span Placement]
-        .room
+        a.room(ng-class="{noclick: !srm.result.roomPlacement}")
           p.rank #[span {{srm.result.roomPlacement}}]
           p.label #[span Room] #[span Placement]
 
