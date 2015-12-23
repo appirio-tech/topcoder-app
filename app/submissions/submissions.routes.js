@@ -26,7 +26,41 @@
         url: '/challenges/:challengeId/submit/?method=file',
         templateUrl: 'submissions/submit-file/submit-file.html',
         controller: 'SubmitFileController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {
+          challengeToSubmitTo: ['ChallengeService', '$stateParams', 'UserService', function(ChallengeService, $stateParams, UserService) {
+            // This page is only available to users that are registered to the challenge (submitter role) and the challenge is in the Checkpoint Submission or Submission phase.
+            var params = {
+              filter: 'id=' + $stateParams.challengeId
+            };
+
+            var userHandle = UserService.getUserIdentity().handle;
+
+            return ChallengeService.getUserChallenges(userHandle, params)
+              .then(function(challenge) {
+                challenge = challenge[0];
+
+                var isPhaseSubmission = _.some(challenge.currentPhases, {
+                  phaseStatus: 'Open',
+                  phaseType: 'Submission'
+                });
+
+                var isSubmitter = _.some(challenge.userDetails.roles, function(role) {
+                  return role === 'Submitter';
+                });
+
+                if (!isPhaseSubmission || !isSubmitter) {
+                // TODO: Where do we redirect if you can't submit?
+                  alert('You should not have access to this page');
+                }
+              })
+              .catch(function(err) {
+                console.log('ERROR GETTING CHALLENGE: ', err);
+                alert('There was an error accessing this page');
+                // TODO: Where do we redirect if there is an error?
+              });
+          }]
+        }
       }
     };
 
