@@ -17,7 +17,7 @@
     .phase-status
       .registered(ng-show="srm.userStatus === CONSTANTS.REGISTERED") Registered
       .unregistered(ng-hide="srm.currentPhase !== CONSTANTS.REGISTRATION || srm.userStatus === CONSTANTS.REGISTERED")
-        a.tc-btn.tc-btn-s.tc-btn-wide(href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{srm.rounds[0].id}}") Register
+        a.tc-btn.tc-btn-s.tc-btn-wide(href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{srm.rounds[0].id}}") Register
 
   .past-srm(ng-show="srm.status === 'PAST'")
     .challenge-track
