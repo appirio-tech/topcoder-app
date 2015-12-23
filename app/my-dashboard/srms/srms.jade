@@ -6,7 +6,7 @@ header
 
 tc-section(state="vm.state")
   .srm-tiles
-    srm-tile(ng-repeat="srm in vm.srms", srm="srm", view="'tile'", ng-class="'tile-view'")
+    srm-tile(ng-repeat="srm in vm.srms", srm="srm", view="'tile'", ng-class="'tile-view'", user-id="vm.userId")
 
     .srm-links-card
       .flex-wrapper
