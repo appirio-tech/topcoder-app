@@ -12,6 +12,7 @@
       submissions: {
         parent: 'root',
         abstract: true,
+        url: '/challenges/:challengeId/submit/',
         templateUrl: 'submissions/submissions.html',
         controller: 'SubmissionsController',
         controllerAs: 'submissions',
@@ -20,13 +21,7 @@
 
           // TODO: Get title from PMs
           title: 'Submit'
-        }
-      },
-      'submissions.file': {
-        url: '/challenges/:challengeId/submit/?method=file',
-        templateUrl: 'submissions/submit-file/submit-file.html',
-        controller: 'SubmitFileController',
-        controllerAs: 'vm',
+        },
         resolve: {
           challengeToSubmitTo: ['ChallengeService', '$stateParams', 'UserService', function(ChallengeService, $stateParams, UserService) {
             // This page is only available to users that are registered to the challenge (submitter role) and the challenge is in the Checkpoint Submission or Submission phase.
@@ -38,6 +33,7 @@
 
             return ChallengeService.getUserChallenges(userHandle, params)
               .then(function(challenge) {
+                console.log('Challenge???? ', challenge.plain())
                 challenge = challenge[0];
 
                 var isPhaseSubmission = _.some(challenge.currentPhases, {
@@ -53,6 +49,8 @@
                 // TODO: Where do we redirect if you can't submit?
                   alert('You should not have access to this page');
                 }
+
+                return challenge;
               })
               .catch(function(err) {
                 console.log('ERROR GETTING CHALLENGE: ', err);
@@ -61,6 +59,12 @@
               });
           }]
         }
+      },
+      'submissions.file': {
+        url: '?method=file',
+        templateUrl: 'submissions/submit-file/submit-file.html',
+        controller: 'SubmitFileController',
+        controllerAs: 'vm',
       }
     };
 
