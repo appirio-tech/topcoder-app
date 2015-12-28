@@ -191,7 +191,8 @@
           }
           if (challenge.track === 'DEVELOP' && challenge.subTrack === 'FIRST_2_FINISH') {
             challenge.highestPlacement = _.min(challenge.userDetails.submissions.filter(function(submission) {
-              return submission.status === 'Active' ? submission.placement : 0;
+              return submission.type === CONSTANTS.SUBMISSION_TYPE_CONTEST
+              && submission.status === CONSTANTS.STATUS_ACTIVE && submission.placement;
             }), 'placement').placement;
           }
           if (challenge.highestPlacement === 0) {

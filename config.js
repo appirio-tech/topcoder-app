@@ -45,7 +45,10 @@ module.exports = function() {
         REGISTERED: 'REGISTERED',
 
         // submission type
-        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission',
+
+        // statuses for different objects
+        STATUS_ACTIVE: 'Active'
 
       }
     },
@@ -94,7 +97,10 @@ module.exports = function() {
         REGISTERED: 'REGISTERED',
 
         // submission type
-        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission',
+
+        // statuses for different objects
+        STATUS_ACTIVE: 'Active'
 
       }
     },
@@ -143,7 +149,10 @@ module.exports = function() {
         REGISTERED: 'REGISTERED',
 
         // submission type
-        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission',
+
+        // statuses for different objects
+        STATUS_ACTIVE: 'Active'
 
       }
     },
@@ -192,7 +201,10 @@ module.exports = function() {
         REGISTERED: 'REGISTERED',
 
         // submission type
-        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission',
+
+        // statuses for different objects
+        STATUS_ACTIVE: 'Active'
 
       }
     },
@@ -241,7 +253,10 @@ module.exports = function() {
         REGISTERED: 'REGISTERED',
 
         // submission type
-        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission',
+
+        // statuses for different objects
+        STATUS_ACTIVE: 'Active'
 
       }
     }

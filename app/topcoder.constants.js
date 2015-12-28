@@ -33,7 +33,8 @@ angular.module("CONSTANTS", [])
 	"REGISTRATION": "REGISTRATION",
 	"CODING": "CODING",
 	"REGISTERED": "REGISTERED",
-	"SUBMISSION_TYPE_CONTEST": "Contest Submission"
+	"SUBMISSION_TYPE_CONTEST": "Contest Submission",
+	"STATUS_ACTIVE": "Active"
 })
 
 ;
