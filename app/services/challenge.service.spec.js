@@ -393,4 +393,123 @@ describe('Challenge Service', function() {
     expect(challenge.userHasSubmitterRole).to.exist.to.false;
   });
 
+  it('processPastSRM should process SRM with valid placement  ', function() {
+    var srm = {
+      id: 4460,
+      name: "Holder",
+      status: "PAST",
+      track: "DATA_SCIENCE",
+      subTrack : "SRM",
+      startDate: "8/30/15 12:00 AM",
+      endDate: "8/30/15 12:00 AM",
+      rounds: [
+        {
+          id: 12345,
+          forumId: 54321,
+          status: "PAST",
+          userSRMDetails: {
+            newRating: 678,
+            finalPoints: 226.45
+          }
+        }
+      ]
+    };
+    ChallengeService.processPastSRM(srm);
+    expect(srm.newRating).to.exist.to.equal(678);
+    expect(srm.finalPoints).to.exist.to.equal(226.45);
+  });
+
+  it('processPastSRM should process SRM without rounds gracefully  ', function() {
+    var srm = {
+      id: 4460,
+      name: "Holder",
+      status: "PAST",
+      track: "DATA_SCIENCE",
+      subTrack : "SRM",
+      startDate: "8/30/15 12:00 AM",
+      endDate: "8/30/15 12:00 AM",
+      rounds: []
+    };
+    ChallengeService.processPastSRM(srm);
+    expect(srm.newRating).not.to.exist;
+    expect(srm.finalPoints).not.to.exist;
+  });
+
+  it('processPastMarathonMatch should process MM with valid placement  ', function() {
+    var mm = {
+      id: 4460,
+      name: "Holder",
+      status: "PAST  ",
+      track: "DATA_SCIENCE",
+      subTrack : "MARATHON_MATCH",
+      startDate: "8/30/15 12:00 AM",
+      endDate: "8/30/15 12:00 AM",
+      rounds: [
+        {
+          id: 12345,
+          forumId: 54321,
+          status: "PAST",
+          systemTestEndAt: "8/29/15 12:00 AM",
+          userMMDetails: {
+            newRating: 678,
+            rated: true,
+            pointTotal: 22645
+          }
+        }
+      ]
+    };
+    ChallengeService.processPastMarathonMatch(mm);
+    expect(mm.status).to.exist.to.equal("PAST");// should trim the status
+    expect(mm.newRating).to.exist.to.equal(678);
+    expect(mm.pointTotal).to.exist.to.equal(22645);
+    expect(mm.submissionEndDate).to.exist.to.equal("8/29/15 12:00 AM");
+  });
+
+  it('processPastMarathonMatch should process MM without rounds gracefully  ', function() {
+    var mm = {
+      id: 4460,
+      name: "Holder",
+      status: "PAST",
+      track: "DATA_SCIENCE",
+      subTrack : "MARATHON_MATCH",
+      startDate: "8/30/15 12:00 AM",
+      endDate: "8/30/15 12:00 AM",
+      rounds: []
+    };
+    ChallengeService.processPastMarathonMatch(mm);
+    expect(mm.newRating).not.to.exist;
+    expect(mm.pointTotal).not.to.exist;
+    expect(mm.submissionEndDate).not.to.exist;
+  });
+
+  it('processPastMarathonMatch should process MM with unrated user details  ', function() {
+    var mm = {
+      id: 4460,
+      name: "Holder",
+      status: "PAST  ",
+      track: "DATA_SCIENCE",
+      subTrack : "MARATHON_MATCH",
+      startDate: "8/30/15 12:00 AM",
+      endDate: "8/30/15 12:00 AM",
+      rounds: [
+        {
+          id: 12345,
+          forumId: 54321,
+          status: "PAST",
+          systemTestEndAt: "8/29/15 12:00 AM",
+          userMMDetails: {
+            newRating: null,
+            rated: false,
+            pointTotal: null
+          }
+        }
+      ]
+    };
+    ChallengeService.processPastMarathonMatch(mm);
+    expect(mm.status).to.exist.to.equal("PAST");// should trim the status
+    expect(mm.newRating).not.to.exist;
+    expect(mm.pointTotal).not.to.exist;
+    expect(mm.submissionEndDate).not.to.exist;
+  });
+
 });

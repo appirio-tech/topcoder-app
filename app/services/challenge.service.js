@@ -168,8 +168,8 @@
     function processPastSRM(challenge) {
       if (Array.isArray(challenge.rounds) && challenge.rounds.length
         && challenge.rounds[0].userSRMDetails) {
-        challenge.newRating = challenge.rounds[0].userMMDetails.newRating;
-        challenge.pointTotal = challenge.rounds[0].userMMDetails.pointTotal;
+        challenge.newRating = challenge.rounds[0].userSRMDetails.newRating;
+        challenge.finalPoints = challenge.rounds[0].userSRMDetails.finalPoints;
       }
     }
 
