@@ -90,24 +90,29 @@ describe('ExternalWebLinks Directive', function() {
       });
       expect(topcoderLink).to.exist;
       expect(topcoderLink.status).to.exist.to.equal('PENDING');
+      expect(element.isolateScope().url).not.to.exist;
       expect(toasterSvc.pop).to.have.been.calledWith('success').calledOnce;
     });
 
     it('should NOT add new weblink to linkedAccounts', function() {
+      var urlToAdd = 'https://www.topcoder.com';
       element.isolateScope().userHandle = 'throwError';
-      element.isolateScope().url = 'https://www.topcoder.com';
+      element.isolateScope().url = urlToAdd;
       element.isolateScope().addWebLink();
       scope.$digest();
       expect(scope.linkedAccounts).to.have.length(1);
+      expect(element.isolateScope().url).to.exist.to.equal(urlToAdd);
       expect(toasterSvc.pop).to.have.been.calledWith('error').calledOnce;
     });
 
     it('should NOT add new weblink to linkedAccounts', function() {
+      var urlToAdd = 'https://www.topcoder.com';
       element.isolateScope().userHandle = 'alreadyExistsError';
-      element.isolateScope().url = 'https://www.topcoder.com';
+      element.isolateScope().url = urlToAdd;
       element.isolateScope().addWebLink();
       scope.$digest();
       expect(scope.linkedAccounts).to.have.length(1);
+      expect(element.isolateScope().url).to.exist.to.equal(urlToAdd);
       expect(toasterSvc.pop).to.have.been.calledWith('error').calledOnce;
     });
 
