@@ -7,8 +7,29 @@
 
   function SubmitFileController($stateParams, UserService, SubmissionsService) {
     var vm = this;
-    vm.hasAgreedToTerms = false;
+    var files = {};
     vm.comments = '';
+    vm.submissionForm = {
+      files: [],
+
+      // Should the rank input field be set to 1 automatically?
+      submitterRank: 1,
+      submitterComments: '',
+      fonts: [{
+        id: 1,
+        name: '',
+        sourceUrl: '',
+        source: ''
+      }],
+      stockArts: [{
+        id: 1,
+        description: '',
+        sourceUrl: '',
+        fileNumber: ''
+      }],
+      hasAgreedToTerms: false
+    };
+
     var userId = parseInt(UserService.getUserIdentity().userId);
 
     vm.submissionsBody = {
@@ -37,13 +58,15 @@
 
     vm.setFileReference = setFileReference;
     vm.uploadSubmission = uploadSubmission;
-
+    vm.createAnotherStockArtFieldset = createAnotherStockArtFieldset;
 
     activate();
 
     function activate() {}
 
     function setFileReference(file, fieldId) {
+      files[fieldId] = file;
+
       var fileObject = {
         name: file.name,
         type: fieldId,
@@ -61,6 +84,8 @@
           fileObject.mediaType = file.type;
       }
 
+
+
       // If user picks a new file, replace the that file's fileObject with a new one
       // Or add it the list if it's not there
       if (vm.submissionsBody.data.files.length) {
@@ -76,9 +101,25 @@
       }
     }
 
+    function createAnotherStockArtFieldset() {
+      vm.submissionForm.stockArts.push({
+        id: vm.submissionForm.stockArts.length + 1,
+        description: '',
+        sourceUrl: '',
+        fileNumber: ''
+      });
+    }
+
     function uploadSubmission() {
       vm.submissionsBody.data.submitterComments = vm.comments;
-      SubmissionsService.getPresignedURL(vm.submissionsBody);
+      vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank;
+
+      var stockArts = angular.copy(vm.submissionForm.stockArts);
+      vm.submissionsBody.data.stockArts = stockArts.forEach(function(stockArt) {
+        delete stockArt.id;
+      });
+
+      SubmissionsService.getPresignedURL(vm.submissionsBody, files);
     }
   }
 })();

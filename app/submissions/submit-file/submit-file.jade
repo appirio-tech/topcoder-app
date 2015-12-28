@@ -9,7 +9,7 @@
     a.tc-btn.tc-btn-s(ng-click="'TODO: go back to challenge details'") Back to Challenge Details
 
 .panel-body
-  form.form-blocks(name="vm.submissionForm", role="form", ng-submit="vm.submissionForm.$valid && vm.uploadSubmission()", novalidate)
+  form.form-blocks(name="submissionForm", role="form", ng-submit="submissionForm.$valid && vm.uploadSubmission()", novalidate)
     .form-block.flex.wrap
       .form-block__instructions
         .form-block__title Files
@@ -25,7 +25,7 @@
 
       .form-block__fields
         .fieldset
-          tc-file-input(
+          tc-file-input.tc-file-field(
             label-text="Submission",
             field-id="SUBMISSION_ZIP",
             button-text="Add File",
@@ -35,7 +35,7 @@
             set-file-reference="vm.setFileReference(file, fieldId)"
           )
 
-          tc-file-input(
+          tc-file-input.tc-file-field(
             label-text="Source",
             field-id="SOURCE_ZIP",
             button-text="Add File",
@@ -45,7 +45,7 @@
             set-file-reference="vm.setFileReference(file, fieldId)"
           )
 
-          tc-file-input(
+          tc-file-input.tc-file-field(
             label-text="Preview Image",
             field-id="DESIGN_COVER",
             button-text="Add File",
@@ -53,6 +53,8 @@
             mandatory="true",
             set-file-reference="vm.setFileReference(file, fieldId)"
           )
+
+          tc-input.fieldset__input.submitterRank(label-text="Rank #", input-value="vm.submissionForm.submitterRank")
 
     .form-block.flex.wrap
       .form-block__instructions
@@ -101,21 +103,21 @@
 
       .form-block__fields
         .fieldsets
-          .fieldset
-            tc-input.fieldset__input(label-text="Photo Description", placeholder="A picture of a girl")
+          ng-form.fieldset(name="stockArt_{{$index}}", ng-repeat="stockArt in vm.submissionForm.stockArts track by stockArt.id")
+            tc-input.fieldset__input(label-text="Photo Description", placeholder="A picture of a girl", input-value="stockArt.description")
 
-            tc-input.fieldset__input(label-text="Photo URL", placeholder="www.istockphoto.com")
+            tc-input.fieldset__input(label-text="Photo URL", placeholder="www.istockphoto.com", input-value="stockArt.sourceUrl")
 
-            tc-input.fieldset__input(label-text="File Number", placeholder="u2434312")
+            tc-input.fieldset__input(label-text="File Number", placeholder="u2434312", input-value="stockArt.fileNumber")
 
-          button.fieldset__button.tc-btn.tc-btn-s(ng-click="") + Add Stock Photo
+          button.fieldset__button.tc-btn.tc-btn-s(ng-click="vm.createAnotherStockArtFieldset()") + Add Stock Photo
 
-  .panel-footer
-    p Submitting your files means you hereby agree to the #[a(href="https://www.{{DOMAIN}}/community/how-it-works/terms/", target="_blank") Topcoder terms of use] and to the extent your uploaded file wins a Topcoder Competition, you hereby assign, grant, and transfer to Topcoder all rights in and title to the Winning Submission (as further described in the terms of use).
+    .panel-footer
+      p Submitting your files means you hereby agree to the #[a(href="https://www.{{DOMAIN}}/community/how-it-works/terms/", target="_blank") Topcoder terms of use] and to the extent your uploaded file wins a Topcoder Competition, you hereby assign, grant, and transfer to Topcoder all rights in and title to the Winning Submission (as further described in the terms of use).
 
-    .checkbox.flex.center
-      input(type="checkbox", ng-model="vm.hasAgreedToTerms", id="agree-to-terms", required)
+      .checkbox.flex.center
+        input(type="checkbox", ng-model="vm.submissionForm.hasAgreedToTerms", id="agree-to-terms", required)
 
-      label(for="agree-to-terms") I understand and agree
+        label(for="agree-to-terms") I understand and agree
 
-    button.tc-btn.tc-btn-secondary(type="submit", ng-disabled="vm.submissionForm.$invalid") Submit
+      button.tc-btn.tc-btn-secondary(type="submit", ng-disabled="submissionForm.$invalid") Submit
