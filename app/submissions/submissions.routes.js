@@ -33,8 +33,12 @@
 
             return ChallengeService.getUserChallenges(userHandle, params)
               .then(function(challenge) {
-                console.log('Challenge???? ', challenge.plain())
                 challenge = challenge[0];
+
+                if (!challenge) {
+                  // There should be a challenge, redirect?
+                  alert('User is not associated with this challenge.');
+                }
 
                 var isPhaseSubmission = _.some(challenge.currentPhases, {
                   phaseStatus: 'Open',
