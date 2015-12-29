@@ -10,7 +10,7 @@
 
     .challenges(ng-show="vm.subTrack == 'SRM'")
       .challenge.tile(ng-repeat="challenge in vm.challenges")
-        srm-tile(srm="challenge", domain="vm.domain", view="'tile'")
+        srm-tile(srm="challenge", domain="vm.domain", view="'tile'", user-id="profileVm.profile.userId")
 
       .no-challenges(ng-show="!vm.challenges || vm.challenges.length == 0")
         | Sorry, no rated SRMs found.

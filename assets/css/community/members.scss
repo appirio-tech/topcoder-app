@@ -181,7 +181,7 @@
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1);
     text-align: center;
     background: $white;
-    .avatar-wrapper {
+    .avatar-wrapper img {
       margin: 0 auto;
       border-radius: 100px;
       border: 1px solid $gray-light;
@@ -208,6 +208,10 @@
     .user-country,
     .user-more {
       text-transform: uppercase;
+    }
+    .user-name {
+      color: black;
+      display: block;
     }
     .user-desc {
       color: $gray-dark-alt;
