@@ -34,18 +34,39 @@
     }
 
     function uploadSubmissionFileToS3(filesWithPresignedURL, files) {
-      var promises = filesWithPresignedURL.map(function(fileWithPresignedURL) {
-        var S3RequestOptions = {
-          url: fileWithPresignedURL.preSignedUploadUrl,
-          method: 'PUT',
-          // headers: {},
 
-          // The file's type is the key, and the value is the actual file to upload
-          data: files[filesWithPresignedURL.type]
+      var promises = filesWithPresignedURL.map(function(fileWithPresignedURL) {
+        var deferred = $q.defer();
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('PUT', fileWithPresignedURL.preSignedUploadUrl, true);
+        xhr.setRequestHeader('Content-Type', fileWithPresignedURL.mediaType);
+
+        // xhr version of the success callback
+        xhr.onreadystatechange = function() {
+          var status = xhr.status;
+          if (((status >= 200 && status < 300) || status === 304) && xhr.readyState === 4) {
+            $log.info('Successfully uploaded file');
+            console.log(xhr.responseText);
+            var xhrResponse = xhr.responseText;
+            deferred.resolve(xhrResponse);
+
+          } else if (status >= 400) {
+            $log.error('Error uploading to S3 with status: ' + status);
+            toaster.pop('error', 'Whoops!', 'There was an error uploading your files. Please try again later.');
+            deferred.reject(err);
+          }
         };
 
-        return $http(S3RequestOptions);
+        xhr.onerror = function(err) {
+          $log.info('Error uploading to s3');
+          toaster.pop('error', 'Whoops!', 'There was an error uploading your files. Please try again later.');
+          deferred.reject(err);
+        }
 
+        xhr.send(files[fileWithPresignedURL.type]);
+
+        return deferred.promise;
       });
 
       return $q.all(promises)
