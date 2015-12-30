@@ -92,7 +92,7 @@
 
             tc-input.fieldset__input(label-text="Font URL", placeholder="Select font source to edit field")
 
-          button.fieldset__button.tc-btn.tc-btn-s(ng-click="") + Add Font
+          button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="") + Add Font
 
     .form-block.flex.wrap
       .form-block__instructions
@@ -104,11 +104,23 @@
       .form-block__fields
         .fieldsets
           ng-form.fieldset(name="stockArt_{{$index}}", ng-repeat="stockArt in vm.submissionForm.stockArts track by stockArt.id")
-            tc-input.fieldset__input(label-text="Photo Description", placeholder="A picture of a girl", input-value="stockArt.description")
+            tc-input.fieldset__input(
+              label-text="Photo Description",
+              placeholder="A picture of a girl",
+              input-value="stockArt.description"
+            )
 
-            tc-input.fieldset__input(label-text="Photo URL", placeholder="www.istockphoto.com", input-value="stockArt.sourceUrl")
+            tc-input.fieldset__input(
+              label-text="Photo URL",
+              placeholder="www.istockphoto.com",
+              input-value="stockArt.sourceUrl"
+            )
 
-            tc-input.fieldset__input(label-text="File Number", placeholder="u2434312", input-value="stockArt.fileNumber")
+            tc-input.fieldset__input(
+              label-text="File Number",
+              placeholder="u2434312",
+              input-value="stockArt.fileNumber"
+            )
 
           button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="vm.createAnotherStockArtFieldset()") + Add Stock Photo
 
