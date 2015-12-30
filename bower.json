@@ -40,7 +40,7 @@
     "angular-xml": "~2.1.1",
     "angularjs-toaster": "~0.4.15",
     "appirio-tech-ng-iso-constants": "git@github.com:appirio-tech/ng-iso-constants#~1.0.5",
-    "appirio-tech-ng-ui-components": "0.x.x",
+    "appirio-tech-ng-ui-components": "1.x.x",
     "d3": "~3.5.6",
     "fontawesome": "~4.3.0",
     "jstzdetect": "~1.0.6",
