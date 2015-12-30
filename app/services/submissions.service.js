@@ -47,8 +47,8 @@
           var status = xhr.status;
           if (((status >= 200 && status < 300) || status === 304) && xhr.readyState === 4) {
             $log.info('Successfully uploaded file');
-            console.log(xhr.responseText);
-            var xhrResponse = xhr.responseText;
+            console.log('xhr response: ', xhr.responseXML);
+            var xhrResponse = xhr.responseXML;
             deferred.resolve(xhrResponse);
 
           } else if (status >= 400) {
@@ -78,12 +78,28 @@
         });
     }
 
-    function updateSubmissionStatus() {
-
+    function updateSubmissionStatus(id, data) {
+      // Pass data from upload to S3
+      return api.one('submissions', id).customPUT(data)
+      .then(function(response) {
+        $log.info('Successfully updated file status');
+      })
+      .catch(function(err) {
+        $log.info('Error updating file status');
+        $log.error(err);
+      });
     }
 
-    function recordCompletedSubmission() {
-
+    function recordCompletedSubmission(id, data) {
+      // Once all uploaded, make record and begin processing
+      return api.one('submissions', id).customPOST(data, 'process')
+      .then(function(response) {
+        $log.info('Successfully made file record. Beginning processing');
+      })
+      .catch(function(err) {
+        $log.info('Error in creating file record');
+        $log.error(err);
+      });
     }
   };
 })();
