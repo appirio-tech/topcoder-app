@@ -22,6 +22,7 @@
     vm.loadingCommunities = false;
     vm.communities = {};
     vm.isPageDirty = isPageDirty;
+    vm.isTracksDirty = isTracksDirty;
     ///////
     activate();
 
