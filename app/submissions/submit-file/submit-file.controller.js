@@ -7,6 +7,18 @@
 
   function SubmitFileController($stateParams, UserService, SubmissionsService) {
     var vm = this;
+
+    vm.fontList1 = [
+      { label: 'Studio Standard Fonts List', value: 'STUDIO_STANDARDS_FONTS_LIST', id: 1 },
+      { label: 'Fonts.com', value: 'FONTS_DOT_COM', id: 1  },
+      { label: 'MyFonts', value: 'MYFONTS', id: 1  },
+      { label: 'Adobe Fonts', value: 'ADOBE_FONTS', id: 1  },
+      { label: 'Font Shop', value: 'FONT_SHOP', id: 1  },
+      { label: 'T.26 Digital Type Foundry', value: 'T26_DIGITAL_TYPE_FOUNDRY', id: 1  },
+      { label: 'Font Squirrel', value: 'FONT_SQUIRREL', id: 1  },
+      { label: 'Typography.com', value: 'TYPOGRAPHY_DOT_COM', id: 1 }
+    ];
+
     var files = {};
     vm.comments = '';
     vm.submissionForm = {
@@ -17,9 +29,9 @@
       submitterComments: '',
       fonts: [{
         id: 1,
+        source: '',
         name: '',
-        sourceUrl: '',
-        source: ''
+        sourceUrl: ''
       }],
       stockArts: [{
         id: 1,
@@ -58,6 +70,8 @@
 
     vm.setFileReference = setFileReference;
     vm.uploadSubmission = uploadSubmission;
+    vm.selectFont = selectFont;
+    vm.createAnotherFontFieldset = createAnotherFontFieldset;
     vm.createAnotherStockArtFieldset = createAnotherStockArtFieldset;
 
     activate();
@@ -101,6 +115,28 @@
       }
     }
 
+    function selectFont(newFont) {
+      console.log('new value: ', newFont);
+      var id = newFont.id - 1;
+      vm.submissionForm.fonts[id].source = newFont.value;
+    }
+
+    function createAnotherFontFieldset() {
+      var id = vm.submissionForm.fonts.length;
+      var newFontList = vm['fontList' + (id + 1)] = angular.copy(vm['fontList' + id]);
+
+      newFontList.forEach(function(font) {
+        font.id++;
+      });
+
+      vm.submissionForm.fonts.push({
+        id: vm.submissionForm.fonts.length + 1,
+        source: '',
+        name: '',
+        sourceUrl: ''
+      });
+    }
+
     function createAnotherStockArtFieldset() {
       vm.submissionForm.stockArts.push({
         id: vm.submissionForm.stockArts.length + 1,
@@ -115,8 +151,17 @@
       vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank;
 
       var stockArts = angular.copy(vm.submissionForm.stockArts);
-      vm.submissionsBody.data.stockArts = stockArts.forEach(function(stockArt) {
+      vm.submissionsBody.data.stockArts = stockArts.map(function(stockArt) {
         delete stockArt.id;
+        return stockArt;
+      });
+
+      var fonts = angular.copy(vm.submissionForm.fonts);
+      vm.submissionsBody.data.fonts = fonts.map(function(font) {
+        if (font.source) {
+          delete font.id;
+          return font;
+        }
       });
 
       SubmissionsService.getPresignedURL(vm.submissionsBody, files);

@@ -47,9 +47,10 @@
           var status = xhr.status;
           if (((status >= 200 && status < 300) || status === 304) && xhr.readyState === 4) {
             $log.info('Successfully uploaded file');
-            console.log('xhr response: ', xhr.responseXML);
-            var xhrResponse = xhr.responseXML;
-            deferred.resolve(xhrResponse);
+            console.log('xhr response: ', xhr.responseText);
+
+            // updateSubmissionStatus and then resolve?
+            deferred.resolve();
 
           } else if (status >= 400) {
             $log.error('Error uploading to S3 with status: ' + status);
@@ -72,6 +73,7 @@
       return $q.all(promises)
         .then(function(response) {
           console.log('response from S3: ', response);
+
         })
         .catch(function(err) {
           console.log('error uploading to S3: ', err);

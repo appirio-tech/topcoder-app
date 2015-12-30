@@ -87,12 +87,30 @@
 
       .form-block__fields
         .fieldsets
-          .fieldset
-            tc-input.fieldset__input(label-text="Font Name", placeholder="Select font source to edit field")
+          ng-form.fieldset(name="font_{{$index + 1}}", ng-repeat="font in vm.submissionForm.fonts track by font.id")
+            dropdown(
+              name="'font-source{{$index + 1}}'",
+              options="vm.fontList{{$index + 1}}",
+              placeholder="'Select from the list'",
+              searchable="false",
+              clearable="false",
+              on-change="vm.selectFont",
+              value="vm.submissionForm.fonts[{{$index}}].source"
+            )
 
-            tc-input.fieldset__input(label-text="Font URL", placeholder="Select font source to edit field")
+            tc-input.fieldset__input(
+              label-text="Font Name",
+              placeholder="Select font source to edit field"
+              input-value="font.name"
+            )
 
-          button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="") + Add Font
+            tc-input.fieldset__input(
+              label-text="Font URL",
+              placeholder="Select font source to edit field",
+              input-value="font.sourceUrl"
+            )
+
+          button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="vm.createAnotherFontFieldset()") + Add Font
 
     .form-block.flex.wrap
       .form-block__instructions
@@ -103,7 +121,7 @@
 
       .form-block__fields
         .fieldsets
-          ng-form.fieldset(name="stockArt_{{$index}}", ng-repeat="stockArt in vm.submissionForm.stockArts track by stockArt.id")
+          ng-form.fieldset(name="stockArt_{{$index + 1}}", ng-repeat="stockArt in vm.submissionForm.stockArts track by stockArt.id")
             tc-input.fieldset__input(
               label-text="Photo Description",
               placeholder="A picture of a girl",
