@@ -234,7 +234,7 @@
         });
         // now loop over all keys and replace with compiled value
         Object.keys(compiledMap).forEach(function(k) {
-          template = template.replace(k, compiledMap[k])
+          template = template.replace(k, (compiledMap[k] ? compiledMap[k] : ''));
         });
       }
       return template;
