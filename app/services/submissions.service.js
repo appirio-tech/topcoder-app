@@ -77,6 +77,7 @@
           console.log('response to use .save restnagular with: ', presignedURLResponse);
 
           // Update and start processing
+          updateSubmissionStatus(presignedURLResponse);
 
         })
         .catch(function(err) {
@@ -84,14 +85,19 @@
         });
     }
 
-    function updateSubmissionStatus(id, data) {
+    function updateSubmissionStatus(body) {
       // Pass data from upload to S3
-      return api.one('submissions', id).customPUT(data)
+      body.data.files.forEach(function(file) {
+        file.status = 'UPLOADED';
+      });
+
+      return body.save()
       .then(function(response) {
-        $log.info('Successfully updated file status');
+        $log.info('Successfully updated file statuses');
+        console.log('response from saving: ', response);
       })
       .catch(function(err) {
-        $log.info('Error updating file status');
+        $log.info('Error updating file statuses');
         $log.error(err);
       });
     }
