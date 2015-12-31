@@ -1,9 +1,7 @@
 /* jshint -W117, -W030 */
-describe('Submissions Controller', function() {
+describe('Submit File Controller', function() {
   var controller;
   var vm;
-
-  // var mockSubmissions = mockData.getMockSubmissions();
 
   beforeEach(function() {
     bard.appModule('tc.submissions');
@@ -13,11 +11,12 @@ describe('Submissions Controller', function() {
   bard.verifyNoOutstandingHttpRequests();
 
   beforeEach(function() {
-    controller = $controller('SubmissionsController', {});
+    controller = $controller('SubmitFileController', {});
     vm = controller;
   });
 
   it('should exist', function() {
     expect(vm).to.exist;
+    expect(vm.submitFile).to.be.true;
   });
 });

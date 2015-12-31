@@ -3,15 +3,18 @@
 
   angular.module('tc.submissions').controller('SubmissionsController', SubmissionsController);
 
-  SubmissionsController.$inject = [];
+  SubmissionsController.$inject = ['challengeToSubmitTo'];
 
-  function SubmissionsController() {
+  function SubmissionsController(challengeToSubmitTo) {
     var vm = this;
+
+    var challenge = challengeToSubmitTo.challenge;
+    vm.challengeTitle = challenge.name;
+    vm.challengeId = challenge.id;
+    vm.track = challenge.track.toLowerCase();
 
     activate();
 
-    function activate() {
-      vm.testValue = 'testValue';
-    }
+    function activate() {}
   }
 })();
