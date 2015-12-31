@@ -3,11 +3,14 @@
 
   angular.module('tc.submissions').controller('SubmitFileController', SubmitFileController);
 
-  SubmitFileController.$inject = ['$stateParams', 'UserService', 'SubmissionsService'];
+  SubmitFileController.$inject = ['$stateParams', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
 
-  function SubmitFileController($stateParams, UserService, SubmissionsService) {
+  function SubmitFileController($stateParams, UserService, SubmissionsService, challengeToSubmitTo) {
     var vm = this;
 
+    // Must provide React Select component a list with ID, since currently
+    // the onChange callback does not indicate which dropdown called the callback.
+    // There are pull requets pending for react-select which will clean this code up
     vm.fontList1 = [
       { label: 'Studio Standard Fonts List', value: 'STUDIO_STANDARDS_FONTS_LIST', id: 1 },
       { label: 'Fonts.com', value: 'FONTS_DOT_COM', id: 1  },
@@ -50,10 +53,8 @@
         // type dynamic or static?
         type: 'CHALLENGE',
         id: $stateParams.challengeId,
-
-        // Current phase check should come from challenge API?
-        phase: 'SUBMISSION'
-
+        phaseType: challengeToSubmitTo.phaseType,
+        phaseId: challengeToSubmitTo.phaseId
       },
       userId: userId,
       data: {
@@ -116,13 +117,16 @@
     }
 
     function selectFont(newFont) {
-      console.log('new value: ', newFont);
+      // See above for explanation
       var id = newFont.id - 1;
       vm.submissionForm.fonts[id].source = newFont.value;
     }
 
     function createAnotherFontFieldset() {
+      // See above for explanation on why this is done the way it is
       var id = vm.submissionForm.fonts.length;
+
+      // Create copy of list with new, incremented ID
       var newFontList = vm['fontList' + (id + 1)] = angular.copy(vm['fontList' + id]);
 
       newFontList.forEach(function(font) {

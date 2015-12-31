@@ -18,13 +18,13 @@
     return service;
 
     function getPresignedURL(body, files) {
-      console.log('body to get presigned url: ', body)
+      console.log('Body of request for presigned url: ', body);
 
       return api.all('submissions').customPOST(JSON.stringify({param: body}))
       .then(function(response) {
-        console.log('POST Response: ', response.plain());
+        console.log('POST/Presigned URL Response: ', response.plain());
 
-        uploadSubmissionFileToS3(response.data.files, files);
+        uploadSubmissionFileToS3(response, response.data.files, files);
       })
       .catch(function(err) {
         console.log(err);
@@ -33,7 +33,8 @@
       });
     }
 
-    function uploadSubmissionFileToS3(filesWithPresignedURL, files) {
+    function uploadSubmissionFileToS3(presignedURLResponse, files) {
+      var filesWithPresignedURL = presignedURLResponse.data.files;
 
       var promises = filesWithPresignedURL.map(function(fileWithPresignedURL) {
         var deferred = $q.defer();
@@ -73,6 +74,9 @@
       return $q.all(promises)
         .then(function(response) {
           console.log('response from S3: ', response);
+          console.log('response to use .save restnagular with: ', presignedURLResponse);
+
+          // Update and start processing
 
         })
         .catch(function(err) {

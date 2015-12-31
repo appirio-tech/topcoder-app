@@ -40,9 +40,17 @@
                   alert('User is not associated with this challenge.');
                 }
 
-                var isPhaseSubmission = _.some(challenge.currentPhases, {
-                  phaseStatus: 'Open',
-                  phaseType: 'Submission'
+                var phaseType;
+                var phaseId;
+
+                var isPhaseSubmission = _.some(challenge.currentPhases, function(phase) {
+                  if (phase.phaseStatus === 'Open' && phase.phaseType === 'Submission') {
+                    phaseType = 'Submission';
+                    phaseId = phase.id;
+                    return true;
+                  }
+
+                  return false;
                 });
 
                 var isSubmitter = _.some(challenge.userDetails.roles, function(role) {
@@ -54,7 +62,11 @@
                   alert('You should not have access to this page');
                 }
 
-                return challenge;
+                return {
+                  challenge: challenge,
+                  phaseType: phaseType,
+                  phaseId: phaseId
+                };
               })
               .catch(function(err) {
                 console.log('ERROR GETTING CHALLENGE: ', err);

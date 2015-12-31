@@ -7,9 +7,11 @@
 
   function SubmissionsController(challengeToSubmitTo) {
     var vm = this;
-    vm.challengeTitle = challengeToSubmitTo.name;
-    vm.challengeId = challengeToSubmitTo.id;
-    vm.track = challengeToSubmitTo.track.toLowerCase();
+
+    var challenge = challengeToSubmitTo.challenge;
+    vm.challengeTitle = challenge.name;
+    vm.challengeId = challenge.id;
+    vm.track = challenge.track.toLowerCase();
 
     activate();
 
