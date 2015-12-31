@@ -3,6 +3,22 @@ describe('Submit File Controller', function() {
   var controller;
   var vm;
 
+  var mockChallenge = {
+    challenge: {
+      name: 'Challenge Name',
+      track: 'DESIGN',
+      id: 30049240
+    }
+  };
+
+  userService = {
+    getUserIdentity: function() {
+      return {
+        userId: 123456
+      };
+    }
+  };
+
   beforeEach(function() {
     bard.appModule('tc.submissions');
     bard.inject(this, '$controller');
@@ -11,12 +27,14 @@ describe('Submit File Controller', function() {
   bard.verifyNoOutstandingHttpRequests();
 
   beforeEach(function() {
-    controller = $controller('SubmitFileController', {});
+    controller = $controller('SubmitFileController', {
+      UserService: userService,
+      challengeToSubmitTo: mockChallenge
+    });
     vm = controller;
   });
 
   it('should exist', function() {
     expect(vm).to.exist;
-    expect(vm.submitFile).to.be.true;
   });
 });

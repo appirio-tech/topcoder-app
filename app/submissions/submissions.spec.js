@@ -3,7 +3,13 @@ describe('Submissions Controller', function() {
   var controller;
   var vm;
 
-  // var mockSubmissions = mockData.getMockSubmissions();
+  var mockChallenge = {
+    challenge: {
+      name: 'Challenge Name',
+      track: 'DESIGN',
+      id: 30049240
+    }
+  };
 
   beforeEach(function() {
     bard.appModule('tc.submissions');
@@ -13,7 +19,9 @@ describe('Submissions Controller', function() {
   bard.verifyNoOutstandingHttpRequests();
 
   beforeEach(function() {
-    controller = $controller('SubmissionsController', {});
+    controller = $controller('SubmissionsController', {
+      challengeToSubmitTo: mockChallenge
+    });
     vm = controller;
   });
 
