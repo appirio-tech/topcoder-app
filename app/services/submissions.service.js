@@ -20,7 +20,7 @@
     function getPresignedURL(body, files) {
       console.log('Body of request for presigned url: ', body);
 
-      return api.all('submissions').customPOST(JSON.stringify({param: body}))
+      return api.all('submissions').customPOST(body)
       .then(function(response) {
         console.log('POST/Presigned URL Response: ', response.plain());
 
@@ -77,7 +77,7 @@
           console.log('response to use .save restnagular with: ', presignedURLResponse);
 
           // Update and start processing
-          updateSubmissionStatus(presignedURLResponse);
+          updateSubmissionStatus(presignedURLResponse.plain());
 
         })
         .catch(function(err) {
@@ -91,10 +91,10 @@
         file.status = 'UPLOADED';
       });
 
-      return body.save()
+      return api.one('submissions', body.id).customPUT(body)
       .then(function(response) {
         $log.info('Successfully updated file statuses');
-        console.log('response from saving: ', response);
+        recordCompletedSubmission(response.plain());
       })
       .catch(function(err) {
         $log.info('Error updating file statuses');
@@ -102,14 +102,15 @@
       });
     }
 
-    function recordCompletedSubmission(id, data) {
+    function recordCompletedSubmission(body) {
       // Once all uploaded, make record and begin processing
-      return api.one('submissions', id).customPOST(data, 'process')
+      return api.one('submissions', body.id).customPOST(body, 'process')
       .then(function(response) {
         $log.info('Successfully made file record. Beginning processing');
+        console.log('response from process call: ', response);
       })
       .catch(function(err) {
-        $log.info('Error in creating file record');
+        $log.info('Error in starting processing');
         $log.error(err);
       });
     }
