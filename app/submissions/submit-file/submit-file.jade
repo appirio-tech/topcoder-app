@@ -1,0 +1,153 @@
+.mobile-redirect
+  .mobile-redirect__title File upload is not available for mobile
+
+  .mobile-redirect__body
+    p Our team is working hard on new features, and file upload currently only works on the web. Please open this page on your desktop if you want to create a submission.
+
+    a Learn more about formatting your submission file
+
+    a.tc-btn.tc-btn-s(ng-click="'TODO: go back to challenge details'") Back to Challenge Details
+
+.panel-body
+  form.form-blocks(name="submissionForm", role="form", ng-submit="submissionForm.$valid && vm.uploadSubmission()", novalidate)
+    .form-block.flex.wrap
+      .form-block__instructions
+        .form-block__title Files
+
+        .form-block__text
+          p Please follow the instructions on the Challenge Details page regarding what your submission, source, and preview files should contain.
+
+          p Do not name any of your files "declaration.txt", as this is added by our system.
+
+          p Please be sure to double-check that you have submitted the correct files and that your JPG files (if applicable) are in RGB color mode.
+
+          a(href="http://help.{{DOMAIN}}/design/submitting-to-a-design-challenge/formatting-your-submission-for-design-challenges/") Learn more about formatting your submission file
+
+      .form-block__fields
+        .fieldset
+          tc-file-input.tc-file-field(
+            label-text="Submission",
+            field-id="SUBMISSION_ZIP",
+            button-text="Add File",
+            file-type="(*.zip)",
+            placeholder="Attach all visible files as a single .zip file",
+            mandatory="true",
+            set-file-reference="vm.setFileReference(file, fieldId)"
+          )
+
+          tc-file-input.tc-file-field(
+            label-text="Source",
+            field-id="SOURCE_ZIP",
+            button-text="Add File",
+            file-type="(*.zip)",
+            placeholder="Attach all source files as a single .zip file",
+            mandatory="true",
+            set-file-reference="vm.setFileReference(file, fieldId)"
+          )
+
+          tc-file-input.tc-file-field(
+            label-text="Preview Image",
+            field-id="DESIGN_COVER",
+            button-text="Add File",
+            placeholder="Image file as .jpg or .png",
+            mandatory="true",
+            set-file-reference="vm.setFileReference(file, fieldId)"
+          )
+
+          tc-input.fieldset__input.submitterRank(label-text="Rank #", input-value="vm.submissionForm.submitterRank")
+
+    .form-block.flex.wrap
+      .form-block__instructions
+        .form-block__title Notes
+
+        .form-block__text
+          p Type a short note about your design here. Explain revisions or other design elements that may not be clear.
+
+      .form-block__fields
+        tc-textarea.tc-textarea(
+          label-text="Comments",
+          placeholder="My design tries to solve the problem with a particular idea in mind. The use of color is based on the provided brand guideline. The flows are included in the sub folder. I followed all revisions as per the directions provided.",
+          character-count="true",
+          character-count-max="500",
+          value="vm.comments"
+        )
+
+    .form-block.flex.wrap
+      .form-block__instructions
+        .form-block__title Fonts
+
+        .form-block__text
+          p Check to see if your font is on the Studio Standard Fonts list. If it is, leave the URL field blank.
+
+          p Read the #[a(href="Need link") Studio Fonts Policy].
+
+          p If you only used fonts that came with the client files, choose "I did not introduce any new fonts" from the dropdown box.
+
+          p If your font is not on the list, you must provide the URL to the font page (not file) from one of the approved font websites in the dropdown box.
+
+      .form-block__fields
+        .fieldsets
+          ng-form.fieldset(name="font_{{$index + 1}}", ng-repeat="font in vm.submissionForm.fonts track by font.id")
+            dropdown(
+              name="'font-source{{$index + 1}}'",
+              options="vm.fontList{{$index + 1}}",
+              placeholder="'Select from the list'",
+              searchable="false",
+              clearable="false",
+              on-change="vm.selectFont",
+              value="vm.submissionForm.fonts[{{$index}}].source"
+            )
+
+            tc-input.fieldset__input(
+              label-text="Font Name",
+              placeholder="Select font source to edit field"
+              input-value="font.name"
+            )
+
+            tc-input.fieldset__input(
+              label-text="Font URL",
+              placeholder="Select font source to edit field",
+              input-value="font.sourceUrl"
+            )
+
+          button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="vm.createAnotherFontFieldset()") + Add Font
+
+    .form-block.flex.wrap
+      .form-block__instructions
+        .form-block__title Stock Art
+
+        .form-block__text
+          p If you used any stock photos in your design mocks, please provide the location and details so that the client can obtain them. Follow the guidelines at our #[a(href="Need link") Studio Stock Art Policy].
+
+      .form-block__fields
+        .fieldsets
+          ng-form.fieldset(name="stockArt_{{$index + 1}}", ng-repeat="stockArt in vm.submissionForm.stockArts track by stockArt.id")
+            tc-input.fieldset__input(
+              label-text="Photo Description",
+              placeholder="A picture of a girl",
+              input-value="stockArt.description"
+            )
+
+            tc-input.fieldset__input(
+              label-text="Photo URL",
+              placeholder="www.istockphoto.com",
+              input-value="stockArt.sourceUrl"
+            )
+
+            tc-input.fieldset__input(
+              label-text="File Number",
+              placeholder="u2434312",
+              input-value="stockArt.fileNumber"
+            )
+
+          button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="vm.createAnotherStockArtFieldset()") + Add Stock Photo
+
+    .panel-footer
+      p Submitting your files means you hereby agree to the #[a(href="https://www.{{DOMAIN}}/community/how-it-works/terms/", target="_blank") Topcoder terms of use] and to the extent your uploaded file wins a Topcoder Competition, you hereby assign, grant, and transfer to Topcoder all rights in and title to the Winning Submission (as further described in the terms of use).
+
+      .checkbox.flex.center
+        input(type="checkbox", ng-model="vm.submissionForm.hasAgreedToTerms", id="agree-to-terms", required)
+
+        label(for="agree-to-terms") I understand and agree
+
+      button.tc-btn.tc-btn-secondary(type="submit", ng-disabled="submissionForm.$invalid") Submit

@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('Submissions Controller', function() {
+describe('Submit File Controller', function() {
   var controller;
   var vm;
 
@@ -11,6 +11,14 @@ describe('Submissions Controller', function() {
     }
   };
 
+  userService = {
+    getUserIdentity: function() {
+      return {
+        userId: 123456
+      };
+    }
+  };
+
   beforeEach(function() {
     bard.appModule('tc.submissions');
     bard.inject(this, '$controller');
@@ -19,7 +27,8 @@ describe('Submissions Controller', function() {
   bard.verifyNoOutstandingHttpRequests();
 
   beforeEach(function() {
-    controller = $controller('SubmissionsController', {
+    controller = $controller('SubmitFileController', {
+      UserService: userService,
       challengeToSubmitTo: mockChallenge
     });
     vm = controller;

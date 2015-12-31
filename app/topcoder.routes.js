@@ -59,7 +59,7 @@
             controllerAs: 'vm'
           },
           'container@': {
-            template: "<div ui-view></div>"
+            template: "<div ui-view class=\"page-container\"></div>"
           },
           'footer@': {
             templateUrl: 'layout/footer/footer.html',

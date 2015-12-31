@@ -3,7 +3,7 @@ describe('filters', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, 'CONSTANTS', 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter', 'challengeLinksFilter', 'externalLinkColorFilter', 'emptyFilter', 'ternaryFilter', 'urlProtocolFilter');
+    bard.inject(this, 'CONSTANTS', 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter', 'challengeLinksFilter', 'externalLinkColorFilter', 'emptyFilter', 'ternaryFilter', 'urlProtocolFilter', 'addBeginningSpaceFilter');
     domain = CONSTANTS.domain;
   });
 
@@ -100,7 +100,7 @@ describe('filters', function() {
   });
 
   describe('externalLinkColorFilter', function() {
-    
+
     it('should handle twitter and linkedin correctly', function() {
       expect(externalLinkColorFilter('el-twitter')).to.be.equal('#62AADC');
       expect(externalLinkColorFilter('el-linkedin')).to.be.equal('#127CB5');
@@ -148,6 +148,12 @@ describe('filters', function() {
     });
     it('should not add anything to the url ', function() {
       expect(urlProtocolFilter('https://google.com')).to.be.equal('https://google.com');
+    });
+  });
+
+  describe('addBeginningSpaceFilter', function() {
+    it('should add a space to the beginning of the input', function() {
+      expect(addBeginningSpaceFilter('some text')).to.equal(' some text');
     });
   });
 });
