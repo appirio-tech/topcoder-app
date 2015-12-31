@@ -154,19 +154,27 @@
       vm.submissionsBody.data.submitterComments = vm.comments;
       vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank;
 
-      var stockArts = angular.copy(vm.submissionForm.stockArts);
-      vm.submissionsBody.data.stockArts = stockArts.map(function(stockArt) {
-        delete stockArt.id;
-        return stockArt;
-      });
+      if (vm.submissionForm.stockArts[0].description === '') {
+        vm.submissionsBody.data.stockArts = [];
+      } else {
+        var stockArts = angular.copy(vm.submissionForm.stockArts);
+        vm.submissionsBody.data.stockArts = stockArts.map(function(stockArt) {
+          delete stockArt.id;
+          return stockArt;
+        });
+      }
 
-      var fonts = angular.copy(vm.submissionForm.fonts);
-      vm.submissionsBody.data.fonts = fonts.map(function(font) {
-        if (font.source) {
-          delete font.id;
-          return font;
-        }
-      });
+      if (vm.submissionForm.fonts[0].source === '') {
+        vm.submissionsBody.data.fonts = [];
+      } else {
+        var fonts = angular.copy(vm.submissionForm.fonts);
+        vm.submissionsBody.data.fonts = fonts.map(function(font) {
+          if (font.source) {
+            delete font.id;
+            return font;
+          }
+        });
+      }
 
       SubmissionsService.getPresignedURL(vm.submissionsBody, files);
     }
