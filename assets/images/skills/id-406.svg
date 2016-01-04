@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
-    <title>icons/skills/id-406</title>
-    <desc>Created with Sketch.</desc>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
         <linearGradient x1="7.32852269%" y1="78.1494237%" x2="90.71457%" y2="58.0668032%" id="linearGradient-1">
             <stop stop-color="#64D3B2" offset="0%"></stop>
@@ -18,16 +15,16 @@
             <stop stop-color="#FD341C" offset="100%"></stop>
         </radialGradient>
     </defs>
-    <g id="Brands" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="icons/skills/id-406" sketch:type="MSArtboardGroup">
-            <g id="Rectangle-92-+-9-+-Oval-13-+-Oval-13" sketch:type="MSLayerGroup" transform="translate(2.000000, 2.000000)">
-                <rect id="Rectangle-92" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0.0955414013" y="0.0955414013" width="59.8089172" height="59.8089172" rx="17"></rect>
+    <g id="Brands" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons/skills/id-406">
+            <g id="Rectangle-92-+-9-+-Oval-13-+-Oval-13" transform="translate(2.000000, 2.000000)">
+                <rect id="Rectangle-92" fill="#FFFFFF" x="0.0955414013" y="0.0955414013" width="59.8089172" height="59.8089172" rx="17"></rect>
                 <g id="9-+-Oval-13-+-Oval-13" transform="translate(16.764331, 9.458599)">
-                    <mask id="mask-3" sketch:name="Mask" fill="white">
+                    <mask id="mask-3" fill="white">
                         <use xlink:href="#path-2"></use>
                     </mask>
-                    <use id="Mask" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup" xlink:href="#path-2"></use>
-                    <circle id="Oval-13" fill="url(#radialGradient-4)" sketch:type="MSShapeGroup" mask="url(#mask-3)" cx="12.5159236" cy="12.3248408" r="16.910828"></circle>
+                    <use id="Mask" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+                    <circle id="Oval-13" fill="url(#radialGradient-4)" mask="url(#mask-3)" cx="12.5159236" cy="12.3248408" r="16.910828"></circle>
                 </g>
             </g>
         </g>

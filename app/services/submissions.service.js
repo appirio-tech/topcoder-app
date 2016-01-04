@@ -33,8 +33,7 @@
       });
     }
 
-    function uploadSubmissionFileToS3(presignedURLResponse, files) {
-      var filesWithPresignedURL = presignedURLResponse.data.files;
+    function uploadSubmissionFileToS3(presignedURLResponse, filesWithPresignedURL, files) {
 
       var promises = filesWithPresignedURL.map(function(fileWithPresignedURL) {
         var deferred = $q.defer();
