@@ -26,6 +26,10 @@
     vm.comments = '';
     vm.submissionForm = {
       files: [],
+      submissionZip: null,
+      sourceZip: null,
+      designCover: null,
+
 
       // Should the rank input field be set to 1 automatically?
       submitterRank: 1,
@@ -80,6 +84,7 @@
     function activate() {}
 
     function setFileReference(file, fieldId) {
+      // Can clean up since fileValue on tcFileInput has file reference?
       files[fieldId] = file;
 
       var fileObject = {
