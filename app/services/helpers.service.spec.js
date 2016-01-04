@@ -4,6 +4,9 @@ describe('Helper Service', function() {
   var fakeWindow = {
     location: {
       href: "/"
+    },
+    decodeURIComponent: function(param) {
+      return decodeURIComponent(param);
     }
   };
   // sinon.spy(fakeWindow.location, "href");
@@ -25,7 +28,7 @@ describe('Helper Service', function() {
       $provide.value('$location', fakeLocation);
     });
 
-    bard.inject(this, 'Helpers', '$state', '$location');
+    bard.inject(this, 'Helpers', '$state', '$location', '$window');
   });
 
   describe("isEmail()", function() {
@@ -232,6 +235,80 @@ describe('Helper Service', function() {
       var state = { data: {title: 'Mock Page {{a.b.c}}'}};
       var title = Helpers.getPageTitle(state, {locals : {resolve: {$$values : {a: {b : {}}}}}});
       expect(title).to.exist.to.equal('Mock Page  | TopCoder');
+    });
+  });
+
+  describe("getParameterByName()", function() {
+
+    it("should get params from the URL ", function() {
+      var url = "https://topcoder.com/challenges?paramA=123&paramB=234";
+      var paramA = Helpers.getParameterByName('paramA', url);
+      var paramB = Helpers.getParameterByName('paramB', url);
+      expect(paramA).to.exist.to.equal('123');
+      expect(paramB).to.exist.to.equal('234');
+    });
+
+    it("should get params with [ or ] in from the URL ", function() {
+      var url = "https://topcoder.com/challenges?[paramA]=123&[paramB]=234";
+      var paramA = Helpers.getParameterByName('[paramA]', url);
+      var paramB = Helpers.getParameterByName('[paramB]', url);
+      expect(paramA).to.exist.to.equal('123');
+      expect(paramB).to.exist.to.equal('234');
+    });
+
+    it("should get empty value for non existing param from the URL ", function() {
+      var url = "https://topcoder.com/challenges?paramA=123&paramB=234";
+      var paramA = Helpers.getParameterByName('paramC', url);
+      expect(paramA).to.exist.to.equal('');
+    });
+  });
+
+  describe("peerReview module helpers ", function() {
+    it("should store objects by id ", function() {
+      var obj = {};
+      var questions = [{id:1}, {id: 'bcd'}, {id: 'cde'}];
+      Helpers.storeById(obj, questions);
+      expect(obj['1']).to.exist;
+      expect(obj.bcd).to.exist;
+      expect(obj.cde).to.exist;
+    });
+
+    it("should parse questions ", function() {
+      var questions = [
+        {id: 1, questionTypeId: 5, guideline: 'some guideline'},
+        {id: 'bcd', questionTypeId: 4, guideline: 'some guideline\nsecond line'},
+        {id: 'cde', questionTypeId: 5, guideline: 'some guideline\nsecond line\nthird line'}
+      ];
+      Helpers.parseQuestions(questions);
+      expect(questions[0].guidelines).to.exist.to.have.length(1);
+      expect(questions[1].guidelines).not.to.exist;
+      expect(questions[2].guidelines).to.exist.to.have.length(3);
+    });
+
+    it("should parse answers ", function() {
+      var questions = {
+        q1 : {id: 'q1', questionTypeId: 5, guideline: 'some guideline'},
+        q2 : {id: 'q2', questionTypeId: 5, guideline: 'some guideline\nsecond line'},
+        q3 : {id: 'q3', questionTypeId: 5, guideline: 'some guideline\nsecond line\nthird line'}
+      };
+      var answers = [
+        {id: 'a1', scorecardQuestionId: 'q1', answer: 3, comments:[ {content: 'perfect'}]},
+        {id: 'a2', scorecardQuestionId: 'q2', answer: 1, comments:[]},
+        {id: 'a3', scorecardQuestionId: 'q3', answer: 2, comments:[ {content: 'good'}]}
+      ];
+      Helpers.parseAnswers(questions, answers);
+      // validate q1
+      expect(questions.q1.answer).to.exist.to.equal(3);
+      expect(questions.q1.reviewItemId).to.exist.to.equal('a1');
+      expect(questions.q1.comment).to.exist.to.equal('perfect');
+      // validate q2
+      expect(questions.q2.answer).to.exist.to.equal(1);
+      expect(questions.q2.reviewItemId).to.exist.to.equal('a2');
+      expect(questions.q2.comment).not.to.exist;
+      // validate q3
+      expect(questions.q3.answer).to.exist.to.equal(2);
+      expect(questions.q3.reviewItemId).to.exist.to.equal('a3');
+      expect(questions.q3.comment).to.exist.to.equal('good');
     });
   });
 });
