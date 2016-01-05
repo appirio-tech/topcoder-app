@@ -32,7 +32,8 @@
             file-type="(*.zip)",
             placeholder="Attach all visible files as a single .zip file",
             mandatory="true",
-            set-file-reference="vm.setFileReference(file, fieldId)"
+            set-file-reference="vm.setFileReference(file, fieldId)",
+            file-value="vm.submissionForm.submissionZip"
           )
 
           tc-file-input.tc-file-field(
@@ -42,7 +43,8 @@
             file-type="(*.zip)",
             placeholder="Attach all source files as a single .zip file",
             mandatory="true",
-            set-file-reference="vm.setFileReference(file, fieldId)"
+            set-file-reference="vm.setFileReference(file, fieldId)",
+            file-value="vm.submissionForm.sourceZip"
           )
 
           tc-file-input.tc-file-field(
@@ -51,7 +53,8 @@
             button-text="Add File",
             placeholder="Image file as .jpg or .png",
             mandatory="true",
-            set-file-reference="vm.setFileReference(file, fieldId)"
+            set-file-reference="vm.setFileReference(file, fieldId)",
+            file-value="vm.submissionForm.designCover"
           )
 
           tc-input.fieldset__input.submitterRank(label-text="Rank #", input-value="vm.submissionForm.submitterRank")

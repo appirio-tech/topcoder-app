@@ -6,6 +6,7 @@
   function tcFileInput() {
     return {
       restrict: 'E',
+      require: '^form',
       templateUrl: 'directives/tc-file-input/tc-file-input.html',
       scope: {
         labelText: '@',
@@ -14,9 +15,10 @@
         fileType: '@',
         mandatory: '=',
         buttonText: '@',
-        setFileReference: '&'
+        setFileReference: '&',
+        fileValue: '=ngModel'
       },
-      link: function(scope, element, attrs) {
+      link: function(scope, element, attrs, formController) {
         scope.selectFile = selectFile;
 
         // fieldId is not set on element at this point, so grabbing with class .none
@@ -32,6 +34,7 @@
 
           // Set the file name as the value of the disabled input
           fileNameInput[0].value = file.name;
+          formController[attrs.fieldId].$setValidity('required', true);
         });
 
         function selectFile() {

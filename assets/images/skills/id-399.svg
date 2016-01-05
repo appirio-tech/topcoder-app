@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="33.9192708%" y1="0%" x2="68.9583333%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#4BA3FA" offset="0%"></stop>
+            <stop stop-color="#C4E0F8" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="33.9192708%" y1="0%" x2="68.9583333%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#A3D4FF" offset="0%"></stop>
+            <stop stop-color="#0F88FF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Languages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons/skills/id-399">
+            <g id="Rectangle-22-+-Rectangle-25" transform="translate(8.000000, 4.000000)">
+                <path d="M0,4.00490831 C0,1.79305852 1.79405245,0 4.00989318,0 L43.9901068,0 C46.2047097,0 48,1.78913646 48,4.00172845 L48,46 L38,56 L3.99484381,56 C1.7885525,56 0,54.200205 0,51.9950917 L0,4.00490831 Z" id="Rectangle-22" fill="#F0F0F0"></path>
+                <path d="M38,50.009763 C38,47.795232 39.7877996,46 42.009763,46 L48,46 L38,56 L38,50.009763 Z" id="Rectangle-25" fill="#D1D3D4"></path>
+            </g>
+            <path d="M15.5,38.432 L17.288,38.432 L19.232,41.456 L21.26,38.432 L22.94,38.432 L20.108,42.56 L23.144,47 L21.32,47 L19.184,43.724 L17.012,47 L15.296,47 L18.332,42.56 L15.5,38.432 Z M26.312,38.432 L27.908,38.432 L31.208,47 L29.6,47 L28.796,44.732 L25.376,44.732 L24.572,47 L23.024,47 L26.312,38.432 Z M25.784,43.592 L28.4,43.592 L27.116,39.908 L27.08,39.908 L25.784,43.592 Z M32,38.432 L34.112,38.432 L36.476,45.14 L36.5,45.14 L38.804,38.432 L40.892,38.432 L40.892,47 L39.464,47 L39.464,40.388 L39.44,40.388 L37.064,47 L35.828,47 L33.452,40.388 L33.428,40.388 L33.428,47 L32,47 L32,38.432 Z M42.692,38.432 L44.192,38.432 L44.192,45.704 L48.548,45.704 L48.548,47 L42.692,47 L42.692,38.432 Z" id="XAML" fill="#394146"></path>
+            <g id="Stroke-1693-+-Stroke-1694-+-Polygon-3-+-Polygon-3-+-Polygon-3" transform="translate(17.000000, 17.000000)">
+                <path d="M4.28571429,0.571428571 L0,7.57142857 L4.28571429,14.5714286" id="Stroke-1693" stroke="#A3A3AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M26.7142857,0.571428571 L31,7.57142857 L26.7142857,14.5714286" id="Stroke-1694" stroke="#A3A3AE" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                <g id="Polygon-3-+-Polygon-3-+-Polygon-3" transform="translate(7.000000, 0.000000)">
+                    <path d="M0,7.5 L4.25,0.0769251104 L12.75,0.0769251104 L17,7.5 L12.75,14.9230749 L4.25,14.9230749 L0,7.5 L0,7.5 Z" id="Polygon-3" fill="#0F88FF"></path>
+                    <path d="M8.5,7.50000038 L17,7.5 L12.75,14.9230749 L4.25,14.9230749 L8.5,7.50000038 Z" id="Polygon-3" fill="url(#linearGradient-1)"></path>
+                    <path d="M4.25,0.0769251104 L12.75,0.0769251104 L8.5,7.50000038 L0,7.5 L4.25,0.0769251104 Z" id="Polygon-3" fill="url(#linearGradient-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

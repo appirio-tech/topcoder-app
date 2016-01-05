@@ -79,6 +79,7 @@
     function activate() {}
 
     function setFileReference(file, fieldId) {
+      // Can clean up since fileValue on tcFileInput has file reference?
       files[fieldId] = file;
 
       var fileObject = {
