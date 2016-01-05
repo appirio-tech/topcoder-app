@@ -10,7 +10,7 @@
 
     // Must provide React Select component a list with ID, since currently
     // the onChange callback does not indicate which dropdown called the callback.
-    // There are pull requets pending for react-select which will clean this code up
+    // There are pull requests pending for react-select which will clean this code up
     vm.fontList1 = [
       { label: 'Studio Standard Fonts List', value: 'STUDIO_STANDARD_FONTS_LIST', id: 1 },
       { label: 'Fonts.com', value: 'FONTS_DOT_COM', id: 1  },
@@ -24,9 +24,15 @@
 
     var files = {};
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/);
+    vm.rankRegEx = new RegExp(/^[1-9]\d*$/);
     vm.comments = '';
     vm.submissionForm = {
       files: [],
+
+      submissionZip: null,
+      sourceZip: null,
+      designCover: null,
+
       submitterRank: 1,
       submitterComments: '',
       fonts: [{
@@ -68,6 +74,7 @@
       }
     };
 
+    vm.setRankTo1 = setRankTo1;
     vm.setFileReference = setFileReference;
     vm.uploadSubmission = uploadSubmission;
     vm.selectFont = selectFont;
@@ -77,6 +84,14 @@
     activate();
 
     function activate() {}
+
+    function setRankTo1(inputValue) {
+      // If a user leaves the rank input blank, set it to 1
+      if (inputValue === '') {
+        return 1;
+      }
+      return inputValue;
+    }
 
     function setFileReference(file, fieldId) {
       // Can clean up since fileValue on tcFileInput has file reference?
