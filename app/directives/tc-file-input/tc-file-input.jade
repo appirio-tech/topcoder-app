@@ -5,8 +5,8 @@
     span.tc-label__mandatory.lowercase(ng-if="mandatory") #[span *]mandatory
 
 .tc-file-field__inputs
-  input.tc-file-field__input(type="text", placeholder="{{placeholder}}", required)
+  input.tc-file-field__input(type="text", placeholder="{{placeholder}}")
 
   button.tc-btn(ng-click="selectFile()") {{buttonText}}
 
-  input.none(type="file", id="{{fieldId}}")
+  input.none(name="{{fieldId}}", type="file", id="{{fieldId}}", required, ng-model="fileValue")
