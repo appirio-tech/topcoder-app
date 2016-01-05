@@ -10,7 +10,15 @@
       scope: {
         labelText: '@',
         placeholder: '@',
-        inputValue: '='
+        inputValue: '=',
+        inputName: '@',
+        inputType: '@',
+        inputPattern: '='
+      },
+      link: function(scope, element, attrs) {
+        if (!scope.inputType) {
+          scope.inputType = 'text';
+        }
       }
     }
   }

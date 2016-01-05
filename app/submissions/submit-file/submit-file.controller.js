@@ -12,7 +12,7 @@
     // the onChange callback does not indicate which dropdown called the callback.
     // There are pull requets pending for react-select which will clean this code up
     vm.fontList1 = [
-      { label: 'Studio Standard Fonts List', value: 'STUDIO_STANDARDS_FONTS_LIST', id: 1 },
+      { label: 'Studio Standard Fonts List', value: 'STUDIO_STANDARD_FONTS_LIST', id: 1 },
       { label: 'Fonts.com', value: 'FONTS_DOT_COM', id: 1  },
       { label: 'MyFonts', value: 'MYFONTS', id: 1  },
       { label: 'Adobe Fonts', value: 'ADOBE_FONTS', id: 1  },
@@ -23,15 +23,10 @@
     ];
 
     var files = {};
+    vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/);
     vm.comments = '';
     vm.submissionForm = {
       files: [],
-      submissionZip: null,
-      sourceZip: null,
-      designCover: null,
-
-
-      // Should the rank input field be set to 1 automatically?
       submitterRank: 1,
       submitterComments: '',
       fonts: [{
