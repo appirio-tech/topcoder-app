@@ -32,7 +32,8 @@
             file-type="(*.zip)",
             placeholder="Attach all visible files as a single .zip file",
             mandatory="true",
-            set-file-reference="vm.setFileReference(file, fieldId)"
+            set-file-reference="vm.setFileReference(file, fieldId)",
+            file-value="vm.submissionForm.submissionZip"
           )
 
           tc-file-input.tc-file-field(
@@ -42,7 +43,8 @@
             file-type="(*.zip)",
             placeholder="Attach all source files as a single .zip file",
             mandatory="true",
-            set-file-reference="vm.setFileReference(file, fieldId)"
+            set-file-reference="vm.setFileReference(file, fieldId)",
+            file-value="vm.submissionForm.sourceZip"
           )
 
           tc-file-input.tc-file-field(
@@ -51,7 +53,8 @@
             button-text="Add File",
             placeholder="Image file as .jpg or .png",
             mandatory="true",
-            set-file-reference="vm.setFileReference(file, fieldId)"
+            set-file-reference="vm.setFileReference(file, fieldId)",
+            file-value="vm.submissionForm.designCover"
           )
 
           tc-input.fieldset__input.submitterRank(label-text="Rank #", input-value="vm.submissionForm.submitterRank")
@@ -87,7 +90,7 @@
 
       .form-block__fields
         .fieldsets
-          ng-form.fieldset(name="font_{{$index + 1}}", ng-repeat="font in vm.submissionForm.fonts track by font.id")
+          ng-form.fieldset(name="font{{$index + 1}}", ng-repeat="font in vm.submissionForm.fonts track by font.id")
             dropdown(
               name="'font-source{{$index + 1}}'",
               options="vm.fontList{{$index + 1}}",
@@ -121,23 +124,30 @@
 
       .form-block__fields
         .fieldsets
-          ng-form.fieldset(name="stockArt_{{$index + 1}}", ng-repeat="stockArt in vm.submissionForm.stockArts track by stockArt.id")
+          .fieldset(ng-repeat="stockArt in vm.submissionForm.stockArts track by stockArt.id")
             tc-input.fieldset__input(
               label-text="Photo Description",
               placeholder="A picture of a girl",
-              input-value="stockArt.description"
+              input-value="stockArt.description",
+              input-name="photoDescription{{$index}}"
             )
 
             tc-input.fieldset__input(
               label-text="Photo URL",
               placeholder="www.istockphoto.com",
-              input-value="stockArt.sourceUrl"
+              input-value="stockArt.sourceUrl",
+              input-name="photoURL{{$index}}",
+              input-pattern="vm.urlRegEx"
             )
+
+            .tc-error-messages(ng-show="submissionForm['photoURL' + $index].$dirty && submissionForm['photoURL' + $index].$invalid")
+              p(ng-show="submissionForm['photoURL' + $index].$error.pattern") Not a valid url.
 
             tc-input.fieldset__input(
               label-text="File Number",
               placeholder="u2434312",
-              input-value="stockArt.fileNumber"
+              input-value="stockArt.fileNumber",
+              input-name="fileNumber{{$index}}"
             )
 
           button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="vm.createAnotherStockArtFieldset()") + Add Stock Photo
