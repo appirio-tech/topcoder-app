@@ -112,6 +112,8 @@
       .form-block__fields
         .fieldsets
           ng-form.fieldset(name="font{{$index + 1}}", ng-repeat="font in vm.submissionForm.fonts track by font.id")
+            label.tc-label Font Source
+
             dropdown(
               name="'font-source{{$index + 1}}'",
               options="vm.fontList{{$index + 1}}",
