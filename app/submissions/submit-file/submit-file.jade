@@ -111,32 +111,7 @@
 
       .form-block__fields
         .fieldsets
-          ng-form.fieldset(name="font{{$index + 1}}", ng-repeat="font in vm.submissionForm.fonts track by font.id")
-            label.tc-label Font Source
-
-            dropdown(
-              name="'font-source{{$index + 1}}'",
-              options="vm.fontList{{$index + 1}}",
-              placeholder="'Select from the list'",
-              searchable="false",
-              clearable="false",
-              on-change="vm.selectFont",
-              value="vm.submissionForm.fonts[{{$index}}].source"
-            )
-
-            tc-input.fieldset__input(
-              label-text="Font Name",
-              placeholder="Select font source to edit field"
-              input-value="font.name",
-              input-name="fontName{{$index}}"
-            )
-
-            tc-input.fieldset__input(
-              label-text="Font URL",
-              placeholder="Select font source to edit field",
-              input-value="font.sourceUrl",
-              input-name="fontUrl{{$index}}"
-            )
+          font-submission.fieldset(ng-repeat="font in vm.submissionForm.fonts track by font.id")
 
           button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="vm.createAnotherFontFieldset()") + Add Font
 

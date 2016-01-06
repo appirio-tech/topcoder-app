@@ -1,0 +1,25 @@
+label.tc-label Font Source
+
+dropdown(
+  name="'font-source{{$index + 1}}'",
+  options="vm.fontList{{$index + 1}}",
+  placeholder="'Select from the list'",
+  searchable="false",
+  clearable="false",
+  on-change="vm.selectFont",
+  value="vm.submissionForm.fonts[{{$index}}].source"
+)
+
+tc-input.fieldset__input(
+  label-text="Font Name",
+  placeholder="Select font source to edit field"
+  input-value="font.name",
+  input-name="fontName{{$index}}"
+)
+
+tc-input.fieldset__input(
+  label-text="Font URL",
+  placeholder="Select font source to edit field",
+  input-value="font.sourceUrl",
+  input-name="fontUrl{{$index}}"
+)
