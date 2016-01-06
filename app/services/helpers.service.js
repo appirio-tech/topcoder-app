@@ -156,7 +156,7 @@
           answer: '' + q.answer
         };
 
-        if (q.comment.length > 0) {
+        if (q.comment && q.comment.length > 0) {
           reviewItem.comments = [
             {
               content: '' + q.comment,
@@ -298,8 +298,8 @@
     }
 
     function setupLoginEventMetrics (usernameOrEmail) {
-      if (_kmq) {
-        _kmq.push(['identify', usernameOrEmail ]);
+      if ($window._kmq) {
+        $window._kmq.push(['identify', usernameOrEmail ]);
       }
     }
 

@@ -22,13 +22,13 @@ describe('Helper Service', function() {
   sinon.spy(fakeState, "go");
 
   beforeEach(function() {
-    module('tc.services', function($provide) {
+    module('topcoder', function($provide) {
       $provide.value('$window', fakeWindow);
       $provide.value('$state', fakeState);
       $provide.value('$location', fakeLocation);
     });
 
-    bard.inject(this, 'Helpers', '$state', '$location', '$window');
+    bard.inject(this, 'Helpers', '$rootScope', '$state', '$location', '$window', '$httpBackend');
   });
 
   describe("isEmail()", function() {
@@ -309,6 +309,106 @@ describe('Helper Service', function() {
       expect(questions.q3.answer).to.exist.to.equal(2);
       expect(questions.q3.reviewItemId).to.exist.to.equal('a3');
       expect(questions.q3.comment).to.exist.to.equal('good');
+    });
+
+    it("should compile review items for first time creation ", function() {
+      var questions = {
+        '1' : {id: '1', questionTypeId: 5, guideline: 'some guideline'},
+        '2' : {id: '2', questionTypeId: 5, guideline: 'some guideline\nsecond line'},
+        '3' : {id: '3', questionTypeId: 5, guideline: 'some guideline\nsecond line\nthird line'}
+      };
+      var answers = [
+        {id: 'a1', scorecardQuestionId: '1', answer: 3, comments:[ {content: 'perfect'}]},
+        {id: 'a2', scorecardQuestionId: '2', answer: 1, comments:[]},
+        {id: 'a3', scorecardQuestionId: '3', answer: 2, comments:[ {content: 'good'}]}
+      ];
+      // assumes parseAnswers to be working as expected
+      Helpers.parseAnswers(questions, answers);
+
+      var review = {id: 'rev1', resourceId: 'res1', uploadId: 'u1'};
+      var reviewItems = Helpers.compileReviewItems(questions, review, false);
+      expect(reviewItems).to.exist.to.have.length(3);
+      expect(reviewItems[0].reviewId).to.exist.to.equal(review.id);
+      expect(reviewItems[0].uploadId).to.exist.to.equal(review.uploadId);
+      // expect(reviewItems[0].id).to.exist.to.equal(answers[0].id);
+      expect(reviewItems[0].answer).to.exist.to.equal(answers[0].answer.toString());
+      expect(reviewItems[0].scorecardQuestionId).to.exist.to.equal(parseInt(answers[0].scorecardQuestionId));
+      expect(reviewItems[0].comments).to.exist.to.have.length(answers[0].comments.length);
+    });
+
+    it("should compile review items for updating existing review items ", function() {
+      var questions = {
+        '1' : {id: '1', questionTypeId: 5, guideline: 'some guideline', reviewItemId: 'revItem1'},
+        '2' : {id: '2', questionTypeId: 5, guideline: 'some guideline\nsecond line', reviewItemId: 'revItem2'},
+        '3' : {id: '3', questionTypeId: 5, guideline: 'some guideline\nsecond line\nthird line', reviewItemId: 'revItem3'}
+      };
+      var answers = [
+        {id: 'a1', scorecardQuestionId: '1', answer: 3, comments:[ {content: 'perfect'}]},
+        {id: 'a2', scorecardQuestionId: '2', answer: 1, comments:[]},
+        {id: 'a3', scorecardQuestionId: '3', answer: 2, comments:[ {content: 'good'}]}
+      ];
+      // assumes parseAnswers to be working as expected
+      Helpers.parseAnswers(questions, answers);
+
+      var review = {id: 'rev1', resourceId: 'res1', uploadId: 'u1'};
+      var reviewItems = Helpers.compileReviewItems(questions, review, true);
+      expect(reviewItems).to.exist.to.have.length(3);
+      expect(reviewItems[0].uploadId).to.exist.to.equal(review.uploadId);
+      expect(reviewItems[0].id).to.exist.to.equal(answers[0].id);
+      expect(reviewItems[0].answer).to.exist.to.equal(answers[0].answer.toString());
+      expect(reviewItems[0].scorecardQuestionId).to.exist.to.equal(parseInt(answers[0].scorecardQuestionId));
+      expect(reviewItems[0].comments).to.exist.to.have.length(answers[0].comments.length);
+    });
+  });
+
+  describe("npad ", function() {
+    it("should pad string with 0 ", function() {
+      var padded = Helpers.npad("123", 5);
+      expect(padded).to.exist.to.equal('00123');
+    });
+
+    it("should pad number with 0 ", function() {
+      var padded = Helpers.npad(123, 5);
+      expect(padded).to.exist.to.equal('00123');
+    });
+
+    it("should not pad string with 0 ", function() {
+      var padded = Helpers.npad("12345", 5);
+      expect(padded).to.exist.to.equal('12345');
+    });
+  });
+
+  describe("setupLoginEventMetrics ", function() {
+    it("should add object with identify key ", function() {
+      $window._kmq = [];
+      Helpers.setupLoginEventMetrics('mockuser');
+      expect($window._kmq).to.have.length(1);
+      expect($window._kmq[0][0]).to.exist.to.equal('identify');
+      expect($window._kmq[0][1]).to.exist.to.equal('mockuser');
+    });
+  });
+
+  xdescribe("getCountyObjFromIP ", function() {
+    it("should get valid country object ", function() {
+      var mockLocation = {
+        "ip": "123.63.151.213",
+        "hostname": "No Hostname",
+        "city": "New Delhi",
+        "region": "National Capital Territory of Delhi",
+        "country": "IN",
+        "loc": "28.6000,77.2000",
+        "org": "Mock Organization"
+      };
+
+      $httpBackend
+        .when('GET', 'http://ipinfo.io')
+        .respond(200, mockLocation);
+      
+      $rootScope.$apply();
+      console.log(Helpers.getCountyObjFromIP().then(function(data) {
+        console.log(data);
+      }));
+      $rootScope.$apply();
     });
   });
 });
