@@ -17,14 +17,14 @@
 
     return service;
 
-    function getPresignedURL(body, files) {
+    function getPresignedURL(body, files, progressCallback) {
       console.log('Body of request for presigned url: ', body);
 
       return api.all('submissions').customPOST(body)
       .then(function(response) {
         console.log('POST/Presigned URL Response: ', response.plain());
 
-        uploadSubmissionFileToS3(response, response.data.files, files);
+        uploadSubmissionFileToS3(response, response.data.files, files, progressCallback);
       })
       .catch(function(err) {
         console.log(err);
@@ -33,7 +33,7 @@
       });
     }
 
-    function uploadSubmissionFileToS3(presignedURLResponse, filesWithPresignedURL, files) {
+    function uploadSubmissionFileToS3(presignedURLResponse, filesWithPresignedURL, files, progressCallback) {
 
       var promises = filesWithPresignedURL.map(function(fileWithPresignedURL) {
         var deferred = $q.defer();
@@ -41,6 +41,19 @@
 
         xhr.open('PUT', fileWithPresignedURL.preSignedUploadUrl, true);
         xhr.setRequestHeader('Content-Type', fileWithPresignedURL.mediaType);
+
+        xhr.upload.addEventListener("progress", function(oEvent) {
+          if (oEvent.lengthComputable) {
+            var percentComplete = oEvent.loaded / oEvent.total;
+            console.log("Completed " + percentComplete);
+            if (progressCallback && typeof progressCallback === 'function') {
+              progressCallback.call(progressCallback, fileWithPresignedURL.preSignedUploadUrl,  percentComplete*100);
+            }
+            // ...
+          } else {
+            // Unable to compute progress information since the total size is unknown
+          }
+        });
 
         // xhr version of the success callback
         xhr.onreadystatechange = function() {

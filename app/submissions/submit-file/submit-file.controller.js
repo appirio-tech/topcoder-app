@@ -3,9 +3,9 @@
 
   angular.module('tc.submissions').controller('SubmitFileController', SubmitFileController);
 
-  SubmitFileController.$inject = ['$stateParams', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
+  SubmitFileController.$inject = ['$scope', '$stateParams', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
 
-  function SubmitFileController($stateParams, UserService, SubmissionsService, challengeToSubmitTo) {
+  function SubmitFileController($scope, $stateParams, UserService, SubmissionsService, challengeToSubmitTo) {
     var vm = this;
 
     // Must provide React Select component a list with ID, since currently
@@ -23,9 +23,11 @@
     ];
 
     var files = {};
+    var fileUploadProgress = {};
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/);
     vm.rankRegEx = new RegExp(/^[1-9]\d*$/);
     vm.comments = '';
+    vm.uploadProgress = 0;
     vm.submissionForm = {
       files: [],
 
@@ -166,6 +168,7 @@
     }
 
     function uploadSubmission() {
+      vm.updateProgress = 0;
       vm.submissionsBody.data.submitterComments = vm.comments;
       vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank;
 
@@ -191,7 +194,19 @@
         });
       }
 
-      SubmissionsService.getPresignedURL(vm.submissionsBody, files);
+      SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress);
+    }
+
+    function updateProgress(requestId, progress) {
+      fileUploadProgress[requestId] = progress;
+      var total = 0, count = 0;
+      for(var requestId in fileUploadProgress) {
+        var prog = fileUploadProgress[requestId];
+        total += prog;
+        count++;
+      }
+      vm.uploadProgress = total / count;
+      $scope.$apply();
     }
   }
 })();

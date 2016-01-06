@@ -184,3 +184,7 @@
         label(for="agree-to-terms") I understand and agree
 
       button.tc-btn.tc-btn-secondary(type="submit", ng-disabled="submissionForm.$invalid") Submit
+
+.panel-body
+  p Uploading submission for TBD: challenge name
+  progress-bar(completed="vm.uploadProgress", message="of 3 files uploaded")
