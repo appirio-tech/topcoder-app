@@ -4,9 +4,9 @@
   .mobile-redirect__body
     p Our team is working hard on new features, and file upload currently only works on the web. Please open this page on your desktop if you want to create a submission.
 
-    a Learn more about formatting your submission file
+    a(ng-href="TODO: Need Link") Learn more about formatting your submission file
 
-    a.tc-btn.tc-btn-s(ng-click="'TODO: go back to challenge details'") Back to Challenge Details
+    a.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenge-details/{{submissions.challengeId}}/?type={{submissions.track}}") Back to Challenge Details
 
 .panel-body
   form.form-blocks(name="submissionForm", role="form", ng-submit="submissionForm.$valid && vm.uploadSubmission()", novalidate)
