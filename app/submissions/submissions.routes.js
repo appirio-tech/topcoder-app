@@ -44,10 +44,17 @@
                 var phaseId;
 
                 var isPhaseSubmission = _.some(challenge.currentPhases, function(phase) {
-                  if (phase.phaseStatus === 'Open' && phase.phaseType === 'Submission') {
-                    phaseType = 'Submission';
-                    phaseId = phase.id;
-                    return true;
+                  if (phase.phaseStatus === 'Open') {
+                    if (phase.phaseType === 'Submission') {
+                      phaseType = 'Submission';
+                      phaseId = phase.id;
+                      return true;
+
+                    } else if (phase.phaseType === 'Checkpoint Submission') {
+                      phaseType = 'Checkpoint_Submission';
+                      phaseId = phase.id;
+                      return true;
+                    }
                   }
 
                   return false;
