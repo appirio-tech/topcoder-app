@@ -13,11 +13,22 @@
         inputValue: '=',
         inputName: '@',
         inputType: '@',
-        inputPattern: '='
+        inputPattern: '=',
+        updateValueOnBlur: '&?'
       },
       link: function(scope, element, attrs) {
+        var input = $(element[0]).find('input');
+
         if (!scope.inputType) {
           scope.inputType = 'text';
+        }
+
+        if (scope.updateValueOnBlur) {
+          input.bind('blur', function(event) {
+            var newValue = scope.updateValueOnBlur({inputValue: scope.inputValue});
+            scope.inputValue = newValue;
+            scope.$apply();
+          });
         }
       }
     }
