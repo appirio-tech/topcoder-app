@@ -11,15 +11,17 @@
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/);
     vm.rankRegEx = new RegExp(/^[1-9]\d*$/);
     vm.comments = '';
-
-    // New formFonts prop
     vm.formFonts = [{
       id: 0,
       source: '',
       name: '',
-      sourceUrl: ''
+      sourceUrl: '',
+      isFontUrlRequired: false,
+      isFontUrlDisabled: true,
+      isFontNameRequired: false,
+      isFontNameDisabled: true,
+      isFontSourceRequired: false
     }];
-
     vm.submissionForm = {
       files: [],
 
@@ -129,6 +131,7 @@
       vm.submissionsBody.data.submitterComments = vm.comments;
       vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank;
 
+      // Process stock art
       if (vm.submissionForm.stockArts[0].description === '') {
         vm.submissionsBody.data.stockArts = [];
       } else {
@@ -139,20 +142,25 @@
         });
       }
 
-      if (vm.submissionForm.fonts[0].source === '') {
+      // Process fonts
+      if (vm.formFonts[0].source === '') {
         vm.submissionsBody.data.fonts = [];
       } else {
-        var fonts = angular.copy(vm.submissionForm.fonts);
+        var fonts = angular.copy(vm.formFonts);
         vm.submissionsBody.data.fonts = fonts.map(function(font) {
           if (font.source) {
             delete font.id;
+            delete font.isFontUrlRequired;
+            delete font.isFontUrlDisabled;
+            delete font.isFontNameRequired;
+            delete font.isFontNameDisabled;
+            delete font.isFontSourceRequired;
             return font;
           }
         });
       }
 
       console.log('ABOUT TO SEND: ', vm.submissionsBody);
-      return;
       SubmissionsService.getPresignedURL(vm.submissionsBody, files);
     }
   }

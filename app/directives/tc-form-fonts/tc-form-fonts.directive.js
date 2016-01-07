@@ -6,13 +6,13 @@
   function tcFormFonts() {
     return {
       restrict: 'E',
+      require: '^form',
       templateUrl: 'directives/tc-form-fonts/tc-form-fonts.html',
       scope: {
         formFonts: '='
       },
-      link: function(scope, element, attrs) {
-        // console.log('scope on font submission directive: ', scope.submissionForm);
-
+      link: function(scope, element, attrs, formController) {
+        scope.submissionForm = formController;
       },
       controller: ['$scope', function($scope) {
         // Must provide React Select component a list with ID, since currently
@@ -35,6 +35,20 @@
           // Find the right font section and change that source value to the value that the user selected
           var id = newFont.id;
           $scope.formFonts[id].source = newFont.value;
+
+          if (newFont.value === 'STUDIO_STANDARD_FONTS_LIST') {
+            $scope.formFonts[id].isFontNameRequired = true;
+            $scope.formFonts[id].isFontNameDisabled = false;
+            $scope.formFonts[id].isFontUrlRequired = false;
+            $scope.formFonts[id].isFontUrlDisabled = false;
+
+          } else if (newFont.value) {
+            $scope.formFonts[id].isFontNameRequired = true;
+            $scope.formFonts[id].isFontNameDisabled = false;
+            $scope.formFonts[id].isFontUrlRequired = true;
+            $scope.formFonts[id].isFontUrlDisabled = false;
+
+          }
         };
 
         $scope.createAdditionalFontFieldset = function() {
@@ -51,7 +65,12 @@
             id: newId,
             source: '',
             name: '',
-            sourceUrl: ''
+            sourceUrl: '',
+            isFontUrlRequired: false,
+            isFontUrlDisabled: true,
+            isFontNameRequired: false,
+            isFontNameDisabled: true,
+            isFontSourceRequired: false
           });
         }
       }]
