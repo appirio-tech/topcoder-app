@@ -24,46 +24,6 @@
     vm.showNav = showNav;
     vm.back = back;
     vm.subTrackStats = [];
-    vm.reliabilityMapping = {
-      'DESIGN': 1,
-      'DEVELOPMENT': 1,
-      'SECURITY': 1,
-      'TESTING_COMPETITION': 1,
-      'SPECIFICATION': 2,
-      'ARCHITECTURE': 2,
-      'COMPONENT_PRODUCTION': 2,
-      'BUG_HUNT': 2,
-      'DEPLOYMENT': 2,
-      'SECURITY': 2,
-      'PROCESS': 2,
-      'TEST_SUITES': 2,
-      'ASSEMBLY_COMPETITION': 2,
-      'LEGACY': 2,
-      'BANNERS_OR_ICONS': 3,
-      'WEB_DESIGN': 3,
-      'WIREFRAMES': 3,
-      'UI_PROTOTYPE_COMPETITION': 2,
-      'LOGO_DESIGN': 3,
-      'PRINT_OR_PRESENTATION': 3,
-      'CONCEPTUALIZATION': 2,
-      'RIA_BUILD_COMPETITION': 2,
-      'RIA_COMPONENT_COMPETITION': 2,
-      'TEST_SCENARIOS': 2,
-      'SPEC_REVIEW': 2,
-      'GENERIC_SCORECARDS': 4,
-      'COPILOT_POSTING': 2,
-      'CONTENT_CREATION': 2,
-      'WIDGET_OR_MOBILE_SCREEN_DESIGN': 3,
-      'FRONT_END_FLASH': 3,
-      'APPLICATION_FRONT_END_DESIGN': 3,
-      'STUDIO_OTHER': 3,
-      'IDEA_GENERATION': 3,
-      'REPORTING': 2,
-      'MARATHON_MATCH': 2,
-      'FIRST_2_FINISH': 2,
-      'CODE': 2,
-      'DESIGN_FIRST_2_FINISH': 3
-    };
 
     vm.pageName = vm.subTrack.toLowerCase().replace(/_/g, ' ');
 
@@ -118,7 +78,7 @@
           var reliability = vm.subTrackStats.filter(function(stat) { return stat.label === 'reliability'; });
           if (reliability.length > 0) {
             reliability = reliability[0];
-            reliability.link = 'http://community.' + vm.domain + '/tc?module=ReliabilityDetail&pt=' + (vm.reliabilityMapping[vm.subTrack] || 2) + '&cr=' + profileVm.profile.userId;
+            reliability.link = 'http://community.' + vm.domain + '/tc?module=ReliabilityDetail&pt=' + UserStatsService.mapReliability(vm.subTrack) + '&cr=' + profileVm.profile.userId;
           }
           var mustHaveMetrics = ["rank", "rating", "reliability"];
           // check if rating, rank & reliability are all set
