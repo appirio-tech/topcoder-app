@@ -7,25 +7,19 @@
 
   function SubmitFileController($stateParams, UserService, SubmissionsService, challengeToSubmitTo) {
     var vm = this;
-
-    // Must provide React Select component a list with ID, since currently
-    // the onChange callback does not indicate which dropdown called the callback.
-    // There are pull requests pending for react-select which will clean this code up
-    vm.fontList1 = [
-      { label: 'Studio Standard Fonts List', value: 'STUDIO_STANDARD_FONTS_LIST', id: 1 },
-      { label: 'Fonts.com', value: 'FONTS_DOT_COM', id: 1  },
-      { label: 'MyFonts', value: 'MYFONTS', id: 1  },
-      { label: 'Adobe Fonts', value: 'ADOBE_FONTS', id: 1  },
-      { label: 'Font Shop', value: 'FONT_SHOP', id: 1  },
-      { label: 'T.26 Digital Type Foundry', value: 'T26_DIGITAL_TYPE_FOUNDRY', id: 1  },
-      { label: 'Font Squirrel', value: 'FONT_SQUIRREL', id: 1  },
-      { label: 'Typography.com', value: 'TYPOGRAPHY_DOT_COM', id: 1 }
-    ];
-
     var files = {};
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/);
     vm.rankRegEx = new RegExp(/^[1-9]\d*$/);
     vm.comments = '';
+
+    // New formFonts prop
+    vm.formFonts = [{
+      id: 0,
+      source: '',
+      name: '',
+      sourceUrl: ''
+    }];
+
     vm.submissionForm = {
       files: [],
 
@@ -35,12 +29,7 @@
 
       submitterRank: 1,
       submitterComments: '',
-      fonts: [{
-        id: 1,
-        source: '',
-        name: '',
-        sourceUrl: ''
-      }],
+      fonts: [],
       stockArts: [{
         id: 1,
         description: '',
@@ -77,8 +66,6 @@
     vm.setRankTo1 = setRankTo1;
     vm.setFileReference = setFileReference;
     vm.uploadSubmission = uploadSubmission;
-    vm.selectFont = selectFont;
-    vm.createAnotherFontFieldset = createAnotherFontFieldset;
     vm.createAnotherStockArtFieldset = createAnotherStockArtFieldset;
 
     activate();
@@ -114,8 +101,6 @@
           fileObject.mediaType = file.type;
       }
 
-
-
       // If user picks a new file, replace the that file's fileObject with a new one
       // Or add it the list if it's not there
       if (vm.submissionsBody.data.files.length) {
@@ -129,31 +114,6 @@
       } else {
         vm.submissionsBody.data.files.push(fileObject);
       }
-    }
-
-    function selectFont(newFont) {
-      // See above for explanation
-      var id = newFont.id - 1;
-      vm.submissionForm.fonts[id].source = newFont.value;
-    }
-
-    function createAnotherFontFieldset() {
-      // See above for explanation on why this is done the way it is
-      var id = vm.submissionForm.fonts.length;
-
-      // Create copy of list with new, incremented ID
-      var newFontList = vm['fontList' + (id + 1)] = angular.copy(vm['fontList' + id]);
-
-      newFontList.forEach(function(font) {
-        font.id++;
-      });
-
-      vm.submissionForm.fonts.push({
-        id: vm.submissionForm.fonts.length + 1,
-        source: '',
-        name: '',
-        sourceUrl: ''
-      });
     }
 
     function createAnotherStockArtFieldset() {
@@ -191,6 +151,8 @@
         });
       }
 
+      console.log('ABOUT TO SEND: ', vm.submissionsBody);
+      return;
       SubmissionsService.getPresignedURL(vm.submissionsBody, files);
     }
   }

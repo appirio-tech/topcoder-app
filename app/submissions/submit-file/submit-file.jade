@@ -111,9 +111,7 @@
 
       .form-block__fields
         .fieldsets
-          font-submission.fieldset(ng-repeat="font in vm.submissionForm.fonts track by font.id")
-
-          button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="vm.createAnotherFontFieldset()") + Add Font
+          tc-form-fonts(form-fonts="vm.formFonts")
 
     .form-block.flex.wrap
       .form-block__instructions
