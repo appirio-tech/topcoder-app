@@ -14,6 +14,8 @@
         inputName: '@',
         inputType: '@',
         inputPattern: '=',
+        inputRequired: '=',
+        inputDisabled: '=',
         updateValueOnBlur: '&?'
       },
       link: function(scope, element, attrs) {
