@@ -98,51 +98,22 @@
 
     .form-block.flex.wrap
       .form-block__instructions
-        .form-block__title Fonts
+        .form-block__title Did you use custom fonts?
 
         .form-block__text
           p Check to see if your font is on the Studio Standard Fonts list. If it is, leave the URL field blank.
 
           p Read the #[a(href="Need link") Studio Fonts Policy].
 
-          p If you only used fonts that came with the client files, choose "I did not introduce any new fonts" from the dropdown box.
-
           p If your font is not on the list, you must provide the URL to the font page (not file) from one of the approved font websites in the dropdown box.
 
       .form-block__fields
         .fieldsets
-          ng-form.fieldset(name="font{{$index + 1}}", ng-repeat="font in vm.submissionForm.fonts track by font.id")
-            label.tc-label Font Source
-
-            dropdown(
-              name="'font-source{{$index + 1}}'",
-              options="vm.fontList{{$index + 1}}",
-              placeholder="'Select from the list'",
-              searchable="false",
-              clearable="false",
-              on-change="vm.selectFont",
-              value="vm.submissionForm.fonts[{{$index}}].source"
-            )
-
-            tc-input.fieldset__input(
-              label-text="Font Name",
-              placeholder="Select font source to edit field"
-              input-value="font.name",
-              input-name="fontName{{$index}}"
-            )
-
-            tc-input.fieldset__input(
-              label-text="Font URL",
-              placeholder="Select font source to edit field",
-              input-value="font.sourceUrl",
-              input-name="fontUrl{{$index}}"
-            )
-
-          button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="vm.createAnotherFontFieldset()") + Add Font
+          tc-form-fonts(form-fonts="vm.formFonts")
 
     .form-block.flex.wrap
       .form-block__instructions
-        .form-block__title Stock Art
+        .form-block__title Did you use stock art?
 
         .form-block__text
           p If you used any stock photos in your design mocks, please provide the location and details so that the client can obtain them. Follow the guidelines at our #[a(href="Need link") Studio Stock Art Policy].
@@ -166,7 +137,7 @@
             )
 
             .tc-error-messages(ng-show="submissionForm['photoURL' + $index].$dirty && submissionForm['photoURL' + $index].$invalid")
-              p(ng-show="submissionForm['photoURL' + $index].$error.pattern") Not a valid url.
+              p(ng-show="submissionForm['photoURL' + $index].$error.pattern") Please enter a valid url.
 
             tc-input.fieldset__input(
               label-text="File Number",

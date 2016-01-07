@@ -1,3 +1,11 @@
 label.tc-label {{labelText}}
 
-input(name="{{inputName}}", type="{{inputType}}", placeholder="{{placeholder}}", ng-model="inputValue", ng-pattern="inputPattern")
+input(
+  name="{{inputName}}",
+  type="{{inputType}}",
+  placeholder="{{placeholder}}",
+  ng-model="inputValue",
+  ng-pattern="inputPattern",
+  ng-required="inputRequired",
+  ng-disabled="inputDisabled"
+)
