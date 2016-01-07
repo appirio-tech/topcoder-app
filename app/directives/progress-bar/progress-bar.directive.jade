@@ -1,6 +1,6 @@
 .progress-bar
-  .bar(style="background-color: #F0F0F0;height: 10px;")
-    .completed(style="background-color: #0096FF;")
-  .summary
+  .progress-bar__bar
+    .progress-bar__bar--completed
+  .progress-bar__summary
     span(ng-bind="completed")
     span % {{message}}

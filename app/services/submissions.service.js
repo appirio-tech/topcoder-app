@@ -23,7 +23,7 @@
       return api.all('submissions').customPOST(body)
       .then(function(response) {
         console.log('POST/Presigned URL Response: ', response.plain());
-
+        progressCallback.call(progressCallback, 'PREPARE', 100);
         uploadSubmissionFileToS3(response, response.data.files, files, progressCallback);
       })
       .catch(function(err) {
@@ -45,9 +45,12 @@
         xhr.upload.addEventListener("progress", function(oEvent) {
           if (oEvent.lengthComputable) {
             var percentComplete = oEvent.loaded / oEvent.total;
-            console.log("Completed " + percentComplete);
+            // console.log("Completed " + percentComplete);
             if (progressCallback && typeof progressCallback === 'function') {
-              progressCallback.call(progressCallback, fileWithPresignedURL.preSignedUploadUrl,  percentComplete*100);
+              progressCallback.call(progressCallback, 'UPLOAD', {
+                file: fileWithPresignedURL.preSignedUploadUrl,
+                progress: percentComplete*100
+              });
             }
             // ...
           } else {
@@ -87,39 +90,42 @@
         .then(function(response) {
           console.log('response from S3: ', response);
           console.log('response to use .save restnagular with: ', presignedURLResponse);
-
+          progressCallback.call(progressCallback, 'UPLOAD', 100);
           // Update and start processing
-          updateSubmissionStatus(presignedURLResponse.plain());
+          updateSubmissionStatus(presignedURLResponse.plain(), progressCallback);
 
         })
         .catch(function(err) {
+          progressCallback.call(progressCallback, 'ERROR', err);
           console.log('error uploading to S3: ', err);
         });
     }
 
-    function updateSubmissionStatus(body) {
+    function updateSubmissionStatus(body, progressCallback) {
       // Pass data from upload to S3
       body.data.files.forEach(function(file) {
         file.status = 'UPLOADED';
       });
 
-      return api.one('submissions', body.id).customPUT(body)
+      return api.one('submissionss', body.id).customPUT(body)
       .then(function(response) {
         $log.info('Successfully updated file statuses');
-        recordCompletedSubmission(response.plain());
+        recordCompletedSubmission(response.plain(), progressCallback);
       })
       .catch(function(err) {
         $log.info('Error updating file statuses');
         $log.error(err);
+        progressCallback.call(progressCallback, 'ERROR', err);
       });
     }
 
-    function recordCompletedSubmission(body) {
+    function recordCompletedSubmission(body, progressCallback) {
       // Once all uploaded, make record and begin processing
       return api.one('submissions', body.id).customPOST(body, 'process')
       .then(function(response) {
         $log.info('Successfully made file record. Beginning processing');
         console.log('response from process call: ', response);
+        progressCallback.call(progressCallback, 'FINISH', 100);
       })
       .catch(function(err) {
         $log.info('Error in starting processing');

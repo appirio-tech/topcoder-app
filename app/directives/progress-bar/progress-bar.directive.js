@@ -12,11 +12,11 @@
       link: function(scope, element, attr) {
         var model = $parse(attr.completed);
         var msg = attr.message;
-        var progress = angular.element(element[0].querySelector('.completed'));
+        var progress = angular.element(element[0].querySelector('.progress-bar__bar--completed'));
 
         scope.$watch(model, function(newValue, oldValue) {
-          console.log("Updating progress bar with " + newValue);
           scope.completed = Math.round(newValue);
+          // console.log("Updating progress bar with " + scope.completed);
           scope.message = msg;
           progress.css('width', scope.completed + '%')
         });

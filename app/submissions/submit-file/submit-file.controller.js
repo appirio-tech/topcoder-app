@@ -28,6 +28,11 @@
     vm.rankRegEx = new RegExp(/^[1-9]\d*$/);
     vm.comments = '';
     vm.uploadProgress = 0;
+    vm.uploading = false;
+    vm.preparing = false;
+    vm.finishing = false;
+    vm.showProgress = false;
+    vm.errorInUpload = false;
     vm.submissionForm = {
       files: [],
 
@@ -82,6 +87,7 @@
     vm.selectFont = selectFont;
     vm.createAnotherFontFieldset = createAnotherFontFieldset;
     vm.createAnotherStockArtFieldset = createAnotherStockArtFieldset;
+    vm.cancelRetry = cancelRetry;
 
     activate();
 
@@ -168,7 +174,10 @@
     }
 
     function uploadSubmission() {
-      vm.updateProgress = 0;
+      vm.uploadProgress = 0;
+      vm.fileUploadProgress = {};
+      vm.showProgress = true;
+      vm.preparing = true;
       vm.submissionsBody.data.submitterComments = vm.comments;
       vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank;
 
@@ -197,16 +206,63 @@
       SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress);
     }
 
-    function updateProgress(requestId, progress) {
-      fileUploadProgress[requestId] = progress;
-      var total = 0, count = 0;
-      for(var requestId in fileUploadProgress) {
-        var prog = fileUploadProgress[requestId];
-        total += prog;
-        count++;
+    /**
+     * Callback for updating submission upload process. It looks for different phases e.g. PREPARE, UPLOAD, FINISH
+     * of the submission upload and updates the progress UI accordingly.
+     */
+    function updateProgress(phase, args) {
+      // for PREPARE phase
+      if (phase === 'PREPARE') {
+        // we are concerned only for completion of the phase
+        if (args === 100) {
+          vm.preparing = false;
+          vm.uploading = true;
+          console.log('Prapared');
+        }
+      } else if (phase === 'UPLOAD') {
+        // if args is object, this update is about XHRRequest's upload progress
+        if (typeof args === 'object') {
+          var requestId = args.file;
+          var progress = args.progress;
+          if (!fileUploadProgress[requestId] || fileUploadProgress[requestId] < progress) {
+            fileUploadProgress[requestId] = progress;
+          }
+          var total = 0, count = 0;
+          for(var requestId in fileUploadProgress) {
+            var prog = fileUploadProgress[requestId];
+            total += prog;
+            count++;
+          }
+          vm.uploadProgress = total / count;
+          // initiate digest cycle because this event (xhr event) is caused outside angular
+          $scope.$apply();
+        } else { // typeof args === 'number', mainly used a s fallback to mark completion of the UPLOAD phase
+          vm.uploadProgress = args;
+        }
+        // start next phase when UPLOAD is done
+        if (vm.uploadProgress == 100) {
+          console.log('Uploaded');
+          vm.uploading = false;
+          vm.finishing = true;
+        }
+      } else if (phase === 'FINISH') {
+        // we are concerned only for completion of the phase
+        if (args === 100) {
+          console.log('Finished');
+          vm.finishing = false;
+          vm.showProgress = false;
+
+          // TODO redirect to submission listing / challenge details page
+        }
+      } else { // assume it to be error condition
+        console.log("Else: " + phase);
+        vm.errorInUpload = true;
       }
-      vm.uploadProgress = total / count;
-      $scope.$apply();
+    }
+
+    function cancelRetry() {
+      vm.showProgress = false;
+      // TODO redirect to submission listing / challenge details page
     }
   }
 })();
