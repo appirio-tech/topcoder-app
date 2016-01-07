@@ -116,8 +116,6 @@
         vm.subTrackStats = UserStatsService.getIterableStats(vm.track, vm.subTrack, data);
         if (vm.track === 'DEVELOP') {
           var reliability = vm.subTrackStats.filter(function(stat) { return stat.label === 'reliability'; });
-          console.log('yo')
-          console.log(reliability)
           if (reliability.length > 0) {
             reliability = reliability[0];
             reliability.link = 'http://community.' + vm.domain + '/tc?module=ReliabilityDetail&pt=' + (vm.reliabilityMapping[vm.subTrack] || 2) + '&cr=' + profileVm.profile.userId;
