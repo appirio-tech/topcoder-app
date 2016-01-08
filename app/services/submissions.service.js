@@ -29,6 +29,7 @@
       .catch(function(err) {
         console.log(err);
         $log.info('Error getting presigned url');
+        progressCallback.call(progressCallback, 'ERROR', err);
         toaster.pop('error', 'Whoops!', 'There was an error uploading your submissions. Please try again later.');
       });
     }
@@ -107,7 +108,7 @@
         file.status = 'UPLOADED';
       });
 
-      return api.one('submissionss', body.id).customPUT(body)
+      return api.one('submissions', body.id).customPUT(body)
       .then(function(response) {
         $log.info('Successfully updated file statuses');
         recordCompletedSubmission(response.plain(), progressCallback);
@@ -130,6 +131,7 @@
       .catch(function(err) {
         $log.info('Error in starting processing');
         $log.error(err);
+        progressCallback.call(progressCallback, 'ERROR', err);
       });
     }
   };
