@@ -160,7 +160,7 @@
         });
       }
 
-      console.log('ABOUT TO SEND: ', vm.submissionsBody);
+      console.log('Body for request: ', vm.submissionsBody);
       SubmissionsService.getPresignedURL(vm.submissionsBody, files);
     }
   }
