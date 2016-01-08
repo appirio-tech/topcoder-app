@@ -9,13 +9,20 @@
 .panel-footer {
   text-align: center;
 
-  p {
+  p:first-child {
     margin-bottom: 30px;
     @include font-with-weight('Merriweather Sans', 300);
     font-size: 13px;
     line-height: 24px;
     color: $gray-darkest;
     text-align: left;
+  }
+
+  .tc-error-messages {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 30px;
+    text-align: center;
   }
 
   .checkbox {
@@ -38,6 +45,76 @@
   margin-top: 10px;
 }
 
+modal {
+  .close {
+    .icon.cross {
+      background-image: url(/images/x-mark-gray.svg);
+      background-size: 25px;
+    }
+  }
+}
+.upload-progress {
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+
+  .upload-progress__title {
+    text-transform: uppercase;
+    @include font-with-weight('Sofia Pro', 500);
+    font-size: 24px;
+    line-height: 30px;
+    max-width: 355px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .upload-progress__image,
+  .upload-progress__image--error {
+    margin-top: 60px;
+  }
+
+  .upload-progress__message,
+  .upload-progress__message--error {
+    @include font-with-weight('Merriweather Sans', 400);
+    font-size: 15px;
+    line-height: 19px;
+    color: $accent-gray;
+    margin-top: 40px;
+  }
+
+  .upload-progress__progress-bar {
+    margin-top: 30px;
+    width: 100%;
+    max-width: 760px;
+  }
+
+  .upload-progress__preparing,
+  .upload-progress__finishing,
+  .upload-progress__error {
+    @include font-with-weight('Sofia Pro', 500);
+    font-size: 12px;
+    line-height: 14px;
+    color: $accent-gray-dark;
+  }
+
+  .upload-progress__error {
+    color: $error;
+  }
+
+  .upload-progress__error-action {
+    margin-top: 40px;
+  }
+
+  &.upload-progress--error {
+    .upload-progress__progress-bar {
+      .progress-bar__bar--completed {
+        background-color: $error;
+      }
+    }
+  }
+}
+
 tc-form-fonts {
   .fieldset {
     max-width: 500px;
@@ -45,7 +122,6 @@ tc-form-fonts {
 }
 
 .Select {
-  max-width: 300px;
   margin-bottom: 20px;
 }
 
