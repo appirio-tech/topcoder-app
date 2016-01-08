@@ -174,6 +174,7 @@
     }
 
     function uploadSubmission() {
+      vm.errorInUpload = false;
       vm.uploadProgress = 0;
       vm.fileUploadProgress = {};
       vm.showProgress = true;

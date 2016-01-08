@@ -205,4 +205,4 @@ modal.transition(show="vm.showProgress", background-click-close="true", style="b
       span File upload failed
     .upload-progress__error-action(ng-show="vm.errorInUpload")
       button.tc-btn.tc-btn-s.tc-btn-ghost(type="button", ng-click="vm.cancelRetry()") Cancel
-      button.tc-btn.tc-btn-s.tc-btn-secondary(type="submit") Try Again
+      button.tc-btn.tc-btn-s.tc-btn-secondary(type="button", ng-click="submissionForm.$valid && vm.uploadSubmission()") Try Again
