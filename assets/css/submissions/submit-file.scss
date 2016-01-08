@@ -9,13 +9,20 @@
 .panel-footer {
   text-align: center;
 
-  p {
+  p:first-child {
     margin-bottom: 30px;
     @include font-with-weight('Merriweather Sans', 300);
     font-size: 13px;
     line-height: 24px;
     color: $gray-darkest;
     text-align: left;
+  }
+
+  .tc-error-messages {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 30px;
+    text-align: center;
   }
 
   .checkbox {
@@ -34,6 +41,7 @@
 }
 
 .submitterRank {
+  width: 100px;
   margin-top: 10px;
 }
 
@@ -105,4 +113,18 @@ modal {
       }
     }
   }
+}
+
+tc-form-fonts {
+  .fieldset {
+    max-width: 500px;
+  }
+}
+
+.Select {
+  margin-bottom: 20px;
+}
+
+.tc-error-messages {
+  max-width: 500px;
 }
