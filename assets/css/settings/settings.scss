@@ -154,6 +154,12 @@
         width: 100%;
       }
     }
+
+    &.tracks {
+      .section-fields {
+        width: 100%;
+      }
+    }
   }
 
   border-bottom: 1px solid;
@@ -303,6 +309,8 @@
       .field-label,
       angucomplete-alt {
         align-self: flex-start;
+        width: 100%;
+        margin-top: 6px;
       }
 
       .field-label {
