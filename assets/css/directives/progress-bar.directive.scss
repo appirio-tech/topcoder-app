@@ -1,0 +1,21 @@
+@import 'topcoder/tc-includes';
+
+.progress-bar {
+  .progress-bar__bar {
+    background-color: $gray-light;
+    height: 10px;
+
+    .progress-bar__bar--completed {
+      background-color: $dark-blue;
+      height: 100%;
+    }
+  }
+
+  .progress-bar__summary {
+    @include font-with-weight('Sofia Pro', 500);
+    font-size: 12px;
+    line-height: 14px;
+    color: $accent-gray-dark;
+    margin-top: 20px;
+  }
+}

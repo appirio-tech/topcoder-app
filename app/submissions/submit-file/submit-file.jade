@@ -159,3 +159,25 @@
         label(for="agree-to-terms") I understand and agree
 
       button.tc-btn.tc-btn-secondary(type="submit", ng-disabled="submissionForm.$invalid") Submit
+
+modal.transition(show="vm.showProgress", background-click-close="true", style="background-color:white;")
+  .upload-progress(ng-class="{'upload-progress--error': vm.errorInUpload}")
+    .upload-progress__title
+      p Uploading submission for
+      p.upload-progress-title__challenge-name [Challenge name]
+    img.upload-progress__image(ng-src="/images/robot.svg", ng-hide="vm.errorInUpload")
+    img.upload-progress__image--error(ng-src="/images/robot-embarresed.svg", ng-show="vm.errorInUpload")
+    p.upload-progress__message(ng-hide="vm.errorInUpload") Hey, your work is AWESOME! Please don’t close the window while I’m working, you’ll loose all files!
+    p.upload-progress__message--error(ng-show="vm.errorInUpload") Oh, that’s embarrassing! The file couldn’t be uploaded, I’m so sorry.
+
+    progress-bar.upload-progress__progress-bar(completed="vm.uploadProgress", message="of 3 files uploaded")
+
+    .upload-progress__preparing(ng-show="vm.preparing && !vm.errorInUpload")
+      span Preparing...
+    .upload-progress__finishing(ng-show="vm.finishing && !vm.errorInUpload")
+      span Finishing...
+    .upload-progress__error(ng-show="vm.errorInUpload")
+      span File upload failed
+    .upload-progress__error-action(ng-show="vm.errorInUpload")
+      button.tc-btn.tc-btn-s.tc-btn-ghost(type="button", ng-click="vm.cancelRetry()") Cancel
+      button.tc-btn.tc-btn-s.tc-btn-secondary(type="button", ng-click="submissionForm.$valid && vm.uploadSubmission()") Try Again
