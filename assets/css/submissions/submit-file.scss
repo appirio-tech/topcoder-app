@@ -9,13 +9,20 @@
 .panel-footer {
   text-align: center;
 
-  p {
+  p:first-child {
     margin-bottom: 30px;
     @include font-with-weight('Merriweather Sans', 300);
     font-size: 13px;
     line-height: 24px;
     color: $gray-darkest;
     text-align: left;
+  }
+
+  .tc-error-messages {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 30px;
+    text-align: center;
   }
 
   .checkbox {
@@ -45,7 +52,6 @@ tc-form-fonts {
 }
 
 .Select {
-  max-width: 300px;
   margin-bottom: 20px;
 }
 

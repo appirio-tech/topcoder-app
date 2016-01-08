@@ -21,7 +21,7 @@
 
           p Please be sure to double-check that you have submitted the correct files and that your JPG files (if applicable) are in RGB color mode.
 
-          a(href="http://help.{{DOMAIN}}/design/submitting-to-a-design-challenge/formatting-your-submission-for-design-challenges/") Learn more about formatting your submission file
+          a(ng-href="http://help.{{DOMAIN}}/design/submitting-to-a-design-challenge/formatting-your-submission-for-design-challenges/") Learn more about formatting your submission file
 
       .form-block__fields
         .fieldset
@@ -103,7 +103,7 @@
         .form-block__text
           p Check to see if your font is on the Studio Standard Fonts list. If it is, leave the URL field blank.
 
-          p Read the #[a(href="Need link") Studio Fonts Policy].
+          p Read the #[a(ng-href="http://help.{{DOMAIN}}/design/design-copyright-and-font-policies/font-policy-for-design-challenges/") Studio Fonts Policy].
 
           p If your font is not on the list, you must provide the URL to the font page (not file) from one of the approved font websites in the dropdown box.
 
@@ -116,7 +116,7 @@
         .form-block__title Did you use stock art?
 
         .form-block__text
-          p If you used any stock photos in your design mocks, please provide the location and details so that the client can obtain them. Follow the guidelines at our #[a(href="Need link") Studio Stock Art Policy].
+          p If you used any stock photos in your design mocks, please provide the location and details so that the client can obtain them. Follow the guidelines at our #[a(ng-href="http://help.{{DOMAIN}}/design/design-copyright-and-font-policies/policy-for-stock-photos-in-design-submissions/") Studio Stock Art Policy].
 
       .form-block__fields
         .fieldsets
@@ -149,7 +149,9 @@
           button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="vm.createAnotherStockArtFieldset()") + Add Stock Photo
 
     .panel-footer
-      p Submitting your files means you hereby agree to the #[a(href="https://www.{{DOMAIN}}/community/how-it-works/terms/", target="_blank") Topcoder terms of use] and to the extent your uploaded file wins a Topcoder Competition, you hereby assign, grant, and transfer to Topcoder all rights in and title to the Winning Submission (as further described in the terms of use).
+      p Submitting your files means you hereby agree to the #[a(ng-href="https://www.{{DOMAIN}}/community/how-it-works/terms/", target="_blank") Topcoder terms of use] and to the extent your uploaded file wins a Topcoder Competition, you hereby assign, grant, and transfer to Topcoder all rights in and title to the Winning Submission (as further described in the terms of use).
+
+      p.tc-error-messages(ng-show="vm.submissionForm.hasAgreedToTerms && submissionForm.$invalid") There are outstanding problems with this page. Fix them before you can upload your submission.
 
       .checkbox.flex.center
         input(type="checkbox", ng-model="vm.submissionForm.hasAgreedToTerms", id="agree-to-terms", required)
