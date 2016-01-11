@@ -120,33 +120,7 @@
 
       .form-block__fields
         .fieldsets
-          .fieldset(ng-repeat="stockArt in vm.submissionForm.stockArts track by stockArt.id")
-            tc-input.fieldset__input(
-              label-text="Photo Description",
-              placeholder="A picture of a girl",
-              input-value="stockArt.description",
-              input-name="photoDescription{{$index}}"
-            )
-
-            tc-input.fieldset__input(
-              label-text="Photo URL",
-              placeholder="www.istockphoto.com",
-              input-value="stockArt.sourceUrl",
-              input-name="photoURL{{$index}}",
-              input-pattern="vm.urlRegEx"
-            )
-
-            .tc-error-messages(ng-show="submissionForm['photoURL' + $index].$dirty && submissionForm['photoURL' + $index].$invalid")
-              p(ng-show="submissionForm['photoURL' + $index].$error.pattern") Please enter a valid url.
-
-            tc-input.fieldset__input(
-              label-text="File Number",
-              placeholder="u2434312",
-              input-value="stockArt.fileNumber",
-              input-name="fileNumber{{$index}}"
-            )
-
-          button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="vm.createAnotherStockArtFieldset()") + Add Stock Photo
+          tc-form-stockart(form-stockarts="vm.formStockarts")
 
     .panel-footer
       p Submitting your files means you hereby agree to the #[a(ng-href="https://www.{{DOMAIN}}/community/how-it-works/terms/", target="_blank") Topcoder terms of use] and to the extent your uploaded file wins a Topcoder Competition, you hereby assign, grant, and transfer to Topcoder all rights in and title to the Winning Submission (as further described in the terms of use).

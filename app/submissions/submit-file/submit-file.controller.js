@@ -31,6 +31,14 @@
         isFontSourceRequired: false
       }
     };
+    vm.formStockarts = {
+      0: {
+        id: 1,
+        description: '',
+        sourceUrl: '',
+        fileNumber: ''
+      }
+    };
     vm.submissionForm = {
       files: [],
 
@@ -41,12 +49,7 @@
       submitterRank: 1,
       submitterComments: '',
       fonts: [],
-      stockArts: [{
-        id: 1,
-        description: '',
-        sourceUrl: '',
-        fileNumber: ''
-      }],
+      stockArts: [],
       hasAgreedToTerms: false
     };
 
@@ -79,7 +82,6 @@
     vm.setRankTo1 = setRankTo1;
     vm.setFileReference = setFileReference;
     vm.uploadSubmission = uploadSubmission;
-    vm.createAnotherStockArtFieldset = createAnotherStockArtFieldset;
     vm.cancelRetry = cancelRetry;
 
     activate();
@@ -130,15 +132,6 @@
       }
     }
 
-    function createAnotherStockArtFieldset() {
-      vm.submissionForm.stockArts.push({
-        id: vm.submissionForm.stockArts.length + 1,
-        description: '',
-        sourceUrl: '',
-        fileNumber: ''
-      });
-    }
-
     function uploadSubmission() {
       vm.errorInUpload = false;
       vm.uploadProgress = 0;
@@ -149,15 +142,12 @@
       vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank;
 
       // Process stock art
-      if (vm.submissionForm.stockArts[0].description === '') {
-        vm.submissionsBody.data.stockArts = [];
-      } else {
-        var stockArts = angular.copy(vm.submissionForm.stockArts);
-        vm.submissionsBody.data.stockArts = stockArts.map(function(stockArt) {
-          delete stockArt.id;
-          return stockArt;
-        });
-      }
+      var processedStockarts = _.map(vm.formStockarts, function(formStockart) {
+          delete formStockart.id;
+          return formStockart;
+      });
+
+      vm.submissionsBody.data.stockArts = processedStockarts;
 
       // Process fonts
       var processedFonts = _.reduce(vm.formFonts, function(compiledFonts, formFont) {
