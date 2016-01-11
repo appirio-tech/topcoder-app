@@ -1,28 +1,30 @@
-.fieldset(ng-repeat="font in formFonts track by font.id")
+.fieldset(ng-repeat="(fontId, font) in formFonts")
+  button.clean.remove-section(type="button", ng-click="deleteFontFieldset(fontId)")
+
   label.tc-label Font Source
 
   dropdown(
-    name="'font-source{{$index}}'",
-    options="fontList{{$index}}",
+    name="'font-source{{fontId}}'",
+    options="fontList{{fontId}}",
     placeholder="'Select a provider from the list'",
     searchable="false",
     clearable="false",
     on-change="selectFont",
-    value="formFonts[{{$index}}].source"
+    value="formFonts[{{fontId}}].source"
   )
 
   tc-input.fieldset__input(
     label-text="Font Name",
     placeholder="Select font source to edit field"
     input-value="font.name",
-    input-name="fontName{{$index}}",
-    input-required="formFonts[$index].isFontNameRequired",
-    input-disabled="formFonts[$index].isFontNameDisabled"
+    input-name="fontName{{fontId}}",
+    input-required="formFonts[fontId].isFontNameRequired",
+    input-disabled="formFonts[fontId].isFontNameDisabled"
   )
 
   .tc-error-messages(
-    ng-show="submissionForm['fontName' + $index].$dirty && submissionForm['fontName' + $index].$invalid"
-    ng-messages="submissionForm['fontName' + $index].$error"
+    ng-show="submissionForm['fontName' + fontId].$dirty && submissionForm['fontName' + fontId].$invalid"
+    ng-messages="submissionForm['fontName' + fontId].$error"
   )
     p(ng-message="required") This field is required.
 
@@ -30,15 +32,15 @@
     label-text="Font URL",
     placeholder="Select font source to edit field",
     input-value="font.sourceUrl",
-    input-name="fontUrl{{$index}}",
-    input-required="formFonts[$index].isFontUrlRequired",
-    input-disabled="formFonts[$index].isFontUrlDisabled",
+    input-name="fontUrl{{fontId}}",
+    input-required="formFonts[fontId].isFontUrlRequired",
+    input-disabled="formFonts[fontId].isFontUrlDisabled",
     input-pattern="urlRegEx"
   )
 
   .tc-error-messages(
-    ng-show="submissionForm['fontUrl' + $index].$dirty && submissionForm['fontUrl' + $index].$invalid"
-    ng-messages="submissionForm['fontUrl' + $index].$error"
+    ng-show="submissionForm['fontUrl' + fontId].$dirty && submissionForm['fontUrl' + fontId].$invalid"
+    ng-messages="submissionForm['fontUrl' + fontId].$error"
   )
     p(ng-message="pattern") Please enter a valid url.
     p(ng-message="required") This field is required.
