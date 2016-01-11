@@ -44,6 +44,12 @@
             delete $scope.formStockarts[index];
           }
         }
+
+        $scope.isButtonDisabled = function() {
+          return _.some($scope.formStockarts, function(stockart) {
+            return !stockart.description || !stockart.sourceUrl || !stockart.fileNumber;
+          });
+        }
       }]
     }
   }

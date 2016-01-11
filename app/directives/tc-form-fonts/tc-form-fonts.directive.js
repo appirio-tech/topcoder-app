@@ -92,6 +92,16 @@
             delete $scope.formFonts[index];
           }
         }
+
+        $scope.isButtonDisabled = function() {
+          return _.some($scope.formFonts, function(font) {
+            if (font.source === 'STUDIO_STANDARD_FONTS_LIST') {
+              return !font.source || !font.name;
+            } else {
+              return !font.source || !font.name || !font.sourceUrl;
+            }
+          });
+        }
       }]
     }
   }
