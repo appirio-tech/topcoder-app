@@ -158,6 +158,12 @@
       }
 
       // Process fonts
+      // TODO: Loop over object and delete ones without sources
+      vm.formFonts.forEach(function(formFont) {
+        if (!formFont.source) {
+
+        }
+      })
       if (vm.formFonts[0].source === '') {
         vm.submissionsBody.data.fonts = [];
       } else {
@@ -176,6 +182,7 @@
       }
 
       console.log('Body for request: ', vm.submissionsBody);
+      return;
       SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress);
     }
 
