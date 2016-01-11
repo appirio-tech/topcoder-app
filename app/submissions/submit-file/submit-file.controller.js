@@ -3,10 +3,11 @@
 
   angular.module('tc.submissions').controller('SubmitFileController', SubmitFileController);
 
-  SubmitFileController.$inject = ['$scope', '$stateParams', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
+  SubmitFileController.$inject = ['$scope', '$stateParams', '$log', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
 
-  function SubmitFileController($scope, $stateParams, UserService, SubmissionsService, challengeToSubmitTo) {
+  function SubmitFileController($scope, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
     var vm = this;
+    $log = $log.getInstance("SubmitFileController");
     var files = {};
     var fileUploadProgress = {};
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/);
@@ -141,6 +142,8 @@
       vm.fileUploadProgress = {};
       vm.showProgress = true;
       vm.preparing = true;
+      vm.uploading = false;
+      vm.finishing = false;
       vm.submissionsBody.data.submitterComments = vm.comments;
       vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank;
 
@@ -173,7 +176,7 @@
         });
       }
 
-      console.log('Body for request: ', vm.submissionsBody);
+      $log.debug('Body for request: ', vm.submissionsBody);
       SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress);
     }
 
@@ -188,7 +191,7 @@
         if (args === 100) {
           vm.preparing = false;
           vm.uploading = true;
-          console.log('Prapared');
+          $log.debug('Prepared for upload.');
         }
       } else if (phase === 'UPLOAD') {
         // if args is object, this update is about XHRRequest's upload progress
@@ -212,21 +215,21 @@
         }
         // start next phase when UPLOAD is done
         if (vm.uploadProgress == 100) {
-          console.log('Uploaded');
+          $log.debug('Uploaded files.');
           vm.uploading = false;
           vm.finishing = true;
         }
       } else if (phase === 'FINISH') {
         // we are concerned only for completion of the phase
         if (args === 100) {
-          console.log('Finished');
+          $log.debug('Finished upload.');
           vm.finishing = false;
           vm.showProgress = false;
 
           // TODO redirect to submission listing / challenge details page
         }
       } else { // assume it to be error condition
-        console.log("Else: " + phase);
+        $log.debug("Error Condition: " + phase);
         vm.errorInUpload = true;
       }
     }
