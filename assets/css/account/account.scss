@@ -81,15 +81,6 @@
   input:not([type='checkbox']) {
     width: 300px;
   }
-  toggle-password {
-    input#current-password-input {
-      border: none;
-      box-shadow: none;
-      height: 20px;
-      width: 300px;
-      outline: none;
-    }
-  }
   .tips,
   .email-tips,
   .password-tips {
@@ -116,11 +107,6 @@
   input[type='text'],
   toggle-password {
     width: 380px;
-  }
-  toggle-password {
-    input#current-password-input {
-      width: 300px;
-    }
   }
   // Social section
   .networks {
