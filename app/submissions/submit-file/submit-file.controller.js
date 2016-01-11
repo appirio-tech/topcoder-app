@@ -66,6 +66,8 @@
 
         // Dynamic or static?
         method: 'DESIGN_CHALLENGE_ZIP_FILE',
+
+        // Can delete below since they are processed and added later?
         files: [],
         submitterRank: 1,
         submitterComments: '',
@@ -158,35 +160,28 @@
       }
 
       // Process fonts
-      // TODO: Loop over object and delete ones without sources
-      vm.formFonts.forEach(function(formFont) {
-        if (!formFont.source) {
-
+      var processedFonts = _.reduce(vm.formFonts, function(compiledFonts, formFont) {
+        if (formFont.source) {
+          delete formFont.id;
+          delete formFont.isFontUrlRequired;
+          delete formFont.isFontUrlDisabled;
+          delete formFont.isFontNameRequired;
+          delete formFont.isFontNameDisabled;
+          delete formFont.isFontSourceRequired;
+          compiledFonts.push(formFont);
         }
-      })
-      if (vm.formFonts[0].source === '') {
-        vm.submissionsBody.data.fonts = [];
-      } else {
-        var fonts = angular.copy(vm.formFonts);
-        vm.submissionsBody.data.fonts = fonts.map(function(font) {
-          if (font.source) {
-            delete font.id;
-            delete font.isFontUrlRequired;
-            delete font.isFontUrlDisabled;
-            delete font.isFontNameRequired;
-            delete font.isFontNameDisabled;
-            delete font.isFontSourceRequired;
-            return font;
-          }
-        });
-      }
+
+        return compiledFonts;
+      }, []);
+
+      vm.submissionsBody.data.fonts = processedFonts;
 
       console.log('Body for request: ', vm.submissionsBody);
       return;
       SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress);
     }
 
-    /**
+    /*
      * Callback for updating submission upload process. It looks for different phases e.g. PREPARE, UPLOAD, FINISH
      * of the submission upload and updates the progress UI accordingly.
      */
@@ -197,7 +192,7 @@
         if (args === 100) {
           vm.preparing = false;
           vm.uploading = true;
-          console.log('Prapared');
+          console.log('Prepared');
         }
       } else if (phase === 'UPLOAD') {
         // if args is object, this update is about XHRRequest's upload progress
