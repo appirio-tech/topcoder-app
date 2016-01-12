@@ -19,17 +19,27 @@
     vm.finishing = false;
     vm.showProgress = false;
     vm.errorInUpload = false;
-    vm.formFonts = [{
-      id: 0,
-      source: '',
-      name: '',
-      sourceUrl: '',
-      isFontUrlRequired: false,
-      isFontUrlDisabled: true,
-      isFontNameRequired: false,
-      isFontNameDisabled: true,
-      isFontSourceRequired: false
-    }];
+    vm.formFonts = {
+      0: {
+        id: 0,
+        source: '',
+        name: '',
+        sourceUrl: '',
+        isFontUrlRequired: false,
+        isFontUrlDisabled: true,
+        isFontNameRequired: false,
+        isFontNameDisabled: true,
+        isFontSourceRequired: false
+      }
+    };
+    vm.formStockarts = {
+      0: {
+        id: 1,
+        description: '',
+        sourceUrl: '',
+        fileNumber: ''
+      }
+    };
     vm.submissionForm = {
       files: [],
 
@@ -40,12 +50,7 @@
       submitterRank: 1,
       submitterComments: '',
       fonts: [],
-      stockArts: [{
-        id: 1,
-        description: '',
-        sourceUrl: '',
-        fileNumber: ''
-      }],
+      stockArts: [],
       hasAgreedToTerms: false
     };
 
@@ -65,6 +70,8 @@
 
         // Dynamic or static?
         method: 'DESIGN_CHALLENGE_ZIP_FILE',
+
+        // Can delete below since they are processed and added later?
         files: [],
         submitterRank: 1,
         submitterComments: '',
@@ -76,7 +83,6 @@
     vm.setRankTo1 = setRankTo1;
     vm.setFileReference = setFileReference;
     vm.uploadSubmission = uploadSubmission;
-    vm.createAnotherStockArtFieldset = createAnotherStockArtFieldset;
     vm.cancelRetry = cancelRetry;
 
     activate();
@@ -127,15 +133,6 @@
       }
     }
 
-    function createAnotherStockArtFieldset() {
-      vm.submissionForm.stockArts.push({
-        id: vm.submissionForm.stockArts.length + 1,
-        description: '',
-        sourceUrl: '',
-        fileNumber: ''
-      });
-    }
-
     function uploadSubmission() {
       vm.errorInUpload = false;
       vm.uploadProgress = 0;
@@ -148,39 +145,35 @@
       vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank;
 
       // Process stock art
-      if (vm.submissionForm.stockArts[0].description === '') {
-        vm.submissionsBody.data.stockArts = [];
-      } else {
-        var stockArts = angular.copy(vm.submissionForm.stockArts);
-        vm.submissionsBody.data.stockArts = stockArts.map(function(stockArt) {
-          delete stockArt.id;
-          return stockArt;
-        });
-      }
+      var processedStockarts = _.map(vm.formStockarts, function(formStockart) {
+          delete formStockart.id;
+          return formStockart;
+      });
+
+      vm.submissionsBody.data.stockArts = processedStockarts;
 
       // Process fonts
-      if (vm.formFonts[0].source === '') {
-        vm.submissionsBody.data.fonts = [];
-      } else {
-        var fonts = angular.copy(vm.formFonts);
-        vm.submissionsBody.data.fonts = fonts.map(function(font) {
-          if (font.source) {
-            delete font.id;
-            delete font.isFontUrlRequired;
-            delete font.isFontUrlDisabled;
-            delete font.isFontNameRequired;
-            delete font.isFontNameDisabled;
-            delete font.isFontSourceRequired;
-            return font;
-          }
-        });
-      }
+      var processedFonts = _.reduce(vm.formFonts, function(compiledFonts, formFont) {
+        if (formFont.source) {
+          delete formFont.id;
+          delete formFont.isFontUrlRequired;
+          delete formFont.isFontUrlDisabled;
+          delete formFont.isFontNameRequired;
+          delete formFont.isFontNameDisabled;
+          delete formFont.isFontSourceRequired;
+          compiledFonts.push(formFont);
+        }
+
+        return compiledFonts;
+      }, []);
+
+      vm.submissionsBody.data.fonts = processedFonts;
 
       $log.debug('Body for request: ', vm.submissionsBody);
       SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress);
     }
 
-    /**
+    /*
      * Callback for updating submission upload process. It looks for different phases e.g. PREPARE, UPLOAD, FINISH
      * of the submission upload and updates the progress UI accordingly.
      */

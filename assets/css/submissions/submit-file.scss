@@ -115,10 +115,22 @@ modal {
   }
 }
 
-tc-form-fonts {
+tc-form-fonts, tc-form-stockart {
   .fieldset {
     max-width: 500px;
+    position: relative;
   }
+}
+
+.remove-section {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: -5px;
+  right: -35px;
+  background-image: url(/images/x-mark-gray.svg);
+  background-size: 20px;
+  outline: 0;
 }
 
 .Select {

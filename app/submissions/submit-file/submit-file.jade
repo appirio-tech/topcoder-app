@@ -120,33 +120,7 @@
 
       .form-block__fields
         .fieldsets
-          .fieldset(ng-repeat="stockArt in vm.submissionForm.stockArts track by stockArt.id")
-            tc-input.fieldset__input(
-              label-text="Photo Description",
-              placeholder="A picture of a girl",
-              input-value="stockArt.description",
-              input-name="photoDescription{{$index}}"
-            )
-
-            tc-input.fieldset__input(
-              label-text="Photo URL",
-              placeholder="www.istockphoto.com",
-              input-value="stockArt.sourceUrl",
-              input-name="photoURL{{$index}}",
-              input-pattern="vm.urlRegEx"
-            )
-
-            .tc-error-messages(ng-show="submissionForm['photoURL' + $index].$dirty && submissionForm['photoURL' + $index].$invalid")
-              p(ng-show="submissionForm['photoURL' + $index].$error.pattern") Please enter a valid url.
-
-            tc-input.fieldset__input(
-              label-text="File Number",
-              placeholder="u2434312",
-              input-value="stockArt.fileNumber",
-              input-name="fileNumber{{$index}}"
-            )
-
-          button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="vm.createAnotherStockArtFieldset()") + Add Stock Photo
+          tc-form-stockart(form-stockarts="vm.formStockarts")
 
     .panel-footer
       p Submitting your files means you hereby agree to the #[a(ng-href="https://www.{{DOMAIN}}/community/how-it-works/terms/", target="_blank") Topcoder terms of use] and to the extent your uploaded file wins a Topcoder Competition, you hereby assign, grant, and transfer to Topcoder all rights in and title to the Winning Submission (as further described in the terms of use).
@@ -164,20 +138,24 @@ modal.transition(show="vm.showProgress", background-click-close="true", style="b
   .upload-progress(ng-class="{'upload-progress--error': vm.errorInUpload}")
     .upload-progress__title
       p Uploading submission for
+
       p.upload-progress-title__challenge-name [Challenge name]
-    img.upload-progress__image(ng-src="/images/robot.svg", ng-hide="vm.errorInUpload")
-    img.upload-progress__image--error(ng-src="/images/robot-embarresed.svg", ng-show="vm.errorInUpload")
+
+    img.upload-progress__image(src="/images/robot.svg", ng-hide="vm.errorInUpload")
+
+    img.upload-progress__image--error(src="/images/robot-embarresed.svg", ng-show="vm.errorInUpload")
+
     p.upload-progress__message(ng-hide="vm.errorInUpload") Hey, your work is AWESOME! Please don’t close the window while I’m working, you’ll loose all files!
+
     p.upload-progress__message--error(ng-show="vm.errorInUpload") Oh, that’s embarrassing! The file couldn’t be uploaded, I’m so sorry.
 
     progress-bar.upload-progress__progress-bar(completed="vm.uploadProgress", message="of 3 files uploaded")
 
-    .upload-progress__preparing(ng-show="vm.preparing && !vm.errorInUpload")
-      span Preparing...
-    .upload-progress__finishing(ng-show="vm.finishing && !vm.errorInUpload")
-      span Finishing...
-    .upload-progress__error(ng-show="vm.errorInUpload")
-      span File upload failed
+    .upload-progress__preparing(ng-show="vm.preparing && !vm.errorInUpload") #[span Preparing...]
+    .upload-progress__finishing(ng-show="vm.finishing && !vm.errorInUpload") #[span Finishing...]
+    .upload-progress__error(ng-show="vm.errorInUpload") #[span File upload failed]
+
     .upload-progress__error-action(ng-show="vm.errorInUpload")
       button.tc-btn.tc-btn-s.tc-btn-ghost(type="button", ng-click="vm.cancelRetry()") Cancel
+
       button.tc-btn.tc-btn-s.tc-btn-secondary(type="button", ng-click="submissionForm.$valid && vm.uploadSubmission()") Try Again
