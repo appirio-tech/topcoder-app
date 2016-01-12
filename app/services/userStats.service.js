@@ -16,7 +16,8 @@
       processStats: processStats,
       compileSubtracks: compileSubtracks,
       filterStats: filterStats,
-      processStatRank: processStatRank
+      processStatRank: processStatRank,
+      mapReliability: mapReliability
     };
 
     var percentageFunc = function(n) { return $filter('percentage')(n);};
@@ -100,9 +101,10 @@
       return _.reduce(trackRanks, function(result, subtracks, track) {
         if (Array.isArray(subtracks) && subtracks.length) {
           if (track === 'DEVELOP') {
-            _.remove(subtracks, function(subtrackObj) {
-              return subtrackObj.subTrack === 'COPILOT_POSTING';
+            var filtered = _.filter(subtracks, function(subtrackObj) {
+              return subtrackObj.subTrack !== 'COPILOT_POSTING';
             });
+            return result.concat(filtered);
           }
 
           return result.concat(subtracks);
@@ -126,7 +128,7 @@
         rank.stat = rank.activeContests;
         rank.statType = 'Challenges';
       } else if (rank.track === 'DEVELOP') {
-        if (['CODE', 'FIRST_2_FINISH'].indexOf(rank.subTrack) != -1) {
+        if (['CODE', 'FIRST_2_FINISH', 'BUG_HUNT'].indexOf(rank.subTrack) != -1) {
           rank.stat = rank.wins;
           rank.statType = 'Wins';
           // for non rated tracks, use submissions to filter out empty values
@@ -159,7 +161,49 @@
       return filtered;
     }
 
+    function mapReliability(subTrack) {
+      var reliabilityMapping = {
+        'DESIGN': 1,
+        'DEVELOPMENT': 1,
+        'TESTING_COMPETITION': 1,
+        'SPECIFICATION': 2,
+        'ARCHITECTURE': 2,
+        'COMPONENT_PRODUCTION': 2,
+        'BUG_HUNT': 2,
+        'DEPLOYMENT': 2,
+        'SECURITY': 2,
+        'PROCESS': 2,
+        'TEST_SUITES': 2,
+        'ASSEMBLY_COMPETITION': 2,
+        'LEGACY': 2,
+        'BANNERS_OR_ICONS': 3,
+        'WEB_DESIGN': 3,
+        'WIREFRAMES': 3,
+        'UI_PROTOTYPE_COMPETITION': 2,
+        'LOGO_DESIGN': 3,
+        'PRINT_OR_PRESENTATION': 3,
+        'CONCEPTUALIZATION': 2,
+        'RIA_BUILD_COMPETITION': 2,
+        'RIA_COMPONENT_COMPETITION': 2,
+        'TEST_SCENARIOS': 2,
+        'SPEC_REVIEW': 2,
+        'GENERIC_SCORECARDS': 4,
+        'COPILOT_POSTING': 2,
+        'CONTENT_CREATION': 2,
+        'WIDGET_OR_MOBILE_SCREEN_DESIGN': 3,
+        'FRONT_END_FLASH': 3,
+        'APPLICATION_FRONT_END_DESIGN': 3,
+        'STUDIO_OTHER': 3,
+        'IDEA_GENERATION': 3,
+        'REPORTING': 2,
+        'MARATHON_MATCH': 2,
+        'FIRST_2_FINISH': 2,
+        'CODE': 2,
+        'DESIGN_FIRST_2_FINISH': 3
+      };
 
+      return reliabilityMapping[subTrack] || 2;
+    }
   }
 
 })();

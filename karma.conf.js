@@ -1,5 +1,7 @@
+var wiredep = require('wiredep');
+
 module.exports = function(config) {
-  var gulpConfig = require('./gulp.config')();
+  var bowerFiles = wiredep({devDependencies: true})['js'];
 
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -10,10 +12,21 @@ module.exports = function(config) {
     frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
 
     // list of files / patterns to load in the browser
-    files: gulpConfig.karma.files,
+    files: [].concat(
+      'bower_components/bind-polyfill/index.js',
+      bowerFiles,
+      'tests/test-helpers/*.js',
+      './app/topcoder.module.js',
+      './app/topcoder.**.js',
+      './app/**/*.module.js',
+      './app/**/*.js',
+      './assets/scripts/**/*.js',
+      '.tmp/templates.js',
+      'tests/server-integration/**/*.spec.js'
+    ),
 
     // list of files to exclude
-    exclude: gulpConfig.karma.exclude,
+    exclude: ['package.js'],
 
     proxies: {
       '/': 'http://localhost:8888/'
@@ -21,16 +34,28 @@ module.exports = function(config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: gulpConfig.karma.preprocessors,
-
+    preprocessors: {
+      './app/**/!(*.spec)+(.js)': ['coverage']
+    },
     // test results reporter to use
     // possible values: 'dots', 'progress', 'coverage'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
+    reporters: ['junit', 'progress', 'coverage'],
+
+    junitReporter: {
+      outputDir: 'report/junit',
+      outputFile: 'test-results.xml',
+      useBrowserName: false
+    },
 
     coverageReporter: {
-      dir: gulpConfig.karma.coverage.dir,
-      reporters: gulpConfig.karma.coverage.reporters
+      dir: './report/coverage',
+      reporters: [
+        {type: 'html', subdir: 'report-html'},
+        {type: 'lcov', subdir: '.', file: 'lcov.info'},
+        {type: 'text-summary'},
+        {type: 'cobertura', subdir: 'cobertura', file: 'coverage.xml'}
+      ]
     },
 
     // web server port

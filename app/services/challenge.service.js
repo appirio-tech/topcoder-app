@@ -168,8 +168,8 @@
     function processPastSRM(challenge) {
       if (Array.isArray(challenge.rounds) && challenge.rounds.length
         && challenge.rounds[0].userSRMDetails) {
-        challenge.newRating = challenge.rounds[0].userMMDetails.newRating;
-        challenge.pointTotal = challenge.rounds[0].userMMDetails.pointTotal;
+        challenge.newRating = challenge.rounds[0].userSRMDetails.newRating;
+        challenge.finalPoints = challenge.rounds[0].userSRMDetails.finalPoints;
       }
     }
 
@@ -179,22 +179,26 @@
           // TODO placement logic for challenges can be moved to their corresponding user place directive
           // process placement for challenges having winningPlacements array in response
           if (Array.isArray(challenge.userDetails.winningPlacements)) {
-            challenge.highestPlacement = _.max(challenge.userDetails.winningPlacements);
-            challenge.wonFirst = challenge.highestPlacement == 1;
-            if (challenge.highestPlacement === 0) {
-              challenge.highestPlacement = null;
-            }
+            challenge.highestPlacement = _.min(challenge.userDetails.winningPlacements);
           }
           // process placement for design challenges
           if (challenge.track == 'DESIGN' && challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
             challenge.thumbnailId = challenge.userDetails.submissions[0].id;
 
-            challenge.highestPlacement = _.max(challenge.userDetails.submissions, 'placement').placement;
-
-            if (challenge.highestPlacement == 1) {
-              challenge.wonFirst = true;
-            }
+            challenge.highestPlacement = _.min(challenge.userDetails.submissions.filter(function(submission) {
+              return submission.type === CONSTANTS.SUBMISSION_TYPE_CONTEST && submission.placement;
+            }), 'placement').placement;
           }
+          if (challenge.track === 'DEVELOP' && challenge.subTrack === 'FIRST_2_FINISH') {
+            challenge.highestPlacement = _.min(challenge.userDetails.submissions.filter(function(submission) {
+              return submission.type === CONSTANTS.SUBMISSION_TYPE_CONTEST
+              && submission.status === CONSTANTS.STATUS_ACTIVE && submission.placement;
+            }), 'placement').placement;
+          }
+          if (challenge.highestPlacement === 0) {
+            challenge.highestPlacement = null;
+          }
+          challenge.wonFirst = challenge.highestPlacement == 1;
 
           challenge.userHasSubmitterRole = false;
 

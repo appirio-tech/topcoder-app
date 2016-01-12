@@ -1,4 +1,4 @@
-@import 'tc-includes';
+@import 'topcoder/tc-includes';
 
 .settings-header {
   @include module-full-width;
@@ -151,7 +151,13 @@
         width: 100%;
       }
       .section-fields {
-        max-width: 768px;
+        width: 100%;
+      }
+    }
+
+    &.tracks {
+      .section-fields {
+        width: 100%;
       }
     }
   }
@@ -193,12 +199,11 @@
     @media only screen and (min-width: 768px) {
       border-left: 6px solid #F6F6F6;
       padding-left: 60px;
-      width: 65%;
+      max-width: 816px;// 1242 - (60 + 270 + 30 + 6 + 60)
     }
 
     .form-field {
       @include form-field;
-      @include ui-form-placeholder;
       background: white;
       color: black;
       &:disabled {
@@ -304,6 +309,8 @@
       .field-label,
       angucomplete-alt {
         align-self: flex-start;
+        width: 100%;
+        margin-top: 6px;
       }
 
       .field-label {

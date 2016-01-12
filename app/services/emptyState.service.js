@@ -58,15 +58,15 @@
         },
         "dashboard-challenges-never-participated": {
           title: "My Challenges",
-          description: "Compete in challenges to win money, test yourself against the world's best, and learn new skills",
-          helpLinks: [{
+          description: "Compete in challenges to learn new skills, win cash prizes and test yourself against the world's best",
+          helpLinks: [ {
+            title: "Get Started",
+            url: _getUrl("/getting-started"),
+            cssClass: "primary-cta tc-btn tc-btn-s"
+          }, {
             title: "Find Challenges",
             url: _getUrl("/challenges/?pageIndex=1"),
-            cssClass: "find-challenges tc-btn tc-btn-s"
-          }, {
-            title: "Learn More",
-            url: _getUrl("/getting-started"),
-            cssClass: "learn-more"
+            cssClass: "secondary-cta"
           }]
         },
         "my-challenges-active": {

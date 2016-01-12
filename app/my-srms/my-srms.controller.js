@@ -28,6 +28,7 @@
 
     var userId = UserService.getUserIdentity().userId;
     var userHandle = UserService.getUserIdentity().handle;
+    vm.userId = userId;
     vm.handle = userHandle;
 
     activate();
@@ -52,7 +53,9 @@
 
     function changeFilter(filter) {
       vm.statusFilter = filter;
-      vm.orderBy = filter === 'future'? 'startDate': 'endDate';
+      // for upcoming SRMs sorting is done ascending order of codingStartAt
+      // for past SRMs sorting is done descending order of codingEndAt
+      vm.orderBy = filter === 'future'? 'codingStartAt': 'codingEndAt';
       vm.reverseOrder = filter !== 'future';
       // update url but don't reload
       $state.go($state.$current.name, {status: filter}, {notify: false});

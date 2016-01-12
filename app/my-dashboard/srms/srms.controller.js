@@ -12,6 +12,7 @@
 
     var userId = UserService.getUserIdentity().userId;
     var handle = UserService.getUserIdentity().handle;
+    vm.userId = userId;
 
     activate();
 
@@ -22,6 +23,7 @@
     function getSRMs() {
       var params = {
         filter: 'status=future',
+        orderBy: 'registrationStartAt',
         limit: 3
       };
 
@@ -34,7 +36,7 @@
         var srms = data[0];
         var userSrms = data[1];
         var userSrmsMap = {};
-        var userSrms = userSrms.forEach(function (srm) {
+        var userSrms = userSrms.map(function (srm) {
           var id = srm.id;
           userSrmsMap[id] = srm;
         });

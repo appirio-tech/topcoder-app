@@ -1,0 +1,49 @@
+.fieldset(ng-repeat="(fontId, font) in formFonts")
+  button.clean.remove-section(type="button", ng-click="deleteFontFieldset(fontId)")
+
+  label.tc-label Font Source
+
+  dropdown(
+    name="'font-source{{fontId}}'",
+    options="fontList{{fontId}}",
+    placeholder="'Select a provider from the list'",
+    searchable="false",
+    clearable="false",
+    on-change="selectFont",
+    value="formFonts[{{fontId}}].source"
+  )
+
+  tc-input.fieldset__input(
+    label-text="Font Name",
+    placeholder="Select font source to edit field"
+    input-value="font.name",
+    input-name="fontName{{fontId}}",
+    input-required="formFonts[fontId].isFontNameRequired",
+    input-disabled="formFonts[fontId].isFontNameDisabled"
+  )
+
+  .tc-error-messages(
+    ng-show="submissionForm['fontName' + fontId].$dirty && submissionForm['fontName' + fontId].$invalid"
+    ng-messages="submissionForm['fontName' + fontId].$error"
+  )
+    p(ng-message="required") This field is required.
+
+  tc-input.fieldset__input(
+    ng-hide="formFonts[fontId].source === 'STUDIO_STANDARD_FONTS_LIST'",
+    label-text="Font URL",
+    placeholder="Select font source to edit field",
+    input-value="font.sourceUrl",
+    input-name="fontUrl{{fontId}}",
+    input-required="formFonts[fontId].isFontUrlRequired",
+    input-disabled="formFonts[fontId].isFontUrlDisabled",
+    input-pattern="urlRegEx"
+  )
+
+  .tc-error-messages(
+    ng-show="submissionForm['fontUrl' + fontId].$dirty && submissionForm['fontUrl' + fontId].$invalid"
+    ng-messages="submissionForm['fontUrl' + fontId].$error"
+  )
+    p(ng-message="pattern") Please enter a valid url.
+    p(ng-message="required") This field is required.
+
+button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="createAdditionalFontFieldset()", ng-disabled="isButtonDisabled()") + Add Font

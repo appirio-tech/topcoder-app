@@ -1,60 +1,49 @@
-@import 'tc-includes';
+@import 'topcoder/tc-includes';
 
 .login-container {
-
   form {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
     margin: 0 90px;
-
-    input[type="text"],
+    input[type='text'],
     toggle-password {
       width: 380px;
       padding-right: 10px;
     }
-
     toggle-password {
       input#current-password-input {
         width: 300px;
       }
     }
 
-    button {
-      margin-top: 20px;
+    p + button {
+      margin-top: 0;
     }
   }
-
   .form-errors {
     p {
       margin-bottom: 20px;
     }
   }
-
   .problem-signin {
-    color: #A3A3AE;
+    @include font-with-weight('Merriweather Sans');
+    color: #a3a3ae;
     font-size: 12px;
     line-height: 15px;
-    @include font-with-weight('Merriweather Sans');
     margin-top: 10px;
-
     .forgot-password {
-      margin-top: 25px;
-      margin-bottom: 25px;
       font-size: 12px;
+      margin-bottom: 25px;
+      margin-top: 25px;
     }
-
   }
-
-
   section.login-options {
     @media (max-width: 767px) {
       margin-bottom: 41px;
     }
-
     @media (min-width: 768px) {
       margin-bottom: 60px;
     }
-
   }
 }

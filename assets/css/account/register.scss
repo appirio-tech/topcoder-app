@@ -1,7 +1,6 @@
-@import 'tc-includes';
+@import 'topcoder/tc-includes';
 
 .register-container {
-
   form {
     display: flex;
     flex-flow: column wrap;
@@ -9,14 +8,12 @@
     width: 380px;
     margin-left: 90px;
     margin-right: 90px;
-
-    input[type="text"],
-    input[type="email"],
+    input[type='text'],
+    input[type='email'],
     toggle-password,
     toggle-password-with-tips {
       width: 380px;
     }
-
     toggle-password,
     toggle-password-with-tips {
       input#password-input,
@@ -24,50 +21,47 @@
         width: 300px;
       }
     }
-
-    input[name="firstname"], input[name="lastname"] {
+    input[name='firstname'],
+    input[name='lastname'] {
       width: 185px;
       padding-right: 45px;
     }
-
-    input[name="username"], input[name="email"] {
+    input[name='username'],
+    input[name='email'] {
       padding-right: 85px;
     }
+    button {
+      margin-top: 0;
+    }
   }
-
   .form-errors {
     text-align: left;
-
     p {
       margin: 2px 0 12px 5px;
     }
   }
-
   .first-last-names {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 380px;
   }
-
   .terms {
-    margin-top: 10px;
     margin-bottom: 20px;
-
+    margin-top: 10px;
     p {
+      color: #a3a3ae;
       font-size: 12px;
       line-height: 15px;
-      color: #A3A3AE;
     }
   }
-
   // login-options section
   .section-break {
     hr {
-      max-width: 180px;
-      margin: 10px auto 20px;
       border: none;
       border-bottom: 1px solid $gray-light;
+      margin: 10px auto 20px;
+      max-width: 180px;
     }
   }
 }
@@ -82,20 +76,19 @@
         width: 100%;
       }
     }
-
     section.login-options {
       margin-bottom: 41px;
     }
   }
 
   .join-topcoder {
-    position: initial;
     margin-top: 30px;
+    position: initial;
   }
 }
 
 toggle-password-with-tips label {
-    display: flex !important;
-    line-height: 20px !important;
-    padding-right: 10px !important;
+  display: flex !important;
+  line-height: 20px !important;
+  padding-right: 10px !important;
 }

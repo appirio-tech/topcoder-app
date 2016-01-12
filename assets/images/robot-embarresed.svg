@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="87px" height="86px" viewBox="0 0 87 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="File-Submit" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Submit-Progress—Error" transform="translate(-645.000000, -215.000000)" stroke="#444444" stroke-width="2">
+            <g id="robot-embarresed" transform="translate(646.000000, 216.000000)">
+                <path d="M84.3,25.375 C84.3,20.7492083 80.5382,17 75.9,17 L8.7,17 C4.0604,17 0.3,20.7492083 0.3,25.375 L0.3,75.625 C0.3,80.2507917 4.0604,84 8.7,84 L75.9,84 C80.5382,84 84.3,80.2507917 84.3,75.625 L84.3,25.375 L84.3,25.375 Z" id="Stroke-387" fill="#FEE8EC"></path>
+                <path d="M11.3,17 L11.3,7" id="Stroke-389"></path>
+                <path d="M72.3,17 L72.3,7" id="Stroke-391"></path>
+                <path d="M21.3,0 L1.3,0 L1.3,7 L21.3,7 L21.3,0 Z" id="Stroke-393" fill="#F31D3D"></path>
+                <path d="M83.3,0 L63.3,0 L63.3,7 L83.3,7 L83.3,0 Z" id="Stroke-395" fill="#F31D3D"></path>
+                <ellipse id="Oval-5" fill="#FFFFFF" cx="31.3" cy="37" rx="4" ry="4"></ellipse>
+                <ellipse id="Oval-5" fill="#FFFFFF" cx="53.3" cy="37" rx="4" ry="4"></ellipse>
+                <path d="M70.3,64 C70.3,64 51.2448288,60.5 42.3,60.5 C32.5781622,60.5 14.3,64 14.3,64" id="Stroke-540"></path>
+            </g>
+        </g>
+    </g>
+</svg>

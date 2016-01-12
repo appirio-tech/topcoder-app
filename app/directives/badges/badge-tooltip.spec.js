@@ -1,19 +1,19 @@
 /* jshint -W117, -W030 */
-describe('Badge Tooltiop Directive', function() {
+describe('Badge Tooltip Directive', function() {
   var scope;
   var element;
   var badge = mockData.getMockBadge();
   var spotlightChallenge = mockData.getMockSpotlightChallenges()[0];
 
   beforeEach(function() {
-    bard.appModule('topcoder');
+    bard.appModule('tcUIComponents');
     bard.inject(this, '$compile', '$rootScope');
     scope = $rootScope.$new();
   });
 
   bard.verifyNoOutstandingHttpRequests();
 
-  describe('Badge Tooltip', function() {
+  xdescribe('Badge Tooltip', function() {
     var tooltip;
 
     beforeEach(function() {

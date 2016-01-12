@@ -3,10 +3,9 @@
 
   angular.module('tc.settings').controller('EditProfileController', EditProfileController);
 
+  EditProfileController.$inject = ['$rootScope', 'userData', 'userHandle', 'ProfileService', 'ExternalAccountService', 'ExternalWebLinksService', '$log', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster', '$q', '$scope'];
 
-  EditProfileController.$inject = ['$rootScope', 'userData', 'userHandle', 'ProfileService', 'ExternalAccountService', '$log', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster', '$scope'];
-
-  function EditProfileController($rootScope, userData, userHandle, ProfileService, ExternalAccountService, $log, ISO3166, ImageService, CONSTANTS, TagsService, toaster, $scope) {
+  function EditProfileController($rootScope, userData, userHandle, ProfileService, ExternalAccountService, ExternalWebLinksService, $log, ISO3166, ImageService, CONSTANTS, TagsService, toaster, $q, $scope) {
     $log = $log.getInstance("EditProfileCtrl");
     var vm = this;
     vm.toggleTrack    = toggleTrack;
@@ -35,25 +34,19 @@
 
       processData(vm.userData);
 
-      // commenting out since this might come back
-//      $scope.tracks = vm.tracks;
-//      $scope.$watch('tracks', function watcher() {
-//        if (!tracksValid()) {
-//          toaster.pop('error', "Error", "Please select at least one track.");
-//        }
-//      }, true);
-
-      ExternalAccountService.getLinkedExternalAccounts(vm.userData.userId).then(function(data) {
-        vm.linkedExternalAccounts = data;
+      var userId = vm.userData.userId;
+      var userHandle = vm.userData.handle;
+      var _linksPromises = [
+        ExternalAccountService.getAllExternalLinks(userHandle, userId, true),
+        ExternalWebLinksService.getLinks(userHandle, true)
+      ];
+      $q.all(_linksPromises).then(function(data) {
+        vm.linkedExternalAccountsData = data[0].concat(data[1]);
       });
-
-      ExternalAccountService.getLinkedExternalLinksData(userHandle).then(function(data) {
-        vm.linkedExternalAccountsData = data.plain();
-        vm.hasLinks = _.any(_.valuesIn(_.omit(vm.linkedExternalAccountsData, ['userId', 'updatedAt','createdAt','createdBy','updatedBy','handle'])));
-      })
-      .catch(function(err) {
-        $log.error(JSON.stringify(err));
-      });
+      ExternalAccountService.getLinkedAccounts(userId)
+        .then(function(data) {
+          vm.linkedExternalAccounts = data;
+        })
 
       TagsService.getApprovedSkillTags()
       .then(function(tags) {
@@ -113,6 +106,7 @@
       .then(ImageService.createFileRecord)
       .then(function(newPhotoURL) {
         vm.userData.photoURL = newPhotoURL;
+        userData.photoURL = newPhotoURL;
         $rootScope.$broadcast(CONSTANTS.EVENT_PROFILE_UPDATED);
       });
     }

@@ -27,7 +27,8 @@ describe('Profile Controller', function() {
       getUserHandleColor: function() {
         return 'something';
       },
-      getRanks: ProfileService.getRanks
+      getRanks: ProfileService.getRanks,
+      getTracks: function() { return ['DEVELOP']; }
     };
     // mock user api
     sinon.stub(userService, 'getV2UserProfile', function() {

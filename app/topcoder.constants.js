@@ -32,7 +32,9 @@ angular.module("CONSTANTS", [])
 	"BUSY_PROGRESS_MESSAGE": "Processing..",
 	"REGISTRATION": "REGISTRATION",
 	"CODING": "CODING",
-	"REGISTERED": "REGISTERED"
+	"REGISTERED": "REGISTERED",
+	"SUBMISSION_TYPE_CONTEST": "Contest Submission",
+	"STATUS_ACTIVE": "Active"
 })
 
 ;

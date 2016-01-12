@@ -94,4 +94,13 @@ describe('Account Info Controller', function() {
       expect(fakeStateGo).to.have.been.calledWith('settings.profile');
     });
   });
+
+  describe('get address', function() {
+    it('should return a correct address', function() {
+      vm.homeAddress = {};
+      expect(vm.getAddr().length).to.be.equal(0);
+      vm.homeAddress = {streetAddr1: 'a', city: 'b', zip: 21};
+      expect(vm.getAddr().length).to.be.equal(1);
+    });
+  });
 });

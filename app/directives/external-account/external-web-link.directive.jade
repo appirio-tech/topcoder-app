@@ -1,0 +1,16 @@
+.web-link
+  form(name="addWebLinkFrm", ng-submit="addWebLinkFrm.$valid && addWebLink()", autocomplete="off")
+    .validation-bar.url(ng-class="{ 'error-bar': (addWebLinkFrm.url.$dirty && addWebLinkFrm.url.$invalid) }")
+      input.form-field.url(name="url", type="text", ng-pattern="urlRegEx" ng-model="url", placeholder="http://www.yourlink.com", required)
+
+      .form-input-error(ng-show="addWebLinkFrm.url.$dirty && addWebLinkFrm.url.$invalid")
+        p(ng-show="addWebLinkFrm.url.$error.required") This is a required field.
+
+        p(ng-show="addWebLinkFrm.url.$error.pattern") Please enter a valid URL
+    
+    button.tc-btn.tc-btn-m(type="submit", 
+      tc-busy-button, tc-busy-when="addingWebLink", tc-busy-message="Adding", 
+      ng-disabled="addWebLinkFrm.$invalid || addWebLinkFrm.$pristine") Add
+
+  .form-errors(ng-show="errorMessage")
+    p.form-error {{errorMessage}}

@@ -17,16 +17,14 @@ Install dependencies by running the following in the root of the project:
 In order to test a logged in user, you must make an entry in your /etc/hosts file, pointing local.topcoder-dev.com to localhost. For example, open your /etc/hosts file with something like `vim /etc/hosts` and add `127.0.0.1 local.topcoder-dev.com`. After you run `gulp serve`, which launches a new window or tab, change `http://localhost:3000/sample/` to `http://local.topcoder-dev.com:3000/sample/`. You will then be able to login and pick up information from the cookies with `.topcoder-dev.com` as the domain.
 
 ## Gulpfile Commands
-- Run `gulp` to get the full list of commands
 - To run locally without minification: `gulp serve`
-- To create the build: `gulp build`
-- To serve the build: `gulp serve-build`
+- To create the build: `gulp build:topcoder`
 - To run the test runner and view specs.html: `gulp serve-specs`
 
 ### Testing
 
-Running `gulp test` will perform a single run of the unit tests with Karma in the command line.
-Running `gulp autotest` will keep the server running and watching files in the command line.
+Running `gulp test:topcoder` will perform a single run of the unit tests with Karma in the command line.
+Running `gulp autotest:topcoder` will keep the server running and watching files in the command line.
 
 To read about the file and folder structure of tests, read [this section](https://github.com/appirio-tech/topcoder-app#tests)
 
@@ -42,15 +40,15 @@ This folder holds all of our Angular JavaScript and Jade files. Here you'll find
 Services live in their own folder. All services are part of the tc.services module, which is a dependency of topcoder.module.js.
 
 #### assets
-  - The assets folder contains CSS, fonts, images, and scripts.
+  - The assets folder contains CSS, fonts, images, and scripts
   - CSS
-    - Each Angular submodule has a CSS folder with the same name. For each page, there is a unique class name at the top level of the html. For example, login.jade will have a wrapper called .login-container, and in login.css the top level scss class will be .login-container, with all other login CSS nested inside.
-    - This repository uses flexbox for arranging content. The use of any extra CSS libraries should be discussed with the team.
+    - Each Angular submodule has a CSS folder with the same name
+    - All files are in the `.scss` format
   - Scripts
-    - This folder contains any vendor JavaScript that does not come from bower. (Basically anything we've been using a CDN to get, but that we want to have a local copy of. This allows us to handle minification and concatenation ourselves and put it on our own CDN).
+    - This folder contains any vendor JavaScript that does not come from bower. (Basically anything we've been using a CDN to get, but that we want to have a local copy of. This allows us to handle minification and concatenation ourselves and put it on our own CDN)
 
 #### build
-This is the optimized code ready for production. You can serve it by running `grunt serve-build`. In here we have minified, concatenated vendor.js and app.js as well as minified and concatenated app.css. Running `grunt build` also creates a templates.js file which stores all our HTML in Angular's $templateCache. This is created in .tmp, injected in the index.html, and concatenated with the rest of the app JavaScript. The last step in creating the build folder is that all of our files are revved and rewritten to have a unique filename, allowing us to put them on our CDN.
+This is the optimized code ready for production. In here we have minified, concatenated vendor.js and app.js as well as minified and concatenated app.css. Running `grunt build:topcoder` also creates a templates.js file which stores all our HTML in Angular's $templateCache. This is created in .tmp, injected in the index.html, and concatenated with the rest of the app JavaScript. The last step in creating the build folder is that all of our files are revved and rewritten to have a unique filename, allowing us to put them on our CDN.
 
 #### tests
 The tests folder contains mock data (tests/test-helpers/mock-data.js). It also has a file for integration tests down the road, but this is not currently wired up (server-integration/someDataService.spec.js). To run tests, use the `gulp serve-specs` task. This serves up specs.html, where you can see all the tests passing. It will watch files and reload as you work on code and save.
@@ -58,7 +56,7 @@ The tests folder contains mock data (tests/test-helpers/mock-data.js). It also h
 Spec files live alongside the code they are testing. For example, in peer-review you have review-status.controller.js and review-status.spec.js in the same review-status folder. If you want to see an example of tests, use review-status.spec.js as an example of controller tests and services/challenge.service.spec.js as an example of service tests.
 
 ## UI-Router and States
-See sample.routes.js and peer-review.routes.js as examples.
+See any *.routes.js file as an example.
 
 ## Contributing
 
@@ -69,6 +67,7 @@ In general, follow this [AngularJS style guide](https://github.com/johnpapa/angu
 ### Pull Requests
 
 To contribute to the repository, please create a feature branch off of the dev branch. Once you're finished working on the feature, make a pull request to merge it into dev. Then, make sure to delete the branch when it's no longer used.
+Further, please make sure every pull request has passed the build checks, which appears just before the "Merge pull request" button in github. We are trying to show the unit tests results as well along with the build.
 
 ### Adding New Content
 
@@ -87,10 +86,29 @@ Jade Files
 ```
 
 SCSS Files
-  - Use SCSS syntax (nesting)
-  - Use variables and mixins as much as possible
-  - Store new variables and mixins in the appropriate file in `assets/css/partials`
-  - Since a class with the current state name is added to the ui-view (see the Creating New Views/Pages section), wrap your .scss file with this class, in order to write specific SCSS in its own file for that page.
+  - Use SCSS syntax, but do not overly nest
+  - Follow the [BEM](https://en.bem.info/method/naming-convention/) naming convention
+  - Use variables, mixins, and classes as much as possible from our [style guide](https://github.com/appirio-tech/styles)
+  - Reuse our [UI Components](https://github.com/appirio-tech/ng-ui-components)
+  - When adding media queries, nest them inside the element, rather than creating a new section
+  ```
+  .box {
+    height: 50px;
+    width: 50px;
+    @media screen and (min-width: 768px) {
+      height: 100px;
+      width: 100px;
+    }
+    
+    .inside-box {
+      font-size: 14px;
+      @media screen and (min-width: 768px) {
+        font-size: 18px;
+      }
+    }
+  }
+  ```
+  - This repository uses flexbox for arranging content. The use of any extra CSS libraries should be discussed with the team
 
 JavaScript
   - See this section on [naming conventions and style guide](https://github.com/appirio-tech/topcoder-app/blob/dev/README.md#style-guide-and-naming-conventions)

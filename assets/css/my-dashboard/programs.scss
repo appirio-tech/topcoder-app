@@ -1,4 +1,4 @@
-@import 'tc-includes';
+@import 'topcoder/tc-includes';
 
 .programs {
 
@@ -30,10 +30,10 @@
 
     .badge-and-challenges {
       @include horizontal-scroll;
-      display: flex;
-      flex-direction: row;
       @media only screen and (min-width: 768px) {
-        flex-wrapper: wrap;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         margin: 0 auto;
         overflow: visible;
         white-space: normal;
@@ -49,6 +49,7 @@
 
     .registered-badge {
       display: inline;
+      vertical-align: top;
       height: 370px;
       min-width: 270px;
       border: 1px solid #DCDCDC;

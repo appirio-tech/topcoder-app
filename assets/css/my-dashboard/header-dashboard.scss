@@ -1,24 +1,8 @@
-@import 'tc-includes';
+@import 'topcoder/tc-includes';
 
 .header-dashboard {
-  margin-top: 15px;
+  // TODO: Use styleguide class
+  max-width: 1242px;
   margin-left: auto;
   margin-right: auto;
-}
-
-
-@media (min-width: 768px) {
-  .header-dashboard {
-    @include module-l;
-    margin-top: 30px;
-  }
-}
-
-
-@media (min-width: 900px) {
-  .header-dashboard {
-    padding: 0px;
-    margin-left: auto;
-    margin-right: auto;
-  }
 }

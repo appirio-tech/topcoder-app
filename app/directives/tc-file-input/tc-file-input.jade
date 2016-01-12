@@ -1,0 +1,12 @@
+.tc-file-field__label
+  label.tc-label {{labelText}}
+    span.lowercase(ng-if="showFileType") {{ ' *(.' + fileType + ')'}}
+
+    span.tc-label__mandatory.lowercase(ng-if="mandatory") #[span *]mandatory
+
+.tc-file-field__inputs
+  input.tc-file-field__input(type="text", placeholder="{{placeholder}}", disabled)
+
+  button.tc-btn(ng-click="selectFile()") {{buttonText}}
+
+  input.none(name="{{fieldId}}", type="file", required, ng-model="ngModel")

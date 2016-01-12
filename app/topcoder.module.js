@@ -12,6 +12,7 @@
     'tc.sample',
     'tc.profile',
     'tc.settings',
+    'tc.submissions',
     'tc.skill-picker',
     'tc.sitemap',
     'tc.community',
@@ -33,7 +34,8 @@
     'angular-intro',
     'ngMessages',
     'angular-carousel',
-    'sticky'
+    'sticky',
+    'dibari.angular-ellipsis'
   ];
 
   angular.module('topcoder', dependencies).run(appRun);
@@ -70,10 +72,9 @@
     // NotificationService.getNotifications();
   }
 
-  angular.module('topcoder').config(['$httpProvider', 'RestangularProvider', '$locationProvider',
-   function($httpProvider, RestangularProvider, $locationProvider) {
+  angular.module('topcoder').config(['RestangularProvider', '$locationProvider',
+   function(RestangularProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
-    $httpProvider.interceptors.push('HeaderInterceptor');
     RestangularProvider.setRequestSuffix('/');
   }]);
 

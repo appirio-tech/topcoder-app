@@ -1,0 +1,12 @@
+.panel-page
+  .panel-header.flex.space-between
+    a.panel-header__back-button.flex.space-between.middle(ng-href="https://www.{{DOMAIN}}/challenge-details/{{submissions.challengeId}}/?type={{submissions.track}}")
+
+      //- TODO: Replace below with svg tag
+      .icon-arrow
+
+      p Back
+
+    h1.panel-header__title(ng-bind="submissions.challengeTitle")
+
+  ui-view

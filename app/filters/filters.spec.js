@@ -3,7 +3,7 @@ describe('filters', function() {
 
   beforeEach(function() {
     bard.appModule('topcoder');
-    bard.inject(this, 'CONSTANTS', 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter', 'challengeLinksFilter');
+    bard.inject(this, 'CONSTANTS', 'roleFilter', 'percentageFilter', 'ordinalFilter', 'displayLocationFilter', 'listRolesFilter', 'trackFilter', 'challengeLinksFilter', 'externalLinkColorFilter', 'emptyFilter', 'ternaryFilter', 'urlProtocolFilter', 'addBeginningSpaceFilter');
     domain = CONSTANTS.domain;
   });
 
@@ -93,9 +93,67 @@ describe('filters', function() {
         track: 'DATA_SCIENCE',
         subTrack : 'MARATHON_MATCH'
       };
-      expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://community.'+domain+'/tc?module=MatchDetails&rd=3');
+      expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://community.'+domain+'/longcontest/stats/?module=ViewOverview&rd=3');
       expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.'+domain+'/forums/?module=ThreadList&forumID=2');
-      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://community.'+domain+'/longcontest/?module=ViewStandings&rd=3');
+      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://community.'+domain+'/longcontest/?module=ViewRegistrants&rd=3');
+    });
+  });
+
+  describe('externalLinkColorFilter', function() {
+
+    it('should handle twitter and linkedin correctly', function() {
+      expect(externalLinkColorFilter('el-twitter')).to.be.equal('#62AADC');
+      expect(externalLinkColorFilter('el-linkedin')).to.be.equal('#127CB5');
+    });
+  });
+
+  describe('emptyFilter', function() {
+    it('should handle empty stuff correctly', function() {
+      var a = emptyFilter(0);
+      var b = emptyFilter(12);
+      var c = emptyFilter(false);
+      var d = emptyFilter(NaN);
+      var e = emptyFilter('NaN');
+      var f = emptyFilter('');
+      var g = emptyFilter('%');
+      expect(a).to.be.equal(0);
+      expect(b).to.be.equal(12);
+      expect(c).to.be.equal('-');
+      expect(d).to.be.equal('-');
+      expect(e).to.be.equal('-');
+      expect(f).to.be.equal('-');
+      expect(g).to.be.equal('-');
+    });
+  });
+
+  describe('ternaryFilter', function() {
+    it('should function logically', function() {
+      expect(ternaryFilter(true, 1, 2)).to.be.equal(1);
+      expect(ternaryFilter(false, 1, 2)).to.be.equal(2);
+      expect(ternaryFilter(0, 1, 2)).to.be.equal(2);
+      console.log(jstz.determine().name());
+      expect(ternaryFilter(true, 'm', 'n')).to.be.equal('m');
+    });
+  });
+
+  describe('urlProtocolFilter', function() {
+    it('should add http to the url ', function() {
+      expect(urlProtocolFilter('google.com')).to.be.equal('http://google.com');
+    });
+    it('should add http to the url ', function() {
+      expect(urlProtocolFilter('www.google.com')).to.be.equal('http://www.google.com');
+    });
+    it('should not add anything to the url ', function() {
+      expect(urlProtocolFilter('http://google.com')).to.be.equal('http://google.com');
+    });
+    it('should not add anything to the url ', function() {
+      expect(urlProtocolFilter('https://google.com')).to.be.equal('https://google.com');
+    });
+  });
+
+  describe('addBeginningSpaceFilter', function() {
+    it('should add a space to the beginning of the input', function() {
+      expect(addBeginningSpaceFilter('some text')).to.equal(' some text');
     });
   });
 });

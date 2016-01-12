@@ -1,8 +1,64 @@
-@import 'tc-includes';
+@import 'topcoder/tc-includes';
 
 external-accounts {
   display: flex;
   flex-flow: row wrap;
+}
+
+.ext-link-tile_edit-header {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  &:hover {
+    .show-on-profile_label {
+      color: $accent-gray-dark;
+    }
+  }
+}
+
+.ext-link-tile_edit-header_delete {
+  background-image: url(/images/ico-delete.svg);
+  background-position: center;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  height: 43px;
+  width: 51px;
+  cursor: pointer;
+  opacity: 0.7;
+
+  &:hover:not(.ext-link-tile_edit-header_delete--disabled) {
+    // border-left: 1px solid $gray-light;
+    // border-bottom: 1px solid $gray-light;
+    opacity: 1.0;
+  }
+}
+
+.ext-link-tile_edit-header_delete--disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+.ext-link-tile_edit-header_show-on-profile {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
+
+  .show-on-profile_label {
+    @include sofia-pro-medium;
+    font-size: 10px;
+    line-height: 13px;
+    color: $accent-gray;
+    text-transform: uppercase;
+    align-self: center;
+  }
+
+  // TODO remove this and handle in onoffswitch directive's css
+  .onoffswitch {
+    margin: 0px;
+  }
 }
 
 .external-link-list {
@@ -12,7 +68,7 @@ external-accounts {
   margin-top: 10px;
 
   .external-link-tile {
-    border: 1px solid #f0f0f0;
+    border: 1px solid $gray-light;
     width: 280px;
     height: 90px;
     display: flex;
@@ -51,6 +107,7 @@ external-accounts {
       height: 88px;
       background-color: $gray-lightest;
       border-radius: 4px 0 0 4px;
+      position: relative;
       i {
         font-size: 40px;
         margin-top: 15px;
@@ -67,7 +124,7 @@ external-accounts {
     }
     .bottom {
       width: 220px;
-      margin-top: 15px;
+      margin-top: 10px;
       .handle {
         @include sofia-pro-light;
         font-size: 18px;
@@ -75,7 +132,7 @@ external-accounts {
       }
       .title {
         // placeholder
-        margin-top: 20px;
+        margin-top: 10px;
         color: #9e9e9e;
         font-size: 12px;
         line-height: 14px;
@@ -116,6 +173,29 @@ external-accounts {
       .logo {
         padding: 10px;
         font-size: 50px;
+      }
+
+      .link-title {
+        @include sofia-pro-medium;
+        font-size: 12px;
+        line-height: 20px;
+        color: $gray-darkest;
+        margin-top: 10px;
+        height: 40px;
+        overflow: hidden;
+        padding: 0px 20px;
+        text-transform: uppercase;
+      }
+
+      .link-url {
+        font-size: 12px;
+        line-height: 14px;
+        word-wrap: break-word;
+        display: block;
+        overflow: hidden;
+        max-height: 14px;
+        padding: 0px 20px;
+        text-transform: uppercase;
       }
     }
 
@@ -175,6 +255,7 @@ external-accounts {
       }
 
       .bottom {
+        margin-top: 15px;
         width: auto;
         .handle {
          margin-top: 20px;
@@ -183,6 +264,8 @@ external-accounts {
         .title {
           // placeholder
           height: 40px;
+          margin-top: 15px;
+          margin-bottom: 30px;
         }
 
         ul {
@@ -213,7 +296,27 @@ external-accounts {
         .logo {
           padding: 10px;
           font-size: 50px;
+        }        
+
+        .link-title {
+          margin-top: 15px;
+          margin-bottom: 20px;
+          height: 60px;
         }
+
+        .link-url {
+          max-height: 28px;
+        }
+      }
+    }
+
+    .external-link-tile--editable {
+      // height: 285px;
+    }
+
+    .external-link-tile--pending {
+      &:hover {
+        cursor: default;
       }
     }
   }
