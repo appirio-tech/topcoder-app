@@ -19,7 +19,8 @@
     input-value="font.name",
     input-name="fontName{{fontId}}",
     input-required="formFonts[fontId].isFontNameRequired",
-    input-disabled="formFonts[fontId].isFontNameDisabled"
+    input-disabled="formFonts[fontId].isFontNameDisabled",
+    maxlength="50"
   )
 
   .tc-error-messages(
@@ -36,7 +37,8 @@
     input-name="fontUrl{{fontId}}",
     input-required="formFonts[fontId].isFontUrlRequired",
     input-disabled="formFonts[fontId].isFontUrlDisabled",
-    input-pattern="urlRegEx"
+    input-pattern="urlRegEx",
+    maxlength="100"
   )
 
   .tc-error-messages(
