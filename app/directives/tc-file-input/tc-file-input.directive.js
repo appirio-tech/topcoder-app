@@ -6,7 +6,7 @@
   function tcFileInput() {
     return {
       restrict: 'E',
-      require: ['^form', '^ngModel'],
+      require: '^form',
       templateUrl: 'directives/tc-file-input/tc-file-input.html',
       scope: {
         labelText: '@',
@@ -19,10 +19,7 @@
         setFileReference: '&',
         ngModel: '='
       },
-      link: function(scope, element, attrs, controllers) {
-        var formController = controllers[0];
-        var ngModel = controllers[1];
-
+      link: function(scope, element, attrs, formController) {
         scope.selectFile = selectFile;
         var fileTypes = scope.fileType.split(',');
 
@@ -34,26 +31,44 @@
         fileInput.bind('change', function() {
           var file = fileInput[0].files[0];
 
+          // About 1 in 20 times, the file is undefined (must be race condition)
+          // Return early in this case so no errors are thrown
+          if (!file) {
+            return;
+          }
+
+          var fileSize = file.size;
+          var isAllowedFileSize = fileSize < '500000000';
+
           var selectedFileType = file.type.slice(file.type.lastIndexOf('/') + 1);
           var isAllowedFileFormat = _.some(fileTypes, _.matches(selectedFileType));
 
           scope.$apply(function(){
-            if (!isAllowedFileFormat) {
-              fileNameInput[0].value = file.name;
+            // Set the file name as the value of the disabled input
+            fileNameInput[0].value = file.name;
+            var clickedFileInput = formController[attrs.fieldId];
 
+            if (!isAllowedFileFormat) {
               // Manually setting is required since Angular doesn't support file inputs
-              formController[attrs.fieldId].$setTouched();
-              formController[attrs.fieldId].$setValidity('required', false);
+              clickedFileInput.$setTouched();
+              clickedFileInput.$setValidity('required', false);
 
             } else {
+              clickedFileInput.$setValidity('required', true);
+            }
+
+            if (!isAllowedFileSize) {
+              // Manually setting is required since Angular doesn't support file inputs
+              clickedFileInput.$setTouched();
+              clickedFileInput.$setValidity('filesize', false);
+
+            } else {
+              clickedFileInput.$setValidity('filesize', true);
+            }
+
+            if (isAllowedFileFormat && isAllowedFileSize) {
               // Pass file object up through callback into controller
               scope.setFileReference({file: file, fieldId: scope.fieldId});
-
-              // Set the file name as the value of the disabled input
-              fileNameInput[0].value = file.name;
-
-              // Manually set validity of specific input field
-              formController[attrs.fieldId].$setValidity('required', true);
             }
           });
         });
