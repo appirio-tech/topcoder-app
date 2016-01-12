@@ -16,6 +16,7 @@
         inputPattern: '=',
         inputRequired: '=',
         inputDisabled: '=',
+        maxlength: '@',
         updateValueOnBlur: '&?'
       },
       link: function(scope, element, attrs) {
