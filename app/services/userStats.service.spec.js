@@ -39,9 +39,9 @@ describe('User Stats Service', function() {
 
     it('should return stats for data-science: srms ', function() {
       var _data = UserStatsService.getIterableStats('DATA_SCIENCE', 'SRM', stats);
-      expect(_data).to.have.length(4);
-      expect(_.pluck(_data, 'label')).to.have.members(['rating', 'rank', 'percentile', 'competitions']);
-      expect(_.pluck(_data, 'val')).to.have.members(['799', '6,280', '26%', '10']);
+      expect(_data).to.have.length(5);
+      expect(_.pluck(_data, 'label')).to.have.members(['rating', 'rank', 'percentile', 'competitions', 'volatility']);
+      expect(_.pluck(_data, 'val')).to.have.members(['799', '6,280', '26%', '10', '473']);
     });
 
 
