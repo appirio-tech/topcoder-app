@@ -352,10 +352,7 @@
   @media only screen and (min-width: 768px) {
   }
   .password {
-    padding-left: 30px;
-    height: 40px;
-    padding-left: 15px;
-    padding-right: 5px;
+    padding-left: 0px;/* to override the padding set by topcoder.scss for forms */
     &:hover {
       cursor: text;
     }
