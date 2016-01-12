@@ -165,7 +165,6 @@
       var reliabilityMapping = {
         'DESIGN': 1,
         'DEVELOPMENT': 1,
-        'SECURITY': 1,
         'TESTING_COMPETITION': 1,
         'SPECIFICATION': 2,
         'ARCHITECTURE': 2,
@@ -204,10 +203,7 @@
       };
 
       return reliabilityMapping[subTrack] || 2;
-
     }
-
-
   }
 
 })();
