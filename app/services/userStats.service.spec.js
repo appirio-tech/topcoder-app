@@ -382,5 +382,60 @@ describe('User Stats Service', function() {
     });
   });
 
+  describe('mapReliability ', function() {
+    it('should map each subtrack to correct project type ', function() {
+      var pt1 = ['DESIGN', 'DEVELOPMENT', 'TESTING_COMPETITION'];
+      var pt2 = [
+        'SPECIFICATION',
+        'ARCHITECTURE',
+        'COMPONENT_PRODUCTION',
+        'BUG_HUNT', 'DEPLOYMENT',
+        'SECURITY', 'PROCESS',
+        'TEST_SUITES',
+        'ASSEMBLY_COMPETITION',
+        'LEGACY',
+        'UI_PROTOTYPE_COMPETITION',
+        'CONCEPTUALIZATION',
+        'RIA_BUILD_COMPETITION',
+        'RIA_COMPONENT_COMPETITION',
+        'TEST_SCENARIOS',
+        'SPEC_REVIEW',
+        'COPILOT_POSTING',
+        'CONTENT_CREATION',
+        'REPORTING',
+        'MARATHON_MATCH',
+        'FIRST_2_FINISH',
+        'CODE'
+      ];
+      var pt3 = [
+        'BANNERS_OR_ICONS',
+        'WEB_DESIGN',
+        'WIREFRAMES',
+        'LOGO_DESIGN',
+        'PRINT_OR_PRESENTATION',
+        'DESIGN_FIRST_2_FINISH',
+        'WIDGET_OR_MOBILE_SCREEN_DESIGN',
+        'FRONT_END_FLASH',
+        'APPLICATION_FRONT_END_DESIGN',
+        'STUDIO_OTHER',
+        'IDEA_GENERATION'];
+      var pt4 = ['GENERIC_SCORECARDS'];
+      pt1.forEach(function(subTrack) {
+        expect(UserStatsService.mapReliability(subTrack)).to.equal(1);
+      });
+      pt2.forEach(function(subTrack) {
+        expect(UserStatsService.mapReliability(subTrack)).to.equal(2);
+      });
+      pt3.forEach(function(subTrack) {
+        expect(UserStatsService.mapReliability(subTrack)).to.equal(3);
+      });
+      pt4.forEach(function(subTrack) {
+        expect(UserStatsService.mapReliability(subTrack)).to.equal(4);
+      });
+      // for any other subtrack it should return 2
+      expect(UserStatsService.mapReliability('unkown')).to.equal(2);
+
+    });
+  });
 
 });
