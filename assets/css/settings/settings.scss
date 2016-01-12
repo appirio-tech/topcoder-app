@@ -145,18 +145,12 @@
         margin-top: 10px;
       }
     }
+    .section-fields {
+      width: 100%;
+    }
 
     &.skills {
       input {
-        width: 100%;
-      }
-      .section-fields {
-        width: 100%;
-      }
-    }
-
-    &.tracks {
-      .section-fields {
         width: 100%;
       }
     }
