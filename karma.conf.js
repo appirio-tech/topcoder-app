@@ -13,6 +13,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [].concat(
+      'bower_components/bind-polyfill/index.js',
       bowerFiles,
       'tests/test-helpers/*.js',
       './app/topcoder.module.js',

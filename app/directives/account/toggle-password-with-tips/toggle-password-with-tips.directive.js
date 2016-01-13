@@ -11,6 +11,7 @@
       link: function(scope, element, attrs, formController) {
         var vm = scope.vm;
         vm.passwordField = formController.password;
+        vm.defaultPlaceholder = attrs.placeholder || 'Pick a new password';
         vm.placeholder = vm.defaultPlaceholder;
         vm.password = '';
 

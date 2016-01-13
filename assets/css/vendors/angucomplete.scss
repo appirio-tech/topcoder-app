@@ -1,6 +1,11 @@
 @import 'topcoder/tc-includes';
 
 // angucomplete overrides
+angucomplete-alt {
+  width: 100%;
+  margin-top: 6px;
+}
+
 .angucomplete-holder {
     position: relative;
     width: 100%;

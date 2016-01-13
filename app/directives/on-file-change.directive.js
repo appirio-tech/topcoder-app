@@ -11,7 +11,7 @@
     return {
       restrict: 'A',
       link: function(scope, element, attr, ctrl) {
-        element.bind("change", function() {
+        element.bind('change', function() {
           scope.vm.onFileChange(element[0].files[0]);
           this.value = '';
         });
