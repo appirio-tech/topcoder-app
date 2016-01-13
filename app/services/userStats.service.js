@@ -16,7 +16,8 @@
       processStats: processStats,
       compileSubtracks: compileSubtracks,
       filterStats: filterStats,
-      processStatRank: processStatRank
+      processStatRank: processStatRank,
+      mapReliability: mapReliability
     };
 
     var percentageFunc = function(n) { return $filter('percentage')(n);};
@@ -40,7 +41,8 @@
         {key: 'rank.rating', label: 'rating', postFunc: null},
         {key: 'rank.rank', label: 'rank', postFunc: null},
         {key: 'rank.percentile', label: 'percentile', postFunc: percentileFunc},
-        {key: 'challenges', label:'competitions', postFunc: null}
+        {key: 'challenges', label:'competitions', postFunc: null},
+        {key: 'rank.volatility', label: 'volatility', postFunc: null}
       ],
       'DATA_SCIENCE.MARATHON_MATCH': [
         {key: 'rank.rating', label: 'rating', postFunc: null},
@@ -160,7 +162,49 @@
       return filtered;
     }
 
+    function mapReliability(subTrack) {
+      var reliabilityMapping = {
+        'DESIGN': 1,
+        'DEVELOPMENT': 1,
+        'TESTING_COMPETITION': 1,
+        'SPECIFICATION': 2,
+        'ARCHITECTURE': 2,
+        'COMPONENT_PRODUCTION': 2,
+        'BUG_HUNT': 2,
+        'DEPLOYMENT': 2,
+        'SECURITY': 2,
+        'PROCESS': 2,
+        'TEST_SUITES': 2,
+        'ASSEMBLY_COMPETITION': 2,
+        'LEGACY': 2,
+        'BANNERS_OR_ICONS': 3,
+        'WEB_DESIGN': 3,
+        'WIREFRAMES': 3,
+        'UI_PROTOTYPE_COMPETITION': 2,
+        'LOGO_DESIGN': 3,
+        'PRINT_OR_PRESENTATION': 3,
+        'CONCEPTUALIZATION': 2,
+        'RIA_BUILD_COMPETITION': 2,
+        'RIA_COMPONENT_COMPETITION': 2,
+        'TEST_SCENARIOS': 2,
+        'SPEC_REVIEW': 2,
+        'GENERIC_SCORECARDS': 4,
+        'COPILOT_POSTING': 2,
+        'CONTENT_CREATION': 2,
+        'WIDGET_OR_MOBILE_SCREEN_DESIGN': 3,
+        'FRONT_END_FLASH': 3,
+        'APPLICATION_FRONT_END_DESIGN': 3,
+        'STUDIO_OTHER': 3,
+        'IDEA_GENERATION': 3,
+        'REPORTING': 2,
+        'MARATHON_MATCH': 2,
+        'FIRST_2_FINISH': 2,
+        'CODE': 2,
+        'DESIGN_FIRST_2_FINISH': 3
+      };
 
+      return reliabilityMapping[subTrack] || 2;
+    }
   }
 
 })();

@@ -1,0 +1,32 @@
+.fieldset(ng-repeat="(stockartId, stockart) in formStockarts")
+  button.clean.remove-section(type="button", ng-click="deleteStockartFieldset(stockartId)")
+
+  tc-input.fieldset__input(
+    label-text="Photo Description",
+    placeholder="A picture of a girl",
+    input-value="stockart.description",
+    input-name="photoDescription{{stockartId}}",
+    maxlength="100"
+  )
+
+  tc-input.fieldset__input(
+    label-text="Photo URL",
+    placeholder="www.istockphoto.com",
+    input-value="stockart.sourceUrl",
+    input-name="photoURL{{stockartId}}",
+    input-pattern="urlRegEx",
+    maxlength="100"
+  )
+
+  .tc-error-messages(ng-show="submissionForm['photoURL' + stockartId].$dirty && submissionForm['photoURL' + stockartId].$invalid")
+    p(ng-show="submissionForm['photoURL' + stockartId].$error.pattern") Please enter a valid url.
+
+  tc-input.fieldset__input(
+    label-text="File Number",
+    placeholder="u2434312",
+    input-value="stockart.fileNumber",
+    input-name="fileNumber{{stockartId}}",
+    maxlength="50"
+  )
+
+button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="createAdditionalStockartFieldset()", ng-disabled="isButtonDisabled()") + Add Stock Photo
