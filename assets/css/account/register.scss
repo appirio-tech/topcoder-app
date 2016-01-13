@@ -14,13 +14,6 @@
     toggle-password-with-tips {
       width: 380px;
     }
-    toggle-password,
-    toggle-password-with-tips {
-      input#password-input,
-      input#current-password-input {
-        width: 300px;
-      }
-    }
     input[name='firstname'],
     input[name='lastname'] {
       width: 185px;
@@ -85,10 +78,4 @@
     margin-top: 30px;
     position: initial;
   }
-}
-
-toggle-password-with-tips label {
-  display: flex !important;
-  line-height: 20px !important;
-  padding-right: 10px !important;
 }
