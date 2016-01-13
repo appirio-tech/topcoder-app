@@ -41,7 +41,8 @@
         {key: 'rank.rating', label: 'rating', postFunc: null},
         {key: 'rank.rank', label: 'rank', postFunc: null},
         {key: 'rank.percentile', label: 'percentile', postFunc: percentileFunc},
-        {key: 'challenges', label:'competitions', postFunc: null}
+        {key: 'challenges', label:'competitions', postFunc: null},
+        {key: 'rank.volatility', label: 'volatility', postFunc: null}
       ],
       'DATA_SCIENCE.MARATHON_MATCH': [
         {key: 'rank.rating', label: 'rating', postFunc: null},
