@@ -145,18 +145,12 @@
         margin-top: 10px;
       }
     }
+    .section-fields {
+      width: 100%;
+    }
 
     &.skills {
       input {
-        width: 100%;
-      }
-      .section-fields {
-        width: 100%;
-      }
-    }
-
-    &.tracks {
-      .section-fields {
         width: 100%;
       }
     }
@@ -326,12 +320,12 @@
         flex-direction: row;
         flex-wrap: wrap;
         margin-top: 20px;
+        justify-content: space-between;
 
         .skill {
           margin: 0 20px 10px;
           @media only screen and (min-width: 768px) {
             margin: 0;
-            margin-right: 30px;
             margin-bottom: 60px;
           }
         }
