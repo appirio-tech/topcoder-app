@@ -40,6 +40,10 @@
             title: "Explore Open Challenges",
             url: "/challenges/?pageIndex=1",
             cssClass: "find-challenges tc-btn tc-btn-s"
+          }, {
+            title: "Learn More",
+            url: _getUrl("/getting-started"),
+            cssClass: "secondary-cta"
           }]
         },
         "dashboard-ios-community": {
