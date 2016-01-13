@@ -9,6 +9,7 @@
       templateUrl: 'directives/tc-input/tc-input.html',
       scope: {
         labelText: '@',
+        asteriskText: '@',
         placeholder: '@',
         inputValue: '=',
         inputName: '@',
@@ -17,7 +18,8 @@
         inputRequired: '=',
         inputDisabled: '=',
         maxlength: '@',
-        updateValueOnBlur: '&?'
+        updateValueOnBlur: '&?',
+        onInputChange: '&?'
       },
       link: function(scope, element, attrs) {
         var input = $(element[0]).find('input');
@@ -31,6 +33,12 @@
             var newValue = scope.updateValueOnBlur({inputValue: scope.inputValue});
             scope.inputValue = newValue;
             scope.$apply();
+          });
+        }
+
+        if (scope.onInputChange) {
+          scope.$watch('inputValue', function(newValue, oldValue) {
+            scope.onInputChange({inputValue: scope.inputValue, inputName: scope.inputName});
           });
         }
       }

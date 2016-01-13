@@ -7,7 +7,7 @@
 
   function SubmitFileController($scope, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
     var vm = this;
-    $log = $log.getInstance("SubmitFileController");
+    $log = $log.getInstance('SubmitFileController');
     var files = {};
     var fileUploadProgress = {};
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/);
@@ -37,7 +37,10 @@
         id: 1,
         description: '',
         sourceUrl: '',
-        fileNumber: ''
+        fileNumber: '',
+        isPhotoDescriptionRequired: false,
+        isPhotoURLRequired: false,
+        isFileNumberRequired: false
       }
     };
     vm.submissionForm = {
