@@ -26,14 +26,14 @@
           .form-label New Password
 
           .validation-bar
-            toggle-password-with-tips.topcoder-input.password(placeholder="Pick a new password")
+            toggle-password-with-tips.topcoder-input.password(placeholder="Create new password")
 
             .tips.password-tips(ng-show="vm.passwordFocus")
               .arrow
 
-              h3 Password Tips:
+              //- h3 Password Tips:
 
-              p Your password must have:
+              H3 Your password must have:
 
               p(ng-class="{ 'has-length-between-range': (vm.newPasswordForm.password.$dirty && !vm.newPasswordForm.password.$error.minlength && !vm.newPasswordForm.password.$error.maxlength && !vm.newPasswordForm.password.$error.required) }") At least 8 characters
 
