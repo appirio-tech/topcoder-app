@@ -11,7 +11,7 @@
       link: function(scope, element, attrs, formController) {
         var vm = scope.vm;
         vm.passwordField = formController.password;
-        vm.defaultPlaceholder = attrs.placeholder || 'Pick a new password';
+        vm.defaultPlaceholder = attrs.placeholder || 'Create new password';
         vm.placeholder = vm.defaultPlaceholder;
         vm.password = '';
 
@@ -41,6 +41,7 @@
           if (relatedTarget.attr('type') === 'checkbox' && relatedTarget.attr('id') === 'passwordCheckbox') {
             vm.passwordFocus = true;
             vm.placeholder = '';
+            passwordInput.focus();
           } else {
             // If you are blurring from the password input and clicking anywhere but the checkbox
             vm.passwordFocus = false;

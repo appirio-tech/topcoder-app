@@ -83,7 +83,7 @@
       p.form-error(ng-message="required") Please enter an email address.
 
     .validation-bar(ng-class="{ 'success-bar': (vm.registerForm.password.$valid) }")
-      toggle-password-with-tips(ng-if="!vm.isSocialRegistration")
+      toggle-password-with-tips(ng-if="!vm.isSocialRegistration", placeholder="Create Password")
 
       .tips.password-tips(ng-show="vm.passwordFocus")
         .arrow
