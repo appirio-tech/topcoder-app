@@ -131,7 +131,6 @@ describe('filters', function() {
       expect(ternaryFilter(true, 1, 2)).to.be.equal(1);
       expect(ternaryFilter(false, 1, 2)).to.be.equal(2);
       expect(ternaryFilter(0, 1, 2)).to.be.equal(2);
-      console.log(jstz.determine().name());
       expect(ternaryFilter(true, 'm', 'n')).to.be.equal('m');
     });
   });

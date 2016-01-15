@@ -26,6 +26,9 @@
           isFileNumberRequired: false
         };
 
+        // Initialize stockart form data
+        $scope.formStockarts = { 0: _.assign({id: 0}, angular.copy(emptyStockart)) };
+
         $scope.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/);
 
         $scope.createAdditionalStockartFieldset = function() {
