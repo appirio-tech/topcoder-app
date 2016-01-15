@@ -49,7 +49,6 @@
 
 
     function registerUser() {
-      debugger;
       vm.loading = true;
       return MemberCertService.registerMember(userId, CONSTANTS.SWIFT_PROGRAM_ID).then(function(data) {
         if (data && data.eventId && data.userId) {
