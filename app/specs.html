@@ -63,13 +63,24 @@
     <script src="../bower_components/angular-animate/angular-animate.js"></script>
     <script src="../bower_components/angularjs-toaster/toaster.js"></script>
     <script src="../bower_components/appirio-tech-ng-iso-constants/dist/ng-iso-constants.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/angular-scroll/angular-scroll.js"></script>
+    <script src="../bower_components/react/react.js"></script>
+    <script src="../bower_components/react/react-dom.js"></script>
+    <script src="../bower_components/classnames/index.js"></script>
+    <script src="../bower_components/classnames/bind.js"></script>
+    <script src="../bower_components/classnames/dedupe.js"></script>
+    <script src="../bower_components/react-input-autosize/dist/react-input-autosize.min.js"></script>
+    <script src="../bower_components/react-select/dist/react-select.min.js"></script>
+    <script src="../bower_components/ngReact/ngReact.js"></script>
+    <script src="../bower_components/appirio-tech-ng-ui-components/dist/main.js"></script>
     <script src="../bower_components/d3/d3.js"></script>
     <script src="../bower_components/jstzdetect/jstz.min.js"></script>
-    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/lodash/lodash.js"></script>
     <script src="../bower_components/ng-busy/build/angular-busy.js"></script>
     <script src="../bower_components/ng-notifications-bar/dist/ngNotificationsBar.min.js"></script>
     <script src="../bower_components/ngDialog/js/ngDialog.js"></script>
-    <script src="../bower_components/lodash/lodash.js"></script>
     <script src="../bower_components/restangular/dist/restangular.js"></script>
     <script src="../bower_components/angular-touch/angular-touch.js"></script>
     <script src="../bower_components/angular-carousel/dist/angular-carousel.js"></script>
@@ -80,6 +91,7 @@
     <script src="../bower_components/bardjs/dist/bard.js"></script>
     <script src="../bower_components/bardjs/dist/bard-ngRouteTester.js"></script>
     <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bind-polyfill/index.js"></script>
     <!-- endbower -->
 
     <!-- inject:nonBowerScripts:js -->
@@ -95,6 +107,7 @@
     <script src="/app/topcoder.controller.js"></script>
     <script src="/app/topcoder.constants.js"></script>
     <script src="/app/submissions/submissions.module.js"></script>
+    <script src="/app/submissions/submit-file/submit-file.controller.js"></script>
     <script src="/app/submissions/submissions.routes.js"></script>
     <script src="/app/submissions/submissions.controller.js"></script>
     <script src="/app/skill-picker/skill-picker.module.js"></script>
@@ -113,6 +126,7 @@
     <script src="/app/services/user.service.js"></script>
     <script src="/app/services/tcAuth.service.js"></script>
     <script src="/app/services/tags.service.js"></script>
+    <script src="/app/services/submissions.service.js"></script>
     <script src="/app/services/statistics.service.js"></script>
     <script src="/app/services/srm.service.js"></script>
     <script src="/app/services/scorecard.service.js"></script>
@@ -184,20 +198,29 @@
     <script src="/app/filters/empty.filter.js"></script>
     <script src="/app/filters/deadline-msg.filter.js"></script>
     <script src="/app/filters/challengeLinks.filter.js"></script>
+    <script src="/app/filters/add-beginning-space.filter.js"></script>
     <script src="/app/directives/tcui-components.module.js"></script>
     <script src="/app/directives/track-toggle/track-toggle.directive.js"></script>
     <script src="/app/directives/tc-transclude.directive.js"></script>
+    <script src="/app/directives/tc-textarea/tc-textarea.directive.js"></script>
     <script src="/app/directives/tc-tabs/tc-tabs.directive.js"></script>
     <script src="/app/directives/tc-sticky/tc-sticky.directive.js"></script>
     <script src="/app/directives/tc-section/tc-section.directive.js"></script>
     <script src="/app/directives/tc-paginator/tc-paginator.directive.js"></script>
+    <script src="/app/directives/tc-input/tc-input.directive.js"></script>
+    <script src="/app/directives/tc-form-stockart/tc-form-stockart.directive.js"></script>
+    <script src="/app/directives/tc-form-fonts/tc-form-fonts.directive.js"></script>
+    <script src="/app/directives/tc-file-input/tc-file-input.directive.js"></script>
     <script src="/app/directives/tc-endless-paginator/tc-endless-paginator.directive.js"></script>
     <script src="/app/directives/srm-tile/srm-tile.directive.js"></script>
     <script src="/app/directives/slideable.directive.js"></script>
     <script src="/app/directives/skill-tile/skill-tile.directive.js"></script>
     <script src="/app/directives/responsive-carousel/responsive-carousel.directive.js"></script>
+    <script src="/app/directives/progress-bar/progress-bar.directive.js"></script>
     <script src="/app/directives/profile-widget/profile-widget.directive.js"></script>
+    <script src="/app/directives/preventEventPropagation.directive.js"></script>
     <script src="/app/directives/page-state-header/page-state-header.directive.js"></script>
+    <script src="/app/directives/onoffswitch/onoffswitch.directive.js"></script>
     <script src="/app/directives/on-file-change.directive.js"></script>
     <script src="/app/directives/ios-card/ios-card.directive.js"></script>
     <script src="/app/directives/input-sticky-placeholder/input-sticky-placeholder.directive.js"></script>
@@ -206,6 +229,7 @@
     <script src="/app/directives/focus-on.directive.js"></script>
     <script src="/app/directives/external-account/external-web-links.directive.js"></script>
     <script src="/app/directives/external-account/external-links-data.directive.js"></script>
+    <script src="/app/directives/external-account/external-link-deletion.controller.js"></script>
     <script src="/app/directives/external-account/external-account.directive.js"></script>
     <script src="/app/directives/empty-state-placeholder/empty-state-placeholder.directive.js"></script>
     <script src="/app/directives/distribution-graph/distribution-graph.directive.js"></script>
@@ -244,10 +268,9 @@
     <script src="/app/topcoder.interceptors.spec.js"></script>
     <script src="/app/filters/filters.spec.js"></script>
     <script src="/app/my-challenges/my-challenges.spec.js"></script>
-    <script src="/app/my-dashboard/my-dashboard.spec.js"></script>
     <script src="/app/my-srms/my-srms.spec.js"></script>
+    <script src="/app/my-dashboard/my-dashboard.spec.js"></script>
     <script src="/app/profile/profile.controller.spec.js"></script>
-    <script src="/app/settings/settings.spec.js"></script>
     <script src="/app/services/authToken.service.spec.js"></script>
     <script src="/app/services/challenge.service.spec.js"></script>
     <script src="/app/services/externalAccounts.service.spec.js"></script>
@@ -258,6 +281,7 @@
     <script src="/app/services/tcAuth.service.spec.js"></script>
     <script src="/app/services/user.service.spec.js"></script>
     <script src="/app/services/userStats.service.spec.js"></script>
+    <script src="/app/settings/settings.spec.js"></script>
     <script src="/app/skill-picker/skill-picker.spec.js"></script>
     <script src="/app/submissions/submissions.spec.js"></script>
     <script src="/app/account/login/login.spec.js"></script>
@@ -270,9 +294,14 @@
     <script src="/app/directives/challenge-tile/challenge-tile.spec.js"></script>
     <script src="/app/directives/empty-state-placeholder/empty-state-placeholder.spec.js"></script>
     <script src="/app/directives/external-account/external-account.directive.spec.js"></script>
+    <script src="/app/directives/external-account/external-link-deletion.controller.spec.js"></script>
     <script src="/app/directives/external-account/external-links-data.directive.spec.js"></script>
     <script src="/app/directives/external-account/external-web-links.directive.spec.js"></script>
     <script src="/app/directives/tc-endless-paginator/tc-endless-paginator.spec.js"></script>
+    <script src="/app/directives/tc-file-input/tc-file-input.spec.js"></script>
+    <script src="/app/directives/tc-form-fonts/tc-form-fonts.spec.js"></script>
+    <script src="/app/directives/tc-form-stockart/tc-form-stockart.spec.js"></script>
+    <script src="/app/directives/tc-input/tc-input.spec.js"></script>
     <script src="/app/directives/tc-paginator/tc-paginator.spec.js"></script>
     <script src="/app/directives/tc-tabs/tc-tabs.directive.spec.js"></script>
     <script src="/app/my-dashboard/community-updates/community-updates.spec.js"></script>
@@ -291,6 +320,7 @@
     <script src="/app/settings/account-info/account-info.spec.js"></script>
     <script src="/app/settings/edit-profile/edit-profile.spec.js"></script>
     <script src="/app/settings/preferences/preferences.spec.js"></script>
+    <script src="/app/submissions/submit-file/submit-file.spec.js"></script>
     <script src="/app/directives/account/toggle-password/toggle-password.spec.js"></script>
     <script src="/app/directives/account/toggle-password-with-tips/toggle-password-with-tips.spec.js"></script>
     <!-- endinject -->
