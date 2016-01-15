@@ -42,6 +42,9 @@
           isFontSourceRequired: false
         };
 
+        // Initialize font form data
+        $scope.formFonts = { 0: _.assign({id: 0}, angular.copy(emptyFont)) };
+
         $scope.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/);
 
         $scope.selectFont = function(newFont) {

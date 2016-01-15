@@ -19,19 +19,7 @@
     vm.finishing = false;
     vm.showProgress = false;
     vm.errorInUpload = false;
-    vm.formFonts = {
-      0: {
-        id: 0,
-        source: '',
-        name: '',
-        sourceUrl: '',
-        isFontUrlRequired: false,
-        isFontUrlDisabled: true,
-        isFontNameRequired: false,
-        isFontNameDisabled: true,
-        isFontSourceRequired: false
-      }
-    };
+    vm.formFonts = {};
     vm.formStockarts = {};
     vm.submissionForm = {
       files: [],

@@ -17,16 +17,22 @@ describe('Topcoder Form Stockart Directive', function() {
 
   bard.verifyNoOutstandingHttpRequests();
 
-  it('starts with empty stockart data', function() {
-    defaultFormStockart = isolateScope.formStockarts[0];
+  describe('is initialized with', function() {
+    it('empty stockart data', function() {
+      var initialStockart = isolateScope.formStockarts[0];
 
-    expect(defaultFormStockart.id).to.equal(0);
-    expect(defaultFormStockart.description).to.equal('');
-    expect(defaultFormStockart.sourceUrl).to.equal('');
-    expect(defaultFormStockart.fileNumber).to.equal('');
-    expect(defaultFormStockart.isPhotoDescriptionRequired).to.equal(false);
-    expect(defaultFormStockart.isPhotoURLRequired).to.equal(false);
-    expect(defaultFormStockart.isFileNumberRequired).to.equal(false);
+      expect(initialStockart.id).to.equal(0);
+      expect(initialStockart.description).to.equal('');
+      expect(initialStockart.sourceUrl).to.equal('');
+      expect(initialStockart.fileNumber).to.equal('');
+      expect(initialStockart.isPhotoDescriptionRequired).to.equal(false);
+      expect(initialStockart.isPhotoURLRequired).to.equal(false);
+      expect(initialStockart.isFileNumberRequired).to.equal(false);
+    });
+
+    it('a regular expression', function() {
+      expect(isolateScope.urlRegEx).to.be.an.instanceof(RegExp);
+    });
   });
 
   describe('createAdditionalStockartFieldset', function() {
@@ -149,7 +155,7 @@ describe('Topcoder Form Stockart Directive', function() {
 
       expect(button.disabled).to.be.true;
     });
-  })
+  });
 
   describe('showMandatoryMessage', function() {
     describe('sets the stockart required properties to false when all fields are', function() {
