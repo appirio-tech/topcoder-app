@@ -5,7 +5,8 @@
     'ui.router',
     'tc.services',
     'tcUIComponents',
-    'toaster'
+    'toaster',
+    'appirio-tech-ng-ui-components'
   ];
 
   angular.module('tc.submissions', dependencies);

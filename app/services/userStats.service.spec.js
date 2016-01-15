@@ -39,9 +39,9 @@ describe('User Stats Service', function() {
 
     it('should return stats for data-science: srms ', function() {
       var _data = UserStatsService.getIterableStats('DATA_SCIENCE', 'SRM', stats);
-      expect(_data).to.have.length(4);
-      expect(_.pluck(_data, 'label')).to.have.members(['rating', 'rank', 'percentile', 'competitions']);
-      expect(_.pluck(_data, 'val')).to.have.members(['799', '6,280', '26%', '10']);
+      expect(_data).to.have.length(5);
+      expect(_.pluck(_data, 'label')).to.have.members(['rating', 'rank', 'percentile', 'competitions', 'volatility']);
+      expect(_.pluck(_data, 'val')).to.have.members(['799', '6,280', '26%', '10', '473']);
     });
 
 
@@ -382,5 +382,50 @@ describe('User Stats Service', function() {
     });
   });
 
+  describe('mapReliability ', function() {
+    it('should map each subtrack to correct project type ', function() {
+      expect(UserStatsService.mapReliability('DESIGN')).to.equal(1);
+      expect(UserStatsService.mapReliability('DEVELOPMENT')).to.equal(2);
+      expect(UserStatsService.mapReliability('TESTING_COMPETITION')).to.equal(5);
+      expect(UserStatsService.mapReliability('SPECIFICATION')).to.equal(6);
+      expect(UserStatsService.mapReliability('ARCHITECTURE')).to.equal(7);
+      expect(UserStatsService.mapReliability('COMPONENT_PRODUCTION')).to.equal(8);
+      expect(UserStatsService.mapReliability('BUG_HUNT')).to.equal(9);
+      expect(UserStatsService.mapReliability('DEPLOYMENT')).to.equal(10);
+      expect(UserStatsService.mapReliability('SECURITY')).to.equal(11);
+      expect(UserStatsService.mapReliability('PROCESS')).to.equal(12);
+      expect(UserStatsService.mapReliability('TEST_SUITES')).to.equal(13);
+      expect(UserStatsService.mapReliability('ASSEMBLY_COMPETITION')).to.equal(14);
+      expect(UserStatsService.mapReliability('LEGACY')).to.equal(15);
+      expect(UserStatsService.mapReliability('BANNERS_OR_ICONS')).to.equal(16);
+      expect(UserStatsService.mapReliability('WEB_DESIGN')).to.equal(17);
+      expect(UserStatsService.mapReliability('WIREFRAMES')).to.equal(18);
+      expect(UserStatsService.mapReliability('UI_PROTOTYPE_COMPETITION')).to.equal(19);
+      expect(UserStatsService.mapReliability('LOGO_DESIGN')).to.equal(20);
+      expect(UserStatsService.mapReliability('PRINT_OR_PRESENTATION')).to.equal(21);
+      expect(UserStatsService.mapReliability('IDEA_GENERATION')).to.equal(22);
+      expect(UserStatsService.mapReliability('CONCEPTUALIZATION')).to.equal(23);
+      expect(UserStatsService.mapReliability('RIA_BUILD_COMPETITION')).to.equal(24);
+      expect(UserStatsService.mapReliability('RIA_COMPONENT_COMPETITION')).to.equal(25);
+      expect(UserStatsService.mapReliability('TEST_SCENARIOS')).to.equal(26);
+      expect(UserStatsService.mapReliability('SPEC_REVIEW')).to.equal(27);
+      expect(UserStatsService.mapReliability('GENERIC_SCORECARDS')).to.equal(28);
+      expect(UserStatsService.mapReliability('COPILOT_POSTING')).to.equal(29);
+      expect(UserStatsService.mapReliability('WIDGET_OR_MOBILE_SCREEN_DESIGN')).to.equal(30);
+      expect(UserStatsService.mapReliability('FRONT_END_FLASH')).to.equal(31);
+      expect(UserStatsService.mapReliability('APPLICATION_FRONT_END_DESIGN')).to.equal(32);
+      expect(UserStatsService.mapReliability('STUDIO_OTHER')).to.equal(34);
+      expect(UserStatsService.mapReliability('CONTENT_CREATION')).to.equal(35);
+      expect(UserStatsService.mapReliability('REPORTING')).to.equal(36);
+      expect(UserStatsService.mapReliability('MARATHON_MATCH')).to.equal(37);
+      expect(UserStatsService.mapReliability('FIRST_2_FINISH')).to.equal(38);
+      expect(UserStatsService.mapReliability('CODE')).to.equal(39);
+      expect(UserStatsService.mapReliability('DESIGN_FIRST_2_FINISH')).to.equal(40);
+
+      // for any other subtrack it should return 2
+      expect(UserStatsService.mapReliability('unkown')).to.equal(2);
+
+    });
+  });
 
 });

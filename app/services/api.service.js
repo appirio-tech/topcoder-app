@@ -93,6 +93,13 @@
                 param: element
               };
             }
+
+            if (url.indexOf('submissions') > -1 && (operation.toLowerCase() === 'put' || operation.toLowerCase() === 'post')) {
+              return {
+                param: element
+              };
+            }
+
             return element;
           })
           .addResponseInterceptor(function(data, operation, what, url, response, deferred) {

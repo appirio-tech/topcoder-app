@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.4.2 (15857) - http://www.bohemiancoding.com/sketch -->
-    <title>icons/skills/id-201</title>
-    <desc>Created with Sketch.</desc>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs></defs>
-    <g id="Skills---Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="icons/skills/id-201" sketch:type="MSArtboardGroup">
-            <g id="Group" sketch:type="MSLayerGroup" transform="translate(8.000000, 8.000000)">
-                <g sketch:type="MSShapeGroup">
+    <g id="Skills---Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons/skills/id-201">
+            <g id="Group" transform="translate(8.000000, 8.000000)">
+                <g>
                     <g transform="translate(26.995689, 25.297204) rotate(-315.000000) translate(-26.995689, -25.297204) translate(15.995689, 7.797204)">
                         <rect id="Rectangle-20" fill="#F3531D" x="1.42108547e-14" y="-1.77635684e-14" width="22" height="31" rx="1"></rect>
                         <path d="M18.2175144,31 L22,31 L22,34.9644661 L18.2175144,31 Z" id="Rectangle-21" fill="#F0F0F0"></path>

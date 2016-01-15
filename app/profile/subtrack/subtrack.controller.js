@@ -78,7 +78,7 @@
           var reliability = vm.subTrackStats.filter(function(stat) { return stat.label === 'reliability'; });
           if (reliability.length > 0) {
             reliability = reliability[0];
-            reliability.link = 'http://community.' + vm.domain + '/tc?module=ReliabilityDetail&pt=2&cr=' + profileVm.profile.userId;
+            reliability.link = 'http://community.' + vm.domain + '/tc?module=ReliabilityDetail&pt=' + UserStatsService.mapReliability(vm.subTrack) + '&cr=' + profileVm.profile.userId;
           }
           var mustHaveMetrics = ["rank", "rating", "reliability"];
           // check if rating, rank & reliability are all set

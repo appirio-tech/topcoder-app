@@ -16,7 +16,8 @@
       processStats: processStats,
       compileSubtracks: compileSubtracks,
       filterStats: filterStats,
-      processStatRank: processStatRank
+      processStatRank: processStatRank,
+      mapReliability: mapReliability
     };
 
     var percentageFunc = function(n) { return $filter('percentage')(n);};
@@ -40,7 +41,8 @@
         {key: 'rank.rating', label: 'rating', postFunc: null},
         {key: 'rank.rank', label: 'rank', postFunc: null},
         {key: 'rank.percentile', label: 'percentile', postFunc: percentileFunc},
-        {key: 'challenges', label:'competitions', postFunc: null}
+        {key: 'challenges', label:'competitions', postFunc: null},
+        {key: 'rank.volatility', label: 'volatility', postFunc: null}
       ],
       'DATA_SCIENCE.MARATHON_MATCH': [
         {key: 'rank.rating', label: 'rating', postFunc: null},
@@ -160,7 +162,49 @@
       return filtered;
     }
 
+    function mapReliability(subTrack) {
+      var reliabilityMapping = {
+        'DESIGN': 1,
+        'DEVELOPMENT': 2,
+        'TESTING_COMPETITION': 5,
+        'SPECIFICATION': 6,
+        'ARCHITECTURE': 7,
+        'COMPONENT_PRODUCTION': 8,
+        'BUG_HUNT': 9,
+        'DEPLOYMENT': 10,
+        'SECURITY': 11,
+        'PROCESS': 12,
+        'TEST_SUITES': 13,
+        'ASSEMBLY_COMPETITION': 14,
+        'LEGACY': 15,
+        'BANNERS_OR_ICONS': 16,
+        'WEB_DESIGN': 17,
+        'WIREFRAMES': 18,
+        'UI_PROTOTYPE_COMPETITION': 19,
+        'LOGO_DESIGN': 20,
+        'PRINT_OR_PRESENTATION': 21,
+        'CONCEPTUALIZATION': 23,
+        'RIA_BUILD_COMPETITION': 24,
+        'RIA_COMPONENT_COMPETITION': 25,
+        'TEST_SCENARIOS': 26,
+        'SPEC_REVIEW': 27,
+        'GENERIC_SCORECARDS': 28,
+        'COPILOT_POSTING': 29,
+        'CONTENT_CREATION': 35,
+        'WIDGET_OR_MOBILE_SCREEN_DESIGN': 30,
+        'FRONT_END_FLASH': 31,
+        'APPLICATION_FRONT_END_DESIGN': 32,
+        'STUDIO_OTHER': 34,
+        'IDEA_GENERATION': 22,
+        'REPORTING': 36,
+        'MARATHON_MATCH': 37,
+        'FIRST_2_FINISH': 38,
+        'CODE': 39,
+        'DESIGN_FIRST_2_FINISH': 40
+      };
 
+      return reliabilityMapping[subTrack] || 2;
+    }
   }
 
 })();

@@ -45,7 +45,10 @@ module.exports = function() {
         REGISTERED: 'REGISTERED',
 
         // submission type
-        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission',
+
+        // statuses for different objects
+        STATUS_ACTIVE: 'Active'
 
       }
     },
@@ -94,7 +97,10 @@ module.exports = function() {
         REGISTERED: 'REGISTERED',
 
         // submission type
-        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission',
+
+        // statuses for different objects
+        STATUS_ACTIVE: 'Active'
 
       }
     },
@@ -143,7 +149,10 @@ module.exports = function() {
         REGISTERED: 'REGISTERED',
 
         // submission type
-        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission',
+
+        // statuses for different objects
+        STATUS_ACTIVE: 'Active'
 
       }
     },
@@ -152,7 +161,7 @@ module.exports = function() {
         API_URL: process.env.API_URL || 'https://api.topcoder.com/v3.0.0-BETA',
         AUTH_API_URL: process.env.AUTH_API_URL || 'https://api.topcoder.com/v3',
         API_URL_V2: process.env.API_URL_V2 || 'https://api.topcoder.com/v2',
-        ASSET_PREFIX: process.env.ASSET_PREFIX || 'https://s3.amazonaws.com/app.topcoder.com',
+        ASSET_PREFIX: process.env.ASSET_PREFIX || 'https://s3.amazonaws.com/app.topcoder.com/',
         auth0Callback: process.env.auth0Callback || 'https://api.topcoder.com/pub/callback.html',
         // auth0Callback: process.env.auth0Callback || 'https://www.topcoder.com/reg2/callback.action',
         auth0Domain: process.env.auth0Domain || 'topcoder.auth0.com',
@@ -192,7 +201,10 @@ module.exports = function() {
         REGISTERED: 'REGISTERED',
 
         // submission type
-        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission',
+
+        // statuses for different objects
+        STATUS_ACTIVE: 'Active'
 
       }
     },
@@ -201,7 +213,7 @@ module.exports = function() {
         API_URL: process.env.API_URL || 'https://api.topcoder.com/v3.0.0',
         AUTH_API_URL: process.env.AUTH_API_URL || 'https://api.topcoder.com/v3',
         API_URL_V2: process.env.API_URL_V2 || 'https://api.topcoder.com/v2',
-        ASSET_PREFIX: process.env.ASSET_PREFIX || 'https://s3.amazonaws.com/app.topcoder.com',
+        ASSET_PREFIX: process.env.ASSET_PREFIX || 'https://s3.amazonaws.com/app.topcoder.com/',
         auth0Callback: process.env.auth0Callback || 'https://api.topcoder.com/pub/callback.html',
         // auth0Callback: process.env.auth0Callback || 'https://www.topcoder.com/reg2/callback.action',
         auth0Domain: process.env.auth0Domain || 'topcoder.auth0.com',
@@ -241,7 +253,10 @@ module.exports = function() {
         REGISTERED: 'REGISTERED',
 
         // submission type
-        SUBMISSION_TYPE_CONTEST: 'Contest Submission'
+        SUBMISSION_TYPE_CONTEST: 'Contest Submission',
+
+        // statuses for different objects
+        STATUS_ACTIVE: 'Active'
 
       }
     }

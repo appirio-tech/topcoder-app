@@ -1,0 +1,15 @@
+label.tc-label {{labelText}}
+
+p.tc-label__asterisk(ng-if="inputRequired") #[span *]{{asteriskText}}
+
+input(
+  name="{{inputName}}",
+  type="{{inputType}}",
+  placeholder="{{placeholder}}",
+  ng-model="inputValue",
+  ng-pattern="inputPattern",
+  ng-required="inputRequired",
+  ng-disabled="inputDisabled",
+  maxlength="{{maxlength}}",
+  ng-change="onChange()"
+)
