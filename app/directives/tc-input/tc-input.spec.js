@@ -1,6 +1,6 @@
 /* jshint -W117, -W030 */
 describe('Topcoder Input Directive', function() {
-  var scope, element, controller;
+  var scope, element;
 
   beforeEach(function() {
     bard.appModule('topcoder');
