@@ -19,30 +19,8 @@
     vm.finishing = false;
     vm.showProgress = false;
     vm.errorInUpload = false;
-    vm.formFonts = {
-      0: {
-        id: 0,
-        source: '',
-        name: '',
-        sourceUrl: '',
-        isFontUrlRequired: false,
-        isFontUrlDisabled: true,
-        isFontNameRequired: false,
-        isFontNameDisabled: true,
-        isFontSourceRequired: false
-      }
-    };
-    vm.formStockarts = {
-      0: {
-        id: 1,
-        description: '',
-        sourceUrl: '',
-        fileNumber: '',
-        isPhotoDescriptionRequired: false,
-        isPhotoURLRequired: false,
-        isFileNumberRequired: false
-      }
-    };
+    vm.formFonts = {};
+    vm.formStockarts = {};
     vm.submissionForm = {
       files: [],
 
@@ -148,10 +126,18 @@
       vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank;
 
       // Process stock art
-      var processedStockarts = _.map(vm.formStockarts, function(formStockart) {
+      var processedStockarts = _.reduce(vm.formStockarts, function(compiledStockarts, formStockart) {
+        if (formStockart.description) {
           delete formStockart.id;
-          return formStockart;
-      });
+          delete formStockart.isPhotoDescriptionRequired;
+          delete formStockart.isPhotoURLRequired;
+          delete formStockart.isFileNumberRequired;
+
+          compiledStockarts.push(formStockart);
+        }
+
+        return compiledStockarts;
+      }, []);
 
       vm.submissionsBody.data.stockArts = processedStockarts;
 
@@ -164,6 +150,7 @@
           delete formFont.isFontNameRequired;
           delete formFont.isFontNameDisabled;
           delete formFont.isFontSourceRequired;
+
           compiledFonts.push(formFont);
         }
 
