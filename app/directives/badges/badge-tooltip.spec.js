@@ -6,14 +6,14 @@ describe('Badge Tooltip Directive', function() {
   var spotlightChallenge = mockData.getMockSpotlightChallenges()[0];
 
   beforeEach(function() {
-    bard.appModule('tcUIComponents');
+    bard.appModule('topcoder');
     bard.inject(this, '$compile', '$rootScope');
     scope = $rootScope.$new();
   });
 
   bard.verifyNoOutstandingHttpRequests();
 
-  xdescribe('Badge Tooltip', function() {
+  describe('Badge Tooltip', function() {
     var tooltip;
 
     beforeEach(function() {
@@ -88,6 +88,19 @@ describe('Badge Tooltip Directive', function() {
       var dataDiv = currentlyEarned.parent();
       expect(dataDiv).not.to.null;
       expect(dataDiv.hasClass('ng-hide')).to.equal(true);
+    });
+
+    it('should trigger mouseenter handler ', function() {
+      tooltip.trigger('mouseenter');
+      var tooltipElement = tooltip.children(0);
+      expect(tooltipElement.css('z-index')).to.equal('2000');
+      expect(tooltip.isolateScope().hide).to.equal(false);
+    });
+
+    it('should trigger mouseleave handler ', function() {
+      tooltip.trigger('mouseleave');
+      tooltipElement = tooltip.children(0);
+      expect(tooltip.isolateScope().hide).to.equal(true);
     });
   });
 });
