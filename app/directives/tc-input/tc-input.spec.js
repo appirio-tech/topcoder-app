@@ -11,6 +11,10 @@ describe('Topcoder Input Directive', function() {
     scope.$digest();
   });
 
+  afterEach(function() {
+    scope.$destroy();
+  });
+
   bard.verifyNoOutstandingHttpRequests();
 
   it('should set inputType to text if no inputType given', function() {

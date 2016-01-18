@@ -15,6 +15,10 @@ describe('Topcoder Form Fonts Directive', function() {
     isolateScope = element.isolateScope();
   });
 
+  afterEach(function() {
+    scope.$destroy();
+  });
+
   bard.verifyNoOutstandingHttpRequests();
 
   describe('is initialized with', function() {
