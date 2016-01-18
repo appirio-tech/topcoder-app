@@ -99,17 +99,20 @@
           fileObject.mediaType = file.type;
       }
 
-      // If user picks a new file, replace the that file's fileObject with a new one
-      // Or add it the list if it's not there
-      if (vm.submissionsBody.data.files.length) {
-        vm.submissionsBody.data.files.some(function(file, i, filesArray) {
-          if (file.type === fileObject.type) {
-            file = fileObject;
-          } else if (filesArray.length === i + 1) {
-            filesArray.push(fileObject);
-          }
-        });
-      } else {
+      // If user changes a file input's file, update the file details
+      var isFound = vm.submissionsBody.data.files.reduce(function(isFound, file, i, filesArray) {
+        if (isFound) { return true; }
+
+        if (file.type === fileObject.type) {
+          filesArray[i] = fileObject;
+          return true;
+        }
+
+        return false;
+      }, false);
+
+      // Add new files to the list
+      if (!isFound) {
         vm.submissionsBody.data.files.push(fileObject);
       }
     }
