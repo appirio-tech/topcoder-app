@@ -156,7 +156,7 @@
           answer: '' + q.answer
         };
 
-        if (q.comment.length > 0) {
+        if (q.comment && q.comment.length > 0) {
           reviewItem.comments = [
             {
               content: '' + q.comment,
@@ -234,7 +234,7 @@
         });
         // now loop over all keys and replace with compiled value
         Object.keys(compiledMap).forEach(function(k) {
-          template = template.replace(k, compiledMap[k])
+          template = template.replace(k, (compiledMap[k] ? compiledMap[k] : ''));
         });
       }
       return template;
@@ -298,8 +298,8 @@
     }
 
     function setupLoginEventMetrics (usernameOrEmail) {
-      if (_kmq) {
-        _kmq.push(['identify', usernameOrEmail ]);
+      if ($window._kmq) {
+        $window._kmq.push(['identify', usernameOrEmail ]);
       }
     }
 
