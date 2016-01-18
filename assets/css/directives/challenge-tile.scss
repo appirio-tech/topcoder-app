@@ -3,36 +3,24 @@
 // Default Challenge Tile Stylings
 challenge-tile .challenge.tile-view {
 
-  // common css for both active and completed challenge for tile-view
-  height: 350px;
-  display: flex;
-  flex-direction: row;
-
-  .challenge-track {
-    width: 5px;
-    height: 91px;
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    border-top-left-radius: 4px;
-  }
-
   header {
     width: 270px;
-    height: 91px;
+    min-height: 91px;
+    max-height: 93px;
     border-bottom: 1px solid #F0F0F0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 5px 10px;
 
     a.name {
       display: block;
-      padding: 15px 20px 0px 20px;
       @include font-with-weight('Sofia Pro', 500);
-      font-size: 14px;
-      line-height: 20px;
+      font-size: 12px;
+      line-height: 16px;
+      max-height: 48px;
+      overflow: hidden;
       color: $gray-darkest;
-      @include ellipsis;
       @include link;
       text-transform: uppercase;
 
@@ -42,8 +30,6 @@ challenge-tile .challenge.tile-view {
     }
 
     p.subtrack-color {
-      padding: 0 20px;
-      margin-top: 5px;
       @include font-with-weight('Sofia Pro', 500);
       font-size: 12px;
       line-height: 14px;
@@ -60,9 +46,8 @@ challenge-tile .challenge.tile-view {
 
   // roles bar is common for both active and completed
   .roles {
-    width: 101%;
-    border: 1px solid #e0e0e0;
-    border-top: none;
+    width: 100%;
+    border-radius: 4px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -86,6 +71,7 @@ challenge-tile .challenge.tile-view {
   }
 
   .active-challenge {
+    height: 350px;
     position: relative;
     width: 270px;
     border: 1px solid #E0E0E0;
@@ -190,6 +176,7 @@ challenge-tile .challenge.tile-view {
 
 
   .completed-challenge {
+    height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -209,9 +196,6 @@ challenge-tile .challenge.tile-view {
         font-size: 12px;
         text-transform: uppercase;
         color: $accent-gray;
-        padding-left: 20px;
-        padding-right: 20px;
-        margin-bottom: 10px;
       }
 
       .winner-ribbon {
@@ -234,11 +218,14 @@ challenge-tile .challenge.tile-view {
       }
 
       .marathon-score {
-        margin-bottom: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         text-align: center;
+        min-height: 220px;
 
         .score {
-          margin-top: 28px;
           margin-bottom: 5px;
           @include font-with-weight;
           font-size: 32px;
@@ -279,16 +266,6 @@ challenge-tile .challenge.list-view {
 
   // common styles for active and completed
 
-  .challenge-track {
-    width: 5px;
-    height: 110px;
-    position: absolute;
-    top: -1px;
-    left: -1px;
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
-  }
-
   header {
     display: flex;
     flex-direction: column;
@@ -302,10 +279,11 @@ challenge-tile .challenge.list-view {
     a.name {
       display: block;
       @include font-with-weight('Sofia Pro', 500);
-      font-size: 14px;
-      line-height: 20px;
+      font-size: 12px;
+      line-height: 16px;
+      max-height: 32px;
+      overflow: hidden;
       color: $gray-darkest;
-      @include ellipsis;
       @include link;
       text-transform: uppercase;
 
@@ -315,7 +293,6 @@ challenge-tile .challenge.list-view {
     }
 
     p.subtrack-color {
-      margin-bottom: 12px;
       @include font-with-weight('Sofia Pro', 500);
       font-size: 12px;
       line-height: 14px;
@@ -449,22 +426,66 @@ challenge-tile .challenge.list-view {
 
 // Dynamic colors based on track
 .DESIGN {
-  .challenge-track { background-color: $design; }
+  &.tile-view {
+    header {
+      border-left: 3px solid $design;
+      border-radius: 3px 0 0 0;
+    }
+  }
 
-  header .subtrack-color { color: $design; }
+  &.challenge.list-view {
+    border-left: 3px solid $design;
+  }
+
+  .subtrack-color {
+    color: $design;
+  }
 }
 .DEVELOP {
-  .challenge-track { background-color: $develop; }
+  &.tile-view {
+    header {
+      border-left: 3px solid $develop;
+      border-radius: 3px 0 0 0;
+    }
+  }
 
-  header .subtrack-color { color: $develop; }
+  &.challenge.list-view {
+    border-left: 3px solid $develop;
+  }
+
+  .subtrack-color {
+    color: $develop;
+  }
 }
 .DATA_SCIENCE {
-  .challenge-track { background-color: $data_science; }
+  &.tile-view {
+    header {
+      border-left: 3px solid $data_science;
+      border-radius: 3px 0 0 0;
+    }
+  }
 
-  header .subtrack-color { color: $data_science; }
+  &.challenge.list-view {
+    border-left: 3px solid $data_science;
+  }
+
+  .subtrack-color {
+    color: $data_science;
+  }
 }
 .COPILOT {
-  .challenge-track { background-color: $copilot; }
+  &.tile-view {
+    header {
+      border-left: 3px solid $copilot;
+      border-radius: 3px 0 0 0;
+    }
+  }
 
-  header .subtrack-color { color: $copilot; }
+  &.challenge.list-view {
+    border-left: 3px solid $copilot;
+  }
+
+  .subtrack-color {
+    color: $copilot;
+  }
 }

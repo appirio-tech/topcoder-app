@@ -4,8 +4,13 @@
 dev-challenge-user-place {
 
   .tile-view {
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+    justify-content: center;
+    align-items: center;
+    
     .place {
-      margin-bottom: 30px;
       @include sofia-pro-light;
       font-size: 18px;
       line-height: 23px;

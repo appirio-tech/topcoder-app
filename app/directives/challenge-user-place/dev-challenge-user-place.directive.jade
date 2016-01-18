@@ -4,7 +4,7 @@
     p.place(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
     p.place(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
 
-  .challenge-score(ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
+  .challenge-score(ng-hide="challenge.userStatus !== 'PASSED_REVIEW'")
     p.score {{challenge.userDetails.submissionReviewScore/100 | percentage}}
 
     p Review Score
