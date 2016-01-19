@@ -326,7 +326,7 @@ describe('Challenge Service', function() {
     expect(challenge.userHasSubmitterRole).to.exist.to.true;
   });
 
-  it('processPastChallenges should process a not completed DEVELOP/FIRST_2_FINISH challenge ', function() {
+  it('processPastChallenges should process a not completed (empty submissions) DEVELOP/FIRST_2_FINISH challenge ', function() {
     var challenges = [
       {
         id: 30041345,
@@ -337,6 +337,28 @@ describe('Challenge Service', function() {
           hasUserSubmittedForReview: false,
           roles: ['Submitter'],
           submissions: []
+        }
+      }
+    ];
+    ChallengeService.processPastChallenges(challenges);
+    var challenge = challenges[0];
+    expect(challenge.highestPlacement).not.to.exist;
+    expect(challenge.wonFirst).to.exist.to.false;
+    expect(challenge.userStatus).to.exist.to.equal('NOT_FINISHED');
+    expect(challenge.userHasSubmitterRole).to.exist.to.true;
+  });
+
+  it('processPastChallenges should process a not completed(null submissions) DEVELOP/FIRST_2_FINISH challenge ', function() {
+    var challenges = [
+      {
+        id: 30041345,
+        name: 'Mock Challenge 1',
+        track: 'DEVELOP',
+        subTrack: 'FIRST_2_FINISH',
+        userDetails: {
+          hasUserSubmittedForReview: false,
+          roles: ['Submitter'],
+          submissions: null
         }
       }
     ];
