@@ -5,8 +5,6 @@ challenge-tile .challenge.tile-view {
 
   header {
     width: 270px;
-    min-height: 91px;
-    max-height: 93px;
     border-bottom: 1px solid #F0F0F0;
     display: flex;
     flex-direction: column;
@@ -23,6 +21,7 @@ challenge-tile .challenge.tile-view {
       color: $gray-darkest;
       @include link;
       text-transform: uppercase;
+      margin-bottom: 5px;
 
       &:hover {
         text-decoration: none;
@@ -31,9 +30,10 @@ challenge-tile .challenge.tile-view {
 
     p.subtrack-color {
       @include font-with-weight('Sofia Pro', 500);
-      font-size: 12px;
+      font-size: 10px;
       line-height: 14px;
       text-transform: uppercase;
+      margin-bottom: 5px;
     }
   }
 
@@ -72,6 +72,9 @@ challenge-tile .challenge.tile-view {
 
   .active-challenge {
     height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: relative;
     width: 270px;
     border: 1px solid #E0E0E0;
@@ -193,9 +196,11 @@ challenge-tile .challenge.tile-view {
 
       .date-completed {
         @include font-with-weight('Sofia Pro', 500);
-        font-size: 12px;
+        font-size: 10px;
+        line-height: 14px;
         text-transform: uppercase;
         color: $accent-gray;
+        margin-bottom: 5px;
       }
 
       .winner-ribbon {
@@ -223,7 +228,6 @@ challenge-tile .challenge.tile-view {
         justify-content: center;
         align-items: center;
         text-align: center;
-        min-height: 220px;
 
         .score {
           margin-bottom: 5px;
