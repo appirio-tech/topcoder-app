@@ -2,12 +2,9 @@
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")
 
     header
-      .top
-        a.name(ng-href="{{challenge|challengeLinks:'detail'}}") #[span {{challenge.name}}]
+      a.name(ng-href="{{challenge|challengeLinks:'detail'}}", title="{{challenge.name}}") #[span {{challenge.name}}]
 
-        .challenge-track
-
-        p.subtrack-color {{challenge.subTrack | underscoreStrip}}
+      p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
       challenge-links(challenge="challenge", view="'tile'")
 
@@ -38,13 +35,11 @@
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
     ng-switch="challenge.track")
-    .challenge-track
 
     header
-      .top
-        a.name(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
+      a.name(ng-href="{{challenge|challengeLinks:'detail'}}", title="{{challenge.name}}") {{challenge.name}}
 
-        p.subtrack-color {{challenge.subTrack | underscoreStrip}}
+      p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
       p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
@@ -72,10 +67,9 @@
 
 .challenge.list-view(ng-show="view=='list'", ng-class="challenge.track")
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")
-    .challenge-track
 
     header
-      a.name(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
+      a.name(ng-href="{{challenge|challengeLinks:'detail'}}", title="{{challenge.name}}") {{challenge.name}}
       
       p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
@@ -102,10 +96,9 @@
   .completed-challenge(
     ng-show="challenge.status === 'COMPLETED' || challenge.status === 'PAST'",
     ng-switch="challenge.track")
-    .challenge-track
 
     header
-      a.name(ng-href="{{challenge|challengeLinks:'detail'}}") {{challenge.name}}
+      a.name(ng-href="{{challenge|challengeLinks:'detail'}}", title="{{challenge.name}}") {{challenge.name}}
 
       p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
@@ -113,11 +106,10 @@
 
     .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack", ng-class="challenge.track")
 
-      div
-        .marathon-score
-          p.score {{challenge.pointTotal || 0 }}
+      .marathon-score
+        p.score {{challenge.pointTotal || 0 }}
 
-          p Total Points
+        p Total Points
 
     .challenge-details(ng-switch-when="DEVELOP")
       dev-challenge-user-place(challenge="challenge", view="view")
