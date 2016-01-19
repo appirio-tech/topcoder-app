@@ -13,7 +13,7 @@
       }
       if(inputStr.length >= n)
         return inputStr
-      var zeros = "0".repeat(n);
+      var zeros = new Array( n + 1 ).join("0");
       return (zeros + inputStr).slice(-1 * n)
     };
   }

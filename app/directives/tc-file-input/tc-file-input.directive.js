@@ -28,8 +28,8 @@
         var fileInput = $(element[0]).find('.none');
         var fileNameInput = $(element[0]).find('input[type=text]');
 
-        fileInput.bind('change', function() {
-          var file = fileInput[0].files[0];
+        fileInput.bind('change', function(event) {
+          var file = event.target.files[0];
 
           // About 1 in 20 times, the file is undefined (must be race condition)
           // Return early in this case so no errors are thrown

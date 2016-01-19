@@ -1,7 +1,6 @@
 /* jshint -W117, -W030 */
 describe('Submissions Controller', function() {
-  var controller;
-  var vm;
+  var controller, vm;
 
   var mockChallenge = {
     challenge: {
@@ -27,5 +26,11 @@ describe('Submissions Controller', function() {
 
   it('should exist', function() {
     expect(vm).to.exist;
+  });
+
+  it('should have properties on vm from the routes resolve', function() {
+    expect(vm.challengeTitle).to.equal(mockChallenge.challenge.name);
+    expect(vm.challengeId).to.equal(30049240);
+    expect(vm.track).to.equal(mockChallenge.challenge.track.toLowerCase());
   });
 });
