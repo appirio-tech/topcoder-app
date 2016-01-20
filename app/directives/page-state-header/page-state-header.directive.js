@@ -4,7 +4,7 @@
   angular.module('tcUIComponents').directive('pageStateHeader', function() {
     return {
       restrict: 'E',
-      templateUrl: 'directives/page-state-header/page-state-header.directive.html',
+      templateUrl: 'directives/page-state-header/page-state-header.html',
       transclude: true,
       scope: {
         handle: '@',
