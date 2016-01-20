@@ -2,6 +2,9 @@
 
 .mobile-redirect {
   padding: 45px 15px 30px;
+  // Not showing the mobile version of the page at all
+  // Delete the line below to show
+  display: none;
   @media screen and (min-width: 768px) {
     display: none;
   }
