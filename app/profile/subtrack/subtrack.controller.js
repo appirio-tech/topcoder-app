@@ -25,7 +25,7 @@
     vm.back = back;
     vm.subTrackStats = [];
 
-    vm.pageName = vm.subTrack.toLowerCase().replace(/_/g, ' ');
+    vm.pageName = vm.subTrack;
 
     vm.tabs = ['statistics'];
 

@@ -1,5 +1,5 @@
 .profile-subtrack-container(ng-cloak, ng-show="profileVm.status.stats === 'ready'")
-  .content 
+  .content
     .page-header
       page-state-header(handle="{{vm.userHandle}}", page-title="{{vm.pageName}}", hide-money="true", show-back-link="true", default-state="profile")
         .nav-right
@@ -11,7 +11,7 @@
             .carousel-elem
               a.flex-wrapper(ng-class="{'link': item.link, 'no-link': !item.link}", ng-href="{{item.link}}")
                 p.title(ng-hide="true") {{item.subTrack | track}}
-                
+
                 p.value(ng-show="item.label === 'rating'", style="color: {{item.val |  ratingColor}}") {{item.val | empty}}
                   span(style="background-color: {{item.val | ratingColor}}")
 
@@ -22,20 +22,20 @@
         include ./develop/develop-statistics.jade
         include ./design/design-statistics.jade
         include ./data/data-statistics.jade
-        
+
       tc-tab(heading="{{vm.tabs[1]}}")
         .subtrack-stats
           responsive-carousel(data="vm.subTrackStats", handle="{{vm.handle}}")
             .carousel-elem
               .flex-wrapper
                 p.title(ng-hide="true") {{item.subTrack | track}}
-                
+
                 p.value(ng-show="item.label === 'rating'", style="color: {{item.val |  ratingColor}}") {{item.val | empty}}
                   span(style="background-color: {{item.val | ratingColor}}")
 
                 p.value(ng-hide="item.label === 'rating'") {{item.val | empty}}
 
                 p.label {{item.label}}
-        include ./develop/develop-challenges.jade    
-        include ./design/design-challenges.jade    
+        include ./develop/develop-challenges.jade
+        include ./design/design-challenges.jade
         include ./data/data-challenges.jade
