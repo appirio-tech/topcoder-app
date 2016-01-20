@@ -84,10 +84,16 @@
         }
       },
       'submissions.file': {
-        url: '?method=file',
+        url: '?method',
         templateUrl: 'submissions/submit-file/submit-file.html',
         controller: 'SubmitFileController',
         controllerAs: 'vm',
+      },
+      'submissions.completed': {
+        url: 'completed',
+        templateUrl: 'submissions/submit-file-completed/submit-file-completed.html',
+        controller: 'SubmitFileCompletedController',
+        controllerAs: 'vm'
       }
     };
 

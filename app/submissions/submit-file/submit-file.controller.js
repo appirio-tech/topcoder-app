@@ -3,9 +3,9 @@
 
   angular.module('tc.submissions').controller('SubmitFileController', SubmitFileController);
 
-  SubmitFileController.$inject = ['$scope', '$stateParams', '$log', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
+  SubmitFileController.$inject = ['$scope','$state', '$stateParams', '$log', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
 
-  function SubmitFileController($scope, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
+  function SubmitFileController($scope, $state, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
     var vm = this;
     $log = $log.getInstance('SubmitFileController');
     var files = {};
@@ -212,7 +212,7 @@
           vm.finishing = false;
           vm.showProgress = false;
 
-          // TODO redirect to submission listing / challenge details page
+          $state.go('submissions.completed');
         }
       } else { // assume it to be error condition
         $log.debug("Error Condition: " + phase);
