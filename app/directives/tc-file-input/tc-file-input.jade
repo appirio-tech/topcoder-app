@@ -3,10 +3,10 @@
     span.lowercase(ng-if="showFileType") {{ ' *(.' + fileType + ')'}}
 
 .tc-file-field__inputs
-  div
+  .tc-label__wrapper
     input.tc-file-field__input(type="text", placeholder="{{placeholder}}", disabled)
 
-    span.tc-label__mandatory.lowercase(ng-if="mandatory") #[span *]mandatory
+    span.tc-label__asterisk.lowercase(ng-if="mandatory") #[span *]mandatory
 
   button.tc-btn(ng-click="selectFile()") {{buttonText}}
 

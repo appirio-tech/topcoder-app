@@ -10,7 +10,7 @@
 
 .panel-body
   form.form-blocks(name="submissionForm", role="form", ng-submit="submissionForm.$valid && vm.uploadSubmission()", novalidate)
-    .form-block.flex.wrap
+    .form-block.flex
       .form-block__instructions
         .form-block__title Files
 
@@ -96,7 +96,7 @@
           .tc-error-messages(ng-show="submissionForm.Submission_Rank.$dirty && submissionForm.Submission_Rank.$invalid")
             p(ng-show="submissionForm.Submission_Rank.$error.pattern") Please enter a positive integer.
 
-    .form-block.flex.wrap
+    .form-block.flex
       .form-block__instructions
         .form-block__title Notes
 
@@ -104,15 +104,16 @@
           p Type a short note about your design here. Explain revisions or other design elements that may not be clear.
 
       .form-block__fields
-        tc-textarea.tc-textarea(
-          label-text="Comments",
-          placeholder="My design tries to solve the problem with a particular idea in mind. The use of color is based on the provided brand guideline.",
-          character-count="true",
-          character-count-max="500",
-          value="vm.comments"
-        )
+        .fieldset
+          tc-textarea.tc-textarea(
+            label-text="Comments",
+            placeholder="My design tries to solve the problem with a particular idea in mind. The use of color is based on the provided brand guideline.",
+            character-count="true",
+            character-count-max="500",
+            value="vm.comments"
+          )
 
-    .form-block.flex.wrap
+    .form-block.flex
       .form-block__instructions
         .form-block__title Did you use custom fonts?
 
@@ -127,7 +128,7 @@
         .fieldsets
           tc-form-fonts(form-fonts="vm.formFonts")
 
-    .form-block.flex.wrap
+    .form-block.flex
       .form-block__instructions
         .form-block__title Did you use stock art?
 
@@ -141,7 +142,7 @@
     .panel-footer
       p Submitting your files means you hereby agree to the #[a(ng-href="https://www.{{DOMAIN}}/community/how-it-works/terms/", target="_blank") Topcoder terms of use] and to the extent your uploaded file wins a Topcoder Competition, you hereby assign, grant, and transfer to Topcoder all rights in and title to the Winning Submission (as further described in the terms of use).
 
-      p.tc-error-messages(ng-show="vm.submissionForm.hasAgreedToTerms && submissionForm.$invalid") There are outstanding problems with this page. Fix them before you can upload your submission.
+      p.tc-error-messages(ng-show="vm.submissionForm.hasAgreedToTerms && submissionForm.$invalid") There are outstanding problems with this page. You must fix them before you can upload your submission.
 
       .checkbox.flex.center
         input(type="checkbox", ng-model="vm.submissionForm.hasAgreedToTerms", id="agree-to-terms", required)
