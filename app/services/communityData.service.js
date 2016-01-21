@@ -19,28 +19,28 @@
       var data = {
         "memberLeaderboard": [
         {
-          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/abedavera.jpg",
-          "name": "abedavera",
+          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/nexttopdesigns_dec2015.png",
+          "name": "nexttopdesigns",
           "contestType": "Design",
-          "description": "TCO15 Design Champion!",
+          "description": "Ten wins earning over $10K in design challenges",
           "class": "design"
         }, {
-          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/bonton.jpg",
-          "name": "bonton",
+          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/seriyvolk83_dec2015.png",
+          "name": "seriyvolk83",
           "contestType": "Development",
-          "description": "Won $4200 with 4 wins in development challenges",
+          "description": "Six wins earning over $4K in development challenges",
           "class": "develop"
         }, {
-          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/maksay.jpg",
-          "name": "maksay",
+          "avatar": "//www.topcoder.com/wp-content/uploads/2015/05/sadhwaniyash6_dec2015.png",
+          "name": "sadhwaniyash6",
           "contestType": "Data Science",
-          "description": "Only participant to see a ratings increase in all four rounds in Sept.",
+          "description": "Rating increase of 627 pts in Oct SRMs vaulting into Div 1.",
           "class": "data-science"
         }, {
-          "avatar": "https://www.topcoder.com/wp-content/uploads/2015/05/herlansyahs.jpg",
-          "name": "herlansyahs",
+          "avatar": "https://www.topcoder.com/wp-content/uploads/2015/05/alyad_dec2015.png",
+          "name": "Alyad",
           "contestType": "Design Rookie",
-          "description": "Won first and second placements within his first two months of becoming a member!",
+          "description": "Won 2 challenges within 6 weeks of becoming a member!",
           "class": "design"
         }],
         "copilots": [{
