@@ -10,7 +10,7 @@
     ctrl.notSearch = true;
     ctrl.showing = 'list';
     ctrl.domain = CONSTANTS.domain;
-    ctrl.currentMonth = 'November 2015';
+    ctrl.currentMonth = 'December 2015';
     ctrl.memberLeaderboard = [];
     ctrl.copilots = [];
     CommunityDataService.getMembersData()
