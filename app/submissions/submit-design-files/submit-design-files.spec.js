@@ -48,8 +48,28 @@ describe('Submit Design Files Controller', function() {
     vm = controller;
   });
 
-  it('should exist', function() {
+  it('exists', function() {
     expect(vm).to.exist;
+  });
+
+  it('sets the right track for the method', function() {
+    controller = $controller('SubmitDesignFilesController', {
+      $scope: scope,
+      UserService: userService,
+      challengeToSubmitTo: {
+        challenge: {
+          name: 'Challenge Name',
+          track: 'DEVELOP',
+          id: 30049240
+        }
+      },
+      SubmissionsService: submissionsService,
+      $window: mockWindow
+    });
+    vm = controller;
+    scope.$digest();
+
+    expect(vm.submissionsBody.data.method).to.equal('DEVELOP_CHALLENGE_ZIP_FILE');
   });
 
   describe('setRankTo1', function() {
