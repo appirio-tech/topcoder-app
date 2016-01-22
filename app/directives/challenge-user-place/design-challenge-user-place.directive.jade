@@ -4,7 +4,7 @@
   p.place.passed(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
   p.place.completed(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
 
-  .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-hide="challenge.userStatus !== 'PASSED_REVIEW'")
+  .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
     img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || '/images/card-bg-no-image.svg'}}", fallback-src="/images/card-bg-no-image.svg")
     img(ng-show="challenge.isPrivate", src="/images/card-bg-private-project.svg")
 

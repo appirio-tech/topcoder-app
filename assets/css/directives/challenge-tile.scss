@@ -37,17 +37,26 @@ challenge-tile .challenge.tile-view {
     }
   }
 
+  .challenge-card__bottom {
+    width: 268px;/* 2px adjustment for 2 1px borders */
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
   // challenge details section
   .challenge-details {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    flex: 2;
   }
 
   // roles bar is common for both active and completed
   .roles {
     width: 100%;
-    border-radius: 4px;
+    border-radius: 0px 0px 4px 4px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -71,7 +80,7 @@ challenge-tile .challenge.tile-view {
   }
 
   .active-challenge {
-    height: 350px;
+    height: 390px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -84,7 +93,6 @@ challenge-tile .challenge.tile-view {
 
     .challenge-details {
       .currentPhase {
-        margin-top: 40px;
         margin-bottom: 20px;
         @include font-with-weight('Sofia Pro', 300);
         font-size: 18px;
@@ -99,7 +107,6 @@ challenge-tile .challenge.tile-view {
         align-items: center;
         width: 75px;
         height: 63px;
-        margin-bottom: 20px;
         background-image: url(/images/ico-calendar.svg);
 
         > p {
@@ -179,7 +186,7 @@ challenge-tile .challenge.tile-view {
 
 
   .completed-challenge {
-    height: 350px;
+    height: 390px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -220,6 +227,27 @@ challenge-tile .challenge.tile-view {
       &.DATA_SCIENCE {
         flex: 2;
         justify-content: center;
+      }
+
+      design-challenge-user-place {
+        display: flex;
+        flex-direction: column;
+        flex: 2;
+
+        .tile-view {
+          flex: 2;
+          justify-content: flex-end;
+        }
+      }
+
+      dev-challenge-user-place {
+        display: flex;
+        flex-direction: column;
+        flex: 2;
+
+        .tile-view {
+          flex: 2;
+        }
       }
 
       .marathon-score {
