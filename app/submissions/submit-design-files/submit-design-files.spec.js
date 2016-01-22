@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('Submit File Controller', function() {
+describe('Submit Design Files Controller', function() {
   var controller, vm, scope;
 
   var mockChallenge = {
@@ -22,6 +22,12 @@ describe('Submit File Controller', function() {
     getPresignedURL: function() {}
   };
 
+  var mockWindow = {
+    location: {
+      reload: function(val) { return val; }
+    }
+  };
+
   beforeEach(function() {
     bard.appModule('tc.submissions');
     bard.inject(this, '$controller', '$rootScope');
@@ -32,17 +38,38 @@ describe('Submit File Controller', function() {
   bard.verifyNoOutstandingHttpRequests();
 
   beforeEach(function() {
-    controller = $controller('SubmitFileController', {
+    controller = $controller('SubmitDesignFilesController', {
       $scope: scope,
       UserService: userService,
       challengeToSubmitTo: mockChallenge,
-      SubmissionsService: submissionsService
+      SubmissionsService: submissionsService,
+      $window: mockWindow
     });
     vm = controller;
   });
 
-  it('should exist', function() {
+  it('exists', function() {
     expect(vm).to.exist;
+  });
+
+  it('sets the right track for the method', function() {
+    controller = $controller('SubmitDesignFilesController', {
+      $scope: scope,
+      UserService: userService,
+      challengeToSubmitTo: {
+        challenge: {
+          name: 'Challenge Name',
+          track: 'DEVELOP',
+          id: 30049240
+        }
+      },
+      SubmissionsService: submissionsService,
+      $window: mockWindow
+    });
+    vm = controller;
+    scope.$digest();
+
+    expect(vm.submissionsBody.data.method).to.equal('DEVELOP_CHALLENGE_ZIP_FILE');
   });
 
   describe('setRankTo1', function() {
@@ -262,6 +289,18 @@ describe('Submit File Controller', function() {
         scope.$digest();
         expect(vm.submissionsBody.data.fonts).to.deep.equal(processedFonts);
       });
+    });
+  });
+
+  describe('refreshPage', function() {
+    it('reloads the page', function() {
+      var mockRefresh = sinon.spy(mockWindow.location, 'reload');
+
+      vm.refreshPage();
+      scope.$digest();
+
+      expect(mockRefresh).calledWith(true);
+      expect(mockRefresh).calledOnce;
     });
   });
 
