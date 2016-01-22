@@ -1,13 +1,13 @@
 (function () {
   'use strict';
 
-  angular.module('tc.submissions').controller('SubmitFileController', SubmitFileController);
+  angular.module('tc.submissions').controller('SubmitDesignFilesController', SubmitDesignFilesController);
 
-  SubmitFileController.$inject = ['$scope','$state', '$stateParams', '$log', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
+  SubmitDesignFilesController.$inject = ['$scope','$window', '$stateParams', '$log', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
 
-  function SubmitFileController($scope, $state, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
+  function SubmitDesignFilesController($scope, $window, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
     var vm = this;
-    $log = $log.getInstance('SubmitFileController');
+    $log = $log.getInstance('SubmitDesignFilesController');
     var files = {};
     var fileUploadProgress = {};
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/);
@@ -39,8 +39,6 @@
 
     vm.submissionsBody = {
       reference: {
-
-        // type dynamic or static?
         type: 'CHALLENGE',
         id: $stateParams.challengeId,
         phaseType: challengeToSubmitTo.phaseType,
@@ -48,9 +46,7 @@
       },
       userId: userId,
       data: {
-
-        // Dynamic or static?
-        method: 'DESIGN_CHALLENGE_ZIP_FILE',
+        method: challengeToSubmitTo.challenge.track.toUpperCase() + '_CHALLENGE_ZIP_FILE',
 
         // Can delete below since they are processed and added later?
         files: [],
@@ -64,6 +60,7 @@
     vm.setRankTo1 = setRankTo1;
     vm.setFileReference = setFileReference;
     vm.uploadSubmission = uploadSubmission;
+    vm.refreshPage = refreshPage;
     vm.cancelRetry = cancelRetry;
 
     activate();
@@ -194,11 +191,13 @@
             count++;
           }
           vm.uploadProgress = total / count;
+
           // initiate digest cycle because this event (xhr event) is caused outside angular
           $scope.$apply();
         } else { // typeof args === 'number', mainly used a s fallback to mark completion of the UPLOAD phase
           vm.uploadProgress = args;
         }
+
         // start next phase when UPLOAD is done
         if (vm.uploadProgress == 100) {
           $log.debug('Uploaded files.');
@@ -209,20 +208,20 @@
         // we are concerned only for completion of the phase
         if (args === 100) {
           $log.debug('Finished upload.');
-          vm.finishing = false;
-          vm.showProgress = false;
-
-          $state.go('submissions.completed');
         }
-      } else { // assume it to be error condition
+      } else {
+        // assume it to be error condition
         $log.debug("Error Condition: " + phase);
         vm.errorInUpload = true;
       }
     }
 
+    function refreshPage() {
+      $window.location.reload(true);
+    }
+
     function cancelRetry() {
       vm.showProgress = false;
-      // TODO redirect to submission listing / challenge details page
     }
   }
 })();

@@ -18,9 +18,7 @@
         controllerAs: 'submissions',
         data: {
           authRequired: true,
-
-          // TODO: Get title from PMs
-          title: 'Submit'
+          title: 'Challenge Submission'
         },
         resolve: {
           challengeToSubmitTo: ['ChallengeService', '$stateParams', 'UserService', function(ChallengeService, $stateParams, UserService) {
@@ -36,10 +34,9 @@
                 challenge = challenge[0];
 
                 if (!challenge) {
-                  // There should be a challenge, redirect?
+                  // TODO: There should be a challenge, redirect?
                   alert('User is not associated with this challenge.');
                 }
-
                 var phaseType;
                 var phaseId;
 
@@ -84,17 +81,22 @@
         }
       },
       'submissions.file': {
-        url: '?method',
-        templateUrl: 'submissions/submit-file/submit-file.html',
-        controller: 'SubmitFileController',
+        url:'file/',
+        abstract: true,
+        template: '<ui-view/>'
+      },
+      'submissions.file.design': {
+        url:'',
+        templateUrl: 'submissions/submit-design-files/submit-design-files.html',
+        controller: 'SubmitDesignFilesController',
         controllerAs: 'vm',
       },
-      'submissions.completed': {
-        url: 'completed',
-        templateUrl: 'submissions/submit-file-completed/submit-file-completed.html',
-        controller: 'SubmitFileCompletedController',
-        controllerAs: 'vm'
-      }
+      'submissions.file.develop': {
+        url:'',
+        templateUrl: 'submissions/submit-develop-files/submit-develop-files.html',
+        controller: 'SubmitDevelopFilesController',
+        controllerAs: 'vm',
+      },
     };
 
     for (var name in states) {
