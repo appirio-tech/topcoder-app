@@ -6,8 +6,9 @@ describe('Topcoder Form Stockart Directive', function() {
     bard.appModule('topcoder');
     bard.inject(this, '$compile', '$rootScope');
     scope = $rootScope.$new();
+    scope.stockarts = [];
 
-    var form = angular.element('<form><tc-form-stockart /></form>');
+    var form = angular.element('<form><tc-form-stockart form-stockarts="stockarts" /></form>');
     element = form.find('tc-form-stockart');
     var formElement = $compile(form)(scope);
     scope.$digest();

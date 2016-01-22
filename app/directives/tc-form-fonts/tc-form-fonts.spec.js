@@ -6,8 +6,9 @@ describe('Topcoder Form Fonts Directive', function() {
     bard.appModule('topcoder');
     bard.inject(this, '$compile', '$rootScope');
     scope = $rootScope.$new();
+    scope.formFonts = [];
 
-    var form = angular.element('<form><tc-form-fonts /></form>');
+    var form = angular.element('<form><tc-form-fonts form-fonts="formFonts" /></form>');
     element = form.find('tc-form-fonts');
     var formElement = $compile(form)(scope);
     scope.$digest();
@@ -23,7 +24,7 @@ describe('Topcoder Form Fonts Directive', function() {
 
   describe('is initialized with', function() {
     it('empty font data', function() {
-      defaultFormFont = isolateScope.formFonts[0];
+      var defaultFormFont = isolateScope.formFonts[0];
 
       expect(defaultFormFont.id).to.equal(0);
       expect(defaultFormFont.source).to.equal('');
