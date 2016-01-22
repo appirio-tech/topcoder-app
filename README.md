@@ -58,7 +58,7 @@ Spec files live alongside the code they are testing. For example, in peer-review
 ## UI-Router and States
 See any *.routes.js file as an example.
 
-**Important** Make sure the url in your routes files ends with a /
+**Important:** Make sure the url in your routes files ends with a slash `/`
 
 ## Contributing
 
