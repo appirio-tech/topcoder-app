@@ -112,11 +112,8 @@ tc-form-fonts, tc-form-stockart {
 }
 
 modal {
-  .close {
-    .icon.cross {
-      background-image: url(/images/x-mark-gray.svg);
-      background-size: 25px;
-    }
+  > button {
+    display: none;
   }
 }
 .upload-progress {
@@ -162,6 +159,7 @@ modal {
     font-size: 12px;
     line-height: 14px;
     color: $accent-gray-dark;
+    text-align: center;
   }
 
   .upload-progress__error {
@@ -177,6 +175,18 @@ modal {
       .progress-bar__bar--completed {
         background-color: $error;
       }
+    }
+  }
+}
+
+.upload-progess__links {
+  margin-top: 40px;
+
+  a {
+    display: inline-block;
+
+    &:first-child {
+      margin-right: 10px;
     }
   }
 }

@@ -3,9 +3,10 @@
 
   angular.module('tc.submissions').controller('SubmissionsController', SubmissionsController);
 
-  SubmissionsController.$inject = ['challengeToSubmitTo'];
+  SubmissionsController.$inject = ['challengeToSubmitTo', '$state'];
 
-  function SubmissionsController(challengeToSubmitTo) {
+  function SubmissionsController(challengeToSubmitTo, $state) {
+
     var vm = this;
 
     var challenge = challengeToSubmitTo.challenge;
@@ -15,6 +16,14 @@
 
     activate();
 
-    function activate() {}
+    function activate() {
+      var track = challengeToSubmitTo.challenge.track;
+
+      if (track === 'DESIGN') {
+        $state.go('submissions.file.design');
+      } else if (track === 'DEVELOP') {
+        $state.go('submissions.file.develop')
+      }
+    }
   }
 })();
