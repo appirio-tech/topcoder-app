@@ -1,0 +1,90 @@
+.mobile-redirect
+  .mobile-redirect__title File upload is not available for mobile
+
+  .mobile-redirect__body
+    p Our team is working hard on new features, and file upload currently only works on the web. Please open this page on your desktop if you want to create a submission.
+
+    a(ng-href="http://help.{{DOMAIN}}/design/submitting-to-a-design-challenge/formatting-your-submission-for-design-challenges/") TODO: same link as below for help on formatting submission
+
+    a.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenge-details/{{submissions.challengeId}}/?type={{submissions.track}}") Back to Challenge Details
+
+.panel-body
+  form.form-blocks(name="submissionForm", role="form", ng-submit="submissionForm.$valid && vm.uploadSubmission()", novalidate)
+    .form-block.flex
+      .form-block__instructions
+        .form-block__title Files
+
+        .form-block__text
+          p Need text from PMs.
+
+          p Need text from PMs.
+
+          p Need text from PMs.
+
+          a(ng-href="http://help.{{DOMAIN}}/design/submitting-to-a-design-challenge/formatting-your-submission-for-design-challenges/") Need link from PMs
+
+      .form-block__fields
+        .fieldset
+          tc-file-input.tc-file-field(
+            label-text="Preview Image",
+            field-id="DESIGN_COVER",
+            button-text="Add File",
+            file-type="jpg,jpeg,png"
+            placeholder="Image file as .jpg or .png",
+            mandatory="true",
+            set-file-reference="vm.setFileReference(file, fieldId)",
+            ng-model="vm.submissionForm.designCover"
+          )
+
+          .tc-error-messages(
+            ng-show="submissionForm['DESIGN_COVER'].$touched && submissionForm['DESIGN_COVER'].$invalid",
+            ng-messages="submissionForm['DESIGN_COVER'].$error"
+          )
+            p(ng-message="filesize") File size may not exceed 500MB.
+
+            p(ng-message="required") This is not the correct file format. Please select a .jpg or .png file.
+
+    .panel-footer
+      p Submitting your files means you hereby agree to the #[a(ng-href="https://www.{{DOMAIN}}/community/how-it-works/terms/", target="_blank") Topcoder terms of use] and to the extent your uploaded file wins a Topcoder Competition, you hereby assign, grant, and transfer to Topcoder all rights in and title to the Winning Submission (as further described in the terms of use).
+
+      p.tc-error-messages(ng-show="vm.submissionForm.hasAgreedToTerms && submissionForm.$invalid") There are outstanding problems with this page. You must fix them before you can upload your submission.
+
+      .checkbox.flex.center
+        input(type="checkbox", ng-model="vm.submissionForm.hasAgreedToTerms", id="agree-to-terms", required)
+
+        label(for="agree-to-terms") I understand and agree
+
+      button.tc-btn.tc-btn-secondary(type="submit", ng-disabled="submissionForm.$invalid") Submit
+
+modal.transition(show="vm.showProgress", background-click-close="false", style="background-color:white;")
+  .upload-progress(ng-class="{'upload-progress--error': vm.errorInUpload}")
+    .upload-progress__title
+      p Uploading submission for
+
+      p.upload-progress-title__challenge-name [Challenge name]
+
+    img.upload-progress__image(src="/images/robot.svg", ng-hide="vm.errorInUpload")
+    img.upload-progress__image--error(src="/images/robot-embarresed.svg", ng-show="vm.errorInUpload")
+
+    p.upload-progress__message(ng-hide="vm.errorInUpload") Hey, your work is AWESOME! Please don’t close the window while I’m working or you’ll loose all files!
+
+    p.upload-progress__message--error(ng-show="vm.errorInUpload") Oh, that’s embarrassing! One of the files couldn’t be uploaded, I’m so sorry.
+
+    progress-bar.upload-progress__progress-bar(completed="vm.uploadProgress", message="of 3 files uploaded")
+
+    .upload-progress__preparing(ng-show="vm.preparing && !vm.errorInUpload") #[span Preparing...]
+    .upload-progress__finishing(ng-show="vm.finishing && !vm.errorInUpload")
+      p Finished!
+
+      .upload-progess__links
+        a.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenge-details/{{submissions.challengeId}}/?type={{submissions.track}}") Back to the challenge
+
+        a.tc-btn.tc-btn-s.tc-btn-ghost(ng-click="vm.refreshPage()") Submit another
+
+
+    .upload-progress__error(ng-show="vm.errorInUpload") #[span File upload failed]
+
+    .upload-progress__error-action(ng-show="vm.errorInUpload")
+      button.tc-btn.tc-btn-s.tc-btn-ghost(type="button", ng-click="vm.cancelRetry()") Cancel
+
+      button.tc-btn.tc-btn-s.tc-btn-secondary(type="button", ng-click="submissionForm.$valid && vm.uploadSubmission()") Try Again
