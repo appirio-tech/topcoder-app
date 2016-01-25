@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://www.w3.org/2005/10/profile">
+    <base href="/">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="fragment" content="!">
+
+  </head>
+  <body ng-app="topcoder" ng-controller="TopcoderController as main" ng-class="{'menu-visible': main.menuVisible}" ng-strict-di>
+
+    <div id="header" ui-view="header" autoscroll="true"></div>
+
+    <div class="intro-js-container" ng-intro-options="main.introOptions" ng-intro-method="main.startIntro"></div>
+
+    <notifications-bar class="notifications" closeIcon="fa fa-times-circle"></notifications-bar>
+
+    <toaster-container toaster-options="{{main.globalToasterConfig}}"></toaster-container>
+
+    <div class="fold-wrapper"></div>
+      <div class="view-container" ui-view="container"></div>
+      <div class="fold-pusher"></div>
+
+    <div ui-view="footer"></div>
+
+  </body>
+</html>
