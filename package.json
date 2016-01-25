@@ -1,32 +1,21 @@
 {
   "name": "topcoder-app",
   "description": "Topcoder pages including login, registration, settings, dashboard, profile.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/appirio-tech/topcoder-app.git"
+  "scripts": {
+    "build": "webpack --bail --progress --build",
+    "dev": "webpack-dev-server --history-api-fallback --dev --inline --progress",
+    "lint": "eslint ."
   },
-  "keywords": [
-    "topcoder",
-    "account",
-    "login",
-    "registration",
-    "password",
-    "peer",
-    "review",
-    "dashboard",
-    "profile",
-    "settings"
-  ],
-  "bugs": {
-    "url": "https://github.com/appirio-tech/topcoder-app/issues"
-  },
-  "homepage": "https://github.com/appirio-tech/topcoder-app#readme",
   "devDependencies": {
-    "appirio-gulp-tasks": "3.x.x",
+    "appirio-tech-webpack-config": "^0.2.0",
     "appirio-styles": "https://github.com/appirio-tech/styles.git#panels",
+    "eslint": "^1.10.3",
+    "eslint-plugin-react": "^3.15.0",
     "bower": "^1.6.8",
-    "gulp": "^3.9.0",
     "wiredep": "^2.2.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "angular": "^1.4.9",
+    "angular-ui-router": "^0.2.16"
+  }
 }
