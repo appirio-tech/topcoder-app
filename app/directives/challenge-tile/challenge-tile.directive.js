@@ -1,29 +1,30 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   angular.module('tcUIComponents')
-    .directive('challengeTile', challengeTile);
+    .directive('challengeTile', challengeTile)
 
   function challengeTile() {
     return {
       restrict: 'E',
-      templateUrl: 'directives/challenge-tile/challenge-tile.directive.html',
+      template: require('./challenge-tile')(),
       scope: {
         challenge: '=',
         view: '='
       },
       controller: ['$scope', 'CONSTANTS', '$attrs', 'ChallengeService', 'ngDialog', function($scope, CONSTANTS, $attrs, ChallengeService, ngDialog) {
-        $scope.DOMAIN = CONSTANTS.domain;
-        $scope.openLightbox = openLightbox;
+        $scope.DOMAIN = CONSTANTS.domain
+        $scope.openLightbox = openLightbox
 
-        activate();
+        activate()
 
         function activate() {
           // move to service helper, called from controller
           if ($scope.challenge.status.trim().toUpperCase() === 'PAST' && $scope.challenge.subTrack === 'MARATHON_MATCH') {
-            ChallengeService.processPastMarathonMatch($scope.challenge);
+            ChallengeService.processPastMarathonMatch($scope.challenge)
           }
-
         }
 
         function openLightbox() {
@@ -31,9 +32,9 @@
             template: 'directives/challenge-tile/design-lightbox/design-lightbox.html',
             className: 'ngdialog-theme-default',
             scope: $scope
-          });
+          })
         }
       }]
-    };
+    }
   }
-})();
+})()

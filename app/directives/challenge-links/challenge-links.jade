@@ -1,6 +1,5 @@
 .challenge-links(ng-class="view + '-view'")
   a.registrants(ng-href="{{challenge|challengeLinks:'registrants'}}", ng-switch="challenge.subTrack")
-    
     .icon.registrants-icon
     p(ng-switch-when="MARATHON_MATCH") {{challenge.numRegistrants[0]}}
     p(ng-switch-default) {{challenge.numRegistrants}}

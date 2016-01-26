@@ -1,7 +1,7 @@
 .profile-widget-directive
   .pic
     img.profile-circle(ng-if="profile.photoURL", ng-src="{{profile.photoURL}}")
-    img.profile-circle(ng-if="!profile.photoURL", src="/images/ico-user-default.svg")
+    img.profile-circle(ng-if="!profile.photoURL", src=require("../../../assets/images/ico-user-default.svg"))
 
   .info
     h1.handle(style="color:{{handleColor}};") {{profile.handle}}
@@ -14,7 +14,7 @@
       | Member Since {{profile.startMonth}}
 
     a.tc-btn.tc-btn-s.edit(ng-show="editProfileLink", ui-sref="settings.profile") Edit Profile
-  
+
   .tracks-links(ng-if="profile.tracks && profile.tracks.length > 0")
     .tracks
       .track(ng-repeat="track in (profile.tracks)", ng-click="profileVm.scrollTo(track)")

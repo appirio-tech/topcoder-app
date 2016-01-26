@@ -20,13 +20,8 @@ body {
 }
 
 .fold-wrapper {
+  margin: 0;
   min-height: 100%;
-  @media only screen and (min-width : 1025px) {
-    margin: 0 auto -270px;
-  }
-  @media only screen and (max-width : 1024px) {
-    margin: 0 auto -200px;
-  }
 }
 
 .notifications {
@@ -67,7 +62,7 @@ body {
 
 // Section loading and form styles
 .section-loading {
-  background: url(/images/ripple.gif) no-repeat center center;
+  background: url(../images/ripple.gif) no-repeat center center;
   width: 100%;
   min-height: 50px;
 }

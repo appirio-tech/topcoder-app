@@ -1,12 +1,14 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
-  angular.module('tc.account').config(routes);
+  angular.module('tc.account').config(routes)
 
-  routes.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider'];
+  routes.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider']
 
   function routes($locationProvider, $stateProvider, $urlRouterProvider) {
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true)
 
     var states = {
       'auth': {
@@ -15,14 +17,14 @@
         data: {
           authRequired: false
         },
-        onEnter: ['$state', '$stateParams', 'TcAuthService', function($state, $stateParams, TcAuthService) {
+        onEnter: ['$state', '$stateParams', 'TcAuthService', '$log', function($state, $stateParams, TcAuthService, $log) {
           if (TcAuthService.isAuthenticated()) {
             // redirect to next if exists else dashboard
             if ($stateParams.next) {
-              $log.debug('Redirecting: ' + $stateParams.next);
-              window.location.href = decodeURIComponent($stateParams.next);
+              $log.debug('Redirecting: ' + $stateParams.next)
+              window.location.href = decodeURIComponent($stateParams.next)
             } else {
-              $state.go('dashboard');
+              $state.go('dashboard')
             }
           }
         }]
@@ -36,15 +38,15 @@
         },
         views: {
           'header@': {
-            templateUrl: 'layout/header/account-header.html'
+            template: require('../layout/header/account-header')()
           },
           'container@': {
-            templateUrl: 'account/login/login.html',
+            template: require('./login/login')(),
             controller: 'LoginController',
             controllerAs: 'vm'
           },
           'footer@': {
-            templateUrl: 'layout/footer/account-footer.html'
+            template: require('../layout/footer/account-footer')()
           }
         }
       },
@@ -52,19 +54,19 @@
         parent: 'auth',
         url: '/register/?next&utm_source&utm_medium&utm_campaign',
         data: {
-          title: "Join"
+          title: 'Join'
         },
         views: {
           'header@': {
-            templateUrl: 'layout/header/account-header.html'
+            template: require('../layout/header/account-header')()
           },
           'container@': {
-            templateUrl: 'account/register/register.html',
+            template: require('./register/register')(),
             controller: 'RegisterController',
             controllerAs: 'vm'
           },
           'footer@': {
-            templateUrl: 'layout/footer/account-footer.html'
+            template: require('../layout/footer/account-footer')()
           }
         }
       },
@@ -76,13 +78,13 @@
         },
         views: {
           'header@': {
-            templateUrl: 'layout/header/account-header.html'
+            template: require('../layout/header/account-header')()
           },
           'container@': {
-            templateUrl: 'account/register/registered-successfully.html'
+            template: require('./register/registered-successfully')()
           },
           'footer@': {
-            templateUrl: 'layout/footer/account-footer.html'
+            template: require('../layout/footer/account-footer')()
           }
         }
       },
@@ -90,19 +92,19 @@
         parent: 'auth',
         url: '/reset-password/?token&handle',
         data: {
-          title: "Reset Password"
+          title: 'Reset Password'
         },
         views: {
           'header@': {
-            templateUrl: 'layout/header/account-header.html'
+            template: require('../layout/header/account-header')()
           },
           'container@': {
-            templateUrl: 'account/reset-password/reset-password.html',
+            template: require('./reset-password/reset-password')(),
             controller: 'ResetPasswordController',
             controllerAs: 'vm'
           },
           'footer@': {
-            templateUrl: 'layout/footer/account-footer.html'
+            template: require('../layout/footer/account-footer')()
           }
         }
       },
@@ -119,10 +121,10 @@
           authRequired: false
         }
       }
-    };
+    }
 
     angular.forEach(states, function(state, name) {
-      $stateProvider.state(name, state);
-    });
+      $stateProvider.state(name, state)
+    })
   }
-})();
+})()

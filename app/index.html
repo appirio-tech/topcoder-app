@@ -8,7 +8,7 @@
     <meta name="fragment" content="!">
 
   </head>
-  <body ng-app="topcoder" ng-controller="TopcoderController as main" ng-class="{'menu-visible': main.menuVisible}" ng-strict-di>
+  <body ng-app="topcoder" ng-controller="TopcoderController as main" ng-class="{'menu-visible': main.menuVisible}">
 
     <div id="header" ui-view="header" autoscroll="true"></div>
 
@@ -18,9 +18,10 @@
 
     <toaster-container toaster-options="{{main.globalToasterConfig}}"></toaster-container>
 
-    <div class="fold-wrapper"></div>
+    <div class="fold-wrapper">
       <div class="view-container" ui-view="container"></div>
       <div class="fold-pusher"></div>
+    </div>
 
     <div ui-view="footer"></div>
 

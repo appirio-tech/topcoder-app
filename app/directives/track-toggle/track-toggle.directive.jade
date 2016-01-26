@@ -3,12 +3,12 @@
   .content(class="{{!tracks[track] && 'disabled'}}")
     .track-details
       .icon(ng-class="{'disabled': !tracks[track]}")
-        img(ng-if="track == 'DATA_SCIENCE' && tracks[track]", src="/images/ico-track-data.svg")
-        img(ng-if="track == 'DATA_SCIENCE' && !tracks[track]", src="/images/ico-track-data-grey.svg")
-        img(ng-if="track == 'DEVELOP' && tracks[track]", src="/images/ico-track-develop.svg")
-        img(ng-if="track == 'DEVELOP' && !tracks[track]", src="/images/ico-track-develop-grey.svg")
-        img(ng-if="track == 'DESIGN' && tracks[track]", src="/images/ico-track-design.svg")
-        img(ng-if="track == 'DESIGN' && !tracks[track]", src="/images/ico-track-design-grey.svg")
+        img(ng-if="track == 'DATA_SCIENCE' && tracks[track]", src=require("../../../assets/images/ico-track-data.svg"))
+        img(ng-if="track == 'DATA_SCIENCE' && !tracks[track]", src=require("../../../assets/images/ico-track-data-grey.svg"))
+        img(ng-if="track == 'DEVELOP' && tracks[track]", src=require("../../../assets/images/ico-track-develop.svg"))
+        img(ng-if="track == 'DEVELOP' && !tracks[track]", src=require("../../../assets/images/ico-track-develop-grey.svg"))
+        img(ng-if="track == 'DESIGN' && tracks[track]", src=require("../../../assets/images/ico-track-design.svg"))
+        img(ng-if="track == 'DESIGN' && !tracks[track]", src=require("../../../assets/images/ico-track-design-grey.svg"))
 
       .text
         span.title(class="{{!tracks[track] && 'disabled'}}") {{track | track}}
