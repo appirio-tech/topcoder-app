@@ -29,13 +29,18 @@
 
             var userHandle = UserService.getUserIdentity().handle;
 
+            var error = null;
+
             return ChallengeService.getUserChallenges(userHandle, params)
               .then(function(challenge) {
-                challenge = challenge[0];
+                challenge = challenge[0].plain();
 
                 if (!challenge) {
-                  // TODO: There should be a challenge, redirect?
-                  alert('User is not associated with this challenge.');
+                  setErrorMessage('challenge', 'This is not a valid challenge. Use your browser\'s back button to return.');
+                  return {
+                    error: error,
+                    challenge: null
+                  };
                 }
                 var phaseType;
                 var phaseId;
@@ -57,26 +62,43 @@
                   return false;
                 });
 
+                if (!isPhaseSubmission) {
+                  setErrorMessage('phase', 'Submission phases are not currently open for this challenge.')
+                }
+
                 var isSubmitter = _.some(challenge.userDetails.roles, function(role) {
                   return role === 'Submitter';
                 });
 
-                if (!isPhaseSubmission || !isSubmitter) {
-                // TODO: Where do we redirect if you can't submit?
-                  alert('You should not have access to this page');
+                if (!isSubmitter) {
+                  setErrorMessage('submitter', 'You do not have a submitter role for this challenge.')
                 }
 
                 return {
+                  error: error,
                   challenge: challenge,
                   phaseType: phaseType,
                   phaseId: phaseId
                 };
               })
               .catch(function(err) {
-                console.log('ERROR GETTING CHALLENGE: ', err);
-                alert('There was an error accessing this page');
-                // TODO: Where do we redirect if there is an error?
+                setErrorMessage('challenge', 'There was an error getting information for this challenge.');
+
+                return {
+                  error: error,
+                  challenge: null
+                };
               });
+
+            function setErrorMessage(type, message) {
+              // Sets the error as the first error encountered
+              if (!error) {
+                error = {
+                  type: type,
+                  message: message
+                };
+              }
+            }
           }]
         }
       },
@@ -84,6 +106,10 @@
         url:'file/',
         abstract: true,
         template: '<ui-view/>'
+      },
+      'submissions.file.error': {
+        url: '',
+        templateUrl: 'submissions/submission-error/submission-error.html',
       },
       'submissions.file.design': {
         url:'',
@@ -96,7 +122,7 @@
         templateUrl: 'submissions/submit-develop-files/submit-develop-files.html',
         controller: 'SubmitDevelopFilesController',
         controllerAs: 'vm',
-      },
+      }
     };
 
     for (var name in states) {
