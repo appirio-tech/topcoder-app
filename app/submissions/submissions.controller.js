@@ -6,23 +6,30 @@
   SubmissionsController.$inject = ['challengeToSubmitTo', '$state'];
 
   function SubmissionsController(challengeToSubmitTo, $state) {
-
     var vm = this;
 
-    var challenge = challengeToSubmitTo.challenge;
-    vm.challengeTitle = challenge.name;
-    vm.challengeId = challenge.id;
-    vm.track = challenge.track.toLowerCase();
+    vm.error = !!challengeToSubmitTo.error;
 
-    activate();
+    if (vm.error) {
+      vm.errorType = challengeToSubmitTo.error.type;
+      vm.errorMessage = challengeToSubmitTo.error.message;
+      vm.challengeError = vm.errorType === 'challenge';
+    }
 
-    function activate() {
-      var track = challengeToSubmitTo.challenge.track;
+    if (challengeToSubmitTo.challenge) {
+      var challenge = challengeToSubmitTo.challenge;
+      vm.challengeTitle = challenge.name;
+      vm.challengeId = challenge.id;
+      vm.track = challenge.track.toLowerCase();
 
-      if (track === 'DESIGN') {
-        $state.go('submissions.file.design');
-      } else if (track === 'DEVELOP') {
-        $state.go('submissions.file.develop')
+      if (challengeToSubmitTo.error) {
+        $state.go('submissions.file.error');
+      } else {
+        if (challenge.track === 'DESIGN') {
+          $state.go('submissions.file.design');
+        } else if (challenge.track === 'DEVELOP') {
+          $state.go('submissions.file.develop')
+        }
       }
     }
   }
