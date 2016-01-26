@@ -6,15 +6,10 @@ design-challenge-user-place {
   .tile-view {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
 
     .place {
-      &.completed, &.passed, &.didnt {
-        margin-bottom: -36px;
-        margin-top: 52px;
-      }
-      margin-bottom: 8px;
-      margin-top: 8px;
       @include sofia-pro-regular;
       font-size: 20px;
       color: $gray-darkest;

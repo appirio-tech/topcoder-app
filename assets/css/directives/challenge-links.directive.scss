@@ -8,15 +8,13 @@
   width: 100%;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
-  padding: 0 20px;
-  margin-bottom: 10px;
 
   a {
     text-decoration: none;
     p {
       color: $accent-gray;
       @include font-with-weight('Sofia Pro', 500);
-      font-size: 12px;
+      font-size: 10px;
       line-height: 14px;
       text-transform: uppercase;
 

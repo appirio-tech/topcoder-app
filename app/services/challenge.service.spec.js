@@ -40,357 +40,762 @@ describe('Challenge Service', function() {
     $httpBackend.flush();
   });
 
-  it('processPastChallenges should process the won DESIGN/WEB_DESIGNS challenge ', function() {
-    var challenges = [
-      {
-        id: 30041345,
-        name: 'Mock Challenge 1',
-        track: 'DESIGN',
-        subTrack: 'WEB_DESIGNS',
-        userDetails: {
-          hasUserSubmittedForReview: true,
-          roles: ['Submitter'],
-          submissions: [
+  describe('processActiveDevDesignChallenges ', function() {
+    it('should process the active DESIGN/WEB_DESIGNS challenge with submitter role ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DESIGN',
+          subTrack: 'WEB_DESIGNS',
+          currentPhases: [
             {
-              challengeId: 30041345,
-              id: 12345,
-              placement: 1,
-              score: 98.0,
-              status: 'Active',
-              type: 'Contest Submission'
+              "challengeId": 30052661,
+              "id": 789719,
+              "phaseType": "Registration",
+              "phaseStatus": "Open",
+              "duration": 2419200000,
+              "scheduledStartTime": moment().add(5, 'days'),
+              "scheduledEndTime": moment().add(10, 'days'),
+              "actualStartTime": moment().add(5, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": "2016-01-15T18:00Z"
             },
             {
-              challengeId: 30041345,
-              id: 12346,
-              placement: 11,
-              score: 0.0,
-              status: 'Failed Review',
-              type: 'Contest Submission'
-            },
-            {
-              challengeId: 30041345,
-              id: 12347,
-              placement: 21,
-              score: 0.0,
-              status: 'Completed Without Win',
-              type: 'Checkpoint Submission'
-            }
-          ]
-        }
-      }
-    ];
-    ChallengeService.processPastChallenges(challenges);
-    var challenge = challenges[0];
-    expect(challenge.highestPlacement).to.exist.to.equal(1);
-    expect(challenge.wonFirst).to.exist.to.true;
-    expect(challenge.userStatus).to.exist.to.equal('PASSED_REVIEW');
-    expect(challenge.userHasSubmitterRole).to.exist.to.true;
-  });
-
-  it('processPastChallenges should process the won DEVELOP/<ANY> challenge ', function() {
-    var challenges = [
-      {
-        id: 30041345,
-        name: 'Mock Challenge 1',
-        track: 'DEVELOP',
-        subTrack: 'CODE',
-        userDetails: {
-          hasUserSubmittedForReview: true,
-          roles: ['Submitter'],
-          submissions: [
-            {
-              challengeId: 30041345,
-              id: 12345,
-              placement: 1,
-              score: 98.0,
-              status: 'Active',
-              type: 'Contest Submission'
-            },
-            {
-              challengeId: 30041345,
-              id: 12346,
-              placement: 11,
-              score: 0.0,
-              status: 'Failed Review',
-              type: 'Contest Submission'
-            },
-            {
-              challengeId: 30041345,
-              id: 12347,
-              placement: 21,
-              score: 0.0,
-              status: 'Completed Without Win',
-              type: 'Checkpoint Submission'
+              "challengeId": 30052661,
+              "id": 789720,
+              "phaseType": "Submission",
+              "phaseStatus": "Open",
+              "duration": 2418900000,
+              "scheduledStartTime": moment().add(6, 'days'),
+              "scheduledEndTime": moment().add(20, 'days'),
+              "actualStartTime": moment().add(6, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": null
             }
           ],
-          winningPlacements: [2, 11, 1]
+          userDetails: {
+            roles: [
+              "Submitter"
+            ],
+            hasUserSubmittedForReview: false,
+            submissionReviewScore: null,
+            winningPlacements: null,
+            submissions: null
+          }
         }
+      ];
+      ChallengeService.processActiveDevDesignChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.userAction).to.exist.to.equal("Submit");
+      expect(challenge.userCurrentPhaseEndTime).to.exist.to.have.length(3);
+      expect(challenge.userCurrentPhaseEndTime[0]).to.exist.to.equal('10');
+      expect(challenge.userCurrentPhaseEndTime[1]).to.exist.to.equal('days');
+      expect(challenge.userCurrentPhase).to.exist.to.equal('Registration');
+    });
 
-      }
-    ];
-    ChallengeService.processPastChallenges(challenges);
-    var challenge = challenges[0];
-    expect(challenge.highestPlacement).to.exist.to.equal(1);
-    expect(challenge.wonFirst).to.exist.to.true;
-    expect(challenge.userStatus).to.exist.to.equal('PASSED_REVIEW');
-    expect(challenge.userHasSubmitterRole).to.exist.to.true;
-  });
-
-  it('processPastChallenges should process the lost DEVELOP/<ANY> challenge ', function() {
-    var challenges = [
-      {
-        id: 30041345,
-        name: 'Mock Challenge 1',
-        track: 'DEVELOP',
-        subTrack: 'CODE',
-        userDetails: {
-          hasUserSubmittedForReview: true,
-          roles: ['Submitter'],
-          submissions: [
+    it('should process the active DESIGN/WEB_DESIGNS challenge with submitter role with 1 hour difference in end date ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DESIGN',
+          subTrack: 'WEB_DESIGNS',
+          currentPhases: [
             {
-              challengeId: 30041345,
-              id: 12345,
-              placement: 1,
-              score: 98.0,
-              status: 'Active',
-              type: 'Contest Submission'
+              "challengeId": 30052661,
+              "id": 789719,
+              "phaseType": "Registration",
+              "phaseStatus": "Open",
+              "duration": 2419200000,
+              "scheduledStartTime": moment().subtract(5, 'days'),
+              "scheduledEndTime": moment().add(1, 'hours'),
+              "actualStartTime": moment().subtract(5, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": "2016-01-15T18:00Z"
             },
             {
-              challengeId: 30041345,
-              id: 12346,
-              placement: 11,
-              score: 0.0,
-              status: 'Failed Review',
-              type: 'Contest Submission'
-            },
-            {
-              challengeId: 30041345,
-              id: 12347,
-              placement: 21,
-              score: 0.0,
-              status: 'Completed Without Win',
-              type: 'Checkpoint Submission'
+              "challengeId": 30052661,
+              "id": 789720,
+              "phaseType": "Submission",
+              "phaseStatus": "Open",
+              "duration": 2418900000,
+              "scheduledStartTime": moment().add(6, 'days'),
+              "scheduledEndTime": moment().add(20, 'days'),
+              "actualStartTime": moment().add(6, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": null
             }
           ],
-          winningPlacements: [0]
+          userDetails: {
+            roles: [
+              "Submitter"
+            ],
+            hasUserSubmittedForReview: false,
+            submissionReviewScore: null,
+            winningPlacements: null,
+            submissions: null
+          }
         }
+      ];
+      ChallengeService.processActiveDevDesignChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.userAction).to.exist.to.equal("Submit");
+      expect(challenge.userCurrentPhaseEndTime).to.exist.to.have.length(3);
+      expect(challenge.userCurrentPhaseEndTime[0]).to.exist.to.equal('1');
+      expect(challenge.userCurrentPhaseEndTime[1]).to.exist.to.equal('hour');
+      expect(challenge.userCurrentPhase).to.exist.to.equal('Registration');
+    });
 
-      }
-    ];
-    ChallengeService.processPastChallenges(challenges);
-    var challenge = challenges[0];
-    expect(challenge.highestPlacement).not.to.exist;
-    expect(challenge.wonFirst).to.exist.to.false;
-    expect(challenge.userStatus).to.exist.to.equal('PASSED_SCREENING');
-    expect(challenge.userHasSubmitterRole).to.exist.to.true;
-  });
-
-  it('processPastChallenges should process the won DEVELOP/FIRST_2_FINISH challenge ', function() {
-    var challenges = [
-      {
-        id: 30041345,
-        name: 'Mock Challenge 1',
-        track: 'DEVELOP',
-        subTrack: 'FIRST_2_FINISH',
-        userDetails: {
-          hasUserSubmittedForReview: true,
-          roles: ['Submitter'],
-          submissions: [
+    it('should process the active DESIGN/WEB_DESIGNS challenge without null role ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DESIGN',
+          subTrack: 'WEB_DESIGNS',
+          currentPhases: [
             {
-              challengeId: 30041345,
-              id: 12345,
-              placement: 1,
-              score: 98.0,
-              status: 'Active',
-              type: 'Contest Submission'
+              "challengeId": 30052661,
+              "id": 789719,
+              "phaseType": "Registration",
+              "phaseStatus": "Open",
+              "duration": 2419200000,
+              "scheduledStartTime": moment().add(5, 'days'),
+              "scheduledEndTime": moment().add(10, 'days'),
+              "actualStartTime": moment().add(5, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": "2016-01-15T18:00Z"
             },
             {
-              challengeId: 30041345,
-              id: 12346,
-              placement: 11,
-              score: 0.0,
-              status: 'Failed Review',
-              type: 'Contest Submission'
-            },
-            {
-              challengeId: 30041345,
-              id: 12347,
-              placement: 21,
-              score: 0.0,
-              status: 'Completed Without Win',
-              type: 'Checkpoint Submission'
+              "challengeId": 30052661,
+              "id": 789720,
+              "phaseType": "Submission",
+              "phaseStatus": "Open",
+              "duration": 2418900000,
+              "scheduledStartTime": moment().add(6, 'days'),
+              "scheduledEndTime": moment().add(20, 'days'),
+              "actualStartTime": moment().add(6, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": null
             }
-          ]
+          ],
+          userDetails: {
+            roles: null,
+            hasUserSubmittedForReview: false,
+            submissionReviewScore: null,
+            winningPlacements: null,
+            submissions: null
+          }
         }
-      }
-    ];
-    ChallengeService.processPastChallenges(challenges);
-    var challenge = challenges[0];
-    expect(challenge.highestPlacement).to.exist.to.equal(1);
-    expect(challenge.wonFirst).to.exist.to.true;
-    expect(challenge.userStatus).to.exist.to.equal('PASSED_REVIEW');
-    expect(challenge.userHasSubmitterRole).to.exist.to.true;
-  });
+      ];
+      ChallengeService.processActiveDevDesignChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.userAction).to.exist.to.equal("Submit");
+      expect(challenge.userCurrentPhaseEndTime).to.exist.to.have.length(3);
+      expect(challenge.userCurrentPhaseEndTime[0]).to.exist.to.equal('10');
+      expect(challenge.userCurrentPhaseEndTime[1]).to.exist.to.equal('days');
+      expect(challenge.userCurrentPhase).to.exist.to.equal('Registration');
+    });
 
-  it('processPastChallenges should process the lost(without placement) DEVELOP/FIRST_2_FINISH challenge ', function() {
-    var challenges = [
-      {
-        id: 30041345,
-        name: 'Mock Challenge 1',
-        track: 'DEVELOP',
-        subTrack: 'FIRST_2_FINISH',
-        userDetails: {
-          hasUserSubmittedForReview: true,
-          roles: ['Submitter'],
-          submissions: [
+    it('should process the active DESIGN/WEB_DESIGNS challenge without undefined role ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DESIGN',
+          subTrack: 'WEB_DESIGNS',
+          currentPhases: [
             {
-              challengeId: 30041345,
-              id: 12345,
-              placement: null,
-              score: 34.0,
-              status: 'Active',
-              type: 'Contest Submission'
+              "challengeId": 30052661,
+              "id": 789719,
+              "phaseType": "Registration",
+              "phaseStatus": "Open",
+              "duration": 2419200000,
+              "scheduledStartTime": moment().add(5, 'days'),
+              "scheduledEndTime": moment().add(10, 'days'),
+              "actualStartTime": moment().add(5, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": "2016-01-15T18:00Z"
             },
             {
-              challengeId: 30041345,
-              id: 12346,
-              placement: null,
-              score: 0.0,
-              status: 'Failed Review',
-              type: 'Contest Submission'
-            },
-            {
-              challengeId: 30041345,
-              id: 12347,
-              placement: 1,
-              score: 0.0,
-              status: 'Completed Without Win',
-              type: 'Checkpoint Submission'
+              "challengeId": 30052661,
+              "id": 789720,
+              "phaseType": "Submission",
+              "phaseStatus": "Open",
+              "duration": 2418900000,
+              "scheduledStartTime": moment().add(6, 'days'),
+              "scheduledEndTime": moment().add(20, 'days'),
+              "actualStartTime": moment().add(6, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": null
             }
-          ]
+          ],
+          userDetails: {
+            hasUserSubmittedForReview: false,
+            submissionReviewScore: null,
+            winningPlacements: null,
+            submissions: null
+          }
         }
-      }
-    ];
-    ChallengeService.processPastChallenges(challenges);
-    var challenge = challenges[0];
-    expect(challenge.highestPlacement).not.to.exist;
-    expect(challenge.wonFirst).to.exist.to.false;
-    expect(challenge.userStatus).to.exist.to.equal('PASSED_SCREENING');
-    expect(challenge.userHasSubmitterRole).to.exist.to.true;
-  });
+      ];
+      ChallengeService.processActiveDevDesignChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.userAction).to.exist.to.equal("Submit");
+      expect(challenge.userCurrentPhaseEndTime).to.exist.to.have.length(3);
+      expect(challenge.userCurrentPhaseEndTime[0]).to.exist.to.equal('10');
+      expect(challenge.userCurrentPhaseEndTime[1]).to.exist.to.equal('days');
+      expect(challenge.userCurrentPhase).to.exist.to.equal('Registration');
+    });
 
-  it('processPastChallenges should process the lost(with placement) DEVELOP/FIRST_2_FINISH challenge ', function() {
-    var challenges = [
-      {
-        id: 30041345,
-        name: 'Mock Challenge 1',
-        track: 'DEVELOP',
-        subTrack: 'FIRST_2_FINISH',
-        userDetails: {
-          hasUserSubmittedForReview: true,
-          roles: ['Submitter'],
-          submissions: [
+    it('should process the active DESIGN/WEB_DESIGNS challenge with submitter role and already submitted ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DESIGN',
+          subTrack: 'WEB_DESIGNS',
+          currentPhases: [
             {
-              challengeId: 30041345,
-              id: 12345,
-              placement: 5,
-              score: 34.0,
-              status: 'Active',
-              type: 'Contest Submission'
+              "challengeId": 30052661,
+              "id": 789719,
+              "phaseType": "Registration",
+              "phaseStatus": "Open",
+              "duration": 2419200000,
+              "scheduledStartTime": moment().add(5, 'days'),
+              "scheduledEndTime": moment().add(10, 'days'),
+              "actualStartTime": moment().add(5, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": "2016-01-15T18:00Z"
             },
             {
-              challengeId: 30041345,
-              id: 12346,
-              placement: null,
-              score: 0.0,
-              status: 'Failed Review',
-              type: 'Contest Submission'
-            },
-            {
-              challengeId: 30041345,
-              id: 12347,
-              placement: 1,
-              score: 0.0,
-              status: 'Completed Without Win',
-              type: 'Checkpoint Submission'
+              "challengeId": 30052661,
+              "id": 789720,
+              "phaseType": "Submission",
+              "phaseStatus": "Open",
+              "duration": 2418900000,
+              "scheduledStartTime": moment().add(6, 'days'),
+              "scheduledEndTime": moment().add(20, 'days'),
+              "actualStartTime": moment().add(6, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": null
             }
-          ]
+          ],
+          userDetails: {
+            roles: [
+              "Submitter"
+            ],
+            hasUserSubmittedForReview: true,
+            submissionReviewScore: null,
+            winningPlacements: null,
+            submissions: null
+          }
         }
-      }
-    ];
-    ChallengeService.processPastChallenges(challenges);
-    var challenge = challenges[0];
-    expect(challenge.highestPlacement).to.exist.to.equal(5);
-    expect(challenge.wonFirst).to.exist.to.false;
-    expect(challenge.userStatus).to.exist.to.equal('PASSED_REVIEW');
-    expect(challenge.userHasSubmitterRole).to.exist.to.true;
+      ];
+      ChallengeService.processActiveDevDesignChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.userAction).to.exist.to.equal("Submitted");
+      expect(challenge.userCurrentPhaseEndTime).to.exist.to.have.length(3);
+      expect(challenge.userCurrentPhaseEndTime[0]).to.exist.to.equal('20');
+      expect(challenge.userCurrentPhaseEndTime[1]).to.exist.to.equal('days');
+      expect(challenge.userCurrentPhase).to.exist.to.equal('Submission');
+    });
+
+    it('should process the active DESIGN/WEB_DESIGNS challenge with non submitter role ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DESIGN',
+          subTrack: 'WEB_DESIGNS',
+          currentPhases: [
+            {
+              "challengeId": 30052661,
+              "id": 789719,
+              "phaseType": "Registration",
+              "phaseStatus": "Open",
+              "duration": 2419200000,
+              "scheduledStartTime": moment().add(5, 'days'),
+              "scheduledEndTime": moment().add(10, 'days'),
+              "actualStartTime": moment().add(5, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": "2016-01-15T18:00Z"
+            },
+            {
+              "challengeId": 30052661,
+              "id": 789720,
+              "phaseType": "Submission",
+              "phaseStatus": "Open",
+              "duration": 2418900000,
+              "scheduledStartTime": moment().add(6, 'days'),
+              "scheduledEndTime": moment().add(20, 'days'),
+              "actualStartTime": moment().add(6, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": null
+            }
+          ],
+          userDetails: {
+            roles: [
+              "Observer"
+            ],
+            hasUserSubmittedForReview: false,
+            submissionReviewScore: null,
+            winningPlacements: null,
+            submissions: null
+          }
+        }
+      ];
+      ChallengeService.processActiveDevDesignChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.userAction).not.to.exist;
+      expect(challenge.userCurrentPhaseEndTime).to.exist.to.have.length(3);
+      expect(challenge.userCurrentPhaseEndTime[0]).to.exist.to.equal('10');
+      expect(challenge.userCurrentPhaseEndTime[1]).to.exist.to.equal('days');
+      expect(challenge.userCurrentPhase).to.exist.to.equal('Registration');
+    });
+
+    it('should process the active DESIGN/WEB_DESIGNS challenge with non submitter role ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DESIGN',
+          subTrack: 'WEB_DESIGNS',
+          currentPhases: [
+            {
+              "challengeId": 30052661,
+              "id": 789719,
+              "phaseType": "Registration",
+              "phaseStatus": "Open",
+              "duration": 2419200000,
+              "scheduledStartTime": moment().add(5, 'days'),
+              "scheduledEndTime": moment().add(10, 'days'),
+              "actualStartTime": moment().add(5, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": "2016-01-15T18:00Z"
+            },
+            {
+              "challengeId": 30052661,
+              "id": 789720,
+              "phaseType": "Submission",
+              "phaseStatus": "Open",
+              "duration": 2418900000,
+              "scheduledStartTime": moment().add(6, 'days'),
+              "scheduledEndTime": moment().add(20, 'days'),
+              "actualStartTime": moment().add(6, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": null
+            },
+            {
+              "challengeId": 30052661,
+              "id": 789720,
+              "phaseType": "Review",
+              "phaseStatus": "Open",
+              "duration": 2418900000,
+              "scheduledStartTime": moment().add(20, 'days'),
+              "scheduledEndTime": moment().add(22, 'days'),
+              "actualStartTime": moment().add(20, 'days'),
+              "actualEndTime": null,
+              "fixedStartTime": null
+            }
+          ],
+          userDetails: {
+            roles: [
+              "Submitter"
+            ],
+            hasUserSubmittedForReview: true,
+            submissionReviewScore: null,
+            winningPlacements: null,
+            submissions: null
+          }
+        }
+      ];
+      ChallengeService.processActiveDevDesignChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.userAction).not.to.exist;
+      expect(challenge.userCurrentPhaseEndTime).to.exist.to.have.length(3);
+      expect(challenge.userCurrentPhaseEndTime[0]).to.exist.to.equal('22');
+      expect(challenge.userCurrentPhaseEndTime[1]).to.exist.to.equal('days');
+      expect(challenge.userCurrentPhase).to.exist.to.equal('Review');
+    });
   });
 
-  it('processPastChallenges should process a not completed DEVELOP/FIRST_2_FINISH challenge ', function() {
-    var challenges = [
-      {
-        id: 30041345,
-        name: 'Mock Challenge 1',
-        track: 'DEVELOP',
-        subTrack: 'FIRST_2_FINISH',
-        userDetails: {
-          hasUserSubmittedForReview: false,
-          roles: ['Submitter'],
-          submissions: []
+  describe('processPastChallenges ', function() {
+    it('should process the won DESIGN/WEB_DESIGNS challenge ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DESIGN',
+          subTrack: 'WEB_DESIGNS',
+          userDetails: {
+            hasUserSubmittedForReview: true,
+            roles: ['Submitter'],
+            submissions: [
+              {
+                challengeId: 30041345,
+                id: 12345,
+                placement: 1,
+                score: 98.0,
+                status: 'Active',
+                type: 'Contest Submission'
+              },
+              {
+                challengeId: 30041345,
+                id: 12346,
+                placement: 11,
+                score: 0.0,
+                status: 'Failed Review',
+                type: 'Contest Submission'
+              },
+              {
+                challengeId: 30041345,
+                id: 12347,
+                placement: 21,
+                score: 0.0,
+                status: 'Completed Without Win',
+                type: 'Checkpoint Submission'
+              }
+            ]
+          }
         }
-      }
-    ];
-    ChallengeService.processPastChallenges(challenges);
-    var challenge = challenges[0];
-    expect(challenge.highestPlacement).not.to.exist;
-    expect(challenge.wonFirst).to.exist.to.false;
-    expect(challenge.userStatus).to.exist.to.equal('NOT_FINISHED');
-    expect(challenge.userHasSubmitterRole).to.exist.to.true;
-  });
+      ];
+      ChallengeService.processPastChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.highestPlacement).to.exist.to.equal(1);
+      expect(challenge.wonFirst).to.exist.to.true;
+      expect(challenge.userStatus).to.exist.to.equal('PASSED_REVIEW');
+      expect(challenge.userHasSubmitterRole).to.exist.to.true;
+    });
 
-  it('processPastChallenges should process a DEVELOP/FIRST_2_FINISH challenge for a non submitter user  ', function() {
-    var challenges = [
-      {
-        id: 30041345,
-        name: 'Mock Challenge 1',
-        track: 'DEVELOP',
-        subTrack: 'FIRST_2_FINISH',
-        userDetails: {
-          hasUserSubmittedForReview: false,
-          roles: ['Observer'],
-          submissions: []
-        }
-      }
-    ];
-    ChallengeService.processPastChallenges(challenges);
-    var challenge = challenges[0];
-    expect(challenge.highestPlacement).not.to.exist;
-    expect(challenge.wonFirst).to.exist.to.false;
-    expect(challenge.userStatus).to.exist.to.equal('COMPLETED');
-    expect(challenge.userHasSubmitterRole).to.exist.to.false;
-  });
+    it('should process the won DEVELOP/<ANY> challenge ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DEVELOP',
+          subTrack: 'CODE',
+          userDetails: {
+            hasUserSubmittedForReview: true,
+            roles: ['Submitter'],
+            submissions: [
+              {
+                challengeId: 30041345,
+                id: 12345,
+                placement: 1,
+                score: 98.0,
+                status: 'Active',
+                type: 'Contest Submission'
+              },
+              {
+                challengeId: 30041345,
+                id: 12346,
+                placement: 11,
+                score: 0.0,
+                status: 'Failed Review',
+                type: 'Contest Submission'
+              },
+              {
+                challengeId: 30041345,
+                id: 12347,
+                placement: 21,
+                score: 0.0,
+                status: 'Completed Without Win',
+                type: 'Checkpoint Submission'
+              }
+            ],
+            winningPlacements: [2, 11, 1]
+          }
 
-  it('processPastChallenges should process a DEVELOP/<ANY> challenge for a user without role  ', function() {
-    var challenges = [
-      {
-        id: 30041345,
-        name: 'Mock Challenge 1',
-        track: 'DEVELOP',
-        subTrack: 'FIRST_2_FINISH',
-        userDetails: {
-          hasUserSubmittedForReview: false,
-          roles: [],
-          submissions: [],
-          winningPlacements: [0]
         }
-      }
-    ];
-    ChallengeService.processPastChallenges(challenges);
-    var challenge = challenges[0];
-    expect(challenge.highestPlacement).not.to.exist;
-    expect(challenge.wonFirst).to.exist.to.false;
-    expect(challenge.userStatus).to.exist.to.equal('COMPLETED');
-    expect(challenge.userHasSubmitterRole).to.exist.to.false;
+      ];
+      ChallengeService.processPastChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.highestPlacement).to.exist.to.equal(1);
+      expect(challenge.wonFirst).to.exist.to.true;
+      expect(challenge.userStatus).to.exist.to.equal('PASSED_REVIEW');
+      expect(challenge.userHasSubmitterRole).to.exist.to.true;
+    });
+
+    it('should process the lost DEVELOP/<ANY> challenge ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DEVELOP',
+          subTrack: 'CODE',
+          userDetails: {
+            hasUserSubmittedForReview: true,
+            roles: ['Submitter'],
+            submissions: [
+              {
+                challengeId: 30041345,
+                id: 12345,
+                placement: 1,
+                score: 98.0,
+                status: 'Active',
+                type: 'Contest Submission'
+              },
+              {
+                challengeId: 30041345,
+                id: 12346,
+                placement: 11,
+                score: 0.0,
+                status: 'Failed Review',
+                type: 'Contest Submission'
+              },
+              {
+                challengeId: 30041345,
+                id: 12347,
+                placement: 21,
+                score: 0.0,
+                status: 'Completed Without Win',
+                type: 'Checkpoint Submission'
+              }
+            ],
+            winningPlacements: [0]
+          }
+
+        }
+      ];
+      ChallengeService.processPastChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.highestPlacement).not.to.exist;
+      expect(challenge.wonFirst).to.exist.to.false;
+      expect(challenge.userStatus).to.exist.to.equal('PASSED_SCREENING');
+      expect(challenge.userHasSubmitterRole).to.exist.to.true;
+    });
+
+    it('should process the won DEVELOP/FIRST_2_FINISH challenge ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DEVELOP',
+          subTrack: 'FIRST_2_FINISH',
+          userDetails: {
+            hasUserSubmittedForReview: true,
+            roles: ['Submitter'],
+            submissions: [
+              {
+                challengeId: 30041345,
+                id: 12345,
+                placement: 1,
+                score: 98.0,
+                status: 'Active',
+                type: 'Contest Submission'
+              },
+              {
+                challengeId: 30041345,
+                id: 12346,
+                placement: 11,
+                score: 0.0,
+                status: 'Failed Review',
+                type: 'Contest Submission'
+              },
+              {
+                challengeId: 30041345,
+                id: 12347,
+                placement: 21,
+                score: 0.0,
+                status: 'Completed Without Win',
+                type: 'Checkpoint Submission'
+              }
+            ]
+          }
+        }
+      ];
+      ChallengeService.processPastChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.highestPlacement).to.exist.to.equal(1);
+      expect(challenge.wonFirst).to.exist.to.true;
+      expect(challenge.userStatus).to.exist.to.equal('PASSED_REVIEW');
+      expect(challenge.userHasSubmitterRole).to.exist.to.true;
+    });
+
+    it('should process the lost(without placement) DEVELOP/FIRST_2_FINISH challenge ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DEVELOP',
+          subTrack: 'FIRST_2_FINISH',
+          userDetails: {
+            hasUserSubmittedForReview: true,
+            roles: ['Submitter'],
+            submissions: [
+              {
+                challengeId: 30041345,
+                id: 12345,
+                placement: null,
+                score: 34.0,
+                status: 'Active',
+                type: 'Contest Submission'
+              },
+              {
+                challengeId: 30041345,
+                id: 12346,
+                placement: null,
+                score: 0.0,
+                status: 'Failed Review',
+                type: 'Contest Submission'
+              },
+              {
+                challengeId: 30041345,
+                id: 12347,
+                placement: 1,
+                score: 0.0,
+                status: 'Completed Without Win',
+                type: 'Checkpoint Submission'
+              }
+            ]
+          }
+        }
+      ];
+      ChallengeService.processPastChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.highestPlacement).not.to.exist;
+      expect(challenge.wonFirst).to.exist.to.false;
+      expect(challenge.userStatus).to.exist.to.equal('PASSED_SCREENING');
+      expect(challenge.userHasSubmitterRole).to.exist.to.true;
+    });
+
+    it('should process the lost(with placement) DEVELOP/FIRST_2_FINISH challenge ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DEVELOP',
+          subTrack: 'FIRST_2_FINISH',
+          userDetails: {
+            hasUserSubmittedForReview: true,
+            roles: ['Submitter'],
+            submissions: [
+              {
+                challengeId: 30041345,
+                id: 12345,
+                placement: 5,
+                score: 34.0,
+                status: 'Active',
+                type: 'Contest Submission'
+              },
+              {
+                challengeId: 30041345,
+                id: 12346,
+                placement: null,
+                score: 0.0,
+                status: 'Failed Review',
+                type: 'Contest Submission'
+              },
+              {
+                challengeId: 30041345,
+                id: 12347,
+                placement: 1,
+                score: 0.0,
+                status: 'Completed Without Win',
+                type: 'Checkpoint Submission'
+              }
+            ]
+          }
+        }
+      ];
+      ChallengeService.processPastChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.highestPlacement).to.exist.to.equal(5);
+      expect(challenge.wonFirst).to.exist.to.false;
+      expect(challenge.userStatus).to.exist.to.equal('PASSED_REVIEW');
+      expect(challenge.userHasSubmitterRole).to.exist.to.true;
+    });
+
+    it('should process a not completed (empty submissions) DEVELOP/FIRST_2_FINISH challenge ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DEVELOP',
+          subTrack: 'FIRST_2_FINISH',
+          userDetails: {
+            hasUserSubmittedForReview: false,
+            roles: ['Submitter'],
+            submissions: []
+          }
+        }
+      ];
+      ChallengeService.processPastChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.highestPlacement).not.to.exist;
+      expect(challenge.wonFirst).to.exist.to.false;
+      expect(challenge.userStatus).to.exist.to.equal('NOT_FINISHED');
+      expect(challenge.userHasSubmitterRole).to.exist.to.true;
+    });
+
+    it('should process a not completed(null submissions) DEVELOP/FIRST_2_FINISH challenge ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DEVELOP',
+          subTrack: 'FIRST_2_FINISH',
+          userDetails: {
+            hasUserSubmittedForReview: false,
+            roles: ['Submitter'],
+            submissions: null
+          }
+        }
+      ];
+      ChallengeService.processPastChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.highestPlacement).not.to.exist;
+      expect(challenge.wonFirst).to.exist.to.false;
+      expect(challenge.userStatus).to.exist.to.equal('NOT_FINISHED');
+      expect(challenge.userHasSubmitterRole).to.exist.to.true;
+    });
+
+    it('should process a DEVELOP/FIRST_2_FINISH challenge for a non submitter user  ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DEVELOP',
+          subTrack: 'FIRST_2_FINISH',
+          userDetails: {
+            hasUserSubmittedForReview: false,
+            roles: ['Observer'],
+            submissions: []
+          }
+        }
+      ];
+      ChallengeService.processPastChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.highestPlacement).not.to.exist;
+      expect(challenge.wonFirst).to.exist.to.false;
+      expect(challenge.userStatus).to.exist.to.equal('COMPLETED');
+      expect(challenge.userHasSubmitterRole).to.exist.to.false;
+    });
+
+    it('should process a DEVELOP/<ANY> challenge for a user without role  ', function() {
+      var challenges = [
+        {
+          id: 30041345,
+          name: 'Mock Challenge 1',
+          track: 'DEVELOP',
+          subTrack: 'FIRST_2_FINISH',
+          userDetails: {
+            hasUserSubmittedForReview: false,
+            roles: [],
+            submissions: [],
+            winningPlacements: [0]
+          }
+        }
+      ];
+      ChallengeService.processPastChallenges(challenges);
+      var challenge = challenges[0];
+      expect(challenge.highestPlacement).not.to.exist;
+      expect(challenge.wonFirst).to.exist.to.false;
+      expect(challenge.userStatus).to.exist.to.equal('COMPLETED');
+      expect(challenge.userHasSubmitterRole).to.exist.to.false;
+    });
+
   });
 
   it('processPastSRM should process SRM with valid placement  ', function() {

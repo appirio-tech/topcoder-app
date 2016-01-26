@@ -58,6 +58,8 @@ Spec files live alongside the code they are testing. For example, in peer-review
 ## UI-Router and States
 See any *.routes.js file as an example.
 
+**Important:** Make sure the url in your routes files ends with a slash `/`
+
 ## Contributing
 
 ### Style Guide and Naming Conventions
@@ -78,9 +80,9 @@ Jade Files
 ```
     .wrapper
       h1 Lorem ipsum
-      
+
       p Sibling tag
-      
+
     .wrapper2
       p Child
 ```
@@ -99,7 +101,7 @@ SCSS Files
       height: 100px;
       width: 100px;
     }
-    
+
     .inside-box {
       font-size: 14px;
       @media screen and (min-width: 768px) {

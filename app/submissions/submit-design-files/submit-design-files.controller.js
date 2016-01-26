@@ -1,13 +1,13 @@
 (function () {
   'use strict';
 
-  angular.module('tc.submissions').controller('SubmitFileController', SubmitFileController);
+  angular.module('tc.submissions').controller('SubmitDesignFilesController', SubmitDesignFilesController);
 
-  SubmitFileController.$inject = ['$scope', '$stateParams', '$log', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
+  SubmitDesignFilesController.$inject = ['$scope','$window', '$stateParams', '$log', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
 
-  function SubmitFileController($scope, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
+  function SubmitDesignFilesController($scope, $window, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
     var vm = this;
-    $log = $log.getInstance('SubmitFileController');
+    $log = $log.getInstance('SubmitDesignFilesController');
     var files = {};
     var fileUploadProgress = {};
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/);
@@ -19,30 +19,8 @@
     vm.finishing = false;
     vm.showProgress = false;
     vm.errorInUpload = false;
-    vm.formFonts = {
-      0: {
-        id: 0,
-        source: '',
-        name: '',
-        sourceUrl: '',
-        isFontUrlRequired: false,
-        isFontUrlDisabled: true,
-        isFontNameRequired: false,
-        isFontNameDisabled: true,
-        isFontSourceRequired: false
-      }
-    };
-    vm.formStockarts = {
-      0: {
-        id: 1,
-        description: '',
-        sourceUrl: '',
-        fileNumber: '',
-        isPhotoDescriptionRequired: false,
-        isPhotoURLRequired: false,
-        isFileNumberRequired: false
-      }
-    };
+    vm.formFonts = {};
+    vm.formStockarts = {};
     vm.submissionForm = {
       files: [],
 
@@ -61,8 +39,6 @@
 
     vm.submissionsBody = {
       reference: {
-
-        // type dynamic or static?
         type: 'CHALLENGE',
         id: $stateParams.challengeId,
         phaseType: challengeToSubmitTo.phaseType,
@@ -70,9 +46,7 @@
       },
       userId: userId,
       data: {
-
-        // Dynamic or static?
-        method: 'DESIGN_CHALLENGE_ZIP_FILE',
+        method: challengeToSubmitTo.challenge.track.toUpperCase() + '_CHALLENGE_ZIP_FILE',
 
         // Can delete below since they are processed and added later?
         files: [],
@@ -86,6 +60,7 @@
     vm.setRankTo1 = setRankTo1;
     vm.setFileReference = setFileReference;
     vm.uploadSubmission = uploadSubmission;
+    vm.refreshPage = refreshPage;
     vm.cancelRetry = cancelRetry;
 
     activate();
@@ -121,17 +96,20 @@
           fileObject.mediaType = file.type;
       }
 
-      // If user picks a new file, replace the that file's fileObject with a new one
-      // Or add it the list if it's not there
-      if (vm.submissionsBody.data.files.length) {
-        vm.submissionsBody.data.files.some(function(file, i, filesArray) {
-          if (file.type === fileObject.type) {
-            file = fileObject;
-          } else if (filesArray.length === i + 1) {
-            filesArray.push(fileObject);
-          }
-        });
-      } else {
+      // If user changes a file input's file, update the file details
+      var isFound = vm.submissionsBody.data.files.reduce(function(isFound, file, i, filesArray) {
+        if (isFound) { return true; }
+
+        if (file.type === fileObject.type) {
+          filesArray[i] = fileObject;
+          return true;
+        }
+
+        return false;
+      }, false);
+
+      // Add new files to the list
+      if (!isFound) {
         vm.submissionsBody.data.files.push(fileObject);
       }
     }
@@ -148,10 +126,18 @@
       vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank;
 
       // Process stock art
-      var processedStockarts = _.map(vm.formStockarts, function(formStockart) {
+      var processedStockarts = _.reduce(vm.formStockarts, function(compiledStockarts, formStockart) {
+        if (formStockart.description) {
           delete formStockart.id;
-          return formStockart;
-      });
+          delete formStockart.isPhotoDescriptionRequired;
+          delete formStockart.isPhotoURLRequired;
+          delete formStockart.isFileNumberRequired;
+
+          compiledStockarts.push(formStockart);
+        }
+
+        return compiledStockarts;
+      }, []);
 
       vm.submissionsBody.data.stockArts = processedStockarts;
 
@@ -164,6 +150,7 @@
           delete formFont.isFontNameRequired;
           delete formFont.isFontNameDisabled;
           delete formFont.isFontSourceRequired;
+
           compiledFonts.push(formFont);
         }
 
@@ -176,10 +163,8 @@
       SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress);
     }
 
-    /*
-     * Callback for updating submission upload process. It looks for different phases e.g. PREPARE, UPLOAD, FINISH
-     * of the submission upload and updates the progress UI accordingly.
-     */
+    // Callback for updating submission upload process. It looks for different phases e.g. PREPARE, UPLOAD, FINISH
+    // of the submission upload and updates the progress UI accordingly.
     function updateProgress(phase, args) {
       // for PREPARE phase
       if (phase === 'PREPARE') {
@@ -204,11 +189,13 @@
             count++;
           }
           vm.uploadProgress = total / count;
+
           // initiate digest cycle because this event (xhr event) is caused outside angular
           $scope.$apply();
         } else { // typeof args === 'number', mainly used a s fallback to mark completion of the UPLOAD phase
           vm.uploadProgress = args;
         }
+
         // start next phase when UPLOAD is done
         if (vm.uploadProgress == 100) {
           $log.debug('Uploaded files.');
@@ -219,20 +206,20 @@
         // we are concerned only for completion of the phase
         if (args === 100) {
           $log.debug('Finished upload.');
-          vm.finishing = false;
-          vm.showProgress = false;
-
-          // TODO redirect to submission listing / challenge details page
         }
-      } else { // assume it to be error condition
+      } else {
+        // assume it to be error condition
         $log.debug("Error Condition: " + phase);
         vm.errorInUpload = true;
       }
     }
 
+    function refreshPage() {
+      $window.location.reload(true);
+    }
+
     function cancelRetry() {
       vm.showProgress = false;
-      // TODO redirect to submission listing / challenge details page
     }
   }
 })();

@@ -10,6 +10,7 @@
       scope: {
         labelText: '@',
         asteriskText: '@',
+        showAsteriskText: '@',
         placeholder: '@',
         inputValue: '=',
         inputName: '@',

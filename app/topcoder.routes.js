@@ -42,10 +42,8 @@
           window.location.href = CONSTANTS.MAIN_URL + '/404/';
         }]
       },
-      /**
-       * Base state that all other routes should inherit from.
-       * Child routes can override any of the specified regions
-       */
+      // Base state that all other routes should inherit from.
+      // Child routes can override any of the specified regions
       'root': {
         url: '',
         abstract: true,
@@ -70,10 +68,8 @@
         }
       },
       'home': {
-        // TODO - set new home page
         parent: 'root',
         url: '/',
-        // template: 'This is the home page',
         controller: ['$state', function($state) {
           $state.go('dashboard');
         }]

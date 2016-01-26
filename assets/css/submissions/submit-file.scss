@@ -2,7 +2,15 @@
 
 .panel-body {
   @media screen and (max-width: 767px) {
-    display: none;
+    // Not showing the mobile version of the page at all
+    // Uncomment the line below to hide the desktop page
+    // display: none;
+  }
+}
+
+.form-blocks div:nth-last-of-type(2) {
+  .form-block__fields {
+    border-bottom: none;
   }
 }
 
@@ -40,17 +48,72 @@
   }
 }
 
+.tc-error-messages {
+  max-width: 500px;
+}
+
+tc-file-input {
+  .tc-file-field__label, .tc-file-field__inputs {
+    margin: 0 auto;
+    @media screen and (min-width: 1000px) {
+      margin: 0;
+    }
+  }
+
+  & + .tc-error-messages {
+    max-width: 407px;
+  }
+
+  .tc-label__asterisk {
+    color: $primary;
+  }
+}
+
+
 .submitterRank {
   width: 100px;
   margin-top: 10px;
 }
 
+.tc-textarea {
+  max-width: 500px;
+}
+
+tc-form-fonts, tc-form-stockart {
+  width: 500px;
+  display: block;
+  margin: 0 auto;
+  @media screen and (min-width: 1000px) {
+    margin: 0;
+    display: inline;
+  }
+  .fieldset {
+    max-width: 500px;
+    position: relative;
+  }
+}
+
+.remove-section {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 15px;
+  right: -35px;
+  background-image: url(/images/x-mark-gray.svg);
+  background-size: 20px;
+  outline: 0;
+  @media screen and (min-width: 1000px) {
+    top: -5px;
+  }
+}
+
+.Select {
+  margin-bottom: 20px;
+}
+
 modal {
-  .close {
-    .icon.cross {
-      background-image: url(/images/x-mark-gray.svg);
-      background-size: 25px;
-    }
+  > button {
+    display: none;
   }
 }
 .upload-progress {
@@ -96,6 +159,7 @@ modal {
     font-size: 12px;
     line-height: 14px;
     color: $accent-gray-dark;
+    text-align: center;
   }
 
   .upload-progress__error {
@@ -115,28 +179,14 @@ modal {
   }
 }
 
-tc-form-fonts, tc-form-stockart {
-  .fieldset {
-    max-width: 500px;
-    position: relative;
+.upload-progess__links {
+  margin-top: 40px;
+
+  a {
+    display: inline-block;
+
+    &:first-child {
+      margin-right: 10px;
+    }
   }
-}
-
-.remove-section {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: -5px;
-  right: -35px;
-  background-image: url(/images/x-mark-gray.svg);
-  background-size: 20px;
-  outline: 0;
-}
-
-.Select {
-  margin-bottom: 20px;
-}
-
-.tc-error-messages {
-  max-width: 500px;
 }
