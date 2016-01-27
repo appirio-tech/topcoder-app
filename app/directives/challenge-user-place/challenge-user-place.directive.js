@@ -84,7 +84,8 @@ import _ from 'lodash'
 
         function openLightbox() {
           ngDialog.open({
-            template: 'directives/challenge-user-place/design-lightbox/design-lightbox.html',
+            plain: true,
+            template: require('./design-lightbox/design-lightbox')(),
             className: 'design-lightbox',
             scope: $scope
           })
