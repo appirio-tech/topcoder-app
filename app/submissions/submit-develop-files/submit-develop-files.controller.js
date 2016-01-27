@@ -1,17 +1,15 @@
 (function () {
   'use strict';
 
-  angular.module('tc.submissions').controller('SubmitDesignFilesController', SubmitDesignFilesController);
+  angular.module('tc.submissions').controller('SubmitDevelopFilesController', SubmitDevelopFilesController);
 
-  SubmitDesignFilesController.$inject = ['$scope','$window', '$stateParams', '$log', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
+  SubmitDevelopFilesController.$inject = ['$scope','$window', '$stateParams', '$log', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
 
-  function SubmitDesignFilesController($scope, $window, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
+  function SubmitDevelopFilesController($scope, $window, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
     var vm = this;
-    $log = $log.getInstance('SubmitDesignFilesController');
+    $log = $log.getInstance('SubmitDevelopFilesController');
     var files = {};
     var fileUploadProgress = {};
-    vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/);
-    vm.rankRegEx = new RegExp(/^[1-9]\d*$/);
     vm.comments = '';
     vm.uploadProgress = 0;
     vm.uploading = false;
@@ -19,19 +17,13 @@
     vm.finishing = false;
     vm.showProgress = false;
     vm.errorInUpload = false;
-    vm.formFonts = {};
-    vm.formStockarts = {};
     vm.submissionForm = {
       files: [],
 
-      submissionZip: null,
+      // use develop name
       sourceZip: null,
-      designCover: null,
 
-      submitterRank: 1,
       submitterComments: '',
-      fonts: [],
-      stockArts: [],
       hasAgreedToTerms: false
     };
 
@@ -50,14 +42,10 @@
 
         // Can delete below since they are processed and added later?
         files: [],
-        submitterRank: 1,
         submitterComments: '',
-        fonts: [],
-        stockArts: []
       }
     };
 
-    vm.setRankTo1 = setRankTo1;
     vm.setFileReference = setFileReference;
     vm.uploadSubmission = uploadSubmission;
     vm.refreshPage = refreshPage;
@@ -66,14 +54,6 @@
     activate();
 
     function activate() {}
-
-    function setRankTo1(inputValue) {
-      // If a user leaves the rank input blank, set it to 1
-      if (inputValue === '') {
-        return 1;
-      }
-      return inputValue;
-    }
 
     function setFileReference(file, fieldId) {
       // Can clean up since fileValue on tcFileInput has file reference?
@@ -85,6 +65,7 @@
         status: 'PENDING'
       };
 
+      // TODO: Refactor or develop
       switch(fieldId) {
         case 'SUBMISSION_ZIP':
           fileObject.mediaType = 'application/octet-stream';
@@ -123,41 +104,6 @@
       vm.uploading = false;
       vm.finishing = false;
       vm.submissionsBody.data.submitterComments = vm.comments;
-      vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank;
-
-      // Process stock art
-      var processedStockarts = _.reduce(vm.formStockarts, function(compiledStockarts, formStockart) {
-        if (formStockart.description) {
-          delete formStockart.id;
-          delete formStockart.isPhotoDescriptionRequired;
-          delete formStockart.isPhotoURLRequired;
-          delete formStockart.isFileNumberRequired;
-
-          compiledStockarts.push(formStockart);
-        }
-
-        return compiledStockarts;
-      }, []);
-
-      vm.submissionsBody.data.stockArts = processedStockarts;
-
-      // Process fonts
-      var processedFonts = _.reduce(vm.formFonts, function(compiledFonts, formFont) {
-        if (formFont.source) {
-          delete formFont.id;
-          delete formFont.isFontUrlRequired;
-          delete formFont.isFontUrlDisabled;
-          delete formFont.isFontNameRequired;
-          delete formFont.isFontNameDisabled;
-          delete formFont.isFontSourceRequired;
-
-          compiledFonts.push(formFont);
-        }
-
-        return compiledFonts;
-      }, []);
-
-      vm.submissionsBody.data.fonts = processedFonts;
 
       $log.debug('Body for request: ', vm.submissionsBody);
       SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress);
