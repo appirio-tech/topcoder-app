@@ -1,18 +1,16 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  /**
-   * @desc links data card directive
-   * @example <external-links-data></external-links-data>
-   */
-  angular
-    .module('tcUIComponents')
-    .directive('externalLinksData', externalLinksData);
+(function() {
+  'use strict'
+
+  // @desc links data card directive
+  // @example <external-links-data></external-links-data>
+  angular.module('tcUIComponents').directive('externalLinksData', externalLinksData)
 
   function externalLinksData() {
     var directive = {
-     restrict: 'E',
-      templateUrl: 'directives/external-account/external-link-data.directive.html',
+      restrict: 'E',
+      template: require('./external-links-data')(),
       scope: {
         linkedAccountsData: '=',
         editable: '=',
@@ -20,33 +18,32 @@
       },
       controller: ['$log', '$scope', '$window', '$filter', 'ExternalWebLinksService', 'toaster', 'ngDialog',
         function($log, $scope, $window, $filter, ExternalWebLinksService, toaster, ngDialog) {
-
-          $log = $log.getInstance("ExternalLinksDataCtrl");
-          $scope.deletionDialog = null;
+          $log = $log.getInstance('ExternalLinksDataCtrl')
+          $scope.deletionDialog = null
 
           $scope.openLink = function(account) {
-            var url = null;
+            var url = null
             if (account) {
               if (account.data && account.data.profileURL && account.data.status !== 'PENDING') {
-                url = account.data.profileURL;
+                url = account.data.profileURL
               }
               if (account.URL && account.status !== 'PENDING') {
-                url = account.URL;
+                url = account.URL
               }
             }
             if (url) {
-              $window.open($filter('urlProtocol')(url), '_blank');
+              $window.open($filter('urlProtocol')(url), '_blank')
             }
           }
 
           $scope.confirmDeletion = function(account) {
             // for non weblink provider, do nothing
             if (account.provider !== 'weblink') {
-              return;
+              return
             }
             // do nothing for pending state cards
             if (account.status === 'PENDING') {
-              return;
+              return
             }
             $scope.deletionDialog = ngDialog.open({
               className: 'ngdialog-theme-default tc-dialog',
@@ -55,22 +52,22 @@
               controllerAs: 'vm',
               resolve: {
                 userHandle: function() {
-                  return $scope.userHandle;
+                  return $scope.userHandle
                 },
                 account: function() {
-                  return account;
+                  return account
                 },
                 linkedAccountsData: function() {
-                  return $scope.linkedAccountsData;
+                  return $scope.linkedAccountsData
                 }
               }
             }).closePromise.then(function (data) {
-              $log.debug('Closing deletion confirmation dialog.');
-            });
+              $log.debug('Closing deletion confirmation dialog.')
+            })
           }
         }
       ]
-    };
-    return directive;
+    }
+    return directive
   }
-})();
+})()

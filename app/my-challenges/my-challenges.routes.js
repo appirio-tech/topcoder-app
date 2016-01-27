@@ -1,21 +1,19 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   angular.module('tc.myChallenges').config([
     '$stateProvider',
-    '$urlRouterProvider',
-    '$httpProvider',
-    '$locationProvider',
     routes
-  ]);
+  ])
 
-  function routes($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+  function routes($stateProvider) {
     var states = {
       'my-challenges': {
         url: '/my-challenges/?:status',
         parent: 'root',
-        templateUrl: 'my-challenges/my-challenges.html',
+        template: require('./my-challenges')(),
         controller: 'MyChallengesController',
         controllerAs: 'vm',
         data: {
@@ -24,17 +22,15 @@
         },
         resolve: {
           userIdentity: ['UserService', function(UserService) {
-            return UserService.getUserIdentity();
-          }],
-          // statusFilter: ['$stateParams', function($stateParams) {
-          //   return $stateParams.status;
-          // }],
+            return UserService.getUserIdentity()
+          }]
         }
       }
-    };
+    }
+    
     for (var name in states) {
-      var state = states[name];
-      $stateProvider.state(name, state);
+      var state = states[name]
+      $stateProvider.state(name, state)
     }
   }
-})();
+})()

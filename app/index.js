@@ -33,6 +33,14 @@ require('../bower_components/angular-img-fallback/angular.dcb-img-fallback')
 // Vendor styles
 require('../node_modules/angular-carousel/dist/angular-carousel.css')
 
+require('../node_modules/intro.js/introjs.css')
+
+require('../node_modules/font-awesome/fonts/fontawesome-webfont.eot')
+require('../node_modules/font-awesome/fonts/fontawesome-webfont.svg')
+require('../node_modules/font-awesome/fonts/fontawesome-webfont.ttf')
+require('../node_modules/font-awesome/fonts/fontawesome-webfont.woff')
+require('../node_modules/font-awesome/fonts/fontawesome-webfont.woff2')
+require('../node_modules/font-awesome/css/font-awesome.css')
 
 const requireContextFiles = function(files) {
   const paths = files.keys()
