@@ -28,7 +28,6 @@
     'ngSanitize',
     'ngDropdowns',
     'ngDialog',
-    'xml',
     'angular.filter',
     'CONSTANTS',
     'dcbImgFallback',
@@ -36,7 +35,6 @@
     'angular-intro',
     'ngMessages',
     'angular-carousel',
-    'sticky',
     'dibari.angular-ellipsis'
   ]
 

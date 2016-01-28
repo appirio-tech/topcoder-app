@@ -1,3 +1,5 @@
+import angular from 'angular'
+
 (function() {
   'use strict';
 
@@ -22,7 +24,7 @@
         parent: 'root',
         abstract: true,
         url: '/members/:userHandle/',
-        templateUrl: 'profile/profile.html',
+        template: require('./profile')(),
         controller: 'ProfileCtrl as profileVm',
         resolve: {
           userHandle: ['$stateParams', function($stateParams) {
@@ -39,19 +41,19 @@
       },
       'profile.about': {
         url: '',
-        templateUrl: 'profile/about/about.html',
+        template: require('./about/about')(),
         controller: 'ProfileAboutController',
         controllerAs: 'vm'
       },
       'profile.subtrack': {
         url: 'details/?:track&:subTrack',
-        templateUrl: 'profile/subtrack/subtrack.html',
+        template: require('./subtrack/subtrack')(),
         controller: 'ProfileSubtrackController',
         controllerAs: 'vm'
       },
       'profileBadges': {
         url: '/members/:userHandle/badges/',
-        templateUrl: 'profile/badges/badges.html',
+        template: require('./badges/badges')(),
         parent: 'root',
         controller: 'BadgesController',
         controllerAs: 'vm'

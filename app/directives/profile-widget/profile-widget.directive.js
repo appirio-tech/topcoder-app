@@ -6,7 +6,7 @@
   function profileWidget(CONSTANTS, ProfileService) {
     return {
       restrict: 'E',
-      templateUrl: 'directives/profile-widget/profile-widget.html',
+      template: require('./profile-widget')(),
       scope: {
         profile: '=profile',
         editProfileLink: '=editProfileLink',

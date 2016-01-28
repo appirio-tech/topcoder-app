@@ -4,9 +4,9 @@
 
   angular.module('tc.services').factory('BlogService', BlogService);
 
-  BlogService.$inject = ['Restangular', '$q', '$http', 'CONSTANTS', '$sce', 'x2js'];
+  BlogService.$inject = ['Restangular', '$q', '$http', 'CONSTANTS', '$sce'];
 
-  function BlogService(Restangular, $q, $http, CONSTANTS, $sce, x2js) {
+  function BlogService(Restangular, $q, $http, CONSTANTS, $sce) {
 
     var service = Restangular.withConfig(function(RestangularConfigurer) {
     });
