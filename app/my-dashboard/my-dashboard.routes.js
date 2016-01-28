@@ -5,14 +5,10 @@ import angular from 'angular'
 
   angular.module('tc.myDashboard').config([
     '$stateProvider',
-    '$urlRouterProvider',
-    '$httpProvider',
-    '$locationProvider',
     routes
   ])
 
-  function routes($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    $locationProvider.html5Mode(true)
+  function routes($stateProvider) {
     var states = {
       'baseDashboard': {
         parent: 'root',

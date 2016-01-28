@@ -5,13 +5,10 @@ import angular from 'angular'
 
   angular.module('tc.sitemap').config([
     '$stateProvider',
-    '$locationProvider',
     routes
   ])
 
-  function routes($stateProvider, $locationProvider) {
-    $locationProvider.html5Mode(true)
-
+  function routes($stateProvider) {
     var states = {
       'sitemap': {
         parent: 'root',

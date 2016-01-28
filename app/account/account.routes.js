@@ -5,11 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.account').config(routes)
 
-  routes.$inject = ['$locationProvider', '$stateProvider', '$urlRouterProvider']
+  routes.$inject = ['$stateProvider']
 
-  function routes($locationProvider, $stateProvider, $urlRouterProvider) {
-    $locationProvider.html5Mode(true)
-
+  function routes($stateProvider) {
     var states = {
       'auth': {
         parent: 'root',

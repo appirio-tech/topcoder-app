@@ -5,10 +5,8 @@ import angular from 'angular'
 
   angular.module('tc.profile').config([
     '$stateProvider',
-    '$locationProvider',
     routes
   ]).run(['$rootScope', '$state', function($rootScope, $state) {
-    // handle state change error
     $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
       if (toState.name.indexOf('profile') > -1 && 400 <= error.status <= 500 ) {
         // unable to find a member with that username
@@ -17,8 +15,7 @@ import angular from 'angular'
     })
   }])
 
-  function routes($stateProvider, $locationProvider) {
-    $locationProvider.html5Mode(true)
+  function routes($stateProvider) {
     var states = {
       'profile': {
         parent: 'root',
@@ -36,7 +33,7 @@ import angular from 'angular'
         },
         data: {
           authRequired: false,
-          title: "{{userHandle}} Profile"
+          title: '{{userHandle}} Profile'
         }
       },
       'profile.about': {

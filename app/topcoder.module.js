@@ -28,7 +28,6 @@ import angular from 'angular'
     'ngSanitize',
     'ngDropdowns',
     'ngDialog',
-    'xml',
     'angular.filter',
     'CONSTANTS',
     'dcbImgFallback',
@@ -36,7 +35,6 @@ import angular from 'angular'
     'angular-intro',
     'ngMessages',
     'angular-carousel',
-    'sticky',
     'dibari.angular-ellipsis'
   ]
 

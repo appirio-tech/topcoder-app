@@ -6,13 +6,10 @@ import _ from 'lodash'
 
   angular.module('tc.skill-picker').config([
     '$stateProvider',
-    '$locationProvider',
     routes
   ])
 
-  function routes($stateProvider, $locationProvider) {
-    $locationProvider.html5Mode(true)
-
+  function routes($stateProvider) {
     var states = {
       'skillPicker': {
         parent: 'root',
