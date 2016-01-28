@@ -9,6 +9,7 @@ require('angular-jwt')
 require('angular-filter')
 require('angular-carousel')
 require('angular-dropdowns')
+require('angular-intro.js')
 require('tc-angular-ellipsis')
 require('moment')
 require('d3')
@@ -21,13 +22,9 @@ require('ng-dialog')
 require('ng-notifications-bar')
 require('xml2js')
 
-window.X2JS = require('xml2js')
-
-require('angular-intro.js')
-
 require('appirio-tech-ng-ui-components')
-
 require('../bower_components/appirio-tech-ng-iso-constants/dist/ng-iso-constants')
+
 require('../bower_components/ng-busy/build/angular-busy')
 require('../bower_components/angular-img-fallback/angular.dcb-img-fallback')
 
