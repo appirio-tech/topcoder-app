@@ -41,6 +41,7 @@
     "ng-dialog": "^0.5.6",
     "ng-notifications-bar": "0.0.15",
     "ngsticky": "^1.7.12",
-    "restangular": "^1.5.1"
+    "restangular": "^1.5.1",
+    "zepto": "^1.0.1"
   }
 }

@@ -46,8 +46,9 @@ import angular from 'angular'
               return
             }
             $scope.deletionDialog = ngDialog.open({
+              plain: true,
               className: 'ngdialog-theme-default tc-dialog',
-              template: 'directives/external-account/external-link-deletion-confirm.html',
+              template: require('./external-link-deletion-confirm')(),
               controller: 'ExternalLinkDeletionController',
               controllerAs: 'vm',
               resolve: {

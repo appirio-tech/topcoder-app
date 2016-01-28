@@ -3,8 +3,7 @@ import angular from 'angular'
 (function() {
   'use strict'
 
-  angular.module('tcUIComponents')
-    .directive('challengeTile', challengeTile)
+  angular.module('tcUIComponents').directive('challengeTile', challengeTile)
 
   function challengeTile() {
     return {
@@ -29,7 +28,8 @@ import angular from 'angular'
 
         function openLightbox() {
           ngDialog.open({
-            template: 'directives/challenge-tile/design-lightbox/design-lightbox.html',
+            plain: true,
+            template: require('./design-lightbox/design-lightbox')(),
             className: 'ngdialog-theme-default',
             scope: $scope
           })

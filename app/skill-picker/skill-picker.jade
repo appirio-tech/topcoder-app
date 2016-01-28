@@ -10,8 +10,8 @@
       .community(ng-repeat="(communityKey, community) in vm.communities", ng-class="{'community--disabled': !community.status}", ng-if="community.display")
         .community__details
           .community__icon(ng-class="{'community__icon--disabled': !community.status}")
-            img(ng-if="communityKey == 'ios' && community.status", src=require("../../../assets/images/ico-ios-community.svg"))
-            img(ng-if="communityKey == 'ios' && !community.status", src=require("../../../assets/images/ico-ios-community-grey.svg"))
+            img(ng-if="communityKey == 'ios' && community.status", src=require("../../assets/images/ico-ios-community.svg"))
+            img(ng-if="communityKey == 'ios' && !community.status", src=require("../../assets/images/ico-ios-community-grey.svg"))
 
           .community__text
             span.community__title(class="{{!community.status && 'disabled'}}") {{community.displayName}}
