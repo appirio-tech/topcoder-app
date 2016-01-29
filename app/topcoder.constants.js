@@ -29,7 +29,7 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'STATE_LOADING'          : 'loading',
   'STATE_ERROR'            : 'error',
   'STATE_READY'            : 'ready',
-  'BUSY_PROGRESS_MESSAGE'  : 'Processing..',
+  'BUSY_PROGRESS_MESSAGE'  : 'Processing...',
   'REGISTRATION'           : 'REGISTRATION',
   'CODING'                 : 'CODING',
   'REGISTERED'             : 'REGISTERED',
