@@ -3,7 +3,7 @@
   "description": "Topcoder pages including login, registration, settings, dashboard, profile.",
   "scripts": {
     "build": "webpack --bail --progress --build",
-    "dev": "webpack-dev-server --history-api-fallback --dev --inline --progress --port 3000",
+    "dev": "webpack-dev-server --history-api-fallback --dev --tc --inline --progress --port 3000",
     "lint": "eslint .",
     "test": "karma start"
   },
