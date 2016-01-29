@@ -14,7 +14,7 @@
       tr
         td.info Submission:
         td
-          a.subLink(ng-href="https://software.{{vm.domain}}{{vm.submissionDownloadPath}}{{vm.stats.uploadId}}") {{vm.stats.submissionId}}
+          a.subLink(ng-href="https://software.{{vm.domain}}/review/actions/DownloadContestSubmission?uid={{vm.stats.uploadId}}") {{vm.stats.submissionId}}
       tr
         td.info Last Modified On:
         td {{vm.stats.updatedAt || vm.stats.createdAt | localTime}}

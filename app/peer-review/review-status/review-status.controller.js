@@ -7,7 +7,6 @@
 
   function ReviewStatusController($state, $stateParams, ReviewService, ChallengeService, Helpers, CONSTANTS) {
     var vm = this;
-    vm.submissionDownloadPath = CONSTANTS.submissionDownloadPath;
     vm.domain = CONSTANTS.domain;
     vm.loaded = false;
     vm.challengeId = $stateParams.challengeId;

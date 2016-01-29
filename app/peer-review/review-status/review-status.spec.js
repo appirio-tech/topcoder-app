@@ -43,10 +43,6 @@ describe('Review Status Controller', function() {
     expect(controller).to.exist;
   });
 
-  it('should have a submissionDownloadPath property set', function() {
-    expect(controller.submissionDownloadPath).to.equal('/review/actions/DownloadContestSubmission?uid=');
-  });
-
   it('should have a domain property', function() {
     expect(controller.domain).to.exist;
   });
