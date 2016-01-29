@@ -1,16 +1,18 @@
+const mockData = require('../../../tests/test-helpers/mock-data')
+
 /* jshint -W117, -W030 */
 describe('Dashboard Subtrack Stats Controller', function() {
-  var controller;
-  var profileService, userStatsService;
-  var stats = mockData.getMockStats();
+  var controller
+  var profileService, userStatsService
+  var stats = mockData.getMockStats()
   var userIdentity = {
     userId: 1234567,
     handle: 'ut',
     email: 'ut@topcoder.com'
-  };
+  }
 
   beforeEach(function() {
-    bard.appModule('topcoder');
+    bard.appModule('topcoder')
     bard.inject(this,
       '$controller',
       '$rootScope',
@@ -18,44 +20,43 @@ describe('Dashboard Subtrack Stats Controller', function() {
       'ProfileService',
       'UserStatsService',
       'CONSTANTS',
-      'Helpers');
+      'Helpers')
 
-    profileService = ProfileService;
-    userStatsService = UserStatsService;
+    profileService = ProfileService
+    userStatsService = UserStatsService
 
     sinon.stub(profileService, 'getUserStats', function() {
-      var deferred = $q.defer();
-      deferred.resolve(stats);
-      return deferred.promise;
-    });
+      var deferred = $q.defer()
+      deferred.resolve(stats)
+      return deferred.promise
+    })
 
-  });
+  })
 
-  bard.verifyNoOutstandingHttpRequests();
+  bard.verifyNoOutstandingHttpRequests()
 
   describe('controller', function() {
-    var controller = null;
+    var controller = null
     beforeEach( function(){
-      $scope = $rootScope.$new();
       controller = $controller('SubtrackStatsController', {
         ProfileService : profileService,
         UserStatsService : userStatsService,
         userIdentity: userIdentity
-      });
-      $rootScope.$apply();
-    });
+      })
+      $rootScope.$apply()
+    })
 
     describe('initialization', function() {
       it('should load data', function() {
-        expect(controller.loading).to.be.equal(false);
-      });
+        expect(controller.loading).to.be.equal(false)
+      })
 
       it('should have ranks', function() {
-        expect(controller.subtrackRanks.length).to.be.equal(10);
-        expect(controller.hasRanks).to.be.equal(true);
+        expect(controller.subtrackRanks.length).to.be.equal(10)
+        expect(controller.hasRanks).to.be.equal(true)
       })
-    });
+    })
 
-  });
+  })
 
-});
+})

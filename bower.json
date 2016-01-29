@@ -13,12 +13,6 @@
     "appirio-tech-ng-iso-constants": "git@github.com:appirio-tech/ng-iso-constants#~1.0.6",
     "ng-busy": "~0.2.0"
   },
-  "devDependencies": {
-    "bardjs": "~0.1.4",
-    "jquery": "~2.1.4",
-    "angular-mocks": "1.4.x",
-    "bind-polyfill": "~1.0.0"
-  },
   "resolutions": {
     "angular": "1.4.x",
     "angular-sanitize": "1.4.x"

@@ -1,3 +1,5 @@
+import angular from 'angular'
+
 describe('JWT Interceptor Service', function() {
   var service;
   var apiUrl = 'https://api.topcoder-dev.com/';
@@ -33,7 +35,7 @@ describe('JWT Interceptor Service', function() {
     };
 
   beforeEach(function() {
-    module('tc.services', function($provide) {
+    angular.mock.module('tc.services', function($provide) {
       $provide.value('AuthTokenService', fakeAuthTokenService);
       $provide.value('TcAuthService', fakeTcAuthService);
       $provide.value('$state', fakeState);

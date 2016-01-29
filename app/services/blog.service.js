@@ -23,7 +23,6 @@ import X2JS from 'xml2js'
           // parse the blog rss feed using x2js
           var parseString = X2JS.parseString
           parseString(data.trim(), function (err, res) {
-            console.dir(res)
             var rss = res.rss
 
             var result = rss.channel[0].item

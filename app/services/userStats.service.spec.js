@@ -1,3 +1,5 @@
+const mockData = require('../../tests/test-helpers/mock-data')
+
 /* jshint -W117, -W030 */
 describe('User Stats Service', function() {
   var stats = mockData.getMockStats();

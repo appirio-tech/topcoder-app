@@ -164,7 +164,6 @@ import _ from 'lodash'
 
       vm.submissionsBody.data.fonts = processedFonts
 
-      $log.debug('Body for request: ', vm.submissionsBody)
       SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress)
     }
 
