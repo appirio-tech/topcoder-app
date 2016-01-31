@@ -5,7 +5,7 @@
     p(ng-switch-when="MARATHON_MATCH") {{challenge.numRegistrants[0]}}
     p(ng-switch-default) {{challenge.numRegistrants}}
 
-  a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="{{challenge|challengeLinks:'registrants'}}")
+  a.submissions(ng-hide="challenge.track === 'DATA_SCIENCE'", ng-href="{{challenge|challengeLinks:'submissions'}}")
     .icon.submissions-icon
     p {{challenge.numSubmissions}}
 
