@@ -1,0 +1,60 @@
+language: node_js
+node_js:
+- 5.3.0
+install:
+- npm install
+script:
+- webpack --bail --progress --build
+sudo: false
+deploy:
+- provider: s3
+  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+  detect_encoding: true
+  access_key_id: $AWS_KEY
+  secret_access_key: $AWS_SECRET
+  bucket: app.topcoder-dev.com
+  skip_cleanup: true
+  local_dir: dist
+  on:
+    branch: dev
+- provider: s3
+  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+  detect_encoding: true
+  access_key_id: $QA_AWS_KEY
+  secret_access_key: $QA_AWS_SECRET
+  bucket: app.topcoder-qa.com
+  skip_cleanup: true
+  local_dir: dist
+  on:
+    branch: qa
+- provider: s3
+  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+  access_key_id: $MASTER_AWS_KEY
+  secret_access_key: $MASTER_AWS_SECRET
+  bucket: app.topcoder.com
+  skip_cleanup: true
+  local_dir: dist
+  on:
+    branch: master
+env:
+  matrix:
+  - CXX=g++-4.8
+  global:
+  # DEV_AWS_KEY
+  - secure: bde7qf1G8SUAFlW1frW/KS5bsiTfkjnnTtpZKuqItDnj6oJ/sNsBlU8x/n4hsvl7ziOfn1bPt8LpJLtQFU3IoMsCxuWQMim9vk88+nmgjYebC+76b3UDwgZfNwoQD9l4jvRHXmdxixStv3y5doul5dx/AXe7e+RdWyDEynvi+0E=
+  # DEV_AWS_SECRET
+  - secure: RT17TuPmyiLZiQpfHC7xUzxmMsnEZY+A+b96D+XHj5LNOmXFmMB4JaUaOmX5veWU4Lxk6Mw2IzvfJwjmKSmHZhaeERA4QljM2Sqm5/k5bKJkNVocGvLP1Gm0ARwJJ0I572aJQdWvEVgHXID1HjuCjrDrxPv8UoxLKb8SlmB2krc=
+  # QA_AWS_KEY
+  - secure: lpdUndFkKU1MbQZ7pT7ke4XWItHNYCDSt8vInYqiBHByK42//DzUoUQhP3B8QVf8teKBnXnbbJGl01SpUgd1+ZdepI1ksa06KOfeyRrZ3cmFh3UBR5RWDYmxZxnJFgzmL3tMTEfzImO2Khd0CLIdIOAwhRXtI2Z5Ipwqnu295X8=
+  # QA_AWS_SECRET
+  - secure: aIuFS/dIGZbWIBUNRrw1d1Z/RJHIafYTyNerx6QWo/ENsZyBKC2FlD1pFXd9AZkyYuF99wZxgKsBoiYpTraLdJ26K4YQYQIRw/5HsWYZqukI8yctsZ6NdvZkXKncZbMlW5KJADUGHHa+ktzmqXlwS0qO00HlSaTwHCr15XKoS/M=
+  # MASTER_AWS_KEY
+  - secure: gpEtWMYBfF8NvC+nfLKw6OtONISssGMyzJ7qyXPIviaaRasnVD9nArlEozBw/qrhcYA0TPFMg7ZQq5NipkOIw2RZUgEtpKHD+hmaO7/apE3RtX85QY44wFat/VydQWl2U9EodS9XcdsKEDSghgnehbB0mO6piuvnC6reQwo1Z/0=
+  # MASTER_AWS_SECRET
+  - secure: Oxu8D8CFk6EDLi/RPXRM3Peb0SVzVWApz3IKvROXWD8IbOfVBgvyaOdhhh2q10V085kkcAMayYNSifRd4ZhpTOJdQF/UoaczFIekhNDq/zPZLEf9j/EgJD9oWGkgIP9ct3KWSphtUChcNTvNHAlC+4kGMo3djZBe/BCkgyiwlZE=
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
