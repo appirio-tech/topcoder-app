@@ -9,7 +9,8 @@ var config = require('appirio-tech-webpack-config')({
   entry: {
     app: './app/index'
   },
-  template: './app/index.html'
+  template: './app/index.jade',
+  favicon: './assets/images/favicon.ico'
 })
 
 module.exports = config
