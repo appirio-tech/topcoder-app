@@ -32,9 +32,7 @@ require('../bower_components/angular-img-fallback/angular.dcb-img-fallback')
 
 // Vendor styles
 require('../node_modules/angular-carousel/dist/angular-carousel.css')
-
 require('../node_modules/intro.js/introjs.css')
-
 require('../node_modules/ng-dialog/css/ngDialog.css')
 require('../node_modules/ng-dialog/css/ngDialog-theme-default.css')
 
