@@ -28,6 +28,7 @@
       ],
       'community': [
           { 'sref': 'community.members', 'text': 'OVERVIEW', 'icon': '/images/nav/members.svg' },
+          { 'href': CONSTANTS.TCO16_URL, 'text': 'TCO 2016', 'icon': '/images/nav/ico-tco16.svg'},
           { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '/images/nav/programs.svg' },
           { 'href': CONSTANTS.FORUMS_APP_URL, 'text': 'FORUMS', 'icon': '/images/nav/forums.svg' },
           { 'sref': 'community.statistics', 'text': 'STATISTICS', 'icon': '/images/nav/statistics.svg' },
