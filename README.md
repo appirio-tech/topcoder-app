@@ -30,9 +30,6 @@ To read about the file and folder structure of tests, read [this section](https:
 
 ### Description of Files and Folders
 
-#### .tmp
-When you run `gulp serve`, it looks in .tmp for Jade files converted to HTML and SCSS files converted to CSS. It grabs JavaScript files from /app. Bower components are injected by the `gulp wiredep` task, as well as any custom JavaScript files and custom CSS.
-
 #### app
 This folder holds all of our Angular JavaScript and Jade files. Here you'll find the top level Angular app in topcoder.module.js. It has all of our submodules as dependencies (tc.peer-review, tc.account, etc.). Each submodule has its own folder, including its own Angular module declaration, e.g. 'peer-review/peer-review.module.js'. All files are named according to their Angular component, e.g. review-status.controller.js, peer-review.routes.js.
 
