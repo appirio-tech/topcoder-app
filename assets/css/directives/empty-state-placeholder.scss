@@ -82,7 +82,7 @@
 
 // offwhite
 .empty-state-placeholder.offwhite {
-  background-image: url('/images/empty-states/pattern-my-challenges.png');
+  background-image: url(../../images/empty-states/pattern-my-challenges.png);
   background-repeat: repeat;
   .title {
 
@@ -91,7 +91,7 @@
 
 // sky
 .empty-state-placeholder.sky {
-  background-image: url('/images/empty-states/pattern-ios-challenges.png');
+  background-image: url(../../images/empty-states/pattern-ios-challenges.png);
   background-repeat: repeat;
   .title {
     color: $white;
@@ -112,7 +112,7 @@
 
 // black
 .empty-state-placeholder.black {
-  background-image: url('/images/empty-states/pattern-my-challenges-dashboard.png');
+  background-image: url(../../images/empty-states/pattern-my-challenges-dashboard.png);
   background-repeat: repeat;
   .title {
     @include sofia-pro-bold;

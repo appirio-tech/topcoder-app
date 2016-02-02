@@ -5,8 +5,8 @@
   p.place.completed(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
 
   .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
-    img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || '/images/card-bg-no-image.svg'}}", fallback-src="/images/card-bg-no-image.svg")
-    img(ng-show="challenge.isPrivate", src="/images/card-bg-private-project.svg")
+    img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || require('../../../assets/images/card-bg-no-image.svg')}}", fallback-src=require("../../../assets/images/card-bg-no-image.svg"))
+    img(ng-show="challenge.isPrivate", src=require("../../../assets/images/card-bg-private-project.svg"))
 
     .thumbnail-gallery(ng-show="numImages", ng-click="!challenge.isPrivate && imageURL && openLightbox()")
       .gallery-icon
@@ -25,8 +25,8 @@
 
 
   .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
-    img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || '/images/card-bg-no-image.svg'}}", fallback-src="/images/ico-picture.svg")
-    img(ng-show="challenge.isPrivate", src="/images/card-bg-private-project.svg")
+    img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || require('../../../assets/images/card-bg-no-image.svg')}}", fallback-src=require("../../../assets/images/ico-picture.svg"))
+    img(ng-show="challenge.isPrivate", src=require("../../../assets/images/card-bg-private-project.svg"))
 
     .thumbnail-gallery(ng-show="numImages", ng-click="!challenge.isPrivate && imageURL && openLightbox()")
       .gallery-icon

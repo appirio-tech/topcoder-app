@@ -1,3 +1,5 @@
+const mockData = require('../../tests/test-helpers/mock-data')
+
 /* jshint -W117, -W030 */
 describe('Skill Picker Controller', function() {
   var vm;
@@ -23,7 +25,7 @@ describe('Skill Picker Controller', function() {
       }
       return deferred.promise;
     });
-    
+
     sinon.stub(memberCertService, 'registerMember', function(userId, programId) {
       var deferred = $q.defer();
       var resp = {eventId: programId, userId: 12345};

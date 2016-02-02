@@ -1,5 +1,7 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   var dependencies = [
     'angular-jwt',
@@ -7,11 +9,10 @@
     'ngCookies',
     'tc.services',
     'tcUIComponents',
-    'ngDropdowns',
     'angularSlideables',
     'ngDialog'
-  ];
+  ]
 
-  angular.module('tc.profile', dependencies);
+  angular.module('tc.profile', dependencies)
 
-})();
+})()

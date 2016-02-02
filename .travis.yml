@@ -1,0 +1,67 @@
+language: node_js
+node_js:
+  - 5.5.0
+install:
+  - npm install
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3 # give xvfb some time to start
+  - npm install -g bower
+  - bower install
+script:
+  - npm test
+  - webpack --bail --progress --build --tc
+sudo: false
+deploy:
+  - provider: s3
+    cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+    detect_encoding: true
+    access_key_id: $AWS_KEY
+    secret_access_key: $AWS_SECRET
+    bucket: app.topcoder-dev.com
+    skip_cleanup: true
+    local_dir: dist
+    on:
+      branch: dev
+  - provider: s3
+    cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+    detect_encoding: true
+    access_key_id: $QA_AWS_KEY
+    secret_access_key: $QA_AWS_SECRET
+    bucket: app.topcoder-qa.com
+    skip_cleanup: true
+    local_dir: dist
+    on:
+      branch: qa-integration
+  - provider: s3
+    cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+    access_key_id: $MASTER_AWS_KEY
+    secret_access_key: $MASTER_AWS_SECRET
+    bucket: app.topcoder.com
+    skip_cleanup: true
+    local_dir: dist
+    on:
+      branch: master
+env:
+  matrix:
+    - CXX=g++-4.8
+  global:
+    # DEV_AWS_KEY
+    - secure: a5X4QlY2JD/sJnEBkT5WwwfWjYKq3ldRf/+Dh5x2oHB0swGzYyFxzVlezddPF8xDML+CcVoLHkd8WNM2F7qcxHZTDC5spH/ym2gX6YlRwFRTTFBRCJehgYs8Vit/s14f8gkuVV8fe2ubMiV+fpAw80tb3E+t+nCckmXwe8gDqDbHto5VIozTiqDOV/WvkPzaRQofTeNzSqjrAH/iRq8hJUx16shCO2ccdiLu7rnOuys+UwjWFRyjdLP01UZXd5u6a5XK3vigLGPBAqsEwSMgScATJjNIHwYofE5Q3ztD85jz/JoQatQf7LCnQUqkLT+xldMkOZuTlTHvzmVUOl2WYpVxWV9hXwBemvyuRPPtzIrZkKXi6OUgvpYwGgWn8eS1qulB1DYPrUWBtIYGQoxEchfNlmcrCIJ7BrbL9xiNUM8J+ZCWtNS01eSapMHdhAIUMLEsAjxBY+ArLuYAD+URB0d+JZrr9cORGnrGDB+1wI12Z/Qu5LEDp/TMOisK2PXEsaqzlaazr9lj2FXTYJQyyFMMWzq1v1o5lZ5mEJ5ea36eGApV1iQNmPrg7omhDHwKtBpMDFQWZ0Y1SrkIk3QTX6JfzsrehwAhAK2fZ25EaC6zcppAo0ia5/VZoWzxHFQyhkC47hRrM7C6nCriQPDc9kKsmTSX5rp5e/DNpiZ67qM=
+    # DEV_AWS_SECRET
+    - secure: p+od0xD/9vpMbR2AI6gZWknNAtvvIfq6jXIF98DEsDlqrrMFv4SwtuXLlCmX5PBnB/cWOkwgRhymI7/3+fLrDC+wqlhDEWyzSpVOvAcVAb5LEP7IDen0W8kTj2q9I2VRX+keL7lxQCknAf/21sRZeJfJhLGR+O3NcytEdsjlpFCopA6luZYv1QSd+nRJiTsI7I69T0hr7jZk+YioyjEEp/4qzI2qyJH7E5Ry+DD3gXnC3zva48Huq6rvOtLpgFmio1b1rNAcA55Q9Y3vb1jJyZhKpRvtel9OM9ekTxANEGJVaMzxyZXT7EFTxwxS+ub5c2HRzxedMnD3tY29ku2JJx7Ofm+Yxt9DZXSK7EV99xxE71kIhI9lZFiWZviym08MHGc4pee6+Cl6ZkiV44v4XnwbgUq8GCOkmDMQBQtGhXq7dC6jB/r7P7CJs+DIGDF7qNt/xizVOC1THS8GUCN68aWMVperP+IlUXo5d2XekhO6vjHk6o44K8A1s7yblBWXj54B6NfJnBzUK2X0g6Y2xdW6tmoKtad1r1I3062skc+UiU+6m4fGS8pLFElJNj+8N7QANoEw9oJDZfuQ47uVQzPjAA1/qdcy3ksMek0siNFbpZnMqzOJTPf2Xe7YgKuCPg0QczESXIjOeEIU0om7SWmGEIuMFqt6obQW0M3VHn0=
+    # QA_AWS_KEY
+    - secure: buaFvDUdYcyzzHJfEzV3QPOJAerZo1dvjl2U5YdV5vZb+KCh0+FQAZSO8s/7BJjY7PUR3rFOO2evUHoLqgmJJRxinYhpCXcgaruc2frzpnAb7Zl/EbxIxYtGiRv3jKerKH8vRiE9wIn7itWq787GnOIBTRb61vcp+3yh1o1ntEhR6BDm/4vwZq0qQXKyuORaaMxo3dN2CtIl6RlrdD6v1t3hxUtRyiqSUjzmRHgi5TtN8LFsrgm8O18SuXnb67wF5midOEdFy09MK8miBvrcdA720cPenzWct9E0dO2MWclQdNSJf35XcWirUGOcPK7w6ZAcfemv332pEA2vLzfxRBblBKsBI/+EeWnVelf/utR35nHHZgYWiKjZhVCnU6l9gns5W1QjsVHtwfoQt8eDifdUae4S27JZUYDUXLmtbXcsWgFsIcRZX3kgn9waSn3NTvhOCQwEtJ1eJ8TDteeL69wQJXRteibz6efzN2kDysN4m540yxzFDabjsIyV2B6wfoM6wW0xqIRy2EdU9unDxtpT/c/TaN3TrhoX/ynHMKwblrDAq2HSPUQeaJ2XY8C88iokgF1xfPLlfcq/6XbYt0lBqL7LazV666AUTLp2tpG2WOSHTgyxTn63VZ0ATazBB4copzvDxdvvketzQ1nvARJOSk6LOMZVsBcJhRYskA4=
+    # QA_AWS_SECRET
+    - secure: bJoBKdT4Utb3XL5LUKu04YsX8kFS7u3BQIwy68xyPYbqLG7WLeiUqiXxXbXYbC1ERLuIHDabo5PFwyWj23SsMpY/Q2XXL0DVrNL/hcyLoLd8a4HTTDzv/VIUnvnM0YOOVIQ0HJGXIC10DnkIQfJ1TmZJ1SVMFCQ7WrJgTvIJ4Ze2jLJTmYwrp+/zsu7CJ+RJaSH9NVcGR+rece5DySUlgB20KSHdFwpGn2CiLQuoBJBQn/3yvl55L3W78HWc3OfXmLGbPuiBbkb0KGxG6DsOyfGvOQqNAeh19ouEEPJCa8yp0fef77S95pTdaqym8DE/SIQGbHzZklgF1djHBol4aHGZJfqwZn2MP0X2wzQmq2skB+5Wa3a9TkfihIJhp0t35dHNAHO2m1kr7SAgzbon47PhJbVc2eEX+avMRV8hyCOTzYzmKglzmSLn88CkZaXrjKa0ATVGJlkBmhrINqt/52mgt9QpAWNE9MpKHO6JNkSofoGATaf7xprjep1+eIKoX0qaf1qOOhERcSkHKsFF5/aKm94f6uEZZgxp5AwXM45ZPhLrdoA8ZJ9MhIWamF61fcdytOXwY2eINV5iOg7jEKNHOh1n9yTFirA7pesK0Ppdok6mHlUqOxjQMX3Nw1+HKh/AEWH6q2MNfAXlTevz5hV1MkdFEhSSqjzQRp3ltLM=
+    # MASTER_AWS_KEY
+    - secure: PA/5qehb0CfzwvsDG+0IeW4ZNgvg92I56lIhtTT2qBaAzK2juE9Fh5VoJDwyh9sq30/fIGB6OiBj+MvfOZrz/uAr2C+4urSeA5H810LbeuHOKXpX+JiU/7p1AyPNZAQWe4wT+q/xRxeQRIjvKamr/lGzSXVZED/OXa/Wtp6Kgq8orqH652cuQm3IY8ymb3PbWjbxx1aW2n7rNMF5QhwWzLNl/9OvLFIel5z19eWC8HAxnZ3aJKIUnQh9FoQyIceuhYvjhISa7HryvF6jkTs7f2xTrII+UjJbacq9PoQzb4ZP0iTEjVq/p+3l1b+mXg3uYc1jnKJ91TuoFcWfJyfN+XzkHbc/OTtdB8Qx454Crk1cLzZHD+9G5bnOkzXt3VfHR1lOjpLYfioRrKKOWMEQmhOeQUJ6bIQ7Yxz/RoGY76kHjEd+iQPVZas6RBVrPplZNonyMP5E3AHymN8I3hb6rBalMqgE4Vrf3GR1lo9E7VCPpXb5FL/bLyrANKaVbXdxbaFfoWjZpZyvmEtZXhYrPADT5DicEUuV+am2zKu4DYl/bkDEsJMbn00dCjnsnnfgB2uwRwICq7bESD8csoG2cg747umz86CFXrEJEt2KWbSwzEIfSfBIi+3XDefdMCjERtvAT+VFq59WJNdkpnsxsQKS1JzrxFc1psoH49VAP9U=
+    # MASTER_AWS_SECRET
+    - secure: XZI2PZtDPT2/ZPybRFnfVWeglyB/e0Qt84MYkqegcALPpgYMeKhiLwIrvNNZP05rdmnlFPg/Td21vNwWFUiEPxmJkpkjNqnU2JgZe9DjIpSsXjJ7lNMiEAmdc4+2t5iiPeWzatJrgj2C7qsj+SutKcCJXBRkCGKpGz3ZcpDTkh//+4iNyoadsWx9S/QwggGlgYr8LCE7iWCapFy88YhiiAp5N5iRTvwJvm/qWKUJoHN1PJrQHzS86nzG1zbzNIEVuSN15jPxiVPQFNL5C+ZB4A1SpWZEeJN5lnQWGn3JH0KLyyXu18GOrZHpR+K2pgs8oXogFBRI5/KJ+3uSRkFJcc8hib3XJOAJe7NpRzZj9cajIOLAJiL1lTvqwe9rBToNjad6quAQ+1KU8iwZXvkFHsCfsj0KE8VDVCj4ctbiQe+pZEyhkwB/A/m90w3lyTUD+IIp6pgmrKc/a90afF5jmdn1E09ndF9J2ZFtpSMAHdFeeqVaNHZIumKJvRqVC0cBAlOaDDOSJswLFvKIRthspC0x5gMedzaNq//wDCvxqz5J4c9bXpEC/aChqmCnqsjLOnlwZEI5/qRM3yXKGakl8B08Y5okMjv6aOkrGC/1628wuO9lhmKfxvcKJ1oBMoTbDyBUYoCZGvcgbdytTSjXdaBCer673l446vpDcXC2P/w=
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8

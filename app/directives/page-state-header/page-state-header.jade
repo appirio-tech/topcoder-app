@@ -10,7 +10,7 @@
         a(ui-sref="profile.about({userHandle: vm.profile.handle})")
           img.profile-circle(ng-if="vm.profile.photoURL", ng-src="{{vm.profile.photoURL}}")
 
-          img.profile-circle(ng-if="!vm.profile.photoURL", src="/images/ico-user-default.svg")
+          img.profile-circle(ng-if="!vm.profile.photoURL", src=require("../../../assets/images/ico-user-default.svg"))
 
       .user-stats(id="metrics", ng-hide="vm.loading")
         a.handle(style="color:{{vm.handleColor}};", ui-sref="profile.about({userHandle: vm.profile.handle})") {{vm.profile.handle}}

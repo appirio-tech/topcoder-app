@@ -1,11 +1,12 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   var dependencies = [
     'angular-jwt',
-    'ui.router',
-  ];
+    'ui.router'
+  ]
 
-  angular.module('tc.sample', dependencies);
-
-})();
+  angular.module('tc.sample', dependencies)
+})()

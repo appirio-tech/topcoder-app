@@ -1,27 +1,26 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   angular.module('tc.sitemap').config([
     '$stateProvider',
-    '$locationProvider',
     routes
-  ]);
+  ])
 
-  function routes($stateProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
-
+  function routes($stateProvider) {
     var states = {
       'sitemap': {
         parent: 'root',
         abstract: false,
         url: '/sitemap/',
-        templateUrl: 'sitemap/sitemap.html'
+        template: require('./sitemap')()
       }
-    };
+    }
 
     for (var name in states) {
-      var state = states[name];
-      $stateProvider.state(name, state);
+      var state = states[name]
+      $stateProvider.state(name, state)
     }
   }
-})();
+})()

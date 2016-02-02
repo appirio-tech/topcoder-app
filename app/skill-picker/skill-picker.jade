@@ -10,8 +10,8 @@
       .community(ng-repeat="(communityKey, community) in vm.communities", ng-class="{'community--disabled': !community.status}", ng-if="community.display")
         .community__details
           .community__icon(ng-class="{'community__icon--disabled': !community.status}")
-            img(ng-if="communityKey == 'ios' && community.status", src="/images/ico-ios-community.svg")
-            img(ng-if="communityKey == 'ios' && !community.status", src="/images/ico-ios-community-grey.svg")
+            img(ng-if="communityKey == 'ios' && community.status", src=require("../../assets/images/ico-ios-community.svg"))
+            img(ng-if="communityKey == 'ios' && !community.status", src=require("../../assets/images/ico-ios-community-grey.svg"))
 
           .community__text
             span.community__title(class="{{!community.status && 'disabled'}}") {{community.displayName}}
@@ -19,8 +19,6 @@
               span(ng-if="communityKey == 'ios'") Mobile app design and development for iOS, with Swift emphasis
 
         onoff-switch(model="community.status", unique-id="'community-' + communityKey")
-
-      
 
   .tracks-container
     .title tracks
@@ -36,10 +34,10 @@
       .track-title select design skills
 
       .skills
-        .skill(ng-repeat="tag in vm.featuredSkills | filter:{categories: 'DESIGN'} | orderBy:'priority':true", 
+        .skill(ng-repeat="tag in vm.featuredSkills | filter:{categories: 'DESIGN'} | orderBy:'priority':true",
           ng-class="{'selected-skill': vm.mySkills.indexOf(tag.id.toString()) > -1}")
           a(ng-click="vm.toggleSkill(tag.id.toString())")
-            .icon 
+            .icon
               img(ng-src="{{vm.ASSET_PREFIX}}images/skills/id-{{tag.id}}.svg", fallback-src="{{vm.ASSET_PREFIX}}images/skills/id-design.svg")
             .name {{tag.name}}
 
@@ -47,10 +45,10 @@
       .track-title select development skills
 
       .skills
-        .skill(ng-repeat="tag in vm.featuredSkills | filter:{categories: 'DEVELOP'} | orderBy:'priority':true", 
+        .skill(ng-repeat="tag in vm.featuredSkills | filter:{categories: 'DEVELOP'} | orderBy:'priority':true",
           ng-class="{'selected-skill': vm.mySkills.indexOf(tag.id.toString()) > -1}")
           a(ng-click="vm.toggleSkill(tag.id.toString())")
-            .icon 
+            .icon
               img(ng-src="{{vm.ASSET_PREFIX}}images/skills/id-{{tag.id}}.svg", fallback-src="{{vm.ASSET_PREFIX}}images/skills/id-develop.svg")
             .name {{tag.name}}
 
@@ -58,10 +56,10 @@
       .track-title select data science skills
 
       .skills
-        .skill(ng-repeat="tag in vm.featuredSkills | filter:{categories: 'DATA_SCIENCE'} | orderBy:'priority':true", 
+        .skill(ng-repeat="tag in vm.featuredSkills | filter:{categories: 'DATA_SCIENCE'} | orderBy:'priority':true",
           ng-class="{'selected-skill': vm.mySkills.indexOf(tag.id.toString()) > -1}")
           a(ng-click="vm.toggleSkill(tag.id.toString())")
-            .icon 
+            .icon
               img(ng-src="{{vm.ASSET_PREFIX}}images/skills/id-{{tag.id}}.svg", fallback-src="{{vm.ASSET_PREFIX}}images/skills/id-data.svg")
             .name {{tag.name}}
 

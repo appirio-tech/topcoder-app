@@ -1,24 +1,17 @@
+import angular from 'angular'
+
 (function () {
-  'use strict';
+  'use strict'
 
-  angular.module('tcUIComponents').directive('trackToggle', trackToggle);
-
-
-  trackToggle.$inject = [];
+  angular.module('tcUIComponents').directive('trackToggle', trackToggle)
 
   function trackToggle() {
     return {
       restrict: 'E',
-      templateUrl: 'directives/track-toggle/track-toggle.directive.html',
+      template: require('./track-toggle')(),
       scope: {
-        tracks: '=tracks',
-      },
-      controller: ['$scope', trackToggleController]
+        tracks: '=tracks'
+      }
     }
   }
-
-  function trackToggleController($scope) {
-
-  }
-
-})();
+})()

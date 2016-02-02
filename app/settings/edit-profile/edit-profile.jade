@@ -13,7 +13,7 @@
           .form-label your profile image
           .edit-image
             img.profile-circle(ng-show="vm.userData.photoURL && vm.userData.photoURL.length", ng-src="{{vm.userData.photoURL}}")
-            img.profile-circle(ng-show="!vm.userData.photoURL || !vm.userData.photoURL.length", src="/images/ico-user-default.svg")
+            img.profile-circle(ng-show="!vm.userData.photoURL || !vm.userData.photoURL.length", src=require("../../../assets/images/ico-user-default.svg"))
 
             .buttons
               button.file-upload.tc-btn.tc-btn-primary.tc-btn-s(ng-click="vm.changeImage()", type="button")

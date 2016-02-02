@@ -537,23 +537,23 @@
         left: 2px;
         height: 12px;
         width: 12px;
-        background-image: url(/images/grid-off.svg);
+        background-image: url(../../images/grid-off.svg);
       }
       &.list-lbl::before {
         left: 0;
         height: 12px;
         width: 14px;
-        background-image: url(/images/list-off.svg);
+        background-image: url(../../images/list-off.svg);
       }
     }
     input:checked ~ label {
       color: $community-text-dark;
     }
     input:checked ~ .grid-lbl::before {
-      background-image: url(/images/grid-on.svg);
+      background-image: url(../../images/grid-on.svg);
     }
     input:checked ~ .list-lbl::before {
-      background-image: url(/images/list-on.svg);
+      background-image: url(../../images/list-on.svg);
     }
   }
   .show-grid {

@@ -1,28 +1,27 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   angular.module('tc.community').config([
     '$stateProvider',
-    '$urlRouterProvider',
-    '$locationProvider',
     routes
-  ]);
+  ])
 
-  function routes($stateProvider, $urlRouterProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+  function routes($stateProvider) {
     var states = {
       'community': {
         parent: 'root',
         url: '/community/',
         abstract: true,
         data: {
-          authRequired: false,
+          authRequired: false
         }
       },
       'community.members': {
         parent: 'root',
         url: '/community/members/',
-        templateUrl: 'community/members.html',
+        template: require('./members')(),
         controller: 'MembersController',
         controllerAs: 'ctrl',
         data: {
@@ -34,17 +33,17 @@
       'community.statistics': {
         parent: 'root',
         url: '/community/statistics/',
-        templateUrl: 'community/statistics.html',
+        template: require('./statistics')(),
         controller: 'StatisticsController',
         controllerAs: 'ctrl',
         data: {
           title: 'Community Statistics'
         }
       }
-    };
+    }
 
     angular.forEach(states, function(state, name) {
-      $stateProvider.state(name, state);
-    });
-  };
-})();
+      $stateProvider.state(name, state)
+    })
+  }
+})()

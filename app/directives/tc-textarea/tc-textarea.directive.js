@@ -1,12 +1,14 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('tcUIComponents').directive('tcTextarea', tcTextarea);
+(function() {
+  'use strict'
+
+  angular.module('tcUIComponents').directive('tcTextarea', tcTextarea)
 
   function tcTextarea() {
     return {
       restrict: 'E',
-      templateUrl: 'directives/tc-textarea/tc-textarea.html',
+      template: require('./tc-textarea')(),
       scope: {
         labelText: '@',
         placeholder: '@',
@@ -16,4 +18,4 @@
       }
     }
   }
-})();
+})()
