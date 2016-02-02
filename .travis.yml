@@ -15,7 +15,7 @@ deploy:
   bucket: app.topcoder-dev.com
   local_dir: dist
   on:
-    branch: dev
+    branch: SUP-3018-webpack-take-two
 - provider: s3
   cache_control: private, no-store, no-cache, must-revalidate, max-age=0
   detect_encoding: true
