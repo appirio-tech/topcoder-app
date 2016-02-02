@@ -12,7 +12,7 @@ describe('Submissions Controller', function() {
 
   var state = {
     go: sinon.spy()
-  }
+  };
 
   beforeEach(function() {
     bard.appModule('tc.submissions');
@@ -61,7 +61,7 @@ describe('Submissions Controller', function() {
   describe('routes to the correct child state for', function() {
     it('design challenges', function() {
 
-      expect(state.go).calledWith('submissions.file.design');
+      expect(state.go).calledWith('submissions.file-design');
     });
 
     it('develop challenges', function() {
@@ -77,27 +77,7 @@ describe('Submissions Controller', function() {
       });
       vm = controller;
 
-      expect(state.go).calledWith('submissions.file.develop');
+      expect(state.go).calledWith('submissions.file-develop');
     });
-
-    it('errors', function() {
-      controller = $controller('SubmissionsController', {
-        challengeToSubmitTo: {
-          challenge: {
-            name: 'Challenge Name',
-            track: 'DEVELOP',
-            id: 30049240
-          },
-          error: {
-            type: 'phase',
-            message: 'No open submissions phase'
-          }
-        },
-        $state: state
-      });
-      vm = controller;
-
-      expect(state.go).calledWith('submissions.file.error');
-    });
-  });
-});
+  })
+})
