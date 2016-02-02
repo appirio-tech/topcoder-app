@@ -49,10 +49,10 @@ import _ from 'lodash'
         vm.userHandle = UserService.getUserIdentity().handle
 
         vm.userMenu = [
-          { 'sref': 'dashboard', 'text': 'DASHBOARD', 'icon': '../../../assets/images/nav/dashboard.svg' },
-          { 'sref': 'profile.about', 'srefParams': { 'userHandle': vm.userHandle }, 'text': 'MY PROFILE', 'icon': '../../../assets/images/nav/profile.svg' },
-          { 'href':  vm.constants.COMMUNITY_URL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': '../../../assets/images/nav/wallet.svg' },
-          { 'sref': 'settings.profile', 'text': 'SETTINGS', 'icon': '../../../assets/images/nav/settings.svg' }
+          { 'sref': 'dashboard', 'text': 'DASHBOARD', 'icon': require('../../../assets/images/nav/dashboard.svg') },
+          { 'sref': 'profile.about', 'srefParams': { 'userHandle': vm.userHandle }, 'text': 'MY PROFILE', 'icon': require('../../../assets/images/nav/profile.svg') },
+          { 'href':  vm.constants.COMMUNITY_URL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': require('../../../assets/images/nav/wallet.svg') },
+          { 'sref': 'settings.profile', 'text': 'SETTINGS', 'icon': require('../../../assets/images/nav/settings.svg') }
         ]
 
         ProfileService.getUserProfile(vm.userHandle)

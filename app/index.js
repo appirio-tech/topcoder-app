@@ -57,6 +57,9 @@ requireContextFiles(require.context('./', true, /^(?:(?!\.spec\.js$).)*\.js$/igm
 // Require all SCSS files
 // requireContextFiles(require.context('../assets/css/', true, /^(.*\.(scss$))[^.]*$/igm))
 
+// Require all images
+// requireContextFiles(require.context('../assets/images/', true, /^\.\/(images)\/[^\/]+\.(svg|png|jpg|jpeg|gif)/igm))
+
 // Some ordering is needed for right cascading of styles
 // TODO: each module requires the CSS it needs and we delete this list
 require('../assets/css/vendors/introjs.scss')

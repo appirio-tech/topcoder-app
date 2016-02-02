@@ -16,25 +16,25 @@ import angular from 'angular'
 
     service.menuLinks = {
       'compete': [
-          { 'href':  '/challenges/design/active/?pageIndex=1', 'text': 'DESIGN CHALLENGES', 'icon': '../../../assets/images/nav/track-design.svg' },
-          { 'href':  '/challenges/develop/active/?pageIndex=1', 'text': 'DEVELOPMENT CHALLENGES', 'icon': '../../../assets/images/nav/track-develop.svg' },
-          { 'href':  '/challenges/data/active/?pageIndex=1', 'text': 'DATA SCIENCE CHALLENGES', 'icon': '../../../assets/images/nav/track-data.svg' },
-          { 'href':  CONSTANTS.ARENA_URL, 'text': 'COMPETITIVE PROGRAMMING', 'icon': '../../../assets/images/nav/track-cp.svg', 'target': '_blank' }
+          { 'href':  '/challenges/design/active/?pageIndex=1', 'text': 'DESIGN CHALLENGES', 'icon': require('../../assets/images/nav/track-design.svg') },
+          { 'href':  '/challenges/develop/active/?pageIndex=1', 'text': 'DEVELOPMENT CHALLENGES', 'icon': require('../../assets/images/nav/track-develop.svg') },
+          { 'href':  '/challenges/data/active/?pageIndex=1', 'text': 'DATA SCIENCE CHALLENGES', 'icon': require('../../assets/images/nav/track-data.svg') },
+          { 'href':  CONSTANTS.ARENA_URL, 'text': 'COMPETITIVE PROGRAMMING', 'icon': require('../../assets/images/nav/track-cp.svg'), 'target': '_blank' }
       ],
       'learn': [
-          { 'href': '/getting-started/', 'text': 'GETTING STARTED', 'icon': '../../../assets/images/nav/rocket.svg' },
-          { 'href': '/community/design/', 'text': 'DESIGN', 'icon': '../../../assets/images/nav/book-design.svg' },
-          { 'href': '/community/development/', 'text': 'DEVELOPMENT', 'icon': '../../../assets/images/nav/book-develop.svg' },
-          { 'href': '/community/data-science/', 'text': 'DATA SCIENCE', 'icon': '../../../assets/images/nav/book-data.svg' },
-          { 'href': '/community/competitive%20programming/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': '../../../assets/images/nav/book-cp.svg' }
+          { 'href': '/getting-started/', 'text': 'GETTING STARTED', 'icon': require('../../assets/images/nav/rocket.svg') },
+          { 'href': '/community/design/', 'text': 'DESIGN', 'icon': require('../../assets/images/nav/book-design.svg') },
+          { 'href': '/community/development/', 'text': 'DEVELOPMENT', 'icon': require('../../assets/images/nav/book-develop.svg') },
+          { 'href': '/community/data-science/', 'text': 'DATA SCIENCE', 'icon': require('../../assets/images/nav/book-data.svg') },
+          { 'href': '/community/competitive%20programming/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': require('../../assets/images/nav/book-cp.svg') }
       ],
       'community': [
-          { 'sref': 'community.members', 'text': 'OVERVIEW', 'icon': '../../../assets/images/nav/members.svg' },
-          { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': '../../../assets/images/nav/programs.svg' },
-          { 'href': CONSTANTS.FORUMS_APP_URL, 'text': 'FORUMS', 'icon': '../../../assets/images/nav/forums.svg' },
-          { 'sref': 'community.statistics', 'text': 'STATISTICS', 'icon': '../../../assets/images/nav/statistics.svg' },
-          { 'href': '/community/events/', 'text': 'EVENTS', 'icon': '../../../assets/images/nav/events.svg' },
-          { 'href': '/blog/', 'text': 'BLOG', 'icon': '../../../assets/images/nav/blog.svg' }
+          { 'sref': 'community.members', 'text': 'OVERVIEW', 'icon': require('../../assets/images/nav/members.svg') },
+          { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': require('../../assets/images/nav/programs.svg') },
+          { 'href': CONSTANTS.FORUMS_APP_URL, 'text': 'FORUMS', 'icon': require('../../assets/images/nav/forums.svg') },
+          { 'sref': 'community.statistics', 'text': 'STATISTICS', 'icon': require('../../assets/images/nav/statistics.svg') },
+          { 'href': '/community/events/', 'text': 'EVENTS', 'icon': require('../../assets/images/nav/events.svg') },
+          { 'href': '/blog/', 'text': 'BLOG', 'icon': require('../../assets/images/nav/blog.svg') }
       ]
     }
 
