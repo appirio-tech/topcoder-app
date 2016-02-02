@@ -16,6 +16,7 @@ deploy:
     access_key_id: $AWS_KEY
     secret_access_key: $AWS_SECRET
     bucket: app.topcoder-dev.com
+    skip_cleanup: true
     local_dir: dist
     on:
       branch: SUP-3018-webpack-take-two
@@ -25,6 +26,7 @@ deploy:
     access_key_id: $QA_AWS_KEY
     secret_access_key: $QA_AWS_SECRET
     bucket: app.topcoder-qa.com
+    skip_cleanup: true
     local_dir: dist
     on:
       branch: qa
@@ -33,6 +35,7 @@ deploy:
     access_key_id: $MASTER_AWS_KEY
     secret_access_key: $MASTER_AWS_SECRET
     bucket: app.topcoder.com
+    skip_cleanup: true
     local_dir: dist
     on:
       branch: master
