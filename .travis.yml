@@ -1,39 +1,41 @@
 language: node_js
 node_js:
-- 5.5.0
+  - 5.5.0
+before_script:
+  - npm install -g bower
+  - bower install
 install:
-- bower install
-- npm install
+  - npm install
 script:
-- webpack --bail --progress --build --tc
+  - webpack --bail --progress --build --tc
 sudo: false
 deploy:
-- provider: s3
-  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
-  detect_encoding: true
-  access_key_id: $AWS_KEY
-  secret_access_key: $AWS_SECRET
-  bucket: app.topcoder-dev.com
-  local_dir: dist
-  on:
-    branch: SUP-3018-webpack-take-two
-- provider: s3
-  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
-  detect_encoding: true
-  access_key_id: $QA_AWS_KEY
-  secret_access_key: $QA_AWS_SECRET
-  bucket: app.topcoder-qa.com
-  local_dir: dist
-  on:
-    branch: qa
-- provider: s3
-  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
-  access_key_id: $MASTER_AWS_KEY
-  secret_access_key: $MASTER_AWS_SECRET
-  bucket: app.topcoder.com
-  local_dir: dist
-  on:
-    branch: master
+  - provider: s3
+    cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+    detect_encoding: true
+    access_key_id: $AWS_KEY
+    secret_access_key: $AWS_SECRET
+    bucket: app.topcoder-dev.com
+    local_dir: dist
+    on:
+      branch: SUP-3018-webpack-take-two
+  - provider: s3
+    cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+    detect_encoding: true
+    access_key_id: $QA_AWS_KEY
+    secret_access_key: $QA_AWS_SECRET
+    bucket: app.topcoder-qa.com
+    local_dir: dist
+    on:
+      branch: qa
+  - provider: s3
+    cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+    access_key_id: $MASTER_AWS_KEY
+    secret_access_key: $MASTER_AWS_SECRET
+    bucket: app.topcoder.com
+    local_dir: dist
+    on:
+      branch: master
 env:
   matrix:
   - CXX=g++-4.8
