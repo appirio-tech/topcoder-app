@@ -53,6 +53,7 @@
     "angular-ui-router": "^0.2.16",
     "angularjs-toaster": "^1.0.0",
     "appirio-styles": "0.x.x",
+    "appirio-tech-ng-iso-constants": "^1.0.6",
     "appirio-tech-ng-ui-components": "^2.0.19",
     "auth0-angular": "^4.1.0",
     "auth0-js": "^6.8.0",

@@ -10,7 +10,6 @@
   ],
   "dependencies": {
     "angular-img-fallback": "~0.1.3",
-    "appirio-tech-ng-iso-constants": "git@github.com:appirio-tech/ng-iso-constants#~1.0.6",
     "ng-busy": "~0.2.0"
   },
   "resolutions": {
