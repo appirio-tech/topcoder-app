@@ -9,7 +9,9 @@
     a.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenge-details/{{submissions.challengeId}}/?type={{submissions.track}}") Back to Challenge Details
 
 .panel-body
-  form.form-blocks(name="submissionForm", role="form", ng-submit="submissionForm.$valid && vm.uploadSubmission()", novalidate)
+  p.tc-error-messages.submissions-access-error(ng-if="submissions.error", ng-bind="submissions.errorMessage")
+
+  form.form-blocks(ng-if="!submissions.error", name="submissionForm", role="form", ng-submit="submissionForm.$valid && vm.uploadSubmission()", novalidate)
     .form-block.flex
       .form-block__instructions
         .form-block__title Files
