@@ -4,7 +4,7 @@ node_js:
 install:
 - npm install
 script:
-- webpack --bail --progress --build
+- webpack --bail --progress --build --tc
 sudo: false
 deploy:
 - provider: s3
