@@ -16,7 +16,6 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'HELP_APP_URL'            : process.env.HELP_APP_URL,
   'MAIN_URL'                : process.env.MAIN_URL,
   'ARENA_URL'               : process.env.ARENA_URL,
-  'NEW_RELIC_APPLICATION_ID': process.env.NEW_RELIC_APPLICATION_ID || '',
   'PHOTO_LINK_LOCATION'     : process.env.PHOTO_LINK_LOCATION,
   'SWIFT_PROGRAM_URL'       : process.env.SWIFT_PROGRAM_URL,
 
