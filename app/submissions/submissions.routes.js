@@ -123,4 +123,4 @@
       $stateProvider.state(name, state);
     }
   }
-})()
+})();
