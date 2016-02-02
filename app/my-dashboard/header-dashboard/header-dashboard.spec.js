@@ -4,7 +4,7 @@ const mockData = require('../../../tests/test-helpers/mock-data')
 describe('Header Dashboard Controller', function() {
   var controller
   var domain
-  var authService, notificationService, userService, profileService, identity
+  var authService, userService, profileService, identity
   var profile = mockData.getMockProfile()
   var stats = mockData.getMockStats()
   var financials = mockData.getMockUserFinancials()
@@ -16,14 +16,12 @@ describe('Header Dashboard Controller', function() {
       '$rootScope',
       '$q',
       'TcAuthService',
-      'NotificationService',
       'UserService',
       'ProfileService',
       'CONSTANTS',
       'Helpers')
 
     domain = CONSTANTS.domain
-    notificationService = NotificationService
     authService = TcAuthService
     userService = UserService
     profileService = ProfileService
@@ -66,12 +64,6 @@ describe('Header Dashboard Controller', function() {
       deferred.resolve(financials)
       return deferred.promise
     })
-
-    // mock challenges api
-    sinon.stub(notificationService, 'inform', function() {
-      // do nothing
-      // TODO may be it can be tested by mocking notifier
-    })
   })
 
   bard.verifyNoOutstandingHttpRequests()
@@ -80,7 +72,6 @@ describe('Header Dashboard Controller', function() {
     var controller = null
     beforeEach( function(){
       controller = $controller('HeaderDashboardController', {
-        NotificationService : notificationService,
         UserService : userService,
         ProfileService: profileService,
         userIdentity: identity,
@@ -105,7 +96,6 @@ describe('Header Dashboard Controller', function() {
         return deferred.promise
       })
       controller = $controller('HeaderDashboardController', {
-        NotificationService : notificationService,
         UserService : userService,
         ProfileService: profileService,
         userIdentity: identity,
@@ -130,7 +120,6 @@ describe('Header Dashboard Controller', function() {
         return deferred.promise
       })
       controller = $controller('HeaderDashboardController', {
-        NotificationService : notificationService,
         UserService : userService,
         ProfileService: profileService,
         userIdentity: identity,

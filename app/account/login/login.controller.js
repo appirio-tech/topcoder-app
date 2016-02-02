@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.account').controller('LoginController', LoginController)
 
-  LoginController.$inject = ['$log', '$state', '$stateParams', '$location', '$scope', 'TcAuthService', 'UserService', 'NotificationService', 'Helpers', 'CONSTANTS']
+  LoginController.$inject = ['$log', '$state', '$stateParams', '$location', '$scope', 'TcAuthService', 'UserService', 'Helpers', 'CONSTANTS']
 
-  function LoginController($log, $state, $stateParams, $location, $scope, TcAuthService, UserService, NotificationService, Helpers, CONSTANTS) {
+  function LoginController($log, $state, $stateParams, $location, $scope, TcAuthService, UserService, Helpers, CONSTANTS) {
     var vm = this
     $log = $log.getInstance('LoginController')
     vm.$stateParams = $stateParams
@@ -26,11 +26,7 @@ import angular from 'angular'
 
     activate()
 
-    function activate() {
-      if ($stateParams.notifyReset) {
-        NotificationService.inform('Your new password has been set. Please log in. If you have any trouble, please contact support@topcoder.com.')
-      }
-    }
+    function activate() {}
 
     function login() {
       vm.loginErrors.USERNAME_NONEXISTANT = false

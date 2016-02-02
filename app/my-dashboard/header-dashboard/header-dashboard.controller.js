@@ -1,25 +1,18 @@
+import angular from 'angular'
+
 (function () {
-  'use strict';
+  'use strict'
 
-  angular.module('tc.myDashboard').controller('HeaderDashboardController', HeaderDashboardController);
+  angular.module('tc.myDashboard').controller('HeaderDashboardController', HeaderDashboardController)
 
-  HeaderDashboardController.$inject = [
-    '$stateParams',
-    'NotificationService',
-    'profile',
-    '$log'
-  ];
+  HeaderDashboardController.$inject = ['$stateParams', 'profile', '$log']
 
-  function HeaderDashboardController($stateParams, NotificationService, profile, $log) {
-    var vm = this;
-    vm.profile = profile;
+  function HeaderDashboardController($stateParams, profile, $log) {
+    var vm = this
+    vm.profile = profile
 
-    activate();
+    activate()
 
-    function activate() {
-      if ($stateParams.notifyReset) {
-        NotificationService.inform('Thanks. Your new password has been set.');
-      }
-    }
+    function activate() {}
   }
-})();
+})()

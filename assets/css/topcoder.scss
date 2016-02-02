@@ -207,27 +207,6 @@ body {
   min-height: 100%;
 }
 
-.notifications {
-  @media screen and (min-device-width: 768px) {
-    min-width: 768px;
-  }
-
-  .notifications-container {
-    position: static;
-    z-index: 0;
-  }
-
-  .error {
-    background-color: #f2dede;
-    border-color: #ebccd1;
-    color: #a94442;
-  }
-
-  .close-click {
-    font-size: inherit;
-  }
-}
-
 .view-container {
   min-height: 440px;
   padding-bottom: 30px;
