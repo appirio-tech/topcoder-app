@@ -15,8 +15,6 @@ var config = require('appirio-tech-webpack-config')({
   favicon: './assets/images/favicon.ico'
 })
 
-console.log('asset prefix is:::::::::::::::::::::::::::::::::')
-console.log(process.env.ASSET_PREFIX)
 config.output.publicPath = process.env.ASSET_PREFIX || ''
 
 module.exports = config
