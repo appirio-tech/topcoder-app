@@ -5,7 +5,7 @@
     "build": "webpack --bail --progress --build",
     "dev": "webpack-dev-server --history-api-fallback --dev --tc --inline --progress --port 3000",
     "lint": "eslint .",
-    "test": "karma start"
+    "test": "karma start --tc"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.9",
@@ -23,6 +23,7 @@
     "karma-chrome-launcher": "^0.2.2",
     "karma-cli": "^0.1.2",
     "karma-coverage": "^0.5.3",
+    "karma-firefox-launcher": "^0.1.7",
     "karma-junit-reporter": "^0.3.8",
     "karma-mocha": "^0.2.1",
     "karma-phantomjs-launcher": "^1.0.0",

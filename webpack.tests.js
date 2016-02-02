@@ -5,6 +5,8 @@ require('phantomjs-polyfill')
 require('angular-mocks')
 require('./node_modules/bardjs/dist/bard.js')
 
+require('auth0-js')
+require('auth0-angular')
 require('angular-ui-router')
 require('angular-cookies')
 require('angular-storage')
@@ -29,7 +31,7 @@ require('ng-notifications-bar')
 require('xml2js')
 
 require('appirio-tech-ng-ui-components')
-require('./bower_components/appirio-tech-ng-iso-constants/dist/ng-iso-constants')
+require('appirio-tech-ng-iso-constants')
 
 require('./bower_components/ng-busy/build/angular-busy')
 require('./bower_components/angular-img-fallback/angular.dcb-img-fallback')

@@ -1,5 +1,7 @@
 require('./node_modules/coffee-script/register')
 
+process.env.ENV = 'DEV'
+
 var webpackConfig = require('appirio-tech-webpack-config')({
   dirname: __dirname,
   entry: {
@@ -84,7 +86,7 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     //        browsers: ['Chrome', 'ChromeCanary', 'FirefoxAurora', 'Safari', 'PhantomJS'],
-    browsers: ['Chrome'],
+    browsers: [ process.env.CONTINUOUS_INTEGRATION ? 'Firefox' : 'Chrome' ],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

@@ -1,5 +1,3 @@
-// __webpack_public_path__ = process.env.TRAVIS_BRANCH ? process.env.ASSET_PREFIX : ''
-
 require('angular')
 require('auth0-js')
 require('auth0-angular')
@@ -53,12 +51,6 @@ requireContextFiles(require.context('./', true, /^.*\.module\.js$/igm))
 
 // Require JS files that aren't tests
 requireContextFiles(require.context('./', true, /^(?:(?!\.spec\.js$).)*\.js$/igm))
-
-// Require all SCSS files
-// requireContextFiles(require.context('../assets/css/', true, /^(.*\.(scss$))[^.]*$/igm))
-
-// Require all images
-// requireContextFiles(require.context('../assets/images/', true, /^\.\/(images)\/[^\/]+\.(svg|png|jpg|jpeg|gif)/igm))
 
 // Some ordering is needed for right cascading of styles
 // TODO: each module requires the CSS it needs and we delete this list
