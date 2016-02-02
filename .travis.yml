@@ -20,6 +20,7 @@ deploy:
     local_dir: dist
     on:
       all_branches: true
+      repo: appirio-tech/topcoder-app
   - provider: s3
     cache_control: private, no-store, no-cache, must-revalidate, max-age=0
     detect_encoding: true
