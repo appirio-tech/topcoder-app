@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- 5.3.0
+- 5.5.0
 install:
 - npm install
 script:
@@ -13,7 +13,6 @@ deploy:
   access_key_id: $AWS_KEY
   secret_access_key: $AWS_SECRET
   bucket: app.topcoder-dev.com
-  skip_cleanup: true
   local_dir: dist
   on:
     branch: dev
@@ -23,7 +22,6 @@ deploy:
   access_key_id: $QA_AWS_KEY
   secret_access_key: $QA_AWS_SECRET
   bucket: app.topcoder-qa.com
-  skip_cleanup: true
   local_dir: dist
   on:
     branch: qa
@@ -32,7 +30,6 @@ deploy:
   access_key_id: $MASTER_AWS_KEY
   secret_access_key: $MASTER_AWS_SECRET
   bucket: app.topcoder.com
-  skip_cleanup: true
   local_dir: dist
   on:
     branch: master
@@ -41,9 +38,9 @@ env:
   - CXX=g++-4.8
   global:
   # DEV_AWS_KEY
-  - secure: bde7qf1G8SUAFlW1frW/KS5bsiTfkjnnTtpZKuqItDnj6oJ/sNsBlU8x/n4hsvl7ziOfn1bPt8LpJLtQFU3IoMsCxuWQMim9vk88+nmgjYebC+76b3UDwgZfNwoQD9l4jvRHXmdxixStv3y5doul5dx/AXe7e+RdWyDEynvi+0E=
+  - secure: ftCAX47TDUjlsnLMmvR/n26CSVwKMulvTGcGH6bkmhksoFVvL1NLaan+OjPwRaFS+KB6YUN3RP4xM80CowRJYIxk77Yu4JMaasJxW8dIjVDLVf5T7vONVgPJWufWGcOq8o9AxhbWr1d/r+H73I6t1aLf9Q6zAWtkCWUxszH3HV2pyRWC4mXikXmqbN1mnjRkAN0ZJLHynYPwVAfE0e0sKKQq/vdkL7gzS6LKuxI7Lbd9SQvn0XWISJTty6ZnzCIJQug+Ra8M+XBJxTq/Gq/G7XuiStGi51d8WJgX0yqKQHBIyVEhQwTTYSf8Lt6ea9VCS4x1RnXUhjv+1DHBAvHn0xL+IJTfhddUqBRORekfFOA0qDGasfnEMDzaJRpfzK+QrDWbDVOTlIG5agbqfhDlollzHf6ePeVN+cYHMAPiZweMx5EGB/+P0TsWCgiaTIVjppqMSorTCebZikwo+O94ttJk2ssFWG+eQ0UcTxjcGcaJlmtrMe+9l3hW7hDjSbdy0ueMF3z7jdIozRe4T34RQuvRCBc141Cuov2c5//j68p5d8iTCRA0Wr3yrXDvewc9sDKNMGtuQHJfLhrRUsgVI0W7zh2strPN+fxq3aJ/tKNQQ2DE3EAAotECcgfJjJYGPMJ4JG7YCJhSTXFWTp0GIePPsv33wcg4VS75k57f8JQ=
   # DEV_AWS_SECRET
-  - secure: RT17TuPmyiLZiQpfHC7xUzxmMsnEZY+A+b96D+XHj5LNOmXFmMB4JaUaOmX5veWU4Lxk6Mw2IzvfJwjmKSmHZhaeERA4QljM2Sqm5/k5bKJkNVocGvLP1Gm0ARwJJ0I572aJQdWvEVgHXID1HjuCjrDrxPv8UoxLKb8SlmB2krc=
+  - secure: UHF+v/8TabFZcOzaHHL4Yp739HxQMVlx6DYBhR7fRlpN7Um99ms5r9BS9ERu57XO5f/DFIy88pCiWFPpynmAICe+rIhJtKge0QN0VT3vXXF0hdaMjXmFd0tPcNohJFLXaAq/1OaZWzAqqMaAae+ZyFhKCICzS2q9/t+uQ+cJJcUju+RVUNBbFxqqGLzUC209MqBAKEeBp6YuVfPyVLmqRXKhXKDgoD5Lups0xmN6o0oH+MuRZu6X0d16sNrkvsNoIoEGN5JFxvbj/HYgJkQhq9pOeTWu6sKm3XoCchYlGk0OVygWxum00qcLqVJHoNrywGLwk6hHXs+vxnjICf7x662sbaXam410Z2S2l8Pt+s+QxGL9yqfUsMs9TczMZg+M7ulA+DlajoOo0LrpFjhuQc1g733GnLpDD4tvknqgtZ+l7InSc/WgzWP7slPkSF3S///+rg+ldBKZYtOAWhNJYCU0GxVXTKkOqfvlVVyG2L1qR/AtttMIDzui9xBQWKNOtmPhSz2R6dyJs6uSzypcICWpxWXyeQ9JZSL+f5vdG+3pDKkDfMKNRRwVK3GbgmQdWKdJVUeLVbWGx7KAL938VOfiAUp6w0QM73CJmqqghUe/nkEmiU9b9N/mpUZqKdDDCupSqUW0XJRv5xQZT+FLh17qCTqfhKMxLSVFErG+M6Q=
   # QA_AWS_KEY
   - secure: lpdUndFkKU1MbQZ7pT7ke4XWItHNYCDSt8vInYqiBHByK42//DzUoUQhP3B8QVf8teKBnXnbbJGl01SpUgd1+ZdepI1ksa06KOfeyRrZ3cmFh3UBR5RWDYmxZxnJFgzmL3tMTEfzImO2Khd0CLIdIOAwhRXtI2Z5Ipwqnu295X8=
   # QA_AWS_SECRET
