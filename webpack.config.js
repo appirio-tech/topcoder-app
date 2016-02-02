@@ -2,7 +2,7 @@ require('./node_modules/coffee-script/register')
 
 if (process.env.TRAVIS_BRANCH == 'master') process.env.ENV = 'PROD'
 if (process.env.TRAVIS_BRANCH == 'dev') process.env.ENV = 'DEV'
-if (process.env.TRAVIS_BRANCH == 'qa') process.env.ENV = 'QA'
+if (process.env.TRAVIS_BRANCH == 'qa-integration') process.env.ENV = 'QA'
 
 process.env.ENV = 'DEV'
 
