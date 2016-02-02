@@ -22,14 +22,10 @@
       vm.challengeId = challenge.id;
       vm.track = challenge.track.toLowerCase();
 
-      if (challengeToSubmitTo.error) {
-        $state.go('submissions.file.error');
-      } else {
-        if (challenge.track === 'DESIGN') {
-          $state.go('submissions.file.design');
-        } else if (challenge.track === 'DEVELOP') {
-          $state.go('submissions.file.develop')
-        }
+      if (challenge.track === 'DESIGN') {
+        $state.go('submissions.file-design');
+      } else if (challenge.track === 'DEVELOP') {
+        $state.go('submissions.file-develop');
       }
     }
   }

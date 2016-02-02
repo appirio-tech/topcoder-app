@@ -6,6 +6,8 @@
   SubmitDesignFilesController.$inject = ['$scope','$window', '$stateParams', '$log', 'UserService', 'SubmissionsService', 'challengeToSubmitTo'];
 
   function SubmitDesignFilesController($scope, $window, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
+    if (!challengeToSubmitTo.challenge) { return; }
+
     var vm = this;
     $log = $log.getInstance('SubmitDesignFilesController');
     var files = {};
@@ -86,14 +88,14 @@
       };
 
       switch(fieldId) {
-        case 'SUBMISSION_ZIP':
-          fileObject.mediaType = 'application/octet-stream';
-          break;
-        case 'SOURCE_ZIP':
-          fileObject.mediaType = 'application/octet-stream';
-          break;
-        default:
-          fileObject.mediaType = file.type;
+      case 'SUBMISSION_ZIP':
+        fileObject.mediaType = 'application/octet-stream';
+        break;
+      case 'SOURCE_ZIP':
+        fileObject.mediaType = 'application/octet-stream';
+        break;
+      default:
+        fileObject.mediaType = file.type;
       }
 
       // If user changes a file input's file, update the file details
@@ -159,7 +161,6 @@
 
       vm.submissionsBody.data.fonts = processedFonts;
 
-      $log.debug('Body for request: ', vm.submissionsBody);
       SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress);
     }
 
@@ -183,8 +184,8 @@
             fileUploadProgress[requestId] = progress;
           }
           var total = 0, count = 0;
-          for(var requestId in fileUploadProgress) {
-            var prog = fileUploadProgress[requestId];
+          for(var requestIdKey in fileUploadProgress) {
+            var prog = fileUploadProgress[requestIdKey];
             total += prog;
             count++;
           }
@@ -209,7 +210,7 @@
         }
       } else {
         // assume it to be error condition
-        $log.debug("Error Condition: " + phase);
+        $log.debug('Error Condition: ' + phase);
         vm.errorInUpload = true;
       }
     }
