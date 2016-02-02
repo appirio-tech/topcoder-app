@@ -71,6 +71,7 @@ import _ from 'lodash'
     function getApiServiceProvider(type) {
       switch (type.toUpperCase()) {
       case 'AUTH':
+      case 'SUBMISSIONS':
       case 'USER':
         return _getRestangularV3(CONSTANTS.AUTH_API_URL)
       default:

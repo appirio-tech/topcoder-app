@@ -12,7 +12,7 @@ describe('Submissions Controller', function() {
 
   var state = {
     go: sinon.spy()
-  }
+  };
 
   beforeEach(function() {
     bard.appModule('tc.submissions')
@@ -60,7 +60,6 @@ describe('Submissions Controller', function() {
 
   describe('routes to the correct child state for', function() {
     it('design challenges', function() {
-
       expect(state.go).calledWith('submissions.file-design')
     })
 

@@ -6,7 +6,7 @@
   SubmissionsService.$inject = ['CONSTANTS', 'ApiService', '$q', '$log', 'toaster'];
 
   function SubmissionsService(CONSTANTS, ApiService, $q, $log, toaster) {
-    var api = ApiService.restangularV3;
+    var api = ApiService.getApiServiceProvider('SUBMISSIONS');
 
     var service = {
       getPresignedURL: getPresignedURL,
