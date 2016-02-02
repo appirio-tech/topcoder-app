@@ -15,6 +15,6 @@ var config = require('appirio-tech-webpack-config')({
   favicon: './assets/images/favicon.ico'
 })
 
-config.output.publicPath = process.env.ASSET_PREFIX || ''
+if (process.env.TRAVIS_BRANCH) config.output.publicPath = process.env.ASSET_PREFIX
 
 module.exports = config
