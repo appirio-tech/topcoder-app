@@ -16,7 +16,7 @@ challenge-tile .challenge.tile-view {
       @include font-with-weight('Sofia Pro', 500);
       font-size: 12px;
       line-height: 16px;
-      max-height: 48px;
+      min-height: 48px;
       overflow: hidden;
       color: $gray-darkest;
       @include link;
