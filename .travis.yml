@@ -19,7 +19,7 @@ deploy:
     skip_cleanup: true
     local_dir: dist
     on:
-      branch: SUP-3018-webpack-take-two
+      all_branches: true
   - provider: s3
     cache_control: private, no-store, no-cache, must-revalidate, max-age=0
     detect_encoding: true
