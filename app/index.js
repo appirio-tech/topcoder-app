@@ -1,3 +1,5 @@
+__webpack_public_path__ = process.env.TRAVIS_BRANCH ? process.env.ASSET_PREFIX : ''
+
 require('angular')
 require('auth0-js')
 require('auth0-angular')
