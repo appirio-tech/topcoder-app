@@ -1,3 +1,5 @@
+Dev: [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=dev)](https://travis-ci.org/appirio-tech/topcoder-app)
+
 # Topcoder-App
 
 This repository houses any new topcoder pages or refactored Angular apps/pages from the tc-site repository.
