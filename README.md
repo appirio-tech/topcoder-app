@@ -11,9 +11,9 @@ We use node 5.x and npm 3.x, so you may need to download a new version of node. 
 Install dependencies by running the following in the root of the project:
  - `npm i`
  - **Note:** You must use npm 3. Type `npm -v` to ensure you have a 3.x version.
- - bower i
+ - `bower i`
 
-In order to test a logged in user, you must make an entry in your /etc/hosts file, pointing local.topcoder-dev.com to localhost. For example, open your /etc/hosts file with something like `vim /etc/hosts` and add `127.0.0.1 local.topcoder-dev.com`. After you run `gulp serve`, which launches a new window or tab, change `http://localhost:3000/sample/` to `http://local.topcoder-dev.com:3000/sample/`. You will then be able to login and pick up information from the cookies with `.topcoder-dev.com` as the domain.
+In order to test a logged in user, you must make an entry in your `/etc/hosts` file, pointing `local.topcoder-dev.com` to `localhost`. For example, open your `/etc/hosts` file with something like `vim /etc/hosts` and add `127.0.0.1 local.topcoder-dev.com`. After you run `gulp serve`, which launches a new window or tab, change `http://localhost:3000/sample/` to `http://local.topcoder-dev.com:3000/sample/`. You will then be able to login and pick up information from the cookies with `.topcoder-dev.com` as the domain.
 
 ## NPM Commands
 - To run locally: `npm run dev` and head to `local.topcoder-dev.com:3000/my-dashboard`
@@ -60,7 +60,7 @@ To read about the file and folder structure of tests, read [this section](https:
 ### Description of Files and Folders
 
 #### app
-This folder holds all of our Angular JavaScript and Jade files. Here you'll find the top level Angular app in `topcoder.module.js`. It has all of our submodules as dependencies (tc.peer-review, tc.account, etc.). Each submodule has its own folder, including its own Angular module declaration, e.g. 'peer-review/peer-review.module.js'. All files are named according to their Angular component, e.g. review-status.controller.js, peer-review.routes.js.
+This folder holds all of our Angular JavaScript and Jade files. Here you'll find the top level Angular app in `topcoder.module.js`. It has all of our submodules as dependencies (tc.peer-review, tc.account, etc.). Each submodule has its own folder, including its own Angular module declaration, e.g. `peer-review/peer-review.module.js`. All files are named according to their Angular component, e.g. `review-status.controller.js`, `peer-review.routes.js`.
 
 #### app/services
 Services live in their own folder. All services are part of the tc.services module, which is a dependency of `topcoder.module.js`.
@@ -74,12 +74,12 @@ Services live in their own folder. All services are part of the tc.services modu
     - This folder contains our analytics, e.g. Google, New Relic, etc.
 
 #### tests
-The tests folder contains mock data (tests/test-helpers/mock-data.js). To run tests, use `npm test`.
+The tests folder contains mock data (`tests/test-helpers/mock-data.js`). To run tests, use `npm test`.
 
-Spec files live alongside the code they are testing. For example, in peer-review you have review-status.controller.js and review-status.spec.js in the same review-status folder.
+Spec files live alongside the code they are testing. For example, in peer-review you have `review-status.controller.js` and `review-status.spec.js` in the same review-status folder.
 
 ## UI-Router and States
-See any *.routes.js file as an example.
+See any `*.routes.js` file as an example.
 
 **Important:** Make sure the url in your routes files ends with a slash `/`
 
@@ -101,7 +101,7 @@ Further, please make sure every pull request has passed the build checks, which 
 ### Adding New Content
 
 Jade Files
-  - Use index.jade any other module's Jade files as a guide for syntax
+  - Use `index.jade` any other module's Jade files as a guide for syntax
   - You (usually) don't need to write the div tag
   - Add a blank line in between sibling tags and when going back one indentation level:
 ```
@@ -144,4 +144,4 @@ JavaScript
   - See this section on [naming conventions and style guide](https://github.com/appirio-tech/topcoder-app/blob/dev/README.md#style-guide-and-naming-conventions)
 
 Creating New Views/Pages
-  - To add a new page, create a folder in the app directory and follow the naming conventions found elsewhere, e.g. login.controller.js, login.jade, login.spec.js, etc.  Make sure to add a new state in the submodule's routes file.
+  - To add a new page, create a folder in the app directory and follow the naming conventions found elsewhere, e.g. `login.controller.js`, `login.jade`, `login.spec.js`, etc.  Make sure to add a new state in the submodule's routes file.
