@@ -44,6 +44,7 @@
     "angular-carousel": "^1.0.1",
     "angular-cookies": "^1.4.9",
     "angular-filter": "^0.5.8",
+    "angular-img-fallback": "^0.1.3",
     "angular-intro.js": "appirio-tech/angular-intro.js.git#feature/fix-for-webpack",
     "angular-jwt": "0.0.9",
     "angular-messages": "^1.4.9",
