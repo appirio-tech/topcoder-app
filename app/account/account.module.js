@@ -8,7 +8,6 @@ import angular from 'angular'
     'tc.services',
     'ngIsoConstants',
     'angucomplete-alt',
-    'ngBusy',
     'blocks.logger'
   ]
 

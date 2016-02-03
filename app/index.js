@@ -11,6 +11,7 @@ require('angular-jwt')
 require('angular-filter')
 require('angular-carousel')
 require('angular-intro.js')
+require('angular-img-fallback')
 require('tc-angular-ellipsis')
 require('d3')
 require('lodash')
@@ -23,9 +24,6 @@ require('xml2js')
 
 require('appirio-tech-ng-ui-components')
 require('appirio-tech-ng-iso-constants')
-
-require('../bower_components/ng-busy/build/angular-busy')
-require('../bower_components/angular-img-fallback/angular.dcb-img-fallback')
 
 // Vendor styles
 require('../node_modules/angucomplete-alt/angucomplete-alt.css')

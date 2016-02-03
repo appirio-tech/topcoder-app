@@ -17,8 +17,8 @@ require('angular-jwt')
 require('angular-filter')
 require('angular-carousel')
 require('angular-intro.js')
+require('angular-img-fallback')
 require('tc-angular-ellipsis')
-require('moment')
 require('d3')
 require('lodash')
 require('zepto/zepto.min.js')
@@ -30,9 +30,6 @@ require('xml2js')
 
 require('appirio-tech-ng-ui-components')
 require('appirio-tech-ng-iso-constants')
-
-require('./bower_components/ng-busy/build/angular-busy')
-require('./bower_components/angular-img-fallback/angular.dcb-img-fallback')
 
 // Require Angular modules first
 requireContextFiles(require.context('./app/', true, /^.*\.module\.js$/igm))

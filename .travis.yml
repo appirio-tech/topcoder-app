@@ -7,8 +7,6 @@ before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - sleep 3 # give xvfb some time to start
-  - npm install -g bower
-  - bower install
 script:
   - npm test
   - webpack --bail --progress --build --tc
