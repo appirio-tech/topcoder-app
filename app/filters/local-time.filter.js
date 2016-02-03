@@ -1,6 +1,6 @@
 import angular from 'angular'
 import jstz from 'jstimezonedetect'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 (function() {
   'use strict'
