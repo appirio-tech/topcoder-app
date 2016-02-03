@@ -1,6 +1,6 @@
 .lightbox-container
   .left-nav
-    img(ng-show="challenge.userDetails.submissions.length > 1", src="/images/ico-arrow-big-left.svg", ng-click="incrementIndex(-1)")
+    img(ng-show="challenge.userDetails.submissions.length > 1", src=require("../../../../assets/images/ico-arrow-big-left.svg"), ng-click="incrementIndex(-1)")
 
   .selector
     .title {{challenge.name}}
@@ -8,7 +8,7 @@
 
     img(
       ng-src="{{selectedImage}}",
-      fallback-src="/images/card-bg-no-image.svg"
+      fallback-src=require("../../../../assets/images/card-bg-no-image.svg")
     )
 
 
@@ -21,10 +21,10 @@
         ng-src="{{currentImage = submission.submissionImage && submission.submissionImage.full}}",
         ng-click="updateSelected(currentImage, $index)",
         ng-class="{'current': currentImage == selectedImage}",
-        fallback-src="/images/card-bg-no-image.svg"
+        fallback-src=require("../../../../assets/images/card-bg-no-image.svg")
       )
 
   .right-nav
-    img(ng-show="challenge.userDetails.submissions.length > 1", src="/images/ico-arrow-big-right.svg", ng-click="incrementIndex(1)")
+    img(ng-show="challenge.userDetails.submissions.length > 1", src=require("../../../../assets/images/ico-arrow-big-right.svg"), ng-click="incrementIndex(1)")
 
-//  img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src="/images/ico-picture.svg")
+//  img(ng-src="http://studio.{{DOMAIN}}/studio.jpg?module=DownloadSubmission&sbmid={{challenge.thumbnailId}}&sbt=full", fallback-src=require("../../../../assets/images/ico-picture.svg")

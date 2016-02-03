@@ -1,5 +1,4 @@
 .about-container
-  
   .profile-header-container(ng-cloak,id="affix", tc-sticky)
     //- .sticky-container(sticky media-query="min-width: 780px" use-placeholder="true" offset="10" confine="true" sticky-class="sticked")
       profile-widget(profile="profileVm.profile", edit-profile-link="profileVm.showEditProfileLink", num-wins="profileVm.numWins", profile-vm="profileVm")
@@ -14,7 +13,7 @@
       .empty-state
         empty-state-placeholder(state-name="profile-empty", show="profileVm.status.skills === 'ready' && profileVm.status.stats === 'ready' && profileVm.status.externalLinks === 'ready' && !profileVm.showEditProfileLink && !profileVm.showTCActivity && (!profileVm.skills || (profileVm.skills && profileVm.skills.length == 0)) && !vm.linkedExternalAccounts.length")
           .sample-image
-            img(ng-src="/images/robot.svg")
+            img(ng-src=require("../../../assets/images/robot.svg"))
 
     #skills
       tc-section(ng-show="vm.displaySection.skills", state="profileVm.status.skills")
@@ -53,10 +52,10 @@
           )
 
             div(class="name")
-              img(ng-if="track == 'DATA_SCIENCE'", src="/images/ico-track-data.svg")
-              img(ng-if="track == 'DEVELOP'", src="/images/ico-track-develop.svg")
-              img(ng-if="track == 'DESIGN'", src="/images/ico-track-design.svg")
-              img(ng-if="track == 'COPILOT'", src="/images/ico-track-copilot.svg")
+              img(ng-if="track == 'DATA_SCIENCE'", src=require("../../../assets/images/ico-track-data.svg"))
+              img(ng-if="track == 'DEVELOP'", src=require("../../../assets/images/ico-track-develop.svg"))
+              img(ng-if="track == 'DESIGN'", src=require("../../../assets/images/ico-track-design.svg"))
+              img(ng-if="track == 'COPILOT'", src=require("../../../assets/images/ico-track-copilot.svg"))
               span {{track | track | uppercase}} ACTIVITY
 
             a.subtrack(
@@ -88,19 +87,16 @@
 
                 .tag Fulfillment
 
-              img.arrow(src="/images/ico-arrow-big-right.svg")
+              img.arrow(src=require("../../../assets/images/ico-arrow-big-right.svg"))
 
     #externalLinks
       tc-section(ng-show="vm.displaySection.externalLinks", state="profileVm.status.externalLinks")
         .external-links
 
           h3.activity(ng-if="vm.linkedExternalAccounts.length") on the web
-          
+
           external-links-data(ng-show="vm.linkedExternalAccounts.length", linked-accounts-data="vm.linkedExternalAccounts")
 
           .empty-state
             empty-state-placeholder(state-name="profile-external-links", show="!vm.linkedExternalAccounts.length")
               external-accounts.external-account-container(linked-accounts="[]", links-data="{}", read-only="true")
-
-          
-

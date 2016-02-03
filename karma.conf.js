@@ -1,8 +1,23 @@
-var wiredep = require('wiredep');
+require('./node_modules/coffee-script/register')
+
+process.env.ENV = 'DEV'
+
+var webpackConfig = require('appirio-tech-webpack-config')({
+  dirname: __dirname,
+  entry: {
+    app: './app/index'
+  },
+  template: './app/index.html'
+})
+
+// Make jQuery globally available
+webpackConfig.module.loaders.push({
+  test: /jquery-1\.10\.2\.js$/,
+  loader: 'expose?jQuery'
+})
+webpackConfig.devtool = 'inline-source-map'
 
 module.exports = function(config) {
-  var bowerFiles = wiredep({devDependencies: true})['js'];
-
   config.set({
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './',
@@ -12,21 +27,13 @@ module.exports = function(config) {
     frameworks: ['mocha', 'chai', 'sinon', 'chai-sinon'],
 
     // list of files / patterns to load in the browser
-    files: [].concat(
-      'bower_components/bind-polyfill/index.js',
-      bowerFiles,
-      'tests/test-helpers/*.js',
-      './app/topcoder.module.js',
-      './app/topcoder.**.js',
-      './app/**/*.module.js',
-      './app/**/*.js',
-      './assets/scripts/**/*.js',
-      '.tmp/templates.js',
-      'tests/server-integration/**/*.spec.js'
-    ),
+    files: [
+      './node_modules/jquery/dist/jquery.js',
+      'webpack.tests.js'
+    ],
 
     // list of files to exclude
-    exclude: ['package.js'],
+    exclude: ['package.js', 'index.js'],
 
     proxies: {
       '/': 'http://localhost:8888/'
@@ -35,8 +42,12 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      './app/**/!(*.spec)+(.js)': ['coverage']
+      './app/**/!(*.spec)+(.js)': ['coverage'],
+      'webpack.tests.js': ['webpack', 'sourcemap']
     },
+
+    webpack: webpackConfig,
+
     // test results reporter to use
     // possible values: 'dots', 'progress', 'coverage'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
@@ -75,10 +86,10 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     //        browsers: ['Chrome', 'ChromeCanary', 'FirefoxAurora', 'Safari', 'PhantomJS'],
-    browsers: ['PhantomJS'],
+    browsers: [ process.env.CONTINUOUS_INTEGRATION ? 'Firefox' : 'Chrome' ],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
-  });
-};
+    singleRun: true
+  })
+}

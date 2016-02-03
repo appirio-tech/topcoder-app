@@ -29,7 +29,7 @@
         };
         switch (type) {
           case 'forums':
-            switch (challenge.track) {
+            switch (challenge.track.toLowerCase()) {
               case 'develop':
                 return String.supplant('https://apps.{domain}/forums/?module=Category&categoryID={forumId}', data);
               case 'data':
@@ -39,6 +39,7 @@
             }
 
           case 'submissions':
+            return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}#submissions', data);
           case 'registrants':
             return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}#viewRegistrant', data);
           case 'detail':

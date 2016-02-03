@@ -42,17 +42,17 @@
 
   .registrants-icon {
     @include background-image-size(15px, 16px);
-    background-image: url(/images/ico-users.svg);
+    background-image: url(../../images/ico-users.svg);
   }
 
   .submissions-icon {
     @include background-image-size(22px, 14px);
-    background-image: url(/images/ico-submissions.svg);
+    background-image: url(../../images/ico-submissions.svg);
   }
 
   .forum-icon {
     @include background-image-size(20px, 17px);
-    background-image: url(/images/ico-posts.svg);
+    background-image: url(../../images/ico-posts.svg);
   }
 }
 
@@ -99,17 +99,17 @@
 
   .registrants-icon {
     @include background-image-size(14px, 19px);
-    background-image: url(/images/ico-users.svg);
+    background-image: url(../../images/ico-users.svg);
   }
 
   .submissions-icon {
     @include background-image-size(24px, 17px);
-    background-image: url(/images/ico-submissions.svg);
+    background-image: url(../../images/ico-submissions.svg);
   }
 
   .forum-icon {
     margin: 3px auto 2px;
     @include background-image-size(30px, 27px);
-    background-image: url(/images/ico-posts.svg);
+    background-image: url(../../images/ico-posts.svg);
   }
 }

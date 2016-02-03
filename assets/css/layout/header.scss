@@ -14,7 +14,7 @@
   display: inline-block;
   width: 12px;
   height: 12px;
-  background: url('/images/magnifying_glass.svg');
+  background: url(../../images/magnifying_glass.svg);
   background-size: contain;
   border: none;
   outline: none;
@@ -71,7 +71,7 @@
     height: 19px;
     left: 13px;
     top: 14px;
-    background: url('/images/logo_mobile.svg');
+    background: url(../../images/logo_mobile.svg);
     background-size: contain;
     background-repeat: no-repeat;
   }
@@ -477,7 +477,7 @@
 
     // Topcoder logo
     .logo-link {
-      background: url('/images/logo_topcoder.svg');
+      background: url(../../images/logo_topcoder.svg);
       width: 156px;
       height: 54px;
       margin: 0;

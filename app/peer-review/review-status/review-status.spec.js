@@ -1,3 +1,5 @@
+const mockData = require('../../../tests/test-helpers/mock-data')
+
 /* jshint -W117, -W030 */
 describe('Review Status Controller', function() {
   var controller;
@@ -39,10 +41,6 @@ describe('Review Status Controller', function() {
 
   it('should be created successfully', function() {
     expect(controller).to.exist;
-  });
-
-  it('should have a submissionDownloadPath property set', function() {
-    expect(controller.submissionDownloadPath).to.equal('/review/actions/DownloadContestSubmission?uid=');
   });
 
   it('should have a domain property', function() {

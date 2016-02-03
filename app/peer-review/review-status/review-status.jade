@@ -29,7 +29,7 @@
           a.status(ui-sref="review.edit({challengeId: vm.challengeId, reviewId: review.id})") {{review.committed | reviewStatus}}
 
         td
-          a(ng-href="https://software.{{vm.domain}}{{vm.submissionDownloadPath}}{{review.uploadId}}")
+          a(ng-href="https://software.{{vm.domain}}/review/actions/DownloadContestSubmission?uid={{review.uploadId}}")
             span.glyphicon.glyphicon-download-alt
 
   button.start-review(type="button", ng-click="vm.getNextReview()") Start another review

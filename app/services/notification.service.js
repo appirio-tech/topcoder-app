@@ -1,50 +1,56 @@
-(function() {
-  'use strict';
+// import angular from 'angular'
 
-  angular.module('topcoder').factory('NotificationService', NotificationService);
+// (function() {
+//   'use strict'
 
-  NotificationService.$inject = ['notifications', 'ApiService', 'TcAuthService', '$rootScope'];
+//   angular.module('topcoder').factory('NotificationService', NotificationService)
 
-  function NotificationService(notifier, ApiService, TcAuthService, $rootScope) {
-  	var service = {
-      getNotifications: getNotifications,
-      inform: inform
-    };
-    return service;
+//   NotificationService.$inject = ['notifications', 'ApiService', 'TcAuthService', '$rootScope']
 
-    var showing = false;
+//   function NotificationService(notifier, ApiService, TcAuthService, $rootScope) {
+//     // var service = {
+//     //   // getNotifications: getNotifications,
+//     //   inform: inform
+//     // }
+//     // return service
 
-    $rootScope.$on(CONSTANTS.EVENT_USER_LOGGED_OUT, function() {
-      showing = false;
-      // Not using notifications for anything at the moment
-      // getNotifications();
-    });
+//     // var showing = false
 
-    function getNotifications() {
-      if (TcAuthService.isAuthenticated() === true && !showing) {
-        ApiService.restangularV3.one('notifications').get().then(function(notifications) {
-          showing = true;
-          angular.forEach(notifications, function(notification) {
+//     // $rootScope.$on(CONSTANTS.EVENT_USER_LOGGED_OUT, function() {
+//     //   showing = false
+//     //   // Not using notifications for anything at the moment
+//     //   // getNotifications()
+//     // })
 
-            var opts = {
-              message: notification.notificationTypeId === 1 ?
-                'Your checkpoint submission for Styx iOS... is due in 3 days' :
-                'You received a notification of type: ' + notification.notificationTypeId
-            };
+//     // function getNotifications() {
+//     //   if (TcAuthService.isAuthenticated() === true && !showing) {
+//     //     ApiService.restangularV3.one('notifications').get().then(function(notifications) {
+//     //       showing = true
+//     //       angular.forEach(notifications, function(notification) {
 
-            switch(notification.severity) {
-              case "HIGH": notifier.showError(opts); break;
-              case "MEDIUM": notifier.showWarning(opts); break;
-              default: notifier.showSuccess(opts);
-            }
+//     //         var opts = {
+//     //           message: notification.notificationTypeId === 1 ?
+//     //             'Your checkpoint submission for Styx iOS... is due in 3 days' :
+//     //             'You received a notification of type: ' + notification.notificationTypeId
+//     //         }
 
-          })
-        });
-      }
-    }
+//     //         switch(notification.severity) {
+//     //         case 'HIGH':
+//     //           notifier.showError(opts)
+//     //           break
+//     //         case 'MEDIUM':
+//     //           notifier.showWarning(opts)
+//     //           break
+//     //         default: notifier.showSuccess(opts)
+//     //         }
 
-    function inform(message) {
-      notifier.showSuccess({message:message});
-    }
-  }
-})();
+//     //       })
+//     //     })
+//     //   }
+//     // }
+
+//     // function inform(message) {
+//     //   notifier.showSuccess({message:message})
+//     // }
+//   }
+// })()

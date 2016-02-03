@@ -1,36 +1,39 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
+
   angular.module('tcUIComponents')
     .directive('tcTabSet', function() {
       return {
         restrict: 'E',
         transclude: true,
         bindToController: true,
-        templateUrl: 'directives/tc-tabs/tc-tabs.directive.html',
+        template: require('./tc-tabs')(),
         scope: {},
         controller: ['$log', function($log, $scope, $element) {
-          $log = $log.getInstance('TcTabSetController');
-          var self = this;
-          self.tabs = [];
+          $log = $log.getInstance('TcTabSetController')
+          var self = this
+          self.tabs = []
           self.addTab = function addTab(tab) {
-            self.tabs.push(tab);
+            self.tabs.push(tab)
             if (self.tabs.length === 1) {
-              tab.active = true;
+              tab.active = true
             }
-          };
+          }
 
           self.select = function(selectedTab) {
             angular.forEach(self.tabs, function(tab) {
               if (tab.active && tab !== selectedTab) {
-                tab.active = false;
+                tab.active = false
               }
             })
 
-            selectedTab.active = true;
+            selectedTab.active = true
           }
         }],
-        controllerAs: "tabSet"
-      };
+        controllerAs: 'tabSet'
+      }
     })
     .directive('tcTab', function() {
       return {
@@ -42,9 +45,9 @@
           heading: '@'
         },
         link: function(scope, elem, attr, tabSetCtrl) {
-          scope.active = false;
-          tabSetCtrl.addTab(scope);
+          scope.active = false
+          tabSetCtrl.addTab(scope)
         }
       }
-    });
-})();
+    })
+})()

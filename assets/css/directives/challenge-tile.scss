@@ -107,7 +107,7 @@ challenge-tile .challenge.tile-view {
         align-items: center;
         width: 75px;
         height: 63px;
-        background-image: url(/images/ico-calendar.svg);
+        background-image: url(../../images/ico-calendar.svg);
 
         > p {
           @include font-with-weight('Sofia Pro', 700);
@@ -173,7 +173,7 @@ challenge-tile .challenge.tile-view {
             content: '';
             width: 15px;
             height: 15px;
-            background: url(/images/ico-checkmark.svg);
+            background: url(../../images/ico-checkmark.svg);
             background-size: 15px 15px;
             position: absolute;
             bottom: 6px;
@@ -216,7 +216,7 @@ challenge-tile .challenge.tile-view {
         bottom: -33px;
         left: -2px;
         @include background-image-size(73px, 26px);
-        background: url(/images/ico-winner-ribbon.svg);
+        background: url(../../images/ico-winner-ribbon.svg);
       }
     }
 
@@ -417,7 +417,7 @@ challenge-tile .challenge.list-view {
           content: '';
           width: 15px;
           height: 15px;
-          background: url(/images/ico-checkmark.svg);
+          background: url(../../images/ico-checkmark.svg);
           background-size: 15px 15px;
           position: absolute;
           bottom: 6px;

@@ -9,7 +9,6 @@
 
   function EditReviewController($state, $stateParams, ReviewService, ScorecardService, UserService, ChallengeService, Helpers, $q, CONSTANTS) {
     var vm = this;
-    vm.submissionDownloadPath = CONSTANTS.submissionDownloadPath;
     vm.domain = CONSTANTS.domain;
     vm.challengeId = $stateParams.challengeId;
     vm.challenge = null;

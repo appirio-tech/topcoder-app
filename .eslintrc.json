@@ -1,0 +1,23 @@
+{
+  "rules": {
+    "indent": [2, 2],
+    "linebreak-style": [2, "unix"],
+    "no-unused-vars": [2, {"args": "none"}],
+    "quotes": [2, "single"],
+    "semi": [2, "never"]
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true,
+    "experimentalObjectRestSpread": true
+  },
+  "plugins": [
+    "react"
+  ]
+}

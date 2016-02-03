@@ -1,7 +1,9 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('tcUIComponents').directive('inputStickyPlaceholder', inputStickyPlaceholder);
+(function() {
+  'use strict'
+
+  angular.module('tcUIComponents').directive('inputStickyPlaceholder', inputStickyPlaceholder)
 
   /*
    *  ******
@@ -21,22 +23,22 @@
       restrict: 'E',
       transclude: true,
       replace: true,
-      templateUrl: 'directives/input-sticky-placeholder/input-sticky-placeholder.html',
+      template: require('./input-sticky-placeholder')(),
       link: function(scope, element, attrs) {
-        var span = angular.element(element[0].children[1]);
-        var input = angular.element(element[0].children[0].children[0]);
-        span.text('');
+        var span = angular.element(element[0].children[1])
+        var input = angular.element(element[0].children[0].children[0])
+        span.text('')
 
         scope.$watch(function() {
-          return input.val();
+          return input.val()
         }, function(newValue, oldValue) {
-          span.text('');
+          span.text('')
 
           if (newValue && newValue.length) {
-            span.text(attrs.stickyPlaceholder);
+            span.text(attrs.stickyPlaceholder)
           }
-        });
+        })
       }
-    };
+    }
   }
-})();
+})()
