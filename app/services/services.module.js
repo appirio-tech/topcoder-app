@@ -1,5 +1,5 @@
 import angular from 'angular'
-// import Auth0 from 'auth0-js'
+import Auth0 from 'auth0-js'
 
 (function() {
   'use strict'
@@ -26,7 +26,7 @@ import angular from 'angular'
         domain: CONSTANTS.auth0Domain,
         clientID: CONSTANTS.clientId,
         sso: false
-      }, require('auth0-js'))
+      }, Auth0)
 
     }])
     .factory('UserPrefStore', ['store', function(store) {

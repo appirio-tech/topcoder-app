@@ -1,4 +1,3 @@
-var webpack = require('webpack')
 require('./node_modules/coffee-script/register')
 
 if (process.env.TRAVIS_BRANCH == 'master') process.env.ENV = 'PROD'
@@ -15,10 +14,6 @@ var config = require('appirio-tech-webpack-config')({
   template: './app/index.jade',
   favicon: './assets/images/favicon.ico'
 })
-
-config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-  mangle: false
-}))
 
 if (process.env.TRAVIS_BRANCH) config.output.publicPath = process.env.ASSET_PREFIX
 
