@@ -1,137 +1,130 @@
+import angular from 'angular'
+import moment from 'moment-timezone'
+
 (function () {
-  'use strict';
+  'use strict'
 
-  /**
-   * The controller for badges section of member-profile page.
-   */
-  var BadgeCtrl = function ($scope, CONSTANTS, ProfileService, UserService, userHandle, profile) {
-    $scope.achievements = profile.badges.Achievements;
-    var badgeCtrl = this;
-    // use logged in user's handle for showing badges if not injected into the controller
-    badgeCtrl.userHandle = userHandle ? userHandle : UserService.getUserIdentity().username;
-    badgeCtrl.init($scope);
-    badgeCtrl.mapBadges();
-    badgeCtrl.profile = profile;
-    badgeCtrl.dealWithBadgeData($scope, ProfileService);
+  angular.module('tc.profile').controller('BadgesController', BadgeCtrl)
 
+  BadgeCtrl.$inject = ['$scope', 'CONSTANTS', 'ProfileService', 'UserService', 'userHandle', 'profile']
 
-  };
-  /**
-   * Deal with badge data when we have the user profile ready.
-   */
+  // The controller for badges section of member-profile page.
+  function BadgeCtrl($scope, CONSTANTS, ProfileService, UserService, userHandle, profile) {
+    $scope.achievements = profile.badges.Achievements
+    var badgeCtrl = this
+
+    // Use logged in user's handle for showing badges if not injected into the controller
+    badgeCtrl.userHandle = userHandle ? userHandle : UserService.getUserIdentity().username
+    badgeCtrl.init($scope)
+    badgeCtrl.mapBadges()
+    badgeCtrl.profile = profile
+    badgeCtrl.dealWithBadgeData($scope, ProfileService)
+  }
+
+  // Deal with badge data when we have the user profile ready.
   BadgeCtrl.prototype.dealWithBadgeData = function($scope, ProfileService){
-    var badgeCtrl = this;
-    /*
-      The service method getUser( handle )  already contains achievements information.
-      So we don't need another more service method here.
-    */
-    
-    var excluded_badgesID = [1,6, 11, 16, 21, 52, 1000, 1001, 1002, 1003, 1004, 1005, 1006]; // few data is not available, so lets exclude them.
-    
-    if($scope.achievements) {
+    var badgeCtrl = this
+    // The service method getUser( handle )  already contains achievements information.
+    // So we don't need another more service method here.
+
+    // Some data is not available, so lets exclude them.
+    // var excluded_badgesID = [1,6, 11, 16, 21, 52, 1000, 1001, 1002, 1003, 1004, 1005, 1006]
+
+    if ($scope.achievements) {
       angular.forEach($scope.achievements, function(achievement){
-        var desc = achievement.description;
-        /* Fix Studio Badges */
+        var desc = achievement.description
+        // Fix Studio Badges
         if(badgeCtrl.map[achievement.description] === undefined && desc.indexOf('Studio ') === 0) {
-          desc = desc.substring(7);
+          desc = desc.substring(7)
         }
-        /* Fix Studio bad badge name */
+        // Fix Studio bad badge name
         if(desc === 'Fifty Milestone Prize' || desc === 'One Hundred Milestone Prize' || desc === 'Two Hundred And Fifty Milestone Prize') {
-         desc = desc + 's';
+          desc = desc + 's'
         }
         if(desc.indexOf('Designer of the Month') !== -1) {
-          desc = 'Designer of the Month';
+          desc = 'Designer of the Month'
         }
         if(desc.indexOf('Member of the Month') !== -1) {
-          desc = 'Member of the Month';
+          desc = 'Member of the Month'
         }
-        var value = badgeCtrl.map[desc];
-        //activate all active badges.
+        var value = badgeCtrl.map[desc]
+        // Activate all active badges.
         if(value){
-          value.date = badgeCtrl.formatDate(achievement.date);
-          value.active = true;
+          value.date = badgeCtrl.formatDate(achievement.date)
+          value.active = true
           if(achievement.description.indexOf('Studio ') === 0) {
-            value.isStudio = true;
+            value.isStudio = true
           }
         }
-      });
+      })
     }
-  };
+  }
 
-  /**
-   * Construct a map contains all badges.
-   */
+  // Construct a map containing all badges.
   BadgeCtrl.prototype.mapBadges = function(){
-    var badgeCtrl = this;
-    badgeCtrl.map = {};
+    var badgeCtrl = this
+    badgeCtrl.map = {}
     angular.forEach(badgeCtrl.achievementGroups, function(achievementGroup){
-      //var achievementGroup = this;
       angular.forEach(achievementGroup.specificAchievements, function(achievement){
-        achievement.id = achievementGroup.id;
-        badgeCtrl.map[achievement.name] = achievement;
-      });
-    });
+        achievement.id = achievementGroup.id
+        badgeCtrl.map[achievement.name] = achievement
+      })
+    })
     angular.forEach(badgeCtrl.singleAchievements, function(achievement){
-      badgeCtrl.map[achievement.name] = achievement;
-    });
-  };
+      badgeCtrl.map[achievement.name] = achievement
+    })
+  }
 
-  /**
-   * Convert the date with format like 'Sep 09,2013'
-   */
+  // Convert the date with format like 'Sep 09,2013'
   BadgeCtrl.prototype.formatDate = function(date) {
-    //some function is passing in undefined timezone_string variable causing js errors,
+    // Some function is passing in undefined timezone_string variable causing js errors,
     // so check if undefined and set default:
     if (typeof timezone_string === 'undefined') {
-      var timezone_string = "America/New_York"; // lets set to TC timezone
+      var timezone_string = 'America/New_York' // lets set to TC timezone
     }
-    return moment(date).tz(timezone_string).format("MMM DD,YYYY");
-  };
+    return moment(date).tz(timezone_string).format('MMM DD,YYYY')
+  }
 
-  /**
-   * Construct the data 'currentlyEarned'.
-   */
+  // Construct the data 'currentlyEarned'.
   BadgeCtrl.prototype.populateData = function(destination, count){
-    var quantifier = "";
+    var quantifier = ''
     switch(destination.id){
-      case "1":
-        quantifier = "Post";
-        break;
-      case "6":
-        quantifier = "Submission";
-        break;
-      case "11":
-        quantifier = "Prize";
-        break;
-      case "16":
-      case "117":
-        quantifier = "Placement";
-        break;
-      case "89":
-        quantifier = "SRM";
-        break;
-      case "99":
-      case "126":
-      case "127":
-        quantifier = "Problem";
-        break;
-      default:
-        quantifier = "Win";
-        break;
+    case '1':
+      quantifier = 'Post'
+      break
+    case '6':
+      quantifier = 'Submission'
+      break
+    case '11':
+      quantifier = 'Prize'
+      break
+    case '16':
+    case '117':
+      quantifier = 'Placement'
+      break
+    case '89':
+      quantifier = 'SRM'
+      break
+    case '99':
+    case '126':
+    case '127':
+      quantifier = 'Problem'
+      break
+    default:
+      quantifier = 'Win'
+      break
     }
 
     if (count && count > 1) {
-      quantifier += "s";
+      quantifier += 's'
     }
     if(count){
-      destination.currentlyEarned = count + ' ' + quantifier;
+      destination.currentlyEarned = count + ' ' + quantifier
     }
-  };
-  /**
-   * Initialize the data array needed by badge section.
-   */
+  }
+  // Initialize the data array needed by badge section.
   BadgeCtrl.prototype.init = function($scope){
-    this.scope = $scope;
+    this.scope = $scope
 
     this.achievementGroups =
     [
@@ -533,7 +526,7 @@
           }
         ]
       }
-    ];
+    ]
 
     this.singleAchievements =
     [
@@ -657,12 +650,6 @@
         groupClass : 'Member-of-the-Month',
         active : false
       }
-    ];
-  };
-
-  angular
-    .module('tc.profile')
-    .controller('BadgesController', BadgeCtrl);
-
-  BadgeCtrl.$inject = ['$scope', 'CONSTANTS', 'ProfileService', 'UserService', 'userHandle', 'profile'];
-})();
+    ]
+  }
+})()

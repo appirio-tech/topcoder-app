@@ -124,7 +124,7 @@ ios-card .challenge.tile-view {
     width: 75px;
     height: 63px;
     margin-top: 16px;
-    background-image: url(/images/ico-calendar.svg);
+    background-image: url(../../images/ico-calendar.svg);
 
     > p {
       @include sofia-pro-bold;
@@ -185,20 +185,20 @@ ios-card .challenge.tile-view {
   .registrants-icon {
     width: 15px;
     height: 16px;
-    background-image: url(/images/ico-users.svg);
+    background-image: url(../../images/ico-users.svg);
     background-size: 15px 16px;
   }
 
   .submissions-icon {
     width: 22px;
     height: 14px;
-    background-image: url(/images/ico-submissions.svg);
+    background-image: url(../../images/ico-submissions.svg);
   }
 
   .forum-icon {
     width: 20px;
     height: 17px;
-    background-image: url(/images/ico-posts.svg);
+    background-image: url(../../images/ico-posts.svg);
   }
 
   // Dynamic colors based on track
