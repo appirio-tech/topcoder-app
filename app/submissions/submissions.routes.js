@@ -53,7 +53,7 @@ import _ from 'lodash'
       return ChallengeService.getUserChallenges(userHandle, params)
         .then(function(challenge) {
           if (!challenge[0]) {
-            setErrorMessage('challenge', 'This is not a valid challenge. Use your browser\'s back button to return.')
+            setErrorMessage('challenge', 'You are either not registered for this challenge, or it is not a valid challenge. Please use your browser\'s back button to return.')
             return {
               error: error,
               challenge: null
