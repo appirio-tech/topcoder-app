@@ -5,11 +5,11 @@
     "build": "webpack --bail --progress --build",
     "dev": "webpack-dev-server --history-api-fallback --dev --tc --inline --progress --port 3000",
     "lint": "eslint .",
-    "test": "karma start --tc"
+    "test": "karma start --tc --test"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.9",
-    "appirio-tech-webpack-config": "^0.2.0",
+    "appirio-tech-webpack-config": "https://github.com/appirio-tech/webpack-config.git#remove-test",
     "babel-loader": "^6.2.1",
     "bardjs": "^0.1.8",
     "bower": "^1.6.8",
