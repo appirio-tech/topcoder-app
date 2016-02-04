@@ -1,4 +1,4 @@
-#### Dev [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=dev)](https://travis-ci.org/appirio-tech/topcoder-app) Master [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=master)](https://travis-ci.org/appirio-tech/topcoder-app)
+#### Dev [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=dev)](https://travis-ci.org/appirio-tech/topcoder-app) QA [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=qa-integration)](https://travis-ci.org/appirio-tech/topcoder-app) Master [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=master)](https://travis-ci.org/appirio-tech/topcoder-app)
 # Topcoder-App
 
 This repository houses any new topcoder pages or refactored Angular apps/pages from the tc-site repository.
