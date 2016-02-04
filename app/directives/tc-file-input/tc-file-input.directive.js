@@ -28,6 +28,7 @@ import _ from 'lodash'
 
         // Add extra checks for Windows zip file types
         var hasZip = _.some(fileTypes, _.matches('zip'))
+
         if (hasZip) {
           fileTypes = angular.copy(fileTypes)
           fileTypes.push('x-zip', 'x-zip-compressed')
