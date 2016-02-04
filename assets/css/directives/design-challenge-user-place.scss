@@ -53,7 +53,7 @@ design-challenge-user-place {
         .gallery-icon {
           margin-left: 10px;
           @include background-image-size(21px, 17px);
-          background: url(/images/ico-gallery.svg);
+          background: url(../../images/ico-gallery.svg);
         }
 
         .num-images {
@@ -114,7 +114,7 @@ design-challenge-user-place {
     .winner-ribbon {
       z-index: 1;
       @include background-image-size(73px, 26px);
-      background: url(/images/ico-winner-ribbon.svg);
+      background: url(../../images/ico-winner-ribbon.svg);
       align-self: flex-start;
     }
 
@@ -145,7 +145,7 @@ design-challenge-user-place {
         .gallery-icon {
           margin-left: 10px;
           @include background-image-size(21px, 17px);
-          background: url(/images/ico-gallery.svg);
+          background: url(../../images/ico-gallery.svg);
         }
 
         .num-images {

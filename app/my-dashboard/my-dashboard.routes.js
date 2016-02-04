@@ -1,21 +1,19 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   angular.module('tc.myDashboard').config([
     '$stateProvider',
-    '$urlRouterProvider',
-    '$httpProvider',
-    '$locationProvider',
     routes
-  ]);
+  ])
 
-  function routes($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+  function routes($stateProvider) {
     var states = {
       'baseDashboard': {
         parent: 'root',
         abstract: true,
-        templateUrl: 'my-dashboard/my-dashboard.html',
+        template: require('./my-dashboard')(),
         controller: 'MyDashboardController',
         controllerAs: 'dashboard',
         data: {
@@ -24,7 +22,7 @@
         },
         resolve: {
           userIdentity: ['UserService', function(UserService) {
-            return UserService.getUserIdentity();
+            return UserService.getUserIdentity()
           }]
         }
       },
@@ -34,46 +32,46 @@
         parent: 'baseDashboard',
         resolve: {
           profile: ['userIdentity', 'ProfileService', function(userIdentity, ProfileService) {
-            return ProfileService.getUserProfile(userIdentity.handle);
+            return ProfileService.getUserProfile(userIdentity.handle)
           }]
         },
         views: {
           'header-dashboard' : {
-            templateUrl: 'my-dashboard/header-dashboard/header-dashboard.html',
+            template: require('./header-dashboard/header-dashboard')(),
             controller: 'HeaderDashboardController',
             controllerAs: 'vm'
           },
           'subtrack-stats': {
-              templateUrl: "my-dashboard/subtrack-stats/subtrack-stats.html",
-              controller: 'SubtrackStatsController',
-              controllerAs: 'vm'
+            template: require('./subtrack-stats/subtrack-stats')(),
+            controller: 'SubtrackStatsController',
+            controllerAs: 'vm'
           },
           'my-challenges': {
-            templateUrl: "my-dashboard/my-challenges/my-challenges.html",
+            template: require('./my-challenges/my-challenges')(),
             controller: 'MyChallengesWidgetController',
             controllerAs: 'vm'
           },
           'srms' :{
-            templateUrl: 'my-dashboard/srms/srms.html',
+            template: require('./srms/srms')(),
             controller: 'SRMWidgetController',
             controllerAs: 'vm'
           },
           'programs': {
-            templateUrl: 'my-dashboard/programs/programs.html',
+            template: require('./programs/programs')(),
             controller: 'ProgramsController',
             controllerAs: 'vm'
           },
           'community-updates' : {
-            templateUrl: 'my-dashboard/community-updates/community-updates.html',
+            template: require('./community-updates/community-updates')(),
             controller: 'CommunityUpdatesController',
             controllerAs: 'vm'
           }
         }
       }
-    };
+    }
     for (var name in states) {
-      var state = states[name];
-      $stateProvider.state(name, state);
+      var state = states[name]
+      $stateProvider.state(name, state)
     }
   }
-})();
+})()

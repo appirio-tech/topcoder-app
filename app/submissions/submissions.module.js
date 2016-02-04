@@ -1,5 +1,7 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   var dependencies = [
     'ui.router',
@@ -7,8 +9,8 @@
     'tcUIComponents',
     'toaster',
     'appirio-tech-ng-ui-components'
-  ];
+  ]
 
-  angular.module('tc.submissions', dependencies);
+  angular.module('tc.submissions', dependencies)
 
-})();
+})()

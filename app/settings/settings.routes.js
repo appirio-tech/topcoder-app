@@ -1,20 +1,20 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   angular.module('tc.settings').config([
     '$stateProvider',
-    '$locationProvider',
     routes
-  ]);
+  ])
 
-  function routes($stateProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+  function routes($stateProvider) {
     var states = {
       'settings': {
         parent: 'root',
         abstract: false,
         url: '/settings/',
-        templateUrl: 'settings/settings.html',
+        template: require('./settings')(),
         controller: 'SettingsController',
         controllerAs: 'settings',
         data: {
@@ -22,16 +22,16 @@
         },
         resolve: {
           userHandle: ['UserService', function(UserService) {
-            return UserService.getUserIdentity().handle;
+            return UserService.getUserIdentity().handle
           }],
           userData: ['userHandle', 'ProfileService', function(userHandle, ProfileService) {
-            return ProfileService.getUserProfile(userHandle);
+            return ProfileService.getUserProfile(userHandle)
           }]
-        },
+        }
       },
       'settings.profile': {
         url: 'profile/',
-        templateUrl: 'settings/edit-profile/edit-profile.html',
+        template: require('./edit-profile/edit-profile')(),
         controller: 'EditProfileController',
         controllerAs: 'vm',
         data: {
@@ -40,7 +40,7 @@
       },
       'settings.account': {
         url: 'account/',
-        templateUrl: 'settings/account-info/account-info.html',
+        template: require('./account-info/account-info')(),
         controller: 'AccountInfoController',
         controllerAs: 'vm',
         data: {
@@ -49,18 +49,18 @@
       },
       'settings.preferences': {
         url: 'preferences/',
-        templateUrl: 'settings/preferences/preferences.html',
+        template: require('./preferences/preferences')(),
         controller: 'PreferencesController',
         controllerAs: 'vm',
         data: {
           title: 'Preferences'
         }
       }
-    };
+    }
 
     for (var name in states) {
-      var state = states[name];
-      $stateProvider.state(name, state);
+      var state = states[name]
+      $stateProvider.state(name, state)
     }
   }
-})();
+})()

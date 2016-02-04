@@ -1,3 +1,6 @@
+import angular from 'angular'
+const mockData = require('../../tests/test-helpers/mock-data')
+
 /* jshint -W117, -W030 */
 describe('Helper Service', function() {
 
@@ -22,7 +25,7 @@ describe('Helper Service', function() {
   sinon.spy(fakeState, "go");
 
   beforeEach(function() {
-    module('topcoder', function($provide) {
+    angular.mock.module('topcoder', function($provide) {
       $provide.value('$window', fakeWindow);
       $provide.value('$state', fakeState);
       $provide.value('$location', fakeLocation);
@@ -64,7 +67,7 @@ describe('Helper Service', function() {
       mockProfile = mockData.getMockAuth0Profile();
     });
     it("should get JSON for facebook user data ", function() {
-      mockProfile.identities[0].connection = 'facebook'; 
+      mockProfile.identities[0].connection = 'facebook';
       var socialData = Helpers.getSocialUserData(mockProfile, "");
       expect(socialData).to.exist.not.null;
       expect(socialData.socialUserId).to.exist.to.equal('123456');
@@ -79,7 +82,7 @@ describe('Helper Service', function() {
     });
 
     it("should get JSON for github user data ", function() {
-      mockProfile.identities[0].connection = 'github'; 
+      mockProfile.identities[0].connection = 'github';
       var socialData = Helpers.getSocialUserData(mockProfile, "");
       expect(socialData).to.exist.not.null;
       expect(socialData.socialUserId).to.exist.to.equal('123456');
@@ -94,7 +97,7 @@ describe('Helper Service', function() {
     });
 
     it("should get JSON for github user data without lastname ", function() {
-      mockProfile.identities[0].connection = 'github'; 
+      mockProfile.identities[0].connection = 'github';
       mockProfile.name = 'mock';
       var socialData = Helpers.getSocialUserData(mockProfile, "");
       expect(socialData).to.exist.not.null;
@@ -110,7 +113,7 @@ describe('Helper Service', function() {
     });
 
     it("should get JSON for bitbucket user data ", function() {
-      mockProfile.identities[0].connection = 'bitbucket'; 
+      mockProfile.identities[0].connection = 'bitbucket';
       var socialData = Helpers.getSocialUserData(mockProfile, "");
       expect(socialData).to.exist.not.null;
       expect(socialData.socialUserId).to.exist.to.equal('123456');
@@ -125,7 +128,7 @@ describe('Helper Service', function() {
     });
 
     it("should get JSON for stackoverflow user data ", function() {
-      mockProfile.identities[0].connection = 'stackoverflow'; 
+      mockProfile.identities[0].connection = 'stackoverflow';
       var socialData = Helpers.getSocialUserData(mockProfile, "");
       expect(socialData).to.exist.not.null;
       expect(socialData.socialUserId).to.exist.to.equal('123456');
@@ -140,7 +143,7 @@ describe('Helper Service', function() {
     });
 
     it("should get JSON for dribbble user data ", function() {
-      mockProfile.identities[0].connection = 'dribbble'; 
+      mockProfile.identities[0].connection = 'dribbble';
       var socialData = Helpers.getSocialUserData(mockProfile, "");
       expect(socialData).to.exist.not.null;
       expect(socialData.socialUserId).to.exist.to.equal('123456');
@@ -155,7 +158,7 @@ describe('Helper Service', function() {
     });
 
     it("should get JSON for twitter user data ", function() {
-      mockProfile.identities[0].connection = 'twitter'; 
+      mockProfile.identities[0].connection = 'twitter';
       mockProfile.screen_name = mockProfile.username;
       var socialData = Helpers.getSocialUserData(mockProfile, "");
       expect(socialData).to.exist.not.null;
@@ -172,7 +175,7 @@ describe('Helper Service', function() {
     });
 
     it("should get JSON for twitter user data without lastname ", function() {
-      mockProfile.identities[0].connection = 'twitter'; 
+      mockProfile.identities[0].connection = 'twitter';
       mockProfile.name = 'mock';
       mockProfile.screen_name = mockProfile.username;
       var socialData = Helpers.getSocialUserData(mockProfile, "");
@@ -190,7 +193,7 @@ describe('Helper Service', function() {
     });
 
     it("should get JSON for google-oauth2 user data ", function() {
-      mockProfile.identities[0].connection = 'google-oauth2'; 
+      mockProfile.identities[0].connection = 'google-oauth2';
       var socialData = Helpers.getSocialUserData(mockProfile, "");
       expect(socialData).to.exist.not.null;
       expect(socialData.socialUserId).to.exist.to.equal('123456');
@@ -403,7 +406,7 @@ describe('Helper Service', function() {
       $httpBackend
         .when('GET', 'http://ipinfo.io')
         .respond(200, mockLocation);
-      
+
       $rootScope.$apply();
       console.log(Helpers.getCountyObjFromIP().then(function(data) {
         console.log(data);

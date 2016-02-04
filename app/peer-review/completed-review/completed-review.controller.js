@@ -7,7 +7,6 @@
 
   function CompletedReviewController($stateParams, ScorecardService, ReviewService, UserService, ChallengeService, Helpers, $q, CONSTANTS) {
     var vm = this;
-    vm.submissionDownloadPath = CONSTANTS.submissionDownloadPath;
     vm.domain = CONSTANTS.domain;
     vm.challengeId = $stateParams.challengeId;
     vm.loaded = false;

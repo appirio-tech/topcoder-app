@@ -5,7 +5,7 @@
   .tracks
     a.track(ng-repeat="subtrack in vm.subtrackRanks", ui-sref="profile.subtrack({userHandle: vm.handle, track: subtrack.track, subTrack: subtrack.subTrack})")
       .flex-wrapper
-        p.subtrack(title="{{subtrack.subTrack | underscoreStrip}}") {{subtrack.subTrack | underscoreStrip}} 
+        p.subtrack(title="{{subtrack.subTrack | underscoreStrip}}") {{subtrack.subTrack | underscoreStrip}}
 
         p.rating(ng-if="subtrack.track !== 'DESIGN'", style="color: {{subtrack.stat | ratingColor}}") {{subtrack.stat | number}}
           span(style="background-color: {{subtrack.stat | ratingColor}}", ng-if="subtrack.track === 'DEVELOP' || subtrack.track === 'DATA_SCIENCE'")

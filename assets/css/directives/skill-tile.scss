@@ -62,7 +62,7 @@ skill-tile {
       top: 34px;
       left: 30px;
       @include background-image-size(40px, 50px);
-      background: url(/images/x-mark-red.svg);
+      background: url(../../images/x-mark-red.svg);
       z-index: 100;
     }
 
@@ -72,7 +72,7 @@ skill-tile {
       top: 32px;
       left: 31px;
       @include background-image-size(36px, 36px);
-      background: url(/images/x-mark-gray.svg);
+      background: url(../../images/x-mark-gray.svg);
       z-index: 100;
     }
 

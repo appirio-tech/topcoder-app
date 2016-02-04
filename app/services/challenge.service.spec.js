@@ -1,3 +1,5 @@
+const mockData = require('../../tests/test-helpers/mock-data')
+
 /* jshint -W117, -W030 */
 describe('Challenge Service', function() {
   var challengeData = mockData.getMockChallenge();

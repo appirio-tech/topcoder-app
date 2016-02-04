@@ -1,22 +1,20 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   angular.module('tc.peer-review').config([
     '$stateProvider',
-    '$urlRouterProvider',
-    '$httpProvider',
-    '$locationProvider',
     routes
-  ]);
+  ])
 
-  function routes($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+  function routes($stateProvider) {
     var states = {
       review: {
         parent: 'root',
         abstract: true,
         data: {
-          authRequired: true,
+          authRequired: true
         }
       },
       'review.status': {
@@ -27,7 +25,7 @@
         },
         views: {
           'container@': {
-            templateUrl: 'peer-review/review-status/review-status.html',
+            template: require('./review-status/review-status')(),
             controller: 'ReviewStatusController',
             controllerAs: 'vm'
           }
@@ -41,7 +39,7 @@
         },
         views: {
           'container@': {
-            templateUrl: 'peer-review/readOnlyScorecard/readOnlyScorecard.html',
+            template: require('./readOnlyScorecard/readOnlyScorecard')(),
             controller: 'ReadOnlyScorecardController',
             controllerAs: 'vm'
           }
@@ -55,7 +53,7 @@
         },
         views: {
           'container@': {
-            templateUrl: 'peer-review/completed-review/completed-review.html',
+            template: require('./completed-review/completed-review')(),
             controller: 'CompletedReviewController',
             controllerAs: 'vm'
           }
@@ -69,16 +67,16 @@
         },
         views: {
           'container@': {
-            templateUrl: 'peer-review/edit-review/edit-review.html',
+            template: require('./edit-review/edit-review')(),
             controller: 'EditReviewController',
             controllerAs: 'vm'
           }
         }
       }
-    };
+    }
 
     angular.forEach(states, function(state, name) {
-      $stateProvider.state(name, state);
-    });
-  };
-})();
+      $stateProvider.state(name, state)
+    })
+  }
+})()
