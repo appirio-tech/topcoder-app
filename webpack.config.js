@@ -11,7 +11,10 @@ var config = require('appirio-tech-webpack-config')({
     app: './app/index'
   },
   template: './app/index.jade',
-  favicon: './assets/images/favicon.ico'
+  favicon: './assets/images/favicon.ico',
+  uglifyOptions: {
+    mangle: { except: ['Auth0'] }
+  }
 })
 
 if (process.env.TRAVIS_BRANCH) config.output.publicPath = process.env.ASSET_PREFIX
