@@ -2,7 +2,7 @@
   "name": "topcoder-app",
   "description": "Topcoder pages including login, registration, settings, dashboard, profile.",
   "scripts": {
-    "build": "webpack --bail --progress --build",
+    "build": "webpack --bail --progress --build --tc",
     "dev": "webpack-dev-server --history-api-fallback --dev --tc --inline --progress --port 3000",
     "lint": "eslint .",
     "test": "karma start --tc --test"

@@ -1,9 +1,8 @@
 require('./node_modules/coffee-script/register')
 
-if (process.env.TRAVIS_BRANCH == 'master') process.env.ENV = 'PROD'
-else if (process.env.TRAVIS_BRANCH == 'qa-integration') process.env.ENV = 'QA'
-else if (process.env.TRAVIS_BRANCH == 'dev') process.env.ENV = 'DEV'
-else process.env.ENV = 'DEV'
+if (process.env.TRAVIS_BRANCH == 'master')         process.env.ENV = 'PROD'
+if (process.env.TRAVIS_BRANCH == 'qa-integration') process.env.ENV = 'QA'
+if (process.env.TRAVIS_BRANCH == 'dev')            process.env.ENV = 'DEV'
 
 var config = require('appirio-tech-webpack-config')({
   dirname: __dirname,
