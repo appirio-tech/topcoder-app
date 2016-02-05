@@ -30,6 +30,7 @@ import angular from 'angular'
       ],
       'community': [
           { 'sref': 'community.members', 'text': 'OVERVIEW', 'icon': require('../../assets/images/nav/members.svg') },
+          { 'href': CONSTANTS.TCO16_URL, 'text': 'TCO 2016', 'icon': require('../../assets/images/nav/ico-tco16.svg') },
           { 'href': '/community/member-programs/', 'text': 'PROGRAMS', 'icon': require('../../assets/images/nav/programs.svg') },
           { 'href': CONSTANTS.FORUMS_APP_URL, 'text': 'FORUMS', 'icon': require('../../assets/images/nav/forums.svg') },
           { 'sref': 'community.statistics', 'text': 'STATISTICS', 'icon': require('../../assets/images/nav/statistics.svg') },

@@ -1,10 +1,9 @@
-## Dev [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=dev)](https://travis-ci.org/appirio-tech/topcoder-app)
-## Master [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=master)](https://travis-ci.org/appirio-tech/topcoder-app)
+#### Dev [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=dev)](https://travis-ci.org/appirio-tech/topcoder-app) QA [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=qa-integration)](https://travis-ci.org/appirio-tech/topcoder-app) Master [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=master)](https://travis-ci.org/appirio-tech/topcoder-app)
 # Topcoder-App
 
 This repository houses any new topcoder pages or refactored Angular apps/pages from the tc-site repository.
 
-The technologies used are Jade, SCSS, Angular, and Webpack.
+The technologies used are NPM, Webpack, ES2015, Jade, SCSS, and Angular 1.x.
 
 ## Installation
 
@@ -13,7 +12,6 @@ We use node 5.x and npm 3.x, so you may need to download a new version of node. 
 Install dependencies by running the following in the root of the project:
  - `npm i`
  - **Note:** You must use npm 3. Type `npm -v` to ensure you have a 3.x version.
- - `bower i`
 
 In order to test a logged in user, you must make an entry in your `/etc/hosts` file, pointing `local.topcoder-dev.com` to `localhost`. For example, open your `/etc/hosts` file with something like `vim /etc/hosts` and add `127.0.0.1 local.topcoder-dev.com`. After you run `gulp serve`, which launches a new window or tab, change `http://localhost:3000/sample/` to `http://local.topcoder-dev.com:3000/sample/`. You will then be able to login and pick up information from the cookies with `.topcoder-dev.com` as the domain.
 

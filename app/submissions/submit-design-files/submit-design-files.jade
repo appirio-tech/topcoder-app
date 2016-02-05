@@ -158,12 +158,12 @@ modal.transition(show="vm.showProgress", background-click-close="false", style="
     .upload-progress__title
       p Uploading submission for
 
-      p.upload-progress-title__challenge-name [Challenge name]
+      p.upload-progress-title__challenge-name(ng-bind="submissions.challengeTitle")
 
     img.upload-progress__image(src=require("../../../assets/images/robot.svg"), ng-hide="vm.errorInUpload")
     img.upload-progress__image--error(src=require("../../../assets/images/robot-embarresed.svg"), ng-show="vm.errorInUpload")
 
-    p.upload-progress__message(ng-hide="vm.errorInUpload") Hey, your work is AWESOME! Please don’t close the window while I’m working or you’ll loose all files!
+    p.upload-progress__message(ng-hide="vm.errorInUpload") Hey, your work is AWESOME! Please don’t close the window while I’m working or you’ll lose all files!
 
     p.upload-progress__message--error(ng-show="vm.errorInUpload") Oh, that’s embarrassing! One of the files couldn’t be uploaded, I’m so sorry.
 
