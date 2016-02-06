@@ -16,7 +16,7 @@ Install dependencies by running the following in the root of the project:
 In order to test a logged in user, you must make an entry in your `/etc/hosts` file, pointing `local.topcoder-dev.com` to `localhost`. For example, open your `/etc/hosts` file with something like `vim /etc/hosts` and add `127.0.0.1 local.topcoder-dev.com`. After you run `gulp serve`, which launches a new window or tab, change `http://localhost:3000/sample/` to `http://local.topcoder-dev.com:3000/sample/`. You will then be able to login and pick up information from the cookies with `.topcoder-dev.com` as the domain.
 
 ## NPM Commands
-- To run locally: `npm run dev` and head to `local.topcoder-dev.com:3000/my-dashboard`
+- To run locally: `npm start` and head to `local.topcoder-dev.com:3000/my-dashboard`
 - To create the build: `npm run build`
 - To run code linting: `npm run lint`
 - To run the tests: `npm test`
