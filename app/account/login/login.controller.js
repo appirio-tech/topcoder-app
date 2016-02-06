@@ -17,7 +17,7 @@ import angular from 'angular'
       WRONG_PASSWORD: false,
       SOCIAL_LOGIN_ERROR: false
     }
-
+    myVar = 5
     vm.login = login
     vm.socialLogin = socialLogin
 

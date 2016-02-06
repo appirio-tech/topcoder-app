@@ -1,4 +1,4 @@
-import angular from 'angular',
+import angular from 'angular'
 
 angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'API_URL'                 : process.env.API_URL,
