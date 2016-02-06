@@ -1,3 +1,4 @@
+/*eslint no-undef:0*/
 describe('TcAuthToken Service', function() {
   var apiUrl = 'https://api.topcoder-dev.com/v3'
   var service
@@ -81,31 +82,30 @@ describe('TcAuthToken Service', function() {
         }
       )
 
-      $httpBackend
-        .whenPOST(
-          apiUrl + '/authorizations',
-          {
-            param: {
-              refreshToken: 'refreshToken',
-              externalToken: 'idToken'
-            }
-          })
-        .respond(200, {
-          result: {
-            content: {
-              token: 'newToken'
-            }
+      $httpBackend.whenPOST(
+        apiUrl + '/authorizations',
+        {
+          param: {
+            refreshToken: 'refreshToken',
+            externalToken: 'idToken'
           }
         })
-        $httpBackend
-        .whenGET(apiUrl + '/authorizations/1')
-        .respond(200, {
-          result: {
-            content: {
-              token: 'newToken'
-            }
+      .respond(200, {
+        result: {
+          content: {
+            token: 'newToken'
           }
-        })
+        }
+      })
+
+      $httpBackend.whenGET(apiUrl + '/authorizations/1')
+      .respond(200, {
+        result: {
+          content: {
+            token: 'newToken'
+          }
+        }
+      })
     })
 
     it('should make a POST request to /authorizations', function() {

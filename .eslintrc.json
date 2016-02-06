@@ -6,24 +6,12 @@
     "quotes": [2, "single"],
     "semi": [2, "never"]
   },
-  "globals": {
-    "expect": true,
-    "bard": true,
-    "$rootScope": true,
-    "$controller": true,
-    "$compile": true,
-    "$timeout": true,
-    "$httpBackend": true,
-    "$state": true,
-    "sinon": true,
-    "$q": true,
-    "$": true
-  },
   "env": {
     "es6": true,
     "browser": true,
     "node": true,
-    "mocha": true
+    "mocha": true,
+    "jquery": true
   },
   "extends": "eslint:recommended",
   "ecmaFeatures": {

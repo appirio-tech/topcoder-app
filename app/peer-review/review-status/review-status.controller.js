@@ -29,8 +29,7 @@ import angular from 'angular'
         })
       })
       .catch(function(error) {
-        var message = 'An error occurred while trying to get the next review.\n' + error.status + ': ' + error.statusText
-        console.log(message)
+        // An error occurred while trying to get the next review
         $state.reload()
       })
     }

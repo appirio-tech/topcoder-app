@@ -60,9 +60,9 @@ import moment from 'moment'
         srm.currentPhase = CONSTANTS.REGISTRATION
       }
       // determines if the current phase is coding
-      var start = moment(srm.codingStartAt).unix()
-      var end = moment(srm.codingEndAt).unix()
-      var now = moment().unix()
+      start = moment(srm.codingStartAt).unix()
+      end = moment(srm.codingEndAt).unix()
+      now = moment().unix()
       if (start <= now && end >= now) {
         srm.currentPhase = CONSTANTS.CODING
       }

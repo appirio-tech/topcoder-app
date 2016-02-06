@@ -1,3 +1,4 @@
+/*eslint no-undef:0*/
 const mockData = require('../../tests/test-helpers/mock-data')
 
 describe('Profile Service', function() {
@@ -48,7 +49,6 @@ describe('Profile Service', function() {
 
     xit('should return ranks', function() {
       var ranks = service.getRanks(mockStats)
-      console.log(ranks)
       expect(ranks.DEVELOP.length).to.be.equal(5)
     })
 

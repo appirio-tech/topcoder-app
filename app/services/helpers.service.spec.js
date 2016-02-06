@@ -1,3 +1,4 @@
+/*eslint no-undef:0*/
 import angular from 'angular'
 const mockData = require('../../tests/test-helpers/mock-data')
 
@@ -49,7 +50,7 @@ describe('Helper Service', function() {
       expect(fakeWindow.location.href).to.equal('http://www.topcoder-dev.com')
     })
 
-    it("should redirect to the next param", function() {
+    it('should redirect to the next param', function() {
       Helpers.redirectPostLogin(encodeURIComponent('www.google.com'))
       expect($state.go).to.have.been.calledWith('dashboard')
     })
@@ -191,7 +192,7 @@ describe('Helper Service', function() {
       expect(socialData.accessTokenSecret).to.exist.to.equal(mockProfile.identities[0].access_token_secret)
     })
 
-    it("should get JSON for google-oauth2 user data ", function() {
+    it('should get JSON for google-oauth2 user data ', function() {
       mockProfile.identities[0].connection = 'google-oauth2'
       var socialData = Helpers.getSocialUserData(mockProfile, '')
       expect(socialData).to.exist.not.null
@@ -387,30 +388,6 @@ describe('Helper Service', function() {
       expect($window._kmq).to.have.length(1)
       expect($window._kmq[0][0]).to.exist.to.equal('identify')
       expect($window._kmq[0][1]).to.exist.to.equal('mockuser')
-    })
-  })
-
-  xdescribe('getCountyObjFromIP ', function() {
-    it('should get valid country object ', function() {
-      var mockLocation = {
-        'ip': '123.63.151.213',
-        'hostname': 'No Hostname',
-        'city': 'New Delhi',
-        'region': 'National Capital Territory of Delhi',
-        'country': 'IN',
-        'loc': '28.6000,77.2000',
-        'org': 'Mock Organization'
-      }
-
-      $httpBackend
-        .when('GET', 'http://ipinfo.io')
-        .respond(200, mockLocation)
-
-      $rootScope.$apply()
-      console.log(Helpers.getCountyObjFromIP().then(function(data) {
-        console.log(data)
-      }))
-      $rootScope.$apply()
     })
   })
 })

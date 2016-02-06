@@ -202,18 +202,20 @@ import _ from 'lodash'
       track = track.replace(/-/g, '')
       type = type.toUpperCase().replace(/ /g, '_')
       type = type.replace(/-/g, '')
+      var ans
+
       if (track == 'DEVELOP') {
-        var ans = stats.DEVELOP.subTracks.filter(function(subTrack) {
+        ans = stats.DEVELOP.subTracks.filter(function(subTrack) {
           return type === subTrack.name
         })
         return ans[0]
       } else if (track == 'DESIGN' && !_.isUndefined(stats.DESIGN) ) {
-        var ans = stats.DESIGN.subTracks.filter(function(subTrack) {
+        ans = stats.DESIGN.subTracks.filter(function(subTrack) {
           return type === subTrack.name
         })
         return ans[0]
       } else if (track == 'COPILOT') {
-        var ans = stats.COPILOT
+        ans = stats.COPILOT
         return ans
       } else if (type == 'SRM') {
         if (stats.DATA_SCIENCE.SRM.history) {
@@ -244,13 +246,15 @@ import _ from 'lodash'
     function getSubTracks(stats, track) {
       track = track.toUpperCase().replace(/ /g, '_')
       track = track.replace(/-/g, '')
+      var ans
+
       if (track == 'DEVELOP') {
-        var ans = stats.DEVELOP.subTracks.map(function(subTrack) {
+        ans = stats.DEVELOP.subTracks.map(function(subTrack) {
           return subTrack.name
         })
         return ans
       } else if (track == 'DESIGN') {
-        var ans = stats.DESIGN.subTracks.map(function(subTrack) {
+        ans = stats.DESIGN.subTracks.map(function(subTrack) {
           return subTrack.name
         })
         return ans

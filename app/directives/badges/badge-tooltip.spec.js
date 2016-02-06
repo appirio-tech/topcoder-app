@@ -1,8 +1,8 @@
+/*eslint no-undef:0*/
 import angular from 'angular'
 
 const mockData = require('../../../tests/test-helpers/mock-data')
 
-/* jshint -W117, -W030 */
 describe('Badge Tooltip Directive', function() {
   var scope
   var element

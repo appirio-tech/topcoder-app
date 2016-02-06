@@ -1,4 +1,4 @@
-/* jshint -W117, -W030 */
+/*eslint no-undef:0*/
 describe('Register Controller', function() {
   var controller
 

@@ -1,3 +1,4 @@
+/*eslint no-undef:0*/
 import angular from 'angular'
 
 describe('Empty State Placeholder Directive', function() {

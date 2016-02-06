@@ -1,6 +1,6 @@
+/*eslint no-undef:0*/
 import angular from 'angular'
 
-/* jshint -W117, -W030 */
 describe('Logout Controller', function() {
   var controller
   var fakeWindow = {

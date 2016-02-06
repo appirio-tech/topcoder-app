@@ -1,3 +1,4 @@
+/*eslint no-undef:0*/
 import angular from 'angular'
 
 const mockData = require('../../../tests/test-helpers/mock-data')

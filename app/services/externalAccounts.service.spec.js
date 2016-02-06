@@ -1,3 +1,4 @@
+/*eslint no-undef:0*/
 import _ from 'lodash'
 const mockData = require('../../tests/test-helpers/mock-data')
 

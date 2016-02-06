@@ -1,3 +1,4 @@
+/*eslint no-undef:0*/
 import _ from 'lodash'
 const mockData = require('../../tests/test-helpers/mock-data')
 
@@ -183,8 +184,8 @@ describe('User Stats Service', function() {
       expect(stat.statType).to.exist.to.equal('Rating')
       expect(stat.showStats).to.exist.to.equal(true)
 
-      var srm = dsStats.MARATHON_MATCH
-      var stat = {
+      srm = dsStats.MARATHON_MATCH
+      stat = {
         track: 'DATA_SCIENCE',
         subTrack: 'MARATHON_MATCH',
         challenges: srm.challenges,
@@ -216,8 +217,8 @@ describe('User Stats Service', function() {
       expect(stat.statType).to.exist.to.equal('Rating')
       expect(stat.showStats).to.exist.to.equal(true)
 
-      var srm = dsStats.MARATHON_MATCH
-      var stat = {
+      srm = dsStats.MARATHON_MATCH
+      stat = {
         track: 'DATA_SCIENCE',
         subTrack: 'MARATHON_MATCH',
         challenges: srm.challenges,
@@ -252,8 +253,8 @@ describe('User Stats Service', function() {
         toTest.push(stat)
       }
       UserStatsService.processStats(toTest)
-      for(var i  in toTest) {
-        var stat = toTest[i]
+      for(var j in toTest) {
+        stat = toTest[j]
 
         if (['CODE', 'FIRST_2_FINISH', 'BUG_HUNT'].indexOf(stat.subTrack) !== -1) {
           expect(stat.stat).to.exist.to.equal(stat.wins)
@@ -283,8 +284,8 @@ describe('User Stats Service', function() {
         toTest.push(stat)
       }
       UserStatsService.processStats(toTest)
-      for(var i  in toTest) {
-        var stat = toTest[i]
+      for(var j in toTest) {
+        stat = toTest[j]
 
         if (['CODE', 'FIRST_2_FINISH', 'BUG_HUNT'].indexOf(stat.subTrack) !== -1) {
           expect(stat.stat).to.exist.to.equal(stat.wins)
@@ -349,7 +350,7 @@ describe('User Stats Service', function() {
       var compiled = UserStatsService.compileSubtracks({'DEVELOP': toTest})
       expect(compiled).to.have.length(toTest.length - 1)
       // verfies that COPILOT_POSTING does not exist after calling the method
-      var cpIndex = _.findIndex(compiled, function(stat) {
+      cpIndex = _.findIndex(compiled, function(stat) {
         return stat.subTrack === 'COPILOT_POSTING'
       })
       expect(cpIndex).to.equal(-1)
@@ -379,7 +380,7 @@ describe('User Stats Service', function() {
       var compiled = UserStatsService.compileSubtracks({'DEVELOP': []})
       expect(compiled).to.exist.to.have.length(0)
       // non array subtracks
-      var compiled = UserStatsService.compileSubtracks({'DEVELOP': {}})
+      compiled = UserStatsService.compileSubtracks({'DEVELOP': {}})
       expect(compiled).to.exist.to.have.length(0)
     })
   })

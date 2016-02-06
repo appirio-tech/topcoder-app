@@ -1,3 +1,4 @@
+/*eslint no-undef:0*/
 describe('Login Controller', function() {
   var controller
   var scope

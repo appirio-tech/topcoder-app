@@ -20,16 +20,18 @@ import angular from 'angular'
     return service
 
     function getPresignedURL(body, files, progressCallback) {
-      console.log('Body of request for presigned url: ', body)
+      $log.info('Body of request for presigned url: ')
+      $log.info(body)
 
       return api.all('submissions').customPOST(body)
       .then(function(response) {
-        console.log('POST/Presigned URL Response: ', response.plain())
+        $log.info('POST/Presigned URL Response: ')
+        $log.info(response.plain())
         progressCallback.call(progressCallback, 'PREPARE', 100)
         uploadSubmissionFileToS3(response, response.data.files, files, progressCallback)
       })
       .catch(function(err) {
-        console.log(err)
+        $log.info(err)
         $log.info('Error getting presigned url')
         progressCallback.call(progressCallback, 'ERROR', err)
         toaster.pop('error', 'Whoops!', 'There was an error uploading your submissions. Please try again later.')
@@ -66,7 +68,7 @@ import angular from 'angular'
           var status = xhr.status
           if (((status >= 200 && status < 300) || status === 304) && xhr.readyState === 4) {
             $log.info('Successfully uploaded file')
-            console.log('xhr response: ', xhr.responseText)
+            $log.info('xhr response: ', xhr.responseText)
 
             // updateSubmissionStatus and then resolve?
             deferred.resolve()
@@ -91,8 +93,10 @@ import angular from 'angular'
 
       return $q.all(promises)
         .then(function(response) {
-          console.log('response from S3: ', response)
-          console.log('response to use .save restnagular with: ', presignedURLResponse)
+          $log.info('response from S3: ')
+          $log.info(response)
+          $log.info('response to use .save restnagular with: ')
+          $log.info(presignedURLResponse)
           progressCallback.call(progressCallback, 'UPLOAD', 100)
           // Update and start processing
           updateSubmissionStatus(presignedURLResponse.plain(), progressCallback)
@@ -100,7 +104,8 @@ import angular from 'angular'
         })
         .catch(function(err) {
           progressCallback.call(progressCallback, 'ERROR', err)
-          console.log('error uploading to S3: ', err)
+          $log.info('error uploading to S3: ')
+          $log.info(err)
         })
     }
 
@@ -127,7 +132,8 @@ import angular from 'angular'
       return api.one('submissions', body.id).customPOST(body, 'process')
       .then(function(response) {
         $log.info('Successfully made file record. Beginning processing')
-        console.log('response from process call: ', response)
+        $log.info('response from process call: ')
+        $log.info(response)
         progressCallback.call(progressCallback, 'FINISH', 100)
       })
       .catch(function(err) {

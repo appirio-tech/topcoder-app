@@ -40,7 +40,7 @@ import angular from 'angular'
           case 'design':
             return String.supplant('https://apps.{domain}/forums/?module=ThreadList&forumId={forumId}', data)
           }
-
+        /*eslint no-fallthrough:0*/
         case 'submissions':
           return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}#submissions', data)
         case 'registrants':

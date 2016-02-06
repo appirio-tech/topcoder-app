@@ -7,11 +7,12 @@ import angular from 'angular'
     return {
       link: function($scope, $element, $attrs, controller, $transclude) {
         if (!$transclude) {
+          /*eslint no-undef:0*/
+          // Should this minErr even be here?
           throw minErr('ngTransclude')('orphan',
            'Illegal use of ngTransclude directive in the template! ' +
            'No parent directive that requires a transclusion found. ' +
-           'Element: {0}',
-           startingTag($element))
+           'Element: {0}')
         }
         var innerScope = $scope.$new()
         $transclude(innerScope, function(clone) {

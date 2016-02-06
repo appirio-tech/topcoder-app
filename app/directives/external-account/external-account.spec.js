@@ -1,3 +1,4 @@
+/*eslint no-undef:0*/
 import angular from 'angular'
 import _ from 'lodash'
 

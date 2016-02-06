@@ -1,3 +1,4 @@
+/*eslint no-undef:0*/
 describe('User Service', function() {
   var apiUrl
 
@@ -53,7 +54,7 @@ describe('User Service', function() {
       }, function(err) {
         expect(err.status).to.equal(400)
       })
-   $httpBackend.flush()
+    $httpBackend.flush()
   })
 
   it('cant get a reset token for a user that doesnt exist', function() {
@@ -63,7 +64,7 @@ describe('User Service', function() {
       }, function(err) {
         expect(err.status).to.equal(400)
       })
-   $httpBackend.flush()
+    $httpBackend.flush()
   })
 
   it('resets the password', function() {
@@ -73,7 +74,7 @@ describe('User Service', function() {
       }, function(err) {
         it.should.not.be.here()
       })
-   $httpBackend.flush()
+    $httpBackend.flush()
   })
 
   it('fails to reset the password', function() {
@@ -83,7 +84,6 @@ describe('User Service', function() {
       }, function(err) {
         expect(err.status).to.equal(400)
       })
-   $httpBackend.flush()
+    $httpBackend.flush()
   })
-
 })

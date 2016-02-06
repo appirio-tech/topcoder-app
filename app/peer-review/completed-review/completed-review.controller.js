@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.peer-review').controller('CompletedReviewController',  CompletedReviewController)
 
-  CompletedReviewController.$inject = ['$stateParams', 'ScorecardService', 'ReviewService', 'UserService', 'ChallengeService', 'Helpers', '$q', 'CONSTANTS']
+  CompletedReviewController.$inject = ['$stateParams', 'ScorecardService', 'ReviewService', 'UserService', 'ChallengeService', 'Helpers', '$q', 'CONSTANTS', '$state']
 
-  function CompletedReviewController($stateParams, ScorecardService, ReviewService, UserService, ChallengeService, Helpers, $q, CONSTANTS) {
+  function CompletedReviewController($stateParams, ScorecardService, ReviewService, UserService, ChallengeService, Helpers, $q, CONSTANTS, $state) {
     var vm = this
     vm.domain = CONSTANTS.domain
     vm.challengeId = $stateParams.challengeId

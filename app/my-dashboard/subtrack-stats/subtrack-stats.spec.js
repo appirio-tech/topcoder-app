@@ -1,3 +1,4 @@
+/*eslint no-undef:0*/
 const mockData = require('../../../tests/test-helpers/mock-data')
 
 describe('Dashboard Subtrack Stats Controller', function() {

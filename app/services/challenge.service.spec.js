@@ -1,3 +1,4 @@
+/*eslint no-undef:0*/
 import moment from 'moment'
 
 describe('Challenge Service', function() {
