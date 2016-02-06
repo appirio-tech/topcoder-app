@@ -13,17 +13,16 @@ import angular from 'angular'
         scope: {},
         controller: ['$log', function($log, $scope, $element) {
           $log = $log.getInstance('TcTabSetController')
-          var self = this
-          self.tabs = []
-          self.addTab = function addTab(tab) {
-            self.tabs.push(tab)
-            if (self.tabs.length === 1) {
+          this.tabs = []
+          this.addTab = function addTab(tab) {
+            this.tabs.push(tab)
+            if (this.tabs.length === 1) {
               tab.active = true
             }
           }
 
-          self.select = function(selectedTab) {
-            angular.forEach(self.tabs, function(tab) {
+          this.select = function(selectedTab) {
+            angular.forEach(this.tabs, function(tab) {
               if (tab.active && tab !== selectedTab) {
                 tab.active = false
               }

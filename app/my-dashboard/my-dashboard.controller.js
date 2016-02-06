@@ -1,37 +1,40 @@
+import angular from 'angular'
+import _ from 'lodash'
+
 (function () {
-  'use strict';
+  'use strict'
 
-  angular.module('tc.myDashboard').controller('MyDashboardController', MyDashboardController);
+  angular.module('tc.myDashboard').controller('MyDashboardController', MyDashboardController)
 
-  MyDashboardController.$inject = ['userIdentity', 'ProfileService', '$log'];
+  MyDashboardController.$inject = ['userIdentity', 'ProfileService', '$log']
 
   function MyDashboardController(userIdentity, ProfileService, $log) {
-    var vm = this;
+    var vm = this
 
-    activate();
+    activate()
 
     function activate() {
-      vm.showSRMs = false;
-      vm.isCopilot = _.includes(userIdentity.roles, 'copilot');
+      vm.showSRMs = false
+      vm.isCopilot = _.includes(userIdentity.roles, 'copilot')
 
-      displaySRMsBasedOnTrack();
+      displaySRMsBasedOnTrack()
     }
 
     function displaySRMsBasedOnTrack() {
       ProfileService.getUserProfile(userIdentity.handle)
       .then(function(userProfile) {
-        var isDesigner = _.includes(userProfile.tracks, 'DESIGN');
+        var isDesigner = _.includes(userProfile.tracks, 'DESIGN')
 
         if (isDesigner && userProfile.tracks.length === 1) {
-          vm.showSRMs = false;
+          vm.showSRMs = false
         } else {
-          vm.showSRMs = true;
+          vm.showSRMs = true
         }
       })
       .catch(function(err) {
-        vm.showSRMs = false;
-        $log.error(err);
+        vm.showSRMs = false
+        $log.error(err)
       })
     }
   }
-})();
+})()

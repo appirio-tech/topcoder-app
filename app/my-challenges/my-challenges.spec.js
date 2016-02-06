@@ -1,11 +1,9 @@
 const mockData = require('../../tests/test-helpers/mock-data')
 
-/* jshint -W117, -W030 */
 describe('My Challenges Controller', function() {
-  var controller
   var scope
   var domain
-  var authService, challengeService, userService, identity, mockState
+  var challengeService, userService, identity, mockState
   var marathons = mockData.getMockMarathons()
   var challenges = mockData.getMockiOSChallenges()
 
@@ -16,19 +14,16 @@ describe('My Challenges Controller', function() {
       'JwtInterceptorService',
       '$rootScope',
       '$q',
-      'TcAuthService',
       'ChallengeService',
       'UserService',
-      'CONSTANTS',
-      'Helpers')
+      'CONSTANTS')
 
     bard.mockService(JwtInterceptorService, {
-      getToken: function() { return "v3Token" }
+      getToken: function() { return 'v3Token' }
     })
 
     domain = CONSTANTS.domain
     challengeService = ChallengeService
-    authService = TcAuthService
     userService = UserService
 
     identity = function() {

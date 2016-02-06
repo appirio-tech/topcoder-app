@@ -37,6 +37,21 @@ module.exports = function(config) {
 
     webpack: webpackConfig,
 
+    webpackMiddleware: {
+      stats: {
+        colors: true,
+        hash: false,
+        version: true,
+        timings: true,
+        assets: false,
+        chunks: false,
+        source: true,
+        errorDetails: true,
+        chunkOrigins: true,
+        children: false
+      }
+    },
+
     // Possible values: 'dots', 'progress', 'coverage'
     // Available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ['junit', 'progress', 'coverage'],

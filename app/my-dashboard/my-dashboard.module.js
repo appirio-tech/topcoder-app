@@ -1,5 +1,7 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   var dependencies = [
     'angular-jwt',
@@ -10,7 +12,7 @@
     'tcUIComponents',
     'dcbImgFallback',
     'angular.filter'
-  ];
+  ]
 
-  angular.module('tc.myDashboard', dependencies);
-})();
+  angular.module('tc.myDashboard', dependencies)
+})()

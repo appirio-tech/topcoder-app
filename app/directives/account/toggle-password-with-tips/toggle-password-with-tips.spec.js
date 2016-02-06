@@ -1,13 +1,9 @@
 import angular from 'angular'
 import jQuery from 'jquery'
-const mockData = require('../../../../tests/test-helpers/mock-data')
 
-/* jshint -W117, -W030 */
 describe('Toggle Password With Tips Directive', function() {
   var scope
   var element
-  // var challenge = mockData.getMockChallengeWithUserDetails()
-  // var spotlightChallenge = mockData.getMockSpotlightChallenges()[0]
 
   beforeEach(function() {
     bard.appModule('topcoder')
@@ -19,12 +15,12 @@ describe('Toggle Password With Tips Directive', function() {
   bard.verifyNoOutstandingHttpRequests()
 
   describe('Toggle Password Directive', function() {
-    var togglePassword, controller, formController, passwordFormFieldSpy
+    var formController, passwordFormFieldSpy
 
     beforeEach(function() {
       var form = angular.element('<form><toggle-password-with-tips /></form>)')
       element = form.find('toggle-password-with-tips')
-      var formElement = $compile(form)(scope)
+      $compile(form)(scope)
       scope.$digest()
 
       // controller = element.controller('togglePassword')
@@ -96,7 +92,7 @@ describe('Toggle Password With Tips Directive', function() {
       expect(element.hasClass('focus')).to.be.true
       // now blurs from it
 
-      var e = jQuery.Event("blur")
+      var e = jQuery.Event('blur')
       e.relatedTarget = {
         getAttribute: function(name) {
           if (name === 'type') return 'checkbox'
@@ -140,7 +136,7 @@ describe('Toggle Password With Tips Directive', function() {
 
     it('should trigger keyup handler with enter/return key ', function() {
       var mockBlur = sinon.spy(element.find('input')[0], 'blur')
-      var e = jQuery.Event("keyup")
+      var e = jQuery.Event('keyup')
       e.keyCode = 13
       element.trigger(e)
       expect(mockBlur).to.be.calledOnce
@@ -148,7 +144,7 @@ describe('Toggle Password With Tips Directive', function() {
 
     it('should NOT trigger keyup handler with non enter/return key ', function() {
       var mockBlur = sinon.spy(element.find('input')[0], 'blur')
-      var e = jQuery.Event("keyup")
+      var e = jQuery.Event('keyup')
       e.keyCode = 14
       element.trigger(e)
       expect(mockBlur).not.to.be.called

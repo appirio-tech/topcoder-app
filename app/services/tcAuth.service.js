@@ -1,14 +1,16 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
-  angular.module('tc.services').factory('TcAuthService', TcAuthService);
+  angular.module('tc.services').factory('TcAuthService', TcAuthService)
 
-  TcAuthService.$inject = ['CONSTANTS', 'auth', 'AuthTokenService', '$rootScope', '$q', '$log', '$timeout', 'UserService', 'Helpers', 'ApiService', 'store', '$http'];
+  TcAuthService.$inject = ['CONSTANTS', 'auth', 'AuthTokenService', '$rootScope', '$q', '$log', '$timeout', 'UserService', 'Helpers', 'ApiService', 'store', '$http']
 
   function TcAuthService(CONSTANTS, auth, AuthTokenService, $rootScope, $q, $log, $timeout, UserService, Helpers, ApiService, store, $http) {
-    $log = $log.getInstance("TcAuthServicetcAuth");
-    var auth0 = auth;
-    var apiUrl = CONSTANTS.AUTH_API_URL;
+    $log = $log.getInstance('TcAuthServicetcAuth')
+    var auth0 = auth
+    var apiUrl = CONSTANTS.AUTH_API_URL
     var service = {
       login: login,
       socialLogin: socialLogin,
@@ -16,27 +18,20 @@
       logout: logout,
       register: register,
       isAuthenticated: isAuthenticated
-    };
-    return service;
+    }
+    return service
 
 
     ///////////////
-
-    function _isEmail(usernameOrEmail) {
-      var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-      return re.test(usernameOrEmail);
-    }
-
-
     function login(usernameOrEmail, password) {
       return _doLogin({
         usernameOrEmail: usernameOrEmail,
         password: password
-      }, null);
+      }, null)
     }
 
     function socialLogin(provider, state) {
-      return _doLogin(null, provider);
+      return _doLogin(null, provider)
     }
 
     function _doLogin(userCreds, provider) {
@@ -44,25 +39,24 @@
         // supported backends
         var options = {
           popup: true,
-          scope: "openid profile offline_access",
-          // state: state,
-        };
+          scope: 'openid profile offline_access'
+        }
         // setup more options based on input
         if (provider) {
-          var providers = ['facebook', 'google-oauth2', 'twitter', 'github'];
+          var providers = ['facebook', 'google-oauth2', 'twitter', 'github']
           if (providers.indexOf(provider) < 0) {
             reject({
-              status: "UNSUPORTED_PROVIDER"
-            });
-            return;
+              status: 'UNSUPORTED_PROVIDER'
+            })
+            return
           } else {
-            options.connection = provider;
+            options.connection = provider
           }
         } else {
-          options.connection = Helpers.isEmail(userCreds.usernameOrEmail) ? 'TC-User-Database' : 'LDAP';
-          options.sso = false;
-          options.username = userCreds.usernameOrEmail;
-          options.password = userCreds.password;
+          options.connection = Helpers.isEmail(userCreds.usernameOrEmail) ? 'TC-User-Database' : 'LDAP'
+          options.sso = false
+          options.username = userCreds.usernameOrEmail
+          options.password = userCreds.password
         }
 
         auth0.signin(options,
@@ -70,135 +64,118 @@
             AuthTokenService.exchangeToken(refreshToken, idToken).then(
               function(appiriojwt) {
                 $timeout(function() {
-                  $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN);
+                  $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN)
 
-                  var userIdentity = UserService.getUserIdentity();
+                  var userIdentity = UserService.getUserIdentity()
 
                   if (userIdentity && !store.get(userIdentity.userId)) {
-                    store.set(userIdentity.userId, {});
+                    store.set(userIdentity.userId, {})
                   }
-                  resolve();
-                }, 200);
+                  resolve()
+                }, 200)
               },
               function(resp) {
-                $log.debug(JSON.stringify(resp));
+                $log.debug(JSON.stringify(resp))
                 // 401 status here implies user is not registered
                 if (resp.status === 401) {
                   reject({
-                    status: "USER_NOT_REGISTERED"
-                  });
+                    status: 'USER_NOT_REGISTERED'
+                  })
                 }
                 if (resp.data.result.content.toLowerCase() === 'account inactive') {
                   reject({
-                    status: "ACCOUNT_INACTIVE"
-                  });
+                    status: 'ACCOUNT_INACTIVE'
+                  })
                 } else {
                   reject({
-                    status: "UKNOWN_ERROR"
-                  });
+                    status: 'UKNOWN_ERROR'
+                  })
                 }
               }
-            );
+            )
           },
           function(error) {
-            $log.warn(JSON.stringify(error));
-            reject(error);
+            $log.warn(JSON.stringify(error))
+            reject(error)
           }
-        );
-      });
+        )
+      })
     }
 
     function socialRegistration(provider, state) {
       return $q(function(resolve, reject) {
         // supported backends
-        var providers = ['facebook', 'google-oauth2', 'twitter', 'github'];
+        var providers = ['facebook', 'google-oauth2', 'twitter', 'github']
         if (providers.indexOf(provider) > -1) {
           auth0.signin({
-              popup: true,
-              connection: provider,
-              scope: "openid profile offline_access",
-              state: state
-            },
+            popup: true,
+            connection: provider,
+            scope: 'openid profile offline_access',
+            state: state
+          },
             function(profile, idToken, accessToken, state, refreshToken) {
-              var socialData = Helpers.getSocialUserData(profile, accessToken);
+              var socialData = Helpers.getSocialUserData(profile, accessToken)
 
               UserService.validateSocialProfile(socialData.socialUserId, socialData.socialProvider)
                 .then(function(resp) {
-                  $log.debug(JSON.stringify(resp));
+                  $log.debug(JSON.stringify(resp))
                   if (resp.valid) {
                     // success
                     var result = {
                       status: 'SUCCESS',
                       data: socialData
-                    };
-                    $log.debug("socialRegister Result: " + JSON.stringify(result));
-                    resolve(result);
+                    }
+                    $log.debug('socialRegister Result: ' + JSON.stringify(result))
+                    resolve(result)
                   } else {
                     if (resp.reasonCode === 'ALREADY_IN_USE') {
-                      $log.error('Social handle exist');
+                      $log.error('Social handle exist')
                       reject({
-                        status: "SOCIAL_PROFILE_ALREADY_EXISTS"
-                      });
+                        status: 'SOCIAL_PROFILE_ALREADY_EXISTS'
+                      })
                     }
                   }
 
                 })
                 .catch(function(resp) {
-                  $log.debug(JSON.stringify(resp));
-                });
+                  $log.debug(JSON.stringify(resp))
+                })
             },
             function(error) {
-              $log.warn("onSocialLoginFailure " + JSON.stringify(error));
-              reject(error);
+              $log.warn('onSocialLoginFailure ' + JSON.stringify(error))
+              reject(error)
             }
-          );
+          )
         } else {
-          $log.error('Unsupported social login provider: ' + provider);
+          $log.error('Unsupported social login provider: ' + provider)
           reject({
-            status: "FAILED",
-            "error": "Unsupported social login provider '" + provider + "'"
-          });
+            status: 'FAILED',
+            'error': 'Unsupported social login provider \'' + provider + '\''
+          })
         }
-      });
+      })
     }
 
     function logout() {
-      // options for DELETE http call
-      var logoutOptions = {
-        url: apiUrl + '/authorizations/1',
-        method: 'DELETE',
-        headers: {
-          'Authorization': "Bearer " + AuthTokenService.getV3Token()
-        }
-      };
-
-
       // logout of all browsers
       return $q(function(resolve, reject) {
         // remove local token
-        AuthTokenService.removeTokens();
-        $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT);
-        resolve();
-//        $http(logoutOptions).then(function(res) {
-//          $log.log('logout successful');
-//          resolve();
-//        }).catch(function(resp) {
-//          $log.error('logout error');
-//          reject();
-//        });
-      });
+        AuthTokenService.removeTokens()
+        $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT)
+        resolve()
+      })
     }
 
     function register(userInfo) {
       // api params
       // required: ["firstName", "lastName", "handle", "country", "email"],
       // optional: ["password", "socialProviderId", "socialUserName", "socialEmail", "socialEmailVerified", "regSource", "socialUserId", "utm_source", "utm_medium", "utm_campaign"]
-      return UserService.createUser(userInfo);
+      return UserService.createUser(userInfo)
     }
 
     function isAuthenticated() {
-      return !!AuthTokenService.getV3Token() && !!AuthTokenService.getV2Token() && !!AuthTokenService.getTCSSOToken();
+      return !!AuthTokenService.getV3Token() && !!AuthTokenService.getV2Token() && !!AuthTokenService.getTCSSOToken()
     }
 
   }
-})();
+})()

@@ -1,21 +1,24 @@
+import angular from 'angular'
+import _ from 'lodash'
+
 (function() {
-  'use strict';
+  'use strict'
 
-  angular.module('tc.services').factory('ExternalWebLinksService', ExternalWebLinksService);
+  angular.module('tc.services').factory('ExternalWebLinksService', ExternalWebLinksService)
 
-  ExternalWebLinksService.$inject = ['$log', 'CONSTANTS', 'ApiService', '$q'];
+  ExternalWebLinksService.$inject = ['$log', 'CONSTANTS', 'ApiService', '$q']
 
   function ExternalWebLinksService($log, CONSTANTS, ApiService, $q) {
-    $log = $log.getInstance("ExternalWebLinksService");
+    $log = $log.getInstance('ExternalWebLinksService')
 
-    var memberApi = ApiService.getApiServiceProvider('MEMBER');
+    var memberApi = ApiService.getApiServiceProvider('MEMBER')
 
     var service = {
       getLinks: getLinks,
       addLink: addLink,
       removeLink: removeLink
-    };
-    return service;
+    }
+    return service
 
     /////////////////////////
 
@@ -24,21 +27,21 @@
         .withHttpConfig({skipAuthorization: true})
         .customGET('externalLinks')
         .then(function(links) {
-          links = links.plain();
+          links = links.plain()
           if (!includePending) {
             _.remove(links, function(l) {
-              return _.get(l, 'synchronizedAt') === 0;
-            });
+              return _.get(l, 'synchronizedAt') === 0
+            })
           }
           // add provider type as weblink
           links = _(links).forEach(function(l) {
-            l.provider = 'weblink';
+            l.provider = 'weblink'
             if (l.synchronizedAt === 0) {
-              l.status = 'PENDING';
+              l.status = 'PENDING'
             }
-          }).value();
-          return links;
-        });
+          }).value()
+          return links
+        })
     }
 
     function addLink(userHandle, url) {
@@ -48,43 +51,43 @@
           var _newLink = {
             provider: 'weblink',
             data: resp
-          };
-          _newLink.data.status = 'PENDING';
-          resolve(_newLink);
+          }
+          _newLink.data.status = 'PENDING'
+          resolve(_newLink)
         })
         .catch(function(resp) {
-          var errorStatus = "FATAL_ERROR";
-          $log.error("Error adding weblink: " + resp.data.result.content);
+          var errorStatus = 'FATAL_ERROR'
+          $log.error('Error adding weblink: ' + resp.data.result.content)
           if (resp.data.result && resp.data.result.status === 400) {
-            errorStatus = "WEBLINK_ALREADY_EXISTS";
+            errorStatus = 'WEBLINK_ALREADY_EXISTS'
           }
           reject({
             status: errorStatus,
             msg: resp.data.result.content
-          });
-        });
-      });
+          })
+        })
+      })
     }
 
     function removeLink(userHandle, key) {
       return $q(function($resolve, $reject) {
         return memberApi.one('members', userHandle).one('externalLinks', key).remove()
         .then(function(resp) {
-          $resolve(resp);
+          $resolve(resp)
         })
         .catch(function(resp) {
-          var errorStatus = "FATAL_ERROR";
-          $log.error("Error removing weblink: " + resp.data.result.content);
+          var errorStatus = 'FATAL_ERROR'
+          $log.error('Error removing weblink: ' + resp.data.result.content)
           if (resp.data.result && resp.data.result.status === 400) {
-            errorStatus = "WEBLINK_NOT_EXIST";
+            errorStatus = 'WEBLINK_NOT_EXIST'
           }
           $reject({
             status: errorStatus,
             msg: resp.data.result.content
-          });
-        });
-      });
+          })
+        })
+      })
     }
 
   }
-})();
+})()

@@ -1,3 +1,5 @@
+import angular from 'angular'
+
 const mockData = require('../../../tests/test-helpers/mock-data')
 
 /* jshint -W117, -W030 */
@@ -5,7 +7,6 @@ describe('Badge Tooltip Directive', function() {
   var scope
   var element
   var badge = mockData.getMockBadge()
-  var spotlightChallenge = mockData.getMockSpotlightChallenges()[0]
 
   beforeEach(function() {
     bard.appModule('topcoder')
@@ -101,7 +102,6 @@ describe('Badge Tooltip Directive', function() {
 
     it('should trigger mouseleave handler ', function() {
       tooltip.trigger('mouseleave')
-      var tooltipElement = tooltip.children(0)
       expect(tooltip.isolateScope().hide).to.equal(true)
     })
   })

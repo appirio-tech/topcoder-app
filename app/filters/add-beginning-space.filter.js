@@ -1,11 +1,13 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('topcoder').filter('addBeginningSpace', addBeginningSpace);
+(function() {
+  'use strict'
+
+  angular.module('topcoder').filter('addBeginningSpace', addBeginningSpace)
 
   function addBeginningSpace() {
     return function(input) {
-      return ' ' + input;
-    };
-  };
-})();
+      return ' ' + input
+    }
+  }
+})()

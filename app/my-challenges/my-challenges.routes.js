@@ -27,7 +27,7 @@ import angular from 'angular'
         }
       }
     }
-    
+
     for (var name in states) {
       var state = states[name]
       $stateProvider.state(name, state)

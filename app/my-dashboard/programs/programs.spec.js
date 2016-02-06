@@ -1,11 +1,8 @@
 const mockData = require('../../../tests/test-helpers/mock-data')
 
-/* jshint -W117, -W030 */
 describe('Programs Controller', function() {
-  var controller
   var domain
-  var authService, challengeService, userService, memberCertService
-  var marathons = mockData.getMockMarathons()
+  var challengeService, userService, memberCertService
   var challenges = mockData.getMockiOSChallenges()
 
   beforeEach(function() {
@@ -14,16 +11,13 @@ describe('Programs Controller', function() {
       '$controller',
       '$rootScope',
       '$q',
-      'TcAuthService',
       'ChallengeService',
       'UserService',
       'MemberCertService',
-      'CONSTANTS',
-      'Helpers')
+      'CONSTANTS')
 
     domain = CONSTANTS.domain
     challengeService = ChallengeService
-    authService = TcAuthService
     userService = UserService
     memberCertService = MemberCertService
 
@@ -141,7 +135,7 @@ describe('Programs Controller', function() {
       // mock member cert api
       sinon.stub(memberCertService, 'getMemberRegistration', function(handle, params) {
         var deferred = $q.defer()
-        deferred.reject("failed")
+        deferred.reject('failed')
         return deferred.promise
       })
       controller = $controller('ProgramsController', {

@@ -2,9 +2,7 @@ const mockData = require('../../../tests/test-helpers/mock-data')
 
 /* jshint -W117, -W030 */
 describe('Header Dashboard Controller', function() {
-  var controller
-  var domain
-  var authService, userService, profileService, identity
+  var userService, profileService, identity
   var profile = mockData.getMockProfile()
   var stats = mockData.getMockStats()
   var financials = mockData.getMockUserFinancials()
@@ -15,14 +13,10 @@ describe('Header Dashboard Controller', function() {
       '$controller',
       '$rootScope',
       '$q',
-      'TcAuthService',
       'UserService',
       'ProfileService',
-      'CONSTANTS',
       'Helpers')
 
-    domain = CONSTANTS.domain
-    authService = TcAuthService
     userService = UserService
     profileService = ProfileService
 
@@ -53,12 +47,6 @@ describe('Header Dashboard Controller', function() {
       deferred.resolve(stats)
       return deferred.promise
     })
-    // sinon.stub(profileService, 'getRanks', function(handle) {
-    //   var deferred = $q.defer()
-    //   var resp = {eventId: 3445, userId: 12345}
-    //   deferred.resolve(resp)
-    //   return deferred.promise
-    // })
     sinon.stub(profileService, 'getUserFinancials', function(handle) {
       var deferred = $q.defer()
       deferred.resolve(financials)

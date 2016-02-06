@@ -1,18 +1,20 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('topcoder').filter('ratingColor', ratingColor);
+(function() {
+  'use strict'
+
+  angular.module('topcoder').filter('ratingColor', ratingColor)
 
   function ratingColor() {
     return function(rating) {
       function ratingToColor(colors, rating) {
         // in case rating is a number formatted string
         if (typeof rating === 'string')
-          rating = parseInt(rating.replace(",", ""));
+          rating = parseInt(rating.replace(',', ''))
         colors = colors.filter(function(color) {
-          return rating !== null && rating >= color.start && rating <= color.end;
-        });
-        return colors[0] && colors[0].color || 'black';
+          return rating !== null && rating >= color.start && rating <= color.end
+        })
+        return colors[0] && colors[0].color || 'black'
       }
       var colors = [
         // grey
@@ -50,11 +52,9 @@
           'start': 2200,
           'end': Infinity
         }
-      ];
+      ]
 
-      return ratingToColor(colors, rating);
-
-    };
+      return ratingToColor(colors, rating)
+    }
   }
-
-})();
+})()

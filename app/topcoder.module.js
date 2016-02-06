@@ -11,7 +11,6 @@ import angular from 'angular'
     'tc.myDashboard',
     'tc.mySRMs',
     'tc.myChallenges',
-    'tc.sample',
     'tc.profile',
     'tc.settings',
     'tc.submissions',

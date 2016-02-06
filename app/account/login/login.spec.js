@@ -1,4 +1,3 @@
-/* jshint -W117, -W030 */
 describe('Login Controller', function() {
   var controller
   var scope
