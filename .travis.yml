@@ -1,42 +1,42 @@
 language: node_js
 node_js:
-  - 5.5.0
+- 5.5.0
 install:
-  - npm install
+- npm install
 script:
-  - npm run lint && npm test && npm run build
+- npm run lint && npm test && npm run build
 sudo: false
 deploy:
-  - provider: s3
-    cache_control: private, no-store, no-cache, must-revalidate, max-age=0
-    detect_encoding: true
-    access_key_id: $AWS_KEY
-    secret_access_key: $AWS_SECRET
-    bucket: app.topcoder-dev.com
-    skip_cleanup: true
-    local_dir: dist
-    on:
-      branch: dev
-  - provider: s3
-    cache_control: private, no-store, no-cache, must-revalidate, max-age=0
-    detect_encoding: true
-    access_key_id: $QA_AWS_KEY
-    secret_access_key: $QA_AWS_SECRET
-    bucket: app.topcoder-qa.com
-    skip_cleanup: true
-    local_dir: dist
-    on:
-      branch: qa-integration
-  - provider: s3
-    cache_control: private, no-store, no-cache, must-revalidate, max-age=0
-    detect_encoding: true
-    access_key_id: $MASTER_AWS_KEY
-    secret_access_key: $MASTER_AWS_SECRET
-    bucket: app.topcoder.com
-    skip_cleanup: true
-    local_dir: dist
-    on:
-      branch: master
+- provider: s3
+  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+  detect_encoding: true
+  access_key_id: $AWS_KEY
+  secret_access_key: $AWS_SECRET
+  bucket: app.topcoder-dev.com
+  skip_cleanup: true
+  local_dir: dist
+  on:
+    branch: dev
+- provider: s3
+  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+  detect_encoding: true
+  access_key_id: $QA_AWS_KEY
+  secret_access_key: $QA_AWS_SECRET
+  bucket: app.topcoder-qa.com
+  skip_cleanup: true
+  local_dir: dist
+  on:
+    branch: qa-integration
+- provider: s3
+  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+  detect_encoding: true
+  access_key_id: $MASTER_AWS_KEY
+  secret_access_key: $MASTER_AWS_SECRET
+  bucket: app.topcoder.com
+  skip_cleanup: true
+  local_dir: dist
+  on:
+    branch: master
 env:
   matrix:
     - CXX=g++-4.8
@@ -56,6 +56,9 @@ env:
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
+    - g++-4.8
+notifications:
+  slack:
+    secure: PMGlpdBoRzMlIjCsPWdXJ1wf550b+mpX0x44ggGWNL7ErpNebfyqIbXf4VJXYQDmhVJt31ygDaxTtj8XwZJlbvQjE6WGHU26KvL/efGJJL5EmgFD8LDBFpsbn49PyoZuVOTbSzqP8d8WCCPo4oBvX2r2Q2Ixh/tUx7i4Bcv0XwNpWAR75v1Yq/NftEI48k2GcI3oHqmuEgLHdP93k1rCUM4sBsgkr4PCltZfoE2AWlF6wY59w/oFiKj4FwycY8QjJZa/zbSQq1B/9QD7n4YBY4QjVv3LmjshEiQv1HGo2rNLV+/BB5ZoQ6JEH9h+seduHNTF+mkToKbJ2YjDERLlqLFYWVQKXTqFkSdYuknguJ3uOfXFaGtPDSqTRljE6WW6UDIJi9lDpxFHjH2q848/2O03RKtYeFKJWNbVb7Q2PWTBFxx6OurYra+tbUAorQiYmAQxd0vJY+qzGIDJZIQ8yDE4C10heOhfRyU8wJSKF3xJUKKWVGfBuHivFBZOETFSg0uVBcJnsXRcErvEQz0LuKaZfP81bIokcKUGxum/xyp9mYhYqWDvIj31RUhDMiRxXTPe9PhW0mlOtRG7tm2+8G08exHPSfONSV2IPUtlQt4j2/+I22ncOwtsm6yZzXXbDjoMR2sCHIyJj3lVECOqAnCfNJ6Q0CNJ93LqxKSHdFU=
