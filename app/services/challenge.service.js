@@ -232,7 +232,7 @@ import moment from 'moment'
             challenge.userStatus = 'COMPLETED'
           }
           // FIXME, replace with field from response
-          challenge.submissionViewable = !challenge.isPrivate;
+          challenge.submissionViewable = !challenge.isPrivate
         }
       })
     }
