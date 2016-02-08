@@ -1,6 +1,6 @@
+/*eslint no-undef:0*/
 import angular from 'angular'
 
-/* jshint -W117, -W030 */
 describe('Topcoder File Input Directive', function() {
   var scope, element, isolateScope, fileInput
 
@@ -24,7 +24,7 @@ describe('Topcoder File Input Directive', function() {
       '</form>'
     var form = angular.element(html)
     element = form.find('tc-file-input')
-    var formElement = $compile(form)(scope)
+    $compile(form)(scope)
     scope.$digest()
 
     isolateScope = element.isolateScope()
@@ -64,7 +64,7 @@ describe('Topcoder File Input Directive', function() {
           type: 'application/zip'
         },
         length: 1,
-        item: function (index) { return file }
+        item: function (index) { return index }
       }
 
       mockSetFileReference = sinon.spy(isolateScope, 'setFileReference')

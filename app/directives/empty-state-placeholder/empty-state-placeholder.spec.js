@@ -1,11 +1,13 @@
-/* jshint -W117, -W030 */
+/*eslint no-undef:0*/
+import angular from 'angular'
+
 describe('Empty State Placeholder Directive', function() {
   var controller
   var scope
   var element
   var emptyStateService
   var stateToTest = null
-  var stateToTestName = "dashboard-challenges"
+  var stateToTestName = 'dashboard-challenges'
 
   beforeEach(function() {
     bard.appModule('topcoder')
@@ -17,15 +19,13 @@ describe('Empty State Placeholder Directive', function() {
   bard.verifyNoOutstandingHttpRequests()
 
   describe('Without transcluded content', function() {
-    var emptyState
-
     beforeEach(function() {
       scope = $rootScope.$new()
       scope.show = true
       scope.theme = 'black'
       scope.stateName = stateToTestName
       element = angular.element('<empty-state-placeholder state-name="{{stateName}}" theme="{{theme}}" show="show"></empty-state-placeholder>)')
-      emptyState = $compile(element)(scope)
+      $compile(element)(scope)
       scope.$digest()
       controller = element.controller('emptyStatePlaceholder')
     })
@@ -57,15 +57,13 @@ describe('Empty State Placeholder Directive', function() {
   })
 
   describe('With transcluded content', function() {
-    var emptyState
-
     beforeEach(function() {
       scope = $rootScope.$new()
       scope.show = true
       scope.theme = 'black'
       scope.stateName = stateToTestName
       element = angular.element('<empty-state-placeholder state-name="{{stateName}}" theme="{{theme}}" show="show"><span>Test</span></empty-state-placeholder>)')
-      emptyState = $compile(element)(scope)
+      $compile(element)(scope)
       scope.$digest()
       controller = element.controller('emptyStatePlaceholder')
     })

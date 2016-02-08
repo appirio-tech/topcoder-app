@@ -50,8 +50,6 @@ import angular from 'angular'
       'settings.preferences': {
         url: 'preferences/',
         template: require('./preferences/preferences')(),
-        controller: 'PreferencesController',
-        controllerAs: 'vm',
         data: {
           title: 'Preferences'
         }

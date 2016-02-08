@@ -1,23 +1,25 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('topcoder').filter('urlProtocol', urlProtocol);
+(function() {
+  'use strict'
+
+  angular.module('topcoder').filter('urlProtocol', urlProtocol)
 
   function urlProtocol() {
     return function(link) {
       if (!link) {
-        return link;
+        return link
       }
-      var result;
-      var startingUrl = "http://";
-      var httpsStartingUrl = "https://"; 
+      var result
+      var startingUrl = 'http://'
+      var httpsStartingUrl = 'https://'
       if(link.indexOf(startingUrl) === 0||link.indexOf(httpsStartingUrl) === 0) {
-        result = link;
+        result = link
       } else {
-        result = startingUrl + link;
+        result = startingUrl + link
       }
-      return result;
-    };
+      return result
+    }
   }
 
-})();
+})()

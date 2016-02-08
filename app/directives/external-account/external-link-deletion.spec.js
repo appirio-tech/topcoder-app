@@ -1,10 +1,7 @@
-/* jshint -W117, -W030 */
+/*eslint no-undef:0*/
 describe('External Link Deletion Controller', function() {
-  var scope
-  var element
   var toasterSvc
   var extLinkSvc
-  var ngDialogSvc
   var mockLinkedAccounts = [
     {
       provider: 'github',
@@ -77,7 +74,6 @@ describe('External Link Deletion Controller', function() {
   beforeEach(function() {
     bard.appModule('topcoder')
     bard.inject(this, '$compile', '$rootScope', 'toaster', 'ExternalWebLinksService', '$q', 'ngDialog', '$controller')
-    scope = $rootScope.$new()
 
     extLinkSvc = ExternalWebLinksService
 
@@ -107,7 +103,6 @@ describe('External Link Deletion Controller', function() {
       default: $q.when(true)
     })
 
-    ngDialogSvc = ngDialog
     sinon.stub(ngDialog, 'open', function() {
       ngDialog.deferredClose = $q.defer()
       return { closePromise : ngDialog.deferredClose.promise }
@@ -122,7 +117,6 @@ describe('External Link Deletion Controller', function() {
 
   describe('Linked external accounts', function() {
     var linkedAccounts = null
-    var externalLinksData
 
     beforeEach(function() {
       linkedAccounts = angular.copy(mockLinkedAccounts)
@@ -155,7 +149,7 @@ describe('External Link Deletion Controller', function() {
       var ctrl = createController(toDelete, linkedAccounts)
       ctrl.deleteAccount()
       $rootScope.$apply()
-      expect(toasterSvc.pop).to.have.been.calledWith('error', "Whoops!", sinon.match('Sorry!')).calledOnce
+      expect(toasterSvc.pop).to.have.been.calledWith('error', 'Whoops!', sinon.match('Sorry!')).calledOnce
       expect(linkedAccounts).to.have.length(8)
     })
 
@@ -164,7 +158,7 @@ describe('External Link Deletion Controller', function() {
       var ctrl = createController(toDelete, linkedAccounts)
       ctrl.deleteAccount()
       $rootScope.$apply()
-      expect(toasterSvc.pop).to.have.been.calledWith('error', "Whoops!", sinon.match('not linked')).calledOnce
+      expect(toasterSvc.pop).to.have.been.calledWith('error', 'Whoops!', sinon.match('not linked')).calledOnce
       expect(linkedAccounts).to.have.length(8)
     })
 

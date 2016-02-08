@@ -1,11 +1,13 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('topcoder').filter('externalLinkColor', externalLinkColor);
+(function() {
+  'use strict'
+
+  angular.module('topcoder').filter('externalLinkColor', externalLinkColor)
 
   function externalLinkColor() {
     return function(provider) {
-      provider = provider.replace(/ /g, '').toLowerCase();
+      provider = provider.replace(/ /g, '').toLowerCase()
 
       var providerColors = {
         'el-weblinks': '#82A0AA',
@@ -16,9 +18,9 @@
         'el-stackoverflow': '#E5712A',
         'el-behance': '#188CFC',
         'el-github': '#4B3D74'
-      };
+      }
 
-      return providerColors[provider] || '#D1D3D4';
-    };
+      return providerColors[provider] || '#D1D3D4'
+    }
   }
-})();
+})()

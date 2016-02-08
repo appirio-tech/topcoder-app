@@ -1,4 +1,4 @@
-/* jshint -W117, -W030 */
+/*eslint no-undef:0*/
 describe('Submit Design Files Controller', function() {
   var controller, vm, scope
 
@@ -221,12 +221,12 @@ describe('Submit Design Files Controller', function() {
           {
             description: 'first stockart',
             sourceUrl: 'url.com',
-            fileNumber: '123',
+            fileNumber: '123'
           },
           {
             description: 'second stockart',
             sourceUrl: 'url2.com',
-            fileNumber: '234',
+            fileNumber: '234'
           }
         ]
         scope.$digest()
@@ -275,12 +275,12 @@ describe('Submit Design Files Controller', function() {
         var processedFonts = [
           {
             source: 'STUDIO_STANDARD_FONTS_LIST',
-            name: 'my font',
+            name: 'my font'
           },
           {
             source: 'FONTS_DOT_COM',
             name: 'my other font',
-            sourceUrl: 'fontsource.com',
+            sourceUrl: 'fontsource.com'
           }
         ]
         scope.$digest()

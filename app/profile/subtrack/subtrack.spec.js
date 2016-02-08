@@ -1,6 +1,6 @@
+/*eslint no-undef:0*/
 const mockData = require('../../../tests/test-helpers/mock-data')
 
-/* jshint -W117, -W030 */
 describe('SubTrack Controller', function() {
   var profileCtrl, controller
   var challengeService, profileService

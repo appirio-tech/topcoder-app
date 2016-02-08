@@ -56,7 +56,7 @@ import _ from 'lodash'
           })
 
           $scope.handleClick = function(provider, status) {
-            var provider = _.find(_supportedAccounts, function(s) {
+            provider = _.find(_supportedAccounts, function(s) {
               return s.provider === provider
             })
             if (status === 'linked') {

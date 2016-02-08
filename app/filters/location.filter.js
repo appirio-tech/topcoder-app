@@ -1,14 +1,16 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('topcoder').filter('displayLocation', DisplayLocation);
+(function() {
+  'use strict'
+
+  angular.module('topcoder').filter('displayLocation', DisplayLocation)
 
   function DisplayLocation() {
     return function(components) {
       return components.filter(function(x) {
-        return x;
-      }).join(', ');
-    };
+        return x
+      }).join(', ')
+    }
   }
 
-})();
+})()
