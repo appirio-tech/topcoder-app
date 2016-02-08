@@ -1,8 +1,7 @@
+/*eslint no-undef:0*/
 const mockData = require('../../../tests/test-helpers/mock-data')
 
-/* jshint -W117, -W030 */
 describe('Dashboard Subtrack Stats Controller', function() {
-  var controller
   var profileService, userStatsService
   var stats = mockData.getMockStats()
   var userIdentity = {
@@ -19,8 +18,7 @@ describe('Dashboard Subtrack Stats Controller', function() {
       '$q',
       'ProfileService',
       'UserStatsService',
-      'CONSTANTS',
-      'Helpers')
+      'CONSTANTS')
 
     profileService = ProfileService
     userStatsService = UserStatsService

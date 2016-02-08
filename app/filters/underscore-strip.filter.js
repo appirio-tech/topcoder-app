@@ -1,21 +1,23 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('topcoder').filter('underscoreStrip', underscoreStrip);
+(function() {
+  'use strict'
+
+  angular.module('topcoder').filter('underscoreStrip', underscoreStrip)
 
   function underscoreStrip() {
     return function(string) {
       var map = {
         'ASSEMBLY_COMPETITION': 'ASSEMBLY'
-      };
+      }
       if (map[string]) {
-        return map[string];
+        return map[string]
       }
       if (!string) {
-        return '';
+        return ''
       }
-      return string.replace(/_/g, ' ');
-    };
+      return string.replace(/_/g, ' ')
+    }
   }
 
-})();
+})()

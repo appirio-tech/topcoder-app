@@ -115,14 +115,15 @@ import angular from 'angular'
         return Helpers.redirectPostLogin($stateParams.next)
       })
       .catch(function(resp) {
+        /*eslint no-fallthrough:0*/
         switch (resp.status) {
-          case "ACCOUNT_INACTIVE":
-            window.location.href = "https://www." + CONSTANTS.domain + "/account-inactive/"
-          case "USER_NOT_REGISTERED":
-          default:
-            vm.socialLoginError = 401
-            vm.loginErrors.SOCIAL_LOGIN_ERROR = true
-            break
+        case 'ACCOUNT_INACTIVE':
+          window.location.href = 'https://www.' + CONSTANTS.domain + '/account-inactive/'
+        case 'USER_NOT_REGISTERED':
+        default:
+          vm.socialLoginError = 401
+          vm.loginErrors.SOCIAL_LOGIN_ERROR = true
+          break
         }
       })
     }

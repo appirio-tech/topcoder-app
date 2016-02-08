@@ -1,7 +1,9 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('topcoder').filter('track', TrackFilter);
+(function() {
+  'use strict'
+
+  angular.module('topcoder').filter('track', TrackFilter)
 
   function TrackFilter() {
 
@@ -21,29 +23,29 @@
         'APPLICATION_FRONT_END_DESIGN': 'Application Front-End Design',
         'DESIGN_FIRST_2_FINISH': 'Design First2Finish',
         'DEVELOP': 'Development'
-      };
+      }
 
       function capitalized(str) {
-        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase()
       }
 
       function filter(track) {
         if (map[track]) {
-          return map[track];
+          return map[track]
         } else {
-          return track.split('_').map(capitalized).join(' ');
+          return track.split('_').map(capitalized).join(' ')
         }
       }
 
       if (tracks) {
         if (typeof tracks === 'string')
-          return filter(tracks);
+          return filter(tracks)
         else
-          return tracks.map(filter);
+          return tracks.map(filter)
       } else {
-        return '';
+        return ''
       }
-    };
+    }
   }
 
-})();
+})()

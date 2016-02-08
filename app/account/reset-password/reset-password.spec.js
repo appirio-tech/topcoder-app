@@ -1,7 +1,6 @@
-/* jshint -W117, -W030 */
+/*eslint no-undef:0*/
 describe('Reset Password Controller', function() {
   var controller
-  var apiUrl = 'https://api.topcoder-dev.com/v3'
 
   beforeEach(function() {
     bard.appModule('topcoder')

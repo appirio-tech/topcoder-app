@@ -1,11 +1,11 @@
+import angular from 'angular'
+
 (function () {
-  'use strict';
+  'use strict'
 
-  angular
-    .module('blocks.logger')
-    .factory('logger', logger);
+  angular.module('blocks.logger').factory('logger', logger)
 
-  logger.$inject = ['$log'];
+  logger.$inject = ['$log']
 
   /* @ngInject */
   function logger($log) {
@@ -17,27 +17,27 @@
       success: success,
       warning: warning,
 
-      // straight to console; bypass toastr
+      // straight to console bypass toastr
       log: $log.log
-    };
+    }
 
-    return service;
+    return service
     /////////////////////
 
     function error(message, data, title) {
-      $log.error('Error: ' + message, data);
+      $log.error('Error: ' + message, data)
     }
 
     function info(message, data, title) {
-      $log.info('Info: ' + message, data);
+      $log.info('Info: ' + message, data)
     }
 
     function success(message, data, title) {
-      $log.info('Success: ' + message, data);
+      $log.info('Success: ' + message, data)
     }
 
     function warning(message, data, title) {
-      $log.warn('Warning: ' + message, data);
+      $log.warn('Warning: ' + message, data)
     }
   }
-}());
+}())

@@ -1,4 +1,4 @@
-/* jshint -W117, -W030 */
+/*eslint no-undef:0*/
 describe('Submissions Controller', function() {
   var controller, vm
 
@@ -12,7 +12,7 @@ describe('Submissions Controller', function() {
 
   var state = {
     go: sinon.spy()
-  };
+  }
 
   beforeEach(function() {
     bard.appModule('tc.submissions')

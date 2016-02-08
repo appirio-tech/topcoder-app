@@ -1,4 +1,4 @@
-/* jshint -W117, -W030 */
+/*eslint no-undef:0*/
 describe('Register Controller', function() {
   var controller
 
@@ -16,7 +16,7 @@ describe('Register Controller', function() {
   beforeEach(function() {
     var helperService = {
       getCountyObjFromIP: function() {
-        return $q.when({name: "United States", alpha2: "US", alpha3: "USA", code: "840"})
+        return $q.when({name: 'United States', alpha2: 'US', alpha3: 'USA', code: '840'})
       }
     }
 

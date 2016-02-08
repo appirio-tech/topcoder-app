@@ -1,5 +1,7 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   var dependencies = [
     'angular-jwt',
@@ -11,7 +13,7 @@
     'topcoder',
     'dcbImgFallback',
     'angular.filter'
-  ];
+  ]
 
-  angular.module('tc.mySRMs', dependencies);
-})();
+  angular.module('tc.mySRMs', dependencies)
+})()

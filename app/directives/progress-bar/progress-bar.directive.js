@@ -18,7 +18,6 @@ import angular from 'angular'
 
         scope.$watch(model, function(newValue, oldValue) {
           scope.completed = Math.round(newValue)
-          // console.log("Updating progress bar with " + scope.completed)
           scope.message = msg
           progress.css('width', scope.completed + '%')
         })

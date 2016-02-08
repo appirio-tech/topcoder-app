@@ -1,47 +1,44 @@
+/*eslint no-undef:0*/
 const mockData = require('../../tests/test-helpers/mock-data')
 
-/* jshint -W117, -W030 */
 describe('Profile Controller', function() {
-  var controller;
-  var userService;
-  var apiUrl;
-  var mockProfile = mockData.getMockProfile();
-  var mockV2Profile = mockData.getMockUserProfile();
-  var mockStats = mockData.getMockStats();
-  var mockSkills = mockData.getMockSkills();
-  var mockExternalLinks = mockData.getMockLinkedExternalAccounts();
-  var mockExternalLinksData = mockData.getMockLinkedExternalAccountsData();
+  var controller
+  var userService
+  var mockProfile = mockData.getMockProfile()
+  var mockV2Profile = mockData.getMockUserProfile()
+  var mockStats = mockData.getMockStats()
+  var mockSkills = mockData.getMockSkills()
+  var mockExternalLinksData = mockData.getMockLinkedExternalAccountsData()
 
   beforeEach(function() {
-    bard.appModule('tc.profile');
-    bard.inject(this, '$controller', 'CONSTANTS', '$rootScope', '$q', 'ProfileService', 'ExternalAccountService', 'UserService');
-    userService = UserService;
+    bard.appModule('tc.profile')
+    bard.inject(this, '$controller', 'CONSTANTS', '$rootScope', '$q', 'ProfileService', 'ExternalAccountService', 'UserService')
 
-    apiUrl = CONSTANTS.API_URL;
+    userService = UserService
 
     var profileService = {
       getUserStats: function() {
-        return $q.when({result: {content: mockStats}});
+        return $q.when({result: {content: mockStats}})
       },
       getUserSkills: function() {
-        return $q.when({result: {content: mockSkills}});
+        return $q.when({result: {content: mockSkills}})
       },
       getUserHandleColor: function() {
-        return 'something';
+        return 'something'
       },
       getRanks: ProfileService.getRanks,
-      getTracks: function() { return ['DEVELOP']; }
-    };
+      getTracks: function() { return ['DEVELOP'] }
+    }
     // mock user api
     sinon.stub(userService, 'getV2UserProfile', function() {
-      var deferred = $q.defer();
-      deferred.resolve(mockV2Profile.data);
-      return deferred.promise;
-    });
+      var deferred = $q.defer()
+      deferred.resolve(mockV2Profile.data)
+      return deferred.promise
+    })
 
     var externalAccountService = {
       getLinkedExternalLinksData: function() {
-        return $q.when(mockExternalLinksData);
+        return $q.when(mockExternalLinksData)
       }
     }
     controller = $controller('ProfileCtrl', {
@@ -50,33 +47,33 @@ describe('Profile Controller', function() {
       ProfileService: profileService,
       userService: userService,
       ExternalAccountService: externalAccountService
-    });
-  });
+    })
+  })
 
-  bard.verifyNoOutstandingHttpRequests();
+  bard.verifyNoOutstandingHttpRequests()
 
   it('should be defined', function() {
-    expect(controller).to.be.defined;
-  });
+    expect(controller).to.be.defined
+  })
 
   describe('after activation', function() {
     beforeEach(function() {
-      $rootScope.$apply();
-    });
+      $rootScope.$apply()
+    })
 
     it('should have some properties', function() {
-      expect(controller.userHandle).to.be.equal('rakesh');
-      expect(controller.status).to.be.defined;
-      expect(controller.statsPromise).to.be.defined;
-      expect(controller.skillsPromise).to.be.defined;
-      expect(controller.externalLinksPromise).to.be.defined;
-    });
+      expect(controller.userHandle).to.be.equal('rakesh')
+      expect(controller.status).to.be.defined
+      expect(controller.statsPromise).to.be.defined
+      expect(controller.skillsPromise).to.be.defined
+      expect(controller.externalLinksPromise).to.be.defined
+    })
 
     it('should have default status', function() {
-      expect(controller.status.badges).to.equal(CONSTANTS.STATE_LOADING);
-      expect(controller.status.stats).to.equal(CONSTANTS.STATE_READY);
-      expect(controller.status.skills).to.equal(CONSTANTS.STATE_READY);
-      expect(controller.status.externalLinks).to.equal(CONSTANTS.STATE_LOADING);
-    });
-  });
-});
+      expect(controller.status.badges).to.equal(CONSTANTS.STATE_LOADING)
+      expect(controller.status.stats).to.equal(CONSTANTS.STATE_READY)
+      expect(controller.status.skills).to.equal(CONSTANTS.STATE_READY)
+      expect(controller.status.externalLinks).to.equal(CONSTANTS.STATE_LOADING)
+    })
+  })
+})

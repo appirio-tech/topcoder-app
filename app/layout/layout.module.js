@@ -1,8 +1,10 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
-  var dependencies = [];
+  var dependencies = []
 
-  angular.module('tc.layout', dependencies);
+  angular.module('tc.layout', dependencies)
 
-})();
+})()

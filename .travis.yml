@@ -3,13 +3,8 @@ node_js:
   - 5.5.0
 install:
   - npm install
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3 # give xvfb some time to start
 script:
-  - npm test
-  - webpack --bail --progress --build --tc
+  - npm run lint && npm test && npm run build
 sudo: false
 deploy:
   - provider: s3
@@ -34,6 +29,7 @@ deploy:
       branch: qa-integration
   - provider: s3
     cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+    detect_encoding: true
     access_key_id: $MASTER_AWS_KEY
     secret_access_key: $MASTER_AWS_SECRET
     bucket: app.topcoder.com

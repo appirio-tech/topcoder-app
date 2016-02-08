@@ -1,5 +1,7 @@
-(function () {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('blocks.exception', ['blocks.logger']);
-})();
+(function () {
+  'use strict'
+
+  angular.module('blocks.exception', ['blocks.logger'])
+})()
