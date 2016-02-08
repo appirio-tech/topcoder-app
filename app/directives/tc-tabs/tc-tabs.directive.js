@@ -13,10 +13,11 @@ import angular from 'angular'
         scope: {},
         controller: ['$log', '$location', '$scope', function($log, $location, $scope, $element) {
           $log = $log.getInstance('TcTabSetController')
-          var tabCtrl = this
           this.tabs = []
+
           this.addTab = function addTab(tab) {
             this.tabs.push(tab)
+
             if (!angular.isDefined($location.search().tab) && this.tabs.length === 1) {
               tab.active = true
             } else if ($location.search().tab === tab.heading) {
@@ -26,6 +27,7 @@ import angular from 'angular'
 
           this.select = function(selectedTab) {
             var select = false
+
             angular.forEach(this.tabs, function(tab) {
               if (tab.active && tab.heading !== selectedTab.heading) {
                 tab.active = false
@@ -34,6 +36,7 @@ import angular from 'angular'
                 select = true
               }
             })
+
             if (select === false && this.tabs.length > 0) {
               this.tabs[0].active = true
             }
@@ -45,14 +48,14 @@ import angular from 'angular'
             }
           }
 
-          $scope.$on( '$locationChangeSuccess', function() {
+          $scope.$on('$locationChangeSuccess', () => {
             var tab
             if (angular.isDefined($location.search().tab)) {
               tab = $location.search().tab
-              tabCtrl.select({'heading' : tab})
-            } else if (tabCtrl.tabs.length > 0) {
-              tab = tabCtrl.tabs[0].heading
-              tabCtrl.select({'heading' : tab})
+              this.select({'heading' : tab})
+            } else if (this.tabs.length > 0) {
+              tab = this.tabs[0].heading
+              this.select({'heading' : tab})
             }
           })
         }],
