@@ -231,6 +231,8 @@ import moment from 'moment'
           if (!challenge.userHasSubmitterRole) {
             challenge.userStatus = 'COMPLETED'
           }
+          // FIXME, replace with field from response
+          challenge.submissionViewable = !challenge.isPrivate
         }
       })
     }
