@@ -57,13 +57,13 @@
       .challenge-details(ng-switch-when="DEVELOP")
         dev-challenge-user-place(challenge="challenge", view="view", ng-hide="challenge.isPrivate")
         .invite-only-banner(ng-show="challenge.isPrivate")
-          img(src=require("../../../assets/images/ico-invite-only-prj.svg"))
+          img(ng-src=require("../../../assets/images/ico-invite-only-prj.svg"))
           span INVITE-ONLY CHALLENGE
 
       .challenge-details(ng-switch-when="DESIGN")
         design-challenge-user-place(challenge="challenge", view="view", ng-hide="challenge.isPrivate")
         .invite-only-banner(ng-show="challenge.isPrivate")
-          img(src=require("../../../assets/images/ico-invite-only-prj.svg"))
+          img(ng-src=require("../../../assets/images/ico-invite-only-prj.svg"))
           span INVITE-ONLY CHALLENGE
 
       // Only show if not data science track
