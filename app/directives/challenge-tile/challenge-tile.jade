@@ -43,7 +43,7 @@
 
       p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
-      .winner-ribbon(ng-show="challenge.wonFirst")
+      .winner-ribbon(ng-show="challenge.wonFirst && !challenge.isPrivate")
 
     .challenge-card__bottom.challenge-card__bottom--completed
       .challenge-details(ng-switch-when="DATA_SCIENCE", ng-switch="challenge.subTrack", ng-class="challenge.track")
@@ -55,10 +55,16 @@
             p Total Points
 
       .challenge-details(ng-switch-when="DEVELOP")
-        dev-challenge-user-place(challenge="challenge", view="view")
+        dev-challenge-user-place(challenge="challenge", view="view", ng-hide="challenge.isPrivate")
+        .invite-only-banner(ng-show="challenge.isPrivate")
+          img(ng-src=require("../../../assets/images/ico-invite-only-prj.svg"))
+          span INVITE-ONLY CHALLENGE
 
       .challenge-details(ng-switch-when="DESIGN")
-        design-challenge-user-place(challenge="challenge", view="view")
+        design-challenge-user-place(challenge="challenge", view="view", ng-hide="challenge.isPrivate")
+        .invite-only-banner(ng-show="challenge.isPrivate")
+          img(ng-src=require("../../../assets/images/ico-invite-only-prj.svg"))
+          span INVITE-ONLY CHALLENGE
 
       // Only show if not data science track
       p.roles
@@ -113,7 +119,11 @@
         p Total Points
 
     .challenge-details(ng-switch-when="DEVELOP")
-      dev-challenge-user-place(challenge="challenge", view="view")
+      dev-challenge-user-place(challenge="challenge", view="view", ng-hide="challenge.isPrivate")
+      .invite-only-banner(ng-show="challenge.isPrivate")
+        img(src=require("../../../assets/images/ico-invite-only-prj.svg"))
 
     .challenge-details(ng-switch-when="DESIGN")
-      design-challenge-user-place(challenge="challenge", view="view")
+      design-challenge-user-place(challenge="challenge", view="view", ng-hide="challenge.isPrivate")
+      .invite-only-banner(ng-show="challenge.isPrivate")
+        img(src=require("../../../assets/images/ico-invite-only-prj.svg"))

@@ -1,5 +1,5 @@
 import angular from 'angular'
-import moment from 'angular'
+import moment from 'moment'
 
 (function() {
   'use strict'

@@ -53,6 +53,52 @@ challenge-tile .challenge.tile-view {
     flex: 2;
   }
 
+  .private-challenge-banner {
+    width: 100%;
+    background-color: $gray-darkest;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: auto;
+    }
+
+    span {
+      @include font-with-weight('Sofia Pro', 300);
+      font-size: 12px;
+      line-height: 16px;
+      text-transform: uppercase;
+      color: $gray-dark;
+      margin-top: 20px;
+    }
+  }
+
+  .invite-only-banner {
+    width: 100%;
+    background-color: $gray-darkest;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: auto;
+    }
+
+    span {
+      @include font-with-weight('Sofia Pro', 300);
+      font-size: 12px;
+      line-height: 16px;
+      text-transform: uppercase;
+      color: $gray-dark;
+      margin-top: 20px;
+    }
+  }
+
   // roles bar is common for both active and completed
   .roles {
     width: 100%;

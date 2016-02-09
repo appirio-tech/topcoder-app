@@ -5,13 +5,18 @@
   p.place.completed(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
 
   .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
-    img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || require('../../../assets/images/card-bg-no-image.svg')}}", fallback-src=require("../../../assets/images/card-bg-no-image.svg"))
-    img(ng-show="challenge.isPrivate", src=require("../../../assets/images/card-bg-private-project.svg"))
+    img(ng-show="challenge.submissionViewable && imageURL", ng-src="{{imageURL}}")
+    img(ng-show="challenge.submissionViewable && !imageURL", ng-src=require("../../../assets/images/card-bg-no-image.svg"))
+    .private-challenge-banner(ng-show="!challenge.submissionViewable")
+      img(ng-src=require("../../../assets/images/ico-private-prj.svg"))
+      span PRIVATE CHALLENGE
 
     .thumbnail-gallery(ng-show="numImages", ng-click="!challenge.isPrivate && imageURL && openLightbox()")
       .gallery-icon
 
-      .num-images {{numImages}} IMAGES
+      .num-images
+        span(ng-show="challenge.submissionViewable") {{numImages}} IMAGES
+        span(ng-show="!challenge.submissionViewable") No image is visible
 
 .list-view(ng-show="view === 'list'")
   .place-date
@@ -21,14 +26,18 @@
     p.place.completed(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
     p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
-  .winner-ribbon(ng-show="challenge.wonFirst")
+  .winner-ribbon(ng-show="challenge.wonFirst && !challenge.isPrivate")
 
 
   .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
-    img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || require('../../../assets/images/card-bg-no-image.svg')}}", fallback-src=require("../../../assets/images/ico-picture.svg"))
-    img(ng-show="challenge.isPrivate", src=require("../../../assets/images/card-bg-private-project.svg"))
+    img(ng-show="challenge.submissionViewable && imageURL", ng-src="{{imageURL}}")
+    img(ng-show="challenge.submissionViewable && !imageURL", ng-src=require("../../../assets/images/card-bg-no-image.svg"))
+    .private-challenge-banner(ng-show="!challenge.submissionViewable")
+      img(ng-src=require("../../../assets/images/ico-private-prj.svg"))
 
     .thumbnail-gallery(ng-show="numImages", ng-click="!challenge.isPrivate && imageURL && openLightbox()")
       .gallery-icon
 
-      .num-images {{numImages}} IMAGES
+      .num-images
+        span(ng-show="challenge.submissionViewable") {{numImages}} IMAGES
+        span(ng-show="!challenge.submissionViewable") No image is visible
