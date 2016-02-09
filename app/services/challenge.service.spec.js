@@ -434,12 +434,12 @@ describe('Challenge Service', function() {
             roles: ['Submitter'],
             winningPlacements: [
               {
-                "submissionId": 12345,
-                "submitterId": 123456,
-                "amount": 500.0,
-                "placed": 1,
-                "finalScore": 98.0,
-                "challengeId": 30041345
+                'submissionId': 12345,
+                'submitterId': 123456,
+                'amount': 500.0,
+                'placed': 1,
+                'finalScore': 98.0,
+                'challengeId': 30041345
               }
             ],
             submissions: [
@@ -491,12 +491,12 @@ describe('Challenge Service', function() {
             roles: ['Submitter'],
             winningPlacements: [
               {
-                "submissionId": 12345,
-                "submitterId": 123456,
-                "amount": 500.0,
-                "placed": 1,
-                "finalScore": 98.0,
-                "challengeId": 30041345
+                'submissionId': 12345,
+                'submitterId': 123456,
+                'amount': 500.0,
+                'placed': 1,
+                'finalScore': 98.0,
+                'challengeId': 30041345
               }
             ],
             submissions: [
@@ -598,12 +598,12 @@ describe('Challenge Service', function() {
             roles: ['Submitter'],
             winningPlacements: [
               {
-                "submissionId": 12345,
-                "submitterId": 123456,
-                "amount": 500.0,
-                "placed": 1,
-                "finalScore": 98.0,
-                "challengeId": 30041345
+                'submissionId': 12345,
+                'submitterId': 123456,
+                'amount': 500.0,
+                'placed': 1,
+                'finalScore': 98.0,
+                'challengeId': 30041345
               }
             ],
             submissions: [

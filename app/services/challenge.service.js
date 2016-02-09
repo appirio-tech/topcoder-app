@@ -193,7 +193,7 @@ import moment from 'moment'
               return submission.type === CONSTANTS.SUBMISSION_TYPE_CONTEST
               && (submission.status === CONSTANTS.STATUS_ACTIVE
                 || submission.status === CONSTANTS.STATUS_COMPLETED_WITHOUT_WIN)
-            }).length > 0;
+            }).length > 0
           }
           if (challenge.highestPlacement === 0) {
             challenge.highestPlacement = null
