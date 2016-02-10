@@ -8,8 +8,6 @@ import angular from 'angular'
   Helpers.$inject = ['$window', '$location', '$state', '$http', '$filter', 'ISO3166']
 
   function Helpers($window, $location, $state, $http, $filter, ISO3166) {
-    // TODO: Separate helpers by submodule
-
     var service = {
       storeById: storeById,
       parseQuestions: parseQuestions,

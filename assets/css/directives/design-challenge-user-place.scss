@@ -125,6 +125,8 @@ design-challenge-user-place {
       width: 84px;
       height: 84px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
 
       img {
         width: 100%;

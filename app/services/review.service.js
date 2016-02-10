@@ -8,6 +8,8 @@ import angular from 'angular'
   ReviewService.$inject = ['CONSTANTS', 'ApiService']
 
   function ReviewService(CONSTANTS, ApiService) {
+    var api = ApiService.getApiServiceProvider('Review')
+
     var service = {
       getUsersPeerReviews: getUsersPeerReviews,
       getReview: getReview,
@@ -20,39 +22,36 @@ import angular from 'angular'
 
     ///////////////
     function getUsersPeerReviews(challengeId) {
-      var url = CONSTANTS.API_URL + '/reviews/?filter=' + encodeURIComponent('challengeId=' + challengeId)
-      return ApiService.requestHandler('GET', url)
+      return api.all('reviews').getList({filter: encodeURIComponent('challengeId=' + challengeId)})
     }
 
     function getReview(reviewId) {
-      var url = CONSTANTS.API_URL + '/reviews/' + reviewId
-      return ApiService.requestHandler('GET', url)
+      return api.one('reviews', reviewId).get()
     }
 
     function getReviewItems(reviewId) {
-      var url = CONSTANTS.API_URL + '/reviewItems/?filter=' + encodeURIComponent('reviewId=' + reviewId)
-      return ApiService.requestHandler('GET', url)
+      return api.all('reviewItems').getList({filter: encodeURIComponent('reviewId=' + reviewId)})
     }
 
     function getNextReview(challengeId) {
-      var url = CONSTANTS.API_URL + '/reviews/' + challengeId + '/assignNextReview'
-      return ApiService.requestHandler('PUT', url)
+      return api.one('reviews', challengeId).customPUT(null, 'assignNextReview', null, null)
     }
 
     function saveReviewItems(body, isPreviouslySaved) {
-      var method = isPreviouslySaved ? 'PUT' : 'POST'
-      var url = CONSTANTS.API_URL + '/reviewItems/'
-      return ApiService.requestHandler(method, url, JSON.stringify(body))
+      if (isPreviouslySaved) {
+        return api.all('reviewItems').customPUT(body, null, null, null)
+      } else {
+        return api.all('reviewItems').post(body)
+      }
     }
 
     function markAsCompleted(reviewId) {
-      var url = CONSTANTS.API_URL + '/reviews/' + reviewId
       var body = {
         committed: 1,
         id: reviewId
       }
 
-      return ApiService.requestHandler('PUT', url, JSON.stringify(body))
+      return api.one('reviews', reviewId).customPUT(body, null, null, null)
     }
   }
 })()

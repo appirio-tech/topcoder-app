@@ -91,6 +91,7 @@ import _ from 'lodash'
             id: 'handle',
             route: 'members'
           })
+          .setDefaultHeaders({ 'Content-Type': 'application/json' })
           .addRequestInterceptor(function(element, operation, what, url) {
             if (url.indexOf('members') > -1 || (operation.toLowerCase() === 'post' && url.indexOf('profiles') > -1)) {
               return {

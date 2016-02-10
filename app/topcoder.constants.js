@@ -34,5 +34,6 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'CODING'                 : 'CODING',
   'REGISTERED'             : 'REGISTERED',
   'SUBMISSION_TYPE_CONTEST': 'Contest Submission',
-  'STATUS_ACTIVE'          : 'Active'
+  'STATUS_ACTIVE'          : 'Active',
+  'STATUS_COMPLETED_WITHOUT_WIN' : 'Completed Without Win'
 })

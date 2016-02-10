@@ -7,16 +7,16 @@ import moment from 'moment'
 
   angular.module('tc.services').factory('ChallengeService', ChallengeService)
 
-  ChallengeService.$inject = ['CONSTANTS', 'ApiService', '$q']
+  ChallengeService.$inject = ['CONSTANTS', 'ApiService', '$q', '$log']
 
-  function ChallengeService(CONSTANTS, ApiService, $q) {
+  function ChallengeService(CONSTANTS, ApiService, $q, $log) {
     var api = ApiService.restangularV3
-
+    var apiV2 = ApiService.restangularV2
     var service = {
       getChallenges: getChallenges,
       getUserChallenges: getUserChallenges,
       getUserMarathonMatches: getUserMarathonMatches,
-      getReviewEndDate: getReviewEndDate,
+      getPhase: getPhase,
       getChallengeDetails: getChallengeDetails,
       processActiveDevDesignChallenges: processActiveDevDesignChallenges,
       processActiveMarathonMatches: processActiveMarathonMatches,
@@ -40,14 +40,23 @@ import moment from 'moment'
       return api.one('members', handle.toLowerCase()).all('mms').getList(params)
     }
 
-    function getReviewEndDate(challengeId) {
-      var url = CONSTANTS.API_URL + '/phases/?filter=' + encodeURIComponent('challengeId=' + challengeId + '&phaseType=4')
-      return ApiService.requestHandler('GET', url)
+    function getPhase(challengeId, phaseType) {
+      return api.one('challenges', challengeId).getList('phases').then(
+        function(phases) {
+          return _.find(phases, function(p) { return p.phaseType.toUpperCase() === phaseType})
+        },
+        function(err) {
+          $log.error(err)
+        }
+      )
     }
 
     function getChallengeDetails(challengeId) {
-      var url = CONSTANTS.API_URL_V2 + '/challenges/' + challengeId
-      return ApiService.requestHandler('GET', url, {}, true)
+      // var url = CONSTANTS.API_URL_V2 + '/challenges/' + challengeId
+      // return ApiService.requestHandler('GET', url, {}, true)
+      return apiV2.one('challenges', challengeId).get().then(
+        function(data) { return data.plain() }
+      )
     }
 
     function processActiveDevDesignChallenges(challenges) {
@@ -181,22 +190,19 @@ import moment from 'moment'
           // TODO placement logic for challenges can be moved to their corresponding user place directive
           // process placement for challenges having winningPlacements array in response
           if (Array.isArray(challenge.userDetails.winningPlacements)) {
-            challenge.highestPlacement = _.min(challenge.userDetails.winningPlacements)
+            challenge.highestPlacement = _.min(challenge.userDetails.winningPlacements, 'placed').placed
           }
           // process placement for design challenges
           if (challenge.track == 'DESIGN' && challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
             challenge.thumbnailId = challenge.userDetails.submissions[0].id
-
-            challenge.highestPlacement = _.min(challenge.userDetails.submissions.filter(function(submission) {
-              return submission.type === CONSTANTS.SUBMISSION_TYPE_CONTEST && submission.placement
-            }), 'placement').placement
           }
-          if (challenge.track === 'DEVELOP' && challenge.subTrack === 'FIRST_2_FINISH'
-            && challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
-            challenge.highestPlacement = _.min(challenge.userDetails.submissions.filter(function(submission) {
+          // determines the user status for passing the review for one of the submissions
+          if (challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
+            challenge.passedReview = challenge.userDetails.submissions.filter(function(submission) {
               return submission.type === CONSTANTS.SUBMISSION_TYPE_CONTEST
-              && submission.status === CONSTANTS.STATUS_ACTIVE && submission.placement
-            }), 'placement').placement
+              && (submission.status === CONSTANTS.STATUS_ACTIVE
+                || submission.status === CONSTANTS.STATUS_COMPLETED_WITHOUT_WIN)
+            }).length > 0
           }
           if (challenge.highestPlacement === 0) {
             challenge.highestPlacement = null
@@ -218,7 +224,7 @@ import moment from 'moment'
           }
 
           if (challenge.userDetails.hasUserSubmittedForReview) {
-            if (!challenge.highestPlacement) {
+            if (!challenge.passedReview) {
               challenge.userStatus = 'PASSED_SCREENING'
             } else {
               challenge.userStatus = 'PASSED_REVIEW'

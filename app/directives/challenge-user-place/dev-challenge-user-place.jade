@@ -2,6 +2,7 @@
   p.place(ng-class="{ 'first-place': challenge.wonFirst }", ng-show="challenge.highestPlacement") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
     p.place(ng-show="challenge.userStatus === 'NOT_FINISHED'") Didn't Finish
     p.place(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
+    p.place(ng-show="!challenge.highestPlacement && challenge.userStatus === 'PASSED_REVIEW'") Passed Review
     p.place(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
 
   .challenge-score(ng-hide="challenge.userStatus !== 'PASSED_REVIEW'")
@@ -14,6 +15,7 @@
     p.place(ng-class="{ 'first-place': challenge.wonFirst }", ng-show="challenge.highestPlacement") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
     p.place(ng-show="challenge.userStatus === 'NOT_FINISHED'") Didn't Finish
     p.place(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
+    p.place(ng-show="!challenge.highestPlacement && challenge.userStatus === 'PASSED_REVIEW'") Passed Review
     p.place(ng-show="challenge.userStatus === 'COMPLETED'") Completed
     p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
