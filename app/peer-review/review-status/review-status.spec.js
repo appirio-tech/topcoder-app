@@ -15,7 +15,7 @@ describe('Review Status Controller', function() {
       getChallengeDetails: function() {
         return $q.when(challenge);
       },
-      getReviewEndDate: function() {
+      getPhase: function() {
         return $q.when(challengeDates);
       }
     };

@@ -7,16 +7,16 @@ import moment from 'moment'
 
   angular.module('tc.services').factory('ChallengeService', ChallengeService)
 
-  ChallengeService.$inject = ['CONSTANTS', 'ApiService', '$q']
+  ChallengeService.$inject = ['CONSTANTS', 'ApiService', '$q', '$log']
 
-  function ChallengeService(CONSTANTS, ApiService, $q) {
+  function ChallengeService(CONSTANTS, ApiService, $q, $log) {
     var api = ApiService.restangularV3
-
+    var apiV2 = ApiService.restangularV2
     var service = {
       getChallenges: getChallenges,
       getUserChallenges: getUserChallenges,
       getUserMarathonMatches: getUserMarathonMatches,
-      getReviewEndDate: getReviewEndDate,
+      getPhase: getPhase,
       getChallengeDetails: getChallengeDetails,
       processActiveDevDesignChallenges: processActiveDevDesignChallenges,
       processActiveMarathonMatches: processActiveMarathonMatches,
@@ -40,14 +40,24 @@ import moment from 'moment'
       return api.one('members', handle.toLowerCase()).all('mms').getList(params)
     }
 
-    function getReviewEndDate(challengeId) {
+    function getPhase(challengeId, phaseType) {
       var url = CONSTANTS.API_URL + '/phases/?filter=' + encodeURIComponent('challengeId=' + challengeId + '&phaseType=4')
-      return ApiService.requestHandler('GET', url)
+      return api.one('challenges', challengeId).getList('phases').then(
+        function(phases) {
+          return _.find(phases, function(p) { return p.phaseType.toUpperCase() === phaseType});
+        },
+        function(err) {
+          $log.error(err);
+        }
+      )
     }
 
     function getChallengeDetails(challengeId) {
-      var url = CONSTANTS.API_URL_V2 + '/challenges/' + challengeId
-      return ApiService.requestHandler('GET', url, {}, true)
+      // var url = CONSTANTS.API_URL_V2 + '/challenges/' + challengeId
+      // return ApiService.requestHandler('GET', url, {}, true)
+      return apiV2.one('challenges', challengeId).get().then(
+        function(data) { return data.plain() }
+      )
     }
 
     function processActiveDevDesignChallenges(challenges) {

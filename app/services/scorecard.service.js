@@ -6,6 +6,7 @@
   ScorecardService.$inject = ['CONSTANTS', 'ApiService'];
 
   function ScorecardService(CONSTANTS, ApiService) {
+    var api = ApiService.restangularV3
     var service = {
       getScorecardById: getScorecardById,
       getScorecard: getScorecard,
@@ -16,18 +17,15 @@
     ///////////////
 
     function getScorecardById(scorecardId) {
-        var url = CONSTANTS.API_URL + '/scorecards/?filter=' + encodeURIComponent('scorecardId=' + scorecardId);
-        return ApiService.requestHandler('GET', url);
+        return api.all('scorecards').getList({filter: encodeURIComponent("scorecardId="+scorecardId)})
     }
 
     function getScorecard(challengeId) {
-        var url = CONSTANTS.API_URL + '/scorecards/?filter=' + encodeURIComponent('challengeId=' + challengeId);
-        return ApiService.requestHandler('GET', url);
+        return api.all('scorecards').getList({filter: encodeURIComponent("challengeId="+challengeId)})
     }
 
     function getScorecardQuestions(scorecardId) {
-        var url = CONSTANTS.API_URL + '/scorecardQuestions/?filter=' + encodeURIComponent('scorecardId=' + scorecardId);
-        return ApiService.requestHandler('GET', url);
+        return api.all('scorecardQuestions').getList({filter: encodeURIComponent("scorecardId="+scorecardId)})
     }
   };
 })();

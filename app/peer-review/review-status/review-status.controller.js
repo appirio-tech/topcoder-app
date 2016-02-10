@@ -19,7 +19,7 @@
       }
       ReviewService.getNextReview(vm.challengeId)
       .then(function(data) {
-        var newReviewId = data.data.result.content;
+        var newReviewId = data;
 
         $state.go('review.edit', {
           challengeId: vm.challengeId,
@@ -38,19 +38,19 @@
     function activate() {
       ChallengeService.getChallengeDetails(vm.challengeId)
       .then(function(data) {
-        vm.challenge = data.data;
+        vm.challenge = data;
       });
 
       ReviewService.getUsersPeerReviews(vm.challengeId)
       .then(function(data) {
-        vm.reviews = data.data.result.content;
+        vm.reviews = data;
         vm.completed = Helpers.countCompleted(vm.reviews);
         // Move calls to $q.all(), and move this to the success callback there
         vm.loaded = true;
       });
 
-      ChallengeService.getReviewEndDate(vm.challengeId).then(function(data) {
-        vm.reviewsDue = data.data.result.content[0].scheduledEndTime;
+      ChallengeService.getPhase(vm.challengeId, 'REVIEW').then(function(data) {
+        vm.reviewsDue = data.scheduledEndTime;
       });
     }
   };
