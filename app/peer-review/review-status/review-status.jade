@@ -1,7 +1,7 @@
 .review-status-container(ng-show="vm.loaded")
   .back-link
-    //- .arrow
-    i.fa.fa-arrow-left
+    .arrow
+    
     p #[a.back(href="https://www.{{vm.domain}}/challenge-details/{{vm.challengeId}}/?type=develop") Back to Challenge]
 
   h1(ng-bind="vm.challenge.challengeName")

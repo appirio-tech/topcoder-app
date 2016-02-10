@@ -79,8 +79,7 @@ import angular from 'angular'
             $scope.slideCounts[slidesCollection.length - 1] = slide.length
             $scope.slidesCollection = slidesCollection
           }
-
-      }]
+        }]
     }
   })
 })()

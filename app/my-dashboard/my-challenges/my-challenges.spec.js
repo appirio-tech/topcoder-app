@@ -1,13 +1,12 @@
+/*eslint no-undef:0*/
 const mockData = require('../../../tests/test-helpers/mock-data')
 
-/* jshint -W117, -W030 */
 describe('Challenges Widget Controller', function() {
   var controller
   var domain
-  var authService, challengeService, userService
+  var challengeService, userService
   var marathons = mockData.getMockMarathons()
   var challenges = mockData.getMockiOSChallenges()
-  var marathons = mockData.getMockMarathons()
 
   beforeEach(function() {
     bard.appModule('topcoder')
@@ -15,15 +14,12 @@ describe('Challenges Widget Controller', function() {
       '$controller',
       '$rootScope',
       '$q',
-      'TcAuthService',
       'ChallengeService',
       'UserService',
-      'CONSTANTS',
-      'Helpers')
+      'CONSTANTS')
 
     domain = CONSTANTS.domain
     challengeService = ChallengeService
-    authService = TcAuthService
     userService = UserService
 
     // mock user api
@@ -69,7 +65,6 @@ describe('Challenges Widget Controller', function() {
 
   bard.verifyNoOutstandingHttpRequests()
 
-  var controller
   beforeEach( function(){
     controller = $controller('MyChallengesWidgetController', {
       ChallengeService: challengeService,

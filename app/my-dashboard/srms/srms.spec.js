@@ -1,11 +1,9 @@
+/*eslint no-undef:0*/
 const mockData = require('../../../tests/test-helpers/mock-data')
 
-/* jshint -W117, -W030 */
 describe('SRMs Widget Controller', function() {
-  var controller
-  var authService, srmService, userService
+  var srmService, userService
   var srms = mockData.getMockSRMs()
-  var results = mockData.getMockSRMResults()
 
   beforeEach(function() {
     bard.appModule('topcoder')
@@ -13,14 +11,11 @@ describe('SRMs Widget Controller', function() {
       '$controller',
       '$rootScope',
       '$q',
-      'TcAuthService',
       'SRMService',
       'UserService',
-      'CONSTANTS',
-      'Helpers')
+      'CONSTANTS')
 
     srmService = SRMService
-    authService = TcAuthService
     userService = UserService
 
     // mock user api

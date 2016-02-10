@@ -1,8 +1,9 @@
+import angular from 'angular'
 
 (function() {
-  'use strict';
+  'use strict'
 
-  angular.module('topcoder').filter('ternary', ternary);
+  angular.module('topcoder').filter('ternary', ternary)
 
   /**
    * This filter enable conditional statment for angular expression.
@@ -10,8 +11,8 @@
    */
   function ternary() {
     return function (input, trueValue, falseValue) {
-      return input ? trueValue : falseValue;
-    };
-  };
+      return input ? trueValue : falseValue
+    }
+  }
 
-})();
+})()

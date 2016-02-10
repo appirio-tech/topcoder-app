@@ -4,9 +4,9 @@ import _ from 'lodash'
 (function() {
   'use strict'
 
-  angular.module('tcUIComponents').directive('tcFileInput', tcFileInput)
+  angular.module('tcUIComponents').directive('tcFileInput', ['$timeout', tcFileInput])
 
-  function tcFileInput() {
+  function tcFileInput($timeout) {
     return {
       restrict: 'E',
       require: '^form',
@@ -25,6 +25,14 @@ import _ from 'lodash'
       link: function(scope, element, attrs, formController) {
         scope.selectFile = selectFile
         var fileTypes = scope.fileType.split(',')
+
+        // Add extra checks for Windows zip file types
+        var hasZip = _.some(fileTypes, _.matches('zip'))
+
+        if (hasZip) {
+          fileTypes = angular.copy(fileTypes)
+          fileTypes.push('x-zip', 'x-zip-compressed')
+        }
 
         // fieldId is not set on element at this point, so grabbing with class .none
         // which exists on the element right away
@@ -46,33 +54,36 @@ import _ from 'lodash'
           var selectedFileType = file.type.slice(file.type.lastIndexOf('/') + 1)
           var isAllowedFileFormat = _.some(fileTypes, _.matches(selectedFileType))
 
-          scope.$apply(function(){
-            // Set the file name as the value of the disabled input
-            fileNameInput[0].value = file.name
-            var clickedFileInput = formController[attrs.fieldId]
+          // Timeout needed for fixing IE bug ($apply already in progress)
+          $timeout(function() {
+            scope.$apply(function(){
+              // Set the file name as the value of the disabled input
+              fileNameInput[0].value = file.name
+              var clickedFileInput = formController[attrs.fieldId]
 
-            if (!isAllowedFileFormat) {
-              // Manually setting is required since Angular doesn't support file inputs
-              clickedFileInput.$setTouched()
-              clickedFileInput.$setValidity('required', false)
+              if (!isAllowedFileFormat) {
+                // Manually setting is required since Angular doesn't support file inputs
+                clickedFileInput.$setTouched()
+                clickedFileInput.$setValidity('required', false)
 
-            } else {
-              clickedFileInput.$setValidity('required', true)
-            }
+              } else {
+                clickedFileInput.$setValidity('required', true)
+              }
 
-            if (!isAllowedFileSize) {
-              // Manually setting is required since Angular doesn't support file inputs
-              clickedFileInput.$setTouched()
-              clickedFileInput.$setValidity('filesize', false)
+              if (!isAllowedFileSize) {
+                // Manually setting is required since Angular doesn't support file inputs
+                clickedFileInput.$setTouched()
+                clickedFileInput.$setValidity('filesize', false)
 
-            } else {
-              clickedFileInput.$setValidity('filesize', true)
-            }
+              } else {
+                clickedFileInput.$setValidity('filesize', true)
+              }
 
-            if (isAllowedFileFormat && isAllowedFileSize) {
-              // Pass file object up through callback into controller
-              scope.setFileReference({file: file, fieldId: scope.fieldId})
-            }
+              if (isAllowedFileFormat && isAllowedFileSize) {
+                // Pass file object up through callback into controller
+                scope.setFileReference({file: file, fieldId: scope.fieldId})
+              }
+            })
           })
         })
 

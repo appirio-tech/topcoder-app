@@ -1,32 +1,35 @@
-(function() {
-  'use strict';
+import angular from 'angular'
+import moment from 'moment'
 
-  angular.module('topcoder').filter('deadlineStartMsg', deadlineStartMsg);
+(function() {
+  'use strict'
+
+  angular.module('topcoder').filter('deadlineStartMsg', deadlineStartMsg)
 
   function deadlineStartMsg() {
     return function(input) {
       if (moment(input).fromNow().indexOf('in') == 0) {
-        return 'begins';
+        return 'begins'
       }
       if (moment(input).fromNow().indexOf('ago') != -1) {
-        return 'began';
+        return 'began'
       }
-      return '';
-    };
-  };
+      return ''
+    }
+  }
 
-  angular.module('topcoder').filter('deadlineEndMsg', deadlineEndMsg);
+  angular.module('topcoder').filter('deadlineEndMsg', deadlineEndMsg)
 
   function deadlineEndMsg() {
     return function(input) {
       if (moment(input).fromNow().indexOf('in') == 0) {
-        return 'ends';
+        return 'ends'
       }
       if (moment(input).fromNow().indexOf('ago') != -1) {
-        return 'ended';
+        return 'ended'
       }
-      return '';
-    };
-  };
+      return ''
+    }
+  }
 
-})();
+})()

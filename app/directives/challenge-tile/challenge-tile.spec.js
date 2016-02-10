@@ -1,38 +1,35 @@
+/*eslint no-undef:0*/
+import angular from 'angular'
+
 const mockData = require('../../../tests/test-helpers/mock-data')
 
-/* jshint -W117, -W030 */
 describe('Challenge Tile Directive', function() {
-  var scope;
-  var element;
-  var domain;
-  var challenge = mockData.getMockChallengeWithUserDetails();
-  var spotlightChallenge = mockData.getMockSpotlightChallenges()[0];
+  var scope
+  var element
+  var challenge = mockData.getMockChallengeWithUserDetails()
 
   beforeEach(function() {
-    bard.appModule('topcoder');
-    bard.inject(this, '$compile', '$rootScope', 'CONSTANTS');
+    bard.appModule('topcoder')
+    bard.inject(this, '$compile', '$rootScope', 'CONSTANTS')
 
-    scope = $rootScope.$new();
-    domain = CONSTANTS.domain;
-  });
+    scope = $rootScope.$new()
+  })
 
-  bard.verifyNoOutstandingHttpRequests();
+  bard.verifyNoOutstandingHttpRequests()
 
   describe('Regular Challenges', function() {
-    var challengeTile;
 
     beforeEach(function() {
-      scope.challenge = challenge;
-      element = angular.element('<challenge-tile class="tile" challenge="challenge"></challenge-tile>)');
-      challengeTile = $compile(element)(scope);
-      scope.$digest();
-    });
+      scope.challenge = challenge
+      element = angular.element('<challenge-tile class="tile" challenge="challenge"></challenge-tile>)')
+      $compile(element)(scope)
+      scope.$digest()
+    })
 
     //it('should have challenge related html', function() {
-    //  var directiveHtml = challengeTile.html();
-    //  expect(directiveHtml).to.include('challenge-name');
-    //  expect(directiveHtml).to.include('Learn and Earn Cordova App Assembly');
-    //});
-
-  });
-});
+    //  var directiveHtml = challengeTile.html()
+    //  expect(directiveHtml).to.include('challenge-name')
+    //  expect(directiveHtml).to.include('Learn and Earn Cordova App Assembly')
+    //})
+  })
+})

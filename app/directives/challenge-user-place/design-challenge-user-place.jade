@@ -2,33 +2,44 @@
   p.place(ng-class="{ 'first-place': challenge.wonFirst }", ng-show="challenge.highestPlacement") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
   p.place.didnt(ng-show="challenge.userStatus === 'NOT_FINISHED'") Didn't Finish
   p.place.passed(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
+  p.place(ng-show="!challenge.highestPlacement && challenge.userStatus === 'PASSED_REVIEW'") Passed Review
   p.place.completed(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
 
   .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
-    img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || require('../../../assets/images/card-bg-no-image.svg')}}", fallback-src=require("../../../assets/images/card-bg-no-image.svg"))
-    img(ng-show="challenge.isPrivate", src=require("../../../assets/images/card-bg-private-project.svg"))
+    img(ng-show="challenge.submissionViewable && imageURL", ng-src="{{imageURL}}")
+    img(ng-show="challenge.submissionViewable && !imageURL", ng-src=require("../../../assets/images/card-bg-no-image.svg"))
+    .private-challenge-banner(ng-show="!challenge.submissionViewable", title="Submissions for this challenge are confidential")
+      img(ng-src=require("../../../assets/images/ico-private-prj.svg"))
+      span PRIVATE CHALLENGE
 
     .thumbnail-gallery(ng-show="numImages", ng-click="!challenge.isPrivate && imageURL && openLightbox()")
       .gallery-icon
 
-      .num-images {{numImages}} IMAGES
+      .num-images
+        span(ng-show="challenge.submissionViewable") {{numImages}} IMAGES
+        span(ng-show="!challenge.submissionViewable") No image is visible
 
 .list-view(ng-show="view === 'list'")
   .place-date
     p.place(ng-class="{ 'first-place': challenge.wonFirst }", ng-show="challenge.highestPlacement") {{challenge.highestPlacement}}#[span {{challenge.highestPlacement | ordinal:true}}] Place
     p.place.didnt(ng-show="challenge.userStatus === 'NOT_FINISHED'") Didn't Finish
     p.place.passed(ng-show="challenge.userStatus === 'PASSED_SCREENING'") Passed Screening
+    p.place(ng-show="!challenge.highestPlacement && challenge.userStatus === 'PASSED_REVIEW'") Passed Review
     p.place.completed(ng-show="challenge.userStatus === 'COMPLETED'") COMPLETED
     p.date-completed {{challenge.submissionEndDate | date : 'MMMM yyyy'}}
 
-  .winner-ribbon(ng-show="challenge.wonFirst")
+  .winner-ribbon(ng-show="challenge.wonFirst && !challenge.isPrivate")
 
 
   .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
-    img(ng-show="!challenge.isPrivate", ng-src="{{imageURL || require('../../../assets/images/card-bg-no-image.svg')}}", fallback-src=require("../../../assets/images/ico-picture.svg"))
-    img(ng-show="challenge.isPrivate", src=require("../../../assets/images/card-bg-private-project.svg"))
+    img(ng-show="challenge.submissionViewable && imageURL", ng-src="{{imageURL}}")
+    img(ng-show="challenge.submissionViewable && !imageURL", ng-src=require("../../../assets/images/card-bg-no-image.svg"))
+    .private-challenge-banner(ng-show="!challenge.submissionViewable", title="Submissions for this challenge are confidential")
+      img(ng-src=require("../../../assets/images/ico-private-prj.svg"))
 
     .thumbnail-gallery(ng-show="numImages", ng-click="!challenge.isPrivate && imageURL && openLightbox()")
       .gallery-icon
 
-      .num-images {{numImages}} IMAGES
+      .num-images
+        span(ng-show="challenge.submissionViewable") {{numImages}} IMAGES
+        span(ng-show="!challenge.submissionViewable") No image is visible

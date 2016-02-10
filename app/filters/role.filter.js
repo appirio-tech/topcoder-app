@@ -1,7 +1,9 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('topcoder').filter('role', RoleFilter);
+(function() {
+  'use strict'
+
+  angular.module('topcoder').filter('role', RoleFilter)
 
   function RoleFilter() {
     var map = {
@@ -9,18 +11,18 @@
       'DEVELOP': 'Developer',
       'DATA_SCIENCE': 'Data Scientist',
       'COPILOT': 'Copilot'
-    };
+    }
     return function(tracks) {
       if (tracks) {
         if (typeof tracks === 'string')
-          return map[tracks];
+          return map[tracks]
         else
           return tracks.map(function(track) {
-            return map[track.toUpperCase()];
-          });
+            return map[track.toUpperCase()]
+          })
       }
-      return '';
-    };
+      return ''
+    }
   }
 
-})();
+})()

@@ -41,13 +41,12 @@ import moment from 'moment'
     }
 
     function getPhase(challengeId, phaseType) {
-      var url = CONSTANTS.API_URL + '/phases/?filter=' + encodeURIComponent('challengeId=' + challengeId + '&phaseType=4')
       return api.one('challenges', challengeId).getList('phases').then(
         function(phases) {
-          return _.find(phases, function(p) { return p.phaseType.toUpperCase() === phaseType});
+          return _.find(phases, function(p) { return p.phaseType.toUpperCase() === phaseType})
         },
         function(err) {
-          $log.error(err);
+          $log.error(err)
         }
       )
     }
@@ -191,22 +190,19 @@ import moment from 'moment'
           // TODO placement logic for challenges can be moved to their corresponding user place directive
           // process placement for challenges having winningPlacements array in response
           if (Array.isArray(challenge.userDetails.winningPlacements)) {
-            challenge.highestPlacement = _.min(challenge.userDetails.winningPlacements)
+            challenge.highestPlacement = _.min(challenge.userDetails.winningPlacements, 'placed').placed
           }
           // process placement for design challenges
           if (challenge.track == 'DESIGN' && challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
             challenge.thumbnailId = challenge.userDetails.submissions[0].id
-
-            challenge.highestPlacement = _.min(challenge.userDetails.submissions.filter(function(submission) {
-              return submission.type === CONSTANTS.SUBMISSION_TYPE_CONTEST && submission.placement
-            }), 'placement').placement
           }
-          if (challenge.track === 'DEVELOP' && challenge.subTrack === 'FIRST_2_FINISH'
-            && challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
-            challenge.highestPlacement = _.min(challenge.userDetails.submissions.filter(function(submission) {
+          // determines the user status for passing the review for one of the submissions
+          if (challenge.userDetails.submissions && challenge.userDetails.submissions.length > 0) {
+            challenge.passedReview = challenge.userDetails.submissions.filter(function(submission) {
               return submission.type === CONSTANTS.SUBMISSION_TYPE_CONTEST
-              && submission.status === CONSTANTS.STATUS_ACTIVE && submission.placement
-            }), 'placement').placement
+              && (submission.status === CONSTANTS.STATUS_ACTIVE
+                || submission.status === CONSTANTS.STATUS_COMPLETED_WITHOUT_WIN)
+            }).length > 0
           }
           if (challenge.highestPlacement === 0) {
             challenge.highestPlacement = null
@@ -228,7 +224,7 @@ import moment from 'moment'
           }
 
           if (challenge.userDetails.hasUserSubmittedForReview) {
-            if (!challenge.highestPlacement) {
+            if (!challenge.passedReview) {
               challenge.userStatus = 'PASSED_SCREENING'
             } else {
               challenge.userStatus = 'PASSED_REVIEW'

@@ -44,7 +44,7 @@ import angular from 'angular'
 
       ReviewService.getUsersPeerReviews(vm.challengeId)
       .then(function(data) {
-        vm.reviews = data
+        vm.reviews = data.plain()
         vm.completed = Helpers.countCompleted(vm.reviews)
         // Move calls to $q.all(), and move this to the success callback there
         vm.loaded = true

@@ -1,13 +1,16 @@
+import angular from 'angular'
+import _ from 'lodash'
+
 /**
  * @brief UserStats service handles 'massaging' of user stats data.
  * @details Stats data is represented to the user in a myriad of ways.
  * Most of this logic is encapsulated here.
  */
 (function() {
-  'use strict';
+  'use strict'
 
-  angular.module('tc.services').factory('UserStatsService', UserStatsService);
-  UserStatsService.$inject = ['$filter'];
+  angular.module('tc.services').factory('UserStatsService', UserStatsService)
+  UserStatsService.$inject = ['$filter']
 
   function UserStatsService($filter) {
 
@@ -18,11 +21,11 @@
       filterStats: filterStats,
       processStatRank: processStatRank,
       mapReliability: mapReliability
-    };
+    }
 
-    var percentageFunc = function(n) { return $filter('percentage')(n);};
-    var percentileFunc = function(n) { n /= 100; return $filter('percentage')(n);};
-    var defaultPostFunc = function(n) { return $filter('number')(n); };
+    var percentageFunc = function(n) { return $filter('percentage')(n)}
+    var percentileFunc = function(n) { n /= 100; return $filter('percentage')(n)}
+    var defaultPostFunc = function(n) { return $filter('number')(n) }
 
     var interestingData = {
       'DESIGN': [
@@ -57,45 +60,45 @@
         {key: 'projects', label: 'total projects', postFunc: null},
         {key: 'fulfillment', label: 'fulfillment', postFunc: percentileFunc}
       ]
-    };
-    return service;
+    }
+    return service
 
     function getIterableStats(track, subTrack, stats) {
        // helper functions
 
 
-      var obj;
+      var obj
       // data science stats are nested in a funky way
       if (track === 'COPILOT') {
-        obj = _.get(stats, 'COPILOT', null);
+        obj = _.get(stats, 'COPILOT', null)
       } else if (track === 'DATA_SCIENCE') {
-        obj = _.get(stats, "DATA_SCIENCE." + subTrack, null);
+        obj = _.get(stats, 'DATA_SCIENCE.' + subTrack, null)
       } else {
-        var _subTrackStats = _.get(stats, track+'.subTracks', []);
+        var _subTrackStats = _.get(stats, track+'.subTracks', [])
         obj = _.find(_subTrackStats, function(n) {
           return n.name === subTrack
-        });
+        })
       }
       // no stats to iterate over
       if (!obj)
-        return [];
+        return []
       // For each type of track retrieve the more interesting
-      var data;
+      var data
       switch(track) {
-        case 'DATA_SCIENCE':
-          data = interestingData[track+"."+subTrack];
-          break;
-        default:
-          data = interestingData[track];
+      case 'DATA_SCIENCE':
+        data = interestingData[track+'.'+subTrack]
+        break
+      default:
+        data = interestingData[track]
       }
-      var _iterStats = [];
+      var _iterStats = []
       data.forEach(function(k) {
-        var _val = _.get(obj, k.key);
+        var _val = _.get(obj, k.key)
         if (_val)
-          _val = k.postFunc ? k.postFunc(_val) : defaultPostFunc(_val);
-        _iterStats.push({label: k.label, val: _val});
-      });
-      return _iterStats;
+          _val = k.postFunc ? k.postFunc(_val) : defaultPostFunc(_val)
+        _iterStats.push({label: k.label, val: _val})
+      })
+      return _iterStats
     }
 
     function compileSubtracks(trackRanks) {
@@ -103,63 +106,63 @@
         if (Array.isArray(subtracks) && subtracks.length) {
           if (track === 'DEVELOP') {
             var filtered = _.filter(subtracks, function(subtrackObj) {
-              return subtrackObj.subTrack !== 'COPILOT_POSTING';
-            });
-            return result.concat(filtered);
+              return subtrackObj.subTrack !== 'COPILOT_POSTING'
+            })
+            return result.concat(filtered)
           }
 
-          return result.concat(subtracks);
+          return result.concat(subtracks)
 
         } else {
-          return result;
+          return result
         }
-      }, []);
+      }, [])
     }
 
     function processStatRank(rank) {
-      rank.showStats = true;
+      rank.showStats = true
       if (rank.track === 'DESIGN') {
-        rank.stat = rank.wins;
-        rank.statType = 'Wins';
+        rank.stat = rank.wins
+        rank.statType = 'Wins'
         // for non rated tracks, use submissions to filter out empty values
         if(!rank.submissions) {
-          rank.showStats = false;
+          rank.showStats = false
         }
       } else if (rank.track === 'COPILOT') {
-        rank.stat = rank.activeContests;
-        rank.statType = 'Challenges';
+        rank.stat = rank.activeContests
+        rank.statType = 'Challenges'
       } else if (rank.track === 'DEVELOP') {
         if (['CODE', 'FIRST_2_FINISH', 'BUG_HUNT'].indexOf(rank.subTrack) != -1) {
-          rank.stat = rank.wins;
-          rank.statType = 'Wins';
+          rank.stat = rank.wins
+          rank.statType = 'Wins'
           // for non rated tracks, use submissions to filter out empty values
           if(!rank.submissions) {
-            rank.showStats = false;
+            rank.showStats = false
           }
         } else {
-          rank.stat = rank.rating;
-          rank.statType = 'Rating';
+          rank.stat = rank.rating
+          rank.statType = 'Rating'
         }
       } else {
-        rank.stat = rank.rating;
-        rank.statType = 'Rating';
+        rank.stat = rank.rating
+        rank.statType = 'Rating'
       }
     }
 
     function processStats(ranks) {
       angular.forEach(ranks, function(rank) {
-        processStatRank(rank);
-      });
+        processStatRank(rank)
+      })
     }
 
     function filterStats(ranks) {
-      var filtered = [];
+      var filtered = []
       angular.forEach(ranks, function(rank) {
         if (rank.showStats) {
-          filtered.push(rank);
+          filtered.push(rank)
         }
-      });
-      return filtered;
+      })
+      return filtered
     }
 
     function mapReliability(subTrack) {
@@ -201,10 +204,9 @@
         'FIRST_2_FINISH': 38,
         'CODE': 39,
         'DESIGN_FIRST_2_FINISH': 40
-      };
+      }
 
-      return reliabilityMapping[subTrack] || 2;
+      return reliabilityMapping[subTrack] || 2
     }
   }
-
-})();
+})()

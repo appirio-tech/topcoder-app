@@ -1,4 +1,4 @@
-#### Dev [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=dev)](https://travis-ci.org/appirio-tech/topcoder-app) Master [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=master)](https://travis-ci.org/appirio-tech/topcoder-app)
+#### Dev [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=dev)](https://travis-ci.org/appirio-tech/topcoder-app) QA [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=qa-integration)](https://travis-ci.org/appirio-tech/topcoder-app) Master [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=master)](https://travis-ci.org/appirio-tech/topcoder-app)
 # Topcoder-App
 
 This repository houses any new topcoder pages or refactored Angular apps/pages from the tc-site repository.
@@ -13,11 +13,12 @@ Install dependencies by running the following in the root of the project:
  - `npm i`
  - **Note:** You must use npm 3. Type `npm -v` to ensure you have a 3.x version.
 
-In order to test a logged in user, you must make an entry in your `/etc/hosts` file, pointing `local.topcoder-dev.com` to `localhost`. For example, open your `/etc/hosts` file with something like `vim /etc/hosts` and add `127.0.0.1 local.topcoder-dev.com`. After you run `gulp serve`, which launches a new window or tab, change `http://localhost:3000/sample/` to `http://local.topcoder-dev.com:3000/sample/`. You will then be able to login and pick up information from the cookies with `.topcoder-dev.com` as the domain.
+In order to test a logged in user, you must make an entry in your `/etc/hosts` file, pointing `local.topcoder-dev.com` to `localhost`. For example, open your `/etc/hosts` file with something like `vim /etc/hosts` and add `127.0.0.1 local.topcoder-dev.com`. After you run `gulp serve`, which launches a new window or tab, change `http://localhost:3000/login/` to `http://local.topcoder-dev.com:3000/login/`. You will then be able to login and pick up information from the cookies with `.topcoder-dev.com` as the domain.
 
 ## NPM Commands
-- To run locally: `npm run dev` and head to `local.topcoder-dev.com:3000/my-dashboard`
+- To run locally: `npm start` and head to `local.topcoder-dev.com:3000/login`
 - To create the build: `npm run build`
+- To run code linting: `npm run lint`
 - To run the tests: `npm test`
 
 ## Recommended Developer Tools
@@ -47,7 +48,6 @@ JavaScript linting
 - For new projects, you can create a local `.eslintrc.json` file by running `eslint --init`
   - **Note:** If you're using ES6, make sure you add `"modules": true` to `"ecmaFeatures"` and `"node": true` to `"env"` in your `.eslintrc.json` file
   - **Note:** If you are using React, make sure you have `eslint` and `eslint-plugin-react` as `devDependencies` in your `package.json` file
-  - **Optional**: Add `"lint": "eslint ."` to your `package.json` file to run linting at any time via `npm run lint`
 
 Automatic JavaScript linting in Sublime Text
 - Install [SublimeLinter](http://sublimelinter.readthedocs.org/en/latest/installation.html) following the instructions under "Installing via Package Control"
@@ -55,7 +55,9 @@ Automatic JavaScript linting in Sublime Text
 
 ### Testing
 
-To read about the file and folder structure of tests, read [this section](https://github.com/appirio-tech/topcoder-app#tests)
+The tests folder contains mock data (`tests/test-helpers/mock-data.js`). To run tests, use `npm test`.
+
+Spec files live alongside the code they are testing. For example, in peer-review you have `review-status.controller.js` and `review-status.spec.js` in the same review-status folder.
 
 ### Description of Files and Folders
 
@@ -73,11 +75,6 @@ Services live in their own folder. All services are part of the tc.services modu
   - Scripts
     - This folder contains our analytics, e.g. Google, New Relic, etc.
 
-#### tests
-The tests folder contains mock data (`tests/test-helpers/mock-data.js`). To run tests, use `npm test`.
-
-Spec files live alongside the code they are testing. For example, in peer-review you have `review-status.controller.js` and `review-status.spec.js` in the same review-status folder.
-
 ## UI-Router and States
 See any `*.routes.js` file as an example.
 
@@ -87,8 +84,8 @@ See any `*.routes.js` file as an example.
 
 ### Style Guide and Naming Conventions
 
+  - Our travis build runs `npm run lint` and `npm test`, so make sure your code adheres to the code style enforced by our linters
   - Please use ES2015 syntax whenever possible
-  - Do not use semicolons
   - Use the Angular style guide mentioned below
 
 In general, follow this [AngularJS style guide](https://github.com/johnpapa/angular-styleguide), which covers JavaScript code style, JavaScript variable naming, and file naming conventions. One deviation is in the naming of services, where we follow the same pattern as controllers, e.g. UserService, ProfileService.

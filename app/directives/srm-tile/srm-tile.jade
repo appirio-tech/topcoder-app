@@ -3,7 +3,8 @@
     .challenge-track
 
     header
-      a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{roundId}}") {{srm.name}}
+      //- a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{roundId}}") {{srm.name}}
+      a.noclick(href="javascript:void(0)") {{srm.name}}
 
     .srm-details
       p.starts-in Starts in #[span {{srm.codingStartAt | timeDiff:"quantity"}} {{srm.codingStartAt | timeDiff:'unit'}}]
@@ -24,6 +25,7 @@
 
     header
       a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{roundId}}") {{srm.name}}
+
       .ended-on #[span {{srm.codingEndAt | localTime:"MMM DD, YYYY" }}]
 
     .member-stats
@@ -34,7 +36,7 @@
           p.label  #[span Division {{srm.result.division}}]
         a.room(href="https://community.{{DOMAIN}}/stat?c=coder_room_stats&cr={{userId}}&rd={{roundId}}")
           p.rank #[span {{srm.result.roomPlacement}}]
-          p.label #[span Room] 
+          p.label #[span Room]
       p.placement Placement
 
 .srm.list-view(ng-show="view=='list'")
@@ -42,11 +44,12 @@
     .challenge-track
     header
       .srm-name
-        a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{roundId}}") {{srm.name}}
+        //- a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{roundId}}") {{srm.name}}
+        a.noclick(href="javascript:void(0)") {{srm.name}}
 
     .srm-details
       p.starts-in Starts in #[span {{srm.codingStartAt | timeDiff:"quantity"}} {{srm.codingStartAt | timeDiff:'unit'}}]
-    
+
     .phase-status
       .registered(ng-show="srm.userStatus === CONSTANTS.REGISTERED") Registered
       .unregistered(ng-hide="srm.currentPhase !== CONSTANTS.REGISTRATION || srm.userStatus === CONSTANTS.REGISTERED")
@@ -71,5 +74,3 @@
         a.room(ng-class="{noclick: !srm.result.roomPlacement}", href="https://community.{{DOMAIN}}/stat?c=coder_room_stats&cr={{userId}}&rd={{roundId}}")
           p.rank #[span {{srm.result.roomPlacement}}]
           p.label #[span Room] #[span Placement]
-
-

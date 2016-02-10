@@ -1,18 +1,21 @@
+import angular from 'angular'
+import _ from 'lodash'
+
 (function() {
-  'use strict';
+  'use strict'
 
-  angular.module('tc.services').factory('UserService', UserService);
+  angular.module('tc.services').factory('UserService', UserService)
 
-  UserService.$inject = ['CONSTANTS', 'ApiService', '$injector', 'AuthTokenService', 'UserPrefStore'];
+  UserService.$inject = ['CONSTANTS', 'ApiService', '$injector', 'AuthTokenService', 'UserPrefStore']
 
   function UserService(CONSTANTS, ApiService, $injector, AuthTokenService, UserPrefStore) {
 
-    var api = ApiService.getApiServiceProvider('USER');
+    var api = ApiService.getApiServiceProvider('USER')
 
     var _config = {
       cache: false,
       skipAuthorization: true
-    };
+    }
 
     var service = {
       getUserIdentity: getUserIdentity,
@@ -29,37 +32,37 @@
       removeSocialProfile: removeSocialProfile,
       getPreference: getPreference,
       setPreference: setPreference
-    };
-    return service;
+    }
+    return service
 
     //////////////////////////////////////////
 
     function getUserIdentity() {
-      var TcAuthService = $injector.get('TcAuthService');
+      var TcAuthService = $injector.get('TcAuthService')
       if (TcAuthService.isAuthenticated()) {
-        var decodedToken = AuthTokenService.decodeToken(AuthTokenService.getV3Token());
-        return decodedToken;
+        var decodedToken = AuthTokenService.decodeToken(AuthTokenService.getV3Token())
+        return decodedToken
       } else {
-        return null;
+        return null
       }
     }
 
     function createUser(body) {
-      return api.all('users').withHttpConfig(_config).customPOST(JSON.stringify(body));
+      return api.all('users').withHttpConfig(_config).customPOST(JSON.stringify(body))
     }
 
     function validateUserHandle(handle) {
-      return api.all('users').withHttpConfig(_config).customGET('validateHandle', {handle: handle});
+      return api.all('users').withHttpConfig(_config).customGET('validateHandle', {handle: handle})
     }
 
 
     function validateUserEmail(email) {
 
-      return api.all('users').withHttpConfig(_config).customGET('validateEmail', {email: email});
+      return api.all('users').withHttpConfig(_config).customGET('validateEmail', {email: email})
     }
 
     function generateResetToken(email) {
-      return api.all('users').withHttpConfig(_config).customGET('resetToken', {email: email});
+      return api.all('users').withHttpConfig(_config).customGET('resetToken', {email: email})
     }
 
     function resetPassword(handle, newPassword, resetToken) {
@@ -71,12 +74,12 @@
             resetToken: resetToken
           }
         }
-      };
-      return api.all('users').one('resetPassword').withHttpConfig(_config).customPUT(JSON.stringify(data));
+      }
+      return api.all('users').one('resetPassword').withHttpConfig(_config).customPUT(JSON.stringify(data))
     }
 
     function updatePassword(newPassword, oldPassword) {
-      var userId = getUserIdentity().userId;
+      var userId = getUserIdentity().userId
 
       var body = {
         param: {
@@ -85,30 +88,30 @@
             currentPassword: oldPassword
           }
         }
-      };
+      }
 
-      return api.one('users', userId).patch(JSON.stringify(body));
+      return api.one('users', userId).patch(JSON.stringify(body))
     }
 
     function validateSocialProfile(userId, provider) {
       return api.all('users').withHttpConfig(_config).customGET('validateSocial',
-      {
-        socialUserId: userId,
-        socialProvider: provider
-      });
+        {
+          socialUserId: userId,
+          socialProvider: provider
+        })
     }
 
     function getUserProfile(queryParams) {
-      var userId = getUserIdentity().userId;
-      return api.one('users', userId).get(queryParams);
+      var userId = getUserIdentity().userId
+      return api.one('users', userId).get(queryParams)
     }
 
     function addSocialProfile(userId, profileData) {
-      return api.one('users', userId).customPOST(profileData, "profiles", {}, {});
+      return api.one('users', userId).customPOST(profileData, 'profiles', {}, {})
     }
 
     function removeSocialProfile (userId, account) {
-      return api.one("users", userId).one("profiles", account).remove();
+      return api.one('users', userId).one('profiles', account).remove()
     }
 
     /**
@@ -116,19 +119,19 @@
      * should be removed once we have it in v3.
      */
     function getV2UserProfile(handle) {
-      return ApiService.restangularV2.one('users', handle).get();
+      return ApiService.restangularV2.one('users', handle).get()
     }
 
     function getPreference(prefName) {
-      var obj = UserPrefStore.get('preferences');
+      var obj = UserPrefStore.get('preferences')
       return _.get(obj, prefName)
     }
 
     function setPreference(prefName, val) {
-      var obj = UserPrefStore.get('preferences') || {};
-      obj[prefName] = val;
-      UserPrefStore.set('preferences', obj);
+      var obj = UserPrefStore.get('preferences') || {}
+      obj[prefName] = val
+      UserPrefStore.set('preferences', obj)
     }
   }
 
-})();
+})()

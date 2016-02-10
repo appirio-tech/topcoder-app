@@ -1,5 +1,65 @@
 @import 'topcoder/tc-includes';
 
+// Common styles between tile and list view
+
+
+challenge-tile .challenge {
+
+  .private-challenge-banner {
+    width: 100%;
+    flex: 1;
+    display: flex;
+
+    .title {
+      @include sofia-pro-light;
+      font-size: 18px;
+      line-height: 23px;
+      color: $gray-darkest;
+      text-transform: uppercase;
+    }
+
+    img {
+      width: auto;
+    }
+
+    span {
+      @include font-with-weight('Sofia Pro', 400);
+      font-size: 11px;
+      line-height: 15px;
+      text-transform: uppercase;
+      color: $gray-dark;
+      text-align: center;
+    }
+  }
+
+  .invite-only-banner {
+    width: 100%;
+    flex: 1;
+    display: flex;
+
+    .title {
+      @include sofia-pro-light;
+      font-size: 18px;
+      line-height: 23px;
+      color: $gray-darkest;
+      text-transform: uppercase;
+    }
+
+    img {
+      width: auto;
+    }
+
+    span {
+      @include font-with-weight('Sofia Pro', 400);
+      font-size: 11px;
+      line-height: 15px;
+      text-transform: uppercase;
+      color: $gray-dark;
+      text-align: center;
+    }
+  }
+}
+
 // Default Challenge Tile Stylings
 challenge-tile .challenge.tile-view {
 
@@ -51,6 +111,34 @@ challenge-tile .challenge.tile-view {
     align-items: center;
     justify-content: center;
     flex: 2;
+  }
+
+  .private-challenge-banner {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+      margin-bottom: 60px;
+    }
+
+    span {
+      margin-top: 20px;
+    }
+  }
+
+  .invite-only-banner {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+      margin-bottom: 60px;
+    }
+
+    span {
+      margin-top: 20px;
+    }
   }
 
   // roles bar is common for both active and completed
@@ -424,6 +512,27 @@ challenge-tile .challenge.list-view {
           left: 14px;
         }
       }
+    }
+  }
+
+  .private-challenge-banner {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .invite-only-banner {
+    flex-direction: row;
+    justify-content: space-between;
+
+    .invite-only-banner__description {
+
+      .title {
+        margin-bottom: 10px;
+      }
+
+      span {
+      }
+
     }
   }
 

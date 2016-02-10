@@ -284,12 +284,5 @@ import d3 from 'd3'
       })
       return colors[0] && colors[0].color || 'black'
     }
-
-    // function ratingToDarkerColor(colors, rating) {
-    //   colors = colors.filter(function(color) {
-    //     return rating >= color.start && rating <= color.end
-    //   })
-    //   return colors[0] && colors[0].darkerColor || 'black'
-    // }
   }
 })()
