@@ -19,7 +19,7 @@ import angular from 'angular'
       },
       'review.status': {
         parent: 'review',
-        url: '/challenge/:challengeId/',
+        url: '/challenges/:challengeId/reviews/',
         data: {
           title: 'Peer Review'
         },
@@ -33,7 +33,7 @@ import angular from 'angular'
       },
       'review.readOnlyScorecard': {
         parent: 'review',
-        url: '/scorecard/:scorecardId/',
+        url: '/challenges/:challengeId/scorecards/:scorecardId/',
         data: {
           title: 'Scorecard'
         },
@@ -47,7 +47,7 @@ import angular from 'angular'
       },
       'review.completed': {
         parent: 'review',
-        url: '/:challengeId/reviews/:reviewId/completed/',
+        url: '/challenges/:challengeId/reviews/:reviewId/completed/',
         data: {
           title: 'Completed'
         },
@@ -61,7 +61,7 @@ import angular from 'angular'
       },
       'review.edit': {
         parent: 'review',
-        url: '/:challengeId/reviews/:reviewId/edit/',
+        url: '/challenges/:challengeId/reviews/:reviewId/edit/',
         data: {
           title: 'Edit Review'
         },

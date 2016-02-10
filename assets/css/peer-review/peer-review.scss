@@ -1,6 +1,6 @@
 @import 'topcoder/tc-includes';
 // Remove glyphicon reference and mixin when peer-review is redesigned.
-@include glyphicons-halflings;
+// @include glyphicons-halflings;
 
 // Shared (review-status.html, edit-review.html, completed-review.html)
 .review-status-container, .completed-review-container, .edit-review-container, .read-only-scorecard-container {
