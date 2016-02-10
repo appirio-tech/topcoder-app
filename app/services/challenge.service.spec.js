@@ -725,7 +725,7 @@ describe('Challenge Service', function() {
       ]
       ChallengeService.processPastChallenges(challenges)
       var challenge = challenges[0]
-      expect(challenge.highestPlacement).not.to.exist.to
+      expect(challenge.highestPlacement).not.to.exist
       expect(challenge.wonFirst).to.exist.to.false
       expect(challenge.userStatus).to.exist.to.equal('PASSED_REVIEW')
       expect(challenge.userHasSubmitterRole).to.exist.to.true
