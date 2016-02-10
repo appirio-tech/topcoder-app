@@ -8,6 +8,8 @@ import angular from 'angular'
   ScorecardService.$inject = ['CONSTANTS', 'ApiService']
 
   function ScorecardService(CONSTANTS, ApiService) {
+    var api = ApiService.restangularV3
+
     var service = {
       getScorecardById: getScorecardById,
       getScorecard: getScorecard,
@@ -18,18 +20,24 @@ import angular from 'angular'
     ///////////////
 
     function getScorecardById(scorecardId) {
-      var url = CONSTANTS.API_URL + '/scorecards/?filter=' + encodeURIComponent('scorecardId=' + scorecardId)
-      return ApiService.requestHandler('GET', url)
+      return api.all('scorecards').getList({filter: encodeURIComponent('scorecardId='+scorecardId)})
+        .then(function(data) {
+          return data.plain()
+        })
     }
 
     function getScorecard(challengeId) {
-      var url = CONSTANTS.API_URL + '/scorecards/?filter=' + encodeURIComponent('challengeId=' + challengeId)
-      return ApiService.requestHandler('GET', url)
+      return api.all('scorecards').getList({filter: encodeURIComponent('challengeId='+challengeId)})
+      .then(function(data) {
+        return data.plain()
+      })
     }
 
     function getScorecardQuestions(scorecardId) {
-      var url = CONSTANTS.API_URL + '/scorecardQuestions/?filter=' + encodeURIComponent('scorecardId=' + scorecardId)
-      return ApiService.requestHandler('GET', url)
+      return api.all('scorecardQuestions').getList({filter: encodeURIComponent('scorecardId='+scorecardId)})
+      .then(function(data) {
+        return data.plain()
+      })
     }
   }
 })()

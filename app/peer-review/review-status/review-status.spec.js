@@ -15,13 +15,14 @@ describe('Review Status Controller', function() {
       getChallengeDetails: function() {
         return $q.when(challenge)
       },
-      getReviewEndDate: function() {
+      getPhase: function() {
         return $q.when(challengeDates)
       }
     }
 
     var reviewService = {
       getUsersPeerReviews: function() {
+        userReviews.plain = function() { return this }
         return $q.when(userReviews)
       }
     }
@@ -64,7 +65,7 @@ describe('Review Status Controller', function() {
 
     it('should get a challenge', function() {
       expect(controller.challenge).to.exist
-      expect(controller.challenge.challengeName).to.equal(challenge.data.challengeName)
+      expect(controller.challenge.challengeName).to.equal(challenge.challengeName)
     })
 
     it('should have a user\'s reviews', function() {
