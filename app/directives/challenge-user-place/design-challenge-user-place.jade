@@ -8,7 +8,7 @@
   .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
     img(ng-show="challenge.submissionViewable && imageURL", ng-src="{{imageURL}}")
     img(ng-show="challenge.submissionViewable && !imageURL", ng-src=require("../../../assets/images/card-bg-no-image.svg"))
-    .private-challenge-banner(ng-show="!challenge.submissionViewable")
+    .private-challenge-banner(ng-show="!challenge.submissionViewable", title="Submissions for this challenge are confidential")
       img(ng-src=require("../../../assets/images/ico-private-prj.svg"))
       span PRIVATE CHALLENGE
 
@@ -34,7 +34,7 @@
   .thumbnail(ng-click="!challenge.isPrivate && imageURL && openLightbox()", ng-class="{hidden: challenge.userStatus !== 'PASSED_REVIEW'}")
     img(ng-show="challenge.submissionViewable && imageURL", ng-src="{{imageURL}}")
     img(ng-show="challenge.submissionViewable && !imageURL", ng-src=require("../../../assets/images/card-bg-no-image.svg"))
-    .private-challenge-banner(ng-show="!challenge.submissionViewable")
+    .private-challenge-banner(ng-show="!challenge.submissionViewable", title="Submissions for this challenge are confidential")
       img(ng-src=require("../../../assets/images/ico-private-prj.svg"))
 
     .thumbnail-gallery(ng-show="numImages", ng-click="!challenge.isPrivate && imageURL && openLightbox()")
