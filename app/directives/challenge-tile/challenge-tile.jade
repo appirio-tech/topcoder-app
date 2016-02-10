@@ -57,14 +57,16 @@
       .challenge-details(ng-switch-when="DEVELOP")
         dev-challenge-user-place(challenge="challenge", view="view", ng-hide="challenge.isPrivate")
         .invite-only-banner(ng-show="challenge.isPrivate")
+          .title INVITE-ONLY CHALLENGE
           img(ng-src=require("../../../assets/images/ico-invite-only-prj.svg"))
-          span INVITE-ONLY CHALLENGE
+          span CHALLENGE INFORMATION IS CONFIDENTIAL#[br]RESULTS ARE NOT INCLUDED IN STATISTICS
 
       .challenge-details(ng-switch-when="DESIGN")
         design-challenge-user-place(challenge="challenge", view="view", ng-hide="challenge.isPrivate")
         .invite-only-banner(ng-show="challenge.isPrivate")
+          .title INVITE-ONLY CHALLENGE
           img(ng-src=require("../../../assets/images/ico-invite-only-prj.svg"))
-          span INVITE-ONLY CHALLENGE
+          span CHALLENGE INFORMATION IS CONFIDENTIAL#[br]RESULTS ARE NOT INCLUDED IN STATISTICS
 
       // Only show if not data science track
       p.roles
@@ -121,9 +123,15 @@
     .challenge-details(ng-switch-when="DEVELOP")
       dev-challenge-user-place(challenge="challenge", view="view", ng-hide="challenge.isPrivate")
       .invite-only-banner(ng-show="challenge.isPrivate")
+        .invite-only-banner__description
+          .title INVITE-ONLY CHALLENGE
+          span CHALLENGE INFORMATION IS CONFIDENTIAL#[br]RESULTS ARE NOT INCLUDED IN STATISTICS
         img(src=require("../../../assets/images/ico-invite-only-prj.svg"))
 
     .challenge-details(ng-switch-when="DESIGN")
       design-challenge-user-place(challenge="challenge", view="view", ng-hide="challenge.isPrivate")
       .invite-only-banner(ng-show="challenge.isPrivate")
+        .invite-only-banner__description
+          .title INVITE-ONLY CHALLENGE
+          span CHALLENGE INFORMATION IS CONFIDENTIAL#[br]RESULTS ARE NOT INCLUDED IN STATISTICS
         img(src=require("../../../assets/images/ico-invite-only-prj.svg"))
