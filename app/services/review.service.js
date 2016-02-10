@@ -52,11 +52,10 @@
       // var method = isPreviouslySaved ? 'PUT' : 'POST';
       // var url = CONSTANTS.API_URL + '/reviewItems/';
       // return ApiService.requestHandler(method, url, JSON.stringify(body));
-      // body = JSON.stringify(body);
       if (isPreviouslySaved) {
         return api.all('reviewItems').customPUT(body, null, null, null)
       } else {
-        return api.all('reivewItems').post(body)
+        return api.all('reviewItems').post(body)
       }
     }
 
@@ -67,7 +66,7 @@
         id: reviewId
       }
       // return ApiService.requestHandler('PUT', url, JSON.stringify(body));
-      api.one('reviews', reviewId).put()
+      return api.one('reviews', reviewId).customPUT(body, null, null, null)
     }
   };
 })();

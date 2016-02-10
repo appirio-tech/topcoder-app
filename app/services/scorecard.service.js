@@ -18,14 +18,23 @@
 
     function getScorecardById(scorecardId) {
         return api.all('scorecards').getList({filter: encodeURIComponent("scorecardId="+scorecardId)})
+          .then(function(data) {
+            return data.plain()
+          })
     }
 
     function getScorecard(challengeId) {
         return api.all('scorecards').getList({filter: encodeURIComponent("challengeId="+challengeId)})
+        .then(function(data) {
+            return data.plain()
+          })
     }
 
     function getScorecardQuestions(scorecardId) {
         return api.all('scorecardQuestions').getList({filter: encodeURIComponent("scorecardId="+scorecardId)})
+        .then(function(data) {
+            return data.plain()
+          })
     }
   };
 })();
