@@ -6,7 +6,7 @@
   ReviewService.$inject = ['CONSTANTS', 'ApiService'];
 
   function ReviewService(CONSTANTS, ApiService) {
-    var api = ApiService.restangularV3
+    var api = ApiService.getApiServiceProvider('Review');
     var service = {
       getUsersPeerReviews: getUsersPeerReviews,
       getReview: getReview,
@@ -24,7 +24,7 @@
       var params = {
         filter: encodeURIComponent('challengeId='+challengeId)
       }
-      return api.all('reviews').getList(params)
+      return api.all('reviews').getList({filter: encodeURIComponent('challengeId=' + challengeId)})
     }
 
     function getReview(reviewId) {
@@ -39,7 +39,7 @@
       var params = {
         filter: encodeURIComponent('reviewId='+reviewId)
       }
-      return api.all('reviewItems').getList(params)
+      return api.all('reviewItems').getList({filter: encodeURIComponent('reviewId=' + reviewId)})
     }
 
     function getNextReview(challengeId) {
@@ -65,8 +65,7 @@
       var body = {
         committed: 1,
         id: reviewId
-      };
-
+      }
       // return ApiService.requestHandler('PUT', url, JSON.stringify(body));
       api.one('reviews', reviewId).put()
     }
