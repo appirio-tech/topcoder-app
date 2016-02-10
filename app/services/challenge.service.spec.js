@@ -432,6 +432,16 @@ describe('Challenge Service', function() {
           userDetails: {
             hasUserSubmittedForReview: true,
             roles: ['Submitter'],
+            winningPlacements: [
+              {
+                'submissionId': 12345,
+                'submitterId': 123456,
+                'amount': 500.0,
+                'placed': 1,
+                'finalScore': 98.0,
+                'challengeId': 30041345
+              }
+            ],
             submissions: [
               {
                 challengeId: 30041345,
@@ -479,6 +489,16 @@ describe('Challenge Service', function() {
           userDetails: {
             hasUserSubmittedForReview: true,
             roles: ['Submitter'],
+            winningPlacements: [
+              {
+                'submissionId': 12345,
+                'submitterId': 123456,
+                'amount': 500.0,
+                'placed': 1,
+                'finalScore': 98.0,
+                'challengeId': 30041345
+              }
+            ],
             submissions: [
               {
                 challengeId: 30041345,
@@ -504,8 +524,7 @@ describe('Challenge Service', function() {
                 status: 'Completed Without Win',
                 type: 'Checkpoint Submission'
               }
-            ],
-            winningPlacements: [2, 11, 1]
+            ]
           }
 
         }
@@ -528,11 +547,12 @@ describe('Challenge Service', function() {
           userDetails: {
             hasUserSubmittedForReview: true,
             roles: ['Submitter'],
+            winningPlacements: null,
             submissions: [
               {
                 challengeId: 30041345,
                 id: 12345,
-                placement: 1,
+                placement: 5,
                 score: 98.0,
                 status: 'Active',
                 type: 'Contest Submission'
@@ -553,8 +573,7 @@ describe('Challenge Service', function() {
                 status: 'Completed Without Win',
                 type: 'Checkpoint Submission'
               }
-            ],
-            winningPlacements: [0]
+            ]
           }
 
         }
@@ -563,7 +582,7 @@ describe('Challenge Service', function() {
       var challenge = challenges[0]
       expect(challenge.highestPlacement).not.to.exist
       expect(challenge.wonFirst).to.exist.to.false
-      expect(challenge.userStatus).to.exist.to.equal('PASSED_SCREENING')
+      expect(challenge.userStatus).to.exist.to.equal('PASSED_REVIEW')
       expect(challenge.userHasSubmitterRole).to.exist.to.true
     })
 
@@ -577,6 +596,16 @@ describe('Challenge Service', function() {
           userDetails: {
             hasUserSubmittedForReview: true,
             roles: ['Submitter'],
+            winningPlacements: [
+              {
+                'submissionId': 12345,
+                'submitterId': 123456,
+                'amount': 500.0,
+                'placed': 1,
+                'finalScore': 98.0,
+                'challengeId': 30041345
+              }
+            ],
             submissions: [
               {
                 challengeId: 30041345,
@@ -624,15 +653,8 @@ describe('Challenge Service', function() {
           userDetails: {
             hasUserSubmittedForReview: true,
             roles: ['Submitter'],
+            winningPlacements: null,
             submissions: [
-              {
-                challengeId: 30041345,
-                id: 12345,
-                placement: null,
-                score: 34.0,
-                status: 'Active',
-                type: 'Contest Submission'
-              },
               {
                 challengeId: 30041345,
                 id: 12346,
@@ -671,6 +693,7 @@ describe('Challenge Service', function() {
           userDetails: {
             hasUserSubmittedForReview: true,
             roles: ['Submitter'],
+            winningPlacements: null,
             submissions: [
               {
                 challengeId: 30041345,
@@ -702,7 +725,7 @@ describe('Challenge Service', function() {
       ]
       ChallengeService.processPastChallenges(challenges)
       var challenge = challenges[0]
-      expect(challenge.highestPlacement).to.exist.to.equal(5)
+      expect(challenge.highestPlacement).not.to.exist
       expect(challenge.wonFirst).to.exist.to.false
       expect(challenge.userStatus).to.exist.to.equal('PASSED_REVIEW')
       expect(challenge.userHasSubmitterRole).to.exist.to.true
@@ -718,6 +741,7 @@ describe('Challenge Service', function() {
           userDetails: {
             hasUserSubmittedForReview: false,
             roles: ['Submitter'],
+            winningPlacements: null,
             submissions: []
           }
         }
@@ -740,6 +764,7 @@ describe('Challenge Service', function() {
           userDetails: {
             hasUserSubmittedForReview: false,
             roles: ['Submitter'],
+            winningPlacements: null,
             submissions: null
           }
         }
@@ -762,6 +787,7 @@ describe('Challenge Service', function() {
           userDetails: {
             hasUserSubmittedForReview: false,
             roles: ['Observer'],
+            winningPlacements: null,
             submissions: []
           }
         }
@@ -785,7 +811,7 @@ describe('Challenge Service', function() {
             hasUserSubmittedForReview: false,
             roles: [],
             submissions: [],
-            winningPlacements: [0]
+            winningPlacements: null
           }
         }
       ]
