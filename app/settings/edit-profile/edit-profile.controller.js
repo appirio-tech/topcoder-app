@@ -31,6 +31,7 @@ import _ from 'lodash'
       vm.tags = []
       vm.profileFormProcessing = false
       vm.tracks = {}
+      vm.isValidCountry = true
 
       vm.countries = ISO3166.getAllCountryObjects()
       vm.countryObj = ISO3166.getCountryObjFromAlpha3(vm.userData.competitionCountryCode)
@@ -72,7 +73,7 @@ import _ from 'lodash'
 
     function addSkill(skill) {
       if (skill) {
-        var skillTagId = _.get(skill, 'originalObject.id').toString()
+        var skillTagId = _.get(skill, 'id', undefined).toString()
 
         var isSkillAlreadyAdded = _.find(vm.skills, function(s) { return s.tagId == skillTagId})
 
@@ -95,12 +96,18 @@ import _ from 'lodash'
       return vm.tracks.DEVELOP || vm.tracks.DESIGN || vm.tracks.DATA_SCIENCE
     }
 
-    function updateCountry(angucompleteCountryObj) {
-      var countryCode = _.get(angucompleteCountryObj, 'originalObject.alpha3', undefined)
+    function updateCountry(countryObj) {
+      // Hitting backspace sends an empty array as the value instead of {} or null
+      if (Array.isArray(countryObj)) {
+        vm.countryObj = null
+        return
+      }
+      
+      vm.editProfile.$setDirty()
+      var countryCode = _.get(countryObj, 'alpha3', undefined)
       vm.userData.competitionCountryCode = countryCode
-
-      var isValidCountry = _.isUndefined(countryCode) ? false : true
-      vm.editProfile.location.$setValidity('required', isValidCountry)
+      vm.isValidCountry = _.isUndefined(countryCode) ? false : true
+      vm.countryObj = countryObj
     }
 
     function onFileChange(file) {
