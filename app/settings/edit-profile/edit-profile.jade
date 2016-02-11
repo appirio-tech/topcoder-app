@@ -36,7 +36,8 @@
             match-prop="'name'",
             input-props="{'id':'countryId'}",
             label-key="'name'",
-            value-key="'name'"
+            value-key="'name'",
+            clearable="false"
           )
           span.error-message(ng-if="!vm.isValidCountry") This is a required field
 
@@ -56,8 +57,13 @@
         track-toggle(tracks="vm.tracks")
 
     .save-section
-      button.tc-btn.tc-btn-primary.tc-btn-wide(ng-show="!(vm.editProfile.$invalid || vm.editProfile.$pristine)", type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
-      button.tc-btn.tc-btn-secondary.tc-btn-wide(ng-show="vm.editProfile.$invalid || vm.editProfile.$pristine", type="button", disabled="disabled") Save
+      button.tc-btn.tc-btn-primary.tc-btn-wide(
+        type="submit",
+        tc-busy-button,
+        tc-busy-when="vm.profileFormProcessing",
+        ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine",
+        ng-class="{'disabled': disabled}"
+      ) Save
 
   .settings-section.skills
     .section-info
@@ -75,7 +81,8 @@
         name="'skill-input'",
         input-props="{'id':'tagId'}",
         label-key="'name'",
-        value-key="'name'"
+        value-key="'name'",
+        clearable="false"
         )
 
       .list

@@ -97,6 +97,7 @@ import _ from 'lodash'
     }
 
     function updateCountry(countryObj) {
+      vm.editProfile.$setDirty()
       var countryCode = _.get(countryObj, 'alpha3', undefined)
       vm.userData.competitionCountryCode = countryCode
       vm.isValidCountry = _.isUndefined(countryCode) ? false : true
