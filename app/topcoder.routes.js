@@ -1,4 +1,5 @@
 import angular from 'angular'
+import moment from 'moment'
 
 (function() {
   'use strict'
@@ -65,6 +66,7 @@ import angular from 'angular'
             template: require('./layout/footer/footer')(),
             controller: ['$scope', 'CONSTANTS', function($scope, CONSTANTS) {
               $scope.domain = CONSTANTS.domain
+              $scope.currentYear = moment().format('YYYY')
             }]
           }
         }

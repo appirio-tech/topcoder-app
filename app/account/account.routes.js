@@ -44,6 +44,7 @@ import angular from 'angular'
             controllerAs: 'vm'
           },
           'footer@': {
+            controller: 'FooterController as vm',
             template: require('../layout/footer/account-footer')()
           }
         }
@@ -64,6 +65,7 @@ import angular from 'angular'
             controllerAs: 'vm'
           },
           'footer@': {
+            controller: 'FooterController as vm',
             template: require('../layout/footer/account-footer')()
           }
         }
@@ -82,6 +84,7 @@ import angular from 'angular'
             template: require('./register/registered-successfully')()
           },
           'footer@': {
+            controller: 'FooterController as vm',
             template: require('../layout/footer/account-footer')()
           }
         }
@@ -102,6 +105,7 @@ import angular from 'angular'
             controllerAs: 'vm'
           },
           'footer@': {
+            controller: 'FooterController as vm',
             template: require('../layout/footer/account-footer')()
           }
         }
