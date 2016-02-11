@@ -1,4 +1,5 @@
 import angular from 'angular'
+import moment from 'moment'
 
 (function() {
   'use strict'
@@ -44,6 +45,9 @@ import angular from 'angular'
             controllerAs: 'vm'
           },
           'footer@': {
+            controller: ['$scope', function($scope) {
+              $scope.currentYear = moment().format('YYYY')
+            }],
             template: require('../layout/footer/account-footer')()
           }
         }
@@ -64,6 +68,9 @@ import angular from 'angular'
             controllerAs: 'vm'
           },
           'footer@': {
+            controller: ['$scope', function($scope) {
+              $scope.currentYear = moment().format('YYYY')
+            }],
             template: require('../layout/footer/account-footer')()
           }
         }
@@ -82,6 +89,9 @@ import angular from 'angular'
             template: require('./register/registered-successfully')()
           },
           'footer@': {
+            controller: ['$scope', function($scope) {
+              $scope.currentYear = moment().format('YYYY')
+            }],
             template: require('../layout/footer/account-footer')()
           }
         }
@@ -102,6 +112,9 @@ import angular from 'angular'
             controllerAs: 'vm'
           },
           'footer@': {
+            controller: ['$scope', function($scope) {
+              $scope.currentYear = moment().format('YYYY')
+            }],
             template: require('../layout/footer/account-footer')()
           }
         }
