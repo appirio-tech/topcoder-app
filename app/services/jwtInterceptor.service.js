@@ -34,9 +34,9 @@ import angular from 'angular'
         if (config.method.toUpperCase() === obj.method && re.test(config.url)) {
           if (TcAuthService.isAuthenticated()) {
             var token = null
-            if (config.url.indexOf('v2/') ||
-                config.url.indexOf('memberCert') ||
-                config.url.indexOf('badges')) {
+            if (config.url.indexOf('v2/') > -1 ||
+                config.url.indexOf('memberCert') > -1 ||
+                config.url.indexOf('badges') > -1) {
               token = AuthTokenService.getV2Token()
             } else {
               token = AuthTokenService.getV3Token()
