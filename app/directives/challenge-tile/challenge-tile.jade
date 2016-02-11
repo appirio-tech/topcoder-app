@@ -2,7 +2,8 @@
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")
 
     header
-      a.name(ng-href="{{challenge|challengeLinks:'detail'}}", title="{{challenge.name}}") #[span {{challenge.name}}]
+      a.name(ng-href="{{challenge|challengeLinks:'detail'}}", title="{{challenge.name}}", ng-show="!challenge.isPrivate") #[span {{challenge.name}}]
+      span.name(title="{{challenge.name}}", ng-show="challenge.isPrivate") {{challenge.name}}
 
       p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
@@ -37,7 +38,8 @@
     ng-switch="challenge.track")
 
     header
-      a.name(ng-href="{{challenge|challengeLinks:'detail'}}", title="{{challenge.name}}") {{challenge.name}}
+      a.name(ng-href="{{challenge|challengeLinks:'detail'}}", title="{{challenge.name}}", ng-show="!challenge.isPrivate") #[span {{challenge.name}}]
+      span.name(title="{{challenge.name}}", ng-show="challenge.isPrivate") {{challenge.name}}
 
       p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
@@ -78,7 +80,8 @@
   .active-challenge(ng-show="challenge.status === 'ACTIVE'")
 
     header
-      a.name(ng-href="{{challenge|challengeLinks:'detail'}}", title="{{challenge.name}}") {{challenge.name}}
+      a.name(ng-href="{{challenge|challengeLinks:'detail'}}", title="{{challenge.name}}", ng-show="!challenge.isPrivate") #[span {{challenge.name}}]
+      span.name(title="{{challenge.name}}", ng-show="challenge.isPrivate") {{challenge.name}}
       
       p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
@@ -107,7 +110,8 @@
     ng-switch="challenge.track")
 
     header
-      a.name(ng-href="{{challenge|challengeLinks:'detail'}}", title="{{challenge.name}}") {{challenge.name}}
+      a.name(ng-href="{{challenge|challengeLinks:'detail'}}", title="{{challenge.name}}", ng-show="!challenge.isPrivate") #[span {{challenge.name}}]
+      span.name(title="{{challenge.name}}", ng-show="challenge.isPrivate") {{challenge.name}}
 
       p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
