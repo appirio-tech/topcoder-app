@@ -35,6 +35,7 @@ import angular from 'angular'
         parent: 'review',
         url: '/challenges/:challengeId/scorecards/:scorecardId/',
         data: {
+          authRequired: false,
           title: 'Scorecard'
         },
         views: {
