@@ -33,7 +33,15 @@ import angular from 'angular'
         var re = new RegExp(obj.url)
         if (config.method.toUpperCase() === obj.method && re.test(config.url)) {
           if (TcAuthService.isAuthenticated()) {
-            var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token()
+            var token = null
+            if (config.url.indexOf('v2/') ||
+                config.url.indexOf('memberCert') ||
+                config.url.indexOf('badges')) {
+              token = AuthTokenService.getV2Token()
+            } else {
+              token = AuthTokenService.getV3Token()
+            }
+            // var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token()
             if (jwtHelper.isTokenExpired(token)) {
               $log.debug(String.supplant('Token has expired, attempting to refreshToken() for "{url}"', config))
               return AuthTokenService.refreshV3Token(token).then(function(idToken) {
