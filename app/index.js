@@ -50,6 +50,7 @@ requireContextFiles(require.context('./', true, /^(?:(?!\.spec\.js$).)*\.js$/igm
 
 // Some ordering is needed for right cascading of styles
 // TODO: each module requires the CSS it needs and we delete this list
+require('../assets/css/vendors/reactselect.scss')
 require('../assets/css/vendors/introjs.scss')
 require('../assets/css/vendors/angucomplete.scss')
 require('../assets/css/topcoder.scss')

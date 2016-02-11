@@ -61,7 +61,7 @@
         type="submit",
         tc-busy-button,
         tc-busy-when="vm.profileFormProcessing",
-        ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine",
+        ng-disabled="!vm.isValidCountry || !vm.countryObj || vm.editProfile.$invalid || vm.editProfile.$pristine",
         ng-class="{'disabled': disabled}"
       ) Save
 

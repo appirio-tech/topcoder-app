@@ -97,6 +97,12 @@ import _ from 'lodash'
     }
 
     function updateCountry(countryObj) {
+      // Hitting backspace sends an empty array as the value instead of {} or null
+      if (Array.isArray(countryObj)) {
+        vm.countryObj = null
+        return
+      }
+      
       vm.editProfile.$setDirty()
       var countryCode = _.get(countryObj, 'alpha3', undefined)
       vm.userData.competitionCountryCode = countryCode

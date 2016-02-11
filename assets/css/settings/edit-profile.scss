@@ -154,25 +154,6 @@
   margin-top: 5px;
 }
 
-dropdown {
-  .is-open {
-    > .Select-control {
-      border-color: #0096FF;
-    }
-  }
-
-  .Select-input {
-    input {
-      border-width: 0;
-      padding: 0;
-      &:focus {
-        border-width: 0;
-        box-shadow: none;
-      }
-    }
-  }
-}
-
 .links.settings-section {
   border-bottom: none;
 }
