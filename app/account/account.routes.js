@@ -1,6 +1,4 @@
 import angular from 'angular'
-import moment from 'moment'
-const FooterController = require('../layout/footer/footer.controller.js')
 
 (function() {
   'use strict'
@@ -46,7 +44,7 @@ const FooterController = require('../layout/footer/footer.controller.js')
             controllerAs: 'vm'
           },
           'footer@': {
-            controller: FooterController,
+            controller: 'FooterController as vm',
             template: require('../layout/footer/account-footer')()
           }
         }
@@ -67,7 +65,7 @@ const FooterController = require('../layout/footer/footer.controller.js')
             controllerAs: 'vm'
           },
           'footer@': {
-            controller: FooterController,
+            controller: 'FooterController as vm',
             template: require('../layout/footer/account-footer')()
           }
         }
@@ -86,7 +84,7 @@ const FooterController = require('../layout/footer/footer.controller.js')
             template: require('./register/registered-successfully')()
           },
           'footer@': {
-            controller: FooterController,
+            controller: 'FooterController as vm',
             template: require('../layout/footer/account-footer')()
           }
         }
@@ -107,7 +105,7 @@ const FooterController = require('../layout/footer/footer.controller.js')
             controllerAs: 'vm'
           },
           'footer@': {
-            controller: FooterController,
+            controller: 'FooterController as vm',
             template: require('../layout/footer/account-footer')()
           }
         }

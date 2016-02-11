@@ -1,10 +1,10 @@
 import angular from 'angular'
+import FooterController from './footer/footer.controller'
 
 (function() {
   'use strict'
 
-  var dependencies = []
-
-  angular.module('tc.layout', dependencies)
-
+  angular
+    .module('tc.layout', [])
+    .controller('FooterController', FooterController)
 })()
