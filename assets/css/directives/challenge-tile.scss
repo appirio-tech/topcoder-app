@@ -71,7 +71,8 @@ challenge-tile .challenge.tile-view {
     justify-content: space-between;
     padding: 5px 10px;
 
-    a.name {
+    a.name,
+    span.name {
       display: block;
       @include font-with-weight('Sofia Pro', 500);
       font-size: 12px;
@@ -396,7 +397,8 @@ challenge-tile .challenge.list-view {
       padding: 0 30px;
     }
 
-    a.name {
+    a.name,
+    span.name {
       display: block;
       @include font-with-weight('Sofia Pro', 500);
       font-size: 12px;
