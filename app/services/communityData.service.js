@@ -21,29 +21,29 @@ import angular from 'angular'
       var data = {
         'memberLeaderboard': [
           {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/nexttopdesigns_dec2015.png',
-            'name': 'nexttopdesigns',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/f0rc0d3r_jan2016.png',
+            'name': 'f0rc0d3r',
             'contestType': 'Design',
-            'description': 'Ten wins earning over $10K in design challenges',
+            'description': 'Three first place wins in design totalling $4500',
             'class': 'design'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/seriyvolk83_dec2015.png',
-            'name': 'seriyvolk83',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/vvvpig_jan2016.png',
+            'name': 'vvvpig',
             'contestType': 'Development',
-            'description': 'Six wins earning over $4K in development challenges',
+            'description': 'Eight first place wins in design totalling $9300',
             'class': 'develop'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/sadhwaniyash6_dec2015.png',
-            'name': 'sadhwaniyash6',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/grumpy_gordon_jan2016.png',
+            'name': 'grumpy_gordon',
             'contestType': 'Data Science',
-            'description': 'Rating increase of 627 pts in Oct SRMs vaulting into Div 1.',
+            'description': 'Rating increase of 316 pts in Nov SRMs, vaulting into Div 1',
             'class': 'data-science'
           }, {
-            'avatar': 'https://www.topcoder.com/wp-content/uploads/2015/05/alyad_dec2015.png',
-            'name': 'Alyad',
-            'contestType': 'Design Rookie',
-            'description': 'Won 2 challenges within 6 weeks of becoming a member!',
-            'class': 'design'
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/thomaskranitsas_jan2016.png',
+            'name': 'thomaskranitsas',
+            'contestType': 'Development Rookie',
+            'description': 'Won first place in his first two challenges!',
+            'class': 'develop'
           }
         ],
         'copilots': [{
