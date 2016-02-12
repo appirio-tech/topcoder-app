@@ -1,21 +1,24 @@
+import angular from 'angular'
+import _ from 'lodash'
+
 (function () {
-  'use strict';
+  'use strict'
 
-  angular.module('tc.myDashboard').controller('MySRMsController', MySRMsController);
+  angular.module('tc.myDashboard').controller('MySRMsController', MySRMsController)
 
-  MySRMsController.$inject = ['UserService','SRMService', '$log', '$state', '$stateParams', 'CONSTANTS', '$scope'];
+  MySRMsController.$inject = ['UserService','SRMService', '$log', '$state', '$stateParams', 'CONSTANTS', '$scope']
 
   function MySRMsController(UserService, SRMService, $log, $state, $stateParams, CONSTANTS, $scope) {
-    $log = $log.getInstance('MySRMsController');
-    var vm = this;
-    vm.srms = [];
-    vm.statusFilter = _.get($stateParams, 'status','past');
+    $log = $log.getInstance('MySRMsController')
+    var vm = this
+    vm.srms = []
+    vm.statusFilter = _.get($stateParams, 'status','past')
 
-    vm.loading = CONSTANTS.STATE_LOADING;
-    vm.view = UserService.getPreference($state.$current.name+'.challengeListView') || 'tile';
-    vm.changeView = changeView;
-    vm.changeFilter = changeFilter;
-    vm.getSRMs = getSRMs;
+    vm.loading = CONSTANTS.STATE_LOADING
+    vm.view = UserService.getPreference($state.$current.name+'.challengeListView') || 'tile'
+    vm.changeView = changeView
+    vm.changeFilter = changeFilter
+    vm.getSRMs = getSRMs
     // paging params, these are updated by tc-pager
     vm.pageParams = {
       currentOffset : 0,
@@ -24,75 +27,75 @@
       totalCount: 0,
       // counter used to indicate page change
       updated: 0
-    };
+    }
 
-    var userId = UserService.getUserIdentity().userId;
-    var userHandle = UserService.getUserIdentity().handle;
-    vm.userId = userId;
-    vm.handle = userHandle;
+    var userId = UserService.getUserIdentity().userId
+    var userHandle = UserService.getUserIdentity().handle
+    vm.userId = userId
+    vm.handle = userHandle
 
-    activate();
+    activate()
 
     function activate() {
-      vm.srms = [];
+      vm.srms = []
       // watches page change counter to reload the data
       $scope.$watch('vm.pageParams.updated', function(newValue, oldValue) {
         if (newValue !== oldValue) {
-          getSRMs();
+          getSRMs()
         }
-      });
+      })
       // initial call
-      changeFilter(vm.statusFilter);
+      changeFilter(vm.statusFilter)
     }
 
     function changeView(view) {
-      vm.view = view;
+      vm.view = view
       // update UserPreference
-      UserService.setPreference($state.$current.name+'.challengeListView', view);
+      UserService.setPreference($state.$current.name+'.challengeListView', view)
     }
 
     function changeFilter(filter) {
-      vm.statusFilter = filter;
+      vm.statusFilter = filter
       // for upcoming SRMs sorting is done ascending order of codingStartAt
       // for past SRMs sorting is done descending order of codingEndAt
-      vm.orderBy = filter === 'future'? 'codingStartAt': 'codingEndAt';
-      vm.reverseOrder = filter !== 'future';
+      vm.orderBy = filter === 'future'? 'codingStartAt': 'codingEndAt'
+      vm.reverseOrder = filter !== 'future'
       // update url but don't reload
-      $state.go($state.$current.name, {status: filter}, {notify: false});
+      $state.go($state.$current.name, {status: filter}, {notify: false})
       // reset
-      vm.srms = [];
-      vm.pageParams.currentOffset = 0;
-      getSRMs();
+      vm.srms = []
+      vm.pageParams.currentOffset = 0
+      getSRMs()
     }
 
     function getSRMs() {
-      vm.loading = CONSTANTS.STATE_LOADING;
+      vm.loading = CONSTANTS.STATE_LOADING
 
       // reverseOrder implies we need to send 'desc' in orderBy clause.
-      var _orderByString = vm.orderBy;
+      var _orderByString = vm.orderBy
       if (vm.reverseOrder)
-        _orderByString += ' desc';
+        _orderByString += ' desc'
       var params = {
         limit: vm.pageParams.limit,
         orderBy: _orderByString,
         offset: vm.pageParams.currentOffset,
         filter: 'status=' + vm.statusFilter
-      };
+      }
 
       return SRMService.getUserSRMs(userHandle, params)
-        .then(handleSRMsLoad, handleSRMsFailure);
+        .then(handleSRMsLoad, handleSRMsFailure)
     }
 
     function handleSRMsLoad(data) {
-      vm.pageParams.totalCount = data.metadata.totalCount;
-      vm.srms = vm.srms.concat(data);
-      vm.pageParams.currentCount = vm.srms.length;
-      vm.loading = CONSTANTS.STATE_READY;
+      vm.pageParams.totalCount = data.metadata.totalCount
+      vm.srms = vm.srms.concat(data)
+      vm.pageParams.currentCount = vm.srms.length
+      vm.loading = CONSTANTS.STATE_READY
     }
 
     function handleSRMsFailure(resp) {
-      $log.error(resp);
-      vm.loading = CONSTANTS.STATE_ERROR;
+      $log.error(resp)
+      vm.loading = CONSTANTS.STATE_ERROR
     }
   }
-})();
+})()

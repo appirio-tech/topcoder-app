@@ -1,19 +1,23 @@
-(function() {
-  'use strict';
+import angular from 'angular'
+import moment from 'moment'
+import d3 from 'd3'
 
-  angular.module('tcUIComponents').directive('historyGraph', historyGraph);
+(function() {
+  'use strict'
+
+  angular.module('tcUIComponents').directive('historyGraph', historyGraph)
 
   function historyGraph() {
     return {
       restrict: 'E',
-      templateUrl: 'directives/history-graph/history-graph.directive.html',
+      template: require('./history-graph')(),
       scope: {
         promise: '=',
         rating: '=',
         graphState: '='
       },
       controller: ['$scope', HistoryGraphController]
-    };
+    }
   }
 
   function HistoryGraphController($scope) {
@@ -53,7 +57,7 @@
         'start': 2200,
         'end': Infinity
       }
-    ];
+    ]
     var measurements = {
       w: 600,
       h: 400,
@@ -63,7 +67,7 @@
         bottom: 100,
         left: 60
       }
-    };
+    }
 
     var mobileMeasurements = {
       w: 300,
@@ -74,78 +78,78 @@
         bottom: 50,
         left: 60
       }
-    };
+    }
 
-    var desktop = window.innerWidth >= 900 && true;
+    var desktop = window.innerWidth >= 900 && true
 
     $scope.promise.then(function(history) {
       history.sort(function(left, right) {
-        left = moment(left.ratingDate);
-        right = moment(right.ratingDate);
-        return left > right ? 1 : left < right ? -1 : 0;
+        left = moment(left.ratingDate)
+        right = moment(right.ratingDate)
+        return left > right ? 1 : left < right ? -1 : 0
       })
-      $scope.history = history;
+      $scope.history = history
 
-      var parseDate = d3.time.format.utc("%Y-%m-%dT%H:%M:%S.%LZ").parse;
+      var parseDate = d3.time.format.utc('%Y-%m-%dT%H:%M:%S.%LZ').parse
 
       history.forEach(function(d) {
-        d.ratingDate = parseDate(d.ratingDate);
-      });
+        d.ratingDate = parseDate(d.ratingDate)
+      })
 
-      draw(desktop ? measurements : mobileMeasurements, history);
-    });
+      draw(desktop ? measurements : mobileMeasurements, history)
+    })
 
-    d3.select(window).on('resize.history', resize);
+    d3.select(window).on('resize.history', resize)
 
     function resize() {
       if (window.innerWidth < 900 && desktop) {
-        d3.select('.history-graph svg').remove();
-        draw(mobileMeasurements, $scope.history);
-        desktop = false;
+        d3.select('.history-graph svg').remove()
+        draw(mobileMeasurements, $scope.history)
+        desktop = false
       } else if (window.innerWidth >= 900 && !desktop) {
-        d3.select('.history-graph svg').remove();
-        draw(measurements, $scope.history);
-        desktop = true;
+        d3.select('.history-graph svg').remove()
+        draw(measurements, $scope.history)
+        desktop = true
       }
     }
 
     function draw(measurements, history) {
-      if (!history) return;
+      if (!history) return
 
-      var w       = measurements.w,
-          h       = measurements.h,
-          padding = measurements.padding;
+      var w       = measurements.w
+      var h       = measurements.h
+      var padding = measurements.padding
 
-      var totalH = h + padding.top + padding.bottom;
-      var totalW = w + padding.left + padding.right;
+      var totalH = h + padding.top + padding.bottom
+      // var totalW = w + padding.left + padding.right
 
       var x = d3.time.scale()
                 .range([padding.left + 5, w + padding.left - 5])
-                .domain(d3.extent(history, function(d) { return d.ratingDate; }));
+                .domain(d3.extent(history, function(d) { return d.ratingDate }))
 
       var y = d3.scale.linear()
                 .range([h + padding.top - 5, padding.top + 5])
-                .domain(d3.extent(history, function(d) { return d.newRating; }));
+                .domain(d3.extent(history, function(d) { return d.newRating }))
 
 
       function yAxis(ticks) {
         return d3.svg.axis()
                  .scale(y)
                  .ticks(ticks || 10)
-                 .orient("left");
+                 .orient('left')
       }
 
       function xAxis(ticks) {
         return d3.svg.axis()
                  .scale(x)
                  .ticks(ticks || 10)
-                 .orient("bottom");
+                 .orient('bottom')
       }
 
       var line = d3.svg.line()
                    //.interpolate('cardinal')
-                   .x(function(d) { return x(d.ratingDate); })
-                   .y(function(d) { return y(d.newRating); })
+                   .x(function(d) { return x(d.ratingDate) })
+                   .y(function(d) { return y(d.newRating) })
 
 
       var svg = d3.select('.history-graph').append('svg')
@@ -165,21 +169,21 @@
          .attr('class', 'x axis')
          .attr('transform', 'translate(0,' + (h + padding.top) +')')
          .call(xAxis().tickFormat(function(d) {
-           var m = moment(d);
-           if (m.format('MM') == '01') return m.format('YYYY');
-           else return m.format('MMM').toUpperCase();
-         }));
+           var m = moment(d)
+           if (m.format('MM') == '01') return m.format('YYYY')
+           else return m.format('MMM').toUpperCase()
+         }))
 
       svg.selectAll('g.x.axis .tick text')
          .attr('font-weight', function(d) {
-           return moment(d).format('MM') == '01' ? 'bold' : 'normal';
+           return moment(d).format('MM') == '01' ? 'bold' : 'normal'
          })
          .attr('fill', function(d) {
-           return moment(d).format('MM') == '01' ? 'black' : '#a3a3ae';
+           return moment(d).format('MM') == '01' ? 'black' : '#a3a3ae'
          })
          .attr('font-size', function(d) {
-           return 11;
-         });
+           return 11
+         })
 
 
       svg.append('g')
@@ -211,32 +215,32 @@
          .attr('d', line)
 
 
-        // FIXME !!!
-        svg.append('g')
-           .selectAll('line')
-           .data($scope.colors)
-           .enter()
-           .append('line')
-           .attr('x1', padding.left - 18)
-           .attr('x2', padding.left - 18)
-           .attr('y1', function(d) {
-             return processRatingStripePoint(y(d.start));
-           })
-           .attr('y2', function(d) {
-             return processRatingStripePoint(y(d.end));
-           })
-           .attr('stroke', function(d) {
-             return d.color;
-           })
-           .attr('stroke-width', 3)
+      // FIXME !!!
+      svg.append('g')
+         .selectAll('line')
+         .data($scope.colors)
+         .enter()
+         .append('line')
+         .attr('x1', padding.left - 18)
+         .attr('x2', padding.left - 18)
+         .attr('y1', function(d) {
+           return processRatingStripePoint(y(d.start))
+         })
+         .attr('y2', function(d) {
+           return processRatingStripePoint(y(d.end))
+         })
+         .attr('stroke', function(d) {
+           return d.color
+         })
+         .attr('stroke-width', 3)
 
       function processRatingStripePoint(y) {
         if (y < padding.top || isNaN(y)) {
-          return padding.top;
+          return padding.top
         } else if (y > totalH - padding.bottom) {
-          return totalH - padding.bottom;
+          return totalH - padding.bottom
         } else {
-          return y;
+          return y
         }
       }
 
@@ -245,29 +249,29 @@
          .enter()
          .append('circle')
          .attr('cx', function(d) {
-           return x(d.ratingDate);
+           return x(d.ratingDate)
          })
          .attr('cy', function(d) {
-           return y(d.newRating);
+           return y(d.newRating)
          })
          .attr('fill', function(d) {
-           return ratingToColor($scope.colors, d.newRating);
+           return ratingToColor($scope.colors, d.newRating)
          })
          .on('mouseover', function(d) {
-           $scope.historyRating = d.newRating;
-           $scope.historyDate = moment(d.ratingDate).format('YYYY-MM-DD');
-           $scope.historyChallenge = d.challengeName;
-           $scope.$digest();
+           $scope.historyRating = d.newRating
+           $scope.historyDate = moment(d.ratingDate).format('YYYY-MM-DD')
+           $scope.historyChallenge = d.challengeName
+           $scope.$digest()
            d3.select(this)
              .attr('r', 6.0)
          })
          .on('mouseout', function(d) {
-           $scope.historyRating = undefined;
-           $scope.$digest();
+           $scope.historyRating = undefined
+           $scope.$digest()
            d3.select(this)
              .attr('r', 4.5)
              .attr('stroke', 'none')
-             .attr('stroke-width', '0px');
+             .attr('stroke-width', '0px')
          })
          .attr('r', 4.5)
 
@@ -276,18 +280,9 @@
 
     function ratingToColor(colors, rating) {
       colors = colors.filter(function(color) {
-        return rating >= color.start && rating <= color.end;
-      });
-      return colors[0] && colors[0].color || 'black';
+        return rating >= color.start && rating <= color.end
+      })
+      return colors[0] && colors[0].color || 'black'
     }
-
-    function ratingToDarkerColor(colors, rating) {
-      colors = colors.filter(function(color) {
-        return rating >= color.start && rating <= color.end;
-      });
-      return colors[0] && colors[0].darkerColor || 'black';
-    }
-
   }
-
-})();
+})()

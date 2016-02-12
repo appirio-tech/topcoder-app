@@ -1,7 +1,7 @@
 .header-wrapper(ng-class="{'autocomplete': main.searchTerm.length > 0}")
   header.top-header
     a.logo-link(href="/")
-      
+
     // Header content visible on small screens
     .show-small.mobile-heading
       span.tc-text-logo(ng-if="main.menuVisible") [ topcoder ]
@@ -14,7 +14,7 @@
       a(ui-sref="profile.about({userHandle: vm.userHandle})", ng-switch="vm.isAuth" class="user-link" data-ng-if="!main.menuVisible")
         img(ng-switch-when="true", ng-if="vm.profile.photoURL && vm.profile.photoURL.length", class="user-avatar", ng-src="{{vm.profile.photoURL}}")
 
-        img(ng-switch-when="true", ng-if="!vm.profile.photoURL || !vm.profile.photoURL.length", class="user-avatar", ng-src="/images/ico-user-default.svg")
+        img(ng-switch-when="true", ng-if="!vm.profile.photoURL || !vm.profile.photoURL.length", class="user-avatar", ng-src=require("../../../assets/images/ico-user-default.svg"))
 
         span(ng-switch-when="false" class="tc-btn tc-btn-s") JOIN
 
@@ -37,7 +37,7 @@
           )
             span(ui-sref="profile.about({userHandle: vm.userHandle})")
               img(ng-if="vm.profile.photoURL && vm.profile.photoURL.length", class="user-avatar", ng-src="{{vm.profile.photoURL}}")
-              img(ng-if="!vm.profile.photoURL || !vm.profile.photoURL.length", class="user-avatar", ng-src="/images/ico-user-default.svg")
+              img(ng-if="!vm.profile.photoURL || !vm.profile.photoURL.length", class="user-avatar", ng-src=require("../../../assets/images/ico-user-default.svg"))
 
               span.username(
                 style="color:{{vm.userHandleColor}}",
@@ -52,7 +52,7 @@
             li.submenu-item
               //- a.menu-link(ng-click="vm.logout(); main.menuVisible = vm.isAuth = false")
               a.menu-link(ui-sref="logout")
-                img.menu-icon(ng-src="/images/nav/exit.svg")
+                img.menu-icon(ng-src=require("../../../assets/images/nav/exit.svg"))
 
                 .menu-text LOG OUT
 

@@ -1,0 +1,76 @@
+.srm.tile-view(ng-show="view === 'tile'")
+  .upcoming-srm(ng-show="srm.status === 'FUTURE'")
+    .challenge-track
+
+    header
+      //- a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{roundId}}") {{srm.name}}
+      a.noclick(href="javascript:void(0)") {{srm.name}}
+
+    .srm-details
+      p.starts-in Starts in #[span {{srm.codingStartAt | timeDiff:"quantity"}} {{srm.codingStartAt | timeDiff:'unit'}}]
+
+      .srm-calendar
+        span.day {{srm.codingStartAt | localTime:"DD" }}
+        span.month {{srm.codingStartAt | localTime:"MMM" }}
+        span.hour {{srm.codingStartAt | localTime:"hh:mm a" }}
+        span.time-zone {{srm.codingStartAt | localTime:"z" }}
+
+    .phase-status
+      .registered(ng-show="srm.userStatus === CONSTANTS.REGISTERED") Registered
+      .unregistered(ng-hide="srm.currentPhase !== CONSTANTS.REGISTRATION || srm.userStatus === CONSTANTS.REGISTERED")
+        a.tc-btn.tc-btn-s.tc-btn-wide(href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{roundId}}") Register
+
+  .past-srm(ng-show="srm.status === 'PAST'")
+    .challenge-track
+
+    header
+      a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{roundId}}") {{srm.name}}
+
+      .ended-on #[span {{srm.codingEndAt | localTime:"MMM DD, YYYY" }}]
+
+    .member-stats
+      p.points #[span {{srm.result.finalPoints }}] #[span Points]
+      .ranks
+        a.division(href="https://community.{{DOMAIN}}/stat?c=round_stats&rd={{roundId}}&dn={{division}}")
+          p.rank {{srm.result.divisionPlacement}}
+          p.label  #[span Division {{srm.result.division}}]
+        a.room(href="https://community.{{DOMAIN}}/stat?c=coder_room_stats&cr={{userId}}&rd={{roundId}}")
+          p.rank #[span {{srm.result.roomPlacement}}]
+          p.label #[span Room]
+      p.placement Placement
+
+.srm.list-view(ng-show="view=='list'")
+  .upcoming-srm(ng-show="srm.status === 'FUTURE'")
+    .challenge-track
+    header
+      .srm-name
+        //- a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{roundId}}") {{srm.name}}
+        a.noclick(href="javascript:void(0)") {{srm.name}}
+
+    .srm-details
+      p.starts-in Starts in #[span {{srm.codingStartAt | timeDiff:"quantity"}} {{srm.codingStartAt | timeDiff:'unit'}}]
+
+    .phase-status
+      .registered(ng-show="srm.userStatus === CONSTANTS.REGISTERED") Registered
+      .unregistered(ng-hide="srm.currentPhase !== CONSTANTS.REGISTRATION || srm.userStatus === CONSTANTS.REGISTERED")
+        a.tc-btn.tc-btn-s.tc-btn-wide(href="https://community.{{DOMAIN}}/tc?module=MatchDetails&rd={{roundId}}") Register
+
+  .past-srm(ng-show="srm.status === 'PAST'")
+    .challenge-track
+    header
+      .srm-name
+        a(ng-href="https://community.{{DOMAIN}}/stat?c=round_overview&rd={{roundId}}") {{srm.name}}
+
+    .srm-details
+      p.ended-on Ended {{srm.codingEndAt | timeDiff:"quantity"}} {{srm.codingEndAt | timeDiff:'unit'}} ago
+
+    .member-stats
+      p.points #[span {{srm.result.finalPoints }}] Points
+
+      .ranks
+        a.division(ng-class="{noclick: !srm.result.divisionPlacement}", href="https://community.{{DOMAIN}}/stat?c=round_stats&rd={{roundId}}&dn={{division}}")
+          p.rank {{srm.result.divisionPlacement}}
+          p.label #[span Div {{srm.result.division}}] #[span Placement]
+        a.room(ng-class="{noclick: !srm.result.roomPlacement}", href="https://community.{{DOMAIN}}/stat?c=coder_room_stats&cr={{userId}}&rd={{roundId}}")
+          p.rank #[span {{srm.result.roomPlacement}}]
+          p.label #[span Room] #[span Placement]

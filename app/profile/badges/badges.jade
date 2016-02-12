@@ -1,7 +1,7 @@
 header.head
   .breadcrumbs
     .handle
-      img.profile-circle(fallback-src="/images/avatarPlaceholder.png", ng-src="{{vm.profile.photoURL}}")
+      img.profile-circle(fallback-src=require("../../../assets/images/avatarPlaceholder.png"), ng-src="{{vm.profile.photoURL}}")
 
       span.handle
         | {{vm.userHandle}}

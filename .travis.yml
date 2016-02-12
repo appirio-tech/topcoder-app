@@ -1,0 +1,64 @@
+language: node_js
+node_js:
+- 5.5.0
+install:
+- npm install
+script:
+- npm run lint && npm test && npm run build
+sudo: false
+deploy:
+- provider: s3
+  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+  detect_encoding: true
+  access_key_id: $AWS_KEY
+  secret_access_key: $AWS_SECRET
+  bucket: app.topcoder-dev.com
+  skip_cleanup: true
+  local_dir: dist
+  on:
+    branch: dev
+- provider: s3
+  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+  detect_encoding: true
+  access_key_id: $QA_AWS_KEY
+  secret_access_key: $QA_AWS_SECRET
+  bucket: app.topcoder-qa.com
+  skip_cleanup: true
+  local_dir: dist
+  on:
+    branch: qa-integration
+- provider: s3
+  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+  detect_encoding: true
+  access_key_id: $MASTER_AWS_KEY
+  secret_access_key: $MASTER_AWS_SECRET
+  bucket: app.topcoder.com
+  skip_cleanup: true
+  local_dir: dist
+  on:
+    branch: master
+env:
+  matrix:
+    - CXX=g++-4.8
+  global:
+    # DEV_AWS_KEY
+    - secure: a5X4QlY2JD/sJnEBkT5WwwfWjYKq3ldRf/+Dh5x2oHB0swGzYyFxzVlezddPF8xDML+CcVoLHkd8WNM2F7qcxHZTDC5spH/ym2gX6YlRwFRTTFBRCJehgYs8Vit/s14f8gkuVV8fe2ubMiV+fpAw80tb3E+t+nCckmXwe8gDqDbHto5VIozTiqDOV/WvkPzaRQofTeNzSqjrAH/iRq8hJUx16shCO2ccdiLu7rnOuys+UwjWFRyjdLP01UZXd5u6a5XK3vigLGPBAqsEwSMgScATJjNIHwYofE5Q3ztD85jz/JoQatQf7LCnQUqkLT+xldMkOZuTlTHvzmVUOl2WYpVxWV9hXwBemvyuRPPtzIrZkKXi6OUgvpYwGgWn8eS1qulB1DYPrUWBtIYGQoxEchfNlmcrCIJ7BrbL9xiNUM8J+ZCWtNS01eSapMHdhAIUMLEsAjxBY+ArLuYAD+URB0d+JZrr9cORGnrGDB+1wI12Z/Qu5LEDp/TMOisK2PXEsaqzlaazr9lj2FXTYJQyyFMMWzq1v1o5lZ5mEJ5ea36eGApV1iQNmPrg7omhDHwKtBpMDFQWZ0Y1SrkIk3QTX6JfzsrehwAhAK2fZ25EaC6zcppAo0ia5/VZoWzxHFQyhkC47hRrM7C6nCriQPDc9kKsmTSX5rp5e/DNpiZ67qM=
+    # DEV_AWS_SECRET
+    - secure: p+od0xD/9vpMbR2AI6gZWknNAtvvIfq6jXIF98DEsDlqrrMFv4SwtuXLlCmX5PBnB/cWOkwgRhymI7/3+fLrDC+wqlhDEWyzSpVOvAcVAb5LEP7IDen0W8kTj2q9I2VRX+keL7lxQCknAf/21sRZeJfJhLGR+O3NcytEdsjlpFCopA6luZYv1QSd+nRJiTsI7I69T0hr7jZk+YioyjEEp/4qzI2qyJH7E5Ry+DD3gXnC3zva48Huq6rvOtLpgFmio1b1rNAcA55Q9Y3vb1jJyZhKpRvtel9OM9ekTxANEGJVaMzxyZXT7EFTxwxS+ub5c2HRzxedMnD3tY29ku2JJx7Ofm+Yxt9DZXSK7EV99xxE71kIhI9lZFiWZviym08MHGc4pee6+Cl6ZkiV44v4XnwbgUq8GCOkmDMQBQtGhXq7dC6jB/r7P7CJs+DIGDF7qNt/xizVOC1THS8GUCN68aWMVperP+IlUXo5d2XekhO6vjHk6o44K8A1s7yblBWXj54B6NfJnBzUK2X0g6Y2xdW6tmoKtad1r1I3062skc+UiU+6m4fGS8pLFElJNj+8N7QANoEw9oJDZfuQ47uVQzPjAA1/qdcy3ksMek0siNFbpZnMqzOJTPf2Xe7YgKuCPg0QczESXIjOeEIU0om7SWmGEIuMFqt6obQW0M3VHn0=
+    # QA_AWS_KEY
+    - secure: CObZrZ37F2BE67xgLw+oCbS+zy6iyZYszERY75yuDqrXn6wyui2rgHOpDIdsemWueLTZImMdHD7WtCRRnqO2JDxt+DwmeaVXgx3IJiB1+UNa0syRsVpj/+TKNQ2/y/bw7u21Yr0JL0VxlyyB6+vexEZ6EkmJxmlKczsBZ96LLkkX0xSNYA4Co7ieGpAsPlXYqCGIg92rhdhXZ1aPkU91tI1A6Jq3CEVnKDbdNXQksxt5WPsAu/1LUj0iqLwTk+x5vYipC+r6scF/gDIDmrmziT2N0u11Xl1qKYvOAHhI2G/CIkrW/IuirurLTPh2i/FxKbacpHU2RnN5zECEf6/7UEOXJhYo9ajySwXPLs8u0pLbC4iIzrv7j76k9wgUeBMnUOo0WJNV4hKnKflvJrnKDuzZFl0gTItXRwKXLYwx28bDxtMcAq5FnuxV0QMORMhCLizP7Dt/BQSPOAXcoEgnmj/fFfobU0ZP+LsRtvNo5D/XykxVLrG7/x9BIpVqpnj4Me34xEJvyRmx7v2x2y425sA6h8IucbD/5JqRg56OUqfg8xut2LqtnvBpBClKPEjSTIn9iHixTMLU7yji7Ysjp/7EsL4zyImNhsRH40q/0OpE+ORTTNMYyJ4bmoSZzndvEDSMg1ivWrbDJcHOoADPQDDP8AP+FxO6Y6jGyzyJ7R8=
+    # QA_AWS_SECRET
+    - secure: azM3x9Cf7jSEe1TC/uhozJbP82oLfTiydvFBuE70SZ8tIJJUGSVGPe7wF6YJfF1zkTCAZJrnzFRLxt3Unecx21ibxabwr6DdlJI+ptJH7VA/TeOL1+PGGjOK46Qb7qF1D2Y8m48uNy4GC7+K4Rs3r6xa702OjAFED+REQRBFDDoaNDLz4K+uYwgGrsu/o/B3y6tPmTFgrKiTCvCWPO0gGZ/mbqbW4ZDcTo/quIXb8vTrInxf978vR6TQDdKaTjgz/u1cNQ1e27ZXl9lkS9I8OBKiVMd8ixM2idC44wTw5HhbInYc0jzUQrOV/LBQfvx4csifRtwX9xm0jD8UqUqlqI/Ay1sVZKRBgMSWkrAfvVF4XeoqjXLhAq0vndblhIFcsUkRtECQePCGQhHPTE+vi6BhcoA9RxF+0vRoFQe2lQsK+GeLB4bww5JmCZ9E0gQzpe48F5p3x2qvuVj070lKeEDCdQ2Dym6VnR6vUUtExuOxlI9ggfcuR7hId1aL9OakMxe8iyui+bouFE9uvUddtxqF0hwt3wuHaOd2gFRjFzPt3iFHf3rtFm6RCFalNYXAmrQ7ODZ1FcwV/wzs0mdVDmMp39Hb8Vm21tBNkGgy8ynB1DC1Zyv+PiivG0cMfJnD7eD/b0mDITUTxJB8My2e1vkKCctxmhRJ78C1ftJafXU=
+    # MASTER_AWS_KEY
+    - secure: O6zyOKot+s0t0ANCM84Jd6QSfaKe4ICQX4SoQBJF394Su2+jXDOCvim8L8Z8JfzyB3uub7UE25AXwXSpIDfUTlCbMNIaAnHDjcFqNmcQ/v4kSQ0COK1VlHLHRAQHr8bzocOa1N6sjsQXxZGKWsHWzTQPbfmSdhHpL+NkSOQtM9gQYC8haafnosIEZPxHnRM99s9Ku7lHlEBN3+mMrTZjIU2qeKL9NxyCjPLZkAPQQR1qCYQsF4bG+BNj6OsRKh2rts3GBDz8upRmzStGh0IGX+xgryhu9yC3KV96ZXkMV/i35UQLSQsYo7AKxhljEx/1741GbkaRrLysS1YJ5xg6zMQbsT/Rj+p6WyjqBRH9QjnBwzUVij1GaOOi9gG6UjsULXEuOTwtHPvIod0il8kvjpoau0S63YwmYCVA+7fjNyzx/yZENnZS9hGetKs0Jso84JvzcSnm3HRBxlDyIJPlTXCX4TSpCFJM7p/eyC5XlpItW9Y2qjMOa/6gHOeHt+1AR4wq4BPCa4omYAwDRRYaNRW96VK+hTMHwdcZTuGY7kst/rhnU7ShZg12g/t1OyA4+jY3xm2RAMfMwuuiPffLe/2g5HPltfLKoQSzyuMypwqjH6ECoWCGHGq1NZQu6wSsuxAz/ucAE9a3NlLgnzub2BwN8j2fh8n5mMnfoOXV5Xg=
+    # MASTER_AWS_SECRET
+    - secure: kyqe9fRjYLFZ3OhsEnB7iie4GKnARq0vJYaXrFZx2A3dJPm6fljNnrbVS0zdEZgaKMtYMz6Ts+hlE4Oia5VRkXDhpKfPcieatRNTjsApbRo50Ax70qrTsyAaBIfkZxrJcyxC028uv0xhB8d5kv7MVim8tiSHroOd+QwZABZsGBc41U9sj/v5zPQpslsyKv0MJJmB+QwXqx/7GxY5N2dT8LfcBJdoUdJMAyRPBUox5+LmtrW6ws6fx106C2Eh/i8jhssmiIq0MEguiqVZKYH4u01XXsH131uue2AzYu+nVdFpRnvqxgQLzNrNGCMcBsutJKQJ/Iz5f1mRlWDeVlmVDNPJO8195G6P0QO/g4RpR+fybiB9jiNri7HtRDP4dvpRgDqUpXaGfEte533FGGJFhSGCYgkx9zIfkcHWxbYHAelEXSzyJFz7Z40bOQK/rh51xhz+FGNhzHn/MikFOflIftm3WGU+4ZvjQJdbPLEQk9wVl1EUg1YdWnuohBPdX1fiT9hUUjdwJsRDNlmRT4dNQr2+GR1yXeSl8USzVo9G2LxgdaIS31EvvVEDL6ZQ3qPZnxXV8EVP32i7aYyt+TXb0rb+Y8TXTbcMQQEb2y+41ZN5NJqFuyOxbK3WvOUcmGtQgY12PTZJlQh80DiFS0svQRQ9bk54USRyQpG0jNBJZXU=
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+notifications:
+  slack:
+    secure: PMGlpdBoRzMlIjCsPWdXJ1wf550b+mpX0x44ggGWNL7ErpNebfyqIbXf4VJXYQDmhVJt31ygDaxTtj8XwZJlbvQjE6WGHU26KvL/efGJJL5EmgFD8LDBFpsbn49PyoZuVOTbSzqP8d8WCCPo4oBvX2r2Q2Ixh/tUx7i4Bcv0XwNpWAR75v1Yq/NftEI48k2GcI3oHqmuEgLHdP93k1rCUM4sBsgkr4PCltZfoE2AWlF6wY59w/oFiKj4FwycY8QjJZa/zbSQq1B/9QD7n4YBY4QjVv3LmjshEiQv1HGo2rNLV+/BB5ZoQ6JEH9h+seduHNTF+mkToKbJ2YjDERLlqLFYWVQKXTqFkSdYuknguJ3uOfXFaGtPDSqTRljE6WW6UDIJi9lDpxFHjH2q848/2O03RKtYeFKJWNbVb7Q2PWTBFxx6OurYra+tbUAorQiYmAQxd0vJY+qzGIDJZIQ8yDE4C10heOhfRyU8wJSKF3xJUKKWVGfBuHivFBZOETFSg0uVBcJnsXRcErvEQz0LuKaZfP81bIokcKUGxum/xyp9mYhYqWDvIj31RUhDMiRxXTPe9PhW0mlOtRG7tm2+8G08exHPSfONSV2IPUtlQt4j2/+I22ncOwtsm6yZzXXbDjoMR2sCHIyJj3lVECOqAnCfNJ6Q0CNJ93LqxKSHdFU=

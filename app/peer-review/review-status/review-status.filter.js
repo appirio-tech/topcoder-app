@@ -1,13 +1,15 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   angular.module('tc.peer-review').filter('reviewStatus', function() {
     return function(input) {
-      var status = 'Not Submitted';
+      var status = 'Not Submitted'
       if (input === 1) {
-        status = 'Completed';
+        status = 'Completed'
       }
-      return status;
-    };
-  });
-})();
+      return status
+    }
+  })
+})()

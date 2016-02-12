@@ -1,36 +1,38 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
-  angular.module('tc.peer-review').controller('ReadOnlyScorecardController', ReadOnlyScorecardController);
+  angular.module('tc.peer-review').controller('ReadOnlyScorecardController', ReadOnlyScorecardController)
 
-  ReadOnlyScorecardController.$inject = ['$stateParams', 'ScorecardService', 'Helpers'];
+  ReadOnlyScorecardController.$inject = ['$stateParams', 'ScorecardService', 'Helpers']
 
   function ReadOnlyScorecardController($stateParams, ScorecardService, Helpers) {
-    var scorecardId = $stateParams.scorecardId;
-    var vm = this;
-    vm.loaded = false;
-    vm.scorecard = {};
+    var scorecardId = $stateParams.scorecardId
+    var vm = this
+    vm.loaded = false
+    vm.scorecard = {}
 
-    activate();
+    activate()
 
     function activate() {
       ScorecardService.getScorecardById(scorecardId)
       .then(function(response) {
-        var scorecardData = response.data.result.content[0];
-        vm.scorecard.name = scorecardData.name;
+        var scorecardData = response[0]
+        vm.scorecard.name = scorecardData.name
 
         ScorecardService.getScorecardQuestions(scorecardId)
         .then(function(data) {
-          vm.scorecard.questions = {};
+          vm.scorecard.questions = {}
 
-          var questions = data.data.result.content;
+          var questions = data
 
-          Helpers.storeById(vm.scorecard.questions, questions);
-          Helpers.parseQuestions(vm.scorecard.questions);
+          Helpers.storeById(vm.scorecard.questions, questions)
+          Helpers.parseQuestions(vm.scorecard.questions)
 
-          vm.loaded = true;
-        });
-      });
+          vm.loaded = true
+        })
+      })
     }
-  };
-})();
+  }
+})()

@@ -1,12 +1,14 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('topcoder').filter('percentage', percentage);
+(function() {
+  'use strict'
+
+  angular.module('topcoder').filter('percentage', percentage)
 
   function percentage() {
     return function(x) {
-      return Math.round(x * 100) + '%';
-    };
+      return Math.round(x * 100) + '%'
+    }
   }
 
-})();
+})()

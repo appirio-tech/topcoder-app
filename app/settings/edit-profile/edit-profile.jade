@@ -13,7 +13,7 @@
           .form-label your profile image
           .edit-image
             img.profile-circle(ng-show="vm.userData.photoURL && vm.userData.photoURL.length", ng-src="{{vm.userData.photoURL}}")
-            img.profile-circle(ng-show="!vm.userData.photoURL || !vm.userData.photoURL.length", src="/images/ico-user-default.svg")
+            img.profile-circle(ng-show="!vm.userData.photoURL || !vm.userData.photoURL.length", src=require("../../../assets/images/ico-user-default.svg"))
 
             .buttons
               button.file-upload.tc-btn.tc-btn-primary.tc-btn-s(ng-click="vm.changeImage()", type="button")
@@ -26,22 +26,20 @@
 
         .country
           .form-label Country to represent
-          angucomplete-alt(
-            id="countryId",
-            input-name="location",
-            input-class="tc-input",
-            placeholder="Country",
-            pause="100",
-            selected-object="vm.updateCountry",
-            local-data="vm.countries",
-            initial-value="vm.countryObj",
-            search-fields="name",
-            title-field="name",
-            match-class="angucomplete-highlight",
-            minlength="1",
-            ng-class="{'form-field-focused': hasFocus==true}"
+          dropdown(
+            name="'location'",
+            options="vm.countries",
+            value="vm.countryObj",
+            on-change="vm.updateCountry",
+            placeholder="'Country'",
+            match-pos="'start'",
+            match-prop="'name'",
+            input-props="{'id':'countryId'}",
+            label-key="'name'",
+            value-key="'name'",
+            clearable="false"
           )
-          span.error-message(ng-if="vm.editProfile.$invalid") This is a required field
+          span.error-message(ng-if="!vm.isValidCountry") This is a required field
 
         .bio
           .form-label(style="width: 100%;") short bio
@@ -59,8 +57,13 @@
         track-toggle(tracks="vm.tracks")
 
     .save-section
-      button.tc-btn.tc-btn-primary.tc-btn-wide(ng-show="!(vm.editProfile.$invalid || vm.editProfile.$pristine)", type="submit", tc-busy-button, tc-busy-when="vm.profileFormProcessing" ng-disabled="vm.editProfile.$invalid || vm.editProfile.$pristine", ng-class="{' ': vm.editProfile.$valid, 'disabled': disabled}") Save
-      button.tc-btn.tc-btn-secondary.tc-btn-wide(ng-show="vm.editProfile.$invalid || vm.editProfile.$pristine", type="button", disabled="disabled") Save
+      button.tc-btn.tc-btn-primary.tc-btn-wide(
+        type="submit",
+        tc-busy-button,
+        tc-busy-when="vm.profileFormProcessing",
+        ng-disabled="!vm.isValidCountry || !vm.countryObj || vm.editProfile.$invalid || vm.editProfile.$pristine",
+        ng-class="{'disabled': disabled}"
+      ) Save
 
   .settings-section.skills
     .section-info
@@ -69,21 +72,18 @@
 
     .section-fields
       .field-label Add a new skill
-      angucomplete-alt(
-        id="tagId",
-        input-name="skill-input",
-        input-class="tc-input",
-        placeholder='Start typing a skill then select from the list',
-        pause="100",
-        selected-object="vm.addSkill",
-        local-data="vm.tags",
-        search-fields="name",
-        title-field="name",
-        clear-selected=true,
-        match-class="angucomplete-highlight",
-        minlength="1",
-        ng-class="{'form-field-focused': hasFocus==true}"
-      )
+      dropdown(
+        options="vm.tags",
+        on-change="vm.addSkill",
+        placeholder="'Start typing a skill then select from the list'",
+        match-pos="'start'",
+        match-prop="'name'",
+        name="'skill-input'",
+        input-props="{'id':'tagId'}",
+        label-key="'name'",
+        value-key="'name'",
+        clearable="false"
+        )
 
       .list
         .skill(ng-repeat="skill in vm.skills | orderBy:'-score' | orderBy:'-isNew'")

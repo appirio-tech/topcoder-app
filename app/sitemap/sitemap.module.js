@@ -1,9 +1,7 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
-  var dependencies = [
-  ];
-
-  angular.module('tc.sitemap', dependencies);
-
-})();
+  angular.module('tc.sitemap', [])
+})()

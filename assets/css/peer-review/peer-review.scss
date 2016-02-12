@@ -1,24 +1,23 @@
 @import 'topcoder/tc-includes';
-// Remove glyphicon reference and mixin when peer-review is redesigned.
-@include glyphicons-halflings;
 
 // Shared (review-status.html, edit-review.html, completed-review.html)
 .review-status-container, .completed-review-container, .edit-review-container, .read-only-scorecard-container {
   @include clearfix;
-  padding-bottom: 30px;
+  max-width: 1200px;
+  margin: 30px auto;
 
   .back-link {
-
     .arrow, p {
       display: inline-block;
       vertical-align: middle;
     }
 
     .arrow {
-      background: url('/images/arrow-prev.png') no-repeat;
-      background-position: 0 0;
       height: 13px;
       width: 8px;
+      margin-right: 5px;
+      background: url('../../images/arrow-prev.png') no-repeat;
+      background-position: 0 0;
     }
     p {
       @include font-with-weight('Merriweather Sans', 300);

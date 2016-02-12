@@ -1,6 +1,7 @@
 .review-status-container(ng-show="vm.loaded")
   .back-link
     .arrow
+    
     p #[a.back(href="https://www.{{vm.domain}}/challenge-details/{{vm.challengeId}}/?type=develop") Back to Challenge]
 
   h1(ng-bind="vm.challenge.challengeName")
@@ -29,7 +30,7 @@
           a.status(ui-sref="review.edit({challengeId: vm.challengeId, reviewId: review.id})") {{review.committed | reviewStatus}}
 
         td
-          a(ng-href="https://software.{{vm.domain}}{{vm.submissionDownloadPath}}{{review.uploadId}}")
-            span.glyphicon.glyphicon-download-alt
+          a(ng-href="https://software.{{vm.domain}}/review/actions/DownloadContestSubmission?uid={{review.uploadId}}")
+            i.fa.fa-download
 
   button.start-review(type="button", ng-click="vm.getNextReview()") Start another review

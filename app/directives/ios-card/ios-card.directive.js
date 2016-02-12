@@ -1,16 +1,19 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
+
   angular.module('tcUIComponents').directive('iosCard', function() {
     return {
       restrict: 'E',
-      templateUrl: 'directives/ios-card/ios-card.directive.html',
+      template: require('./ios-card')(),
       scope: {
         challenge: '=challenge',
         view: '='
       },
       controller: ['$scope', 'CONSTANTS', function($scope, CONSTANTS) {
-        $scope.DOMAIN = CONSTANTS.domain;
+        $scope.DOMAIN = CONSTANTS.domain
       }]
-    };
-  });
-})();
+    }
+  })
+})()

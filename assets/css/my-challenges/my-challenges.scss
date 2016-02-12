@@ -112,10 +112,10 @@
                 cursor: default;
 
                 &.tile:before {
-                  background: url(/images/grid-on.svg);
+                  background: url(../../images/grid-on.svg);
                 }
                 &.list:before {
-                  background: url(/images/list-on.svg);
+                  background: url(../../images/list-on.svg);
                 }
               }
 
@@ -130,21 +130,21 @@
 
               &.tile {
                 &:before {
-                  background: url(/images/grid-off.svg);
+                  background: url(../../images/grid-off.svg);
                 }
 
                 &:hover:before {
-                  background: url(/images/grid-on.svg);
+                  background: url(../../images/grid-on.svg);
                 }
               }
 
               &.list {
                 &:before {
-                  background: url(/images/list-off.svg);
+                  background: url(../../images/list-off.svg);
                 }
 
                 &:hover:before {
-                  background: url(/images/list-on.svg);
+                  background: url(../../images/list-on.svg);
                 }
               }
             }

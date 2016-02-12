@@ -1,33 +1,31 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   angular.module('tc.peer-review').config([
     '$stateProvider',
-    '$urlRouterProvider',
-    '$httpProvider',
-    '$locationProvider',
     routes
-  ]);
+  ])
 
-  function routes($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+  function routes($stateProvider) {
     var states = {
       review: {
         parent: 'root',
         abstract: true,
         data: {
-          authRequired: true,
+          authRequired: true
         }
       },
       'review.status': {
         parent: 'review',
-        url: '/challenge/:challengeId/',
+        url: '/challenges/:challengeId/reviews/',
         data: {
           title: 'Peer Review'
         },
         views: {
           'container@': {
-            templateUrl: 'peer-review/review-status/review-status.html',
+            template: require('./review-status/review-status')(),
             controller: 'ReviewStatusController',
             controllerAs: 'vm'
           }
@@ -35,13 +33,14 @@
       },
       'review.readOnlyScorecard': {
         parent: 'review',
-        url: '/scorecard/:scorecardId/',
+        url: '/challenges/:challengeId/scorecards/:scorecardId/',
         data: {
+          authRequired: false,
           title: 'Scorecard'
         },
         views: {
           'container@': {
-            templateUrl: 'peer-review/readOnlyScorecard/readOnlyScorecard.html',
+            template: require('./readOnlyScorecard/readOnlyScorecard')(),
             controller: 'ReadOnlyScorecardController',
             controllerAs: 'vm'
           }
@@ -49,13 +48,13 @@
       },
       'review.completed': {
         parent: 'review',
-        url: '/:challengeId/reviews/:reviewId/completed/',
+        url: '/challenges/:challengeId/reviews/:reviewId/completed/',
         data: {
           title: 'Completed'
         },
         views: {
           'container@': {
-            templateUrl: 'peer-review/completed-review/completed-review.html',
+            template: require('./completed-review/completed-review')(),
             controller: 'CompletedReviewController',
             controllerAs: 'vm'
           }
@@ -63,22 +62,22 @@
       },
       'review.edit': {
         parent: 'review',
-        url: '/:challengeId/reviews/:reviewId/edit/',
+        url: '/challenges/:challengeId/reviews/:reviewId/edit/',
         data: {
           title: 'Edit Review'
         },
         views: {
           'container@': {
-            templateUrl: 'peer-review/edit-review/edit-review.html',
+            template: require('./edit-review/edit-review')(),
             controller: 'EditReviewController',
             controllerAs: 'vm'
           }
         }
       }
-    };
+    }
 
     angular.forEach(states, function(state, name) {
-      $stateProvider.state(name, state);
-    });
-  };
-})();
+      $stateProvider.state(name, state)
+    })
+  }
+})()

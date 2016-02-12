@@ -1,7 +1,9 @@
-(function() {
-  'use strict';
+import angular from 'angular'
 
-  angular.module('tcUIComponents').directive('validEmail', validEmail);
+(function() {
+  'use strict'
+
+  angular.module('tcUIComponents').directive('validEmail', validEmail)
 
   function validEmail() {
     return {
@@ -9,17 +11,17 @@
       link: function(scope, element, attrs, ctrl) {
         ctrl.$validators.validEmail = function(modelValue, viewValue) {
           if (ctrl.$isEmpty(modelValue)) {
-            return true;
+            return true
           }
 
           if (/.+@.+\..+/.test(viewValue)) {
-            return true;
+            return true
           }
 
-          scope.vm.emailErrorMessage = 'Please enter a valid email address.';
-          return false;
-        };
+          scope.vm.emailErrorMessage = 'Please enter a valid email address.'
+          return false
+        }
       }
-    };
+    }
   }
-})();
+})()

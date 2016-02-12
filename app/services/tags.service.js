@@ -1,25 +1,27 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
-  angular.module('tc.services').factory('TagsService', TagsService);
+  angular.module('tc.services').factory('TagsService', TagsService)
 
-  TagsService.$inject = ['ApiService'];
+  TagsService.$inject = ['ApiService']
 
   function TagsService(ApiService) {
-    var api = ApiService.restangularV3;
+    var api = ApiService.restangularV3
 
     var service = {
       getApprovedSkillTags: getApprovedSkillTags
-    };
+    }
 
-    return service;
+    return service
 
     /////////////////////////////
 
     function getApprovedSkillTags() {
-      return api.all("tags")
+      return api.all('tags')
         .withHttpConfig({skipAuthorization: true})
-        .getList({filter: 'domain=SKILLS&status=APPROVED'});
+        .getList({filter: 'domain=SKILLS&status=APPROVED'})
     }
   }
-})();
+})()

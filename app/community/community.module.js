@@ -1,13 +1,15 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
   var dependencies = [
     'ui.router',
     'tc.services',
     'tcUIComponents',
     'toaster'
-  ];
+  ]
 
-  angular.module('tc.community', dependencies);
+  angular.module('tc.community', dependencies)
 
-})();
+})()

@@ -1,39 +1,36 @@
-/* jshint -W117, -W030 */
+/*eslint no-undef:0*/
 describe('Register Controller', function() {
-  var controller;
+  var controller
 
   beforeEach(function() {
-    bard.appModule('topcoder');
-    bard.inject('$controller', '$rootScope', '$q');
-
-
-  });
+    bard.appModule('topcoder')
+    bard.inject('$controller', '$rootScope', '$q')
+  })
 
   var state = {
     href: function() {
-      return 'http://topcoder-dev.com/register/';
+      return 'http://topcoder-dev.com/register/'
     }
   }
 
   beforeEach(function() {
     var helperService = {
       getCountyObjFromIP: function() {
-        return $q.when({name: "United States", alpha2: "US", alpha3: "USA", code: "840"});
+        return $q.when({name: 'United States', alpha2: 'US', alpha3: 'USA', code: '840'})
       }
-    };
+    }
 
     controller = $controller('RegisterController', {
       $state: state,
       Helpers: helperService
-    });
+    })
 
-    $rootScope.$apply();
-  });
+    $rootScope.$apply()
+  })
 
-  bard.verifyNoOutstandingHttpRequests();
+  bard.verifyNoOutstandingHttpRequests()
 
   it('should be created successfully', function() {
-    expect(controller).to.be.defined;
-  });
-
-});
+    expect(controller).to.be.defined
+  })
+})

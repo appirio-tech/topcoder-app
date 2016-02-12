@@ -1,13 +1,13 @@
+import angular from 'angular'
+
 (function() {
-  'use strict';
+  'use strict'
 
-  angular.module('tc.services').factory('Helpers', Helpers);
+  angular.module('tc.services').factory('Helpers', Helpers)
 
-  Helpers.$inject = ['$window', '$location', '$state', '$http', '$filter', 'ISO3166'];
+  Helpers.$inject = ['$window', '$location', '$state', '$http', '$filter', 'ISO3166']
 
   function Helpers($window, $location, $state, $http, $filter, ISO3166) {
-    // TODO: Separate helpers by submodule
-
     var service = {
       storeById: storeById,
       parseQuestions: parseQuestions,
@@ -23,76 +23,68 @@
       setupLoginEventMetrics: setupLoginEventMetrics,
       npad: npad
 
-    };
-    return service;
+    }
+    return service
 
     /////////////////////
 
     function getSocialUserData(profile, accessToken) {
-      var socialProvider = profile.identities[0].connection;
-      var firstName = "",
-        lastName = "",
-        handle = "",
-        email = "",
-        socialProviderId = '';
+      var socialProvider = profile.identities[0].connection
+      var firstName = '',
+        lastName = '',
+        handle = '',
+        email = ''
 
-      var socialUserId = profile.user_id.substring(profile.user_id.lastIndexOf('|') + 1);
-      var refreshToken = null;
+      var socialUserId = profile.user_id.substring(profile.user_id.lastIndexOf('|') + 1)
+      var splitName
 
       if (socialProvider === 'google-oauth2') {
-        firstName = profile.given_name;
-        lastName = profile.family_name;
-        handle = profile.nickname;
-        email = profile.email;
-        socialProviderId = 2;
+        firstName = profile.given_name
+        lastName = profile.family_name
+        handle = profile.nickname
+        email = profile.email
       } else if (socialProvider === 'facebook') {
-        firstName = profile.given_name;
-        lastName = profile.family_name;
-        handle = firstName + '.' + lastName;
-        email = profile.email;
-        socialProviderId = 1;
+        firstName = profile.given_name
+        lastName = profile.family_name
+        handle = firstName + '.' + lastName
+        email = profile.email
       } else if (socialProvider === 'twitter') {
-        var splitName = profile.name.split(" ");
-        firstName = splitName[0];
+        splitName = profile.name.split(' ')
+        firstName = splitName[0]
         if (splitName.length > 1) {
-          lastName = splitName[1];
+          lastName = splitName[1]
         }
-        handle = profile.screen_name;
-        socialProviderId = 3;
+        handle = profile.screen_name
       } else if (socialProvider === 'github') {
-        var splitName = profile.name.split(" ");
-        firstName = splitName[0];
+        splitName = profile.name.split(' ')
+        firstName = splitName[0]
         if (splitName.length > 1) {
-          lastName = splitName[1];
+          lastName = splitName[1]
         }
-        handle = profile.nickname;
-        email = profile.email;
-        socialProviderId = 4;
+        handle = profile.nickname
+        email = profile.email
       } else if (socialProvider === 'bitbucket') {
-        firstName = profile.first_name;
-        lastName = profile.last_name;
-        handle = profile.username;
-        email = profile.email;
-        socialProviderId = 5;
+        firstName = profile.first_name
+        lastName = profile.last_name
+        handle = profile.username
+        email = profile.email
       } else if (socialProvider === 'stackoverflow') {
-        firstName = profile.first_name;
-        lastName = profile.last_name;
-        handle = socialUserId;
-        email = profile.email;
-        socialProviderId = 6;
+        firstName = profile.first_name
+        lastName = profile.last_name
+        handle = socialUserId
+        email = profile.email
       } else if (socialProvider === 'dribbble') {
-        firstName = profile.first_name;
-        lastName = profile.last_name;
-        handle = socialUserId;
-        email = profile.email;
-        socialProviderId = 7;
+        firstName = profile.first_name
+        lastName = profile.last_name
+        handle = socialUserId
+        email = profile.email
       }
 
-      var token = accessToken;
-      var tokenSecret = null;
+      var token = accessToken
+      var tokenSecret = null
       if (profile.identities && profile.identities.length > 0) {
-        token = profile.identities[0].access_token;
-        tokenSecret = profile.identities[0].access_token_secret;
+        token = profile.identities[0].access_token
+        tokenSecret = profile.identities[0].access_token_secret
       }
       return {
         socialUserId: socialUserId,
@@ -109,52 +101,52 @@
 
     function storeById(object, questions) {
       angular.forEach(questions, function(question) {
-        object[question.id] = question;
-      });
+        object[question.id] = question
+      })
     }
 
     function parseQuestions(questions) {
       angular.forEach(questions, function(question) {
         if (question.questionTypeId === 5) {
-          question.description = question.description;
-          question.guidelines = question.guideline.split('\n');
+          question.description = question.description
+          question.guidelines = question.guideline.split('\n')
         }
-      });
+      })
     }
 
     function parseAnswers(questions, answers) {
-      var saved = false;
+      var saved = false
       angular.forEach(answers, function(answerObject) {
-        var questionId = answerObject.scorecardQuestionId;
+        var questionId = answerObject.scorecardQuestionId
 
-        questions[questionId].answer = answerObject.answer;
-        questions[questionId].reviewItemId = answerObject.id;
+        questions[questionId].answer = answerObject.answer
+        questions[questionId].reviewItemId = answerObject.id
 
         if (answerObject.comments && answerObject.comments.length > 0) {
           // pick first comment for peer review challenges
-          questions[questionId].comment = answerObject.comments[0].content;
+          questions[questionId].comment = answerObject.comments[0].content
         }
 
         if (answerObject.answer !== '') {
-          saved = true;
+          saved = true
         }
-      });
+      })
 
-      return saved;
+      return saved
     }
 
     function compileReviewItems(questions, review, updating) {
-      var reviewItems = [];
+      var reviewItems = []
 
       for (var qId in questions) {
-        var q = questions[qId];
+        var q = questions[qId]
 
         var reviewItem = {
           reviewId: review.id,
           scorecardQuestionId: parseInt(qId),
           uploadId: review.uploadId,
           answer: '' + q.answer
-        };
+        }
 
         if (q.comment && q.comment.length > 0) {
           reviewItem.comments = [
@@ -163,36 +155,36 @@
               resourceId: review.resourceId,
               commentTypeId: 1
             }
-          ];
+          ]
         }
 
         if (updating) {
-          reviewItem.id = q.reviewItemId;
+          reviewItem.id = q.reviewItemId
         }
-        reviewItems.push(reviewItem);
+        reviewItems.push(reviewItem)
       }
-      return reviewItems;
+      return reviewItems
     }
 
     function countCompleted(reviews) {
       return reviews.reduce(function(numCompleted, review) {
         if (review.committed === 1) {
-          return numCompleted + 1;
+          return numCompleted + 1
         }
-        return numCompleted;
-      }, 0);
+        return numCompleted
+      }, 0)
     }
 
     function getParameterByName(name, url) {
-      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-      var results = regex.exec(url);
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]')
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)')
+      var results = regex.exec(url)
       if (results === null) {
-        results = '';
+        results = ''
       } else {
-        results = $window.decodeURIComponent(results[1].replace(/\+/g, ' '));
+        results = $window.decodeURIComponent(results[1].replace(/\+/g, ' '))
       }
-      return results;
+      return results
     }
 
     /**
@@ -204,18 +196,18 @@
      * @returns {*}
      */
     function _getObjectValue(objectPath, context) {
-      var i;
-      var propertyArray = objectPath.split('.');
-      var propertyReference = context;
+      var i
+      var propertyArray = objectPath.split('.')
+      var propertyReference = context
       for (i = 0; i < propertyArray.length; i++) {
         if (angular.isDefined(propertyReference[propertyArray[i]])) {
-          propertyReference = propertyReference[propertyArray[i]];
+          propertyReference = propertyReference[propertyArray[i]]
         } else {
           // if the specified property was not found, default to the state's name
-          return undefined;
+          return undefined
         }
       }
-      return propertyReference;
+      return propertyReference
     }
 
     /**
@@ -225,86 +217,83 @@
      * @returns {*}
      */
     function _renderTemplateStr(template, context) {
-      var str2BCompiled = template.match(/{{[.\w]+}}/g);
-      var compiledMap = {};
+      var str2BCompiled = template.match(/{{[.\w]+}}/g)
+      var compiledMap = {}
       if (str2BCompiled) {
         str2BCompiled.forEach(function(str) {
-          var expr = str.replace('{{', '').replace('}}', '');
-          compiledMap[str] = _getObjectValue(expr.trim(), context);
-        });
+          var expr = str.replace('{{', '').replace('}}', '')
+          compiledMap[str] = _getObjectValue(expr.trim(), context)
+        })
         // now loop over all keys and replace with compiled value
         Object.keys(compiledMap).forEach(function(k) {
-          template = template.replace(k, (compiledMap[k] ? compiledMap[k] : ''));
-        });
+          template = template.replace(k, (compiledMap[k] ? compiledMap[k] : ''))
+        })
       }
-      return template;
+      return template
     }
 
 
     function getPageTitle(state, $currentState) {
-      var title = '';
+      var title = ''
       if (state.data && state.data.title) {
-        title = state.data.title;
+        title = state.data.title
         if (title.indexOf('{{') > -1) {
           // dynamic data
-          var resolveData = $currentState.locals.resolve.$$values;
-          title = _renderTemplateStr(title, resolveData);
+          var resolveData = $currentState.locals.resolve.$$values
+          title = _renderTemplateStr(title, resolveData)
         }
       }
       if (title) {
         title += ' | '
       }
-      return title + 'TopCoder';
+      return title + 'TopCoder'
     }
 
     function isEmail(value) {
-      var re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-      return re.test(value);
+      var re = /^(([^<>()[\]\.,:\s@\"]+(\.[^<>()[\]\.,:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,:\s@\"]+\.)+[^<>()[\]\.,:\s@\"]{2,})$/i
+      return re.test(value)
     }
 
     function getCountyObjFromIP() {
-      var req = {
-
-      };
       return $http({
-          method: "GET",
-          url: "http://ipinfo.io",
-          skipAuthorization: true
-        })
-        .then(function(data) {
-          if (data.data && data.data.country) {
-            return ISO3166.getCountryObjFromAlpha2(data.data.country);
-          }
-          return null;
-        }, function(err) {
-          // unable to lookup ip address
-          return null;
-        });
+        method: 'GET',
+        url: 'http://ipinfo.io',
+        skipAuthorization: true
+      })
+      .then(function(data) {
+        if (data.data && data.data.country) {
+          return ISO3166.getCountryObjFromAlpha2(data.data.country)
+        }
+        return null
+      }, function(err) {
+        // unable to lookup ip address
+        return null
+      })
     }
 
     function redirectPostLogin(nextParam) {
       // make sure domain is topcoder | dev | qa
-      nextParam = decodeURIComponent(nextParam);
-      var re1 = /^(https?:\/\/)*(\w+\.)*topcoder(-\w+)*\.com/;
-      var re2 = /^\/\w+/;
+      nextParam = decodeURIComponent(nextParam)
+      var re1 = /^(https?:\/\/)*(\w+\.)*topcoder(-\w+)*\.com/
+      var re2 = /^\/\w+/
 
       if (re1.test(nextParam)) {
-        $window.location.href = nextParam;
+        $window.location.href = nextParam
       } else if (re2.test(nextParam)) {
-        $location.url(nextParam);
+        $location.url(nextParam)
       } else {
-        $state.go('dashboard');
+        $state.go('dashboard')
       }
     }
 
     function setupLoginEventMetrics (usernameOrEmail) {
       if ($window._kmq) {
-        $window._kmq.push(['identify', usernameOrEmail ]);
+        $window._kmq.push(['identify', usernameOrEmail ])
       }
     }
 
     function npad(toPad, n) {
-      return $filter('npad')(toPad, n);
+      return $filter('npad')(toPad, n)
     }
   }
-})();
+})()
