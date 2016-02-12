@@ -124,7 +124,9 @@ import angular from 'angular'
 
         if (answerObject.comments && answerObject.comments.length > 0) {
           // pick first comment for peer review challenges
+          // does not handle displaying multiple comments yet
           questions[questionId].comment = answerObject.comments[0].content
+          questions[questionId].commentId = answerObject.comments[0].id
         }
 
         if (answerObject.answer !== '') {
@@ -148,15 +150,15 @@ import angular from 'angular'
           answer: '' + q.answer
         }
 
-        if (q.comment && q.comment.length > 0) {
-          reviewItem.comments = [
-            {
-              content: '' + q.comment,
-              resourceId: review.resourceId,
-              commentTypeId: 1
-            }
-          ]
-        }
+        reviewItem.comments = [
+          {
+            content: '' + q.comment,
+            id: q.commentId,
+            resourceId: review.resourceId,
+            commentTypeId: 1,
+            reviewItemId: q.reviewItemId
+          }
+        ]
 
         if (updating) {
           reviewItem.id = q.reviewItemId
