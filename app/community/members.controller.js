@@ -12,7 +12,7 @@ import angular from 'angular'
     ctrl.notSearch = true
     ctrl.showing = 'list'
     ctrl.domain = CONSTANTS.domain
-    ctrl.currentMonth = 'December 2015'
+    ctrl.currentMonth = 'January 2016'
     ctrl.memberLeaderboard = []
     ctrl.copilots = []
     CommunityDataService.getMembersData()
