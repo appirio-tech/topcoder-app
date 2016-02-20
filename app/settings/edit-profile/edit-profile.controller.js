@@ -155,9 +155,9 @@ import _ from 'lodash'
 
     function processData(userInfo) {
       vm.tracks = {
-        DESIGN: _.contains(userInfo.tracks, 'DESIGN'),
-        DEVELOP: _.contains(userInfo.tracks, 'DEVELOP'),
-        DATA_SCIENCE: _.contains(userInfo.tracks, 'DATA_SCIENCE')
+        DESIGN: _.includes(userInfo.tracks, 'DESIGN'),
+        DEVELOP: _.includes(userInfo.tracks, 'DEVELOP'),
+        DATA_SCIENCE: _.includes(userInfo.tracks, 'DATA_SCIENCE')
       }
     }
 

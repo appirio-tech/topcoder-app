@@ -91,7 +91,7 @@ describe('ExternalAccount Service', function() {
     service.getAllExternalLinks('test1', 111, false).then(function(data) {
       expect(data).to.be.defined
       expect(_.map(data, 'provider')).to.include.members(['dribbble', 'github','bitbucket', 'stackoverflow'])
-      expect(_.all(_.map(data, 'data'))).to.be.truthy
+      expect(_.every(_.map(data, 'data'))).to.be.truthy
     })
     $httpBackend.flush()
   })
@@ -116,7 +116,7 @@ describe('ExternalAccount Service', function() {
     service.getAllExternalLinks('test1', 111, true).then(function(data) {
       expect(data).to.be.defined
       expect(_.map(data, 'provider')).to.include.members(['dribbble', 'github','bitbucket', 'stackoverflow'])
-      expect(_.all(_.map(data, 'data'))).to.be.truthy
+      expect(_.every(_.map(data, 'data'))).to.be.truthy
     })
     $httpBackend.flush()
   })
