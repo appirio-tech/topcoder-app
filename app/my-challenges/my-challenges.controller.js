@@ -81,7 +81,7 @@ import _ from 'lodash'
       .then(function(data) {
         // data should be an array of 2 objects each with it's own array (2D array with metadata)
 
-        vm.totalCount = _.sum(_.pluck(data, 'metadata.totalCount'))
+        vm.totalCount = _.sum(_.map(data, 'metadata.totalCount'))
         vm.myChallenges = vm.myChallenges.concat(_.union(data[0], data[1]))
         if (vm.totalCount === 0) {
           _checkForParticipation().then(function() {
