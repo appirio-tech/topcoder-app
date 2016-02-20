@@ -56,7 +56,7 @@ import _ from 'lodash'
      * Verfies if the communities section state has been modified by the user in any way.
      */
     function isCommunitiesDirty() {
-      var community = _.findWhere(vm.communities, {dirty: true})
+      var community = _.find(vm.communities, {dirty: true})
       return !!community
     }
 
@@ -97,7 +97,7 @@ import _ from 'lodash'
         vm.loadingCommunities = false
         responses.forEach(function(program) {
           if (program) {
-            var community = _.findWhere(vm.communities, {programId: program.eventId})
+            var community = _.find(vm.communities, {programId: program.eventId})
             if (community) {
               // set display false to avoid showing already enabled/registered program
               // we expect display property to be modified after first load  of the page
@@ -111,7 +111,7 @@ import _ from 'lodash'
           }
         })
         // if there exists at least 1 community which can be displayed, set showCommunity flag to true
-        var community = _.findWhere(vm.communities, {display: true})
+        var community = _.find(vm.communities, {display: true})
         if (community) {
           vm.showCommunity = true
         }

@@ -121,7 +121,7 @@ describe('External Accounts Directive', function() {
       scope.linkedAccounts = null
       scope.$digest()
       expect(element.isolateScope().accountList).to.have.length(7)
-      expect(_.all(_.pluck(element.isolateScope().accountList, 'status'))).to.be.false
+      expect(_.every(_.map(element.isolateScope().accountList, 'status'))).to.be.false
     })
 
     it('should link external account ', function() {

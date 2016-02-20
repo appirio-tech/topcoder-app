@@ -95,7 +95,7 @@ import _ from 'lodash'
     function displayMoneyEarned(handle) {
       ProfileService.getUserFinancials(handle)
       .then(function(financials) {
-        vm.moneyEarned = _.sum(_.pluck(financials, 'amount'))
+        vm.moneyEarned = _.sum(_.map(financials, 'amount'))
 
         if (!vm.moneyEarned) {
           $scope.hideMoney = true

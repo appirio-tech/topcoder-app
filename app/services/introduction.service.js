@@ -41,21 +41,21 @@ import _ from 'lodash'
         var handleInParams = $stateParams.userHandle ? $stateParams.userHandle.toLowerCase() : null
         var userIntroJSStats = store.get(userId)
 
-        if (!userIntroJSStats.dashboardIntroComplete && _.contains(currentPage, 'dashboard')) {
+        if (!userIntroJSStats.dashboardIntroComplete && _.includes(currentPage, 'dashboard')) {
           userIntroJSStats.dashboardIntroComplete = true
           store.set(userId, userIntroJSStats)
 
           return getIntroData(currentPage)
         }
 
-        if (!userIntroJSStats.profileAboutIntroComplete && _.contains(currentPage, 'profile.about') && userHandle === handleInParams) {
+        if (!userIntroJSStats.profileAboutIntroComplete && _.includes(currentPage, 'profile.about') && userHandle === handleInParams) {
           userIntroJSStats.profileAboutIntroComplete = true
           store.set(userId, userIntroJSStats)
 
           return getIntroData(currentPage)
         }
 
-        if (!userIntroJSStats.profileSubtrackIntroComplete && _.contains(currentPage, 'profile.subtrack') && userHandle === handleInParams && $stateParams.subTrack.toLowerCase() !== 'copilot') {
+        if (!userIntroJSStats.profileSubtrackIntroComplete && _.includes(currentPage, 'profile.subtrack') && userHandle === handleInParams && $stateParams.subTrack.toLowerCase() !== 'copilot') {
           userIntroJSStats.profileSubtrackIntroComplete = true
           store.set(userId, userIntroJSStats)
 

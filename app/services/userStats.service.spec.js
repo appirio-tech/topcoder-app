@@ -29,30 +29,30 @@ describe('User Stats Service', function() {
       var _data = UserStatsService.getIterableStats('DEVELOP', 'ASSEMBLY_COMPETITION', stats)
       expect(_data).to.have.length(6)
 
-      expect(_.pluck(_data, 'val')).to.have.members(['1,733', '25', '95%', '16', '10', '80%'])
-      expect(_.pluck(_data, 'label')).to.have.members(['rating', 'rank', 'percentile', 'challenges', 'wins', 'reliability'])
+      expect(_.map(_data, 'val')).to.have.members(['1,733', '25', '95%', '16', '10', '80%'])
+      expect(_.map(_data, 'label')).to.have.members(['rating', 'rank', 'percentile', 'challenges', 'wins', 'reliability'])
     })
 
     it('should return stats for design-webdesign ', function() {
       var _data = UserStatsService.getIterableStats('DESIGN', 'WEB_DESIGNS', stats)
       expect(_data).to.have.length(2)
-      expect(_.pluck(_data, 'val')).to.have.members(['190','418'])
-      expect(_.pluck(_data, 'label')).to.have.members(['wins', 'challenges'])
+      expect(_.map(_data, 'val')).to.have.members(['190','418'])
+      expect(_.map(_data, 'label')).to.have.members(['wins', 'challenges'])
     })
 
     it('should return stats for data-science: srms ', function() {
       var _data = UserStatsService.getIterableStats('DATA_SCIENCE', 'SRM', stats)
       expect(_data).to.have.length(5)
-      expect(_.pluck(_data, 'label')).to.have.members(['rating', 'rank', 'percentile', 'competitions', 'volatility'])
-      expect(_.pluck(_data, 'val')).to.have.members(['799', '6,280', '26%', '10', '473'])
+      expect(_.map(_data, 'label')).to.have.members(['rating', 'rank', 'percentile', 'competitions', 'volatility'])
+      expect(_.map(_data, 'val')).to.have.members(['799', '6,280', '26%', '10', '473'])
     })
 
 
     it('should return stats for Copilot ', function() {
       var _data = UserStatsService.getIterableStats('COPILOT', 'COPILOT', stats)
       expect(_data).to.have.length(5)
-      expect(_.pluck(_data, 'label')).to.have.members(['active challenges', 'active projects', 'total challenges', 'total projects', 'fulfillment'])
-      expect(_.pluck(_data, 'val')).to.have.members([0, '1', '24', '3', '84%'])
+      expect(_.map(_data, 'label')).to.have.members(['active challenges', 'active projects', 'total challenges', 'total projects', 'fulfillment'])
+      expect(_.map(_data, 'val')).to.have.members([0, '1', '24', '3', '84%'])
     })
   })
 
@@ -322,7 +322,7 @@ describe('User Stats Service', function() {
       }]
       var filtered = UserStatsService.filterStats(toTest)
       expect(filtered).to.exist.to.have.length(3)
-      expect(_.pluck(filtered, 'showStats')).to.have.members([true, true, true])
+      expect(_.map(filtered, 'showStats')).to.have.members([true, true, true])
     })
   })
 

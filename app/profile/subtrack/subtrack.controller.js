@@ -85,7 +85,7 @@ import _ from 'lodash'
           var mustHaveMetrics = ['rank', 'rating', 'reliability']
           // check if rating, rank & reliability are all set
           var _filteredObjs = _.filter(vm.subTrackStats, function(k) { return _.indexOf(mustHaveMetrics, k.label) > -1})
-          if (_.all(_.pluck(_filteredObjs, 'val'), function(v) { return !v})) {
+          if (_.every(_.map(_filteredObjs, 'val'), function(v) { return !v})) {
             // all false filter em out
             _.remove(vm.subTrackStats, function(k) { return _.indexOf(mustHaveMetrics, k.label) > -1})
           }
