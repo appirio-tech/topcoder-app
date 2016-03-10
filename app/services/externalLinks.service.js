@@ -34,12 +34,12 @@ import _ from 'lodash'
             })
           }
           // add provider type as weblink
-          links = _(links).forEach(function(l) {
-            l.provider = 'weblink'
-            if (l.synchronizedAt === 0) {
-              l.status = 'PENDING'
+          links.forEach(function(l, i, array) {
+            array[i].provider = 'weblink'
+            if (array[i].synchronizedAt === 0) {
+              array[i].status = 'PENDING'
             }
-          }).value()
+          })
           return links
         })
     }

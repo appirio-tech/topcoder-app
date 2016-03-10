@@ -75,20 +75,6 @@
     background-size: contain;
     background-repeat: no-repeat;
   }
-
-  .logo-link:after {
-    content: 'beta';
-    display: inline-block;
-    width: 37px;
-    height: 18px;
-    margin-top: 21px;
-    margin-left: 160px;
-    padding: 0 1px;
-    line-height: 19px;
-    font-size: 10px;
-    background-color: $gray-lighter;
-    border-radius: 15px;
-  }
 }
 
 .user-link {
@@ -315,11 +301,6 @@
 
   .top-header {
     padding: 0 20px 20px;
-
-    .logo-link:after {
-      margin-top: 21px;
-      margin-left: -3px;
-    }
   }
 
   .menu-item {

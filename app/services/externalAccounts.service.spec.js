@@ -12,7 +12,6 @@ describe('ExternalAccount Service', function() {
   var auth0, userService
   var profileGet, profilePost, profileDelete
 
-
   beforeEach(function() {
     bard.appModule('topcoder')
     bard.inject(this, 'ExternalAccountService', '$httpBackend', '$q', 'CONSTANTS', 'JwtInterceptorService', 'auth', 'UserService')
@@ -91,8 +90,8 @@ describe('ExternalAccount Service', function() {
     // spy
     service.getAllExternalLinks('test1', 111, false).then(function(data) {
       expect(data).to.be.defined
-      expect(_.pluck(data, 'provider')).to.include.members(['dribbble', 'github','bitbucket', 'stackoverflow'])
-      expect(_.all(_.pluck(data, 'data'))).to.be.truthy
+      expect(_.map(data, 'provider')).to.include.members(['dribbble', 'github','bitbucket', 'stackoverflow'])
+      expect(_.every(_.map(data, 'data'))).to.be.truthy
     })
     $httpBackend.flush()
   })
@@ -101,7 +100,7 @@ describe('ExternalAccount Service', function() {
     // spy
     service.getAllExternalLinks('test1', 111, true).then(function(data) {
       expect(data).to.be.defined
-      expect(_.pluck(data, 'provider')).to.include.members(['dribbble', 'github', 'behance', 'bitbucket','stackoverflow'])
+      expect(_.map(data, 'provider')).to.include.members(['dribbble', 'github', 'behance', 'bitbucket','stackoverflow'])
       expect(data).to.have.length(5)
       var nullAccounts = _.remove(data, function(n) {return n.data.status === 'PENDING'})
       expect(nullAccounts).to.have.length(1)
@@ -116,8 +115,8 @@ describe('ExternalAccount Service', function() {
     // spy
     service.getAllExternalLinks('test1', 111, true).then(function(data) {
       expect(data).to.be.defined
-      expect(_.pluck(data, 'provider')).to.include.members(['dribbble', 'github','bitbucket', 'stackoverflow'])
-      expect(_.all(_.pluck(data, 'data'))).to.be.truthy
+      expect(_.map(data, 'provider')).to.include.members(['dribbble', 'github','bitbucket', 'stackoverflow'])
+      expect(_.every(_.map(data, 'data'))).to.be.truthy
     })
     $httpBackend.flush()
   })
