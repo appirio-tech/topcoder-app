@@ -21,29 +21,29 @@ import angular from 'angular'
       var data = {
         'memberLeaderboard': [
           {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/f0rc0d3r_jan2016.png',
-            'name': 'f0rc0d3r',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/tewibowo_feb2016.png',
+            'name': 'Tewibowo',
             'contestType': 'Design',
-            'description': 'Three first place wins in design totalling $4500',
+            'description': 'Won $4175 in 6 challenges',
             'class': 'design'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/vvvpig_jan2016.png',
-            'name': 'vvvpig',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/billsedison_feb2016.png',
+            'name': 'billsedison',
             'contestType': 'Development',
-            'description': 'Eight first place wins in design totalling $9300',
+            'description': 'Four wins for $4,500',
             'class': 'develop'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/grumpy_gordon_jan2016.png',
-            'name': 'grumpy_gordon',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/anubhav94_feb2016.png',
+            'name': 'anubhav94',
             'contestType': 'Data Science',
-            'description': 'Rating increase of 316 pts in Nov SRMs, vaulting into Div 1',
+            'description': 'Gained 336 ratings points within all 3 December SRMs.',
             'class': 'data-science'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/thomaskranitsas_jan2016.png',
-            'name': 'thomaskranitsas',
-            'contestType': 'Development Rookie',
-            'description': 'Won first place in his first two challenges!',
-            'class': 'develop'
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/johnalok_feb2016.png',
+            'name': 'johnalok',
+            'contestType': 'Design Rookie',
+            'description': 'Won first place within 2 weeks of joining!',
+            'class': 'design'
           }
         ],
         'copilots': [{
