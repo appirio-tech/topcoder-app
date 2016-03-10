@@ -24,7 +24,7 @@ import angular from 'angular'
             'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/tewibowo_feb2016.png',
             'name': 'Tewibowo',
             'contestType': 'Design',
-            'description': 'Won $4175 in 6 challenges',
+            'description': 'Won $4,175 in 6 challenges',
             'class': 'design'
           }, {
             'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/billsedison_feb2016.png',
@@ -36,7 +36,7 @@ import angular from 'angular'
             'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/anubhav94_feb2016.png',
             'name': 'anubhav94',
             'contestType': 'Data Science',
-            'description': 'Gained 336 ratings points within all 3 December SRMs.',
+            'description': 'Gained 336 rating points within all 3 December SRMs',
             'class': 'data-science'
           }, {
             'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/johnalok_feb2016.png',
