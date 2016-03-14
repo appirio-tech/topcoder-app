@@ -21,28 +21,28 @@ import angular from 'angular'
       var data = {
         'memberLeaderboard': [
           {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/tewibowo_feb2016.png',
-            'name': 'Tewibowo',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/universo_march2016.png',
+            'name': 'universo',
             'contestType': 'Design',
-            'description': 'Won $4,175 in 6 challenges',
+            'description': 'Won $4,500 in design challenges',
             'class': 'design'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/billsedison_feb2016.png',
-            'name': 'billsedison',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/sdgun_march2016.png',
+            'name': 'sdgun',
             'contestType': 'Development',
-            'description': 'Four wins for $4,500',
+            'description': 'Nine wins for $2,076',
             'class': 'develop'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/anubhav94_feb2016.png',
-            'name': 'anubhav94',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/BSBandme_march2016.png',
+            'name': 'BSBandme',
             'contestType': 'Data Science',
-            'description': 'Gained 336 rating points within all 3 December SRMs',
+            'description': 'Gained 285 rating points within all 3 January SRMs',
             'class': 'data-science'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/johnalok_feb2016.png',
-            'name': 'johnalok',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/johan_92_march2016.png',
+            'name': 'johan_92',
             'contestType': 'Design Rookie',
-            'description': 'Won first place within 2 weeks of joining!',
+            'description': 'Joined end of December and has had 4 1st place wins!',
             'class': 'design'
           }
         ],
