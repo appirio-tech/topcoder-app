@@ -82,7 +82,7 @@ describe('filters', function() {
         subTrack : 'WEB_DESIGN'
       }
       expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=design')
-      expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.'+domain+'/forums/?module=ThreadList&forumId=2')
+      expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.'+domain+'/forums/?module=ThreadList&forumID=2')
       expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=design#viewRegistrant')
       expect(challengeLinksFilter(_ch, 'submissions')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=design#submissions')
     })
