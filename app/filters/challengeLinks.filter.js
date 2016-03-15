@@ -38,7 +38,7 @@ import angular from 'angular'
           case 'data':
             return String.supplant('https://apps.{domain}/forums/?module=Category&categoryID={forumId}', data)
           case 'design':
-            return String.supplant('https://apps.{domain}/forums/?module=ThreadList&forumId={forumId}', data)
+            return String.supplant('https://apps.{domain}/forums/?module=ThreadList&forumID={forumId}', data)
           }
         /*eslint no-fallthrough:0*/
         case 'submissions':
