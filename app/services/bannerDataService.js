@@ -25,19 +25,11 @@ import angular from 'angular'
       return null
     }
 
-    function _getUrl (path) {
-      return 'https://www.' + domain + path
-    }
-
-    function _getIOSUrl(path) {
-      return 'https://ios.' + domain + path
-    }
-
     function _init() {
       bannersData = {
         'tco16': {
           title: '2016 Topcoder Open',
-          img: require("../../assets/images/nav/ico-tco16.svg"),
+          img: require('../../assets/images/nav/ico-tco16.svg'),
           description: 'The Topcoder Open (TCO) is our annual online and onsite tournament to celebrate and reward the community.',
           ctas: [{
             title: 'About TCO',
