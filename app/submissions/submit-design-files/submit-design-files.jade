@@ -178,6 +178,8 @@ modal.transition(show="vm.showProgress", background-click-close="false", style="
 
         a.tc-btn.tc-btn-s.tc-btn-ghost(ng-click="vm.refreshPage()") Submit another
 
+        a.tc-btn.tc-btn-s.tc-btn-ghost(ng-href="http://studio.{{DOMAIN}}/?module=ViewSubmission&ct={{submissions.challengeId}}") View my submissions
+
 
     .upload-progress__error(ng-show="vm.errorInUpload") #[span File upload failed]
 

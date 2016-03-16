@@ -185,9 +185,10 @@ modal {
 
   a {
     display: inline-block;
+    margin-right: 10px;
 
-    &:first-child {
-      margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
     }
   }
 }
