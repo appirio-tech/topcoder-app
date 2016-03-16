@@ -4,7 +4,7 @@
   "scripts": {
     "build": "webpack --bail --progress --build --tc",
     "start": "webpack-dev-server --history-api-fallback --dev --tc --inline --progress --port 3000",
-    "lint": "eslint .",
+    "lint": "eslint --ignore-path .gitignore .",
     "test": "karma start --tc --test"
   },
   "devDependencies": {
