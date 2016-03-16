@@ -9,7 +9,6 @@ import angular from 'angular'
 
   function BannerDataService(CONSTANTS) {
     var bannersData = null
-    var domain = CONSTANTS.domain
     _init()
 
     var service = {
