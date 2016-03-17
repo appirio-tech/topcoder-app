@@ -11,7 +11,7 @@
     background-color: $white;
   }
 
-  .challenges, .srms, .programs, .community-updates {
+  .challenges, .srms, .programs, .tco, .community-updates {
     @include module-l;
     margin-top: 1px;
     width: 100%;
@@ -23,7 +23,7 @@
     }
   }
 
-  .challenges, .srms, .programs, .community-updates {
+  .challenges, .srms, .programs, .tco, .community-updates {
     @media only screen and (min-width: 900px) {
       padding-top: 0px;
     }
