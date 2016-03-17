@@ -1,0 +1,11 @@
+.tc-banner-placeholder(class="{{vm.theme}}")
+  .image
+    img(ng-src="{{vm.img}}")
+  .title(ng-bind="vm.title")
+  .content(ng-transclude, ng-show="transcluded")
+  .description(ng-bind="vm.description")
+  .ctas
+    .cta(ng-repeat="link in vm.ctas")
+      a(class="{{link.cssClass}}", title="{{link.title}}", ng-href="{{link.url}}", ng-if="link.url") {{link.title}}
+      a(class="{{link.cssClass}}", title="{{link.title}}", ui-sref="{{link.state}}", ng-if="link.state") {{link.title}}
+      a(class="{{link.cssClass}}", title="{{link.title}}", ng-click="vm.handleClick(link)", ng-if="link.eventName") {{link.title}}

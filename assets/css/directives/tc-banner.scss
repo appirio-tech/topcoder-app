@@ -1,0 +1,127 @@
+@import 'topcoder/tc-includes';
+
+$tco-color: #F47A20;
+$tco-color-dark: #ea690b;
+
+.tc-banner-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $gray-darkest;
+  padding: 20px 10px 20px 10px;
+  @media only screen and (min-width: 768px) {
+    padding: 30px 20px 30px 20px;
+  }
+
+  .image {
+    margin-bottom: 15px;
+
+    img {
+      width: 186px;
+    }
+  }
+
+  .title {
+    @include sofia-pro-medium;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .content {
+    margin-top: 20px;
+    @media only screen and (min-width: 768px) {
+      margin-top: 30px;
+    }
+  }
+
+  .description {
+    max-width: 650px;
+    margin-top: 20px;
+    @include merriweather-sans-regular;
+    font-size: 15px;
+    line-height: 24px;
+    text-align: center;
+    @media only screen and (min-width: 768px) {
+      margin-top: 30px;
+    }
+    @media only screen and (min-width: 900px) {
+      max-width: 856px;
+    }
+  }
+
+  .ctas {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    @media only screen and (min-width: 768px) {
+      margin-top: 30px;
+    }
+
+    .cta {
+      &:not(:first-child) {
+        margin-top: 30px;
+      }
+    }
+
+    a {
+      text-transform: uppercase;
+      display: block;
+      @include sofia-pro-medium;
+
+      &.primary-cta {
+      }
+
+      &.secondary-cta {
+        font-size: 12px;
+        line-height: 12px;
+        color: $accent-gray;
+      }
+
+      &.tco-cta {
+        border: 1px solid $tco-color;
+        background-color: $tco-color;
+
+        &:focus {
+          border: 1px solid $tco-color;
+          background-color: $tco-color;
+        }
+
+        &:hover {
+          background-color: $tco-color-dark;
+          border-color: $tco-color-dark;
+        }
+
+        &:active {
+          background-color: $tco-color-dark;
+          border-color: $tco-color-dark;
+        }
+      }
+    }
+  }
+}
+
+// themes
+
+// black
+.tc-banner-placeholder.black {
+  background-color: #222222;
+  .title {
+    @include sofia-pro-bold;
+    color: $white;
+  }
+
+  .description {
+    color: $white;
+  }
+
+  .ctas {
+    .cta {
+      .learn-more {
+        color: $gray-lighter;
+      }
+    }
+  }
+}
