@@ -68,7 +68,7 @@
     "react-select": "1.0.0-beta8",
     "restangular": "^1.5.2",
     "tc-angular-ellipsis": "^0.1.6",
-    "topcoder-app-r": "0.0.2",
+    "topcoder-app-r": "0.0.3",
     "xml2js": "^0.4.16",
     "zepto": "^1.0.1"
   }
