@@ -10,7 +10,7 @@
   "devDependencies": {
     "angular-mocks": "^1.4.9",
     "appirio-tech-webpack-config": "^0.2.0",
-    "babel-loader": "^6.2.1",
+    "babel-polyfill": "^6.7.2",
     "bardjs": "^0.1.8",
     "bower": "^1.6.8",
     "chai": "^3.5.0",
@@ -32,6 +32,7 @@
     "mocha": "^2.4.5",
     "phantomjs-polyfill": "0.0.1",
     "phantomjs-prebuilt": "^2.1.3",
+    "redux-logger": "^2.6.1",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "webpack": "1.x"
@@ -67,6 +68,7 @@
     "react-select": "1.0.0-beta8",
     "restangular": "^1.5.2",
     "tc-angular-ellipsis": "^0.1.6",
+    "topcoder-app-r": "0.0.2",
     "xml2js": "^0.4.16",
     "zepto": "^1.0.1"
   }
