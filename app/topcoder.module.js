@@ -17,6 +17,7 @@ import angular from 'angular'
     'tc.skill-picker',
     'tc.sitemap',
     'tc.community',
+    'tc.search',
     'ui.router',
     'blocks.logger',
     'blocks.exception',
