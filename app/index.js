@@ -1,3 +1,5 @@
+import 'babel-polyfill'
+
 require('angular')
 require('auth0-js')
 require('auth0-angular')
