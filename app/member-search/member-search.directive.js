@@ -1,15 +1,14 @@
 import angular from 'angular'
+import { MemberSearchApp } from 'topcoder-app-r/src/indexTest'
 
 (function() {
   'use strict'
 
   angular.module('tc.search').directive('memberSearch', memberSearch)
 
-  var memberSearchPage = require('topcoder-app-r/src/indexTest').default
-
   memberSearch.$inject = ['reactDirective']
 
   function memberSearch(reactDirective) {
-    return reactDirective(memberSearchPage)
+    return reactDirective(MemberSearchApp)
   }
 })()
