@@ -122,20 +122,18 @@ modal {
   align-items: center;
 
   .upload-progress__title {
-    text-transform: uppercase;
-    @include font-with-weight('Sofia Pro', 500);
-    font-size: 24px;
-    line-height: 30px;
-    max-width: 355px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    @include font-with-weight('Sofia Pro', 500);
+    font-size: 24px;
+    line-height: 30px;
   }
 
   .upload-progress__image,
   .upload-progress__image--error {
-    margin-top: 60px;
+    margin-top: 30px;
   }
 
   .upload-progress__message,
