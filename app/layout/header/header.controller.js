@@ -21,8 +21,12 @@ import _ from 'lodash'
     vm.menuLinks = NavService.menuLinks
 
     function checkSubmit(ev) {
-      if (ev.keyCode === 13)
-        window.location.replace(vm.constants.MAIN_URL + '/search?s=' + vm.searchTerm + '&scope=member')
+      if (ev.keyCode === 13) {
+        // window.location.replace(vm.constants.MAIN_URL + '/search?s=' + vm.searchTerm + '&scope=member')
+
+        // Replace with new member search url
+        window.location.replace('/search/members/?q=' + vm.searchTerm)
+      }
     }
 
     activate()
