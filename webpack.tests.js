@@ -30,6 +30,7 @@ require('xml2js')
 
 require('appirio-tech-ng-ui-components')
 require('appirio-tech-ng-iso-constants')
+require('topcoder-app-r/src/indexTest')
 
 // Require Angular modules first
 requireContextFiles(require.context('./app/', true, /^.*\.module\.js$/igm))
