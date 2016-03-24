@@ -31,8 +31,8 @@ import angular from 'angular'
           img: require('../../assets/images/nav/ico-tco16.svg'),
           description: 'The Topcoder Open (TCO) is our annual online and onsite tournament to celebrate and reward the community.',
           ctas: [{
-            title: 'About TCO',
-            url: 'http://tco16.topcoder.com',
+            title: 'Learn More',
+            url: 'http://tco16.topcoder.com/latest/overview/',
             cssClass: 'tc-btn tc-btn-s tco-cta'
           }]
         }
