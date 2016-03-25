@@ -13,9 +13,19 @@ import angular from 'angular'
       'memberSearch': {
         url: '/search/members/',
         parent: 'root',
-        template: require('./member-search')(),
         data: {
           title: 'Member Search'
+        },
+        views: {
+          'header@': {
+            template: require('../layout/header/header')(),
+            controller: 'HeaderController',
+            controllerAs: 'vm'
+          },
+          'container@': {
+            template: require('./member-search')()
+          },
+          'footer@': {}
         }
       }
     }
