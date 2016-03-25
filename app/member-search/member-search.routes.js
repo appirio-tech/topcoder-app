@@ -24,7 +24,8 @@ import angular from 'angular'
           },
           'container@': {
             template: require('./member-search')()
-          }
+          },
+          'footer@': {}
         }
       }
     }
