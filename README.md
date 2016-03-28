@@ -1,7 +1,7 @@
 #### Dev [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=dev)](https://travis-ci.org/appirio-tech/topcoder-app) QA [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=qa-integration)](https://travis-ci.org/appirio-tech/topcoder-app) Master [![Build Status](https://travis-ci.org/appirio-tech/topcoder-app.svg?branch=master)](https://travis-ci.org/appirio-tech/topcoder-app)
 # Topcoder-App
 
-This repository houses any new topcoder pages or refactored Angular apps/pages from the tc-site repository.
+Topcoder-App is an Angular application that contains dashboard, profile, settings, login/registration, and design submissions.
 
 The technologies used are NPM, Webpack, ES2015, Jade, SCSS, and Angular 1.x.
 
