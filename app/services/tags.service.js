@@ -1,4 +1,5 @@
 import angular from 'angular'
+import _ from 'lodash'
 
 (function() {
   'use strict'
@@ -31,7 +32,6 @@ import angular from 'angular'
         'https://internal-api.' + CONSTANTS.domain + '/v3/tags/_suggest/',
         {q: term}
       ).then(function(data) {
-        console.log(data)
         const tags = _.get(data, 'data.result.content')
         return tags.map(tag => {
           return tag.text
