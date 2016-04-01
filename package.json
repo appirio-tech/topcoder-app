@@ -66,6 +66,7 @@
     "moment-timezone": "^0.5.0",
     "ng-dialog": "^0.5.6",
     "react-select": "1.0.0-beta8",
+    "appirio-tech-react-components": "appirio-tech/react-components.git#dev",
     "restangular": "^1.5.2",
     "tc-angular-ellipsis": "^0.1.6",
     "topcoder-app-r": "^1.0.0",

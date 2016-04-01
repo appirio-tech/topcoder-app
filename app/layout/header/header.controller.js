@@ -6,28 +6,15 @@ import _ from 'lodash'
 
   angular.module('tc.layout').controller('HeaderController', HeaderController)
 
-  HeaderController.$inject = ['$state', 'TcAuthService', 'CONSTANTS', '$log', '$rootScope', 'UserService', 'ProfileService', 'NavService']
+  HeaderController.$inject = ['$state', 'TcAuthService', 'CONSTANTS', '$log', '$rootScope', 'UserService', 'ProfileService', 'NavService', 'TagsService']
 
-  function HeaderController($state, TcAuthService, CONSTANTS, $log, $rootScope, UserService, ProfileService, NavService) {
+  function HeaderController($state, TcAuthService, CONSTANTS, $log, $rootScope, UserService, ProfileService, NavService, TagsService) {
     var vm = this
 
     vm.constants = CONSTANTS
     vm.domain = CONSTANTS.domain
-    vm.login = TcAuthService.login
-    vm.checkSubmit = checkSubmit
+    vm.suggest = suggest
     vm.searchTerm = ''
-    vm.selectedGroup = selectedGroup
-
-    vm.menuLinks = NavService.menuLinks
-
-    function checkSubmit(ev) {
-      if (ev.keyCode === 13) {
-        // window.location.replace(vm.constants.MAIN_URL + '/search?s=' + vm.searchTerm + '&scope=member')
-
-        // Replace with new member search url
-        window.location.replace('/search/members/?q=' + vm.searchTerm)
-      }
-    }
 
     activate()
 
@@ -52,13 +39,6 @@ import _ from 'lodash'
       if (vm.isAuth) {
         vm.userHandle = UserService.getUserIdentity().handle
 
-        vm.userMenu = [
-          { 'sref': 'dashboard', 'text': 'DASHBOARD', 'icon': require('../../../assets/images/nav/dashboard.svg') },
-          { 'sref': 'profile.about', 'srefParams': { 'userHandle': vm.userHandle }, 'text': 'MY PROFILE', 'icon': require('../../../assets/images/nav/profile.svg') },
-          { 'href':  vm.constants.COMMUNITY_URL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': require('../../../assets/images/nav/wallet.svg') },
-          { 'sref': 'settings.profile', 'text': 'SETTINGS', 'icon': require('../../../assets/images/nav/settings.svg') }
-        ]
-
         ProfileService.getUserProfile(vm.userHandle)
         .then(function(data) {
           vm.profile = data
@@ -71,8 +51,9 @@ import _ from 'lodash'
       }
     }
 
-    function selectedGroup() {
-      return _.get(NavService, 'selectedTopLevelItem', null)
+    function suggest(searchTerm) {
+      return TagsService.getSuggestions(searchTerm)
+      
     }
   }
 })()
