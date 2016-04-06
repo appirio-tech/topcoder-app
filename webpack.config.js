@@ -6,6 +6,8 @@ if (CI == 'master')         process.env.ENV = 'PROD'
 if (CI == 'qa-integration') process.env.ENV = 'QA'
 if (CI == 'dev')            process.env.ENV = 'DEV'
 
+console.log('***************', CI)
+
 const config = require('appirio-tech-webpack-config')({
   dirname: __dirname,
   entry: {
