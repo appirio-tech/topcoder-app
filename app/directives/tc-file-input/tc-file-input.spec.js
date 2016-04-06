@@ -163,7 +163,7 @@ describe('Topcoder File Input Directive', function() {
 
     describe('with a file that\'s greater than 500MB', function() {
       beforeEach(function() {
-        fileList[0].size = 500000001
+        fileList[0].size = 524288001
 
         $(fileInput).triggerHandler({
           type: 'change',
