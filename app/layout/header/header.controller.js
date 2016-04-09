@@ -13,6 +13,7 @@ import angular from 'angular'
     vm.constants = CONSTANTS
     vm.domain = CONSTANTS.domain
     vm.suggest = suggest
+    vm.search = search
     vm.searchTerm = ''
 
     activate()
@@ -52,7 +53,10 @@ import angular from 'angular'
 
     function suggest(searchTerm) {
       return TagsService.getSuggestions(searchTerm)
-      
+    }
+
+    function search(searchTerm) {
+      $state.go('memberSearch', {q : searchTerm})
     }
   }
 })()

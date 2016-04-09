@@ -11,7 +11,7 @@ import angular from 'angular'
   function routes($stateProvider) {
     var states = {
       'memberSearch': {
-        url: '/search/members/',
+        url: '/search/members/?q',
         parent: 'root',
         data: {
           title: 'Member Search'
