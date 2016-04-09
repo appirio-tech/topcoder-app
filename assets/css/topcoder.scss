@@ -210,9 +210,6 @@ body {
 .view-container {
   min-height: 440px;
   padding-bottom: 30px;
-  @media screen and (min-device-width: 768px) {
-    min-width: 768px;
-  }
 }
 
 .page-container {

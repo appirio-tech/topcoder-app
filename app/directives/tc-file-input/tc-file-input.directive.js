@@ -49,7 +49,7 @@ import _ from 'lodash'
           }
 
           var fileSize = file.size
-          var isAllowedFileSize = fileSize < '500000000'
+          var isAllowedFileSize = fileSize < '524288000'
 
           var selectedFileType = file.type.slice(file.type.lastIndexOf('/') + 1)
           var isAllowedFileFormat = _.some(fileTypes, _.matches(selectedFileType))
