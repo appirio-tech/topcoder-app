@@ -8,6 +8,8 @@ import angular from 'angular'
   LogoutController.$inject = ['$log', 'TcAuthService', '$window', 'CONSTANTS']
 
   function LogoutController($log, TcAuthService, $window, CONSTANTS) {
+    $log = $log.getInstance('LogoutController')
+
     TcAuthService.logout()
     .then(function() {
       $log.debug('successfully logged out.')
