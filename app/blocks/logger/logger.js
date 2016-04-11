@@ -25,7 +25,6 @@ import angular from 'angular'
     /////////////////////
 
     function error(message, data, title) {
-      debugger
       if (data) {
         message = `${message} ${JSON.stringify(data)}`
       }
