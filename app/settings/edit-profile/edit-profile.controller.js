@@ -27,7 +27,7 @@ import _ from 'lodash'
       vm.originalUserData = userData
       vm.linkedExternalAccounts = []
       vm.linkedExternalAccountsData = {}
-      vm.skills = false
+      vm.skills = []
       vm.tags = []
       vm.profileFormProcessing = false
       vm.tracks = {}
