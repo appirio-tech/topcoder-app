@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.myChallenges').controller('MyChallengesController', MyChallengesController)
 
-  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', '$state', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity', '$stateParams']
+  MyChallengesController.$inject = ['ChallengeService', 'UserService', '$q', '$log', 'logger', '$state', 'CONSTANTS', 'Helpers', '$scope', 'userIdentity', '$stateParams']
 
-  function MyChallengesController(ChallengeService, UserService, $q, $log, $state, CONSTANTS, Helpers, $scope, userIdentity, $stateParams) {
+  function MyChallengesController(ChallengeService, UserService, $q, $log, logger, $state, CONSTANTS, Helpers, $scope, userIdentity, $stateParams) {
     $log = $log.getInstance('MyChallengesController')
     var vm = this
     vm.domain = CONSTANTS.domain
@@ -28,7 +28,7 @@ import _ from 'lodash'
     }
     vm.statusFilter = _.get($stateParams, 'status','active')
     if (vm.statusFilter !== 'active' && vm.statusFilter !== 'completed') {
-      $log.error('invalid filter, defaulting to active')
+      $log.info('invalid filter, defaulting to active')
       vm.statusFilter = 'active'
     }
     vm.orderBy
@@ -91,8 +91,9 @@ import _ from 'lodash'
           vm.loading = CONSTANTS.STATE_READY
         }
       })
-      .catch(function(resp) {
-        $log.error(resp)
+      .catch(function(err) {
+        logger.error('Error getting all challenges', err)
+
         vm.loading = CONSTANTS.STATE_ERROR
       })
     }

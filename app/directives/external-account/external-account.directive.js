@@ -24,8 +24,8 @@ import _ from 'lodash'
         linkedAccounts: '=',
         readOnly: '='
       },
-      controller: ['$log', '$scope', 'ExternalAccountService', 'toaster',
-        function($log, $scope, ExternalAccountService, toaster) {
+      controller: ['$log', 'logger', '$scope', 'ExternalAccountService', 'toaster',
+        function($log, logger, $scope, ExternalAccountService, toaster) {
 
           $log = $log.getInstance('ExtAccountDirectiveCtrl')
 
@@ -80,9 +80,10 @@ import _ from 'lodash'
                 )
               )
             })
-            .catch(function(resp) {
-              if (resp.status === 'SOCIAL_PROFILE_ALREADY_EXISTS') {
+            .catch(function(err) {
+              if (err.status === 'SOCIAL_PROFILE_ALREADY_EXISTS') {
                 $log.info('Social profile already linked to another account')
+
                 toaster.pop('error', 'Whoops!',
                   String.supplant(
                     'This {provider} account is linked to another account. \
@@ -91,7 +92,8 @@ import _ from 'lodash'
                   )
                 )
               } else {
-                $log.error('Fatal Error: _link: ' + resp.msg)
+                logger.error('Fatal Error: _link: ', err.msg)
+
                 toaster.pop('error', 'Whoops!', 'Sorry, we are unable to add your account right now. Please try again later. If the problem persists, please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>.')
               }
             })
@@ -115,13 +117,16 @@ import _ from 'lodash'
                 )
               )
             })
-            .catch(function(resp) {
-              var msg = resp.msg
-              if (resp.status === 'SOCIAL_PROFILE_NOT_EXIST') {
+            .catch(function(err) {
+              var msg = err.msg
+
+              if (err.status === 'SOCIAL_PROFILE_NOT_EXIST') {
                 $log.info('Social profile not linked to account')
+
                 msg = '{provider} account is not linked to your account. If you think this is an error please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>.'
               } else {
-                $log.error('Fatal error: _unlink: ' + msg)
+                logger.error('Fatal error: _unlink', msg)
+
                 msg = 'Sorry! We are unable to unlink your {provider} account. If problem persists, please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>'
               }
               toaster.pop('error', 'Whoops!', String.supplant(msg, {provider: provider.displayName }))

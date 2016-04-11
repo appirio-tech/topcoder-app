@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.myDashboard').controller('MyDashboardController', MyDashboardController)
 
-  MyDashboardController.$inject = ['userIdentity', 'ProfileService', '$log']
+  MyDashboardController.$inject = ['userIdentity', 'ProfileService', '$log', 'logger']
 
-  function MyDashboardController(userIdentity, ProfileService, $log) {
+  function MyDashboardController(userIdentity, ProfileService, $log, logger) {
     var vm = this
 
     activate()
@@ -33,7 +33,8 @@ import _ from 'lodash'
       })
       .catch(function(err) {
         vm.showSRMs = false
-        $log.error(err)
+
+        logger.error('Could not get user profile data', err)
       })
     }
   }

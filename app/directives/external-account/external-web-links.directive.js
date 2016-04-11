@@ -7,9 +7,9 @@ import angular from 'angular'
   // @example <external-links-data></external-links-data>
   angular.module('tcUIComponents').directive('externalWebLink', ExternalWebLink)
 
-  ExternalWebLink.$inject = ['$log', 'ExternalWebLinksService', 'toaster']
+  ExternalWebLink.$inject = ['$log', 'logger', 'ExternalWebLinksService', 'toaster']
 
-  function ExternalWebLink($log, ExternalWebLinksService, toaster) {
+  function ExternalWebLink($log, logger, ExternalWebLinksService, toaster) {
     var directive = {
       restrict: 'E',
       template: require('./external-web-link')(),
@@ -31,6 +31,7 @@ import angular from 'angular'
         $log.debug('URL: ' + $scope.url)
         $scope.addingWebLink = true
         $scope.errorMessage = null
+
         ExternalWebLinksService.addLink($scope.userHandle, $scope.url)
           .then(function(data) {
             $scope.addingWebLink = false
@@ -42,17 +43,19 @@ import angular from 'angular'
             $scope.url = null
             toaster.pop('success', 'Success', 'Your link has been added. Data from your link will be visible on your profile shortly.')
           })
-          .catch(function(resp) {
+          .catch(function(err) {
             $scope.addingWebLink = false
 
-            if (resp.status === 'WEBLINK_ALREADY_EXISTS') {
+            if (err.status === 'WEBLINK_ALREADY_EXISTS') {
               $log.info('Social profile already linked to another account')
+
               toaster.pop('error', 'Whoops!',
                   'This weblink is already added to your account. \
                   If you think this is an error please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>.'
               )
             } else {
-              $log.error('Fatal Error: addWebLink: ' + resp.msg)
+              logger.error('Fatal Error: addWebLink', err.msg)
+
               toaster.pop('error', 'Sorry, we are unable add web link. If problem persist please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>.')
             }
           })

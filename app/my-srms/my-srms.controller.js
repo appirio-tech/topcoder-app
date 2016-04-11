@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.myDashboard').controller('MySRMsController', MySRMsController)
 
-  MySRMsController.$inject = ['UserService','SRMService', '$log', '$state', '$stateParams', 'CONSTANTS', '$scope']
+  MySRMsController.$inject = ['UserService','SRMService', '$log', 'logger', '$state', '$stateParams', 'CONSTANTS', '$scope']
 
-  function MySRMsController(UserService, SRMService, $log, $state, $stateParams, CONSTANTS, $scope) {
+  function MySRMsController(UserService, SRMService, $log, logger, $state, $stateParams, CONSTANTS, $scope) {
     $log = $log.getInstance('MySRMsController')
     var vm = this
     vm.srms = []
@@ -93,8 +93,8 @@ import _ from 'lodash'
       vm.loading = CONSTANTS.STATE_READY
     }
 
-    function handleSRMsFailure(resp) {
-      $log.error(resp)
+    function handleSRMsFailure(err) {
+      logger.error('Could not get user SRMs', err)
       vm.loading = CONSTANTS.STATE_ERROR
     }
   }

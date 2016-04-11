@@ -44,17 +44,21 @@ import angular from 'angular'
             // var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token()
             if (jwtHelper.isTokenExpired(token)) {
               $log.debug(String.supplant('Token has expired, attempting to refreshToken() for "{url}"', config))
-              return AuthTokenService.refreshV3Token(token).then(function(idToken) {
+
+              return AuthTokenService.refreshV3Token(token)
+              .then(function(idToken) {
                 $log.debug('Successfully refreshed V3 token.')
                 // v2 token doesn't expire
                 AuthTokenService.setV3Token(idToken)
                 return idToken
               })
-              .catch(function(resp) {
+              .catch(function(err) {
                 // Server will not or cannot refresh token
                 $log.debug('Unable to refresh V3 token, redirecting to login')
-                $log.debug(resp)
+                $log.debug(err)
+
                 $state.go('login')
+
                 return null
               })
             } else {
@@ -77,17 +81,20 @@ import angular from 'angular'
       // Note only v3tokens expire
       if (jwtHelper.isTokenExpired(idToken)) {
         $log.debug(String.supplant('Token has expired, attempting to refreshToken() for "{url}"', config))
-        return AuthTokenService.refreshV3Token(idToken).then(function(idToken) {
+        return AuthTokenService.refreshV3Token(idToken)
+        .then(function(idToken) {
           // v2 token doesn't expire
           $log.debug('Successfully refreshed V3 token.')
           AuthTokenService.setV3Token(idToken)
           return idToken
         })
-        .catch(function(resp) {
+        .catch(function(err) {
           // Server will not or cannot refresh token
           $log.debug('Unable to refresh V3 token, redirecting to login')
-          $log.debug(resp)
+          $log.debug(err)
+
           $state.go('login')
+
           return null
         })
       } else {

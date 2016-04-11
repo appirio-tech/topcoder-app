@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.services').factory('AuthTokenService', AuthTokenService)
 
-  AuthTokenService.$inject = ['CONSTANTS', '$cookies', '$location', 'store', '$http', '$log', 'jwtHelper', '$q']
+  AuthTokenService.$inject = ['CONSTANTS', '$cookies', '$location', 'store', '$http', '$log', 'logger', 'jwtHelper', '$q']
 
-  function AuthTokenService(CONSTANTS, $cookies, $location,  store, $http, $log, jwtHelper, $q) {
+  function AuthTokenService(CONSTANTS, $cookies, $location,  store, $http, $log, logger, jwtHelper, $q) {
     var v2TokenKey = 'tcjwt'
     var v2TCSSOTokenKey = 'tcsso'
     var v3TokenKey = 'appiriojwt'
@@ -66,12 +66,17 @@ import angular from 'angular'
           'Authorization': 'Bearer ' + token
         },
         data: {}
-      }).then(function(res) {
+      })
+      .then(function(res) {
         var appiriojwt = res.data.result.content.token
+
         setV3Token(appiriojwt)
+
         return appiriojwt
-      }).catch(function(resp) {
-        $log.error(resp)
+      })
+      .catch(function(err) {
+        logger.error('Could not refresh v3 token', err)
+
         removeTokens()
       })
     }
@@ -98,8 +103,10 @@ import angular from 'angular'
             resolve(appiriojwt)
           },
           function(err) {
-            $log.error(err)
+            logger.error('Could not exchange token', err)
+
             removeTokens()
+
             reject(err)
           }
         )
@@ -122,7 +129,7 @@ import angular from 'angular'
           $log.debug(resp)
         },
         function(err) {
-          $log.error(err)
+          logger.error('Could not get token from Auth0 code', err)
         }
       )
     }

@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.myDashboard').controller('SRMWidgetController', SRMWidgetController)
 
-  SRMWidgetController.$inject = ['CONSTANTS', 'UserService','SRMService', '$q', '$log']
+  SRMWidgetController.$inject = ['CONSTANTS', 'UserService','SRMService', '$q', '$log', 'logger']
 
-  function SRMWidgetController(CONSTANTS, UserService, SRMService, $q, $log) {
+  function SRMWidgetController(CONSTANTS, UserService, SRMService, $q, $log, logger) {
     var vm = this
     vm.srms = []
     vm.state = CONSTANTS.STATE_LOADING
@@ -51,8 +51,9 @@ import angular from 'angular'
 
         vm.srms = srms
         vm.state = CONSTANTS.STATE_READY
-      }).catch(function(error) {
-        $log.error()
+      }).catch(function(err) {
+        logger.error('Could not get list of SRMs or user SRMs', err)
+
         vm.state = CONSTANTS.STATE_ERROR
       })
     }

@@ -25,7 +25,18 @@ import angular from 'angular'
     /////////////////////
 
     function error(message, data, title) {
-      $log.error('Error: ' + message, data)
+      debugger
+      if (data) {
+        message = `${message} ${JSON.stringify(data)}`
+      }
+
+      $log.error(message)
+
+      if (window.NREUM) {
+        var err = new Error(message)
+
+        window.NREUM.noticeError(err)
+      }
     }
 
     function info(message, data, title) {

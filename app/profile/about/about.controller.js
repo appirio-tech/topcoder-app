@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.profile').controller('ProfileAboutController', ProfileAboutController)
 
-  ProfileAboutController.$inject = ['$log', '$scope', '$q', 'ExternalAccountService', 'ExternalWebLinksService', 'UserService', 'CONSTANTS']
+  ProfileAboutController.$inject = ['$log', 'logger', '$scope', '$q', 'ExternalAccountService', 'ExternalWebLinksService', 'UserService', 'CONSTANTS']
 
-  function ProfileAboutController($log, $scope, $q, ExternalAccountService, ExternalWebLinksService, UserService, CONSTANTS) {
+  function ProfileAboutController($log, logger, $scope, $q, ExternalAccountService, ExternalWebLinksService, UserService, CONSTANTS) {
     var vm = this
     $log = $log.getInstance('ProfileAboutController')
     var profileVm = $scope.$parent.profileVm
@@ -34,7 +34,9 @@ import angular from 'angular'
         vm.displaySection.externalLinks = profileVm.showEditProfileLink || !!vm.linkedExternalAccounts.length
 
         profileVm.status.externalLinks = CONSTANTS.STATE_READY
-      }).catch(function(resp) {
+      }).catch(function(err) {
+        logger.error('Could retrive web links and external accounts', err)
+
         profileVm.status.externalLinks = CONSTANTS.STATE_ERROR
       })
 

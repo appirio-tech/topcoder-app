@@ -5,11 +5,10 @@ import angular from 'angular'
 
   angular.module('tc.account').controller('LoginController', LoginController)
 
-  LoginController.$inject = ['$log', '$state', '$stateParams', '$location', '$scope', 'TcAuthService', 'UserService', 'Helpers', 'CONSTANTS']
+  LoginController.$inject = ['$log', 'logger', '$state', '$stateParams', '$location', '$scope', 'TcAuthService', 'UserService', 'Helpers', 'CONSTANTS']
 
-  function LoginController($log, $state, $stateParams, $location, $scope, TcAuthService, UserService, Helpers, CONSTANTS) {
+  function LoginController($log, logger, $state, $stateParams, $location, $scope, TcAuthService, UserService, Helpers, CONSTANTS) {
     var vm = this
-    $log = $log.getInstance('LoginController')
     vm.$stateParams = $stateParams
     vm.passwordReset = false
     vm.loginErrors = {
@@ -84,9 +83,9 @@ import angular from 'angular'
         Helpers.setupLoginEventMetrics(usernameOrEmail)
         return Helpers.redirectPostLogin($stateParams.next)
 
-      }).catch(function(resp) {
-        $log.warn(resp)
-        switch (resp.status) {
+      }).catch(function(err) {
+        $log.warn(err)
+        switch (err.status) {
         case 'ACCOUNT_INACTIVE':
           $state.go('registeredSuccessfully')
           // user should already be redirected
@@ -95,6 +94,7 @@ import angular from 'angular'
         default:
           vm.loginErrors.WRONG_PASSWORD = true
           vm.password = ''
+          logger.error('Error logging in: ', err)
         }
       })
     }
@@ -114,16 +114,16 @@ import angular from 'angular'
         $log.debug('logged in')
         return Helpers.redirectPostLogin($stateParams.next)
       })
-      .catch(function(resp) {
+      .catch(function(err) {
         /*eslint no-fallthrough:0*/
-        switch (resp.status) {
+        switch (err.status) {
         case 'ACCOUNT_INACTIVE':
           window.location.href = 'https://www.' + CONSTANTS.domain + '/account-inactive/'
         case 'USER_NOT_REGISTERED':
         default:
           vm.socialLoginError = 401
           vm.loginErrors.SOCIAL_LOGIN_ERROR = true
-          break
+          logger.error('Error logging in with social account', err)
         }
       })
     }

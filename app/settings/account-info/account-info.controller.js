@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.settings').controller('AccountInfoController', AccountInfoController)
 
-  AccountInfoController.$inject = ['userData', 'UserService', 'ProfileService', '$log', 'ISO3166', 'toaster', '$scope', '$timeout', '$state']
+  AccountInfoController.$inject = ['userData', 'UserService', 'ProfileService', '$log', 'logger', 'ISO3166', 'toaster', '$scope', '$timeout', '$state']
 
-  function AccountInfoController(userData, UserService, ProfileService, $log, ISO3166, toaster, $scope, $timeout, $state) {
+  function AccountInfoController(userData, UserService, ProfileService, $log, logger, ISO3166, toaster, $scope, $timeout, $state) {
     var vm = this
     vm.saveAccountInfo   = saveAccountInfo
     vm.updateCountry     = updateCountry
@@ -35,8 +35,11 @@ import _ from 'lodash'
         vm.loading = false
       })
       .catch(function(err) {
-        $log.error('Error fetching user profile. Redirecting to edit profile.')
+        $log.info('Error fetching user profile. Redirecting to edit profile.')
+        logger.error('Could not fetch user profile data', err)
+
         $state.go('settings.profile')
+
         vm.loading = false
       })
 
@@ -88,8 +91,11 @@ import _ from 'lodash'
         for (var k in vm.userData) userData[k] = vm.userData[k]
         vm.accountInfoForm.$setPristine()
       })
-      .catch(function() {
+      .catch(function(err) {
+        logger.error('Could not update user profile', err)
+
         vm.formProcessing.accountInfoForm = false
+
         toaster.pop('error', 'Whoops!', 'Something went wrong. Please try again later.')
       })
     }
@@ -100,6 +106,7 @@ import _ from 'lodash'
 
     function submitNewPassword() {
       vm.formProcessing.newPasswordForm = true
+
       UserService.updatePassword(vm.password, vm.currentPassword)
       .then(function(res) {
         vm.formProcessing.newPasswordForm = false
@@ -112,9 +119,10 @@ import _ from 'lodash'
         $log.info('Your password has been updated.')
       })
       .catch(function(err) {
+        logger.error('Could not update password', err)
+
         vm.formProcessing.newPasswordForm = false
         vm.newPasswordForm.currentPassword.$setValidity('incorrect', false)
-        $log.error(err)
       })
     }
   }

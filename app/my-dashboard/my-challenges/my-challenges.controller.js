@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.myDashboard').controller('MyChallengesWidgetController', MyChallengesWidgetController)
 
-  MyChallengesWidgetController.$inject = ['ChallengeService', 'UserService', '$log', 'CONSTANTS', 'userIdentity', '$q']
+  MyChallengesWidgetController.$inject = ['ChallengeService', 'UserService', '$log', 'logger', 'CONSTANTS', 'userIdentity', '$q']
 
-  function MyChallengesWidgetController(ChallengeService, UserService, $log, CONSTANTS, userIdentity, $q) {
+  function MyChallengesWidgetController(ChallengeService, UserService, $log, logger, CONSTANTS, userIdentity, $q) {
     var vm = this
     vm.domain = CONSTANTS.domain
     vm.neverParticipated = false
@@ -65,7 +65,8 @@ import _ from 'lodash'
         }
       })
       .catch(function(err) {
-        $log.error(err)
+        logger.error('Error getting challenges and marathon matches', err)
+
         vm.userHasChallenges = true
         vm.loading = false
       })

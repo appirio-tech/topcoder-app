@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.account').controller('RegisterController', RegisterController)
 
-  RegisterController.$inject = ['$log', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService', 'ISO3166', 'Helpers']
+  RegisterController.$inject = ['$log', 'logger', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService', 'ISO3166', 'Helpers']
 
-  function RegisterController($log, CONSTANTS, $state, $stateParams, TcAuthService, UserService, ISO3166, Helpers) {
+  function RegisterController($log, logger, CONSTANTS, $state, $stateParams, TcAuthService, UserService, ISO3166, Helpers) {
     $log = $log.getInstance('RegisterController')
     $log.debug('-init')
     var vm = this
@@ -96,7 +96,8 @@ import _ from 'lodash'
       })
       .catch(function(err) {
         vm.registering = false
-        $log.error('Error in registering new user: ', err)
+
+        logger.error('Error in registering new user', err)
       })
     }
 
@@ -130,17 +131,22 @@ import _ from 'lodash'
           vm.isSocialRegistration = false
         }
       })
-    .catch(function(result) {
-      switch (result.status) {
-      case 'SOCIAL_PROFILE_ALREADY_EXISTS':
-        vm.errMsg = 'An account with that profile already exists. Please login to access your account.'
-        break
-      default:
-        vm.errMsg = 'Whoops! Something went wrong. Please try again later.'
-        break
-      }
-      vm.isSocialRegistration = false
-    })
+      .catch(function(err) {
+        switch (err.status) {
+        case 'SOCIAL_PROFILE_ALREADY_EXISTS':
+          vm.errMsg = 'An account with that profile already exists. Please login to access your account.'
+
+          logger.error('Error registering user with social account', err)
+
+          break
+
+        default:
+          vm.errMsg = 'Whoops! Something went wrong. Please try again later.'
+
+          logger.error('Error registering user with social account', err)
+        }
+        vm.isSocialRegistration = false
+      })
     }
 
     vm.$stateParams = $stateParams

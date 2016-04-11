@@ -18,7 +18,7 @@ import Auth0 from 'auth0-js'
   angular.module('tc.services', dependencies)
     .config(['$provide', 'authProvider', 'CONSTANTS', function($provide, authProvider, CONSTANTS) {
       $provide.decorator('$log', ['$delegate', 'LogEnhancer', function($delegate, LogEnhancer) {
-        LogEnhancer.enhanceLogger($delegate)
+        LogEnhancer.enhance$log($delegate)
         return $delegate
       }])
 

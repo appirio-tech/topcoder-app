@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.services').factory('TcAuthService', TcAuthService)
 
-  TcAuthService.$inject = ['CONSTANTS', 'auth', 'AuthTokenService', '$rootScope', '$q', '$log', '$timeout', 'UserService', 'Helpers', 'ApiService', 'store', '$http']
+  TcAuthService.$inject = ['CONSTANTS', 'auth', 'AuthTokenService', '$rootScope', '$q', '$log', 'logger', '$timeout', 'UserService', 'Helpers', 'ApiService', 'store', '$http']
 
-  function TcAuthService(CONSTANTS, auth, AuthTokenService, $rootScope, $q, $log, $timeout, UserService, Helpers, ApiService, store, $http) {
+  function TcAuthService(CONSTANTS, auth, AuthTokenService, $rootScope, $q, $log, logger, $timeout, UserService, Helpers, ApiService, store, $http) {
     $log = $log.getInstance('TcAuthServicetcAuth')
     var auth0 = auth
     var service = {
@@ -128,7 +128,7 @@ import angular from 'angular'
                     resolve(result)
                   } else {
                     if (resp.reasonCode === 'ALREADY_IN_USE') {
-                      $log.error('Social handle exist')
+                      logger.error('Social handle exist')
                       reject({
                         status: 'SOCIAL_PROFILE_ALREADY_EXISTS'
                       })
@@ -136,8 +136,8 @@ import angular from 'angular'
                   }
 
                 })
-                .catch(function(resp) {
-                  $log.debug(JSON.stringify(resp))
+                .catch(function(err) {
+                  $log.debug(JSON.stringify(err))
                 })
             },
             function(error) {
@@ -146,7 +146,8 @@ import angular from 'angular'
             }
           )
         } else {
-          $log.error('Unsupported social login provider: ' + provider)
+          logger.error('Unsupported social login provider', provider)
+
           reject({
             status: 'FAILED',
             'error': 'Unsupported social login provider \'' + provider + '\''

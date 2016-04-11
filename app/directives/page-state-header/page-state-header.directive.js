@@ -16,12 +16,12 @@ import _ from 'lodash'
         hideMoney: '=',
         defaultState: '@'
       },
-      controller: ['CONSTANTS', '$rootScope', '$scope', 'ProfileService', '$log', '$state', pageStateHeader],
+      controller: ['CONSTANTS', '$rootScope', '$scope', 'ProfileService', '$log', 'logger', '$state', pageStateHeader],
       controllerAs: 'vm'
     }
   })
 
-  function pageStateHeader(CONSTANTS, $rootScope, $scope, ProfileService, $log, $state) {
+  function pageStateHeader(CONSTANTS, $rootScope, $scope, ProfileService, $log, logger, $state) {
     var vm = this
     vm.backHandler = backHandler
 
@@ -106,6 +106,8 @@ import _ from 'lodash'
       .catch(function(err) {
         $scope.hideMoney = true
         vm.loading = false
+
+        logger.error('Could not get user financial information', err)
       })
     }
   }

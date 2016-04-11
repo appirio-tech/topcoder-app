@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.peer-review').controller('ReviewStatusController', ReviewStatusController)
 
-  ReviewStatusController.$inject = ['$state', '$stateParams', 'ReviewService', 'ChallengeService', 'Helpers', 'CONSTANTS']
+  ReviewStatusController.$inject = ['$state', '$stateParams', 'ReviewService', 'ChallengeService', 'Helpers', 'CONSTANTS', '$log', 'logger']
 
-  function ReviewStatusController($state, $stateParams, ReviewService, ChallengeService, Helpers, CONSTANTS) {
+  function ReviewStatusController($state, $stateParams, ReviewService, ChallengeService, Helpers, CONSTANTS, $log, logger) {
     var vm = this
     vm.domain = CONSTANTS.domain
     vm.loaded = false
@@ -28,8 +28,9 @@ import angular from 'angular'
           reviewId: newReviewId
         })
       })
-      .catch(function(error) {
-        // An error occurred while trying to get the next review
+      .catch(function(err) {
+        logger.error('Could not get next review', err)
+
         $state.reload()
       })
     }
