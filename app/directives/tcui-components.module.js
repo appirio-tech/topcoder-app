@@ -6,7 +6,7 @@ import angular from 'angular'
   angular.module('tcUIComponents', ['dcbImgFallback', 'blocks.logger', 'toaster'])
   .config(['$provide',function ($provide) {
     $provide.decorator('$log', ['$delegate', 'LogEnhancer', function ($delegate, LogEnhancer) {
-      LogEnhancer.enhance$log($delegate)
+      LogEnhancer.enhanceLogger($delegate)
       return $delegate
     }])
   }])
