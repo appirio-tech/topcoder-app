@@ -15,11 +15,11 @@ import angular from 'angular'
         data: {
           authRequired: false
         },
-        onEnter: ['$state', '$stateParams', 'TcAuthService', '$log', function($state, $stateParams, TcAuthService, $log) {
+        onEnter: ['$state', '$stateParams', 'TcAuthService', 'logger', function($state, $stateParams, TcAuthService, logger) {
           if (TcAuthService.isAuthenticated()) {
             // redirect to next if exists else dashboard
             if ($stateParams.next) {
-              $log.debug('Redirecting: ' + $stateParams.next)
+              logger.debug('Redirecting: ' + $stateParams.next)
               window.location.href = decodeURIComponent($stateParams.next)
             } else {
               $state.go('dashboard')

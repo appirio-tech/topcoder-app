@@ -7,9 +7,9 @@ import angular from 'angular'
   // answers saved but not submitted.
   angular.module('tc.peer-review').controller('EditReviewController', EditReviewController)
 
-  EditReviewController.$inject = ['$state', '$stateParams', 'ReviewService', 'ScorecardService', 'UserService', 'ChallengeService', 'Helpers', '$q', 'CONSTANTS']
+  EditReviewController.$inject = ['$state', '$stateParams', 'ReviewService', 'ScorecardService', 'UserService', 'ChallengeService', 'Helpers', '$q', 'CONSTANTS', 'logger']
 
-  function EditReviewController($state, $stateParams, ReviewService, ScorecardService, UserService, ChallengeService, Helpers, $q, CONSTANTS) {
+  function EditReviewController($state, $stateParams, ReviewService, ScorecardService, UserService, ChallengeService, Helpers, $q, CONSTANTS, logger) {
     var vm = this
     vm.domain = CONSTANTS.domain
     vm.challengeId = $stateParams.challengeId
@@ -34,8 +34,10 @@ import angular from 'angular'
           challengeId: vm.challengeId
         })
       })
-      .catch(function(error) {
-        var message = 'An error occurred while trying to submit answers.\n' + error.status + ': ' + error.statusText
+      .catch(function(err) {
+        logger.error('Could not submit review data', err)
+
+        var message = 'An error occurred while trying to submit answers.\n' + err.status + ': ' + err.statusText
 
         alert(message)
 
@@ -52,8 +54,10 @@ import angular from 'angular'
           challengeId: vm.challengeId
         })
       })
-      .catch(function(error) {
-        var message = 'An error occurred while trying to update answers.\n' + error.status + ': ' + error.statusText
+      .catch(function(err) {
+        logger.error('Could not save review data for later', err)
+
+        var message = 'An error occurred while trying to update answers.\n' + err.status + ': ' + err.statusText
 
         alert(message)
 

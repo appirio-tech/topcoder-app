@@ -5,10 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.services').factory('JwtInterceptorService', JwtInterceptorService)
 
-  JwtInterceptorService.$inject = ['$log', 'jwtHelper', 'AuthTokenService', 'TcAuthService', '$state']
+  JwtInterceptorService.$inject = ['logger', 'jwtHelper', 'AuthTokenService', 'TcAuthService', '$state']
 
-  function JwtInterceptorService($log, jwtHelper, AuthTokenService, TcAuthService, $state) {
-    $log = $log.getInstance('JwtInterceptorService')
+  function JwtInterceptorService(logger, jwtHelper, AuthTokenService, TcAuthService, $state) {
     var service = {
       getToken: getToken
     }
@@ -43,18 +42,22 @@ import angular from 'angular'
             }
             // var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token()
             if (jwtHelper.isTokenExpired(token)) {
-              $log.debug(String.supplant('Token has expired, attempting to refreshToken() for "{url}"', config))
-              return AuthTokenService.refreshV3Token(token).then(function(idToken) {
-                $log.debug('Successfully refreshed V3 token.')
+              logger.debug(String.supplant('Token has expired, attempting to refreshToken() for "{url}"', config))
+
+              return AuthTokenService.refreshV3Token(token)
+              .then(function(idToken) {
+                logger.debug('Successfully refreshed V3 token.')
                 // v2 token doesn't expire
                 AuthTokenService.setV3Token(idToken)
                 return idToken
               })
-              .catch(function(resp) {
+              .catch(function(err) {
                 // Server will not or cannot refresh token
-                $log.debug('Unable to refresh V3 token, redirecting to login')
-                $log.debug(resp)
+                logger.debug('Unable to refresh V3 token, redirecting to login')
+                logger.debug(err)
+
                 $state.go('login')
+
                 return null
               })
             } else {
@@ -62,7 +65,7 @@ import angular from 'angular'
             }
           }
           // else
-          $log.debug(String.supplant('Skipping authToken for "{url}, UnAuthenticated user"', config))
+          logger.debug(String.supplant('Skipping authToken for "{url}, UnAuthenticated user"', config))
           return null
         }
       }
@@ -76,18 +79,21 @@ import angular from 'angular'
       }
       // Note only v3tokens expire
       if (jwtHelper.isTokenExpired(idToken)) {
-        $log.debug(String.supplant('Token has expired, attempting to refreshToken() for "{url}"', config))
-        return AuthTokenService.refreshV3Token(idToken).then(function(idToken) {
+        logger.debug(String.supplant('Token has expired, attempting to refreshToken() for "{url}"', config))
+        return AuthTokenService.refreshV3Token(idToken)
+        .then(function(idToken) {
           // v2 token doesn't expire
-          $log.debug('Successfully refreshed V3 token.')
+          logger.debug('Successfully refreshed V3 token.')
           AuthTokenService.setV3Token(idToken)
           return idToken
         })
-        .catch(function(resp) {
+        .catch(function(err) {
           // Server will not or cannot refresh token
-          $log.debug('Unable to refresh V3 token, redirecting to login')
-          $log.debug(resp)
+          logger.debug('Unable to refresh V3 token, redirecting to login')
+          logger.debug(err)
+
           $state.go('login')
+
           return null
         })
       } else {

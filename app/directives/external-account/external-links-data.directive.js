@@ -16,9 +16,8 @@ import angular from 'angular'
         editable: '=',
         userHandle: '@'
       },
-      controller: ['$log', '$scope', '$window', '$filter', 'ExternalWebLinksService', 'toaster', 'ngDialog',
-        function($log, $scope, $window, $filter, ExternalWebLinksService, toaster, ngDialog) {
-          $log = $log.getInstance('ExternalLinksDataCtrl')
+      controller: ['logger', '$scope', '$window', '$filter', 'ExternalWebLinksService', 'toaster', 'ngDialog',
+        function(logger, $scope, $window, $filter, ExternalWebLinksService, toaster, ngDialog) {
           $scope.deletionDialog = null
 
           $scope.openLink = function(account) {
@@ -63,7 +62,7 @@ import angular from 'angular'
                 }
               }
             }).closePromise.then(function (data) {
-              $log.debug('Closing deletion confirmation dialog.')
+              logger.debug('Closing deletion confirmation dialog.')
             })
           }
         }

@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.services').factory('ApiService', ApiService)
 
-  ApiService.$inject = ['$http', '$log', 'AuthTokenService', 'Restangular', 'CONSTANTS']
+  ApiService.$inject = ['$http', 'logger', 'AuthTokenService', 'Restangular', 'CONSTANTS']
 
-  function ApiService($http, $log, AuthTokenService, Restangular, CONSTANTS) {
+  function ApiService($http, logger, AuthTokenService, Restangular, CONSTANTS) {
     var service = {
       requestHandler: requestHandler,
       restangularV2: _getRestangularV2(),
@@ -60,7 +60,7 @@ import _ from 'lodash'
             case 500: // SERVER ERROR
             case 503: // HTTP_503_SERVICE_UNAVAILABLE
             default:
-              $log.error('Restangular Error Interceptor' + JSON.stringify(response))
+              logger.error('Restangular Error Interceptor', response)
               return true // error not handled
             }
           })
@@ -142,7 +142,7 @@ import _ from 'lodash'
             case 500: // SERVER ERROR
             case 503: // HTTP_503_SERVICE_UNAVAILABLE
             default:
-              $log.error('Restangular Error Interceptor ', response)
+              logger.error('Restangular Error Interceptor ', response)
               return true // error not handled
             }
           })
