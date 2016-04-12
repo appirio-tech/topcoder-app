@@ -5,11 +5,10 @@ import angular from 'angular'
 
   angular.module('tc.profile').controller('ProfileAboutController', ProfileAboutController)
 
-  ProfileAboutController.$inject = ['$log', 'logger', '$scope', '$q', 'ExternalAccountService', 'ExternalWebLinksService', 'UserService', 'CONSTANTS']
+  ProfileAboutController.$inject = ['logger', '$scope', '$q', 'ExternalAccountService', 'ExternalWebLinksService', 'UserService', 'CONSTANTS']
 
-  function ProfileAboutController($log, logger, $scope, $q, ExternalAccountService, ExternalWebLinksService, UserService, CONSTANTS) {
+  function ProfileAboutController(logger, $scope, $q, ExternalAccountService, ExternalWebLinksService, UserService, CONSTANTS) {
     var vm = this
-    $log = $log.getInstance('ProfileAboutController')
     var profileVm = $scope.$parent.profileVm
     vm.categoryIndex = 0
     vm.skillIndex = 0

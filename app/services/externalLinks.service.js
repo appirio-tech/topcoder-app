@@ -6,11 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.services').factory('ExternalWebLinksService', ExternalWebLinksService)
 
-  ExternalWebLinksService.$inject = ['$log', 'logger', 'CONSTANTS', 'ApiService', '$q']
+  ExternalWebLinksService.$inject = ['logger', 'CONSTANTS', 'ApiService', '$q']
 
-  function ExternalWebLinksService($log, logger, CONSTANTS, ApiService, $q) {
-    $log = $log.getInstance('ExternalWebLinksService')
-
+  function ExternalWebLinksService(logger, CONSTANTS, ApiService, $q) {
     var memberApi = ApiService.getApiServiceProvider('MEMBER')
 
     var service = {

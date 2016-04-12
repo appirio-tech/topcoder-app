@@ -7,9 +7,9 @@ import angular from 'angular'
   // answers saved but not submitted.
   angular.module('tc.peer-review').controller('EditReviewController', EditReviewController)
 
-  EditReviewController.$inject = ['$state', '$stateParams', 'ReviewService', 'ScorecardService', 'UserService', 'ChallengeService', 'Helpers', '$q', 'CONSTANTS', '$log', 'logger']
+  EditReviewController.$inject = ['$state', '$stateParams', 'ReviewService', 'ScorecardService', 'UserService', 'ChallengeService', 'Helpers', '$q', 'CONSTANTS', 'logger']
 
-  function EditReviewController($state, $stateParams, ReviewService, ScorecardService, UserService, ChallengeService, Helpers, $q, CONSTANTS, $log, logger) {
+  function EditReviewController($state, $stateParams, ReviewService, ScorecardService, UserService, ChallengeService, Helpers, $q, CONSTANTS, logger) {
     var vm = this
     vm.domain = CONSTANTS.domain
     vm.challengeId = $stateParams.challengeId

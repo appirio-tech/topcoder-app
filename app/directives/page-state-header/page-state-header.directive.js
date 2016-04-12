@@ -16,12 +16,12 @@ import _ from 'lodash'
         hideMoney: '=',
         defaultState: '@'
       },
-      controller: ['CONSTANTS', '$rootScope', '$scope', 'ProfileService', '$log', 'logger', '$state', pageStateHeader],
+      controller: ['CONSTANTS', '$rootScope', '$scope', 'ProfileService', 'logger', '$state', pageStateHeader],
       controllerAs: 'vm'
     }
   })
 
-  function pageStateHeader(CONSTANTS, $rootScope, $scope, ProfileService, $log, logger, $state) {
+  function pageStateHeader(CONSTANTS, $rootScope, $scope, ProfileService, logger, $state) {
     var vm = this
     vm.backHandler = backHandler
 

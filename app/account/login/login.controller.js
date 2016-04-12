@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.account').controller('LoginController', LoginController)
 
-  LoginController.$inject = ['$log', 'logger', '$state', '$stateParams', '$location', '$scope', 'TcAuthService', 'UserService', 'Helpers', 'CONSTANTS']
+  LoginController.$inject = ['logger', '$state', '$stateParams', '$location', '$scope', 'TcAuthService', 'UserService', 'Helpers', 'CONSTANTS']
 
-  function LoginController($log, logger, $state, $stateParams, $location, $scope, TcAuthService, UserService, Helpers, CONSTANTS) {
+  function LoginController(logger, $state, $stateParams, $location, $scope, TcAuthService, UserService, Helpers, CONSTANTS) {
     var vm = this
     vm.$stateParams = $stateParams
     vm.passwordReset = false
@@ -75,28 +75,28 @@ import angular from 'angular'
     }
 
     function _doLogin(usernameOrEmail, password) {
-      return TcAuthService.login(usernameOrEmail, password).then(function(data) {
-        // success
-        $log.debug('logged in')
+      return TcAuthService.login(usernameOrEmail, password)
+        .then(function(data) {
+          // setup login event for analytics tracking
+          Helpers.setupLoginEventMetrics(usernameOrEmail)
+          return Helpers.redirectPostLogin($stateParams.next)
 
-        // setup login event for analytics tracking
-        Helpers.setupLoginEventMetrics(usernameOrEmail)
-        return Helpers.redirectPostLogin($stateParams.next)
+        })
+        .catch(function(err) {
+          logger.warning(err)
 
-      }).catch(function(err) {
-        $log.warn(err)
-        switch (err.status) {
-        case 'ACCOUNT_INACTIVE':
-          $state.go('registeredSuccessfully')
-          // user should already be redirected
-          break
-        case 'UNKNOWN_ERROR':
-        default:
-          vm.loginErrors.WRONG_PASSWORD = true
-          vm.password = ''
-          logger.error('Error logging in: ', err)
-        }
-      })
+          switch (err.status) {
+          case 'ACCOUNT_INACTIVE':
+            $state.go('registeredSuccessfully')
+            // user should already be redirected
+            break
+          case 'UNKNOWN_ERROR':
+          default:
+            vm.loginErrors.WRONG_PASSWORD = true
+            vm.password = ''
+            logger.error('Error logging in: ', err)
+          }
+        })
     }
 
     function socialLogin(platform) {
@@ -111,7 +111,7 @@ import angular from 'angular'
 
       TcAuthService.socialLogin(platform, callbackUrl)
       .then(function() {
-        $log.debug('logged in')
+        logger.debug('logged in')
         return Helpers.redirectPostLogin($stateParams.next)
       })
       .catch(function(err) {

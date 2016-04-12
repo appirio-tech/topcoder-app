@@ -6,12 +6,12 @@ import moment from 'moment'
 
   angular.module('tc.profile').controller('ProfileCtrl', ProfileCtrl)
 
-  ProfileCtrl.$inject = ['CONSTANTS', '$log', 'logger', '$q',
+  ProfileCtrl.$inject = ['CONSTANTS', 'logger', '$q',
     'TcAuthService', 'UserService', 'UserStatsService', 'ProfileService', 'ChallengeService', 'ExternalAccountService',
     'userHandle', 'profile', 'ngDialog', '$anchorScroll'
   ]
 
-  function ProfileCtrl(CONSTANTS, $log, logger, $q, TcAuthService, UserService, UserStatsService, ProfileService, ChallengeService, ExternalAccountService, userHandle, profile, ngDialog, $anchorScroll) {
+  function ProfileCtrl(CONSTANTS, logger, $q, TcAuthService, UserService, UserStatsService, ProfileService, ChallengeService, ExternalAccountService, userHandle, profile, ngDialog, $anchorScroll) {
     var vm = this
     // set profile to the object that was resolved
     vm.profile = profile
@@ -28,7 +28,7 @@ import moment from 'moment'
       'COPILOT': 'copilot'
     }
 
-    $log.debug()
+    logger.debug()
     vm.status = {
       'badges': CONSTANTS.STATE_LOADING,
       'stats': CONSTANTS.STATE_LOADING,
@@ -104,7 +104,7 @@ import moment from 'moment'
       })
 
     function activate() {
-      $log.debug('Calling ProfileController activate()')
+      logger.debug('Calling ProfileController activate()')
       // show edit profile link if user is authenticated and is viewing their own profile
       vm.showEditProfileLink = TcAuthService.isAuthenticated() && UserService.getUserIdentity().handle.toLowerCase() === vm.userHandle.toLowerCase()
       vm.isUser = vm.showEditProfileLink

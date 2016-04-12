@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.settings').controller('AccountInfoController', AccountInfoController)
 
-  AccountInfoController.$inject = ['userData', 'UserService', 'ProfileService', '$log', 'logger', 'ISO3166', 'toaster', '$scope', '$timeout', '$state']
+  AccountInfoController.$inject = ['userData', 'UserService', 'ProfileService', 'logger', 'ISO3166', 'toaster', '$scope', '$timeout', '$state']
 
-  function AccountInfoController(userData, UserService, ProfileService, $log, logger, ISO3166, toaster, $scope, $timeout, $state) {
+  function AccountInfoController(userData, UserService, ProfileService, logger, ISO3166, toaster, $scope, $timeout, $state) {
     var vm = this
     vm.saveAccountInfo   = saveAccountInfo
     vm.updateCountry     = updateCountry
@@ -35,7 +35,7 @@ import _ from 'lodash'
         vm.loading = false
       })
       .catch(function(err) {
-        $log.info('Error fetching user profile. Redirecting to edit profile.')
+        logger.info('Error fetching user profile. Redirecting to edit profile.')
         logger.error('Could not fetch user profile data', err)
 
         $state.go('settings.profile')
@@ -116,7 +116,7 @@ import _ from 'lodash'
         vm.newPasswordForm.$setPristine()
         vm.currentPasswordFocus = false
 
-        $log.info('Your password has been updated.')
+        logger.info('Your password has been updated.')
       })
       .catch(function(err) {
         logger.error('Could not update password', err)

@@ -6,11 +6,10 @@ import _ from 'lodash'
 
   angular.module('tc.services').factory('ExternalAccountService', ExternalAccountService)
 
-  ExternalAccountService.$inject = ['$q', '$log', 'logger', 'CONSTANTS', 'auth', 'ApiService', 'UserService', 'Helpers']
+  ExternalAccountService.$inject = ['$q', 'logger', 'CONSTANTS', 'auth', 'ApiService', 'UserService', 'Helpers']
 
-  function ExternalAccountService($q, $log, logger, CONSTANTS, auth, ApiService, UserService, Helpers) {
+  function ExternalAccountService($q, logger, CONSTANTS, auth, ApiService, UserService, Helpers) {
     var auth0 = auth
-    $log = $log.getInstance('ExternalAccountService')
 
     var memberApi = ApiService.getApiServiceProvider('MEMBER')
     var userApi = ApiService.getApiServiceProvider('USER')
@@ -56,7 +55,7 @@ import _ from 'lodash'
       return $q(function($resolve, $reject) {
         UserService.removeSocialProfile(user.userId, account)
         .then(function(resp) {
-          $log.debug('Succesfully unlinked account: ' + JSON.stringify(resp))
+          logger.debug('Succesfully unlinked account: ' + JSON.stringify(resp))
           $resolve({
             status: 'SUCCESS'
           })
@@ -100,7 +99,7 @@ import _ from 'lodash'
           _cards.push({provider: provider, data: {handle: link.name, status: 'PENDING'}})
         }
       })
-      $log.debug('Processed Accounts Cards: ' + JSON.stringify(_cards))
+      logger.debug('Processed Accounts Cards: ' + JSON.stringify(_cards))
       return _cards
     }
 
@@ -139,7 +138,7 @@ import _ from 'lodash'
             state: callbackUrl
           },
             function(profile, idToken, accessToken, state, refreshToken) {
-              $log.debug('onSocialLoginSuccess')
+              logger.debug('onSocialLoginSuccess')
               var socialData = Helpers.getSocialUserData(profile, accessToken)
               var user = UserService.getUserIdentity()
               var postData = {
@@ -156,10 +155,10 @@ import _ from 'lodash'
               if (socialData.accessTokenSecret) {
                 postData.context.accessTokenSecret = socialData.accessTokenSecret
               }
-              $log.debug('link API postdata: ' + JSON.stringify(postData))
+              logger.debug('link API postdata: ' + JSON.stringify(postData))
               userApi.one('users', user.userId).customPOST(postData, 'profiles', {}, {})
                 .then(function(resp) {
-                  $log.debug('Succesfully linked account: ' + JSON.stringify(resp))
+                  logger.debug('Succesfully linked account: ' + JSON.stringify(resp))
                   // construct 'card' object and resolve it
                   var _data = {
                     status: 'SUCCESS',

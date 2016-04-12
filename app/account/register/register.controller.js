@@ -6,11 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.account').controller('RegisterController', RegisterController)
 
-  RegisterController.$inject = ['$log', 'logger', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService', 'ISO3166', 'Helpers']
+  RegisterController.$inject = ['logger', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService', 'ISO3166', 'Helpers']
 
-  function RegisterController($log, logger, CONSTANTS, $state, $stateParams, TcAuthService, UserService, ISO3166, Helpers) {
-    $log = $log.getInstance('RegisterController')
-    $log.debug('-init')
+  function RegisterController(logger, CONSTANTS, $state, $stateParams, TcAuthService, UserService, ISO3166, Helpers) {
     var vm = this
     vm.registering = false
     // prepares utm params, if available
@@ -20,17 +18,9 @@ import _ from 'lodash'
       campaign : $stateParams && $stateParams.utm_campaign ? $stateParams.utm_campaign : ''
     }
 
-
     // Set default for toggle password directive
     vm.defaultPlaceholder = 'Create Password'
     vm.busyMessage = CONSTANTS.BUSY_PROGRESS_MESSAGE
-
-    // FIXME - This needs to be setup with https
-    // lookup users country
-    // Helpers.getCountyObjFromIP()
-    //   .then(function(obj) {
-    //     vm.countryObj = obj
-    //   })
 
     vm.countries = ISO3166.getAllCountryObjects()
 
@@ -85,11 +75,10 @@ import _ from 'lodash'
         }
       }
 
-      $log.debug('attempting to register user')
       TcAuthService.register(body)
       .then(function(data) {
         vm.registering = false
-        $log.debug('registered successfully')
+        logger.debug('Registered successfully')
 
         // In the future, go to dashboard
         $state.go('registeredSuccessfully')

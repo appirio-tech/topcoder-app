@@ -7,9 +7,9 @@ import moment from 'moment'
 
   angular.module('tc.services').factory('ChallengeService', ChallengeService)
 
-  ChallengeService.$inject = ['CONSTANTS', 'ApiService', '$q', '$log', 'logger']
+  ChallengeService.$inject = ['CONSTANTS', 'ApiService', '$q', 'logger']
 
-  function ChallengeService(CONSTANTS, ApiService, $q, $log, logger) {
+  function ChallengeService(CONSTANTS, ApiService, $q, logger) {
     var api = ApiService.restangularV3
     var apiV2 = ApiService.restangularV2
     var service = {

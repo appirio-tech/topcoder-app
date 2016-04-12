@@ -12,10 +12,11 @@ import angular from 'angular'
     var service = {
       showToasts: false,
 
-      error: error,
-      info: info,
+      error  : error,
+      info   : info,
       success: success,
       warning: warning,
+      debug  : debug,
 
       // straight to console bypass toastr
       log: $log.log
@@ -39,15 +40,19 @@ import angular from 'angular'
     }
 
     function info(message, data, title) {
-      $log.info('Info: ' + message, data)
+      $log.info('Info: ' + message, data ? data : '')
     }
 
     function success(message, data, title) {
-      $log.info('Success: ' + message, data)
+      $log.info('Success: ' + message, data ? data : '')
+    }
+
+    function debug(message, data, title) {
+      $log.debug('Debug: ' + message, data ? data : '')
     }
 
     function warning(message, data, title) {
-      $log.warn('Warning: ' + message, data)
+      $log.warn('Warning: ' + message, data ? data : '')
     }
   }
 }())

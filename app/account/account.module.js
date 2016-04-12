@@ -12,10 +12,4 @@ import angular from 'angular'
   ]
 
   angular.module('tc.account', dependencies)
-  .config(['$provide',function ($provide) {
-    $provide.decorator('$log', ['$delegate', 'LogEnhancer', function ($delegate, LogEnhancer) {
-      LogEnhancer.enhanceLogger($delegate)
-      return $delegate
-    }])
-  }])
 })()

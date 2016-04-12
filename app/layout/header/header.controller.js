@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.layout').controller('HeaderController', HeaderController)
 
-  HeaderController.$inject = ['$state', 'TcAuthService', 'CONSTANTS', '$log', 'logger', '$rootScope', 'UserService', 'ProfileService', 'NavService']
+  HeaderController.$inject = ['$state', 'TcAuthService', 'CONSTANTS', 'logger', '$rootScope', 'UserService', 'ProfileService', 'NavService']
 
-  function HeaderController($state, TcAuthService, CONSTANTS, $log, logger, $rootScope, UserService, ProfileService, NavService) {
+  function HeaderController($state, TcAuthService, CONSTANTS, logger, $rootScope, UserService, ProfileService, NavService) {
     var vm = this
 
     vm.constants = CONSTANTS
@@ -47,8 +47,10 @@ import _ from 'lodash'
     }
 
     function initHeaderProps(event) {
-      $log.debug(event + ' triggered header update.')
+      logger.debug(event + ' triggered header update.')
+
       vm.isAuth = TcAuthService.isAuthenticated()
+
       if (vm.isAuth) {
         vm.userHandle = UserService.getUserIdentity().handle
 

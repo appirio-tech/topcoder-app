@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.myDashboard').controller('MyDashboardController', MyDashboardController)
 
-  MyDashboardController.$inject = ['userIdentity', 'ProfileService', '$log', 'logger']
+  MyDashboardController.$inject = ['userIdentity', 'ProfileService', 'logger']
 
-  function MyDashboardController(userIdentity, ProfileService, $log, logger) {
+  function MyDashboardController(userIdentity, ProfileService, logger) {
     var vm = this
 
     activate()

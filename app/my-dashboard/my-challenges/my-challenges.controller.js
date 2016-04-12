@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.myDashboard').controller('MyChallengesWidgetController', MyChallengesWidgetController)
 
-  MyChallengesWidgetController.$inject = ['ChallengeService', 'UserService', '$log', 'logger', 'CONSTANTS', 'userIdentity', '$q']
+  MyChallengesWidgetController.$inject = ['ChallengeService', 'UserService', 'logger', 'CONSTANTS', 'userIdentity', '$q']
 
-  function MyChallengesWidgetController(ChallengeService, UserService, $log, logger, CONSTANTS, userIdentity, $q) {
+  function MyChallengesWidgetController(ChallengeService, UserService, logger, CONSTANTS, userIdentity, $q) {
     var vm = this
     vm.domain = CONSTANTS.domain
     vm.neverParticipated = false

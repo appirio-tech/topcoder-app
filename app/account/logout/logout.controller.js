@@ -5,15 +5,15 @@ import angular from 'angular'
 
   angular.module('tc.account').controller('LogoutController', LogoutController)
 
-  LogoutController.$inject = ['$log', 'TcAuthService', '$window', 'CONSTANTS']
+  LogoutController.$inject = ['logger', 'TcAuthService', '$window', 'CONSTANTS']
 
-  function LogoutController($log, TcAuthService, $window, CONSTANTS) {
-    $log = $log.getInstance('LogoutController')
+  function LogoutController(logger, TcAuthService, $window, CONSTANTS) {
 
     TcAuthService.logout()
     .then(function() {
-      $log.debug('successfully logged out.')
-      // redirect to home
+      logger.debug('Successfully logged out.')
+
+      // Redirect to home
       $window.location.href = CONSTANTS.MAIN_URL
     })
   }

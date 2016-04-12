@@ -9,14 +9,13 @@ import angular from 'angular'
     'UserService',
     'MemberCertService',
     'CONSTANTS',
-    '$log',
     'logger',
     'ChallengeService',
     '$q',
     '$rootScope'
   ]
 
-  function ProgramsController (UserService, MemberCertService, CONSTANTS, $log, logger, ChallengeService, $q, $rootScope) {
+  function ProgramsController (UserService, MemberCertService, CONSTANTS, logger, ChallengeService, $q, $rootScope) {
     var vm = this
     vm.domain = CONSTANTS.domain
     vm.registered = false

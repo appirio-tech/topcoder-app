@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.myDashboard').controller('SRMWidgetController', SRMWidgetController)
 
-  SRMWidgetController.$inject = ['CONSTANTS', 'UserService','SRMService', '$q', '$log', 'logger']
+  SRMWidgetController.$inject = ['CONSTANTS', 'UserService','SRMService', '$q', 'logger']
 
-  function SRMWidgetController(CONSTANTS, UserService, SRMService, $q, $log, logger) {
+  function SRMWidgetController(CONSTANTS, UserService, SRMService, $q, logger) {
     var vm = this
     vm.srms = []
     vm.state = CONSTANTS.STATE_LOADING

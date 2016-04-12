@@ -23,7 +23,7 @@ import _ from 'lodash'
           title: 'Challenge Submission'
         },
         resolve: {
-          challengeToSubmitTo: ['ChallengeService', '$stateParams', 'UserService', '$log', 'logger', ChallengeToSubmitTo]
+          challengeToSubmitTo: ['ChallengeService', '$stateParams', 'UserService', 'logger', ChallengeToSubmitTo]
         }
       },
       'submissions.file-design': {
@@ -40,7 +40,7 @@ import _ from 'lodash'
       }
     }
 
-    function ChallengeToSubmitTo(ChallengeService, $stateParams, UserService, $log, logger) {
+    function ChallengeToSubmitTo(ChallengeService, $stateParams, UserService, logger) {
       // This page is only available to users that are registered to the challenge (submitter role) and the challenge is in the Checkpoint Submission or Submission phase.
       var params = {
         filter: 'id=' + $stateParams.challengeId

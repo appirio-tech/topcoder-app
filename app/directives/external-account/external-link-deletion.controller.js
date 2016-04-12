@@ -5,29 +5,28 @@ import _ from 'lodash'
   angular.module('tcUIComponents')
     .controller('ExternalLinkDeletionController', ExternalLinkDeletionController)
 
-  ExternalLinkDeletionController.$inject = ['ExternalWebLinksService', '$q', '$log', 'logger', 'toaster', 'ngDialog', 'userHandle', 'account', 'linkedAccountsData']
+  ExternalLinkDeletionController.$inject = ['ExternalWebLinksService', '$q', 'logger', 'toaster', 'ngDialog', 'userHandle', 'account', 'linkedAccountsData']
 
-  function ExternalLinkDeletionController(ExternalWebLinksService, $q, $log, logger, toaster, ngDialog, userHandle, account, linkedAccountsData) {
+  function ExternalLinkDeletionController(ExternalWebLinksService, $q, logger, toaster, ngDialog, userHandle, account, linkedAccountsData) {
     var vm = this
     vm.account = account
-    $log = $log.getInstance('ExternalLinkDeletionController')
 
     vm.deleteAccount = function() {
-      $log.debug('Deleting Account...')
+      logger.debug('Deleting Account...')
 
       if (account && account.deletingAccount) {
-        $log.debug('Another deletion is already in progress.')
+        logger.debug('Another deletion is already in progress.')
         return
       }
 
       if (account && account.provider === 'weblink') {
         account.deletingAccount = true
-        $log.debug('Deleting weblink...')
+        logger.debug('Deleting weblink...')
 
         return ExternalWebLinksService.removeLink(userHandle, account.key)
           .then(function(data) {
             account.deletingAccount = false
-            $log.debug('Web link removed: ' + JSON.stringify(data))
+            logger.debug('Web link removed: ' + JSON.stringify(data))
             var toRemove = _.findIndex(linkedAccountsData, function(la) {
               return la.provider === 'weblink' && la.key === account.key
             })
@@ -40,7 +39,7 @@ import _ from 'lodash'
           .catch(function(err) {
             var msg = err.msg
             if (err.status === 'WEBLINK_NOT_EXIST') {
-              $log.info('Weblink does not exist')
+              logger.info('Weblink does not exist')
 
               msg = 'Weblink is not linked to your account. If you think this is an error please contact <a href=\"mailTo:support@topcoder.com\">support@topcoder.com</a>.'
             } else {

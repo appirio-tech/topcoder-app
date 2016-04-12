@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.services').factory('SubmissionsService', SubmissionsService)
 
-  SubmissionsService.$inject = ['CONSTANTS', 'ApiService', '$q', '$log', 'logger', 'toaster']
+  SubmissionsService.$inject = ['CONSTANTS', 'ApiService', '$q', 'logger', 'toaster']
 
-  function SubmissionsService(CONSTANTS, ApiService, $q, $log, logger, toaster) {
+  function SubmissionsService(CONSTANTS, ApiService, $q, logger, toaster) {
     var api = ApiService.getApiServiceProvider('SUBMISSIONS')
 
     var service = {
@@ -61,7 +61,7 @@ import angular from 'angular'
         xhr.onreadystatechange = function() {
           var status = xhr.status
           if (((status >= 200 && status < 300) || status === 304) && xhr.readyState === 4) {
-            $log.info('Successfully uploaded file')
+            logger.info('Successfully uploaded file')
 
             deferred.resolve()
 
@@ -110,7 +110,7 @@ import angular from 'angular'
 
       return api.one('submissions', body.id).customPUT(body)
       .then(function(response) {
-        $log.info('Successfully updated file statuses')
+        logger.info('Successfully updated file statuses')
 
         recordCompletedSubmission(response.plain(), progressCallback)
       })
@@ -125,7 +125,7 @@ import angular from 'angular'
       // Once all uploaded, make record and begin processing
       return api.one('submissions', body.id).customPOST(body, 'process')
       .then(function(response) {
-        $log.info('Successfully made file record. Beginning processing')
+        logger.info('Successfully made file record. Beginning processing')
 
         progressCallback.call(progressCallback, 'FINISH', 100)
       })

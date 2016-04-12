@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.services').factory('ImageService', ImageService)
 
-  ImageService.$inject = ['CONSTANTS', 'ApiService', '$q', '$log', 'logger', '$rootScope', 'toaster']
+  ImageService.$inject = ['CONSTANTS', 'ApiService', '$q', 'logger', '$rootScope', 'toaster']
 
-  function ImageService(CONSTANTS, ApiService, $q, $log, logger, $rootScope, toaster) {
+  function ImageService(CONSTANTS, ApiService, $q, logger, $rootScope, toaster) {
     var api = ApiService.restangularV3
 
     var service = {
@@ -21,7 +21,7 @@ import angular from 'angular'
       return api.one('members', S3Response.userHandle).customPUT(S3Response.body, 'photo')
       .then(function(newPhotoURL) {
         $rootScope.$broadcast(CONSTANTS.EVENT_PROFILE_UPDATED)
-        $log.info('Successfully made file record')
+        logger.info('Successfully made file record')
         toaster.pop('success', 'Success!', 'Your profile image has been updated.')
         return newPhotoURL
       })
@@ -65,7 +65,7 @@ import angular from 'angular'
       xhr.onreadystatechange = function() {
         var status = xhr.status
         if (((status >= 200 && status < 300) || status === 304) && xhr.readyState === 4) {
-          $log.info('Successfully uploaded file')
+          logger.info('Successfully uploaded file')
 
           deferred.resolve({
             userHandle: response.userHandle,

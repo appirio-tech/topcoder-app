@@ -5,10 +5,10 @@ import angular from 'angular'
 
   angular.module('tc.myDashboard').controller('CommunityUpdatesController', CommunityUpdatesController)
 
-  CommunityUpdatesController.$inject = ['BlogService', '$log', 'logger']
+  CommunityUpdatesController.$inject = ['BlogService', 'logger']
 
   // Access and parses the blog RSS feed
-  function CommunityUpdatesController(BlogService, $log, logger) {
+  function CommunityUpdatesController(BlogService, logger) {
     var vm = this
     vm.loading = true
 

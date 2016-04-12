@@ -7,9 +7,9 @@ import angular from 'angular'
   // @example <external-links-data></external-links-data>
   angular.module('tcUIComponents').directive('externalWebLink', ExternalWebLink)
 
-  ExternalWebLink.$inject = ['$log', 'logger', 'ExternalWebLinksService', 'toaster']
+  ExternalWebLink.$inject = ['logger', 'ExternalWebLinksService', 'toaster']
 
-  function ExternalWebLink($log, logger, ExternalWebLinksService, toaster) {
+  function ExternalWebLink(logger, ExternalWebLinksService, toaster) {
     var directive = {
       restrict: 'E',
       template: require('./external-web-link')(),
@@ -17,25 +17,24 @@ import angular from 'angular'
         linkedAccounts: '=',
         userHandle: '@'
       },
-      controller: ['$scope', '$log', ExternalWebLinkCtrl]
+      controller: ['$scope', 'logger', ExternalWebLinkCtrl]
     }
 
 
-    function ExternalWebLinkCtrl($scope, $log) {
-      $log = $log.getInstance('ExternalWebLinkCtrl')
+    function ExternalWebLinkCtrl($scope, logger) {
       $scope.addingWebLink = false
       $scope.errorMessage = null
       $scope.urlRegEx = /^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,15})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/
 
       $scope.addWebLink = function() {
-        $log.debug('URL: ' + $scope.url)
+        logger.debug('URL: ' + $scope.url)
         $scope.addingWebLink = true
         $scope.errorMessage = null
 
         ExternalWebLinksService.addLink($scope.userHandle, $scope.url)
           .then(function(data) {
             $scope.addingWebLink = false
-            $log.debug('Web link added: ' + JSON.stringify(data))
+            logger.debug('Web link added: ' + JSON.stringify(data))
             data.data.provider = data.provider
             $scope.linkedAccounts.push(data.data)
             // reset the form when it is successfully added
@@ -47,7 +46,7 @@ import angular from 'angular'
             $scope.addingWebLink = false
 
             if (err.status === 'WEBLINK_ALREADY_EXISTS') {
-              $log.info('Social profile already linked to another account')
+              logger.info('Social profile already linked to another account')
 
               toaster.pop('error', 'Whoops!',
                   'This weblink is already added to your account. \

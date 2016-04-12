@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.services').factory('AuthTokenService', AuthTokenService)
 
-  AuthTokenService.$inject = ['CONSTANTS', '$cookies', '$location', 'store', '$http', '$log', 'logger', 'jwtHelper', '$q']
+  AuthTokenService.$inject = ['CONSTANTS', '$cookies', '$location', 'store', '$http', 'logger', 'jwtHelper', '$q']
 
-  function AuthTokenService(CONSTANTS, $cookies, $location,  store, $http, $log, logger, jwtHelper, $q) {
+  function AuthTokenService(CONSTANTS, $cookies, $location,  store, $http, logger, jwtHelper, $q) {
     var v2TokenKey = 'tcjwt'
     var v2TCSSOTokenKey = 'tcsso'
     var v3TokenKey = 'appiriojwt'
@@ -126,7 +126,7 @@ import angular from 'angular'
       }
       return $http(req).then(
         function(resp) {
-          $log.debug(resp)
+          logger.debug(resp)
         },
         function(err) {
           logger.error('Could not get token from Auth0 code', err)

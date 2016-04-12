@@ -6,10 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.myDashboard').controller('MySRMsController', MySRMsController)
 
-  MySRMsController.$inject = ['UserService','SRMService', '$log', 'logger', '$state', '$stateParams', 'CONSTANTS', '$scope']
+  MySRMsController.$inject = ['UserService','SRMService', 'logger', '$state', '$stateParams', 'CONSTANTS', '$scope']
 
-  function MySRMsController(UserService, SRMService, $log, logger, $state, $stateParams, CONSTANTS, $scope) {
-    $log = $log.getInstance('MySRMsController')
+  function MySRMsController(UserService, SRMService, logger, $state, $stateParams, CONSTANTS, $scope) {
     var vm = this
     vm.srms = []
     vm.statusFilter = _.get($stateParams, 'status','past')

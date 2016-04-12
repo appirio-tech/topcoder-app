@@ -16,12 +16,7 @@ import Auth0 from 'auth0-js'
   ]
 
   angular.module('tc.services', dependencies)
-    .config(['$provide', 'authProvider', 'CONSTANTS', function($provide, authProvider, CONSTANTS) {
-      $provide.decorator('$log', ['$delegate', 'LogEnhancer', function($delegate, LogEnhancer) {
-        LogEnhancer.enhanceLogger($delegate)
-        return $delegate
-      }])
-
+    .config(['authProvider', 'CONSTANTS', function(authProvider, CONSTANTS) {
       authProvider.init({
         domain: CONSTANTS.auth0Domain,
         clientID: CONSTANTS.clientId,
@@ -32,5 +27,4 @@ import Auth0 from 'auth0-js'
     .factory('UserPrefStore', ['store', function(store) {
       return store.getNamespacedStore('userSettings')
     }])
-
 })()

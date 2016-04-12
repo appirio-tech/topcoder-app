@@ -6,11 +6,10 @@ import _ from 'lodash'
 
   angular.module('tc.skill-picker').controller('SkillPickerController', SkillPickerController)
 
-  SkillPickerController.$inject = ['$scope', 'CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', '$log', 'logger', 'toaster', 'MemberCertService', '$q']
+  SkillPickerController.$inject = ['$scope', 'CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', 'logger', 'toaster', 'MemberCertService', '$q']
 
-  function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, $log, logger, toaster, MemberCertService, $q) {
+  function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, logger, toaster, MemberCertService, $q) {
     var vm = this
-    $log = $log.getInstance('SkillPickerController')
     vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX
     vm.IOS_PROGRAM_ID = CONSTANTS.SWIFT_PROGRAM_ID
     vm.submitSkills = submitSkills
@@ -33,7 +32,6 @@ import _ from 'lodash'
      * Activates the controller.
      */
     function activate() {
-      $log.debug('init')
       initCommunities()
       checkCommunityStatus()
     }
@@ -167,7 +165,7 @@ import _ from 'lodash'
         }
         promises.push(ProfileService.updateUserSkills(vm.username, data))
       }
-      $log.debug('isCommunitiesDirty: ' + isCommunitiesDirty())
+      logger.debug('isCommunitiesDirty: ' + isCommunitiesDirty())
       if (isCommunitiesDirty()) {
         for(var communityName in vm.communities) {
           var community = vm.communities[communityName]

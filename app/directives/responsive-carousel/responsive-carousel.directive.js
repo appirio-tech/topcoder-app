@@ -13,8 +13,8 @@ import angular from 'angular'
         data: '=',
         handle: '@'
       },
-      controller: ['$log', '$scope', '$element', '$window',
-        function($log, $scope, $element, $window) {
+      controller: ['$scope', '$element', '$window',
+        function($scope, $element, $window) {
           $scope.slideCounts = {}
 
           activate()

@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.myDashboard').controller('SubtrackStatsController', SubtrackStatsController)
 
-  SubtrackStatsController.$inject = ['$filter', 'ProfileService', 'UserStatsService', 'userIdentity', '$log', 'logger']
+  SubtrackStatsController.$inject = ['$filter', 'ProfileService', 'UserStatsService', 'userIdentity', 'logger']
 
-  function SubtrackStatsController($filter, ProfileService, UserStatsService, userIdentity, $log, logger) {
+  function SubtrackStatsController($filter, ProfileService, UserStatsService, userIdentity, logger) {
     var vm = this
     vm.loading = true
 

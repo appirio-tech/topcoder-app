@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.profile').controller('ProfileSubtrackController', ProfileSubtrackController)
 
-  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'SRMService', 'CONSTANTS', '$state', '$window', 'ngDialog', 'UserStatsService', '$log', 'logger']
+  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'SRMService', 'CONSTANTS', '$state', '$window', 'ngDialog', 'UserStatsService', 'logger']
 
-  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, SRMService, CONSTANTS, $state, $window, ngDialog, UserStatsService, $log, logger) {
+  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, SRMService, CONSTANTS, $state, $window, ngDialog, UserStatsService, logger) {
     var vm = this
     vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX
     vm.graphState = { show: 'history' }

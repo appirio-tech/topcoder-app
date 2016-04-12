@@ -5,10 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.services').factory('TcAuthService', TcAuthService)
 
-  TcAuthService.$inject = ['CONSTANTS', 'auth', 'AuthTokenService', '$rootScope', '$q', '$log', 'logger', '$timeout', 'UserService', 'Helpers', 'ApiService', 'store', '$http']
+  TcAuthService.$inject = ['CONSTANTS', 'auth', 'AuthTokenService', '$rootScope', '$q', 'logger', '$timeout', 'UserService', 'Helpers', 'ApiService', 'store', '$http']
 
-  function TcAuthService(CONSTANTS, auth, AuthTokenService, $rootScope, $q, $log, logger, $timeout, UserService, Helpers, ApiService, store, $http) {
-    $log = $log.getInstance('TcAuthServicetcAuth')
+  function TcAuthService(CONSTANTS, auth, AuthTokenService, $rootScope, $q, logger, $timeout, UserService, Helpers, ApiService, store, $http) {
     var auth0 = auth
     var service = {
       login: login,
@@ -74,7 +73,7 @@ import angular from 'angular'
                 }, 200)
               },
               function(resp) {
-                $log.debug(JSON.stringify(resp))
+                logger.debug(JSON.stringify(resp))
                 // 401 status here implies user is not registered
                 if (resp.status === 401) {
                   reject({
@@ -94,7 +93,7 @@ import angular from 'angular'
             )
           },
           function(error) {
-            $log.warn(JSON.stringify(error))
+            logger.warning(JSON.stringify(error))
             reject(error)
           }
         )
@@ -117,14 +116,14 @@ import angular from 'angular'
 
               UserService.validateSocialProfile(socialData.socialUserId, socialData.socialProvider)
                 .then(function(resp) {
-                  $log.debug(JSON.stringify(resp))
+                  logger.debug(JSON.stringify(resp))
                   if (resp.valid) {
                     // success
                     var result = {
                       status: 'SUCCESS',
                       data: socialData
                     }
-                    $log.debug('socialRegister Result: ' + JSON.stringify(result))
+                    logger.debug('socialRegister Result: ' + JSON.stringify(result))
                     resolve(result)
                   } else {
                     if (resp.reasonCode === 'ALREADY_IN_USE') {
@@ -137,11 +136,11 @@ import angular from 'angular'
 
                 })
                 .catch(function(err) {
-                  $log.debug(JSON.stringify(err))
+                  logger.debug(JSON.stringify(err))
                 })
             },
             function(error) {
-              $log.warn('onSocialLoginFailure ' + JSON.stringify(error))
+              logger.warning('onSocialLoginFailure ' + JSON.stringify(error))
               reject(error)
             }
           )

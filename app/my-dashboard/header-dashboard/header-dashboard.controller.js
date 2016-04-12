@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.myDashboard').controller('HeaderDashboardController', HeaderDashboardController)
 
-  HeaderDashboardController.$inject = ['$stateParams', 'profile', '$log']
+  HeaderDashboardController.$inject = ['$stateParams', 'profile']
 
-  function HeaderDashboardController($stateParams, profile, $log) {
+  function HeaderDashboardController($stateParams, profile) {
     var vm = this
     vm.profile = profile
 

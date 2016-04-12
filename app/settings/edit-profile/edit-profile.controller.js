@@ -6,10 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.settings').controller('EditProfileController', EditProfileController)
 
-  EditProfileController.$inject = ['$rootScope', 'userData', 'userHandle', 'ProfileService', 'ExternalAccountService', 'ExternalWebLinksService', '$log', 'logger', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster', '$q', '$scope']
+  EditProfileController.$inject = ['$rootScope', 'userData', 'userHandle', 'ProfileService', 'ExternalAccountService', 'ExternalWebLinksService', 'logger', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster', '$q', '$scope']
 
-  function EditProfileController($rootScope, userData, userHandle, ProfileService, ExternalAccountService, ExternalWebLinksService, $log, logger, ISO3166, ImageService, CONSTANTS, TagsService, toaster, $q, $scope) {
-    $log = $log.getInstance('EditProfileCtrl')
+  function EditProfileController($rootScope, userData, userHandle, ProfileService, ExternalAccountService, ExternalWebLinksService, logger, ISO3166, ImageService, CONSTANTS, TagsService, toaster, $q, $scope) {
     var vm = this
     vm.toggleTrack    = toggleTrack
     vm.updateCountry  = updateCountry
@@ -138,7 +137,7 @@ import _ from 'lodash'
       .then(function() {
         vm.profileFormProcessing = false
         vm.editProfile.$setPristine()
-        $log.info('Saved successfully')
+        logger.info('Saved successfully')
         toaster.pop('success', 'Success!', 'Your account information was updated.')
         for (var k in vm.userData) userData[k] = vm.userData[k]
       })
@@ -172,7 +171,7 @@ import _ from 'lodash'
       .then(function() {
         vm.userData.photoURL = ''
 
-        $log.info('Saved successfully')
+        logger.info('Saved successfully')
 
         toaster.pop('success', 'Success!', 'Your account information was updated.')
       })
