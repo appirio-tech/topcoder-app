@@ -37,7 +37,7 @@ import angular from 'angular'
           }]
         },
         'ttl': {
-          title: 'Episode #3 | Featuring Jesse D’Amato Ford',
+          title: 'Episode #3 | Featuring Jessie D’Amato Ford',
           img: require('../../assets/images/team-live-logo.png'),
           description: 'APR 15 / 10:30am EST / Live on <a href="https://plus.google.com/events/c86vvsum04lmq3bnd0bqp719img"> #GoogleHangoutOnAir</a>',
           ctas: [{
