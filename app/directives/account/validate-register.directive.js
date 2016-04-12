@@ -52,14 +52,14 @@ import angular from 'angular'
     }
   }
 
-  usernameIsFree.$inject = ['UserService', '$log', '$q']
+  usernameIsFree.$inject = ['UserService', 'logger', '$q']
 
-  function usernameIsFree(UserService, $log, $q) {
+  function usernameIsFree(UserService, logger, $q) {
     return {
       require: 'ngModel',
       link: function(scope, element, attrs, ctrl) {
         ctrl.$asyncValidators.usernameIsFree = function(modelValue, viewValue) {
-          $log.info('Validating username: ' + modelValue)
+          logger.info('Validating username: ' + modelValue)
 
           var defer = $q.defer()
 
@@ -97,14 +97,14 @@ import angular from 'angular'
     }
   }
 
-  emailIsAvailable.$inject = ['UserService', '$log', '$q']
+  emailIsAvailable.$inject = ['UserService', 'logger', '$q']
 
-  function emailIsAvailable(UserService, $log, $q) {
+  function emailIsAvailable(UserService, logger, $q) {
     return {
       require: 'ngModel',
       link: function(scope, element, attrs, ctrl) {
         ctrl.$asyncValidators.emailIsAvailable = function(modelValue, viewValue) {
-          $log.info('Validating email: ' + modelValue)
+          logger.info('Validating email: ' + modelValue)
 
           var defer = $q.defer()
 

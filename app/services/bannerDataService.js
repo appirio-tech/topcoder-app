@@ -35,6 +35,16 @@ import angular from 'angular'
             url: 'http://tco16.topcoder.com/latest/overview/',
             cssClass: 'tc-btn tc-btn-s tco-cta'
           }]
+        },
+        'ttl': {
+          title: 'Episode #3 | Featuring Jessie D’Amato Ford',
+          img: require('../../assets/images/team-live-logo.png'),
+          description: 'APR 15 / 10:30am EST / Live on <a href="https://plus.google.com/events/c86vvsum04lmq3bnd0bqp719img"> #GoogleHangoutOnAir</a>',
+          ctas: [{
+            title: 'Tune In',
+            url: 'https://plus.google.com/events/c86vvsum04lmq3bnd0bqp719img',
+            cssClass: 'tc-btn tc-btn-s'
+          }]
         }
       }
     }

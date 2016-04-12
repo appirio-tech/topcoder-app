@@ -6,11 +6,10 @@ import _ from 'lodash'
 
   angular.module('tc.skill-picker').controller('SkillPickerController', SkillPickerController)
 
-  SkillPickerController.$inject = ['$scope', 'CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', '$log', 'toaster', 'MemberCertService', '$q']
+  SkillPickerController.$inject = ['$scope', 'CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', 'logger', 'toaster', 'MemberCertService', '$q']
 
-  function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, $log, toaster, MemberCertService, $q) {
+  function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, logger, toaster, MemberCertService, $q) {
     var vm = this
-    $log = $log.getInstance('SkillPickerController')
     vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX
     vm.IOS_PROGRAM_ID = CONSTANTS.SWIFT_PROGRAM_ID
     vm.submitSkills = submitSkills
@@ -33,7 +32,6 @@ import _ from 'lodash'
      * Activates the controller.
      */
     function activate() {
-      $log.debug('init')
       initCommunities()
       checkCommunityStatus()
     }
@@ -93,7 +91,9 @@ import _ from 'lodash'
         promises.push(MemberCertService.getMemberRegistration(vm.userId, community.programId))
       }
       vm.loadingCommunities = true
-      $q.all(promises).then(function(responses) {
+
+      $q.all(promises)
+      .then(function(responses) {
         vm.loadingCommunities = false
         responses.forEach(function(program) {
           if (program) {
@@ -116,7 +116,9 @@ import _ from 'lodash'
           vm.showCommunity = true
         }
       })
-      .catch(function(error) {
+      .catch(function(err) {
+        logger.error('Could not load communities with member cert registration data', err)
+
         vm.loadingCommunities = false
       })
     }
@@ -163,7 +165,7 @@ import _ from 'lodash'
         }
         promises.push(ProfileService.updateUserSkills(vm.username, data))
       }
-      $log.debug('isCommunitiesDirty: ' + isCommunitiesDirty())
+      logger.debug('isCommunitiesDirty: ' + isCommunitiesDirty())
       if (isCommunitiesDirty()) {
         for(var communityName in vm.communities) {
           var community = vm.communities[communityName]
@@ -175,14 +177,18 @@ import _ from 'lodash'
         }
       }
 
-      $q.all(promises).then(function(responses) {
+      $q.all(promises)
+      .then(function(responses) {
         vm.saving = false
         toaster.pop('success', 'Success!', 'Your skills have been updated.')
         vm.disableDoneButton = true
         $state.go('dashboard')
       })
-      .catch(function(resp) {
+      .catch(function(err) {
+        logger.error('Could not update update user skills or register members for community', err)
+
         vm.saving = false
+
         toaster.pop('error', 'Whoops!', 'Something went wrong. Please try again later.')
       })
     }

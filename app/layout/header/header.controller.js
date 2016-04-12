@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.layout').controller('HeaderController', HeaderController)
 
-  HeaderController.$inject = ['$state', 'TcAuthService', 'CONSTANTS', '$log', '$rootScope', 'UserService', 'ProfileService', 'NavService']
+  HeaderController.$inject = ['$state', 'TcAuthService', 'CONSTANTS', 'logger', '$rootScope', 'UserService', 'ProfileService', 'NavService']
 
-  function HeaderController($state, TcAuthService, CONSTANTS, $log, $rootScope, UserService, ProfileService, NavService) {
+  function HeaderController($state, TcAuthService, CONSTANTS, logger, $rootScope, UserService, ProfileService, NavService) {
     var vm = this
 
     vm.constants = CONSTANTS
@@ -47,8 +47,10 @@ import _ from 'lodash'
     }
 
     function initHeaderProps(event) {
-      $log.debug(event + ' triggered header update.')
+      logger.debug(event + ' triggered header update.')
+
       vm.isAuth = TcAuthService.isAuthenticated()
+
       if (vm.isAuth) {
         vm.userHandle = UserService.getUserIdentity().handle
 
@@ -65,8 +67,7 @@ import _ from 'lodash'
           vm.userHandleColor = ProfileService.getUserHandleColor(vm.profile)
         })
         .catch(function(err) {
-          $log.error('Unable to get user data')
-          // todo handle error
+          logger.error('Unable to get user profile data', err)
         })
       }
     }

@@ -7,9 +7,9 @@ import moment from 'moment'
 
   angular.module('tc.services').factory('ChallengeService', ChallengeService)
 
-  ChallengeService.$inject = ['CONSTANTS', 'ApiService', '$q', '$log']
+  ChallengeService.$inject = ['CONSTANTS', 'ApiService', '$q', 'logger']
 
-  function ChallengeService(CONSTANTS, ApiService, $q, $log) {
+  function ChallengeService(CONSTANTS, ApiService, $q, logger) {
     var api = ApiService.restangularV3
     var apiV2 = ApiService.restangularV2
     var service = {
@@ -46,7 +46,7 @@ import moment from 'moment'
           return _.find(phases, function(p) { return p.phaseType.toUpperCase() === phaseType})
         },
         function(err) {
-          $log.error(err)
+          logger.error('Could not get challenge phases', err)
         }
       )
     }

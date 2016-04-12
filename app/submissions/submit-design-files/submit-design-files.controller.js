@@ -6,13 +6,12 @@ import _ from 'lodash'
 
   angular.module('tc.submissions').controller('SubmitDesignFilesController', SubmitDesignFilesController)
 
-  SubmitDesignFilesController.$inject = ['$scope','$window', '$stateParams', '$log', 'UserService', 'SubmissionsService', 'challengeToSubmitTo']
+  SubmitDesignFilesController.$inject = ['$scope','$window', '$stateParams', 'logger', 'UserService', 'SubmissionsService', 'challengeToSubmitTo']
 
-  function SubmitDesignFilesController($scope, $window, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
+  function SubmitDesignFilesController($scope, $window, $stateParams, logger, UserService, SubmissionsService, challengeToSubmitTo) {
     if (!challengeToSubmitTo.challenge) { return }
 
     var vm = this
-    $log = $log.getInstance('SubmitDesignFilesController')
     var files = {}
     var fileUploadProgress = {}
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/)
@@ -176,7 +175,7 @@ import _ from 'lodash'
         if (args === 100) {
           vm.preparing = false
           vm.uploading = true
-          $log.debug('Prepared for upload.')
+          logger.debug('Prepared for upload.')
         }
       } else if (phase === 'UPLOAD') {
         // if args is object, this update is about XHRRequest's upload progress
@@ -202,18 +201,18 @@ import _ from 'lodash'
 
         // start next phase when UPLOAD is done
         if (vm.uploadProgress == 100) {
-          $log.debug('Uploaded files.')
+          logger.debug('Uploaded files.')
           vm.uploading = false
           vm.finishing = true
         }
       } else if (phase === 'FINISH') {
         // we are concerned only for completion of the phase
         if (args === 100) {
-          $log.debug('Finished upload.')
+          logger.debug('Finished upload.')
         }
       } else {
         // assume it to be error condition
-        $log.debug('Error Condition: ' + phase)
+        logger.debug('Error Condition: ' + phase)
         vm.errorInUpload = true
       }
     }
