@@ -3,7 +3,7 @@
     img(ng-src="{{vm.img}}")
   .title(ng-bind="vm.title")
   .content(ng-transclude, ng-show="transcluded")
-  .description(ng-bind="vm.description")
+  .description(ng-bind-html="vm.description")
   .ctas
     .cta(ng-repeat="link in vm.ctas")
       a(class="{{link.cssClass}}", title="{{link.title}}", ng-href="{{link.url}}", ng-if="link.url") {{link.title}}
