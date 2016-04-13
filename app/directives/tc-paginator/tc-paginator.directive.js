@@ -13,7 +13,7 @@ import angular from 'angular'
         pageParams: '=',
         data: '='
       },
-      controller: ['$log', '$scope', '$element', function($log, $scope, $element) {
+      controller: ['logger', '$scope', '$element', function(logger, $scope, $element) {
         $element.addClass('tc-paginator')
         var vm = this
 
@@ -35,7 +35,7 @@ import angular from 'angular'
         function activate() {
           // attaches watcher to watch data changes
           $scope.$watch('data', function(updatedValue) {
-            $log.debug('data updated for paginator ', updatedValue)
+            logger.debug('data updated for paginator ', updatedValue)
             init(updatedValue)
           })
         }

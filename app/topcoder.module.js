@@ -17,6 +17,7 @@ import angular from 'angular'
     'tc.skill-picker',
     'tc.sitemap',
     'tc.community',
+    'tc.search',
     'ui.router',
     'blocks.logger',
     'blocks.exception',
@@ -37,9 +38,9 @@ import angular from 'angular'
 
   angular.module('topcoder', dependencies).run(appRun)
 
-  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', '$log']
+  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', 'logger']
 
-  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, $log) {
+  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, logger) {
     // Attaching $state to the $rootScope allows us to access the
     // current state in index.html (see the body tag)
     $rootScope.$state = $state
@@ -47,7 +48,7 @@ import angular from 'angular'
     // check AuthNAuth on change state start
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
       if (toState.data.authRequired && !TcAuthService.isAuthenticated()) {
-        $log.debug('State requires authentication, and user is not logged in, redirecting')
+        logger.debug('State requires authentication, and user is not logged in, redirecting')
         // setup redirect for post login
         event.preventDefault()
         var next = $state.href(toState.name, toParams, {absolute: false})

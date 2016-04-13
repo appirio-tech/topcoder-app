@@ -6,11 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.services').factory('ExternalWebLinksService', ExternalWebLinksService)
 
-  ExternalWebLinksService.$inject = ['$log', 'CONSTANTS', 'ApiService', '$q']
+  ExternalWebLinksService.$inject = ['logger', 'CONSTANTS', 'ApiService', '$q']
 
-  function ExternalWebLinksService($log, CONSTANTS, ApiService, $q) {
-    $log = $log.getInstance('ExternalWebLinksService')
-
+  function ExternalWebLinksService(logger, CONSTANTS, ApiService, $q) {
     var memberApi = ApiService.getApiServiceProvider('MEMBER')
 
     var service = {
@@ -55,15 +53,17 @@ import _ from 'lodash'
           _newLink.data.status = 'PENDING'
           resolve(_newLink)
         })
-        .catch(function(resp) {
+        .catch(function(err) {
+          logger.error('Error adding weblink', err)
+
           var errorStatus = 'FATAL_ERROR'
-          $log.error('Error adding weblink: ' + resp.data.result.content)
-          if (resp.data.result && resp.data.result.status === 400) {
+
+          if (err.data.result && err.data.result.status === 400) {
             errorStatus = 'WEBLINK_ALREADY_EXISTS'
           }
           reject({
             status: errorStatus,
-            msg: resp.data.result.content
+            msg: err.data.result.content
           })
         })
       })
@@ -75,15 +75,17 @@ import _ from 'lodash'
         .then(function(resp) {
           $resolve(resp)
         })
-        .catch(function(resp) {
+        .catch(function(err) {
+          logger.error('Error removing weblink', err)
+
           var errorStatus = 'FATAL_ERROR'
-          $log.error('Error removing weblink: ' + resp.data.result.content)
-          if (resp.data.result && resp.data.result.status === 400) {
+
+          if (err.data.result && err.data.result.status === 400) {
             errorStatus = 'WEBLINK_NOT_EXIST'
           }
           $reject({
             status: errorStatus,
-            msg: resp.data.result.content
+            msg: err.data.result.content
           })
         })
       })

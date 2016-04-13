@@ -11,8 +11,7 @@ import angular from 'angular'
         bindToController: true,
         template: require('./tc-tabs')(),
         scope: {},
-        controller: ['$log', '$location', '$scope', function($log, $location, $scope, $element) {
-          $log = $log.getInstance('TcTabSetController')
+        controller: ['$location', '$scope', function($location, $scope, $element) {
           this.tabs = []
 
           this.addTab = function addTab(tab) {

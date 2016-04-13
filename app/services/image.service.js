@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.services').factory('ImageService', ImageService)
 
-  ImageService.$inject = ['CONSTANTS', 'ApiService', '$q', '$log', '$rootScope', 'toaster']
+  ImageService.$inject = ['CONSTANTS', 'ApiService', '$q', 'logger', '$rootScope', 'toaster']
 
-  function ImageService(CONSTANTS, ApiService, $q, $log, $rootScope, toaster) {
+  function ImageService(CONSTANTS, ApiService, $q, logger, $rootScope, toaster) {
     var api = ApiService.restangularV3
 
     var service = {
@@ -21,13 +21,13 @@ import angular from 'angular'
       return api.one('members', S3Response.userHandle).customPUT(S3Response.body, 'photo')
       .then(function(newPhotoURL) {
         $rootScope.$broadcast(CONSTANTS.EVENT_PROFILE_UPDATED)
-        $log.info('Successfully made file record')
+        logger.info('Successfully made file record')
         toaster.pop('success', 'Success!', 'Your profile image has been updated.')
         return newPhotoURL
       })
       .catch(function(err) {
-        $log.info('Error in creating file record')
-        $log.error(err)
+        logger.error('Error in creating file record for image', err)
+
         toaster.pop('error', 'Whoops!', 'There was an error uploading your profile image. Please try again later.')
       })
     }
@@ -45,8 +45,10 @@ import angular from 'angular'
         })
       })
       .catch(function(err) {
-        $log.info('Error getting presigned url')
+        logger.error('Error getting presigned url for image', err)
+
         toaster.pop('error', 'Whoops!', 'There was an error uploading your profile image. Please try again later.')
+
         deferred.reject(err)
       })
 
@@ -60,11 +62,11 @@ import angular from 'angular'
       xhr.open('PUT', response.preSignedURL, true)
       xhr.setRequestHeader('Content-Type', response.file.type)
 
-      // xhr version of the success callback
       xhr.onreadystatechange = function() {
         var status = xhr.status
         if (((status >= 200 && status < 300) || status === 304) && xhr.readyState === 4) {
-          $log.info('Successfully uploaded file')
+          logger.info('Successfully uploaded file')
+
           deferred.resolve({
             userHandle: response.userHandle,
             body: {
@@ -73,15 +75,19 @@ import angular from 'angular'
             }
           })
         } else if (status >= 400) {
-          $log.error('Error uploading to S3 with status: ' + status)
+          logger.error('Could not upload image to S3', status)
+
           toaster.pop('error', 'Whoops!', 'There was an error uploading your profile image. Please try again later.')
+
           deferred.reject({})
         }
       }
 
       xhr.onerror = function(err) {
-        $log.info('Error uploading to s3')
+        logger.error('Could not upload image to S3', err)
+
         toaster.pop('error', 'Whoops!', 'There was an error uploading your profile image. Please try again later.')
+
         deferred.reject(err)
       }
 

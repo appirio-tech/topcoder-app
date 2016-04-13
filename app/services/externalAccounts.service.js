@@ -6,11 +6,10 @@ import _ from 'lodash'
 
   angular.module('tc.services').factory('ExternalAccountService', ExternalAccountService)
 
-  ExternalAccountService.$inject = ['$q', '$log', 'CONSTANTS', 'auth', 'ApiService', 'UserService', 'Helpers']
+  ExternalAccountService.$inject = ['$q', 'logger', 'CONSTANTS', 'auth', 'ApiService', 'UserService', 'Helpers']
 
-  function ExternalAccountService($q, $log, CONSTANTS, auth, ApiService, UserService, Helpers) {
+  function ExternalAccountService($q, logger, CONSTANTS, auth, ApiService, UserService, Helpers) {
     var auth0 = auth
-    $log = $log.getInstance('ExternalAccountService')
 
     var memberApi = ApiService.getApiServiceProvider('MEMBER')
     var userApi = ApiService.getApiServiceProvider('USER')
@@ -56,16 +55,17 @@ import _ from 'lodash'
       return $q(function($resolve, $reject) {
         UserService.removeSocialProfile(user.userId, account)
         .then(function(resp) {
-          $log.debug('Succesfully unlinked account: ' + JSON.stringify(resp))
+          logger.debug('Succesfully unlinked account: ' + JSON.stringify(resp))
           $resolve({
             status: 'SUCCESS'
           })
         })
-        .catch(function(resp) {
-          $log.error('Error unlinking account: ' + resp.data.result.content)
+        .catch(function(err) {
+          logger.error('Error unlinking account', err)
+
           var status = 'FATAL_ERROR'
-          var msg = resp.data.result.content
-          if (resp.status === 404) {
+          var msg = err.data.result.content
+          if (err.status === 404) {
             status = 'SOCIAL_PROFILE_NOT_EXIST'
           }
           $reject({
@@ -99,7 +99,7 @@ import _ from 'lodash'
           _cards.push({provider: provider, data: {handle: link.name, status: 'PENDING'}})
         }
       })
-      $log.debug('Processed Accounts Cards: ' + JSON.stringify(_cards))
+      logger.debug('Processed Accounts Cards: ' + JSON.stringify(_cards))
       return _cards
     }
 
@@ -110,14 +110,17 @@ import _ from 'lodash'
         if (includePending)
           _promises.push(getLinkedAccounts(userId))
 
-        $q.all(_promises).then(function(data) {
+        $q.all(_promises)
+        .then(function(data) {
           var links = includePending ? data[1]: []
           var _cards = _convertAccountsIntoCards(links, data[0].plain(), includePending)
           // TODO add weblinks
           resolve(_cards)
-        }).catch(function(resp) {
-          $log.error(resp)
-          reject(resp)
+        })
+        .catch(function(err) {
+          logger.error('Could not get all external links accounts', err)
+
+          reject(err)
         })
       })
     }
@@ -135,7 +138,7 @@ import _ from 'lodash'
             state: callbackUrl
           },
             function(profile, idToken, accessToken, state, refreshToken) {
-              $log.debug('onSocialLoginSuccess')
+              logger.debug('onSocialLoginSuccess')
               var socialData = Helpers.getSocialUserData(profile, accessToken)
               var user = UserService.getUserIdentity()
               var postData = {
@@ -152,10 +155,10 @@ import _ from 'lodash'
               if (socialData.accessTokenSecret) {
                 postData.context.accessTokenSecret = socialData.accessTokenSecret
               }
-              $log.debug('link API postdata: ' + JSON.stringify(postData))
+              logger.debug('link API postdata: ' + JSON.stringify(postData))
               userApi.one('users', user.userId).customPOST(postData, 'profiles', {}, {})
                 .then(function(resp) {
-                  $log.debug('Succesfully linked account: ' + JSON.stringify(resp))
+                  logger.debug('Succesfully linked account: ' + JSON.stringify(resp))
                   // construct 'card' object and resolve it
                   var _data = {
                     status: 'SUCCESS',
@@ -167,25 +170,29 @@ import _ from 'lodash'
                   _data.linkedAccount.data.status = 'PENDING'
                   resolve(_data)
                 })
-                .catch(function(resp) {
+                .catch(function(err) {
+                  logger.error('Error linking account', err)
+
                   var errorStatus = 'FATAL_ERROR'
-                  $log.error('Error linking account: ' + resp.data.result.content)
-                  if (resp.data.result && resp.data.result.status === 400) {
+
+                  if (err.data.result && err.data.result.status === 400) {
                     errorStatus = 'SOCIAL_PROFILE_ALREADY_EXISTS'
                   }
                   reject({
                     status: errorStatus,
-                    msg: resp.data.result.content
+                    msg: err.data.result.content
                   })
                 })
             },
-            function(error) {
-              $log.warn('onSocialLoginFailure ' + JSON.stringify(error))
-              reject(error)
+            function(err) {
+              logger.error('Error signing in - onSocialLoginFailure', err)
+
+              reject(err)
             }
           )
         } else {
-          $log.error('Unsupported social login backend: ' + provider)
+          logger.error('Unsupported social login backend', provider)
+
           $q.reject({
             status: 'failed',
             'error': 'Unsupported social login backend \'' + provider + '\''

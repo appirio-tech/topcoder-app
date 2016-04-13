@@ -6,11 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.account').controller('RegisterController', RegisterController)
 
-  RegisterController.$inject = ['$log', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService', 'ISO3166', 'Helpers']
+  RegisterController.$inject = ['logger', 'CONSTANTS', '$state', '$stateParams', 'TcAuthService', 'UserService', 'ISO3166', 'Helpers']
 
-  function RegisterController($log, CONSTANTS, $state, $stateParams, TcAuthService, UserService, ISO3166, Helpers) {
-    $log = $log.getInstance('RegisterController')
-    $log.debug('-init')
+  function RegisterController(logger, CONSTANTS, $state, $stateParams, TcAuthService, UserService, ISO3166, Helpers) {
     var vm = this
     vm.registering = false
     // prepares utm params, if available
@@ -20,17 +18,9 @@ import _ from 'lodash'
       campaign : $stateParams && $stateParams.utm_campaign ? $stateParams.utm_campaign : ''
     }
 
-
     // Set default for toggle password directive
     vm.defaultPlaceholder = 'Create Password'
     vm.busyMessage = CONSTANTS.BUSY_PROGRESS_MESSAGE
-
-    // FIXME - This needs to be setup with https
-    // lookup users country
-    // Helpers.getCountyObjFromIP()
-    //   .then(function(obj) {
-    //     vm.countryObj = obj
-    //   })
 
     vm.countries = ISO3166.getAllCountryObjects()
 
@@ -85,18 +75,18 @@ import _ from 'lodash'
         }
       }
 
-      $log.debug('attempting to register user')
       TcAuthService.register(body)
       .then(function(data) {
         vm.registering = false
-        $log.debug('registered successfully')
+        logger.debug('Registered successfully')
 
         // In the future, go to dashboard
         $state.go('registeredSuccessfully')
       })
       .catch(function(err) {
         vm.registering = false
-        $log.error('Error in registering new user: ', err)
+
+        logger.error('Error in registering new user', err)
       })
     }
 
@@ -130,17 +120,22 @@ import _ from 'lodash'
           vm.isSocialRegistration = false
         }
       })
-    .catch(function(result) {
-      switch (result.status) {
-      case 'SOCIAL_PROFILE_ALREADY_EXISTS':
-        vm.errMsg = 'An account with that profile already exists. Please login to access your account.'
-        break
-      default:
-        vm.errMsg = 'Whoops! Something went wrong. Please try again later.'
-        break
-      }
-      vm.isSocialRegistration = false
-    })
+      .catch(function(err) {
+        switch (err.status) {
+        case 'SOCIAL_PROFILE_ALREADY_EXISTS':
+          vm.errMsg = 'An account with that profile already exists. Please login to access your account.'
+
+          logger.error('Error registering user with social account', err)
+
+          break
+
+        default:
+          vm.errMsg = 'Whoops! Something went wrong. Please try again later.'
+
+          logger.error('Error registering user with social account', err)
+        }
+        vm.isSocialRegistration = false
+      })
     }
 
     vm.$stateParams = $stateParams

@@ -1,3 +1,5 @@
+import 'babel-polyfill'
+
 require('angular')
 require('auth0-js')
 require('auth0-angular')
@@ -113,6 +115,7 @@ require('../assets/css/directives/design-challenge-user-place.scss')
 require('../assets/css/directives/challenge-tile.scss')
 require('../assets/css/directives/challenge-links.directive.scss')
 require('../assets/css/directives/badge-tooltip.scss')
+require('../assets/css/directives/tc-banner.scss')
 require('../assets/css/community/statistics.scss')
 require('../assets/css/community/members.scss')
 require('../assets/css/community/community.scss')

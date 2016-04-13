@@ -6,10 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.settings').controller('EditProfileController', EditProfileController)
 
-  EditProfileController.$inject = ['$rootScope', 'userData', 'userHandle', 'ProfileService', 'ExternalAccountService', 'ExternalWebLinksService', '$log', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster', '$q', '$scope']
+  EditProfileController.$inject = ['$rootScope', 'userData', 'userHandle', 'ProfileService', 'ExternalAccountService', 'ExternalWebLinksService', 'logger', 'ISO3166', 'ImageService', 'CONSTANTS', 'TagsService', 'toaster', '$q', '$scope']
 
-  function EditProfileController($rootScope, userData, userHandle, ProfileService, ExternalAccountService, ExternalWebLinksService, $log, ISO3166, ImageService, CONSTANTS, TagsService, toaster, $q, $scope) {
-    $log = $log.getInstance('EditProfileCtrl')
+  function EditProfileController($rootScope, userData, userHandle, ProfileService, ExternalAccountService, ExternalWebLinksService, logger, ISO3166, ImageService, CONSTANTS, TagsService, toaster, $q, $scope) {
     var vm = this
     vm.toggleTrack    = toggleTrack
     vm.updateCountry  = updateCountry
@@ -27,7 +26,7 @@ import _ from 'lodash'
       vm.originalUserData = userData
       vm.linkedExternalAccounts = []
       vm.linkedExternalAccountsData = {}
-      vm.skills = false
+      vm.skills = []
       vm.tags = []
       vm.profileFormProcessing = false
       vm.tracks = {}
@@ -57,7 +56,7 @@ import _ from 'lodash'
         vm.tags = tags
       })
       .catch(function(err) {
-        $log.error(JSON.stringify(err))
+        logger.error('Could not get approved skill tags', err)
       })
 
       ProfileService.getUserSkills(vm.userData.handle)
@@ -67,7 +66,7 @@ import _ from 'lodash'
         })
       })
       .catch(function(err) {
-        $log.error(JSON.stringify(err))
+        logger.error('Could not get user skills', err)
       })
     }
 
@@ -102,7 +101,7 @@ import _ from 'lodash'
         vm.countryObj = null
         return
       }
-      
+
       vm.editProfile.$setDirty()
       var countryCode = _.get(countryObj, 'alpha3', undefined)
       vm.userData.competitionCountryCode = countryCode
@@ -138,13 +137,15 @@ import _ from 'lodash'
       .then(function() {
         vm.profileFormProcessing = false
         vm.editProfile.$setPristine()
-        $log.info('Saved successfully')
+        logger.info('Saved successfully')
         toaster.pop('success', 'Success!', 'Your account information was updated.')
         for (var k in vm.userData) userData[k] = vm.userData[k]
       })
       .catch(function(err) {
+        logger.error('Could not update user profile', err)
+
         vm.profileFormProcessing = false
-        $log.error(err)
+
         toaster.pop('error', 'Whoops!', 'Something went wrong. Please try again later.')
       })
     }
@@ -169,12 +170,16 @@ import _ from 'lodash'
       ProfileService.updateUserProfile(userData)
       .then(function() {
         vm.userData.photoURL = ''
-        $log.info('Saved successfully')
+
+        logger.info('Saved successfully')
+
         toaster.pop('success', 'Success!', 'Your account information was updated.')
       })
       .catch(function(err) {
+        logger.error('Could not update user profile and delete image', err)
+
         vm.profileFormProcessing = false
-        $log.error(err)
+
         vm.userData.photoURL = oldPhotoURL
         vm.originalUserData.photoURL = oldPhotoURL
         toaster.pop('error', 'Whoops!', 'Something went wrong. Please try again later.')

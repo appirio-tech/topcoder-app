@@ -5,13 +5,12 @@ import angular from 'angular'
 
   angular.module('tc.submissions').controller('SubmitDevelopFilesController', SubmitDevelopFilesController)
 
-  SubmitDevelopFilesController.$inject = ['$scope','$window', '$stateParams', '$log', 'UserService', 'SubmissionsService', 'challengeToSubmitTo']
+  SubmitDevelopFilesController.$inject = ['$scope','$window', '$stateParams', 'logger', 'UserService', 'SubmissionsService', 'challengeToSubmitTo']
 
-  function SubmitDevelopFilesController($scope, $window, $stateParams, $log, UserService, SubmissionsService, challengeToSubmitTo) {
+  function SubmitDevelopFilesController($scope, $window, $stateParams, logger, UserService, SubmissionsService, challengeToSubmitTo) {
     if (!challengeToSubmitTo.challenge) { return }
 
     var vm = this
-    $log = $log.getInstance('SubmitDevelopFilesController')
     var files = {}
     var fileUploadProgress = {}
     vm.comments = ''
@@ -109,7 +108,7 @@ import angular from 'angular'
       vm.finishing = false
       vm.submissionsBody.data.submitterComments = vm.comments
 
-      $log.debug('Body for request: ', vm.submissionsBody)
+      logger.debug('Body for request: ', vm.submissionsBody)
       SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress)
     }
 
@@ -122,7 +121,7 @@ import angular from 'angular'
         if (args === 100) {
           vm.preparing = false
           vm.uploading = true
-          $log.debug('Prepared for upload.')
+          logger.debug('Prepared for upload.')
         }
       } else if (phase === 'UPLOAD') {
         // if args is object, this update is about XHRRequest's upload progress
@@ -148,18 +147,18 @@ import angular from 'angular'
 
         // start next phase when UPLOAD is done
         if (vm.uploadProgress == 100) {
-          $log.debug('Uploaded files.')
+          logger.debug('Uploaded files.')
           vm.uploading = false
           vm.finishing = true
         }
       } else if (phase === 'FINISH') {
         // we are concerned only for completion of the phase
         if (args === 100) {
-          $log.debug('Finished upload.')
+          logger.debug('Finished upload.')
         }
       } else {
         // assume it to be error condition
-        $log.debug('Error Condition: ' + phase)
+        logger.debug('Error Condition: ' + phase)
         vm.errorInUpload = true
       }
     }

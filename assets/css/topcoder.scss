@@ -210,9 +210,6 @@ body {
 .view-container {
   min-height: 440px;
   padding-bottom: 30px;
-  @media screen and (min-device-width: 768px) {
-    min-width: 768px;
-  }
 }
 
 .page-container {
@@ -540,4 +537,16 @@ $switch-inactive-color: $gray;
   position: absolute;
   right: $switch-handle-offset + $switch-handle-size -1;
   top: 0;
+}
+
+// DELETE when moving member search back
+// Also delete TypeKit fonts from index.html
+// Also delete redux-logger and babel-polyfill from npm modules
+// also delete babel-polyfill from index.js
+#member-search-wrapper {
+  font-family: Roboto !important;
+
+  .member-search-view {
+    background-color: transparent;
+  }
 }
