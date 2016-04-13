@@ -25,7 +25,7 @@ import _ from 'lodash'
         // window.location.replace(vm.constants.MAIN_URL + '/search?s=' + vm.searchTerm + '&scope=member')
 
         // Replace with new member search url
-        window.location.replace('/search/members/?q=' + vm.searchTerm)
+        window.location.replace('/search/members/?q=' + window.encodeURIComponent(vm.searchTerm))
       }
     }
 
