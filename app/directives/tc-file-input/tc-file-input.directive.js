@@ -4,9 +4,9 @@ import _ from 'lodash'
 (function() {
   'use strict'
 
-  angular.module('tcUIComponents').directive('tcFileInput', ['$timeout', 'Helpers', tcFileInput])
+  angular.module('tcUIComponents').directive('tcFileInput', ['$timeout', 'Helpers', 'logger', tcFileInput])
 
-  function tcFileInput($timeout, Helpers) {
+  function tcFileInput($timeout, Helpers, logger) {
     return {
       restrict: 'E',
       require: '^form',
@@ -43,8 +43,14 @@ import _ from 'lodash'
           var fileSize = file.size
           var fileExtension = file.name.slice(file.name.lastIndexOf('.') + 1)
 
-          var isAllowedFileSize = fileSize < '524288000'
-          var isAllowedFileFormat = _.some(fileTypes, _.matches(fileExtension)) && Helpers.isValidMIMEType(file.type, fileExtension)
+          var isAllowedFileSize   = fileSize < '524288000'
+          var isAllowedFileExt    = _.some(fileTypes, _.matches(fileExtension))
+          var isAllowedMIMEType   = Helpers.isValidMIMEType(file.type, fileExtension)
+          var isAllowedFileFormat = isAllowedFileExt && isAllowedMIMEType
+
+          if (file && !isAllowedFileFormat) {
+            logger.error(`Invalid file. Allowed extensions: ${scope.fileType}. Recieved file extension ${fileExtension} with MIME type ${file.type} and file size ${fileSize}`)
+          }
 
           // Timeout needed for fixing IE bug ($apply already in progress)
           $timeout(function() {
