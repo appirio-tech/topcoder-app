@@ -390,4 +390,25 @@ describe('Helper Service', function() {
       expect($window._kmq[0][1]).to.exist.to.equal('mockuser')
     })
   })
+
+  describe('isValidMIMEType', function() {
+    it('should return false for for non string arguments', function() {
+      expect(Helpers.isValidMIMEType()).to.be.false
+      expect(Helpers.isValidMIMEType(1, 'jpg')).to.be.false
+      expect(Helpers.isValidMIMEType('application/zip', {})).to.be.false
+    })
+
+    it('should return false for an unsupported file extension', function() {
+      expect(Helpers.isValidMIMEType('application/zip', 'zip314')).to.be.false
+    })
+
+    it('should return false for an unsupported MIME type', function() {
+      expect(Helpers.isValidMIMEType('application/zip314', 'zip')).to.be.false
+    })
+
+    it('should return true for valid MIME types and file extensions', function() {
+      expect(Helpers.isValidMIMEType('application/zip', 'zip')).to.be.true
+      expect(Helpers.isValidMIMEType('image/png', 'png')).to.be.true
+    })
+  })
 })

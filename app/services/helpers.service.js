@@ -1,4 +1,5 @@
 import angular from 'angular'
+import _ from 'lodash'
 
 (function() {
   'use strict'
@@ -21,8 +22,8 @@ import angular from 'angular'
       redirectPostLogin: redirectPostLogin,
       getSocialUserData: getSocialUserData,
       setupLoginEventMetrics: setupLoginEventMetrics,
-      npad: npad
-
+      npad: npad,
+      isValidMIMEType: isValidMIMEType
     }
     return service
 
@@ -296,6 +297,51 @@ import angular from 'angular'
 
     function npad(toPad, n) {
       return $filter('npad')(toPad, n)
+    }
+
+    function isValidMIMEType(mimeType, fileExt) {
+      var areStrings = _.isString(mimeType) && _.isString(fileExt)
+
+      if (!areStrings) {
+        return false
+      }
+
+      var mimeTypesByExtension = {
+        zip: [
+          'application/zip',
+          'application/x-zip',
+          'application/x-zip-compressed',
+          'application/octet-stream',
+          'application/x-compress',
+          'application/x-compressed',
+          'multipart/x-zip'
+        ],
+        jpeg: [
+          'image/jpeg',
+          'image/jpg',
+          'image/jpe_',
+          'image/pjpeg',
+          'image/vnd.swiftview-jpeg'
+        ],
+        jpg: [
+          'image/jpeg',
+          'image/jpg',
+          'image/jp_',
+          'application/jpg',
+          'application/x-jpg',
+          'image/pjpeg',
+          'image/pipeg',
+          'image/vnd.swiftview-jpeg',
+          'image/x-xbitmap'
+        ],
+        png: [
+          'image/png',
+          'application/png',
+          'application/x-png'
+        ]
+      }
+
+      return _.some(mimeTypesByExtension[fileExt], _.matches(mimeType))
     }
   }
 })()
