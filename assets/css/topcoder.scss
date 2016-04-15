@@ -549,4 +549,18 @@ $switch-inactive-color: $gray;
   .member-search-view {
     background-color: transparent;
   }
+
+  // Overrides old style guide
+  a {
+    cursor: auto !important;
+    transition: none !important;
+    text-decoration: none !important;
+    color: inherit !important;
+
+    &:visited, &:hover, &:active {
+      color: inherit !important;
+      cursor: auto !important;
+      text-decoration: none !important;
+    }
+  }
 }
