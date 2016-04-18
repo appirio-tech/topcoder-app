@@ -34,7 +34,7 @@ import angular from 'angular'
 
         profileVm.status.externalLinks = CONSTANTS.STATE_READY
       }).catch(function(err) {
-        logger.error('Could retrive web links and external accounts', err)
+        logger.error('Could not retrieve web links and external accounts', err)
 
         profileVm.status.externalLinks = CONSTANTS.STATE_ERROR
       })
