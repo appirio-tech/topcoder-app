@@ -15,7 +15,12 @@ import angular from 'angular'
         data: {
           authRequired: false
         },
-        onEnter: ['$state', '$stateParams', 'TcAuthService', 'logger', function($state, $stateParams, TcAuthService, logger) {
+        onEnter: ['$state', '$location', '$stateParams', 'TcAuthService', 'AuthTokenService', 'logger',
+          function($state, $location,  $stateParams, TcAuthService, AuthTokenService, logger) {
+          console.log($location.search())
+          if($location.search().jwt) {
+            AuthTokenService.setV3Token($location.search().jwt)
+          }
           if (TcAuthService.isAuthenticated()) {
             // redirect to next if exists else dashboard
             if ($stateParams.next) {

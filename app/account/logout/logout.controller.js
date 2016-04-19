@@ -11,10 +11,10 @@ import angular from 'angular'
 
     TcAuthService.logout()
     .then(function() {
-      logger.debug('Successfully logged out.')
-
-      // Redirect to home
-      $window.location.href = CONSTANTS.MAIN_URL
+      logger.debug('successfully logged out.')
+      var accountsUrl = CONSTANTS.ACCOUNTS_APP_LOGOUT_URL + '?retUrl=' + encodeURIComponent(CONSTANTS.MAIN_URL)
+      logger.info('redirect to '　+ accountsUrl)
+      $window.location = accountsUrl
     })
   }
 })()

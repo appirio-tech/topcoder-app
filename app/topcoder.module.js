@@ -38,9 +38,9 @@ import angular from 'angular'
 
   angular.module('topcoder', dependencies).run(appRun)
 
-  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', 'logger']
+  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', 'CONSTANTS', '$window', '$cookies', 'Helpers', 'logger']
 
-  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, logger) {
+  function appRun($rootScope, $state, TcAuthService, CONSTANTS, $window, $cookies, Helpers, logger) {
     // Attaching $state to the $rootScope allows us to access the
     // current state in index.html (see the body tag)
     $rootScope.$state = $state
@@ -51,8 +51,10 @@ import angular from 'angular'
         logger.debug('State requires authentication, and user is not logged in, redirecting')
         // setup redirect for post login
         event.preventDefault()
-        var next = $state.href(toState.name, toParams, {absolute: false})
-        $state.go('login', {next: next})
+        var next = $state.href(toState.name, toParams, {absolute: true})
+        //$state.go('login', {next: next})
+        var retUrl = 'http://local.' + CONSTANTS.domain + ':3000/login' //+ '/login?next=' + next
+        $window.location = CONSTANTS.ACCOUNTS_APP_LOGIN_URL + '?app=tc&retUrl=' + encodeURIComponent(retUrl)
       }
     })
 

@@ -35,5 +35,7 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'REGISTERED'             : 'REGISTERED',
   'SUBMISSION_TYPE_CONTEST': 'Contest Submission',
   'STATUS_ACTIVE'          : 'Active',
-  'STATUS_COMPLETED_WITHOUT_WIN' : 'Completed Without Win'
+  'STATUS_COMPLETED_WITHOUT_WIN' : 'Completed Without Win',
+  'ACCOUNTS_APP_LOGIN_URL'       : '//accounts.topcoder-dev.com/login',
+  'ACCOUNTS_APP_LOGOUT_URL'       : '//accounts.topcoder-dev.com/logout'
 })

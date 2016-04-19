@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.services').factory('JwtInterceptorService', JwtInterceptorService)
 
-  JwtInterceptorService.$inject = ['logger', 'jwtHelper', 'AuthTokenService', 'TcAuthService', '$state']
+  JwtInterceptorService.$inject = ['logger', 'jwtHelper', 'AuthTokenService', 'TcAuthService', '$state', '$location', '$window', 'CONSTANTS']
 
-  function JwtInterceptorService(logger, jwtHelper, AuthTokenService, TcAuthService, $state) {
+  function JwtInterceptorService(logger, jwtHelper, AuthTokenService, TcAuthService, $state, $location, $window, CONSTANTS) {
     var service = {
       getToken: getToken
     }
@@ -54,9 +54,9 @@ import angular from 'angular'
               .catch(function(err) {
                 // Server will not or cannot refresh token
                 logger.debug('Unable to refresh V3 token, redirecting to login')
-                logger.debug(err)
-
-                $state.go('login')
+                logger.debug(resp)
+                var retUrl = '//' + CONSTANTS.domain + '/login?next=' + config.url
+                $window.location = CONSTANTS.ACCOUNTS_APP_LOGIN_URL + '?retUrl=' + encodeURIComponent(retUrl)
 
                 return null
               })
@@ -74,7 +74,9 @@ import angular from 'angular'
       var idToken = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token()
 
       if (!TcAuthService.isAuthenticated() || idToken == null) {
-        $state.go('login')
+        // $state.go('login')
+        var retUrl = '//' + CONSTANTS.domain + '/login?next=' + config.url
+        $window.location = CONSTANTS.ACCOUNTS_APP_LOGIN_URL + '?retUrl=' + encodeURIComponent(retUrl)
         return
       }
       // Note only v3tokens expire
@@ -90,10 +92,10 @@ import angular from 'angular'
         .catch(function(err) {
           // Server will not or cannot refresh token
           logger.debug('Unable to refresh V3 token, redirecting to login')
-          logger.debug(err)
-
-          $state.go('login')
-
+          logger.debug(resp)
+          // $state.go('login')
+          var retUrl = '//' + CONSTANTS.domain + '/login?next=' + config.url
+          $window.location = CONSTANTS.ACCOUNTS_APP_LOGIN_URL + '?retUrl=' + encodeURIComponent(retUrl)
           return null
         })
       } else {
