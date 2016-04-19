@@ -21,7 +21,11 @@ import angular from 'angular'
         case 'registrants':
           return String.supplant('https://community.{domain}/longcontest/?module=ViewRegistrants&rd={roundId}', data)
         case 'detail':
-          return String.supplant('https://community.{domain}/longcontest/stats/?module=ViewOverview&rd={roundId}', data)
+          if (challenge.status === 'PAST') {
+            return String.supplant('https://community.{domain}/longcontest/stats/?module=ViewOverview&rd={roundId}', data)
+          } else { // for all other statues (ACTIVE, UPCOMING), show the problem statement
+            return String.supplant('https://community.{domain}/longcontest/?module=ViewProblemStatement&rd={roundId}', data)
+          }
         }
       } else {
         data = {
