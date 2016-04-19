@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.myDashboard').controller('SubtrackStatsController', SubtrackStatsController)
 
-  SubtrackStatsController.$inject = ['$filter', 'ProfileService', 'UserStatsService', 'userIdentity']
+  SubtrackStatsController.$inject = ['$filter', 'ProfileService', 'UserStatsService', 'userIdentity', 'logger']
 
-  function SubtrackStatsController($filter, ProfileService, UserStatsService, userIdentity) {
+  function SubtrackStatsController($filter, ProfileService, UserStatsService, userIdentity, logger) {
     var vm = this
     vm.loading = true
 
@@ -36,6 +36,8 @@ import angular from 'angular'
       .catch(function(err) {
         vm.hasRanks = false
         vm.loading = false
+
+        logger.error('Could not get user stats', err)
       })
     }
   }

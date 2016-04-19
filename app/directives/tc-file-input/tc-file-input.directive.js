@@ -4,9 +4,9 @@ import _ from 'lodash'
 (function() {
   'use strict'
 
-  angular.module('tcUIComponents').directive('tcFileInput', ['$timeout', tcFileInput])
+  angular.module('tcUIComponents').directive('tcFileInput', ['$timeout', 'Helpers', 'logger', tcFileInput])
 
-  function tcFileInput($timeout) {
+  function tcFileInput($timeout, Helpers, logger) {
     return {
       restrict: 'E',
       require: '^form',
@@ -26,14 +26,6 @@ import _ from 'lodash'
         scope.selectFile = selectFile
         var fileTypes = scope.fileType.split(',')
 
-        // Add extra checks for Windows zip file types
-        var hasZip = _.some(fileTypes, _.matches('zip'))
-
-        if (hasZip) {
-          fileTypes = angular.copy(fileTypes)
-          fileTypes.push('x-zip', 'x-zip-compressed')
-        }
-
         // fieldId is not set on element at this point, so grabbing with class .none
         // which exists on the element right away
         var fileInput = $(element[0]).find('.none')
@@ -49,10 +41,16 @@ import _ from 'lodash'
           }
 
           var fileSize = file.size
-          var isAllowedFileSize = fileSize < '500000000'
+          var fileExtension = file.name.slice(file.name.lastIndexOf('.') + 1)
 
-          var selectedFileType = file.type.slice(file.type.lastIndexOf('/') + 1)
-          var isAllowedFileFormat = _.some(fileTypes, _.matches(selectedFileType))
+          var isAllowedFileSize   = fileSize < '524288000'
+          var isAllowedFileExt    = _.some(fileTypes, _.matches(fileExtension))
+          var isAllowedMIMEType   = Helpers.isValidMIMEType(file.type, fileExtension)
+          var isAllowedFileFormat = isAllowedFileExt && isAllowedMIMEType
+
+          if (file && !isAllowedFileFormat) {
+            logger.error(`Invalid file. Allowed extensions: ${scope.fileType}. Recieved file extension ${fileExtension} with MIME type ${file.type} and file size ${fileSize}`)
+          }
 
           // Timeout needed for fixing IE bug ($apply already in progress)
           $timeout(function() {

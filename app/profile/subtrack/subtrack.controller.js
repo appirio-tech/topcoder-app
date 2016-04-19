@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.profile').controller('ProfileSubtrackController', ProfileSubtrackController)
 
-  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'SRMService', 'CONSTANTS', '$state', '$window', 'ngDialog', 'UserStatsService']
+  ProfileSubtrackController.$inject = ['$scope', 'ProfileService', '$q', '$stateParams', 'ChallengeService', 'SRMService', 'CONSTANTS', '$state', '$window', 'ngDialog', 'UserStatsService', 'logger']
 
-  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, SRMService, CONSTANTS, $state, $window, ngDialog, UserStatsService) {
+  function ProfileSubtrackController($scope, ProfileService, $q, $stateParams, ChallengeService, SRMService, CONSTANTS, $state, $window, ngDialog, UserStatsService, logger) {
     var vm = this
     vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX
     vm.graphState = { show: 'history' }
@@ -195,7 +195,9 @@ import _ from 'lodash'
             })
             vm.status.challenges = CONSTANTS.STATE_READY
           })
-          .catch(function(resp) {
+          .catch(function(err) {
+            logger.error('Could not get user SRMs', err)
+
             vm.status.challenges = CONSTANTS.STATE_ERROR
           })
         } else {
@@ -208,7 +210,9 @@ import _ from 'lodash'
             vm.challenges = vm.challenges.concat(data)
             vm.status.challenges = CONSTANTS.STATE_READY
           })
-          .catch(function(resp) {
+          .catch(function(err) {
+            logger.error('Could not get user marathon matches', err)
+
             vm.status.challenges = CONSTANTS.STATE_ERROR
           })
         }
@@ -223,7 +227,10 @@ import _ from 'lodash'
           vm.pageParams.currentCount = vm.challenges.length
           vm.status.challenges = CONSTANTS.STATE_READY
           return data
-        }).catch(function(err) {
+        })
+        .catch(function(err) {
+          logger.error('Could not get user challenges', err)
+
           vm.status.challenges = CONSTANTS.STATE_ERROR
         })
       }

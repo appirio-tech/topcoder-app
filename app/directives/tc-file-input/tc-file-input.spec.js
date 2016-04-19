@@ -161,9 +161,31 @@ describe('Topcoder File Input Directive', function() {
       })
     })
 
+    describe('with a file extension that is not in the list of fileTypes given to the directive', function() {
+      beforeEach(function() {
+        fileList[0].name = 'submission.zip.jpg'
+
+        $(fileInput).triggerHandler({
+          type: 'change',
+          target: { files: fileList }
+        })
+
+        $timeout.flush()
+      })
+
+      it('does not call setFileReference', function() {
+        expect(mockSetFileReference).not.calledOnce
+      })
+
+      it('has ng-touched and ng-invalid-required classes', function() {
+        expect($(fileInput).hasClass('ng-invalid-required')).to.be.true
+        expect($(fileInput).hasClass('ng-touched')).to.be.true
+      })
+    })
+
     describe('with a file that\'s greater than 500MB', function() {
       beforeEach(function() {
-        fileList[0].size = 500000001
+        fileList[0].size = 524288001
 
         $(fileInput).triggerHandler({
           type: 'change',

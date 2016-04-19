@@ -11,7 +11,7 @@
     background-color: $white;
   }
 
-  .challenges, .srms, .programs, .community-updates {
+  .challenges, .srms, .programs, .tco, .ttl, .community-updates {
     @include module-l;
     margin-top: 1px;
     width: 100%;
@@ -23,10 +23,19 @@
     }
   }
 
-  .challenges, .srms, .programs, .community-updates {
-    @media only screen and (min-width: 900px) {
-      padding-top: 0px;
+  .ttl {
+    .tc-banner-placeholder {
+      background: url(../../images/team-live-bg.png) repeat;
+      .image {
+        img {
+          width: auto;
+        }
+      }
     }
+  }
+
+  .challenges, .srms, .programs, .tco, .ttl, .community-updates {
+    padding-top: 0px;
   }
 
   .section-title {

@@ -9,13 +9,13 @@ import angular from 'angular'
     'UserService',
     'MemberCertService',
     'CONSTANTS',
-    '$log',
+    'logger',
     'ChallengeService',
     '$q',
     '$rootScope'
   ]
 
-  function ProgramsController (UserService, MemberCertService, CONSTANTS, $log, ChallengeService, $q, $rootScope) {
+  function ProgramsController (UserService, MemberCertService, CONSTANTS, logger, ChallengeService, $q, $rootScope) {
     var vm = this
     vm.domain = CONSTANTS.domain
     vm.registered = false
@@ -44,7 +44,8 @@ import angular from 'angular'
       .catch(function(err) {
         vm.registered = false
         vm.loading = false
-        $log.debug(err)
+
+        logger.error('Could not get member cert registration data', err)
       })
     }
 
@@ -78,7 +79,8 @@ import angular from 'angular'
       })
       .catch(function(err) {
         vm.loading = false
-        $log.debug(err)
+
+        logger.error('Could not get peer review (iOS and Swift) challenges', err)
       })
     }
   }
