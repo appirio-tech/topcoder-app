@@ -28,23 +28,23 @@
       .form-block__fields
         .fieldset
           tc-file-input.tc-file-field(
-            label-text="Preview Image",
-            field-id="DESIGN_COVER",
+            label-text="Submission",
+            field-id="SUBMISSION_ZIP",
             button-text="Add File",
             file-type="zip"
-            placeholder="Image file as .jpg or .png",
+            placeholder="Placeholder from PMs",
             mandatory="true",
             set-file-reference="vm.setFileReference(file, fieldId)",
-            ng-model="vm.submissionForm.designCover"
+            ng-model="vm.submissionForm.submissionZip"
           )
 
           .tc-error-messages(
-            ng-show="submissionForm['DESIGN_COVER'].$touched && submissionForm['DESIGN_COVER'].$invalid",
-            ng-messages="submissionForm['DESIGN_COVER'].$error"
+            ng-show="submissionForm['SUBMISSION_ZIP'].$touched && submissionForm['SUBMISSION_ZIP'].$invalid",
+            ng-messages="submissionForm['SUBMISSION_ZIP'].$error"
           )
             p(ng-message="filesize") File size may not exceed 500MB.
 
-            p(ng-message="required") This is not the correct file format. Please select a .jpg or .png file.
+            p(ng-message="required") This is not the correct file format. Please select a .zip file.
 
     .panel-footer
       p Submitting your files means you hereby agree to the #[a(ng-href="https://www.{{DOMAIN}}/community/how-it-works/terms/", target="_blank") Topcoder terms of use] and to the extent your uploaded file wins a Topcoder Competition, you hereby assign, grant, and transfer to Topcoder all rights in and title to the Winning Submission (as further described in the terms of use).
@@ -61,18 +61,16 @@
 modal.transition(show="vm.showProgress", background-click-close="false", style="background-color:white;")
   .upload-progress(ng-class="{'upload-progress--error': vm.errorInUpload}")
     .upload-progress__title
-      p Uploading submission for
+      p Uploading submission for "{{submissions.challengeTitle}}"
 
-      p.upload-progress-title__challenge-name(ng-bind="submissions.challengeTitle")
-
-    img.upload-progress__image(src=require("../../../assets/images/robot.svg"), ng-hide="vm.errorInUpload")
+    img.upload-progress__image(src=require("../../../assets/images/skills/id-180.svg"), ng-hide="vm.errorInUpload")
     img.upload-progress__image--error(src=require("../../../assets/images/robot-embarresed.svg"), ng-show="vm.errorInUpload")
 
-    p.upload-progress__message(ng-hide="vm.errorInUpload") Hey, your work is AWESOME! Please don’t close the window while I’m working or you’ll lose all files!
+    p.upload-progress__message(ng-hide="vm.errorInUpload") Hey, your work is AWESOME! Please don’t close the window while the upload is in progress, or you’ll lose all files!
 
     p.upload-progress__message--error(ng-show="vm.errorInUpload") Oh, that’s embarrassing! One of the files couldn’t be uploaded, I’m so sorry.
 
-    progress-bar.upload-progress__progress-bar(completed="vm.uploadProgress", message="of 3 files uploaded")
+    progress-bar.upload-progress__progress-bar(completed="vm.uploadProgress", message="of 1 file uploaded")
 
     .upload-progress__preparing(ng-show="vm.preparing && !vm.errorInUpload") #[span Preparing...]
     .upload-progress__finishing(ng-show="vm.finishing && !vm.errorInUpload")
@@ -81,8 +79,7 @@ modal.transition(show="vm.showProgress", background-click-close="false", style="
       .upload-progess__links
         a.tc-btn.tc-btn-s(ng-href="https://www.{{DOMAIN}}/challenge-details/{{submissions.challengeId}}/?type={{submissions.track}}") Back to the challenge
 
-        a.tc-btn.tc-btn-s.tc-btn-ghost(ng-click="vm.refreshPage()") Submit another
-
+        a.tc-btn.tc-btn-s.tc-btn-ghost(ng-href="https://software.{{DOMAIN}}/review/actions/ViewProjectDetails?pid={{submissions.challengeId}}") View my submission
 
     .upload-progress__error(ng-show="vm.errorInUpload") #[span File upload failed]
 
