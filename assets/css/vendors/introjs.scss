@@ -68,18 +68,18 @@
 
 // Refactor buttons when button mixins and/or style guide is done
 .introjs-button {
-  @extend .tc-btn;
-  @extend .tc-btn-s;
+  @extend button.tc-btn;
+  @extend button.tc-btn-s;
 }
 
 .introjs-skipbutton {
-  @extend .tc-btn-ghost;
+  @extend button.tc-btn-ghost;
   float: left;
 }
 
 
 .introjs-disabled {
-  @extend .tc-btn-s;
+  @extend button.tc-btn-s;
   @extend :disabled;
 }
 
