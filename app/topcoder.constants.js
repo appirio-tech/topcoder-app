@@ -6,6 +6,8 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'API_URL_V2'              : process.env.API_URL_V2,
   'ASSET_PREFIX'            : process.env.ASSET_PREFIX || '',
   'auth0Callback'           : process.env.auth0Callback,
+  'AUTH0_DOMAIN'            : process.env.AUTH0_DOMAIN,
+  'AUTH0_CLIENT_ID'         : process.env.AUTH0_CLIENT_ID,
   'BLOG_LOCATION'           : process.env.BLOG_LOCATION,
   'COMMUNITY_URL'           : process.env.COMMUNITY_URL,
   'domain'                  : process.env.domain,
@@ -17,7 +19,7 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'PHOTO_LINK_LOCATION'     : process.env.PHOTO_LINK_LOCATION,
   'SWIFT_PROGRAM_URL'       : process.env.SWIFT_PROGRAM_URL,
   'TCO16_URL'               : process.env.TCO16_URL,
-  'ACCOUNTS_APP_URL'       : process.env.ACCOUNTS_APP_URL,
+  'ACCOUNTS_APP_URL'        : process.env.ACCOUNTS_APP_URL,
 
   'NEW_CHALLENGES_URL'     : 'https://www.topcoder.com/challenges/develop/upcoming/',
   'SWIFT_PROGRAM_ID'       : 3445,

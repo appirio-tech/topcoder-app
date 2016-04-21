@@ -62,7 +62,7 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
                 config.url.indexOf('badges') > -1) {
               token = AuthTokenService.getV2Token()
             } else {
-              token = getCurrentUser().token
+              token = getCurrentUser() != null ? getCurrentUser().token : null
             }
             _checkAndRefreshToken(config, token)
           }
@@ -73,7 +73,7 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
       }
 
       // for everything else assume that we need to send token
-      var idToken = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : getCurrentUser().token
+      var idToken = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : (getCurrentUser() != null ? getCurrentUser().token : null)
 
       if (!TcAuthService.isAuthenticated() || idToken == null) {
         var retUrl = CONSTANTS.MAIN_URL + '/?next=' + config.url
