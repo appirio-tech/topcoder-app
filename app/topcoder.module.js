@@ -1,4 +1,5 @@
 import angular from 'angular'
+import { getCurrentUser, loadUser } from './services/userv3.service.js'
 
 (function() {
   'use strict'
@@ -38,23 +39,30 @@ import angular from 'angular'
 
   angular.module('topcoder', dependencies).run(appRun)
 
-  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', 'CONSTANTS', '$window', '$cookies', 'Helpers', 'logger']
+  appRun.$inject = ['$rootScope', '$state', '$urlRouter', 'TcAuthService', 'CONSTANTS', '$window', '$cookies', 'Helpers', 'logger']
 
-  function appRun($rootScope, $state, TcAuthService, CONSTANTS, $window, $cookies, Helpers, logger) {
+  function appRun($rootScope, $state, $urlRouter, TcAuthService, CONSTANTS, $window, $cookies, Helpers, logger) {
     // Attaching $state to the $rootScope allows us to access the
     // current state in index.html (see the body tag)
     $rootScope.$state = $state
 
     // check AuthNAuth on change state start
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-      if (toState.data.authRequired && !TcAuthService.isAuthenticated()) {
-        logger.debug('State requires authentication, and user is not logged in, redirecting')
-        // setup redirect for post login
-        event.preventDefault()
-        var next = $state.href(toState.name, toParams, {absolute: true})
-        //$state.go('login', {next: next})
-        var retUrl = 'http://local.' + CONSTANTS.domain + ':3000/login' //+ '/login?next=' + next
-        $window.location = CONSTANTS.ACCOUNTS_APP_LOGIN_URL + '?app=tc&retUrl=' + encodeURIComponent(retUrl)
+      logger.debug('checking auth for state: ' + toState.name + ' from state: ' + fromState.name)
+      var currentUser = getCurrentUser()
+      if (!currentUser) {
+        loadUser().then(function(token) {
+          logger.debug('successful login with token ' + JSON.stringify(token))
+          $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN)
+          $state.go(toState)
+        }, function() {
+          logger.debug('State requires authentication, and user is not logged in, redirecting')
+          // setup redirect for post login
+          event.preventDefault()
+          var next = $state.href(toState.name, toParams, {absolute: true})
+          var retUrl = next
+          $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(retUrl)
+        })
       }
     })
 

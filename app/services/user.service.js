@@ -1,14 +1,16 @@
 import angular from 'angular'
 import _ from 'lodash'
+import { getCurrentUser } from '../services/userv3.service.js'
+import { decodeToken, getFreshToken, logout as doLogout } from 'tc-accounts'
 
 (function() {
   'use strict'
 
   angular.module('tc.services').factory('UserService', UserService)
 
-  UserService.$inject = ['CONSTANTS', 'ApiService', '$injector', 'AuthTokenService', 'UserPrefStore']
+  UserService.$inject = ['CONSTANTS', 'ApiService', '$injector', 'UserPrefStore', 'logger']
 
-  function UserService(CONSTANTS, ApiService, $injector, AuthTokenService, UserPrefStore) {
+  function UserService(CONSTANTS, ApiService, $injector, UserPrefStore, logger) {
 
     var api = ApiService.getApiServiceProvider('USER')
 
@@ -38,10 +40,9 @@ import _ from 'lodash'
     //////////////////////////////////////////
 
     function getUserIdentity() {
-      var TcAuthService = $injector.get('TcAuthService')
-      if (TcAuthService.isAuthenticated()) {
-        var decodedToken = AuthTokenService.decodeToken(AuthTokenService.getV3Token())
-        return decodedToken
+      var currentUser = getCurrentUser()
+      if (currentUser) {
+        return decodeToken(currentUser.token)
       } else {
         return null
       }

@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.services').factory('ApiService', ApiService)
 
-  ApiService.$inject = ['$http', 'logger', 'AuthTokenService', 'Restangular', 'CONSTANTS']
+  ApiService.$inject = ['$http', 'logger', 'Restangular', 'CONSTANTS']
 
-  function ApiService($http, logger, AuthTokenService, Restangular, CONSTANTS) {
+  function ApiService($http, logger, Restangular, CONSTANTS) {
     var service = {
       requestHandler: requestHandler,
       restangularV2: _getRestangularV2(),

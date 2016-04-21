@@ -1,4 +1,6 @@
 import angular from 'angular'
+import { getCurrentUser } from '../services/userv3.service.js'
+import { isTokenExpired, getFreshToken } from 'tc-accounts'
 
 (function() {
   'use strict'
@@ -12,6 +14,28 @@ import angular from 'angular'
       getToken: getToken
     }
     ////////////
+
+    function _checkAndRefreshToken(token) {
+      if (isTokenExpired(token)) {
+        logger.debug(String.supplant('Token has expired, attempting to refreshToken() for "{url}"', config))
+
+        return getFreshToken().then(function(refreshedToken) {
+          logger.debug('Successfully refreshed V3 token.')
+          return refreshedToken
+        })
+        .catch(function(err) {
+          // Server will not or cannot refresh token
+          logger.debug('Unable to refresh V3 token, redirecting to login')
+          logger.debug(resp)
+          var retUrl = CONSTANTS.MAIN_URL + '/?next=' + config.url
+          $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(retUrl)
+
+          return null
+        })
+      } else {
+        return token
+      }
+    }
 
     function getToken(config) {
       // skip token for .html
@@ -38,31 +62,9 @@ import angular from 'angular'
                 config.url.indexOf('badges') > -1) {
               token = AuthTokenService.getV2Token()
             } else {
-              token = AuthTokenService.getV3Token()
+              token = getCurrentUser().token
             }
-            // var token = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token()
-            if (jwtHelper.isTokenExpired(token)) {
-              logger.debug(String.supplant('Token has expired, attempting to refreshToken() for "{url}"', config))
-
-              return AuthTokenService.refreshV3Token(token)
-              .then(function(idToken) {
-                logger.debug('Successfully refreshed V3 token.')
-                // v2 token doesn't expire
-                AuthTokenService.setV3Token(idToken)
-                return idToken
-              })
-              .catch(function(err) {
-                // Server will not or cannot refresh token
-                logger.debug('Unable to refresh V3 token, redirecting to login')
-                logger.debug(resp)
-                var retUrl = '//' + CONSTANTS.domain + '/login?next=' + config.url
-                $window.location = CONSTANTS.ACCOUNTS_APP_LOGIN_URL + '?retUrl=' + encodeURIComponent(retUrl)
-
-                return null
-              })
-            } else {
-              return token
-            }
+            _checkAndRefreshToken(token)
           }
           // else
           logger.debug(String.supplant('Skipping authToken for "{url}, UnAuthenticated user"', config))
@@ -71,36 +73,16 @@ import angular from 'angular'
       }
 
       // for everything else assume that we need to send token
-      var idToken = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : AuthTokenService.getV3Token()
+      var idToken = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : getCurrentUser().token
 
       if (!TcAuthService.isAuthenticated() || idToken == null) {
-        // $state.go('login')
-        var retUrl = '//' + CONSTANTS.domain + '/login?next=' + config.url
-        $window.location = CONSTANTS.ACCOUNTS_APP_LOGIN_URL + '?retUrl=' + encodeURIComponent(retUrl)
+        var retUrl = CONSTANTS.MAIN_URL + '/?next=' + config.url
+        $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(retUrl)
         return
       }
+
       // Note only v3tokens expire
-      if (jwtHelper.isTokenExpired(idToken)) {
-        logger.debug(String.supplant('Token has expired, attempting to refreshToken() for "{url}"', config))
-        return AuthTokenService.refreshV3Token(idToken)
-        .then(function(idToken) {
-          // v2 token doesn't expire
-          logger.debug('Successfully refreshed V3 token.')
-          AuthTokenService.setV3Token(idToken)
-          return idToken
-        })
-        .catch(function(err) {
-          // Server will not or cannot refresh token
-          logger.debug('Unable to refresh V3 token, redirecting to login')
-          logger.debug(resp)
-          // $state.go('login')
-          var retUrl = '//' + CONSTANTS.domain + '/login?next=' + config.url
-          $window.location = CONSTANTS.ACCOUNTS_APP_LOGIN_URL + '?retUrl=' + encodeURIComponent(retUrl)
-          return null
-        })
-      } else {
-        return idToken
-      }
+      _checkAndRefreshToken(idToken)
     }
     return service
   }
