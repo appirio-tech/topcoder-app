@@ -1,5 +1,5 @@
 import angular from 'angular'
-import { getCurrentUser, loadUser, logout as doLogout } from './userv3.service.js'
+import { getCurrentUser, logout as doLogout } from './userv3.service.js'
 
 (function() {
   'use strict'

@@ -15,7 +15,7 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
     }
     ////////////
 
-    function _checkAndRefreshToken(token) {
+    function _checkAndRefreshToken(config, token) {
       if (isTokenExpired(token)) {
         logger.debug(String.supplant('Token has expired, attempting to refreshToken() for "{url}"', config))
 
@@ -26,7 +26,7 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
         .catch(function(err) {
           // Server will not or cannot refresh token
           logger.debug('Unable to refresh V3 token, redirecting to login')
-          logger.debug(resp)
+          // logger.debug(resp)
           var retUrl = CONSTANTS.MAIN_URL + '/?next=' + config.url
           $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(retUrl)
 
@@ -64,7 +64,7 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
             } else {
               token = getCurrentUser().token
             }
-            _checkAndRefreshToken(token)
+            _checkAndRefreshToken(config, token)
           }
           // else
           logger.debug(String.supplant('Skipping authToken for "{url}, UnAuthenticated user"', config))
@@ -82,7 +82,7 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
       }
 
       // Note only v3tokens expire
-      _checkAndRefreshToken(idToken)
+      _checkAndRefreshToken(config, idToken)
     }
     return service
   }

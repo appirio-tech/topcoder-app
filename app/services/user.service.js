@@ -1,7 +1,7 @@
 import angular from 'angular'
 import _ from 'lodash'
 import { getCurrentUser } from '../services/userv3.service.js'
-import { decodeToken, getFreshToken, logout as doLogout } from 'tc-accounts'
+import { decodeToken } from 'tc-accounts'
 
 (function() {
   'use strict'

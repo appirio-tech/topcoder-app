@@ -1,9 +1,10 @@
 'use strict'
 
+import angular from 'angular'
 require('./authv3.module.js')
 
-import includes from 'lodash/includes'
-import merge from 'lodash/merge'
+// import includes from 'lodash/includes'
+// import merge from 'lodash/merge'
 // TODO: Move registration to accounts.topcoder.com
 import { registerUser} from 'tc-accounts/core/auth.js'
 import { decodeToken, getFreshToken, logout as doLogout } from 'tc-accounts'
@@ -12,7 +13,6 @@ let currentUser = null
 
 export function loadUser() {
   function loadUserSuccess(token) {
-    console.log(token)
     const decodedToken = decodeToken( token )
 
     if (decodedToken.userId) {
@@ -23,7 +23,6 @@ export function loadUser() {
 
     return currentUser
   }
-  console.log('getting fresh token')
 
   return getFreshToken().then(loadUserSuccess)
 }

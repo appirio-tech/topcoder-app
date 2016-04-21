@@ -12,7 +12,7 @@ import angular from 'angular'
     var v2TCSSOTokenKey = 'tcsso'
     var v3TokenKey = 'appiriojwt'
     // use this api url over CONSTANTS
-    var apiUrl = CONSTANTS.AUTH_API_URL || CONSTANTS.API_URL
+    // var apiUrl = CONSTANTS.AUTH_API_URL || CONSTANTS.API_URL
 
     var service = {
       getV2Token: getV2Token,

@@ -1,7 +1,7 @@
 'use strict'
 
+import angular from 'angular'
 require('angular-jwt')
-
 import { getFreshToken } from 'tc-accounts'
 
 const dependencies = ['angular-jwt']

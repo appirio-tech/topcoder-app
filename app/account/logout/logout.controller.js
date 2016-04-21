@@ -9,7 +9,7 @@ import angular from 'angular'
 
   function LogoutController(logger, TcAuthService, $window, CONSTANTS) {
     TcAuthService.logout().then(() => {
-      logger.debug("MAIN_URL=> " + CONSTANTS.MAIN_URL)
+      logger.debug('MAIN_URL=> ' + CONSTANTS.MAIN_URL)
       $window.location.href = CONSTANTS.MAIN_URL
     })
   }
