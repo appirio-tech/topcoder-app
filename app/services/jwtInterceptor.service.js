@@ -62,9 +62,9 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
                 config.url.indexOf('badges') > -1) {
               token = AuthTokenService.getV2Token()
             } else {
-              token = getCurrentUser() != null ? getCurrentUser().token : null
+              token = getCurrentUser() !== null ? getCurrentUser().token : null
             }
-            _checkAndRefreshToken(config, token)
+            token = _checkAndRefreshToken(config, token)
           }
           // else
           logger.debug(String.supplant('Skipping authToken for "{url}, UnAuthenticated user"', config))
@@ -73,7 +73,7 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
       }
 
       // for everything else assume that we need to send token
-      var idToken = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : (getCurrentUser() != null ? getCurrentUser().token : null)
+      var idToken = config.url.indexOf('v2/') > -1 ? AuthTokenService.getV2Token() : (getCurrentUser() !== null ? getCurrentUser().token : null)
 
       if (!TcAuthService.isAuthenticated() || idToken == null) {
         var retUrl = CONSTANTS.MAIN_URL + '/?next=' + config.url
@@ -82,7 +82,7 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
       }
 
       // Note only v3tokens expire
-      _checkAndRefreshToken(config, idToken)
+      return _checkAndRefreshToken(config, idToken)
     }
     return service
   }
