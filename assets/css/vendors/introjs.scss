@@ -1,4 +1,5 @@
 @import 'topcoder/tc-includes';
+@import 'topcoder/tc-buttons';
 
 // Intro JS overrides
 .introjs-overlay {
@@ -68,18 +69,18 @@
 
 // Refactor buttons when button mixins and/or style guide is done
 .introjs-button {
-  @extend button.tc-btn;
-  @extend button.tc-btn-s;
+  @extend .tc-btn;
+  @extend .tc-btn-s;
 }
 
 .introjs-skipbutton {
-  @extend button.tc-btn-ghost;
+  @extend .tc-btn-ghost;
   float: left;
 }
 
 
 .introjs-disabled {
-  @extend button.tc-btn-s;
+  @extend .tc-btn-s;
   @extend :disabled;
 }
 
