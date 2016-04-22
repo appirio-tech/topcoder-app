@@ -14,8 +14,8 @@ if (CI === 'master') {
 }
 
 
-process.env.CONNECTOR_URL = `http://accounts.${process.env.DOMAIN}/connector.html`
-process.env.ACCOUNTS_APP_URL = `http://accounts.${process.env.DOMAIN}/tc`
+process.env.CONNECTOR_URL = `https://accounts.${process.env.DOMAIN}/connector.html`
+process.env.ACCOUNTS_APP_URL = `https://accounts.${process.env.DOMAIN}/tc`
 
 const config = require('appirio-tech-webpack-config')({
   dirname: __dirname,
