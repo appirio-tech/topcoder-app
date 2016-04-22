@@ -2,7 +2,12 @@
 
 import angular from 'angular'
 require('angular-jwt')
-import { getFreshToken } from 'tc-accounts'
+import { getFreshToken, configureConnector } from 'tc-accounts'
+
+configureConnector({
+  connectorUrl: process.env.CONNECTOR_URL,
+  frameId: 'tc-accounts-iframe'
+})
 
 const dependencies = ['angular-jwt']
 
