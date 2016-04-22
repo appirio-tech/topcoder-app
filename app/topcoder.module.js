@@ -54,6 +54,7 @@ import { getCurrentUser, loadUser } from './services/userv3.service.js'
         loadUser().then(function(token) {
           logger.debug('successful login with token ' + JSON.stringify(token))
           $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN)
+          logger.debug('Going to state: ' + toState.name)
           $state.go(toState.name)
         }, function() {
           logger.debug('State requires authentication, and user is not logged in, redirecting')
