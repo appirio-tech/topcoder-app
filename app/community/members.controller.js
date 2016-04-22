@@ -23,7 +23,7 @@ import angular from 'angular'
 
     ctrl.search = function() {
       if (ctrl.keywords) {
-        window.location.replace('/search?s=' + ctrl.keywords + '&scope=member')
+        window.location.replace('/search/members/?q=' + window.encodeURIComponent(ctrl.keywords))
       } else {
         ctrl.notSearch = true
       }
