@@ -13,7 +13,6 @@ import _ from 'lodash'
 
     vm.constants = CONSTANTS
     vm.domain = CONSTANTS.domain
-    vm.login = TcAuthService.login
     vm.checkSubmit = checkSubmit
     vm.searchTerm = ''
     vm.selectedGroup = selectedGroup

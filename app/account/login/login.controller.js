@@ -6,9 +6,9 @@ import { getCurrentUser, loadUser } from '../../services/userv3.service.js'
 
   angular.module('tc.account').controller('LoginController', LoginController)
 
-  LoginController.$inject = ['logger', '$state', '$stateParams', '$window', '$rootScope', 'TcAuthService', 'UserService', 'Helpers', 'CONSTANTS']
+  LoginController.$inject = ['logger', '$state', '$stateParams', '$window', '$rootScope', 'Helpers', 'CONSTANTS']
 
-  function LoginController(logger, $state, $stateParams, $window, $rootScope, TcAuthService, UserService, Helpers, CONSTANTS) {
+  function LoginController(logger, $state, $stateParams, $window, $rootScope, Helpers, CONSTANTS) {
     var vm = this
     vm.$stateParams = $stateParams
 
@@ -16,17 +16,20 @@ import { getCurrentUser, loadUser } from '../../services/userv3.service.js'
 
     function activate() {
       var currentUser = getCurrentUser()
+      logger.debug('checking for logged in user...' + currentUser)
       if (!currentUser) {
+        logger.debug('loading user...')
+        var next = $stateParams.next ? $stateParams.next : 'dashboard'
         loadUser().then(function(token) {
-          logger.debug('successful login with token ' + JSON.stringify(token))
+          logger.debug('successful login with token ' + token)
           $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN)
-          return Helpers.redirectPostLogin($stateParams.next)
+          logger.debug('reidrecting to ' + next)
+          Helpers.redirectPostLogin(next)
         }, function() {
           logger.debug('State requires authentication, and user is not logged in, redirecting')
           // setup redirect for post login
-          event.preventDefault()
-          var next = $stateParams.next ? $stateParams.next : 'dashboard'
           var retUrl = $state.href(next, {}, {absolute: true})
+          logger.debug('redirecting to accounts app for login...')
           $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(retUrl)
         })
       }
