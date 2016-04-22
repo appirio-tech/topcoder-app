@@ -36,7 +36,7 @@ import angular from 'angular'
         data: {
           title: 'Login'
         },
-        template: '',
+        template: require('./login/login')(),
         controller: 'LoginController'
       },
       'register': {
