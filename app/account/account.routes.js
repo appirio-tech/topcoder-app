@@ -37,7 +37,7 @@ import angular from 'angular'
           title: 'Login'
         },
         template: '',
-        controller: 'LoginController',
+        controller: 'LoginController'
       },
       'register': {
         parent: 'auth',
