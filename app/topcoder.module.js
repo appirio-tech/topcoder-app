@@ -50,12 +50,12 @@ import { getCurrentUser, loadUser } from './services/userv3.service.js'
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
       logger.debug('checking auth for state: ' + toState.name + ' from state: ' + fromState.name)
       var currentUser = getCurrentUser()
-      if (!currentUser) {
+      if (!currentUser && toState.data && toState.data.authRequired) {
         loadUser().then(function(token) {
           logger.debug('successful login with token ' + JSON.stringify(token))
           $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN)
           logger.debug('Going to state: ' + toState.name)
-          $state.go(toState.name)
+          $state.go(toState.name, {'notifyReset' : true})
         }, function() {
           logger.debug('State requires authentication, and user is not logged in, redirecting')
           // setup redirect for post login
