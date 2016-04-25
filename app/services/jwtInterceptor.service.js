@@ -64,7 +64,7 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
             } else {
               token = getCurrentUser() !== null ? getCurrentUser().token : null
             }
-            token = _checkAndRefreshToken(config, token)
+            return _checkAndRefreshToken(config, token)
           }
           // else
           logger.debug(String.supplant('Skipping authToken for "{url}, UnAuthenticated user"', config))
