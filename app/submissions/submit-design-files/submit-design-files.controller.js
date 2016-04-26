@@ -39,7 +39,7 @@ import _ from 'lodash'
       hasAgreedToTerms: false
     }
 
-    var userId = parseInt(UserService.getUserIdentity().userId)
+    var userId = 123456
 
     vm.submissionsBody = {
       reference: {
