@@ -36,7 +36,20 @@ import angular from 'angular'
         data: {
           title: 'Login'
         },
-        template: require('./login/login')(),
+        views: {
+          'header@': {
+            template: require('../layout/header/account-header')()
+          },
+          'container@': {
+            template: require('./login/login')(),
+            controller: 'LoginController',
+            controllerAs: 'vm'
+          },
+          'footer@': {
+            controller: 'FooterController as vm',
+            template: require('../layout/footer/account-footer')()
+          }
+        },
         controller: 'LoginController'
       },
       'register': {
