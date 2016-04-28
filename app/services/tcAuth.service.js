@@ -88,6 +88,9 @@ import { getCurrentUser, logout as doLogout } from './userv3.service.js'
     }
 
     function isAuthenticated() {
+      logger.debug("AuthTokenService.getV2Token(): " + AuthTokenService.getV2Token())
+      logger.debug("AuthTokenService.getTCSSOToken(): " + AuthTokenService.getTCSSOToken())
+      logger.debug("getCurrentUser(): " + getCurrentUser())
       return !!getCurrentUser() && !!AuthTokenService.getV2Token() && !!AuthTokenService.getTCSSOToken()
 
     }
