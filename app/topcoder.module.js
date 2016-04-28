@@ -51,7 +51,7 @@ import { getCurrentUser, loadUser } from './services/userv3.service.js'
       logger.debug('checking auth for state: ' + toState.name + ' from state: ' + fromState.name)
       var currentUser = getCurrentUser()
       if (!currentUser && toState.data && toState.data.authRequired) {
-        event.preventDefault();
+        event.preventDefault()
         loadUser().then(function(token) {
           logger.debug('successful login with token ' + JSON.stringify(token))
           $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN)
