@@ -127,7 +127,7 @@ import angular from 'angular'
                     resolve(result)
                   } else {
                     if (resp.reasonCode === 'ALREADY_IN_USE') {
-                      logger.error('Social handle exist')
+                      logger.error('Social handle already exists')
                       reject({
                         status: 'SOCIAL_PROFILE_ALREADY_EXISTS'
                       })
