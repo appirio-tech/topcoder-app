@@ -27,13 +27,13 @@ import angular from 'angular'
 
     function error(message, data, title) {
       if (data) {
-        var err = `${message} ${JSON.stringify(data)}`
+        message = `${message} ${JSON.stringify(data)}`
       }
 
-      $log.error(err)
+      $log.error(message)
 
       if (window.NREUM) {
-        window.NREUM.noticeError(err)
+        window.NREUM.noticeError(message)
       }
     }
 
