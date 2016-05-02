@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.skill-picker').controller('SkillPickerController', SkillPickerController)
 
-  SkillPickerController.$inject = ['$scope', 'CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', 'logger', 'toaster', 'MemberCertService', '$q']
+  SkillPickerController.$inject = ['$scope', 'CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', 'logger', 'toaster', 'MemberCertService', '$q', 'MailchimpService']
 
-  function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, logger, toaster, MemberCertService, $q) {
+  function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, logger, toaster, MemberCertService, $q, MailchimpService) {
     var vm = this
     vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX
     vm.IOS_PROGRAM_ID = CONSTANTS.SWIFT_PROGRAM_ID
@@ -32,6 +32,7 @@ import _ from 'lodash'
      * Activates the controller.
      */
     function activate() {
+      addToMailingList()
       initCommunities()
       checkCommunityStatus()
     }
@@ -135,6 +136,20 @@ import _ from 'lodash'
         // add
         vm.mySkills.push(tagId.toString())
       }
+    }
+
+    function addToMailingList() {
+      return MailchimpService.getMemberSubscription(userProfile).then(function(subscription) {
+        console.log(subscription)
+        if (!subscription) {
+          return MailchimpService.addSubscription(userProfile).then(function(resp) {
+            console.log(resp)
+          })
+        }
+      }).catch(function(err) {
+        //TODO some error alert to community admin
+        console.log('error in adding user to member list')
+      })
     }
 
     /**
