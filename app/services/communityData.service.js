@@ -21,29 +21,29 @@ import angular from 'angular'
       var data = {
         'memberLeaderboard': [
           {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/universo_march2016.png',
-            'name': 'universo',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/toxicpixel_apr2016.png',
+            'name': 'ToxicPixel',
             'contestType': 'Design',
-            'description': 'Won $4,500 in design challenges',
+            'description': 'Won $4,200 with top prizes in LUX and Idea Gen!',
             'class': 'design'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/sdgun_march2016.png',
-            'name': 'sdgun',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/monicamuranyi_apr2016.png',
+            'name': 'MonicaMuranyi',
             'contestType': 'Development',
-            'description': 'Nine wins for $2,076',
+            'description': 'Won $8,300 across 12 competitions',
             'class': 'develop'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/BSBandme_march2016.png',
-            'name': 'BSBandme',
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/sugina_apr2016.png',
+            'name': 'Sugina',
             'contestType': 'Data Science',
-            'description': 'Gained 285 rating points within all 3 January SRMs',
+            'description': 'Total increase of 175 points, with a jump from Div 2 to Div 1',
             'class': 'data-science'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/johan_92_march2016.png',
-            'name': 'johan_92',
-            'contestType': 'Design Rookie',
-            'description': 'Joined end of December and has had 4 1st place wins!',
-            'class': 'design'
+            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/tritias_apr2016.png',
+            'name': 'TiTrias',
+            'contestType': 'Development Rookie',
+            'description': 'Won first challenge within a month of joining!',
+            'class': 'develop'
           }
         ],
         'copilots': [{
