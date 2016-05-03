@@ -140,15 +140,15 @@ import _ from 'lodash'
 
     function addToMailingList() {
       return MailchimpService.getMemberSubscription(userProfile).then(function(subscription) {
-        console.log(subscription)
+        logger.debug(subscription)
         if (!subscription) {
           return MailchimpService.addSubscription(userProfile).then(function(resp) {
-            console.log(resp)
+            logger.debug(resp)
           })
         }
       }).catch(function(err) {
         //TODO some error alert to community admin
-        console.log('error in adding user to member list')
+        logger.debug('error in adding user to member list')
       })
     }
 
