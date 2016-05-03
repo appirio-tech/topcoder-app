@@ -23,12 +23,17 @@ import angular from 'angular'
           resolve(resp)
         })
         .catch(function(err) {
-          logger.error('Error adding member to subscription list', err)
+          if (err.status === 404) {
+            logger.debug('Member subscription not found')
+            resolve()
+            return
+          }
+          logger.error('Error getting member to subscription list', err)
 
           var errorStatus = 'FATAL_ERROR'
           reject({
             status: errorStatus,
-            msg: err.data.result.content
+            msg: err.errorMessage
           })
         })
       })
@@ -60,7 +65,7 @@ import angular from 'angular'
 
           reject({
             status: errorStatus,
-            msg: err.data.result.content
+            msg: err.errorMessage
           })
         })
       })

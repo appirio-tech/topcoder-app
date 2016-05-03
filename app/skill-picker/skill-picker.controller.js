@@ -144,9 +144,14 @@ import _ from 'lodash'
         if (!subscription) {
           return MailchimpService.addSubscription(userProfile).then(function(resp) {
             logger.debug(resp)
+          }).catch(function(err) {
+            // no error to user
+            //TODO some error alert to community admin
+            logger.debug('error in adding user to member list')    
           })
         }
       }).catch(function(err) {
+        // no error to user
         //TODO some error alert to community admin
         logger.debug('error in adding user to member list')
       })
