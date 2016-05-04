@@ -3,12 +3,12 @@ const mockData = require('../../tests/test-helpers/mock-data')
 
 describe('Skill Picker Controller', function() {
   var vm
-  var toasterSvc, memberCertService, profileService, state
+  var toasterSvc, memberCertService, profileService, mailchimpService, state
   var mockProfile = mockData.getMockProfile()
 
   beforeEach(function() {
     bard.appModule('tc.skill-picker')
-    bard.inject(this, '$controller', '$rootScope', '$q', 'MemberCertService', 'ProfileService', 'toaster', 'CONSTANTS')
+    bard.inject(this, '$controller', '$rootScope', '$q', 'MemberCertService', 'ProfileService', 'MailchimpService', 'toaster', 'CONSTANTS')
 
     memberCertService = MemberCertService
     profileService = ProfileService
@@ -48,6 +48,29 @@ describe('Skill Picker Controller', function() {
         deferred.reject()
       } else {
         deferred.resolve(resp)
+      }
+      return deferred.promise
+    })
+
+    mailchimpService = MailchimpService
+    sinon.stub(mailchimpService, 'getMemberSubscription', function(user) {
+      var deferred = $q.defer()
+      if (user.userId === 10336829) {
+        deferred.resolve()
+      } else if (user.userId === 12345) {
+        var resp = { id: 'sdku34i5kdk', email_address: user.email}
+        deferred.resolve(resp)
+      } else {
+        deferred.reject()
+      }
+      return deferred.promise
+    })
+    sinon.stub(mailchimpService, 'addSubscription', function(user) {
+      var deferred = $q.defer()
+      if (user.userId === 10336829) {
+        deferred.resolve()
+      } else {
+        deferred.reject()
       }
       return deferred.promise
     })
@@ -113,6 +136,39 @@ describe('Skill Picker Controller', function() {
     expect(vm.showCommunity).to.exist.to.true
     // restores the original swift program id
     CONSTANTS.SWIFT_PROGRAM_ID = origSwiftProgId
+  })
+
+  it('should call mailchimp service to add subscription', function() {
+    expect(vm).to.exist
+    // getMemberSubscription should always be called
+    expect(mailchimpService.getMemberSubscription).to.be.calledOnce
+    // addSubscription should be called once if not subscribed
+    // getMemberSubscription service mock returns null for mockProfile.userId
+    expect(mailchimpService.addSubscription).to.be.calledOnce
+  })
+
+  it('should not call mailchimp service to add subscription', function() {
+    // reset getMemberSubscription, addSubscription spy's called count
+    mailchimpService.getMemberSubscription.reset()
+    mailchimpService.addSubscription.reset()
+    var scope = $rootScope.$new()
+
+    var profile = angular.copy(mockProfile)
+    // update userId to return valid object in service mock
+    profile.userId = 12345
+    vm = $controller('SkillPickerController', {
+      $scope: scope,
+      userProfile: profile,
+      featuredSkills: [],
+      $state: state
+    })
+    $rootScope.$digest()
+    expect(vm).to.exist
+    // getMemberSubscription should always be called
+    expect(mailchimpService.getMemberSubscription).to.be.calledOnce
+    // addSubscription should not be called if already subscribed
+    // getMemberSubscription service mock returns valid object for userId 12345
+    expect(mailchimpService.addSubscription).not.to.be.called
   })
 
   it('should add skill ', function() {

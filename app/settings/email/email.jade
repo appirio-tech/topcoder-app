@@ -1,0 +1,30 @@
+.email-preferences-container
+  .settings-section.newsletters
+    .section-info
+      h2 Always be up to date
+      .description Select the email notifications that you'd like to receive. We send them once every week, so you can be up to date with latest news, events and callenges.
+
+    .section-fields
+      .processing(ng-show="vm.loading")
+        i.fa.fa-spinner.fa-spin
+      .newsletters(ng-hide="vm.loading")
+        .newsletter(ng-repeat="newsletter in vm.newsletters")
+
+          .content(ng-class="{ disabled: !newsletter.enabled }")
+            .newsletter-details
+              .text
+                span.title {{newsletter.name}}
+                .description
+                  span(ng-bind="newsletter.desc")
+
+            .onoffswitch
+              input.onoffswitch-checkbox(type='checkbox', name='onoffswitch', checked='', ng-model="newsletter.enabled", id="{{newsletter.name}}-onoffswitch", ng-change="newsletter.dirty = !newsletter.dirty")
+              label.onoffswitch-label(for='{{newsletter.name}}-onoffswitch')
+                span.onoffswitch-inner
+                span.onoffswitch-switch
+  .save-section
+    button.tc-btn.tc-btn-l.done-button(
+      type="button",
+      tc-busy-button, tc-busy-when="vm.saving",
+      ng-click="vm.save()",
+      ng-disabled="!vm.isDirty()") Save
