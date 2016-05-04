@@ -8,7 +8,7 @@ script:
 sudo: false
 deploy:
 - provider: s3
-  cache_control: private, no-store, no-cache, must-revalidate, max-age=0
+  cache_control: max-age=300
   detect_encoding: true
   access_key_id: $AWS_KEY
   secret_access_key: $AWS_SECRET
