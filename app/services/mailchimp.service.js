@@ -40,18 +40,22 @@ import angular from 'angular'
     }
 
 
-    function addSubscription(user) {
+    function addSubscription(user, preferences) {
       var subscription = {
         userId: user.userId,
         firstName: user.firstName,
         lastName: user.lastName,
         interests: {}
       }
-      subscription.interests[CONSTANTS.MAILCHIMP_NL_TCO] = true
-      subscription.interests[CONSTANTS.MAILCHIMP_NL_IOS] = true
-      subscription.interests[CONSTANTS.MAILCHIMP_NL_DEV] = true
-      subscription.interests[CONSTANTS.MAILCHIMP_NL_DESIGN] = true
-      subscription.interests[CONSTANTS.MAILCHIMP_NL_DATA] = true
+      if (!preferences) {
+        subscription.interests[CONSTANTS.MAILCHIMP_NL_TCO] = true
+        subscription.interests[CONSTANTS.MAILCHIMP_NL_IOS] = true
+        subscription.interests[CONSTANTS.MAILCHIMP_NL_DEV] = true
+        subscription.interests[CONSTANTS.MAILCHIMP_NL_DESIGN] = true
+        subscription.interests[CONSTANTS.MAILCHIMP_NL_DATA] = true
+      } else {
+        subscription.interests = preferences
+      }
       return $q(function(resolve, reject) {
         mailchimpApi.one('mailchimp/lists', CONSTANTS.MAILCHIMP_LIST_ID)
         .customPUT(subscription, 'members')

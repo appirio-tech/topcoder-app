@@ -21,6 +21,7 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'SWIFT_PROGRAM_URL'       : process.env.SWIFT_PROGRAM_URL,
   'TCO16_URL'               : process.env.TCO16_URL,
   'MAILCHIMP_LIST_ID'       : process.env.MAILCHIMP_LIST_ID,
+  'MAILCHIMP_NL_CATEGORY_ID': process.env.MAILCHIMP_NL_CATEGORY_ID,
   'MAILCHIMP_NL_TCO'        : process.env.MAILCHIMP_NL_TCO,
   'MAILCHIMP_NL_IOS'        : process.env.MAILCHIMP_NL_IOS,
   'MAILCHIMP_NL_DEV'        : process.env.MAILCHIMP_NL_DEV,
