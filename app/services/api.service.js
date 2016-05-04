@@ -74,6 +74,8 @@ import _ from 'lodash'
       case 'SUBMISSIONS':
       case 'USER':
         return _getRestangularV3(CONSTANTS.AUTH_API_URL)
+      case 'MAILCHIMP':
+        return _getRestangularV3(CONSTANTS.INTERNAL_API_URL)
       default:
         return _getRestangularV3()
       }
@@ -93,6 +95,10 @@ import _ from 'lodash'
           })
           .setDefaultHeaders({ 'Content-Type': 'application/json' })
           .addRequestInterceptor(function(element, operation, what, url) {
+            // for mailchimp api, don't add param field in the body
+            if (url.indexOf('mailchimp') > -1) {
+              return element
+            }
             if (url.indexOf('members') > -1 || (operation.toLowerCase() === 'post' && url.indexOf('profiles') > -1)) {
               return {
                 param: element
