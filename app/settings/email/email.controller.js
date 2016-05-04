@@ -56,14 +56,25 @@ import angular from 'angular'
       ]
 
       vm.loading = true
-      MailchimpService.getMemberSubscription(userProfile).then(function(resp) {
+      return MailchimpService.getMemberSubscription(userProfile).then(function(subscription) {
         vm.loading = false
-        if (resp.interests) {
-          vm.newsletters.forEach(function(newsletter) {
-            if (resp.interests[newsletter.id]) {
-              newsletter.enabled = true
-            }
+        if (!subscription) {
+          // add member to the list with empty preferences
+          MailchimpService.addSubscription(userProfile, {}).then(function(resp) {
+            logger.debug(resp)
+          }).catch(function(err) {
+            // no error to user
+            //TODO some error alert to community admin
+            logger.debug('error in adding user to member list')    
           })
+        } else {
+          if (subscription.interests) {
+            vm.newsletters.forEach(function(newsletter) {
+              if (subscription.interests[newsletter.id]) {
+                newsletter.enabled = true
+              }
+            })
+          }
         }
       })
     }
