@@ -48,11 +48,7 @@ import angular from 'angular'
         interests: {}
       }
       if (!preferences) {
-        subscription.interests[CONSTANTS.MAILCHIMP_NL_TCO] = true
-        subscription.interests[CONSTANTS.MAILCHIMP_NL_IOS] = true
-        subscription.interests[CONSTANTS.MAILCHIMP_NL_DEV] = true
-        subscription.interests[CONSTANTS.MAILCHIMP_NL_DESIGN] = true
-        subscription.interests[CONSTANTS.MAILCHIMP_NL_DATA] = true
+        subscription.interests[CONSTANTS.MAILCHIMP_NL_GEN] = true
       } else {
         subscription.interests = preferences
       }

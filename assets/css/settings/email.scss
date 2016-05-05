@@ -57,7 +57,6 @@
           font-size: 16px;
           line-height: 28px;
           @include sofia-pro-medium;
-          text-transform: uppercase;
           transition: .1s color;
           &.disabled {
             color: #b7b7b7;
