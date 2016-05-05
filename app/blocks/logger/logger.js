@@ -33,9 +33,7 @@ import angular from 'angular'
       $log.error(message)
 
       if (window.NREUM) {
-        var err = new Error(message)
-
-        window.NREUM.noticeError(err)
+        window.NREUM.noticeError(message)
       }
     }
 

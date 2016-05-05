@@ -13,13 +13,13 @@
       .platform-stats-container
         .stat
           p.statVal {{ctrl.platformStats.memberCount | number : 0}}
-          p.statLabel ACTIVE MEMBER
+          p.statLabel ACTIVE MEMBERS
         .stat
           p.statVal {{ctrl.platformStats.activeMembersCount | number : 0}}
           p.statLabel COMPETING TODAY
         .stat
           p.statVal {{ctrl.platformStats.prizePurse | currency:undefined:0}}
-          p.statLabel AVAILABLE PRIZE
+          p.statLabel AVAILABLE PRIZES
         .stat
           p.statVal {{ctrl.platformStats.activeContestsCount | number : 0}}
           p.statLabel ACTIVE CHALLENGES
