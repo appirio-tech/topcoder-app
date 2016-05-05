@@ -131,11 +131,8 @@ import _ from 'lodash'
 
       // Process stock art
       var processedStockarts = _.reduce(vm.formStockarts, function(compiledStockarts, formStockart) {
-        if (formStockart.description) {
+        if (formStockart.sourceUrl) {
           delete formStockart.id
-          delete formStockart.isPhotoDescriptionRequired
-          delete formStockart.isPhotoURLRequired
-          delete formStockart.isFileNumberRequired
 
           compiledStockarts.push(formStockart)
         }
