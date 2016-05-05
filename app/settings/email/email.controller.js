@@ -21,7 +21,7 @@ import angular from 'angular'
         {
           id: CONSTANTS.MAILCHIMP_NL_GEN,
           name: 'General Newsletter',
-          desc: "News summary from all tracks and programs",
+          desc: 'News summary from all tracks and programs',
           enabled: false,
           dirty: false
         },
