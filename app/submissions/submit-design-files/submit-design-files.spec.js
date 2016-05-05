@@ -196,38 +196,14 @@ describe('Submit Design Files Controller', function() {
         expect(vm.submissionsBody.data.stockArts).to.deep.equal([])
       })
 
-      it('removes the required properties and id from each stockart', function() {
+      it('removes the id from each stockart', function() {
         vm.formStockarts = [
-          {
-            id: 0,
-            description: 'first stockart',
-            sourceUrl: 'url.com',
-            fileNumber: '123',
-            isPhotoDescriptionRequired: false,
-            isPhotoURLRequired: false,
-            isFileNumberRequired: false
-          },
-          {
-            id: 1,
-            description: 'second stockart',
-            sourceUrl: 'url2.com',
-            fileNumber: '234',
-            isPhotoDescriptionRequired: false,
-            isPhotoURLRequired: false,
-            isFileNumberRequired: false
-          }
+          { id: 0, sourceUrl: 'url.com' },
+          { id: 1, sourceUrl: 'url2.com' }
         ]
         var processedStockart = [
-          {
-            description: 'first stockart',
-            sourceUrl: 'url.com',
-            fileNumber: '123'
-          },
-          {
-            description: 'second stockart',
-            sourceUrl: 'url2.com',
-            fileNumber: '234'
-          }
+          { sourceUrl: 'url.com' },
+          { sourceUrl: 'url2.com' }
         ]
         scope.$digest()
 
