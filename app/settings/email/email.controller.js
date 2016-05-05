@@ -26,16 +26,16 @@ import angular from 'angular'
           dirty: false
         },
         {
-          id: CONSTANTS.MAILCHIMP_NL_DEV,
-          name: 'Developer Newsletter',
-          desc: 'Software architecture, component assembly, application development, and bug hunting',
+          id: CONSTANTS.MAILCHIMP_NL_DESIGN,
+          name: 'Design Newsletter',
+          desc: 'Website, mobile, and product design; UI and UX',
           enabled: false,
           dirty: false
         },
         {
-          id: CONSTANTS.MAILCHIMP_NL_DESIGN,
-          name: 'Design Newsletter',
-          desc: 'Website, mobile, and product design; UI and UX',
+          id: CONSTANTS.MAILCHIMP_NL_DEV,
+          name: 'Developer Newsletter',
+          desc: 'Software architecture, component assembly, application development, and bug hunting',
           enabled: false,
           dirty: false
         },
@@ -47,16 +47,16 @@ import angular from 'angular'
           dirty: false
         },
         {
-          id: CONSTANTS.MAILCHIMP_NL_TCO,
-          name: 'TCO Newsletter',
-          desc: 'Our annual online and onsite tournament to celebrate and reward the community',
+          id: CONSTANTS.MAILCHIMP_NL_IOS,
+          name: 'iOS Community Newsletter',
+          desc: 'Mobile app design and development for iOS, with Swift emphasis',
           enabled: false,
           dirty: false
         },
         {
-          id: CONSTANTS.MAILCHIMP_NL_IOS,
-          name: 'iOS Community Newsletter',
-          desc: 'Mobile app design and development for iOS, with Swift emphasis',
+          id: CONSTANTS.MAILCHIMP_NL_TCO,
+          name: 'TCO Newsletter',
+          desc: 'Our annual online and onsite tournament to celebrate and reward the community',
           enabled: false,
           dirty: false
         }
