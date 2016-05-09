@@ -54,14 +54,6 @@ import angular from 'angular'
         controllerAs: 'vm',
         data: {
           title: 'Email Preferences'
-        },
-        resolve: {
-          userIdentity: ['UserService', function(UserService) {
-            return UserService.getUserIdentity()
-          }],
-          userProfile: ['userIdentity', 'ProfileService', function(userIdentity, ProfileService) {
-            return ProfileService.getUserProfile(userIdentity.handle.toLowerCase())
-          }]
         }
       },
       'settings.preferences': {
