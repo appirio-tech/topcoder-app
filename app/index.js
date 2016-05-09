@@ -41,7 +41,7 @@ require('../node_modules/font-awesome/fonts/fontawesome-webfont.woff')
 require('../node_modules/font-awesome/fonts/fontawesome-webfont.woff2')
 require('../node_modules/font-awesome/css/font-awesome.css')
 
-// Require non-npm scripts
+// Require non-npm scripts, e.g. kissmetrics, munchkin (analytics via jade are included in index.html)
 requireContextFiles(require.context('../assets/scripts/', true, /^(.*\.(js$))[^.]*$/igm))
 
 // Require Angular modules first
