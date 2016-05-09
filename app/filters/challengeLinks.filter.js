@@ -1,4 +1,5 @@
 import angular from 'angular'
+import _ from 'lodash'
 
 (function() {
   'use strict'
@@ -13,18 +14,23 @@ import angular from 'angular'
         data = {
           domain: CONSTANTS.domain,
           roundId: challenge.rounds[0].id,
-          forumId: challenge.rounds[0].forumId
+          forumId: challenge.rounds[0].forumId,
+          componentId: _.get(challenge, 'componentId[0]', ''),
+          challengeId: challenge.id,
+          problemId: _.get(challenge, 'problemId[0]', '')
         }
         switch (type) {
         case 'forums':
           return String.supplant('https://apps.{domain}/forums/?module=ThreadList&forumID={forumId}', data)
         case 'registrants':
           return String.supplant('https://community.{domain}/longcontest/?module=ViewRegistrants&rd={roundId}', data)
+        case 'submit':
+          return String.supplant('https://community.{domain}/longcontest/?module=Submit&compid={componentId}&rd={roundId}&cd={challengeId}', data)
         case 'detail':
           if (challenge.status === 'PAST') {
             return String.supplant('https://community.{domain}/longcontest/stats/?module=ViewOverview&rd={roundId}', data)
           } else { // for all other statues (ACTIVE, UPCOMING), show the problem statement
-            return String.supplant('https://community.{domain}/longcontest/?module=ViewProblemStatement&rd={roundId}', data)
+            return String.supplant('https://community.{domain}/longcontest/?module=ViewProblemStatement&pm={problemId}&rd={roundId}', data)
           }
         }
       } else {
@@ -49,6 +55,8 @@ import angular from 'angular'
           return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}#submissions', data)
         case 'registrants':
           return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}#viewRegistrant', data)
+        case 'submit':// TODO use details link for submit, we can replace it with new submission page url
+          return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}', data)
         case 'detail':
           return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}', data)
         }

@@ -68,6 +68,7 @@ describe('filters', function() {
         track: 'develop',
         subTrack : 'CODE'
       }
+      expect(challengeLinksFilter(_ch, 'submit')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=develop')
       expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=develop')
       expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.'+domain+'/forums/?module=Category&categoryID=2')
       expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=develop#viewRegistrant')
@@ -81,20 +82,41 @@ describe('filters', function() {
         track: 'design',
         subTrack : 'WEB_DESIGN'
       }
+      expect(challengeLinksFilter(_ch, 'submit')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=design')
       expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=design')
       expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.'+domain+'/forums/?module=ThreadList&forumID=2')
       expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=design#viewRegistrant')
       expect(challengeLinksFilter(_ch, 'submissions')).to.be.equal('https://www.'+domain+'/challenge-details/1/?type=design#submissions')
     })
 
-    it ('should have the correct links for DATA_SCIENCE challenge', function() {
+    it ('should have the correct links for PAST DATA_SCIENCE challenge', function() {
       var _ch = {
         id: 1,
         rounds: [{id: 3,forumId: 2}],
         track: 'DATA_SCIENCE',
-        subTrack : 'MARATHON_MATCH'
+        subTrack : 'MARATHON_MATCH',
+        componentId: [4],
+        problemId: [5],
+        status: 'PAST'
       }
+      expect(challengeLinksFilter(_ch, 'submit')).to.be.equal('https://community.'+domain+'/longcontest/?module=Submit&compid=4&rd=3&cd=1')
       expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://community.'+domain+'/longcontest/stats/?module=ViewOverview&rd=3')
+      expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.'+domain+'/forums/?module=ThreadList&forumID=2')
+      expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://community.'+domain+'/longcontest/?module=ViewRegistrants&rd=3')
+    })
+
+    it ('should have the correct links for ACTIVE/UPCOMING DATA_SCIENCE challenge', function() {
+      var _ch = {
+        id: 1,
+        rounds: [{id: 3,forumId: 2}],
+        track: 'DATA_SCIENCE',
+        subTrack : 'MARATHON_MATCH',
+        componentId: [4],
+        problemId: [5],
+        status: 'ACTIVE'
+      }
+      expect(challengeLinksFilter(_ch, 'submit')).to.be.equal('https://community.'+domain+'/longcontest/?module=Submit&compid=4&rd=3&cd=1')
+      expect(challengeLinksFilter(_ch, 'detail')).to.be.equal('https://community.'+domain+'/longcontest/?module=ViewProblemStatement&pm=5&rd=3')
       expect(challengeLinksFilter(_ch, 'forums')).to.be.equal('https://apps.'+domain+'/forums/?module=ThreadList&forumID=2')
       expect(challengeLinksFilter(_ch, 'registrants')).to.be.equal('https://community.'+domain+'/longcontest/?module=ViewRegistrants&rd=3')
     })
