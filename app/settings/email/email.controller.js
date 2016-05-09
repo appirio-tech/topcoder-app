@@ -34,7 +34,7 @@ import angular from 'angular'
         },
         {
           id: CONSTANTS.MAILCHIMP_NL_DEV,
-          name: 'Developer Newsletter',
+          name: 'Development Newsletter',
           desc: 'Software architecture, component assembly, application development, and bug hunting',
           enabled: false,
           dirty: false
