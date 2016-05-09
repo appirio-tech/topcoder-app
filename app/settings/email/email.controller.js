@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.settings').controller('EmailSettingsController', EmailSettingsController)
 
-  EmailSettingsController.$inject = ['$rootScope', 'userProfile', 'ProfileService', 'MailchimpService', 'logger', 'CONSTANTS', 'toaster', '$q', '$scope']
+  EmailSettingsController.$inject = ['$rootScope', 'userData', 'ProfileService', 'MailchimpService', 'logger', 'CONSTANTS', 'toaster', '$q', '$scope']
 
-  function EmailSettingsController($rootScope, userProfile, ProfileService, MailchimpService, logger, CONSTANTS, toaster, $q, $scope) {
+  function EmailSettingsController($rootScope, userData, ProfileService, MailchimpService, logger, CONSTANTS, toaster, $q, $scope) {
     var vm = this
     vm.loading = false
     vm.saving = false
@@ -34,7 +34,7 @@ import angular from 'angular'
         },
         {
           id: CONSTANTS.MAILCHIMP_NL_DEV,
-          name: 'Developer Newsletter',
+          name: 'Development Newsletter',
           desc: 'Software architecture, component assembly, application development, and bug hunting',
           enabled: false,
           dirty: false
@@ -63,11 +63,11 @@ import angular from 'angular'
       ]
 
       vm.loading = true
-      return MailchimpService.getMemberSubscription(userProfile).then(function(subscription) {
+      return MailchimpService.getMemberSubscription(userData).then(function(subscription) {
         vm.loading = false
         if (!subscription) {
-          // add member to the list with empty preferences
-          MailchimpService.addSubscription(userProfile, {}).then(function(resp) {
+          // add member to the list with default preferences
+          MailchimpService.addSubscription(userData, {}).then(function(resp) {
             logger.debug(resp)
           }).catch(function(err) {
             // no error to user
@@ -102,7 +102,7 @@ import angular from 'angular'
       vm.newsletters.forEach(function(newsletter) {
         preferences[newsletter.id] = newsletter.enabled
       })
-      MailchimpService.addSubscription(userProfile, preferences).then(function(resp) {
+      MailchimpService.addSubscription(userData, preferences).then(function(resp) {
         vm.loading = false
         vm.saving = false
         // reset dirty state for all newsletter options

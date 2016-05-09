@@ -88,7 +88,7 @@ describe('Topcoder Form Stockart Directive', function() {
     })
   })
 
-  describe.only('isButtonDisabled', function() {
+  describe('isButtonDisabled', function() {
     var button
 
     beforeEach(function() {
