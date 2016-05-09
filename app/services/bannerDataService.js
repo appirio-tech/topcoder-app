@@ -43,7 +43,7 @@ import angular from 'angular'
           ctas: [{
             title: 'Learn More',
             url: 'https://www.topcoder.com/blog/1-million-members-strong/',
-            cssClass: 'tc-btn tc-btn-s tco-cta'
+            cssClass: 'tc-btn tc-btn-s'
           }]
         }
         // Commenting out instead of deleting in case there is
