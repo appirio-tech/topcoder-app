@@ -12,7 +12,7 @@ import angular from 'angular'
     ctrl.notSearch = true
     ctrl.showing = 'list'
     ctrl.domain = CONSTANTS.domain
-    ctrl.currentMonth = 'March 2016'
+    ctrl.currentMonth = 'April 2016'
     ctrl.memberLeaderboard = []
     ctrl.copilots = []
     CommunityDataService.getMembersData()
@@ -23,7 +23,7 @@ import angular from 'angular'
 
     ctrl.search = function() {
       if (ctrl.keywords) {
-        window.location.replace('/search?s=' + ctrl.keywords + '&scope=member')
+        window.location.replace('/search/members/?q=' + window.encodeURIComponent(ctrl.keywords))
       } else {
         ctrl.notSearch = true
       }

@@ -68,19 +68,89 @@
 
 // Refactor buttons when button mixins and/or style guide is done
 .introjs-button {
-  @extend .tc-btn;
-  @extend .tc-btn-s;
+  height: 30px;
+  padding: 0 10px;
+  line-height: 28px;
+  border-radius: 3px;
+  border: 1px solid $primary;
+  background-color: $primary;
+  background-image : none;
+  @include font-with-weight('Sofia Pro', 500);
+  font-size: 12px;
+  font-style: normal;
+  color: $white;
+  text-transform: uppercase;
+  outline: none;
+  text-shadow: none;
+
+  &:visited {
+
+  }
+
+  &:focus {
+    border: 1px solid $primary;
+    background-image: none;
+    background-color: $primary;
+    color: $white;
+  }
+
+  &:hover {
+    background-color: $primary-dark;
+    border-color: $primary-dark;
+    color: $white;
+  }
+
+  &:active {
+    background-color: $primary-dark;
+    background-image : none;
+    border-color: $primary-dark;
+    box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,0.30);
+    line-height: 29px;
+  }
+
+  &:disabled {
+    opacity: .3;
+    cursor: default;
+  }
 }
 
 .introjs-skipbutton {
-  @extend .tc-btn-ghost;
   float: left;
+  color: $primary;
+  background-color: $white;
+
+  &:hover {
+    color: $white;
+    border-color: $primary;
+    background-color: $primary;
+  }
+
+  &:active {
+    color: $white;
+    border-color: $primary-dark;
+    background-color: $primary-dark;
+    box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,0.30);
+  }
+
+  &:disabled {
+    border-color: $gray-dark;
+    color: $gray-dark;
+  }
 }
 
 
 .introjs-disabled {
-  @extend .tc-btn-s;
-  @extend :disabled;
+  height: 30px;
+  padding: 0 10px;
+  line-height: 28px;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: .3;
+  cursor: default;
+
+  &:active {
+    line-height: 29px;
+  }
 }
 
 .introjs-prevbutton {

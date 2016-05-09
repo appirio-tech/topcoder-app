@@ -3,13 +3,13 @@
   "description": "Topcoder pages including login, registration, settings, dashboard, profile.",
   "scripts": {
     "build": "webpack --bail --progress --build --tc",
-    "start": "webpack-dev-server --history-api-fallback --dev --tc --inline --progress --port 3000",
+    "start": "webpack-dev-server --history-api-fallback --host 0.0.0.0 --dev --tc --inline --progress --port 3000",
     "lint": "eslint --ignore-path .gitignore .",
     "test": "karma start --tc --test"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.9",
-    "appirio-tech-webpack-config": "^0.2.0",
+    "appirio-tech-webpack-config": "^0.3.0",
     "babel-polyfill": "^6.7.2",
     "bardjs": "^0.1.8",
     "bower": "^1.6.8",

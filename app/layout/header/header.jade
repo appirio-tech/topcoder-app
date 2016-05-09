@@ -23,11 +23,7 @@
         .menu-item-header.show-large #[button.btn-expand-search.search-icon(type="button")]
 
         .submenu
-          input(type="text" placeholder="find members" ng-model="vm.searchTerm" ng-keyup="vm.checkSubmit($event)")
-          // Suggestion list container
-          // ul.suggestion-list(ng-if="main.searchTerm.length > 0")
-          //   li(ng-repeat="suggestion in main.suggestions | filter:main.searchTerm | limitTo:5")
-          //     a(href="javascript:;" class="menu-link") {{suggestion}}
+          input(class="member-search-old-nav" type="text" placeholder="find members by username or skill" ng-model="vm.searchTerm" ng-keyup="vm.checkSubmit($event)")
 
       li.menu-item.link-group.user-menu(ng-switch="vm.isAuth", ng-class="{'anonymous-menu': !vm.isAuth}")
         // Links for logged in user
