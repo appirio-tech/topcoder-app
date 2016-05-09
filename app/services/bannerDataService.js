@@ -35,6 +35,16 @@ import angular from 'angular'
             url: 'http://tco16.topcoder.com/latest/overview/',
             cssClass: 'tc-btn tc-btn-s tco-cta'
           }]
+        },
+        '1million': {
+          title: null,
+          img: require('../../assets/images/1M-banner-hero.png'),
+          description: null,
+          ctas: [{
+            title: 'Learn More',
+            url: 'https://www.topcoder.com/blog/1-million-members-strong/',
+            cssClass: 'tc-btn tc-btn-s tco-cta'
+          }]
         }
         // Commenting out instead of deleting in case there is
         // another one with a similar format soon
