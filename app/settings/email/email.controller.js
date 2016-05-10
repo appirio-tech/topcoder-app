@@ -67,7 +67,7 @@ import angular from 'angular'
         vm.loading = false
         if (!subscription) {
           // add member to the list with default preferences
-          MailchimpService.addSubscription(userData, {}).then(function(resp) {
+          MailchimpService.addSubscription(userData).then(function(resp) {
             logger.debug(resp)
           }).catch(function(err) {
             // no error to user
