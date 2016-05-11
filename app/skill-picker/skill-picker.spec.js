@@ -53,7 +53,7 @@ describe('Skill Picker Controller', function() {
     })
 
     userPrefSvc = UserPreferencesService
-    sinon.stub(userPrefSvc, 'getMemberSubscription', function(user) {
+    sinon.stub(userPrefSvc, 'getEmailPreferences', function(user) {
       var deferred = $q.defer()
       if (user.userId === 10336829) {
         deferred.resolve()
@@ -65,7 +65,7 @@ describe('Skill Picker Controller', function() {
       }
       return deferred.promise
     })
-    sinon.stub(userPrefSvc, 'addSubscription', function(user) {
+    sinon.stub(userPrefSvc, 'saveEmailPreferences', function(user) {
       var deferred = $q.defer()
       if (user.userId === 10336829) {
         deferred.resolve()
@@ -140,17 +140,17 @@ describe('Skill Picker Controller', function() {
 
   it('should call mailchimp service to add subscription', function() {
     expect(vm).to.exist
-    // getMemberSubscription should always be called
-    expect(userPrefSvc.getMemberSubscription).to.be.calledOnce
-    // addSubscription should be called once if not subscribed
-    // getMemberSubscription service mock returns null for mockProfile.userId
-    expect(userPrefSvc.addSubscription).to.be.calledOnce
+    // getEmailPreferences should always be called
+    expect(userPrefSvc.getEmailPreferences).to.be.calledOnce
+    // saveEmailPreferences should be called once if not subscribed
+    // getEmailPreferences service mock returns null for mockProfile.userId
+    expect(userPrefSvc.saveEmailPreferences).to.be.calledOnce
   })
 
   it('should not call mailchimp service to add subscription', function() {
-    // reset getMemberSubscription, addSubscription spy's called count
-    userPrefSvc.getMemberSubscription.reset()
-    userPrefSvc.addSubscription.reset()
+    // reset getEmailPreferences, saveEmailPreferences spy's called count
+    userPrefSvc.getEmailPreferences.reset()
+    userPrefSvc.saveEmailPreferences.reset()
     var scope = $rootScope.$new()
 
     var profile = angular.copy(mockProfile)
@@ -164,11 +164,11 @@ describe('Skill Picker Controller', function() {
     })
     $rootScope.$digest()
     expect(vm).to.exist
-    // getMemberSubscription should always be called
-    expect(userPrefSvc.getMemberSubscription).to.be.calledOnce
-    // addSubscription should not be called if already subscribed
-    // getMemberSubscription service mock returns valid object for userId 12345
-    expect(userPrefSvc.addSubscription).not.to.be.called
+    // getEmailPreferences should always be called
+    expect(userPrefSvc.getEmailPreferences).to.be.calledOnce
+    // saveEmailPreferences should not be called if already subscribed
+    // getEmailPreferences service mock returns valid object for userId 12345
+    expect(userPrefSvc.saveEmailPreferences).not.to.be.called
   })
 
   it('should add skill ', function() {
