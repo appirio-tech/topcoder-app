@@ -37,9 +37,29 @@
   .one-million {
     .tc-banner-placeholder {
       background: none $tc-gray-90;
+
       .image {
         img {
           width: auto;
+        }
+      }
+
+      .content {
+        margin-top: 0px;
+      }
+
+      .social-sharing {
+        margin-bottom: 20px;
+        span {
+          color: $white;
+          @include sofia-pro-bold;
+          margin-right: 10px;
+        }
+
+        img {
+          height: 40px;
+          padding: 0 10px 0 0px;
+          vertical-align: middle;
         }
       }
 
