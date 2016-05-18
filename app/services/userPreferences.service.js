@@ -20,7 +20,7 @@ import angular from 'angular'
         mailchimpApi.one('users', user.userId)
         .one('preferences', 'email').get()
         .then(function(resp) {
-          resolve(resp)
+          resolve(resp.subscriptions)
         })
         .catch(function(err) {
           if (err.status === 404) {
@@ -42,21 +42,20 @@ import angular from 'angular'
 
     function saveEmailPreferences(user, preferences) {
       var settings = {
-        userId: user.userId,
         firstName: user.firstName,
         lastName: user.lastName,
         subscriptions: {}
       }
       if (!preferences) {
-        settings.subscriptions[CONSTANTS.MAILCHIMP_NL_GEN] = true
+        settings.subscriptions['TOPCODER_NL_GEN'] = true
       } else {
         settings.subscriptions = preferences
       }
       return $q(function(resolve, reject) {
         mailchimpApi.one('users', user.userId)
-        .customPUT(settings, 'preferences/email')
+        .customPUT({ param: settings }, 'preferences/email')
         .then(function(resp) {
-          resolve(resp)
+          resolve(resp.subscriptions)
         })
         .catch(function(err) {
           logger.error('Error adding member to subscription list', err)

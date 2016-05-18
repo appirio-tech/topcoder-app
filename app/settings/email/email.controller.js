@@ -68,7 +68,9 @@ import angular from 'angular'
         if (!subscription) {
           // add member to the list with default preferences
           UserPreferencesService.saveEmailPreferences(userData).then(function(resp) {
-            logger.debug(resp)
+            logger.debug(JSON.stringify(resp))
+            validateState(resp)
+
           }).catch(function(err) {
             // no error to user
             //TODO some error alert to community admin
@@ -76,12 +78,16 @@ import angular from 'angular'
           })
         } else {
           if (subscription) {
-            vm.newsletters.forEach(function(newsletter) {
-              if (subscription[newsletter.id]) {
-                newsletter.enabled = true
-              }
-            })
+            validateState(subscription)
           }
+        }
+      })
+    }
+
+    function validateState(subscription) {
+      vm.newsletters.forEach(function(newsletter) {
+        if (subscription[newsletter.id]) {
+          newsletter.enabled = true
         }
       })
     }
