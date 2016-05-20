@@ -66,6 +66,10 @@ import { getCurrentUser, loadUser } from './services/userv3.service.js'
             var next = $state.href(toState.name, toParams, {absolute: true})
             var retUrl = next
             $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(retUrl)
+          } else {
+            logger.debug('Going to state: ' + toState.name)
+            $state.go(toState.name, toParams, {notify: false})
+            $urlRouter.sync()
           }
         })
       }
