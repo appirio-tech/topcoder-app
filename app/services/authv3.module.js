@@ -5,7 +5,7 @@ require('angular-jwt')
 import { getFreshToken, configureConnector } from 'tc-accounts'
 
 configureConnector({
-  connectorUrl: process.env.CONNECTOR_URL,
+  connectorUrl: process.env.ACCOUNTS_APP_CONNECTOR_URL,
   frameId: 'tc-accounts-iframe'
 })
 

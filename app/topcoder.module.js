@@ -50,7 +50,7 @@ import { getCurrentUser, loadUser } from './services/userv3.service.js'
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
       logger.debug('checking auth for state: ' + toState.name + ' from state: ' + fromState.name)
       var currentUser = getCurrentUser()
-      if (!currentUser && toState.data && toState.data.authRequired) {
+      if (!currentUser) {
         event.preventDefault()
         loadUser().then(function(token) {
           logger.debug('successful login with token ' + JSON.stringify(token))
@@ -59,12 +59,14 @@ import { getCurrentUser, loadUser } from './services/userv3.service.js'
           $state.go(toState.name, toParams, {notify: false})
           $urlRouter.sync()
         }, function() {
-          logger.debug('State requires authentication, and user is not logged in, redirecting')
-          // setup redirect for post login
-          event.preventDefault()
-          var next = $state.href(toState.name, toParams, {absolute: true})
-          var retUrl = next
-          $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(retUrl)
+          if (toState.data && toState.data.authRequired) {
+            logger.debug('State requires authentication, and user is not logged in, redirecting')
+            // setup redirect for post login
+            event.preventDefault()
+            var next = $state.href(toState.name, toParams, {absolute: true})
+            var retUrl = next
+            $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(retUrl)
+          }
         })
       }
     })
