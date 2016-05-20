@@ -25,6 +25,7 @@ require('xml2js')
 
 require('appirio-tech-ng-ui-components')
 require('appirio-tech-ng-iso-constants')
+require('appirio-tech-react-components')
 
 // Vendor styles
 require('../node_modules/angucomplete-alt/angucomplete-alt.css')

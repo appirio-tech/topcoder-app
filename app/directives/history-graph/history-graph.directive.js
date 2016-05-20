@@ -1,6 +1,9 @@
 import angular from 'angular'
 import moment from 'moment'
 import d3 from 'd3'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.jsx'
 
 (function() {
   'use strict'
@@ -59,7 +62,7 @@ import d3 from 'd3'
       }
     ]
     var measurements = {
-      w: 600,
+      w: 900,
       h: 400,
       padding: {
         top: 20,
@@ -155,9 +158,8 @@ import d3 from 'd3'
       var svg = d3.select('.history-graph').append('svg')
           .attr('width', w + padding.left + padding.right)
           .attr('height', h + padding.top + padding.bottom)
-
-
-      svg.append('rect')
+		  
+	  svg.append('rect')
          .attr('x', padding.left)
          .attr('y', padding.top)
          .attr('width', w)
@@ -243,6 +245,18 @@ import d3 from 'd3'
           return y
         }
       }
+	  ReactDOM.unmountComponentAtNode(document.getElementById('chart-tooltip'));
+	  ReactDOM.render(<Tooltip>
+			  <div className='tooltip-target'></div>
+			  <div className='tooltip-body'>
+				<div className='tooltip-rating'></div>
+				<div className='tooltip-challenge'>
+				  <div className='challenge-name'></div>
+				  <div className='challenge-date'></div>
+				</div>
+			  </div>
+			</Tooltip>
+		  , document.getElementById('chart-tooltip'));
 
       svg.selectAll('circle')
          .data(history)
@@ -261,20 +275,31 @@ import d3 from 'd3'
            $scope.historyRating = d.newRating
            $scope.historyDate = moment(d.ratingDate).format('YYYY-MM-DD')
            $scope.historyChallenge = d.challengeName
+		   
            $scope.$digest()
-           d3.select(this)
-             .attr('r', 6.0)
+		   		   
+		   d3.select('#chart-tooltip')
+		        .style('left', (d3.event.pageX-5) + 'px')		
+                .style('top', (d3.event.pageY-5) + 'px')
+				.style('display', 'block')
+		   d3.select('#chart-tooltip .tooltip-container')
+				.style('left', '20px !important')		
+                .style('top', '-20px !important')
+				.style('opacity', '1')
+		   d3.select('#chart-tooltip .tooltip-container .tooltip-pointer')
+				.style('left', '-5.5px !important')		
+                .style('bottom', '25px !important')
+				
+		   d3.select('#chart-tooltip .challenge-name').text($scope.historyChallenge);
+		   d3.select('#chart-tooltip .challenge-date').text(moment(d.ratingDate).format('MMM DD, YYYY'));
+		   d3.select('#chart-tooltip .tooltip-rating').text($scope.historyRating);
+		   d3.select('#chart-tooltip .tooltip-rating').style('background', ratingToColor($scope.colors, $scope.historyRating));
+		   
          })
          .on('mouseout', function(d) {
            $scope.historyRating = undefined
-           $scope.$digest()
-           d3.select(this)
-             .attr('r', 4.5)
-             .attr('stroke', 'none')
-             .attr('stroke-width', '0px')
-         })
-         .attr('r', 4.5)
-
+		   $scope.$digest()
+		 })
 
     }
 

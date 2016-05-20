@@ -106,3 +106,76 @@
     }
   }
 }
+
+#chart-tooltip {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  z-index: 1000;
+  display: none;
+}
+
+#chart-tooltip.distribution {
+  width: 4px;
+  height: 4px;
+}
+
+.tooltip-target {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: block;
+  top: -4px;
+  left: -4px;
+}
+
+#chart-tooltip.distribution .tooltip-target {
+  top: -2px;
+  left: -2px;
+  width: 4px;
+  height: 4px;
+}
+
+.Tooltip .tooltip-container {
+  position: relative;
+  opacity: 1;
+  top: 10px !important;
+  left: -150px !important;
+  width: 320px;
+  height: 115px;
+}
+
+.Tooltip .tooltip-container .tooltip-pointer {
+  left: 150px !important;
+  top: -5.5px !important;
+  bottom: auto !important;
+}
+
+.Tooltip .tooltip-container.tooltip-hide {
+  visibility: visible;
+  opacity: 1;
+}
+
+#chart-tooltip .tooltip-rating {
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+  border-radius: 50%;
+  float: left;
+  text-align: center;
+  padding-top: 23px;
+}
+
+#chart-tooltip .tooltip-challenge {
+  height: 100%;
+  width: calc(100% - 100px);
+  float: left;
+}
+
+#chart-tooltip .tooltip-challenge .challenge-date {
+  font-weight: normal;
+  margin-top: 13px;
+  font-size: 12px;
+}
