@@ -1,5 +1,6 @@
 import angular from 'angular'
 import d3 from 'd3'
+import React from 'react' // eslint-disable-line no-unused-vars
 import ReactDOM from 'react-dom'
 import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.jsx'
 
@@ -178,19 +179,20 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
          .attr('fill', function(d) {
            return ratingToColor($scope.colors, d.start)
          })
-    ReactDOM.unmountComponentAtNode(document.getElementById('chart-tooltip'));
-    ReactDOM.render(<Tooltip>
-  		  <div className='tooltip-target'></div>
-  		  <div className='tooltip-body'>
-  			<div className='tooltip-rating'></div>
-  			<div className='tooltip-challenge'>
-  			  <div className='challenge-name'></div>
-  			  <div className='challenge-date'></div>
-  			</div>
-  		  </div>
-  		</Tooltip>
-  	  , document.getElementById('chart-tooltip'));	 
-  	 
+
+      ReactDOM.unmountComponentAtNode(document.getElementById('chart-tooltip'))
+      ReactDOM.render(<Tooltip>
+          <div className='tooltip-target'></div>
+          <div className='tooltip-body'>
+          <div className='tooltip-rating'></div>
+          <div className='tooltip-challenge'>
+            <div className='challenge-name'></div>
+            <div className='challenge-date'></div>
+          </div>
+          </div>
+        </Tooltip>
+        , document.getElementById('chart-tooltip'))   
+       
       svg.selectAll('rect.hover')
          .data(ranges)
          .enter()
@@ -212,32 +214,32 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $scope.displayCoders = true
            $scope.numCoders = d.number
            $scope.$digest()
-  	   
-  	   d3.select('#chart-tooltip')
-  	        .style('left', (d3.event.pageX-2) + 'px')		
+         
+           d3.select('#chart-tooltip')
+              .style('left', (d3.event.pageX-2) + 'px')    
                 .style('top', (d3.event.pageY-2) + 'px')
-  			.style('display', 'block')
-  	   $('#chart-tooltip').addClass('distribution')
-  	   d3.select('#chart-tooltip .tooltip-container')
-  			.style('left', '20px !important')		
+          .style('display', 'block')
+           $('#chart-tooltip').addClass('distribution')
+           d3.select('#chart-tooltip .tooltip-container')
+          .style('left', '20px !important')    
                 .style('top', '-20px !important')
-  			.style('opacity', '1')
-  	   d3.select('#chart-tooltip .tooltip-container .tooltip-pointer')
-  			.style('left', '-5.5px !important')		
+          .style('opacity', '1')
+           d3.select('#chart-tooltip .tooltip-container .tooltip-pointer')
+          .style('left', '-5.5px !important')    
                 .style('bottom', '25px !important')
-  			
-  	   d3.select('#chart-tooltip .challenge-name').text($scope.numCoders + ' Coders');
-  	   d3.select('#chart-tooltip .challenge-date').text('Rating Range: '+ $scope.highlightedRating + '-'+($scope.highlightedRating+99));
-  	   d3.select('#chart-tooltip .tooltip-rating').text($scope.numCoders);
-  	   d3.select('#chart-tooltip .tooltip-rating').style('background', ratingToColor($scope.colors, $scope.highlightedRating));
-  	   $('#chart-tooltip').show();
-  	   
+          
+           d3.select('#chart-tooltip .challenge-name').text($scope.numCoders + ' Coders')
+           d3.select('#chart-tooltip .challenge-date').text('Rating Range: '+ $scope.highlightedRating + '-'+($scope.highlightedRating+99))
+           d3.select('#chart-tooltip .tooltip-rating').text($scope.numCoders)
+           d3.select('#chart-tooltip .tooltip-rating').style('background', ratingToColor($scope.colors, $scope.highlightedRating))
+           $('#chart-tooltip').show()
+         
          })
          .on('mouseout', function(d) {
            $scope.displayCoders = false
            $scope.highlightedRating = false
-  	   $('#chart-tooltip').removeClass('distribution')
-  	   $('#chart-tooltip').hide();
+           $('#chart-tooltip').removeClass('distribution')
+           $('#chart-tooltip').hide()
            $scope.$digest()
          })
 
