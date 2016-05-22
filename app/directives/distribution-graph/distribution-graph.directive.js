@@ -203,11 +203,11 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            return xScale(i)
          })
          .attr('y', function(d) {
-           return padding.top
+           return yScale(d.number)
          })
          .attr('width', xScale.rangeBand())
          .attr('height', function(d) {
-           return totalH - padding.bottom - padding.top
+           return totalH - padding.bottom - yScale(d.number)
          })
          .on('mouseover', function(d) {
            $scope.highlightedRating = d.start

@@ -257,7 +257,9 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
           </div>
         </Tooltip>
         , document.getElementById('chart-tooltip'))
-
+    
+      var toolTipHideIntervalId = null
+    
       svg.selectAll('circle')
          .data(history)
          .enter()
@@ -275,7 +277,7 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $scope.historyRating = d.newRating
            $scope.historyDate = moment(d.ratingDate).format('YYYY-MM-DD')
            $scope.historyChallenge = d.challengeName
-         
+           window.clearInterval(toolTipHideIntervalId);    
            $scope.$digest()
                 
            d3.select('#chart-tooltip')
@@ -299,6 +301,11 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
          .on('mouseout', function(d) {
            $scope.historyRating = undefined
            $scope.$digest()
+           toolTipHideIntervalId = window.setInterval(function(){
+             d3.select('#chart-tooltip')
+               .style('left', '-500px')    
+               .style('top', '-500px')
+          },1500);       
          })
 
     }

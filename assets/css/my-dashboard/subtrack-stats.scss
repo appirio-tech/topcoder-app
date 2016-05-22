@@ -170,8 +170,14 @@
 
 #chart-tooltip .tooltip-challenge {
   height: 100%;
-  width: calc(100% - 100px);
+  width: calc(100% - 90px);
   float: left;
+}
+
+#chart-tooltip .tooltip-challenge .challenge-name {
+  white-space: normal;
+  line-height: 20px;
+  word-wrap: break-word;
 }
 
 #chart-tooltip .tooltip-challenge .challenge-date {
