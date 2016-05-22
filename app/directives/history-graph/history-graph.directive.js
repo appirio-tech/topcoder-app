@@ -277,9 +277,9 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $scope.historyRating = d.newRating
            $scope.historyDate = moment(d.ratingDate).format('YYYY-MM-DD')
            $scope.historyChallenge = d.challengeName
-           window.clearInterval(toolTipHideIntervalId);    
+           window.clearInterval(toolTipHideIntervalId)
            $scope.$digest()
-                
+
            d3.select('#chart-tooltip')
               .style('left', (d3.event.pageX-5) + 'px')    
                 .style('top', (d3.event.pageY-5) + 'px')
@@ -305,7 +305,7 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
              d3.select('#chart-tooltip')
                .style('left', '-500px')    
                .style('top', '-500px')
-          },1500);       
+           },1500);     
          })
 
     }
