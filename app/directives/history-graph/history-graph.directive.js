@@ -277,12 +277,12 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $scope.historyChallenge = d.challengeName
            $scope.$digest()
            $('#chart-tooltip .tooltip-container').on('click', function(){
-              if($state.params && $state.params.track === 'DEVELOP')
-                $window.open(CONSTANTS.CHALLENGE_DETAIL_URL + d.challengeId + '/?type=develop', '_blank')
-              else if($state.params && $state.params.subTrack === 'SRM')
-                $window.open(CONSTANTS.SRM_DETAIL_URL + d.challengeId, '_blank')
-              else if($state.params && $state.params.subTrack === 'MARATHON_MATCH')
-                $window.open(CONSTANTS.MARATHON_DETAIL_URL + d.challengeId, '_blank')
+             if($state.params && $state.params.track === 'DEVELOP')
+               $window.open(CONSTANTS.CHALLENGE_DETAIL_URL + d.challengeId + '/?type=develop', '_blank')
+             else if($state.params && $state.params.subTrack === 'SRM')
+               $window.open(CONSTANTS.SRM_DETAIL_URL + d.challengeId, '_blank')
+             else if($state.params && $state.params.subTrack === 'MARATHON_MATCH')
+               $window.open(CONSTANTS.MARATHON_DETAIL_URL + d.challengeId, '_blank')
            })           
            d3.select('#chart-tooltip')
               .style('left', (d3.event.pageX-5) + 'px')    
@@ -306,15 +306,15 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $('#chart-tooltip').off('click')
          })
          
-         d3.select('body').on('click', function(){
-            if((d3.event.target.classList[0] != 'tooltip-target') && !$('#chart-tooltip .tooltip-container').hasClass('tooltip-hide') &&
-                (d3.event.target.classList[0] != 'tooltip-content-container') && (d3.event.target.classList[0] != 'tooltip-container') &&
-                (d3.event.target.classList[0] != 'tooltip-body') && (d3.event.target.classList[0] != 'Tooltip') &&
-                (d3.event.target.tagName.toLowerCase()!='circle') && !(d3.event.target.tagName.toLowerCase()=='rect' && d3.event.target.classList[0] == 'hover')) {
-                $('#chart-tooltip .tooltip-container').addClass('tooltip-hide')
-                $('#chart-tooltip .tooltip-container').css('opacity', 0)
-            }
-         })
+      d3.select('body').on('click', function(){
+        if((d3.event.target.classList[0] != 'tooltip-target') && !$('#chart-tooltip .tooltip-container').hasClass('tooltip-hide') &&
+          (d3.event.target.classList[0] != 'tooltip-content-container') && (d3.event.target.classList[0] != 'tooltip-container') &&
+          (d3.event.target.classList[0] != 'tooltip-body') && (d3.event.target.classList[0] != 'Tooltip') &&
+          (d3.event.target.tagName.toLowerCase()!='circle') && !(d3.event.target.tagName.toLowerCase()=='rect' && d3.event.target.classList[0] == 'hover')) {
+            $('#chart-tooltip .tooltip-container').addClass('tooltip-hide')
+            $('#chart-tooltip .tooltip-container').css('opacity', 0)
+        }
+      })
 
     }
 
