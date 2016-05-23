@@ -311,8 +311,8 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
           (d3.event.target.classList[0] != 'tooltip-content-container') && (d3.event.target.classList[0] != 'tooltip-container') &&
           (d3.event.target.classList[0] != 'tooltip-body') && (d3.event.target.classList[0] != 'Tooltip') &&
           (d3.event.target.tagName.toLowerCase()!='circle') && !(d3.event.target.tagName.toLowerCase()=='rect' && d3.event.target.classList[0] == 'hover')) {
-            $('#chart-tooltip .tooltip-container').addClass('tooltip-hide')
-            $('#chart-tooltip .tooltip-container').css('opacity', 0)
+          $('#chart-tooltip .tooltip-container').addClass('tooltip-hide')
+          $('#chart-tooltip .tooltip-container').css('opacity', 0)
         }
       })
 
