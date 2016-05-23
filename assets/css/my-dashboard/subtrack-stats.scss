@@ -111,10 +111,10 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  display: block;
   position: absolute;
   z-index: 1000;
-  display: none;
+  cursor: pointer;
+  font-family: 'Proxima Nova', Helvetica, Arial, sans-serif;
 }
 
 #chart-tooltip.distribution {
@@ -128,14 +128,16 @@
   border-radius: 50%;
   display: block;
   top: -4px;
+  cursor: pointer;
   left: -4px;
 }
 
 #chart-tooltip.distribution .tooltip-target {
-  top: -2px;
-  left: -2px;
-  width: 4px;
-  height: 4px;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
 }
 
 .Tooltip .tooltip-container {
@@ -153,10 +155,7 @@
   bottom: auto !important;
 }
 
-.Tooltip .tooltip-container.tooltip-hide {
-  visibility: visible;
-  opacity: 1;
-}
+
 
 #chart-tooltip .tooltip-rating {
   width: 60px;

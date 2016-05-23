@@ -179,9 +179,11 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
          .attr('fill', function(d) {
            return ratingToColor($scope.colors, d.start)
          })
+       
+      var mousemoveInterval = null
 
       ReactDOM.unmountComponentAtNode(document.getElementById('chart-tooltip'))
-      ReactDOM.render(<Tooltip>
+      ReactDOM.render(<Tooltip popMethod='click'>
           <div className='tooltip-target'></div>
           <div className='tooltip-body'>
           <div className='tooltip-rating'></div>
@@ -192,7 +194,7 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
           </div>
         </Tooltip>
         , document.getElementById('chart-tooltip'))   
-       
+      $scope.isFocused = false 
       svg.selectAll('rect.hover')
          .data(ranges)
          .enter()
@@ -210,39 +212,67 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            return totalH - padding.bottom - yScale(d.number)
          })
          .on('mouseover', function(d) {
+           $scope.isFocused = true 
            $scope.highlightedRating = d.start
            $scope.displayCoders = true
            $scope.numCoders = d.number
            $scope.$digest()
-         
+           
            d3.select('#chart-tooltip')
-              .style('left', (d3.event.pageX-2) + 'px')    
-                .style('top', (d3.event.pageY-2) + 'px')
-          .style('display', 'block')
+              .style('left', (d3.event.pageX-4) + 'px')    
+              .style('top', (d3.event.pageY-4) + 'px')
+          
            $('#chart-tooltip').addClass('distribution')
            d3.select('#chart-tooltip .tooltip-container')
-          .style('left', '20px !important')    
-                .style('top', '-20px !important')
-          .style('opacity', '1')
+              .style('left', '20px !important')    
+              .style('top', '-20px !important')
+          
            d3.select('#chart-tooltip .tooltip-container .tooltip-pointer')
-          .style('left', '-5.5px !important')    
-                .style('bottom', '25px !important')
+              .style('left', '-5.5px !important')    
+              .style('bottom', '25px !important')
           
            d3.select('#chart-tooltip .challenge-name').text($scope.numCoders + ' Coders')
            d3.select('#chart-tooltip .challenge-date').text('Rating Range: '+ $scope.highlightedRating + '-'+($scope.highlightedRating+99))
            d3.select('#chart-tooltip .tooltip-rating').text($scope.numCoders)
            d3.select('#chart-tooltip .tooltip-rating').style('background', ratingToColor($scope.colors, $scope.highlightedRating))
-           $('#chart-tooltip').show()
-         
+         })
+         .on('mousemove', function(d) {
+           window.clearTimeout(mousemoveInterval)
+           var left = (d3.event.pageX-4)
+           var top = (d3.event.pageY-4)
+           mousemoveInterval = window.setTimeout(function(){
+               d3.select('#chart-tooltip')
+                  .style('left', left + 'px')    
+                  .style('top', top + 'px')
+              
+               d3.select('#chart-tooltip .tooltip-container')
+                  .style('left', '20px !important')    
+                  .style('top', '-20px !important')
+              
+               d3.select('#chart-tooltip .tooltip-container .tooltip-pointer')
+                  .style('left', '-5.5px !important')    
+                  .style('bottom', '25px !important')
+           }, 50)
+        
          })
          .on('mouseout', function(d) {
            $scope.displayCoders = false
            $scope.highlightedRating = false
            $('#chart-tooltip').removeClass('distribution')
-           $('#chart-tooltip').hide()
+           $scope.isFocused = false 
            $scope.$digest()
          })
-
+         
+         d3.select('body').on('click', function(){
+            if((d3.event.target.classList[0] != 'tooltip-target') && !$('#chart-tooltip .tooltip-container').hasClass('tooltip-hide') &&
+                (d3.event.target.classList[0] != 'tooltip-content-container') && (d3.event.target.classList[0] != 'tooltip-container') &&
+                (d3.event.target.classList[0] != 'tooltip-body') && (d3.event.target.classList[0] != 'Tooltip') &&
+                (d3.event.target.tagName.toLowerCase()!='circle') && !(d3.event.target.tagName.toLowerCase()=='rect' && d3.event.target.classList[0] == 'hover')) {
+                $('#chart-tooltip .tooltip-container').addClass('tooltip-hide')
+                $('#chart-tooltip .tooltip-container').css('opacity', 0)
+            }
+         })
+         
       svg.selectAll('line.xaxis')
          .data(ranges)
          .enter()

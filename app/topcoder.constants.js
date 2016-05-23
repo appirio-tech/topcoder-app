@@ -44,5 +44,8 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'REGISTERED'             : 'REGISTERED',
   'SUBMISSION_TYPE_CONTEST': 'Contest Submission',
   'STATUS_ACTIVE'          : 'Active',
-  'STATUS_COMPLETED_WITHOUT_WIN' : 'Completed Without Win'
+  'STATUS_COMPLETED_WITHOUT_WIN' : 'Completed Without Win',
+  'CHALLENGE_DETAIL_URL'   :  'https://www.topcoder-dev.com/challenge-details/',
+  'SRM_DETAIL_URL': 'https://community.topcoder-dev.com/stat?c=round_overview&rd=',
+  'MARATHON_DETAIL_URL': 'https://community.topcoder-dev.com/longcontest/stats/?module=ViewOverview&rd='
 })

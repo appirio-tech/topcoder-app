@@ -19,11 +19,11 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
         rating: '=',
         graphState: '='
       },
-      controller: ['$scope', HistoryGraphController]
+      controller: ['$scope', '$state', '$window', 'CONSTANTS', HistoryGraphController]
     }
   }
 
-  function HistoryGraphController($scope) {
+  function HistoryGraphController($scope, $state, $window, CONSTANTS) {
     $scope.colors = [
       // grey
       {
@@ -246,7 +246,7 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
         }
       }
       ReactDOM.unmountComponentAtNode(document.getElementById('chart-tooltip'))
-      ReactDOM.render(<Tooltip>
+      ReactDOM.render(<Tooltip popMethod='click'>
           <div className='tooltip-target'></div>
           <div className='tooltip-body'>
           <div className='tooltip-rating'></div>
@@ -257,8 +257,6 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
           </div>
         </Tooltip>
         , document.getElementById('chart-tooltip'))
-    
-      var toolTipHideIntervalId = null
     
       svg.selectAll('circle')
          .data(history)
@@ -277,20 +275,24 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $scope.historyRating = d.newRating
            $scope.historyDate = moment(d.ratingDate).format('YYYY-MM-DD')
            $scope.historyChallenge = d.challengeName
-           window.clearInterval(toolTipHideIntervalId)
            $scope.$digest()
-
+           $('#chart-tooltip .tooltip-container').on('click', function(){
+              if($state.params && $state.params.track === 'DEVELOP')
+                $window.open(CONSTANTS.CHALLENGE_DETAIL_URL + d.challengeId + '/?type=develop', '_blank')
+              else if($state.params && $state.params.subTrack === 'SRM')
+                $window.open(CONSTANTS.SRM_DETAIL_URL + d.challengeId, '_blank')
+              else if($state.params && $state.params.subTrack === 'MARATHON_MATCH')
+                $window.open(CONSTANTS.MARATHON_DETAIL_URL + d.challengeId, '_blank')
+           })           
            d3.select('#chart-tooltip')
               .style('left', (d3.event.pageX-5) + 'px')    
-                .style('top', (d3.event.pageY-5) + 'px')
-          .style('display', 'block')
+              .style('top', (d3.event.pageY-5) + 'px')
            d3.select('#chart-tooltip .tooltip-container')
-          .style('left', '20px !important')    
-                .style('top', '-20px !important')
-          .style('opacity', '1')
+              .style('left', '20px !important')    
+              .style('top', '-20px !important')
            d3.select('#chart-tooltip .tooltip-container .tooltip-pointer')
-          .style('left', '-5.5px !important')    
-                .style('bottom', '25px !important')
+              .style('left', '-5.5px !important')    
+              .style('bottom', '25px !important')
           
            d3.select('#chart-tooltip .challenge-name').text($scope.historyChallenge)
            d3.select('#chart-tooltip .challenge-date').text(moment(d.ratingDate).format('MMM DD, YYYY'))
@@ -301,11 +303,17 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
          .on('mouseout', function(d) {
            $scope.historyRating = undefined
            $scope.$digest()
-           toolTipHideIntervalId = window.setInterval(function(){
-             d3.select('#chart-tooltip')
-               .style('left', '-500px')    
-               .style('top', '-500px')
-           },1500)     
+           $('#chart-tooltip').off('click')
+         })
+         
+         d3.select('body').on('click', function(){
+            if((d3.event.target.classList[0] != 'tooltip-target') && !$('#chart-tooltip .tooltip-container').hasClass('tooltip-hide') &&
+                (d3.event.target.classList[0] != 'tooltip-content-container') && (d3.event.target.classList[0] != 'tooltip-container') &&
+                (d3.event.target.classList[0] != 'tooltip-body') && (d3.event.target.classList[0] != 'Tooltip') &&
+                (d3.event.target.tagName.toLowerCase()!='circle') && !(d3.event.target.tagName.toLowerCase()=='rect' && d3.event.target.classList[0] == 'hover')) {
+                $('#chart-tooltip .tooltip-container').addClass('tooltip-hide')
+                $('#chart-tooltip .tooltip-container').css('opacity', 0)
+            }
          })
 
     }
