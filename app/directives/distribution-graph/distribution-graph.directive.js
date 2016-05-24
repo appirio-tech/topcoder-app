@@ -266,13 +266,13 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
           !isInArray(d3.event.target.classList[0], ['tooltip-content-container', 'tooltip-container', 'tooltip-body', 'Tooltip']) &&
           (d3.event.target.tagName.toLowerCase()!='circle') && !(d3.event.target.tagName.toLowerCase()=='rect' && d3.event.target.classList[0] == 'hover')) {
           $('#chart-tooltip .tooltip-target').trigger('click')
-		  $('#chart-tooltip').removeClass('distribution')
+          $('#chart-tooltip').removeClass('distribution')
         }
       })
-	  
-	  function isInArray(value, array) {
-	    return array.indexOf(value) > -1;
-	  }
+      
+      function isInArray(value, array) {
+        return array.indexOf(value) > -1;
+      }
          
       svg.selectAll('line.xaxis')
          .data(ranges)

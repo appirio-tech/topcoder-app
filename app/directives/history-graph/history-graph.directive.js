@@ -275,11 +275,11 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $scope.historyRating = d.newRating
            $scope.historyDate = moment(d.ratingDate).format('YYYY-MM-DD')
            $scope.historyChallenge = d.challengeName
-		   $('#chart-tooltip .tooltip-container').on('click', function(){
-			 if($state.params && ($state.params.subTrack === 'SRM' || $state.params.subTrack === 'MARATHON_MATCH'))
+           $('#chart-tooltip .tooltip-container').on('click', function(){
+             if($state.params && ($state.params.subTrack === 'SRM' || $state.params.subTrack === 'MARATHON_MATCH'))
                location.href = $filter('challengeLinks')({'rounds': [{id: d.challengeId, forumId: null}], 'track': $state.params.track, 'subTrack': $state.params.subTrack}, 'detail')
-		     else
-			   location.href = $filter('challengeLinks')({id: d.challengeId, 'track': $state.params.track, 'subTrack': $state.params.subTrack}, 'detail')
+             else
+               location.href = $filter('challengeLinks')({id: d.challengeId, 'track': $state.params.track, 'subTrack': $state.params.subTrack}, 'detail')
            })           
            d3.select('#chart-tooltip')
               .style('left', (d3.event.pageX-5) + 'px')    
@@ -295,7 +295,7 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            d3.select('#chart-tooltip .challenge-date').text(moment(d.ratingDate).format('MMM DD, YYYY'))
            d3.select('#chart-tooltip .tooltip-rating').text($scope.historyRating)
            d3.select('#chart-tooltip .tooltip-rating').style('background', ratingToColor($scope.colors, $scope.historyRating))
-		   $('#chart-tooltip').removeClass('distribution')
+           $('#chart-tooltip').removeClass('distribution')
            $scope.$digest()
          })
          .on('mouseout', function(d) {
@@ -307,8 +307,8 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
         if((d3.event.target.classList[0] != 'tooltip-target') && !$('#chart-tooltip .tooltip-container').hasClass('tooltip-hide') &&
           (d3.event.target.tagName.toLowerCase()!='circle') && !(d3.event.target.tagName.toLowerCase()=='rect' && d3.event.target.classList[0] == 'hover')) {
           $('#chart-tooltip .tooltip-target').trigger('click')
-		  $('#chart-tooltip .tooltip-container').off('click')
-		}
+          $('#chart-tooltip .tooltip-container').off('click')
+        }
       })
 
     }
@@ -319,9 +319,9 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
       })
       return colors[0] && colors[0].color || 'black'
     }
-	
-	function isInArray(value, array) {
-	  return array.indexOf(value) > -1;
-	}
+    
+    function isInArray(value, array) {
+      return array.indexOf(value) > -1;
+    }
   }
 })()

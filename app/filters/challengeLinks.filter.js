@@ -9,7 +9,7 @@ import angular from 'angular'
   function challengeLinks(CONSTANTS) {
     return function(challenge, type) {
       var data
-	  if (challenge.subTrack === 'MARATHON_MATCH') {
+      if (challenge.subTrack === 'MARATHON_MATCH') {
         data = {
           domain: CONSTANTS.domain,
           roundId: challenge.rounds[0].id,
