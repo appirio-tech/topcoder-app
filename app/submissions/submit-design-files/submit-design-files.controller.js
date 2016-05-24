@@ -80,24 +80,14 @@ import _ from 'lodash'
     }
 
     function setFileReference(file, fieldId) {
-      // Can clean up since fileValue on tcFileInput has file reference?
-      files[fieldId] = file
-
       var fileObject = {
         name: file.name,
         type: fieldId,
-        status: 'PENDING'
-      }
-
-      switch(fieldId) {
-      case 'SUBMISSION_ZIP':
-        fileObject.mediaType = 'application/octet-stream'
-        break
-      case 'SOURCE_ZIP':
-        fileObject.mediaType = 'application/octet-stream'
-        break
-      default:
-        fileObject.mediaType = file.type
+        status: 'STAGED',
+        stagedFileContainer: file.container,
+        stagedFilePath: file.path,
+        size: file.size,
+        mediaType: file.mimetype
       }
 
       // If user changes a file input's file, update the file details
@@ -160,7 +150,18 @@ import _ from 'lodash'
 
       vm.submissionsBody.data.fonts = processedFonts
 
-      SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress)
+      SubmissionsService.startSubmission(vm.submissionsBody, updateProgress)
+      .then(function(newSubmission) {
+        logger.debug("New Submission: ", newSubmission)
+        SubmissionsService.processSubmission(newSubmission, updateProgress)
+      })
+      .then(function(processedSubmission) {
+        logger.debug("Processed Submission: ", processedSubmission)
+
+      })
+      .catch(function(err) {
+        logger.error("Submission processing failed ", err)
+      })
     }
 
     // Callback for updating submission upload process. It looks for different phases e.g. PREPARE, UPLOAD, FINISH
