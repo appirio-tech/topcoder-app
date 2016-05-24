@@ -182,7 +182,7 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
        
       var mousemoveInterval = null
 
-	  /* render react tooltip component */
+      /* render react tooltip component */
       ReactDOM.unmountComponentAtNode(document.getElementById('chart-tooltip'))
       ReactDOM.render(<Tooltip popMethod='click'>
           <div className='tooltip-target'></div>
@@ -195,7 +195,7 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
           </div>
         </Tooltip>
         , document.getElementById('chart-tooltip'))
-		
+        
       $scope.isFocused = false 
       svg.selectAll('rect.hover')
          .data(ranges)
@@ -218,8 +218,8 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $scope.highlightedRating = d.start
            $scope.displayCoders = true
            $scope.numCoders = d.number
-		   
-		   /* update tooltip location on mouseover, feature currently not inbuilt in react tooltip component */
+           
+           /* update tooltip location on mouseover, feature currently not inbuilt in react tooltip component */
            d3.select('#chart-tooltip')
               .style('left', (d3.event.pageX-4) + 'px')    
               .style('top', (d3.event.pageY-4) + 'px')
@@ -240,12 +240,12 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $scope.$digest()
          })
          .on('mousemove', function(d) {
-		   
-		   /* update tooltip on mousemove, using interval of 50ms to improve performance */
-		   window.clearTimeout(mousemoveInterval)
+           
+           /* update tooltip on mousemove, using interval of 50ms to improve performance */
+           window.clearTimeout(mousemoveInterval)
            var left = (d3.event.pageX-4)
            var top = (d3.event.pageY-4)
-		   
+           
            mousemoveInterval = window.setTimeout(function(){
              d3.select('#chart-tooltip')
                .style('left', left + 'px')    

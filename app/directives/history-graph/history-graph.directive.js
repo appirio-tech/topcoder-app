@@ -245,8 +245,8 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
           return y
         }
       }
-	  
-	  /* render react tooltip component */
+      
+      /* render react tooltip component */
       ReactDOM.unmountComponentAtNode(document.getElementById('chart-tooltip'))
       ReactDOM.render(<Tooltip popMethod='click'>
           <div className='tooltip-target'></div>
@@ -283,8 +283,8 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
              else
                location.href = $filter('challengeLinks')({id: d.challengeId, 'track': $state.params.track, 'subTrack': $state.params.subTrack}, 'detail')
            })
-		   
-		   /* update tooltip location on mouseover, feature currently not inbuilt in react tooltip component */
+           
+           /* update tooltip location on mouseover, feature currently not inbuilt in react tooltip component */
            d3.select('#chart-tooltip')
               .style('left', (d3.event.pageX-5) + 'px')    
               .style('top', (d3.event.pageY-5) + 'px')
