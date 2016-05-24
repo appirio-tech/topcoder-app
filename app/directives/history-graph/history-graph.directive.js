@@ -319,9 +319,5 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
       })
       return colors[0] && colors[0].color || 'black'
     }
-    
-    function isInArray(value, array) {
-      return array.indexOf(value) > -1;
-    }
   }
 })()

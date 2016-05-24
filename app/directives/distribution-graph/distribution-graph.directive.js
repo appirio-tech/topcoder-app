@@ -271,7 +271,7 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
       })
       
       function isInArray(value, array) {
-        return array.indexOf(value) > -1;
+        return array.indexOf(value) > -1
       }
          
       svg.selectAll('line.xaxis')
