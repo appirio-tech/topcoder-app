@@ -245,6 +245,8 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
           return y
         }
       }
+	  
+	  /* render react tooltip component */
       ReactDOM.unmountComponentAtNode(document.getElementById('chart-tooltip'))
       ReactDOM.render(<Tooltip popMethod='click'>
           <div className='tooltip-target'></div>
@@ -280,7 +282,9 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
                location.href = $filter('challengeLinks')({'rounds': [{id: d.challengeId, forumId: null}], 'track': $state.params.track, 'subTrack': $state.params.subTrack}, 'detail')
              else
                location.href = $filter('challengeLinks')({id: d.challengeId, 'track': $state.params.track, 'subTrack': $state.params.subTrack}, 'detail')
-           })           
+           })
+		   
+		   /* update tooltip location on mouseover, feature currently not inbuilt in react tooltip component */
            d3.select('#chart-tooltip')
               .style('left', (d3.event.pageX-5) + 'px')    
               .style('top', (d3.event.pageY-5) + 'px')
@@ -302,7 +306,8 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $scope.historyRating = undefined
            $scope.$digest()
          })
-         
+
+      /* hide tooltip when clicked anywhere outside */           
       d3.select('body').on('click', function(){
         if((d3.event.target.classList[0] != 'tooltip-target') && !$('#chart-tooltip .tooltip-container').hasClass('tooltip-hide') &&
           (d3.event.target.tagName.toLowerCase()!='circle') && !(d3.event.target.tagName.toLowerCase()=='rect' && d3.event.target.classList[0] == 'hover')) {
