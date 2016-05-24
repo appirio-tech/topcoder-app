@@ -276,12 +276,12 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $scope.historyDate = moment(d.ratingDate).format('YYYY-MM-DD')
            $scope.historyChallenge = d.challengeName
            $('#chart-tooltip .tooltip-container').on('click', function(){
-             if($state.params && $state.params.track === 'DEVELOP', '_self')
+             if($state.params && $state.params.track === 'DEVELOP')
                location.href = (CONSTANTS.CHALLENGE_DETAIL_URL + d.challengeId + '/?type=develop')
              else if($state.params && $state.params.subTrack === 'SRM')
-               location.href = (CONSTANTS.SRM_DETAIL_URL + d.challengeId, '_self')
+               location.href = (CONSTANTS.SRM_DETAIL_URL + d.challengeId)
              else if($state.params && $state.params.subTrack === 'MARATHON_MATCH')
-               location.href = (CONSTANTS.MARATHON_DETAIL_URL + d.challengeId, '_self')
+               location.href = (CONSTANTS.MARATHON_DETAIL_URL + d.challengeId)
            })           
            d3.select('#chart-tooltip')
               .style('left', (d3.event.pageX-5) + 'px')    
