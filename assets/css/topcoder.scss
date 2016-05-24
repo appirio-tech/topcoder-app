@@ -183,16 +183,6 @@
   font-weight: 300;
   font-style: italic;
 }
-@font-face {
-  font-family: 'Proxima Nova';
-  src: url('../fonts/proximanova/proximanova-regular-webfont.eot');
-  src: url('../fonts/proximanova/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/proximanova/proximanova-regular-webfont') format('woff'),
-       url('../fonts/proximanova/proximanova-regular-webfont.ttf') format('truetype'),
-       url('../fonts/proximanova/proximanova-regular-webfont.svg') format('svg');
-  font-weight: 400;
-  font-style: normal;
-}
 
 body {
   @include font-with-weight('Merriweather Sans', 400);

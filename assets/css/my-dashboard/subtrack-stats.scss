@@ -114,12 +114,12 @@
   position: absolute;
   z-index: 1000;
   cursor: pointer;
-  font-family: 'Proxima Nova', Helvetica, Arial, sans-serif;
 }
 
 #chart-tooltip.distribution {
   width: 4px;
   height: 4px;
+  cursor: auto;
 }
 
 .tooltip-target {

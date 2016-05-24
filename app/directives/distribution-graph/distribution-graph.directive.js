@@ -257,20 +257,22 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
          .on('mouseout', function(d) {
            $scope.displayCoders = false
            $scope.highlightedRating = false
-           $('#chart-tooltip').removeClass('distribution')
            $scope.isFocused = false 
            $scope.$digest()
          })
          
       d3.select('body').on('click', function(){
         if((d3.event.target.classList[0] != 'tooltip-target') && !$('#chart-tooltip .tooltip-container').hasClass('tooltip-hide') &&
-          (d3.event.target.classList[0] != 'tooltip-content-container') && (d3.event.target.classList[0] != 'tooltip-container') &&
-          (d3.event.target.classList[0] != 'tooltip-body') && (d3.event.target.classList[0] != 'Tooltip') &&
+          !isInArray(d3.event.target.classList[0], ['tooltip-content-container', 'tooltip-container', 'tooltip-body', 'Tooltip']) &&
           (d3.event.target.tagName.toLowerCase()!='circle') && !(d3.event.target.tagName.toLowerCase()=='rect' && d3.event.target.classList[0] == 'hover')) {
-          $('#chart-tooltip .tooltip-container').addClass('tooltip-hide')
-          $('#chart-tooltip .tooltip-container').css('opacity', 0)
+          $('#chart-tooltip .tooltip-target').trigger('click')
+		  $('#chart-tooltip').removeClass('distribution')
         }
       })
+	  
+	  function isInArray(value, array) {
+	    return array.indexOf(value) > -1;
+	  }
          
       svg.selectAll('line.xaxis')
          .data(ranges)
