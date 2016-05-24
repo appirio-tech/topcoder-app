@@ -216,8 +216,6 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $scope.highlightedRating = d.start
            $scope.displayCoders = true
            $scope.numCoders = d.number
-           $scope.$digest()
-           
            d3.select('#chart-tooltip')
               .style('left', (d3.event.pageX-4) + 'px')    
               .style('top', (d3.event.pageY-4) + 'px')
@@ -235,6 +233,7 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            d3.select('#chart-tooltip .challenge-date').text('Rating Range: '+ $scope.highlightedRating + '-'+($scope.highlightedRating+99))
            d3.select('#chart-tooltip .tooltip-rating').text($scope.numCoders)
            d3.select('#chart-tooltip .tooltip-rating').style('background', ratingToColor($scope.colors, $scope.highlightedRating))
+           $scope.$digest()
          })
          .on('mousemove', function(d) {
            window.clearTimeout(mousemoveInterval)
