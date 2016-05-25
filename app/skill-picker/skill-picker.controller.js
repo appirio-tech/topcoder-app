@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.skill-picker').controller('SkillPickerController', SkillPickerController)
 
-  SkillPickerController.$inject = ['$scope', 'CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', 'logger', 'toaster', 'MemberCertService', '$q', 'MailchimpService']
+  SkillPickerController.$inject = ['$scope', 'CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', 'logger', 'toaster', 'MemberCertService', '$q', 'UserPreferencesService']
 
-  function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, logger, toaster, MemberCertService, $q, MailchimpService) {
+  function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, logger, toaster, MemberCertService, $q, UserPreferencesService) {
     var vm = this
     vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX
     vm.IOS_PROGRAM_ID = CONSTANTS.SWIFT_PROGRAM_ID
@@ -139,10 +139,10 @@ import _ from 'lodash'
     }
 
     function addToMailingList() {
-      return MailchimpService.getMemberSubscription(userProfile).then(function(subscription) {
+      return UserPreferencesService.getEmailPreferences(userProfile).then(function(subscription) {
         logger.debug(subscription)
         if (!subscription) {
-          return MailchimpService.addSubscription(userProfile).then(function(resp) {
+          return UserPreferencesService.saveEmailPreferences(userProfile).then(function(resp) {
             logger.debug(resp)
           }).catch(function(err) {
             // no error to user

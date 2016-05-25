@@ -1,13 +1,11 @@
 .history-graph-directive(ng-show="graphState.show == 'history'")
+
+  .graph-title
+    .text Rating History Graph
+    .button-group
+      button.tc-btn.tc-btn-s.active(ng-click="graphState.show = 'history'") View Rating History
+      button.tc-btn.tc-btn-s(ng-click="graphState.show = 'distribution'") View Rating Distribution
+
   .history-graph-container
 
     .history-graph
-
-    .info-port
-      .rating(style="background: {{historyRating || rating | ratingColor}}")
-        .num {{historyRating || rating}}
-        .label RATING
-      .history-info
-        .challenge(ng-if="historyRating") {{historyChallenge}}
-        .date(ng-if="historyRating") {{historyDate | date}}
-      button.tc-btn.tc-btn-s.compare(ng-click="graphState.show = 'distribution'") View Rating Distribution

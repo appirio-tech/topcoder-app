@@ -1,5 +1,8 @@
 import angular from 'angular'
 import d3 from 'd3'
+import React from 'react' // eslint-disable-line no-unused-vars
+import ReactDOM from 'react-dom'
+import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.jsx'
 
 (function() {
   'use strict'
@@ -59,7 +62,7 @@ import d3 from 'd3'
     ]
 
     var measurements = {
-      w: 600,
+      w: 900,
       h: 400,
       padding: {
         top: 20,
@@ -176,7 +179,24 @@ import d3 from 'd3'
          .attr('fill', function(d) {
            return ratingToColor($scope.colors, d.start)
          })
+       
+      var mousemoveInterval = null
 
+      /* render react tooltip component */
+      ReactDOM.unmountComponentAtNode(document.getElementById('chart-tooltip'))
+      ReactDOM.render(<Tooltip popMethod='click'>
+          <div className='tooltip-target'></div>
+          <div className='tooltip-body'>
+          <div className='tooltip-rating'></div>
+          <div className='tooltip-challenge'>
+            <div className='challenge-name'></div>
+            <div className='challenge-date'></div>
+          </div>
+          </div>
+        </Tooltip>
+        , document.getElementById('chart-tooltip'))
+        
+      $scope.isFocused = false 
       svg.selectAll('rect.hover')
          .data(ranges)
          .enter()
@@ -187,24 +207,81 @@ import d3 from 'd3'
            return xScale(i)
          })
          .attr('y', function(d) {
-           return padding.top
+           return yScale(d.number)
          })
          .attr('width', xScale.rangeBand())
          .attr('height', function(d) {
-           return totalH - padding.bottom - padding.top
+           return totalH - padding.bottom - yScale(d.number)
          })
          .on('mouseover', function(d) {
+           $scope.isFocused = true 
            $scope.highlightedRating = d.start
            $scope.displayCoders = true
            $scope.numCoders = d.number
+           
+           /* update tooltip location on mouseover, feature currently not inbuilt in react tooltip component */
+           d3.select('#chart-tooltip')
+              .style('left', (d3.event.pageX-4) + 'px')    
+              .style('top', (d3.event.pageY-4) + 'px')
+          
+           $('#chart-tooltip').addClass('distribution')
+           d3.select('#chart-tooltip .tooltip-container')
+              .style('left', '20px !important')    
+              .style('top', '-20px !important')
+          
+           d3.select('#chart-tooltip .tooltip-container .tooltip-pointer')
+              .style('left', '-5.5px !important')    
+              .style('bottom', '25px !important')
+          
+           d3.select('#chart-tooltip .challenge-name').text($scope.numCoders + ' Coders')
+           d3.select('#chart-tooltip .challenge-date').text('Rating Range: '+ $scope.highlightedRating + '-'+($scope.highlightedRating+99))
+           d3.select('#chart-tooltip .tooltip-rating').text($scope.numCoders)
+           d3.select('#chart-tooltip .tooltip-rating').style('background', ratingToColor($scope.colors, $scope.highlightedRating))
            $scope.$digest()
+         })
+         .on('mousemove', function(d) {
+           
+           /* update tooltip on mousemove, using interval of 50ms to improve performance */
+           window.clearTimeout(mousemoveInterval)
+           var left = (d3.event.pageX-4)
+           var top = (d3.event.pageY-4)
+           
+           mousemoveInterval = window.setTimeout(function(){
+             d3.select('#chart-tooltip')
+               .style('left', left + 'px')    
+               .style('top', top + 'px')
+              
+             d3.select('#chart-tooltip .tooltip-container')
+               .style('left', '20px !important')    
+               .style('top', '-20px !important')
+              
+             d3.select('#chart-tooltip .tooltip-container .tooltip-pointer')
+               .style('left', '-5.5px !important')    
+               .style('bottom', '25px !important')
+           }, 50)
+        
          })
          .on('mouseout', function(d) {
            $scope.displayCoders = false
            $scope.highlightedRating = false
+           $scope.isFocused = false 
            $scope.$digest()
          })
-
+      
+      /* hide tooltip when clicked anywhere outside */  
+      d3.select('body').on('click', function(){
+        if((d3.event.target.classList[0] != 'tooltip-target') && !$('#chart-tooltip .tooltip-container').hasClass('tooltip-hide') &&
+          !isInArray(d3.event.target.classList[0], ['tooltip-content-container', 'tooltip-container', 'tooltip-body', 'Tooltip']) &&
+          (d3.event.target.tagName.toLowerCase()!='circle') && !(d3.event.target.tagName.toLowerCase()=='rect' && d3.event.target.classList[0] == 'hover')) {
+          $('#chart-tooltip .tooltip-target').trigger('click')
+          $('#chart-tooltip').removeClass('distribution')
+        }
+      })
+      
+      function isInArray(value, array) {
+        return array.indexOf(value) > -1
+      }
+         
       svg.selectAll('line.xaxis')
          .data(ranges)
          .enter()
