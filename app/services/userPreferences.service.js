@@ -3,24 +3,24 @@ import angular from 'angular'
 (function() {
   'use strict'
 
-  angular.module('tc.services').factory('MailchimpService', MailchimpService)
+  angular.module('tc.services').factory('UserPreferencesService', UserPreferencesService)
 
-  MailchimpService.$inject = ['$http', 'logger', 'Restangular', 'CONSTANTS', 'ApiService', '$q']
+  UserPreferencesService.$inject = ['$http', 'logger', 'Restangular', 'CONSTANTS', 'ApiService', '$q']
 
-  function MailchimpService($http, logger, Restangular, CONSTANTS, ApiService, $q) {
-    var mailchimpApi = ApiService.getApiServiceProvider('MAILCHIMP')
+  function UserPreferencesService($http, logger, Restangular, CONSTANTS, ApiService, $q) {
+    var mailchimpApi = ApiService.getApiServiceProvider('PREFERENCES')
     var service = {
-      getMemberSubscription: getMemberSubscription,
-      addSubscription: addSubscription
+      getEmailPreferences: getEmailPreferences,
+      saveEmailPreferences: saveEmailPreferences
     }
     return service
 
-    function getMemberSubscription(user) {
+    function getEmailPreferences(user) {
       return $q(function(resolve, reject) {
-        mailchimpApi.one('mailchimp/lists', CONSTANTS.MAILCHIMP_LIST_ID)
-        .one('members', user.userId).get()
+        mailchimpApi.one('users', user.userId)
+        .one('preferences', 'email').get()
         .then(function(resp) {
-          resolve(resp)
+          resolve(resp.subscriptions)
         })
         .catch(function(err) {
           if (err.status === 404) {
@@ -40,23 +40,22 @@ import angular from 'angular'
     }
 
 
-    function addSubscription(user, preferences) {
-      var subscription = {
-        userId: user.userId,
+    function saveEmailPreferences(user, preferences) {
+      var settings = {
         firstName: user.firstName,
         lastName: user.lastName,
-        interests: {}
+        subscriptions: {}
       }
       if (!preferences) {
-        subscription.interests[CONSTANTS.MAILCHIMP_NL_GEN] = true
+        settings.subscriptions['TOPCODER_NL_GEN'] = true
       } else {
-        subscription.interests = preferences
+        settings.subscriptions = preferences
       }
       return $q(function(resolve, reject) {
-        mailchimpApi.one('mailchimp/lists', CONSTANTS.MAILCHIMP_LIST_ID)
-        .customPUT(subscription, 'members')
+        mailchimpApi.one('users', user.userId)
+        .customPUT({ param: settings }, 'preferences/email')
         .then(function(resp) {
-          resolve(resp)
+          resolve(resp.subscriptions)
         })
         .catch(function(err) {
           logger.error('Error adding member to subscription list', err)
