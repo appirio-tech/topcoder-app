@@ -11,7 +11,13 @@ import angular from 'angular'
     var vm = this
 
     vm.error = !!challengeToSubmitTo.error
-
+    try {
+      a[1].undef
+    } catch (e) {
+      console.log('Raven', window.Raven)
+      window.Raven.captureException(e)
+      console.log(window.Raven.lastEventId())
+    }
     if (vm.error) {
       vm.errorType = challengeToSubmitTo.error.type
       vm.errorMessage = challengeToSubmitTo.error.message
