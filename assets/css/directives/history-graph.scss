@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
   .compare {
     margin-top: 5px;
     margin-bottom: 15px;
@@ -13,6 +14,35 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  .graph-title {
+    width: 960px;
+    padding-left: 45px;
+	text-align: left;
+	margin: auto;
+	font-size: 28px;
+    line-height: 35px;
+    color: #47474F;
+	
+	.text {
+	  float: left;
+    }
+	
+    .button-group {
+	  float: right;
+	  display: block;
+	  button.tc-btn.tc-btn-s {
+	    background: #fff;
+		color: #47474f;
+	    &.active {
+		  background: #dcdce0;
+          -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,1);
+          -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,1);
+          box-shadow: 0px 1px 3px 0px rgba(0,0,0,1);
+		}
+	  }	  
+	}	
+  }
+  
   .history-graph {
 
     display: flex;
