@@ -1,0 +1,92 @@
+@import 'topcoder/tc-includes';
+
+.email-preferences-container {
+  width: 100%;
+  padding: 0 60px 30px;
+
+  .processing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+  }
+
+  .newsletters {
+    .newsletter {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+
+      .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 15px 0;
+        border-bottom: 1px solid $gray-light;
+        width: 100%;
+        transition: background-color .15s;
+
+        &.disabled {
+          background-color: $gray-lightest;
+        }
+
+        .newsletter-details {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          padding-left: 10px;
+
+          .icon {
+            &.disabled {
+              color: #b7b7b7;
+            }
+            img {
+              height: 32px;
+              width: 32px;
+            }
+            span {
+              @include font-with-weight('Sofia Pro', 500);
+              font-size: 16px;
+            }
+          }
+        }
+      }
+      .text {
+        margin-left: 15px;
+        .title {
+          font-size: 16px;
+          line-height: 28px;
+          @include sofia-pro-medium;
+          transition: .1s color;
+          &.disabled {
+            color: #b7b7b7;
+          }
+        }
+        .description {
+          @include merriweather-sans-regular;
+          font-size: 13px;
+          margin-top: 4px;
+          color: $accent-gray;
+        }
+      }
+    }
+  }
+
+  .save-section {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fcfcfc;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button.save {
+      margin-bottom: 15px;
+      margin-top: 15px;
+      width: 100px;
+    }
+  }
+}

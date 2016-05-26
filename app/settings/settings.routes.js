@@ -47,6 +47,15 @@ import angular from 'angular'
           title: 'Account Info'
         }
       },
+      'settings.email': {
+        url: 'email/',
+        template: require('./email/email')(),
+        controller: 'EmailSettingsController',
+        controllerAs: 'vm',
+        data: {
+          title: 'Email Preferences'
+        }
+      },
       'settings.preferences': {
         url: 'preferences/',
         template: require('./preferences/preferences')(),

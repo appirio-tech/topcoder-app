@@ -11,7 +11,7 @@
     background-color: $white;
   }
 
-  .challenges, .srms, .programs, .tco, .ttl, .community-updates {
+  .challenges, .srms, .programs, .tco, .ttl, .one-million, .community-updates {
     @include module-l;
     margin-top: 1px;
     width: 100%;
@@ -34,7 +34,45 @@
     }
   }
 
-  .challenges, .srms, .programs, .tco, .ttl, .community-updates {
+  .one-million {
+    .tc-banner-placeholder {
+      background: none $tc-gray-90;
+
+      .image {
+        img {
+          width: auto;
+        }
+      }
+
+      .content {
+        margin-top: 0px;
+      }
+
+      .social-sharing {
+        margin-bottom: 20px;
+        span {
+          color: $white;
+          @include sofia-pro-bold;
+          margin-right: 10px;
+        }
+
+        img {
+          height: 40px;
+          padding: 0 10px 0 0px;
+          vertical-align: middle;
+        }
+      }
+
+      .ctas {
+        // specific css override to reduce the gap between image and ctas
+        // ideally we should have separate title, image and description
+        // however, here we have all 3 in single image
+        margin-top: 0px;
+      }
+    }
+  }
+
+  .challenges, .srms, .programs, .tco, .ttl, .one-million, .community-updates {
     padding-top: 0px;
   }
 

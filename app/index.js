@@ -25,6 +25,7 @@ require('xml2js')
 
 require('appirio-tech-ng-ui-components')
 require('appirio-tech-ng-iso-constants')
+require('appirio-tech-react-components')
 
 // Vendor styles
 require('../node_modules/angucomplete-alt/angucomplete-alt.css')
@@ -41,7 +42,7 @@ require('../node_modules/font-awesome/fonts/fontawesome-webfont.woff')
 require('../node_modules/font-awesome/fonts/fontawesome-webfont.woff2')
 require('../node_modules/font-awesome/css/font-awesome.css')
 
-// Require non-npm scripts
+// Require non-npm scripts, e.g. kissmetrics, munchkin (analytics via jade are included in index.html)
 requireContextFiles(require.context('../assets/scripts/', true, /^(.*\.(js$))[^.]*$/igm))
 
 // Require Angular modules first
@@ -63,6 +64,7 @@ require('../assets/css/sitemap/sitemap.scss')
 require('../assets/css/settings/update-password.scss')
 require('../assets/css/settings/settings.scss')
 require('../assets/css/settings/preferences.scss')
+require('../assets/css/settings/email.scss')
 require('../assets/css/settings/edit-profile.scss')
 require('../assets/css/settings/account-info.scss')
 require('../assets/css/profile/subtrack.scss')

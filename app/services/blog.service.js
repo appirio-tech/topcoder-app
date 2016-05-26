@@ -31,6 +31,9 @@ import X2JS from 'xml2js'
             result.forEach(function(item) {
               item.title = $sce.trustAsHtml(item.title.toString())
               item.description = $sce.trustAsHtml(item.description.toString())
+              if (item.link && Array.isArray(item.link) && item.link.length) {
+                item.link = item.link[0]
+              }
             })
 
             deferred.resolve(result)

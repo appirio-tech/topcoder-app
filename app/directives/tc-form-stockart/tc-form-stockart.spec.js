@@ -29,12 +29,7 @@ describe('Topcoder Form Stockart Directive', function() {
       var initialStockart = isolateScope.formStockarts[0]
 
       expect(initialStockart.id).to.equal(0)
-      expect(initialStockart.description).to.equal('')
       expect(initialStockart.sourceUrl).to.equal('')
-      expect(initialStockart.fileNumber).to.equal('')
-      expect(initialStockart.isPhotoDescriptionRequired).to.equal(false)
-      expect(initialStockart.isPhotoURLRequired).to.equal(false)
-      expect(initialStockart.isFileNumberRequired).to.equal(false)
     })
 
     it('a regular expression', function() {
@@ -79,17 +74,17 @@ describe('Topcoder Form Stockart Directive', function() {
     it('resets the stockart fieldset when it\'s the only one', function() {
       var stockart = isolateScope.formStockarts[0]
 
-      expect(stockart.description).to.equal('')
+      expect(stockart.sourceUrl).to.equal('')
 
-      stockart.description = 'a funny cat picture'
+      stockart.sourceUrl = 'www.myURL.com'
       scope.$digest()
 
-      expect(stockart.description).to.equal('a funny cat picture')
+      expect(stockart.sourceUrl).to.equal('www.myURL.com')
 
       isolateScope.deleteStockartFieldset(0)
       scope.$digest()
 
-      expect(isolateScope.formStockarts[0].description).to.equal('')
+      expect(isolateScope.formStockarts[0].sourceUrl).to.equal('')
     })
   })
 
@@ -108,37 +103,20 @@ describe('Topcoder Form Stockart Directive', function() {
       expect(button.disabled).to.be.true
     })
 
-    it('disables the button when 1 field is filled out', function() {
-      isolateScope.formStockarts[0].description = 'test description'
-      scope.$digest()
-
+    it('enables the button when the url field is filled out', function() {
       expect(button.disabled).to.be.true
-    })
 
-    it('disables the button when 2 fields are filled out', function() {
-      isolateScope.formStockarts[0].description = 'test description'
       isolateScope.formStockarts[0].sourceUrl = 'url'
-      scope.$digest()
-
-      expect(button.disabled).to.be.true
-    })
-
-    it('enables the button when all fields are filled out', function() {
-      isolateScope.formStockarts[0].description = 'test description'
-      isolateScope.formStockarts[0].sourceUrl = 'url'
-      isolateScope.formStockarts[0].fileNumber = '123'
       scope.$digest()
 
       expect(button.disabled).to.be.false
     })
 
-    it('disables the button when any field in any fieldset is empty', function() {
+    it('disables the button when any url field in any fieldset is empty', function() {
       expect(button.disabled).to.be.true
 
       // Fill out first fieldset
-      isolateScope.formStockarts[0].description = 'test description'
       isolateScope.formStockarts[0].sourceUrl = 'url.com'
-      isolateScope.formStockarts[0].fileNumber = '123'
       scope.$digest()
 
       expect(button.disabled).to.be.false
@@ -149,81 +127,16 @@ describe('Topcoder Form Stockart Directive', function() {
       expect(button.disabled).to.be.true
 
       // Fill out second fieldset
-      isolateScope.formStockarts[1].description = 'test description2'
       isolateScope.formStockarts[1].sourceUrl = 'url2.com'
-      isolateScope.formStockarts[1].fileNumber = '1232'
       scope.$digest()
 
       expect(button.disabled).to.be.false
 
-      // Empty a field in the first fieldset
-      isolateScope.formStockarts[0].fileNumber = ''
+      // Empty the field in the first fieldset
+      isolateScope.formStockarts[0].sourceUrl = ''
       scope.$digest()
 
       expect(button.disabled).to.be.true
-    })
-  })
-
-  describe('showMandatoryMessage', function() {
-    describe('sets the stockart required properties to false when all fields are', function() {
-      var stockart
-
-      beforeEach(function() {
-        stockart = isolateScope.formStockarts[0]
-        stockart.description = 'test description'
-        stockart.sourceUrl = 'url.com'
-        stockart.fileNumber = '123'
-        scope.$digest()
-      })
-
-      afterEach(function() {
-        stockart = undefined
-      })
-
-      it('filled out', function() {
-        expect(stockart.isPhotoDescriptionRequired).to.be.false
-        expect(stockart.isPhotoURLRequired).to.be.false
-        expect(stockart.isFileNumberRequired).to.be.false
-      })
-
-      it('empty', function() {
-        // Reset stockart fields
-        stockart.description = ''
-        stockart.sourceUrl = ''
-        stockart.fileNumber = ''
-        scope.$digest()
-
-        expect(stockart.isPhotoDescriptionRequired).to.be.false
-        expect(stockart.isPhotoURLRequired).to.be.false
-        expect(stockart.isFileNumberRequired).to.be.false
-      })
-    })
-
-
-    describe('sets the stockart required properties to false when all fields are', function() {
-      var stockart
-
-      beforeEach(function() {
-        stockart = isolateScope.formStockarts[0]
-        stockart.description = 'test description'
-        stockart.sourceUrl = 'url.com'
-        stockart.fileNumber = '123'
-        scope.$digest()
-      })
-
-      afterEach(function() {
-        stockart = undefined
-      })
-
-      it('sets the stockart required properties to true if any field is blank', function() {
-        // Reset stockart fields
-        stockart.description = ''
-        scope.$digest()
-
-        expect(stockart.isPhotoDescriptionRequired).to.be.true
-        expect(stockart.isPhotoURLRequired).to.be.true
-        expect(stockart.isFileNumberRequired).to.be.true
-      })
     })
   })
 })

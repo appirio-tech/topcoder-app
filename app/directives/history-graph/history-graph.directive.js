@@ -1,6 +1,9 @@
 import angular from 'angular'
 import moment from 'moment'
 import d3 from 'd3'
+import React from 'react' // eslint-disable-line no-unused-vars
+import ReactDOM from 'react-dom'
+import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.jsx'
 
 (function() {
   'use strict'
@@ -16,11 +19,11 @@ import d3 from 'd3'
         rating: '=',
         graphState: '='
       },
-      controller: ['$scope', HistoryGraphController]
+      controller: ['$scope', '$state', '$filter', 'CONSTANTS', HistoryGraphController]
     }
   }
 
-  function HistoryGraphController($scope) {
+  function HistoryGraphController($scope, $state, $filter, CONSTANTS) {
     $scope.colors = [
       // grey
       {
@@ -59,7 +62,7 @@ import d3 from 'd3'
       }
     ]
     var measurements = {
-      w: 600,
+      w: 900,
       h: 400,
       padding: {
         top: 20,
@@ -156,7 +159,6 @@ import d3 from 'd3'
           .attr('width', w + padding.left + padding.right)
           .attr('height', h + padding.top + padding.bottom)
 
-
       svg.append('rect')
          .attr('x', padding.left)
          .attr('y', padding.top)
@@ -243,7 +245,21 @@ import d3 from 'd3'
           return y
         }
       }
-
+      
+      /* render react tooltip component */
+      ReactDOM.unmountComponentAtNode(document.getElementById('chart-tooltip'))
+      ReactDOM.render(<Tooltip popMethod='click'>
+          <div className='tooltip-target'></div>
+          <div className='tooltip-body'>
+          <div className='tooltip-rating'></div>
+          <div className='tooltip-challenge'>
+            <div className='challenge-name'></div>
+            <div className='challenge-date'></div>
+          </div>
+          </div>
+        </Tooltip>
+        , document.getElementById('chart-tooltip'))
+    
       svg.selectAll('circle')
          .data(history)
          .enter()
@@ -261,20 +277,44 @@ import d3 from 'd3'
            $scope.historyRating = d.newRating
            $scope.historyDate = moment(d.ratingDate).format('YYYY-MM-DD')
            $scope.historyChallenge = d.challengeName
+           $('#chart-tooltip .tooltip-container').on('click', function(){
+             if($state.params && ($state.params.subTrack === 'SRM' || $state.params.subTrack === 'MARATHON_MATCH'))
+               location.href = $filter('challengeLinks')({'rounds': [{id: d.challengeId, forumId: null}], 'track': $state.params.track, 'subTrack': $state.params.subTrack}, 'detail')
+             else
+               location.href = $filter('challengeLinks')({id: d.challengeId, 'track': $state.params.track, 'subTrack': $state.params.subTrack}, 'detail')
+           })
+           
+           /* update tooltip location on mouseover, feature currently not inbuilt in react tooltip component */
+           d3.select('#chart-tooltip')
+              .style('left', (d3.event.pageX-5) + 'px')    
+              .style('top', (d3.event.pageY-5) + 'px')
+           d3.select('#chart-tooltip .tooltip-container')
+              .style('left', '20px !important')    
+              .style('top', '-20px !important')
+           d3.select('#chart-tooltip .tooltip-container .tooltip-pointer')
+              .style('left', '-5.5px !important')    
+              .style('bottom', '25px !important')
+          
+           d3.select('#chart-tooltip .challenge-name').text($scope.historyChallenge)
+           d3.select('#chart-tooltip .challenge-date').text(moment(d.ratingDate).format('MMM DD, YYYY'))
+           d3.select('#chart-tooltip .tooltip-rating').text($scope.historyRating)
+           d3.select('#chart-tooltip .tooltip-rating').style('background', ratingToColor($scope.colors, $scope.historyRating))
+           $('#chart-tooltip').removeClass('distribution')
            $scope.$digest()
-           d3.select(this)
-             .attr('r', 6.0)
          })
          .on('mouseout', function(d) {
            $scope.historyRating = undefined
            $scope.$digest()
-           d3.select(this)
-             .attr('r', 4.5)
-             .attr('stroke', 'none')
-             .attr('stroke-width', '0px')
          })
-         .attr('r', 4.5)
 
+      /* hide tooltip when clicked anywhere outside */           
+      d3.select('body').on('click', function(){
+        if((d3.event.target.classList[0] != 'tooltip-target') && !$('#chart-tooltip .tooltip-container').hasClass('tooltip-hide') &&
+          (d3.event.target.tagName.toLowerCase()!='circle') && !(d3.event.target.tagName.toLowerCase()=='rect' && d3.event.target.classList[0] == 'hover')) {
+          $('#chart-tooltip .tooltip-target').trigger('click')
+          $('#chart-tooltip .tooltip-container').off('click')
+        }
+      })
 
     }
 

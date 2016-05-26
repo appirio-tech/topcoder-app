@@ -2,43 +2,16 @@
   button.clean.remove-section(type="button", ng-click="deleteStockartFieldset(stockartId)")
 
   tc-input.fieldset__input(
-    label-text="Photo Description",
-    asterisk-text="Field can't be empty",
-    show-asterisk-text="true",
-    placeholder="A picture of a girl",
-    input-value="stockart.description",
-    input-name="photoDescription{{stockartId}}",
-    input-required="formStockarts[stockartId].isPhotoDescriptionRequired",
-    maxlength="100",
-    on-input-change="showMandatoryMessage(inputValue, inputName)"
-  )
-
-  tc-input.fieldset__input(
     label-text="Photo URL",
-    asterisk-text="Field can't be empty",
-    show-asterisk-text="true",
     placeholder="www.istockphoto.com",
     input-value="stockart.sourceUrl",
     input-name="photoURL{{stockartId}}",
     input-required="formStockarts[stockartId].isPhotoURLRequired",
     input-pattern="urlRegEx",
-    maxlength="250",
-    on-input-change="showMandatoryMessage(inputValue, inputName)"
+    maxlength="250"
   )
 
   .tc-error-messages(ng-show="submissionForm['photoURL' + stockartId].$dirty && submissionForm['photoURL' + stockartId].$invalid && submissionForm['photoURL' + stockartId].$error.pattern")
     p Please enter a valid url.
-
-  tc-input.fieldset__input(
-    label-text="File Number",
-    asterisk-text="Field can't be empty",
-    show-asterisk-text="true",
-    placeholder="u2434312",
-    input-value="stockart.fileNumber",
-    input-name="fileNumber{{stockartId}}",
-    input-required="formStockarts[stockartId].isFileNumberRequired",
-    maxlength="50",
-    on-input-change="showMandatoryMessage(inputValue, inputName)"
-  )
 
 button.fieldset__button.tc-btn.tc-btn-s(type="button", ng-click="createAdditionalStockartFieldset()", ng-disabled="isButtonDisabled()") + Add Stock Photo
