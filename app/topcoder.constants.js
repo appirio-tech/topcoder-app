@@ -20,7 +20,7 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'PHOTO_LINK_LOCATION'     : process.env.PHOTO_LINK_LOCATION,
   'SWIFT_PROGRAM_URL'       : process.env.SWIFT_PROGRAM_URL,
   'TCO16_URL'               : process.env.TCO16_URL,
-  'ACCOUNTS_APP_URL'        : process.env.ACCOUNTS_APP_URL
+  'ACCOUNTS_APP_URL'        : process.env.ACCOUNTS_APP_URL,
 
   'NEW_CHALLENGES_URL'     : 'https://www.topcoder.com/challenges/develop/upcoming/',
   'SWIFT_PROGRAM_ID'       : 3445,
