@@ -20,15 +20,7 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'PHOTO_LINK_LOCATION'     : process.env.PHOTO_LINK_LOCATION,
   'SWIFT_PROGRAM_URL'       : process.env.SWIFT_PROGRAM_URL,
   'TCO16_URL'               : process.env.TCO16_URL,
-  'ACCOUNTS_APP_URL'        : process.env.ACCOUNTS_APP_URL,
-  'MAILCHIMP_LIST_ID'       : process.env.MAILCHIMP_LIST_ID,
-  'MAILCHIMP_NL_CATEGORY_ID': process.env.MAILCHIMP_NL_CATEGORY_ID,
-  'MAILCHIMP_NL_GEN'        : process.env.MAILCHIMP_NL_GEN,
-  'MAILCHIMP_NL_TCO'        : process.env.MAILCHIMP_NL_TCO,
-  'MAILCHIMP_NL_IOS'        : process.env.MAILCHIMP_NL_IOS,
-  'MAILCHIMP_NL_DEV'        : process.env.MAILCHIMP_NL_DEV,
-  'MAILCHIMP_NL_DESIGN'     : process.env.MAILCHIMP_NL_DESIGN,
-  'MAILCHIMP_NL_DATA'       : process.env.MAILCHIMP_NL_DATA,
+  'ACCOUNTS_APP_URL'        : process.env.ACCOUNTS_APP_URL
 
   'NEW_CHALLENGES_URL'     : 'https://www.topcoder.com/challenges/develop/upcoming/',
   'SWIFT_PROGRAM_ID'       : 3445,
