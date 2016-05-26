@@ -8,7 +8,7 @@ import angular from 'angular'
   UserPreferencesService.$inject = ['$http', 'logger', 'Restangular', 'CONSTANTS', 'ApiService', '$q']
 
   function UserPreferencesService($http, logger, Restangular, CONSTANTS, ApiService, $q) {
-    var mailchimpApi = ApiService.getApiServiceProvider('PREFERENCES')
+    var preferencesApi = ApiService.getApiServiceProvider('PREFERENCES')
     var service = {
       getEmailPreferences: getEmailPreferences,
       saveEmailPreferences: saveEmailPreferences
@@ -17,7 +17,7 @@ import angular from 'angular'
 
     function getEmailPreferences(user) {
       return $q(function(resolve, reject) {
-        mailchimpApi.one('users', user.userId)
+        preferencesApi.one('users', user.userId)
         .one('preferences', 'email').get()
         .then(function(resp) {
           resolve(resp.subscriptions)
@@ -52,7 +52,7 @@ import angular from 'angular'
         settings.subscriptions = preferences
       }
       return $q(function(resolve, reject) {
-        mailchimpApi.one('users', user.userId)
+        preferencesApi.one('users', user.userId)
         .customPUT({ param: settings }, 'preferences/email')
         .then(function(resp) {
           resolve(resp.subscriptions)
