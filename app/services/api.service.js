@@ -74,8 +74,6 @@ import _ from 'lodash'
       case 'SUBMISSIONS':
       case 'USER':
         return _getRestangularV3(CONSTANTS.AUTH_API_URL)
-      case 'PREFERENCES':
-        return _getRestangularV3(CONSTANTS.INTERNAL_API_URL)
       default:
         return _getRestangularV3()
       }
