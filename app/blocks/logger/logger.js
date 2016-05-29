@@ -33,7 +33,11 @@ import angular from 'angular'
       $log.error(message)
 
       if (window.NREUM) {
-        window.NREUM.noticeError(message)
+        window.NREUM.noticeError(new Error(message))
+      }
+      // logging to Sentry
+      if (window.Raven) {
+        window.Raven.captureMessage(message)
       }
     }
 
