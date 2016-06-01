@@ -6,10 +6,9 @@ import { getCurrentUser, logout as doLogout } from './userv3.service.js'
 
   angular.module('tc.services').factory('TcAuthService', TcAuthService)
 
-  TcAuthService.$inject = ['CONSTANTS', 'auth', '$rootScope', '$q', 'logger', '$timeout', 'UserService', 'AuthTokenService', 'Helpers', 'ApiService', 'store', '$http']
+  TcAuthService.$inject = ['CONSTANTS', '$rootScope', '$q', 'logger', '$timeout', 'UserService', 'AuthTokenService', 'Helpers', 'ApiService', 'store', '$http']
 
-  function TcAuthService(CONSTANTS, auth, $rootScope, $q, logger, $timeout, UserService, AuthTokenService, Helpers, ApiService, store, $http) {
-    var auth0 = auth
+  function TcAuthService(CONSTANTS, $rootScope, $q, logger, $timeout, UserService, AuthTokenService, Helpers, ApiService, store, $http) {
     var service = {
       logout: logout,
       isAuthenticated: isAuthenticated
