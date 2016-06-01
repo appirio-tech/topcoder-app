@@ -3,9 +3,6 @@
 import angular from 'angular'
 require('./authv3.module.js')
 
-// import includes from 'lodash/includes'
-// import merge from 'lodash/merge'
-// TODO: Move registration to accounts.topcoder.com
 import { registerUser} from 'tc-accounts/core/auth.js'
 import { decodeToken, getFreshToken, logout as doLogout } from 'tc-accounts'
 
