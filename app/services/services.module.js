@@ -18,8 +18,8 @@ import Auth0 from 'auth0-js'
   angular.module('tc.services', dependencies)
     .config(['authProvider', 'CONSTANTS', function(authProvider, CONSTANTS) {
       authProvider.init({
-        domain: CONSTANTS.auth0Domain,
-        clientID: CONSTANTS.clientId,
+        domain: CONSTANTS.AUTH0_DOMAIN,
+        clientID: CONSTANTS.AUTH0_CLIENT_ID,
         sso: false
       }, Auth0)
 

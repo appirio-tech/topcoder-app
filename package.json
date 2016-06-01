@@ -71,6 +71,7 @@
     "tc-angular-ellipsis": "^0.1.6",
     "topcoder-app-r": "^1.0.0",
     "xml2js": "^0.4.16",
-    "zepto": "^1.0.1"
+    "zepto": "^1.0.1",
+    "tc-accounts": "https://github.com/appirio-tech/accounts-app.git#dev"
   }
 }

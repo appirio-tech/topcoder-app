@@ -28,6 +28,9 @@ describe('JWT Interceptor Service', function() {
       go: sinon.spy(function(param) {
         return
       })
+    },
+    fakeWindow = {
+      location: ''
     }
 
   beforeEach(function() {
@@ -35,8 +38,9 @@ describe('JWT Interceptor Service', function() {
       $provide.value('AuthTokenService', fakeAuthTokenService)
       $provide.value('TcAuthService', fakeTcAuthService)
       $provide.value('$state', fakeState)
+      $provide.value('$window', fakeWindow)
     })
-    bard.inject(this, 'jwtHelper', 'AuthTokenService', '$state', 'JwtInterceptorService')
+    bard.inject(this, 'jwtHelper', 'CONSTANTS', 'AuthTokenService', '$state', '$window', 'JwtInterceptorService')
     service = JwtInterceptorService
   })
 
@@ -77,7 +81,8 @@ describe('JWT Interceptor Service', function() {
         url: apiUrl + '/v3/members/test'
       }
       service.getToken(config)
-      expect($state.go).to.be.have.been.calledWith('login')
+      expect($window.location).not.null
+      expect($window.location).to.have.string(CONSTANTS.ACCOUNTS_APP_URL)
       expect(TcAuthService.isAuthenticated).to.be.have.been.calledOnce
     })
 
@@ -87,7 +92,8 @@ describe('JWT Interceptor Service', function() {
         url: apiUrl + '/v3.0.0-BETA/members/test'
       }
       service.getToken(config)
-      expect($state.go).to.be.have.been.calledWith('login')
+      expect($window.location).not.null
+      expect($window.location).to.have.string(CONSTANTS.ACCOUNTS_APP_URL)
       expect(TcAuthService.isAuthenticated).to.be.have.been.calledOnce
     })
 

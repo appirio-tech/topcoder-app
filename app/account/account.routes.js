@@ -15,17 +15,19 @@ import angular from 'angular'
         data: {
           authRequired: false
         },
-        onEnter: ['$state', '$stateParams', 'TcAuthService', 'logger', function($state, $stateParams, TcAuthService, logger) {
-          if (TcAuthService.isAuthenticated()) {
-            // redirect to next if exists else dashboard
-            if ($stateParams.next) {
-              logger.debug('Redirecting: ' + $stateParams.next)
-              window.location.href = decodeURIComponent($stateParams.next)
-            } else {
-              $state.go('dashboard')
+        onEnter: ['$state', '$location', '$stateParams', 'TcAuthService', 'logger',
+          function($state, $location,  $stateParams, TcAuthService, logger) {
+            logger.debug('Checking for authentication...')
+            if (TcAuthService.isAuthenticated()) {
+              // redirect to next if exists else dashboard
+              if ($stateParams.next) {
+                logger.debug('Redirecting: ' + $stateParams.next)
+                window.location.href = decodeURIComponent($stateParams.next)
+              } else {
+                $state.go('dashboard')
+              }
             }
-          }
-        }]
+          }]
       },
       'login': {
         parent: 'auth',
@@ -47,7 +49,8 @@ import angular from 'angular'
             controller: 'FooterController as vm',
             template: require('../layout/footer/account-footer')()
           }
-        }
+        },
+        controller: 'LoginController'
       },
       'register': {
         parent: 'auth',

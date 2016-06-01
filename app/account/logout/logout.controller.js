@@ -8,12 +8,8 @@ import angular from 'angular'
   LogoutController.$inject = ['logger', 'TcAuthService', '$window', 'CONSTANTS']
 
   function LogoutController(logger, TcAuthService, $window, CONSTANTS) {
-
-    TcAuthService.logout()
-    .then(function() {
-      logger.debug('Successfully logged out.')
-
-      // Redirect to home
+    TcAuthService.logout().then(() => {
+      logger.debug('MAIN_URL=> ' + CONSTANTS.MAIN_URL)
       $window.location.href = CONSTANTS.MAIN_URL
     })
   }

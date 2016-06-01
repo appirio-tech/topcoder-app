@@ -1,104 +1,22 @@
 import angular from 'angular'
+import { getCurrentUser, logout as doLogout } from './userv3.service.js'
 
 (function() {
   'use strict'
 
   angular.module('tc.services').factory('TcAuthService', TcAuthService)
 
-  TcAuthService.$inject = ['CONSTANTS', 'auth', 'AuthTokenService', '$rootScope', '$q', 'logger', '$timeout', 'UserService', 'Helpers', 'ApiService', 'store', '$http']
+  TcAuthService.$inject = ['CONSTANTS', 'auth', '$rootScope', '$q', 'logger', '$timeout', 'UserService', 'AuthTokenService', 'Helpers', 'ApiService', 'store', '$http']
 
-  function TcAuthService(CONSTANTS, auth, AuthTokenService, $rootScope, $q, logger, $timeout, UserService, Helpers, ApiService, store, $http) {
+  function TcAuthService(CONSTANTS, auth, $rootScope, $q, logger, $timeout, UserService, AuthTokenService, Helpers, ApiService, store, $http) {
     var auth0 = auth
     var service = {
-      login: login,
-      socialLogin: socialLogin,
       socialRegistration: socialRegistration,
       logout: logout,
       register: register,
       isAuthenticated: isAuthenticated
     }
     return service
-
-
-    ///////////////
-    function login(usernameOrEmail, password) {
-      return _doLogin({
-        usernameOrEmail: usernameOrEmail,
-        password: password
-      }, null)
-    }
-
-    function socialLogin(provider, state) {
-      return _doLogin(null, provider)
-    }
-
-    function _doLogin(userCreds, provider) {
-      return $q(function(resolve, reject) {
-        // supported backends
-        var options = {
-          popup: true,
-          scope: 'openid profile offline_access'
-        }
-        // setup more options based on input
-        if (provider) {
-          var providers = ['facebook', 'google-oauth2', 'twitter', 'github']
-          if (providers.indexOf(provider) < 0) {
-            reject({
-              status: 'UNSUPORTED_PROVIDER'
-            })
-            return
-          } else {
-            options.connection = provider
-          }
-        } else {
-          options.connection = Helpers.isEmail(userCreds.usernameOrEmail) ? 'TC-User-Database' : 'LDAP'
-          options.sso = false
-          options.username = userCreds.usernameOrEmail
-          options.password = userCreds.password
-        }
-
-        auth0.signin(options,
-          function(profile, idToken, accessToken, state, refreshToken) {
-            AuthTokenService.exchangeToken(refreshToken, idToken).then(
-              function(appiriojwt) {
-                $timeout(function() {
-                  $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN)
-
-                  var userIdentity = UserService.getUserIdentity()
-
-                  if (userIdentity && !store.get(userIdentity.userId)) {
-                    store.set(userIdentity.userId, {})
-                  }
-                  resolve()
-                }, 200)
-              },
-              function(resp) {
-                logger.debug(JSON.stringify(resp))
-                // 401 status here implies user is not registered
-                if (resp.status === 401) {
-                  reject({
-                    status: 'USER_NOT_REGISTERED'
-                  })
-                }
-                if (resp.data.result.content.toLowerCase() === 'account inactive') {
-                  reject({
-                    status: 'ACCOUNT_INACTIVE'
-                  })
-                } else {
-                  reject({
-                    status: 'UKNOWN_ERROR'
-                  })
-                }
-              }
-            )
-          },
-          function(error) {
-            logger.warning(JSON.stringify(error))
-            reject(error)
-          }
-        )
-      })
-    }
 
     function socialRegistration(provider, state) {
       return $q(function(resolve, reject) {
@@ -157,11 +75,8 @@ import angular from 'angular'
 
     function logout() {
       // logout of all browsers
-      return $q(function(resolve, reject) {
-        // remove local token
-        AuthTokenService.removeTokens()
+      return doLogout().then(function() {
         $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT)
-        resolve()
       })
     }
 
@@ -173,7 +88,11 @@ import angular from 'angular'
     }
 
     function isAuthenticated() {
-      return !!AuthTokenService.getV3Token() && !!AuthTokenService.getV2Token() && !!AuthTokenService.getTCSSOToken()
+      logger.debug('AuthTokenService.getV2Token(): ' + AuthTokenService.getV2Token())
+      logger.debug('AuthTokenService.getTCSSOToken(): ' + AuthTokenService.getTCSSOToken())
+      logger.debug('getCurrentUser(): ' + getCurrentUser())
+      return !!getCurrentUser() && !!AuthTokenService.getV2Token() && !!AuthTokenService.getTCSSOToken()
+
     }
 
   }
