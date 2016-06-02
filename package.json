@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "angular-mocks": "^1.4.9",
-    "appirio-tech-webpack-config": "0.3.6",
+    "appirio-tech-webpack-config": "^0.3.6",
     "babel-polyfill": "^6.7.2",
     "bardjs": "^0.1.8",
     "bower": "^1.6.8",
@@ -55,6 +55,7 @@
     "appirio-styles": "0.x.x",
     "appirio-tech-ng-iso-constants": "^1.0.6",
     "appirio-tech-ng-ui-components": "^2.1.2",
+    "appirio-tech-react-components": "^0.0.12",
     "auth0-angular": "^4.1.0",
     "auth0-js": "^6.8.0",
     "d3": "^3.5.14",
@@ -70,6 +71,7 @@
     "tc-angular-ellipsis": "^0.1.6",
     "topcoder-app-r": "^1.0.0",
     "xml2js": "^0.4.16",
-    "zepto": "^1.0.1"
+    "zepto": "^1.0.1",
+    "tc-accounts": "https://github.com/appirio-tech/accounts-app.git#dev"
   }
 }

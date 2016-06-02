@@ -12,29 +12,14 @@ import angular from 'angular'
     var v2TCSSOTokenKey = 'tcsso'
     var v3TokenKey = 'appiriojwt'
     // use this api url over CONSTANTS
-    var apiUrl = CONSTANTS.AUTH_API_URL || CONSTANTS.API_URL
+    // var apiUrl = CONSTANTS.AUTH_API_URL || CONSTANTS.API_URL
 
     var service = {
-      setV3Token: setV3Token,
       getV2Token: getV2Token,
-      getV3Token: getV3Token,
       getTCSSOToken: getTCSSOToken,
-      removeTokens: removeTokens,
-      refreshV3Token: refreshV3Token,
-      exchangeToken: exchangeToken,
-      getTokenFromAuth0Code: getTokenFromAuth0Code,
-      decodeToken: decodeToken
+      removeTokens: removeTokens
     }
     return service
-
-    ///////////////
-    function setV3Token(token) {
-      store.set(v3TokenKey, token)
-    }
-
-    function getV3Token() {
-      return store.get(v3TokenKey)
-    }
 
     function getV2Token() {
       return $cookies.get(v2TokenKey)
@@ -51,87 +36,6 @@ import angular from 'angular'
       $cookies.remove(v2TokenKey, {domain: domain})
       $cookies.remove('tcsso', {domain: domain})
       store.remove(v3TokenKey)
-    }
-
-    function decodeToken(token) {
-      return jwtHelper.decodeToken(token)
-    }
-
-    function refreshV3Token(token) {
-      // This is a promise of a JWT id_token
-      return $http({
-        url: apiUrl + '/authorizations/1',
-        method: 'GET',
-        headers: {
-          'Authorization': 'Bearer ' + token
-        },
-        data: {}
-      })
-      .then(function(res) {
-        var appiriojwt = res.data.result.content.token
-
-        setV3Token(appiriojwt)
-
-        return appiriojwt
-      })
-      .catch(function(err) {
-        logger.error('Could not refresh v3 token', err)
-
-        removeTokens()
-      })
-    }
-
-    function exchangeToken(refreshToken, idToken) {
-      var req = {
-        method: 'POST',
-        url: apiUrl + '/authorizations',
-        data: {
-          param: {
-            refreshToken: refreshToken,
-            externalToken: idToken
-          }
-        },
-        skipAuthorization: true,
-        withCredentials: true,
-        headers: {}
-      }
-      return $q(function(resolve, reject) {
-        $http(req).then(
-          function(res) {
-            var appiriojwt = res.data.result.content.token
-            setV3Token(appiriojwt)
-            resolve(appiriojwt)
-          },
-          function(err) {
-            logger.error('Could not exchange token', err)
-
-            removeTokens()
-
-            reject(err)
-          }
-        )
-      })
-    }
-
-    function getTokenFromAuth0Code(code) {
-      var req = {
-        method: 'POST',
-        url: apiUrl + '/authorizations',
-        skipAuthorization: true,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Auth0Code ' + code
-        },
-        data: {}
-      }
-      return $http(req).then(
-        function(resp) {
-          logger.debug(resp)
-        },
-        function(err) {
-          logger.error('Could not get token from Auth0 code', err)
-        }
-      )
     }
   }
 
