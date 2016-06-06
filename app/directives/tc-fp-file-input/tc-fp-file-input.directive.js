@@ -4,9 +4,9 @@ import _ from 'lodash'
 (function() {
   'use strict'
 
-  angular.module('tcUIComponents').directive('tcFpFileInput', ['CONSTANTS', 'logger', 'UserService', 'filepickerService', tcFPFileInput])
+  angular.module('tcUIComponents').directive('tcFpFileInput', ['$rootScope', 'CONSTANTS', 'logger', 'UserService', 'filepickerService', tcFPFileInput])
 
-  function tcFPFileInput(CONSTANTS, logger, UserService, filepickerService) {
+  function tcFPFileInput($rootScope, CONSTANTS, logger, UserService, filepickerService) {
     return {
       restrict: 'E',
       require: '^form',
@@ -40,6 +40,7 @@ import _ from 'lodash'
 
         // set default services
         scope.fpServices = scope.fpServices || "COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX"
+        scope.fpContainer = CONSTANTS.FILE_PICKER_SUBMISSION_CONTAINER_NAME || 'submission-staging-dev'
 
         // set max size
         scope.maxSize = 500*1024*1024
@@ -50,7 +51,7 @@ import _ from 'lodash'
         */
         element.bind('change', function(event) {
             event.preventDefault()
-            scope.onSuccess({event: event.originalEvent || event});
+            scope.onSuccess(event.originalEvent || event);
             $rootScope.$apply()
         });
         element = element.length ? element[0] : element;
@@ -60,15 +61,18 @@ import _ from 'lodash'
         }
         filepickerService.constructWidget(element)
 
-        scope.onSuccess = function (fpFile) {
-          scope.ngModel = {
+        scope.onSuccess = function (event) {
+          debugger
+          var fpFile = event.fpfile
+          var _file = {
             name: scope.filename || fpFile.filename,
-            container: fpFile.container,
+            container: fpFile.container || scope.fpContainer,
             path: fpFile.key,
             size: fpFile.size,
             mimetype: fpFile.mimetype
           }
-          scope.setFileReference({file: file, fieldId: scope.fieldId})
+          scope.ngModel = _file
+          scope.setFileReference({file: _file, fieldId: scope.fieldId})
         }
       }
     }

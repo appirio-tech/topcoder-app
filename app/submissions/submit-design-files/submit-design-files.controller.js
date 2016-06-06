@@ -50,9 +50,7 @@ import _ from 'lodash'
       },
       userId: userId,
       data: {
-        method: challengeToSubmitTo.challenge.track.toUpperCase() + '_CHALLENGE_ZIP_FILE',
-
-        // Can delete below since they are processed and added later?
+        method: 'DESIGN_CHALLENGE_FILE_PICKER_ZIP_FILE',
         files: [],
         submitterRank: 1,
         submitterComments: '',
@@ -149,7 +147,7 @@ import _ from 'lodash'
       }, [])
 
       vm.submissionsBody.data.fonts = processedFonts
-
+      debugger
       SubmissionsService.startSubmission(vm.submissionsBody, updateProgress)
       .then(function(newSubmission) {
         logger.debug("New Submission: ", newSubmission)
