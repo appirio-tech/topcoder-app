@@ -6,7 +6,7 @@ if (CI === 'master') {
   process.env.ENV = 'PROD'
   process.env.DOMAIN = 'topcoder.com'
   process.env.NODE_ENV = 'production'
-} else if (CI === 'qa') {
+} else if (CI === 'qa-integration') {
   process.env.ENV = 'QA'
   process.env.DOMAIN = 'topcoder-qa.com'
   process.env.NODE_ENV = 'production'
