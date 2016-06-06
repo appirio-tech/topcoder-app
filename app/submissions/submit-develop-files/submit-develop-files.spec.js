@@ -69,7 +69,7 @@ describe('Submit Develop Files Controller', function() {
     vm = controller
     scope.$digest()
 
-    expect(vm.submissionsBody.data.method).to.equal('DESIGN_CHALLENGE_FILE_PICKER_ZIP_FILE')
+    expect(vm.submissionsBody.data.method).to.equal('DEVELOP_CHALLENGE_ZIP_FILE')
   })
 
   describe('setFileReference', function() {

@@ -147,7 +147,6 @@ import _ from 'lodash'
       }, [])
 
       vm.submissionsBody.data.fonts = processedFonts
-      debugger
       SubmissionsService.startSubmission(vm.submissionsBody, updateProgress)
       .then(function(newSubmission) {
         logger.debug("New Submission: ", newSubmission)
