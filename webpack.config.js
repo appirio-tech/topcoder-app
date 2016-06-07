@@ -1,5 +1,4 @@
 require('./node_modules/coffee-script/register')
-var BowerWebpackPlugin = require('bower-webpack-plugin')
 
 const CI = process.env.TRAVIS_BRANCH
 
@@ -30,16 +29,7 @@ const config = require('appirio-tech-webpack-config')({
   favicon: './assets/images/favicon.ico',
   uglifyOptions: {
     mangle: { except: ['Auth0'] }
-  },
-  plugins: [
-    new BowerWebpackPlugin({
-      moduleDirectories: ["bower_components"],
-      manifestFiles: "bower.json",
-      includes: /.*/,
-      excludes: [],
-      searchResolveModulesDirectories: true
-    })
-  ]
+  }  
 })
 
 if (CI) config.output.publicPath = process.env.ASSET_PREFIX
