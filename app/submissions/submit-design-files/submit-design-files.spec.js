@@ -127,7 +127,7 @@ describe('Submit Design Files Controller', function() {
     })
   })
 
-  describe.only('uploadSubmission', function() {
+  describe.skip('uploadSubmission', function() {
     it('adds comments to the submissions body', function() {
       vm.comments = 'test comments'
       scope.$digest()
