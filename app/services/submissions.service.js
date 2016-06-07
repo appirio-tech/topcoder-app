@@ -23,9 +23,13 @@ import angular from 'angular'
     function startSubmission(body, progressCallback) {
       return api.all('submissions').customPOST(body)
       .then(function(response) {
-        progressCallback.call(progressCallback, 'PREPARE', 100)
+        //progressCallback.call(progressCallback, 'PREPARE', 100)
 
         // uploadSubmissionFileToS3(response, response.data.files, files, progressCallback)
+
+        console.log(response);
+
+        processSubmission(response, progressCallback);
       })
       .catch(function(err) {
         logger.error('Could not get presigned url', err)
@@ -131,6 +135,8 @@ import angular from 'angular'
         logger.info('Successfully made file record. Beginning processing')
 
         progressCallback.call(progressCallback, 'FINISH', 100)
+
+        return response;
       })
       .catch(function(err) {
         logger.error('Could not start processing', err)

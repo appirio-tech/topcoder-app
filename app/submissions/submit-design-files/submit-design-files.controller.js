@@ -150,7 +150,7 @@ import _ from 'lodash'
       SubmissionsService.startSubmission(vm.submissionsBody, updateProgress)
       .then(function(newSubmission) {
         logger.debug("New Submission: ", newSubmission)
-        SubmissionsService.processSubmission(newSubmission, updateProgress)
+        //SubmissionsService.processSubmission(newSubmission, updateProgress)
       })
       .then(function(processedSubmission) {
         logger.debug("Processed Submission: ", processedSubmission)
