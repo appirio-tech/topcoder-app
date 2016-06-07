@@ -1,5 +1,5 @@
 /*eslint no-undef:0*/
-describe('Submit Develop Files Controller', function() {
+describe.skip('Submit Develop Files Controller', function() {
   var controller, vm, scope
 
   var mockChallenge = {
