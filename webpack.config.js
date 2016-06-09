@@ -19,8 +19,8 @@ const config = require('appirio-tech-webpack-config')({
   },
   plugins: [
     new BowerWebpackPlugin({
-      moduleDirectories: ["bower_components"],
-      manifestFiles: "bower.json",
+      moduleDirectories: ['bower_components'],
+      manifestFiles: 'bower.json',
       includes: /.*/,
       excludes: [],
       searchResolveModulesDirectories: true

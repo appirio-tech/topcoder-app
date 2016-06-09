@@ -1,0 +1,3 @@
+.gitignore
+assets/scripts/*.*
+report/**/*.*
