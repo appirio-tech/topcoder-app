@@ -121,11 +121,6 @@ require('../assets/css/directives/tc-banner.scss')
 require('../assets/css/community/statistics.scss')
 require('../assets/css/community/members.scss')
 require('../assets/css/community/community.scss')
-require('../assets/css/account/reset-password.scss')
-require('../assets/css/account/registered-successfully.scss')
-require('../assets/css/account/register.scss')
-require('../assets/css/account/login.scss')
-require('../assets/css/account/account.scss')
 
 function requireContextFiles(files) {
   const paths = files.keys()
