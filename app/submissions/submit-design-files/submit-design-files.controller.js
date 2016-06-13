@@ -147,16 +147,12 @@ import _ from 'lodash'
 
       vm.submissionsBody.data.fonts = processedFonts
       SubmissionsService.startSubmission(vm.submissionsBody, updateProgress)
-      .then(function(newSubmission) {
-        logger.debug('New Submission: ', newSubmission)
-        //SubmissionsService.processSubmission(newSubmission, updateProgress)
-      })
       .then(function(processedSubmission) {
         logger.debug('Processed Submission: ', processedSubmission)
-
       })
       .catch(function(err) {
         logger.error('Submission processing failed ', err)
+        // TODO handle error
       })
     }
 

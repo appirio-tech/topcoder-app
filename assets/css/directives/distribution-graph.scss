@@ -12,6 +12,51 @@
 
 }
 
+.graph-title {
+  width: 960px;
+  padding-left: 45px;
+  text-align: left;
+  margin: auto;
+  font-size: 28px;
+  line-height: 35px;
+  color: #47474F;  
+  
+  .text {
+	float: left; 
+  }
+  
+  .button-group {
+    float: right;
+    display: block;
+	button.tc-btn.tc-btn-s {
+	  background: #fff;
+	  color: #47474f;
+	  border: 1px solid #c3c3c8;
+	  height: 30px;
+	  box-sizing: border-box;
+	  &.active {
+		background: #dcdce0;
+        -webkit-box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,1);
+        -moz-box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,1);
+        box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,1);
+		border: none;
+	  }
+	  &:first-child {
+	    border-top-left-radius: 2px;
+	    border-bottom-left-radius: 2px;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	  }
+	  &:last-child {
+	    border-top-left-radius: 0;
+	    border-bottom-left-radius: 0;
+		border-top-right-radius: 2px;
+		border-bottom-right-radius: 2px;
+	  }
+	}	
+  }
+}
+
 .graph-viewer {
   margin-top: 18px;
   display: flex;

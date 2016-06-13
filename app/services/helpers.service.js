@@ -308,6 +308,8 @@ import _ from 'lodash'
 
       var mimeTypesByExtension = {
         zip: [
+          'application/x-download',
+          'application/download',
           'application/zip',
           'application/x-zip',
           'application/x-zip-compressed',

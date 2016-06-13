@@ -23,6 +23,15 @@ import angular from 'angular'
         case 'detail':
           return String.supplant('https://community.{domain}/longcontest/stats/?module=ViewOverview&rd={roundId}', data)
         }
+      } else if (challenge.subTrack === 'SRM') {
+        data = {
+          domain: CONSTANTS.domain,
+          roundId: challenge.rounds[0].id
+        }
+        switch (type) {
+        case 'detail':
+          return String.supplant('https://community.{domain}/stat?c=round_overview&rd={roundId}', data)
+        }
       } else {
         data = {
           domain: CONSTANTS.domain,

@@ -43,26 +43,25 @@ import _ from 'lodash'
         scope.fpContainer = CONSTANTS.FILE_PICKER_SUBMISSION_CONTAINER_NAME || 'submission-staging-dev'
 
         // set max size
-        scope.maxSize = 500*1024*1024
+        scope.maxSize = 500 * 1024 * 1024
 
         var key, value
-        /*
-         *pass original event
-        */
+          /*
+           *pass original event
+           */
         element.bind('change', function(event) {
           event.preventDefault()
           scope.onSuccess(event.originalEvent || event)
           $rootScope.$apply()
         })
         element = element.length ? element[0] : element
-        for (key in attrs.$attr){
+        for (key in attrs.$attr) {
           value = attrs.$attr[key]
           element.setAttribute(value, attrs[key])
         }
         filepickerService.constructWidget(element)
 
-        scope.onSuccess = function (event) {
-          // debugger
+        scope.onSuccess = function(event) {
           var fpFile = event.fpfile
           var _file = {
             name: scope.filename || fpFile.filename,
@@ -72,7 +71,10 @@ import _ from 'lodash'
             mimetype: fpFile.mimetype
           }
           scope.ngModel = _file
-          scope.setFileReference({file: _file, fieldId: scope.fieldId})
+          scope.setFileReference({
+            file: _file,
+            fieldId: scope.fieldId
+          })
         }
       }
     }

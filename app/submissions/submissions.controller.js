@@ -5,13 +5,22 @@ import angular from 'angular'
 
   angular.module('tc.submissions').controller('SubmissionsController', SubmissionsController)
 
-  SubmissionsController.$inject = ['challengeToSubmitTo', '$state']
+  SubmissionsController.$inject = ['challengeToSubmitTo', '$state', 'logger']
 
-  function SubmissionsController(challengeToSubmitTo, $state) {
+  function SubmissionsController(challengeToSubmitTo, $state, logger) {
     var vm = this
 
     vm.error = !!challengeToSubmitTo.error
-
+    // test to see if sentry logging works
+    try {
+      var a = null
+      a[1].undef
+    } catch (e) {
+      if (window.Raven) {
+        window.Raven.captureException(e)
+        logger.debug(window.Raven.lastEventId())
+      }
+    }
     if (vm.error) {
       vm.errorType = challengeToSubmitTo.error.type
       vm.errorMessage = challengeToSubmitTo.error.message
