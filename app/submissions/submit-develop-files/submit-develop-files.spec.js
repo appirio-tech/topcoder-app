@@ -1,5 +1,5 @@
 /*eslint no-undef:0*/
-describe.skip('Submit Develop Files Controller', function() {
+describe('Submit Develop Files Controller', function() {
   var controller, vm, scope
 
   var mockChallenge = {
@@ -59,7 +59,7 @@ describe.skip('Submit Develop Files Controller', function() {
       challengeToSubmitTo: {
         challenge: {
           name: 'Challenge Name',
-          track: 'DESIGN',
+          track: 'DEVELOP',
           id: 30049240
         }
       },

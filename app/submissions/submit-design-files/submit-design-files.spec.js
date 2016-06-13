@@ -19,7 +19,12 @@ describe('Submit Design Files Controller', function() {
   }
 
   var submissionsService = {
-    getPresignedURL: function() {}
+    getPresignedURL: function() {},
+    startSubmission: function() {
+      var deferred = $q.defer()
+      deferred.resolve()
+      return deferred.promise
+    }
   }
 
   var mockWindow = {
@@ -30,7 +35,7 @@ describe('Submit Design Files Controller', function() {
 
   beforeEach(function() {
     bard.appModule('tc.submissions')
-    bard.inject(this, '$controller', '$rootScope')
+    bard.inject(this, '$controller', '$rootScope', '$q')
 
     scope = $rootScope.$new()
   })
@@ -59,7 +64,7 @@ describe('Submit Design Files Controller', function() {
       challengeToSubmitTo: {
         challenge: {
           name: 'Challenge Name',
-          track: 'DEVELOP',
+          track: 'DESIGN',
           id: 30049240
         }
       },
@@ -127,7 +132,7 @@ describe('Submit Design Files Controller', function() {
     })
   })
 
-  describe.skip('uploadSubmission', function() {
+  describe('uploadSubmission', function() {
     it('adds comments to the submissions body', function() {
       vm.comments = 'test comments'
       scope.$digest()
@@ -149,7 +154,7 @@ describe('Submit Design Files Controller', function() {
     })
 
     it('calls the submission service', function() {
-      var mockAPICall = sinon.spy(submissionsService, 'getPresignedURL')
+      var mockAPICall = sinon.spy(submissionsService, 'startSubmission')
 
       vm.uploadSubmission()
       scope.$digest()
