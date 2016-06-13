@@ -28,7 +28,6 @@ import angular from 'angular'
         },
         onEnter: ['$state', '$window', '$stateParams', 'logger',
           function($state, $window,  $stateParams, logger) {
-            console.log('onEnter...')
             var next = $state.href('dashboard', {}, {absolute: true})
             if ($stateParams.next) {
               next = decodeURIComponent($stateParams.next)
