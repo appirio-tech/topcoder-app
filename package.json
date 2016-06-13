@@ -4,7 +4,7 @@
   "scripts": {
     "build": "webpack --bail --progress --build --tc",
     "start": "webpack-dev-server --history-api-fallback --host 0.0.0.0 --dev --tc --inline --progress --port 3000",
-    "lint": "eslint --ignore-path .gitignore .",
+    "lint": "eslint .",
     "test": "karma start --tc --test"
   },
   "devDependencies": {
@@ -13,6 +13,7 @@
     "babel-polyfill": "^6.7.2",
     "bardjs": "^0.1.8",
     "bower": "^1.6.8",
+    "bower-webpack-plugin": "^0.1.9",
     "chai": "^3.5.0",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.15.0",

@@ -10,7 +10,7 @@
 
 .panel-body
   p.tc-error-messages.submissions-access-error(ng-if="submissions.error", ng-bind="submissions.errorMessage")
-
+  //- <pre>{{vm.submissionForm}}</pre>
   form.form-blocks(ng-if="!submissions.error", name="submissionForm", role="form", ng-submit="submissionForm.$valid && vm.uploadSubmission()", novalidate)
     .form-block.flex
       .form-block__instructions
@@ -27,18 +27,19 @@
 
       .form-block__fields
         .fieldset
-          tc-file-input.tc-file-field(
+          tc-fp-file-input(
             label-text="Submission",
             field-id="SUBMISSION_ZIP",
-            button-text="Add File",
             file-type="zip",
+            button-text="Add File",
+            services="COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX",
             show-file-type="true",
             placeholder="Attach all visible files as a single .zip file",
             mandatory="true",
-            set-file-reference="vm.setFileReference(file, fieldId)",
-            ng-model="vm.submissionForm.submissionZip"
+            ng-model="vm.submissionForm.submissionZip",
+            set-file-reference="vm.setFileReference(file, fieldId)"
           )
-
+          
           .tc-error-messages(
             ng-show="submissionForm['SUBMISSION_ZIP'].$touched && submissionForm['SUBMISSION_ZIP'].$invalid",
             ng-messages="submissionForm['SUBMISSION_ZIP'].$error"
@@ -47,19 +48,19 @@
 
             p(ng-message="required") This is not the correct file format. Please select a .zip file.
 
-
-          tc-file-input.tc-file-field(
+          tc-fp-file-input.tc-file-field(
             label-text="Source",
             field-id="SOURCE_ZIP",
-            button-text="Add File",
             file-type="zip",
+            button-text="Add File",
+            services="COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX",
             show-file-type="true",
-            placeholder="Attach all source files as a single .zip file",
+            placeholder="Attach all visible files as a single .zip file",
             mandatory="true",
             set-file-reference="vm.setFileReference(file, fieldId)",
             ng-model="vm.submissionForm.sourceZip"
           )
-
+          
           .tc-error-messages(
             ng-show="submissionForm['SOURCE_ZIP'].$touched && submissionForm['SOURCE_ZIP'].$invalid",
             ng-messages="submissionForm['SOURCE_ZIP'].$error"
@@ -68,11 +69,12 @@
 
             p(ng-message="required") This is not the correct file format. Please select a .zip file.
 
-          tc-file-input.tc-file-field(
+          tc-fp-file-input.tc-file-field(
             label-text="Preview Image",
             field-id="DESIGN_COVER",
+            file-type=".jpg,.jpeg,.png",
             button-text="Add File",
-            file-type="jpg,jpeg,png"
+            services="COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX",
             placeholder="Image file as .jpg or .png",
             mandatory="true",
             set-file-reference="vm.setFileReference(file, fieldId)",

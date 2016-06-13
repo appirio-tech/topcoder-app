@@ -12,7 +12,6 @@ import _ from 'lodash'
     if (!challengeToSubmitTo.challenge) { return }
 
     var vm = this
-    var files = {}
     var fileUploadProgress = {}
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/)
     vm.rankRegEx = new RegExp(/^[1-9]\d*$/)
@@ -50,9 +49,7 @@ import _ from 'lodash'
       },
       userId: userId,
       data: {
-        method: challengeToSubmitTo.challenge.track.toUpperCase() + '_CHALLENGE_ZIP_FILE',
-
-        // Can delete below since they are processed and added later?
+        method: 'DESIGN_CHALLENGE_FILE_PICKER_ZIP_FILE',
         files: [],
         submitterRank: 1,
         submitterComments: '',
@@ -80,24 +77,14 @@ import _ from 'lodash'
     }
 
     function setFileReference(file, fieldId) {
-      // Can clean up since fileValue on tcFileInput has file reference?
-      files[fieldId] = file
-
       var fileObject = {
         name: file.name,
         type: fieldId,
-        status: 'PENDING'
-      }
-
-      switch(fieldId) {
-      case 'SUBMISSION_ZIP':
-        fileObject.mediaType = 'application/octet-stream'
-        break
-      case 'SOURCE_ZIP':
-        fileObject.mediaType = 'application/octet-stream'
-        break
-      default:
-        fileObject.mediaType = file.type
+        status: 'STAGED',
+        stagedFileContainer: file.container,
+        stagedFilePath: file.path,
+        size: file.size,
+        mediaType: file.mimetype
       }
 
       // If user changes a file input's file, update the file details
@@ -159,8 +146,14 @@ import _ from 'lodash'
       }, [])
 
       vm.submissionsBody.data.fonts = processedFonts
-
-      SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress)
+      SubmissionsService.startSubmission(vm.submissionsBody, updateProgress)
+      .then(function(processedSubmission) {
+        logger.debug('Processed Submission: ', processedSubmission)
+      })
+      .catch(function(err) {
+        logger.error('Submission processing failed ', err)
+        // TODO handle error
+      })
     }
 
     // Callback for updating submission upload process. It looks for different phases e.g. PREPARE, UPLOAD, FINISH
