@@ -29,7 +29,7 @@ const config = require('appirio-tech-webpack-config')({
   favicon: './assets/images/favicon.ico',
   uglifyOptions: {
     mangle: { except: ['Auth0'] }
-  }  
+  }
 })
 
 if (CI) config.output.publicPath = process.env.ASSET_PREFIX
