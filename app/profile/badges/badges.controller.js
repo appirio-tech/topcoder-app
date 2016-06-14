@@ -649,6 +649,12 @@ import moment from 'moment-timezone'
         name : 'Designer of the Month',
         groupClass : 'Member-of-the-Month',
         active : false
+      },
+      {
+        id: 1007,
+        name: 'Crowd for Good',
+        groupClass: 'Crowd-for-Good',
+        active: false
       }
     ]
   }
