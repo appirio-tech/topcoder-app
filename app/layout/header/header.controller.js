@@ -1,6 +1,6 @@
 import angular from 'angular'
 import _ from 'lodash'
-import { getCurrentUser, loadUser } from '../../services/userv3.service.js'
+import { loadUser } from '../../services/userv3.service.js'
 
 (function() {
   'use strict'
