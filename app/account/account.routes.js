@@ -17,7 +17,7 @@ import angular from 'angular'
         }
       },
       'login': {
-        url: '/login?next&code&state&status&userJWTToken&utm_source&utm_medium&utm_campaign',
+        url: '/login/?next&code&state&status&userJWTToken&utm_source&utm_medium&utm_campaign',
         views: {
           'header@': {},
           'container@': {},

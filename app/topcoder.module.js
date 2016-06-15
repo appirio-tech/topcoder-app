@@ -49,6 +49,9 @@ import { getCurrentUser, loadUser } from './services/userv3.service.js'
     // check AuthNAuth on change state start
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
       logger.debug('checking auth for state: ' + toState.name + ' from state: ' + fromState.name)
+      if (!toState.data || !toState.data.authRequired) {
+        return true
+      }
       var currentUser = getCurrentUser()
       if (!currentUser) {
         event.preventDefault()
@@ -66,12 +69,13 @@ import { getCurrentUser, loadUser } from './services/userv3.service.js'
             var next = $state.href(toState.name, toParams, {absolute: true})
             var retUrl = next
             $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(retUrl)
-          } else {
+          } else { // should never land in this block
             logger.debug('Going to state: ' + toState.name)
             $state.go(toState.name, toParams, {notify: false})
             $urlRouter.sync()
           }
         })
+        return false
       }
     })
 
