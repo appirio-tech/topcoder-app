@@ -22,7 +22,7 @@ $tco-color-dark: #ea690b;
   }
 
   .title {
-    @include sofia-pro-medium;
+    @include roboto-medium;
     font-size: 24px;
     line-height: 29px;
     text-align: center;
@@ -69,7 +69,7 @@ $tco-color-dark: #ea690b;
     a {
       text-transform: uppercase;
       display: block;
-      @include sofia-pro-medium;
+      @include roboto-medium;
 
       &.primary-cta {
       }
@@ -109,7 +109,7 @@ $tco-color-dark: #ea690b;
 .tc-banner-placeholder.black {
   background-color: #222222;
   .title {
-    @include sofia-pro-bold;
+    @include roboto-bold;
     color: $white;
   }
 

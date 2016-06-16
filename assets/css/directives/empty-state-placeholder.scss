@@ -11,7 +11,7 @@
   }
 
   .title {
-    @include sofia-pro-medium;
+    @include roboto-medium;
     font-size: 24px;
     line-height: 29px;
     text-align: center;
@@ -58,7 +58,7 @@
     a {
       text-transform: uppercase;
       display: block;
-      @include sofia-pro-medium;
+      @include roboto-medium;
 
       // used more generic css class (secondary-cta)
       // remove find-challenges class once we are sure that it is not being used in any empty state
@@ -115,7 +115,7 @@
   background-image: url(../../images/empty-states/pattern-my-challenges-dashboard.png);
   background-repeat: repeat;
   .title {
-    @include sofia-pro-bold;
+    @include roboto-bold;
     color: $white;
   }
 

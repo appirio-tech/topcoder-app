@@ -10,7 +10,7 @@ dev-challenge-user-place {
     align-items: center;
     
     .place {
-      @include sofia-pro-light;
+      @include roboto-light;
       font-size: 18px;
       line-height: 23px;
       color: $gray-darkest;
@@ -38,13 +38,13 @@ dev-challenge-user-place {
       .score {
         margin-top: 28px;
         margin-bottom: 5px;
-        @include sofia-pro-bold;
+        @include roboto-bold;
         font-size: 18px;
         color: $gray-darkest;
       }
 
       p:last-child {
-        @include sofia-pro-medium;
+        @include roboto-medium;
         font-size: 9px;
         color: #A3A3AE;
         text-transform: uppercase;
@@ -69,7 +69,7 @@ dev-challenge-user-place {
       flex-direction: column;
 
       .place {
-        @include sofia-pro-light;
+        @include roboto-light;
         font-size: 18px;
         line-height: 23px;
         color: $gray-darkest;
@@ -87,7 +87,7 @@ dev-challenge-user-place {
       }
 
       .date-completed {
-        @include sofia-pro-medium;
+        @include roboto-medium;
         font-size: 12px;
         text-transform: uppercase;
         color: $accent-gray;
@@ -112,13 +112,13 @@ dev-challenge-user-place {
       .score {
         margin-top: 28px;
         margin-bottom: 5px;
-        @include sofia-pro-bold;
+        @include roboto-bold;
         font-size: 18px;
         color: $gray-darkest;
       }
 
       p:last-child {
-        @include sofia-pro-medium;
+        @include roboto-medium;
         font-size: 9px;
         color: #A3A3AE;
         text-transform: uppercase;

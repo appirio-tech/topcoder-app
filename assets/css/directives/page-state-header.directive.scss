@@ -10,7 +10,7 @@
     flex-direction: column;
 
     h1 {
-      @include sofia-pro-medium;
+      @include roboto-medium;
       font-size: 24px;
       line-height: 31px;
       color: $gray-darkest;
@@ -44,7 +44,7 @@
       }
 
       .handle {
-        @include sofia-pro-medium;
+        @include roboto-medium;
         font-size: 24px;
         line-height: 29px;
       }
@@ -55,14 +55,14 @@
         align-items: center;
 
         .number {
-          @include sofia-pro-bold;
+          @include roboto-bold;
           font-size: 18px;
           line-height: 23px;
           color: $gray-darkest;
         }
 
         p:not(.number) {
-          @include sofia-pro-regular;
+          @include roboto-regular;
           font-size: 10px;
           line-height: 13px;
           text-transform: lowercase;
@@ -76,7 +76,7 @@
       }
 
       .back-link {
-        @include sofia-pro-medium;
+        @include roboto-medium;
         font-size: 12px;
         line-height: 14px;
         a {

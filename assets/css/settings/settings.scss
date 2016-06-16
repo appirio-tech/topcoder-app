@@ -23,7 +23,7 @@
 
     h1 {
       margin-bottom: 10px;
-      @include sofia-pro-bold;
+      @include roboto-bold;
       font-size: 22px;
       line-height: 26px;
       color: black;
@@ -82,7 +82,7 @@
     }
 
     a {
-      @include sofia-pro-medium;
+      @include roboto-medium;
       font-size: 18px;
       line-height: 24px;
       color: $accent-gray;
@@ -172,7 +172,7 @@
 
     h2 {
       text-transform: uppercase;
-      font-family: 'Sofia Pro';
+      font-family: 'Roboto';
       font-weight: 500;
       font-size: 16px;
     }
@@ -251,7 +251,7 @@
 
       span.error-message {
         color: #EF3A3A;
-        @include sofia-pro-regular;
+        @include roboto-regular;
         font-size: 10px;
         text-transform: uppercase;
       }
@@ -308,7 +308,7 @@
       }
 
       .field-label {
-        @include sofia-pro-regular;
+        @include roboto-regular;
         font-size: 12px;
         text-transform: uppercase;
       }
@@ -334,7 +334,7 @@
   }
   .links {
     .field-label {
-      @include sofia-pro-regular;
+      @include roboto-regular;
       font-size: 12px;
       text-transform: uppercase;
     }
@@ -367,7 +367,7 @@
   .tab-title {
     margin-bottom: 35px;
     font-size: 32px;
-    @include font-with-weight('Sofia Pro', 300);
+    @include font-with-weight('Roboto', 300);
     color: $ui-light-gray;
     @media only screen and (min-width: 768px) {
       margin-top: 50px;

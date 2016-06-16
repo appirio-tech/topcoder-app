@@ -36,7 +36,7 @@
   .checkbox {
     label {
       margin-left: 10px;
-      @include font-with-weight('Sofia Pro', 500);
+      @include font-with-weight('Roboto', 500);
       font-size: 16px;
       color: $gray-darkest;
       text-transform: uppercase;
@@ -127,7 +127,7 @@ modal {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    @include font-with-weight('Sofia Pro', 500);
+    @include font-with-weight('Roboto', 500);
     font-size: 24px;
     line-height: 30px;
   }
@@ -155,7 +155,7 @@ modal {
   .upload-progress__preparing,
   .upload-progress__finishing,
   .upload-progress__error {
-    @include font-with-weight('Sofia Pro', 500);
+    @include font-with-weight('Roboto', 500);
     font-size: 12px;
     line-height: 14px;
     color: $accent-gray-dark;

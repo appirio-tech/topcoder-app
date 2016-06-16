@@ -28,7 +28,7 @@ ios-card .challenge.tile-view {
     a.name {
       display: block;
       padding: 15px 20px 0px 20px;
-      @include sofia-pro-medium;
+      @include roboto-medium;
       font-size: 14px;
       line-height: 20px;
       color: $gray-darkest;
@@ -40,7 +40,7 @@ ios-card .challenge.tile-view {
     p.subtrack-color {
       padding: 0 20px;
       margin-top: 5px;
-      @include sofia-pro-medium;
+      @include roboto-medium;
       font-size: 12px;
       line-height: 14px;
       text-transform: uppercase;
@@ -62,7 +62,7 @@ ios-card .challenge.tile-view {
 
         p {
           color: $accent-gray;
-          @include sofia-pro-medium;
+          @include roboto-medium;
           font-size: 12px;
           line-height: 14px;
           text-transform: uppercase;
@@ -92,7 +92,7 @@ ios-card .challenge.tile-view {
 
     .currentPhase {
       margin-top: 40px;
-      @include sofia-pro-light;
+      @include roboto-light;
       font-size: 18px;
       line-height: 23px;
       text-transform: uppercase;
@@ -103,7 +103,7 @@ ios-card .challenge.tile-view {
   .prize-money {
     margin-top: 32px;
     margin-bottom: 10px;
-    @include font-with-weight('Sofia Pro', 300);
+    @include font-with-weight('Roboto', 300);
     font-size: 20px;
     line-height: 24px;
   }
@@ -127,7 +127,7 @@ ios-card .challenge.tile-view {
     background-image: url(../../images/ico-calendar.svg);
 
     > p {
-      @include sofia-pro-bold;
+      @include roboto-bold;
     }
 
     .starts-in {
@@ -157,7 +157,7 @@ ios-card .challenge.tile-view {
     margin-bottom: 12px;
     height: 36px;
     padding: 0px 20px 0px 20px;
-    @include sofia-pro-medium;
+    @include roboto-medium;
     font-size: 12px;
     line-height: 18px;
     text-transform: uppercase;

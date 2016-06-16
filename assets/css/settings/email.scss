@@ -46,7 +46,7 @@
               width: 32px;
             }
             span {
-              @include font-with-weight('Sofia Pro', 500);
+              @include font-with-weight('Roboto', 500);
               font-size: 16px;
             }
           }
@@ -57,7 +57,7 @@
         .title {
           font-size: 16px;
           line-height: 28px;
-          @include sofia-pro-medium;
+          @include roboto-medium;
           transition: .1s color;
           &.disabled {
             color: #b7b7b7;

@@ -10,7 +10,7 @@ design-challenge-user-place {
     align-items: center;
 
     .place {
-      @include sofia-pro-regular;
+      @include roboto-regular;
       font-size: 20px;
       color: $gray-darkest;
       text-transform: uppercase;
@@ -60,7 +60,7 @@ design-challenge-user-place {
 
         .num-images {
           margin-left: 8px;
-          @include sofia-pro-regular;
+          @include roboto-regular;
           font-size: 10px;
           color: $gray-lighter;
           text-transform: uppercase;
@@ -86,7 +86,7 @@ design-challenge-user-place {
       flex-direction: column;
 
       .place {
-        @include sofia-pro-light;
+        @include roboto-light;
         font-size: 18px;
         line-height: 23px;
         color: $gray-darkest;
@@ -104,7 +104,7 @@ design-challenge-user-place {
       }
 
       .date-completed {
-        @include sofia-pro-regular;
+        @include roboto-regular;
         font-size: 14px;
         line-height: 18px;
         text-transform: uppercase;
@@ -154,7 +154,7 @@ design-challenge-user-place {
 
         .num-images {
           margin-left: 8px;
-          @include sofia-pro-regular;
+          @include roboto-regular;
           font-size: 10px;
           color: $gray-lighter;
           text-transform: uppercase;

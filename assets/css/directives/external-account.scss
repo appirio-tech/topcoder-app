@@ -86,7 +86,7 @@
 
     .provider {
       margin-top: 8px;
-      @include sofia-pro-medium;
+      @include roboto-medium;
       font-size: 12px;
       line-height: 13px;
       text-align: center;
@@ -98,7 +98,7 @@
 
   .status {
     font-size: 10px;
-    @include sofia-pro-medium;
+    @include roboto-medium;
     margin-top: 10px;
     text-transform: uppercase;
     color: $gray-darkest;

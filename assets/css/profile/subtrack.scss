@@ -83,7 +83,7 @@
   //     height: 30px;
   //     // padding-top: 6px;
   //     text-align: center;
-  //     @include sofia-pro-medium;
+  //     @include roboto-medium;
   //     font-size: 18px;
   //     line-height: 24px;
   //     text-transform: uppercase;
@@ -137,7 +137,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      @include sofia-pro-regular;
+      @include roboto-regular;
 
       .value {
         font-weight: 700;
@@ -183,7 +183,7 @@
     h2.detailed {
       margin: 30px auto 0;
       text-align: center;
-      @include sofia-pro-medium;
+      @include roboto-medium;
       font-size: 18px;
       line-height: 21px;
       font-weight: bold;
@@ -193,7 +193,7 @@
       width: 90%;
       margin: 0 auto;
       li {
-        @include sofia-pro-regular;
+        @include roboto-regular;
         font-size: 15px;
         line-height: 18px;
         padding: 14px;
@@ -208,7 +208,7 @@
     }
 
     ul.divisions {
-      @include sofia-pro-regular;
+      @include roboto-regular;
 
       li.division {
         border-bottom: 1px solid #f0f0f0;
@@ -320,7 +320,7 @@
       }
       .no-challenges {
         margin: 30px;
-        @include sofia-pro-regular;
+        @include roboto-regular;
         font-size: 16px;
         color: #a3a3ae;
       }
@@ -396,7 +396,7 @@
       }
       h2.detailed {
         margin: 30px auto 0;
-        @include sofia-pro-regular;
+        @include roboto-regular;
         font-size: 24px;
         line-height: 30px;
       }
@@ -413,7 +413,7 @@
         li {
           width: 28%;
           margin: 0 15px;
-          @include sofia-pro-regular;
+          @include roboto-regular;
           font-size: 15px;
           line-height: 18px;
           padding: 14px;

@@ -21,7 +21,7 @@
   font-size: 13px;
   line-height: 20px;
   h1 {
-    @include sofia-pro-medium;
+    @include roboto-medium;
     color: $gray-darkest;
     font-size: 16px;
     line-height: 24px;
@@ -51,7 +51,7 @@
 }
 
 .introjs-helperNumberLayer {
-  @include sofia-pro-medium;
+  @include roboto-medium;
   background: $primary;
   border: 3px solid $white;
   box-shadow: 0 1px 4px 0 rgba(0,0,0,.20);
@@ -76,7 +76,7 @@
   border: 1px solid $primary;
   background-color: $primary;
   background-image : none;
-  @include font-with-weight('Sofia Pro', 500);
+  @include font-with-weight('Roboto', 500);
   font-size: 12px;
   font-style: normal;
   color: $white;

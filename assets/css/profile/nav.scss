@@ -146,7 +146,7 @@
   padding-right: 8%;
   .nav-top {
     margin-top: 60px;
-    font-family: 'Sofia Pro';
+    font-family: 'Roboto';
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -205,7 +205,7 @@
       .name {
         span {
         }
-        @include sofia-pro-medium;
+        @include roboto-medium;
         font-size: 20px;
         @media screen and (min-width: 768px) {
           font-size: 24px;
@@ -247,7 +247,7 @@
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
-          @include sofia-pro-medium;
+          @include roboto-medium;
           font-size: 14px;
           @media screen and (min-width: 768px) {
             font-size: 16px;
@@ -267,7 +267,7 @@
           color: #7f7f7f;
           .number {
             text-align: right;
-            @include sofia-pro-semi-bold;
+            @include roboto-semi-bold;
             font-size: 13.4px;
             @media screen and (min-width: 768px) {
               font-size: 18px;
@@ -283,7 +283,7 @@
           .tag {
             text-transform: uppercase;
             margin: 10px auto 0px auto;
-            @include sofia-pro-medium;
+            @include roboto-medium;
             font-size: 8.4px;
             @media screen and (min-width: 768px) {
               font-size: 10px;

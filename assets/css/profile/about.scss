@@ -173,7 +173,7 @@
   .activity {
     font-size: 18px;
     line-height: 21px;
-    @include sofia-pro-medium;
+    @include roboto-medium;
     text-transform: uppercase;
     margin-top: 20px;
   }
@@ -206,7 +206,7 @@
         font-size: 20px;
         line-height: 24px;
         margin-bottom: 10.6px;
-        @include sofia-pro-extra-light;
+        @include roboto-extra-light;
       }
 
       img {
@@ -250,7 +250,7 @@
           flex-direction: row;
           justify-content: flex-start;
           margin-top: 12px;
-          @include sofia-pro-light;
+          @include roboto-light;
 
           span {
           }
@@ -264,7 +264,7 @@
           display: flex;
           flex-direction: column;
           align-items: flex-end;
-          @include sofia-pro-medium;
+          @include roboto-medium;
 
           .number {
             text-align: center;
@@ -282,7 +282,7 @@
           .tag {
             text-transform: uppercase;
             margin: 5px auto 0px auto;
-            @include sofia-pro-regular;
+            @include roboto-regular;
             font-size: 12px;
             line-height: 10px;
             color: #7f7f7f;
@@ -290,7 +290,7 @@
         }
 
         .arrow {
-          @include sofia-pro-extra-light;
+          @include roboto-extra-light;
           color: $accent-gray;
           height: 12px;
           display: flex;
@@ -417,7 +417,7 @@
       .activity {
         font-size: 28px;
         line-height: 34px;
-        @include sofia-pro-bold;
+        @include roboto-bold;
         text-transform: uppercase;
       }
 
@@ -438,7 +438,7 @@
           line-height: 30px;
           margin-bottom: 30px;
           margin-top: 0px;
-          @include sofia-pro-medium;
+          @include roboto-medium;
         }
 
         .subtrack {

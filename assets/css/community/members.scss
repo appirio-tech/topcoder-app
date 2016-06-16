@@ -16,7 +16,7 @@
     padding: 10px;
     margin-bottom: 6px;
     h2 {
-      @include font-with-weight('Sofia Pro', 500);
+      @include font-with-weight('Roboto', 500);
       font-size: 18px;
       text-transform: uppercase;
       text-align: center;
@@ -46,7 +46,7 @@
     padding: 10px;
     margin-bottom: 6px;
     height: 70px;
-    font-family: "Sofia Pro",Arial,Helvetica,sans-serif;
+    font-family: "Roboto",Arial,Helvetica,sans-serif;
 
     .stat {
       float: left;
@@ -90,7 +90,7 @@
 
     input[type="text"] {
       @include module-full-width;
-      @include font-with-weight('Sofia Pro', 300);
+      @include font-with-weight('Roboto', 300);
       font-size: 14px;
       border-width: 0;
       background: transparent;
@@ -123,7 +123,7 @@
   }
 
   h2 {
-    @include font-with-weight('Sofia Pro', 500);
+    @include font-with-weight('Roboto', 500);
     font-size: 20px;
     text-transform: uppercase;
     text-align: center;
@@ -188,7 +188,7 @@
       overflow: hidden;
     }
     .user-country {
-      @include font-with-weight('Sofia Pro', 300);
+      @include font-with-weight('Roboto', 300);
     }
     .user-tag,
     .user-country,
@@ -460,7 +460,7 @@
       }
     }
     .user-more {
-      @include font-with-weight('Sofia Pro', 300);
+      @include font-with-weight('Roboto', 300);
       display: none;
       text-transform: capitalize;
       position: absolute;
@@ -515,7 +515,7 @@
       display: none;
     }
     label {
-      @include font-with-weight('Sofia Pro', 300);
+      @include font-with-weight('Roboto', 300);
       font-size: 11px;
       text-transform: uppercase;
       padding-left: 20px;
