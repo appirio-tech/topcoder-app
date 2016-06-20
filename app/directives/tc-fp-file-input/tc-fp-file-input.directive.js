@@ -54,12 +54,19 @@ import _ from 'lodash'
           scope.onSuccess(event.originalEvent || event)
           $rootScope.$apply()
         })
-        element = element.length ? element[0] : element
-        for (key in attrs.$attr) {
-          value = attrs.$attr[key]
-          element.setAttribute(value, attrs[key])
-        }
-        filepickerService.constructWidget(element)
+
+        var input = element.find('input')
+        input = input.length ? input[0] : input
+        input.setAttribute('data-fp-maxSize', scope.maxSize)
+        input.setAttribute('data-fp-services', scope.fpServices)
+        input.setAttribute('data-fp-button-class', 'tc-btn')
+        input.setAttribute('data-fp-multiple', false)
+        input.setAttribute('data-fp-extensions', scope.extensions)
+        input.setAttribute('data-fp-store-location', 's3')
+        input.setAttribute('data-fp-store-container', scope.fpContainer)
+        input.setAttribute('data-fp-store-path', scope.filePath)
+        
+        filepickerService.constructWidget(input)
 
         scope.onSuccess = function(event) {
           var fpFile = event.fpfile
