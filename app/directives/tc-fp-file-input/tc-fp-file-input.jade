@@ -6,9 +6,11 @@
   .tc-label__wrapper
     span.tc-label__asterisk.lowercase(ng-if="mandatory") #[span *]mandatory
     input.tc-file-field__input(
+      filepicker
       type="filepicker-dragdrop",
       data-fp-maxSize="{{maxSize}}",
       data-fp-button-class="tc-btn",
+      data-fp-drag-class="tc-fp-file-drag-drop"
       data-fp-services="{{fpServices}}",
       data-fp-multiple="false",
       data-fp-extensions="{{extensions}}",
