@@ -60,6 +60,7 @@ import _ from 'lodash'
         input.setAttribute('data-fp-maxSize', scope.maxSize)
         input.setAttribute('data-fp-services', scope.fpServices)
         input.setAttribute('data-fp-button-class', 'tc-btn')
+        input.setAttribute('data-fp-drag-class', 'tc-fp-file-drag-drop')
         input.setAttribute('data-fp-multiple', false)
         input.setAttribute('data-fp-extensions', scope.extensions)
         input.setAttribute('data-fp-store-location', 's3')
