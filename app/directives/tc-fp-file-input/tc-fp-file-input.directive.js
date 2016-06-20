@@ -45,10 +45,9 @@ import _ from 'lodash'
         // set max size
         scope.maxSize = 500 * 1024 * 1024
 
-        var key, value
-          /*
-           *pass original event
-           */
+        /*
+         *pass original event
+         */
         element.bind('change', function(event) {
           event.preventDefault()
           scope.onSuccess(event.originalEvent || event)
@@ -66,7 +65,7 @@ import _ from 'lodash'
         input.setAttribute('data-fp-store-location', 's3')
         input.setAttribute('data-fp-store-container', scope.fpContainer)
         input.setAttribute('data-fp-store-path', scope.filePath)
-        
+
         filepickerService.constructWidget(input)
 
         scope.onSuccess = function(event) {
