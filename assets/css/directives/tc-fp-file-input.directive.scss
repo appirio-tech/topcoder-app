@@ -1,11 +1,60 @@
 @import 'topcoder/tc-includes';
 
 tc-fp-file-input {
+
+  .tc-file-field__label {
+    width: 240px;
+  }
+
+  .tc-file-field__inputs {
+    width: 240px;
+    div {
+      width: 240px;
+    }
+  }
+
+  .tc-file-field__input {
+    height: 190px;
+    width: 240px;
+  }
+
+  .tc-file-field__input::after {
+    content: 'or';
+    font-size: 12px;
+    line-height: 15px;
+    color: $tc-gray-30;
+    bottom: 85px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%)
+  }
+
   .tc-btn {
     margin-bottom: 5px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    z-index: 1;
   }
 
   .tc-fp-file-drag-drop {
     width: calc(100% - 4px);
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 190px;
+    width: 240px;
+  }
+
+  .tc-fp-file-drag-drop::after {
+    content: 'Drag and drop your .zip file here';
+    color: $tc-gray-50;
+    top: 25px;
+    position: absolute;
+    width: 198px;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%)
   }
 }
