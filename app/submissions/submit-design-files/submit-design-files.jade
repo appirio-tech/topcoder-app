@@ -26,68 +26,71 @@
           a(ng-href="https://help.{{DOMAIN}}/hc/en-us/articles/219122667-Formatting-Your-Submission-for-Design-Challenges") Learn more about formatting your submission file
 
       .form-block__fields
-        .fieldset
-          tc-fp-file-input(
-            label-text="Submission",
-            field-id="SUBMISSION_ZIP",
-            file-type="zip",
-            button-text="Add File",
-            services="COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX",
-            show-file-type="true",
-            placeholder="Attach all visible files as a single .zip file",
-            mandatory="true",
-            ng-model="vm.submissionForm.submissionZip",
-            set-file-reference="vm.setFileReference(file, fieldId)"
-          )
-          
-          .tc-error-messages(
-            ng-show="submissionForm['SUBMISSION_ZIP'].$touched && submissionForm['SUBMISSION_ZIP'].$invalid",
-            ng-messages="submissionForm['SUBMISSION_ZIP'].$error"
-          )
-            p(ng-message="filesize") File size may not exceed 500MB.
+        .fieldset.files
+          .upload
+            .file-picker
+              tc-fp-file-input(
+                label-text="Submission",
+                field-id="SUBMISSION_ZIP",
+                file-type="zip",
+                button-text="Add File",
+                services="COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX",
+                show-file-type="true",
+                placeholder="Attach all visible files as a single .zip file",
+                mandatory="true",
+                ng-model="vm.submissionForm.submissionZip",
+                set-file-reference="vm.setFileReference(file, fieldId)"
+              )
+              
+              .tc-error-messages(
+                ng-show="submissionForm['SUBMISSION_ZIP'].$touched && submissionForm['SUBMISSION_ZIP'].$invalid",
+                ng-messages="submissionForm['SUBMISSION_ZIP'].$error"
+              )
+                p(ng-message="filesize") File size may not exceed 500MB.
 
-            p(ng-message="required") This is not the correct file format. Please select a .zip file.
+                p(ng-message="required") This is not the correct file format. Please select a .zip file.
 
-          tc-fp-file-input.tc-file-field(
-            label-text="Source",
-            field-id="SOURCE_ZIP",
-            file-type="zip",
-            button-text="Add File",
-            services="COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX",
-            show-file-type="true",
-            placeholder="Attach all visible files as a single .zip file",
-            mandatory="true",
-            set-file-reference="vm.setFileReference(file, fieldId)",
-            ng-model="vm.submissionForm.sourceZip"
-          )
-          
-          .tc-error-messages(
-            ng-show="submissionForm['SOURCE_ZIP'].$touched && submissionForm['SOURCE_ZIP'].$invalid",
-            ng-messages="submissionForm['SOURCE_ZIP'].$error"
-          )
-            p(ng-message="filesize") File size may not exceed 500MB.
+            .file-picker
+              tc-fp-file-input.tc-file-field(
+                label-text="Source",
+                field-id="SOURCE_ZIP",
+                file-type="zip",
+                button-text="Add File",
+                services="COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX",
+                show-file-type="true",
+                placeholder="Attach all visible files as a single .zip file",
+                mandatory="true",
+                set-file-reference="vm.setFileReference(file, fieldId)",
+                ng-model="vm.submissionForm.sourceZip"
+              )
+              
+              .tc-error-messages(
+                ng-show="submissionForm['SOURCE_ZIP'].$touched && submissionForm['SOURCE_ZIP'].$invalid",
+                ng-messages="submissionForm['SOURCE_ZIP'].$error"
+              )
+                p(ng-message="filesize") File size may not exceed 500MB.
 
-            p(ng-message="required") This is not the correct file format. Please select a .zip file.
+                p(ng-message="required") This is not the correct file format. Please select a .zip file.
+            .file-picker
+              tc-fp-file-input.tc-file-field(
+                label-text="Preview Image",
+                field-id="DESIGN_COVER",
+                file-type=".jpg,.jpeg,.png",
+                button-text="Add File",
+                services="COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX",
+                placeholder="Image file as .jpg or .png",
+                mandatory="true",
+                set-file-reference="vm.setFileReference(file, fieldId)",
+                ng-model="vm.submissionForm.designCover"
+              )
 
-          tc-fp-file-input.tc-file-field(
-            label-text="Preview Image",
-            field-id="DESIGN_COVER",
-            file-type=".jpg,.jpeg,.png",
-            button-text="Add File",
-            services="COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX",
-            placeholder="Image file as .jpg or .png",
-            mandatory="true",
-            set-file-reference="vm.setFileReference(file, fieldId)",
-            ng-model="vm.submissionForm.designCover"
-          )
+              .tc-error-messages(
+                ng-show="submissionForm['DESIGN_COVER'].$touched && submissionForm['DESIGN_COVER'].$invalid",
+                ng-messages="submissionForm['DESIGN_COVER'].$error"
+              )
+                p(ng-message="filesize") File size may not exceed 500MB.
 
-          .tc-error-messages(
-            ng-show="submissionForm['DESIGN_COVER'].$touched && submissionForm['DESIGN_COVER'].$invalid",
-            ng-messages="submissionForm['DESIGN_COVER'].$error"
-          )
-            p(ng-message="filesize") File size may not exceed 500MB.
-
-            p(ng-message="required") This is not the correct file format. Please select a .jpg or .png file.
+                p(ng-message="required") This is not the correct file format. Please select a .jpg or .png file.
 
           tc-input.fieldset__input.submitterRank(
             label-text="Rank #",

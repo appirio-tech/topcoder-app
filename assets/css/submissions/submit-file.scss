@@ -52,7 +52,8 @@
   max-width: 500px;
 }
 
-tc-file-input {
+tc-file-input,
+tc-fp-file-input {
   .tc-file-field__label, .tc-file-field__inputs {
     margin: 0 auto;
     @media screen and (min-width: 1000px) {
@@ -69,6 +70,19 @@ tc-file-input {
   }
 }
 
+.files {
+  width: 100%;
+}
+
+.upload {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  @media screen and (min-width: 1000px) {
+    justify-content: space-between;
+  }
+}
 
 .submitterRank {
   width: 100px;
