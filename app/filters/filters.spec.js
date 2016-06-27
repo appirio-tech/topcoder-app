@@ -95,8 +95,8 @@ describe('filters', function() {
         rounds: [{id: 3,forumId: 2}],
         track: 'DATA_SCIENCE',
         subTrack : 'MARATHON_MATCH',
-        componentId: [4],
-        problemId: [5],
+        componentId: 4,
+        problemId: 5,
         status: 'PAST'
       }
       expect(challengeLinksFilter(_ch, 'submit')).to.be.equal('https://community.'+domain+'/longcontest/?module=Submit&compid=4&rd=3&cd=1')
@@ -111,8 +111,8 @@ describe('filters', function() {
         rounds: [{id: 3,forumId: 2}],
         track: 'DATA_SCIENCE',
         subTrack : 'MARATHON_MATCH',
-        componentId: [4],
-        problemId: [5],
+        componentId: 4,
+        problemId: 5,
         status: 'ACTIVE'
       }
       expect(challengeLinksFilter(_ch, 'submit')).to.be.equal('https://community.'+domain+'/longcontest/?module=Submit&compid=4&rd=3&cd=1')
