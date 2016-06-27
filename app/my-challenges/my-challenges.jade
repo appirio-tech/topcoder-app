@@ -31,5 +31,5 @@
               ng-repeat="challenge in vm.myChallenges | orderBy:vm.orderBy:true", 
               challenge="challenge", view="vm.view", ng-class="vm.view + '-view'")
 
-          tc-section.load-more(state="vm.loading")
+          tc-section.load-more-section(state="vm.loading")
               button.tc-btn(ng-show="vm.totalCount > vm.myChallenges.length", ng-click="vm.loadMore()") Load More
