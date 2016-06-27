@@ -7,6 +7,18 @@
 
   //- .ttl
   //-   tc-banner(theme="black", banner-name="ttl")
+  .one-million
+    tc-banner(theme="black", banner-name="1million")
+      .social-sharing
+        span #TC1MILLION on
+        //- hardcoded domain because we need the links to be shared only for prod
+        //- and after some time we would remove this banner
+        a.twitter(href="//twitter.com/home?status=Topcoder%20has%20reached%20an%20epic%20milestone%20and%20is%20now%20over%201%20Million%20Strong!%20https%3A//www.topcoder.com/blog/1-million-members-strong/%20%23TC1MILLION")
+          img(src="//topcoder.com/wp-content/uploads/2016/05/btn-social-twitter.png")
+
+        a.facebook(href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]=https://www.topcoder.com/blog/1-million-members-strong/&p[images][0]=https://www.topcoder.com/wp-content/uploads/2016/05/Blog_banner_1mil.png&p[title]=1 Million Members Strong&p[summary]=1+Million+Members+Strong%0A")
+          img(src="//topcoder.com/wp-content/uploads/2016/05/btn-social-fb.png")
+
 
   .tco
     tc-banner(theme="black", banner-name="tco16")

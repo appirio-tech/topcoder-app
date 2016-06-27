@@ -15,12 +15,11 @@
     background: url(../../images/badge.grid.large.png);
     margin-bottom: 2px;
     margin-top: 2px;
-    margin-left: 25px;
+    margin-left: 12px;
+    margin-right: 12px;
     float: left;
 }
-.singleBadge.leftMost {
-    margin-left: 0px;
-}
+
 
 .subBadge {
     height: 48px;
@@ -436,6 +435,9 @@
 .TopCoder-Spirit { background-position: -144px -336px; }
 .TopCoder-Mentor { background-position: -192px -336px; }
 
+.Crowd-for-Good {
+  background-position: 0px -672px;
+}
 .Wireframe {
     width: 31px;
     background-position: 0px -1009px !important;

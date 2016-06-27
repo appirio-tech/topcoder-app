@@ -1,4 +1,5 @@
 import angular from 'angular'
+import { getCurrentUser, loadUser } from './services/userv3.service.js'
 
 (function() {
   'use strict'
@@ -38,21 +39,43 @@ import angular from 'angular'
 
   angular.module('topcoder', dependencies).run(appRun)
 
-  appRun.$inject = ['$rootScope', '$state', 'TcAuthService', '$cookies', 'Helpers', 'logger']
+  appRun.$inject = ['$rootScope', '$state', '$urlRouter', 'TcAuthService', 'CONSTANTS', '$window', '$cookies', 'Helpers', 'logger']
 
-  function appRun($rootScope, $state, TcAuthService, $cookies, Helpers, logger) {
+  function appRun($rootScope, $state, $urlRouter, TcAuthService, CONSTANTS, $window, $cookies, Helpers, logger) {
     // Attaching $state to the $rootScope allows us to access the
     // current state in index.html (see the body tag)
     $rootScope.$state = $state
 
     // check AuthNAuth on change state start
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-      if (toState.data.authRequired && !TcAuthService.isAuthenticated()) {
-        logger.debug('State requires authentication, and user is not logged in, redirecting')
-        // setup redirect for post login
+      logger.debug('checking auth for state: ' + toState.name + ' from state: ' + fromState.name)
+      if (!toState.data || !toState.data.authRequired) {
+        return true
+      }
+      var currentUser = getCurrentUser()
+      if (!currentUser) {
         event.preventDefault()
-        var next = $state.href(toState.name, toParams, {absolute: false})
-        $state.go('login', {next: next})
+        loadUser().then(function(token) {
+          logger.debug('successful login with token ' + JSON.stringify(token))
+          $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_IN)
+          logger.debug('Going to state: ' + toState.name)
+          $state.go(toState.name, toParams, {notify: false})
+          $urlRouter.sync()
+        }, function() {
+          if (toState.data && toState.data.authRequired) {
+            logger.debug('State requires authentication, and user is not logged in, redirecting')
+            // setup redirect for post login
+            event.preventDefault()
+            var next = $state.href(toState.name, toParams, {absolute: true})
+            var retUrl = next
+            $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(retUrl)
+          } else { // should never land in this block
+            logger.debug('Going to state: ' + toState.name)
+            $state.go(toState.name, toParams, {notify: false})
+            $urlRouter.sync()
+          }
+        })
+        return false
       }
     })
 

@@ -18,6 +18,8 @@ html
       })(document);
 
     include ../assets/scripts/google.analytics.jade
+    include ../assets/scripts/zendesk-widget.jade
+    include ../assets/scripts/raven-js.jade
 
     if htmlWebpackPlugin.options.NEW_RELIC_APPLICATION_ID
       include ../assets/scripts/newrelic.analytics.jade
@@ -35,3 +37,5 @@ html
       .fold-pusher
 
     div(ui-view="footer")
+
+    #chart-tooltip

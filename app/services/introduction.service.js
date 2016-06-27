@@ -40,6 +40,7 @@ import _ from 'lodash'
         var currentPage = $state.current.name
         var handleInParams = $stateParams.userHandle ? $stateParams.userHandle.toLowerCase() : null
         var userIntroJSStats = store.get(userId)
+        userIntroJSStats = userIntroJSStats ? userIntroJSStats : {}
 
         if (!userIntroJSStats.dashboardIntroComplete && _.includes(currentPage, 'dashboard')) {
           userIntroJSStats.dashboardIntroComplete = true

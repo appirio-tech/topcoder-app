@@ -25,6 +25,7 @@ require('xml2js')
 
 require('appirio-tech-ng-ui-components')
 require('appirio-tech-ng-iso-constants')
+require('appirio-tech-react-components')
 
 // Vendor styles
 require('../node_modules/angucomplete-alt/angucomplete-alt.css')
@@ -41,7 +42,7 @@ require('../node_modules/font-awesome/fonts/fontawesome-webfont.woff')
 require('../node_modules/font-awesome/fonts/fontawesome-webfont.woff2')
 require('../node_modules/font-awesome/css/font-awesome.css')
 
-// Require non-npm scripts
+// Require non-npm scripts, e.g. kissmetrics, munchkin (analytics via jade are included in index.html)
 requireContextFiles(require.context('../assets/scripts/', true, /^(.*\.(js$))[^.]*$/igm))
 
 // Require Angular modules first
@@ -117,14 +118,10 @@ require('../assets/css/directives/challenge-tile.scss')
 require('../assets/css/directives/challenge-links.directive.scss')
 require('../assets/css/directives/badge-tooltip.scss')
 require('../assets/css/directives/tc-banner.scss')
+require('../assets/css/directives/tc-fp-file-input.directive.scss')
 require('../assets/css/community/statistics.scss')
 require('../assets/css/community/members.scss')
 require('../assets/css/community/community.scss')
-require('../assets/css/account/reset-password.scss')
-require('../assets/css/account/registered-successfully.scss')
-require('../assets/css/account/register.scss')
-require('../assets/css/account/login.scss')
-require('../assets/css/account/account.scss')
 
 function requireContextFiles(files) {
   const paths = files.keys()
