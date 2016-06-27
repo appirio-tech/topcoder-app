@@ -15,9 +15,9 @@ import _ from 'lodash'
           domain: CONSTANTS.domain,
           roundId: challenge.rounds[0].id,
           forumId: challenge.rounds[0].forumId,
-          componentId: _.get(challenge, 'componentId[0]', ''),
+          componentId: _.get(challenge, 'componentId', ''),
           challengeId: challenge.id,
-          problemId: _.get(challenge, 'problemId[0]', '')
+          problemId: _.get(challenge, 'problemId', '')
         }
         switch (type) {
         case 'forums':
