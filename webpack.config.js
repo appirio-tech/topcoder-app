@@ -16,9 +16,14 @@ if (CI === 'master') {
   process.env.NODE_ENV = 'development'
 }
 
-
-process.env.CONNECTOR_URL = `https://accounts.${process.env.DOMAIN}/connector.html`
-process.env.ACCOUNTS_APP_URL = `https://accounts.${process.env.DOMAIN}/tc`
+var accountsAppURL = null
+if (process.env.ACCOUNTS_APP_URL) {
+  accountsAppURL = process.env.ACCOUNTS_APP_URL
+}
+var accountsConnectorURL = null
+if (process.env.ACCOUNTS_APP_CONNECTOR_URL) {
+  accountsConnectorURL = process.env.ACCOUNTS_APP_CONNECTOR_URL
+}
 
 const config = require('appirio-tech-webpack-config')({
   dirname: __dirname,
@@ -33,5 +38,12 @@ const config = require('appirio-tech-webpack-config')({
 })
 
 if (CI) config.output.publicPath = process.env.ASSET_PREFIX
+
+if (accountsAppURL) {
+  process.env.ACCOUNTS_APP_URL = accountsAppURL
+}
+if (accountsConnectorURL) {
+  process.env.ACCOUNTS_APP_CONNECTOR_URL = accountsConnectorURL
+}
 
 module.exports = config
