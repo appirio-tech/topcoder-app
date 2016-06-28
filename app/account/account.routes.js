@@ -17,6 +17,7 @@ import angular from 'angular'
         }
       },
       'login': {
+        parent: 'auth',
         url: '/login/?next&code&state&status&userJWTToken&utm_source&utm_medium&utm_campaign',
         views: {
           'header@': {},
@@ -37,7 +38,37 @@ import angular from 'angular'
         ]
 
       },
+      'register': {
+        url: '/register/?next&utm_source&utm_medium&utm_campaign',
+        parent: 'auth',
+        views: {
+          'header@': {},
+          'container@': {},
+          'footer@': {}
+        },
+        data: {
+          title: 'Join',
+          authRequired: false
+        },
+        onEnter: ['$state', '$window', '$stateParams', 'logger',
+          function($state, $window,  $stateParams, logger) {
+            var next = $state.href('dashboard', {}, {absolute: true})
+            if ($stateParams.next) {
+              next = decodeURIComponent($stateParams.next)
+            }
+            var queryStr = '?retUrl=' + encodeURIComponent(next)
+            for(var param in $stateParams) {
+              if ($stateParams[param]) {
+                queryStr += ('&' + param + '=' + encodeURIComponent($stateParams[param]))
+              }
+            }
+            $window.location = CONSTANTS.ACCOUNTS_APP_URL + '/registration' + queryStr
+          }
+        ]
+
+      },
       logout: {
+        parent: 'auth',
         url: '/logout/',
         views: {
           'header@': {},
