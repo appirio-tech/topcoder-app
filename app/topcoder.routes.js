@@ -28,7 +28,7 @@ import moment from 'moment'
       if (path.indexOf('?') > -1) {
         return path.replace('?', '/?')
       }
-      $location.replace().path(path + '/');
+      $location.replace().path(path + '/')
     })
 
     var states = {
