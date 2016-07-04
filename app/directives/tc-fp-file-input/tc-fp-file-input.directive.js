@@ -31,11 +31,13 @@ import _ from 'lodash'
         if (scope.fieldId.indexOf('ZIP') > -1) {
           scope.filePath += _.join([userId, scope.fieldId, (new Date()).valueOf()], '-') + '.zip'
         }
+        var dragAreaClasses = 'tc-fp-file-drag-drop'
         // set extensions
         if (scope.fieldId.indexOf('ZIP') > -1) {
           scope.extensions = '.zip'
         } else if (scope.fieldId.indexOf('DESIGN_COVER') > -1) {
           scope.extensions = '.png,.jpeg,.jpg,.bmp'
+          dragAreaClasses += ' tc-fp-file-drag-drop-image'
         }
 
         // set default services
@@ -59,7 +61,7 @@ import _ from 'lodash'
         input.setAttribute('data-fp-maxSize', scope.maxSize)
         input.setAttribute('data-fp-services', scope.fpServices)
         input.setAttribute('data-fp-button-class', 'tc-btn')
-        input.setAttribute('data-fp-drag-class', 'tc-fp-file-drag-drop')
+        input.setAttribute('data-fp-drag-class', dragAreaClasses)
         input.setAttribute('data-fp-multiple', false)
         input.setAttribute('data-fp-extensions', scope.extensions)
         input.setAttribute('data-fp-store-location', 's3')
