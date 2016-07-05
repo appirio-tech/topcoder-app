@@ -23,7 +23,7 @@ import angular from 'angular'
     function startSubmission(body, progressCallback) {
       return api.all('submissions').customPOST(body)
       .then(function(response) {
-        //progressCallback.call(progressCallback, 'PREPARE', 100)
+        progressCallback.call(progressCallback, 'PREPARE', 100)
         // uploadSubmissionFileToS3(response, response.data.files, files, progressCallback)
         processSubmission(response, progressCallback)
       })
