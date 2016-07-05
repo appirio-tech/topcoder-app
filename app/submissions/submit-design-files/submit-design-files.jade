@@ -10,7 +10,7 @@
 
 .panel-body
   p.tc-error-messages.submissions-access-error(ng-if="submissions.error", ng-bind="submissions.errorMessage")
-  //- <pre>{{vm.submissionForm}}</pre>
+  
   form.form-blocks(ng-if="!submissions.error", name="submissionForm", role="form", ng-submit="submissionForm.$valid && vm.uploadSubmission()", novalidate)
     .form-block.flex
       .form-block__instructions
@@ -155,7 +155,7 @@
         input(type="checkbox", ng-model="vm.submissionForm.hasAgreedToTerms", id="agree-to-terms", required)
 
         label(for="agree-to-terms") I understand and agree
-
+      
       button.tc-btn.tc-btn-secondary(type="submit", ng-disabled="submissionForm.$invalid") Submit
 
 modal.transition(show="vm.showProgress", background-click-close="false", style="background-color:white;")

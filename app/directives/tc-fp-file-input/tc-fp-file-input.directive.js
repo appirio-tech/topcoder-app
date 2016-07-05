@@ -51,6 +51,7 @@ import _ from 'lodash'
          *pass original event
          */
         element.bind('change', function(event) {
+          scope.$parent.submissionForm[scope.fieldId].$setTouched()
           event.preventDefault()
           scope.onSuccess(event.originalEvent || event)
           $rootScope.$apply()
