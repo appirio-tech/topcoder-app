@@ -76,7 +76,9 @@ import _ from 'lodash'
     }
 
     function setFileReference(file, fieldId) {
-      var fileObject = null
+      var fileObject = {
+        type: fieldId
+      }
       if (file) {
         fileObject = {
           name: file.name,
@@ -93,8 +95,8 @@ import _ from 'lodash'
       var isFound = vm.submissionsBody.data.files.reduce(function(isFound, file, i, filesArray) {
         if (isFound) { return true }
 
-        if (file && file.type === fieldId) {
-          // when file is removed, it would set correspding file as null
+        // when file is removed, fileObject would have only type field
+        if (file.type === fieldId) {
           filesArray[i] = fileObject
           return true
         }
@@ -103,7 +105,7 @@ import _ from 'lodash'
       }, false)
 
       // Add new files to the list
-      if (!isFound && fileObject) {
+      if (!isFound) {
         vm.submissionsBody.data.files.push(fileObject)
       }
     }
