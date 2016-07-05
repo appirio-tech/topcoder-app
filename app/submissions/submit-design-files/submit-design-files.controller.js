@@ -12,7 +12,6 @@ import _ from 'lodash'
     if (!challengeToSubmitTo.challenge) { return }
 
     var vm = this
-    var fileUploadProgress = {}
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/)
     vm.rankRegEx = new RegExp(/^[1-9]\d*$/)
     vm.comments = ''
@@ -112,7 +111,6 @@ import _ from 'lodash'
     function uploadSubmission() {
       vm.errorInUpload = false
       vm.uploadProgress = 0
-      vm.fileUploadProgress = {}
       vm.showProgress = true
       vm.preparing = true
       vm.finishing = false
