@@ -168,12 +168,14 @@ modal {
 
   .upload-progress__preparing,
   .upload-progress__finishing,
+  .upload-progress__finished,
   .upload-progress__error {
     @include font-with-weight('Sofia Pro', 500);
     font-size: 12px;
     line-height: 14px;
     color: $accent-gray-dark;
     text-align: center;
+    margin-top: 40px;
   }
 
   .upload-progress__error {
