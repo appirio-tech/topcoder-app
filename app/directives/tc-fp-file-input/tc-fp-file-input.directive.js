@@ -72,18 +72,28 @@ import _ from 'lodash'
 
         scope.onSuccess = function(event) {
           var fpFile = event.fpfile
-          var _file = {
-            name: scope.filename || fpFile.filename,
-            container: fpFile.container || scope.fpContainer,
-            path: fpFile.key,
-            size: fpFile.size,
-            mimetype: fpFile.mimetype
+          if (fpFile) {
+            element.addClass('file-uploaded')
+            var _file = {
+              name: scope.filename || fpFile.filename,
+              container: fpFile.container || scope.fpContainer,
+              path: fpFile.key,
+              size: fpFile.size,
+              mimetype: fpFile.mimetype
+            }
+            scope.ngModel = _file
+            scope.setFileReference({
+              file: _file,
+              fieldId: scope.fieldId
+            })
+          } else {
+            element.removeClass('file-uploaded')
+            scope.ngModel = null
+            scope.setFileReference({
+              file: null,
+              fieldId: scope.fieldId
+            })
           }
-          scope.ngModel = _file
-          scope.setFileReference({
-            file: _file,
-            fieldId: scope.fieldId
-          })
         }
       }
     }

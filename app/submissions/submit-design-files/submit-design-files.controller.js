@@ -17,9 +17,9 @@ import _ from 'lodash'
     vm.rankRegEx = new RegExp(/^[1-9]\d*$/)
     vm.comments = ''
     vm.uploadProgress = 0
-    vm.uploading = false
     vm.preparing = false
     vm.finishing = false
+    vm.finished = false
     vm.showProgress = false
     vm.errorInUpload = false
     vm.formFonts = {}
@@ -77,21 +77,25 @@ import _ from 'lodash'
     }
 
     function setFileReference(file, fieldId) {
-      var fileObject = {
-        name: file.name,
-        type: fieldId,
-        status: 'STAGED',
-        stagedFileContainer: file.container,
-        stagedFilePath: file.path,
-        size: file.size,
-        mediaType: file.mimetype
+      var fileObject = null
+      if (file) {
+        fileObject = {
+          name: file.name,
+          type: fieldId,
+          status: 'STAGED',
+          stagedFileContainer: file.container,
+          stagedFilePath: file.path,
+          size: file.size,
+          mediaType: file.mimetype
+        }
       }
 
       // If user changes a file input's file, update the file details
       var isFound = vm.submissionsBody.data.files.reduce(function(isFound, file, i, filesArray) {
         if (isFound) { return true }
 
-        if (file.type === fileObject.type) {
+        if (file && file.type === fieldId) {
+          // when file is removed, it would set correspding file as null
           filesArray[i] = fileObject
           return true
         }
@@ -100,7 +104,7 @@ import _ from 'lodash'
       }, false)
 
       // Add new files to the list
-      if (!isFound) {
+      if (!isFound && fileObject) {
         vm.submissionsBody.data.files.push(fileObject)
       }
     }
@@ -111,8 +115,8 @@ import _ from 'lodash'
       vm.fileUploadProgress = {}
       vm.showProgress = true
       vm.preparing = true
-      vm.uploading = false
       vm.finishing = false
+      vm.finished = false
       vm.submissionsBody.data.submitterComments = vm.comments
       vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank
 
@@ -164,41 +168,16 @@ import _ from 'lodash'
         // we are concerned only for completion of the phase
         if (args === 100) {
           vm.preparing = false
-          vm.uploading = true
-          logger.debug('Prepared for upload.')
-        }
-      } else if (phase === 'UPLOAD') {
-        // if args is object, this update is about XHRRequest's upload progress
-        if (typeof args === 'object') {
-          var requestId = args.file
-          var progress = args.progress
-          if (!fileUploadProgress[requestId] || fileUploadProgress[requestId] < progress) {
-            fileUploadProgress[requestId] = progress
-          }
-          var total = 0, count = 0
-          for(var requestIdKey in fileUploadProgress) {
-            var prog = fileUploadProgress[requestIdKey]
-            total += prog
-            count++
-          }
-          vm.uploadProgress = total / count
-
-          // initiate digest cycle because this event (xhr event) is caused outside angular
-          $scope.$apply()
-        } else { // typeof args === 'number', mainly used a s fallback to mark completion of the UPLOAD phase
-          vm.uploadProgress = args
-        }
-
-        // start next phase when UPLOAD is done
-        if (vm.uploadProgress == 100) {
-          logger.debug('Uploaded files.')
-          vm.uploading = false
           vm.finishing = true
+          logger.debug('Prepared for upload.')
         }
       } else if (phase === 'FINISH') {
         // we are concerned only for completion of the phase
         if (args === 100) {
           logger.debug('Finished upload.')
+          vm.preparing = false
+          vm.finishing = false
+          vm.finished = true
         }
       } else {
         // assume it to be error condition

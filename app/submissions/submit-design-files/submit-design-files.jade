@@ -170,10 +170,13 @@ modal.transition(show="vm.showProgress", background-click-close="false", style="
 
     p.upload-progress__message--error(ng-show="vm.errorInUpload") Oh, that’s embarrassing! One of the files couldn’t be uploaded, I’m so sorry.
 
-    progress-bar.upload-progress__progress-bar(completed="vm.uploadProgress", message="of 3 files uploaded")
+    //- progress-bar.upload-progress__progress-bar(completed="vm.uploadProgress", message="of 3 files uploaded")
 
     .upload-progress__preparing(ng-show="vm.preparing && !vm.errorInUpload") #[span Preparing...]
     .upload-progress__finishing(ng-show="vm.finishing && !vm.errorInUpload")
+      p Finishing...
+      
+    .upload-progress__finished(ng-show="vm.finished && !vm.errorInUpload")
       p Finished!
 
       .upload-progess__links

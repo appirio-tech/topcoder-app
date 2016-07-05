@@ -45,6 +45,13 @@ tc-fp-file-input {
     top: 0;
     height: 190px;
     width: 240px;
+    position: relative;
+
+    > span {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+    }
   }
 
   .tc-fp-file-drag-drop::after {
@@ -60,5 +67,12 @@ tc-fp-file-input {
 
   .tc-fp-file-drag-drop-image::after {
     content: 'Drag and Drop your PNG or JPG file here';
+  }
+
+  &.file-uploaded {
+    .tc-file-field__input::after,
+    .tc-fp-file-drag-drop::after {
+      content: '';
+    }
   }
 }
