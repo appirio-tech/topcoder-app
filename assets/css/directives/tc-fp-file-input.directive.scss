@@ -55,7 +55,7 @@ tc-fp-file-input {
   }
 
   .tc-fp-file-drag-drop::after {
-    content: 'Drag and drop your .zip file here';
+    content: 'Drag and drop your .zip file here (500MB max)';
     color: $tc-gray-50;
     top: 25px;
     position: absolute;
