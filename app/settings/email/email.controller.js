@@ -5,9 +5,9 @@ import angular from 'angular'
 
   angular.module('tc.settings').controller('EmailSettingsController', EmailSettingsController)
 
-  EmailSettingsController.$inject = ['$rootScope', 'userData', 'ProfileService', 'MailchimpService', 'logger', 'CONSTANTS', 'toaster', '$q', '$scope']
+  EmailSettingsController.$inject = ['$rootScope', 'userData', 'ProfileService', 'UserPreferencesService', 'logger', 'CONSTANTS', 'toaster', '$q', '$scope']
 
-  function EmailSettingsController($rootScope, userData, ProfileService, MailchimpService, logger, CONSTANTS, toaster, $q, $scope) {
+  function EmailSettingsController($rootScope, userData, ProfileService, UserPreferencesService, logger, CONSTANTS, toaster, $q, $scope) {
     var vm = this
     vm.loading = false
     vm.saving = false
@@ -19,42 +19,42 @@ import angular from 'angular'
     function activate() {
       vm.newsletters = [
         {
-          id: CONSTANTS.MAILCHIMP_NL_GEN,
+          id: 'TOPCODER_NL_GEN',
           name: 'General Newsletter',
           desc: 'News summary from all tracks and programs',
           enabled: false,
           dirty: false
         },
         {
-          id: CONSTANTS.MAILCHIMP_NL_DESIGN,
+          id: 'TOPCODER_NL_DESIGN',
           name: 'Design Newsletter',
           desc: 'Website, mobile, and product design; UI and UX',
           enabled: false,
           dirty: false
         },
         {
-          id: CONSTANTS.MAILCHIMP_NL_DEV,
+          id: 'TOPCODER_NL_DEV',
           name: 'Development Newsletter',
           desc: 'Software architecture, component assembly, application development, and bug hunting',
           enabled: false,
           dirty: false
         },
         {
-          id: CONSTANTS.MAILCHIMP_NL_DATA,
+          id: 'TOPCODER_NL_DATA',
           name: 'Data Science Newsletter',
           desc: 'Algorithm and data structures, statistical analysis',
           enabled: false,
           dirty: false
         },
         {
-          id: CONSTANTS.MAILCHIMP_NL_IOS,
+          id: 'TOPCODER_NL_IOS',
           name: 'iOS Community Newsletter',
           desc: 'Mobile app design and development for iOS, with Swift emphasis',
           enabled: false,
           dirty: false
         },
         {
-          id: CONSTANTS.MAILCHIMP_NL_TCO,
+          id: 'TOPCODER_NL_TCO',
           name: 'TCO Newsletter',
           desc: 'Our annual online and onsite tournament to celebrate and reward the community',
           enabled: false,
@@ -63,25 +63,31 @@ import angular from 'angular'
       ]
 
       vm.loading = true
-      return MailchimpService.getMemberSubscription(userData).then(function(subscription) {
+      return UserPreferencesService.getEmailPreferences(userData).then(function(subscription) {
         vm.loading = false
         if (!subscription) {
           // add member to the list with default preferences
-          MailchimpService.addSubscription(userData).then(function(resp) {
-            logger.debug(resp)
+          UserPreferencesService.saveEmailPreferences(userData).then(function(resp) {
+            logger.debug(JSON.stringify(resp))
+            validateState(resp)
+
           }).catch(function(err) {
             // no error to user
             //TODO some error alert to community admin
             logger.debug('error in adding user to member list')    
           })
         } else {
-          if (subscription.interests) {
-            vm.newsletters.forEach(function(newsletter) {
-              if (subscription.interests[newsletter.id]) {
-                newsletter.enabled = true
-              }
-            })
+          if (subscription) {
+            validateState(subscription)
           }
+        }
+      })
+    }
+
+    function validateState(subscription) {
+      vm.newsletters.forEach(function(newsletter) {
+        if (subscription[newsletter.id]) {
+          newsletter.enabled = true
         }
       })
     }
@@ -102,7 +108,7 @@ import angular from 'angular'
       vm.newsletters.forEach(function(newsletter) {
         preferences[newsletter.id] = newsletter.enabled
       })
-      MailchimpService.addSubscription(userData, preferences).then(function(resp) {
+      UserPreferencesService.saveEmailPreferences(userData, preferences).then(function(resp) {
         vm.loading = false
         vm.saving = false
         // reset dirty state for all newsletter options

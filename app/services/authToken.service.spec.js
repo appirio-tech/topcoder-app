@@ -40,16 +40,6 @@ describe('TcAuthToken Service', function() {
 
   describe('AuthToken Service ', function() {
 
-    it('should call store to get v3 token', function() {
-      expect(service.getV3Token()).to.equal('value')
-      expect(store.get).to.be.have.been.calledWith('appiriojwt')
-    })
-
-    it('should call store to set v3 token', function() {
-      service.setV3Token('test')
-      expect(store.set).to.be.have.been.calledWith('appiriojwt', 'test')
-    })
-
     it('should retrieve token from cookie', function() {
       expect(service.getV2Token()).to.equal('value')
       expect($cookies.get).to.be.have.been.calledWith('tcjwt')
@@ -60,11 +50,6 @@ describe('TcAuthToken Service', function() {
       expect($cookies.remove).to.have.been.calledWith('tcjwt')
       expect($cookies.remove).to.have.been.calledWith('tcsso')
       expect(store.remove).to.be.have.been.calledWith('appiriojwt')
-    })
-
-    it('should use jwtHelper to decode token', function() {
-      expect(service.decodeToken('test')).to.equal('decodedToken')
-      expect(jwtHelper.decodeToken).to.be.have.been.calledWith('test')
     })
 
   })
@@ -106,43 +91,6 @@ describe('TcAuthToken Service', function() {
           }
         }
       })
-    })
-
-    it('should make a POST request to /authorizations', function() {
-      service.getTokenFromAuth0Code('test')
-      $httpBackend.expectPOST(
-        apiUrl + '/authorizations', {}, {
-          'Content-Type': 'application/json',
-          'Authorization': 'Auth0Code test'
-        }
-      )
-    })
-
-    it('should make a POST request to exchange V2 token for V3 token', function() {
-      service.exchangeToken('refreshToken', 'idToken')
-      $httpBackend.expectPOST(
-        apiUrl + '/authorizations',
-        {
-          param: {
-            refreshToken: 'refreshToken',
-            externalToken: 'idToken'
-          }
-        },
-        {
-          withCredentials: true
-        }
-      )
-    })
-
-    it('should make a GET request to refresh V3 token', function() {
-      service.exchangeToken('refreshToken', 'idToken')
-      $httpBackend.expectGET(
-        apiUrl + '/authorizations/1',
-        {},
-        {
-          'Authorization': 'Bearer token'
-        }
-      )
     })
   })
 })

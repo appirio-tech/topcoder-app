@@ -1,0 +1,67 @@
+@import 'topcoder/tc-includes';
+
+tc-fp-file-input {
+
+  .tc-file-field__label {
+    width: 240px;
+  }
+
+  .tc-file-field__inputs {
+    width: 240px;
+    div {
+      width: 240px;
+    }
+  }
+
+  .tc-file-field__input {
+    height: 190px;
+    width: 240px;
+  }
+
+  .tc-btn {
+    margin-bottom: 5px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    z-index: 1;
+  }
+
+  .tc-label__asterisk {
+    right: 0px;
+  }
+
+  .tc-fp-file-drag-drop {
+    width: calc(100% - 4px);
+    left: 0;
+    top: 0;
+    height: 190px;
+    width: 240px;
+    position: relative;
+    color: $tc-gray-50 !important;
+    padding: 25px !important;
+    margin-left: 0px !important;
+    text-align: center;
+
+    // div used to show progress bar for drop upload
+    > div {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    // span used for showing remove button
+    > span {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+    }
+  }
+
+  &.file-uploaded {
+    .tc-file-field__input::after,
+    .tc-fp-file-drag-drop::after {
+      content: '';
+    }
+  }
+}

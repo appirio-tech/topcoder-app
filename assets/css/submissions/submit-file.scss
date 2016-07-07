@@ -52,7 +52,8 @@
   max-width: 500px;
 }
 
-tc-file-input {
+tc-file-input,
+tc-fp-file-input {
   .tc-file-field__label, .tc-file-field__inputs {
     margin: 0 auto;
     @media screen and (min-width: 1000px) {
@@ -69,6 +70,19 @@ tc-file-input {
   }
 }
 
+.files {
+  width: 100%;
+}
+
+.upload {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  @media screen and (min-width: 875px) {
+    justify-content: space-between;
+  }
+}
 
 .submitterRank {
   width: 100px;
@@ -144,6 +158,8 @@ modal {
     line-height: 19px;
     color: $accent-gray;
     margin-top: 40px;
+    padding: 0px 40px;
+    text-align: center;
   }
 
   .upload-progress__progress-bar {
@@ -154,12 +170,14 @@ modal {
 
   .upload-progress__preparing,
   .upload-progress__finishing,
+  .upload-progress__finished,
   .upload-progress__error {
     @include font-with-weight('Sofia Pro', 500);
     font-size: 12px;
     line-height: 14px;
     color: $accent-gray-dark;
     text-align: center;
+    margin-top: 40px;
   }
 
   .upload-progress__error {
@@ -175,6 +193,12 @@ modal {
       .progress-bar__bar--completed {
         background-color: $error;
       }
+    }
+  }
+
+  .upload-progress__error-action {
+    button:not(:first-child) {
+      margin-left: 10px;
     }
   }
 }

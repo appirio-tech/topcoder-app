@@ -1,0 +1,15 @@
+.tc-file-field__label
+  label.tc-label {{labelText}}
+    //- span.lowercase(ng-if="showFileType") {{ ' *(.' + fileType + ')'}}
+
+.tc-file-field__inputs
+  .tc-label__wrapper
+    span.tc-label__asterisk.lowercase(ng-if="mandatory") #[span *]mandatory
+    input.tc-file-field__input(
+      data-name="{{fieldId}}",
+      type="filepicker-dragdrop",
+      ng-model="ngModel",
+      ng-required="mandatory",
+      data-fp-button-text="Pick A File",
+      on-success="onFileSeleted(event.fpfile)"
+    )

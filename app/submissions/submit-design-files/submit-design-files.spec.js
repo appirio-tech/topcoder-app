@@ -19,7 +19,12 @@ describe('Submit Design Files Controller', function() {
   }
 
   var submissionsService = {
-    getPresignedURL: function() {}
+    getPresignedURL: function() {},
+    startSubmission: function() {
+      var deferred = $q.defer()
+      deferred.resolve()
+      return deferred.promise
+    }
   }
 
   var mockWindow = {
@@ -30,7 +35,7 @@ describe('Submit Design Files Controller', function() {
 
   beforeEach(function() {
     bard.appModule('tc.submissions')
-    bard.inject(this, '$controller', '$rootScope')
+    bard.inject(this, '$controller', '$rootScope', '$q')
 
     scope = $rootScope.$new()
   })
@@ -59,7 +64,7 @@ describe('Submit Design Files Controller', function() {
       challengeToSubmitTo: {
         challenge: {
           name: 'Challenge Name',
-          track: 'DEVELOP',
+          track: 'DESIGN',
           id: 30049240
         }
       },
@@ -69,7 +74,7 @@ describe('Submit Design Files Controller', function() {
     vm = controller
     scope.$digest()
 
-    expect(vm.submissionsBody.data.method).to.equal('DEVELOP_CHALLENGE_ZIP_FILE')
+    expect(vm.submissionsBody.data.method).to.equal('DESIGN_CHALLENGE_FILE_PICKER_ZIP_FILE')
   })
 
   describe('setRankTo1', function() {
@@ -93,7 +98,7 @@ describe('Submit Design Files Controller', function() {
       file = {
         name: 'Dashboard 2.png',
         size: 575548,
-        type: 'image/png'
+        mimetype: 'image/png'
       }
       fieldId = 'DESIGN_COVER'
 
@@ -116,7 +121,7 @@ describe('Submit Design Files Controller', function() {
       var newFile = {
         name: 'different_image.png',
         size: 4321,
-        type: 'image/png'
+        mimetype: 'image/png'
       }
 
       vm.setFileReference(newFile, fieldId)
@@ -124,34 +129,6 @@ describe('Submit Design Files Controller', function() {
 
       expect(vm.submissionsBody.data.files).to.have.length(1)
       expect(vm.submissionsBody.data.files[0].name).to.equal('different_image.png')
-    })
-
-    it('sets the correct mediaTypes on the fileObject', function() {
-      expect(vm.submissionsBody.data.files[0].mediaType).to.equal('image/png')
-
-      var newFile = {
-        name: 'submission.zip',
-        size: 43121,
-        type: 'application/zip'
-      }
-      var newFieldId = 'SUBMISSION_ZIP'
-
-      vm.setFileReference(newFile, newFieldId)
-      scope.$digest()
-
-      expect(vm.submissionsBody.data.files[1].mediaType).to.equal('application/octet-stream')
-
-      var newFile2 = {
-        name: 'source.zip',
-        size: 2314,
-        type: 'application/zip'
-      }
-      var newFieldId2 = 'SOURCE_ZIP'
-
-      vm.setFileReference(newFile2, newFieldId2)
-      scope.$digest()
-
-      expect(vm.submissionsBody.data.files[2].mediaType).to.equal('application/octet-stream')
     })
   })
 
@@ -177,7 +154,7 @@ describe('Submit Design Files Controller', function() {
     })
 
     it('calls the submission service', function() {
-      var mockAPICall = sinon.spy(submissionsService, 'getPresignedURL')
+      var mockAPICall = sinon.spy(submissionsService, 'startSubmission')
 
       vm.uploadSubmission()
       scope.$digest()

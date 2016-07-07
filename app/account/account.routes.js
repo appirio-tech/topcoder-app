@@ -5,112 +5,70 @@ import angular from 'angular'
 
   angular.module('tc.account').config(routes)
 
-  routes.$inject = ['$stateProvider']
+  routes.$inject = ['$stateProvider', 'CONSTANTS']
 
-  function routes($stateProvider) {
+  function routes($stateProvider, CONSTANTS) {
     var states = {
       'auth': {
         parent: 'root',
         abstract: true,
         data: {
           authRequired: false
-        },
-        onEnter: ['$state', '$stateParams', 'TcAuthService', 'logger', function($state, $stateParams, TcAuthService, logger) {
-          if (TcAuthService.isAuthenticated()) {
-            // redirect to next if exists else dashboard
-            if ($stateParams.next) {
-              logger.debug('Redirecting: ' + $stateParams.next)
-              window.location.href = decodeURIComponent($stateParams.next)
-            } else {
-              $state.go('dashboard')
-            }
-          }
-        }]
+        }
       },
       'login': {
         parent: 'auth',
         url: '/login/?next&code&state&status&userJWTToken&utm_source&utm_medium&utm_campaign',
-        params: { 'notifyReset': false },
-        data: {
-          title: 'Login'
-        },
         views: {
-          'header@': {
-            template: require('../layout/header/account-header')()
-          },
-          'container@': {
-            template: require('./login/login')(),
-            controller: 'LoginController',
-            controllerAs: 'vm'
-          },
-          'footer@': {
-            controller: 'FooterController as vm',
-            template: require('../layout/footer/account-footer')()
-          }
-        }
-      },
-      'register': {
-        parent: 'auth',
-        url: '/register/?next&utm_source&utm_medium&utm_campaign',
-        data: {
-          title: 'Join'
+          'header@': {},
+          'container@': {},
+          'footer@': {}
         },
-        views: {
-          'header@': {
-            template: require('../layout/header/account-header')()
-          },
-          'container@': {
-            template: require('./register/register')(),
-            controller: 'RegisterController',
-            controllerAs: 'vm'
-          },
-          'footer@': {
-            controller: 'FooterController as vm',
-            template: require('../layout/footer/account-footer')()
-          }
-        }
-      },
-      'registeredSuccessfully': {
-        url: '/registered-successfully/',
         data: {
-          title: 'Registered',
           authRequired: false
         },
-        views: {
-          'header@': {
-            template: require('../layout/header/account-header')()
-          },
-          'container@': {
-            template: require('./register/registered-successfully')()
-          },
-          'footer@': {
-            controller: 'FooterController as vm',
-            template: require('../layout/footer/account-footer')()
+        onEnter: ['$state', '$window', '$stateParams', 'logger',
+          function($state, $window,  $stateParams, logger) {
+            var next = $state.href('dashboard', {}, {absolute: true})
+            if ($stateParams.next) {
+              next = decodeURIComponent($stateParams.next)
+            }
+            $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(next)
           }
-        }
+        ]
+
       },
-      'resetPassword': {
+      'register': {
+        url: '/register/?next&utm_source&utm_medium&utm_campaign',
         parent: 'auth',
-        url: '/reset-password/?token&handle',
-        data: {
-          title: 'Reset Password'
-        },
         views: {
-          'header@': {
-            template: require('../layout/header/account-header')()
-          },
-          'container@': {
-            template: require('./reset-password/reset-password')(),
-            controller: 'ResetPasswordController',
-            controllerAs: 'vm'
-          },
-          'footer@': {
-            controller: 'FooterController as vm',
-            template: require('../layout/footer/account-footer')()
+          'header@': {},
+          'container@': {},
+          'footer@': {}
+        },
+        data: {
+          title: 'Join',
+          authRequired: false
+        },
+        onEnter: ['$state', '$window', '$stateParams', 'logger',
+          function($state, $window,  $stateParams, logger) {
+            var next = $state.href('dashboard', {}, {absolute: true})
+            if ($stateParams.next) {
+              next = decodeURIComponent($stateParams.next)
+            }
+            var queryStr = '?retUrl=' + encodeURIComponent(next)
+            for(var param in $stateParams) {
+              if ($stateParams[param]) {
+                queryStr += ('&' + param + '=' + encodeURIComponent($stateParams[param]))
+              }
+            }
+            $window.location = CONSTANTS.ACCOUNTS_APP_URL + '/registration' + queryStr
           }
-        }
+        ]
+
       },
       logout: {
+        parent: 'auth',
         url: '/logout/',
         views: {
           'header@': {},

@@ -9,6 +9,7 @@ webpackConfig.module.loaders.push({
   test: /jquery-1\.10\.2\.js$/,
   loader: 'expose?jQuery'
 })
+process.env.ACCOUNTS_APP_URL = `http://accounts.${process.env.domain}/tc`
 
 module.exports = function(config) {
   config.set({

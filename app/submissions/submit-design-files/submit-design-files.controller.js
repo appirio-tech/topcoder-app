@@ -10,17 +10,16 @@ import _ from 'lodash'
 
   function SubmitDesignFilesController($scope, $window, $stateParams, logger, UserService, SubmissionsService, challengeToSubmitTo) {
     if (!challengeToSubmitTo.challenge) { return }
+    var challengeTitle = challengeToSubmitTo.challenge.name
 
     var vm = this
-    var files = {}
-    var fileUploadProgress = {}
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/)
     vm.rankRegEx = new RegExp(/^[1-9]\d*$/)
     vm.comments = ''
     vm.uploadProgress = 0
-    vm.uploading = false
     vm.preparing = false
     vm.finishing = false
+    vm.finished = false
     vm.showProgress = false
     vm.errorInUpload = false
     vm.formFonts = {}
@@ -38,6 +37,7 @@ import _ from 'lodash'
       stockArts: [],
       hasAgreedToTerms: false
     }
+    vm.progressTitle = ''
 
     var userId = parseInt(UserService.getUserIdentity().userId)
 
@@ -50,9 +50,7 @@ import _ from 'lodash'
       },
       userId: userId,
       data: {
-        method: challengeToSubmitTo.challenge.track.toUpperCase() + '_CHALLENGE_ZIP_FILE',
-
-        // Can delete below since they are processed and added later?
+        method: 'DESIGN_CHALLENGE_FILE_PICKER_ZIP_FILE',
         files: [],
         submitterRank: 1,
         submitterComments: '',
@@ -80,31 +78,27 @@ import _ from 'lodash'
     }
 
     function setFileReference(file, fieldId) {
-      // Can clean up since fileValue on tcFileInput has file reference?
-      files[fieldId] = file
-
       var fileObject = {
-        name: file.name,
-        type: fieldId,
-        status: 'PENDING'
+        type: fieldId
       }
-
-      switch(fieldId) {
-      case 'SUBMISSION_ZIP':
-        fileObject.mediaType = 'application/octet-stream'
-        break
-      case 'SOURCE_ZIP':
-        fileObject.mediaType = 'application/octet-stream'
-        break
-      default:
-        fileObject.mediaType = file.type
+      if (file) {
+        fileObject = {
+          name: file.name,
+          type: fieldId,
+          status: 'STAGED',
+          stagedFileContainer: file.container,
+          stagedFilePath: file.path,
+          size: file.size,
+          mediaType: file.mimetype
+        }
       }
 
       // If user changes a file input's file, update the file details
       var isFound = vm.submissionsBody.data.files.reduce(function(isFound, file, i, filesArray) {
         if (isFound) { return true }
 
-        if (file.type === fileObject.type) {
+        // when file is removed, fileObject would have only type field
+        if (file.type === fieldId) {
           filesArray[i] = fileObject
           return true
         }
@@ -121,11 +115,12 @@ import _ from 'lodash'
     function uploadSubmission() {
       vm.errorInUpload = false
       vm.uploadProgress = 0
-      vm.fileUploadProgress = {}
       vm.showProgress = true
+      vm.progressTitle = 'Uploading submission for "' + challengeTitle + '"'
+      vm.uploadProgressMessage = 'Hey, your work is AWESOME! Please don’t close the window while the upload is in progress, or you’ll lose all files!'
       vm.preparing = true
-      vm.uploading = false
       vm.finishing = false
+      vm.finished = false
       vm.submissionsBody.data.submitterComments = vm.comments
       vm.submissionsBody.data.submitterRank = vm.submissionForm.submitterRank
 
@@ -159,8 +154,14 @@ import _ from 'lodash'
       }, [])
 
       vm.submissionsBody.data.fonts = processedFonts
-
-      SubmissionsService.getPresignedURL(vm.submissionsBody, files, updateProgress)
+      SubmissionsService.startSubmission(vm.submissionsBody, updateProgress)
+      .then(function(processedSubmission) {
+        logger.debug('Processed Submission: ', processedSubmission)
+      })
+      .catch(function(err) {
+        logger.error('Submission processing failed ', err)
+        // TODO handle error
+      })
     }
 
     // Callback for updating submission upload process. It looks for different phases e.g. PREPARE, UPLOAD, FINISH
@@ -171,41 +172,18 @@ import _ from 'lodash'
         // we are concerned only for completion of the phase
         if (args === 100) {
           vm.preparing = false
-          vm.uploading = true
-          logger.debug('Prepared for upload.')
-        }
-      } else if (phase === 'UPLOAD') {
-        // if args is object, this update is about XHRRequest's upload progress
-        if (typeof args === 'object') {
-          var requestId = args.file
-          var progress = args.progress
-          if (!fileUploadProgress[requestId] || fileUploadProgress[requestId] < progress) {
-            fileUploadProgress[requestId] = progress
-          }
-          var total = 0, count = 0
-          for(var requestIdKey in fileUploadProgress) {
-            var prog = fileUploadProgress[requestIdKey]
-            total += prog
-            count++
-          }
-          vm.uploadProgress = total / count
-
-          // initiate digest cycle because this event (xhr event) is caused outside angular
-          $scope.$apply()
-        } else { // typeof args === 'number', mainly used a s fallback to mark completion of the UPLOAD phase
-          vm.uploadProgress = args
-        }
-
-        // start next phase when UPLOAD is done
-        if (vm.uploadProgress == 100) {
-          logger.debug('Uploaded files.')
-          vm.uploading = false
           vm.finishing = true
+          logger.debug('Prepared for upload.')
         }
       } else if (phase === 'FINISH') {
         // we are concerned only for completion of the phase
         if (args === 100) {
           logger.debug('Finished upload.')
+          vm.preparing = false
+          vm.finishing = false
+          vm.finished = true
+          vm.progressTitle = 'Submission completed for "' + challengeTitle + '"'
+          vm.uploadProgressMessage = 'Thanks for participating! We\'ve received your submission and will send you an email shortly to confirm and explain what happens next.'
         }
       } else {
         // assume it to be error condition

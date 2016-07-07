@@ -11,20 +11,21 @@ import angular from 'angular'
     var api = ApiService.getApiServiceProvider('SUBMISSIONS')
 
     var service = {
-      getPresignedURL: getPresignedURL,
-      uploadSubmissionFileToS3: uploadSubmissionFileToS3,
-      updateSubmissionStatus: updateSubmissionStatus,
-      recordCompletedSubmission: recordCompletedSubmission
+      startSubmission: startSubmission,
+      processSubmission: processSubmission
+      // uploadSubmissionFileToS3: uploadSubmissionFileToS3,
+      // updateSubmissionStatus: updateSubmissionStatus,
+      // recordCompletedSubmission: recordCompletedSubmission
     }
 
     return service
 
-    function getPresignedURL(body, files, progressCallback) {
+    function startSubmission(body, progressCallback) {
       return api.all('submissions').customPOST(body)
       .then(function(response) {
         progressCallback.call(progressCallback, 'PREPARE', 100)
-
-        uploadSubmissionFileToS3(response, response.data.files, files, progressCallback)
+        // uploadSubmissionFileToS3(response, response.data.files, files, progressCallback)
+        processSubmission(response, progressCallback)
       })
       .catch(function(err) {
         logger.error('Could not get presigned url', err)
@@ -35,6 +36,7 @@ import angular from 'angular'
       })
     }
 
+    /**
     function uploadSubmissionFileToS3(presignedURLResponse, filesWithPresignedURL, files, progressCallback) {
 
       var promises = filesWithPresignedURL.map(function(fileWithPresignedURL) {
@@ -120,14 +122,17 @@ import angular from 'angular'
         progressCallback.call(progressCallback, 'ERROR', err)
       })
     }
+    */
 
-    function recordCompletedSubmission(body, progressCallback) {
+    function processSubmission(body, progressCallback) {
       // Once all uploaded, make record and begin processing
       return api.one('submissions', body.id).customPOST(body, 'process')
       .then(function(response) {
         logger.info('Successfully made file record. Beginning processing')
 
         progressCallback.call(progressCallback, 'FINISH', 100)
+
+        return response
       })
       .catch(function(err) {
         logger.error('Could not start processing', err)
