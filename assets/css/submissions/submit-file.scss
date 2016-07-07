@@ -79,7 +79,7 @@ tc-fp-file-input {
   flex-wrap: wrap;
   justify-content: space-around;
 
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 875px) {
     justify-content: space-between;
   }
 }
@@ -158,6 +158,8 @@ modal {
     line-height: 19px;
     color: $accent-gray;
     margin-top: 40px;
+    padding: 0px 40px;
+    text-align: center;
   }
 
   .upload-progress__progress-bar {
@@ -191,6 +193,12 @@ modal {
       .progress-bar__bar--completed {
         background-color: $error;
       }
+    }
+  }
+
+  .upload-progress__error-action {
+    button:not(:first-child) {
+      margin-left: 10px;
     }
   }
 }
