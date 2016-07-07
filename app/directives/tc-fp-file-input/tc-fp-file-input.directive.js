@@ -40,7 +40,7 @@ import _ from 'lodash'
         } else if (scope.fieldId.indexOf('DESIGN_COVER') > -1) {
           scope.mimeTypes = 'image/png,image/jpeg,image/bmp'
           dragAreaClasses += ' tc-fp-file-drag-drop-image'
-          dragText = 'Drag and Drop your PNG or JPG file here <br> or'
+          dragText = 'Drag and drop your .png or .jpg file here <br> or'
         }
 
         // set default services

@@ -27,6 +27,10 @@ tc-fp-file-input {
     z-index: 1;
   }
 
+  .tc-label__asterisk {
+    right: 0px;
+  }
+
   .tc-fp-file-drag-drop {
     width: calc(100% - 4px);
     left: 0;
@@ -36,6 +40,7 @@ tc-fp-file-input {
     position: relative;
     color: $tc-gray-50 !important;
     padding: 25px !important;
+    margin-left: 0px !important;
     text-align: center;
 
     // div used to show progress bar for drop upload
