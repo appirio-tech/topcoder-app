@@ -55,7 +55,7 @@ import _ from 'lodash'
 
         // set default services
         scope.fpServices = scope.fpServices || 'COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX'
-        scope.fpContainer = CONSTANTS.FILE_PICKER_SUBMISSION_CONTAINER_NAME || 'submission-staging-dev'
+        scope.fpContainer = CONSTANTS.FILE_PICKER_SUBMISSION_CONTAINER_NAME
 
         // set max size
         scope.maxSize = 500 * 1024 * 1024
