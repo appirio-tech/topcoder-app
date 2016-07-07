@@ -32,11 +32,11 @@ import _ from 'lodash'
           scope.filePath += _.join([userId, scope.fieldId, (new Date()).valueOf()], '-') + '.zip'
         }
         var dragAreaClasses = 'tc-fp-file-drag-drop'
-        // set extensions
+        // set mimeTypes
         if (scope.fieldId.indexOf('ZIP') > -1) {
-          scope.extensions = '.zip'
+          scope.mimeTypes = 'application/zip'
         } else if (scope.fieldId.indexOf('DESIGN_COVER') > -1) {
-          scope.extensions = '.png,.jpeg,.jpg,.bmp'
+          scope.mimeTypes = 'image/png,image/jpeg,image/bmp'
           dragAreaClasses += ' tc-fp-file-drag-drop-image'
         }
 
@@ -64,7 +64,7 @@ import _ from 'lodash'
         input.setAttribute('data-fp-button-class', 'tc-btn')
         input.setAttribute('data-fp-drag-class', dragAreaClasses)
         input.setAttribute('data-fp-multiple', false)
-        input.setAttribute('data-fp-extensions', scope.extensions)
+        input.setAttribute('data-fp-mimetypes', scope.mimeTypes)
         input.setAttribute('data-fp-store-location', 's3')
         input.setAttribute('data-fp-store-container', scope.fpContainer)
         input.setAttribute('data-fp-store-path', scope.filePath)
