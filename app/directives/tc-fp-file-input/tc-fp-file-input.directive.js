@@ -35,7 +35,17 @@ import _ from 'lodash'
         var dragText = ''
         // set mimeTypes
         if (scope.fieldId.indexOf('ZIP') > -1) {
-          scope.mimeTypes = 'application/zip'
+          scope.mimeTypes = _.join([
+            'application/x-download',
+            'application/download',
+            'application/zip',
+            'application/x-zip',
+            'application/x-zip-compressed',
+            'application/octet-stream',
+            'application/x-compress',
+            'application/x-compressed',
+            'multipart/x-zip'
+          ], ',')
           dragText = 'Drag and drop your .zip file here (500MB max) <br> or'
         } else if (scope.fieldId.indexOf('DESIGN_COVER') > -1) {
           scope.mimeTypes = 'image/png,image/jpeg,image/bmp'
