@@ -36,11 +36,11 @@ import _ from 'lodash'
         // set mimeTypes
         if (scope.fieldId.indexOf('ZIP') > -1) {
           scope.mimeTypes = 'application/zip'
-          dragText = 'Drag and drop your .zip file here (500MB max)'
+          dragText = 'Drag and drop your .zip file here (500MB max) <br> or'
         } else if (scope.fieldId.indexOf('DESIGN_COVER') > -1) {
           scope.mimeTypes = 'image/png,image/jpeg,image/bmp'
           dragAreaClasses += ' tc-fp-file-drag-drop-image'
-          dragText = 'Drag and Drop your PNG or JPG file here'
+          dragText = 'Drag and Drop your PNG or JPG file here <br> or'
         }
 
         // set default services
