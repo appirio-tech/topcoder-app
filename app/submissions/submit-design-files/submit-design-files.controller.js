@@ -10,6 +10,7 @@ import _ from 'lodash'
 
   function SubmitDesignFilesController($scope, $window, $stateParams, logger, UserService, SubmissionsService, challengeToSubmitTo) {
     if (!challengeToSubmitTo.challenge) { return }
+    var challengeTitle = challengeToSubmitTo.challenge.name
 
     var vm = this
     vm.urlRegEx = new RegExp(/^(http(s?):\/\/)?(www\.)?[a-zA-Z0-9\.\-\_]+(\.[a-zA-Z]{2,3})+(\/[a-zA-Z0-9\_\-\s\.\/\?\%\#\&\=]*)?$/)
@@ -36,6 +37,7 @@ import _ from 'lodash'
       stockArts: [],
       hasAgreedToTerms: false
     }
+    vm.progressTitle = ''
 
     var userId = parseInt(UserService.getUserIdentity().userId)
 
@@ -114,6 +116,8 @@ import _ from 'lodash'
       vm.errorInUpload = false
       vm.uploadProgress = 0
       vm.showProgress = true
+      vm.progressTitle = 'Uploading submission for "' + challengeTitle + '"'
+      vm.uploadProgressMessage = 'Hey, your work is AWESOME! Please don’t close the window while the upload is in progress, or you’ll lose all files!'
       vm.preparing = true
       vm.finishing = false
       vm.finished = false
@@ -178,6 +182,8 @@ import _ from 'lodash'
           vm.preparing = false
           vm.finishing = false
           vm.finished = true
+          vm.progressTitle = 'Submission completed for "' + challengeTitle + '"'
+          vm.uploadProgressMessage = 'Thanks for participating! We\'ve received your submission and will send you an email shortly to confirm and explain what happens next.'
         }
       } else {
         // assume it to be error condition
