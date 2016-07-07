@@ -18,17 +18,6 @@ tc-fp-file-input {
     width: 240px;
   }
 
-  .tc-file-field__input::after {
-    content: 'or';
-    font-size: 12px;
-    line-height: 15px;
-    color: $tc-gray-30;
-    bottom: 85px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%)
-  }
-
   .tc-btn {
     margin-bottom: 5px;
     position: absolute;
@@ -38,35 +27,35 @@ tc-fp-file-input {
     z-index: 1;
   }
 
+  .tc-label__asterisk {
+    right: 0px;
+  }
+
   .tc-fp-file-drag-drop {
     width: calc(100% - 4px);
-    position: absolute;
     left: 0;
     top: 0;
     height: 190px;
     width: 240px;
     position: relative;
+    color: $tc-gray-50 !important;
+    padding: 25px !important;
+    margin-left: 0px !important;
+    text-align: center;
 
+    // div used to show progress bar for drop upload
+    > div {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    // span used for showing remove button
     > span {
       position: absolute;
       top: 0px;
       right: 0px;
     }
-  }
-
-  .tc-fp-file-drag-drop::after {
-    content: 'Drag and drop your .zip file here (500MB max)';
-    color: $tc-gray-50;
-    top: 25px;
-    position: absolute;
-    width: 198px;
-    text-align: center;
-    left: 50%;
-    transform: translateX(-50%)
-  }
-
-  .tc-fp-file-drag-drop-image::after {
-    content: 'Drag and Drop your PNG or JPG file here';
   }
 
   &.file-uploaded {

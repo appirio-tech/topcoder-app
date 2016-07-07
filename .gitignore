@@ -12,3 +12,4 @@ styleguide
 .project
 .awspublish-app.topcoder-dev.com
 npm-debug.log
+*.swp

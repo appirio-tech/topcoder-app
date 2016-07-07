@@ -1,6 +1,6 @@
 .tc-file-field__label
   label.tc-label {{labelText}}
-    span.lowercase(ng-if="showFileType") {{ ' *(.' + fileType + ')'}}
+    //- span.lowercase(ng-if="showFileType") {{ ' *(.' + fileType + ')'}}
 
 .tc-file-field__inputs
   .tc-label__wrapper
@@ -11,6 +11,5 @@
       ng-model="ngModel",
       ng-required="mandatory",
       data-fp-button-text="Pick A File",
-      data-fp-drag-text="&nbsp;",
       on-success="onFileSeleted(event.fpfile)"
     )

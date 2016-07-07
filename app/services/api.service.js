@@ -60,7 +60,7 @@ import _ from 'lodash'
             case 500: // SERVER ERROR
             case 503: // HTTP_503_SERVICE_UNAVAILABLE
             default:
-              logger.error('Restangular Error Interceptor', response)
+              logger.debug('Restangular Error Interceptor', response)
               return true // error not handled
             }
           })
@@ -146,7 +146,7 @@ import _ from 'lodash'
             case 500: // SERVER ERROR
             case 503: // HTTP_503_SERVICE_UNAVAILABLE
             default:
-              logger.error('Restangular Error Interceptor ', response)
+              logger.debug('Restangular Error Interceptor ', response)
               return true // error not handled
             }
           })

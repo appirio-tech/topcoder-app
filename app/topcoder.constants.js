@@ -21,6 +21,8 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'SWIFT_PROGRAM_URL'       : process.env.SWIFT_PROGRAM_URL,
   'TCO16_URL'               : process.env.TCO16_URL,
   'ACCOUNTS_APP_URL'        : process.env.ACCOUNTS_APP_URL,
+  'FILE_PICKER_API_KEY'     : process.env.FILE_PICKER_API_KEY,
+  'FILE_PICKER_SUBMISSION_CONTAINER_NAME': process.env.FILE_PICKER_SUBMISSION_CONTAINER_NAME,
 
   'NEW_CHALLENGES_URL'     : 'https://www.topcoder.com/challenges/develop/upcoming/',
   'SWIFT_PROGRAM_ID'       : 3445,
