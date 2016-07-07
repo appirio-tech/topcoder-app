@@ -19,6 +19,8 @@ import { getCurrentUser, logout as doLogout } from './userv3.service.js'
       // logout of all browsers
       return doLogout().then(function() {
         $rootScope.$broadcast(CONSTANTS.EVENT_USER_LOGGED_OUT)
+        // resolve the promise
+        return true
       })
     }
 
