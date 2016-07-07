@@ -195,6 +195,12 @@ modal {
       }
     }
   }
+
+  .upload-progress__error-action {
+    button:not(:first-child) {
+      margin-left: 10px;
+    }
+  }
 }
 
 .upload-progess__links {
