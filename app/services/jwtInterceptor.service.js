@@ -27,8 +27,8 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
         .catch(function(err) {
           // Server will not or cannot refresh token
           logger.debug('Unable to refresh V3 token, redirecting to login')
-          var retUrl = CONSTANTS.MAIN_URL + '/?next=' + config.url
-          $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(retUrl)
+          var next = $state.href('dashboard', {}, {absolute: true})
+          $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(next)
 
           return null
         })
@@ -83,8 +83,8 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
       // logger.debug('idToken: ' + idToken)
       if (!TcAuthService.isAuthenticated() || idToken == null) {
         // logger.debug('redirecting to accounts app')
-        var retUrl = CONSTANTS.MAIN_URL + '/?next=' + config.url
-        $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(retUrl)
+        var next = $state.href('dashboard', {}, {absolute: true})
+        $window.location = CONSTANTS.ACCOUNTS_APP_URL + '?retUrl=' + encodeURIComponent(next)
         return
       }
 

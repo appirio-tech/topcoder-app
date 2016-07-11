@@ -27,6 +27,9 @@ describe('JWT Interceptor Service', function() {
     fakeState = {
       go: sinon.spy(function(param) {
         return
+      }),
+      href: sinon.spy(function(stateName, toParams, params) {
+        return 'https://topcoder.com/' + stateName
       })
     },
     fakeWindow = {
@@ -84,6 +87,7 @@ describe('JWT Interceptor Service', function() {
       expect($window.location).not.null
       expect($window.location).to.have.string(CONSTANTS.ACCOUNTS_APP_URL)
       expect(TcAuthService.isAuthenticated).to.be.have.been.calledOnce
+      expect(fakeState.href).to.be.calledWith('dashboard')
     })
 
     it('should redirect to login page for other endpoints', function() {
@@ -95,6 +99,7 @@ describe('JWT Interceptor Service', function() {
       expect($window.location).not.null
       expect($window.location).to.have.string(CONSTANTS.ACCOUNTS_APP_URL)
       expect(TcAuthService.isAuthenticated).to.be.have.been.calledOnce
+      expect(fakeState.href).to.be.calledWith('dashboard')
     })
 
     afterEach(function() {

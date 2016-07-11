@@ -34,7 +34,9 @@
 
 
 @media only screen and (max-width : 1024px) {
-	.bottom-footer, .fold-pusher {
+	// removed fold-pusher from the rule to remove white space
+	// .bottom-footer, .fold-pusher {
+	.bottom-footer {
 		height: 200px;
 	}
 	.bottom-footer .menu-item {
@@ -87,7 +89,9 @@
 }
 
 @media only screen and (min-width : 1025px) {
-	.bottom-footer, .fold-pusher {
+	// removed fold-pusher from the rule to remove white space
+	// .bottom-footer, .fold-pusher {
+	.bottom-footer {
 		height: 270px;
 	}
 	.bottom-footer {
