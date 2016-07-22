@@ -54,7 +54,7 @@ import _ from 'lodash'
         }
 
         // set default services
-        scope.fpServices = scope.fpServices || 'COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX'
+        scope.fpServices = scope.fpServices || 'COMPUTER,GOOGLE_DRIVE,BOX,DROPBOX,SKYDRIVE'
         scope.fpContainer = CONSTANTS.FILE_PICKER_SUBMISSION_CONTAINER_NAME
 
         // set max size
@@ -72,6 +72,7 @@ import _ from 'lodash'
 
         var input = element.find('input')
         input = input.length ? input[0] : input
+        scope.fpServices = _.split(scope.fpServices, ',')
         input.setAttribute('data-fp-maxSize', scope.maxSize)
         input.setAttribute('data-fp-services', scope.fpServices)
         input.setAttribute('data-fp-button-class', 'tc-btn')
