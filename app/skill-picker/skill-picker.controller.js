@@ -32,7 +32,6 @@ import _ from 'lodash'
      * Activates the controller.
      */
     function activate() {
-      addToMailingList()
       initCommunities()
       checkCommunityStatus()
     }
@@ -136,25 +135,6 @@ import _ from 'lodash'
         // add
         vm.mySkills.push(tagId.toString())
       }
-    }
-
-    function addToMailingList() {
-      return UserPreferencesService.getEmailPreferences(userProfile).then(function(subscription) {
-        logger.debug(subscription)
-        if (!subscription) {
-          return UserPreferencesService.saveEmailPreferences(userProfile).then(function(resp) {
-            logger.debug(resp)
-          }).catch(function(err) {
-            // no error to user
-            //TODO some error alert to community admin
-            logger.debug('error in adding user to member list')    
-          })
-        }
-      }).catch(function(err) {
-        // no error to user
-        //TODO some error alert to community admin
-        logger.debug('error in adding user to member list')
-      })
     }
 
     /**
