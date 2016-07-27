@@ -138,39 +138,6 @@ describe('Skill Picker Controller', function() {
     CONSTANTS.SWIFT_PROGRAM_ID = origSwiftProgId
   })
 
-  it('should call mailchimp service to add subscription', function() {
-    expect(vm).to.exist
-    // getEmailPreferences should always be called
-    expect(userPrefSvc.getEmailPreferences).to.be.calledOnce
-    // saveEmailPreferences should be called once if not subscribed
-    // getEmailPreferences service mock returns null for mockProfile.userId
-    expect(userPrefSvc.saveEmailPreferences).to.be.calledOnce
-  })
-
-  it('should not call mailchimp service to add subscription', function() {
-    // reset getEmailPreferences, saveEmailPreferences spy's called count
-    userPrefSvc.getEmailPreferences.reset()
-    userPrefSvc.saveEmailPreferences.reset()
-    var scope = $rootScope.$new()
-
-    var profile = angular.copy(mockProfile)
-    // update userId to return valid object in service mock
-    profile.userId = 12345
-    vm = $controller('SkillPickerController', {
-      $scope: scope,
-      userProfile: profile,
-      featuredSkills: [],
-      $state: state
-    })
-    $rootScope.$digest()
-    expect(vm).to.exist
-    // getEmailPreferences should always be called
-    expect(userPrefSvc.getEmailPreferences).to.be.calledOnce
-    // saveEmailPreferences should not be called if already subscribed
-    // getEmailPreferences service mock returns valid object for userId 12345
-    expect(userPrefSvc.saveEmailPreferences).not.to.be.called
-  })
-
   it('should add skill ', function() {
     vm.toggleSkill(409)
     expect(vm.mySkills).to.exist.have.length(1)
