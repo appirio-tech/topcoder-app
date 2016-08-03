@@ -81,7 +81,7 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
       // logger.debug('idToken: ' + idToken)
       if (!TcAuthService.isAuthenticated() || idToken == null) {
         logger.debug(String.supplant('Skipping authToken for "{url}, UnAuthenticated user"', config))
-        return
+        return null
       }
 
       // Note only v3tokens expire
