@@ -43,13 +43,11 @@ if (process.env.ENV === 'DEV') {
     {
       path: /\/members\/.*/,
       bypass: function(req, res, proxyOptions) {
-        return '/index.html';
+        return '/index.html'
       }
     }
   ]
 }
-
-console.log(config)
 
 if (CI) config.output.publicPath = process.env.ASSET_PREFIX
 
