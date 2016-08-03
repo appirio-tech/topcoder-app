@@ -28,7 +28,6 @@ import moment from 'moment'
       'COPILOT': 'copilot'
     }
 
-    logger.debug()
     vm.status = {
       'badges': CONSTANTS.STATE_LOADING,
       'stats': CONSTANTS.STATE_LOADING,
