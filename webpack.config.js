@@ -37,6 +37,18 @@ const config = require('appirio-tech-webpack-config')({
   }
 })
 
+if (process.env.ENV === 'DEV') {
+  config.devServer = config.devServer ? config.devServer : {}
+  config.devServer.proxy = [
+    {
+      path: /\/members\/.*/,
+      bypass: function(req, res, proxyOptions) {
+        return '/index.html'
+      }
+    }
+  ]
+}
+
 if (CI) config.output.publicPath = process.env.ASSET_PREFIX
 
 if (accountsAppURL) {
