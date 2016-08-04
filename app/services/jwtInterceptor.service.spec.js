@@ -78,28 +78,24 @@ describe('JWT Interceptor Service', function() {
       expect(TcAuthService.isAuthenticated).to.be.have.been.calledOnce
     })
 
-    it('should redirect to login page for other endpoints', function() {
+    it('should return null as token for other endpoints', function() {
       var config = {
         method: 'get',
         url: apiUrl + '/v3/members/test'
       }
-      service.getToken(config)
-      expect($window.location).not.null
-      expect($window.location).to.have.string(CONSTANTS.ACCOUNTS_APP_URL)
+      var token = service.getToken(config)
       expect(TcAuthService.isAuthenticated).to.be.have.been.calledOnce
-      expect(fakeState.href).to.be.calledWith('dashboard')
+      expect(token).to.be.null
     })
 
-    it('should redirect to login page for other endpoints', function() {
+    it('should return null as token for other endpoints', function() {
       var config = {
         method: 'get',
         url: apiUrl + '/v3.0.0-BETA/members/test'
       }
-      service.getToken(config)
-      expect($window.location).not.null
-      expect($window.location).to.have.string(CONSTANTS.ACCOUNTS_APP_URL)
+      var token = service.getToken(config)
       expect(TcAuthService.isAuthenticated).to.be.have.been.calledOnce
-      expect(fakeState.href).to.be.calledWith('dashboard')
+      expect(token).to.be.null
     })
 
     afterEach(function() {
