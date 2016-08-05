@@ -45,7 +45,7 @@ import _ from 'lodash'
       } else {
         data = {
           domain: CONSTANTS.domain,
-          subdomain: location.href.search('//members') ? 'members' : 'www',
+          subdomain: location.href.search('//members') >= 0 ? 'members' : 'www',
           track: challenge.track.toLowerCase(),
           forumId: challenge.forumId,
           id: challenge.id

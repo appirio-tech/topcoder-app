@@ -13,7 +13,7 @@ import angular from 'angular'
       },
       controller: ['$scope', 'CONSTANTS', function($scope, CONSTANTS) {
         $scope.DOMAIN = CONSTANTS.domain
-        $scope.SUBDOMAIN = location.href.search('//members') ? 'members' : 'www'
+        $scope.SUBDOMAIN = location.href.search('//members') >= 0 ? 'members' : 'www'
       }]
     }
   })
