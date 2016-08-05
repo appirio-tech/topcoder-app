@@ -45,6 +45,7 @@ import _ from 'lodash'
       } else {
         data = {
           domain: CONSTANTS.domain,
+          subdomain: location.href.search('//members') >= 0 ? 'members' : 'www',
           track: challenge.track.toLowerCase(),
           forumId: challenge.forumId,
           id: challenge.id
@@ -61,13 +62,13 @@ import _ from 'lodash'
           }
         /*eslint no-fallthrough:0*/
         case 'submissions':
-          return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}#submissions', data)
+          return String.supplant('https://{subdomain}.{domain}/challenge-details/{id}/?type={track}#submissions', data)
         case 'registrants':
-          return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}#viewRegistrant', data)
+          return String.supplant('https://{subdomain}.{domain}/challenge-details/{id}/?type={track}#viewRegistrant', data)
         case 'submit':// TODO use details link for submit, we can replace it with new submission page url
-          return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}', data)
+          return String.supplant('https://{subdomain}.{domain}/challenge-details/{id}/?type={track}', data)
         case 'detail':
-          return String.supplant('https://www.{domain}/challenge-details/{id}/?type={track}', data)
+          return String.supplant('https://{subdomain}.{domain}/challenge-details/{id}/?type={track}', data)
         }
       }
     }
