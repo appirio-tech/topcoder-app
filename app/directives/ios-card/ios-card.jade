@@ -3,18 +3,18 @@
 
   header
     .top
-      a.name(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") #[span {{challenge.name}}]
+      a.name(ng-href="https://{{SUBDOMAIN}}.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}") #[span {{challenge.name}}]
 
       p.subtrack-color {{challenge.subTrack | underscoreStrip}}
 
     .challenge-links
       .stats
-        a.registrants(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
+        a.registrants(ng-href="https://{{SUBDOMAIN}}.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#viewRegistrant")
           .registrants-icon
 
           p {{challenge.numRegistrants}}
 
-        a.submissions(ng-href="https://www.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#submissions")
+        a.submissions(ng-href="https://{{SUBDOMAIN}}.{{DOMAIN}}/challenge-details/{{challenge.id}}/?type={{challenge.track}}#submissions")
           .submissions-icon
 
           p {{challenge.numSubmissions}}
