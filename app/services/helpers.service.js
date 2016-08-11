@@ -20,7 +20,6 @@ import _ from 'lodash'
       isEmail: isEmail,
       getCountyObjFromIP: getCountyObjFromIP,
       redirectPostLogin: redirectPostLogin,
-      getSocialUserData: getSocialUserData,
       setupLoginEventMetrics: setupLoginEventMetrics,
       npad: npad,
       isValidMIMEType: isValidMIMEType
@@ -28,77 +27,6 @@ import _ from 'lodash'
     return service
 
     /////////////////////
-
-    function getSocialUserData(profile, accessToken) {
-      var socialProvider = profile.identities[0].connection
-      var firstName = '',
-        lastName = '',
-        handle = '',
-        email = ''
-
-      var socialUserId = profile.user_id.substring(profile.user_id.lastIndexOf('|') + 1)
-      var splitName
-
-      if (socialProvider === 'google-oauth2') {
-        firstName = profile.given_name
-        lastName = profile.family_name
-        handle = profile.nickname
-        email = profile.email
-      } else if (socialProvider === 'facebook') {
-        firstName = profile.given_name
-        lastName = profile.family_name
-        handle = firstName + '.' + lastName
-        email = profile.email
-      } else if (socialProvider === 'twitter') {
-        splitName = profile.name.split(' ')
-        firstName = splitName[0]
-        if (splitName.length > 1) {
-          lastName = splitName[1]
-        }
-        handle = profile.screen_name
-      } else if (socialProvider === 'github') {
-        splitName = profile.name.split(' ')
-        firstName = splitName[0]
-        if (splitName.length > 1) {
-          lastName = splitName[1]
-        }
-        handle = profile.nickname
-        email = profile.email
-      } else if (socialProvider === 'bitbucket') {
-        firstName = profile.first_name
-        lastName = profile.last_name
-        handle = profile.username
-        email = profile.email
-      } else if (socialProvider === 'stackoverflow') {
-        firstName = profile.first_name
-        lastName = profile.last_name
-        handle = socialUserId
-        email = profile.email
-      } else if (socialProvider === 'dribbble') {
-        firstName = profile.first_name
-        lastName = profile.last_name
-        handle = socialUserId
-        email = profile.email
-      }
-
-      var token = accessToken
-      var tokenSecret = null
-      if (profile.identities && profile.identities.length > 0) {
-        token = profile.identities[0].access_token
-        tokenSecret = profile.identities[0].access_token_secret
-      }
-      return {
-        socialUserId: socialUserId,
-        username: handle,
-        firstname: firstName,
-        lastname: lastName,
-        email: email,
-        socialProfile: profile,
-        socialProvider: socialProvider,
-        accessToken: token,
-        accessTokenSecret : tokenSecret
-      }
-    }
 
     function storeById(object, questions) {
       angular.forEach(questions, function(question) {

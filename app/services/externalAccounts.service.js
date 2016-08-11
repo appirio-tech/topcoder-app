@@ -1,5 +1,6 @@
 import angular from 'angular'
 import _ from 'lodash'
+import { extractSocialUserData } from 'tc-accounts/core/auth.js'
 
 (function() {
   'use strict'
@@ -139,50 +140,57 @@ import _ from 'lodash'
           },
             function(profile, idToken, accessToken, state, refreshToken) {
               logger.debug('onSocialLoginSuccess')
-              var socialData = Helpers.getSocialUserData(profile, accessToken)
-              var user = UserService.getUserIdentity()
-              var postData = {
-                userId: socialData.socialUserId,
-                name: socialData.username,// TODO it should be first+last Name
-                email: socialData.email,
-                emailVerified: false,
-                providerType: socialData.socialProvider,
-                context: {
-                  handle: socialData.username,
-                  accessToken: socialData.accessToken
+              extractSocialUserData(profile, accessToken).then(function(socialData) {
+                console.log(socialData)
+                var user = UserService.getUserIdentity()
+                var postData = {
+                  userId: socialData.socialUserId,
+                  name: socialData.username,// TODO it should be first+last Name
+                  email: socialData.email,
+                  emailVerified: false,
+                  providerType: socialData.socialProvider,
+                  context: {
+                    handle: socialData.username,
+                    accessToken: socialData.accessToken
+                  }
                 }
-              }
-              if (socialData.accessTokenSecret) {
-                postData.context.accessTokenSecret = socialData.accessTokenSecret
-              }
-              logger.debug('link API postdata: ' + JSON.stringify(postData))
-              userApi.one('users', user.userId).customPOST(postData, 'profiles', {}, {})
-                .then(function(resp) {
-                  logger.debug('Succesfully linked account: ' + JSON.stringify(resp))
-                  // construct 'card' object and resolve it
-                  var _data = {
-                    status: 'SUCCESS',
-                    linkedAccount: {
-                      provider: provider,
-                      data: postData
+                if (socialData.accessTokenSecret) {
+                  postData.context.accessTokenSecret = socialData.accessTokenSecret
+                }
+                logger.debug('link API postdata: ' + JSON.stringify(postData))
+                userApi.one('users', user.userId).customPOST(postData, 'profiles', {}, {})
+                  .then(function(resp) {
+                    logger.debug('Succesfully linked account: ' + JSON.stringify(resp))
+                    // construct 'card' object and resolve it
+                    var _data = {
+                      status: 'SUCCESS',
+                      linkedAccount: {
+                        provider: provider,
+                        data: postData
+                      }
                     }
-                  }
-                  _data.linkedAccount.data.status = 'PENDING'
-                  resolve(_data)
-                })
-                .catch(function(err) {
-                  logger.error('Error linking account', err)
-
-                  var errorStatus = 'FATAL_ERROR'
-
-                  if (err.data.result && err.data.result.status === 400) {
-                    errorStatus = 'SOCIAL_PROFILE_ALREADY_EXISTS'
-                  }
-                  reject({
-                    status: errorStatus,
-                    msg: err.data.result.content
+                    _data.linkedAccount.data.status = 'PENDING'
+                    resolve(_data)
                   })
-                })
+                  .catch(function(err) {
+                    logger.error('Error linking account', err)
+
+                    var errorStatus = 'FATAL_ERROR'
+
+                    if (err.data.result && err.data.result.status === 400) {
+                      errorStatus = 'SOCIAL_PROFILE_ALREADY_EXISTS'
+                    }
+                    reject({
+                      status: errorStatus,
+                      msg: err.data.result.content
+                    })
+                  })
+              })
+              .catch(function(err) {
+                logger.error('Error signing in - onSocialLoginFailure', err)
+
+                reject(err)
+              })
             },
             function(err) {
               logger.error('Error signing in - onSocialLoginFailure', err)
