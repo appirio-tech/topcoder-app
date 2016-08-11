@@ -141,7 +141,6 @@ import { extractSocialUserData } from 'tc-accounts/core/auth.js'
             function(profile, idToken, accessToken, state, refreshToken) {
               logger.debug('onSocialLoginSuccess')
               extractSocialUserData(profile, accessToken).then(function(socialData) {
-                console.log(socialData)
                 var user = UserService.getUserIdentity()
                 var postData = {
                   userId: socialData.socialUserId,
