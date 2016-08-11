@@ -146,7 +146,7 @@ describe('ExternalAccount Service', function() {
       expect(data.linkedAccount.data).to.exist
       expect(data.linkedAccount.data.status).to.exist.to.equal('PENDING')
     })
-    $httpBackend.flush()
+    // $httpBackend.flush()
   })
 
   it('should fail with unsupported network', function() {
@@ -169,7 +169,6 @@ describe('ExternalAccount Service', function() {
       expect(error.status).to.exist.to.equal('SOCIAL_PROFILE_ALREADY_EXISTS')
       expect(error.msg).to.exist.to.equal(errorMessage)
     })
-    $httpBackend.flush()
   })
 
   it('should fail with auth0 error', function() {
@@ -179,7 +178,6 @@ describe('ExternalAccount Service', function() {
     }, function(error) {
       expect(error).to.be.exist.to.equal('MOCK_ERROR')
     })
-    $httpBackend.flush()
   })
 
   it('should fail, with fatal error, in linking external account', function() {
@@ -193,7 +191,6 @@ describe('ExternalAccount Service', function() {
       expect(error.status).to.exist.to.equal('FATAL_ERROR')
       expect(error.msg).to.exist.to.equal(errorMessage)
     })
-    $httpBackend.flush()
   })
 
   it('should unlink external account', function() {
