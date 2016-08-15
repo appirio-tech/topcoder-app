@@ -11,7 +11,7 @@ import angular from 'angular'
       template: require('./challenge-links')(),
       scope: {
         challenge: '=',
-        view: '=',
+        view: '='
       },
       link: function(scope, element, attrs) {
         element.on('click', function() {
