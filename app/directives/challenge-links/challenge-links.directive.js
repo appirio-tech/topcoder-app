@@ -15,8 +15,8 @@ import angular from 'angular'
       },
       link: function(scope, element, attrs) {
         element.on('click', function() {
-          window.location.href = $(this).attr('href');
-        });
+          window.location.href = $(this).attr('href')
+        })
       }
     }
   })
