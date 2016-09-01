@@ -113,6 +113,11 @@ $tco-color-dark: #ea690b;
     color: $white;
   }
 
+  .subtitle {
+    @extend .title;
+    @include sofia-pro-regular;
+  }
+
   .description {
     color: $white;
   }
@@ -123,6 +128,39 @@ $tco-color-dark: #ea690b;
         color: $gray-lighter;
       }
     }
+  }
+
+  .tc-btn-white {
+    background-color: white;
+    color: #0096FF;
+    padding: 10px 20px;
+  }
+
+  .tc-btn-radius {
+    border-radius: 26px;
+  }
+}
+.tc-banner-placeholder.bg-image {
+  background-image: url(../../images/home-hero.jpg);
+  background-size: 100%;
+  height: 352px;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+
+  padding-top: 50px;
+  padding-right: 350px;
+
+  .title {
+    font-size: 36px;
+    margin-bottom: 5px;
+  }
+
+  .subtitle {
+    width: 450px;
+  }
+
+  .cta {
+    margin-top: 20px;
   }
 }
 
