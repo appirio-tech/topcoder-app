@@ -35,7 +35,7 @@ import angular from 'angular'
           { 'href': CONSTANTS.FORUMS_APP_URL, 'text': 'FORUMS', 'icon': require('../../assets/images/nav/forums.svg') },
           { 'sref': 'community.statistics', 'text': 'STATISTICS', 'icon': require('../../assets/images/nav/statistics.svg') },
           { 'href': '/community/events/', 'text': 'EVENTS', 'icon': require('../../assets/images/nav/events.svg') },
-          { 'href': '/blog/', 'text': 'BLOG', 'icon': require('../../assets/images/nav/blog.svg') }
+          { 'href': '/blog/', 'text': 'BLOG', 'icon': require('../../assets/images/nav/blog.svg') } 
       ]
     }
 
