@@ -21,7 +21,6 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'SWIFT_PROGRAM_URL'       : process.env.SWIFT_PROGRAM_URL,
   'TCO16_URL'               : process.env.TCO16_URL,
   'TCO17_URL'               : process.env.TCO17_URL,
-  'TCO17_URL'               : process.env.TCO17_URL,
   'TCO_HOME_URL'            : process.env.TCO_HOME_URL,
   'ACCOUNTS_APP_URL'        : process.env.ACCOUNTS_APP_URL,
   'FILE_PICKER_API_KEY'     : process.env.FILE_PICKER_API_KEY,
