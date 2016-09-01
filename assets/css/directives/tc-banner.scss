@@ -3,6 +3,10 @@
 $tco-color: #F47A20;
 $tco-color-dark: #ea690b;
 
+.tco17 {
+  margin-bottom: 10px;
+}
+
 .tc-banner-placeholder {
   display: flex;
   flex-direction: column;
@@ -134,6 +138,7 @@ $tco-color-dark: #ea690b;
     background-color: white;
     color: #0096FF;
     padding: 10px 20px;
+    margin-top: 5px;
   }
 
   .tc-btn-radius {
@@ -153,9 +158,11 @@ $tco-color-dark: #ea690b;
   .title {
     font-size: 36px;
     margin-bottom: 5px;
+    margin-top: 10px;
   }
 
   .subtitle {
+    margin-top: 20px;
     width: 450px;
   }
 
