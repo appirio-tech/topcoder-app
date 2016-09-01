@@ -5,10 +5,14 @@
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="nav/tco-generic" fill="#FFFFFF">
-            <g id="Group" transform="translate(0.000000, 7.000000)">
-                <path d="M4,2 L2,2 L2,16 L4,16 L4,18 L0,18 L0,0 L4,0 L4,2 Z M28,0 L32,0 L32,18 L28,18 L28,16 L30,16 L30,2 L28,2 L28,0 Z" id="[-]"></path>
-                <path d="M13.215775,15 L11.32515,15 L11.32515,5.8671875 L8.53608751,6.8203125 L8.53608751,5.21875 L12.9735875,3.5859375 L13.215775,3.5859375 L13.215775,15 Z M23.8971072,4.6796875 L19.3502322,15 L17.3580447,15 L21.8971072,5.1484375 L16.0142947,5.1484375 L16.0142947,3.625 L23.8971072,3.625 L23.8971072,4.6796875 Z" id="17"></path>
+        <g id="nav/tco-generic">
+            <path d="M4,7 L2,7 L2,21 L4,21 L4,23 L0,23 L0,5 L4,5 L4,7 Z M28,5 L32,5 L32,23 L28,23 L28,21 L30,21 L30,7 L28,7 L28,5 Z" id="[-]" fill="#FFFFFF"></path>
+            <g id="business-24px-outline_award-48" transform="translate(7.000000, 8.000000)" stroke-width="2" stroke="#FFFEFE">
+                <g id="Group">
+                    <polyline id="Shape" points="3.1 10.8 0 17.4 3.6 16.9 5.4 20 8.3 13.9"></polyline>
+                    <polyline id="Shape" points="14.9 10.8 18 17.4 14.4 16.9 12.6 20 9.7 13.9"></polyline>
+                    <circle id="Oval" cx="9" cy="7" r="7"></circle>
+                </g>
             </g>
         </g>
     </g>
