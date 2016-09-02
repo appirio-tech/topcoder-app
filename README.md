@@ -20,6 +20,9 @@ In order to test a logged in user, you must make an entry in your `/etc/hosts` f
 - To create the build: `npm run build`
 - To run code linting: `npm run lint`
 - To run the tests: `npm test`
+ 
+## Test Users
+- general member user account:  ksmith/Topcoder123$
 
 ## Recommended Developer Tools
 
