@@ -1,18 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>nav/dashboard</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="nav/dashboard" sketch:type="MSArtboardGroup" stroke="#F6F6F6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16,4 L16,7" id="Stroke-197" sketch:type="MSShapeGroup"></path>
-            <path d="M28,16 L25,16" id="Stroke-199" sketch:type="MSShapeGroup"></path>
-            <path d="M24.4853,7.5148 L22.3643,9.6358" id="Stroke-201" sketch:type="MSShapeGroup"></path>
-            <path d="M7,16 L4,16" id="Stroke-203" sketch:type="MSShapeGroup"></path>
-            <path d="M1,16 C1,7.716 7.716,1 16,1 C24.284,1 31,7.716 31,16 C31,24.284 24.284,31 16,31 C7.716,31 1,24.284 1,16 L1,16 L1,16 Z" id="Stroke-205" sketch:type="MSShapeGroup"></path>
-            <path d="M13.8796,13.8795 L7.9996,7.9995" id="Stroke-207" sketch:type="MSShapeGroup"></path>
-            <path d="M13,16 C13,14.343 14.343,13 16,13 C17.657,13 19,14.343 19,16 C19,17.657 17.657,19 16,19 C14.343,19 13,17.657 13,16 L13,16 L13,16 Z" id="Stroke-209" sketch:type="MSShapeGroup"></path>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><g fill="none" fill-rule="evenodd" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4v3m12 9h-3m-.515-8.485l-2.12 2.12M7 16H4m-3 0C1 7.716 7.716 1 16 1c8.284 0 15 6.716 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15zm12.88-2.12L8 8"/><path d="M13 16a3 3 0 1 1 6 0 3 3 0 0 1-6 0z"/></g></svg>

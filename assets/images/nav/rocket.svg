@@ -1,16 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>nav/rocket</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="nav/rocket" sketch:type="MSArtboardGroup" stroke="#F6F6F6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16.46011,6.4114658 C12.656017,4.7731402 8.074436,5.50700064 4.967738,8.614349 C4.3302498,9.251838 3.8047614,9.955745 3.36718,10.697419 L7.830901,15.161791" id="Stroke-9" sketch:type="MSShapeGroup"></path>
-            <path d="M25.55634,15.4666 C27.23569,19.285019 26.512247,23.905019 23.385363,27.0319 C22.747874,27.66939 22.043967,28.19488 21.301642,28.63246 L16.7982,24.129019" id="Stroke-11" sketch:type="MSShapeGroup"></path>
-            <path d="M13.255476,26.11126 L5.88822,18.744 C5.88822,18.744 12.181057,3.0893953 29.83148,2.168 C28.83389,19.74158 13.255476,26.11126 13.255476,26.11126 L13.255476,26.11126 L13.255476,26.11126 Z" id="Stroke-13" sketch:type="MSShapeGroup"></path>
-            <path d="M16.0181072,12.2979372 C17.035223,11.2808209 18.684619,11.2808209 19.701735,12.2979372 C20.718851,13.315053 20.718851,14.964449 19.701735,15.981565 C18.684619,16.998681 17.035223,16.998681 16.0181072,15.981565 C15.0009909,14.964449 15.0009909,13.315053 16.0181072,12.2979372 L16.0181072,12.2979372 L16.0181072,12.2979372 Z" id="Stroke-15" sketch:type="MSShapeGroup"></path>
-            <path d="M3.4140617,24.9024372 C4.431178,23.8853209 6.080573,23.8853209 7.09769,24.9024372 C8.114806,25.919553 8.114806,27.568949 7.09769,28.586065 C6.080573,29.603181 2.65089888,29.348577 2.65089888,29.348577 C2.65089888,29.348577 2.3969454,25.919553 3.4140617,24.9024372 L3.4140617,24.9024372 L3.4140617,24.9024372 Z" id="Stroke-17" sketch:type="MSShapeGroup"></path>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><g fill="none" fill-rule="evenodd" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.46 6.411c-3.804-1.638-8.386-.904-11.492 2.203a10.402 10.402 0 0 0-1.6 2.083l4.463 4.465m17.725.305c1.68 3.818.956 8.438-2.17 11.565a10.388 10.388 0 0 1-2.084 1.6l-4.504-4.503"/><path d="M13.255 26.111l-7.367-7.367S12.181 3.089 29.831 2.168c-.997 17.574-16.576 23.943-16.576 23.943z"/><path d="M16.018 12.298a2.605 2.605 0 1 1 3.684 3.684 2.605 2.605 0 0 1-3.684-3.684zM3.414 24.902a2.605 2.605 0 0 1 3.684 3.684c-1.017 1.017-4.447.763-4.447.763s-.254-3.43.763-4.447z"/></g></svg>

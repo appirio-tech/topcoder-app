@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>nav/help</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="nav/help" sketch:type="MSArtboardGroup" stroke="#F6F6F6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14,28 C14,26.895 14.895,26 16,26 C17.105,26 18,26.895 18,28 C18,29.105 17.105,30 16,30 C14.895,30 14,29.105 14,28 L14,28 L14,28 Z" id="Stroke-221" sketch:type="MSShapeGroup"></path>
-            <path d="M10.0471,6.8566 C11.0391,4.5866 13.3641,2.9996 16.0001,2.9996 C19.5501,2.9996 22.3691,5.8786 22.3691,9.4286 C22.3691,12.9786 19.5501,15.9996 16.0001,15.9996 L16.0001,21.9996" id="Stroke-223" sketch:type="MSShapeGroup"></path>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M14 28a2 2 0 1 1 3.999-.001A2 2 0 0 1 14 28zM10.047 6.857C11.04 4.587 13.364 3 16 3c3.55 0 6.37 2.879 6.37 6.429 0 3.55-2.82 6.57-6.37 6.57v6" fill="none" fill-rule="evenodd" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
