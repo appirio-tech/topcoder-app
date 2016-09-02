@@ -20,7 +20,14 @@ In order to test a logged in user, you must make an entry in your `/etc/hosts` f
 - To create the build: `npm run build`
 - To run code linting: `npm run lint`
 - To run the tests: `npm test`
-
+ 
+## Test Users
+- general member user accounts:  
+  - ksmith/Topcoder123$
+  - dan_developer/dantopcoder123
+- Create your own:
+  - You may register your own account at https://local.topcoder-dev.com/register
+  
 ## Recommended Developer Tools
 
 Syntax highlighting for ES6 and React JSX
