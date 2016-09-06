@@ -1,15 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>nav/wallet</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="nav/wallet" sketch:type="MSArtboardGroup" stroke="#F6F6F6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M29.8571429,14.8570357 L29.8571429,6.28560714 L4.14285714,6.28560714 C2.95892857,6.28560714 2,5.32667857 2,4.14275 L2,25.5713214 C2,27.9381071 3.91892857,29.8570357 6.28571429,29.8570357 L29.8571429,29.8570357 L29.8571429,21.2856071" id="Stroke-65" sketch:type="MSShapeGroup"></path>
-            <path d="M24.5,6.28571429 L24.5,2 L4.14285714,2 C2.95892857,2 2,2.95892857 2,4.14285714 C2,5.32678571 2.95892857,6.28571429 4.14285714,6.28571429" id="Stroke-67" sketch:type="MSShapeGroup"></path>
-            <path d="M32,21.2857143 L24.5,21.2857143 C22.7246429,21.2857143 21.2857143,19.8467857 21.2857143,18.0714286 C21.2857143,16.2960714 22.7246429,14.8571429 24.5,14.8571429 L32,14.8571429 L32,21.2857143 L32,21.2857143 Z" id="Stroke-69" sketch:type="MSShapeGroup"></path>
-            <path d="M26.6428571,18.0714286 L27.7142857,18.0714286" id="Stroke-71" sketch:type="MSShapeGroup"></path>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><g fill="none" fill-rule="evenodd" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M29.857 14.857V6.286H4.143A2.142 2.142 0 0 1 2 4.143V25.57a4.286 4.286 0 0 0 4.286 4.286h23.571v-8.571"/><path d="M24.5 6.286V2H4.143a2.142 2.142 0 1 0 0 4.286m27.857 15h-7.5a3.214 3.214 0 1 1 0-6.429H32v6.429zM26.643 18h1.071"/></g></svg>

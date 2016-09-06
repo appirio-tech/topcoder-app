@@ -1,16 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
-    <title>nav/track-cp</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="nav/track-cp" sketch:type="MSArtboardGroup" stroke="#F6F6F6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M31,28 L1,28 L1,4 L31,4 L31,28 L31,28 Z" id="Stroke-107" sketch:type="MSShapeGroup"></path>
-            <path d="M1,8 L31,8" id="Stroke-109" sketch:type="MSShapeGroup"></path>
-            <path d="M5,4 L5,8" id="Stroke-111" sketch:type="MSShapeGroup"></path>
-            <path d="M6,13 L10,17 L6,21" id="Stroke-113" sketch:type="MSShapeGroup"></path>
-            <path d="M12,21 L18,21" id="Stroke-115" sketch:type="MSShapeGroup"></path>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><g fill="none" fill-rule="evenodd" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M31 28H1V4h30zM1 8h30M5 4v4"/><path d="M6 13l4 4-4 4M12 21h6"/></g></svg>
