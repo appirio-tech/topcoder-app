@@ -12,11 +12,6 @@ import angular from 'angular'
       scope: {
         challenge: '=',
         view: '='
-      },
-      link: function(scope, element, attrs) {
-        element.on('click', function() {
-          window.location.href = $(this).attr('href')
-        })
       }
     }
   })
