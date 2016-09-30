@@ -149,7 +149,8 @@ import _ from 'lodash'
                 providerType: socialData.socialProvider,
                 context: {
                   handle: socialData.username,
-                  accessToken: socialData.accessToken
+                  accessToken: socialData.accessToken,
+                  auth0UserId: profile.user_id
                 }
               }
               if (socialData.accessTokenSecret) {
