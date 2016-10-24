@@ -245,10 +245,10 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
           return y
         }
       }
-      
+
       /* render react tooltip component */
       ReactDOM.unmountComponentAtNode(document.getElementById('chart-tooltip'))
-      ReactDOM.render(<Tooltip popMethod='click'>
+      ReactDOM.render(<Tooltip popMethod='hover'>
           <div className='tooltip-target'></div>
           <div className='tooltip-body'>
           <div className='tooltip-rating'></div>
@@ -259,7 +259,7 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
           </div>
         </Tooltip>
         , document.getElementById('chart-tooltip'))
-    
+
       svg.selectAll('circle')
          .data(history)
          .enter()
@@ -270,6 +270,7 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
          .attr('cy', function(d) {
            return y(d.newRating)
          })
+         .attr('r', 5.5)
          .attr('fill', function(d) {
            return ratingToColor($scope.colors, d.newRating)
          })
@@ -283,18 +284,18 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
              else
                location.href = $filter('challengeLinks')({id: d.challengeId, 'track': $state.params.track, 'subTrack': $state.params.subTrack}, 'detail')
            })
-           
+
            /* update tooltip location on mouseover, feature currently not inbuilt in react tooltip component */
            d3.select('#chart-tooltip')
-              .style('left', (d3.event.pageX-5) + 'px')    
+              .style('left', (d3.event.pageX-5) + 'px')
               .style('top', (d3.event.pageY-5) + 'px')
            d3.select('#chart-tooltip .tooltip-container')
-              .style('left', '20px !important')    
+              .style('left', '20px !important')
               .style('top', '-20px !important')
            d3.select('#chart-tooltip .tooltip-container .tooltip-pointer')
-              .style('left', '-5.5px !important')    
+              .style('left', '-5.5px !important')
               .style('bottom', '25px !important')
-          
+
            d3.select('#chart-tooltip .challenge-name').text($scope.historyChallenge)
            d3.select('#chart-tooltip .challenge-date').text(moment(d.ratingDate).format('MMM DD, YYYY'))
            d3.select('#chart-tooltip .tooltip-rating').text($scope.historyRating)
@@ -307,7 +308,7 @@ import Tooltip from 'appirio-tech-react-components/components/Tooltip/Tooltip.js
            $scope.$digest()
          })
 
-      /* hide tooltip when clicked anywhere outside */           
+      /* hide tooltip when clicked anywhere outside */
       d3.select('body').on('click', function(){
         if((d3.event.target.classList[0] != 'tooltip-target') && !$('#chart-tooltip .tooltip-container').hasClass('tooltip-hide') &&
           (d3.event.target.tagName.toLowerCase()!='circle') && !(d3.event.target.tagName.toLowerCase()=='rect' && d3.event.target.classList[0] == 'hover')) {
