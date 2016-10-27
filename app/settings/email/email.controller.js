@@ -59,6 +59,13 @@ import angular from 'angular'
           desc: 'Our annual online and onsite tournament to celebrate and reward the community',
           enabled: false,
           dirty: false
+        },
+        {
+          id: 'TOPCODER_NL_PREDIX',
+          name: 'Predix Community Newsletter',
+          desc: 'Our annual online and onsite tournament to celebrate and reward the community',
+          enabled: false,
+          dirty: false
         }
       ]
 
