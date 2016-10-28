@@ -155,14 +155,22 @@ $tco-color-dark: #ea690b;
   padding-top: 50px;
 
   .title {
-    font-size: 36px;
-    margin-bottom: 5px;
     margin-top: 10px;
+    @include sofia-pro-bold;
+    color: $white;
   }
 
   .subtitle {
     margin-top: 20px;
     width: 450px;
+    font-size: 20px;
+    @extend .title;
+    @include sofia-pro-regular;
+  }
+
+  .description {
+    margin-top: 20px;
+    margin-bottom: 5px;
   }
 
   .cta {
