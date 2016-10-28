@@ -63,7 +63,7 @@ import angular from 'angular'
         {
           id: 'TOPCODER_NL_PREDIX',
           name: 'Predix Community Newsletter',
-          desc: 'Our annual online and onsite tournament to celebrate and reward the community',
+          desc: 'Stay up to date on activity in our Predix community',
           enabled: false,
           dirty: false
         }
