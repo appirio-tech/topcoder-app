@@ -63,7 +63,7 @@ import angular from 'angular'
         {
           id: 'TOPCODER_NL_PREDIX',
           name: 'Predix Community Newsletter',
-          desc: 'Stay up to date on activity in our Predix community',
+          desc: 'Design and development on GE’s platform for the Industrial Internet of Things',
           enabled: false,
           dirty: false
         }
