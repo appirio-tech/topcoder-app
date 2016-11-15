@@ -5,6 +5,9 @@
 
   .challenges(id="challenges", ui-view="my-challenges")
 
+  .tco
+    tc-banner(theme="black", banner-name="tco16")
+    
   .tco.tco17
     .tc-banner-placeholder.predix
       .subtitle Ready for the future? The Industrial Internet is here
@@ -19,9 +22,6 @@
       .subtitle The Ultimate Programming & Design tournament
       .description Earn your way to the USA!
       a(href="http://tco17.topcoder.com/").cta.tc-btn-white.tc-btn-radius Learn More
-
-  .tco
-    tc-banner(theme="black", banner-name="tco16")
 
   .srms(id="srms", ui-view="srms", ng-show="dashboard.showSRMs")
 
