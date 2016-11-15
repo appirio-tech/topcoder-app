@@ -12,6 +12,7 @@ import _ from 'lodash'
     var vm = this
     vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX
     vm.IOS_PROGRAM_ID = CONSTANTS.SWIFT_PROGRAM_ID
+    vm.PREDIX_PROGRAM_ID = CONSTANTS.PREDIX_PROGRAM_ID
     vm.submitSkills = submitSkills
     vm.featuredSkills = featuredSkills
     vm.userId = userProfile.userId
@@ -63,7 +64,9 @@ import _ from 'lodash'
      */
     function initCommunities() {
       vm.communities['ios'] = { displayName: 'iOS', programId: vm.IOS_PROGRAM_ID, status: false, dirty: false, display: true}
+      vm.communities['predix'] = { displayName: 'Predix', programId: vm.PREDIX_PROGRAM_ID, status: false, dirty: false, display: true}
       _addWatchToCommunity(vm.communities['ios'])
+      _addWatchToCommunity(vm.communities['predix'])
     }
 
     /**

@@ -100,7 +100,8 @@ describe('Skill Picker Controller', function() {
 
   it('should be created successfully', function() {
     expect(vm).to.exist
-    expect(vm.showCommunity).to.exist.to.false
+    // showCommunity should be true as now we have two communities
+    expect(vm.showCommunity).to.exist.to.true
   })
 
   it('should have empty tracks object ', function() {
