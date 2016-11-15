@@ -111,6 +111,7 @@ $tco-color-dark: #ea690b;
 
 // black
 .tc-banner-placeholder.black {
+  margin-bottom: 10px;
   background-color: #222222;
   .title {
     @include sofia-pro-bold;
