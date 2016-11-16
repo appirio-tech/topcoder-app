@@ -29,9 +29,9 @@ import angular from 'angular'
         'tco16': {
           title: '2016 Topcoder Open',
           img: require('../../assets/images/nav/ico-tco16.svg'),
-          description: 'The Topcoder Open (TCO) is our annual online and onsite tournament to celebrate and reward the community.',
+          description: 'Watch the TCO16 Finals LIVE November 18 - 21 from Washington DC.',
           ctas: [{
-            title: 'Learn More',
+            title: 'Watch Now',
             url: 'http://tco16.topcoder.com/latest/overview/',
             cssClass: 'tc-btn tc-btn-s tco-cta'
           }]
