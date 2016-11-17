@@ -28,7 +28,7 @@ import angular from 'angular'
       bannersData = {
         'tco16': {
           title: '2016 Topcoder Open',
-          img: require('../../assets/images/nav/ico-tco16.svg'),
+          img: require('../../assets/images/tco16-bah-logo-black-bg.svg'),
           description: 'Watch the TCO16 Finals LIVE November 18 - 21 from Washington DC.',
           ctas: [{
             title: 'Watch Now',
