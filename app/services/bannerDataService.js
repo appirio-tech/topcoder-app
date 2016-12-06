@@ -29,10 +29,10 @@ import angular from 'angular'
         'tco16': {
           title: '2016 Topcoder Open',
           img: require('../../assets/images/tco16-bah-logo-black-bg.svg'),
-          description: 'Watch the TCO16 Finals LIVE November 18 - 21 from Washington DC.',
+          description: 'Congratulations to all our TCO16 Champions!',
           ctas: [{
-            title: 'Watch Now',
-            url: 'http://tco16.topcoder.com/latest/overview/',
+            title: 'Learn More',
+            url: 'http://tco16.topcoder.com/',
             cssClass: 'tc-btn tc-btn-s tco-cta'
           }]
         },
