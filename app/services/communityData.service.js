@@ -21,55 +21,61 @@ import angular from 'angular'
       var data = {
         'memberLeaderboard': [
           {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/toxicpixel_apr2016.png',
-            'name': 'ToxicPixel',
+            'avatar': '//www.topcoder.com/i/m/callmekatootie.jpeg',
+            'name': 'callmekatootie',
+            'contestType': 'Development',
+            'description': '',
+            'class': 'develop'
+          }, {
+            'avatar': '//www.topcoder.com/i/m/besabestin.jpeg',
+            'name': 'besabestin',
+            'contestType': 'Development',
+            'description': '',
+            'class': 'develop'
+          }, {
+            'avatar': '//www.topcoder.com/i/m/chekspir.jpeg',
+            'name': 'chekspir',
             'contestType': 'Design',
-            'description': 'Won $4,200 with top prizes in LUX and Idea Gen!',
+            'description': '',
             'class': 'design'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/monicamuranyi_apr2016.png',
-            'name': 'MonicaMuranyi',
-            'contestType': 'Development',
-            'description': 'Won $8,300 across 12 competitions',
-            'class': 'develop'
+            'avatar': '//www.topcoder.com/i/m/DaraK.png',
+            'name': 'darak',
+            'contestType': 'Design',
+            'description': '',
+            'class': 'design'
           }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/sugina_apr2016.png',
-            'name': 'Sugina',
+            'avatar': '//topcoder-prod-media.s3.amazonaws.com/member/profile/scott_wu-1480977860221.jpeg',
+            'name': 'scott_wu',
             'contestType': 'Data Science',
-            'description': 'Total increase of 175 points, with a jump from Div 2 to Div 1',
+            'description': '',
             'class': 'data-science'
-          }, {
-            'avatar': '//www.topcoder.com/wp-content/uploads/2015/05/tritias_apr2016.png',
-            'name': 'TiTrias',
-            'contestType': 'Development Rookie',
-            'description': 'Won first challenge within a month of joining!',
-            'class': 'develop'
           }
         ],
         'copilots': [{
-          'avatar': '//community.topcoder.com/i/m/maroosh.jpeg',
+          'avatar': '//www.topcoder.com/i/m/maroosh.jpeg',
           'name': 'maroosh',
           'country': 'Jordan'
         }, {
-          'avatar': '//community.topcoder.com/i/m/Ghostar.jpeg',
+          'avatar': '//www.topcoder.com/i/m/Ghostar.jpeg',
           'name': 'Ghostar',
           'country': 'United States'
         }, {
-          'avatar': '//community.topcoder.com/i/m/hohosky.png',
-          'name': 'hohosky',
-          'country': 'China'
+          'avatar': '//www.topcoder.com/i/m/fajar.mln.png',
+          'name': 'fajar.mln',
+          'country': 'Indonesia'
         }, {
-          'avatar': '//community.topcoder.com/i/m/Wendell.jpeg',
+          'avatar': '//www.topcoder.com/i/m/Wendell.jpeg',
           'name': 'Wendell',
           'country': 'China'
         }, {
-          'avatar': '//community.topcoder.com/i/m/callmekatootie.jpeg',
+          'avatar': '//www.topcoder.com/i/m/callmekatootie.jpeg',
           'name': 'callmekatootie',
           'country': 'India'
         }, {
-          'avatar': '//community.topcoder.com/i/m/iSpartan.jpeg',
-          'name': 'iSpartan',
-          'country': 'United States'
+          'avatar': '//www.topcoder.com/i/m/elkhawajah.jpeg',
+          'name': 'elkhawajah',
+          'country': 'Jordan'
         }]
       }
       deferred.resolve(data)
