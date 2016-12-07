@@ -241,8 +241,8 @@
       padding-bottom: 33px;
     }
     .user-tile {
-      min-width: 250px;
-      width: 250px;
+      min-width: 180px;
+      width: 180px;
       max-width: 365px;
       margin-right: 14px;
       padding: 14px 20px;
@@ -279,7 +279,7 @@
       font-size: 14px;
       padding-top: 11px;
       @media only screen and (min-width: 1070px) {
-        font-size: 22px;
+        font-size: 18px;
         padding-top: 10px;
       }
     }
