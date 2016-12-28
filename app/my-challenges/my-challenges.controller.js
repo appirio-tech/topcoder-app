@@ -146,6 +146,14 @@ import _ from 'lodash'
       vm.getChallenges(currentOffset, false)
     }
 
+    window.onscroll = function() {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        if (vm.totalCount > vm.myChallenges.length) {
+          vm.loadMore();
+        }
+      }
+    }
+
     function _checkForParticipation() {
       return ChallengeService.checkChallengeParticipation(vm.handle, function(participated) {
         vm.neverParticipated = !participated
