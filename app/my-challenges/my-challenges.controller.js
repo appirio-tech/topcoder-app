@@ -149,7 +149,7 @@ import _ from 'lodash'
     window.onscroll = function() {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         if (vm.totalCount > vm.myChallenges.length) {
-          vm.loadMore();
+          vm.loadMore()
         }
       }
     }
