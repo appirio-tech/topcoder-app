@@ -3,10 +3,7 @@ const mockData = require('../../../tests/test-helpers/mock-data')
 
 /* jshint -W117, -W030 */
 describe('Header Dashboard Controller', function() {
-  var identity
   var profile = mockData.getMockProfile()
-  var stats = mockData.getMockStats()
-  var financials = mockData.getMockUserFinancials()
 
   beforeEach(function() {
     bard.appModule('topcoder')
@@ -15,13 +12,6 @@ describe('Header Dashboard Controller', function() {
       '$rootScope',
       '$q',
       'Helpers')
-
-    identity = function() {
-      return {
-        handle: 'albertwang',
-        userId: 123456
-      }
-    }
   })
 
   bard.verifyNoOutstandingHttpRequests()

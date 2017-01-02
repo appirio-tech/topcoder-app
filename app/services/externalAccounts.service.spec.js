@@ -240,7 +240,7 @@ describe('ExternalAccount Service', function() {
       expect(resp).to.exist
       expect(resp.status).to.exist.to.equal('failed')
     })
-    $rootScope.$apply();
+    $rootScope.$apply()
   })
 
 })
