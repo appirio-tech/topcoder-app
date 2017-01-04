@@ -8,12 +8,11 @@ import moment from 'moment'
 
   ListingsCtrl.$inject = ['CONSTANTS', 'logger', '$q',
     'TcAuthService', 'UserService', 'UserStatsService', 'ProfileService', 'ChallengeService', 'ExternalAccountService',
-    'userHandle', 'profile', 'ngDialog', '$anchorScroll'
+    'ngDialog', '$anchorScroll'
   ]
 
-  function ListingsCtrl(CONSTANTS, logger, $q, TcAuthService, UserService, UserStatsService, ProfileService, ChallengeService, ExternalAccountService, userHandle, profile, ngDialog, $anchorScroll) {
+  function ListingsCtrl(CONSTANTS, logger, $q, TcAuthService, UserService, UserStatsService, ProfileService, ChallengeService, ExternalAccountService, ngDialog, $anchorScroll) {
     var vm = this
-    // set profile to the object that was resolved
 
     activate()
 
