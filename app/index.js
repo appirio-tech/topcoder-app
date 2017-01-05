@@ -22,6 +22,7 @@ require('angucomplete-alt')
 require('angularjs-toaster')
 require('ng-dialog')
 require('xml2js')
+require('ngreact')
 
 require('appirio-tech-ng-ui-components')
 require('appirio-tech-ng-iso-constants')

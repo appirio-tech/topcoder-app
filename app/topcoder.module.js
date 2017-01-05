@@ -10,6 +10,7 @@ import { getCurrentUser, loadUser } from './services/userv3.service.js'
     'tc.account',
     'tc.peer-review',
     'tc.myDashboard',
+    'tc.listings',
     'tc.mySRMs',
     'tc.myChallenges',
     'tc.profile',

@@ -56,7 +56,7 @@
     "appirio-styles": "0.x.x",
     "appirio-tech-ng-iso-constants": "^1.0.6",
     "appirio-tech-ng-ui-components": "^2.1.2",
-    "appirio-tech-react-components": "^0.0.12",
+    "appirio-tech-react-components": "appirio-tech/react-components.git#challenge-filters",
     "auth0-angular": "^4.1.0",
     "auth0-js": "^6.8.0",
     "d3": "^3.5.14",
