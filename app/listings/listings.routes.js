@@ -22,7 +22,16 @@ import angular from 'angular'
         parent: 'root',
         url: '/listings/',
         template: require('./listings')(),
-        controller: 'ListingsCtrl as vm'
+        controller: 'ListingsCtrl as vm',
+        resolve: {
+          userHandle: ['$stateParams', function($stateParams) {
+            return $stateParams.userHandle
+          }]
+        },
+        data: {
+          authRequired: false,
+          title: 'Listings'
+        }
       }
     }
 
