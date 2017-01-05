@@ -16,6 +16,7 @@ import angular from 'angular'
 
     function activate() {
       logger.debug('Calling ListingsController activate()')
+      logger.debug('ACTIVATING...')
 
     }
   }
