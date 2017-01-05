@@ -1,6 +1,5 @@
 import angular from 'angular'
-import React from 'react'
-import { ChallengeFiltersExample, TCFooter } from 'appirio-tech-react-components'
+import { ChallengeFiltersExample } from 'appirio-tech-react-components'
 
 (function() {
   'use strict'

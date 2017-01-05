@@ -1,5 +1,4 @@
 import angular from 'angular'
-import moment from 'moment'
 
 (function () {
   'use strict'
@@ -12,7 +11,6 @@ import moment from 'moment'
   ]
 
   function ListingsCtrl(CONSTANTS, logger, $q, TcAuthService, UserService, UserStatsService, ProfileService, ChallengeService, ExternalAccountService, ngDialog, $anchorScroll) {
-    var vm = this
 
     activate()
 

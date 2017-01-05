@@ -18,7 +18,7 @@ import angular from 'angular'
 
   function routes($stateProvider) {
     var states = {
-     'listings': {
+      'listings': {
         parent: 'root',
         url: '/listings/',
         template: require('./listings')(),
