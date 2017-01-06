@@ -194,7 +194,7 @@ import _ from 'lodash'
         } else {
           logger.error('Unsupported social login backend', provider)
 
-          reject({
+          $q.reject({
             status: 'failed',
             'error': 'Unsupported social login backend \'' + provider + '\''
           })
