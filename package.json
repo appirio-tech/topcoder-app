@@ -72,7 +72,7 @@
     "restangular": "^1.5.2",
     "tc-accounts": "https://github.com/appirio-tech/accounts-app.git#0.0.7",
     "tc-angular-ellipsis": "^0.1.6",
-    "topcoder-app-r": "^1.0.0",
+    "topcoder-app-r": "https://github.com/appirio-tech/topcoder-app-r.git#0.0.1",
     "xml2js": "^0.4.16",
     "zepto": "1.0.1"
   }
