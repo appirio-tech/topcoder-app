@@ -124,6 +124,7 @@ import moment from 'moment'
         showClose: false,
         closeByDocument: true,
         closeByEscape: true,
+        cache: false,
         template: require('./badges/badges')(),
         controller: 'BadgesController',
         controllerAs: 'vm',
