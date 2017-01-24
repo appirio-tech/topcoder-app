@@ -29,6 +29,7 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'NEW_CHALLENGES_URL'     : 'https://www.topcoder.com/challenges/develop/upcoming/',
   'SWIFT_PROGRAM_ID'       : 3445,
   'PREDIX_PROGRAM_ID'      : process.env.PREDIX_PROGRAM_ID || 3448,
+  'IBM_COGNITIVE_PROGRAM_ID'      : process.env.IBM_COGNITIVE_PROGRAM_ID || 3449,
   'UPCOMING_SRMS_URL'      : 'https://www.topcoder.com/challenges/data/upcoming/',
   'EVENT_USER_LOGGED_IN'   : 'user_logged_in',
   'EVENT_USER_LOGGED_OUT'  : 'user_logged_out',
