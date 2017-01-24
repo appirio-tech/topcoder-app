@@ -88,6 +88,10 @@
   right: 10px;
   top: 0;
   text-decoration: none;
+
+  a + a {
+    margin-left: 12px;
+  }
 }
 
 .btn-link {
