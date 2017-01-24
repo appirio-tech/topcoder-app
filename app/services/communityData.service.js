@@ -21,32 +21,38 @@ import angular from 'angular'
       var data = {
         'memberLeaderboard': [
           {
-            'avatar': '//www.topcoder.com/i/m/callmekatootie.jpeg',
-            'name': 'callmekatootie',
+            'avatar': '//www.topcoder.com/i/m/Sky_.jpeg',
+            'name': 'Sky_',
             'contestType': 'Development',
             'description': '',
             'class': 'develop'
           }, {
-            'avatar': '//www.topcoder.com/i/m/besabestin.jpeg',
-            'name': 'besabestin',
+            'avatar': '//topcoder-prod-media.s3.amazonaws.com/member/profile/birdofpreyru-1474623113239.jpeg',
+            'name': 'birdofpreyru',
             'contestType': 'Development',
             'description': '',
             'class': 'develop'
           }, {
-            'avatar': '//www.topcoder.com/i/m/chekspir.jpeg',
-            'name': 'chekspir',
+            'avatar': '//topcoder-prod-media.s3.amazonaws.com/member/profile/thomaskranitsas-1478960109561.jpeg',
+            'name': 'thomaskranitsas',
+            'contestType': 'Development',
+            'description': '',
+            'class': 'develop'
+          }, {
+            'avatar': '//topcoder-prod-media.s3.amazonaws.com/member/profile/Ravijune-1471983063227.jpeg',
+            'name': 'Ravijune',
             'contestType': 'Design',
             'description': '',
             'class': 'design'
           }, {
-            'avatar': '//www.topcoder.com/i/m/DaraK.png',
-            'name': 'darak',
+            'avatar': '//www.topcoder.com/i/m/f0rc0d3r.jpeg',
+            'name': 'f0rc0d3r',
             'contestType': 'Design',
             'description': '',
             'class': 'design'
           }, {
-            'avatar': '//topcoder-prod-media.s3.amazonaws.com/member/profile/scott_wu-1480977860221.jpeg',
-            'name': 'scott_wu',
+            'avatar': '//www.topcoder.com/i/m/ltaravilse.jpeg',
+            'name': 'ltaravilse',
             'contestType': 'Data Science',
             'description': '',
             'class': 'data-science'
