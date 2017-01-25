@@ -32,6 +32,14 @@
         margin-bottom: -5px;
         margin-right: 13px;
       }
+      .ngdialog-close {
+        display: block;
+        border-radius: 5px;
+        cursor: pointer;
+        position: absolute;
+        right: -30px;
+        top: -20px;
+      }
 
     }
 
@@ -60,6 +68,10 @@
       }
     }
   }
+  .ngdialog-close {
+    display: none;
+  }
+
 }
 
 
