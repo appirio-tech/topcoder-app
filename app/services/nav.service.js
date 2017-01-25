@@ -26,7 +26,7 @@ import angular from 'angular'
           { 'href': '/community/design/', 'text': 'DESIGN', 'icon': require('../../assets/images/nav/book-design.svg') },
           { 'href': '/community/development/', 'text': 'DEVELOPMENT', 'icon': require('../../assets/images/nav/book-develop.svg') },
           { 'href': '/community/data-science/', 'text': 'DATA SCIENCE', 'icon': require('../../assets/images/nav/book-data.svg') },
-          { 'href': '/community/competitive%20programming/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': require('../../assets/images/nav/book-cp.svg') }
+          { 'href': '/community/competitive-programming/', 'text': 'COMPETITIVE PROGRAMMING', 'icon': require('../../assets/images/nav/book-cp.svg') }
       ],
       'community': [
           { 'sref': 'community.members', 'text': 'OVERVIEW', 'icon': require('../../assets/images/nav/members.svg') },
