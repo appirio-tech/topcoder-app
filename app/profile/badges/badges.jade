@@ -1,5 +1,6 @@
+.ngdialog-close.close-outside
+
 header.head
-  .ngdialog-close
   .breadcrumbs
     .handle
       img.profile-circle(fallback-src=require("../../../assets/images/avatarPlaceholder.png"), ng-src="{{vm.profile.photoURL}}")
@@ -12,6 +13,7 @@ header.head
       span.title BADGES
 
 aside.badges
+  .ngdialog-close
   .content
     .badgeGroups
       .groupBadge(ng-repeat='ag in vm.achievementGroups', ng-class='ag.groupClass', ng-show='ag.specificAchievements[0].active')
