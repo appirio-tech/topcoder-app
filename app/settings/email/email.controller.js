@@ -69,8 +69,8 @@ import angular from 'angular'
         },
         {
           id: 'TOPCODER_NL_IBM_COGNITIVE',
-          name: 'IBM Cognitive Community Newsletter',
-          desc: 'IBM Cognitive Community Newsletter',
+          name: 'Cognitive Community Newsletter',
+          desc: 'Never miss out on info about the Topcoder Cognitive Community',
           enabled: false,
           dirty: false
         }
