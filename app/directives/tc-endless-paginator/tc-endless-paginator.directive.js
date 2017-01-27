@@ -10,12 +10,15 @@ import angular from 'angular'
       template: require('./tc-endless-paginator')(),
       scope: {
         state: '=',
-        pageParams: '='
+        pageParams: '=',
+        firstLoadMore: '=?'
       },
       controller: ['$scope', function($scope) {
+        $scope.firstLoadMore = true
         $scope.loadMore = function() {
           $scope.pageParams.currentOffset += $scope.pageParams.limit
           $scope.pageParams.updated++
+          $scope.firstLoadMore = false
         }
       }]
     }
