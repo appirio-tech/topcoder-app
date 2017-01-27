@@ -79,7 +79,7 @@ import _ from 'lodash'
         display: true
       }
       vm.communities['ibm_cognitive'] = {
-        displayName: 'IBM Cognitive',
+        displayName: 'Cognitive',
         programId: vm.IBM_COGNITIVE_PROGRAM_ID,
         status: false,
         dirty: false,
