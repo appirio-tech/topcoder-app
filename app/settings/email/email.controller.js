@@ -66,6 +66,13 @@ import angular from 'angular'
           desc: 'Design and development on GE’s platform for the Industrial Internet of Things',
           enabled: false,
           dirty: false
+        },
+        {
+          id: 'TOPCODER_NL_IBM_COGNITIVE',
+          name: 'Cognitive Community Newsletter',
+          desc: 'Never miss out on info about the Topcoder Cognitive Community',
+          enabled: false,
+          dirty: false
         }
       ]
 

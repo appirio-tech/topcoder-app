@@ -631,4 +631,16 @@
       }
     }
   }
+
+  .members-of-month-container {
+
+    .user-tile {
+      min-width: 150px;
+      padding: 20px 0 0;
+
+      .user-name {
+        font-size: 15px;
+      }
+    }
+  }
 }

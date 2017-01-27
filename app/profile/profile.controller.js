@@ -44,7 +44,7 @@ import moment from 'moment'
           vm.stats = stats
           vm.profile.tracks = vm.profile.tracks || []
           vm.tracks = ProfileService.getTracks(stats) || vm.profile.tracks
-          if (stats.COPILOT && stats.COPILOT.contests && vm.profile.tracks.indexOf('COPILOT') == -1) {
+          if (vm.profile.badges.copilot || (stats.COPILOT && stats.COPILOT.contests && vm.profile.tracks.indexOf('COPILOT') == -1)) {
             vm.profile.tracks.push('COPILOT')
           }
           // flag to indicate if the member has acitivity on topcoder to be shown
