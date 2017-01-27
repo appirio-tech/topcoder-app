@@ -655,6 +655,12 @@ import moment from 'moment-timezone'
         name: 'Crowd for Good',
         groupClass: 'Crowd-for-Good',
         active: false
+      },
+      {
+        id: 1008,
+        name: 'Predix Coder',
+        groupClass: 'Predix-Coder',
+        active: false
       }
     ]
   }
