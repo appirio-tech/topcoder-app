@@ -70,7 +70,7 @@ import angular from 'angular'
         {
           id: 'TOPCODER_NL_IBM_COGNITIVE',
           name: 'Cognitive Community Newsletter',
-          desc: 'Cognitive Community Newsletter',
+          desc: 'Never miss out on info about the Topcoder Cognitive Community',
           enabled: false,
           dirty: false
         }
