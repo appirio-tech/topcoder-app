@@ -98,4 +98,9 @@ import { getCurrentUser, loadUser } from './services/userv3.service.js'
       $locationProvider.html5Mode(true)
       RestangularProvider.setRequestSuffix('/')
     }])
+
+  // related issue and possible workaround: https://github.com/angular-ui/ui-router/issues/2889
+  angular.module('topcoder').config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false)
+  }])
 })()
