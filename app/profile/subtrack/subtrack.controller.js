@@ -28,7 +28,6 @@ import _ from 'lodash'
     vm.subTrackStats = []
     vm.loadMore = loadMore
     vm.pageName = vm.subTrack
-    vm.firstLoadMore = true
     vm.tabs = ['statistics']
 
     if (vm.track !== 'COPILOT') {
@@ -166,7 +165,7 @@ import _ from 'lodash'
 
     window.onscroll = function() {
       if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - CONSTANTS.INFINITE_SCROLL_OFFSET)) {
-        if (vm.pageParams.totalCount > vm.challenges.length && vm.firstLoadMore == false) {
+        if (vm.pageParams.totalCount > vm.challenges.length) {
           vm.loadMore()
         }
       }

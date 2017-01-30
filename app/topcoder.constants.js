@@ -44,6 +44,6 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'SUBMISSION_TYPE_CONTEST': 'Contest Submission',
   'STATUS_ACTIVE'          : 'Active',
   'STATUS_COMPLETED_WITHOUT_WIN' : 'Completed Without Win',
-  'CHALLENGES_LOADING_CHUNK' : 12,
+  'CHALLENGES_LOADING_CHUNK' : 36,
   'INFINITE_SCROLL_OFFSET' : '400' // footer is 300px and challenge tile is 400px
 })
