@@ -19,7 +19,7 @@ import X2JS from 'xml2js'
 
       // fetch blog rss feed
       $http.get(CONSTANTS.BLOG_LOCATION)
-        .success(function(data) {
+        .then(function(data) {
           // parse the blog rss feed using x2js
           var parseString = X2JS.parseString
           parseString(data.trim(), function (err, res) {
@@ -38,8 +38,7 @@ import X2JS from 'xml2js'
 
             deferred.resolve(result)
           })
-        })
-        .error(function(error) {
+        }, function(error) {
           deferred.reject(error)
         })
 
