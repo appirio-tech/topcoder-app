@@ -51,7 +51,7 @@
     "angular-sanitize": "^1.4.9",
     "angular-storage": "0.0.13",
     "angular-touch": "^1.4.9",
-    "angular-ui-router": "^0.2.16",
+    "angular-ui-router": "^0.4.2",
     "angularjs-toaster": "^1.0.0",
     "appirio-styles": "0.x.x",
     "appirio-tech-ng-iso-constants": "^1.0.6",
