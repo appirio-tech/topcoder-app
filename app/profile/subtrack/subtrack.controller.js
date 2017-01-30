@@ -138,7 +138,6 @@ import _ from 'lodash'
       // watches page change counter to reload the data
       $scope.$watch('vm.pageParams.updated', function(newValue, oldValue) {
         if (newValue !== oldValue) {
-          vm.firstLoadMore = false
           _getChallenges()
         }
       })
