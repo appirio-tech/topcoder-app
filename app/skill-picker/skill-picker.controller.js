@@ -11,9 +11,9 @@ import _ from 'lodash'
   function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, logger, toaster, MemberCertService, $q) {
     var vm = this
     vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX
-    vm.IOS_PROGRAM_ID = CONSTANTS.SWIFT_PROGRAM_ID
-    vm.PREDIX_PROGRAM_ID = CONSTANTS.PREDIX_PROGRAM_ID
-    vm.IBM_COGNITIVE_PROGRAM_ID = CONSTANTS.IBM_COGNITIVE_PROGRAM_ID
+    vm.IOS_PROGRAM_ID = parseInt(CONSTANTS.SWIFT_PROGRAM_ID)
+    vm.PREDIX_PROGRAM_ID = parseInt(CONSTANTS.PREDIX_PROGRAM_ID)
+    vm.IBM_COGNITIVE_PROGRAM_ID = parseInt(CONSTANTS.IBM_COGNITIVE_PROGRAM_ID)
     vm.submitSkills = submitSkills
     vm.featuredSkills = featuredSkills
     vm.userId = userProfile.userId
