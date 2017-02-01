@@ -1,8 +1,22 @@
 @import 'topcoder/tc-includes';
 
+footer {
+  font-family: "Merriweather Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: 400;
+}
+
 .bottom-footer {
 	background-color: $gray-darkest;
 	padding: 1px 20px 30px 20px;
+}
+
+.bottom-footer .menu-item .menu-link {
+  color: $tc-white;
+  font-size: ;
+}
+
+.bottom-footer .menu-item .menu-link:hover {
+  color: $primary;
 }
 
 .social-links {
@@ -11,7 +25,7 @@
     text-align: center;
     font-weight: normal;
   	margin: 35px 0;
-  	color: #fff;
+  	color: $tc-white;
 
 	a {
 		display: inline-block;
@@ -23,60 +37,80 @@
 			margin-left: 30px;
 		}
 	}
+
+	.fb-link {
+	  background-image: url(@@cdn/i/ico-facebook_desktop.svg);
+	  width: 27px;
+	  height: 27px;
+	}
+
+	.twitter-link {
+	  background-image: url(@@cdn/i/ico-twitter_desktop.svg);
+	  width: 28px;
+	  height: 24px;
+	}
+
+	.linkedin-link {
+	  background-image: url(@@cdn/i/ico-linkedin_desktop.svg);
+	  width: 27px;
+	  height: 27px;
+	}
+
+	.google-link {
+	  background-image: url(@@cdn/i/ico-google_desktop.svg);
+	  width: 27px;
+	  height: 27px;
+	}
 }
 
 .copyright-notice {
 	text-align: center;
     font-size: 12px;
     line-height: 14px;
-    color: #656565;
+    color: $tc-white;
 }
 
 
 @media only screen and (max-width : 1024px) {
 	// removed fold-pusher from the rule to remove white space
-	// .bottom-footer, .fold-pusher {
-	.bottom-footer {
-		height: 200px;
+	.bottom-footer, .fold-pusher {
+	// .bottom-footer {
+		height: auto;
 	}
 	.bottom-footer .menu-item {
-		display: none;
-		margin-top: 10px;
+		display: block;
 	}
 
 	.social-links {
+    margin-top: 0;
+    margin-bottom: 6px;
+
 		.fb-link {
-			background-image: url(../../images/ico-facebook.svg);
 			width: 27px;
 			height: 27px;
 		}
 
 		.twitter-link {
-			background-image: url(../../images/ico-twitter.svg);
 			width: 28px;
 			height: 24px;
 		}
 
 		.linkedin-link {
-			background-image: url(../../images/ico-linkedin.svg);
 			width: 27px;
 			height: 27px;
 		}
 
 		.google-link {
-			background-image: url(../../images/ico-google.svg);
 			width: 27px;
 			height: 27px;
 		}
 	}
 
   .bottom-footer nav {
-    position: absolute;
-    top: 1047px;
-    left: 0;
-    width: 100%;
-    padding: 20px;
-    background-color: $gray-darkest;
+    position: relative;;
+    top: auto;
+    left: auto;
+		text-align: center;
 
     ul a {
       color: $white;
@@ -86,9 +120,9 @@
 
 @media only screen and (min-width : 1025px) {
 	// removed fold-pusher from the rule to remove white space
-	// .bottom-footer, .fold-pusher {
-	.bottom-footer {
-		height: 270px;
+	.bottom-footer, .fold-pusher {
+	// .bottom-footer {
+		height: 200px;
 	}
 	.bottom-footer {
 		padding-top: 40px;
@@ -102,25 +136,19 @@
 			font-weight: normal;
 
 			.menu-link {
-				color: #fff;
-				font-size: 16px;
 				line-height: 21px;
-			}
-			.menu-link:hover {
-			    color: #0096ff;
 			}
 		}
 	}
 
 	.copyright-notice {
 		font-size: 15px;
-    	color: #fff;
+    	color: $tc-white;
 	}
 
 	.account-footer {
 		.copyright-notice {
 		    font-size: 12px;
-		    color: #656565;
 		}
 	}
 
@@ -131,22 +159,6 @@
 			width: 26px;
 			height: 26px;
 			margin-top: 13px;
-		}
-
-		.fb-link {
-			background-image: url(../../images/ico-facebook_desktop.svg);
-		}
-
-		.twitter-link {
-			background-image: url(../../images/ico-twitter_desktop.svg);
-		}
-
-		.linkedin-link {
-			background-image: url(../../images/ico-linkedin_desktop.svg);
-		}
-
-		.google-link {
-			background-image: url(../../images/ico-google_desktop.svg);
 		}
 	}
 }
