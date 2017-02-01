@@ -658,8 +658,8 @@ import moment from 'moment-timezone'
       },
       {
         id: 1008,
-        name: 'Predix Coder',
-        groupClass: 'Predix-Coder',
+        name: 'Predix Community',
+        groupClass: 'Predix-Community',
         active: false
       }
     ]
