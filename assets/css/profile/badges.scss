@@ -40,6 +40,7 @@
       background: #fbfbfb;
       border: 1px solid #f0f0f0;
       width: 30%;
+      min-width: 300px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -60,23 +61,23 @@
       }
       .ngdialog-close {
         display: block;
-      }      
+      }
     }
-    
+
     .ngdialog-close {
       display: none;
     }
-    
+
     .ngdialog-close.close-outside {
       display: block;
       height: 100%;
       width: 100%;
       cursor: default;
     }
-    
+
     .ngdialog-close.close-outside:before {
       display: none;
-    }    
+    }
   }
 }
 
