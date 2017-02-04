@@ -12,7 +12,7 @@ footer {
 
 .bottom-footer .menu-item .menu-link {
   color: $tc-white;
-  font-size: ;
+  font-size: 16px;
 }
 
 .bottom-footer .menu-item .menu-link:hover {
@@ -39,25 +39,25 @@ footer {
 	}
 
 	.fb-link {
-	  background-image: url(@@cdn/i/ico-facebook_desktop.svg);
+	  background-image: url(../../images/ico-facebook_desktop.svg);
 	  width: 27px;
 	  height: 27px;
 	}
 
 	.twitter-link {
-	  background-image: url(@@cdn/i/ico-twitter_desktop.svg);
+	  background-image: url(../../images/ico-twitter_desktop.svg);
 	  width: 28px;
 	  height: 24px;
 	}
 
 	.linkedin-link {
-	  background-image: url(@@cdn/i/ico-linkedin_desktop.svg);
+	  background-image: url(../../images/ico-linkedin_desktop.svg);
 	  width: 27px;
 	  height: 27px;
 	}
 
 	.google-link {
-	  background-image: url(@@cdn/i/ico-google_desktop.svg);
+	  background-image: url(../../images/ico-google_desktop.svg);
 	  width: 27px;
 	  height: 27px;
 	}
