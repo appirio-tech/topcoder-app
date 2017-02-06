@@ -119,6 +119,7 @@ import moment from 'moment'
           // Add actual time ['2', 'months', actual date]
           timeAndUnit.push(fullTime)
           challenge.userCurrentPhaseEndTime = timeAndUnit
+          challenge.isLate = moment().diff(fullTime) > 0 // If > 0 then the challenge has 'Late Deliverables' or
         }
       })
     }

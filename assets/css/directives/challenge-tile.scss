@@ -222,6 +222,12 @@ challenge-tile .challenge.tile-view {
           text-transform: lowercase;
           color: #7F7F7F;
         }
+
+        &.challenge-late {
+          .ends-in, .time-remaining, .unit-of-time {
+            color: #ee6666;
+          }
+        }
       }
 
       .stalled-challenge {
@@ -461,6 +467,12 @@ challenge-tile .challenge.list-view {
         @include font-with-weight;
         font-size: 14px;
         color: #A3A3AE;
+      }
+
+      &.challenge-late {
+        .ends-in, .time-remaining, .unit-of-time {
+          color: #ee6666;
+        }
       }
     }
 
