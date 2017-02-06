@@ -661,6 +661,12 @@ import moment from 'moment-timezone'
         name: 'Predix Community',
         groupClass: 'Predix-Community',
         active: false
+      },
+      {
+        id: 1009,
+        name: 'iOS Community',
+        groupClass: 'iOS-Community',
+        active: false
       }
     ]
   }
