@@ -20,6 +20,7 @@ import _ from 'lodash'
     vm.loadMore = loadMore
     vm.getChallenges = getChallenges
     vm.totalCount = 0
+    vm.firstLoadMore = true
     // this will help to keep track of pagination across individual api calls
     var counts = {
       devDesign: {total: 0, current: 0},
@@ -99,7 +100,7 @@ import _ from 'lodash'
 
     function getDevDesignChallenges(offset) {
       var params = {
-        limit: 12,
+        limit: CONSTANTS.CHALLENGES_LOADING_CHUNK,
         offset: offset,
         orderBy: vm.orderBy + ' desc',
         filter: 'status=' + vm.statusFilter
@@ -125,7 +126,7 @@ import _ from 'lodash'
         _filter = 'status=past&isRatedForMM=true'
       }
       var params = {
-        limit: 12,
+        limit: CONSTANTS.CHALLENGES_LOADING_CHUNK,
         offset: offset,
         orderBy: vm.statusFilter === 'active' ? 'startDate' : 'endDate desc',
         filter: _filter
@@ -142,12 +143,14 @@ import _ from 'lodash'
     }
 
     function loadMore() {
-      currentOffset+=12
-      vm.getChallenges(currentOffset, false)
+      if (vm.loading === CONSTANTS.STATE_READY) {
+        currentOffset += CONSTANTS.CHALLENGES_LOADING_CHUNK
+        vm.getChallenges(currentOffset, false)
+      }
     }
 
     window.onscroll = function() {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - CONSTANTS.INFINITE_SCROLL_OFFSET)) {
         if (vm.totalCount > vm.myChallenges.length) {
           vm.loadMore()
         }

@@ -26,9 +26,8 @@ import _ from 'lodash'
     vm.showNav = showNav
     vm.back = back
     vm.subTrackStats = []
-
+    vm.loadMore = loadMore
     vm.pageName = vm.subTrack
-
     vm.tabs = ['statistics']
 
     if (vm.track !== 'COPILOT') {
@@ -41,7 +40,7 @@ import _ from 'lodash'
     // paging params, these are updated by tc-pager
     vm.pageParams = {
       currentOffset : 0,
-      limit: 16,
+      limit: CONSTANTS.CHALLENGES_LOADING_CHUNK,
       currentCount: 0,
       totalCount: 0,
       // counter used to indicate page change
@@ -154,6 +153,21 @@ import _ from 'lodash'
 
     function back() {
       $window.history.back()
+    }
+
+    function loadMore() {
+      if (vm.status.challenges === CONSTANTS.STATE_READY) {
+        vm.pageParams.currentOffset += CONSTANTS.CHALLENGES_LOADING_CHUNK
+        _getChallenges()
+      }
+    }
+
+    window.onscroll = function() {
+      if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - CONSTANTS.INFINITE_SCROLL_OFFSET)) {
+        if (vm.pageParams.totalCount > vm.challenges.length) {
+          vm.loadMore()
+        }
+      }
     }
 
     function _getChallenges() {
