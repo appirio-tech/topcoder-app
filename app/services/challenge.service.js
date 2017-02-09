@@ -105,6 +105,9 @@ import moment from 'moment'
             }
           })
         }
+        if (challenge.userCurrentPhase === 'Appeals') {
+          challenge.userAction = 'Appeal'
+        }
 
         if (challenge.userCurrentPhaseEndTime) {
           var fullTime = challenge.userCurrentPhaseEndTime
