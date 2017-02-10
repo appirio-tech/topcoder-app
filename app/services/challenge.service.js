@@ -105,6 +105,9 @@ import moment from 'moment'
             }
           })
         }
+        if (challenge.userCurrentPhase === 'Appeals') {
+          challenge.userAction = 'Appeal'
+        }
 
         if (challenge.userCurrentPhaseEndTime) {
           var fullTime = challenge.userCurrentPhaseEndTime
@@ -119,6 +122,7 @@ import moment from 'moment'
           // Add actual time ['2', 'months', actual date]
           timeAndUnit.push(fullTime)
           challenge.userCurrentPhaseEndTime = timeAndUnit
+          challenge.isLate = moment().diff(fullTime) > 0 // If > 0 then the challenge has 'Late Deliverables' or
         }
       })
     }

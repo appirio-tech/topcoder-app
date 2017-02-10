@@ -222,6 +222,12 @@ challenge-tile .challenge.tile-view {
           text-transform: lowercase;
           color: #7F7F7F;
         }
+
+        &.challenge-late {
+          .ends-in, .time-remaining, .unit-of-time {
+            color: #ee6666;
+          }
+        }
       }
 
       .stalled-challenge {
@@ -239,8 +245,8 @@ challenge-tile .challenge.tile-view {
         min-height: 55px;
 
         .submit {
-          margin-bottom: 25px;
-          display: inline-block;
+          margin: 12px;
+          display: block;
         }
 
         .submitted {
@@ -462,6 +468,12 @@ challenge-tile .challenge.list-view {
         font-size: 14px;
         color: #A3A3AE;
       }
+
+      &.challenge-late {
+        .ends-in, .time-remaining, .unit-of-time {
+          color: #ee6666;
+        }
+      }
     }
 
     .marathon-score {
@@ -486,7 +498,8 @@ challenge-tile .challenge.list-view {
 
     .phase-action {
       .submit {
-        display: inline-block;
+        display: block;
+        margin: 6px 0;
       }
 
       .submitted {

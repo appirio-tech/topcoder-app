@@ -4,6 +4,11 @@ import angular from 'angular'
 describe('Logout Controller', function() {
   var controller
   var fakeWindow = {
+    // Without the `angular` field our fake window will crush
+    // `angular-mocks@1.6.2` and higher!
+    angular: {
+      callbacks: {}
+    },
     location: {
       href: ''
     }
@@ -15,14 +20,11 @@ describe('Logout Controller', function() {
     angular.mock.module('tc.account', function($provide) {
       $provide.value('$window', fakeWindow)
     })
-
     bard.inject(this, '$controller', 'TcAuthService', '$window', '$q', 'CONSTANTS')
-
     bard.mockService(TcAuthService, {
       logout: $q.when({}),
       _default: $q.when({})
     })
-
     controller = $controller('LogoutController')
   })
 

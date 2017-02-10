@@ -33,6 +33,11 @@ describe('JWT Interceptor Service', function() {
       })
     },
     fakeWindow = {
+      // Without the `angular` field our fake window will crush
+      // `angular-mocks@1.6.2` and higher!
+      angular: {
+        callbacks: {}
+      },
       location: ''
     }
 

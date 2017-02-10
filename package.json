@@ -8,7 +8,7 @@
     "test": "karma start --tc --test"
   },
   "devDependencies": {
-    "angular-mocks": "^1.4.9",
+    "angular-mocks": "^1.6.2",
     "appirio-tech-webpack-config": "^0.3.8",
     "babel-polyfill": "^6.7.2",
     "bardjs": "^0.1.8",

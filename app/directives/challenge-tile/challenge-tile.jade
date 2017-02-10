@@ -12,8 +12,8 @@
       .challenge-details
         p.currentPhase {{challenge.userCurrentPhase}}
 
-        .challenge-calendar(ng-show="challenge.userCurrentPhaseEndTime")
-          p.ends-in Ends In
+        .challenge-calendar(ng-show="challenge.userCurrentPhaseEndTime", ng-class="{'challenge-late' : challenge.isLate}")
+          p.ends-in {{challenge.isLate ? 'Late for' : 'Ends In'}}
           p.time-remaining {{challenge.userCurrentPhaseEndTime[0]}}
           p.unit-of-time {{challenge.userCurrentPhaseEndTime[1]}}
 
@@ -21,6 +21,8 @@
 
         .phase-action(ng-show="challenge.userAction", ng-switch="challenge.userAction")
           a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Submit", ng-href="{{challenge|challengeLinks:'submit'}}") Submit
+          a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Appeal", ng-href="{{challenge|challengeLinks:'viewScorecards'}}") View Scorecards
+          a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Appeal", ng-href="{{challenge|challengeLinks:'completeAppeals'}}") Complete Appeals
 
           .submitted(ng-switch-when="Submitted") Submitted
 
@@ -88,7 +90,7 @@
       p.roles(ng-hide="challenge.track === 'DATA_SCIENCE'") #[span Role:&nbsp;] #[span {{challenge.userDetails.roles | listRoles}}]
 
     .challenge-details
-      .challenge-info
+      .challenge-info(ng-class="{'challenge-late' : challenge.isLate}")
         p.currentPhase {{challenge.userCurrentPhase}}
 
         p.ends-in(ng-show="challenge.userCurrentPhaseEndTime") Ends: {{challenge.userCurrentPhaseEndTime[2] | localTime}}
@@ -97,6 +99,8 @@
 
       .phase-action(ng-switch="challenge.userAction")
         a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Submit", ng-href="{{challenge|challengeLinks:'submit'}}") Submit
+        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Appeal", ng-href="{{challenge|challengeLinks:'viewScorecards'}}") View Scorecards
+        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Appeal", ng-href="{{challenge|challengeLinks:'completeAppeals'}}") Complete Appeals
 
         .submitted(ng-switch-when="Submitted") Submitted
 
