@@ -12,7 +12,7 @@ import { ChallengeFiltersExample } from 'appirio-tech-react-components'
     'tcUIComponents',
     'angularSlideables',
     'ngDialog',
-    'react'
+    'react',
   ]
 
   angular.module('tc.listings', dependencies)
