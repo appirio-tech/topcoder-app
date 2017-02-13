@@ -245,8 +245,8 @@ challenge-tile .challenge.tile-view {
         min-height: 55px;
 
         .submit {
-          margin-bottom: 25px;
-          display: inline-block;
+          margin: 12px;
+          display: block;
         }
 
         .submitted {
@@ -498,7 +498,8 @@ challenge-tile .challenge.list-view {
 
     .phase-action {
       .submit {
-        display: inline-block;
+        display: block;
+        margin: 6px 0;
       }
 
       .submitted {

@@ -1,4 +1,5 @@
 import angular from 'angular'
+import { loadUser } from '../services/userv3.service.js'
 
 (function () {
   'use strict'
@@ -22,9 +23,20 @@ import angular from 'angular'
     }
 
     function activate() {
+      $scope.myChallenges = []
+      $scope.userProps = { isAuth: false }
       logger.debug('Calling ListingsController activate()')
 
+      loadUser().then(function(token) {
+        // update auth flag
+        if(TcAuthService.isAuthenticated()) {
+          $scope.userProps = { isAuth: true }
+        }
+      }, function(error) {
+        // do nothing, just show non logged in state of navigation bar
+      })
     }
+
   }
 
 })()

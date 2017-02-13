@@ -5,6 +5,11 @@ const mockData = require('../../tests/test-helpers/mock-data')
 describe('Helper Service', function() {
 
   var fakeWindow = {
+    // Without the `angular` field our fake window will crush
+    // `angular-mocks@1.6.2` and higher!
+    angular: {
+      callbacks: {}
+    },
     location: {
       href: '/'
     },
