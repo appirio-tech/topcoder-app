@@ -69,6 +69,10 @@ import _ from 'lodash'
           return String.supplant('https://{subdomain}.{domain}/challenge-details/{id}/?type={track}', data)
         case 'detail':
           return String.supplant('https://{subdomain}.{domain}/challenge-details/{id}/?type={track}', data)
+        case 'viewScorecards':
+          return String.supplant('https://software.{domain}/review/actions/ViewProjectDetails?pid={id}', data)
+        case 'completeAppeals':
+          return String.supplant('https://software.{domain}/review/actions/EarlyAppeals?pid={id}', data)
         }
       }
     }
