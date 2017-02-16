@@ -241,7 +241,7 @@ $tco-color-dark: #ea690b;
 
 .tc-banner-placeholder.cognitive {
   background-image: url(../../images/cognitive-home-hero.jpg);
-  background-size: 100%;
+  background-size: cover;
   height: 352px;
   background-position: center 100%;
   background-repeat: no-repeat;
@@ -256,6 +256,7 @@ $tco-color-dark: #ea690b;
     align-items: flex-start;
     margin-left: 37px;
     height: 95%;
+    justify-content: space-between;
 
     .img {
       background-image: url(../../images/cognitive-home-hero-title.png);
@@ -268,7 +269,7 @@ $tco-color-dark: #ea690b;
 
     .description {
       color: $white;
-      margin: 41px 30px 45px 0;
+      margin: 0 30px 0 0;
       font-size: 24px;
       line-height: 29px;
       text-align: left;
@@ -283,7 +284,6 @@ $tco-color-dark: #ea690b;
       background-color: white;
       color: #0096FF;
       padding: 10px 20px;
-      margin-top: 10px;
     }
 
     .tc-btn-radius {
