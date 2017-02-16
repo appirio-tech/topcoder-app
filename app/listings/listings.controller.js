@@ -1,5 +1,6 @@
+import _ from 'lodash'
 import angular from 'angular'
-import { loadUser, getCurrentUser } from '../services/userv3.service.js'
+import { loadUser } from '../services/userv3.service.js'
 
 (function () {
   'use strict'
@@ -8,7 +9,7 @@ import { loadUser, getCurrentUser } from '../services/userv3.service.js'
 
   ListingsCtrl.$inject = ['CONSTANTS', 'logger', '$q','TcAuthService', 'UserService',
     'UserStatsService', 'ProfileService', 'ChallengeService',
-    'ExternalAccountService', 'ngDialog', '$anchorScroll', '$scope',
+    'ExternalAccountService', 'ngDialog', '$anchorScroll', '$scope'
   ]
 
   function ListingsCtrl(CONSTANTS, logger, $q, TcAuthService, UserService, UserStatsService, ProfileService,
