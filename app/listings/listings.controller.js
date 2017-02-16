@@ -1,6 +1,5 @@
-import _ from 'lodash'
 import angular from 'angular'
-import { loadUser } from '../services/userv3.service.js'
+import { loadUser, getCurrentUser } from '../services/userv3.service.js'
 
 (function () {
   'use strict'
@@ -9,7 +8,7 @@ import { loadUser } from '../services/userv3.service.js'
 
   ListingsCtrl.$inject = ['CONSTANTS', 'logger', '$q','TcAuthService', 'UserService',
     'UserStatsService', 'ProfileService', 'ChallengeService',
-    'ExternalAccountService', 'ngDialog', '$anchorScroll', '$scope'
+    'ExternalAccountService', 'ngDialog', '$anchorScroll', '$scope',
   ]
 
   function ListingsCtrl(CONSTANTS, logger, $q, TcAuthService, UserService, UserStatsService, ProfileService,
@@ -30,15 +29,10 @@ import { loadUser } from '../services/userv3.service.js'
       vm.myChallenges = []
       loadUser().then(function(token) {
         handle = UserService.getUserIdentity().handle
-        // mock current user have this challenges
-        vm.myChallenges.push({'id':30056409})
-        vm.myChallenges.push({'id':30056067})
-        vm.myChallenges.push({'id':16870})
 
-        // update auth flag
+        // update auth flag and get challenges
         if(TcAuthService.isAuthenticated()) {
           getChallenges(handle)
-          $scope.userProps = { isAuth: true, myChallenges: vm.myChallenges }
         }
       }, function(error) {
         // do nothing, just show non logged in state of navigation bar
