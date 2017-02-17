@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import angular from 'angular'
 import { loadUser } from '../services/userv3.service.js'
 
