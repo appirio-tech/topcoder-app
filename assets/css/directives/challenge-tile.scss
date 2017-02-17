@@ -280,6 +280,11 @@ challenge-tile .challenge.tile-view {
   }
 
 
+  @media only screen and (max-width: 768px) {
+    .active-challenge {
+      height: auto;
+    }
+  }
   .completed-challenge {
     height: 390px;
     display: flex;
