@@ -75,7 +75,11 @@ import { loadUser } from '../services/userv3.service.js'
           vm.myChallenges = userChallenges.reverse().slice(0, 8)
 
           // update myChallenges
-          $scope.userProps = { isAuth: true, myChallenges: vm.myChallenges }
+          $scope.userProps = {
+            config: CONSTANTS,
+            isAuth: true,
+            myChallenges: vm.myChallenges
+          }
 
           vm.userHasChallenges = true
           vm.loading = false
