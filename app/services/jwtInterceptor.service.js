@@ -38,7 +38,7 @@ import { isTokenExpired, getFreshToken } from 'tc-accounts'
 
     function getToken(config) {
       // skip token for .html
-      if (config.url.indexOf('.html') > -1)
+      if (config.url.indexOf('.html') > -1 || config.url === CONSTANTS.BLOG_LOCATION)
         return null
 
       var haveItAddItEndpoints = [

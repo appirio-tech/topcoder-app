@@ -4,6 +4,7 @@
   "scripts": {
     "build": "webpack --bail --progress --build --tc",
     "start": "webpack-dev-server --history-api-fallback --host 0.0.0.0 --dev --tc --inline --progress --port 3000",
+    "start-prod": "webpack-dev-server --history-api-fallback --host local.topcoder.com --prod --tc --inline --progress --port 80",
     "lint": "eslint .",
     "test": "karma start --tc --test"
   },
@@ -56,7 +57,7 @@
     "appirio-styles": "0.x.x",
     "appirio-tech-ng-iso-constants": "^1.0.6",
     "appirio-tech-ng-ui-components": "^2.1.2",
-    "appirio-tech-react-components": "appirio-tech/react-components.git#challenge-listings",
+    "appirio-tech-react-components": "birdofpreyru/react-components.git#dev",
     "auth0-angular": "^4.1.0",
     "auth0-js": "^6.8.0",
     "d3": "^3.5.14",

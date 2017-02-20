@@ -20,6 +20,18 @@ In order to test a logged in user, you must make an entry in your `/etc/hosts` f
 - To create the build: `npm run build`
 - To run code linting: `npm run lint`
 - To run the tests: `npm test`
+
+## Running against Production backend
+To run this App against the production backend, you should configure your system in a way that a call to `local.topcoder.com` redirects to `localhost:3000` where the App is running. Then you just `npm run start-prod`, go to `local.topcoder.com` and use your credentials for the production web site (and, sure, be careful with what you are doing, it all will go through the production TopCoder API).
+
+To make the mentioned configuration on Ubuntu 16.04 you:
+- Add `127.0.0.1 local.topcoder.com` to your `/etc/hosts`
+- `$ sudo apt install libcap2-bin`
+- `$ which node` to figure out your `path/to/node`
+- `$ sudo setcap cap_net_bind_service=+ep /path/to/node`
+- Now run the App.
+
+*Disclaimer: I have no idea, what setcap does here, and how safe it is, but it does the job. Feel free to add your comments / modify this section, if you know more about it. Also, if you know how to make such configuration on other OS, please add it here.*
  
 ## Test Users
 - general member user accounts:  
