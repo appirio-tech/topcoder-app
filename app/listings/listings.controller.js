@@ -25,7 +25,15 @@ import { loadUser } from '../services/userv3.service.js'
 
     function activate() {
       $scope.myChallenges = []
-      $scope.reactProps = { isAuth: false, myChallenges: [] }
+      $scope.reactProps = {
+        config: CONSTANTS,
+        filterFromUrl: $location.hash(),
+        isAuth: false,
+        myChallenges: [],
+        onSaveFilterToUrl: function(filter) {
+          $location.hash(filter)
+        }
+      }
       logger.debug('Calling ListingsController activate()')
       vm.myChallenges = []
       loadUser().then(function(token) {
