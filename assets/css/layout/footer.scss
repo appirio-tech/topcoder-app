@@ -8,6 +8,7 @@ footer {
 .bottom-footer {
 	background-color: $gray-darkest;
 	padding: 1px 20px 30px 20px;
+  margin-bottom: -20px;
 }
 
 .bottom-footer .menu-item .menu-link {
@@ -125,7 +126,7 @@ footer {
 	// removed fold-pusher from the rule to remove white space
 	.bottom-footer, .fold-pusher {
 	// .bottom-footer {
-		height: 200px;
+		height: auto;
 	}
 	.bottom-footer {
 		padding-top: 40px;
