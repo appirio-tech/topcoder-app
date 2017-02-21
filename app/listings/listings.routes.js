@@ -21,8 +21,6 @@ import angular from 'angular'
       'listings': {
         parent: 'root',
         url: '/listings/',
-        template: require('./listings')(),
-        controller: 'ListingsCtrl as vm',
         resolve: {
           userHandle: ['$stateParams', function($stateParams) {
             return $stateParams.userHandle
@@ -31,6 +29,12 @@ import angular from 'angular'
         data: {
           authRequired: false,
           title: 'Listings'
+        },
+        views: {
+          'container@': {
+            controller: 'ListingsCtrl as vm',
+            template: require('./listings')()
+          }
         }
       }
     }

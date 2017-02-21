@@ -131,7 +131,10 @@
     }
 
     .challenges {
-      @include horizontal-scroll;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 0;
 
       &.tile-view, &.list-view {
         @media only screen and (min-width: 768px) {
@@ -168,7 +171,6 @@
         margin-bottom: 15px;
         @media only screen and (max-width: 767px) {
           display: inline-block;
-          margin-left: 15px;
 
           &:first-child {
             margin-left: 0;

@@ -19,7 +19,8 @@ import X2JS from 'xml2js'
 
       // fetch blog rss feed
       $http.get(CONSTANTS.BLOG_LOCATION)
-        .then(function(data) {
+        .then(function(response) {
+          var data = response.data
           // parse the blog rss feed using x2js
           var parseString = X2JS.parseString
           parseString(data.trim(), function (err, res) {

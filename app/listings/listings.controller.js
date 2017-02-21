@@ -7,13 +7,13 @@ import { loadUser } from '../services/userv3.service.js'
 
   angular.module('tc.listings').controller('ListingsCtrl', ListingsCtrl)
 
-  ListingsCtrl.$inject = ['CONSTANTS', 'logger', '$q','TcAuthService', 'UserService',
-    'UserStatsService', 'ProfileService', 'ChallengeService',
-    'ExternalAccountService', 'ngDialog', '$anchorScroll', '$scope'
+  ListingsCtrl.$inject = ['$location', '$scope', 'CONSTANTS', 'logger', '$q',
+    'TcAuthService', 'UserService', 'UserStatsService', 'ProfileService', 'ChallengeService', 'ExternalAccountService',
+    'ngDialog', '$anchorScroll'
   ]
-
-  function ListingsCtrl(CONSTANTS, logger, $q, TcAuthService, UserService, UserStatsService, ProfileService,
-  ChallengeService, ExternalAccountService, ngDialog, $anchorScroll, $scope) {
+  
+  function ListingsCtrl($location, $scope, CONSTANTS, logger, $q, TcAuthService,
+  UserService, UserStatsService,ProfileService, ChallengeService, ExternalAccountService, ngDialog, $anchorScroll) {
     var vm = this
     var handle
     vm.neverParticipated = false
@@ -25,7 +25,15 @@ import { loadUser } from '../services/userv3.service.js'
 
     function activate() {
       $scope.myChallenges = []
-      $scope.userProps = { isAuth: false, myChallenges: [] }
+      $scope.reactProps = {
+        config: CONSTANTS,
+        filterFromUrl: $location.hash(),
+        isAuth: false,
+        myChallenges: [],
+        onSaveFilterToUrl: function(filter) {
+          $location.hash(filter)
+        }
+      }
       logger.debug('Calling ListingsController activate()')
       vm.myChallenges = []
       loadUser().then(function(token) {
@@ -75,7 +83,15 @@ import { loadUser } from '../services/userv3.service.js'
           vm.myChallenges = userChallenges.reverse().slice(0, 8)
 
           // update myChallenges
-          $scope.userProps = { isAuth: true, myChallenges: vm.myChallenges }
+          $scope.reactProps = {
+            config: CONSTANTS,
+            filterFromUrl: $location.hash(),
+            isAuth: true,
+            myChallenges: vm.myChallenges,
+            onSaveFilterToUrl: function(filter) {
+              $location.hash(filter)
+            }
+          }
 
           vm.userHasChallenges = true
           vm.loading = false

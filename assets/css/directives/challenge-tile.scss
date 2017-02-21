@@ -111,6 +111,7 @@ challenge-tile .challenge.tile-view {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 12px 0;
     flex: 2;
   }
 
@@ -280,6 +281,12 @@ challenge-tile .challenge.tile-view {
   }
 
 
+  @media only screen and (max-width: 768px) {
+    .active-challenge {
+      height: auto;
+      margin: auto;
+    }
+  }
   .completed-challenge {
     height: 390px;
     display: flex;
