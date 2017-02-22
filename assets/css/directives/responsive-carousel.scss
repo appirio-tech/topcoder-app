@@ -3,38 +3,47 @@
 .tc-carousel {
 
   ul {
+    
+    height:auto;
+    min-height:100px;
+    position:relative;
+    margin: 0 auto 20px;
+    padding-top: 10px;
+    padding-bottom: 40%;
     display: block;
-    height: 148px;
+      width:90%;
+    display: block;
+   
     margin: 0 auto;
-    @media only screen and (max-width: 767px) {
-      display: none;
-    }
-    &[slide-count="1"] {
-      width: 170px;
-    }
-    &[slide-count="2"] {
-      width: 340px;
-    }
-    &[slide-count="3"] {
-      width: 510px;
-    }
-    &[slide-count="4"] {
-      width: 680px;
-    }
-    &[slide-count="5"] {
-      width: 850px;
-    }
-    &[slide-count="6"] {
-      width: 1020px;
-    }
-    &[slide-count="7"] {
-      width: 1190px;
-    }
+    @media only screen and (min-width: 768px) {
+      height: 148px;
+     &[slide-count="1"] {
+       width: 170px;
+     }
+     &[slide-count="2"] {
+       width: 340px;
+     }
+     &[slide-count="3"] {
+       width: 510px;
+     }
+     &[slide-count="4"] {
+       width: 680px;
+     }
+     &[slide-count="5"] {
+       width: 850px;
+     }
+     &[slide-count="6"] {
+       width: 1020px;
+     }
+     &[slide-count="7"] {
+       width: 1190px;
+     }
 
-    li {
-      div:last-child {
-        margin-right: 0;
+     li {
+        div:last-child {
+         margin-right: 0;
       }
+     }
     }
   }
 
@@ -118,10 +127,28 @@
   }
   .carousel-elem {
     position: relative;
-    display: inline-block;
-    margin-right: 65px;
+    padding-top: 20px;
+    display: flex;
+    width: 100px;  
+ 
+     &:hover {
+        background-color: $gray-lightest;
+
+        .title {
+          color: $gray-darkest;
+          border-bottom-color: $gray-darkest;
+        }
+
+        p:last-child {
+          color: $gray-darkest;
+        }
+      }
+   
+    
     padding: 20px 0;
     @media only screen and (min-width: 768px) {
+      margin-right: 65px;
+      display: inline-block;
       width: 130px;
       margin-right: 35px;
       padding: 30px 20px;
