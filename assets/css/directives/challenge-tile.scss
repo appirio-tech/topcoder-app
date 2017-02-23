@@ -281,12 +281,6 @@ challenge-tile .challenge.tile-view {
   }
 
 
-  @media only screen and (max-width: 768px) {
-    .active-challenge {
-      height: auto;
-      margin: auto;
-    }
-  }
   .completed-challenge {
     height: 390px;
     display: flex;
@@ -375,6 +369,13 @@ challenge-tile .challenge.tile-view {
           text-transform: uppercase;
         }
       }
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .active-challenge, .completed-challenge {
+      height: auto;
+      margin: auto;
     }
   }
 

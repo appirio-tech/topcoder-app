@@ -183,7 +183,6 @@
 }
 
 .user-menu {
-  max-height: 54px;
   .user-avatar {
     height: 31px;
     width: 31px;
@@ -215,8 +214,10 @@
   text-transform: uppercase;
 }
 
-.user-menu .submenu {
-  padding-top: 5px;
+@media only screen and (max-width: 1024px) {
+  .user-menu .submenu {
+    padding-top: 5px;
+  }
 }
 
 .submenu {
@@ -341,6 +342,10 @@
 }
 
 @media only screen and (min-width : 1025px) {
+  .user-menu {
+    max-height: 54px;
+  }
+
   .header-wrapper {
     background: #fff;
     position: relative;
