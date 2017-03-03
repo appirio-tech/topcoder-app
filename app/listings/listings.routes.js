@@ -14,6 +14,13 @@ import angular from 'angular'
 //        $state.go('404')
 //      }
     })
+    $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams, error) {
+      if (toState.name !== 'listings') {
+        // remove usersnap widget if not in listings page
+        var usersnapWidget = document.getElementById("us_report_button")
+        if (usersnapWidget) usersnapWidget.remove()
+      }
+    })
   }])
 
   function routes($stateProvider) {
