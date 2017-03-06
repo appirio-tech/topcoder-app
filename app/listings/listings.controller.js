@@ -11,7 +11,7 @@ import { loadUser } from '../services/userv3.service.js'
     'TcAuthService', 'UserService', 'UserStatsService', 'ProfileService', 'ChallengeService', 'ExternalAccountService',
     'ngDialog', '$anchorScroll'
   ]
-  
+
   function ListingsCtrl($location, $scope, CONSTANTS, logger, $q, TcAuthService,
   UserService, UserStatsService,ProfileService, ChallengeService, ExternalAccountService, ngDialog, $anchorScroll) {
     var vm = this
@@ -32,8 +32,8 @@ import { loadUser } from '../services/userv3.service.js'
         s.async = true
         s.src = '//api.usersnap.com/load/'+
                 '3e7c8f0c-6cf6-41b6-9f2c-e8e4e60dfc59.js'
-        var x = document.getElementsByTagName('script')[0]
-        x.parentNode.insertBefore(s, x)
+        var x = document.getElementById('react-component')
+        x.appendChild(s, x)
       })()
 
       $scope.myChallenges = []
