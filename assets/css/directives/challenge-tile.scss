@@ -248,6 +248,22 @@ challenge-tile .challenge.tile-view {
         .submit {
           margin: 12px;
           display: block;
+
+          &.btn-danger {
+            color: #e66e66;
+            background-color: $white;
+            border-color: #e66e66;
+
+            &:hover {
+              background-color: #e66e66;
+              color: $white;
+            }
+
+            &:active {
+              background-color: #e0493e;
+              box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,0.30);
+            }
+          }
         }
 
         .submitted {
@@ -508,6 +524,22 @@ challenge-tile .challenge.list-view {
       .submit {
         display: block;
         margin: 6px 0;
+
+        &.btn-danger {
+          color: #e66e66;
+          background-color: $white;
+          border-color: #e66e66;
+
+          &:hover {
+            background-color: #e66e66;
+            color: $white;
+          }
+
+          &:active {
+            background-color: #e0493e;
+            box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,0.30);
+          }
+        }
       }
 
       .submitted {
