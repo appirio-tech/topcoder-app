@@ -73,6 +73,8 @@ import _ from 'lodash'
           return String.supplant('https://software.{domain}/review/actions/ViewProjectDetails?pid={id}', data)
         case 'completeAppeals':
           return String.supplant('https://software.{domain}/review/actions/EarlyAppeals?pid={id}', data)
+        case 'unRegister':
+          return String.supplant('https://software.{domain}/review/actions/Unregister?pid={id}', data)
         }
       }
     }
