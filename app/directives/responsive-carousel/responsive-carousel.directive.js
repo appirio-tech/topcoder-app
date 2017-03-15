@@ -51,7 +51,7 @@ import angular from 'angular'
             } else {
               // we don't need to build carousel for mobile as we show horizontal scroll
               // phone
-              buildCarouselSlide(2)
+              buildCarouselSlide(3)
             }
           }
 

@@ -16,7 +16,7 @@
     margin: 30px auto 40px;
 
     .nav-right {
-      padding-top: 15px;
+      padding-top: 10px;
       padding-left: 15px;
       i:hover {
         cursor: pointer;
@@ -108,6 +108,13 @@
     }
   }
 
+  .page-state-header {
+    .page-info {
+      display: flex;
+      justify-content: center;
+    }
+  }  
+    
   .subtrack-stats {
     // @include module-l;
     width: 100%;
@@ -183,15 +190,15 @@
     h2.detailed {
       margin: 30px auto 0;
       text-align: center;
-      @include sofia-pro-medium;
-      font-size: 18px;
-      line-height: 21px;
-      font-weight: bold;
+      @include sofia-pro-regular;
+      font-size: 24px;
+      line-height: 30px;
       text-transform: uppercase;
     }
     ul.vertical-stats {
       width: 90%;
       margin: 0 auto;
+      margin-top: 30px;
       li {
         @include sofia-pro-regular;
         font-size: 15px;
@@ -329,10 +336,20 @@
   }
 }
 }
+
 @media (min-width: 768px) {
 .profile-subtrack-container {
 
   .content {
+    .page-info {
+      display: flex;
+      justify-content: center;
+    }    
+    
+    .nav-right {
+      padding-top: 15px;
+    }
+    
     .nav {
       display: flex;
       flex-direction: row;
@@ -543,4 +560,24 @@
   }
   }
 
+}
+
+@media only screen and (max-width: 767px) {
+  .profile-subtrack-container {
+    .content {
+      .tc-carousel ul {
+        display: block;
+        height: auto;
+        padding-bottom: 40px;
+        
+        > li {
+          position: relative;
+          
+          .slide {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
 }
