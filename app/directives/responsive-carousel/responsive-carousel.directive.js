@@ -45,14 +45,10 @@ import angular from 'angular'
             } else if(width >= 1010) {
               // desktop
               buildCarouselSlide(5)
-            } else if(width < 1010 && width >= 768) {
-              // tablet
+            } else if(width < 1010) {
+              // tablet & mobile
               buildCarouselSlide(4)
-            } else {
-              // we don't need to build carousel for mobile as we show horizontal scroll
-              // phone
-              buildCarouselSlide(3)
-            }
+            } 
           }
 
 
