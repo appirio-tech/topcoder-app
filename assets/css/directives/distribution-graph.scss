@@ -13,9 +13,17 @@
 }
 
 .graph-title {
-  width: 960px;
-  padding-left: 45px;
-  text-align: left;
+    width:100%;
+  text-align: center;
+  justify-content: center;
+  @media (min-width: 768px) {
+    width: 960px;
+    padding-left: 45px;
+    text-align: left;
+    .text {
+  	   float: left; 
+    }
+  }
   margin: auto;
   font-size: 28px;
   line-height: 35px;
@@ -26,7 +34,11 @@
   }
   
   .button-group {
-    float: right;
+    justify-content: center;
+    margin-top: 10px;
+    @media (min-width: 768px) {
+     float: right;
+    }
     display: block;
 	button.tc-btn.tc-btn-s {
 	  background: #fff;
