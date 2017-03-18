@@ -8,27 +8,30 @@
     margin: 0 auto;
     @media only screen and (max-width: 767px) {
       display: none;
+      width: auto;
     }
-    &[slide-count="1"] {
-      width: 170px;
-    }
-    &[slide-count="2"] {
-      width: 340px;
-    }
-    &[slide-count="3"] {
-      width: 510px;
-    }
-    &[slide-count="4"] {
-      width: 680px;
-    }
-    &[slide-count="5"] {
-      width: 850px;
-    }
-    &[slide-count="6"] {
-      width: 1020px;
-    }
-    &[slide-count="7"] {
-      width: 1190px;
+    @media only screen and (min-width: 768px) {
+      &[slide-count="1"] {
+        width: 170px;
+      }
+      &[slide-count="2"] {
+        width: 340px;
+      }
+      &[slide-count="3"] {
+        width: 510px;
+      }
+      &[slide-count="4"] {
+        width: 680px;
+      }
+      &[slide-count="5"] {
+        width: 850px;
+      }
+      &[slide-count="6"] {
+        width: 1020px;
+      }
+      &[slide-count="7"] {
+        width: 1190px;
+      }
     }
 
     li {
@@ -96,6 +99,10 @@
 
   .slide {
     display: inline-block;
+    
+    @media only screen and (max-width: 767px) {
+      display: block;
+    }
   }
 
 // .carousel-elem-list {
@@ -107,22 +114,45 @@
         position: absolute;
         top: 32px;
         left: -30px;
-        @include forward-slash(1px, 60px, 0, 2px, 30deg);
         background-color: $gray-light;
         @media only screen and (min-width: 768px) {
           top: 32px;
           left: -18px;
+          @include forward-slash(1px, 60px, 0, 2px, 30deg);
         }
+        @media only screen and (max-width: 767px) {
+          top: -30px;
+          left: 60px;
+          @include forward-slash(1px, 70px, 0, 2px, 90deg);
+        }        
       }
     }
   }
+  
+  
+  ul[slide-count="3"] {
+    @media only screen and (min-width: 575px) {
+      .slide {
+        display: inline-block;
+      
+        &:not(:first-child) {
+          .carousel-elem:before {
+            top: 32px;
+            left: -18px;
+            @include forward-slash(1px, 60px, 0, 2px, 30deg);
+          }    
+        } 
+      }
+    }
+  }  
+  
   .carousel-elem {
     position: relative;
     display: inline-block;
     margin-right: 65px;
     padding: 20px 0;
+    width: 130px;
     @media only screen and (min-width: 768px) {
-      width: 130px;
       margin-right: 35px;
       padding: 30px 20px;
 
