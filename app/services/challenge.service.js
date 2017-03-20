@@ -67,6 +67,7 @@ import moment from 'moment'
         challenge.userCurrentPhase = 'Stalled'
         challenge.userCurrentPhaseEndTime = null
         challenge.userAction = null
+        challenge.isSubmitter = false        
 
         if (phases && phases.length) {
           hasCurrentPhase = true
@@ -96,6 +97,9 @@ import moment from 'moment'
               if (roles && roles.length > 0) {
                 var submitterRole = _.findIndex(roles, function(role) {
                   var lRole = role.toLowerCase()
+                  if (lRole === 'submitter') {
+                    challenge.isSubmitter = true
+                  }
                   return lRole === 'submitter'
                 })
                 if (submitterRole === -1) {
