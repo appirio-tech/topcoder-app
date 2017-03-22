@@ -20,9 +20,10 @@
         .stalled-challenge(ng-hide="challenge.userCurrentPhaseEndTime") This challenge is currently paused.
 
         .phase-action(ng-show="challenge.userAction", ng-switch="challenge.userAction")
-          a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Submit", ng-href="{{challenge|challengeLinks:'submit'}}") Submit
+          a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Submit", ng-href="{{challenge|challengeLinks:'submit'}}") Submit 
+          a.tc-btn.tc-btn-s.tc-btn-wide.btn-danger.submit(ng-switch-when="Submit", ng-href="{{challenge|challengeLinks:'unRegister'}}") Unregister
           a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Appeal", ng-href="{{challenge|challengeLinks:'viewScorecards'}}") View Scorecards
-          a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Appeal", ng-href="{{challenge|challengeLinks:'completeAppeals'}}") Complete Appeals
+          a.tc-btn.tc-btn-s.tc-btn-wide.btn-danger.submit(ng-if="challenge.isSubmitter")(ng-switch-when="Appeal", ng-href="{{challenge|challengeLinks:'completeAppeals'}}") Complete Appeals
 
           .submitted(ng-switch-when="Submitted") Submitted
 
@@ -99,8 +100,9 @@
 
       .phase-action(ng-switch="challenge.userAction")
         a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Submit", ng-href="{{challenge|challengeLinks:'submit'}}") Submit
+        a.tc-btn.tc-btn-s.tc-btn-wide.btn-danger.submit(ng-switch-when="Submit", ng-href="{{challenge|challengeLinks:'unRegister'}}") Unregister
         a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Appeal", ng-href="{{challenge|challengeLinks:'viewScorecards'}}") View Scorecards
-        a.tc-btn.tc-btn-s.tc-btn-wide.tc-btn-ghost.submit(ng-switch-when="Appeal", ng-href="{{challenge|challengeLinks:'completeAppeals'}}") Complete Appeals
+        a.tc-btn.tc-btn-s.tc-btn-wide.btn-danger.submit(ng-switch-when="Appeal", ng-href="{{challenge|challengeLinks:'completeAppeals'}}") Complete Appeals
 
         .submitted(ng-switch-when="Submitted") Submitted
 

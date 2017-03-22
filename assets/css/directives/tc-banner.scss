@@ -150,33 +150,47 @@ $tco-color-dark: #ea690b;
   background-image: url(../../images/home-hero.jpg);
   background-size: 100%;
   height: 352px;
-  background-position: center 40%;
+  background-position: center 25%;
   background-repeat: no-repeat;
+  flex-direction: row;
 
   padding-top: 50px;
+  
+  .container {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 37px;
+    height: 95%;
+    justify-content: space-between;
 
-  .title {
-    margin-top: 10px;
-    @include sofia-pro-bold;
-    color: $white;
+    .title {
+      margin-top: 10px;
+      @include sofia-pro-bold;
+      color: $white;
+    }
+
+    .subtitle {
+      margin-top: 20px;
+      width: 450px;
+      font-size: 20px;
+      @extend .title;
+      @include sofia-pro-regular;
+      text-align: left;
+    }
+
+    .description {
+      margin-top: 20px;
+      margin-bottom: 5px;
+    }
+
+    .cta {
+      margin-top: 20px;
+    }
+    
   }
 
-  .subtitle {
-    margin-top: 20px;
-    width: 450px;
-    font-size: 20px;
-    @extend .title;
-    @include sofia-pro-regular;
-  }
-
-  .description {
-    margin-top: 20px;
-    margin-bottom: 5px;
-  }
-
-  .cta {
-    margin-top: 20px;
-  }
 }
 
 

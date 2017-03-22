@@ -108,6 +108,10 @@ dev-challenge-user-place {
       flex-direction: column;
       text-align: center;
       background-color: #F6F6F6;
+      @media only screen and (max-width: 767px) {
+        min-width: 84px;
+        margin-left: 5px;
+      }
 
       .score {
         margin-top: 28px;

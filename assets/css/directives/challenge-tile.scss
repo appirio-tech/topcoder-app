@@ -248,6 +248,23 @@ challenge-tile .challenge.tile-view {
         .submit {
           margin: 12px;
           display: block;
+          text-align: center;
+
+          &.btn-danger {
+            color: #e66e66;
+            background-color: $white;
+            border-color: #e66e66;
+
+            &:hover {
+              background-color: #e66e66;
+              color: $white;
+            }
+
+            &:active {
+              background-color: #e0493e;
+              box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,0.30);
+            }
+          }
         }
 
         .submitted {
@@ -393,7 +410,7 @@ challenge-tile .challenge.list-view {
   margin-bottom: 10px;
   padding: 20px 0;
   padding-left: 5px;
-  height: 110px;
+  min-height: 110px;
   border: 1px solid #E0E0E0;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
@@ -508,6 +525,23 @@ challenge-tile .challenge.list-view {
       .submit {
         display: block;
         margin: 6px 0;
+        text-align: center;
+
+        &.btn-danger {
+          color: #e66e66;
+          background-color: $white;
+          border-color: #e66e66;
+
+          &:hover {
+            background-color: #e66e66;
+            color: $white;
+          }
+
+          &:active {
+            background-color: #e0493e;
+            box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,0.30);
+          }
+        }
       }
 
       .submitted {
@@ -578,7 +612,8 @@ challenge-tile .challenge.list-view {
   .completed-challenge {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
+    overflow: hidden;
     header {
       flex: 2;
     }
