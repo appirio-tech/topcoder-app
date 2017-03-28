@@ -23,7 +23,7 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'TCO17_URL'               : process.env.TCO17_URL,
   'TCO_HOME_URL'            : process.env.TCO_HOME_URL,
   'ACCOUNTS_APP_URL'        : process.env.ACCOUNTS_APP_URL,
-  'FILE_PICKER_API_KEY'     : process.env.FILE_PICKER_API_KEY_PROD || process.env.FILE_PICKER_API_KEY_DEV, 
+  'FILE_PICKER_API_KEY'     : process.env.domain === 'topcoder-dev.com' ? process.env.FILE_PICKER_API_KEY_DEV : process.env.FILE_PICKER_API_KEY_PROD, 
   'FILE_PICKER_SUBMISSION_CONTAINER_NAME': process.env.FILE_PICKER_SUBMISSION_CONTAINER_NAME,
 
   'NEW_CHALLENGES_URL'     : 'https://www.topcoder.com/challenges/develop/upcoming/',
