@@ -27,7 +27,7 @@ import angular from 'angular'
     var states = {
       'listings': {
         parent: 'root',
-        url: '/challenges/',
+        url: '/listings/',
         resolve: {
           userHandle: ['$stateParams', function($stateParams) {
             return $stateParams.userHandle
