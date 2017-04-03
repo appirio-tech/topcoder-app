@@ -16,6 +16,7 @@ import angular from 'angular'
 
     service.menuLinks = {
       'compete': [
+          { 'href':  '/listings/', 'text': 'ALL CHALLENGES', 'icon': require('../../assets/images/nav/rocket.svg') },
           { 'href':  '/challenges/design/active/?pageIndex=1', 'text': 'DESIGN CHALLENGES', 'icon': require('../../assets/images/nav/track-design.svg') },
           { 'href':  '/challenges/develop/active/?pageIndex=1', 'text': 'DEVELOPMENT CHALLENGES', 'icon': require('../../assets/images/nav/track-develop.svg') },
           { 'href':  '/challenges/data/active/?pageIndex=1', 'text': 'DATA SCIENCE CHALLENGES', 'icon': require('../../assets/images/nav/track-data.svg') },
