@@ -25,17 +25,6 @@ import { loadUser } from '../services/userv3.service.js'
 
     function activate() {
 
-      // add usersnap widget to /listings/ route
-      (function() {
-        var s = document.createElement('script')
-        s.type = 'text/javascript'
-        s.async = true
-        s.src = '//api.usersnap.com/load/'+
-                '3e7c8f0c-6cf6-41b6-9f2c-e8e4e60dfc59.js'
-        var x = document.getElementById('react-component')
-        x.appendChild(s, x)
-      })()
-
       $scope.myChallenges = []
       $scope.reactProps = {
         config: CONSTANTS,
