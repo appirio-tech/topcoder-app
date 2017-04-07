@@ -56,7 +56,7 @@ import { loadUser } from '../services/userv3.service.js'
       }
 
       var challengeParams = {
-        limit: 1000,
+        limit: 100,
         orderBy: 'submissionEndDate',
         filter: 'status=active'
       }
