@@ -56,7 +56,7 @@ import { loadUser } from '../services/userv3.service.js'
       }
 
       var challengeParams = {
-        limit: 8,
+        limit: 1000,
         orderBy: 'submissionEndDate',
         filter: 'status=active'
       }
@@ -81,7 +81,7 @@ import { loadUser } from '../services/userv3.service.js'
           userChallenges = _.sortBy(userChallenges, function(n) {
             return n.registrationEndDate
           })
-          vm.myChallenges = userChallenges.reverse().slice(0, 8)
+          vm.myChallenges = userChallenges.reverse().slice(0, userChallenges.length)
 
           // update myChallenges
           $scope.reactProps = {
