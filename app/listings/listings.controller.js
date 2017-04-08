@@ -33,6 +33,9 @@ import { loadUser } from '../services/userv3.service.js'
         myChallenges: [],
         onSaveFilterToUrl: function(filter) {
           $location.hash(filter)
+        },
+        getFilterFromUrl: function() {
+          return $location.hash()
         }
       }
       logger.debug('Calling ListingsController activate()')
@@ -91,6 +94,9 @@ import { loadUser } from '../services/userv3.service.js'
             myChallenges: vm.myChallenges,
             onSaveFilterToUrl: function(filter) {
               $location.hash(filter)
+            },
+            getFilterFromUrl: function() {
+              return $location.hash()
             }
           }
 
