@@ -36,6 +36,9 @@ import { loadUser } from '../services/userv3.service.js'
         },
         getFilterFromUrl: function() {
           return $location.hash()
+        },
+        setChallengeFilter: function(component) {
+          $scope.challengeFilter = component;
         }
       }
       logger.debug('Calling ListingsController activate()')
@@ -97,6 +100,9 @@ import { loadUser } from '../services/userv3.service.js'
             },
             getFilterFromUrl: function() {
               return $location.hash()
+            },
+            setChallengeFilter: function(component) {
+              $scope.challengeFilter = component;
             }
           }
 
