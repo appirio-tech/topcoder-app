@@ -22,7 +22,7 @@ import angular from 'angular'
       }
     })
     $rootScope.$on('$locationChangeSuccess', function(event, toState, fromState) {
-      $rootScope.challengeFilter.forceUpdate()
+      if($rootScope.challengeFilter != null) $rootScope.challengeFilter.forceUpdate()
     })
   }])
 
