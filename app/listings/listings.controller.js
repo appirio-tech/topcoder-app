@@ -24,7 +24,12 @@ import { loadUser } from '../services/userv3.service.js'
     activate()
 
     function activate() {
-
+      // listen for location hash update 
+      $scope.$on('$locationChangeSuccess', function(event) {
+        if($scope.challengeFilter != null) {
+          $scope.challengeFilter.forceUpdate()
+        }
+      })
       $scope.myChallenges = []
       $scope.reactProps = {
         config: CONSTANTS,
