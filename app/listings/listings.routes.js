@@ -21,9 +21,6 @@ import angular from 'angular'
         if (usersnapWidget && usersnapWidget[0]) usersnapWidget[0].remove()
       }
     })
-    $rootScope.$on('$locationChangeSuccess', function(event, toState, fromState) {
-      if($rootScope.challengeFilter != null) $rootScope.challengeFilter.forceUpdate()
-    })
   }])
 
   function routes($stateProvider) {
