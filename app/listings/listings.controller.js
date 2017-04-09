@@ -27,7 +27,7 @@ import { loadUser } from '../services/userv3.service.js'
       // listen for location hash update 
       $scope.$on('$locationChangeSuccess', function(event) {
         if($scope.challengeFilter != null) {
-          $scope.challengeFilter.forceUpdate()
+          $scope.challengeFilter.updateFilter($location.hash())
         }
       })
       $scope.myChallenges = []
@@ -38,9 +38,6 @@ import { loadUser } from '../services/userv3.service.js'
         myChallenges: [],
         onSaveFilterToUrl: function(filter) {
           $location.hash(filter)
-        },
-        getFilterFromUrl: function() {
-          return $location.hash()
         },
         setChallengeFilter: function(component) {
           $scope.challengeFilter = component;
@@ -102,9 +99,6 @@ import { loadUser } from '../services/userv3.service.js'
             myChallenges: vm.myChallenges,
             onSaveFilterToUrl: function(filter) {
               $location.hash(filter)
-            },
-            getFilterFromUrl: function() {
-              return $location.hash()
             },
             setChallengeFilter: function(component) {
               $scope.challengeFilter = component;
