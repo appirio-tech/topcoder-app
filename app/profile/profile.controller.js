@@ -121,6 +121,10 @@ import moment from 'moment'
     function showBadges() {
       ngDialog.open({
         plain: true,
+        cache: false,
+        showClose: false,
+        closeByDocument: true,
+        closeByEscape: true,
         template: require('./badges/badges')(),
         controller: 'BadgesController',
         controllerAs: 'vm',
