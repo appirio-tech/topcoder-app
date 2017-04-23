@@ -17,9 +17,6 @@ import angular from 'angular'
     service.menuLinks = {
       'compete': [
           { 'href':  '/challenges/', 'text': 'ALL CHALLENGES', 'icon': require('../../assets/images/nav/rocket.svg') },
-          { 'href':  '/challenges/#&tracks=design&mode=6&name=All%20Challenges', 'text': 'DESIGN CHALLENGES', 'icon': require('../../assets/images/nav/track-design.svg') },
-          { 'href':  '/challenges/#&tracks=develop&mode=6&name=All%20Challenges', 'text': 'DEVELOPMENT CHALLENGES', 'icon': require('../../assets/images/nav/track-develop.svg') },
-          { 'href':  '/challenges/#&tracks=datasci&mode=6&name=All%20Challenges', 'text': 'DATA SCIENCE CHALLENGES', 'icon': require('../../assets/images/nav/track-data.svg') },
           { 'href':  CONSTANTS.ARENA_URL, 'text': 'COMPETITIVE PROGRAMMING', 'icon': require('../../assets/images/nav/track-cp.svg'), 'target': '_blank' }
       ],
       'learn': [
