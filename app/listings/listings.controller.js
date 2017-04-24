@@ -24,7 +24,12 @@ import { loadUser } from '../services/userv3.service.js'
     activate()
 
     function activate() {
-
+      // listen for location hash update 
+      $scope.$on('$locationChangeSuccess', function(event) {
+        if($scope.challengeFilter != null) {
+          $scope.challengeFilter.updateFilter($location.hash())
+        }
+      })
       $scope.myChallenges = []
       $scope.reactProps = {
         config: CONSTANTS,
@@ -33,6 +38,9 @@ import { loadUser } from '../services/userv3.service.js'
         myChallenges: [],
         onSaveFilterToUrl: function(filter) {
           $location.hash(filter)
+        },
+        setChallengeFilter: function(component) {
+          $scope.challengeFilter = component
         }
       }
       logger.debug('Calling ListingsController activate()')
@@ -91,6 +99,9 @@ import { loadUser } from '../services/userv3.service.js'
             myChallenges: vm.myChallenges,
             onSaveFilterToUrl: function(filter) {
               $location.hash(filter)
+            },
+            setChallengeFilter: function(component) {
+              $scope.challengeFilter = component
             }
           }
 
