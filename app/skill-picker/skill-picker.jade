@@ -10,19 +10,19 @@
       .community(ng-repeat="(communityKey, community) in vm.communities", ng-class="{'community--disabled': !community.status}", ng-if="community.display")
         .community__details
           .community__icon(ng-class="{'community__icon--disabled': !community.status}")
+            img(ng-if="communityKey == 'ibm_cognitive' && community.status", src=require("../../assets/images/ico-ibm_cognitive-community.svg"))
+            img(ng-if="communityKey == 'ibm_cognitive' && !community.status", src=require("../../assets/images/ico-ibm_cognitive-community-grey.svg"))
             img(ng-if="communityKey == 'ios' && community.status", src=require("../../assets/images/ico-ios-community.svg"))
             img(ng-if="communityKey == 'ios' && !community.status", src=require("../../assets/images/ico-ios-community-grey.svg"))
             img(ng-if="communityKey == 'predix' && community.status", src=require("../../assets/images/ico-predix-community.svg"))
             img(ng-if="communityKey == 'predix' && !community.status", src=require("../../assets/images/ico-predix-community-grey.svg"))
-            img(ng-if="communityKey == 'ibm_cognitive' && community.status", src=require("../../assets/images/ico-ibm_cognitive-community.svg"))
-            img(ng-if="communityKey == 'ibm_cognitive' && !community.status", src=require("../../assets/images/ico-ibm_cognitive-community-grey.svg"))
 
           .community__text
             span.community__title(class="{{!community.status && 'disabled'}}") {{community.displayName}}
             .community__description
+              span(ng-if="communityKey == 'ibm_cognitive'") Cognitive Community
               span(ng-if="communityKey == 'ios'") Mobile app design and development for iOS, with Swift emphasis
               span(ng-if="communityKey == 'predix'") Design and development on GE’s platform for the Industrial Internet of Things
-              span(ng-if="communityKey == 'ibm_cognitive'") Cognitive Community
 
         onoff-switch(model="community.status", unique-id="'community-' + communityKey")
 
