@@ -81,8 +81,8 @@ import _ from 'lodash'
       vm.communities['ibm_cognitive'] = {
         displayName: 'Cognitive',
         programId: vm.IBM_COGNITIVE_PROGRAM_ID,
-        status: false,
-        dirty: false,
+        status: true,
+        dirty: true,
         display: true
       }
       _addWatchToCommunity(vm.communities['ios'])

@@ -116,9 +116,9 @@ describe('Skill Picker Controller', function() {
     expect(vm.username).to.exist.to.equal(mockProfile.handle)
   })
 
-  it('should not have page dirty ', function() {
+  it('should have page dirty for default cognitive being on ', function() {
     var dirty = vm.isPageDirty()
-    expect(dirty).to.equal(false)
+    expect(dirty).to.equal(true)
   })
 
   it('should be created successfully with showCommunity being true', function() {
@@ -159,6 +159,20 @@ describe('Skill Picker Controller', function() {
     $rootScope.$digest()
     expect(mockProfile.save).not.to.be.called
     expect(profileService.updateUserSkills).not.to.be.called
+    expect(memberCertService.registerMember).to.be.calledOnce//once for cognitive which is by default on
+    // we should still go to dashboard if the function is called,
+    // call to the function is controlled by disabling the button
+    expect(state.go).to.have.been.calledWith('dashboard').calledOnce
+  })
+
+  it('should not make any registerMember call with cognitive being turned off ', function() {
+    vm.communities['ibm_cognitive'].status = false
+    vm.communities['ibm_cognitive'].dirty = true
+    vm.submitSkills()
+    $rootScope.$digest()
+    expect(mockProfile.save).not.to.be.called
+    expect(profileService.updateUserSkills).not.to.be.called
+    // we have turned off default on community, so no registerMember call expected
     expect(memberCertService.registerMember).not.to.be.called
     // we should still go to dashboard if the function is called,
     // call to the function is controlled by disabling the button
@@ -172,7 +186,7 @@ describe('Skill Picker Controller', function() {
     $rootScope.$digest()
     expect(mockProfile.save).to.be.calledOnce
     expect(profileService.updateUserSkills).not.to.be.called
-    expect(memberCertService.registerMember).not.to.be.called
+    expect(memberCertService.registerMember).to.be.calledOnce//once for cognitive which is by default on
     expect(state.go).to.have.been.calledWith('dashboard').calledOnce
   })
 
@@ -190,7 +204,7 @@ describe('Skill Picker Controller', function() {
     expect(mockProfile.save).to.be.calledOnce
     expect(toasterSvc.pop).to.have.been.calledWith('error', 'Whoops!', sinon.match('wrong')).calledOnce
     expect(profileService.updateUserSkills).not.to.be.called
-    expect(memberCertService.registerMember).not.to.be.called
+    expect(memberCertService.registerMember).to.be.calledOnce//once for cognitive which is by default on
     expect(state.go).not.to.be.called
   })
 
@@ -200,7 +214,7 @@ describe('Skill Picker Controller', function() {
     $rootScope.$digest()
     expect(mockProfile.save).not.to.be.called
     expect(profileService.updateUserSkills).to.be.calledOnce
-    expect(memberCertService.registerMember).not.to.be.called
+    expect(memberCertService.registerMember).to.be.calledOnce//once for cognitive which is by default on
     expect(state.go).to.have.been.calledWith('dashboard').calledOnce
   })
 
@@ -211,7 +225,7 @@ describe('Skill Picker Controller', function() {
     expect(mockProfile.save).not.to.be.called
     expect(profileService.updateUserSkills).to.be.calledOnce
     expect(toasterSvc.pop).to.have.been.calledWith('error', 'Whoops!', sinon.match('wrong')).calledOnce
-    expect(memberCertService.registerMember).not.to.be.called
+    expect(memberCertService.registerMember).to.be.calledOnce//once for cognitive which is by default on
     expect(state.go).not.to.be.called
   })
 
@@ -222,7 +236,7 @@ describe('Skill Picker Controller', function() {
     $rootScope.$digest()
     expect(mockProfile.save).not.to.be.called
     expect(profileService.updateUserSkills).not.to.be.called
-    expect(memberCertService.registerMember).to.be.calledOnce
+    expect(memberCertService.registerMember).to.be.calledTwice// once for cognitive (default on) and another for ios
     expect(state.go).to.have.been.calledWith('dashboard').calledOnce
   })
 
@@ -234,7 +248,7 @@ describe('Skill Picker Controller', function() {
     $rootScope.$digest()
     expect(mockProfile.save).not.to.be.called
     expect(profileService.updateUserSkills).not.to.be.called
-    expect(memberCertService.registerMember).not.to.be.called
+    expect(memberCertService.registerMember).to.be.calledOnce//once for cognitive which is by default on
     // we should still go to dashboard if the function is called,
     // call to the function is controlled by disabling the button
     expect(state.go).to.have.been.calledWith('dashboard').calledOnce
@@ -248,7 +262,7 @@ describe('Skill Picker Controller', function() {
     $rootScope.$digest()
     expect(mockProfile.save).not.to.be.called
     expect(profileService.updateUserSkills).not.to.be.called
-    expect(memberCertService.registerMember).not.to.be.called
+    expect(memberCertService.registerMember).to.be.calledOnce//once for cognitive which is by default on
     // we should still go to dashboard if the function is called,
     // call to the function is controlled by disabling the button
     expect(state.go).to.have.been.calledWith('dashboard').calledOnce
@@ -262,7 +276,7 @@ describe('Skill Picker Controller', function() {
     $rootScope.$digest()
     expect(mockProfile.save).not.to.be.called
     expect(profileService.updateUserSkills).not.to.be.called
-    expect(memberCertService.registerMember).to.be.calledOnce
+    expect(memberCertService.registerMember).to.be.calledTwice// once for cognitive (default on) and another for ios
     expect(toasterSvc.pop).to.have.been.calledWith('error', 'Whoops!', sinon.match('wrong')).calledOnce
     expect(state.go).not.to.be.called
   })
