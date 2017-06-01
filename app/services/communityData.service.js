@@ -92,24 +92,24 @@ import angular from 'angular'
       var deferred = $q.defer()
       var data = {
         'SRMWinners': [{
-          'avatar': 'https://s3.amazonaws.com/app.topcoder-dev.com/images/ico-user-default.7aa28736.svg',
-          'name': 'xudyh',
-          'date': '20151020T000000Z',
-          'country': 'China',
-          'contests': ['SRM 672 DIVISION 1 WINNER']
+          'avatar': 'https://www.topcoder.com/i/m/Petr_big.jpg',
+          'name': 'Petr',
+          'date': '20170530T000000Z',
+          'country': 'RUSSIAN FEDERATION',
+          'contests': ['SRM 715 DIVISION 1 WINNER']
         }, {
           'avatar': 'https://s3.amazonaws.com/app.topcoder-dev.com/images/ico-user-default.7aa28736.svg',
-          'name': 'jiangshibiao2',
-          'date': '20151020T000000Z',
-          'country': 'China',
-          'contests': ['SRM 672 DIVISION 2 WINNER']
+          'name': 'Abhi_Saini',
+          'date': '20170530T000000Z',
+          'country': 'INDIA',
+          'contests': ['SRM 715 DIVISION 2 WINNER']
         }],
         'MarathonWinner': [{
-          'avatar': 'http://www.topcoder.com/i/m/eldidou.jpeg',
-          'name': 'eldidou',
-          'date': '20150915T000000Z',
-          'country': 'France',
-          'contests': ['MARATHON MATCH 88', 'ViralInfection']
+          'avatar': 'https://s3.amazonaws.com/app.topcoder-dev.com/images/ico-user-default.7aa28736.svg',
+          'name': 'hakomo',
+          'date': '20170301T000000Z',
+          'country': 'JAPAN',
+          'contests': ['MARATHON MATCH 93', 'CrossStitch']
         }],
         'TopPerformers': [{
           'contestType': 'Design',
