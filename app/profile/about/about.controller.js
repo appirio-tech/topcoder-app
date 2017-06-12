@@ -41,8 +41,8 @@ import angular from 'angular'
 
       profileVm.statsPromise.then(function() {
         vm.categories = profileVm.categories
-        vm.marathonRating = profileVm.categories['MARATHON_MATCH'] && profileVm.categories['MARATHON_MATCH'].rating
-        vm.SRMRating = profileVm.categories['SRM'] && profileVm.categories['SRM'].rating
+        vm.marathonRating = profileVm.categories && profileVm.categories['MARATHON_MATCH'] && profileVm.categories['MARATHON_MATCH'].rating
+        vm.SRMRating = profileVm.categories && profileVm.categories['SRM'] && profileVm.categories['SRM'].rating
         vm.displaySection.stats = profileVm.showEditProfileLink
       })
 
