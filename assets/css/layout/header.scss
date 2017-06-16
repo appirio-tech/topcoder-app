@@ -472,12 +472,13 @@
 
     // Topcoder logo
     .logo-link {
-      background: url(../../images/logo_topcoder.svg);
+      background: url(../../images/topcoder-logo-dads.png);
       width: 156px;
       height: 54px;
       margin: 0;
       background-repeat: no-repeat;
       background-position: 50% 50%;
+      background-size: contain;
       float: left;
       position: static;
     }
