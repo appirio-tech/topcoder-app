@@ -25,6 +25,9 @@ import angular from 'angular'
         controller: 'ProfileCtrl as profileVm',
         resolve: {
           userHandle: ['$stateParams', function($stateParams) {
+            if (decodeURIComponent($stateParams.userHandle) !== $stateParams.userHandle) {
+              return decodeURIComponent($stateParams.userHandle)
+            }
             return $stateParams.userHandle
           }],
           profile: ['userHandle', 'ProfileService', function(userHandle, ProfileService) {
