@@ -28,7 +28,14 @@ import moment from 'moment'
       if (path.indexOf('?') > -1) {
         return path.replace('?', '/?')
       }
-      $location.replace().path(path + '/')
+      // prevent double encoding
+      path = path.split('/')
+      for (var i = 0; i < path.length; i++) {
+        while (decodeURIComponent(path[i]) !== path[i]) {
+          path[i] = decodeURIComponent(path[i])
+        }
+      }
+      $location.replace().path(path.join('/') + '/')
     })
 
     var states = {
