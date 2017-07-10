@@ -21,6 +21,15 @@ import moment from 'moment'
     $urlRouterProvider.rule(function($injector) {
       var $location = $injector.get('$location')
       var path = $location.url()
+      // Remove double URL encoding from member handle
+      var pathArray = path.split('/')
+      var membersIndex = pathArray.indexOf('members')
+      if (membersIndex > -1) {
+        while (decodeURIComponent(pathArray[membersIndex + 1]) !== pathArray[membersIndex + 1]) {
+          pathArray[membersIndex + 1] = decodeURIComponent(pathArray[membersIndex + 1])
+        }
+        path = pathArray.join('/')
+      }
       // check to see if the path already has a slash where it should be
       if (path[path.length - 1] === '/' || path.indexOf('/?') > -1 || path.indexOf('/#') > -1) {
         return
