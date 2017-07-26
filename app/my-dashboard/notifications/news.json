@@ -1,0 +1,38 @@
+[
+  {
+    "header": "TCO17 Beijing Regionals",
+    "details": "After an all amazing last yera TCO16 Beijing Regionals we were very excited to go back and do an event in some how other text",
+    "headerExpand": "TCO17 Beijing Regionals",
+    "detailsExpand": "After an all amazing last yera TCO16 Beijing Regionals we were very excited to go back and do an event in some how other text",
+    "backgroundImage": "tco17-beijing-banner.jpg",
+    "redirectTo": "https://tco17.topcoder.com/",
+    "redirectText": "Learn More",
+    "videoCode": "https://www.youtube.com/embed/Qc_PcN6ECjg?autoplay=1",
+    "live": true,
+    "liveExpand": true
+  },
+  {
+    "header": "SRM 789 is starting in 10 days (June 3, 22:30pm)",
+    "details": "Registration will be open on the day of the competition. Don't forget to join us, add it to your calendar",
+    "headerExpand": "TCO17 Beijing Regionals",
+    "detailsExpand": "After an all amazing last yera TCO16 Beijing Regionals we were very excited to go back and do an event in some how other text",
+    "backgroundImage": "tco17-beijing-banner.jpg",
+    "redirectTo": "https://tco17.topcoder.com/",
+    "redirectText": "Learn More",
+    "videoCode": "https://www.youtube.com/embed/fTdov0zyFu8?autoplay=1",
+    "live": false,
+    "liveExpand": false,
+    "height": 480
+  },
+  {
+    "header": "Another notification demo",
+    "details": "Without video but has a live flag",
+    "headerExpand": "Expanded header worked",
+    "detailsExpand": "Expanded details worked",
+    "backgroundImage": "tco17-beijing-banner.jpg",
+    "redirectTo": "https://tco17.topcoder.com/",
+    "redirectText": "Redirect",
+    "live": true,
+    "liveExpand": false
+  }
+]

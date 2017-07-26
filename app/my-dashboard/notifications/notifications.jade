@@ -1,0 +1,22 @@
+.no-news(ng-show="vm.news.length===0") NO NEWS RIGHT NOW
+.has-news(ng-show="vm.news.length>0")
+  notification(ng-repeat="config in vm.news", config="config")
+
+.banners
+  //
+    to add more banners here, just create a new a.banner element under .banner-row element,
+    each .banner-row element will occupy a whole row in page, and all a.banner elements under
+    it will have same width, you can create a new .banner-row if you want place more banners
+    in a new row
+  .banner-row
+    a.banner.tco17(href="https://tco17.topcoder.com/")
+      img(src=require("../../../assets/images/tco17-web-logo-white.svg"), alt="TCO17")
+    a.banner.watson(href="https://cognitive.topcoder.com/")
+      img(src=require("../../../assets/images/logo_white.png"), alt="TCO17")
+      span With
+      br
+      span Watson
+    a.banner.cognitive(href="https://cognitive.topcoder.com/")
+      span COGNITIVE
+      br 
+      span COMMUNITY
