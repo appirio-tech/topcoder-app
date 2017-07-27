@@ -39,8 +39,32 @@ To make the mentioned configuration on Ubuntu 16.04 you:
   - dan_developer/dantopcoder123
 - Create your own:
   - You may register your own account at https://local.topcoder-dev.com/register
+
+# Configuration
+
+### Notifications in the Dashboard
+
+There's a constant `VIDEO_DEFAULT_HEIGHT` has been added to /app/topcoder.constants.js, the value will be used as the default height when a banner expanded.
+
+To add a new notification, append a new configuration object to /app/my-dashboard/notifications/news.json, the configuration object has following properties:
+
+- header: header text displayed when collapsed.
+- details: details text displayed when collapsed.
+- headerExpand: header text displayed when expanded, use `header` if this property is falsy
+- detailsExpand: details text displayed when expanded, use `details` if this property is falsy
+- backgroundImage: background image used when expaneded, the path is relative to /assets/images/news
+- redirectTo: the url will redirect to when user click the `Learn more` button, will hide the button if this property is falsy
+- redirectText: the text will be displayed on the `Learn more` button, will hide the button if this property is falsy
+- videoCode: the video resource code to embed when expanded
+- live: show the live flag or not when collapsed
+- liveExpand: show the live flag or not when expanded
+- height: height of the expanded view, any non-falsy value of this property will override the default height, i.e. `VIDEO_DEFAULT_HEIGHT` in /app/topcoder.constants.js
+
+### Banners in the Dashboard
+
+You can edit `/app/my-dashboard/notifications/notifications.jade` to update the banners. Element with class `banner-row` represents a row of banners, anchor element with class `banner` represents a banner, you can place as many banners as you want in a row, just make sure it have a proper appearance, all banners in one row have same width.
   
-## Recommended Developer Tools
+# Recommended Developer Tools
 
 Syntax highlighting for ES6 and React JSX
 - Install [babel](https://packagecontrol.io/packages/Babel) via the package manager in Sublime Text
