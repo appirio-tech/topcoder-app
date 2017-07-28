@@ -1,6 +1,7 @@
 .notification
   .collapsed(ng-show="!vm.expanded")
     .live(ng-show="config.live") LIVE
+    .customTag(ng-show="config.customTag" ng-style="{'background': config.customTag.background, color: config.customTag.color}") {{config.customTag.text}}
     .header {{config.header}}:&nbsp;
     .details {{config.details}}
     i.expand.fa.fa-plus(ng-click="vm.toggle()")

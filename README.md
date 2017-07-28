@@ -48,6 +48,7 @@ There's a constant `VIDEO_DEFAULT_HEIGHT` has been added to /app/topcoder.consta
 
 To add a new notification, append a new configuration object to /app/my-dashboard/notifications/news.json, the configuration object has following properties:
 
+- customTag: allows to show a custom tag in the collapsed notification, similarly to the LIVE tag. If provided, it should be an object with three fields: `text` - the label on the tag, `color` - text color of the tag (defaults to white), `background` - background color of the tag (defaults to red, the same as for LIVE tag).
 - header: header text displayed when collapsed.
 - details: details text displayed when collapsed.
 - headerExpand: header text displayed when expanded, use `header` if this property is falsy

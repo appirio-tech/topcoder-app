@@ -12,15 +12,28 @@
     text-align: center;
     font-size: 14px;
   }
+  .customTag{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 12px;
+    color: $white;
+    background: #E73851;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+  }
   .collapsed{
     display: flex;
     align-items: center;
     color: $white;
     font-size: 18px;
     height: 60px;
-    background: linear-gradient(to bottom, #20a6e2 0%, #5c82db 45%, #a17fdd 100%);
+    background: linear-gradient(to bottom, gainsboro 0%, silver 50%, lightgray 100%);
     padding: 0 15px;
     .live{
+      margin-right: 12px;
+    }
+    .customTag{
       margin-right: 12px;
     }
     .header{
@@ -57,10 +70,12 @@
     }
     .left{
       padding-top: 70px;
+      padding-right: 64px;
       flex: 1;
       height: 100%;
       position: relative;
-      background: linear-gradient(to bottom, #20a6e2 0%, rgba(92, 130, 219, 0.8) 45%, rgba(161, 127, 221, 0.75) 100%)
+      background: linear-gradient(to bottom, darkgray 0%, #444 50%, gray 100%);
+      opacity: 0.8;
     }
     .header{
       font-weight: bold;
@@ -111,9 +126,11 @@
       }
     }
     .collapse{
+      background: #444;
+      padding: 15px;
       position: absolute;
-      top: 15px;
-      right: 15px;
+      top: 0;
+      right: 0;
       cursor: pointer;
       font-size: 26px;
       font-weight: 100;

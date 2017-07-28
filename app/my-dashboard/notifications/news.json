@@ -8,8 +8,13 @@
     "redirectTo": "https://tco17.topcoder.com/",
     "redirectText": "Learn More",
     "videoCode": "https://www.youtube.com/embed/Qc_PcN6ECjg?autoplay=1",
-    "live": true,
-    "liveExpand": true
+    "live": false,
+    "liveExpand": false,
+    "customTag": {
+      "color": "red",
+      "background": "blue",
+      "text": "Announcement"
+    }
   },
   {
     "header": "SRM 789 is starting in 10 days (June 3, 22:30pm)",
