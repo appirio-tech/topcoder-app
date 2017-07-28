@@ -11,8 +11,6 @@
     "live": false,
     "liveExpand": false,
     "customTag": {
-      "color": "red",
-      "background": "blue",
       "text": "Announcement"
     }
   },
