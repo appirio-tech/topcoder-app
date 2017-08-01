@@ -1,0 +1,76 @@
+@import 'topcoder/tc-includes';
+
+.notifications{
+  max-width: 1242px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: 100%;
+  margin-top: 1px;
+  @include sofia-pro-regular;
+  .no-news{
+    background-color: $gray-lightest;
+    height: 60px;
+    line-height: 60px;
+    font-size: 14px;
+    font-weight: 300;
+    color: $accent-gray;
+    text-align: center;
+  }
+  .banners{
+    background-color: $black;
+    margin-top: -1px;
+  }
+  .banner-row{
+    display: flex;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+  .banner{
+    display: block;
+    height: 180px;
+    flex: 1;
+    background-size: 100% 100%;
+    margin-right: 2px;
+    &, &:hover, &:focus{
+      color: $white;
+    }
+    &:last-child{
+      margin-right: 0;
+    }
+    &.tco17{
+      background-image: url(../../images/home-hero.jpg);
+      img{
+        width: 150px;
+        margin: 20px auto 0;
+        display: block;
+      }
+    }
+    &.watson{
+      background-image: url(../../images/banner-watson.jpg);
+      padding-left: 16px;
+      font-size: 32px;
+      img{
+        width: 152px;
+        display: block;
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+    }
+    &.cognitive{
+      background-image: url(../../images/banner-cognitive.jpg);
+      font-size: 32px;
+      text-align: center;
+      font-weight: bold;
+      padding-top: 45px;
+    }
+    @media screen and (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 2px;
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+}

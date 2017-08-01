@@ -1,0 +1,137 @@
+@import 'topcoder/tc-includes';
+
+.notification{
+  margin-bottom: 24px;
+  .live{
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    color: $white;
+    background-color: #E73851;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+  }
+  .customTag{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 12px;
+    color: $white;
+    background: #E73851;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+  }
+  .collapsed{
+    display: flex;
+    align-items: center;
+    color: $white;
+    font-size: 18px;
+    height: 60px;
+    background: linear-gradient(to bottom, silver 0%, gray 35%, #747474 55%, gray 70%, silver 100%);
+    padding: 0 15px;
+    .live{
+      margin-right: 12px;
+    }
+    .customTag{
+      margin-right: 12px;
+    }
+    .header{
+      font-weight: bold;
+    }
+    .details{
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 60px;
+    }
+    .expand{
+      cursor: pointer;
+      font-size: 26px;
+      font-weight: 100;
+      margin-left: 38px;
+    }
+  }
+  .expanded{
+    position: relative;
+    color: $white;
+    display: flex;
+    background-size: cover;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+    .mask{
+      position: absolute;
+      top: 0;
+      left:0;
+      bottom: 0;
+      right: 0;
+    }
+    .left{
+      padding-top: 70px;
+      padding-right: 64px;
+      flex: 1;
+      height: 100%;
+      position: relative;
+    }
+    .header{
+      font-weight: bold;
+      font-size: 40px;
+      padding-left: 60px;
+      margin-bottom: 20px;
+    }
+    .details{
+      font-size: 16px;
+      line-height: 26px;
+      font-weight: 100;
+      padding-left: 60px;
+      max-width: 450px;
+    }
+    .action{
+      position: absolute;
+      bottom: 40px;
+      left: 60px;
+      background-color: white;
+      padding: 10px 20px;
+      border-radius: 26px;
+    }
+    .right{
+      flex: 1;
+      position: relative;
+      background-color: transparentize($black, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      .btn-play{
+        text-align: center;
+        font-size: 26px;
+        font-weight: 100;
+        i.fa{
+          font-size: 160px;
+          margin-bottom: 10px;
+          cursor: pointer;
+          &:hover{
+            opacity: 0.75;
+            font-weight: 100;
+          }
+        }
+      }
+      .live{
+        position: absolute;
+        left: 20px;
+        top: 20px;
+      }
+    }
+    .collapse{
+      background: #444;
+      padding: 15px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+      font-size: 26px;
+      font-weight: 100;
+    }
+  }
+}

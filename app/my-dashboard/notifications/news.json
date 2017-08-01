@@ -1,0 +1,16 @@
+[
+  {
+    "header": "TCO18 Has Begun",
+    "details": "Visit the new TCO18 Website for all the details and rules for each track.  Also be sure to frequently visit the Challenge Listings page for opportunity to earn TCO18 Points!",
+    "headerExpand": "TCO18 Has Begun!",
+    "detailsExpand": "Visit the new TCO18 Website for all the details and rules for each track.  Also be sure to frequently visit the Challenge Listings page for opportunity to earn TCO18 Points!",
+    "backgroundImage": "tc-dashboard-tco18.png",
+    "redirectTo": "http://tco18.topcoder.com/",
+    "redirectText": "TCO18 Homepage",
+    "live": false,
+    "liveExpand": false,
+    "customTag": {
+      "text": "Announcement"
+    }
+  }
+]

@@ -36,6 +36,11 @@ import angular from 'angular'
           }]
         },
         views: {
+          'notifications': {
+            template: require('./notifications/notifications')(),
+            controller: 'NotificationsController',
+            controllerAs: 'vm'
+          },
           'header-dashboard' : {
             template: require('./header-dashboard/header-dashboard')(),
             controller: 'HeaderDashboardController',
