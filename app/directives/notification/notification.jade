@@ -9,7 +9,7 @@
     .mask
     .left(ng-style="{'height': (config.height || vm.defaultHeight) + 'px'}")
       .header {{config.header}}
-      .details {{config.details | characters:110}}
+      .details {{config.details}}
       a.action(ng-show="config.redirectText && config.redirectTo", href="{{config.redirectTo}}") {{config.redirectText}}
     .right(ng-if="config.videoCode", ng-style="{'height': (config.height || vm.defaultHeight) + 'px'}")
       .btn-play(ng-hide="vm.loadVideo")
