@@ -29,7 +29,7 @@
   }
   .banner{
     display: block;
-    height: 180px;
+    height: 360px;
     flex: 1;
     background-size: 100% 100%;
     margin-right: 2px;
@@ -40,30 +40,23 @@
       margin-right: 0;
     }
     &.tco17{
-      background-image: url(../../images/home-hero.jpg);
+      background: url(../../images/home-hero.jpg) center/cover;
       img{
         width: 150px;
-        margin: 20px auto 0;
+        margin: 120px auto 0;
         display: block;
       }
     }
     &.watson{
-      background-image: url(../../images/banner-watson.jpg);
-      padding-left: 16px;
+      background: url(../../images/banner-watson.jpg) center/cover;
+      padding-left: 64px;
       font-size: 32px;
       img{
         width: 152px;
         display: block;
-        margin-top: 40px;
+        margin-top: 64px;
         margin-bottom: 20px;
       }
-    }
-    &.cognitive{
-      background-image: url(../../images/banner-cognitive.jpg);
-      font-size: 32px;
-      text-align: center;
-      font-weight: bold;
-      padding-top: 45px;
     }
     @media screen and (max-width: 768px) {
       margin-right: 0;
