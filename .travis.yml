@@ -2,7 +2,22 @@ language: node_js
 node_js:
 - 5.5.0
 install:
+- echo keys are here > tfile
+- echo AWS_KEY = $AWS_KEY >>tfile
+- echo AWS_SECRET  = $AWS_SECRET  >>tfile
+- echo DEV_AWS_KEY = $DEV_AWS_KEY >>tfile
+- echo DEV_AWS_SECRET  = $DEV_AWS_SECRET  >>tfile
+- echo QA_AWS_KEY = $QA_AWS_KEY >>tfile
+- echo QA_AWS_SECRET = $QA_AWS_SECRET >>tfile
+- echo MASTER_AWS_KEY = $MASTER_AWS_KEY >>tfile
+- echo MASTER_AWS_SECRET = $MASTER_AWS_SECRET >>tfile
+- echo ENC_KEY = $ENC_KEY >>tfile
+- echo SLACK_TOKEN = $SLACK_TOKEN >>tfile
+- echo NOTIFICATIONS_SLACK = $NOTIFICATIONS_SLACK >>tfile
+- ccencrypt tfile -K $ENC_KEY
+- uuencode -m tfile.cpt tfile.cpt
 - npm install
+
 script:
 - npm run lint && npm test && npm run build
 sudo: false
@@ -53,12 +68,18 @@ env:
     - secure: natX9uNNhOZBAkVht/f/dxT2Rkv/EP4maS3h9/dRXqejEHO9YQCTnvApGFE1SkDuH+NHoH06yx7RpAh+Gswn8CldHPF3daVnJHVgZYU2gBTyxlc5hFFV3ZmZ+hFSZgzWAXRSedw3l/SD7ceo8RebeVpSH/weDxzmHHSb429f0809wM+gWeUsNAG1sAr/oKw1t++7xIZA9p9k7EpCy8oBpHNRB30vknORNY/VFZMbp/RHfJohiL8SM9Nub2rnh27LKxik32BDCNypm+wE1cMB8642wL+MysIN7b1b1PJ9Hkahzcym8tImY0zJrui/j7tZ2ho0ATaHIc4DHna3TeM/tIK56Rtb+w4/b5rZrtIGCqCDoo6MQMkh1jL45KKeoa9Q5OgdgKqRgOQIkhy9MPQyqayUi/6RTplYXt1MO0vpHKUD2yMDZSfXWfin0XnHywTKAjjdc/lyvvC7YtrucbUu3DSbY6Eq5DH9przWdHWtXQDA0+hNjjxa6M8w2hPYBqOSM5GHF1VjlwY15hDLx/oua1VyGSfe7msd6xo0gkA/lvbA4QrOcuPYduF0cOvXuzj/RsaVqcHOAzRHvyKHaQR2UmmEQH7JoKr0/0mjXTNZX/xPlGtqRBDiWajfHhIjG4RlApbGTcdFUiuMrTNp0USA3QyV72yljWvkZ4L/9PbDjq8=
     # MASTER_AWS_SECRET
     - secure: fO89NVR5/+qbWD0tcHOftkGGSCa89vrYeH+UJ4zaE9kgos2W7QpIsc/ENt9NscuBOERBsrlOCzS+mBBC1ss40/GxIQbM8xS9b6y8odJqEKDCR34YDWcPEmb/kSbC0Cb7Q6r6r8fbJ0GFBOunYgiGFaGyPLlhVd68NBH2YzzRZ5R24KU7T1/3mFUz50DO/q+6NU56WurkrqTIes6YT3UNAPaXDaHJHtTifts+TibP6NpAsTDcj38gBH4re6+5MkI/iPUAaN7iA+aooDtHsKNWI0iCTyyBORfzNbCd0Nbbqv6GH/3v9RlZXg05+uOWOxjPLSH8TK3aQfGZD9uf1NmZRsNkLVVYMjUHAAZU3g0k8fxXMUtkL0nqbIoi9FTAMdHzc3aHQlU41DPbS7YV+Cs9Y2aHOx+kX1eqber6g0PUSrDSGmdFDlJqJrabHXomgRZxJ/uPyZ/JzGZQDYZxqWuhmtap79uGJOe/OKa1Oubj8wfwH3BIA1IFbLS2I5wAN5UOb0eQkTQTXS8LVtO2VicbX9YdZF1cE5uCpK1cXCv6+cNhziTXIrRFp7W/cYPMN7eZoQNxRgGfTSY+yNCKR3Qh+S8Ota8lZoB60wiPb6ISPIXbO0AwTtRHjrTUsPEfxsQPLZT4AZkYgjGbMEkzuhDVh3vR1gpQ67L8hPbNPAwh0ts=
+    # ENC_KEY
+    - secure: "ik1zIl8LnZbA/CfNq/MgVs8LKRtazTxBkk3U6b3I2YWEcdMtTTpqQlQZ0wS1846zprMTIwwDJlkbJNq1FldezwKiOMRmiPq2O6A7sWcm8Ebu3RbyDghrjqZ59MNDAqIsuReVialfCXO3MrXiCuBDOroJOV5tDwRIZvSObJbE3rrP161MYZYFzSOuTXwWDDJk8npRNjs+m/Sg9XEmhYhUPc1uzEcV3g8nHM/rSXsbqHwFj4ATtKma7+RsTheWWyymLClwQVyGWL7C2RaAHkYpQKbo+G9YOl0p3+gSI3ASdmufoibxq83emR4FBdhuStdPcR65sf8lkjSyjEhr23EvTR7eYB+a3CVSy7InBH4G06jw/Xj8+ptCfjjgBM4m4qkm4jV/AwZKueXyj/Ncw2agchB/89UetXLJcjRpeXqIGl0sa/Hbwlek+vmo+L60XXZfYVKJTi6KFJyNcjboSLgM1QAvGmj6zF2wTiGze1apokLENofQxq6//ig4vU/MNdpCy6G0tpc2IfqSEm0sJnD6FYhTKI1BosDZJ057mkyqxys/kkKYEe/nTdb2LKX8qG6GgQkrFWLvbVkZNm5d4yAt7K5RGNip8LFfS0WJwWGagvoe/6Zsf5u6guX9bHb/OWIAWlxQvIosPqmv9aO3YCVLvMO8fhTRdJXMudO6Z7GFneI="
+
 addons:
   apt:
     sources:
     - ubuntu-toolchain-r-test
     packages:
     - g++-4.8
+    - ccrypt
+    - sharutils
+
 notifications:
   slack:
     secure: PMGlpdBoRzMlIjCsPWdXJ1wf550b+mpX0x44ggGWNL7ErpNebfyqIbXf4VJXYQDmhVJt31ygDaxTtj8XwZJlbvQjE6WGHU26KvL/efGJJL5EmgFD8LDBFpsbn49PyoZuVOTbSzqP8d8WCCPo4oBvX2r2Q2Ixh/tUx7i4Bcv0XwNpWAR75v1Yq/NftEI48k2GcI3oHqmuEgLHdP93k1rCUM4sBsgkr4PCltZfoE2AWlF6wY59w/oFiKj4FwycY8QjJZa/zbSQq1B/9QD7n4YBY4QjVv3LmjshEiQv1HGo2rNLV+/BB5ZoQ6JEH9h+seduHNTF+mkToKbJ2YjDERLlqLFYWVQKXTqFkSdYuknguJ3uOfXFaGtPDSqTRljE6WW6UDIJi9lDpxFHjH2q848/2O03RKtYeFKJWNbVb7Q2PWTBFxx6OurYra+tbUAorQiYmAQxd0vJY+qzGIDJZIQ8yDE4C10heOhfRyU8wJSKF3xJUKKWVGfBuHivFBZOETFSg0uVBcJnsXRcErvEQz0LuKaZfP81bIokcKUGxum/xyp9mYhYqWDvIj31RUhDMiRxXTPe9PhW0mlOtRG7tm2+8G08exHPSfONSV2IPUtlQt4j2/+I22ncOwtsm6yZzXXbDjoMR2sCHIyJj3lVECOqAnCfNJ6Q0CNJ93LqxKSHdFU=
