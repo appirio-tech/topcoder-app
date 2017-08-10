@@ -1,4 +1,4 @@
-#### Dev ![Build Status](https://circleci.com/gh/appirio-tech/topcoder-app/tree/dev.svg?style=shield&circle-token=5acf3da74ea00fc827850218f9f01578a4d6ea68) QA ![Build Status](https://circleci.com/gh/appirio-tech/topcoder-app/tree/qa-integration.svg?style=shield&circle-token=5acf3da74ea00fc827850218f9f01578a4d6ea68) Master ![Build Status](https://circleci.com/gh/appirio-tech/topcoder-app/tree/master.svg?style=shield&circle-token=5acf3da74ea00fc827850218f9f01578a4d6ea68)
+#### Dev [![Build Status](https://circleci.com/gh/appirio-tech/topcoder-app/tree/dev.svg?style=shield&circle-token=5acf3da74ea00fc827850218f9f01578a4d6ea68)] QA [![Build Status](https://circleci.com/gh/appirio-tech/topcoder-app/tree/qa-integration.svg?style=shield&circle-token=5acf3da74ea00fc827850218f9f01578a4d6ea68)] Master [![Build Status](https://circleci.com/gh/appirio-tech/topcoder-app/tree/master.svg?style=shield&circle-token=5acf3da74ea00fc827850218f9f01578a4d6ea68)]
 # Topcoder-App
 
 Topcoder-App is an Angular application that contains dashboard, profile, settings, login/registration, and design submissions.
