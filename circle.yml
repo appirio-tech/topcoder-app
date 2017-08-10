@@ -9,11 +9,10 @@ dependencies:
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test  -y
     - sudo apt-get update -y
     - sudo apt-get install g++-4.8  -y
-  override:
-    - npm install debug
 
 compile:
   override:
+    - npm install debug
     - npm run lint && npm test && npm run build
 
 deployment:
