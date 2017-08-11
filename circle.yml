@@ -15,7 +15,8 @@ dependencies:
     - npm install transform-loader
     - npm install babel-loader
     - npm install babel-core
-
+    - npm install babel-plugin-lodash
+    
 compile:
   override:
     - npm run lint && npm test && npm run build
