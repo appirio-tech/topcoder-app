@@ -10,9 +10,7 @@ dependencies:
     - sudo apt-get update -y
     - sudo apt-get install g++-4.8  -y
   override:
-    - npm install debug
-    - npm install appirio-tech-webpack-config
-
+    - npm install
     
 compile:
   override:
