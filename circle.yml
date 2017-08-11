@@ -10,6 +10,11 @@ dependencies:
     - sudo apt-get update -y
     - sudo apt-get install g++-4.8  -y
   override:
+    - node --version
+    - npm --version
+    - nvm --version
+    - npm install node-sass
+    - npm rebuild node-sass
     - npm install -d
     
 compile:
