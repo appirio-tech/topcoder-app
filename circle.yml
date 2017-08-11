@@ -10,6 +10,7 @@ dependencies:
     - sudo apt-get update -y
     - sudo apt-get install g++-4.8  -y
   override:
+    - npm install react
     - npm install -ddd webpack -g
     - npm install
     
