@@ -11,12 +11,8 @@ dependencies:
     - sudo apt-get install g++-4.8  -y
   override:
     - npm install debug
-    - npm install coffee-script
-    - npm install transform-loader
-    - npm install babel-loader
-    - npm install babel-core
-    - npm install babel-plugin-lodash
-    - npm install babel-preset-es2015
+    - npm install appirio-tech-webpack-config
+
     
 compile:
   override:
