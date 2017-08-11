@@ -12,6 +12,7 @@ dependencies:
   override:
     - npm install debug
     - npm install coffee-script
+    - npm install webpack
 compile:
   override:
     - npm run lint && npm test && npm run build
