@@ -13,6 +13,7 @@ dependencies:
     - npm install debug
     - npm install coffee-script
     - npm install transform-loader
+    - npm install babel-loader
 
 compile:
   override:
