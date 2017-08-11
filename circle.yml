@@ -16,6 +16,7 @@ dependencies:
     - npm install babel-loader
     - npm install babel-core
     - npm install babel-plugin-lodash
+    - npm install babel-preset-es2015
     
 compile:
   override:
