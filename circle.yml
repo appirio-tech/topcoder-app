@@ -13,9 +13,7 @@ dependencies:
     - node --version
     - npm --version
     - nvm --version
-    - npm install webpack@2 || 3
-    - npm install moment@>=2.16.0
-    - npm install babel-loader@7.1.1
+    - npm install appirio-tech/react-components.git#listings-release-v3
     - npm install
     
 compile:
