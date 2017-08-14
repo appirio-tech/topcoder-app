@@ -13,9 +13,6 @@ dependencies:
     - node --version
     - npm --version
     - nvm --version
-    - npm install nvm@0.33.2
-    - nvm --version
-    - npm install appirio-tech/react-components.git#listings-release-v3
     - npm install
     
 compile:
