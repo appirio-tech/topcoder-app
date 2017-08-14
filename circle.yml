@@ -13,7 +13,7 @@ dependencies:
     - node --version
     - npm --version
     - nvm --version
-    - npm install webpack@2 || 3
+    - npm install -g webpack@2 || 3
     - npm install
     
 compile:
