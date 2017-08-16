@@ -21,6 +21,7 @@ compile:
     - npm install transform-loader     
     - npm install coffee-script
     - ls -lR node_modules/*
+    - npm install babel-loader
     - npm run lint && npm test && npm run build
 
 deployment:
