@@ -21,6 +21,7 @@ compile:
     - npm install transform-loader     
     - npm install coffee-script
     - npm webpack --version
+    - npm install babel-loader babel-core babel-preset-env
     - npm run lint && npm test && npm run build
 
 deployment:
