@@ -20,7 +20,8 @@ compile:
     - npm install
     - npm install transform-loader     
     - npm install coffee-script
-    - npm webpack --version
+    - ls node_modules/*
+    - webpack --version
     - npm babel --version
     - npm run lint && npm test && npm run build
 
