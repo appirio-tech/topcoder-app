@@ -18,9 +18,9 @@ dependencies:
 compile:
   override:
     - npm install
-    - npm install transform-webpack-loader
     - npm install coffee-script
     - npm install babel
+    - npm install transform
     - npm run lint && npm test && npm run build
 
 deployment:
