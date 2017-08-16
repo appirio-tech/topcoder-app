@@ -19,6 +19,7 @@ compile:
   override:
     - npm install    
     - npm install coffee-script
+    - npm install transform/cacheable
     - npm run lint && npm test && npm run build
 
 deployment:
