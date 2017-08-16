@@ -13,11 +13,12 @@ dependencies:
     - node --version
     - npm --version
     - nvm --version
-    - npm install    
-    - npm install coffee-script
+
     
 compile:
   override:
+    - npm install    
+    - npm install coffee-script
     - npm run lint && npm test && npm run build
 
 deployment:
