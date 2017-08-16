@@ -19,8 +19,8 @@ compile:
   override:
     - npm install
     - npm install transform-loader     
-    - npm install jade
     - npm install coffee-script
+    - npm install babel-loader@6.3.2
     - ls -lR node_modules/*
     - npm run lint && npm test && npm run build
 
