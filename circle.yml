@@ -13,10 +13,10 @@ dependencies:
     - node --version
     - npm --version
     - nvm --version
-    - npm install
     
 compile:
   override:
+    - npm install
     - npm run lint && npm test && npm run build
 
 deployment:
