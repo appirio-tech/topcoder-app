@@ -19,8 +19,7 @@ compile:
   override:
     - npm install
     - npm install transform-loader coffee-script
-    - npm install babel-loader@6.3.2 babel-plugin-lodash babel-preset-es2015
-    - npm install react@^0.14.7
+    - npm install babel-loader@6.3.2 babel-plugin-lodash babel-preset-es2015 babel-preset-react
     - ls node_modules/*
     - npm run lint && npm test && npm run build
 
