@@ -20,6 +20,7 @@ compile:
     - npm install
     - npm install transform-loader     
     - npm install coffee-script
+    - npm webpack --version
     - npm run lint && npm test && npm run build
 
 deployment:
