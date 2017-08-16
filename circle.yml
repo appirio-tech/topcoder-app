@@ -18,9 +18,9 @@ dependencies:
 compile:
   override:
     - npm install
-    - npm install transform
     - npm install transform-loader     
     - npm install coffee-script
+    - npm uninstall babel 
     - npm install babel
     - npm install babel-core
     - npm install babel-preset-es2015
