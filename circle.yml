@@ -20,10 +20,6 @@ compile:
     - npm install
     - npm install transform-loader     
     - npm install coffee-script
-    - npm uninstall babel 
-    - npm install babel
-    - npm install babel-core
-    - npm install babel-preset-es2015
     - npm run lint && npm test && npm run build
 
 deployment:
