@@ -17,9 +17,7 @@ dependencies:
     
 compile:
   override:
-    - npm install   
-    - npm install transform
-    - npm install coffee-script
+    - npm install -d
     - npm run lint && npm test && npm run build
 
 deployment:
