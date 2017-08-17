@@ -24,6 +24,7 @@ compile:
     - npm install bourbon
     - npm install ngreact
     - npm install appirio-tech-ng-ui-components
+    - npm install angular
     - ls node_modules/*
     - npm run lint 
     - npm test 
