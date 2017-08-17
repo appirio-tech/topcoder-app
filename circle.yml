@@ -21,7 +21,7 @@ compile:
     - npm install coffee coffee-script jade envify
     - npm install transform-loader coffee-loader jade-loader json-loader file-loader style-loader css-loader cjsx-loader 
     - npm install babel-loader@6.3.2 babel-plugin-lodash babel-preset-es2015 babel-preset-react babel-preset-stage-2
-    - npm install sass-loader@6.0.1
+    - npm install sass-loader@5.0.1
     - ls node_modules/*
     - npm run lint 
     - npm test 
