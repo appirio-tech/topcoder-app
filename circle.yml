@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 8.4.0
+    version: 6.11.2
   environment:
     CXX: g++-4.8
 
