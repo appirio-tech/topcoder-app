@@ -18,6 +18,7 @@ dependencies:
 compile:
   override:
     - npm install
+    - npm install coffee coffee-script jade envify
     - ls node_modules/*
     - npm run lint 
     - npm test 
