@@ -17,7 +17,7 @@ dependencies:
     
 compile:
   override:
-    - npm install
+    - npm install -d 
     - ls node_modules/*
     - npm run lint 
     - npm test 
