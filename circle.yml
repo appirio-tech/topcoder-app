@@ -16,7 +16,7 @@ compile:
     - node --version
     - npm --version
     - nvm --version
-    - npm install -d 
+    - npm install -d --ca=null
     - ls node_modules/*
     - npm run lint 
     - npm test 
