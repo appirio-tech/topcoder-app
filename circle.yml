@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 6.11.2
+    version: 5.5.0
   environment:
     CXX: g++-4.8
 
@@ -18,13 +18,6 @@ dependencies:
 compile:
   override:
     - npm install
-    - npm install coffee coffee-script jade envify
-    - npm install transform-loader coffee-loader jade-loader json-loader file-loader style-loader css-loader cjsx-loader sass-loader@3.2.2
-    - npm install babel-loader@6.3.2 babel-plugin-lodash babel-preset-es2015 babel-preset-react babel-preset-stage-2
-    - npm install bourbon
-    - npm install ngreact
-    - npm install babel-core 
-    - npm install node-sass
     - ls node_modules/*
     - npm run lint 
     - npm test 
