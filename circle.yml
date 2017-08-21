@@ -1,22 +1,21 @@
 machine:
   node:
-    version: 8.14.0
+    version: 5.5.0
   environment:
     CXX: g++-4.8
 
 dependencies:
   pre:
+    - echo "//registry.npmjs.org/:_authToken=$NPM_API_KEY" >> ~/.npmrc
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test  -y
     - sudo apt-get update -y
     - sudo apt-get install g++-4.8  -y
+    
+compile:
   override:
     - node --version
     - npm --version
     - nvm --version
-
-    
-compile:
-  override:
     - npm install -d 
     - ls node_modules/*
     - npm run lint 
