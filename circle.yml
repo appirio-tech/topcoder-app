@@ -6,7 +6,6 @@ machine:
 
 dependencies:
   pre:
-    - echo "//registry.npmjs.org/:_authToken=$NPM_API_KEY" >> ~/.npmrc
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test  -y
     - sudo apt-get update -y
     - sudo apt-get install g++-4.8  -y
