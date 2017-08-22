@@ -20,9 +20,7 @@ dependencies:
 compile:
   override:
     - ls node_modules/*
-    - npm run lint 
-    - npm test 
-    - npm run build
+    - npm run lint && npm test && npm run build
 
 deployment:
   development:
