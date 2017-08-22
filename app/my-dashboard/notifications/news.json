@@ -1,16 +1,14 @@
-[
-  {
-    "header": "TCO17 Warsaw Regional Event",
-    "details": "Registration is now open for or TCO17 Warsaw Regional Event!",
-    "headerExpand": "TCO17 Warsaw Regional Event",
-    "detailsExpand": "Register now for the TCO17 Warsaw Regional Event on September 2, 2017 at the University of Warsaw. T-shirts, food, and fun!",
-    "backgroundImage": "tco17-warsaw-regional-event.jpg",
-    "redirectTo": "https://tco17.topcoder.com/regional-events/warsaw-poland/",
-    "redirectText": "TCO17 Warsaw",
-    "live": false,
-    "liveExpand": false,
-    "customTag": {
-      "text": "Announcement"
-    }
+[{
+  "header": "TCO17 Pittsburgh Regional Event Sponsored by Google",
+  "details": "Registration is now open for or TCO17 Pittsburgh Regional Event!",
+  "headerExpand": "TCO17 Pittsburgh Regional Event",
+  "detailsExpand": "Register now for the TCO17 Pittsburgh Regional Event sponsored by Google on September 8, 2017 at the Pittsburgh Google office. T-shirts, food, and fun!",
+  "backgroundImage": "tc-dashboard-pittsburgh.jpg",
+  "redirectTo": "https://tco17.topcoder.com/regional-events/pittsburgh-pennsylvania/",
+  "redirectText": "TCO17 Pittsburgh",
+  "live": false,
+  "liveExpand": false,
+  "customTag": {
+    "text": "Announcement"
   }
-]
+}]
