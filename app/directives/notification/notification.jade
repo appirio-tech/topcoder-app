@@ -8,8 +8,8 @@
   .expanded(ng-show="vm.expanded", ng-style="{'background-image': 'url('+vm.loadImage(config.backgroundImage)+')'}")
     .mask
     .left(ng-style="{'height': (config.height || vm.defaultHeight) + 'px'}")
-      .header {{config.header}}
-      .details {{config.details}}
+      .header {{config.headerExpand}}
+      .details {{config.detailsExpand}}
       a.action(ng-show="config.redirectText && config.redirectTo", href="{{config.redirectTo}}") {{config.redirectText}}
     .right(ng-if="config.videoCode", ng-style="{'height': (config.height || vm.defaultHeight) + 'px'}")
       .btn-play(ng-hide="vm.loadVideo")
