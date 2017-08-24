@@ -1,16 +1,23 @@
-[
-  {
-    "header": "TCO17 Warsaw Regional Event",
-    "details": "Registration is now open for or TCO17 Warsaw Regional Event!",
-    "headerExpand": "TCO17 Warsaw Regional Event",
-    "detailsExpand": "Register now for the TCO17 Warsaw Regional Event on September 2, 2017 at the University of Warsaw. T-shirts, food, and fun!",
-    "backgroundImage": "tco17-warsaw-regional-event.jpg",
-    "redirectTo": "https://tco17.topcoder.com/regional-events/warsaw-poland/",
-    "redirectText": "TCO17 Warsaw",
-    "live": false,
-    "liveExpand": false,
-    "customTag": {
-      "text": "Announcement"
-    }
+[ {
+  "header": "IBM Code Webinar",
+  "details": "An Intro to Journeys",
+  "headerExpand": "IBM Code Webinar - An Intro to Journeys",
+  "detailsExpand": "James Cori, Community Architect and Amol Jadhav, VP - Developer Offerings & Development at IBM have a chat about what \"Journeys\" are and how they can help you kickstart your project and utilize IBM Bluemix and Watson services. Not to mention this could also greatly help when competing in IBM Topcoder Challenges!",
+  "backgroundImage": "ibm-code-webinar",
+  "live": true,
+  "liveExpand": true,
+  "videoCode": "https://www.youtube.com/embed/eJ9ed63qFBE"
+}, {
+  "header": "TCO17 Pittsburgh Regional Event Sponsored by Google",
+  "details": "Registration is now open for or TCO17 Pittsburgh Regional Event!",
+  "headerExpand": "TCO17 Pittsburgh Regional Event",
+  "detailsExpand": "Register now for the TCO17 Pittsburgh Regional Event sponsored by Google on September 8, 2017 at the Pittsburgh Google office. T-shirts, food, and fun!",
+  "backgroundImage": "tc-dashboard-pittsburgh.jpg",
+  "redirectTo": "https://tco17.topcoder.com/regional-events/pittsburgh-pennsylvania/",
+  "redirectText": "TCO17 Pittsburgh",
+  "live": false,
+  "liveExpand": false,
+  "customTag": {
+    "text": "Announcement"
   }
-]
+}]
