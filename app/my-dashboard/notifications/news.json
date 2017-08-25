@@ -1,4 +1,4 @@
-[ {
+[{
   "header": "IBM Code Webinar",
   "details": "Learn how to kickstart your project and utilize IBM Bluemix and Watson services",
   "headerExpand": "IBM Code Webinar - An Intro to Journeys",
@@ -7,17 +7,4 @@
   "live": true,
   "liveExpand": true,
   "videoCode": "https://www.youtube.com/embed/eJ9ed63qFBE"
-}, {
-  "header": "TCO17 Pittsburgh Regional Event Sponsored by Google",
-  "details": "Registration is now open for or TCO17 Pittsburgh Regional Event!",
-  "headerExpand": "TCO17 Pittsburgh Regional Event",
-  "detailsExpand": "Register now for the TCO17 Pittsburgh Regional Event sponsored by Google on September 8, 2017 at the Pittsburgh Google office. T-shirts, food, and fun!",
-  "backgroundImage": "tc-dashboard-pittsburgh.jpg",
-  "redirectTo": "https://tco17.topcoder.com/regional-events/pittsburgh-pennsylvania/",
-  "redirectText": "TCO17 Pittsburgh",
-  "live": false,
-  "liveExpand": false,
-  "customTag": {
-    "text": "Announcement"
-  }
 }]
