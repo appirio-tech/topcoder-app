@@ -1,14 +1,17 @@
-[{
-  "header": "TCO17 Pittsburgh Regional Event Sponsored by Google",
-  "details": "Registration is now open for or TCO17 Pittsburgh Regional Event!",
-  "headerExpand": "TCO17 Pittsburgh Regional Event",
-  "detailsExpand": "Register now for the TCO17 Pittsburgh Regional Event sponsored by Google on September 8, 2017 at the Pittsburgh Google office. T-shirts, food, and fun!",
-  "backgroundImage": "tc-dashboard-pittsburgh.jpg",
-  "redirectTo": "https://tco17.topcoder.com/regional-events/pittsburgh-pennsylvania/",
-  "redirectText": "TCO17 Pittsburgh",
-  "live": false,
-  "liveExpand": false,
-  "customTag": {
-  "text": "Announcement"
+[
+  {
+    "header": "Five Weeks to Learn Topcoder",
+    "details": "Five weeks of learning - we'll be teaching you how to compete at Topcoder! ",
+    "headerExpand": "Five Weeks to Learn Topcoder!",
+    "detailsExpand": "Five weeks of educational content, live videos, interviews, fun challenges, and more. Everything you need to know created for the community by the community.",
+    "backgroundImage": "top-5-weeks.png",
+    "redirectTo": "https://www.topcoder.com/community/member-programs/five-weeks-to-learn-topcoder/",
+    "redirectText": "Five Weeks to Learn Topcoder!",
+    "live": false,
+    "liveExpand": false,
+    "customTag": {
+      "text": "Announcement"
+    },
+    "height": 657
   }
-}]
+]

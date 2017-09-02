@@ -54,10 +54,11 @@
     }
   }
   .expanded{
-    position: relative;
+    background-position: center;
+    background-size: cover;
     color: $white;
     display: flex;
-    background-size: cover;
+    position: relative;
     @media screen and (max-width: 768px) {
       flex-direction: column;
     }
