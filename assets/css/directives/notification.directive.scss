@@ -68,6 +68,7 @@
       left:0;
       bottom: 0;
       right: 0;
+      z-index: 1;
     }
     .left{
       padding-top: 70px;
@@ -133,6 +134,7 @@
       cursor: pointer;
       font-size: 26px;
       font-weight: 100;
+      z-index: 2;
     }
   }
 }

@@ -6,7 +6,8 @@
     .details {{config.details}}
     i.expand.fa.fa-plus(ng-click="vm.toggle()")
   .expanded(ng-show="vm.expanded", ng-style="{'background-image': 'url('+vm.loadImage(config.backgroundImage)+')'}")
-    .mask
+    a.mask(href="{{config.redirectTo}}")
+      &nbsp;
     .left(ng-style="{'height': (config.height || vm.defaultHeight) + 'px'}")
       .header {{config.headerExpand}}
       .details {{config.detailsExpand}}
