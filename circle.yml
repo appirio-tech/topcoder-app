@@ -15,7 +15,7 @@ dependencies:
     - nvm --version
     - npm config set strict-ssl false
     - npm install coffeescript
-    - npm install -d --ca=null
+    - npm install
     
 compile:
   override:
