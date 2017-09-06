@@ -19,7 +19,8 @@ dependencies:
 compile:
   override:
     - ls node_modules/*
-    - npm run lint && npm run build
+    - npm run lint 
+    - npm run build
 
 test:
   override:
