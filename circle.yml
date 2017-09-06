@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 5.5.0
+    version: 5.8.0
   environment:
     CXX: g++-4.8
 
@@ -13,7 +13,6 @@ dependencies:
     - node --version
     - npm --version
     - nvm --version
-    - rm package-lock.json
     - npm config set strict-ssl false
     - npm install -d --ca=null
     
