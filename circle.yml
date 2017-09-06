@@ -19,7 +19,7 @@ dependencies:
 compile:
   override:
     - ls node_modules/*
-    - rm package-lock.json
+    - npm rebuild node-sass
     - npm run lint 
     - npm run build
 
