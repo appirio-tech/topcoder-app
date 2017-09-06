@@ -19,7 +19,7 @@ dependencies:
 compile:
   override:
     - ls node_modules/*
-    - npm run clean
+    - rm .\package-lock.json
     - npm run lint 
     - npm run build
 
