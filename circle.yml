@@ -13,13 +13,13 @@ dependencies:
     - node --version
     - npm --version
     - nvm --version
+    - rm package-lock.json
     - npm config set strict-ssl false
     - npm install -d --ca=null
     
 compile:
   override:
     - ls node_modules/*
-    - npm rebuild node-sass
     - npm run lint 
     - npm run build
 
