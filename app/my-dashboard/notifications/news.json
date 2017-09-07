@@ -1,17 +1,14 @@
 [
   {
-    "header": "Five Weeks to Learn Topcoder",
-    "details": "Five weeks of learning - we'll be teaching you how to compete at Topcoder! ",
+    "header": "Step by Step Guide to Competing in a Design Challenge",
+    "details": "Join us for a LIVE chat to lear the complete process of UI Design Challenges.",
     "headerExpand": "",
     "detailsExpand": "",
-    "backgroundImage": "top-5-weeks.png",
-    "redirectTo": "https://www.topcoder.com/community/member-programs/five-weeks-to-learn-topcoder/",
-    "redirectText": "Five Weeks to Learn Topcoder!",
-    "live": false,
-    "liveExpand": false,
-    "customTag": {
-      "text": "Announcement"
-    },
-    "height": 657
+    "backgroundImage": "top-5-weeks___ui-design-step-by-step___live.png",
+    "live": true,
+    "liveExpand": true,
+    "height": 657,
+    "videoCode": "https://www.youtube.com/embed/AZXsdHwsrf8",
+    "videoHeight": 466
   }
 ]
