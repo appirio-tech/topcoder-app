@@ -16,12 +16,12 @@ import _ from 'lodash'
         hideMoney: '=',
         defaultState: '@'
       },
-      controller: ['CONSTANTS', '$rootScope', '$scope', 'ProfileService', 'logger', '$state', pageStateHeader],
+      controller: ['CONSTANTS', '$rootScope', '$scope', 'ProfileService', 'logger', '$state', 'ChallengeService', '$q', 'UserService', 'BadgeService', pageStateHeader],
       controllerAs: 'vm'
     }
   })
 
-  function pageStateHeader(CONSTANTS, $rootScope, $scope, ProfileService, logger, $state) {
+  function pageStateHeader(CONSTANTS, $rootScope, $scope, ProfileService, logger, $state, ChallengeService, $q, UserService, BadgeService) {
     var vm = this
     vm.backHandler = backHandler
 
@@ -35,13 +35,10 @@ import _ from 'lodash'
     function activate() {
       vm.handle = $scope.handle
       vm.profile = null
-      vm.handleColor = null
       $scope.hideMoney = _.get($scope, 'hideMoney', true)
       vm.previousStateName = null
       vm.previousStateLabel = null
       vm.previousState = null
-      vm.showBackLink = _.get($scope, 'showBackLink', false)
-      vm.loading = true
 
       // identifies the previous state
       if ($scope.$root.previousState && $scope.$root.previousState.name.length > 0) {
@@ -65,14 +62,33 @@ import _ from 'lodash'
       // gets member's profile
       ProfileService.getUserProfile(vm.handle).then(function(profile) {
         vm.profile = profile
-        vm.handleColor = ProfileService.getUserHandleColor(vm.profile)
 
-        if (!$scope.hideMoney) {
-          displayMoneyEarned(vm.handle)
-        } else {
-          vm.loading = false
-        }
+        // get members dashboard badge
+        UserService.getV2UserProfile(vm.handle).then(function(resp) {
+          // Calling the mock to return a badge
+          // In actuality filtering should be done by whether the achievement contains a field 'forDashboard' or not.
+          var dashboardAchievement = _filterDashboardAchievement(resp.Achievements || [])[0]
+
+          if (dashboardAchievement) {
+            vm.dashboardBadge = BadgeService.getAchievementVm(dashboardAchievement)
+          }
+        })
+
       })
+
+      // get member's challenges to display number of active challenges
+      $q.all([
+        ChallengeService.getUserMarathonMatches(vm.handle, { filter: 'status=active' }),
+        ChallengeService.getUserChallenges(vm.handle, { filter: 'status=active' })
+      ]).then(function(challenges){
+        var marathonMatches = challenges[0]
+        var devDesignChallenges = challenges[1]
+
+        vm.activeChallenges = marathonMatches.length + devDesignChallenges.length
+      })
+
+      displayMoneyEarned(vm.handle)
+
     }
 
     function backHandler() {
@@ -100,15 +116,39 @@ import _ from 'lodash'
         if (!vm.moneyEarned) {
           $scope.hideMoney = true
         }
-
-        vm.loading = false
       })
       .catch(function(err) {
         $scope.hideMoney = true
-        vm.loading = false
 
         logger.error('Could not get user financial information', err)
       })
     }
+
+    // Temporary function to simulate dashboard achievement
+    function _filterDashboardAchievement(achievements) {
+      // If forceBadge is true, it displays the achievement in _mock, whether the user has that achievement or not
+      var _forceBadge = false
+
+      // temoprary config object that maps usernames to badge name
+      var _mock = {
+        ronakkaria: 'First Win',
+        birdofpreyru: 'Predix Community'
+      }
+
+      var dashboardBadgeName = _mock[vm.handle]
+      if (!dashboardBadgeName) { return [] }
+
+      if (_forceBadge) {
+        return [{
+          date: new Date(),
+          description: _mock[vm.handle]
+        }]
+      }
+
+      return achievements.filter(function(achievement) {
+        return (achievement.description === dashboardBadgeName)
+      })
+    }
+
   }
 })()
