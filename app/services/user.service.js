@@ -119,8 +119,17 @@ import { decodeToken } from 'tc-accounts'
      * Temporary end point for getting member's badges/achievements. This endpoint
      * should be removed once we have it in v3.
      */
-    function getV2UserProfile(handle) {
+    function getV2UserProfile(handle, retryIter) {
+      retryIter = retryIter || 0
       return ApiService.restangularV2.one('users', handle).get()
+        .catch(function(err) {
+          // Retry api call once if it fails with 400 or no response
+          // This is suspected to be a backend bug as error message for 400 usually says 'User not activated'
+          if ((err.status === 400 || err.status === -1) && retryIter < 2) {
+            return getV2UserProfile(handle, retryIter + 1)
+          }
+          throw err
+        })
     }
 
     function getPreference(prefName) {

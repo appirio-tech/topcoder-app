@@ -38,7 +38,11 @@ import moment from 'moment'
     activate()
 
     // adding stats promise on scope so child states can use this.
-    vm.statsPromise = ProfileService.getUserStats(vm.userHandle)
+    vm.statsPromise = UserService.getV2UserProfile(vm.userHandle)
+      .then(function(resp) {
+        vm.profile.badges = resp
+        return ProfileService.getUserStats(vm.userHandle)
+      })
       .then(function(stats) {
         if (stats) {
           vm.stats = stats
@@ -112,10 +116,6 @@ import moment from 'moment'
       } else {
         profile.startMonth = null
       }
-      UserService.getV2UserProfile(vm.userHandle).then(function(resp) {
-        vm.profile.badges = resp
-      })
-
     }
 
     function showBadges() {
