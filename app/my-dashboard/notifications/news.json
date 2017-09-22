@@ -1,17 +1,14 @@
 [
   {
-    "header": "Five Weeks to Learn Topcoder",
-    "details": "Five weeks of learning - we'll be teaching you how to compete at Topcoder! ",
+    "header": "Step by Step Guide On How To Setup And Compete On SRM",
+    "details": "Join us for a LIVE chat to learn the complete process of SRMs.",
     "headerExpand": "",
     "detailsExpand": "",
-    "backgroundImage": "top-5-weeks.png",
-    "redirectTo": "https://www.topcoder.com/community/member-programs/five-weeks-to-learn-topcoder/",
-    "redirectText": "Five Weeks to Learn Topcoder!",
-    "live": false,
-    "liveExpand": false,
-    "customTag": {
-      "text": "Announcement"
-    },
-    "height": 657
+    "backgroundImage": "live-algo-workshop.png",
+    "live": true,
+    "liveExpand": true,
+    "height": 657,
+    "videoCode": "https://www.youtube.com/embed/A5vnkkFGOo0",
+    "videoHeight": 466
   }
 ]

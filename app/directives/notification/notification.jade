@@ -6,16 +6,15 @@
     .details {{config.details}}
     i.expand.fa.fa-plus(ng-click="vm.toggle()")
   .expanded(ng-show="vm.expanded", ng-style="{'background-image': 'url('+vm.loadImage(config.backgroundImage)+')'}")
-    a.mask(href="{{config.redirectTo}}")
-      &nbsp;
+    mask
     .left(ng-style="{'height': (config.height || vm.defaultHeight) + 'px'}")
       .header {{config.headerExpand}}
       .details {{config.detailsExpand}}
       a.action(ng-show="config.redirectText && config.redirectTo", href="{{config.redirectTo}}") {{config.redirectText}}
-    .right(ng-if="config.videoCode", ng-style="{'height': (config.height || vm.defaultHeight) + 'px'}")
+    .right(ng-if="config.videoCode", ng-style="{'height': (config.videoHeight||config.height || vm.defaultHeight) + 'px'}")
       .btn-play(ng-hide="vm.loadVideo")
         i.fa.fa-play-circle-o(ng-click="vm.loadVideo=true;")
         div Play Video
-      iframe(ng-if="vm.loadVideo" ng-src="{{vm.videoUrl(config.videoCode)}}", allowfullscreen, frameborder="0", width="100%" height="{{config.height||vm.defaultHeight}}")
+      iframe(ng-if="vm.loadVideo" ng-src="{{vm.videoUrl(config.videoCode)}}", allowfullscreen, frameborder="0", width="100%" height="{{config.videoHeight||config.height||vm.defaultHeight}}")
       .live(ng-show="config.liveExpand") LIVE
     i.collapse.fa.fa-remove(ng-click="vm.toggle()")
