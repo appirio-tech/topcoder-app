@@ -16,5 +16,5 @@
           p.number(ng-bind="vm.moneyEarned | currency:'$':0")
         .title
           p Won in Prizes
-      .item(ng-if="vm.dashboardBadge")
-        .badge(ng-class="(vm.dashboardBadge.specificClass || vm.dashboardBadge.groupClass) + ' ' + (vm.dashboardBadge.type) + 'Badge'")
+      .badgeItem(ng-if="vm.dashboardBadge")
+        .badge(ng-class="(vm.dashboardBadge.specificClass || vm.dashboardBadge.groupClass) + ' ' + (vm.dashboardBadge.type) + 'Badge'" title='{{vm.dashboardBadgeName}}')

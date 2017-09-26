@@ -39,6 +39,8 @@ import _ from 'lodash'
       vm.previousStateName = null
       vm.previousStateLabel = null
       vm.previousState = null
+      vm.dashboardBadgeName = null
+      
 
       // identifies the previous state
       if ($scope.$root.previousState && $scope.$root.previousState.name.length > 0) {
@@ -65,11 +67,10 @@ import _ from 'lodash'
 
         // get members dashboard badge
         UserService.getV2UserProfile(vm.handle).then(function(resp) {
-          // Calling the mock to return a badge
-          // In actuality filtering should be done by whether the achievement contains a field 'forDashboard' or not.
-          var dashboardAchievement = _filterDashboardAchievement(resp.Achievements || [])[0]
 
+          var dashboardAchievement = _filterDashboardAchievement(resp.Achievements || [])[0]
           if (dashboardAchievement) {
+            //Get dashboard badges
             vm.dashboardBadge = BadgeService.getAchievementVm(dashboardAchievement)
           }
         })
@@ -119,34 +120,16 @@ import _ from 'lodash'
       })
       .catch(function(err) {
         $scope.hideMoney = true
-
         logger.error('Could not get user financial information', err)
       })
     }
-
-    // Temporary function to simulate dashboard achievement
-    function _filterDashboardAchievement(achievements) {
-      // If forceBadge is true, it displays the achievement in _mock, whether the user has that achievement or not
-      var _forceBadge = false
-
-      // temoprary config object that maps usernames to badge name
-      var _mock = {
-        ronakkaria: 'First Win',
-        birdofpreyru: 'Predix Community'
-      }
-
-      var dashboardBadgeName = _mock[vm.handle]
-      if (!dashboardBadgeName) { return [] }
-
-      if (_forceBadge) {
-        return [{
-          date: new Date(),
-          description: _mock[vm.handle]
-        }]
-      }
+        
+    function _filterDashboardAchievement(achievements) {      
+      //Currently only one batch is shown on the dashboard
+      vm.dashboardBadgeName = 'SRM Engagement Honor'
 
       return achievements.filter(function(achievement) {
-        return (achievement.description === dashboardBadgeName)
+        return (achievement.description === vm.dashboardBadgeName)
       })
     }
 
