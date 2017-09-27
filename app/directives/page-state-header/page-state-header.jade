@@ -6,20 +6,15 @@
       div(ng-transclude)
 
     .info
-      .pic
-        a(ui-sref="profile.about({userHandle: vm.profile.handle})")
-          img.profile-circle(ng-if="vm.profile.photoURL", ng-src="{{vm.profile.photoURL}}")
-
-          img.profile-circle(ng-if="!vm.profile.photoURL", src=require("../../../assets/images/ico-user-default.svg"))
-
-      .user-metrics(id="metrics", ng-hide="vm.loading")
-        a.handle(style="color:{{vm.handleColor}};", ui-sref="profile.about({userHandle: vm.profile.handle})") {{vm.profile.handle}}
-
-        .money-earned(ng-hide="hideMoney")
+      .item
+        .value
+          p(ng-bind="vm.activeChallenges")
+        .title
+          p Active Challenges
+      .item(ng-if="!hideMoney")
+        .value
           p.number(ng-bind="vm.moneyEarned | currency:'$':0")
-
-          p Earned
-
-        .back-link(ng-if="showBackLink && vm.previousStateLabel")
-          a(ng-click="vm.backHandler()") Back to {{vm.previousStateLabel}}
-
+        .title
+          p Won in Prizes
+      .badgeItem(ng-if="vm.dashboardBadge")
+        .badge(ng-class="(vm.dashboardBadge.specificClass || vm.dashboardBadge.groupClass) + ' ' + (vm.dashboardBadge.type) + 'Badge'" title='{{vm.dashboardBadgeName}}')
