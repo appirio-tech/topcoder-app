@@ -15,7 +15,6 @@ configure_aws_cli() {
 }
 
 deploy_s3bucket() {
-	cat dist/app.2e9868372e0e2992d5d2.css
 	aws s3 sync --dryrun ${HOME}/${CIRCLE_PROJECT_REPONAME}/dist s3://${AWS_S3_BUCKET} --cache-control max-age=0,s-maxage=86400 --exclude "*.txt" --exclude "*.js" --exclude "*.css"
 	result=`aws s3 sync ${HOME}/${CIRCLE_PROJECT_REPONAME}/dist s3://${AWS_S3_BUCKET} --cache-control max-age=0,s-maxage=86400 --exclude "*.txt" --exclude "*.js" --exclude "*.css"`
 	if [ $? -eq 0 ]; then
