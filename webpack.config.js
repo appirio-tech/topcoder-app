@@ -1,6 +1,6 @@
 require('./node_modules/coffee-script/register')
 
-const CI = process.env.TRAVIS_BRANCH
+const CI = process.env.CIRCLE_BRANCH
 
 if (CI === 'master') {
   process.env.ENV = 'PROD'
