@@ -64,17 +64,10 @@ import _ from 'lodash'
       // gets member's profile
       ProfileService.getUserProfile(vm.handle).then(function(profile) {
         vm.profile = profile
-
         // get members dashboard badge
         UserService.getV2UserProfile(vm.handle).then(function(resp) {
-
-          var dashboardAchievement = _filterDashboardAchievement(resp.Achievements || [])[0]
-          if (dashboardAchievement) {
-            //Get dashboard badges
-            vm.dashboardBadge = BadgeService.getAchievementVm(dashboardAchievement)
-          }
+          vm.dashboardAchievement = _filterDashboardAchievement(resp.Achievements || [])[0]
         })
-
       })
 
       // get member's challenges to display number of active challenges
@@ -84,8 +77,9 @@ import _ from 'lodash'
       ]).then(function(challenges){
         var marathonMatches = challenges[0]
         var devDesignChallenges = challenges[1]
-
+        
         vm.activeChallenges = marathonMatches.length + devDesignChallenges.length
+
       })
 
       displayMoneyEarned(vm.handle)
@@ -132,6 +126,5 @@ import _ from 'lodash'
         return (achievement.description === vm.dashboardBadgeName)
       })
     }
-
   }
 })()

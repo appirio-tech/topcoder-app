@@ -648,17 +648,8 @@ import moment from 'moment-timezone'
           name: 'iOS Community',
           groupClass: 'iOS-Community',
           active: false
-        },
-        {
-          id: 1010,
-          name: 'SRM Engagement Honor',
-          groupClass: 'SRM-Engagement-Honor-Badge',
-          active: false
         }
       ]
     }
-
   }
-
-
 })()
