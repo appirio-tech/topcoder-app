@@ -1,17 +1,17 @@
 [
   {
-    "header": "Five Weeks to Learn Topcoder",
-    "details": "Five weeks of learning - we'll be teaching you how to compete at Topcoder! ",
-    "headerExpand": "",
-    "detailsExpand": "",
-    "backgroundImage": "top-5-weeks.png",
-    "redirectTo": "https://www.topcoder.com/community/member-programs/five-weeks-to-learn-topcoder/",
-    "redirectText": "Five Weeks to Learn Topcoder!",
+    "header": "TCO17 Live Broadcast",
+    "details": "TCO17 Finals Live Broadcast Schedule - Save the Date!",
+    "headerExpand": "TCO17 Finals Live Broadcast Schedule - Save the Date!",
+    "detailsExpand": "TCO17 Finals Live Broadcast Schedule - Save the Date! Watch the competitions live, staff and finalist interviews, and be a part of our flagship community event!",
+    "backgroundImage": "tco17-live-broadcast.jpg",
+    "redirectTo": "https://tco17.topcoder.com/videos",
+    "redirectText": "TCO17 Live Broadcast Schedule",
     "live": false,
     "liveExpand": false,
     "customTag": {
       "text": "Announcement"
     },
-    "height": 657
+    "height": 760
   }
 ]
