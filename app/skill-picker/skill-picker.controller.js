@@ -27,6 +27,7 @@ import _ from 'lodash'
     vm.communities = {}
     vm.isPageDirty = isPageDirty
     vm.isTracksDirty = isTracksDirty
+    vm.isCommunitySelected = isCommunitySelected
     ///////
     activate()
 
@@ -51,6 +52,13 @@ import _ from 'lodash'
     function isTracksDirty() {
       return vm.tracks.DESIGN || vm.tracks.DEVELOP || vm.tracks.DATA_SCIENCE
     }
+    /**
+     * Verfies if the communities section state has been modified by the user in any way.
+     */
+    function isCommunitySelected() {
+      var community = _.find(vm.communities, {status: true, display: true})
+      return !!community
+    }
 
     /**
      * Verfies if the communities section state has been modified by the user in any way.
@@ -64,6 +72,13 @@ import _ from 'lodash'
      * Initializes the communities to show in the communities section.
      */
     function initCommunities() {
+      vm.communities['ibm_cognitive'] = {
+        displayName: 'Cognitive',
+        programId: vm.IBM_COGNITIVE_PROGRAM_ID,
+        status: true,
+        dirty: true,
+        display: true
+      }
       vm.communities['ios'] = {
         displayName: 'iOS',
         programId: vm.IOS_PROGRAM_ID,
@@ -76,13 +91,6 @@ import _ from 'lodash'
         programId: vm.PREDIX_PROGRAM_ID,
         status: false,
         dirty: false,
-        display: true
-      }
-      vm.communities['ibm_cognitive'] = {
-        displayName: 'Cognitive',
-        programId: vm.IBM_COGNITIVE_PROGRAM_ID,
-        status: true,
-        dirty: true,
         display: true
       }
       _addWatchToCommunity(vm.communities['ios'])
@@ -125,8 +133,7 @@ import _ from 'lodash'
             if (community) {
               // set display false to avoid showing already enabled/registered program
               // we expect display property to be modified after first load  of the page
-              community.display = false
-              community.status = true
+              // community.status = true
               if (community.unregister){
                 community.unregister()
                 _addWatchToCommunity(community)
