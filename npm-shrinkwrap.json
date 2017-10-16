@@ -134,7 +134,7 @@
       "integrity": "sha1-HAPA8PaBvJRYcoaMPbLthLvCFXE="
     },
     "angular-intro.js": {
-      "version": "git://github.com/appirio-tech/angular-intro.js.git#81610d6c3f03437d5cc38211482d43385e2d7be9"
+      "version": "github:appirio-tech/angular-intro.js#81610d6c3f03437d5cc38211482d43385e2d7be9"
     },
     "angular-jwt": {
       "version": "0.0.9",
@@ -374,7 +374,7 @@
       }
     },
     "appirio-tech-react-components": {
-      "version": "git://github.com/appirio-tech/react-components.git#25a102b55c1769fe2b42a222d37359f09dc24763",
+      "version": "github:appirio-tech/react-components#25a102b55c1769fe2b42a222d37359f09dc24763",
       "requires": {
         "appirio-styles": "0.0.26",
         "appirio-tech-api-schemas": "5.0.70",
