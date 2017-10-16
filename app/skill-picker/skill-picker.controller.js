@@ -196,7 +196,7 @@ import _ from 'lodash'
         }
         promises.push(ProfileService.updateUserSkills(vm.username, data))
       }
-      logger.debug('isCommunitiesDirty: ' + isCommunitiesDirty())
+
       if (isCommunitiesDirty()) {
         for(var communityName in vm.communities) {
           var community = vm.communities[communityName]
