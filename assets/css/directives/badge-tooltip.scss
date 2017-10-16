@@ -680,7 +680,8 @@ span.subBadge.selected {
 }
 
 .dashboardBadge {
-    background: url(../../images/badge.svg) no-repeat;
+    background: url(../../images/badge.png) no-repeat;
+    background-size: 70px 70px;
     width: 70px;
     height: 70px;
     img {
