@@ -8,7 +8,7 @@
     "live": true,
     "liveExpand": true,
     "height": 600,
-    "videoCode": "http://player.twitch.tv/?channel=topcoder_official",
+    "videoCode": "https://player.twitch.tv/?channel=topcoder_official",
     "videoHeight": 480
   }
 ]
