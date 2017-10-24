@@ -54,12 +54,15 @@
     }
   }
   .expanded{
-    background-position: center;
-    background-size: cover;
+    background-color: $tc-black;
+    background-position: 0 0;
+    background-size: 50% 100%;
+    background-repeat: no-repeat;
     color: $tc-black;
     display: flex;
     position: relative;
     @media screen and (max-width: 768px) {
+      background-size: 100% 50%;
       flex-direction: column;
     }
     .mask{
@@ -71,8 +74,6 @@
       z-index: 1;
     }
     .left{
-      padding-top: 70px;
-      padding-right: 64px;
       flex: 1;
       height: 100%;
       position: relative;
@@ -93,8 +94,8 @@
     }
     .action{
       position: absolute;
-      bottom: 40px;
-      left: 60px;
+      bottom: 100px;
+      left: 150px;
       background-color: white;
       padding: 10px 20px;
       border-radius: 26px;
@@ -106,6 +107,12 @@
       display: flex;
       align-items: center;
       justify-content: space-around;
+      margin-top: 80px;
+      width: 50%;
+      @media screen and (max-width: 768px) {
+        margin-top: 0;
+        width: 100%;
+      }
       .btn-play{
         text-align: center;
         font-size: 26px;
