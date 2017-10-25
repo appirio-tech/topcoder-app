@@ -134,8 +134,7 @@ import _ from 'lodash'
           if (program) {
             var community = _.find(vm.communities, {programId: program.eventId})
             if (community) {
-              // set display false to avoid showing already enabled/registered program
-              // we expect display property to be modified after first load  of the page
+              // Show existing communites selected
               community.status = true
               if (community.unregister){
                 community.unregister()
