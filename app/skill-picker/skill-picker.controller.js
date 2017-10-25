@@ -14,6 +14,7 @@ import _ from 'lodash'
     vm.IOS_PROGRAM_ID = parseInt(CONSTANTS.SWIFT_PROGRAM_ID)
     vm.PREDIX_PROGRAM_ID = parseInt(CONSTANTS.PREDIX_PROGRAM_ID)
     vm.IBM_COGNITIVE_PROGRAM_ID = parseInt(CONSTANTS.IBM_COGNITIVE_PROGRAM_ID)
+    vm.BLOCKCHAIN_PROGRAM_ID = parseInt(CONSTANTS.BLOCKCHAIN_PROGRAM_ID)
     vm.submitSkills = submitSkills
     vm.featuredSkills = featuredSkills
     vm.userId = userProfile.userId
@@ -93,9 +94,17 @@ import _ from 'lodash'
         dirty: false,
         display: true
       }
+      vm.communities['blockchain'] = {
+        displayName: 'Blockchain',
+        programId: vm.PREDIX_PROGRAM_ID,
+        status: false,
+        dirty: false,
+        display: true
+      }
       _addWatchToCommunity(vm.communities['ios'])
       _addWatchToCommunity(vm.communities['predix'])
       _addWatchToCommunity(vm.communities['ibm_cognitive'])
+      _addWatchToCommunity(vm.communities['blockchain'])
     }
 
     /**
@@ -133,7 +142,7 @@ import _ from 'lodash'
             if (community) {
               // set display false to avoid showing already enabled/registered program
               // we expect display property to be modified after first load  of the page
-              // community.status = true
+              community.status = true
               if (community.unregister){
                 community.unregister()
                 _addWatchToCommunity(community)

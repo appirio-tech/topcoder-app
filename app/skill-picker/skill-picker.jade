@@ -16,6 +16,8 @@
             img(ng-if="communityKey == 'ios' && !community.status", src=require("../../assets/images/ico-ios-community-grey.svg"))
             img(ng-if="communityKey == 'predix' && community.status", src=require("../../assets/images/ico-predix-community.svg"))
             img(ng-if="communityKey == 'predix' && !community.status", src=require("../../assets/images/ico-predix-community-grey.svg"))
+            img(ng-if="communityKey == 'blockchain' && community.status", src=require("../../assets/images/ico-predix-community.svg"))
+            img(ng-if="communityKey == 'blockchain' && !community.status", src=require("../../assets/images/ico-predix-community-grey.svg"))
 
           .community__text
             span.community__title(class="{{!community.status && 'disabled'}}") {{community.displayName}}
@@ -23,6 +25,7 @@
               span(ng-if="communityKey == 'ibm_cognitive'") Cognitive Community
               span(ng-if="communityKey == 'ios'") Mobile app design and development for iOS, with Swift emphasis
               span(ng-if="communityKey == 'predix'") Design and development on GE’s platform for the Industrial Internet of Things
+              span(ng-if="communityKey == 'blockchain'") Help create the future of Blockchain-based applications
 
         onoff-switch(model="community.status", unique-id="'community-' + communityKey")
 
