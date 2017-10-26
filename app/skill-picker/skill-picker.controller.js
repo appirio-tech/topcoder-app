@@ -28,6 +28,7 @@ import _ from 'lodash'
     vm.isPageDirty = isPageDirty
     vm.isTracksDirty = isTracksDirty
     vm.isCommunitySelected = isCommunitySelected
+    vm.isPageStateDirty = false
     ///////
     activate()
 
@@ -42,7 +43,7 @@ import _ from 'lodash'
     /**
      * Verfies if the page state has been modified by the user in any way.
      */
-    function isPageDirty() {
+    function isPageDirty() {      
       return isTracksDirty() || isCommunitiesDirty()
     }
 
@@ -50,12 +51,14 @@ import _ from 'lodash'
      * Verfies if the tracks section state has been modified by the user in any way.
      */
     function isTracksDirty() {
+      vm.isPageStateDirty = true
       return vm.tracks.DESIGN || vm.tracks.DEVELOP || vm.tracks.DATA_SCIENCE
     }
     /**
      * Verfies if the communities section state has been modified by the user in any way.
      */
     function isCommunitySelected() {
+      vm.isPageStateDirty = true
       var community = _.find(vm.communities, {status: true, display: true})
       return !!community
     }
@@ -131,9 +134,8 @@ import _ from 'lodash'
           if (program) {
             var community = _.find(vm.communities, {programId: program.eventId})
             if (community) {
-              // set display false to avoid showing already enabled/registered program
-              // we expect display property to be modified after first load  of the page
-              // community.status = true
+              // Show existing communites selected
+              community.status = true
               if (community.unregister){
                 community.unregister()
                 _addWatchToCommunity(community)
