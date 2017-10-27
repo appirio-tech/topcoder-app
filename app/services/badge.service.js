@@ -648,6 +648,12 @@ import moment from 'moment-timezone'
           name: 'iOS Community',
           groupClass: 'iOS-Community',
           active: false
+        },
+        {
+          id: 1010,
+          name: 'Congnitive Community',
+          groupClass: 'Cognitive-Community',
+          active: false
         }
       ]
     }
