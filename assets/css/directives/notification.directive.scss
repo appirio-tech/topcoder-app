@@ -55,16 +55,12 @@
   }
   .expanded{
     background-color: $tc-black;
-    background-position: 0 0;
-    background-size: 50% 100%;
+    background-position: 0 20%;
+    background-size: cover;
     background-repeat: no-repeat;
     color: $tc-black;
     display: flex;
     position: relative;
-    @media screen and (max-width: 768px) {
-      background-size: 100% 50%;
-      flex-direction: column;
-    }
     .mask{
       position: absolute;
       top: 0;
@@ -94,8 +90,8 @@
     }
     .action{
       position: absolute;
-      bottom: 100px;
-      left: 150px;
+      bottom: 36px;
+      left: 36px;
       background-color: white;
       padding: 10px 20px;
       border-radius: 26px;
