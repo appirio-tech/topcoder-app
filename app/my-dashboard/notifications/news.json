@@ -1,14 +1,16 @@
 [
   {
-    "header": "TCO17 Live Broadcast",
-    "details": "Watch now!",
-    "backgroundImage": "tco17-live-broadcast.jpg",
-    "redirectTo": "https://tco17.topcoder.com/videos",
-    "redirectText": "TCO17 Live Broadcast Schedule",
-    "live": true,
-    "liveExpand": true,
-    "height": 600,
-    "videoCode": "https://player.twitch.tv/?channel=topcoder_official",
+    "header": "TCO17",
+    "details": "Congratulations to our Champions!",
+    "backgroundImage": "tco-winners.jpg",
+    "redirectTo": "https://tco17.topcoder.com",
+    "redirectText": "Congratulations to our TCO17 Champions!",
+    "live": false,
+    "liveExpand": false,
+    "customTag": {
+      "text": "Announcement"
+    },
+    "videoCode": "",
     "videoHeight": 480
   }
 ]
