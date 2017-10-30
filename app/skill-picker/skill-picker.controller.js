@@ -6,9 +6,9 @@ import _ from 'lodash'
 
   angular.module('tc.skill-picker').controller('SkillPickerController', SkillPickerController)
 
-  SkillPickerController.$inject = ['$scope', 'CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', 'logger', 'toaster', 'MemberCertService', '$q']
+  SkillPickerController.$inject = ['$scope', 'CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', 'logger', 'toaster', 'MemberCertService','GroupService', '$q']
 
-  function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, logger, toaster, MemberCertService, $q) {
+  function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, logger, toaster, MemberCertService, GroupService, $q) {
     var vm = this
     vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX
     vm.IOS_PROGRAM_ID = parseInt(CONSTANTS.SWIFT_PROGRAM_ID)
@@ -80,6 +80,13 @@ import _ from 'lodash'
         dirty: true,
         display: true
       }
+      vm.communities['blockchain'] = {
+        displayName: 'Blockchain',
+        programId: vm.BLOCKCHAIN_PROGRAM_ID,
+        status: false,
+        dirty: false,
+        display: true
+      }
       vm.communities['ios'] = {
         displayName: 'iOS',
         programId: vm.IOS_PROGRAM_ID,
@@ -93,18 +100,11 @@ import _ from 'lodash'
         status: false,
         dirty: false,
         display: true
-      }
-      vm.communities['blockchain'] = {
-        displayName: 'Blockchain',
-        programId: vm.PREDIX_PROGRAM_ID,
-        status: false,
-        dirty: false,
-        display: true
-      }
+      }      
       _addWatchToCommunity(vm.communities['ios'])
-      _addWatchToCommunity(vm.communities['predix'])
-      _addWatchToCommunity(vm.communities['ibm_cognitive'])
       _addWatchToCommunity(vm.communities['blockchain'])
+      _addWatchToCommunity(vm.communities['predix'])
+      _addWatchToCommunity(vm.communities['ibm_cognitive'])      
     }
 
     /**
@@ -128,9 +128,10 @@ import _ from 'lodash'
     function checkCommunityStatus() {
       var promises = []
       for (var name in vm.communities) {
-        var community = vm.communities[name]
-        promises.push(MemberCertService.getMemberRegistration(vm.userId, community.programId))
+        var community = vm.communities[name]        
+        promises.push(MemberCertService.getMemberRegistration(vm.userId, community.programId))        
       }
+
       vm.loadingCommunities = true
 
       $q.all(promises)
@@ -211,7 +212,11 @@ import _ from 'lodash'
           var community = vm.communities[communityName]
           if (community.dirty === true) {
             if (community.status === true) {
-              promises.push(MemberCertService.registerMember(vm.userId, community.programId))
+              if(community.programId === vm.BLOCKCHAIN_PROGRAM_ID){
+                promises.push(GroupService.rm(vm.userId, community.programId))
+              }else{
+                promises.push(MemberCertService.registerMember(vm.userId, community.programId))                
+              }
             }
           }
         }
