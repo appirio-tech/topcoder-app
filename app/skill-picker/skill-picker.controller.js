@@ -86,7 +86,7 @@ import _ from 'lodash'
         status: false,
         dirty: false,
         display: true,
-        groupCommunity: true,
+        groupCommunity: true
       }
       vm.communities['ios'] = {
         displayName: 'iOS',
