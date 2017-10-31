@@ -23,7 +23,7 @@ import _ from 'lodash'
     vm.tracks = {}
     vm.mySkills = []
     vm.disableDoneButton = false
-    vm.showCommunity = false
+    vm.showCommunity = true
     vm.loadingCommunities = false
     vm.communities = {}
     vm.isPageDirty = isPageDirty
@@ -85,7 +85,8 @@ import _ from 'lodash'
         programId: vm.BLOCKCHAIN_PROGRAM_ID,
         status: false,
         dirty: false,
-        display: true
+        display: true,
+        groupCommunity: true,
       }
       vm.communities['ios'] = {
         displayName: 'iOS',
@@ -126,42 +127,57 @@ import _ from 'lodash'
      * Checks registration status of each community and updates the state of each community.
      */
     function checkCommunityStatus() {
-      var promises = []
+      var promises = [], groupPromises = []
       for (var name in vm.communities) {
-        var community = vm.communities[name]        
-        promises.push(MemberCertService.getMemberRegistration(vm.userId, community.programId))        
+        var community = vm.communities[name]
+        if(community.groupCommunity){
+          groupPromises.push(GroupService.getMembers(vm.userId, community.programId))
+        }else{
+          promises.push(MemberCertService.getMemberRegistration(vm.userId, community.programId))    
+        }
       }
 
       vm.loadingCommunities = true
+
+      $q.all(groupPromises)
+      .then(function(responses) {
+        let members = responses[0] || []
+        vm.loadingCommunities = false
+        members.forEach(function(member) {
+          if (member && member.memberId === vm.userId) {
+            addWatchToExistingCommunity(member.groupId);
+          }
+        })        
+      })
+      .catch(function(err) {
+        logger.error('Could not load communities with group data', err)
+        vm.loadingCommunities = false
+      })
 
       $q.all(promises)
       .then(function(responses) {
         vm.loadingCommunities = false
         responses.forEach(function(program) {
-          if (program) {
-            var community = _.find(vm.communities, {programId: program.eventId})
-            if (community) {
-              // set display false to avoid showing already enabled/registered program
-              // we expect display property to be modified after first load  of the page
-              community.status = true
-              if (community.unregister){
-                community.unregister()
-                _addWatchToCommunity(community)
-              }
-            }
+          if (program) {            
+            addWatchToExistingCommunity(program.eventId);
           }
         })
-        // if there exists at least 1 community which can be displayed, set showCommunity flag to true
-        var community = _.find(vm.communities, {display: true})
-        if (community) {
-          vm.showCommunity = true
-        }
       })
       .catch(function(err) {
         logger.error('Could not load communities with member cert registration data', err)
-
         vm.loadingCommunities = false
       })
+    }
+
+    function addWatchToExistingCommunity(programId){
+      var community = _.find(vm.communities, {programId: programId})
+      if (community) {              
+        community.status = true
+        if (community.unregister){
+          community.unregister()
+          _addWatchToCommunity(community)
+        }
+      }
     }
 
     /**
@@ -212,8 +228,8 @@ import _ from 'lodash'
           var community = vm.communities[communityName]
           if (community.dirty === true) {
             if (community.status === true) {
-              if(community.programId === vm.BLOCKCHAIN_PROGRAM_ID){
-                promises.push(GroupService.rm(vm.userId, community.programId))
+              if(community.groupCommunity){
+                promises.push(GroupService.addMember(vm.userId, community.programId))
               }else{
                 promises.push(MemberCertService.registerMember(vm.userId, community.programId))                
               }
@@ -231,9 +247,7 @@ import _ from 'lodash'
       })
       .catch(function(err) {
         logger.error('Could not update update user skills or register members for community', err)
-
         vm.saving = false
-
         toaster.pop('error', 'Whoops!', 'Something went wrong. Please try again later.')
       })
     }

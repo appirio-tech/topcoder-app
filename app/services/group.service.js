@@ -11,13 +11,13 @@ import angular from 'angular'
     var service = ApiService.restangularV3
 
     // Retrieves the registration status of the member for the given program
-    service.getMemberRegistration = function(userId, programId) {
-      return service.one('groups').get({'memberId': userId,'membershipType':'user'})
+    service.getMembers = function(userId, programId) {
+      return service.one('groups',programId).one('members').get()
     }
 
     // Registers the given member for the given program.
-    service.rm = function(userId, programId) {
-      return service.one('groups', programId).one('members').post({
+    service.addMember = function(userId, programId) {
+      return service.one('groups', programId).one('members').customPOST({
         memberId : userId +'', membershipType : 'user'
       })
     }
