@@ -145,7 +145,7 @@ import _ from 'lodash'
         vm.loadingCommunities = false
         members.forEach(function(member) {
           if (member && member.memberId === vm.userId) {
-            addWatchToExistingCommunity(member.groupId);
+            addWatchToExistingCommunity(member.groupId)
           }
         })        
       })
@@ -159,7 +159,7 @@ import _ from 'lodash'
         vm.loadingCommunities = false
         responses.forEach(function(program) {
           if (program) {            
-            addWatchToExistingCommunity(program.eventId);
+            addWatchToExistingCommunity(program.eventId)
           }
         })
       })
