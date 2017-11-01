@@ -6,14 +6,15 @@ import _ from 'lodash'
 
   angular.module('tc.skill-picker').controller('SkillPickerController', SkillPickerController)
 
-  SkillPickerController.$inject = ['$scope', 'CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', 'logger', 'toaster', 'MemberCertService', '$q']
+  SkillPickerController.$inject = ['$scope', 'CONSTANTS', 'ProfileService', '$state', 'userProfile', 'featuredSkills', 'logger', 'toaster', 'MemberCertService','GroupService', '$q']
 
-  function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, logger, toaster, MemberCertService, $q) {
+  function SkillPickerController($scope, CONSTANTS, ProfileService, $state, userProfile, featuredSkills, logger, toaster, MemberCertService, GroupService, $q) {
     var vm = this
     vm.ASSET_PREFIX = CONSTANTS.ASSET_PREFIX
     vm.IOS_PROGRAM_ID = parseInt(CONSTANTS.SWIFT_PROGRAM_ID)
     vm.PREDIX_PROGRAM_ID = parseInt(CONSTANTS.PREDIX_PROGRAM_ID)
     vm.IBM_COGNITIVE_PROGRAM_ID = parseInt(CONSTANTS.IBM_COGNITIVE_PROGRAM_ID)
+    vm.BLOCKCHAIN_PROGRAM_ID = parseInt(CONSTANTS.BLOCKCHAIN_PROGRAM_ID)
     vm.submitSkills = submitSkills
     vm.featuredSkills = featuredSkills
     vm.userId = userProfile.userId
@@ -22,7 +23,7 @@ import _ from 'lodash'
     vm.tracks = {}
     vm.mySkills = []
     vm.disableDoneButton = false
-    vm.showCommunity = false
+    vm.showCommunity = true
     vm.loadingCommunities = false
     vm.communities = {}
     vm.isPageDirty = isPageDirty
@@ -82,6 +83,14 @@ import _ from 'lodash'
         dirty: true,
         display: true
       }
+      vm.communities['blockchain'] = {
+        displayName: 'Blockchain',
+        programId: vm.BLOCKCHAIN_PROGRAM_ID,
+        status: false,
+        dirty: false,
+        display: true,
+        groupCommunity: true
+      }
       vm.communities['ios'] = {
         displayName: 'iOS',
         programId: vm.IOS_PROGRAM_ID,
@@ -95,10 +104,11 @@ import _ from 'lodash'
         status: false,
         dirty: false,
         display: true
-      }
+      }      
       _addWatchToCommunity(vm.communities['ios'])
+      _addWatchToCommunity(vm.communities['blockchain'])
       _addWatchToCommunity(vm.communities['predix'])
-      _addWatchToCommunity(vm.communities['ibm_cognitive'])
+      _addWatchToCommunity(vm.communities['ibm_cognitive'])      
     }
 
     /**
@@ -120,40 +130,57 @@ import _ from 'lodash'
      * Checks registration status of each community and updates the state of each community.
      */
     function checkCommunityStatus() {
-      var promises = []
+      var eventAPIpromises = [], groupAPIPromises = []
       for (var name in vm.communities) {
         var community = vm.communities[name]
-        promises.push(MemberCertService.getMemberRegistration(vm.userId, community.programId))
+        if(community.groupCommunity){
+          groupAPIPromises.push(GroupService.getMembers(vm.userId, community.programId))
+        }else{
+          eventAPIpromises.push(MemberCertService.getMemberRegistration(vm.userId, community.programId))    
+        }
       }
+
       vm.loadingCommunities = true
 
-      $q.all(promises)
+      $q.all(groupAPIPromises)
+      .then(function(responses) {
+        let members = responses[0] || []
+        vm.loadingCommunities = false
+        members.forEach(function(member) {
+          if (member && member.memberId === vm.userId) {
+            addWatchToExistingCommunity(member.groupId)
+          }
+        })        
+      })
+      .catch(function(err) {
+        logger.error('Could not load communities with group data', err)
+        vm.loadingCommunities = false
+      })
+
+      $q.all(eventAPIpromises)
       .then(function(responses) {
         vm.loadingCommunities = false
         responses.forEach(function(program) {
-          if (program) {
-            var community = _.find(vm.communities, {programId: program.eventId})
-            if (community) {
-              // Show existing communites selected
-              community.status = true
-              if (community.unregister){
-                community.unregister()
-                _addWatchToCommunity(community)
-              }
-            }
+          if (program) {            
+            addWatchToExistingCommunity(program.eventId)
           }
         })
-        // if there exists at least 1 community which can be displayed, set showCommunity flag to true
-        var community = _.find(vm.communities, {display: true})
-        if (community) {
-          vm.showCommunity = true
-        }
       })
       .catch(function(err) {
         logger.error('Could not load communities with member cert registration data', err)
-
         vm.loadingCommunities = false
       })
+    }
+
+    function addWatchToExistingCommunity(programId){
+      var community = _.find(vm.communities, {programId: programId})
+      if (community) {              
+        community.status = true
+        if (community.unregister){
+          community.unregister()
+          _addWatchToCommunity(community)
+        }
+      }
     }
 
     /**
@@ -204,7 +231,11 @@ import _ from 'lodash'
           var community = vm.communities[communityName]
           if (community.dirty === true) {
             if (community.status === true) {
-              promises.push(MemberCertService.registerMember(vm.userId, community.programId))
+              if(community.groupCommunity){
+                promises.push(GroupService.addMember(vm.userId, community.programId))
+              }else{
+                promises.push(MemberCertService.registerMember(vm.userId, community.programId))                
+              }
             }
           }
         }
@@ -219,9 +250,7 @@ import _ from 'lodash'
       })
       .catch(function(err) {
         logger.error('Could not update update user skills or register members for community', err)
-
         vm.saving = false
-
         toaster.pop('error', 'Whoops!', 'Something went wrong. Please try again later.')
       })
     }
