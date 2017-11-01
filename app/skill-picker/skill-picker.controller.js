@@ -127,19 +127,19 @@ import _ from 'lodash'
      * Checks registration status of each community and updates the state of each community.
      */
     function checkCommunityStatus() {
-      var promises = [], groupPromises = []
+      var eventAPIpromises = [], groupAPIPromises = []
       for (var name in vm.communities) {
         var community = vm.communities[name]
         if(community.groupCommunity){
-          groupPromises.push(GroupService.getMembers(vm.userId, community.programId))
+          groupAPIPromises.push(GroupService.getMembers(vm.userId, community.programId))
         }else{
-          promises.push(MemberCertService.getMemberRegistration(vm.userId, community.programId))    
+          eventAPIpromises.push(MemberCertService.getMemberRegistration(vm.userId, community.programId))    
         }
       }
 
       vm.loadingCommunities = true
 
-      $q.all(groupPromises)
+      $q.all(groupAPIPromises)
       .then(function(responses) {
         let members = responses[0] || []
         vm.loadingCommunities = false
@@ -154,7 +154,7 @@ import _ from 'lodash'
         vm.loadingCommunities = false
       })
 
-      $q.all(promises)
+      $q.all(eventAPIpromises)
       .then(function(responses) {
         vm.loadingCommunities = false
         responses.forEach(function(program) {
