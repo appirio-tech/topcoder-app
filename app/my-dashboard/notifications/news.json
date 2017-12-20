@@ -1,10 +1,12 @@
 [
   {
-    "header": "TCO17",
-    "details": "Congratulations to our Champions!",
-    "backgroundImage": "tco-winners.jpg",
-    "redirectTo": "https://tco17.topcoder.com",
-    "redirectText": "Congratulations to our TCO17 Champions!",
+    "header": "TCO18",
+    "details": "Congratulations to all Stage 1 Winners!!",
+    "headerExpand": "TCO18",
+    "detailsExpand": "Congratulations to all of our Stage 1 Winners in every track!  These members have earned an all-expense paid trip to the TCO18 finals.  There are 3 more stages to go, so get competing!",
+    "backgroundImage": "stage1-winners.png",
+    "redirectTo": "https://tco18.topcoder.com",
+    "redirectText": "TCO18 Homepage",
     "live": false,
     "liveExpand": false,
     "customTag": {
