@@ -1,12 +1,12 @@
 [
   {
-    "header": "TCO18",
-    "details": "Congratulations to all Stage 1 Winners!!",
-    "headerExpand": "TCO18",
-    "detailsExpand": "Congratulations to all of our Stage 1 Winners in every track!  These members have earned an all-expense paid trip to the TCO18 finals.  There are 3 more stages to go, so get competing!",
-    "backgroundImage": "stage1-winners.png",
-    "redirectTo": "https://tco18.topcoder.com",
-    "redirectText": "TCO18 Homepage",
+    "header": "Announcing the MVP Program",
+    "details": "Nominate Yourself or Someone Else Today!",
+    "headerExpand": "Topcoder MVP Program",
+    "detailsExpand": "The Topcoder MVP program is a prestigious group of elite Topcoder members who represent our community. The program provides our MVPs opportunities to enjoy special perks, help improve the community, and grow professionally.",
+    "backgroundImage": "tc-mvp-announcement.png",
+    "redirectTo": "https://www.topcoder.com/community/member-programs/mvp-program/",
+    "redirectText": "Learn More Here",
     "live": false,
     "liveExpand": false,
     "customTag": {
