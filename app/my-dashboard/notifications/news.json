@@ -1,18 +1,12 @@
 [
   {
-    "header": "Announcing the MVP Program",
-    "details": "Nominate Yourself or Someone Else Today!",
+    "header": "MVP Program Explained w/ Jessie Ford",
+    "details": "Tune in now!",
     "headerExpand": "Topcoder MVP Program",
-    "detailsExpand": "The Topcoder MVP program is a prestigious group of elite Topcoder members who represent our community. The program provides our MVPs opportunities to enjoy special perks, help improve the community, and grow professionally.",
+    "detailsExpand": "Tune in as Jessie and Nick dive a little deeper into what the MVP Program is and how to apply!  Broadcast starts at 11:00 AM EST.",
     "backgroundImage": "tc-mvp-announcement.png",
-    "redirectTo": "https://www.topcoder.com/community/member-programs/mvp-program/",
-    "redirectText": "Learn More Here",
-    "live": false,
-    "liveExpand": false,
-    "customTag": {
-      "text": "Announcement"
-    },
-    "videoCode": "",
-    "videoHeight": 480
+    "live": true,
+    "liveExpand": true,
+    "videoCode": "https://www.youtube.com/watch?v=qciS6yC3_Zc"
   }
 ]
