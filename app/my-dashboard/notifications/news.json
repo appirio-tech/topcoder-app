@@ -1,17 +1,17 @@
 [
   {
-    "header": "Announcing the MVP Program",
-    "details": "Nominate Yourself or Someone Else Today!",
-    "headerExpand": "Topcoder MVP Program",
-    "detailsExpand": "The Topcoder MVP program is a prestigious group of elite Topcoder members who represent our community. The program provides our MVPs opportunities to enjoy special perks, help improve the community, and grow professionally.",
+    "header": "Topcoder MVPs Revealed Live",
+    "details": "Tune in 01/24",
+    "headerExpand": "Topcoder MVPs Revealed Live!",
+    "detailsExpand": "Join your Community Manager, Nick, on January 24th at 01:00 PM EST as he announces your 2018 MVPs.  You can view the show here on your dashboard or on our Youtube Channel!",
     "backgroundImage": "tc-mvp-announcement.png",
     "redirectTo": "https://www.topcoder.com/community/member-programs/mvp-program/",
     "redirectText": "Learn More Here",
+    "live": false,
+    "liveExpand": false,
     "customTag": {
       "text": "Announcement"
     },
-    "videoHeight": 480,
-    "liveExpand": false,
-    "videoCode": ""
+    "videoCode": "https://www.youtube.com/embed/Two_6AiEHcQ"
   }
 ]
