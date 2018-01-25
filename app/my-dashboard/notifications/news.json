@@ -7,8 +7,8 @@
     "backgroundImage": "tc-mvp-announcement.png",
     "redirectTo": "https://www.topcoder.com/community/member-programs/mvp-program/",
     "redirectText": "Learn More Here",
-    "live": false,
-    "liveExpand": false,
+    "live": true,
+    "liveExpand": true,
     "customTag": {
       "text": "Announcement"
     },
