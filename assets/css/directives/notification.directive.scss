@@ -55,7 +55,8 @@
   }
   .expanded{
     background-color: $tc-black;
-    background-position: 0 20%;
+    background-position: center top;
+    // background-position: 0 20%;
     background-size: cover;
     background-repeat: no-repeat;
     color: $tc-black;
@@ -78,21 +79,22 @@
     .header{
       font-weight: bold;
       font-size: 40px;
-      margin-top: 35px;
+      margin-top: 340px;
       padding-left: 60px;
-      margin-bottom: 20px;
+      margin-bottom: 12px;
       color: #FFF;
     }
     .details{
+      max-width: 50%;
       font-size: 16px;
-      line-height: 26px;
+      line-height: 16px;
       font-weight: 100;
       padding-left: 60px;
       color: #FFF;
     }
     .action{
       position: absolute;
-      bottom: 36px;
+      bottom: 30px;
       left: 60px;
       background-color: white;
       padding: 10px 20px;
