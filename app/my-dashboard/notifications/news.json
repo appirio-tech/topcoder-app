@@ -1,17 +1,18 @@
 [
   {
-    "header": "Topcoder MVPs Revealed Live",
-    "details": "Tune in 01/24",
-    "headerExpand": "Topcoder MVPs Revealed Live!",
-    "detailsExpand": "Join your Community Manager, Nick, on January 25th at 01:00 PM EST as he announces your 2018 MVPs.  You can view the show here on your dashboard or on our Youtube Channel!",
-    "backgroundImage": "tc-mvp-announcement.png",
-    "redirectTo": "https://www.topcoder.com/community/member-programs/mvp-program/",
-    "redirectText": "Learn More Here",
-    "live": true,
-    "liveExpand": true,
+    "header": "Topcoder MVP Announcement!",
+    "details": "Check out our first group of MVPs!",
+    "headerExpand": "Topcoder MVP Announcement!",
+    "detailsExpand": "Check out our first group of MVPs! Learn more about who they are and a little bit more about them!",
+    "backgroundImage": "tc-mvps-banner.jpg",
+    "redirectTo": "https://www.topcoder.com/blog/introducing-2018-topcoder-mvp-members/",
+    "redirectText": "Read More Here",
+    "live": false,
+    "liveExpand": false,
     "customTag": {
       "text": "Announcement"
     },
-    "videoCode": "https://www.youtube.com/embed/Two_6AiEHcQ"
+    "videoCode": "",
+    "height": 500
   }
 ]
