@@ -92,22 +92,20 @@ $desktop-width: 1024px;
       // background-position: 0 20%;
       background-size: cover;
       background-repeat: no-repeat;
+      background-position: center center;
     }
     .notification-bg-desktop {
       @include desktop {
-        background-position: center center;
         display: block;
       }
     }
     .notification-bg-tablet {
       @include tablet {
         display: block;
-        background-position: center right;
       }
     }
     .notification-bg-mobile {
       @include mobile {
-        background-position: center right;
         display: block;
       }
     }
@@ -132,7 +130,7 @@ $desktop-width: 1024px;
         padding: 20px;
       }
       @include mobile {
-        height: 230px;
+        height: 250px;
         display: flex;
         flex-direction: column;
         padding: 14px;
@@ -145,7 +143,8 @@ $desktop-width: 1024px;
       color: #FFF;
       @include desktop {
         margin-top: 34px;
-        padding-left: 44px;
+        width: 50%;
+        padding: 20px 0 13px 44px;
       }
       @include tablet {
         font-size: 36px;
@@ -166,18 +165,19 @@ $desktop-width: 1024px;
       @include desktop {
         max-width: 50%;
         padding-left: 44px;
-        font-size: 18px;
-        line-height: 22px;
-        margin-bottom: 40px;
+        font-size: 26px;
+        line-height: 31px;
+        margin-bottom: 55px;
       }
       @include tablet {
-        font-size: 16px;
+        font-size: 18px;
+        line-height: 22px;
         margin-bottom: 16px;
         text-align: center;
       }
-      @include tablet {
+      @include mobile {
         font-size: 14px;
-        margin-bottom: 16px;
+        margin-bottom: 4px;
         text-align: center;
       }
     }
