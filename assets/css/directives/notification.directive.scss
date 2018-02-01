@@ -1,5 +1,26 @@
 @import 'topcoder/tc-includes';
 
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin mobile {
+  @media screen and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
 .notification{
   margin-bottom: 24px;
   .live{
@@ -55,13 +76,41 @@
   }
   .expanded{
     background-color: $tc-black;
-    background-position: center top;
-    // background-position: 0 20%;
-    background-size: cover;
-    background-repeat: no-repeat;
     color: $tc-black;
     display: flex;
     position: relative;
+    .notification-bg-desktop,
+    .notification-bg-tablet,
+    .notification-bg-mobile {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-position: center top;
+      // background-position: 0 20%;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    .notification-bg-desktop {
+      @include desktop {
+        background-position: center center;
+        display: block;
+      }
+    }
+    .notification-bg-tablet {
+      @include tablet {
+        display: block;
+        background-position: center right;
+      }
+    }
+    .notification-bg-mobile {
+      @include mobile {
+        background-position: center right;
+        display: block;
+      }
+    }
     .mask{
       position: absolute;
       top: 0;
@@ -72,33 +121,83 @@
     }
     .left{
       flex: 1;
-      height: 100%;
       position: relative;
-      margin-top: 2%;
+      @include desktop {
+        height: 400px;
+      }
+      @include tablet {
+        height: 375px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+      }
+      @include mobile {
+        height: 230px;
+        display: flex;
+        flex-direction: column;
+        padding: 14px;
+      }
     }
     .header{
       font-weight: bold;
       font-size: 40px;
-      margin-top: 340px;
-      padding-left: 60px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       color: #FFF;
+      @include desktop {
+        margin-top: 34px;
+        padding-left: 44px;
+      }
+      @include tablet {
+        font-size: 36px;
+        flex: 1;
+        text-align: center;
+      }
+      @include mobile {
+        font-size: 18px;
+        flex: 1;
+      }
     }
     .details{
-      max-width: 50%;
       font-size: 16px;
       line-height: 16px;
       font-weight: 100;
-      padding-left: 60px;
       color: #FFF;
+      position: relative;
+      @include desktop {
+        max-width: 50%;
+        padding-left: 44px;
+        font-size: 18px;
+        line-height: 22px;
+        margin-bottom: 40px;
+      }
+      @include tablet {
+        font-size: 16px;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+      @include tablet {
+        font-size: 14px;
+        margin-bottom: 16px;
+        text-align: center;
+      }
     }
     .action{
-      position: absolute;
-      bottom: 30px;
-      left: 60px;
       background-color: white;
       padding: 10px 20px;
       border-radius: 26px;
+      @include desktop {
+        position: relative;
+        margin-left: 40px;
+      }
+      @include tablet {
+        text-align: center;
+      }
+      @include mobile {
+        padding: 6px 20px;
+        font-size: 14px;
+        margin-top: 4px;
+        text-align: center;
+      }
     }
     .right{
       flex: 1;
