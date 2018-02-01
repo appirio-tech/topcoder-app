@@ -1,18 +1,19 @@
 [
   {
-    "header": "Topcoder MVP Announcement!",
-    "details": "Check out our first group of MVPs!",
-    "headerExpand": "Topcoder MVP Announcement!",
-    "detailsExpand": "Check out our first group of MVPs! Learn more about who they are and a little bit more about them!",
-    "backgroundImage": "tc-mvps-banner.jpg",
-    "redirectTo": "https://www.topcoder.com/blog/introducing-2018-topcoder-mvp-members/",
-    "redirectText": "Read More Here",
+    "header": "QA - A New Way to Win a Trip to TCO!",
+    "details": "QA Challenges now have TCO18 points. Top the leaderboard and win a trip to the TCO18 Finals!",
+    "headerExpand": "QA - A New Way to Win a Trip to TCO!",
+    "detailsExpand": "Stage 3 of TCO18 has begun and QA Challenges now have TCO18 points. Top the leaderboard and win a trip to the TCO18 Finals!",
+    "backgroundImageDesktop": "TCO18-desktop.jpg",
+    "backgroundImageTablet": "TCO18-tablet.jpg",
+    "backgroundImageMobile": "TCO18-mobile.jpg",
+    "redirectTo": "https://tco18.topcoder.com/win-a-trip/qa-trip-winning-opportunity/",
+    "redirectText": "Read More",
     "live": false,
     "liveExpand": false,
     "customTag": {
       "text": "Announcement"
     },
-    "videoCode": "",
-    "height": 500
+    "videoCode": ""
   }
 ]
