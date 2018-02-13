@@ -13,7 +13,7 @@
       .header {{config.headerExpand}}
       .details {{config.detailsExpand}}
       a.action(ng-show="config.redirectText && config.redirectTo", href="{{config.redirectTo}}") {{config.redirectText}}
-    .right(ng-if="config.videoCode", ng-style="{'height': (config.videoHeight || config.height || vm.defaultHeight) + 'px'}")
+    .right(ng-if="config.videoCode")
       .btn-play(ng-hide="vm.loadVideo")
         i.fa.fa-play-circle-o(ng-click="vm.loadVideo=true;")
         div Play Video

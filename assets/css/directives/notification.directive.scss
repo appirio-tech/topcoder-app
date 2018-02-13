@@ -79,6 +79,16 @@ $desktop-width: 1024px;
     color: $tc-black;
     display: flex;
     position: relative;
+
+    /* ======
+     With Video
+    ======*/
+    @include mobile {
+      flex-direction: column;
+      padding: 20px;
+      align-items: center;
+    }
+
     .notification-bg-desktop,
     .notification-bg-tablet,
     .notification-bg-mobile {
@@ -124,16 +134,20 @@ $desktop-width: 1024px;
         height: 400px;
       }
       @include tablet {
-        height: 375px;
+        height: 325px;
         display: flex;
         flex-direction: column;
         padding: 20px;
       }
       @include mobile {
-        height: 250px;
+        // Without video
+
+        // height: 250px;
         display: flex;
         flex-direction: column;
         padding: 14px;
+        padding-top: 0;
+        margin-top: 0;
       }
     }
     .header{
@@ -142,27 +156,35 @@ $desktop-width: 1024px;
       margin-bottom: 14px;
       color: #FFF;
       @include desktop {
-        margin-top: 34px;
-        width: 50%;
+        margin-top: 75px;
+        width: 100%;
         padding: 20px 0 13px 44px;
       }
       @include tablet {
         font-size: 36px;
         text-align: center;
-        margin-bottom: 90px;
+         /*
+        ======
+        With Video
+        ======*/
+        flex: 1;
+        text-align: center;
+        margin-top:50px;
+        margin-bottom:20px;
+
         /*
         ======
         With Logo
         ======
-        font-size: 36px;
         flex: 1;
         text-align: center;
         */
+
       }
       @include mobile {
-        font-size: 18px;
+        font-size: 20px;
         text-align: center;
-        padding-top: 55px;
+        padding-top: 20px;
         padding-bottom: 10px;
         /*
         ======
@@ -180,16 +202,16 @@ $desktop-width: 1024px;
       color: #FFF;
       position: relative;
       @include desktop {
-        max-width: 50%;
+        max-width: 100%;
         padding-left: 44px;
         font-size: 26px;
         line-height: 31px;
         margin-bottom: 55px;
       }
       @include tablet {
-        font-size: 25px;
-        line-height: 30px;
-        margin-bottom: 105px;
+        font-size: 22px;
+        line-height: 28px;
+        margin-bottom: 40px;
         text-align: center;
         /*
         ======
@@ -203,7 +225,7 @@ $desktop-width: 1024px;
       }
       @include mobile {
         font-size: 14px;
-        margin-bottom: 55px;
+        margin-bottom: 25px;
         text-align: center;
         /*
         ======
@@ -242,9 +264,20 @@ $desktop-width: 1024px;
       justify-content: space-around;
       margin: 55px;
       width: 50%;
-      @media screen and (max-width: 768px) {
+      @include desktop {
+        height: 350px;
+      }
+      @include tablet {
+        height: 300px;
+        margin: 10px;
+        margin-top: 65px;
+      }
+      @include mobile {
         margin-top: 0;
         width: 100%;
+        max-width: 450px;
+        height: 250px;
+        margin: 10px;
       }
       .btn-play{
         text-align: center;

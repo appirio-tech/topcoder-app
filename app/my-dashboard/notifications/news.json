@@ -1,19 +1,16 @@
 [
   {
-    "header": "Bonus Problem Writer Payments!",
-    "details": "February Special, Bonus Cash for Creating Algo Problems",
-    "headerExpand": "Bonus Problem Writer Payments!",
-    "detailsExpand": "The whole month of February can earn you bonus cash for writing Algorithm Problems. ",
-    "backgroundImageDesktop": "PW-desktop.jpg",
-    "backgroundImageTablet": "PW-tablet.jpg",
-    "backgroundImageMobile": "PW-mobile.jpg",
-    "redirectTo": "https://www.topcoder.com/blog/showing-some-love-problem-writers/",
-    "redirectText": "Read More",
-    "live": false,
-    "liveExpand": false,
-    "customTag": {
-      "text": "Announcement"
-    },
-    "videoCode": ""
+    "header": "QA",
+    "details": "Live Reveal of New Topcoder Track w/ Will Price",
+    "headerExpand": "QA Track Revealed",
+    "detailsExpand": "Join Nick as he interviews Will Price who will be introducing Topcoder's newest track.  Spoiler Alert: You could win a TCO Trip!",
+    "backgroundImageDesktop": "DarkCircles-desktop.jpg",
+    "backgroundImageTablet": "DarkCircles-tablet.jpg",
+    "backgroundImageMobile": "DarkCircles-mobile.jpg",
+    "redirectTo": "https://www.topcoder.com/all-you-need-to-know-about-qa-challenges/",
+    "redirectText": "Learn More Here",
+    "live": true,
+    "liveExpand": true,
+    "videoCode": "https://www.youtube.com/embed/LF6rc40-TSo"
   }
 ]
