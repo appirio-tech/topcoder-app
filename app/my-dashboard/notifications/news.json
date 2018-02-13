@@ -1,16 +1,17 @@
 [
   {
-    "header": "QA",
-    "details": "Live Reveal of New Topcoder Track w/ Will Price",
-    "headerExpand": "QA Track Revealed",
-    "detailsExpand": "Join Nick as he interviews Will Price who will be introducing Topcoder's newest track.  Spoiler Alert: You could win a TCO Trip!",
-    "backgroundImageDesktop": "DarkCircles-desktop.jpg",
-    "backgroundImageTablet": "DarkCircles-tablet.jpg",
-    "backgroundImageMobile": "DarkCircles-mobile.jpg",
-    "redirectTo": "https://www.topcoder.com/all-you-need-to-know-about-qa-challenges/",
-    "redirectText": "Learn More Here",
-    "live": true,
-    "liveExpand": true,
-    "videoCode": "https://www.youtube.com/embed/LF6rc40-TSo"
+    "header": "28 Days of T-Shirts!",
+    "details": "Every day in February you can win a shirt!",
+    "headerExpand": "28 Days of T-Shirts!",
+    "detailsExpand": "Every day a new chance to win a t-shirt. Check our Facebook page, Instagram, Twitter, the Forums or Slack for the contest of the day and good luck winning that t-shirt!",
+    "backgroundImageDesktop": "tshirt-desktop.jpg",
+    "backgroundImageTablet": "tshirt-tablet.jpg",
+    "backgroundImageMobile": "tshirt-mobile.jpg",
+    "live": false,
+    "liveExpand": false,
+    "customTag": {
+      "text": "Announcement"
+    },
+    "videoCode": ""
   }
 ]
