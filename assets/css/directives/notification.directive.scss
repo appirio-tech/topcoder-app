@@ -268,15 +268,16 @@ $desktop-width: 1024px;
         height: 350px;
       }
       @include tablet {
-        height: 300px;
+        min-height: 250px;
         margin: 10px;
         margin-top: 65px;
+        margin-bottom: 20px;
       }
       @include mobile {
         margin-top: 0;
         width: 100%;
         max-width: 450px;
-        height: 250px;
+        min-height: 250px;
         margin: 10px;
       }
       .btn-play{
