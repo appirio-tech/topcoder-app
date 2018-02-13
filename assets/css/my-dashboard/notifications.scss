@@ -40,7 +40,8 @@
       margin-right: 0;
     }
     &.tco18{
-      background: url(../../images/banner-tco18-stage-3.jpg) center/cover;
+      // background: url(../../images/banner-tco18-stage-3.jpg) center/cover;
+      background: url(../../images/Topcoder-TurnedOn@x2.png) center/cover;
       background-position: center top;
     }
     &.watson{
@@ -59,6 +60,12 @@
       margin-bottom: 2px;
       &:last-child{
         margin-bottom: 0;
+      }
+      &.tco18{
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: #333333;
       }
     }
   }

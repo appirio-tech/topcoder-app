@@ -132,6 +132,7 @@ $desktop-width: 1024px;
       position: relative;
       @include desktop {
         height: 400px;
+        padding: 20px;
       }
       @include tablet {
         height: 325px;
@@ -140,9 +141,7 @@ $desktop-width: 1024px;
         padding: 20px;
       }
       @include mobile {
-        // Without video
-
-        // height: 250px;
+        height: 250px;
         display: flex;
         flex-direction: column;
         padding: 14px;
@@ -182,10 +181,10 @@ $desktop-width: 1024px;
 
       }
       @include mobile {
-        font-size: 20px;
+        font-size: 24px;
         text-align: center;
         padding-top: 20px;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
         /*
         ======
         With Logo
@@ -224,7 +223,8 @@ $desktop-width: 1024px;
         */
       }
       @include mobile {
-        font-size: 14px;
+        font-size: 18px;
+        line-height: 26px;
         margin-bottom: 25px;
         text-align: center;
         /*
