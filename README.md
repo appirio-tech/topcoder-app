@@ -179,7 +179,7 @@ SCSS Files
   }
   ```
   - This repository uses flexbox for arranging content. The use of any extra CSS libraries should be discussed with the team
-
+ 
 JavaScript
   - Use ES2015
   - See this section on [naming conventions and style guide](https://github.com/appirio-tech/topcoder-app/blob/dev/README.md#style-guide-and-naming-conventions)
