@@ -18,16 +18,16 @@ import angular from 'angular'
 
     var achievementsVm = BadgeService.buildAllAchievementsVm($scope.achievements)
     badgeCtrl.achievementGroups = achievementsVm.achievementGroups
-    
+
     //Dashboard badges shoudn't be displyed on public profile page
-    badgeCtrl.singleAchievements = removeDashBoardAchivements(achievementsVm.singleAchievements)  
+    badgeCtrl.singleAchievements = removeDashBoardAchivements(achievementsVm.singleAchievements)
   }
 
   function removeDashBoardAchivements(singleAchievements){
     var dashboardBadgeName = 'SRM Engagement Honor'
     return singleAchievements.filter(function(achievement){
       return (achievement.name != dashboardBadgeName)
-    }) 
+    })
   }
 
 })()
