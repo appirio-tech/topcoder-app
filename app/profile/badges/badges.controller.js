@@ -9,7 +9,13 @@ import angular from 'angular'
 
   // The controller for badges section of member-profile page.
   function BadgeCtrl($scope, UserService, userHandle, profile, BadgeService) {
-    $scope.achievements = profile.badges.Achievements || []
+    $scope.achievements = [{
+date: "2017-08-01T00:00:00.000-04:00",
+description: "TCO17 Finalist"
+},{
+date: "2017-08-01T00:00:00.000-04:00",
+description: "TCO17 Champion"
+}] || profile.badges.Achievements || []
     var badgeCtrl = this
 
     // Use logged in user's handle for showing badges if not injected into the controller
@@ -17,17 +23,18 @@ import angular from 'angular'
     badgeCtrl.profile = profile
 
     var achievementsVm = BadgeService.buildAllAchievementsVm($scope.achievements)
+    console.log(achievementsVm)
     badgeCtrl.achievementGroups = achievementsVm.achievementGroups
-    
+
     //Dashboard badges shoudn't be displyed on public profile page
-    badgeCtrl.singleAchievements = removeDashBoardAchivements(achievementsVm.singleAchievements)  
+    badgeCtrl.singleAchievements = removeDashBoardAchivements(achievementsVm.singleAchievements)
   }
 
   function removeDashBoardAchivements(singleAchievements){
     var dashboardBadgeName = 'SRM Engagement Honor'
     return singleAchievements.filter(function(achievement){
       return (achievement.name != dashboardBadgeName)
-    }) 
+    })
   }
 
 })()

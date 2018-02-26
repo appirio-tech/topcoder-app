@@ -648,6 +648,18 @@ import moment from 'moment-timezone'
           name: 'iOS Community',
           groupClass: 'iOS-Community',
           active: false
+        },
+        {
+          id: 1010,
+          name: 'TCO17 Finalist',
+          groupClass: 'TCO17-Finalist',
+          active: false
+        },
+        {
+          id: 1011,
+          name: 'TCO17 Champion',
+          groupClass: 'TCO17-Champion',
+          active: false
         }
       ]
     }

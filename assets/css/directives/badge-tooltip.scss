@@ -20,6 +20,21 @@
     float: left;
 }
 
+/* TCO Badges */
+.TCO17-Finalist {
+  background: url(../../images/badges/tco17/tco17-finalist.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.TCO17-Champion {
+  background: url(../../images/badges/tco17/tco17-badge-gold.svg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
 .subBadge {
     height: 48px;
     float: left;
@@ -688,7 +703,7 @@ span.subBadge.selected {
       display: none;
     }
 }
- 
+
 .dashboardBadge:hover img {
   display: block;
   position: absolute;
@@ -698,5 +713,5 @@ span.subBadge.selected {
   width: auto;
   overflow: hidden;
   padding: 8px;
-  background: transparent; 
+  background: transparent;
 }
