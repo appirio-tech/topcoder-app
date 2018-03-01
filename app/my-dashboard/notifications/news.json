@@ -1,17 +1,15 @@
 [
   {
-    "header": "28 Days of T-Shirts!",
-    "details": "Every day in February you can win a shirt!",
-    "headerExpand": "28 Days of T-Shirts!",
-    "detailsExpand": "Every day a new chance to win a t-shirt. Check our Facebook page, Instagram, Twitter, the Forums or Slack for the contest of the day and good luck winning that t-shirt!",
-    "backgroundImageDesktop": "tshirt-desktop.jpg",
-    "backgroundImageTablet": "tshirt-tablet.jpg",
-    "backgroundImageMobile": "tshirt-mobile.jpg",
+    "header": "There are no announcements",
+    "details": "You are all caught up!",
+    "headerExpand": "",
+    "detailsExpand": "",
+    "backgroundImageDesktop": "",
+    "backgroundImageTablet": "",
+    "backgroundImageMobile": "",
     "live": false,
     "liveExpand": false,
-    "customTag": {
-      "text": "Announcement"
-    },
-    "videoCode": ""
+    "videoCode": "",
+    "isEmpty": true
   }
 ]
