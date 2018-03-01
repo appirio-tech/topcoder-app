@@ -4,7 +4,7 @@
     .customTag(ng-show="config.customTag" ng-style="{'background': config.customTag.background, color: config.customTag.color}") {{config.customTag.text}}
     .header {{config.header}}:&nbsp;
     .details {{config.details}}
-    i.expand.fa.fa-plus(ng-click="vm.toggle()")
+    i.expand.fa.fa-plus(ng-click="vm.toggle()", ng-if="!config.isEmpty")
   .expanded(ng-show="vm.expanded")
     .notification-bg-desktop(ng-style="{'background-image': 'url('+vm.loadImage(config.backgroundImageDesktop)+')'}")
     .notification-bg-tablet(ng-style="{'background-image': 'url('+vm.loadImage(config.backgroundImageTablet)+')'}")
