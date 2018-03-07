@@ -85,7 +85,6 @@ $desktop-width: 1024px;
     ======*/
     @include mobile {
       flex-direction: column;
-      padding: 20px;
       align-items: center;
     }
 
@@ -146,6 +145,7 @@ $desktop-width: 1024px;
         flex-direction: column;
         padding: 14px;
         padding-top: 0;
+        padding-bottom: 10px;
         margin-top: 0;
       }
     }
@@ -155,7 +155,7 @@ $desktop-width: 1024px;
       margin-bottom: 14px;
       color: #FFF;
       @include desktop {
-        margin-top: 75px;
+        margin-top: 0;
         width: 100%;
         padding: 20px 0 13px 44px;
       }
@@ -166,10 +166,7 @@ $desktop-width: 1024px;
         ======
         With Video
         ======*/
-        flex: 1;
         text-align: center;
-        margin-top:50px;
-        margin-bottom:20px;
 
         /*
         ======
@@ -183,8 +180,8 @@ $desktop-width: 1024px;
       @include mobile {
         font-size: 24px;
         text-align: center;
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 10px;
+        flex: 1;
         /*
         ======
         With Logo
@@ -225,7 +222,6 @@ $desktop-width: 1024px;
       @include mobile {
         font-size: 18px;
         line-height: 26px;
-        margin-bottom: 25px;
         text-align: center;
         /*
         ======
