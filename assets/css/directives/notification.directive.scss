@@ -135,8 +135,6 @@ $desktop-width: 1024px;
       }
       @include tablet {
         height: 325px;
-        display: flex;
-        flex-direction: column;
         padding: 20px;
       }
       @include mobile {
@@ -161,12 +159,10 @@ $desktop-width: 1024px;
       }
       @include tablet {
         font-size: 36px;
-        text-align: center;
          /*
         ======
         With Video
         ======*/
-        text-align: center;
 
         /*
         ======
@@ -208,7 +204,6 @@ $desktop-width: 1024px;
         font-size: 22px;
         line-height: 28px;
         margin-bottom: 40px;
-        text-align: center;
         /*
         ======
         With Logo
@@ -220,8 +215,8 @@ $desktop-width: 1024px;
         */
       }
       @include mobile {
-        font-size: 18px;
-        line-height: 26px;
+        font-size: 16px;
+        line-height: 16px;
         text-align: center;
         /*
         ======

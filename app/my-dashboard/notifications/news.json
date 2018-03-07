@@ -1,12 +1,14 @@
 [
   {
     "header": "Algorithm, Marathon, Regionals, & More!",
-    "details": "TCO18 news is here! Find out the details for Algorith & Marathon Competitions, regional events, and more!",
+    "details": "TCO18 news is here! Find out the details for Algorithm & Marathon Competitions, regional events, and more!",
     "headerExpand": "TCO18 News - Algorithm, Marathon, Regionals, & More!",
-    "detailsExpand": "TCO18 news is here! Find out the details for Algorith & Marathon Competitions, regional events, and more!",
+    "detailsExpand": "TCO18 news is here! Find out the details for Algorithm & Marathon Competitions, regional events, and more!",
     "backgroundImageDesktop": "tco18news-desktop.jpg",
     "backgroundImageTablet": "tco18news-tablet.jpg",
     "backgroundImageMobile": "tco18news-mobile.jpg",
+    "redirectTo": "https://www.topcoder.com/blog/tco18-marathon-algorithm-competitions-announced/",
+    "redirectText": "Read More",
     "customTag": {
       "text": "TCO18 News"
     },
