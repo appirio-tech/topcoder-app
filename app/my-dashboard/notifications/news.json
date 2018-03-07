@@ -1,15 +1,18 @@
 [
   {
-    "header": "There are no announcements",
-    "details": "You are all caught up!",
-    "headerExpand": "",
-    "detailsExpand": "",
-    "backgroundImageDesktop": "",
-    "backgroundImageTablet": "",
-    "backgroundImageMobile": "",
+    "header": "Algorithm, Marathon, Regionals, & More!",
+    "details": "TCO18 news is here! Find out the details for Algorith & Marathon Competitions, regional events, and more!",
+    "headerExpand": "TCO18 News - Algorithm, Marathon, Regionals, & More!",
+    "detailsExpand": "TCO18 news is here! Find out the details for Algorith & Marathon Competitions, regional events, and more!",
+    "backgroundImageDesktop": "tco18news-desktop.jpg",
+    "backgroundImageTablet": "tco18news-tablet.jpg",
+    "backgroundImageMobile": "tco18news-mobile.jpg",
+    "customTag": {
+      "text": "TCO18 News"
+    },
     "live": false,
     "liveExpand": false,
     "videoCode": "",
-    "isEmpty": true
+    "isEmpty": false
   }
 ]
