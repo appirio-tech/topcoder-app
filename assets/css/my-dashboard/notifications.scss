@@ -43,10 +43,6 @@
       background: url(../../images/banner-tco18-stage-3.jpg) center/cover;
       background-position: center top;
     }
-    &.womens-day{
-      background: url(../../images/womens-day.png) center/cover;
-      background-position: center top;
-    }
     &.watson{
       background: url(../../images/banner-watson.jpg) center/cover;
       padding-left: 64px;
@@ -69,11 +65,6 @@
         background-position: center top;
         background-repeat: no-repeat;
         background-color: #333333;
-      }
-      &.womens-day{
-        background: url(../../images/womens-day.png) center/cover;
-        background-position: left top;
-        height: 60vw;
       }
     }
   }
