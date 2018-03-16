@@ -92,17 +92,17 @@ import angular from 'angular'
       var deferred = $q.defer()
       var data = {
         'SRMWinners': [{
-          'avatar': 'https://www.topcoder.com/i/m/Petr_big.jpg',
-          'name': 'Petr',
-          'date': '20170530T000000Z',
-          'country': 'RUSSIAN FEDERATION',
-          'contests': ['SRM 715 DIVISION 1 WINNER']
+          'avatar': 'ttps://s3.amazonaws.com/app.topcoder-dev.com/images/ico-user-default.7aa28736.svg',
+          'name': 'Deretin',
+          'date': '20170630T000000Z',
+          'country': 'UKRAINE',
+          'contests': ['SRM 717 DIVISION 1 WINNER']
         }, {
           'avatar': 'https://s3.amazonaws.com/app.topcoder-dev.com/images/ico-user-default.7aa28736.svg',
-          'name': 'Abhi_Saini',
-          'date': '20170530T000000Z',
-          'country': 'INDIA',
-          'contests': ['SRM 715 DIVISION 2 WINNER']
+          'name': 'Denisson',
+          'date': '20170630T000000Z',
+          'country': 'RUSSIAN FEDERATION',
+          'contests': ['SRM 717 DIVISION 2 WINNER']
         }],
         'MarathonWinner': [{
           'avatar': 'https://s3.amazonaws.com/app.topcoder-dev.com/images/ico-user-default.7aa28736.svg',
