@@ -73,7 +73,7 @@ import { loadUser } from '../../services/userv3.service.js'
       vm.userHandle = UserService.getUserIdentity().handle
 
       vm.userMenu = [
-        { 'sref': 'dashboard', 'text': 'DASHBOARD', 'icon': require('../../../assets/images/nav/dashboard.svg') },
+        { 'href': '/my-dashboard', 'text': 'DASHBOARD', 'icon': require('../../../assets/images/nav/dashboard.svg') },
         { 'sref': 'profile.about', 'srefParams': { 'userHandle': vm.userHandle }, 'text': 'MY PROFILE', 'icon': require('../../../assets/images/nav/profile.svg') },
         { 'href':  vm.constants.COMMUNITY_URL + '/PactsMemberServlet?module=PaymentHistory&full_list=false', 'text': 'PAYMENTS', 'icon': require('../../../assets/images/nav/wallet.svg') },
         { 'sref': 'settings.profile', 'text': 'SETTINGS', 'icon': require('../../../assets/images/nav/settings.svg') }
