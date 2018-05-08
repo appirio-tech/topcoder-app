@@ -672,6 +672,12 @@ import moment from 'moment-timezone'
           name: 'TCO16 Champion',
           groupClass: 'TCO16-Champion',
           active: false
+        },
+        {
+          id: 1014,
+          name: 'Marathon Match 100',
+          groupClass: 'MM100',
+          active: false
         }
       ]
     }
