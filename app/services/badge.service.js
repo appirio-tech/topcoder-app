@@ -678,6 +678,12 @@ import moment from 'moment-timezone'
           name: 'Marathon Match 100',
           groupClass: 'MM100',
           active: false
+        },
+        {
+          id: 1015,
+          name: 'GoLang',
+          groupClass: 'GoLang',
+          active: false
         }
       ]
     }
