@@ -660,6 +660,18 @@ import moment from 'moment-timezone'
           name: 'TCO17 Champion',
           groupClass: 'TCO17-Champion',
           active: false
+        },
+        {
+          id: 1012,
+          name: 'TCO16 Finalist',
+          groupClass: 'TCO16-Finalist',
+          active: false
+        },
+        {
+          id: 1013,
+          name: 'TCO16 Champion',
+          groupClass: 'TCO16-Champion',
+          active: false
         }
       ]
     }
