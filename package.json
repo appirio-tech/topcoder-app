@@ -59,7 +59,7 @@
     "appirio-tech-ng-ui-components": "2.2.4",
     "appirio-tech-react-components": "appirio-tech/react-components.git#listings-release-v3",
     "auth0-angular": "4.2.7",
-    "auth0-js": "6.8.4",
+    "auth0-js": "9.0.0",
     "d3": "3.5.17",
     "font-awesome": "4.7.0",
     "html-webpack-plugin": "2.30.1",
