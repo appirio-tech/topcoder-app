@@ -6,7 +6,9 @@
     "start": "webpack-dev-server --history-api-fallback --host local.topcoder-dev.com --dev --tc --inline --progress --port 3000",
     "start-prod": "webpack-dev-server --history-api-fallback --host local.topcoder.com --prod --tc --inline --progress --port 80",
     "lint": "eslint .",
-    "test": "karma start --tc --test"
+    "test": "karma start --tc --test",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "devDependencies": {
     "angular-mocks": "1.6.5",
@@ -75,6 +77,8 @@
     "tc-angular-ellipsis": "0.1.6",
     "topcoder-app-r": "https://github.com/appirio-tech/topcoder-app-r.git#0.0.1",
     "xml2js": "0.4.17",
-    "zepto": "1.0.1"
-  }
+    "zepto": "1.0.1",
+    "snyk": "^1.88.0"
+  },
+  "snyk": true
 }
