@@ -20,8 +20,8 @@ module.exports = function(config) {
 
     // List of files / patterns to load in the browser
     files: [
-      './node_modules/jquery/dist/jquery.js',
       './node_modules/babel-polyfill/dist/polyfill.js',
+      './node_modules/jquery/dist/jquery.js',
       'webpack.tests.js'
     ],
 
