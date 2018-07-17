@@ -19,7 +19,14 @@ deploy_steps: &deploy_steps
       at: .
   - run: *install_awscli
   - setup_remote_docker
+  - run: 
+      name: setup file types
+      command: | 
+        sudo echo -e "application/font-woff\t\t\t\twoff2" >> /etc/mime.types
+        sudo echo -e "application/font-sfnt\t\t\t\tttf" >> /etc/mime.types
+        sudo echo -e "application/json\t\t\t\tmap" >> /etc/mime.types    
   - run: ./deploy.sh $DEPLOY_ENV
+  
 
 jobs:
   build:
