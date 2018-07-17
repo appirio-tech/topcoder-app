@@ -15,7 +15,6 @@ install_awscli: &install_awscli
 
 # Instructinos of deployment
 deploy_steps: &deploy_steps
-  - checkout
   - attach_workspace:
       at: .
   - run: *install_awscli
@@ -56,9 +55,9 @@ jobs:
       - run: npm run lint && npm run build
       - run: npm test
       - persist_to_workspace:
-          root: .
+          root: . 
           paths:
-            - ./node_modules
+            - ./
 
   deploy_prod:
     <<: *python_env
