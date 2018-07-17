@@ -15,16 +15,16 @@ configure_aws_cli() {
 }
 
 deploy_s3bucket() {
-	aws s3 sync --dryrun ${CIRCLE_WORKING_DIRECTORY}/dist s3://${AWS_S3_BUCKET} --cache-control max-age=0,s-maxage=86400 --exclude "*.txt" --exclude "*.js" --exclude "*.css"
-	result=`aws s3 sync ${CIRCLE_WORKING_DIRECTORY}/dist s3://${AWS_S3_BUCKET} --cache-control max-age=0,s-maxage=86400 --exclude "*.txt" --exclude "*.js" --exclude "*.css"`
+	aws s3 sync --dryrun ${HOME}/project/dist s3://${AWS_S3_BUCKET} --cache-control max-age=0,s-maxage=86400 --exclude "*.txt" --exclude "*.js" --exclude "*.css"
+	result=`aws s3 sync ${HOME}/project/dist s3://${AWS_S3_BUCKET} --cache-control max-age=0,s-maxage=86400 --exclude "*.txt" --exclude "*.js" --exclude "*.css"`
 	if [ $? -eq 0 ]; then
 		echo "All html, font, image, map, and media files are Deployed without gzip encoding!"
 	else
 		echo "Deployment Failed  - $result"
 		exit 1
 	fi
-	aws s3 sync --dryrun ${CIRCLE_WORKING_DIRECTORY}/dist s3://${AWS_S3_BUCKET} --cache-control max-age=0,s-maxage=86400 --exclude "*" --include "*.txt" --include "*.js" --include "*.css" --content-encoding gzip
-	result=`aws s3 sync ${CIRCLE_WORKING_DIRECTORY}/dist s3://${AWS_S3_BUCKET}  --cache-control max-age=0,s-maxage=86400 --exclude "*" --include "*.txt" --include "*.js" --include "*.css" --content-encoding gzip`
+	aws s3 sync --dryrun ${HOME}/project/dist s3://${AWS_S3_BUCKET} --cache-control max-age=0,s-maxage=86400 --exclude "*" --include "*.txt" --include "*.js" --include "*.css" --content-encoding gzip
+	result=`aws s3 sync ${HOME}/project/dist s3://${AWS_S3_BUCKET}  --cache-control max-age=0,s-maxage=86400 --exclude "*" --include "*.txt" --include "*.js" --include "*.css" --content-encoding gzip`
 	if [ $? -eq 0 ]; then
 		echo "All txt, css, and js files are Deployed! with gzip"
 	else
@@ -33,10 +33,6 @@ deploy_s3bucket() {
 	fi
 
 }
-
-sudo echo -e "application/font-woff\t\t\t\twoff2" >> /etc/mime.types
-sudo echo -e "application/font-sfnt\t\t\t\tttf" >> /etc/mime.types
-sudo echo -e "application/json\t\t\t\tmap" >> /etc/mime.types
 
 cat /etc/mime.types  | grep -i woff
 cat /etc/mime.types  | grep -i ico
