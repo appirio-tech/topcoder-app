@@ -3,7 +3,7 @@
 
 Topcoder-App is an Angular application that contains dashboard, profile, settings, login/registration, and design submissions.
 
-The technologies used are NPM, Webpack, ES2015, Jade, SCSS, and Angular 1.x.
+The technologies used are NPM, Webpack, ES2015, Jade, SCSS, and Angular 1.x. 
 
 ## Installation
 
