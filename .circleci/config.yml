@@ -35,11 +35,11 @@ jobs:
             sudo apt-get update -y
             sudo apt-get install g++-4.8  -y
       - run:
-          name: Install node-5.12.0
+          name: Install node-6.8.0
           command: |
             curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | sudo bash
             source ~/.bashrc
-            nvm install 5.12.0
+            nvm install 6.8.0
             node --version
             npm --version
             nvm --version
