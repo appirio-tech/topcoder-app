@@ -37,12 +37,13 @@ deploy_s3bucket() {
 #sudo chmod 666 /etc/mime.types
 #echo -e "application/font-woff\t\t\t\twoff2" >> /etc/mime.types
 #echo -e "application/font-sfnt\t\t\t\tttf" >> /etc/mime.types
-echo -e "application/json\t\t\t\tmap" >> /etc/mime.types
+#echo -e "application/json\t\t\t\tmap" >> /etc/mime.types
 
 cat /etc/mime.types  | grep -i woff
 cat /etc/mime.types  | grep -i ico
 cat /etc/mime.types  | grep -i map
 cat /etc/mime.types  | grep -i ttf
+cat /etc/mime.types  | grep -i woff2
 
 configure_aws_cli
 deploy_s3bucket
