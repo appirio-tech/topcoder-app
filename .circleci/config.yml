@@ -1,0 +1,103 @@
+version: 2
+
+# Python image to run aws utilities
+python_env: &python_env
+  docker:
+    - image: circleci/python:2.7-stretch-browsers
+
+# Instructions of installing aws utilities
+install_awscli: &install_awscli
+  name: "Install awscli"
+  command: |
+    sudo pip install awscli awsebcli --upgrade
+    aws --version
+    eb --version
+
+# Instructinos of deployment
+deploy_steps: &deploy_steps
+  - attach_workspace:
+      at: .
+  - run: *install_awscli
+  - setup_remote_docker
+  - run: ./deploy.sh $DEPLOY_ENV
+  
+
+jobs:
+  build:
+    machine: true
+    environment:
+      CXX: g++-4.8
+    steps:
+      - run: 
+          name: Install g++-4.8
+          command: |
+            sudo add-apt-repository ppa:ubuntu-toolchain-r/test  -y
+            sudo apt-get update -y
+            sudo apt-get install g++-4.8  -y
+      - run:
+          name: Install node-5.12.0
+          command: |
+            curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | sudo bash
+            source ~/.bashrc
+            nvm install 5.12.0
+            node --version
+            npm --version
+            nvm --version
+
+      - checkout
+      - restore_cache:
+          key: node-modules-{{ checksum "package-lock.json" }}
+      - run: npm install
+      - save_cache:
+          key: node-modules-{{ checksum "package-lock.json" }}
+          paths: 
+            - node_modules
+      - run: ls node_modules/*
+      - run: npm run lint && npm run build
+      - run: npm test
+      - persist_to_workspace:
+          root: . 
+          paths:
+            - ./
+
+  deploy_prod:
+    <<: *python_env
+    environment:
+      DEPLOY_ENV: "PROD"
+    steps: *deploy_steps
+
+  deploy_dev:
+    <<: *python_env
+    environment:
+      DEPLOY_ENV: "DEV"
+    steps: *deploy_steps
+
+  deploy_qa:
+    <<: *python_env
+    environemtn:
+      DEPLOY_ENV: "QA"
+    steps: *deploy_steps
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy_dev:
+          filters:
+            branches:
+              only: [ dev, dev-circleci2 ]
+          requires:
+            - build
+      - deploy_prod:
+          filters:
+            branches:
+              only: master
+          requires:
+            - build
+      - deploy_qa:
+          filters:
+            branches:
+              only: qa-integration
+          requires:
+            - build
