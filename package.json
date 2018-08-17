@@ -47,7 +47,7 @@
     "angular-filter": "0.5.16",
     "angular-img-fallback": "0.1.4",
     "angular-intro.js": "appirio-tech/angular-intro.js.git#feature/fix-for-webpack",
-    "angular-jwt": "0.0.9",
+    "angular-jwt": "0.1.10",
     "angular-messages": "1.6.5",
     "angular-sanitize": "1.6.5",
     "angular-storage": "0.0.13",
