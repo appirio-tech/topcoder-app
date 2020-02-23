@@ -65,7 +65,7 @@
     "html-webpack-plugin": "2.30.1",
     "intro.js": "1.1.1",
     "jstimezonedetect": "1.0.6",
-    "lodash": "4.17.4",
+    "lodash": "4.17.13",
     "moment": "2.18.1",
     "moment-timezone": "0.5.13",
     "ng-dialog": "0.5.9",
