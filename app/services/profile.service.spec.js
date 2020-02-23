@@ -20,8 +20,8 @@ describe('Profile Service', function() {
       .respond(200, {result: {content: mockProfile}})
     // mock stats
     $httpBackend
-      .when('GET', apiUrl + '/members/rakesh/stats/')
-      .respond(200, {result: {content: mockStats}})
+      .when('GET', apiUrl + '/members/rakesh/stats/?groupIds=' + CONSTANTS.DEFAULT_GROUP_ID)
+      .respond(200, {result: {content: [mockStats]}})
 
   })
 

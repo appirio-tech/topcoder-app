@@ -80,11 +80,15 @@ import _ from 'lodash'
     }
 
     function getUserStats(username) {
-      return restangular.one('members', username).one('stats').get().then(function(data) {
-        if (data && !data.DEVELOP) data.DEVELOP = {challenges: 0, wins: 0, subTracks: []}
-        if (data && !data.DESIGN) data.DESIGN = {challenges: 0, wins: 0, subTracks: []}
-        if (data && !data.DATA_SCIENCE) data.DATA_SCIENCE = {challenges: 0, wins: 0, SRM: {}, MARATHON_MATCH: {}}
-        return data
+      return restangular.one('members', username).one('stats').get({ groupIds: CONSTANTS.DEFAULT_GROUP_ID }).then(function(data) {
+        var stats = {}
+        if (Array.isArray(data) && data.length) {
+          stats = data[0]
+          if (!stats.DEVELOP) stats.DEVELOP = {challenges: 0, wins: 0, subTracks: []}
+          if (!stats.DESIGN) stats.DESIGN = {challenges: 0, wins: 0, subTracks: []}
+          if (!stats.DATA_SCIENCE) stats.DATA_SCIENCE = {challenges: 0, wins: 0, SRM: {}, MARATHON_MATCH: {}}
+        }
+        return stats
       })
     }
 
