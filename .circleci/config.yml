@@ -1,9 +1,9 @@
 version: 2
 
-# Python image to run aws utilities
-python_env: &python_env
+# node image to run aws utilities
+node_env: &node_env
   docker:
-    - image: circleci/python:2.7-stretch-browsers
+    - image: circleci/node:8.16.0
 
 # Instructions of installing aws utilities
 install_awscli: &install_awscli
@@ -27,40 +27,18 @@ install_build_dependencies: &install_build_dependencies
     sudo add-apt-repository ppa:ubuntu-toolchain-r/test  -y
     sudo apt-get update -y
     sudo apt-get install g++-4.8  -y
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | sudo bash
-    source ~/.bashrc
-    nvm install 5.12.0
-    node --version
-    npm --version
-    nvm --version
     
-# Instructinos of deployment
-deploy_steps: &deploy_steps
-  - attach_workspace:
-      at: .
-  - run: *install_awscli
-  - run: *install_deploysuite
-  - setup_remote_docker
-  - deploy:
-      name: Running MasterScript.
-      command: |
-        # ./deploy.sh $DEPLOY_ENV 
-        ./awsconfiguration.sh $DEPLOY_ENV
-        source awsenvconf
-        ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-deployvar
-        source buildenvvar
-        ./master_deploy.sh -d CFRONT -e $DEPLOY_ENV -c true
-  
 build_npm_steps: &build_npm_steps
   name: "configuring environment building environment"
   command: |
       ./awsconfiguration.sh $DEPLOY_ENV
+      source awsenvconf
       ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-buildvar            
       source buildenvvar
       npm run lint && npm run build
       npm test
 
-build_steps: &build_steps
+build_deploy_steps: &build_deploy_steps
   - run: *install_build_dependencies
   - run: *install_awscli
   - checkout
@@ -73,100 +51,64 @@ build_steps: &build_steps
       paths: 
         - node_modules    
   - run: *build_npm_steps
-  - persist_to_workspace:
-      root: . 
-      paths:
-        - ./      
-      
+  - setup_remote_docker
+  - deploy:
+      name: Running MasterScript.
+      command: |
+        # ./deploy.sh $DEPLOY_ENV 
+        # ./awsconfiguration.sh $DEPLOY_ENV
+        source awsenvconf
+        ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-deployvar
+        source buildenvvar
+        ./master_deploy.sh -d CFRONT -e $DEPLOY_ENV -c true
+
 jobs:
-  build_dev:
-    machine: true
+
+  build_deploy_dev:
+    <<: *node_env
     environment:
       CXX: g++-4.8
       DEPLOY_ENV: "DEV"
       LOGICAL_ENV: "dev"
       APPNAME: "topcoder-app"       
-    steps: *build_steps
+    steps: *build_deploy_steps
 
-  build_prod:
-    machine: true
+  build_deploy_prod:
+    <<: *node_env
     environment:
       CXX: g++-4.8
       DEPLOY_ENV: "PROD"
       LOGICAL_ENV: "prod"
       APPNAME: "topcoder-app"       
-    steps: *build_steps
+    steps: *build_deploy_steps
 
-  build_qa:
-    machine: true
+  build_deploy_qa:
+    <<: *node_env
     environment:
       CXX: g++-4.8
       DEPLOY_ENV: "QA"
       LOGICAL_ENV: "qa"
       APPNAME: "topcoder-app"         
-    steps: *build_steps
+    steps: *build_deploy_steps
 
-  deploy_prod:
-    <<: *python_env
-    environment:
-      DEPLOY_ENV: "PROD"
-      LOGICAL_ENV: "prod"
-      APPNAME: "topcoder-app"       
-    steps: *deploy_steps
-
-  deploy_dev:
-    <<: *python_env
-    environment:
-      DEPLOY_ENV: "DEV"
-      LOGICAL_ENV: "dev"
-      APPNAME: "topcoder-app"       
-    steps: *deploy_steps
-
-  deploy_qa:
-    <<: *python_env
-    environment:
-      DEPLOY_ENV: "QA"
-      LOGICAL_ENV: "qa"
-      APPNAME: "topcoder-app"       
-    steps: *deploy_steps
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build_dev:
+      - build_deploy_dev:
           context : org-global 
           filters:
             branches:
               only: [ dev, dev-circleci2 ]
-      - build_qa:
+      - build_deploy_qa:
           context : org-global 
           filters:
             branches:
               only: qa-integration          
-      - build_prod:
+      - build_deploy_prod:
           context : org-global
           filters:
             branches:
               only: master           
-      - deploy_dev:
-          context : org-global      
-          filters:
-            branches:
-              only: [ dev, dev-circleci2 ]
-          requires:
-            - build_dev
-      - deploy_prod:
-          context : org-global      
-          filters:
-            branches:
-              only: master
-          requires:
-            - build_prod
-      - deploy_qa:
-          context : org-global      
-          filters:
-            branches:
-              only: qa-integration
-          requires:
-            - build_qa
+
