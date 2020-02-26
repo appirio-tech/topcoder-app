@@ -9,95 +9,163 @@ python_env: &python_env
 install_awscli: &install_awscli
   name: "Install awscli"
   command: |
-    sudo pip install awscli awsebcli --upgrade
+    sudo pip install awscli --upgrade
+    sudo apt install jq
     aws --version
-    eb --version
 
+install_deploysuite: &install_deploysuite
+  name: Installation of install_deploysuite.
+  command: |
+    git clone --branch v1.4.2 https://github.com/topcoder-platform/tc-deploy-scripts ../buildscript
+    cp ./../buildscript/master_deploy.sh .
+    cp ./../buildscript/buildenv.sh .
+    cp ./../buildscript/awsconfiguration.sh .
+
+install_build_dependencies: &install_build_dependencies
+  name: Install g++-4.8 and Install node-5.12.0
+  command: |
+    sudo add-apt-repository ppa:ubuntu-toolchain-r/test  -y
+    sudo apt-get update -y
+    sudo apt-get install g++-4.8  -y
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | sudo bash
+    source ~/.bashrc
+    nvm install 5.12.0
+    node --version
+    npm --version
+    nvm --version
 # Instructinos of deployment
 deploy_steps: &deploy_steps
   - attach_workspace:
       at: .
   - run: *install_awscli
+  - run: *install_deploysuite
   - setup_remote_docker
-  - run: ./deploy.sh $DEPLOY_ENV
+  - deploy:
+    name: Running MasterScript.
+    command: |
+      # ./deploy.sh $DEPLOY_ENV 
+      ./awsconfiguration.sh $DEPLOY_ENV
+      source awsenvconf
+      ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-deployvar
+      source buildenvvar
+      ./master_deploy.sh -d CFRONT -e $DEPLOY_ENV -c true
   
+build_npm_steps: &build_npm_steps
+  name: "configuring environment building environment"
+  command: |
+      ./awsconfiguration.sh $DEPLOY_ENV
+      ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-buildvar            
+      source buildenvvar
+      npm run lint && npm run build
+      npm test
 
+build_steps: &build_steps
+  - run: *install_build_dependencies
+  - run: *install_awscli
+  - run: *install_deploysuite
+  - checkout
+  - restore_cache:
+      key: node-modules-{{ checksum "package-lock.json" }}
+  - run: npm install
+  - save_cache:
+      key: node-modules-{{ checksum "package-lock.json" }}
+      paths: 
+        - node_modules    
+  - run: *build_npm_steps
+  - persist_to_workspace:
+      root: . 
+      paths:
+        - ./      
+      
 jobs:
-  build:
+  build_dev:
     machine: true
     environment:
       CXX: g++-4.8
-    steps:
-      - run: 
-          name: Install g++-4.8
-          command: |
-            sudo add-apt-repository ppa:ubuntu-toolchain-r/test  -y
-            sudo apt-get update -y
-            sudo apt-get install g++-4.8  -y
-      - run:
-          name: Install node-5.12.0
-          command: |
-            curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | sudo bash
-            source ~/.bashrc
-            nvm install 5.12.0
-            node --version
-            npm --version
-            nvm --version
+      DEPLOY_ENV: "DEV"
+      LOGICAL_ENV: "dev"
+      APPNAME: "topcoder-app"       
+    steps: *build_steps
 
-      - checkout
-      - restore_cache:
-          key: node-modules-{{ checksum "package-lock.json" }}
-      - run: npm install
-      - save_cache:
-          key: node-modules-{{ checksum "package-lock.json" }}
-          paths: 
-            - node_modules
-      - run: ls node_modules/*
-      - run: npm run lint && npm run build
-      - run: npm test
-      - persist_to_workspace:
-          root: . 
-          paths:
-            - ./
+  build_prod:
+    machine: true
+    environment:
+      CXX: g++-4.8
+      DEPLOY_ENV: "PROD"
+      LOGICAL_ENV: "prod"
+      APPNAME: "topcoder-app"       
+    steps: *build_steps
+    
+  build_qa:
+    machine: true
+    environment:
+      CXX: g++-4.8
+      DEPLOY_ENV: "QA"
+      LOGICAL_ENV: "qa"
+      APPNAME: "topcoder-app"         
+    steps: *build_steps
 
   deploy_prod:
     <<: *python_env
     environment:
       DEPLOY_ENV: "PROD"
+      LOGICAL_ENV: "prod"
+      APPNAME: "topcoder-app"       
     steps: *deploy_steps
 
   deploy_dev:
     <<: *python_env
     environment:
       DEPLOY_ENV: "DEV"
+      LOGICAL_ENV: "dev"
+      APPNAME: "topcoder-app"       
     steps: *deploy_steps
 
   deploy_qa:
     <<: *python_env
     environemtn:
       DEPLOY_ENV: "QA"
+      LOGICAL_ENV: "qa"
+      APPNAME: "topcoder-app"       
     steps: *deploy_steps
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build
+      - build_dev:
+          context : org-global 
+          filters:
+            branches:
+              only: [ dev, dev-circleci2 ]
+      - build_qa:
+          context : org-global 
+          filters:
+            branches:
+              only: qa-integration          
+      - build_prod:
+          context : org-global
+          filters:
+            branches:
+              only: master           
       - deploy_dev:
+          context : org-global      
           filters:
             branches:
               only: [ dev, dev-circleci2 ]
           requires:
-            - build
+            - build_dev
       - deploy_prod:
+          context : org-global      
           filters:
             branches:
               only: master
           requires:
-            - build
+            - build_prod
       - deploy_qa:
+          context : org-global      
           filters:
             branches:
               only: qa-integration
           requires:
-            - build
+            - build_qa
