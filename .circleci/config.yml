@@ -33,6 +33,7 @@ install_build_dependencies: &install_build_dependencies
     node --version
     npm --version
     nvm --version
+    
 # Instructinos of deployment
 deploy_steps: &deploy_steps
   - attach_workspace:
@@ -41,14 +42,14 @@ deploy_steps: &deploy_steps
   - run: *install_deploysuite
   - setup_remote_docker
   - deploy:
-    name: Running MasterScript.
-    command: |
-      # ./deploy.sh $DEPLOY_ENV 
-      ./awsconfiguration.sh $DEPLOY_ENV
-      source awsenvconf
-      ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-deployvar
-      source buildenvvar
-      ./master_deploy.sh -d CFRONT -e $DEPLOY_ENV -c true
+      name: Running MasterScript.
+      command: |
+        # ./deploy.sh $DEPLOY_ENV 
+        ./awsconfiguration.sh $DEPLOY_ENV
+        source awsenvconf
+        ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-deployvar
+        source buildenvvar
+        ./master_deploy.sh -d CFRONT -e $DEPLOY_ENV -c true
   
 build_npm_steps: &build_npm_steps
   name: "configuring environment building environment"
