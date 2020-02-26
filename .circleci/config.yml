@@ -30,6 +30,7 @@ build_npm_steps: &build_npm_steps
       source awsenvconf
       ./buildenv.sh -e $DEPLOY_ENV -b ${LOGICAL_ENV}-${APPNAME}-buildvar            
       source buildenvvar
+      npm rebuild node-sass
       npm run lint && npm run build
       npm test
 
