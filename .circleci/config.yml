@@ -63,8 +63,8 @@ build_npm_steps: &build_npm_steps
 build_steps: &build_steps
   - run: *install_build_dependencies
   - run: *install_awscli
-  - run: *install_deploysuite
   - checkout
+  - run: *install_deploysuite  
   - restore_cache:
       key: node-modules-{{ checksum "package-lock.json" }}
   - run: npm install
