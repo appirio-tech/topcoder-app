@@ -20,7 +20,8 @@ install_build_dependencies: &install_build_dependencies
     sudo apt-get install g++-4.8  -y
     sudo apt-get install python-pip -y
     sudo pip install awscli --upgrade
-    sudo apt install jq
+    sudo apt install jq -y
+    sudo apt install phantomjs -y
     aws --version    
     
 build_npm_steps: &build_npm_steps
@@ -32,7 +33,7 @@ build_npm_steps: &build_npm_steps
       source buildenvvar
       npm rebuild node-sass
       npm run lint && npm run build
-      npm test
+      #npm test
 
 build_deploy_steps: &build_deploy_steps
   - run: *install_build_dependencies
