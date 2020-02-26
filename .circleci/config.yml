@@ -3,7 +3,7 @@ version: 2
 # node image to run aws utilities
 node_env: &node_env
   docker:
-    - image: circleci/node:8.16.0
+    - image: circleci/node:8.16.0-stretch
 
 # Instructions of installing aws utilities
 install_awscli: &install_awscli
