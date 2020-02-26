@@ -3,7 +3,7 @@ version: 2
 # node image to run aws utilities
 node_env: &node_env
   docker:
-    - image: circleci/node:8.16.0-jessie
+    - image: circleci/node:8.16.0-jessie-browsers
 
 install_deploysuite: &install_deploysuite
   name: Installation of install_deploysuite.
