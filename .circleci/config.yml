@@ -5,14 +5,6 @@ node_env: &node_env
   docker:
     - image: circleci/node:8.16.0-jessie
 
-# Instructions of installing aws utilities
-install_awscli: &install_awscli
-  name: "Install awscli"
-  command: |
-    sudo pip install awscli --upgrade
-    sudo apt install jq
-    aws --version
-
 install_deploysuite: &install_deploysuite
   name: Installation of install_deploysuite.
   command: |
@@ -26,6 +18,10 @@ install_build_dependencies: &install_build_dependencies
   command: |
     sudo apt-get update -y
     sudo apt-get install g++-4.8  -y
+    sudo apt-get install python-pip -y
+    sudo pip install awscli --upgrade
+    sudo apt install jq
+    aws --version    
     
 build_npm_steps: &build_npm_steps
   name: "configuring environment building environment"
@@ -39,7 +35,6 @@ build_npm_steps: &build_npm_steps
 
 build_deploy_steps: &build_deploy_steps
   - run: *install_build_dependencies
-  - run: *install_awscli
   - checkout
   - run: *install_deploysuite  
   - restore_cache:
