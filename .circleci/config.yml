@@ -24,7 +24,6 @@ install_deploysuite: &install_deploysuite
 install_build_dependencies: &install_build_dependencies
   name: Install g++-4.8 and Install node-5.12.0
   command: |
-    sudo add-apt-repository ppa:ubuntu-toolchain-r/test  -y
     sudo apt-get update -y
     sudo apt-get install g++-4.8  -y
     
