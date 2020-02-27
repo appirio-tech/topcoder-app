@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "angucomplete-alt": "2.5.0",
-    "angular": "1.6.5",
+    "angular": "1.7.9",
     "angular-carousel": "1.0.2",
     "angular-cookies": "1.6.5",
     "angular-filter": "0.5.16",
