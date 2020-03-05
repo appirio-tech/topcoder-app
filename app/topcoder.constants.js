@@ -47,6 +47,5 @@ angular.module('CONSTANTS', []).constant('CONSTANTS', {
   'STATUS_COMPLETED_WITHOUT_WIN' : 'Completed Without Win',
   'CHALLENGES_LOADING_CHUNK' : 36,
   'INFINITE_SCROLL_OFFSET' : '400', // footer is 300px and challenge tile is 400px
-  'VIDEO_DEFAULT_HEIGHT': 360,
-  'DEFAULT_GROUP_ID': 10
+  'VIDEO_DEFAULT_HEIGHT': 360
 })
