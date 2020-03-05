@@ -18,7 +18,7 @@ describe('Profile Controller', function() {
 
     var profileService = {
       getUserStats: function() {
-        return $q.when({result: {content: [mockStats]}})
+        return $q.when({result: {content: mockStats}})
       },
       getUserSkills: function() {
         return $q.when({result: {content: mockSkills}})
