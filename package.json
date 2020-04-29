@@ -18,7 +18,7 @@
     "chai": "3.5.0",
     "eslint": "1.10.3",
     "eslint-plugin-react": "3.16.1",
-    "jquery": "2.2.4",
+    "jquery": "3.5.0",
     "karma": "0.13.22",
     "karma-chai": "0.1.0",
     "karma-chai-sinon": "0.1.5",
