@@ -67,7 +67,7 @@
     "jstimezonedetect": "1.0.6",
     "lodash": "4.17.4",
     "moment": "2.18.1",
-    "moment-timezone": "0.5.13",
+    "moment-timezone": "0.5.35",
     "ng-dialog": "0.5.9",
     "react-select": "1.0.0-beta8",
     "restangular": "1.6.1",
